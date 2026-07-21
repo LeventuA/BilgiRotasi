@@ -2,8 +2,105 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+class SoundFx {
+  SoundFx._();
+
+  static bool enabled = true;
+
+  static final AudioPlayer _dicePlayer = AudioPlayer();
+  static final AudioPlayer _stepPlayer = AudioPlayer();
+  static final AudioPlayer _effectPlayer = AudioPlayer();
+  static final AudioPlayer _musicPlayer = AudioPlayer();
+
+  static void setEnabled(bool value) {
+    enabled = value;
+
+    if (!value) {
+      unawaited(_dicePlayer.stop());
+      unawaited(_stepPlayer.stop());
+      unawaited(_effectPlayer.stop());
+      unawaited(_musicPlayer.stop());
+    }
+  }
+
+  static Future<void> _play(
+    AudioPlayer player,
+    String fileName, {
+    double volume = 1,
+  }) async {
+    if (!enabled) return;
+
+    try {
+      await player.stop();
+      await player.play(
+        AssetSource('sounds/$fileName'),
+        volume: volume,
+      );
+    } catch (_) {
+      // Ses hatası oyunu durdurmamalı.
+    }
+  }
+
+  static Future<void> dice() {
+    return _play(
+      _dicePlayer,
+      'dice_roll.wav',
+      volume: 0.72,
+    );
+  }
+
+  static Future<void> step() {
+    return _play(
+      _stepPlayer,
+      'step.wav',
+      volume: 0.46,
+    );
+  }
+
+  static Future<void> landing() {
+    return _play(
+      _effectPlayer,
+      'landing.wav',
+      volume: 0.68,
+    );
+  }
+
+  static Future<void> correct() {
+    return _play(
+      _effectPlayer,
+      'correct.wav',
+      volume: 0.76,
+    );
+  }
+
+  static Future<void> wrong() {
+    return _play(
+      _effectPlayer,
+      'wrong.wav',
+      volume: 0.65,
+    );
+  }
+
+  static Future<void> badge() {
+    return _play(
+      _effectPlayer,
+      'badge.wav',
+      volume: 0.82,
+    );
+  }
+
+  static Future<void> win() {
+    return _play(
+      _musicPlayer,
+      'win.wav',
+      volume: 0.86,
+    );
+  }
+}
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -657,6 +754,7 @@ class _GameScreenState extends State<GameScreen> {
   double _routeOpacity = 0;
   int? _landingNodeId;
   int _landingPulse = 0;
+  bool _soundEnabled = true;
 
   PlayerData get _currentPlayer => widget.players[_currentPlayerIndex];
 
@@ -666,6 +764,20 @@ class _GameScreenState extends State<GameScreen> {
       appBar: AppBar(
         title: const Text('Bilgi Rotası'),
         actions: [
+          IconButton(
+            tooltip: _soundEnabled ? 'Sesleri kapat' : 'Sesleri aç',
+            onPressed: () {
+              setState(() {
+                _soundEnabled = !_soundEnabled;
+                SoundFx.setEnabled(_soundEnabled);
+              });
+            },
+            icon: Icon(
+              _soundEnabled
+                  ? Icons.volume_up_rounded
+                  : Icons.volume_off_rounded,
+            ),
+          ),
           IconButton(
             tooltip: 'Oyunu bitir',
             onPressed: _confirmExit,
@@ -938,6 +1050,7 @@ class _GameScreenState extends State<GameScreen> {
       _status = '${_currentPlayer.name} zarı atıyor…';
     });
 
+    unawaited(SoundFx.dice());
     HapticFeedback.mediumImpact();
 
     for (var i = 0; i < 12; i++) {
@@ -1013,6 +1126,7 @@ class _GameScreenState extends State<GameScreen> {
         _currentPlayer.position = id;
         _currentPlayer.movePulse++;
       });
+      unawaited(SoundFx.step());
       HapticFeedback.selectionClick();
       await Future<void>.delayed(const Duration(milliseconds: 390));
       if (!mounted) return;
@@ -1031,6 +1145,7 @@ class _GameScreenState extends State<GameScreen> {
           '${_currentPlayer.name}, ${BoardMap.label(target.id)} alanına geldi.';
     });
 
+    unawaited(SoundFx.landing());
     HapticFeedback.heavyImpact();
     await Future<void>.delayed(const Duration(milliseconds: 520));
 
@@ -1133,6 +1248,7 @@ class _GameScreenState extends State<GameScreen> {
         _status = '${_currentPlayer.name} Bilgi Rotası şampiyonu!';
         _isBusy = false;
       });
+      unawaited(SoundFx.win());
       HapticFeedback.heavyImpact();
       await _showWinnerDialog(_currentPlayer);
     } else {
@@ -1142,6 +1258,7 @@ class _GameScreenState extends State<GameScreen> {
         _status = 'Final kaçtı. Sıra ${_currentPlayer.name} oyuncusunda.';
         _isBusy = false;
       });
+      unawaited(SoundFx.wrong());
     }
   }
 
@@ -1155,8 +1272,10 @@ class _GameScreenState extends State<GameScreen> {
     if (correct) {
       answeredPlayer.correctAnswers++;
       var badgeMessage = '';
+      var badgeEarned = false;
       if (wasBadgeCell && !answeredPlayer.badges.contains(categoryIndex)) {
         answeredPlayer.badges.add(categoryIndex);
+        badgeEarned = true;
         badgeMessage = ' ${GameCategory.values[categoryIndex].label} rozeti kazanıldı!';
       }
 
@@ -1166,6 +1285,11 @@ class _GameScreenState extends State<GameScreen> {
             : 'Doğru cevap!$badgeMessage Aynı oyuncu devam ediyor.';
         _isBusy = false;
       });
+      unawaited(
+        badgeEarned
+            ? SoundFx.badge()
+            : SoundFx.correct(),
+      );
       HapticFeedback.selectionClick();
     } else {
       answeredPlayer.wrongAnswers++;
@@ -1174,6 +1298,7 @@ class _GameScreenState extends State<GameScreen> {
         _status = 'Yanlış cevap. Sıra ${_currentPlayer.name} oyuncusunda.';
         _isBusy = false;
       });
+      unawaited(SoundFx.wrong());
     }
   }
 
