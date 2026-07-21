@@ -1082,7 +1082,7 @@ class BoardPainter extends CustomPainter {
     final rect = Rect.fromCircle(center: center, radius: outerRadius);
 
     for (var index = 0; index < 36; index++) {
-      final categoryIndex = GameScreen.categoryForCell(index);
+      final categoryIndex = _GameScreenState.categoryForCell(index);
       final category = GameCategory.values[categoryIndex];
       final startAngle = -pi / 2 + index * segmentAngle;
 
@@ -1099,8 +1099,8 @@ class BoardPainter extends CustomPainter {
 
       final borderPaint = Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = GameScreen.isSpecialCell(index) ? 4 : 1.2
-        ..color = GameScreen.isSpecialCell(index)
+        ..strokeWidth = _GameScreenState.isSpecialCell(index) ? 4 : 1.2
+        ..color = _GameScreenState.isSpecialCell(index)
             ? Colors.white
             : Colors.white.withOpacity(0.7);
       canvas.drawArc(
