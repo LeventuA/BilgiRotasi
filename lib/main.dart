@@ -1190,15 +1190,23 @@ class _QuestionScreenState extends State<QuestionScreen> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        backgroundColor: category.color.withOpacity(0.09),
+        backgroundColor: Color.alphaBlend(
+          category.color.withOpacity(0.10),
+          Colors.white,
+        ),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color.alphaBlend(
+            category.color.withOpacity(0.10),
+            Colors.white,
+          ),
+          foregroundColor: category.darkColor,
+          surfaceTintColor: Colors.transparent,
           title: Text(
             widget.isFinalQuestion
                 ? '🏆 Final Sorusu'
                 : widget.isBadgeQuestion
-                    ? '⭐ Rozet Sorusu'
+                    ? '⭐ ${category.label} Rozet Sorusu'
                     : '${category.emoji} ${category.label}',
           ),
         ),
