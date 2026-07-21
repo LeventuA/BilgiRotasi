@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'sound_data.dart';
 
 class SoundFx {
   SoundFx._();
@@ -12,6 +15,9 @@ class SoundFx {
   static bool enabled = true;
   static bool _initialized = false;
   static String? lastError;
+
+  static Directory? _soundDirectory;
+  static final Map<String, String> _soundPaths = <String, String>{};
 
   static final AudioPlayer _dicePlayer =
       AudioPlayer(playerId: 'bilgi_rotasi_dice');
@@ -34,6 +40,29 @@ class SoundFx {
           respectSilence: false,
         ).build(),
       );
+
+      final directory = Directory(
+        '${Directory.systemTemp.path}/bilgi_rotasi_embedded_sounds_v1',
+      );
+      await directory.create(recursive: true);
+      _soundDirectory = directory;
+
+      for (final entry in embeddedSoundBase64.entries) {
+        final bytes = base64Decode(entry.value);
+        final file = File('${directory.path}/${entry.key}');
+
+        final needsWrite =
+            !await file.exists() || await file.length() != bytes.length;
+
+        if (needsWrite) {
+          await file.writeAsBytes(
+            bytes,
+            flush: true,
+          );
+        }
+
+        _soundPaths[entry.key] = file.path;
+      }
 
       await Future.wait([
         _dicePlayer.setReleaseMode(ReleaseMode.stop),
@@ -71,11 +100,22 @@ class SoundFx {
     try {
       await initialize();
 
+      final path = _soundPaths[fileName];
+      if (path == null || path.isEmpty) {
+        throw StateError(
+          'Gömülü ses hazırlanamadı: $fileName',
+        );
+      }
+
+      final file = File(path);
+      if (!await file.exists()) {
+        throw StateError(
+          'Geçici ses dosyası bulunamadı: $fileName',
+        );
+      }
+
       await player.play(
-        AssetSource(
-          'sounds/$fileName',
-          mimeType: 'audio/mpeg',
-        ),
+        DeviceFileSource(path),
         volume: volume.clamp(0.0, 1.0).toDouble(),
       );
 
