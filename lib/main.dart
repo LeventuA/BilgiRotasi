@@ -345,9 +345,15 @@ class PlayerSetupScreen extends StatefulWidget {
 
 class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
   int _playerCount = 2;
+
   final List<TextEditingController> _controllers = List.generate(
     6,
     (index) => TextEditingController(text: 'Oyuncu ${index + 1}'),
+  );
+
+  final List<int> _selectedPawnTypes = List<int>.generate(
+    6,
+    (index) => index,
   );
 
   static const List<Color> _playerColors = [
@@ -376,11 +382,11 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
           children: [
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                 children: [
                   Card(
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(18),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -407,39 +413,84 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
                   ),
                   const SizedBox(height: 14),
                   ...List.generate(_playerCount, (index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: TextField(
-                        controller: _controllers[index],
-                        maxLength: 16,
-                        textCapitalization: TextCapitalization.words,
-                        decoration: InputDecoration(
-                          counterText: '',
-                          labelText: '${index + 1}. oyuncu',
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                color: _playerColors[index],
-                                shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 2),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 5,
-                                    color: Color(0x33000000),
+                    final pawn = PawnCatalog.at(_selectedPawnTypes[index]);
+
+                    return Card(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(
+                          children: [
+                            InkWell(
+                              borderRadius: BorderRadius.circular(18),
+                              onTap: () => _showPawnPicker(index),
+                              child: Container(
+                                width: 84,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 6,
+                                  vertical: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: _playerColors[index].withOpacity(0.08),
+                                  borderRadius: BorderRadius.circular(18),
+                                  border: Border.all(
+                                    color: _playerColors[index].withOpacity(0.35),
                                   ),
-                                ],
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    PawnToken(
+                                      type: _selectedPawnTypes[index],
+                                      color: _playerColors[index],
+                                      active: true,
+                                      width: 42,
+                                      height: 52,
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      pawn.name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                        height: 1.05,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 3),
+                                    const Text(
+                                      'Değiştir',
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        color: Color(0xFF64748B),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: TextField(
+                                controller: _controllers[index],
+                                maxLength: 16,
+                                textCapitalization: TextCapitalization.words,
+                                decoration: InputDecoration(
+                                  counterText: '',
+                                  labelText: '${index + 1}. oyuncu',
+                                  helperText: 'Yanındaki piyona dokunarak seç',
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     );
@@ -448,7 +499,7 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
               child: FilledButton.icon(
                 onPressed: _startGame,
                 icon: const Icon(Icons.casino_rounded),
@@ -464,14 +515,105 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
     );
   }
 
+  Future<void> _showPawnPicker(int playerIndex) async {
+    final selected = await showDialog<int>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: Text('${playerIndex + 1}. oyuncunun piyonu'),
+          contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
+          content: SizedBox(
+            width: double.maxFinite,
+            height: 430,
+            child: GridView.builder(
+              itemCount: PawnCatalog.all.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio: 0.78,
+              ),
+              itemBuilder: (context, index) {
+                final pawn = PawnCatalog.all[index];
+                final isSelected = _selectedPawnTypes[playerIndex] == index;
+
+                return Material(
+                  color: isSelected
+                      ? _playerColors[playerIndex].withOpacity(0.14)
+                      : const Color(0xFFF8FAFC),
+                  borderRadius: BorderRadius.circular(16),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16),
+                    onTap: () => Navigator.pop(dialogContext, index),
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: isSelected
+                              ? _playerColors[playerIndex]
+                              : const Color(0xFFE2E8F0),
+                          width: isSelected ? 2.5 : 1,
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          PawnToken(
+                            type: index,
+                            color: _playerColors[playerIndex],
+                            active: isSelected,
+                            width: 46,
+                            height: 58,
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            pawn.name,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              height: 1.05,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Vazgeç'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (selected == null || !mounted) return;
+
+    setState(() {
+      _selectedPawnTypes[playerIndex] = selected;
+    });
+  }
+
   void _startGame() {
     final players = <PlayerData>[];
+
     for (var index = 0; index < _playerCount; index++) {
       final name = _controllers[index].text.trim();
+
       players.add(
         PlayerData(
           name: name.isEmpty ? 'Oyuncu ${index + 1}' : name,
           color: _playerColors[index],
+          pawnType: _selectedPawnTypes[index],
         ),
       );
     }
@@ -589,17 +731,12 @@ class _GameScreenState extends State<GameScreen> {
               children: [
                 Row(
                   children: [
-                    Container(
+                    PawnToken(
+                      type: _currentPlayer.pawnType,
+                      color: _currentPlayer.color,
+                      active: true,
                       width: 44,
-                      height: 44,
-                      decoration: BoxDecoration(
-                        color: _currentPlayer.color,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 3),
-                        boxShadow: const [
-                          BoxShadow(blurRadius: 8, color: Color(0x33000000)),
-                        ],
-                      ),
+                      height: 54,
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -719,13 +856,12 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                     child: Row(
                       children: [
-                        Container(
-                          width: 14,
-                          height: 14,
-                          decoration: BoxDecoration(
-                            color: player.color,
-                            shape: BoxShape.circle,
-                          ),
+                        PawnToken(
+                          type: player.pawnType,
+                          color: player.color,
+                          active: active,
+                          width: 24,
+                          height: 30,
                         ),
                         const SizedBox(width: 9),
                         Expanded(
@@ -1325,6 +1461,384 @@ class BoardMap {
   }
 }
 
+class PawnDefinition {
+  const PawnDefinition({
+    required this.name,
+    required this.symbol,
+  });
+
+  final String name;
+  final String symbol;
+}
+
+class PawnCatalog {
+  static const List<PawnDefinition> all = [
+    PawnDefinition(name: 'Renkli Halka', symbol: '◉'),
+    PawnDefinition(name: 'Bilgi Taşı', symbol: '🧠'),
+    PawnDefinition(name: 'Beyin Maskotu', symbol: '🧠'),
+    PawnDefinition(name: 'Klasik Piyon', symbol: '♟'),
+    PawnDefinition(name: 'Bilge At Piyonu', symbol: '♞'),
+    PawnDefinition(name: 'Kristal Zar Piyonu', symbol: '🎲'),
+    PawnDefinition(name: 'Pusula Yıldızı', symbol: '🧭'),
+    PawnDefinition(name: 'Açık Kitap', symbol: '📖'),
+    PawnDefinition(name: 'Ampul Fikri', symbol: '💡'),
+    PawnDefinition(name: 'Kum Saati', symbol: '⏳'),
+    PawnDefinition(name: 'Soru İşareti', symbol: '?'),
+    PawnDefinition(name: 'Kupa Rozet', symbol: '🏆'),
+  ];
+
+  static PawnDefinition at(int index) {
+    final normalized = (index % all.length + all.length) % all.length;
+    return all[normalized];
+  }
+}
+
+class PawnToken extends StatelessWidget {
+  const PawnToken({
+    required this.type,
+    required this.color,
+    required this.active,
+    required this.width,
+    required this.height,
+    super.key,
+  });
+
+  final int type;
+  final Color color;
+  final bool active;
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    if (type == 0) {
+      return SizedBox(
+        width: width,
+        height: height,
+        child: CustomPaint(
+          painter: RingPawnPainter(color: color, active: active),
+        ),
+      );
+    }
+
+    if (type == 3) {
+      return SizedBox(
+        width: width,
+        height: height,
+        child: CustomPaint(
+          painter: ClassicPawnPainter(color: color, active: active),
+        ),
+      );
+    }
+
+    final pawn = PawnCatalog.at(type);
+    final isGem = type == 1 || type == 5 || type == 11;
+    final isRound = type == 2 || type == 6 || type == 8 || type == 10;
+
+    return SizedBox(
+      width: width,
+      height: height,
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          if (active)
+            Positioned(
+              top: height * 0.05,
+              child: Container(
+                width: width * 0.96,
+                height: width * 0.96,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: color.withOpacity(0.42),
+                      blurRadius: width * 0.32,
+                      spreadRadius: width * 0.05,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: width * 0.82,
+              height: height * 0.16,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(999),
+                gradient: const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFFFFE79A),
+                    Color(0xFFD49A22),
+                    Color(0xFF8A5914),
+                  ],
+                ),
+                boxShadow: const [
+                  BoxShadow(
+                    offset: Offset(0, 2),
+                    blurRadius: 3,
+                    color: Color(0x66000000),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            top: height * 0.03,
+            child: Transform.rotate(
+              angle: isGem ? pi / 4 : 0,
+              child: Container(
+                width: width * 0.82,
+                height: height * 0.67,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: isRound ? BoxShape.circle : BoxShape.rectangle,
+                  borderRadius: isRound
+                      ? null
+                      : BorderRadius.circular(isGem ? 7 : 12),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.lerp(color, Colors.white, 0.60)!,
+                      color,
+                      Color.lerp(color, Colors.black, 0.36)!,
+                    ],
+                    stops: const [0, 0.58, 1],
+                  ),
+                  border: Border.all(
+                    color: const Color(0xFFFFE79A),
+                    width: active ? 2.2 : 1.5,
+                  ),
+                  boxShadow: const [
+                    BoxShadow(
+                      offset: Offset(0, 3),
+                      blurRadius: 4,
+                      color: Color(0x66000000),
+                    ),
+                  ],
+                ),
+                child: Transform.rotate(
+                  angle: isGem ? -pi / 4 : 0,
+                  child: Text(
+                    pawn.symbol,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: type == 10 ? width * 0.48 : width * 0.39,
+                      height: 1,
+                      color: type == 10 ? Colors.white : null,
+                      fontWeight: FontWeight.w900,
+                      shadows: const [
+                        Shadow(
+                          offset: Offset(0, 1),
+                          blurRadius: 2,
+                          color: Color(0x77000000),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: height * 0.09,
+            left: width * 0.28,
+            child: Container(
+              width: width * 0.10,
+              height: width * 0.10,
+              decoration: const BoxDecoration(
+                color: Color(0xCCFFFFFF),
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class RingPawnPainter extends CustomPainter {
+  const RingPawnPainter({required this.color, required this.active});
+
+  final Color color;
+  final bool active;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height * 0.40);
+    final radius = size.width * 0.34;
+
+    if (active) {
+      canvas.drawCircle(
+        center,
+        radius * 1.35,
+        Paint()
+          ..color = color.withOpacity(0.30)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5),
+      );
+    }
+
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: Offset(size.width / 2, size.height * 0.91),
+        width: size.width * 0.82,
+        height: size.height * 0.15,
+      ),
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFFFFE79A),
+            Color(0xFFD49A22),
+            Color(0xFF8A5914),
+          ],
+        ).createShader(Offset.zero & size),
+    );
+
+    canvas.drawCircle(
+      center.translate(0, size.height * 0.035),
+      radius,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = size.width * 0.23
+        ..color = const Color(0xFF875817),
+    );
+
+    canvas.drawCircle(
+      center,
+      radius,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = size.width * 0.21
+        ..shader = SweepGradient(
+          colors: [
+            color,
+            Color.lerp(color, Colors.white, 0.65)!,
+            Color.lerp(color, Colors.black, 0.25)!,
+            color,
+          ],
+        ).createShader(Rect.fromCircle(center: center, radius: radius)),
+    );
+
+    canvas.drawCircle(
+      center,
+      radius * 1.12,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.4
+        ..color = const Color(0xFFFFE79A),
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant RingPawnPainter oldDelegate) {
+    return oldDelegate.color != color || oldDelegate.active != active;
+  }
+}
+
+class ClassicPawnPainter extends CustomPainter {
+  const ClassicPawnPainter({required this.color, required this.active});
+
+  final Color color;
+  final bool active;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (active) {
+      canvas.drawCircle(
+        Offset(size.width / 2, size.height * 0.48),
+        size.width * 0.52,
+        Paint()
+          ..color = color.withOpacity(0.28)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5),
+      );
+    }
+
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: Offset(size.width / 2, size.height * 0.92),
+        width: size.width * 0.84,
+        height: size.height * 0.16,
+      ),
+      Paint()
+        ..color = const Color(0x66000000)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3),
+    );
+
+    final bounds = Offset.zero & size;
+    final fill = Paint()
+      ..shader = LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          Color.lerp(color, Colors.white, 0.65)!,
+          color,
+          Color.lerp(color, Colors.black, 0.42)!,
+        ],
+      ).createShader(bounds);
+
+    final outline = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = active ? 2.1 : 1.4
+      ..color = const Color(0xFFFFE79A);
+
+    final head = Offset(size.width / 2, size.height * 0.22);
+    final headRadius = size.width * 0.24;
+    canvas.drawCircle(head, headRadius, fill);
+    canvas.drawCircle(head, headRadius, outline);
+
+    final body = Path()
+      ..moveTo(size.width * 0.39, size.height * 0.42)
+      ..quadraticBezierTo(
+        size.width * 0.30,
+        size.height * 0.61,
+        size.width * 0.22,
+        size.height * 0.79,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.16,
+        size.height * 0.87,
+        size.width * 0.28,
+        size.height * 0.90,
+      )
+      ..lineTo(size.width * 0.72, size.height * 0.90)
+      ..quadraticBezierTo(
+        size.width * 0.84,
+        size.height * 0.87,
+        size.width * 0.78,
+        size.height * 0.79,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.70,
+        size.height * 0.61,
+        size.width * 0.61,
+        size.height * 0.42,
+      )
+      ..close();
+
+    canvas.drawPath(body, fill);
+    canvas.drawPath(body, outline);
+
+    final baseRect = Rect.fromCenter(
+      center: Offset(size.width / 2, size.height * 0.88),
+      width: size.width * 0.72,
+      height: size.height * 0.16,
+    );
+    canvas.drawOval(baseRect, fill);
+    canvas.drawOval(baseRect, outline);
+  }
+
+  @override
+  bool shouldRepaint(covariant ClassicPawnPainter oldDelegate) {
+    return oldDelegate.color != color || oldDelegate.active != active;
+  }
+}
+
 class GameBoard extends StatelessWidget {
   const GameBoard({
     required this.players,
@@ -1367,8 +1881,9 @@ class GameBoard extends StatelessWidget {
                     .length;
 
                 if (player.position == BoardMap.centerId) {
+                  final divisor = players.isEmpty ? 1 : players.length;
                   final angle = -pi / 2 +
-                      index * (2 * pi / max(players.length, 1));
+                      index * (2 * pi / divisor.toDouble());
                   point = boardCenter +
                       Offset(cos(angle), sin(angle)) * base * 0.052;
                 } else if (stackedBefore > 0) {
@@ -1380,26 +1895,26 @@ class GameBoard extends StatelessWidget {
                     -sin(radialAngle),
                     cos(radialAngle),
                   );
-                  point += tangent * stackedBefore.toDouble() * base * 0.024;
+                  point += tangent *
+                      stackedBefore.toDouble() *
+                      base *
+                      0.024;
                 }
 
-                final pawnWidth = active ? base * 0.052 : base * 0.045;
-                final pawnHeight = active ? base * 0.074 : base * 0.064;
+                final pawnWidth = active ? base * 0.046 : base * 0.040;
+                final pawnHeight = active ? base * 0.060 : base * 0.053;
 
                 return AnimatedPositioned(
                   duration: const Duration(milliseconds: 430),
                   curve: Curves.easeOutBack,
                   left: point.dx - pawnWidth / 2,
-                  top: point.dy - pawnHeight * 0.78,
-                  child: SizedBox(
+                  top: point.dy - pawnHeight * 0.76,
+                  child: PawnToken(
+                    type: player.pawnType,
+                    color: player.color,
+                    active: active,
                     width: pawnWidth,
                     height: pawnHeight,
-                    child: CustomPaint(
-                      painter: PremiumPawnPainter(
-                        color: player.color,
-                        active: active,
-                      ),
-                    ),
                   ),
                 );
               }),
@@ -1408,111 +1923,6 @@ class GameBoard extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-class PremiumPawnPainter extends CustomPainter {
-  const PremiumPawnPainter({required this.color, required this.active});
-
-  final Color color;
-  final bool active;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    canvas.drawOval(
-      Rect.fromCenter(
-        center: Offset(size.width / 2, size.height * 0.92),
-        width: size.width * 0.86,
-        height: size.height * 0.17,
-      ),
-      Paint()
-        ..color = const Color(0x66000000)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3.5),
-    );
-
-    if (active) {
-      canvas.drawCircle(
-        Offset(size.width / 2, size.height * 0.50),
-        size.width * 0.56,
-        Paint()
-          ..color = color.withOpacity(0.28)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6),
-      );
-    }
-
-    final bounds = Rect.fromLTWH(0, 0, size.width, size.height);
-    final fill = Paint()
-      ..shader = LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Color.lerp(color, Colors.white, 0.65)!,
-          color,
-          Color.lerp(color, Colors.black, 0.42)!,
-        ],
-        stops: const [0, 0.52, 1],
-      ).createShader(bounds);
-
-    final outline = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = active ? 2.2 : 1.5
-      ..color = const Color(0xFFFFF5D2);
-
-    final headCenter = Offset(size.width / 2, size.height * 0.24);
-    final headRadius = size.width * 0.245;
-    canvas.drawCircle(headCenter, headRadius, fill);
-    canvas.drawCircle(headCenter, headRadius, outline);
-
-    final body = Path()
-      ..moveTo(size.width * 0.40, size.height * 0.43)
-      ..quadraticBezierTo(
-        size.width * 0.31,
-        size.height * 0.60,
-        size.width * 0.23,
-        size.height * 0.78,
-      )
-      ..quadraticBezierTo(
-        size.width * 0.17,
-        size.height * 0.88,
-        size.width * 0.28,
-        size.height * 0.90,
-      )
-      ..lineTo(size.width * 0.72, size.height * 0.90)
-      ..quadraticBezierTo(
-        size.width * 0.83,
-        size.height * 0.88,
-        size.width * 0.77,
-        size.height * 0.78,
-      )
-      ..quadraticBezierTo(
-        size.width * 0.69,
-        size.height * 0.60,
-        size.width * 0.60,
-        size.height * 0.43,
-      )
-      ..close();
-
-    canvas.drawPath(body, fill);
-    canvas.drawPath(body, outline);
-
-    final baseRect = Rect.fromCenter(
-      center: Offset(size.width / 2, size.height * 0.88),
-      width: size.width * 0.72,
-      height: size.height * 0.17,
-    );
-    canvas.drawOval(baseRect, fill);
-    canvas.drawOval(baseRect, outline);
-
-    canvas.drawCircle(
-      Offset(size.width * 0.42, size.height * 0.16),
-      size.width * 0.055,
-      Paint()..color = const Color(0xDDFFFFFF),
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant PremiumPawnPainter oldDelegate) {
-    return oldDelegate.color != color || oldDelegate.active != active;
   }
 }
 
@@ -2243,10 +2653,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
 }
 
 class PlayerData {
-  PlayerData({required this.name, required this.color});
+  PlayerData({
+    required this.name,
+    required this.color,
+    required this.pawnType,
+  });
 
   final String name;
   final Color color;
+  final int pawnType;
   int position = 0;
   int correctAnswers = 0;
   int wrongAnswers = 0;
