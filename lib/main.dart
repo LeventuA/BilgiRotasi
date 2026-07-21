@@ -1281,6 +1281,8 @@ class _GameScreenState extends State<GameScreen> {
   int? _landingNodeId;
   int _landingPulse = 0;
   bool _soundEnabled = true;
+  bool _allowRoutePop = false;
+  bool _exitDialogOpen = false;
 
   PlayerData get _currentPlayer =>
       widget.players[_currentPlayerIndex];
@@ -1311,8 +1313,15 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return PopScope<Object?>(
+      canPop: _allowRoutePop,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) {
+          unawaited(_handleSystemBack());
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
         title: const Text('Bilgi Rotası'),
         actions: [
           IconButton(
@@ -1398,6 +1407,7 @@ class _GameScreenState extends State<GameScreen> {
             );
           },
         ),
+      ),
       ),
     );
   }
@@ -1954,8 +1964,19 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
+  Future<void> _handleSystemBack() async {
+    if (_allowRoutePop || _exitDialogOpen || !mounted) return;
+    await _confirmExit();
+  }
+
   Future<void> _confirmExit() async {
-    final action = await showDialog<String>(
+    if (_exitDialogOpen || !mounted) return;
+
+    _exitDialogOpen = true;
+    String? action;
+
+    try {
+      action = await showDialog<String>(
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -1984,6 +2005,9 @@ class _GameScreenState extends State<GameScreen> {
         );
       },
     );
+    } finally {
+      _exitDialogOpen = false;
+    }
 
     if (!mounted || action == null || action == 'cancel') {
       return;
@@ -2003,6 +2027,10 @@ class _GameScreenState extends State<GameScreen> {
     }
 
     if (!mounted) return;
+
+    setState(() {
+      _allowRoutePop = true;
+    });
 
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
