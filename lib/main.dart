@@ -1345,7 +1345,7 @@ class GameBoard extends StatelessWidget {
                     -sin(radialAngle),
                     cos(radialAngle),
                   );
-                  point += tangent * stackedBefore * base * 0.024;
+                  point += tangent * stackedBefore.toDouble() * base * 0.024;
                 }
 
                 final pawnWidth = active ? base * 0.052 : base * 0.045;
