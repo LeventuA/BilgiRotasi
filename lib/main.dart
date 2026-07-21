@@ -653,6 +653,10 @@ class _GameScreenState extends State<GameScreen> {
   PlayerData? _winner;
   List<MoveOption> _moveOptions = const <MoveOption>[];
   Completer<MoveOption>? _moveCompleter;
+  MoveOption? _activeMove;
+  double _routeOpacity = 0;
+  int? _landingNodeId;
+  int _landingPulse = 0;
 
   PlayerData get _currentPlayer => widget.players[_currentPlayerIndex];
 
@@ -726,6 +730,10 @@ class _GameScreenState extends State<GameScreen> {
                       currentPlayerIndex: _currentPlayerIndex,
                       moveOptions: _moveOptions,
                       onMoveSelected: _selectMoveFromBoard,
+                      activeMove: _activeMove,
+                      routeOpacity: _routeOpacity,
+                      landingNodeId: _landingNodeId,
+                      landingPulse: _landingPulse,
                     ),
                   ),
                 );
@@ -993,10 +1001,20 @@ class _GameScreenState extends State<GameScreen> {
       return;
     }
 
+    setState(() {
+      _activeMove = selected;
+      _routeOpacity = 1;
+      _landingNodeId = null;
+      _status = '${_currentPlayer.name} rotada ilerliyor…';
+    });
+
     for (final id in selected.path.skip(1)) {
-      setState(() => _currentPlayer.position = id);
+      setState(() {
+        _currentPlayer.position = id;
+        _currentPlayer.movePulse++;
+      });
       HapticFeedback.selectionClick();
-      await Future<void>.delayed(const Duration(milliseconds: 220));
+      await Future<void>.delayed(const Duration(milliseconds: 390));
       if (!mounted) return;
     }
 
@@ -1006,8 +1024,21 @@ class _GameScreenState extends State<GameScreen> {
         : target.categoryIndex;
 
     setState(() {
+      _landingNodeId = _currentPlayer.position;
+      _landingPulse++;
+      _routeOpacity = 0;
       _status =
           '${_currentPlayer.name}, ${BoardMap.label(target.id)} alanına geldi.';
+    });
+
+    HapticFeedback.heavyImpact();
+    await Future<void>.delayed(const Duration(milliseconds: 520));
+
+    if (!mounted) return;
+
+    setState(() {
+      _activeMove = null;
+      _landingNodeId = null;
     });
 
     final question = widget.questionBank.randomQuestion(
@@ -2050,12 +2081,255 @@ class _RouteTargetPulseState extends State<RouteTargetPulse>
   }
 }
 
+class JumpingPawn extends StatefulWidget {
+  const JumpingPawn({
+    required this.type,
+    required this.color,
+    required this.active,
+    required this.width,
+    required this.height,
+    required this.movePulse,
+    super.key,
+  });
+
+  final int type;
+  final Color color;
+  final bool active;
+  final double width;
+  final double height;
+  final int movePulse;
+
+  @override
+  State<JumpingPawn> createState() => _JumpingPawnState();
+}
+
+class _JumpingPawnState extends State<JumpingPawn>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 390),
+      value: 1,
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant JumpingPawn oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.movePulse != widget.movePulse) {
+      _controller.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: widget.width,
+      height: widget.height,
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          final t = _controller.value;
+          final arc = sin(pi * t);
+          final landingT = t < 0.76 ? 0.0 : (t - 0.76) / 0.24;
+          final landingBounce = sin(pi * landingT.clamp(0.0, 1.0));
+
+          final lift = arc * widget.height * 0.40;
+          final scaleX = 1 - arc * 0.045 + landingBounce * 0.13;
+          final scaleY = 1 + arc * 0.055 - landingBounce * 0.11;
+          final shadowScale = 1 - arc * 0.42;
+          final shadowOpacity = 0.46 - arc * 0.23;
+
+          return Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.bottomCenter,
+            children: [
+              Positioned(
+                bottom: widget.height * 0.015,
+                child: Opacity(
+                  opacity: shadowOpacity,
+                  child: Transform.scale(
+                    scaleX: shadowScale,
+                    scaleY: 0.72,
+                    child: Container(
+                      width: widget.width * 0.78,
+                      height: widget.height * 0.16,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(999),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0x99000000),
+                            blurRadius: 7,
+                            spreadRadius: 1,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(0, -lift),
+                child: Transform.scale(
+                  scaleX: scaleX,
+                  scaleY: scaleY,
+                  alignment: Alignment.bottomCenter,
+                  child: child,
+                ),
+              ),
+            ],
+          );
+        },
+        child: PawnToken(
+          type: widget.type,
+          color: widget.color,
+          active: widget.active,
+          width: widget.width,
+          height: widget.height,
+        ),
+      ),
+    );
+  }
+}
+
+class LandingBurst extends StatefulWidget {
+  const LandingBurst({
+    required this.color,
+    required this.size,
+    super.key,
+  });
+
+  final Color color;
+  final double size;
+
+  @override
+  State<LandingBurst> createState() => _LandingBurstState();
+}
+
+class _LandingBurstState extends State<LandingBurst>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 520),
+    )..forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: SizedBox(
+        width: widget.size,
+        height: widget.size,
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, _) {
+            return CustomPaint(
+              painter: LandingBurstPainter(
+                progress: _controller.value,
+                color: widget.color,
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class LandingBurstPainter extends CustomPainter {
+  const LandingBurstPainter({
+    required this.progress,
+    required this.color,
+  });
+
+  final double progress;
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final fade = (1 - progress).clamp(0.0, 1.0);
+    final radius = size.width * (0.15 + progress * 0.34);
+
+    canvas.drawCircle(
+      center,
+      radius,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = max(1.0, size.width * 0.055 * fade)
+        ..color = color.withOpacity(0.78 * fade),
+    );
+
+    canvas.drawCircle(
+      center,
+      radius * 0.72,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = max(1.0, size.width * 0.025 * fade)
+        ..color = const Color(0xFFFFE082).withOpacity(0.95 * fade),
+    );
+
+    for (var index = 0; index < 10; index++) {
+      final angle = index * (2 * pi / 10);
+      final startDistance = size.width * 0.16;
+      final endDistance = size.width * (0.20 + progress * 0.31);
+      final start = center +
+          Offset(cos(angle), sin(angle)) * startDistance;
+      final end = center +
+          Offset(cos(angle), sin(angle)) * endDistance;
+
+      canvas.drawLine(
+        start,
+        end,
+        Paint()
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = max(1.0, size.width * 0.032 * fade)
+          ..color = index.isEven
+              ? color.withOpacity(0.88 * fade)
+              : const Color(0xFFFFF3B0).withOpacity(0.95 * fade),
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant LandingBurstPainter oldDelegate) {
+    return oldDelegate.progress != progress || oldDelegate.color != color;
+  }
+}
+
 class GameBoard extends StatelessWidget {
   const GameBoard({
     required this.players,
     required this.currentPlayerIndex,
     this.moveOptions = const <MoveOption>[],
     this.onMoveSelected,
+    this.activeMove,
+    this.routeOpacity = 0,
+    this.landingNodeId,
+    this.landingPulse = 0,
     super.key,
   });
 
@@ -2063,6 +2337,10 @@ class GameBoard extends StatelessWidget {
   final int currentPlayerIndex;
   final List<MoveOption> moveOptions;
   final ValueChanged<MoveOption>? onMoveSelected;
+  final MoveOption? activeMove;
+  final double routeOpacity;
+  final int? landingNodeId;
+  final int landingPulse;
 
   @override
   Widget build(BuildContext context) {
@@ -2076,6 +2354,17 @@ class GameBoard extends StatelessWidget {
           );
           final base = BoardMap.base(size);
           final boardCenter = BoardMap.center(size);
+          final landingPoint = landingNodeId == null
+              ? null
+              : BoardMap.position(size, landingNodeId!);
+          final landingNode = landingNodeId == null
+              ? null
+              : BoardMap.node(landingNodeId!);
+          final landingColor =
+              landingNode == null || landingNode.categoryIndex < 0
+                  ? const Color(0xFF67E8F9)
+                  : GameCategory.values[landingNode.categoryIndex].color;
+          final landingSize = base * 0.17;
 
           return Stack(
             clipBehavior: Clip.none,
@@ -2091,6 +2380,21 @@ class GameBoard extends StatelessWidget {
                     child: CustomPaint(
                       painter: RouteHighlightPainter(
                         options: moveOptions,
+                      ),
+                    ),
+                  ),
+                ),
+              if (activeMove != null)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 520),
+                      curve: Curves.easeOut,
+                      opacity: routeOpacity,
+                      child: CustomPaint(
+                        painter: RouteHighlightPainter(
+                          options: <MoveOption>[activeMove!],
+                        ),
                       ),
                     ),
                   ),
@@ -2137,15 +2441,27 @@ class GameBoard extends StatelessWidget {
                   curve: Curves.easeOutBack,
                   left: point.dx - pawnWidth / 2,
                   top: point.dy - pawnHeight * 0.80,
-                  child: PawnToken(
+                  child: JumpingPawn(
+                    key: ValueKey<String>('pawn-$index'),
                     type: player.pawnType,
                     color: player.color,
                     active: active,
                     width: pawnWidth,
                     height: pawnHeight,
+                    movePulse: player.movePulse,
                   ),
                 );
               }),
+              if (landingPoint != null)
+                Positioned(
+                  left: landingPoint.dx - landingSize / 2,
+                  top: landingPoint.dy - landingSize / 2,
+                  child: LandingBurst(
+                    key: ValueKey<int>(landingPulse),
+                    color: landingColor,
+                    size: landingSize,
+                  ),
+                ),
               ...moveOptions.map((option) {
                 final destination = BoardMap.node(option.destination);
                 final point = BoardMap.position(size, option.destination);
@@ -2917,6 +3233,7 @@ class PlayerData {
   final Color color;
   final int pawnType;
   int position = 0;
+  int movePulse = 0;
   int correctAnswers = 0;
   int wrongAnswers = 0;
   final Set<int> badges = <int>{};
