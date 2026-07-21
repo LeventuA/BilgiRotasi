@@ -10,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'sound_data.dart';
 
+part 'daily_challenge.dart';
+
 class SoundFx {
   SoundFx._();
 
@@ -43,7 +45,7 @@ class SoundFx {
       );
 
       final directory = Directory(
-        '${Directory.systemTemp.path}/bilgi_rotasi_embedded_sounds_v1',
+        '${Directory.systemTemp.path}/bilgi_rotasi_embedded_sounds_v2',
       );
       await directory.create(recursive: true);
       _soundDirectory = directory;
@@ -132,7 +134,7 @@ class SoundFx {
     return _play(
       _dicePlayer,
       'dice_roll.mp3',
-      volume: 1,
+      volume: 0.92,
     );
   }
 
@@ -892,6 +894,8 @@ class _CareerStatsScreenState
                   const SizedBox(height: 16),
                   _buildSummary(stats),
                   const SizedBox(height: 16),
+                  const DailyChallengeStatsCard(),
+                  const SizedBox(height: 16),
                   _buildCategoryStats(stats),
                   const SizedBox(height: 16),
                   _buildAchievements(stats),
@@ -1269,6 +1273,7 @@ class _CareerStatsScreenState
     if (!confirmed) return;
 
     await CareerStatsService.clear();
+    await DailyChallengeService.clear();
 
     if (!mounted) return;
 
@@ -1344,6 +1349,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 const SizedBox(height: 16),
+                DailyChallengeHomeCard(
+                  questionBank: widget.questionBank,
+                ),
+                const SizedBox(height: 16),
                 _buildNewGameCard(),
                 const SizedBox(height: 16),
                 _buildFeatureStrip(),
@@ -1396,7 +1405,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.17',
+                  'Bilgi Rotası • Sürüm 1.18',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
