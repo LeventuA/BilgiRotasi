@@ -445,8 +445,8 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
                                       type: _selectedPawnTypes[index],
                                       color: _playerColors[index],
                                       active: true,
-                                      width: 42,
-                                      height: 52,
+                                      width: 54,
+                                      height: 66,
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
@@ -532,7 +532,7 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
                 crossAxisCount: 3,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
-                childAspectRatio: 0.78,
+                childAspectRatio: 0.72,
               ),
               itemBuilder: (context, index) {
                 final pawn = PawnCatalog.all[index];
@@ -564,8 +564,8 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
                             type: index,
                             color: _playerColors[playerIndex],
                             active: isSelected,
-                            width: 46,
-                            height: 58,
+                            width: 58,
+                            height: 72,
                           ),
                           const SizedBox(height: 6),
                           Text(
@@ -762,8 +762,8 @@ class _GameScreenState extends State<GameScreen> {
                       type: _currentPlayer.pawnType,
                       color: _currentPlayer.color,
                       active: true,
-                      width: 50,
-                      height: 62,
+                      width: 58,
+                      height: 72,
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -887,8 +887,8 @@ class _GameScreenState extends State<GameScreen> {
                           type: player.pawnType,
                           color: player.color,
                           active: active,
-                          width: 24,
-                          height: 30,
+                          width: 32,
+                          height: 40,
                         ),
                         const SizedBox(width: 9),
                         Expanded(
@@ -1491,27 +1491,77 @@ class BoardMap {
 class PawnDefinition {
   const PawnDefinition({
     required this.name,
-    required this.symbol,
+    required this.assetPath,
+    required this.fallbackSymbol,
   });
 
   final String name;
-  final String symbol;
+  final String assetPath;
+  final String fallbackSymbol;
 }
 
 class PawnCatalog {
   static const List<PawnDefinition> all = [
-    PawnDefinition(name: 'Renkli Halka', symbol: '◉'),
-    PawnDefinition(name: 'Bilgi Taşı', symbol: '🧠'),
-    PawnDefinition(name: 'Beyin Maskotu', symbol: '🧠'),
-    PawnDefinition(name: 'Klasik Piyon', symbol: '♟'),
-    PawnDefinition(name: 'Bilge At Piyonu', symbol: '♞'),
-    PawnDefinition(name: 'Kristal Zar Piyonu', symbol: '🎲'),
-    PawnDefinition(name: 'Pusula Yıldızı', symbol: '🧭'),
-    PawnDefinition(name: 'Açık Kitap', symbol: '📖'),
-    PawnDefinition(name: 'Ampul Fikri', symbol: '💡'),
-    PawnDefinition(name: 'Kum Saati', symbol: '⏳'),
-    PawnDefinition(name: 'Soru İşareti', symbol: '?'),
-    PawnDefinition(name: 'Kupa Rozet', symbol: '🏆'),
+    PawnDefinition(
+      name: 'Renkli Halka',
+      assetPath: 'assets/pawns/01_renkli_halka.png',
+      fallbackSymbol: '◉',
+    ),
+    PawnDefinition(
+      name: 'Bilgi Taşı',
+      assetPath: 'assets/pawns/02_bilgi_tasi.png',
+      fallbackSymbol: '💎',
+    ),
+    PawnDefinition(
+      name: 'Beyin Maskotu',
+      assetPath: 'assets/pawns/03_beyin_maskotu.png',
+      fallbackSymbol: '🧠',
+    ),
+    PawnDefinition(
+      name: 'Klasik Piyon',
+      assetPath: 'assets/pawns/04_klasik_piyon.png',
+      fallbackSymbol: '♟',
+    ),
+    PawnDefinition(
+      name: 'Bilge At',
+      assetPath: 'assets/pawns/05_bilge_at.png',
+      fallbackSymbol: '♞',
+    ),
+    PawnDefinition(
+      name: 'Kristal Zar',
+      assetPath: 'assets/pawns/06_kristal_zar.png',
+      fallbackSymbol: '🎲',
+    ),
+    PawnDefinition(
+      name: 'Pusula Yıldızı',
+      assetPath: 'assets/pawns/07_pusula_yildizi.png',
+      fallbackSymbol: '🧭',
+    ),
+    PawnDefinition(
+      name: 'Açık Kitap',
+      assetPath: 'assets/pawns/08_acik_kitap.png',
+      fallbackSymbol: '📖',
+    ),
+    PawnDefinition(
+      name: 'Ampul Fikri',
+      assetPath: 'assets/pawns/09_ampul_fikri.png',
+      fallbackSymbol: '💡',
+    ),
+    PawnDefinition(
+      name: 'Kum Saati',
+      assetPath: 'assets/pawns/10_kum_saati.png',
+      fallbackSymbol: '⏳',
+    ),
+    PawnDefinition(
+      name: 'Soru İşareti',
+      assetPath: 'assets/pawns/11_soru_isareti.png',
+      fallbackSymbol: '?',
+    ),
+    PawnDefinition(
+      name: 'Kupa Rozet',
+      assetPath: 'assets/pawns/12_kupa_rozet.png',
+      fallbackSymbol: '🏆',
+    ),
   ];
 
   static PawnDefinition at(int index) {
@@ -1538,332 +1588,115 @@ class PawnToken extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (type == 0) {
-      return SizedBox(
-        width: width,
-        height: height,
-        child: CustomPaint(
-          painter: RingPawnPainter(color: color, active: active),
-        ),
-      );
-    }
-
-    if (type == 3) {
-      return SizedBox(
-        width: width,
-        height: height,
-        child: CustomPaint(
-          painter: ClassicPawnPainter(color: color, active: active),
-        ),
-      );
-    }
-
     final pawn = PawnCatalog.at(type);
-    final isGem = type == 1 || type == 5 || type == 11;
-    final isRound = type == 2 || type == 6 || type == 8 || type == 10;
+    final glowSize = active ? 1.10 : 0.88;
 
     return SizedBox(
       width: width,
       height: height,
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          if (active)
+      child: RepaintBoundary(
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
             Positioned(
-              top: height * 0.05,
+              bottom: height * 0.10,
               child: Container(
-                width: width * 1.22,
-                height: width * 1.22,
+                width: width * glowSize,
+                height: width * glowSize,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: color.withOpacity(0.42),
-                      blurRadius: width * 0.46,
-                      spreadRadius: width * 0.10,
+                      color: color.withOpacity(active ? 0.58 : 0.24),
+                      blurRadius: active ? width * 0.50 : width * 0.27,
+                      spreadRadius: active ? width * 0.10 : width * 0.025,
                     ),
                   ],
                 ),
               ),
             ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: width * 0.96,
-              height: height * 0.22,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(999),
-                gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFFE79A),
-                    Color(0xFFD49A22),
-                    Color(0xFF8A5914),
-                  ],
+            Positioned.fill(
+              child: Transform.translate(
+                offset: Offset(0, -height * 0.025),
+                child: Image.asset(
+                  pawn.assetPath,
+                  fit: BoxFit.contain,
+                  alignment: Alignment.bottomCenter,
+                  filterQuality: FilterQuality.high,
+                  gaplessPlayback: true,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Center(
+                      child: Text(
+                        pawn.fallbackSymbol,
+                        style: TextStyle(
+                          fontSize: width * 0.62,
+                          height: 1,
+                        ),
+                      ),
+                    );
+                  },
                 ),
-                boxShadow: const [
-                  BoxShadow(
-                    offset: Offset(0, 3),
-                    blurRadius: 5,
-                    spreadRadius: 0.5,
-                    color: Color(0x88000000),
-                  ),
-                ],
               ),
             ),
-          ),
-          Positioned(
-            top: height * 0.03,
-            child: Transform.rotate(
-              angle: isGem ? pi / 4 : 0,
+            Positioned(
+              bottom: height * 0.015,
               child: Container(
-                width: width * 0.90,
-                height: height * 0.70,
-                alignment: Alignment.center,
+                width: width * 0.60,
+                height: max(3.0, height * 0.075),
                 decoration: BoxDecoration(
-                  shape: isRound ? BoxShape.circle : BoxShape.rectangle,
-                  borderRadius: isRound
-                      ? null
-                      : BorderRadius.circular(isGem ? 7 : 12),
+                  borderRadius: BorderRadius.circular(999),
                   gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                     colors: [
-                      Color.lerp(color, Colors.white, 0.60)!,
+                      Color.lerp(color, Colors.white, 0.45)!,
                       color,
-                      Color.lerp(color, Colors.black, 0.36)!,
+                      Color.lerp(color, Colors.black, 0.28)!,
                     ],
-                    stops: const [0, 0.58, 1],
                   ),
                   border: Border.all(
-                    color: const Color(0xFFFFE79A),
-                    width: active ? 3.0 : 2.0,
+                    color: const Color(0xFFFFE082),
+                    width: active ? 1.8 : 1.1,
                   ),
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
-                      offset: Offset(0, 3),
-                      blurRadius: 4,
-                      color: Color(0x66000000),
+                      color: const Color(0xAA000000),
+                      offset: const Offset(0, 2),
+                      blurRadius: active ? 4 : 2,
                     ),
                   ],
                 ),
-                child: Transform.rotate(
-                  angle: isGem ? -pi / 4 : 0,
-                  child: Text(
-                    pawn.symbol,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: type == 10 ? width * 0.56 : width * 0.48,
-                      height: 1,
-                      color: type == 10 ? Colors.white : null,
-                      fontWeight: FontWeight.w900,
-                      shadows: const [
-                        Shadow(
-                          offset: Offset(0, 1),
-                          blurRadius: 2,
-                          color: Color(0x77000000),
-                        ),
-                      ],
+              ),
+            ),
+            if (active)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  width: max(7.0, width * 0.18),
+                  height: max(7.0, width * 0.18),
+                  decoration: BoxDecoration(
+                    color: color,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 1.5,
                     ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: color.withOpacity(0.80),
+                        blurRadius: 6,
+                        spreadRadius: 1,
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-          ),
-          Positioned(
-            top: height * 0.09,
-            left: width * 0.28,
-            child: Container(
-              width: width * 0.13,
-              height: width * 0.13,
-              decoration: const BoxDecoration(
-                color: Color(0xCCFFFFFF),
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class RingPawnPainter extends CustomPainter {
-  const RingPawnPainter({required this.color, required this.active});
-
-  final Color color;
-  final bool active;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height * 0.40);
-    final radius = size.width * 0.38;
-
-    if (active) {
-      canvas.drawCircle(
-        center,
-        radius * 1.52,
-        Paint()
-          ..color = color.withOpacity(0.30)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5),
-      );
-    }
-
-    canvas.drawOval(
-      Rect.fromCenter(
-        center: Offset(size.width / 2, size.height * 0.91),
-        width: size.width * 0.96,
-        height: size.height * 0.21,
-      ),
-      Paint()
-        ..shader = const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFFFFE79A),
-            Color(0xFFD49A22),
-            Color(0xFF8A5914),
           ],
-        ).createShader(Offset.zero & size),
-    );
-
-    canvas.drawCircle(
-      center.translate(0, size.height * 0.035),
-      radius,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = size.width * 0.23
-        ..color = const Color(0xFF875817),
-    );
-
-    canvas.drawCircle(
-      center,
-      radius,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = size.width * 0.21
-        ..shader = SweepGradient(
-          colors: [
-            color,
-            Color.lerp(color, Colors.white, 0.65)!,
-            Color.lerp(color, Colors.black, 0.25)!,
-            color,
-          ],
-        ).createShader(Rect.fromCircle(center: center, radius: radius)),
-    );
-
-    canvas.drawCircle(
-      center,
-      radius * 1.12,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.4
-        ..color = const Color(0xFFFFE79A),
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant RingPawnPainter oldDelegate) {
-    return oldDelegate.color != color || oldDelegate.active != active;
-  }
-}
-
-class ClassicPawnPainter extends CustomPainter {
-  const ClassicPawnPainter({required this.color, required this.active});
-
-  final Color color;
-  final bool active;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (active) {
-      canvas.drawCircle(
-        Offset(size.width / 2, size.height * 0.48),
-        size.width * 0.64,
-        Paint()
-          ..color = color.withOpacity(0.28)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5),
-      );
-    }
-
-    canvas.drawOval(
-      Rect.fromCenter(
-        center: Offset(size.width / 2, size.height * 0.92),
-        width: size.width * 0.98,
-        height: size.height * 0.21,
+        ),
       ),
-      Paint()
-        ..color = const Color(0x66000000)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3),
     );
-
-    final bounds = Offset.zero & size;
-    final fill = Paint()
-      ..shader = LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Color.lerp(color, Colors.white, 0.65)!,
-          color,
-          Color.lerp(color, Colors.black, 0.42)!,
-        ],
-      ).createShader(bounds);
-
-    final outline = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = active ? 2.1 : 1.4
-      ..color = const Color(0xFFFFE79A);
-
-    final head = Offset(size.width / 2, size.height * 0.22);
-    final headRadius = size.width * 0.28;
-    canvas.drawCircle(head, headRadius, fill);
-    canvas.drawCircle(head, headRadius, outline);
-
-    final body = Path()
-      ..moveTo(size.width * 0.39, size.height * 0.42)
-      ..quadraticBezierTo(
-        size.width * 0.30,
-        size.height * 0.61,
-        size.width * 0.22,
-        size.height * 0.79,
-      )
-      ..quadraticBezierTo(
-        size.width * 0.16,
-        size.height * 0.87,
-        size.width * 0.28,
-        size.height * 0.90,
-      )
-      ..lineTo(size.width * 0.72, size.height * 0.90)
-      ..quadraticBezierTo(
-        size.width * 0.84,
-        size.height * 0.87,
-        size.width * 0.78,
-        size.height * 0.79,
-      )
-      ..quadraticBezierTo(
-        size.width * 0.70,
-        size.height * 0.61,
-        size.width * 0.61,
-        size.height * 0.42,
-      )
-      ..close();
-
-    canvas.drawPath(body, fill);
-    canvas.drawPath(body, outline);
-
-    final baseRect = Rect.fromCenter(
-      center: Offset(size.width / 2, size.height * 0.88),
-      width: size.width * 0.88,
-      height: size.height * 0.20,
-    );
-    canvas.drawOval(baseRect, fill);
-    canvas.drawOval(baseRect, outline);
-  }
-
-  @override
-  bool shouldRepaint(covariant ClassicPawnPainter oldDelegate) {
-    return oldDelegate.color != color || oldDelegate.active != active;
   }
 }
 
