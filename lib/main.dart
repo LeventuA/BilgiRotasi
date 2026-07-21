@@ -685,7 +685,8 @@ class _GameScreenState extends State<GameScreen> {
             }
 
             return ListView(
-              padding: const EdgeInsets.fromLTRB(4, 6, 4, 24),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
+              clipBehavior: Clip.none,
               children: [
                 _buildBoardCard(),
                 const SizedBox(height: 14),
@@ -700,19 +701,40 @@ class _GameScreenState extends State<GameScreen> {
 
   Widget _buildBoardCard() {
     return Card(
+      clipBehavior: Clip.none,
       child: Padding(
-        padding: const EdgeInsets.all(4),
+        padding: EdgeInsets.zero,
         child: Column(
           children: [
-            GameBoard(
-              players: widget.players,
-              currentPlayerIndex: _currentPlayerIndex,
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final boardSize = constraints.maxWidth * 1.10;
+
+                return SizedBox(
+                  height: boardSize,
+                  child: OverflowBox(
+                    alignment: Alignment.topCenter,
+                    minWidth: boardSize,
+                    maxWidth: boardSize,
+                    minHeight: boardSize,
+                    maxHeight: boardSize,
+                    child: GameBoard(
+                      players: widget.players,
+                      currentPlayerIndex: _currentPlayerIndex,
+                    ),
+                  ),
+                );
+              },
             ),
-            const SizedBox(height: 8),
-            Text(
-              _status,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontWeight: FontWeight.w700),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 4, 12, 14),
+              child: Text(
+                _status,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ),
           ],
         ),
