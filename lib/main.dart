@@ -10,11 +10,45 @@ class SoundFx {
   SoundFx._();
 
   static bool enabled = true;
+  static bool _initialized = false;
+  static String? lastError;
 
-  static final AudioPlayer _dicePlayer = AudioPlayer();
-  static final AudioPlayer _stepPlayer = AudioPlayer();
-  static final AudioPlayer _effectPlayer = AudioPlayer();
-  static final AudioPlayer _musicPlayer = AudioPlayer();
+  static final AudioPlayer _dicePlayer =
+      AudioPlayer(playerId: 'bilgi_rotasi_dice');
+  static final AudioPlayer _stepPlayer =
+      AudioPlayer(playerId: 'bilgi_rotasi_step');
+  static final AudioPlayer _effectPlayer =
+      AudioPlayer(playerId: 'bilgi_rotasi_effect');
+  static final AudioPlayer _musicPlayer =
+      AudioPlayer(playerId: 'bilgi_rotasi_music');
+
+  static Future<void> initialize() async {
+    if (_initialized) return;
+
+    try {
+      await AudioPlayer.global.ensureInitialized();
+      await AudioPlayer.global.setAudioContext(
+        AudioContextConfig(
+          route: AudioContextConfigRoute.system,
+          focus: AudioContextConfigFocus.mixWithOthers,
+          respectSilence: false,
+        ).build(),
+      );
+
+      await Future.wait([
+        _dicePlayer.setReleaseMode(ReleaseMode.stop),
+        _stepPlayer.setReleaseMode(ReleaseMode.stop),
+        _effectPlayer.setReleaseMode(ReleaseMode.stop),
+        _musicPlayer.setReleaseMode(ReleaseMode.stop),
+      ]);
+
+      _initialized = true;
+      lastError = null;
+    } catch (error) {
+      lastError = error.toString();
+      rethrow;
+    }
+  }
 
   static void setEnabled(bool value) {
     enabled = value;
@@ -27,83 +61,102 @@ class SoundFx {
     }
   }
 
-  static Future<void> _play(
+  static Future<bool> _play(
     AudioPlayer player,
     String fileName, {
     double volume = 1,
   }) async {
-    if (!enabled) return;
+    if (!enabled) return false;
 
     try {
-      await player.stop();
+      await initialize();
+
       await player.play(
-        AssetSource('sounds/$fileName'),
-        volume: volume,
+        AssetSource(
+          'sounds/$fileName',
+          mimeType: 'audio/mpeg',
+        ),
+        volume: volume.clamp(0.0, 1.0).toDouble(),
       );
-    } catch (_) {
-      // Ses hatası oyunu durdurmamalı.
+
+      lastError = null;
+      return true;
+    } catch (error) {
+      lastError = error.toString();
+      return false;
     }
   }
 
-  static Future<void> dice() {
+  static Future<bool> dice() {
     return _play(
       _dicePlayer,
-      'dice_roll.wav',
-      volume: 0.72,
+      'dice_roll.mp3',
+      volume: 1,
     );
   }
 
-  static Future<void> step() {
+  static Future<bool> step() {
     return _play(
       _stepPlayer,
-      'step.wav',
-      volume: 0.46,
+      'step.mp3',
+      volume: 0.88,
     );
   }
 
-  static Future<void> landing() {
+  static Future<bool> landing() {
     return _play(
       _effectPlayer,
-      'landing.wav',
-      volume: 0.68,
+      'landing.mp3',
+      volume: 1,
     );
   }
 
-  static Future<void> correct() {
+  static Future<bool> correct() {
     return _play(
       _effectPlayer,
-      'correct.wav',
-      volume: 0.76,
+      'correct.mp3',
+      volume: 1,
     );
   }
 
-  static Future<void> wrong() {
+  static Future<bool> wrong() {
     return _play(
       _effectPlayer,
-      'wrong.wav',
-      volume: 0.65,
+      'wrong.mp3',
+      volume: 1,
     );
   }
 
-  static Future<void> badge() {
+  static Future<bool> badge() {
     return _play(
       _effectPlayer,
-      'badge.wav',
-      volume: 0.82,
+      'badge.mp3',
+      volume: 1,
     );
   }
 
-  static Future<void> win() {
+  static Future<bool> win() {
     return _play(
       _musicPlayer,
-      'win.wav',
-      volume: 0.86,
+      'win.mp3',
+      volume: 1,
     );
+  }
+
+  static Future<bool> test() {
+    return correct();
   }
 }
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await SoundFx.initialize();
+  } catch (_) {
+    // Ses başlatılamasa bile oyun açılmaya devam eder.
+  }
+
   runApp(const BilgiRotasiApp());
 }
 
@@ -766,17 +819,50 @@ class _GameScreenState extends State<GameScreen> {
         actions: [
           IconButton(
             tooltip: _soundEnabled ? 'Sesleri kapat' : 'Sesleri aç',
-            onPressed: () {
+            onPressed: () async {
+              final willEnable = !_soundEnabled;
+
               setState(() {
-                _soundEnabled = !_soundEnabled;
-                SoundFx.setEnabled(_soundEnabled);
+                _soundEnabled = willEnable;
+                SoundFx.setEnabled(willEnable);
               });
+
+              if (willEnable) {
+                await SoundFx.test();
+              }
             },
             icon: Icon(
               _soundEnabled
                   ? Icons.volume_up_rounded
                   : Icons.volume_off_rounded,
             ),
+          ),
+          IconButton(
+            tooltip: 'Sesi test et',
+            onPressed: () async {
+              if (!_soundEnabled) {
+                setState(() {
+                  _soundEnabled = true;
+                  SoundFx.setEnabled(true);
+                });
+              }
+
+              final played = await SoundFx.test();
+
+              if (!context.mounted) return;
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    played
+                        ? 'Ses testi oynatıldı. Telefonun medya sesini kontrol et.'
+                        : 'Ses oynatılamadı: ${SoundFx.lastError ?? 'bilinmeyen hata'}',
+                  ),
+                  duration: const Duration(seconds: 4),
+                ),
+              );
+            },
+            icon: const Icon(Icons.graphic_eq_rounded),
           ),
           IconButton(
             tooltip: 'Oyunu bitir',
