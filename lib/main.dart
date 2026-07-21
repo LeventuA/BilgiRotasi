@@ -981,61 +981,27 @@ class GameBoard extends StatelessWidget {
           final tokenRadius = size * 0.37;
 
           return Stack(
-            clipBehavior: Clip.none,
             children: [
-              // Tahtanın masa üzerindeki yumuşak gölgesi
-              Positioned(
-                left: size * 0.09,
-                right: size * 0.09,
-                bottom: size * 0.005,
-                height: size * 0.12,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(999),
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(0, 12),
-                        blurRadius: 25,
-                        spreadRadius: 3,
-                        color: Color(0x44000000),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
               Positioned.fill(
                 child: CustomPaint(
                   painter: BoardPainter(),
                 ),
               ),
-
-              // Parlak, kabartmalı oyuncu taşları
               ...List.generate(players.length, (index) {
                 final player = players[index];
-                final angle =
-                    -pi / 2 + (2 * pi * player.position / 36);
-
+                final angle = -pi / 2 + (2 * pi * player.position / 36);
                 final stackedAtSameCell = players
                     .take(index)
-                    .where(
-                      (other) =>
-                          other.position == player.position,
-                    )
+                    .where((other) => other.position == player.position)
                     .length;
-
                 final offsetAngle = stackedAtSameCell * 0.18;
-
-                final x = center.dx +
-                    cos(angle + offsetAngle) * tokenRadius;
-                final y = center.dy +
-                    sin(angle + offsetAngle) * tokenRadius;
-
+                final x = center.dx + cos(angle + offsetAngle) * tokenRadius;
+                final y = center.dy + sin(angle + offsetAngle) * tokenRadius;
                 final active = index == currentPlayerIndex;
-                final tokenSize = active ? 27.0 : 22.0;
+                final tokenSize = active ? 22.0 : 18.0;
 
                 return AnimatedPositioned(
-                  duration: const Duration(milliseconds: 520),
+                  duration: const Duration(milliseconds: 420),
                   curve: Curves.easeOutBack,
                   left: x - tokenSize / 2,
                   top: y - tokenSize / 2,
@@ -1044,90 +1010,36 @@ class GameBoard extends StatelessWidget {
                     width: tokenSize,
                     height: tokenSize,
                     decoration: BoxDecoration(
+                      color: player.color,
                       shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        center: const Alignment(-0.38, -0.42),
-                        radius: 0.92,
-                        colors: [
-                          Color.lerp(
-                            player.color,
-                            Colors.white,
-                            0.68,
-                          )!,
-                          player.color,
-                          Color.lerp(
-                            player.color,
-                            Colors.black,
-                            0.42,
-                          )!,
-                        ],
-                        stops: const [0, 0.55, 1],
-                      ),
                       border: Border.all(
                         color: Colors.white,
-                        width: active ? 3.5 : 2.5,
+                        width: active ? 3 : 2,
                       ),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
-                          offset: Offset(0, active ? 7 : 5),
-                          blurRadius: active ? 10 : 7,
-                          color: const Color(0x77000000),
+                          blurRadius: 6,
+                          spreadRadius: 1,
+                          color: Color(0x55000000),
                         ),
-                        if (active)
-                          BoxShadow(
-                            blurRadius: 12,
-                            spreadRadius: 2,
-                            color: player.color.withOpacity(0.40),
-                          ),
                       ],
-                    ),
-                    child: Align(
-                      alignment: const Alignment(-0.38, -0.45),
-                      child: Container(
-                        width: tokenSize * 0.24,
-                        height: tokenSize * 0.24,
-                        decoration: const BoxDecoration(
-                          color: Color(0xCCFFFFFF),
-                          shape: BoxShape.circle,
-                        ),
-                      ),
                     ),
                   ),
                 );
               }),
-
-              // Ortadaki yükseltilmiş Bilgi Rotası platformu
               Positioned.fill(
                 child: Center(
                   child: Container(
-                    width: size * 0.39,
-                    height: size * 0.39,
+                    width: size * 0.37,
+                    height: size * 0.37,
                     decoration: BoxDecoration(
+                      color: const Color(0xFF0F3D4C),
                       shape: BoxShape.circle,
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color(0xFF3B9CAD),
-                          Color(0xFF126072),
-                          Color(0xFF082F3A),
-                        ],
-                        stops: [0, 0.55, 1],
-                      ),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 4,
-                      ),
+                      border: Border.all(color: Colors.white, width: 4),
                       boxShadow: const [
                         BoxShadow(
-                          offset: Offset(0, 10),
                           blurRadius: 14,
-                          color: Color(0x88000000),
-                        ),
-                        BoxShadow(
-                          offset: Offset(-3, -4),
-                          blurRadius: 8,
-                          color: Color(0x66FFFFFF),
+                          color: Color(0x33000000),
                         ),
                       ],
                     ),
@@ -1135,19 +1047,7 @@ class GameBoard extends StatelessWidget {
                     child: const Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          '🧭',
-                          style: TextStyle(
-                            fontSize: 34,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(0, 3),
-                                blurRadius: 4,
-                                color: Color(0x99000000),
-                              ),
-                            ],
-                          ),
-                        ),
+                        Text('🧭', style: TextStyle(fontSize: 31)),
                         SizedBox(height: 3),
                         Text(
                           'BİLGİ\nROTASI',
@@ -1156,15 +1056,8 @@ class GameBoard extends StatelessWidget {
                             color: Colors.white,
                             fontSize: 14,
                             height: 1.05,
-                            letterSpacing: 1.2,
+                            letterSpacing: 1.1,
                             fontWeight: FontWeight.w900,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(0, 2),
-                                blurRadius: 3,
-                                color: Color(0xAA000000),
-                              ),
-                            ],
                           ),
                         ),
                       ],
@@ -1183,140 +1076,35 @@ class GameBoard extends StatelessWidget {
 class BoardPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final center = Offset(
-      size.width / 2,
-      size.height / 2,
-    );
-
+    final center = Offset(size.width / 2, size.height / 2);
     final outerRadius = size.width * 0.47;
-    final innerRadius = size.width * 0.28;
-    final depth = size.width * 0.035;
     final segmentAngle = 2 * pi / 36;
-
-    final topRect = Rect.fromCircle(
-      center: center,
-      radius: outerRadius,
-    );
-
-    final sideRect = topRect.shift(
-      Offset(0, depth),
-    );
-
-    final boardShadowPath = Path()
-      ..addOval(
-        Rect.fromCircle(
-          center: center.translate(0, depth * 1.25),
-          radius: outerRadius,
-        ),
-      );
-
-    canvas.drawShadow(
-      boardShadowPath,
-      const Color(0xAA000000),
-      18,
-      true,
-    );
-
-    // Alt kalınlık yalnızca tahtanın alt tarafında görünür
-    canvas.save();
-    canvas.clipRect(
-      Rect.fromLTRB(
-        0,
-        center.dy,
-        size.width,
-        size.height,
-      ),
-    );
-
-    canvas.drawCircle(
-      center.translate(0, depth),
-      outerRadius,
-      Paint()
-        ..style = PaintingStyle.fill
-        ..color = const Color(0xFF10252D),
-    );
+    final rect = Rect.fromCircle(center: center, radius: outerRadius);
 
     for (var index = 0; index < 36; index++) {
-      final categoryIndex =
-          _GameScreenState.categoryForCell(index);
+      final categoryIndex = _GameScreenState.categoryForCell(index);
+      final category = GameCategory.values[categoryIndex];
+      final startAngle = -pi / 2 + index * segmentAngle;
 
-      final category =
-          GameCategory.values[categoryIndex];
-
-      final startAngle =
-          -pi / 2 + index * segmentAngle;
-
-      final sidePaint = Paint()
+      final fillPaint = Paint()
         ..style = PaintingStyle.fill
-        ..color = Color.lerp(
-          category.color,
-          Colors.black,
-          0.48,
-        )!;
-
+        ..color = category.color;
       canvas.drawArc(
-        sideRect,
+        rect,
         startAngle + 0.006,
         segmentAngle - 0.012,
         true,
-        sidePaint,
+        fillPaint,
       );
-    }
-
-    canvas.restore();
-
-    // Üstteki renkli dilimler
-    for (var index = 0; index < 36; index++) {
-      final categoryIndex =
-          _GameScreenState.categoryForCell(index);
-
-      final category =
-          GameCategory.values[categoryIndex];
-
-      final startAngle =
-          -pi / 2 + index * segmentAngle;
-
-      final topPaint = Paint()
-        ..style = PaintingStyle.fill
-        ..shader = LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color.lerp(
-              category.color,
-              Colors.white,
-              0.45,
-            )!,
-            category.color,
-            Color.lerp(
-              category.color,
-              Colors.black,
-              0.20,
-            )!,
-          ],
-          stops: const [0, 0.58, 1],
-        ).createShader(topRect);
-
-      canvas.drawArc(
-        topRect,
-        startAngle + 0.006,
-        segmentAngle - 0.012,
-        true,
-        topPaint,
-      );
-
-      final isSpecial =
-          _GameScreenState.isSpecialCell(index);
 
       final borderPaint = Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = isSpecial ? 4.8 : 1.2
-        ..color = isSpecial
+        ..strokeWidth = _GameScreenState.isSpecialCell(index) ? 4 : 1.2
+        ..color = _GameScreenState.isSpecialCell(index)
             ? Colors.white
-            : const Color(0x99FFFFFF);
-
+            : Colors.white.withOpacity(0.7);
       canvas.drawArc(
-        topRect,
+        rect,
         startAngle + 0.006,
         segmentAngle - 0.012,
         true,
@@ -1324,128 +1112,24 @@ class BoardPainter extends CustomPainter {
       );
     }
 
-    // İç bölümün alt kalınlığı
-    canvas.drawCircle(
-      center.translate(0, depth * 0.72),
-      innerRadius,
-      Paint()
-        ..style = PaintingStyle.fill
-        ..color = const Color(0xFF9DAAB1),
-    );
-
-    // İç bölümün parlak üst yüzeyi
-    final innerRect = Rect.fromCircle(
-      center: center,
-      radius: innerRadius,
-    );
-
     final innerPaint = Paint()
       ..style = PaintingStyle.fill
-      ..shader = const RadialGradient(
-        center: Alignment(-0.35, -0.38),
-        radius: 0.95,
-        colors: [
-          Color(0xFFFFFFFF),
-          Color(0xFFF1F5F9),
-          Color(0xFFD5DEE4),
-        ],
-        stops: [0, 0.65, 1],
-      ).createShader(innerRect);
+      ..color = const Color(0xFFF5F7FB);
+    canvas.drawCircle(center, size.width * 0.28, innerPaint);
 
-    canvas.drawCircle(
-      center,
-      innerRadius,
-      innerPaint,
-    );
-
-    canvas.drawCircle(
-      center,
-      innerRadius,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 3
-        ..color = const Color(0xFFFFFFFF),
-    );
-
-    // Dış çerçeve
-    canvas.drawCircle(
-      center,
-      outerRadius,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 4
-        ..color = const Color(0xFF082F3A),
-    );
-
-    // Üst taraftaki ışık parlaması
-    canvas.drawArc(
-      topRect.deflate(6),
-      -2.85,
-      1.35,
-      false,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2.2
-        ..strokeCap = StrokeCap.round
-        ..color = const Color(0xBBFFFFFF),
-    );
-
-    // Rozet bölümlerindeki metalik işaretler
-    for (var position = 0;
-        position < 36;
-        position += 6) {
-      final angle = -pi / 2 +
-          position * segmentAngle +
-          segmentAngle / 2;
-
-      final badgeRadius = outerRadius * 0.82;
-
-      final point = Offset(
-        center.dx + cos(angle) * badgeRadius,
-        center.dy + sin(angle) * badgeRadius,
-      );
-
-      canvas.drawCircle(
-        point.translate(0, 3),
-        size.width * 0.020,
-        Paint()
-          ..color = const Color(0x77000000),
-      );
-
-      final badgeRect = Rect.fromCircle(
-        center: point,
-        radius: size.width * 0.020,
-      );
-
-      canvas.drawCircle(
-        point,
-        size.width * 0.018,
-        Paint()
-          ..shader = const RadialGradient(
-            center: Alignment(-0.35, -0.40),
-            colors: [
-              Colors.white,
-              Color(0xFFDCE5EA),
-              Color(0xFF87959D),
-            ],
-          ).createShader(badgeRect),
-      );
-    }
+    final outerBorder = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 4
+      ..color = const Color(0xFF0F3D4C);
+    canvas.drawCircle(center, outerRadius, outerBorder);
   }
 
   @override
-  bool shouldRepaint(
-    covariant CustomPainter oldDelegate,
-  ) {
-    return false;
-  }
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 class DiceFace extends StatelessWidget {
-  const DiceFace({
-    required this.value,
-    super.key,
-  });
+  const DiceFace({required this.value, super.key});
 
   final int? value;
 
@@ -1461,66 +1145,17 @@ class DiceFace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 58,
-      height: 58,
+      width: 54,
+      height: 54,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(17),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.white,
-            Color(0xFFE8EDF1),
-            Color(0xFFB8C4CB),
-          ],
-        ),
-        border: Border.all(
-          color: Colors.white,
-          width: 2,
-        ),
-        boxShadow: const [
-          BoxShadow(
-            offset: Offset(0, 6),
-            blurRadius: 8,
-            color: Color(0x66000000),
-          ),
-          BoxShadow(
-            offset: Offset(-2, -2),
-            blurRadius: 5,
-            color: Color(0xBBFFFFFF),
-          ),
-        ],
+        color: const Color(0xFFF1F5F9),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFFCBD5E1)),
       ),
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 420),
-        transitionBuilder: (child, animation) {
-          return RotationTransition(
-            turns: Tween<double>(
-              begin: 0.60,
-              end: 1,
-            ).animate(animation),
-            child: ScaleTransition(
-              scale: animation,
-              child: child,
-            ),
-          );
-        },
-        child: Text(
-          value == null ? '🎲' : _faces[value]!,
-          key: ValueKey<int?>(value),
-          style: const TextStyle(
-            fontSize: 35,
-            height: 1,
-            shadows: [
-              Shadow(
-                offset: Offset(0, 2),
-                blurRadius: 2,
-                color: Color(0x55000000),
-              ),
-            ],
-          ),
-        ),
+      child: Text(
+        value == null ? '🎲' : _faces[value]!,
+        style: const TextStyle(fontSize: 33, height: 1),
       ),
     );
   }
