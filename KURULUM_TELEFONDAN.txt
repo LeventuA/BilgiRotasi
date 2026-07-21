@@ -1,0 +1,8 @@
+1) Bu ZIP'i GitHub Codespaces'te depo köküne yükle.
+2) Terminal aç.
+3) Şu komutu yapıştır:
+
+unzip -o BilgiRotasi_Hazir.zip && rm BilgiRotasi_Hazir.zip && git add . && git commit -m "Bilgi Rotasi ilk surum" && git push
+
+4) GitHub deposunda Actions sekmesini aç ve Android APK Oluştur işleminin bitmesini bekle.
+5) Repo ana sayfasındaki Releases bölümünden Bilgi-Rotasi.apk dosyasını indir.

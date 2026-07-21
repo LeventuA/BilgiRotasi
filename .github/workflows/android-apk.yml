@@ -1,0 +1,77 @@
+name: Android APK Oluştur
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Kaynak kodu al
+        uses: actions/checkout@v4
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Temiz Android projesi oluştur
+        run: |
+          flutter --version
+          rm -rf app
+          flutter create --platforms=android --org com.leventua --project-name bilgi_rotasi app
+          cp lib/main.dart app/lib/main.dart
+          mkdir -p app/assets
+          cp assets/questions.json app/assets/questions.json
+          cp pubspec.yaml app/pubspec.yaml
+          cp analysis_options.yaml app/analysis_options.yaml
+          sed -i 's/android:label="[^"]*"/android:label="Bilgi Rotası"/' app/android/app/src/main/AndroidManifest.xml
+
+      - name: Bağımlılıkları hazırla
+        working-directory: app
+        run: flutter pub get
+
+      - name: Kodu denetle
+        working-directory: app
+        continue-on-error: true
+        run: flutter analyze --no-fatal-infos
+
+      - name: APK oluştur
+        working-directory: app
+        run: flutter build apk --release
+
+      - name: APK adını düzenle
+        run: cp app/build/app/outputs/flutter-apk/app-release.apk Bilgi-Rotasi.apk
+
+      - name: APK'yı indirilebilir dosya olarak yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: Bilgi-Rotasi-APK
+          path: Bilgi-Rotasi.apk
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: GitHub sürümüne APK ekle
+        continue-on-error: true
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v0.1.0
+          name: Bilgi Rotası v0.1.0
+          body: |
+            Bilgi Rotası'nın ilk Android prototipi.
+            APK dosyasını aşağıdaki Assets bölümünden indirebilirsin.
+          files: Bilgi-Rotasi.apk

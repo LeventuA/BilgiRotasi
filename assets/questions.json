@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "q001",
+    "categoryIndex": 0,
+    "question": "Fransa’nın başkenti hangisidir?",
+    "options": [
+      "Paris",
+      "Lyon",
+      "Marsilya",
+      "Nice"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Paris, Fransa’nın başkentidir."
+  },
+  {
+    "id": "q002",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük okyanusu hangisidir?",
+    "options": [
+      "Atlas Okyanusu",
+      "Hint Okyanusu",
+      "Pasifik Okyanusu",
+      "Arktik Okyanusu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Pasifik Okyanusu yüzölçümü bakımından en büyüğüdür."
+  },
+  {
+    "id": "q003",
+    "categoryIndex": 0,
+    "question": "İstanbul Boğazı hangi iki denizi birbirine bağlar?",
+    "options": [
+      "Ege ve Akdeniz",
+      "Karadeniz ve Marmara",
+      "Marmara ve Ege",
+      "Karadeniz ve Ege"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İstanbul Boğazı Karadeniz ile Marmara Denizi’ni bağlar."
+  },
+  {
+    "id": "q004",
+    "categoryIndex": 0,
+    "question": "Japonya’nın başkenti hangisidir?",
+    "options": [
+      "Kyoto",
+      "Osaka",
+      "Tokyo",
+      "Nagoya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tokyo, Japonya’nın başkentidir."
+  },
+  {
+    "id": "q005",
+    "categoryIndex": 0,
+    "question": "Sahra Çölü hangi kıtadadır?",
+    "options": [
+      "Asya",
+      "Afrika",
+      "Avrupa",
+      "Güney Amerika"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sahra, Kuzey Afrika’da yer alır."
+  },
+  {
+    "id": "q006",
+    "categoryIndex": 0,
+    "question": "Türkiye’nin başkenti hangisidir?",
+    "options": [
+      "İstanbul",
+      "İzmir",
+      "Bursa",
+      "Ankara"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ankara 1923’ten beri Türkiye’nin başkentidir."
+  },
+  {
+    "id": "q007",
+    "categoryIndex": 0,
+    "question": "Everest Dağı hangi sıradağlardadır?",
+    "options": [
+      "Alpler",
+      "Andlar",
+      "Himalayalar",
+      "Toroslar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Everest, Himalaya Dağları’ndadır."
+  },
+  {
+    "id": "q008",
+    "categoryIndex": 0,
+    "question": "Brezilya’nın resmî dili hangisidir?",
+    "options": [
+      "İspanyolca",
+      "Portekizce",
+      "Fransızca",
+      "İngilizce"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Brezilya’nın resmî dili Portekizcedir."
+  },
+  {
+    "id": "q009",
+    "categoryIndex": 0,
+    "question": "Avustralya’nın başkenti hangisidir?",
+    "options": [
+      "Sidney",
+      "Melbourne",
+      "Canberra",
+      "Perth"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Avustralya’nın başkenti Canberra’dır."
+  },
+  {
+    "id": "q010",
+    "categoryIndex": 0,
+    "question": "Dünyanın yüzölçümü bakımından en büyük ülkesi hangisidir?",
+    "options": [
+      "Kanada",
+      "Çin",
+      "Rusya",
+      "ABD"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Rusya yüzölçümü bakımından dünyanın en büyük ülkesidir."
+  },
+  {
+    "id": "q011",
+    "categoryIndex": 0,
+    "question": "Tuna Nehri hangi denize dökülür?",
+    "options": [
+      "Karadeniz",
+      "Baltık Denizi",
+      "Kızıldeniz",
+      "Hazar Denizi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tuna Nehri Karadeniz’e dökülür."
+  },
+  {
+    "id": "q012",
+    "categoryIndex": 0,
+    "question": "Ekvator çizgisinden adını alan ülke hangisidir?",
+    "options": [
+      "Peru",
+      "Ekvador",
+      "Şili",
+      "Bolivya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ekvador adı İspanyolcada “ekvator” anlamına gelir."
+  },
+  {
+    "id": "q013",
+    "categoryIndex": 0,
+    "question": "Türkiye’nin en büyük gölü hangisidir?",
+    "options": [
+      "Tuz Gölü",
+      "Beyşehir Gölü",
+      "Van Gölü",
+      "Eğirdir Gölü"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Van Gölü Türkiye’nin en büyük gölüdür."
+  },
+  {
+    "id": "q014",
+    "categoryIndex": 0,
+    "question": "Akdeniz hangi iki kıta arasında yer alır?",
+    "options": [
+      "Avrupa ve Afrika",
+      "Asya ve Amerika",
+      "Afrika ve Avustralya",
+      "Avrupa ve Güney Amerika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Akdeniz’in kuzeyinde Avrupa, güneyinde Afrika bulunur."
+  },
+  {
+    "id": "q015",
+    "categoryIndex": 0,
+    "question": "Güney Kutbu hangi kıtadadır?",
+    "options": [
+      "Asya",
+      "Antarktika",
+      "Afrika",
+      "Avustralya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Güney Kutbu Antarktika kıtasındadır."
+  },
+  {
+    "id": "q016",
+    "categoryIndex": 0,
+    "question": "Alpler ağırlıklı olarak hangi kıtadadır?",
+    "options": [
+      "Avrupa",
+      "Asya",
+      "Afrika",
+      "Kuzey Amerika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Alpler Avrupa’da uzanır."
+  },
+  {
+    "id": "q017",
+    "categoryIndex": 0,
+    "question": "Kıtalar hariç dünyanın en büyük adası hangisidir?",
+    "options": [
+      "Madagaskar",
+      "Grönland",
+      "Borneo",
+      "Yeni Gine"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Grönland, kıtalar hariç dünyanın en büyük adasıdır."
+  },
+  {
+    "id": "q018",
+    "categoryIndex": 0,
+    "question": "Tamamı Türkiye sınırları içinde bulunan deniz hangisidir?",
+    "options": [
+      "Ege Denizi",
+      "Akdeniz",
+      "Marmara Denizi",
+      "Karadeniz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Marmara Denizi’nin tamamı Türkiye sınırları içindedir."
+  },
+  {
+    "id": "q019",
+    "categoryIndex": 0,
+    "question": "Nil Nehri hangi kıtadadır?",
+    "options": [
+      "Afrika",
+      "Asya",
+      "Avrupa",
+      "Güney Amerika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nil Nehri Afrika kıtasındadır."
+  },
+  {
+    "id": "q020",
+    "categoryIndex": 0,
+    "question": "Kanada’nın başkenti hangisidir?",
+    "options": [
+      "Toronto",
+      "Vancouver",
+      "Ottawa",
+      "Montreal"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kanada’nın başkenti Ottawa’dır."
+  },
+  {
+    "id": "q021",
+    "categoryIndex": 1,
+    "question": "Friends dizisindeki ünlü kahve dükkânının adı nedir?",
+    "options": [
+      "Central Perk",
+      "Coffee House",
+      "Monk’s Café",
+      "Daily Grind"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Karakterlerin sıkça buluştuğu yer Central Perk’tür."
+  },
+  {
+    "id": "q022",
+    "categoryIndex": 1,
+    "question": "Harry Potter hangi okulda eğitim görür?",
+    "options": [
+      "Durmstrang",
+      "Hogwarts",
+      "Beauxbatons",
+      "Ilvermorny"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Harry Potter, Hogwarts Cadılık ve Büyücülük Okulu’nda okur."
+  },
+  {
+    "id": "q023",
+    "categoryIndex": 1,
+    "question": "Star Wars evreninde Darth Vader’ın oğlu kimdir?",
+    "options": [
+      "Han Solo",
+      "Luke Skywalker",
+      "Obi-Wan Kenobi",
+      "Yoda"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Darth Vader’ın oğlu Luke Skywalker’dır."
+  },
+  {
+    "id": "q024",
+    "categoryIndex": 1,
+    "question": "Yüzüklerin Efendisi’nde yok edilmesi gereken nesne hangisidir?",
+    "options": [
+      "Kristal küre",
+      "Tek Yüzük",
+      "Altın taç",
+      "Gümüş kılıç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hikâyenin merkezinde Tek Yüzük vardır."
+  },
+  {
+    "id": "q025",
+    "categoryIndex": 1,
+    "question": "Titanic filminin yönetmeni kimdir?",
+    "options": [
+      "Steven Spielberg",
+      "James Cameron",
+      "Ridley Scott",
+      "Christopher Nolan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Titanic filmini James Cameron yönetmiştir."
+  },
+  {
+    "id": "q026",
+    "categoryIndex": 1,
+    "question": "Toy Story’deki kovboy oyuncağın adı nedir?",
+    "options": [
+      "Buzz",
+      "Woody",
+      "Rex",
+      "Andy"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kovboy oyuncağın adı Woody’dir."
+  },
+  {
+    "id": "q027",
+    "categoryIndex": 1,
+    "question": "Aslan Kral’ın ana karakteri kimdir?",
+    "options": [
+      "Simba",
+      "Timon",
+      "Pumbaa",
+      "Scar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hikâyenin ana karakteri Simba’dır."
+  },
+  {
+    "id": "q028",
+    "categoryIndex": 1,
+    "question": "Matrix filmindeki ana kahramanın adı nedir?",
+    "options": [
+      "Morpheus",
+      "Neo",
+      "Cypher",
+      "Smith"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ana kahraman Neo’dur."
+  },
+  {
+    "id": "q029",
+    "categoryIndex": 1,
+    "question": "Avatar filminde olayların büyük bölümü hangi gezegensel uyduda geçer?",
+    "options": [
+      "Pandora",
+      "Krypton",
+      "Arrakis",
+      "Endor"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Avatar’ın ana mekânı Pandora’dır."
+  },
+  {
+    "id": "q030",
+    "categoryIndex": 1,
+    "question": "Shrek’in eşinin adı nedir?",
+    "options": [
+      "Fiona",
+      "Elsa",
+      "Ariel",
+      "Belle"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Shrek’in eşi Prenses Fiona’dır."
+  },
+  {
+    "id": "q031",
+    "categoryIndex": 1,
+    "question": "Frozen filmindeki iki kız kardeş kimdir?",
+    "options": [
+      "Anna ve Elsa",
+      "Moana ve Elsa",
+      "Ariel ve Belle",
+      "Mulan ve Anna"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Frozen’ın kız kardeşleri Anna ve Elsa’dır."
+  },
+  {
+    "id": "q032",
+    "categoryIndex": 1,
+    "question": "Batman’in koruduğu kurgusal şehir hangisidir?",
+    "options": [
+      "Metropolis",
+      "Gotham",
+      "Star City",
+      "Central City"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Batman, Gotham şehrini korur."
+  },
+  {
+    "id": "q033",
+    "categoryIndex": 1,
+    "question": "Superman’in doğduğu gezegen hangisidir?",
+    "options": [
+      "Mars",
+      "Krypton",
+      "Vulcan",
+      "Pandora"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Superman Krypton gezegeninde doğmuştur."
+  },
+  {
+    "id": "q034",
+    "categoryIndex": 1,
+    "question": "Game of Thrones’un büyük bölümünün geçtiği kıta hangisidir?",
+    "options": [
+      "Westeros",
+      "Narnia",
+      "Mordor",
+      "Atlantis"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dizinin ana kıtası Westeros’tur."
+  },
+  {
+    "id": "q035",
+    "categoryIndex": 1,
+    "question": "Breaking Bad dizisinin ana karakteri kimdir?",
+    "options": [
+      "Jesse Pinkman",
+      "Saul Goodman",
+      "Walter White",
+      "Gus Fring"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dizinin merkezinde Walter White vardır."
+  },
+  {
+    "id": "q036",
+    "categoryIndex": 1,
+    "question": "Jurassic Park’ın ana teması hangi canlılardır?",
+    "options": [
+      "Robotlar",
+      "Dinozorlar",
+      "Uzaylılar",
+      "Ejderhalar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Jurassic Park, yeniden oluşturulan dinozorları konu alır."
+  },
+  {
+    "id": "q037",
+    "categoryIndex": 1,
+    "question": "Minyonların en çok hizmet ettiği karakter kimdir?",
+    "options": [
+      "Gru",
+      "Shrek",
+      "Woody",
+      "Homer"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Minyonlar en çok Gru ile birlikte görülür."
+  },
+  {
+    "id": "q038",
+    "categoryIndex": 1,
+    "question": "SüngerBob hangi yerde yaşar?",
+    "options": [
+      "Atlantis",
+      "Bikini Kasabası",
+      "Gotham",
+      "Springfield"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "SüngerBob, Bikini Kasabası’nda yaşar."
+  },
+  {
+    "id": "q039",
+    "categoryIndex": 1,
+    "question": "Simpsonlar ailesinin babasının adı nedir?",
+    "options": [
+      "Bart",
+      "Ned",
+      "Homer",
+      "Moe"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ailenin babası Homer Simpson’dır."
+  },
+  {
+    "id": "q040",
+    "categoryIndex": 1,
+    "question": "E.T. filmindeki E.T. nasıl bir varlıktır?",
+    "options": [
+      "Robot",
+      "Uzaylı",
+      "Hayalet",
+      "Dinozor"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "E.T. dünya dışı bir canlıdır."
+  },
+  {
+    "id": "q041",
+    "categoryIndex": 2,
+    "question": "İstanbul hangi yılda Osmanlı tarafından fethedildi?",
+    "options": [
+      "1453",
+      "1492",
+      "1517",
+      "1071"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İstanbul 1453 yılında II. Mehmed tarafından fethedildi."
+  },
+  {
+    "id": "q042",
+    "categoryIndex": 2,
+    "question": "Türkiye Cumhuriyeti hangi yılda ilan edildi?",
+    "options": [
+      "1919",
+      "1920",
+      "1923",
+      "1938"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cumhuriyet 29 Ekim 1923’te ilan edildi."
+  },
+  {
+    "id": "q043",
+    "categoryIndex": 2,
+    "question": "Fransız Devrimi hangi yılda başladı?",
+    "options": [
+      "1689",
+      "1789",
+      "1889",
+      "1917"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Fransız Devrimi 1789’da başladı."
+  },
+  {
+    "id": "q044",
+    "categoryIndex": 2,
+    "question": "Birinci Dünya Savaşı hangi yılda başladı?",
+    "options": [
+      "1905",
+      "1914",
+      "1918",
+      "1939"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Birinci Dünya Savaşı 1914’te başladı."
+  },
+  {
+    "id": "q045",
+    "categoryIndex": 2,
+    "question": "İkinci Dünya Savaşı hangi yılda sona erdi?",
+    "options": [
+      "1942",
+      "1945",
+      "1948",
+      "1950"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İkinci Dünya Savaşı 1945’te sona erdi."
+  },
+  {
+    "id": "q046",
+    "categoryIndex": 2,
+    "question": "Gize Piramitleri hangi uygarlığa aittir?",
+    "options": [
+      "Roma",
+      "Antik Mısır",
+      "Maya",
+      "Pers"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Gize Piramitleri Antik Mısır uygarlığına aittir."
+  },
+  {
+    "id": "q047",
+    "categoryIndex": 2,
+    "question": "Magna Carta hangi yılda imzalandı?",
+    "options": [
+      "1066",
+      "1215",
+      "1453",
+      "1648"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Magna Carta 1215 yılında imzalandı."
+  },
+  {
+    "id": "q048",
+    "categoryIndex": 2,
+    "question": "Sanayi Devrimi ilk olarak hangi ülkede başladı?",
+    "options": [
+      "Fransa",
+      "İngiltere",
+      "İtalya",
+      "Rusya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sanayi Devrimi ilk olarak İngiltere’de başladı."
+  },
+  {
+    "id": "q049",
+    "categoryIndex": 2,
+    "question": "Matbaanın Avrupa’da yaygınlaşmasını sağlayan kişi kimdir?",
+    "options": [
+      "Galileo",
+      "Gutenberg",
+      "Newton",
+      "Da Vinci"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Johannes Gutenberg hareketli metal harfli matbaayı geliştirdi."
+  },
+  {
+    "id": "q050",
+    "categoryIndex": 2,
+    "question": "Rönesans ilk olarak hangi ülkede başladı?",
+    "options": [
+      "İtalya",
+      "İspanya",
+      "Almanya",
+      "İngiltere"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Rönesans İtalya’da başladı."
+  },
+  {
+    "id": "q051",
+    "categoryIndex": 2,
+    "question": "Apollo 11 Ay’a hangi yılda indi?",
+    "options": [
+      "1959",
+      "1965",
+      "1969",
+      "1972"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Apollo 11, 1969 yılında Ay’a indi."
+  },
+  {
+    "id": "q052",
+    "categoryIndex": 2,
+    "question": "Berlin Duvarı hangi yılda yıkıldı?",
+    "options": [
+      "1979",
+      "1989",
+      "1991",
+      "1999"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Berlin Duvarı 1989’da yıkıldı."
+  },
+  {
+    "id": "q053",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti’nin kurucusu kimdir?",
+    "options": [
+      "Orhan Gazi",
+      "Osman Gazi",
+      "Yıldırım Bayezid",
+      "Fatih Sultan Mehmed"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Osmanlı Devleti’nin kurucusu Osman Gazi kabul edilir."
+  },
+  {
+    "id": "q054",
+    "categoryIndex": 2,
+    "question": "Mustafa Kemal Atatürk hangi şehirde doğdu?",
+    "options": [
+      "İstanbul",
+      "Ankara",
+      "Selanik",
+      "İzmir"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Atatürk Selanik’te doğdu."
+  },
+  {
+    "id": "q055",
+    "categoryIndex": 2,
+    "question": "Malazgirt Meydan Muharebesi hangi yılda yapıldı?",
+    "options": [
+      "1071",
+      "1176",
+      "1299",
+      "1453"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Malazgirt Meydan Muharebesi 1071’de yapıldı."
+  },
+  {
+    "id": "q056",
+    "categoryIndex": 2,
+    "question": "Antik Olimpiyat Oyunları hangi uygarlıkta başladı?",
+    "options": [
+      "Roma",
+      "Mısır",
+      "Yunan",
+      "Fenike"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Antik Olimpiyat Oyunları Antik Yunan’da başladı."
+  },
+  {
+    "id": "q057",
+    "categoryIndex": 2,
+    "question": "Moğol İmparatorluğu’nun kurucusu kimdir?",
+    "options": [
+      "Timur",
+      "Cengiz Han",
+      "Kubilay Han",
+      "Attila"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Moğol İmparatorluğu’nu Cengiz Han kurdu."
+  },
+  {
+    "id": "q058",
+    "categoryIndex": 2,
+    "question": "Amerikan Bağımsızlık Bildirgesi hangi yılda kabul edildi?",
+    "options": [
+      "1492",
+      "1776",
+      "1789",
+      "1815"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bildirge 1776 yılında kabul edildi."
+  },
+  {
+    "id": "q059",
+    "categoryIndex": 2,
+    "question": "Bizans İmparatorluğu’nun başkenti hangi şehirdi?",
+    "options": [
+      "Roma",
+      "Atina",
+      "Konstantinopolis",
+      "İskenderiye"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bizans’ın başkenti Konstantinopolis’ti."
+  },
+  {
+    "id": "q060",
+    "categoryIndex": 2,
+    "question": "Sümerler hangi bölgede yaşamıştır?",
+    "options": [
+      "Mezopotamya",
+      "İskandinavya",
+      "Anadolu’nun batısı",
+      "Orta Amerika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sümerler Mezopotamya’da yaşamıştır."
+  },
+  {
+    "id": "q061",
+    "categoryIndex": 3,
+    "question": "Mona Lisa tablosunu kim yaptı?",
+    "options": [
+      "Michelangelo",
+      "Leonardo da Vinci",
+      "Raphael",
+      "Rembrandt"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mona Lisa, Leonardo da Vinci’nin eseridir."
+  },
+  {
+    "id": "q062",
+    "categoryIndex": 3,
+    "question": "Hamlet’in yazarı kimdir?",
+    "options": [
+      "William Shakespeare",
+      "Charles Dickens",
+      "Victor Hugo",
+      "Dante"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hamlet, William Shakespeare tarafından yazılmıştır."
+  },
+  {
+    "id": "q063",
+    "categoryIndex": 3,
+    "question": "Don Kişot’un yazarı kimdir?",
+    "options": [
+      "Miguel de Cervantes",
+      "Tolstoy",
+      "Kafka",
+      "Goethe"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Don Kişot’un yazarı Miguel de Cervantes’tir."
+  },
+  {
+    "id": "q064",
+    "categoryIndex": 3,
+    "question": "Küçük Prens’in yazarı kimdir?",
+    "options": [
+      "Jules Verne",
+      "Antoine de Saint-Exupéry",
+      "Albert Camus",
+      "Marcel Proust"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Küçük Prens’i Antoine de Saint-Exupéry yazmıştır."
+  },
+  {
+    "id": "q065",
+    "categoryIndex": 3,
+    "question": "Guernica tablosu kime aittir?",
+    "options": [
+      "Pablo Picasso",
+      "Salvador Dalí",
+      "Claude Monet",
+      "Edgar Degas"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Guernica, Pablo Picasso’nun eseridir."
+  },
+  {
+    "id": "q066",
+    "categoryIndex": 3,
+    "question": "İlahi Komedya’nın yazarı kimdir?",
+    "options": [
+      "Dante Alighieri",
+      "Boccaccio",
+      "Petrarca",
+      "Homeros"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İlahi Komedya’nın yazarı Dante’dir."
+  },
+  {
+    "id": "q067",
+    "categoryIndex": 3,
+    "question": "Savaş ve Barış romanını kim yazdı?",
+    "options": [
+      "Dostoyevski",
+      "Tolstoy",
+      "Çehov",
+      "Turgenyev"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Savaş ve Barış, Lev Tolstoy’un romanıdır."
+  },
+  {
+    "id": "q068",
+    "categoryIndex": 3,
+    "question": "Fındıkkıran balesinin müziğini kim besteledi?",
+    "options": [
+      "Mozart",
+      "Beethoven",
+      "Çaykovski",
+      "Vivaldi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Fındıkkıran’ın müziği Pyotr İlyiç Çaykovski’ye aittir."
+  },
+  {
+    "id": "q069",
+    "categoryIndex": 3,
+    "question": "Yıldızlı Gece tablosunun ressamı kimdir?",
+    "options": [
+      "Van Gogh",
+      "Monet",
+      "Renoir",
+      "Matisse"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yıldızlı Gece, Vincent van Gogh’un eseridir."
+  },
+  {
+    "id": "q070",
+    "categoryIndex": 3,
+    "question": "Suç ve Ceza romanının yazarı kimdir?",
+    "options": [
+      "Dostoyevski",
+      "Tolstoy",
+      "Gogol",
+      "Puşkin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Suç ve Ceza’yı Fyodor Dostoyevski yazmıştır."
+  },
+  {
+    "id": "q071",
+    "categoryIndex": 3,
+    "question": "Sefiller romanının yazarı kimdir?",
+    "options": [
+      "Victor Hugo",
+      "Balzac",
+      "Émile Zola",
+      "Alexandre Dumas"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sefiller, Victor Hugo’nun eseridir."
+  },
+  {
+    "id": "q072",
+    "categoryIndex": 3,
+    "question": "Sistina Şapeli’nin tavan freskleriyle tanınan sanatçı kimdir?",
+    "options": [
+      "Donatello",
+      "Michelangelo",
+      "Botticelli",
+      "Caravaggio"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tavan freskleri Michelangelo tarafından yapılmıştır."
+  },
+  {
+    "id": "q073",
+    "categoryIndex": 3,
+    "question": "İnce Memed romanının yazarı kimdir?",
+    "options": [
+      "Yaşar Kemal",
+      "Orhan Kemal",
+      "Kemal Tahir",
+      "Tarık Buğra"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İnce Memed, Yaşar Kemal’in romanıdır."
+  },
+  {
+    "id": "q074",
+    "categoryIndex": 3,
+    "question": "Çalıkuşu romanının yazarı kimdir?",
+    "options": [
+      "Halide Edib Adıvar",
+      "Reşat Nuri Güntekin",
+      "Yakup Kadri Karaosmanoğlu",
+      "Peyami Safa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Çalıkuşu, Reşat Nuri Güntekin’in eseridir."
+  },
+  {
+    "id": "q075",
+    "categoryIndex": 3,
+    "question": "Safahat’ın yazarı kimdir?",
+    "options": [
+      "Mehmet Akif Ersoy",
+      "Yahya Kemal Beyatlı",
+      "Tevfik Fikret",
+      "Nazım Hikmet"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Safahat, Mehmet Akif Ersoy’un şiir külliyatıdır."
+  },
+  {
+    "id": "q076",
+    "categoryIndex": 3,
+    "question": "Hababam Sınıfı’nın yazarı kimdir?",
+    "options": [
+      "Aziz Nesin",
+      "Rıfat Ilgaz",
+      "Haldun Taner",
+      "Sait Faik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hababam Sınıfı’nı Rıfat Ilgaz yazmıştır."
+  },
+  {
+    "id": "q077",
+    "categoryIndex": 3,
+    "question": "Romeo ve Juliet’in yazarı kimdir?",
+    "options": [
+      "Shakespeare",
+      "Molière",
+      "Goethe",
+      "Cervantes"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Romeo ve Juliet, Shakespeare’in oyunudur."
+  },
+  {
+    "id": "q078",
+    "categoryIndex": 3,
+    "question": "Çığlık tablosunun ressamı kimdir?",
+    "options": [
+      "Edvard Munch",
+      "Paul Cézanne",
+      "Gustav Klimt",
+      "Paul Gauguin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Çığlık, Edvard Munch’un eseridir."
+  },
+  {
+    "id": "q079",
+    "categoryIndex": 3,
+    "question": "Madame Bovary romanının yazarı kimdir?",
+    "options": [
+      "Gustave Flaubert",
+      "Stendhal",
+      "Victor Hugo",
+      "Balzac"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Madame Bovary’yi Gustave Flaubert yazmıştır."
+  },
+  {
+    "id": "q080",
+    "categoryIndex": 3,
+    "question": "Düşünen Adam heykelinin sanatçısı kimdir?",
+    "options": [
+      "Auguste Rodin",
+      "Bernini",
+      "Donatello",
+      "Henry Moore"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Düşünen Adam, Auguste Rodin’in eseridir."
+  },
+  {
+    "id": "q081",
+    "categoryIndex": 4,
+    "question": "Suyun kimyasal formülü nedir?",
+    "options": [
+      "CO₂",
+      "H₂O",
+      "O₂",
+      "NaCl"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bir su molekülü iki hidrojen ve bir oksijen atomundan oluşur."
+  },
+  {
+    "id": "q082",
+    "categoryIndex": 4,
+    "question": "Dünya’ya en yakın yıldız hangisidir?",
+    "options": [
+      "Sirius",
+      "Güneş",
+      "Proxima Centauri",
+      "Vega"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dünya’ya en yakın yıldız Güneş’tir."
+  },
+  {
+    "id": "q083",
+    "categoryIndex": 4,
+    "question": "Bitkilerin ışık enerjisini kullanarak besin üretmesine ne denir?",
+    "options": [
+      "Solunum",
+      "Fotosentez",
+      "Fermantasyon",
+      "Yoğuşma"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bu süreç fotosentez olarak adlandırılır."
+  },
+  {
+    "id": "q084",
+    "categoryIndex": 4,
+    "question": "Yetişkin bir insanın iskeletinde yaklaşık kaç kemik vardır?",
+    "options": [
+      "106",
+      "206",
+      "306",
+      "406"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yetişkin insan iskeletinde genellikle 206 kemik bulunur."
+  },
+  {
+    "id": "q085",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi’nin en büyük gezegeni hangisidir?",
+    "options": [
+      "Satürn",
+      "Dünya",
+      "Jüpiter",
+      "Neptün"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Jüpiter Güneş Sistemi’nin en büyük gezegenidir."
+  },
+  {
+    "id": "q086",
+    "categoryIndex": 4,
+    "question": "“Kızıl Gezegen” olarak bilinen gezegen hangisidir?",
+    "options": [
+      "Venüs",
+      "Mars",
+      "Merkür",
+      "Uranüs"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mars, demir oksitli yüzeyi nedeniyle kızıl görünür."
+  },
+  {
+    "id": "q087",
+    "categoryIndex": 4,
+    "question": "Işık boşlukta yaklaşık kaç kilometre/saniye hızla ilerler?",
+    "options": [
+      "30.000",
+      "300.000",
+      "3.000.000",
+      "300"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Işık hızı yaklaşık 300 bin kilometre/saniyedir."
+  },
+  {
+    "id": "q088",
+    "categoryIndex": 4,
+    "question": "DNA’nın temel yapısı hangisine benzer?",
+    "options": [
+      "Tek halka",
+      "Çift sarmal",
+      "Düz çizgi",
+      "Küp"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "DNA çift sarmal yapısıyla tanınır."
+  },
+  {
+    "id": "q089",
+    "categoryIndex": 4,
+    "question": "Memelilerin yavrularını beslediği temel salgı nedir?",
+    "options": [
+      "Süt",
+      "Bal",
+      "Nektar",
+      "Safra"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Memeliler yavrularını sütle besler."
+  },
+  {
+    "id": "q090",
+    "categoryIndex": 4,
+    "question": "Balina hangi hayvan sınıfındadır?",
+    "options": [
+      "Balık",
+      "Memeli",
+      "Sürüngen",
+      "Amfibi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Balinalar suda yaşamalarına rağmen memelidir."
+  },
+  {
+    "id": "q091",
+    "categoryIndex": 4,
+    "question": "Deniz seviyesinde su kaç santigrat derecede kaynar?",
+    "options": [
+      "0",
+      "50",
+      "100",
+      "212"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Standart basınçta su 100 °C’de kaynar."
+  },
+  {
+    "id": "q092",
+    "categoryIndex": 4,
+    "question": "Dünya atmosferinde en çok bulunan gaz hangisidir?",
+    "options": [
+      "Oksijen",
+      "Azot",
+      "Karbondioksit",
+      "Hidrojen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Atmosferin yaklaşık yüzde 78’i azottur."
+  },
+  {
+    "id": "q093",
+    "categoryIndex": 4,
+    "question": "Kuvvetin SI birimi hangisidir?",
+    "options": [
+      "Joule",
+      "Newton",
+      "Watt",
+      "Pascal"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kuvvetin SI birimi newtondur."
+  },
+  {
+    "id": "q094",
+    "categoryIndex": 4,
+    "question": "Dünya’nın doğal uydusunun adı nedir?",
+    "options": [
+      "Ay",
+      "Titan",
+      "Europa",
+      "Phobos"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dünya’nın doğal uydusu Ay’dır."
+  },
+  {
+    "id": "q095",
+    "categoryIndex": 4,
+    "question": "Doğada bulunan en sert madde hangisidir?",
+    "options": [
+      "Demir",
+      "Kuvars",
+      "Elmas",
+      "Granit"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Elmas doğal maddeler arasında en sert olanıdır."
+  },
+  {
+    "id": "q096",
+    "categoryIndex": 4,
+    "question": "Ahtapotun kaç kalbi vardır?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ahtapotların üç kalbi vardır."
+  },
+  {
+    "id": "q097",
+    "categoryIndex": 4,
+    "question": "İnsan vücudunun en büyük organı hangisidir?",
+    "options": [
+      "Karaciğer",
+      "Akciğer",
+      "Deri",
+      "Beyin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yüzey alanı bakımından en büyük organ deridir."
+  },
+  {
+    "id": "q098",
+    "categoryIndex": 4,
+    "question": "pH değeri 7’nin altında olan maddeler genellikle nasıldır?",
+    "options": [
+      "Asidik",
+      "Bazik",
+      "Nötr",
+      "Radyoaktif"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "pH 7’nin altı asidik kabul edilir."
+  },
+  {
+    "id": "q099",
+    "categoryIndex": 4,
+    "question": "Ses hangi ortamda yayılamaz?",
+    "options": [
+      "Su",
+      "Hava",
+      "Çelik",
+      "Tam boşluk"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sesin yayılması için maddesel bir ortama ihtiyaç vardır."
+  },
+  {
+    "id": "q100",
+    "categoryIndex": 4,
+    "question": "Hücrenin enerji üretim merkezi olarak bilinen organel hangisidir?",
+    "options": [
+      "Ribozom",
+      "Mitokondri",
+      "Lizozom",
+      "Çekirdek"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mitokondri hücrenin enerji üretiminde temel rol oynar."
+  },
+  {
+    "id": "q101",
+    "categoryIndex": 5,
+    "question": "Bir futbol takımı sahada kaç oyuncuyla yer alır?",
+    "options": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bir futbol takımı sahada kaleci dâhil 11 oyuncuyla oynar."
+  },
+  {
+    "id": "q102",
+    "categoryIndex": 5,
+    "question": "Basketbol potasının yerden yüksekliği yaklaşık kaç metredir?",
+    "options": [
+      "2,45",
+      "3,05",
+      "3,65",
+      "4,05"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Standart pota yüksekliği 3,05 metredir."
+  },
+  {
+    "id": "q103",
+    "categoryIndex": 5,
+    "question": "Olimpiyat sembolünde kaç halka vardır?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Olimpiyat sembolünde beş halka bulunur."
+  },
+  {
+    "id": "q104",
+    "categoryIndex": 5,
+    "question": "Teniste bir takvim yılında kaç Grand Slam turnuvası vardır?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Avustralya Açık, Roland Garros, Wimbledon ve ABD Açık olmak üzere dört Grand Slam vardır."
+  },
+  {
+    "id": "q105",
+    "categoryIndex": 5,
+    "question": "Maraton yarışının resmî uzunluğu kaç kilometredir?",
+    "options": [
+      "40",
+      "41,195",
+      "42,195",
+      "45"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Maratonun resmî mesafesi 42,195 kilometredir."
+  },
+  {
+    "id": "q106",
+    "categoryIndex": 5,
+    "question": "Voleybolda bir takım sahada kaç oyuncuyla oynar?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Voleybolda sahada takım başına altı oyuncu bulunur."
+  },
+  {
+    "id": "q107",
+    "categoryIndex": 5,
+    "question": "Satrançta her oyuncu oyuna kaç taşla başlar?",
+    "options": [
+      "12",
+      "14",
+      "16",
+      "18"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Her oyuncu oyuna 16 taşla başlar."
+  },
+  {
+    "id": "q108",
+    "categoryIndex": 5,
+    "question": "Futbolda sarı kart neyi ifade eder?",
+    "options": [
+      "Gol",
+      "Uyarı",
+      "Oyundan ihraç",
+      "Maçın bitişi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sarı kart oyuncuya verilen resmî uyarıdır."
+  },
+  {
+    "id": "q109",
+    "categoryIndex": 5,
+    "question": "Basketbolda serbest atış kaç sayı değerindedir?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Başarılı bir serbest atış bir sayı kazandırır."
+  },
+  {
+    "id": "q110",
+    "categoryIndex": 5,
+    "question": "Masa tenisinde normal bir set genellikle kaç sayıda kazanılır?",
+    "options": [
+      "7",
+      "11",
+      "15",
+      "21"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Set, en az iki sayı farkla 11 sayıya ulaşan oyuncu tarafından kazanılır."
+  },
+  {
+    "id": "q111",
+    "categoryIndex": 5,
+    "question": "Golfta temel amaç nedir?",
+    "options": [
+      "En yüksek puanı almak",
+      "Topu en az vuruşla deliğe sokmak",
+      "Rakibi devirmek",
+      "En uzun mesafeyi koşmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Golfta daha az vuruş daha iyi sonuçtur."
+  },
+  {
+    "id": "q112",
+    "categoryIndex": 5,
+    "question": "Hentbolda bir takım sahada kaç oyuncuyla oynar?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Hentbolda kaleci dâhil yedi oyuncu sahada bulunur."
+  },
+  {
+    "id": "q113",
+    "categoryIndex": 5,
+    "question": "Futbolda “hat-trick” ne demektir?",
+    "options": [
+      "Bir oyuncunun üç gol atması",
+      "Üç sarı kart görülmesi",
+      "Üç penaltı kaçırılması",
+      "Üç oyuncu değişikliği"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bir oyuncunun aynı maçta üç gol atmasına hat-trick denir."
+  },
+  {
+    "id": "q114",
+    "categoryIndex": 5,
+    "question": "Teniste 40-40 skoruna ne ad verilir?",
+    "options": [
+      "Love",
+      "Deuce",
+      "Ace",
+      "Set point"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "40-40 skoru deuce olarak adlandırılır."
+  },
+  {
+    "id": "q115",
+    "categoryIndex": 5,
+    "question": "Basketbolda üç sayı çizgisinin gerisinden atılan başarılı şut kaç sayıdır?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bu şut üç sayı değerindedir."
+  },
+  {
+    "id": "q116",
+    "categoryIndex": 5,
+    "question": "Modern Olimpiyat Oyunlarının tarihsel kökeni hangi ülkeye dayanır?",
+    "options": [
+      "İtalya",
+      "Yunanistan",
+      "Fransa",
+      "Mısır"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Olimpiyatların kökeni Antik Yunan’a dayanır."
+  },
+  {
+    "id": "q117",
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde kullanılan disk biçimli oyun aracının adı nedir?",
+    "options": [
+      "Top",
+      "Pak",
+      "Raket",
+      "Disket"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Buz hokeyinde kullanılan araca pak denir."
+  },
+  {
+    "id": "q118",
+    "categoryIndex": 5,
+    "question": "Badmintonda raketle vurulan tüylü oyun aracına ne denir?",
+    "options": [
+      "Pak",
+      "Mekik",
+      "Falso",
+      "Topaç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Badmintonda kullanılan oyun aracına mekik denir."
+  },
+  {
+    "id": "q119",
+    "categoryIndex": 5,
+    "question": "Ragbi oyununda topu rakip sayı alanına bırakmaya ne denir?",
+    "options": [
+      "Try",
+      "Ace",
+      "Strike",
+      "Touchdown"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ragbide bu sayı biçimi “try” olarak adlandırılır."
+  },
+  {
+    "id": "q120",
+    "categoryIndex": 5,
+    "question": "Formula 1 yarışında damalı bayrak neyi gösterir?",
+    "options": [
+      "Güvenlik aracı",
+      "Yarışın bitişi",
+      "Yağmur başlangıcı",
+      "Ceza turu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Damalı bayrak yarışın tamamlandığını gösterir."
+  }
+]
