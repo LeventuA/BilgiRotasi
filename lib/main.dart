@@ -1588,8 +1588,20 @@ class PawnToken extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (type == 0) {
+      return SizedBox(
+        width: width,
+        height: height,
+        child: CustomPaint(
+          painter: RainbowRingPawnPainter(
+            playerColor: color,
+            active: active,
+          ),
+        ),
+      );
+    }
+
     final pawn = PawnCatalog.at(type);
-    final glowSize = active ? 1.10 : 0.88;
 
     return SizedBox(
       width: width,
@@ -1600,17 +1612,34 @@ class PawnToken extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             Positioned(
-              bottom: height * 0.10,
+              bottom: height * 0.08,
               child: Container(
-                width: width * glowSize,
-                height: width * glowSize,
+                width: width * 0.92,
+                height: width * 0.92,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
+                  gradient: const RadialGradient(
+                    colors: [
+                      Color(0xEE26364A),
+                      Color(0xDD160C20),
+                      Color(0x99100818),
+                    ],
+                    stops: [0, 0.68, 1],
+                  ),
+                  border: Border.all(
+                    color: const Color(0xFFFFD76A),
+                    width: active ? 2.3 : 1.5,
+                  ),
                   boxShadow: [
                     BoxShadow(
-                      color: color.withOpacity(active ? 0.58 : 0.24),
-                      blurRadius: active ? width * 0.50 : width * 0.27,
-                      spreadRadius: active ? width * 0.10 : width * 0.025,
+                      color: color.withOpacity(active ? 0.72 : 0.42),
+                      blurRadius: active ? width * 0.54 : width * 0.34,
+                      spreadRadius: active ? width * 0.10 : width * 0.04,
+                    ),
+                    const BoxShadow(
+                      color: Color(0xAA000000),
+                      offset: Offset(0, 4),
+                      blurRadius: 6,
                     ),
                   ],
                 ),
@@ -1618,52 +1647,62 @@ class PawnToken extends StatelessWidget {
             ),
             Positioned.fill(
               child: Transform.translate(
-                offset: Offset(0, -height * 0.025),
-                child: Image.asset(
-                  pawn.assetPath,
-                  fit: BoxFit.contain,
+                offset: Offset(0, -height * 0.08),
+                child: Transform.scale(
+                  scale: active ? 1.34 : 1.24,
                   alignment: Alignment.bottomCenter,
-                  filterQuality: FilterQuality.high,
-                  gaplessPlayback: true,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Center(
-                      child: Text(
-                        pawn.fallbackSymbol,
-                        style: TextStyle(
-                          fontSize: width * 0.62,
-                          height: 1,
+                  child: Image.asset(
+                    pawn.assetPath,
+                    fit: BoxFit.contain,
+                    alignment: Alignment.bottomCenter,
+                    filterQuality: FilterQuality.high,
+                    gaplessPlayback: true,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Center(
+                        child: Text(
+                          pawn.fallbackSymbol,
+                          style: TextStyle(
+                            fontSize: width * 0.70,
+                            height: 1,
+                            shadows: const [
+                              Shadow(
+                                color: Colors.white,
+                                blurRadius: 5,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
             Positioned(
-              bottom: height * 0.015,
+              bottom: 0,
               child: Container(
-                width: width * 0.60,
-                height: max(3.0, height * 0.075),
+                width: width * 0.78,
+                height: max(4.0, height * 0.085),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(999),
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color.lerp(color, Colors.white, 0.45)!,
+                      Color.lerp(color, Colors.white, 0.55)!,
                       color,
-                      Color.lerp(color, Colors.black, 0.28)!,
+                      Color.lerp(color, Colors.black, 0.35)!,
                     ],
                   ),
                   border: Border.all(
                     color: const Color(0xFFFFE082),
-                    width: active ? 1.8 : 1.1,
+                    width: active ? 2.1 : 1.4,
                   ),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
-                      color: const Color(0xAA000000),
-                      offset: const Offset(0, 2),
-                      blurRadius: active ? 4 : 2,
+                      color: Color(0xCC000000),
+                      offset: Offset(0, 3),
+                      blurRadius: 5,
                     ),
                   ],
                 ),
@@ -1674,20 +1713,20 @@ class PawnToken extends StatelessWidget {
                 top: 0,
                 right: 0,
                 child: Container(
-                  width: max(7.0, width * 0.18),
-                  height: max(7.0, width * 0.18),
+                  width: max(9.0, width * 0.20),
+                  height: max(9.0, width * 0.20),
                   decoration: BoxDecoration(
                     color: color,
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: Colors.white,
-                      width: 1.5,
+                      width: 2,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: color.withOpacity(0.80),
-                        blurRadius: 6,
-                        spreadRadius: 1,
+                        color: color.withOpacity(0.95),
+                        blurRadius: 8,
+                        spreadRadius: 2,
                       ),
                     ],
                   ),
@@ -1697,6 +1736,168 @@ class PawnToken extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class RainbowRingPawnPainter extends CustomPainter {
+  const RainbowRingPawnPainter({
+    required this.playerColor,
+    required this.active,
+  });
+
+  final Color playerColor;
+  final bool active;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final bounds = Offset.zero & size;
+    final center = Offset(size.width / 2, size.height * 0.39);
+    final radius = size.width * 0.31;
+    final ringWidth = size.width * 0.18;
+
+    if (active) {
+      canvas.drawCircle(
+        center,
+        radius * 1.42,
+        Paint()
+          ..color = playerColor.withOpacity(0.48)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
+      );
+    }
+
+    final baseShadow = Rect.fromCenter(
+      center: Offset(size.width / 2, size.height * 0.91),
+      width: size.width * 0.88,
+      height: size.height * 0.16,
+    );
+    canvas.drawOval(
+      baseShadow.translate(0, 3),
+      Paint()
+        ..color = const Color(0xAA000000)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4),
+    );
+
+    final baseRect = Rect.fromCenter(
+      center: Offset(size.width / 2, size.height * 0.87),
+      width: size.width * 0.86,
+      height: size.height * 0.19,
+    );
+    canvas.drawOval(
+      baseRect,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFFFFF0A6),
+            Color(0xFFFFC83D),
+            Color(0xFF9A5A08),
+          ],
+        ).createShader(baseRect),
+    );
+    canvas.drawOval(
+      baseRect.deflate(size.width * 0.03),
+      Paint()..color = const Color(0xFF401F58),
+    );
+
+    canvas.drawCircle(
+      center.translate(0, size.height * 0.018),
+      radius,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = ringWidth + size.width * 0.035
+        ..color = const Color(0xFF5A2B15),
+    );
+
+    canvas.drawCircle(
+      center,
+      radius,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = ringWidth
+        ..shader = const SweepGradient(
+          colors: [
+            Color(0xFFFF3D8D),
+            Color(0xFFFF8A27),
+            Color(0xFFFFEA43),
+            Color(0xFF32D36B),
+            Color(0xFF16BCE8),
+            Color(0xFF5F46F2),
+            Color(0xFFFF3D8D),
+          ],
+        ).createShader(
+          Rect.fromCircle(
+            center: center,
+            radius: radius,
+          ),
+        ),
+    );
+
+    canvas.drawCircle(
+      center,
+      radius + ringWidth / 2,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = active ? 2.4 : 1.5
+        ..color = const Color(0xFFFFF1A8),
+    );
+    canvas.drawCircle(
+      center,
+      radius - ringWidth / 2,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.4
+        ..color = const Color(0xAAFFFFFF),
+    );
+
+    final highlightRect = Rect.fromCircle(
+      center: center.translate(-size.width * 0.02, -size.height * 0.015),
+      radius: radius,
+    );
+    canvas.drawArc(
+      highlightRect,
+      -2.75,
+      1.55,
+      false,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = size.width * 0.035
+        ..strokeCap = StrokeCap.round
+        ..color = const Color(0xCCFFFFFF),
+    );
+
+    canvas.drawCircle(
+      Offset(size.width * 0.67, size.height * 0.18),
+      size.width * 0.055,
+      Paint()..color = const Color(0xE6FFFFFF),
+    );
+
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromCenter(
+          center: Offset(size.width / 2, size.height * 0.98),
+          width: size.width * 0.72,
+          height: max(4.0, size.height * 0.075),
+        ),
+        const Radius.circular(999),
+      ),
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.lerp(playerColor, Colors.white, 0.55)!,
+            playerColor,
+            Color.lerp(playerColor, Colors.black, 0.35)!,
+          ],
+        ).createShader(bounds),
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant RainbowRingPawnPainter oldDelegate) {
+    return oldDelegate.playerColor != playerColor ||
+        oldDelegate.active != active;
   }
 }
 
@@ -1913,7 +2114,7 @@ class GameBoard extends StatelessWidget {
                   final angle = -pi / 2 +
                       index * (2 * pi / divisor.toDouble());
                   point = boardCenter +
-                      Offset(cos(angle), sin(angle)) * base * 0.064;
+                      Offset(cos(angle), sin(angle)) * base * 0.084;
                 } else if (sameCellIndexes.length > 1) {
                   final radialAngle = atan2(
                     point.dy - boardCenter.dy,
@@ -1925,17 +2126,17 @@ class GameBoard extends StatelessWidget {
                   );
                   final centeredSlot =
                       stackSlot - (sameCellIndexes.length - 1) / 2;
-                  point += tangent * centeredSlot * base * 0.040;
+                  point += tangent * centeredSlot * base * 0.052;
                 }
 
-                final pawnWidth = active ? base * 0.064 : base * 0.056;
-                final pawnHeight = active ? base * 0.086 : base * 0.075;
+                final pawnWidth = active ? base * 0.082 : base * 0.072;
+                final pawnHeight = active ? base * 0.112 : base * 0.098;
 
                 return AnimatedPositioned(
                   duration: const Duration(milliseconds: 430),
                   curve: Curves.easeOutBack,
                   left: point.dx - pawnWidth / 2,
-                  top: point.dy - pawnHeight * 0.84,
+                  top: point.dy - pawnHeight * 0.80,
                   child: PawnToken(
                     type: player.pawnType,
                     color: player.color,
