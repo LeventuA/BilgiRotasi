@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
@@ -650,6 +651,8 @@ class _GameScreenState extends State<GameScreen> {
   bool _isBusy = false;
   String _status = 'Zarı at ve rotaya çık.';
   PlayerData? _winner;
+  List<MoveOption> _moveOptions = const <MoveOption>[];
+  Completer<MoveOption>? _moveCompleter;
 
   PlayerData get _currentPlayer => widget.players[_currentPlayerIndex];
 
@@ -721,6 +724,8 @@ class _GameScreenState extends State<GameScreen> {
                     child: GameBoard(
                       players: widget.players,
                       currentPlayerIndex: _currentPlayerIndex,
+                      moveOptions: _moveOptions,
+                      onMoveSelected: _selectMoveFromBoard,
                     ),
                   ),
                 );
@@ -970,9 +975,13 @@ class _GameScreenState extends State<GameScreen> {
 
     if (!mounted) return;
 
-    final selected = options.length == 1
-        ? options.first
-        : await _chooseMove(options);
+    final MoveOption? selected;
+
+    if (options.length == 1) {
+      selected = options.first;
+    } else {
+      selected = await _waitForBoardMove(options);
+    }
 
     if (!mounted) return;
 
@@ -1026,48 +1035,40 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  Future<MoveOption?> _chooseMove(
+  Future<MoveOption?> _waitForBoardMove(
     List<MoveOption> options,
-  ) {
-    return showDialog<MoveOption>(
-      context: context,
-      barrierDismissible: false,
-      builder: (dialogContext) {
-        return SimpleDialog(
-          title: Text('$_lastDice adım için yolunu seç'),
-          children: options.map((option) {
-            final target = BoardMap.node(option.destination);
-            final category = target.categoryIndex < 0
-                ? null
-                : GameCategory.values[target.categoryIndex];
+  ) async {
+    final completer = Completer<MoveOption>();
 
-            return SimpleDialogOption(
-              onPressed: () {
-                Navigator.pop(dialogContext, option);
-              },
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: CircleAvatar(
-                  backgroundColor:
-                      category?.color ?? const Color(0xFF26364A),
-                  child: Text(category?.emoji ?? '🧭'),
-                ),
-                title: Text(
-                  BoardMap.routeTitle(option),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                subtitle: Text(
-                  BoardMap.label(option.destination),
-                ),
-                trailing: const Icon(Icons.arrow_forward_rounded),
-              ),
-            );
-          }).toList(),
-        );
-      },
-    );
+    setState(() {
+      _moveOptions = List<MoveOption>.unmodifiable(options);
+      _moveCompleter = completer;
+      _status =
+          '${_currentPlayer.name}, parlayan hedeflerden birine dokun.';
+    });
+
+    HapticFeedback.mediumImpact();
+
+    final selected = await completer.future;
+
+    if (!mounted) return null;
+
+    setState(() {
+      _moveOptions = const <MoveOption>[];
+      _moveCompleter = null;
+      _status = '${BoardMap.routeTitle(selected)} seçildi.';
+    });
+
+    return selected;
+  }
+
+  void _selectMoveFromBoard(MoveOption option) {
+    final completer = _moveCompleter;
+
+    if (completer == null || completer.isCompleted) return;
+
+    HapticFeedback.heavyImpact();
+    completer.complete(option);
   }
 
   Future<void> _askFinalQuestion() async {
@@ -1211,6 +1212,10 @@ class _GameScreenState extends State<GameScreen> {
         false;
 
     if (shouldExit && mounted) {
+      final completer = _moveCompleter;
+      if (completer != null && !completer.isCompleted && _moveOptions.isNotEmpty) {
+        completer.complete(_moveOptions.first);
+      }
       Navigator.of(context).popUntil((route) => route.isFirst);
     }
   }
@@ -1861,15 +1866,168 @@ class ClassicPawnPainter extends CustomPainter {
   }
 }
 
+class RouteHighlightPainter extends CustomPainter {
+  const RouteHighlightPainter({required this.options});
+
+  final List<MoveOption> options;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (options.isEmpty) return;
+
+    final glowPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = BoardMap.base(size) * 0.030
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..color = const Color(0x667DE3FF)
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 7);
+
+    final routePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = BoardMap.base(size) * 0.012
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..shader = const LinearGradient(
+        colors: [
+          Color(0xFFFFE082),
+          Color(0xFF67E8F9),
+          Color(0xFFFFFFFF),
+        ],
+      ).createShader(Offset.zero & size);
+
+    for (final option in options) {
+      if (option.path.length < 2) continue;
+
+      final route = Path();
+      final first = BoardMap.position(size, option.path.first);
+      route.moveTo(first.dx, first.dy);
+
+      for (final nodeId in option.path.skip(1)) {
+        final point = BoardMap.position(size, nodeId);
+        route.lineTo(point.dx, point.dy);
+      }
+
+      canvas.drawPath(route, glowPaint);
+      canvas.drawPath(route, routePaint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant RouteHighlightPainter oldDelegate) {
+    return oldDelegate.options != options;
+  }
+}
+
+class RouteTargetPulse extends StatefulWidget {
+  const RouteTargetPulse({
+    required this.color,
+    required this.emoji,
+    required this.onTap,
+    required this.size,
+    super.key,
+  });
+
+  final Color color;
+  final String emoji;
+  final VoidCallback onTap;
+  final double size;
+
+  @override
+  State<RouteTargetPulse> createState() => _RouteTargetPulseState();
+}
+
+class _RouteTargetPulseState extends State<RouteTargetPulse>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _scale;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 720),
+    )..repeat(reverse: true);
+
+    _scale = Tween<double>(begin: 0.88, end: 1.13).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: widget.onTap,
+      child: ScaleTransition(
+        scale: _scale,
+        child: Container(
+          width: widget.size,
+          height: widget.size,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: RadialGradient(
+              colors: [
+                Colors.white,
+                Color.lerp(widget.color, Colors.white, 0.20)!,
+                widget.color,
+              ],
+              stops: const [0, 0.50, 1],
+            ),
+            border: Border.all(
+              color: const Color(0xFFFFE082),
+              width: 3,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: widget.color.withOpacity(0.80),
+                blurRadius: 14,
+                spreadRadius: 4,
+              ),
+              const BoxShadow(
+                color: Color(0xAAFFFFFF),
+                blurRadius: 5,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
+          child: Text(
+            widget.emoji,
+            style: TextStyle(
+              fontSize: widget.size * 0.42,
+              height: 1,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class GameBoard extends StatelessWidget {
   const GameBoard({
     required this.players,
     required this.currentPlayerIndex,
+    this.moveOptions = const <MoveOption>[],
+    this.onMoveSelected,
     super.key,
   });
 
   final List<PlayerData> players;
   final int currentPlayerIndex;
+  final List<MoveOption> moveOptions;
+  final ValueChanged<MoveOption>? onMoveSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -1892,6 +2050,16 @@ class GameBoard extends StatelessWidget {
                   painter: BoardPainter(),
                 ),
               ),
+              if (moveOptions.isNotEmpty)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: CustomPaint(
+                      painter: RouteHighlightPainter(
+                        options: moveOptions,
+                      ),
+                    ),
+                  ),
+                ),
               ...List.generate(players.length, (index) {
                 final player = players[index];
                 var point = BoardMap.position(size, player.position);
@@ -1937,6 +2105,32 @@ class GameBoard extends StatelessWidget {
                     active: active,
                     width: pawnWidth,
                     height: pawnHeight,
+                  ),
+                );
+              }),
+              ...moveOptions.map((option) {
+                final destination = BoardMap.node(option.destination);
+                final point = BoardMap.position(size, option.destination);
+                final category = destination.categoryIndex < 0
+                    ? null
+                    : GameCategory.values[destination.categoryIndex];
+                final targetSize = destination.isBadge
+                    ? base * 0.088
+                    : base * 0.074;
+
+                return Positioned(
+                  left: point.dx - targetSize / 2,
+                  top: point.dy - targetSize / 2,
+                  child: Semantics(
+                    button: true,
+                    label: BoardMap.routeTitle(option),
+                    child: RouteTargetPulse(
+                      key: ValueKey<int>(option.destination),
+                      color: category?.color ?? const Color(0xFF155E75),
+                      emoji: category?.emoji ?? '🧭',
+                      size: targetSize,
+                      onTap: () => onMoveSelected?.call(option),
+                    ),
                   ),
                 );
               }),
