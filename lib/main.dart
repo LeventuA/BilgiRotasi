@@ -583,7 +583,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.14',
+                  'Bilgi Rotası • Sürüm 1.15',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -769,44 +769,68 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildFeatureStrip() {
     const features = [
-      ('🧭', 'Serbest rota'),
-      ('✨', 'Özel kutular'),
-      ('💾', 'Kaydet ve dön'),
+      ('🧭', 'Serbest Rota', 'Tek kişilik tahta'),
+      ('🧠', 'Soru Maratonu', 'Hızlı bilgi turu'),
+      ('💾', 'Kaydet ve dön', 'Kaldığın yerden'),
     ];
 
     return Row(
       children: [
         for (var index = 0; index < features.length; index++) ...[
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 6,
-                vertical: 12,
-              ),
-              decoration: BoxDecoration(
-                color: const Color(0x16FFFFFF),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: _actionBusy
+                    ? null
+                    : () => _onModeCardTap(index),
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(
-                  color: const Color(0x33FFFFFF),
-                ),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    features[index].$1,
-                    style: const TextStyle(fontSize: 24),
+                splashColor: const Color(0x33FFE082),
+                highlightColor: const Color(0x1FFFFFFF),
+                child: Ink(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 12,
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    features[index].$2,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
+                  decoration: BoxDecoration(
+                    color: const Color(0x16FFFFFF),
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(
+                      color: const Color(0x55FFFFFF),
                     ),
                   ),
-                ],
+                  child: Column(
+                    children: [
+                      Text(
+                        features[index].$1,
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        features[index].$2,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        features[index].$3,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Color(0xFFCBC1D6),
+                          fontSize: 9,
+                          height: 1.1,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -815,6 +839,93 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ],
     );
+  }
+
+  Future<void> _onModeCardTap(int index) async {
+    HapticFeedback.selectionClick();
+
+    switch (index) {
+      case 0:
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => SoloRouteSetupScreen(
+              questionBank: widget.questionBank,
+            ),
+          ),
+        );
+        if (mounted) {
+          setState(_reloadSavedGame);
+        }
+        return;
+
+      case 1:
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => MarathonSetupScreen(
+              questionBank: widget.questionBank,
+            ),
+          ),
+        );
+        return;
+
+      case 2:
+        await _openSavedGameShortcut();
+        return;
+    }
+  }
+
+  Future<void> _openSavedGameShortcut() async {
+    if (_actionBusy) return;
+
+    setState(() => _actionBusy = true);
+
+    final savedGame = await GameSaveService.load();
+
+    if (!mounted) return;
+
+    if (savedGame != null) {
+      setState(() => _actionBusy = false);
+      await _continueGame(savedGame);
+      return;
+    }
+
+    setState(() => _actionBusy = false);
+
+    final startNewGame = await showDialog<bool>(
+          context: context,
+          builder: (dialogContext) {
+            return AlertDialog(
+              icon: const Text(
+                '💾',
+                style: TextStyle(fontSize: 44),
+              ),
+              title: const Text('Kayıtlı oyun yok'),
+              content: const Text(
+                'Tahta oyunundan çıkarken “Kaydet ve Çık” '
+                'seçeneğini kullandığında buradan tek dokunuşla '
+                'oyuna dönebilirsin.',
+                textAlign: TextAlign.center,
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, false),
+                  child: const Text('Kapat'),
+                ),
+                FilledButton(
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, true),
+                  child: const Text('Yeni Oyun Kur'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+
+    if (startNewGame && mounted) {
+      await _openNewGame();
+    }
   }
 
   Widget _buildCategoryCard() {
@@ -937,7 +1048,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Sıra ${currentPlayer.name} oyuncusunda',
+                      savedGame.players.length == 1
+                          ? 'Serbest Rota • ${currentPlayer.name}'
+                          : 'Sıra ${currentPlayer.name} oyuncusunda',
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         color: Colors.white,
@@ -1150,6 +1263,1293 @@ class CategoryPill extends StatelessWidget {
     );
   }
 }
+
+class MarathonScoreService {
+  MarathonScoreService._();
+
+  static const String _key = 'bilgi_rotasi_marathon_scores_v1';
+  static final SharedPreferencesAsync _preferences =
+      SharedPreferencesAsync();
+
+  static String _scoreKey(
+    int? categoryIndex,
+    int questionCount,
+  ) {
+    final category = categoryIndex == null
+        ? 'mixed'
+        : 'category_$categoryIndex';
+    return '${category}_$questionCount';
+  }
+
+  static Future<Map<String, int>> _loadScores() async {
+    try {
+      final raw = await _preferences.getString(_key);
+      if (raw == null || raw.isEmpty) {
+        return <String, int>{};
+      }
+
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map) {
+        return <String, int>{};
+      }
+
+      return decoded.map<String, int>(
+        (key, value) => MapEntry(
+          key.toString(),
+          (value as num?)?.toInt() ?? 0,
+        ),
+      );
+    } catch (_) {
+      return <String, int>{};
+    }
+  }
+
+  static Future<int> bestScore({
+    required int? categoryIndex,
+    required int questionCount,
+  }) async {
+    final scores = await _loadScores();
+    return scores[_scoreKey(categoryIndex, questionCount)] ?? 0;
+  }
+
+  static Future<void> saveBest({
+    required int? categoryIndex,
+    required int questionCount,
+    required int score,
+  }) async {
+    try {
+      final scores = await _loadScores();
+      final key = _scoreKey(categoryIndex, questionCount);
+      final oldScore = scores[key] ?? 0;
+
+      if (score <= oldScore) return;
+
+      scores[key] = score;
+      await _preferences.setString(
+        _key,
+        jsonEncode(scores),
+      );
+    } catch (_) {
+      // Rekor kaydı oyunu durdurmamalı.
+    }
+  }
+}
+
+class SoloRouteSetupScreen extends StatefulWidget {
+  const SoloRouteSetupScreen({
+    required this.questionBank,
+    super.key,
+  });
+
+  final QuestionBank questionBank;
+
+  @override
+  State<SoloRouteSetupScreen> createState() =>
+      _SoloRouteSetupScreenState();
+}
+
+class _SoloRouteSetupScreenState
+    extends State<SoloRouteSetupScreen> {
+  static const _colors = [
+    Color(0xFFE11D48),
+    Color(0xFF2563EB),
+    Color(0xFF16A34A),
+    Color(0xFFF97316),
+    Color(0xFF9333EA),
+    Color(0xFF0891B2),
+  ];
+
+  final TextEditingController _nameController =
+      TextEditingController(text: 'Oyuncu');
+
+  int _pawnType = 0;
+  int _colorIndex = 1;
+  bool _starting = false;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final playerColor = _colors[_colorIndex];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Serbest Rota'),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFF8FAFC),
+              Color(0xFFE7F7F5),
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(18, 16, 18, 26),
+            children: [
+              Container(
+                padding: const EdgeInsets.all(19),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color(0xFF3A2448),
+                      Color(0xFF155E75),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(26),
+                ),
+                child: const Column(
+                  children: [
+                    Text(
+                      '🧭',
+                      style: TextStyle(fontSize: 48),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Tek başına altı rozeti topla',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Yanlış cevapta oyun bitmez. Aynı oyuncu '
+                      'rotasına devam eder; doğru ve yanlışların '
+                      'şampiyon ekranında gösterilir.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFFD7EDEB),
+                        height: 1.35,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _nameController,
+                maxLength: 18,
+                decoration: const InputDecoration(
+                  labelText: 'Oyuncu adı',
+                  prefixIcon: Icon(Icons.person_rounded),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 6),
+              const Text(
+                'Oyuncu rengin',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: List.generate(
+                  _colors.length,
+                  (index) {
+                    final selected = index == _colorIndex;
+                    final color = _colors[index];
+
+                    return InkWell(
+                      onTap: () {
+                        HapticFeedback.selectionClick();
+                        setState(() => _colorIndex = index);
+                      },
+                      customBorder: const CircleBorder(),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 170),
+                        width: 44,
+                        height: 44,
+                        decoration: BoxDecoration(
+                          color: color,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: selected
+                                ? Colors.black
+                                : Colors.white,
+                            width: selected ? 3 : 2,
+                          ),
+                          boxShadow: selected
+                              ? [
+                                  BoxShadow(
+                                    color: color.withOpacity(0.48),
+                                    blurRadius: 12,
+                                    spreadRadius: 2,
+                                  ),
+                                ]
+                              : null,
+                        ),
+                        child: selected
+                            ? const Icon(
+                                Icons.check_rounded,
+                                color: Colors.white,
+                              )
+                            : null,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 18),
+              const Text(
+                'Piyonunu seç',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              const SizedBox(height: 10),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: PawnCatalog.all.length,
+                gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 9,
+                  mainAxisSpacing: 9,
+                  childAspectRatio: 0.76,
+                ),
+                itemBuilder: (context, index) {
+                  final pawn = PawnCatalog.all[index];
+                  final selected = index == _pawnType;
+
+                  return InkWell(
+                    onTap: () {
+                      HapticFeedback.selectionClick();
+                      setState(() => _pawnType = index);
+                    },
+                    borderRadius: BorderRadius.circular(18),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 180),
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: selected
+                            ? playerColor.withOpacity(0.13)
+                            : Colors.white,
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(
+                          color: selected
+                              ? playerColor
+                              : const Color(0xFFD7DEE8),
+                          width: selected ? 2.4 : 1.1,
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          PawnToken(
+                            type: index,
+                            color: playerColor,
+                            active: selected,
+                            width: 58,
+                            height: 72,
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            pawn.name,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              height: 1.05,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 18),
+              FilledButton.icon(
+                onPressed: _starting ? null : _startSoloRoute,
+                icon: const Icon(Icons.explore_rounded),
+                label: Text(
+                  _starting
+                      ? 'Hazırlanıyor…'
+                      : 'Serbest Rotaya Başla',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _startSoloRoute() async {
+    if (_starting) return;
+
+    setState(() => _starting = true);
+
+    final name = _nameController.text.trim();
+    final player = PlayerData(
+      name: name.isEmpty ? 'Oyuncu' : name,
+      color: _colors[_colorIndex],
+      pawnType: _pawnType,
+    );
+
+    await GameSaveService.clear();
+
+    if (!mounted) return;
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => GameScreen(
+          questionBank: widget.questionBank,
+          players: [player],
+          initialStatus:
+              'Serbest Rota başladı. Altı rozeti topla! 🧭',
+        ),
+      ),
+    );
+  }
+}
+
+class MarathonSetupScreen extends StatefulWidget {
+  const MarathonSetupScreen({
+    required this.questionBank,
+    super.key,
+  });
+
+  final QuestionBank questionBank;
+
+  @override
+  State<MarathonSetupScreen> createState() =>
+      _MarathonSetupScreenState();
+}
+
+class _MarathonSetupScreenState
+    extends State<MarathonSetupScreen> {
+  int? _categoryIndex;
+  int _questionCount = 10;
+
+  int get _poolSize {
+    if (_categoryIndex == null) {
+      return widget.questionBank.totalCount;
+    }
+
+    return widget.questionBank
+            .questionsByCategory[_categoryIndex]
+            ?.length ??
+        0;
+  }
+
+  List<int> get _availableCounts {
+    final counts = <int>[
+      for (final count in const [10, 20, 50])
+        if (count <= _poolSize) count,
+    ];
+
+    if (counts.isEmpty && _poolSize > 0) {
+      counts.add(_poolSize);
+    }
+
+    return counts;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final availableCounts = _availableCounts;
+
+    if (!availableCounts.contains(_questionCount) &&
+        availableCounts.isNotEmpty) {
+      _questionCount = availableCounts.first;
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Soru Maratonu'),
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(18, 12, 18, 26),
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [
+                    Color(0xFF4C1D95),
+                    Color(0xFF155E75),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(27),
+              ),
+              child: const Column(
+                children: [
+                  Text(
+                    '🧠⚡',
+                    style: TextStyle(fontSize: 46),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Tahtasız hızlı bilgi turu',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 23,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  SizedBox(height: 7),
+                  Text(
+                    'Soruları art arda çöz, doğru serini büyüt '
+                    've kendi rekorunu geç.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFFE7E1F0),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 18),
+            const Text(
+              'Kategori',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            const SizedBox(height: 10),
+            _categoryTile(
+              categoryIndex: null,
+              emoji: '🎲',
+              title: 'Karışık',
+              subtitle: 'Altı kategoriden rastgele',
+              color: const Color(0xFF475569),
+            ),
+            const SizedBox(height: 8),
+            for (var index = 0;
+                index < GameCategory.values.length;
+                index++) ...[
+              _categoryTile(
+                categoryIndex: index,
+                emoji: GameCategory.values[index].emoji,
+                title: GameCategory.values[index].label,
+                subtitle:
+                    '${widget.questionBank.questionsByCategory[index]?.length ?? 0} soru',
+                color: GameCategory.values[index].color,
+              ),
+              const SizedBox(height: 8),
+            ],
+            const SizedBox(height: 12),
+            const Text(
+              'Tur uzunluğu',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            const SizedBox(height: 10),
+            SegmentedButton<int>(
+              segments: [
+                for (final count in availableCounts)
+                  ButtonSegment<int>(
+                    value: count,
+                    label: Text('$count soru'),
+                  ),
+              ],
+              selected: {_questionCount},
+              onSelectionChanged: (selection) {
+                setState(() => _questionCount = selection.first);
+              },
+            ),
+            const SizedBox(height: 14),
+            FutureBuilder<int>(
+              future: MarathonScoreService.bestScore(
+                categoryIndex: _categoryIndex,
+                questionCount: _questionCount,
+              ),
+              builder: (context, snapshot) {
+                final best = snapshot.data ?? 0;
+
+                return Container(
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFF7D6),
+                    borderRadius: BorderRadius.circular(17),
+                    border: Border.all(
+                      color: const Color(0xFFEAB308),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      const Text(
+                        '🏆',
+                        style: TextStyle(fontSize: 27),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          best == 0
+                              ? 'Bu ayarda henüz rekor yok.'
+                              : 'En yüksek skor: $best / $_questionCount',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 18),
+            FilledButton.icon(
+              onPressed:
+                  availableCounts.isEmpty ? null : _startMarathon,
+              icon: const Icon(Icons.bolt_rounded),
+              label: const Text(
+                'Maratonu Başlat',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _categoryTile({
+    required int? categoryIndex,
+    required String emoji,
+    required String title,
+    required String subtitle,
+    required Color color,
+  }) {
+    final selected = categoryIndex == _categoryIndex;
+
+    return InkWell(
+      onTap: () {
+        HapticFeedback.selectionClick();
+
+        setState(() {
+          _categoryIndex = categoryIndex;
+          final counts = _availableCounts;
+
+          if (!counts.contains(_questionCount) &&
+              counts.isNotEmpty) {
+            _questionCount = counts.first;
+          }
+        });
+      },
+      borderRadius: BorderRadius.circular(17),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 170),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 12,
+        ),
+        decoration: BoxDecoration(
+          color: selected
+              ? color.withOpacity(0.14)
+              : Colors.white,
+          borderRadius: BorderRadius.circular(17),
+          border: Border.all(
+            color: selected
+                ? color
+                : const Color(0xFFD7DEE8),
+            width: selected ? 2.2 : 1.1,
+          ),
+        ),
+        child: Row(
+          children: [
+            Text(
+              emoji,
+              style: const TextStyle(fontSize: 27),
+            ),
+            const SizedBox(width: 11),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(
+                      color: Color(0xFF64748B),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (selected)
+              Icon(
+                Icons.check_circle_rounded,
+                color: color,
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _startMarathon() {
+    final pool = _categoryIndex == null
+        ? widget.questionBank.questionsByCategory.values
+            .expand((questions) => questions)
+            .toList()
+        : List<QuizQuestion>.from(
+            widget.questionBank
+                    .questionsByCategory[_categoryIndex] ??
+                const <QuizQuestion>[],
+          );
+
+    pool.shuffle(Random());
+    final questions = pool
+        .take(min(_questionCount, pool.length))
+        .toList(growable: false);
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => MarathonScreen(
+          questionBank: widget.questionBank,
+          questions: questions,
+          categoryIndex: _categoryIndex,
+        ),
+      ),
+    );
+  }
+}
+
+class MarathonScreen extends StatefulWidget {
+  const MarathonScreen({
+    required this.questionBank,
+    required this.questions,
+    required this.categoryIndex,
+    super.key,
+  });
+
+  final QuestionBank questionBank;
+  final List<QuizQuestion> questions;
+  final int? categoryIndex;
+
+  @override
+  State<MarathonScreen> createState() =>
+      _MarathonScreenState();
+}
+
+class _MarathonScreenState extends State<MarathonScreen> {
+  final Stopwatch _stopwatch = Stopwatch();
+
+  int _questionIndex = 0;
+  int _correct = 0;
+  int _wrong = 0;
+  int _streak = 0;
+  int _maxStreak = 0;
+  bool _busy = false;
+  bool _exitDialogOpen = false;
+
+  QuizQuestion get _question =>
+      widget.questions[_questionIndex];
+
+  @override
+  void initState() {
+    super.initState();
+    _stopwatch.start();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final category = GameCategory.values[
+        _question.categoryIndex];
+    final progress = widget.questions.isEmpty
+        ? 0.0
+        : _questionIndex / widget.questions.length;
+
+    return PopScope<Object?>(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) {
+          unawaited(_confirmExit());
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Soru Maratonu'),
+          leading: IconButton(
+            onPressed: _confirmExit,
+            icon: const Icon(Icons.close_rounded),
+          ),
+        ),
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFF1E1029),
+                Color(0xFF123B4A),
+              ],
+            ),
+          ),
+          child: SafeArea(
+            child: ListView(
+              padding:
+                  const EdgeInsets.fromLTRB(18, 16, 18, 26),
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: _scoreCard(
+                        '✅',
+                        '$_correct',
+                        'Doğru',
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _scoreCard(
+                        '🔥',
+                        '$_streak',
+                        'Seri',
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _scoreCard(
+                        '❌',
+                        '$_wrong',
+                        'Yanlış',
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(999),
+                  child: LinearProgressIndicator(
+                    value: progress,
+                    minHeight: 10,
+                    backgroundColor: const Color(0x33FFFFFF),
+                    color: const Color(0xFFFFE082),
+                  ),
+                ),
+                const SizedBox(height: 9),
+                Text(
+                  'Soru ${_questionIndex + 1} / '
+                  '${widget.questions.length}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Color(0xFFD8CCEA),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 22),
+                Container(
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(28),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x55000000),
+                        blurRadius: 20,
+                        offset: Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        category.emoji,
+                        style: const TextStyle(fontSize: 54),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        category.label,
+                        style: TextStyle(
+                          color: category.darkColor,
+                          fontSize: 21,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 7),
+                      Text(
+                        widget.categoryIndex == null
+                            ? 'Karışık maraton'
+                            : 'Kategori maratonu',
+                        style: const TextStyle(
+                          color: Color(0xFF64748B),
+                        ),
+                      ),
+                      const SizedBox(height: 22),
+                      FilledButton.icon(
+                        onPressed: _busy ? null : _openQuestion,
+                        style: FilledButton.styleFrom(
+                          backgroundColor: category.color,
+                        ),
+                        icon: const Icon(
+                          Icons.quiz_rounded,
+                        ),
+                        label: Text(
+                          _busy
+                              ? 'Bekle…'
+                              : 'Soruyu Aç',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Her doğru cevap serini bir artırır. '
+                  'Yanlış cevap seriyi sıfırlar.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFFCBC1D6),
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _scoreCard(
+    String emoji,
+    String value,
+    String label,
+  ) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 5,
+        vertical: 12,
+      ),
+      decoration: BoxDecoration(
+        color: const Color(0x16FFFFFF),
+        borderRadius: BorderRadius.circular(17),
+        border: Border.all(
+          color: const Color(0x33FFFFFF),
+        ),
+      ),
+      child: Column(
+        children: [
+          Text(
+            emoji,
+            style: const TextStyle(fontSize: 22),
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          Text(
+            label,
+            style: const TextStyle(
+              color: Color(0xFFCBC1D6),
+              fontSize: 11,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _openQuestion() async {
+    if (_busy || widget.questions.isEmpty) return;
+
+    setState(() => _busy = true);
+
+    final correct = await Navigator.of(context).push<bool>(
+          MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (_) => QuestionScreen(
+              question: _question,
+            ),
+          ),
+        ) ??
+        false;
+
+    if (!mounted) return;
+
+    if (correct) {
+      _correct++;
+      _streak++;
+      _maxStreak = max(_maxStreak, _streak);
+      unawaited(SoundFx.correct());
+    } else {
+      _wrong++;
+      _streak = 0;
+      unawaited(SoundFx.wrong());
+    }
+
+    final finished =
+        _questionIndex + 1 >= widget.questions.length;
+
+    if (finished) {
+      _stopwatch.stop();
+
+      final previousBest =
+          await MarathonScoreService.bestScore(
+        categoryIndex: widget.categoryIndex,
+        questionCount: widget.questions.length,
+      );
+
+      await MarathonScoreService.saveBest(
+        categoryIndex: widget.categoryIndex,
+        questionCount: widget.questions.length,
+        score: _correct,
+      );
+
+      if (!mounted) return;
+
+      if (_correct > previousBest) {
+        unawaited(SoundFx.win());
+      }
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => MarathonResultScreen(
+            questionBank: widget.questionBank,
+            categoryIndex: widget.categoryIndex,
+            questionCount: widget.questions.length,
+            correct: _correct,
+            wrong: _wrong,
+            maxStreak: _maxStreak,
+            elapsed: _stopwatch.elapsed,
+            previousBest: previousBest,
+          ),
+        ),
+      );
+      return;
+    }
+
+    setState(() {
+      _questionIndex++;
+      _busy = false;
+    });
+  }
+
+  Future<void> _confirmExit() async {
+    if (_exitDialogOpen || !mounted) return;
+
+    _exitDialogOpen = true;
+
+    final exit = await showDialog<bool>(
+          context: context,
+          builder: (dialogContext) {
+            return AlertDialog(
+              title: const Text('Maratondan çıkılsın mı?'),
+              content: const Text(
+                'Bu maratonun mevcut ilerlemesi '
+                'kaydedilmeyecek.',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, false),
+                  child: const Text('Devam Et'),
+                ),
+                FilledButton(
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, true),
+                  child: const Text('Maratondan Çık'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+
+    _exitDialogOpen = false;
+
+    if (exit && mounted) {
+      Navigator.of(context).pop();
+    }
+  }
+}
+
+class MarathonResultScreen extends StatelessWidget {
+  const MarathonResultScreen({
+    required this.questionBank,
+    required this.categoryIndex,
+    required this.questionCount,
+    required this.correct,
+    required this.wrong,
+    required this.maxStreak,
+    required this.elapsed,
+    required this.previousBest,
+    super.key,
+  });
+
+  final QuestionBank questionBank;
+  final int? categoryIndex;
+  final int questionCount;
+  final int correct;
+  final int wrong;
+  final int maxStreak;
+  final Duration elapsed;
+  final int previousBest;
+
+  @override
+  Widget build(BuildContext context) {
+    final percentage = questionCount == 0
+        ? 0
+        : (correct / questionCount * 100).round();
+    final isNewRecord = correct > previousBest;
+    final modeLabel = categoryIndex == null
+        ? 'Karışık'
+        : GameCategory.values[categoryIndex!].label;
+
+    return PopScope<Object?>(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) {
+          Navigator.of(context)
+              .popUntil((route) => route.isFirst);
+        }
+      },
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment(0, -0.5),
+              radius: 1.2,
+              colors: [
+                Color(0xFF5B2C70),
+                Color(0xFF21132D),
+                Color(0xFF0B3440),
+              ],
+            ),
+          ),
+          child: SafeArea(
+            child: ListView(
+              padding:
+                  const EdgeInsets.fromLTRB(20, 26, 20, 28),
+              children: [
+                Text(
+                  isNewRecord ? '🏆 YENİ REKOR!' : '🧠 MARATON BİTTİ',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Color(0xFFFFE082),
+                    fontSize: 25,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                const SizedBox(height: 18),
+                Container(
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: const Color(0xE61D1027),
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: const Color(0xFFFFD978),
+                      width: 2,
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      const Text(
+                        '⚡',
+                        style: TextStyle(fontSize: 58),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        '$correct / $questionCount',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 45,
+                          height: 1,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 7),
+                      Text(
+                        '$modeLabel • Başarı %$percentage',
+                        style: const TextStyle(
+                          color: Color(0xFFD8CCEA),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _resultStat(
+                              '🔥',
+                              '$maxStreak',
+                              'En iyi seri',
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: _resultStat(
+                              '⏱️',
+                              _durationText(elapsed),
+                              'Süre',
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: _resultStat(
+                              '❌',
+                              '$wrong',
+                              'Yanlış',
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (!isNewRecord && previousBest > 0) ...[
+                        const SizedBox(height: 16),
+                        Text(
+                          'Kişisel rekorun: '
+                          '$previousBest / $questionCount',
+                          style: const TextStyle(
+                            color: Color(0xFFFFE082),
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 18),
+                FilledButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (_) => MarathonSetupScreen(
+                          questionBank: questionBank,
+                        ),
+                      ),
+                    );
+                  },
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFFFFE082),
+                    foregroundColor: const Color(0xFF3A2448),
+                  ),
+                  icon: const Icon(Icons.replay_rounded),
+                  label: const Text(
+                    'Yeni Maraton',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                OutlinedButton.icon(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .popUntil((route) => route.isFirst);
+                  },
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    side: const BorderSide(
+                      color: Color(0x99FFE082),
+                    ),
+                    minimumSize: const Size.fromHeight(54),
+                  ),
+                  icon: const Icon(Icons.home_rounded),
+                  label: const Text(
+                    'Ana Menü',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _resultStat(
+    String emoji,
+    String value,
+    String label,
+  ) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 4,
+        vertical: 12,
+      ),
+      decoration: BoxDecoration(
+        color: const Color(0x16FFFFFF),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: const Color(0x33FFFFFF),
+        ),
+      ),
+      child: Column(
+        children: [
+          Text(
+            emoji,
+            style: const TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            value,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color(0xFFCBC1D6),
+              fontSize: 9,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _durationText(Duration value) {
+    final minutes = value.inMinutes;
+    final seconds = value.inSeconds % 60;
+
+    return '$minutes:${seconds.toString().padLeft(2, '0')}';
+  }
+}
+
 
 class PlayerSetupScreen extends StatefulWidget {
   const PlayerSetupScreen({required this.questionBank, super.key});
