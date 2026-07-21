@@ -543,7 +543,7 @@ class _GameScreenState extends State<GameScreen> {
             }
 
             return ListView(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+              padding: const EdgeInsets.fromLTRB(4, 6, 4, 24),
               children: [
                 _buildBoardCard(),
                 const SizedBox(height: 14),
@@ -559,7 +559,7 @@ class _GameScreenState extends State<GameScreen> {
   Widget _buildBoardCard() {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.all(4),
         child: Column(
           children: [
             GameBoard(
