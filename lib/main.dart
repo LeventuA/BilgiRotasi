@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'sound_data.dart';
 
@@ -188,6 +189,172 @@ class SoundFx {
   }
 }
 
+class SavedGame {
+  const SavedGame({
+    required this.players,
+    required this.currentPlayerIndex,
+    required this.savedAt,
+  });
+
+  final List<PlayerData> players;
+  final int currentPlayerIndex;
+  final DateTime savedAt;
+
+  PlayerData get currentPlayer {
+    final safeIndex = currentPlayerIndex.clamp(0, players.length - 1).toInt();
+    return players[safeIndex];
+  }
+
+  int get totalBadges {
+    return players.fold<int>(
+      0,
+      (total, player) => total + player.badges.length,
+    );
+  }
+}
+
+class GameSaveService {
+  GameSaveService._();
+
+  static const String _saveKey = 'bilgi_rotasi_saved_game_v1';
+  static final SharedPreferencesAsync _preferences =
+      SharedPreferencesAsync();
+
+  static Future<void> save({
+    required List<PlayerData> players,
+    required int currentPlayerIndex,
+  }) async {
+    if (players.isEmpty) return;
+
+    final payload = <String, dynamic>{
+      'schema': 1,
+      'savedAt': DateTime.now().toIso8601String(),
+      'currentPlayerIndex': currentPlayerIndex,
+      'players': players.map(_playerToJson).toList(),
+    };
+
+    try {
+      await _preferences.setString(
+        _saveKey,
+        jsonEncode(payload),
+      );
+    } catch (_) {
+      // Kayıt sorunu oyunun çalışmasını durdurmamalı.
+    }
+  }
+
+  static Future<SavedGame?> load() async {
+    try {
+      final raw = await _preferences.getString(_saveKey);
+      if (raw == null || raw.trim().isEmpty) return null;
+
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map<String, dynamic>) {
+        await clear();
+        return null;
+      }
+
+      final rawPlayers = decoded['players'];
+      if (rawPlayers is! List || rawPlayers.isEmpty) {
+        await clear();
+        return null;
+      }
+
+      final players = <PlayerData>[];
+      for (final item in rawPlayers) {
+        if (item is Map<String, dynamic>) {
+          players.add(_playerFromJson(item));
+        } else if (item is Map) {
+          players.add(
+            _playerFromJson(
+              Map<String, dynamic>.from(item),
+            ),
+          );
+        }
+      }
+
+      if (players.isEmpty) {
+        await clear();
+        return null;
+      }
+
+      final rawIndex = (decoded['currentPlayerIndex'] as num?)?.toInt() ?? 0;
+      final currentPlayerIndex =
+          rawIndex.clamp(0, players.length - 1).toInt();
+      final savedAt = DateTime.tryParse(
+            decoded['savedAt']?.toString() ?? '',
+          ) ??
+          DateTime.now();
+
+      return SavedGame(
+        players: players,
+        currentPlayerIndex: currentPlayerIndex,
+        savedAt: savedAt,
+      );
+    } catch (_) {
+      await clear();
+      return null;
+    }
+  }
+
+  static Future<void> clear() async {
+    try {
+      await _preferences.remove(_saveKey);
+    } catch (_) {
+      // Kayıt silme sorunu arayüzü kilitlememeli.
+    }
+  }
+
+  static Map<String, dynamic> _playerToJson(PlayerData player) {
+    return <String, dynamic>{
+      'name': player.name,
+      'color': player.color.value,
+      'pawnType': player.pawnType,
+      'position': player.position,
+      'movePulse': player.movePulse,
+      'correctAnswers': player.correctAnswers,
+      'wrongAnswers': player.wrongAnswers,
+      'badges': player.badges.toList()..sort(),
+    };
+  }
+
+  static PlayerData _playerFromJson(Map<String, dynamic> json) {
+    final player = PlayerData(
+      name: json['name']?.toString().trim().isNotEmpty == true
+          ? json['name'].toString()
+          : 'Oyuncu',
+      color: Color(
+        (json['color'] as num?)?.toInt() ?? 0xFF2563EB,
+      ),
+      pawnType: (json['pawnType'] as num?)?.toInt() ?? 0,
+    );
+
+    player.position = (json['position'] as num?)?.toInt() ?? 0;
+    player.movePulse = (json['movePulse'] as num?)?.toInt() ?? 0;
+    player.correctAnswers =
+        (json['correctAnswers'] as num?)?.toInt() ?? 0;
+    player.wrongAnswers =
+        (json['wrongAnswers'] as num?)?.toInt() ?? 0;
+
+    final rawBadges = json['badges'];
+    if (rawBadges is List) {
+      player.badges.addAll(
+        rawBadges
+            .whereType<num>()
+            .map((value) => value.toInt())
+            .where(
+              (value) =>
+                  value >= 0 &&
+                  value < GameCategory.values.length,
+            ),
+      );
+    }
+
+    return player;
+  }
+}
+
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -321,10 +488,28 @@ class ErrorScreen extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({required this.questionBank, super.key});
 
   final QuestionBank questionBank;
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late Future<SavedGame?> _savedGameFuture;
+  bool _actionBusy = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _reloadSavedGame();
+  }
+
+  void _reloadSavedGame() {
+    _savedGameFuture = GameSaveService.load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -345,7 +530,10 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                     ),
                     alignment: Alignment.center,
-                    child: const Text('🧠', style: TextStyle(fontSize: 30)),
+                    child: const Text(
+                      '🧠',
+                      style: TextStyle(fontSize: 30),
+                    ),
                   ),
                   const SizedBox(width: 14),
                   const Expanded(
@@ -367,14 +555,52 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 28),
+              const SizedBox(height: 24),
+              FutureBuilder<SavedGame?>(
+                future: _savedGameFuture,
+                builder: (context, snapshot) {
+                  final savedGame = snapshot.data;
+
+                  if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return const Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(18),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 22,
+                              height: 22,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.5,
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Text('Kayıtlı oyun kontrol ediliyor…'),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+
+                  if (savedGame == null) {
+                    return const SizedBox.shrink();
+                  }
+
+                  return _buildSavedGameCard(savedGame);
+                },
+              ),
+              const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Color(0xFF164E63), Color(0xFF0F766E)],
+                    colors: [
+                      Color(0xFF164E63),
+                      Color(0xFF0F766E),
+                    ],
                   ),
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -392,7 +618,8 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 14),
                     Text(
-                      '${questionBank.totalCount} soru • 6 kategori • İnternetsiz',
+                      '${widget.questionBank.totalCount} soru • '
+                      '6 kategori • İnternetsiz',
                       style: const TextStyle(
                         color: Color(0xFFD5F5F1),
                         fontSize: 15,
@@ -405,19 +632,13 @@ class HomeScreen extends StatelessWidget {
                         backgroundColor: Colors.white,
                         foregroundColor: const Color(0xFF164E63),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => PlayerSetupScreen(
-                              questionBank: questionBank,
-                            ),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.play_arrow_rounded),
+                      onPressed: _actionBusy ? null : _openNewGame,
+                      icon: const Icon(Icons.add_circle_outline_rounded),
                       label: const Text(
-                        'Oyunu Başlat',
-                        style: TextStyle(fontWeight: FontWeight.w800),
+                        'Yeni Oyun Kur',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                   ],
@@ -432,7 +653,10 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       const Text(
                         'Kategoriler',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                       const SizedBox(height: 14),
                       Wrap(
@@ -440,7 +664,9 @@ class HomeScreen extends StatelessWidget {
                         runSpacing: 10,
                         children: List.generate(
                           GameCategory.values.length,
-                          (index) => CategoryPill(category: GameCategory.values[index]),
+                          (index) => CategoryPill(
+                            category: GameCategory.values[index],
+                          ),
                         ),
                       ),
                     ],
@@ -466,6 +692,196 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildSavedGameCard(SavedGame savedGame) {
+    final currentPlayer = savedGame.currentPlayer;
+
+    return Card(
+      child: Container(
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF3B1D52),
+              Color(0xFF1E3A5F),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                PawnToken(
+                  type: currentPlayer.pawnType,
+                  color: currentPlayer.color,
+                  active: true,
+                  width: 58,
+                  height: 72,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Kayıtlı oyun',
+                        style: TextStyle(
+                          color: Color(0xFFFFE082),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        'Sıra ${currentPlayer.name} oyuncusunda',
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        '${savedGame.players.length} oyuncu • '
+                        '${savedGame.totalBadges} rozet • '
+                        '${_formatDate(savedGame.savedAt)}',
+                        style: const TextStyle(
+                          color: Color(0xFFD8CCEA),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 14),
+            FilledButton.icon(
+              onPressed: _actionBusy
+                  ? null
+                  : () => _continueGame(savedGame),
+              icon: const Icon(Icons.play_arrow_rounded),
+              label: const Text(
+                'Oyuna Devam Et',
+                style: TextStyle(fontWeight: FontWeight.w900),
+              ),
+            ),
+            TextButton.icon(
+              onPressed:
+                  _actionBusy ? null : _deleteSavedGame,
+              style: TextButton.styleFrom(
+                foregroundColor: const Color(0xFFFFCDD2),
+              ),
+              icon: const Icon(Icons.delete_outline_rounded),
+              label: const Text('Kayıtlı Oyunu Sil'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _continueGame(SavedGame savedGame) async {
+    if (_actionBusy) return;
+
+    setState(() => _actionBusy = true);
+
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => GameScreen(
+          questionBank: widget.questionBank,
+          players: savedGame.players,
+          initialPlayerIndex: savedGame.currentPlayerIndex,
+          initialStatus:
+              'Kayıtlı oyun açıldı. Sıra '
+              '${savedGame.currentPlayer.name} oyuncusunda.',
+        ),
+      ),
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _actionBusy = false;
+      _reloadSavedGame();
+    });
+  }
+
+  Future<void> _openNewGame() async {
+    if (_actionBusy) return;
+
+    setState(() => _actionBusy = true);
+
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => PlayerSetupScreen(
+          questionBank: widget.questionBank,
+        ),
+      ),
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _actionBusy = false;
+      _reloadSavedGame();
+    });
+  }
+
+  Future<void> _deleteSavedGame() async {
+    final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Kayıtlı oyun silinsin mi?'),
+              content: const Text(
+                'Oyuncuların konumları, rozetleri ve '
+                'istatistikleri silinecek.',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: const Text('Vazgeç'),
+                ),
+                FilledButton(
+                  onPressed: () => Navigator.pop(context, true),
+                  child: const Text('Kaydı Sil'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+
+    if (!confirmed) return;
+
+    setState(() => _actionBusy = true);
+    await GameSaveService.clear();
+
+    if (!mounted) return;
+
+    setState(() {
+      _actionBusy = false;
+      _reloadSavedGame();
+    });
+  }
+
+  String _formatDate(DateTime date) {
+    final local = date.toLocal();
+    final day = local.day.toString().padLeft(2, '0');
+    final month = local.month.toString().padLeft(2, '0');
+    final hour = local.hour.toString().padLeft(2, '0');
+    final minute = local.minute.toString().padLeft(2, '0');
+
+    return '$day.$month.${local.year} $hour:$minute';
+  }
+
   void _showRules(BuildContext context) {
     showDialog<void>(
       context: context,
@@ -474,11 +890,19 @@ class HomeScreen extends StatelessWidget {
           title: const Text('Nasıl oynanır?'),
           content: const SingleChildScrollView(
             child: Text(
-              '• Bütün oyuncular oyuna ortadaki altıgenden başlar.\n\n'
-              '• Zar atıldıktan sonra gidilecek yol seçilir. Kavşaklarda dış halkada sağa, sola veya merkeze doğru ilerlenebilir.\n\n• Gelinen rengin kategorisinden dört şıklı soru açılır.\n\n'
-              '• Doğru cevap veren oyuncu yeniden oynar. Yanlış cevapta sıra diğer oyuncuya geçer.\n\n'
-              '• Beyaz çerçeveli özel alanlarda doğru cevap veren oyuncu o kategorinin rozetini kazanır.\n\n'
-              '• Altı rozeti tamamlayan oyuncu final sorusunu doğru cevaplayınca oyunu kazanır.',
+              '• Bütün oyuncular oyuna ortadaki '
+              'altıgenden başlar.\n\n'
+              '• Zar atıldıktan sonra gidilecek yol seçilir. '
+              'Kavşaklarda dış halkada sağa, sola veya '
+              'merkeze doğru ilerlenebilir.\n\n'
+              '• Gelinen rengin kategorisinden dört şıklı '
+              'soru açılır.\n\n'
+              '• Doğru cevap veren oyuncu yeniden oynar. '
+              'Yanlış cevapta sıra diğer oyuncuya geçer.\n\n'
+              '• Beyaz çerçeveli özel alanlarda doğru cevap '
+              'veren oyuncu o kategorinin rozetini kazanır.\n\n'
+              '• Altı rozeti tamamlayan oyuncu final '
+              'sorusunu doğru cevaplayınca oyunu kazanır.',
             ),
           ),
           actions: [
@@ -492,6 +916,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
 
 class CategoryPill extends StatelessWidget {
   const CategoryPill({required this.category, super.key});
@@ -794,7 +1219,7 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
     });
   }
 
-  void _startGame() {
+  Future<void> _startGame() async {
     final players = <PlayerData>[];
 
     for (var index = 0; index < _playerCount; index++) {
@@ -808,6 +1233,10 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
         ),
       );
     }
+
+    await GameSaveService.clear();
+
+    if (!mounted) return;
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
@@ -824,11 +1253,15 @@ class GameScreen extends StatefulWidget {
   const GameScreen({
     required this.questionBank,
     required this.players,
+    this.initialPlayerIndex = 0,
+    this.initialStatus,
     super.key,
   });
 
   final QuestionBank questionBank;
   final List<PlayerData> players;
+  final int initialPlayerIndex;
+  final String? initialStatus;
 
   @override
   State<GameScreen> createState() => _GameScreenState();
@@ -849,7 +1282,32 @@ class _GameScreenState extends State<GameScreen> {
   int _landingPulse = 0;
   bool _soundEnabled = true;
 
-  PlayerData get _currentPlayer => widget.players[_currentPlayerIndex];
+  PlayerData get _currentPlayer =>
+      widget.players[_currentPlayerIndex];
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.players.isNotEmpty) {
+      _currentPlayerIndex = widget.initialPlayerIndex
+          .clamp(0, widget.players.length - 1)
+          .toInt();
+    }
+
+    _status = widget.initialStatus ?? 'Zarı at ve rotaya çık.';
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(_saveGame());
+    });
+  }
+
+  Future<void> _saveGame() {
+    return GameSaveService.save(
+      players: widget.players,
+      currentPlayerIndex: _currentPlayerIndex,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1300,7 +1758,7 @@ class _GameScreenState extends State<GameScreen> {
 
     if (!mounted) return;
 
-    _handleAnswer(
+    await _handleAnswer(
       correct: correct,
       categoryIndex: categoryIndex,
       wasBadgeCell: target.isBadge,
@@ -1351,8 +1809,12 @@ class _GameScreenState extends State<GameScreen> {
       _status = '${_currentPlayer.name} final sorusunda!';
     });
 
-    final categoryIndex = _random.nextInt(GameCategory.values.length);
-    final question = widget.questionBank.randomQuestion(categoryIndex, _random);
+    final categoryIndex =
+        _random.nextInt(GameCategory.values.length);
+    final question = widget.questionBank.randomQuestion(
+      categoryIndex,
+      _random,
+    );
 
     final correct = await Navigator.of(context).push<bool>(
           MaterialPageRoute(
@@ -1369,48 +1831,63 @@ class _GameScreenState extends State<GameScreen> {
 
     if (correct) {
       _currentPlayer.correctAnswers++;
+
       setState(() {
         _winner = _currentPlayer;
-        _status = '${_currentPlayer.name} Bilgi Rotası şampiyonu!';
+        _status =
+            '${_currentPlayer.name} Bilgi Rotası şampiyonu!';
         _isBusy = false;
       });
+
+      await GameSaveService.clear();
       unawaited(SoundFx.win());
       HapticFeedback.heavyImpact();
       await _showWinnerDialog(_currentPlayer);
     } else {
       _currentPlayer.wrongAnswers++;
       _advanceTurn();
+
       setState(() {
-        _status = 'Final kaçtı. Sıra ${_currentPlayer.name} oyuncusunda.';
+        _status =
+            'Final kaçtı. Sıra '
+            '${_currentPlayer.name} oyuncusunda.';
         _isBusy = false;
       });
+
       unawaited(SoundFx.wrong());
+      await _saveGame();
     }
   }
 
-  void _handleAnswer({
+  Future<void> _handleAnswer({
     required bool correct,
     required int categoryIndex,
     required bool wasBadgeCell,
-  }) {
+  }) async {
     final answeredPlayer = _currentPlayer;
 
     if (correct) {
       answeredPlayer.correctAnswers++;
       var badgeMessage = '';
       var badgeEarned = false;
-      if (wasBadgeCell && !answeredPlayer.badges.contains(categoryIndex)) {
+
+      if (wasBadgeCell &&
+          !answeredPlayer.badges.contains(categoryIndex)) {
         answeredPlayer.badges.add(categoryIndex);
         badgeEarned = true;
-        badgeMessage = ' ${GameCategory.values[categoryIndex].label} rozeti kazanıldı!';
+        badgeMessage =
+            ' ${GameCategory.values[categoryIndex].label} '
+            'rozeti kazanıldı!';
       }
 
       setState(() {
         _status = answeredPlayer.hasAllBadges
             ? 'Altı rozet tamam! Final sorusu hazır. 🏆'
-            : 'Doğru cevap!$badgeMessage Aynı oyuncu devam ediyor.';
+            : 'Doğru cevap!$badgeMessage '
+                'Aynı oyuncu devam ediyor.';
         _isBusy = false;
       });
+
       unawaited(
         badgeEarned
             ? SoundFx.badge()
@@ -1420,12 +1897,18 @@ class _GameScreenState extends State<GameScreen> {
     } else {
       answeredPlayer.wrongAnswers++;
       _advanceTurn();
+
       setState(() {
-        _status = 'Yanlış cevap. Sıra ${_currentPlayer.name} oyuncusunda.';
+        _status =
+            'Yanlış cevap. Sıra '
+            '${_currentPlayer.name} oyuncusunda.';
         _isBusy = false;
       });
+
       unawaited(SoundFx.wrong());
     }
+
+    await _saveGame();
   }
 
   void _advanceTurn() {
@@ -1472,34 +1955,56 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> _confirmExit() async {
-    final shouldExit = await showDialog<bool>(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: const Text('Oyunu bitir?'),
-              content: const Text('Bu oyundaki ilerleme kaybolacak.'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context, false),
-                  child: const Text('Devam Et'),
-                ),
-                FilledButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: const Text('Bitir'),
-                ),
-              ],
-            );
-          },
-        ) ??
-        false;
+    final action = await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Oyundan çıkılsın mı?'),
+          content: const Text(
+            'İlerlemeni kaydedip daha sonra devam '
+            'edebilir veya bu oyunu tamamen silebilirsin.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'cancel'),
+              child: const Text('Devam Et'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'delete'),
+              style: TextButton.styleFrom(
+                foregroundColor: const Color(0xFFDC2626),
+              ),
+              child: const Text('Oyunu Sil'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, 'save'),
+              child: const Text('Kaydet ve Çık'),
+            ),
+          ],
+        );
+      },
+    );
 
-    if (shouldExit && mounted) {
-      final completer = _moveCompleter;
-      if (completer != null && !completer.isCompleted && _moveOptions.isNotEmpty) {
-        completer.complete(_moveOptions.first);
-      }
-      Navigator.of(context).popUntil((route) => route.isFirst);
+    if (!mounted || action == null || action == 'cancel') {
+      return;
     }
+
+    final completer = _moveCompleter;
+    if (completer != null &&
+        !completer.isCompleted &&
+        _moveOptions.isNotEmpty) {
+      completer.complete(_moveOptions.first);
+    }
+
+    if (action == 'delete') {
+      await GameSaveService.clear();
+    } else {
+      await _saveGame();
+    }
+
+    if (!mounted) return;
+
+    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
 }
