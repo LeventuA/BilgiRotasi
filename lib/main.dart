@@ -763,16 +763,51 @@ class _GameScreenState extends State<GameScreen> {
 
     setState(() {
       _isBusy = true;
-      _lastDice = _random.nextInt(6) + 1;
-      _status = '${_currentPlayer.name} $_lastDice attı. Yolunu seç.';
+      _lastDice = null;
+      _status = '${_currentPlayer.name} zarı atıyor…';
     });
 
     HapticFeedback.mediumImpact();
-    await Future<void>.delayed(const Duration(milliseconds: 450));
+
+    for (var i = 0; i < 12; i++) {
+      await Future<void>.delayed(
+        Duration(milliseconds: 65 + i * 8),
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        _lastDice = _random.nextInt(6) + 1;
+      });
+
+      if (i.isEven) {
+        HapticFeedback.selectionClick();
+      }
+    }
+
+    final diceResult = _random.nextInt(6) + 1;
+
+    setState(() {
+      _lastDice = diceResult;
+      _status = '${_currentPlayer.name} $diceResult attı!';
+    });
+
+    HapticFeedback.heavyImpact();
+
+    await Future<void>.delayed(
+      const Duration(milliseconds: 1000),
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _status =
+          '${_currentPlayer.name} $diceResult attı. Yolunu seç.';
+    });
 
     final options = BoardMap.options(
       _currentPlayer.position,
-      _lastDice!,
+      diceResult,
     );
 
     if (!mounted) return;
@@ -1962,9 +1997,28 @@ class DiceFace extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFFCBD5E1)),
       ),
-      child: Text(
-        value == null ? '🎲' : _faces[value]!,
-        style: const TextStyle(fontSize: 33, height: 1),
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 130),
+        transitionBuilder: (child, animation) {
+          return RotationTransition(
+            turns: Tween<double>(
+              begin: 0,
+              end: 0.25,
+            ).animate(animation),
+            child: ScaleTransition(
+              scale: animation,
+              child: child,
+            ),
+          );
+        },
+        child: Text(
+          value == null ? '🎲' : _faces[value]!,
+          key: ValueKey<int?>(value),
+          style: const TextStyle(
+            fontSize: 33,
+            height: 1,
+          ),
+        ),
       ),
     );
   }
