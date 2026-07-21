@@ -314,6 +314,7 @@ class GameSaveService {
       'movePulse': player.movePulse,
       'correctAnswers': player.correctAnswers,
       'wrongAnswers': player.wrongAnswers,
+      'doubleChance': player.doubleChance,
       'badges': player.badges.toList()..sort(),
     };
   }
@@ -335,6 +336,7 @@ class GameSaveService {
         (json['correctAnswers'] as num?)?.toInt() ?? 0;
     player.wrongAnswers =
         (json['wrongAnswers'] as num?)?.toInt() ?? 0;
+    player.doubleChance = json['doubleChance'] == true;
 
     final rawBadges = json['badges'];
     if (rawBadges is List) {
@@ -899,8 +901,10 @@ class _HomeScreenState extends State<HomeScreen> {
               'soru açılır.\n\n'
               '• Doğru cevap veren oyuncu yeniden oynar. '
               'Yanlış cevapta sıra diğer oyuncuya geçer.\n\n'
-              '• Beyaz çerçeveli özel alanlarda doğru cevap '
+              '• Beyaz çerçeveli rozet alanlarında doğru cevap '
               'veren oyuncu o kategorinin rozetini kazanır.\n\n'
+              '• Parlayan özel kutular; İleri 2, Geri 2, '
+              'Kategori Seç veya Çifte Şans etkisi verir.\n\n'
               '• Altı rozeti tamamlayan oyuncu final '
               'sorusunu doğru cevaplayınca oyunu kazanır.',
             ),
@@ -1557,6 +1561,38 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
+                if (_currentPlayer.doubleChance)
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 9,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF22C55E).withOpacity(0.14),
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(
+                        color: const Color(0xFF22C55E).withOpacity(0.48),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '🍀',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        SizedBox(width: 7),
+                        Text(
+                          'Çifte Şans hazır',
+                          style: TextStyle(
+                            color: Color(0xFF166534),
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 Text(
                   'Doğru: ${_currentPlayer.correctAnswers}   •   Yanlış: ${_currentPlayer.wrongAnswers}',
                   textAlign: TextAlign.center,
@@ -1715,40 +1751,34 @@ class _GameScreenState extends State<GameScreen> {
       _status = '${_currentPlayer.name} rotada ilerliyor…';
     });
 
-    for (final id in selected.path.skip(1)) {
-      setState(() {
-        _currentPlayer.position = id;
-        _currentPlayer.movePulse++;
-      });
-      unawaited(SoundFx.step());
-      HapticFeedback.selectionClick();
-      await Future<void>.delayed(const Duration(milliseconds: 390));
-      if (!mounted) return;
-    }
-
-    final target = BoardMap.node(_currentPlayer.position);
-    final categoryIndex = target.categoryIndex < 0
-        ? _random.nextInt(GameCategory.values.length)
-        : target.categoryIndex;
-
-    setState(() {
-      _landingNodeId = _currentPlayer.position;
-      _landingPulse++;
-      _routeOpacity = 0;
-      _status =
-          '${_currentPlayer.name}, ${BoardMap.label(target.id)} alanına geldi.';
-    });
-
-    unawaited(SoundFx.landing());
-    HapticFeedback.heavyImpact();
-    await Future<void>.delayed(const Duration(milliseconds: 520));
+    await _animatePawnPath(selected.path);
 
     if (!mounted) return;
 
-    setState(() {
-      _activeMove = null;
-      _landingNodeId = null;
-    });
+    var target = BoardMap.node(_currentPlayer.position);
+    await _showLanding(target);
+
+    if (!mounted) return;
+
+    int? selectedCategory;
+    final specialEffect = target.specialEffect;
+
+    if (specialEffect != null) {
+      selectedCategory = await _resolveSpecialEffect(
+        specialEffect,
+        selected,
+      );
+
+      if (!mounted) return;
+
+      target = BoardMap.node(_currentPlayer.position);
+      await _saveGame();
+    }
+
+    final categoryIndex = selectedCategory ??
+        (target.categoryIndex < 0
+            ? _random.nextInt(GameCategory.values.length)
+            : target.categoryIndex);
 
     final question = widget.questionBank.randomQuestion(
       categoryIndex,
@@ -1773,6 +1803,218 @@ class _GameScreenState extends State<GameScreen> {
       categoryIndex: categoryIndex,
       wasBadgeCell: target.isBadge,
     );
+  }
+
+  Future<void> _animatePawnPath(List<int> path) async {
+    for (final id in path.skip(1)) {
+      setState(() {
+        _currentPlayer.position = id;
+        _currentPlayer.movePulse++;
+      });
+
+      unawaited(SoundFx.step());
+      HapticFeedback.selectionClick();
+
+      await Future<void>.delayed(
+        const Duration(milliseconds: 390),
+      );
+
+      if (!mounted) return;
+    }
+  }
+
+  Future<void> _showLanding(BoardNode target) async {
+    setState(() {
+      _landingNodeId = _currentPlayer.position;
+      _landingPulse++;
+      _routeOpacity = 0;
+      _status =
+          '${_currentPlayer.name}, ${BoardMap.label(target.id)} alanına geldi.';
+    });
+
+    unawaited(SoundFx.landing());
+    HapticFeedback.heavyImpact();
+
+    await Future<void>.delayed(
+      const Duration(milliseconds: 520),
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _activeMove = null;
+      _landingNodeId = null;
+    });
+  }
+
+  Future<int?> _resolveSpecialEffect(
+    SpecialCellEffect effect,
+    MoveOption originalMove,
+  ) async {
+    await _showSpecialEffectDialog(effect);
+
+    if (!mounted) return null;
+
+    unawaited(SoundFx.badge());
+    HapticFeedback.heavyImpact();
+
+    switch (effect) {
+      case SpecialCellEffect.forwardTwo:
+        final path = BoardMap.continuePath(
+          previous: originalMove.path[
+              originalMove.path.length - 2],
+          current: originalMove.destination,
+          steps: 2,
+        );
+
+        await _animateSpecialMove(
+          path,
+          effect,
+        );
+        return null;
+
+      case SpecialCellEffect.backTwo:
+        final path = BoardMap.reversePath(
+          originalMove,
+          2,
+        );
+
+        await _animateSpecialMove(
+          path,
+          effect,
+        );
+        return null;
+
+      case SpecialCellEffect.chooseCategory:
+        return _chooseQuestionCategory();
+
+      case SpecialCellEffect.doubleChance:
+        setState(() {
+          _currentPlayer.doubleChance = true;
+          _status =
+              '${_currentPlayer.name} Çifte Şans hakkı kazandı! 🍀';
+        });
+        return null;
+    }
+  }
+
+  Future<void> _animateSpecialMove(
+    List<int> path,
+    SpecialCellEffect effect,
+  ) async {
+    final move = MoveOption(path);
+
+    setState(() {
+      _activeMove = move;
+      _routeOpacity = 1;
+      _landingNodeId = null;
+      _status =
+          '${effect.emoji} ${effect.title} etkisi uygulanıyor…';
+    });
+
+    await _animatePawnPath(path);
+
+    if (!mounted) return;
+
+    await _showLanding(
+      BoardMap.node(_currentPlayer.position),
+    );
+  }
+
+  Future<void> _showSpecialEffectDialog(
+    SpecialCellEffect effect,
+  ) {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        return AlertDialog(
+          icon: Text(
+            effect.emoji,
+            style: const TextStyle(fontSize: 48),
+          ),
+          title: Text('Özel Kutu: ${effect.title}'),
+          content: Text(
+            effect == SpecialCellEffect.doubleChance &&
+                    _currentPlayer.doubleChance
+                ? 'Çifte Şans hakkın zaten hazır. '
+                    'Mevcut hakkın korunacak.'
+                : effect.description,
+            textAlign: TextAlign.center,
+          ),
+          actionsAlignment: MainAxisAlignment.center,
+          actions: [
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Uygula'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<int> _chooseQuestionCategory() async {
+    final selected = await showDialog<int>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Soru kategorisini seç'),
+          contentPadding:
+              const EdgeInsets.fromLTRB(16, 12, 16, 8),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(
+                GameCategory.values.length,
+                (index) {
+                  final category = GameCategory.values[index];
+
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 7),
+                    child: ListTile(
+                      tileColor: category.color.withOpacity(0.12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: BorderSide(
+                          color: category.color.withOpacity(0.45),
+                        ),
+                      ),
+                      leading: Text(
+                        category.emoji,
+                        style: const TextStyle(fontSize: 26),
+                      ),
+                      title: Text(
+                        category.label,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      onTap: () =>
+                          Navigator.pop(dialogContext, index),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    final categoryIndex = selected ??
+        _random.nextInt(GameCategory.values.length);
+
+    if (mounted) {
+      setState(() {
+        _status =
+            '${GameCategory.values[categoryIndex].label} kategorisi seçildi.';
+      });
+    }
+
+    return categoryIndex;
   }
 
   Future<MoveOption?> _waitForBoardMove(
@@ -1906,14 +2148,27 @@ class _GameScreenState extends State<GameScreen> {
       HapticFeedback.selectionClick();
     } else {
       answeredPlayer.wrongAnswers++;
-      _advanceTurn();
 
-      setState(() {
-        _status =
-            'Yanlış cevap. Sıra '
-            '${_currentPlayer.name} oyuncusunda.';
-        _isBusy = false;
-      });
+      if (answeredPlayer.doubleChance) {
+        answeredPlayer.doubleChance = false;
+
+        setState(() {
+          _lastDice = null;
+          _status =
+              'Yanlış cevap ama Çifte Şans kullanıldı! '
+              '${answeredPlayer.name} tekrar oynuyor. 🍀';
+          _isBusy = false;
+        });
+      } else {
+        _advanceTurn();
+
+        setState(() {
+          _status =
+              'Yanlış cevap. Sıra '
+              '${_currentPlayer.name} oyuncusunda.';
+          _isBusy = false;
+        });
+      }
 
       unawaited(SoundFx.wrong());
     }
@@ -2037,6 +2292,68 @@ class _GameScreenState extends State<GameScreen> {
 
 }
 
+enum SpecialCellEffect {
+  forwardTwo,
+  backTwo,
+  chooseCategory,
+  doubleChance,
+}
+
+extension SpecialCellEffectX on SpecialCellEffect {
+  String get title {
+    switch (this) {
+      case SpecialCellEffect.forwardTwo:
+        return 'İleri 2';
+      case SpecialCellEffect.backTwo:
+        return 'Geri 2';
+      case SpecialCellEffect.chooseCategory:
+        return 'Kategori Seç';
+      case SpecialCellEffect.doubleChance:
+        return 'Çifte Şans';
+    }
+  }
+
+  String get emoji {
+    switch (this) {
+      case SpecialCellEffect.forwardTwo:
+        return '⏩';
+      case SpecialCellEffect.backTwo:
+        return '⏪';
+      case SpecialCellEffect.chooseCategory:
+        return '🎯';
+      case SpecialCellEffect.doubleChance:
+        return '🍀';
+    }
+  }
+
+  String get description {
+    switch (this) {
+      case SpecialCellEffect.forwardTwo:
+        return 'Piyon aynı yönde iki kutu daha ilerler.';
+      case SpecialCellEffect.backTwo:
+        return 'Piyon geldiği yönün tersine iki kutu geri gider.';
+      case SpecialCellEffect.chooseCategory:
+        return 'Bu turda sorulacak kategoriyi sen seçersin.';
+      case SpecialCellEffect.doubleChance:
+        return 'Bir sonraki yanlış cevabında sıra sende kalır. '
+            'Hak kullanılana kadar korunur.';
+    }
+  }
+
+  Color get color {
+    switch (this) {
+      case SpecialCellEffect.forwardTwo:
+        return const Color(0xFF06B6D4);
+      case SpecialCellEffect.backTwo:
+        return const Color(0xFFEF4444);
+      case SpecialCellEffect.chooseCategory:
+        return const Color(0xFF8B5CF6);
+      case SpecialCellEffect.doubleChance:
+        return const Color(0xFF22C55E);
+    }
+  }
+}
+
 enum BoardNodeKind { center, spoke, outer }
 
 class BoardNode {
@@ -2048,6 +2365,7 @@ class BoardNode {
     this.step,
     this.ring,
     this.isBadge = false,
+    this.specialEffect,
   });
 
   final int id;
@@ -2057,6 +2375,7 @@ class BoardNode {
   final int? step;
   final int? ring;
   final bool isBadge;
+  final SpecialCellEffect? specialEffect;
 }
 
 class MoveOption {
@@ -2082,6 +2401,17 @@ class BoardMap {
     'Güneybatı',
     'Kuzeybatı',
   ];
+
+  static const Map<int, SpecialCellEffect> specialCells = {
+    4: SpecialCellEffect.forwardTwo,
+    22: SpecialCellEffect.forwardTwo,
+    9: SpecialCellEffect.backTwo,
+    27: SpecialCellEffect.backTwo,
+    14: SpecialCellEffect.chooseCategory,
+    32: SpecialCellEffect.chooseCategory,
+    18: SpecialCellEffect.doubleChance,
+    36: SpecialCellEffect.doubleChance,
+  };
 
 
   static const spokeMix = <List<int>>[
@@ -2132,6 +2462,7 @@ class BoardMap {
             : outerMix[ring ~/ 6][(ring % 6) - 1],
         ring: ring,
         isBadge: badge,
+        specialEffect: specialCells[id],
       );
     }
 
@@ -2217,6 +2548,144 @@ class BoardMap {
     return unique.values.toList();
   }
 
+  static List<int> continuePath({
+    required int previous,
+    required int current,
+    required int steps,
+  }) {
+    final result = <int>[current];
+    var last = previous;
+    var cursor = current;
+
+    for (var index = 0; index < steps; index++) {
+      final next = _nextInDirection(
+        previous: last,
+        current: cursor,
+      );
+
+      result.add(next);
+      last = cursor;
+      cursor = next;
+    }
+
+    return result;
+  }
+
+  static List<int> reversePath(
+    MoveOption option,
+    int steps,
+  ) {
+    final reversed = option.path.reversed.toList();
+    final result = <int>[reversed.first];
+
+    for (var index = 1;
+        index < reversed.length &&
+            result.length < steps + 1;
+        index++) {
+      result.add(reversed[index]);
+    }
+
+    if (result.length < steps + 1) {
+      final previous = result.length >= 2
+          ? result[result.length - 2]
+          : option.destination;
+      final remaining = steps - (result.length - 1);
+      final extension = continuePath(
+        previous: previous,
+        current: result.last,
+        steps: remaining,
+      );
+
+      result.addAll(extension.skip(1));
+    }
+
+    return result;
+  }
+
+  static int _nextInDirection({
+    required int previous,
+    required int current,
+  }) {
+    final previousNode = node(previous);
+    final currentNode = node(current);
+
+    if (currentNode.kind == BoardNodeKind.outer &&
+        previousNode.kind == BoardNodeKind.outer) {
+      final clockwise =
+          (currentNode.ring! - previousNode.ring! + outerCount) %
+                  outerCount ==
+              1;
+
+      return outerId(
+        currentNode.ring! + (clockwise ? 1 : -1),
+      );
+    }
+
+    if (currentNode.kind == BoardNodeKind.spoke &&
+        previousNode.kind == BoardNodeKind.spoke &&
+        currentNode.arm == previousNode.arm) {
+      final movingOutward =
+          currentNode.step! > previousNode.step!;
+
+      if (movingOutward) {
+        return currentNode.step == spokeLength - 1
+            ? outerId(currentNode.arm! * 6)
+            : spokeId(
+                currentNode.arm!,
+                currentNode.step! + 1,
+              );
+      }
+
+      return currentNode.step == 0
+          ? centerId
+          : spokeId(
+              currentNode.arm!,
+              currentNode.step! - 1,
+            );
+    }
+
+    if (currentNode.kind == BoardNodeKind.spoke &&
+        previousNode.kind == BoardNodeKind.center) {
+      return currentNode.step == spokeLength - 1
+          ? outerId(currentNode.arm! * 6)
+          : spokeId(
+              currentNode.arm!,
+              currentNode.step! + 1,
+            );
+    }
+
+    if (currentNode.kind == BoardNodeKind.spoke &&
+        previousNode.kind == BoardNodeKind.outer) {
+      return currentNode.step == 0
+          ? centerId
+          : spokeId(
+              currentNode.arm!,
+              currentNode.step! - 1,
+            );
+    }
+
+    if (currentNode.kind == BoardNodeKind.center &&
+        previousNode.kind == BoardNodeKind.spoke) {
+      return spokeId(
+        (previousNode.arm! + 3) % spokeCount,
+        0,
+      );
+    }
+
+    if (currentNode.kind == BoardNodeKind.outer &&
+        previousNode.kind == BoardNodeKind.spoke) {
+      return outerId(currentNode.ring! + 1);
+    }
+
+    final candidates = neighbors(current)
+        .where((candidate) => candidate != previous)
+        .toList();
+
+    return candidates.isEmpty
+        ? previous
+        : candidates.first;
+  }
+
   static String routeTitle(MoveOption option) {
     final start = node(option.path.first);
     final first = node(option.path[1]);
@@ -2261,6 +2730,10 @@ class BoardMap {
     }
 
     final category = GameCategory.values[n.categoryIndex];
+
+    if (n.specialEffect != null) {
+      return '${n.specialEffect!.title} özel alanı';
+    }
 
     if (n.isBadge) {
       return '${category.label} rozet alanı';
@@ -3342,6 +3815,7 @@ class BoardPainter extends CustomPainter {
     _drawFoundations(canvas, center, base);
     _drawSpokeTiles(canvas, size, base);
     _drawOuterTiles(canvas, size, base);
+    _drawSpecialCellOverlays(canvas, size, base);
     _drawCenterHex(canvas, center, base);
   }
 
@@ -3495,6 +3969,87 @@ class BoardPainter extends CustomPainter {
           iconSize: base * 0.015,
         );
       }
+    }
+  }
+
+  void _drawSpecialCellOverlays(
+    Canvas canvas,
+    Size size,
+    double base,
+  ) {
+    for (final entry in BoardMap.specialCells.entries) {
+      final id = entry.key;
+      final effect = entry.value;
+      final node = BoardMap.node(id);
+
+      if (node.kind != BoardNodeKind.outer ||
+          node.ring == null) {
+        continue;
+      }
+
+      final center = BoardMap.position(size, id);
+      final angle =
+          -pi / 2 + node.ring! * (2 * pi / BoardMap.outerCount);
+
+      canvas.save();
+      canvas.translate(center.dx, center.dy);
+      canvas.rotate(angle + pi / 2);
+
+      final rect = Rect.fromCenter(
+        center: Offset.zero,
+        width: base * 0.071,
+        height: base * 0.052,
+      );
+      final shape = RRect.fromRectAndRadius(
+        rect,
+        Radius.circular(base * 0.007),
+      );
+
+      canvas.drawRRect(
+        shape.inflate(base * 0.009),
+        Paint()
+          ..color = effect.color.withOpacity(0.58)
+          ..maskFilter =
+              const MaskFilter.blur(BlurStyle.normal, 7),
+      );
+
+      canvas.drawRRect(
+        shape.inflate(base * 0.004),
+        Paint()..color = const Color(0xFFFFE082),
+      );
+
+      canvas.drawRRect(
+        shape,
+        Paint()
+          ..shader = LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.lerp(effect.color, Colors.white, 0.48)!,
+              effect.color,
+              Color.lerp(effect.color, Colors.black, 0.42)!,
+            ],
+          ).createShader(rect),
+      );
+
+      canvas.drawRRect(
+        shape.deflate(base * 0.002),
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.3
+          ..color = const Color(0xEEFFFFFF),
+      );
+
+      _drawText(
+        canvas,
+        effect.emoji,
+        Offset.zero,
+        base * 0.019,
+        Colors.white,
+        bold: true,
+      );
+
+      canvas.restore();
     }
   }
 
@@ -4020,6 +4575,7 @@ class PlayerData {
   int movePulse = 0;
   int correctAnswers = 0;
   int wrongAnswers = 0;
+  bool doubleChance = false;
   final Set<int> badges = <int>{};
 
   bool get hasAllBadges => badges.length == GameCategory.values.length;
