@@ -58,6 +58,12 @@ jobs:
 
           cd .flutter_build
           flutter pub get
+
+          dart run flutter_launcher_icons
+          dart run flutter_native_splash:create
+
+          sed -i 's/android:label="bilgi_rotasi"/android:label="Bilgi Rotası"/'             android/app/src/main/AndroidManifest.xml
+
           flutter build apk --release
 
       - name: APK dosyasını yükle

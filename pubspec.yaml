@@ -1,24 +1,46 @@
 name: bilgi_rotasi
 description: Aynı telefonda 2-6 kişilik Türkçe bilgi yarışması.
 publish_to: "none"
-version: 1.13.0+17
+version: 1.14.0+18
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
+  flutter_native_splash: ^2.4.8
   shared_preferences: ^2.5.5
   audioplayers: ^6.8.1
   flutter:
     sdk: flutter
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
 
 flutter:
   uses-material-design: true
   assets:
+    - assets/branding/
     - assets/sounds/
     - assets/pawns/
     - assets/questions.json
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/branding/app_icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#24122F"
+  adaptive_icon_foreground: "assets/branding/app_icon_foreground.png"
+
+flutter_native_splash:
+  color: "#24122F"
+  image: assets/branding/splash_logo.png
+  android: true
+  ios: false
+  web: false
+  android_12:
+    color: "#24122F"
+    image: assets/branding/splash_logo.png
