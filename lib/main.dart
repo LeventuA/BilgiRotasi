@@ -283,8 +283,8 @@ class HomeScreen extends StatelessWidget {
           title: const Text('Nasıl oynanır?'),
           content: const SingleChildScrollView(
             child: Text(
-              '• Sırası gelen oyuncu zarı atar ve renkli halkada ilerler.\n\n'
-              '• Gelinen rengin kategorisinden dört şıklı soru açılır.\n\n'
+              '• Bütün oyuncular oyuna ortadaki altıgenden başlar.\n\n'
+              '• Zar atıldıktan sonra gidilecek yol seçilir. Kavşaklarda dış halkada sağa, sola veya merkeze doğru ilerlenebilir.\n\n• Gelinen rengin kategorisinden dört şıklı soru açılır.\n\n'
               '• Doğru cevap veren oyuncu yeniden oynar. Yanlış cevapta sıra diğer oyuncuya geçer.\n\n'
               '• Beyaz çerçeveli özel alanlarda doğru cevap veren oyuncu o kategorinin rozetini kazanır.\n\n'
               '• Altı rozeti tamamlayan oyuncu final sorusunu doğru cevaplayınca oyunu kazanır.',
@@ -502,8 +502,6 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  static const int boardCellCount = 36;
-
   final Random _random = Random();
   int _currentPlayerIndex = 0;
   int? _lastDice;
@@ -766,21 +764,50 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       _isBusy = true;
       _lastDice = _random.nextInt(6) + 1;
-      _status = '${_currentPlayer.name} $_lastDice attı!';
+      _status = '${_currentPlayer.name} $_lastDice attı. Yolunu seç.';
     });
 
     HapticFeedback.mediumImpact();
-    await Future<void>.delayed(const Duration(milliseconds: 550));
-
-    final newPosition = (_currentPlayer.position + _lastDice!) % boardCellCount;
-    setState(() {
-      _currentPlayer.position = newPosition;
-    });
-
     await Future<void>.delayed(const Duration(milliseconds: 450));
 
-    final categoryIndex = categoryForCell(newPosition);
-    final isBadgeCell = isSpecialCell(newPosition);
+    final options = BoardMap.options(
+      _currentPlayer.position,
+      _lastDice!,
+    );
+
+    if (!mounted) return;
+
+    final selected = options.length == 1
+        ? options.first
+        : await _chooseMove(options);
+
+    if (!mounted) return;
+
+    if (selected == null) {
+      setState(() {
+        _isBusy = false;
+        _status = 'Yol seçimi iptal edildi.';
+      });
+      return;
+    }
+
+    for (final id in selected.path.skip(1)) {
+      setState(() => _currentPlayer.position = id);
+      HapticFeedback.selectionClick();
+      await Future<void>.delayed(const Duration(milliseconds: 220));
+      if (!mounted) return;
+    }
+
+    final target = BoardMap.node(_currentPlayer.position);
+    final categoryIndex = target.categoryIndex < 0
+        ? _random.nextInt(GameCategory.values.length)
+        : target.categoryIndex;
+
+    setState(() {
+      _status =
+          '${_currentPlayer.name}, ${BoardMap.label(target.id)} alanına geldi.';
+    });
+
     final question = widget.questionBank.randomQuestion(
       categoryIndex,
       _random,
@@ -791,17 +818,62 @@ class _GameScreenState extends State<GameScreen> {
             fullscreenDialog: true,
             builder: (_) => QuestionScreen(
               question: question,
-              isBadgeQuestion: isBadgeCell,
+              isBadgeQuestion: target.isBadge,
             ),
           ),
         ) ??
         false;
 
     if (!mounted) return;
+
     _handleAnswer(
       correct: correct,
       categoryIndex: categoryIndex,
-      wasBadgeCell: isBadgeCell,
+      wasBadgeCell: target.isBadge,
+    );
+  }
+
+  Future<MoveOption?> _chooseMove(
+    List<MoveOption> options,
+  ) {
+    return showDialog<MoveOption>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        return SimpleDialog(
+          title: Text('$_lastDice adım için yolunu seç'),
+          children: options.map((option) {
+            final target = BoardMap.node(option.destination);
+            final category = target.categoryIndex < 0
+                ? null
+                : GameCategory.values[target.categoryIndex];
+
+            return SimpleDialogOption(
+              onPressed: () {
+                Navigator.pop(dialogContext, option);
+              },
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: CircleAvatar(
+                  backgroundColor:
+                      category?.color ?? const Color(0xFF26364A),
+                  child: Text(category?.emoji ?? '🧭'),
+                ),
+                title: Text(
+                  BoardMap.routeTitle(option),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                subtitle: Text(
+                  BoardMap.label(option.destination),
+                ),
+                trailing: const Icon(Icons.arrow_forward_rounded),
+              ),
+            );
+          }).toList(),
+        );
+      },
     );
   }
 
@@ -950,13 +1022,250 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  static bool isSpecialCell(int position) => position % 6 == 0;
+}
 
-  static int categoryForCell(int position) {
-    if (isSpecialCell(position)) {
-      return (position ~/ 6) % GameCategory.values.length;
+enum BoardNodeKind { center, spoke, outer }
+
+class BoardNode {
+  const BoardNode({
+    required this.id,
+    required this.kind,
+    required this.categoryIndex,
+    this.arm,
+    this.step,
+    this.ring,
+    this.isBadge = false,
+  });
+
+  final int id;
+  final BoardNodeKind kind;
+  final int categoryIndex;
+  final int? arm;
+  final int? step;
+  final int? ring;
+  final bool isBadge;
+}
+
+class MoveOption {
+  const MoveOption(this.path);
+
+  final List<int> path;
+  int get destination => path.last;
+}
+
+class BoardMap {
+  static const centerId = 0;
+  static const outerCount = 36;
+  static const spokeCount = 6;
+  static const spokeLength = 5;
+  static const outerStart = 1;
+  static const spokeStart = 37;
+
+  static const directions = [
+    'Kuzey',
+    'Kuzeydoğu',
+    'Güneydoğu',
+    'Güney',
+    'Güneybatı',
+    'Kuzeybatı',
+  ];
+
+  static int outerId(int ring) {
+    final value = (ring % outerCount + outerCount) % outerCount;
+    return outerStart + value;
+  }
+
+  static int spokeId(int arm, int step) {
+    return spokeStart + arm * spokeLength + step;
+  }
+
+  static BoardNode node(int id) {
+    if (id == centerId) {
+      return const BoardNode(
+        id: centerId,
+        kind: BoardNodeKind.center,
+        categoryIndex: -1,
+      );
     }
-    return position % GameCategory.values.length;
+
+    if (id >= outerStart && id < outerStart + outerCount) {
+      final ring = id - outerStart;
+      final badge = ring % 6 == 0;
+
+      return BoardNode(
+        id: id,
+        kind: BoardNodeKind.outer,
+        categoryIndex: badge ? ring ~/ 6 : ring % 6,
+        ring: ring,
+        isBadge: badge,
+      );
+    }
+
+    final offset = id - spokeStart;
+    if (offset >= 0 && offset < spokeCount * spokeLength) {
+      final arm = offset ~/ spokeLength;
+      final step = offset % spokeLength;
+
+      return BoardNode(
+        id: id,
+        kind: BoardNodeKind.spoke,
+        categoryIndex: (arm + step + 1) % 6,
+        arm: arm,
+        step: step,
+      );
+    }
+
+    throw RangeError('Geçersiz tahta alanı: $id');
+  }
+
+  static List<int> neighbors(int id) {
+    final n = node(id);
+
+    switch (n.kind) {
+      case BoardNodeKind.center:
+        return List.generate(
+          spokeCount,
+          (arm) => spokeId(arm, 0),
+        );
+
+      case BoardNodeKind.spoke:
+        final result = <int>[];
+        result.add(
+          n.step == 0
+              ? centerId
+              : spokeId(n.arm!, n.step! - 1),
+        );
+        result.add(
+          n.step == spokeLength - 1
+              ? outerId(n.arm! * 6)
+              : spokeId(n.arm!, n.step! + 1),
+        );
+        return result;
+
+      case BoardNodeKind.outer:
+        final result = <int>[
+          outerId(n.ring! - 1),
+          outerId(n.ring! + 1),
+        ];
+
+        if (n.ring! % 6 == 0) {
+          result.add(
+            spokeId(n.ring! ~/ 6, spokeLength - 1),
+          );
+        }
+
+        return result;
+    }
+  }
+
+  static List<MoveOption> options(int start, int steps) {
+    final found = <List<int>>[];
+
+    void walk(int current, int left, List<int> path) {
+      if (left == 0) {
+        found.add(path);
+        return;
+      }
+
+      for (final next in neighbors(current)) {
+        if (path.contains(next)) continue;
+        walk(next, left - 1, [...path, next]);
+      }
+    }
+
+    walk(start, steps, [start]);
+
+    final unique = <int, MoveOption>{};
+    for (final path in found) {
+      unique.putIfAbsent(path.last, () => MoveOption(path));
+    }
+
+    return unique.values.toList();
+  }
+
+  static String routeTitle(MoveOption option) {
+    final start = node(option.path.first);
+    final first = node(option.path[1]);
+
+    if (start.kind == BoardNodeKind.center) {
+      return '${directions[first.arm!]} yolunu seç';
+    }
+
+    if (start.kind == BoardNodeKind.outer &&
+        first.kind == BoardNodeKind.outer) {
+      final clockwise =
+          (first.ring! - start.ring! + outerCount) % outerCount == 1;
+      return clockwise
+          ? 'Saat yönünde ilerle'
+          : 'Saat yönünün tersine ilerle';
+    }
+
+    if (first.kind == BoardNodeKind.center) {
+      return 'Merkeze gir';
+    }
+
+    if (start.kind == BoardNodeKind.outer &&
+        first.kind == BoardNodeKind.spoke) {
+      return 'Merkeze doğru ilerle';
+    }
+
+    if (start.kind == BoardNodeKind.spoke &&
+        first.kind == BoardNodeKind.spoke) {
+      return first.step! < start.step!
+          ? 'Merkeze doğru ilerle'
+          : 'Dış halkaya doğru ilerle';
+    }
+
+    return 'Dış halkaya çık';
+  }
+
+  static String label(int id) {
+    final n = node(id);
+
+    if (n.kind == BoardNodeKind.center) {
+      return 'Merkez altıgen';
+    }
+
+    final category = GameCategory.values[n.categoryIndex];
+
+    if (n.isBadge) {
+      return '${category.label} rozet alanı';
+    }
+
+    if (n.kind == BoardNodeKind.spoke) {
+      return '${directions[n.arm!]} bağlantısı • ${category.label}';
+    }
+
+    return 'Dış halka • ${category.label}';
+  }
+
+  static double base(Size size) {
+    return min(size.width, size.height);
+  }
+
+  static Offset center(Size size) {
+    return Offset(size.width / 2, size.height / 2);
+  }
+
+  static double armAngle(int arm) {
+    return -pi / 2 + arm * (2 * pi / spokeCount);
+  }
+
+  static Offset position(Size size, int id) {
+    final n = node(id);
+    final c = center(size);
+    final b = base(size);
+
+    if (n.kind == BoardNodeKind.center) return c;
+
+    if (n.kind == BoardNodeKind.outer) {
+      final angle = -pi / 2 + n.ring! * (2 * pi / outerCount);
+      return c + Offset(cos(angle), sin(angle)) * b * 0.42;
+    }
+
+    final angle = armAngle(n.arm!);
+    final radius = b * (0.155 + n.step! * 0.049);
+    return c + Offset(cos(angle), sin(angle)) * radius;
   }
 }
 
@@ -976,39 +1285,41 @@ class GameBoard extends StatelessWidget {
       aspectRatio: 1,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final size = constraints.maxWidth;
-          final center = Offset(size / 2, size / 2);
-          final tokenRadius = size * 0.37;
+          final size = Size(
+            constraints.maxWidth,
+            constraints.maxHeight,
+          );
+          final base = BoardMap.base(size);
 
           return Stack(
             children: [
-              Positioned.fill(
+              const Positioned.fill(
                 child: CustomPaint(
                   painter: BoardPainter(),
                 ),
               ),
               ...List.generate(players.length, (index) {
                 final player = players[index];
-                final angle = -pi / 2 + (2 * pi * player.position / 36);
-                final stackedAtSameCell = players
-                    .take(index)
-                    .where((other) => other.position == player.position)
-                    .length;
-                final offsetAngle = stackedAtSameCell * 0.18;
-                final x = center.dx + cos(angle + offsetAngle) * tokenRadius;
-                final y = center.dy + sin(angle + offsetAngle) * tokenRadius;
+                var point = BoardMap.position(size, player.position);
                 final active = index == currentPlayerIndex;
-                final tokenSize = active ? 22.0 : 18.0;
+
+                if (player.position == BoardMap.centerId) {
+                  final angle =
+                      -pi / 2 + index * (2 * pi / players.length);
+                  point +=
+                      Offset(cos(angle), sin(angle)) * base * 0.052;
+                }
+
+                final token = active ? base * 0.052 : base * 0.044;
 
                 return AnimatedPositioned(
-                  duration: const Duration(milliseconds: 420),
+                  duration: const Duration(milliseconds: 400),
                   curve: Curves.easeOutBack,
-                  left: x - tokenSize / 2,
-                  top: y - tokenSize / 2,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 250),
-                    width: tokenSize,
-                    height: tokenSize,
+                  left: point.dx - token / 2,
+                  top: point.dy - token / 2,
+                  child: Container(
+                    width: token,
+                    height: token,
                     decoration: BoxDecoration(
                       color: player.color,
                       shape: BoxShape.circle,
@@ -1018,53 +1329,14 @@ class GameBoard extends StatelessWidget {
                       ),
                       boxShadow: const [
                         BoxShadow(
-                          blurRadius: 6,
-                          spreadRadius: 1,
-                          color: Color(0x55000000),
+                          blurRadius: 5,
+                          color: Color(0x77000000),
                         ),
                       ],
                     ),
                   ),
                 );
               }),
-              Positioned.fill(
-                child: Center(
-                  child: Container(
-                    width: size * 0.37,
-                    height: size * 0.37,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF0F3D4C),
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 4),
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 14,
-                          color: Color(0x33000000),
-                        ),
-                      ],
-                    ),
-                    alignment: Alignment.center,
-                    child: const Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text('🧭', style: TextStyle(fontSize: 31)),
-                        SizedBox(height: 3),
-                        Text(
-                          'BİLGİ\nROTASI',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            height: 1.05,
-                            letterSpacing: 1.1,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
             ],
           );
         },
@@ -1074,54 +1346,178 @@ class GameBoard extends StatelessWidget {
 }
 
 class BoardPainter extends CustomPainter {
+  const BoardPainter();
+
   @override
   void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
-    final outerRadius = size.width * 0.47;
-    final segmentAngle = 2 * pi / 36;
-    final rect = Rect.fromCircle(center: center, radius: outerRadius);
+    final b = BoardMap.base(size);
+    final c = BoardMap.center(size);
+    final rect = Rect.fromCenter(
+      center: c,
+      width: b * 0.98,
+      height: b * 0.98,
+    );
+    final board = RRect.fromRectAndRadius(
+      rect,
+      Radius.circular(b * 0.035),
+    );
 
-    for (var index = 0; index < 36; index++) {
-      final categoryIndex = _GameScreenState.categoryForCell(index);
-      final category = GameCategory.values[categoryIndex];
-      final startAngle = -pi / 2 + index * segmentAngle;
-
-      final fillPaint = Paint()
-        ..style = PaintingStyle.fill
-        ..color = category.color;
-      canvas.drawArc(
-        rect,
-        startAngle + 0.006,
-        segmentAngle - 0.012,
-        true,
-        fillPaint,
-      );
-
-      final borderPaint = Paint()
+    canvas.drawRRect(
+      board,
+      Paint()..color = const Color(0xFF3A2051),
+    );
+    canvas.drawRRect(
+      board.deflate(b * 0.012),
+      Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = _GameScreenState.isSpecialCell(index) ? 4 : 1.2
-        ..color = _GameScreenState.isSpecialCell(index)
-            ? Colors.white
-            : Colors.white.withOpacity(0.7);
-      canvas.drawArc(
-        rect,
-        startAngle + 0.006,
-        segmentAngle - 0.012,
-        true,
-        borderPaint,
+        ..strokeWidth = 2.5
+        ..color = const Color(0xFFE4BE67),
+    );
+
+    for (var arm = 0; arm < 6; arm++) {
+      final angle = BoardMap.armAngle(arm);
+
+      for (var step = 0; step < 5; step++) {
+        final id = BoardMap.spokeId(arm, step);
+        final n = BoardMap.node(id);
+        _cell(
+          canvas,
+          BoardMap.position(size, id),
+          angle,
+          b * 0.105,
+          b * 0.042,
+          GameCategory.values[n.categoryIndex],
+          false,
+          b,
+        );
+      }
+    }
+
+    for (var ring = 0; ring < 36; ring++) {
+      final id = BoardMap.outerId(ring);
+      final n = BoardMap.node(id);
+      final angle = -pi / 2 + ring * (2 * pi / 36);
+
+      _cell(
+        canvas,
+        BoardMap.position(size, id),
+        angle,
+        n.isBadge ? b * 0.078 : b * 0.064,
+        n.isBadge ? b * 0.065 : b * 0.050,
+        GameCategory.values[n.categoryIndex],
+        n.isBadge,
+        b,
       );
     }
 
-    final innerPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..color = const Color(0xFFF5F7FB);
-    canvas.drawCircle(center, size.width * 0.28, innerPaint);
+    final hex = Path();
+    final radius = b * 0.12;
 
-    final outerBorder = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 4
-      ..color = const Color(0xFF0F3D4C);
-    canvas.drawCircle(center, outerRadius, outerBorder);
+    for (var i = 0; i < 6; i++) {
+      final angle = -pi / 2 + i * (2 * pi / 6);
+      final p = c + Offset(cos(angle), sin(angle)) * radius;
+      if (i == 0) {
+        hex.moveTo(p.dx, p.dy);
+      } else {
+        hex.lineTo(p.dx, p.dy);
+      }
+    }
+
+    hex.close();
+
+    canvas.drawPath(
+      hex,
+      Paint()..color = const Color(0xFF143F50),
+    );
+    canvas.drawPath(
+      hex,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3
+        ..color = const Color(0xFFFFD978),
+    );
+
+    _text(
+      canvas,
+      '🧭\nBİLGİ ROTASI',
+      c,
+      b * 0.021,
+    );
+  }
+
+  void _cell(
+    Canvas canvas,
+    Offset center,
+    double angle,
+    double width,
+    double height,
+    GameCategory category,
+    bool badge,
+    double base,
+  ) {
+    canvas.save();
+    canvas.translate(center.dx, center.dy);
+    canvas.rotate(angle + pi / 2);
+
+    final rect = Rect.fromCenter(
+      center: Offset.zero,
+      width: width,
+      height: height,
+    );
+    final shape = RRect.fromRectAndRadius(
+      rect,
+      Radius.circular(base * 0.005),
+    );
+
+    canvas.drawRRect(
+      shape,
+      Paint()..color = category.color,
+    );
+    canvas.drawRRect(
+      shape,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = badge ? 2.2 : 1
+        ..color = badge
+            ? const Color(0xFFFFE69B)
+            : Colors.white,
+    );
+
+    if (badge) {
+      _text(
+        canvas,
+        category.emoji,
+        Offset.zero,
+        base * 0.025,
+      );
+    }
+
+    canvas.restore();
+  }
+
+  void _text(
+    Canvas canvas,
+    String text,
+    Offset center,
+    double size,
+  ) {
+    final painter = TextPainter(
+      text: TextSpan(
+        text: text,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: size,
+          fontWeight: FontWeight.w900,
+        ),
+      ),
+      textAlign: TextAlign.center,
+      textDirection: TextDirection.ltr,
+    )..layout();
+
+    painter.paint(
+      canvas,
+      center - Offset(painter.width / 2, painter.height / 2),
+    );
   }
 
   @override
