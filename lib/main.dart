@@ -194,11 +194,13 @@ class SavedGame {
     required this.players,
     required this.currentPlayerIndex,
     required this.savedAt,
+    required this.usedQuestionIds,
   });
 
   final List<PlayerData> players;
   final int currentPlayerIndex;
   final DateTime savedAt;
+  final Set<String> usedQuestionIds;
 
   PlayerData get currentPlayer {
     final safeIndex = currentPlayerIndex.clamp(0, players.length - 1).toInt();
@@ -223,14 +225,16 @@ class GameSaveService {
   static Future<void> save({
     required List<PlayerData> players,
     required int currentPlayerIndex,
+    required Set<String> usedQuestionIds,
   }) async {
     if (players.isEmpty) return;
 
     final payload = <String, dynamic>{
-      'schema': 1,
+      'schema': 2,
       'savedAt': DateTime.now().toIso8601String(),
       'currentPlayerIndex': currentPlayerIndex,
       'players': players.map(_playerToJson).toList(),
+      'usedQuestionIds': usedQuestionIds.toList()..sort(),
     };
 
     try {
@@ -286,10 +290,23 @@ class GameSaveService {
           ) ??
           DateTime.now();
 
+      final rawUsedQuestionIds =
+          decoded['usedQuestionIds'];
+      final usedQuestionIds = <String>{};
+
+      if (rawUsedQuestionIds is List) {
+        usedQuestionIds.addAll(
+          rawUsedQuestionIds
+              .map((value) => value.toString())
+              .where((value) => value.isNotEmpty),
+        );
+      }
+
       return SavedGame(
         players: players,
         currentPlayerIndex: currentPlayerIndex,
         savedAt: savedAt,
+        usedQuestionIds: usedQuestionIds,
       );
     } catch (_) {
       await clear();
@@ -583,7 +600,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.15',
+                  'Bilgi Rotası • Sürüm 1.16',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -1062,6 +1079,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       '${savedGame.players.length} oyuncu • '
                       '${savedGame.totalBadges} rozet • '
+                      '${savedGame.usedQuestionIds.length} soru\n'
                       '${_formatDate(savedGame.savedAt)}',
                       style: const TextStyle(
                         color: Color(0xFFD8CCEA),
@@ -1110,6 +1128,7 @@ class _HomeScreenState extends State<HomeScreen> {
           questionBank: widget.questionBank,
           players: savedGame.players,
           initialPlayerIndex: savedGame.currentPlayerIndex,
+          initialUsedQuestionIds: savedGame.usedQuestionIds,
           initialStatus:
               'Kayıtlı oyun açıldı. Sıra '
               '${savedGame.currentPlayer.name} oyuncusunda.',
@@ -3346,6 +3365,7 @@ class GameScreen extends StatefulWidget {
     required this.questionBank,
     required this.players,
     this.initialPlayerIndex = 0,
+    this.initialUsedQuestionIds = const <String>{},
     this.initialStatus,
     super.key,
   });
@@ -3353,6 +3373,7 @@ class GameScreen extends StatefulWidget {
   final QuestionBank questionBank;
   final List<PlayerData> players;
   final int initialPlayerIndex;
+  final Set<String> initialUsedQuestionIds;
   final String? initialStatus;
 
   @override
@@ -3375,9 +3396,18 @@ class _GameScreenState extends State<GameScreen> {
   bool _soundEnabled = true;
   bool _allowRoutePop = false;
   bool _exitDialogOpen = false;
+  final Set<String> _usedQuestionIds = <String>{};
 
   PlayerData get _currentPlayer =>
       widget.players[_currentPlayerIndex];
+
+  String get _preferredQuestionDifficulty {
+    final badgeCount = _currentPlayer.badges.length;
+
+    if (badgeCount <= 1) return 'Kolay';
+    if (badgeCount <= 3) return 'Orta';
+    return 'Zor';
+  }
 
   @override
   void initState() {
@@ -3390,6 +3420,7 @@ class _GameScreenState extends State<GameScreen> {
     }
 
     _status = widget.initialStatus ?? 'Zarı at ve rotaya çık.';
+    _usedQuestionIds.addAll(widget.initialUsedQuestionIds);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(_saveGame());
@@ -3400,6 +3431,7 @@ class _GameScreenState extends State<GameScreen> {
     return GameSaveService.save(
       players: widget.players,
       currentPlayerIndex: _currentPlayerIndex,
+      usedQuestionIds: _usedQuestionIds,
     );
   }
 
@@ -3655,9 +3687,36 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                   ),
                 Text(
-                  'Doğru: ${_currentPlayer.correctAnswers}   •   Yanlış: ${_currentPlayer.wrongAnswers}',
+                  'Doğru: ${_currentPlayer.correctAnswers}   •   '
+                  'Yanlış: ${_currentPlayer.wrongAnswers}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 13),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 11,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF155E75).withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(13),
+                    border: Border.all(
+                      color: const Color(0xFF155E75)
+                          .withOpacity(0.22),
+                    ),
+                  ),
+                  child: Text(
+                    '🧠 Soru seviyesi: '
+                    '$_preferredQuestionDifficulty   •   '
+                    '${_usedQuestionIds.length}/'
+                    '${widget.questionBank.totalCount} farklı soru',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -3841,10 +3900,25 @@ class _GameScreenState extends State<GameScreen> {
             ? _random.nextInt(GameCategory.values.length)
             : target.categoryIndex);
 
-    final question = widget.questionBank.randomQuestion(
-      categoryIndex,
-      _random,
+    final draw = widget.questionBank.nextQuestion(
+      categoryIndex: categoryIndex,
+      random: _random,
+      usedQuestionIds: _usedQuestionIds,
+      preferredDifficulty: _preferredQuestionDifficulty,
     );
+    final question = draw.question;
+
+    if (draw.poolReset && mounted) {
+      setState(() {
+        _status =
+            '${GameCategory.values[categoryIndex].label} '
+            'soru havuzu tamamlandı; yeni tur başladı.';
+      });
+    }
+
+    await _saveGame();
+
+    if (!mounted) return;
 
     final correct = await Navigator.of(context).push<bool>(
           MaterialPageRoute(
@@ -4124,10 +4198,17 @@ class _GameScreenState extends State<GameScreen> {
 
     final categoryIndex =
         _random.nextInt(GameCategory.values.length);
-    final question = widget.questionBank.randomQuestion(
-      categoryIndex,
-      _random,
+    final draw = widget.questionBank.nextQuestion(
+      categoryIndex: categoryIndex,
+      random: _random,
+      usedQuestionIds: _usedQuestionIds,
+      preferredDifficulty: 'Zor',
     );
+    final question = draw.question;
+
+    await _saveGame();
+
+    if (!mounted) return;
 
     final correct = await Navigator.of(context).push<bool>(
           MaterialPageRoute(
@@ -6618,6 +6699,16 @@ class PlayerData {
   bool get hasAllBadges => badges.length == GameCategory.values.length;
 }
 
+class QuestionDraw {
+  const QuestionDraw({
+    required this.question,
+    required this.poolReset,
+  });
+
+  final QuizQuestion question;
+  final bool poolReset;
+}
+
 class QuizQuestion {
   const QuizQuestion({
     required this.id,
@@ -6679,6 +6770,64 @@ class QuestionBank {
     }
 
     return QuestionBank(grouped);
+  }
+
+  QuestionDraw nextQuestion({
+    required int categoryIndex,
+    required Random random,
+    required Set<String> usedQuestionIds,
+    String? preferredDifficulty,
+  }) {
+    final list = questionsByCategory[categoryIndex];
+
+    if (list == null || list.isEmpty) {
+      throw StateError(
+        'Kategori için soru bulunamadı: $categoryIndex',
+      );
+    }
+
+    var available = list
+        .where(
+          (question) => !usedQuestionIds.contains(question.id),
+        )
+        .toList();
+
+    var poolReset = false;
+
+    if (available.isEmpty) {
+      final categoryIds = list
+          .map((question) => question.id)
+          .toSet();
+
+      usedQuestionIds.removeWhere(categoryIds.contains);
+      available = List<QuizQuestion>.from(list);
+      poolReset = true;
+    }
+
+    var candidates = available;
+
+    if (preferredDifficulty != null) {
+      final preferred = available
+          .where(
+            (question) =>
+                question.difficulty == preferredDifficulty,
+          )
+          .toList();
+
+      if (preferred.isNotEmpty) {
+        candidates = preferred;
+      }
+    }
+
+    final question =
+        candidates[random.nextInt(candidates.length)];
+
+    usedQuestionIds.add(question.id);
+
+    return QuestionDraw(
+      question: question,
+      poolReset: poolReset,
+    );
   }
 
   QuizQuestion randomQuestion(int categoryIndex, Random random) {
