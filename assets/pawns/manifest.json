@@ -1,0 +1,62 @@
+[
+  {
+    "id": 0,
+    "name": "Renkli Halka",
+    "file": "assets/pawns/01_renkli_halka.png"
+  },
+  {
+    "id": 1,
+    "name": "Bilgi Taşı",
+    "file": "assets/pawns/02_bilgi_tasi.png"
+  },
+  {
+    "id": 2,
+    "name": "Beyin Maskotu",
+    "file": "assets/pawns/03_beyin_maskotu.png"
+  },
+  {
+    "id": 3,
+    "name": "Klasik Piyon",
+    "file": "assets/pawns/04_klasik_piyon.png"
+  },
+  {
+    "id": 4,
+    "name": "Bilge At",
+    "file": "assets/pawns/05_bilge_at.png"
+  },
+  {
+    "id": 5,
+    "name": "Kristal Zar",
+    "file": "assets/pawns/06_kristal_zar.png"
+  },
+  {
+    "id": 6,
+    "name": "Pusula Yıldızı",
+    "file": "assets/pawns/07_pusula_yildizi.png"
+  },
+  {
+    "id": 7,
+    "name": "Açık Kitap",
+    "file": "assets/pawns/08_acik_kitap.png"
+  },
+  {
+    "id": 8,
+    "name": "Ampul Fikri",
+    "file": "assets/pawns/09_ampul_fikri.png"
+  },
+  {
+    "id": 9,
+    "name": "Kum Saati",
+    "file": "assets/pawns/10_kum_saati.png"
+  },
+  {
+    "id": 10,
+    "name": "Soru İşareti",
+    "file": "assets/pawns/11_soru_isareti.png"
+  },
+  {
+    "id": 11,
+    "name": "Kupa Rozet",
+    "file": "assets/pawns/12_kupa_rozet.png"
+  }
+]
