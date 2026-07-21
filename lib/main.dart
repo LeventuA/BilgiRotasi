@@ -374,6 +374,331 @@ class GameSaveService {
 }
 
 
+class CareerStats {
+  CareerStats({
+    this.totalQuestions = 0,
+    this.totalCorrect = 0,
+    this.totalWrong = 0,
+    this.gamesStarted = 0,
+    this.soloWins = 0,
+    this.multiplayerWins = 0,
+    this.marathonRuns = 0,
+    this.perfectMarathons = 0,
+    this.bestStreak = 0,
+    this.totalBadges = 0,
+    List<int>? categoryAnswered,
+    List<int>? categoryCorrect,
+  })  : categoryAnswered = categoryAnswered ??
+            List<int>.filled(GameCategory.values.length, 0),
+        categoryCorrect = categoryCorrect ??
+            List<int>.filled(GameCategory.values.length, 0);
+
+  int totalQuestions;
+  int totalCorrect;
+  int totalWrong;
+  int gamesStarted;
+  int soloWins;
+  int multiplayerWins;
+  int marathonRuns;
+  int perfectMarathons;
+  int bestStreak;
+  int totalBadges;
+  final List<int> categoryAnswered;
+  final List<int> categoryCorrect;
+
+  int get completedGames =>
+      soloWins + multiplayerWins + marathonRuns;
+
+  int get accuracy {
+    if (totalQuestions == 0) return 0;
+    return (totalCorrect / totalQuestions * 100).round();
+  }
+
+  int categoryAccuracy(int index) {
+    if (index < 0 ||
+        index >= categoryAnswered.length ||
+        categoryAnswered[index] == 0) {
+      return 0;
+    }
+
+    return (categoryCorrect[index] /
+            categoryAnswered[index] *
+            100)
+        .round();
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'totalQuestions': totalQuestions,
+      'totalCorrect': totalCorrect,
+      'totalWrong': totalWrong,
+      'gamesStarted': gamesStarted,
+      'soloWins': soloWins,
+      'multiplayerWins': multiplayerWins,
+      'marathonRuns': marathonRuns,
+      'perfectMarathons': perfectMarathons,
+      'bestStreak': bestStreak,
+      'totalBadges': totalBadges,
+      'categoryAnswered': categoryAnswered,
+      'categoryCorrect': categoryCorrect,
+    };
+  }
+
+  factory CareerStats.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    List<int> readList(String key) {
+      final raw = json[key];
+
+      if (raw is! List) {
+        return List<int>.filled(
+          GameCategory.values.length,
+          0,
+        );
+      }
+
+      final values = raw
+          .map((value) => (value as num?)?.toInt() ?? 0)
+          .take(GameCategory.values.length)
+          .toList();
+
+      while (values.length < GameCategory.values.length) {
+        values.add(0);
+      }
+
+      return values;
+    }
+
+    return CareerStats(
+      totalQuestions:
+          (json['totalQuestions'] as num?)?.toInt() ?? 0,
+      totalCorrect:
+          (json['totalCorrect'] as num?)?.toInt() ?? 0,
+      totalWrong:
+          (json['totalWrong'] as num?)?.toInt() ?? 0,
+      gamesStarted:
+          (json['gamesStarted'] as num?)?.toInt() ?? 0,
+      soloWins: (json['soloWins'] as num?)?.toInt() ?? 0,
+      multiplayerWins:
+          (json['multiplayerWins'] as num?)?.toInt() ?? 0,
+      marathonRuns:
+          (json['marathonRuns'] as num?)?.toInt() ?? 0,
+      perfectMarathons:
+          (json['perfectMarathons'] as num?)?.toInt() ?? 0,
+      bestStreak:
+          (json['bestStreak'] as num?)?.toInt() ?? 0,
+      totalBadges:
+          (json['totalBadges'] as num?)?.toInt() ?? 0,
+      categoryAnswered: readList('categoryAnswered'),
+      categoryCorrect: readList('categoryCorrect'),
+    );
+  }
+}
+
+class CareerStatsService {
+  CareerStatsService._();
+
+  static const String _key =
+      'bilgi_rotasi_career_stats_v1';
+  static final SharedPreferencesAsync _preferences =
+      SharedPreferencesAsync();
+
+  static Future<CareerStats> load() async {
+    try {
+      final raw = await _preferences.getString(_key);
+
+      if (raw == null || raw.trim().isEmpty) {
+        return CareerStats();
+      }
+
+      final decoded = jsonDecode(raw);
+
+      if (decoded is Map<String, dynamic>) {
+        return CareerStats.fromJson(decoded);
+      }
+
+      if (decoded is Map) {
+        return CareerStats.fromJson(
+          Map<String, dynamic>.from(decoded),
+        );
+      }
+    } catch (_) {
+      // Bozuk istatistik kaydı oyunu etkilememeli.
+    }
+
+    return CareerStats();
+  }
+
+  static Future<void> _save(CareerStats stats) async {
+    try {
+      await _preferences.setString(
+        _key,
+        jsonEncode(stats.toJson()),
+      );
+    } catch (_) {
+      // İstatistik kaydı oyunu durdurmamalı.
+    }
+  }
+
+  static Future<void> recordGameStarted() async {
+    final stats = await load();
+    stats.gamesStarted++;
+    await _save(stats);
+  }
+
+  static Future<void> recordAnswer({
+    required int categoryIndex,
+    required bool correct,
+    bool badgeEarned = false,
+  }) async {
+    final stats = await load();
+
+    stats.totalQuestions++;
+
+    if (correct) {
+      stats.totalCorrect++;
+    } else {
+      stats.totalWrong++;
+    }
+
+    if (categoryIndex >= 0 &&
+        categoryIndex < GameCategory.values.length) {
+      stats.categoryAnswered[categoryIndex]++;
+
+      if (correct) {
+        stats.categoryCorrect[categoryIndex]++;
+      }
+    }
+
+    if (badgeEarned) {
+      stats.totalBadges++;
+    }
+
+    await _save(stats);
+  }
+
+  static Future<void> recordGameCompleted({
+    required bool solo,
+  }) async {
+    final stats = await load();
+
+    if (solo) {
+      stats.soloWins++;
+    } else {
+      stats.multiplayerWins++;
+    }
+
+    await _save(stats);
+  }
+
+  static Future<void> recordMarathon({
+    required int questionCount,
+    required int correct,
+    required int bestStreak,
+  }) async {
+    final stats = await load();
+
+    stats.marathonRuns++;
+
+    if (correct == questionCount && questionCount > 0) {
+      stats.perfectMarathons++;
+    }
+
+    stats.bestStreak = max(
+      stats.bestStreak,
+      bestStreak,
+    );
+
+    await _save(stats);
+  }
+
+  static Future<void> clear() async {
+    try {
+      await _preferences.remove(_key);
+    } catch (_) {
+      // Sıfırlama sorunu ekranı kilitlememeli.
+    }
+  }
+}
+
+class CareerAchievement {
+  const CareerAchievement({
+    required this.emoji,
+    required this.title,
+    required this.description,
+    required this.isUnlocked,
+  });
+
+  final String emoji;
+  final String title;
+  final String description;
+  final bool Function(CareerStats stats) isUnlocked;
+}
+
+final List<CareerAchievement> careerAchievements = [
+  CareerAchievement(
+    emoji: '👣',
+    title: 'İlk Adım',
+    description: 'İlk sorunu cevapla.',
+    isUnlocked: (stats) => stats.totalQuestions >= 1,
+  ),
+  CareerAchievement(
+    emoji: '🎯',
+    title: 'Bilgi Avcısı',
+    description: '25 doğru cevaba ulaş.',
+    isUnlocked: (stats) => stats.totalCorrect >= 25,
+  ),
+  CareerAchievement(
+    emoji: '🧠',
+    title: 'Bilgi Ustası',
+    description: '100 doğru cevaba ulaş.',
+    isUnlocked: (stats) => stats.totalCorrect >= 100,
+  ),
+  CareerAchievement(
+    emoji: '🏅',
+    title: 'Rozet Koleksiyoncusu',
+    description: 'Toplam 6 rozet kazan.',
+    isUnlocked: (stats) => stats.totalBadges >= 6,
+  ),
+  CareerAchievement(
+    emoji: '🧭',
+    title: 'Serbest Kaşif',
+    description: 'Serbest Rota modunu tamamla.',
+    isUnlocked: (stats) => stats.soloWins >= 1,
+  ),
+  CareerAchievement(
+    emoji: '👑',
+    title: 'Bilgi Şampiyonu',
+    description: 'Çok oyunculu bir oyun kazan.',
+    isUnlocked: (stats) => stats.multiplayerWins >= 1,
+  ),
+  CareerAchievement(
+    emoji: '⚡',
+    title: 'Maratoncu',
+    description: 'Bir Soru Maratonu tamamla.',
+    isUnlocked: (stats) => stats.marathonRuns >= 1,
+  ),
+  CareerAchievement(
+    emoji: '💯',
+    title: 'Kusursuz Tur',
+    description: 'Bir maratonda bütün soruları bil.',
+    isUnlocked: (stats) => stats.perfectMarathons >= 1,
+  ),
+  CareerAchievement(
+    emoji: '🔥',
+    title: 'Seri Ustası',
+    description: '10 doğru cevaplık seri yap.',
+    isUnlocked: (stats) => stats.bestStreak >= 10,
+  ),
+  CareerAchievement(
+    emoji: '🌟',
+    title: 'Yüz Soru',
+    description: 'Toplam 100 soru cevapla.',
+    isUnlocked: (stats) => stats.totalQuestions >= 100,
+  ),
+];
+
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -507,6 +832,451 @@ class ErrorScreen extends StatelessWidget {
   }
 }
 
+class CareerStatsScreen extends StatefulWidget {
+  const CareerStatsScreen({super.key});
+
+  @override
+  State<CareerStatsScreen> createState() =>
+      _CareerStatsScreenState();
+}
+
+class _CareerStatsScreenState
+    extends State<CareerStatsScreen> {
+  late Future<CareerStats> _statsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _reload();
+  }
+
+  void _reload() {
+    _statsFuture = CareerStatsService.load();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('İstatistikler & Başarımlar'),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFF8FAFC),
+              Color(0xFFE6F7F5),
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: FutureBuilder<CareerStats>(
+            future: _statsFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState !=
+                  ConnectionState.done) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              final stats = snapshot.data ?? CareerStats();
+
+              return ListView(
+                padding:
+                    const EdgeInsets.fromLTRB(18, 14, 18, 28),
+                children: [
+                  _buildHero(stats),
+                  const SizedBox(height: 16),
+                  _buildSummary(stats),
+                  const SizedBox(height: 16),
+                  _buildCategoryStats(stats),
+                  const SizedBox(height: 16),
+                  _buildAchievements(stats),
+                  const SizedBox(height: 18),
+                  TextButton.icon(
+                    onPressed: _resetStats,
+                    style: TextButton.styleFrom(
+                      foregroundColor: const Color(0xFFB91C1C),
+                    ),
+                    icon: const Icon(
+                      Icons.restart_alt_rounded,
+                    ),
+                    label: const Text(
+                      'İstatistikleri Sıfırla',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHero(CareerStats stats) {
+    final unlocked = careerAchievements
+        .where((item) => item.isUnlocked(stats))
+        .length;
+
+    return Container(
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFF4A245D),
+            Color(0xFF155E75),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(28),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x44000000),
+            blurRadius: 18,
+            offset: Offset(0, 9),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          const Text(
+            '📊',
+            style: TextStyle(fontSize: 48),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Bilgi kariyerin',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            '${stats.totalQuestions} soru • '
+            '${stats.accuracy}% başarı • '
+            '$unlocked/${careerAchievements.length} başarım',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color(0xFFD8F1EE),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSummary(CareerStats stats) {
+    return GridView.count(
+      crossAxisCount: 2,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      childAspectRatio: 1.45,
+      children: [
+        _summaryCard(
+          emoji: '✅',
+          value: '${stats.totalCorrect}',
+          label: 'Doğru cevap',
+        ),
+        _summaryCard(
+          emoji: '🎯',
+          value: '%${stats.accuracy}',
+          label: 'Genel başarı',
+        ),
+        _summaryCard(
+          emoji: '🏆',
+          value: '${stats.completedGames}',
+          label: 'Tamamlanan tur',
+        ),
+        _summaryCard(
+          emoji: '🔥',
+          value: '${stats.bestStreak}',
+          label: 'En iyi seri',
+        ),
+      ],
+    );
+  }
+
+  Widget _summaryCard({
+    required String emoji,
+    required String value,
+    required String label,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: const Color(0xFFD9E2EC),
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            emoji,
+            style: const TextStyle(fontSize: 27),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color(0xFF64748B),
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoryStats(CareerStats stats) {
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: const Color(0xFFD9E2EC),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Kategori başarıların',
+            style: TextStyle(
+              fontSize: 19,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 14),
+          for (var index = 0;
+              index < GameCategory.values.length;
+              index++)
+            _categoryRow(
+              category: GameCategory.values[index],
+              answered: stats.categoryAnswered[index],
+              correct: stats.categoryCorrect[index],
+              accuracy: stats.categoryAccuracy(index),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _categoryRow({
+    required GameCategory category,
+    required int answered,
+    required int correct,
+    required int accuracy,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 13),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(
+                category.emoji,
+                style: const TextStyle(fontSize: 22),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  category.label,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              Text(
+                answered == 0
+                    ? 'Henüz yok'
+                    : '$correct/$answered • %$accuracy',
+                style: TextStyle(
+                  color: category.darkColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 7),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: answered == 0 ? 0 : accuracy / 100,
+              minHeight: 8,
+              backgroundColor:
+                  category.color.withOpacity(0.13),
+              color: category.color,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAchievements(CareerStats stats) {
+    final unlocked = careerAchievements
+        .where((item) => item.isUnlocked(stats))
+        .length;
+
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: const Color(0xFF271631),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: const Color(0x55FFE082),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Başarımlar • $unlocked/'
+            '${careerAchievements.length}',
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 19,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 13),
+          for (final achievement in careerAchievements)
+            _achievementRow(
+              achievement,
+              achievement.isUnlocked(stats),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _achievementRow(
+    CareerAchievement achievement,
+    bool unlocked,
+  ) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 9),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: unlocked
+            ? const Color(0x22FFE082)
+            : const Color(0x0FFFFFFF),
+        borderRadius: BorderRadius.circular(17),
+        border: Border.all(
+          color: unlocked
+              ? const Color(0x88FFE082)
+              : const Color(0x22FFFFFF),
+        ),
+      ),
+      child: Row(
+        children: [
+          Text(
+            unlocked ? achievement.emoji : '🔒',
+            style: const TextStyle(fontSize: 27),
+          ),
+          const SizedBox(width: 11),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  achievement.title,
+                  style: TextStyle(
+                    color: unlocked
+                        ? const Color(0xFFFFE082)
+                        : const Color(0xFFB9AEC2),
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                Text(
+                  achievement.description,
+                  style: const TextStyle(
+                    color: Color(0xFFD0C6D7),
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            unlocked
+                ? Icons.check_circle_rounded
+                : Icons.lock_outline_rounded,
+            color: unlocked
+                ? const Color(0xFF4ADE80)
+                : const Color(0xFF766A80),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _resetStats() async {
+    final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (dialogContext) {
+            return AlertDialog(
+              title: const Text(
+                'İstatistikler sıfırlansın mı?',
+              ),
+              content: const Text(
+                'Bütün toplamlar, kategori başarıları ve '
+                'açılan başarımlar silinecek. '
+                'Kayıtlı oyunun etkilenmeyecek.',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, false),
+                  child: const Text('Vazgeç'),
+                ),
+                FilledButton(
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, true),
+                  child: const Text('Sıfırla'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+
+    if (!confirmed) return;
+
+    await CareerStatsService.clear();
+
+    if (!mounted) return;
+
+    setState(_reload);
+  }
+}
+
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     required this.questionBank,
@@ -580,6 +1350,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16),
                 _buildCategoryCard(),
                 const SizedBox(height: 14),
+                FilledButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            const CareerStatsScreen(),
+                      ),
+                    );
+                  },
+                  style: FilledButton.styleFrom(
+                    backgroundColor:
+                        const Color(0xFFFFE082),
+                    foregroundColor:
+                        const Color(0xFF3A2448),
+                  ),
+                  icon: const Icon(
+                    Icons.insights_rounded,
+                  ),
+                  label: const Text(
+                    'İstatistikler & Başarımlar',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
                 OutlinedButton.icon(
                   onPressed: () => _showRules(context),
                   icon: const Icon(Icons.menu_book_rounded),
@@ -600,7 +1396,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.16',
+                  'Bilgi Rotası • Sürüm 1.17',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -1629,6 +2425,7 @@ class _SoloRouteSetupScreenState
     );
 
     await GameSaveService.clear();
+    await CareerStatsService.recordGameStarted();
 
     if (!mounted) return;
 
@@ -2233,6 +3030,11 @@ class _MarathonScreenState extends State<MarathonScreen> {
       unawaited(SoundFx.wrong());
     }
 
+    await CareerStatsService.recordAnswer(
+      categoryIndex: _question.categoryIndex,
+      correct: correct,
+    );
+
     final finished =
         _questionIndex + 1 >= widget.questions.length;
 
@@ -2249,6 +3051,11 @@ class _MarathonScreenState extends State<MarathonScreen> {
         categoryIndex: widget.categoryIndex,
         questionCount: widget.questions.length,
         score: _correct,
+      );
+      await CareerStatsService.recordMarathon(
+        questionCount: widget.questions.length,
+        correct: _correct,
+        bestStreak: _maxStreak,
       );
 
       if (!mounted) return;
@@ -2855,6 +3662,7 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
     }
 
     await GameSaveService.clear();
+    await CareerStatsService.recordGameStarted();
 
     if (!mounted) return;
 
@@ -4233,12 +5041,23 @@ class _GameScreenState extends State<GameScreen> {
         _isBusy = false;
       });
 
+      await CareerStatsService.recordAnswer(
+        categoryIndex: categoryIndex,
+        correct: true,
+      );
+      await CareerStatsService.recordGameCompleted(
+        solo: widget.players.length == 1,
+      );
       await GameSaveService.clear();
       unawaited(SoundFx.win());
       HapticFeedback.heavyImpact();
       await _showWinnerDialog(_currentPlayer);
     } else {
       _currentPlayer.wrongAnswers++;
+      await CareerStatsService.recordAnswer(
+        categoryIndex: categoryIndex,
+        correct: false,
+      );
       _advanceTurn();
 
       setState(() {
@@ -4288,6 +5107,12 @@ class _GameScreenState extends State<GameScreen> {
             : SoundFx.correct(),
       );
       HapticFeedback.selectionClick();
+
+      await CareerStatsService.recordAnswer(
+        categoryIndex: categoryIndex,
+        correct: true,
+        badgeEarned: badgeEarned,
+      );
     } else {
       answeredPlayer.wrongAnswers++;
 
@@ -4313,6 +5138,11 @@ class _GameScreenState extends State<GameScreen> {
       }
 
       unawaited(SoundFx.wrong());
+
+      await CareerStatsService.recordAnswer(
+        categoryIndex: categoryIndex,
+        correct: false,
+      );
     }
 
     await _saveGame();
