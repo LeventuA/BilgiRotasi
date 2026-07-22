@@ -45,7 +45,7 @@ class SoundFx {
       );
 
       final directory = Directory(
-        '${Directory.systemTemp.path}/bilgi_rotasi_embedded_sounds_v2',
+        '${Directory.systemTemp.path}/bilgi_rotasi_embedded_sounds_user_dice_95077',
       );
       await directory.create(recursive: true);
       _soundDirectory = directory;
@@ -134,7 +134,7 @@ class SoundFx {
     return _play(
       _dicePlayer,
       'dice_roll.mp3',
-      volume: 0.92,
+      volume: 1.0,
     );
   }
 
