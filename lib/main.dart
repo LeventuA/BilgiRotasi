@@ -1577,7 +1577,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.29',
+                  'Bilgi Rotası • Sürüm 1.29.1',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -2927,10 +2927,11 @@ class _MarathonSetupScreenState
                 const <QuizQuestion>[],
           );
 
-    pool.shuffle(Random());
-    final questions = pool
-        .take(min(_questionCount, pool.length))
-        .toList(growable: false);
+    final questions = widget.questionBank.diverseQuestions(
+      pool: pool,
+      count: min(_questionCount, pool.length),
+      random: Random(),
+    );
 
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -8566,9 +8567,76 @@ class QuizQuestion {
 }
 
 class QuestionBank {
-  QuestionBank(this.questionsByCategory);
+  QuestionBank(this.questionsByCategory) {
+    for (final question in questionsByCategory.values.expand(
+      (questions) => questions,
+    )) {
+      _familyKeyById[question.id] = questionFamilyKey(question.text);
+    }
+  }
 
   final Map<int, List<QuizQuestion>> questionsByCategory;
+  final Map<String, String> _familyKeyById = <String, String>{};
+
+  static String questionFamilyKey(String text) {
+    return text
+        .toLowerCase()
+        .replaceAll(RegExp(r'\d+(?:[.,/]\d+)*'), '#')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+  }
+
+  Set<String> _familyKeysForIds(Set<String> questionIds) {
+    final keys = <String>{};
+
+    for (final id in questionIds) {
+      final key = _familyKeyById[id];
+      if (key != null && key.isNotEmpty) {
+        keys.add(key);
+      }
+    }
+
+    return keys;
+  }
+
+  List<QuizQuestion> diverseQuestions({
+    required List<QuizQuestion> pool,
+    required int count,
+    required Random random,
+  }) {
+    if (pool.isEmpty || count <= 0) {
+      return const <QuizQuestion>[];
+    }
+
+    final shuffled = List<QuizQuestion>.from(pool)..shuffle(random);
+    final selected = <QuizQuestion>[];
+    final deferred = <QuizQuestion>[];
+    final seenFamilies = <String>{};
+
+    for (final question in shuffled) {
+      final familyKey =
+          _familyKeyById[question.id] ?? questionFamilyKey(question.text);
+
+      if (seenFamilies.add(familyKey)) {
+        selected.add(question);
+      } else {
+        deferred.add(question);
+      }
+
+      if (selected.length >= count) {
+        return selected;
+      }
+    }
+
+    for (final question in deferred) {
+      selected.add(question);
+      if (selected.length >= count) {
+        break;
+      }
+    }
+
+    return selected;
+  }
 
   int get totalCount => questionsByCategory.values.fold<int>(
         0,
@@ -8626,6 +8694,20 @@ class QuestionBank {
       usedQuestionIds.removeWhere(categoryIds.contains);
       available = List<QuizQuestion>.from(list);
       poolReset = true;
+    }
+
+    final usedFamilyKeys = _familyKeysForIds(usedQuestionIds);
+    final familyFresh = available
+        .where(
+          (question) => !usedFamilyKeys.contains(
+            _familyKeyById[question.id] ??
+                questionFamilyKey(question.text),
+          ),
+        )
+        .toList();
+
+    if (familyFresh.isNotEmpty) {
+      available = familyFresh;
     }
 
     var candidates = available;
