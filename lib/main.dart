@@ -1530,7 +1530,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.33.0',
+                  'Bilgi Rotası • Sürüm 1.34.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -7845,6 +7845,58 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     : '${category.emoji} ${category.label}',
           ),
         ),
+        bottomNavigationBar: !_answered
+            ? null
+            : SafeArea(
+                top: false,
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(
+                    18,
+                    10,
+                    18,
+                    12,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                      top: BorderSide(
+                        color: category.color.withValues(
+                          alpha: 0.24,
+                        ),
+                      ),
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x26000000),
+                        blurRadius: 14,
+                        offset: Offset(0, -4),
+                      ),
+                    ],
+                  ),
+                  child: FilledButton.icon(
+                    onPressed: () =>
+                        Navigator.pop(context, _correct),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: category.darkColor,
+                      foregroundColor: Colors.white,
+                      minimumSize: const Size.fromHeight(56),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(17),
+                      ),
+                    ),
+                    icon: const Icon(
+                      Icons.arrow_forward_rounded,
+                    ),
+                    label: const Text(
+                      'Devam Et',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
         body: SafeArea(
           child: SingleChildScrollView(
             padding:
@@ -7962,17 +8014,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   ),
                   const SizedBox(height: 10),
                   _buildFeedbackPanel(category),
-                  const SizedBox(height: 10),
-                  FilledButton(
-                    onPressed: () =>
-                        Navigator.pop(context, _correct),
-                    child: const Text(
-                      'Devam Et',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
+                  const SizedBox(height: 4),
                 ],
               ],
             ),
@@ -8196,7 +8238,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
               Expanded(
                 child: _feedbackButton(
                   icon: Icons.thumb_up_alt_rounded,
-                  label: 'Kolaydı',
+                  label: _difficultyVote == 'Kolay'
+                      ? '✓ Kolaydı\nalındı'
+                      : 'Kolaydı',
                   selected:
                       _difficultyVote == 'Kolay',
                   color: const Color(0xFF16A34A),
@@ -8210,7 +8254,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
               Expanded(
                 child: _feedbackButton(
                   icon: Icons.local_fire_department_rounded,
-                  label: 'Zordu',
+                  label: _difficultyVote == 'Zor'
+                      ? '✓ Zordu\nalındı'
+                      : 'Zordu',
                   selected: _difficultyVote == 'Zor',
                   color: const Color(0xFFEA580C),
                   onPressed: _feedbackLoading ||
@@ -8224,7 +8270,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 child: _feedbackButton(
                   icon: Icons.report_problem_rounded,
                   label: _errorReported
-                      ? 'Bildirildi'
+                      ? '✓ Hata\nalındı'
                       : 'Hatalı',
                   selected: _errorReported,
                   color: const Color(0xFFDC2626),
@@ -8272,9 +8318,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
           const SizedBox(height: 2),
           Text(
             label,
-            maxLines: 1,
+            maxLines: 2,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 10,
+              height: 1.05,
               fontWeight: FontWeight.w900,
             ),
           ),
@@ -8304,11 +8352,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
       if (accepted) _difficultyVote = vote;
     });
 
-    _showMessage(
-      accepted
-          ? '$vote geri bildirimin alındı.'
-          : 'Bu soru için daha önce oy verdin.',
-    );
   }
 
   Future<void> _showErrorDialog() async {
@@ -8411,11 +8454,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
       if (accepted) _errorReported = true;
     });
 
-    _showMessage(
-      accepted
-          ? 'Hata bildirimi alındı. Teşekkürler!'
-          : 'Bu soruyu daha önce bildirdin.',
-    );
   }
 
   void _showMessage(String message) {
