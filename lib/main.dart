@@ -31,7 +31,6 @@ class SoundFx {
   static bool _initialized = false;
   static String? lastError;
 
-  static Directory? _soundDirectory;
   static final Map<String, String> _soundPaths = <String, String>{};
 
   static final AudioPlayer _dicePlayer =
@@ -60,7 +59,6 @@ class SoundFx {
         '${Directory.systemTemp.path}/bilgi_rotasi_embedded_sounds_user_dice_95077',
       );
       await directory.create(recursive: true);
-      _soundDirectory = directory;
 
       for (final entry in embeddedSoundBase64.entries) {
         final bytes = base64Decode(entry.value);
