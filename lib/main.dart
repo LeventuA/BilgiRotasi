@@ -12,6 +12,7 @@ import 'sound_data.dart';
 
 part 'daily_challenge.dart';
 part 'question_feedback.dart';
+part 'xp_progression.dart';
 
 class SoundFx {
   SoundFx._();
@@ -552,6 +553,7 @@ class CareerStatsService {
   static Future<void> recordAnswer({
     required int categoryIndex,
     required bool correct,
+    String difficulty = 'Orta',
     bool badgeEarned = false,
   }) async {
     final stats = await load();
@@ -578,6 +580,11 @@ class CareerStatsService {
     }
 
     await _save(stats);
+    await XpProgressService.recordAnswer(
+      correct: correct,
+      difficulty: difficulty,
+      badgeEarned: badgeEarned,
+    );
   }
 
   static Future<void> recordGameCompleted({
@@ -592,6 +599,7 @@ class CareerStatsService {
     }
 
     await _save(stats);
+    await XpProgressService.recordGameCompleted(solo: solo);
   }
 
   static Future<void> recordMarathon({
@@ -613,6 +621,10 @@ class CareerStatsService {
     );
 
     await _save(stats);
+    await XpProgressService.recordMarathon(
+      questionCount: questionCount,
+      perfect: correct == questionCount && questionCount > 0,
+    );
   }
 
   static Future<void> clear() async {
@@ -709,6 +721,12 @@ Future<void> main() async {
     await SoundFx.initialize();
   } catch (_) {
     // Ses başlatılamasa bile oyun açılmaya devam eder.
+  }
+
+  try {
+    await XpProgressService.initialize();
+  } catch (_) {
+    // XP sistemi açılamasa bile oyun açılmaya devam eder.
   }
 
   runApp(const BilgiRotasiApp());
@@ -892,6 +910,8 @@ class _CareerStatsScreenState
                     const EdgeInsets.fromLTRB(18, 14, 18, 28),
                 children: [
                   _buildHero(stats),
+                  const SizedBox(height: 16),
+                  const XpCareerCard(),
                   const SizedBox(height: 16),
                   _buildSummary(stats),
                   const SizedBox(height: 16),
@@ -1250,8 +1270,8 @@ class _CareerStatsScreenState
                 'İstatistikler sıfırlansın mı?',
               ),
               content: const Text(
-                'Bütün toplamlar, kategori başarıları ve '
-                'açılan başarımlar silinecek. '
+                'XP, seviye, bütün toplamlar, kategori '
+                'başarıları ve açılan başarımlar silinecek. '
                 'Kayıtlı oyunun etkilenmeyecek.',
               ),
               actions: [
@@ -1275,6 +1295,7 @@ class _CareerStatsScreenState
 
     await CareerStatsService.clear();
     await DailyChallengeService.clear();
+    await XpProgressService.clear();
 
     if (!mounted) return;
 
@@ -1331,6 +1352,8 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 _buildHeroHeader(),
+                const SizedBox(height: 16),
+                const XpHomeCard(),
                 const SizedBox(height: 18),
                 FutureBuilder<SavedGame?>(
                   future: _savedGameFuture,
@@ -1406,7 +1429,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.20.2',
+                  'Bilgi Rotası • Sürüm 1.21',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -3042,6 +3065,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
 
     await CareerStatsService.recordAnswer(
       categoryIndex: _question.categoryIndex,
+      difficulty: _question.difficulty,
       correct: correct,
     );
 

@@ -917,10 +917,12 @@ class _DailyChallengeHubScreenState
 class DailyAnswerRecord {
   const DailyAnswerRecord({
     required this.categoryIndex,
+    required this.difficulty,
     required this.correct,
   });
 
   final int categoryIndex;
+  final String difficulty;
   final bool correct;
 }
 
@@ -1185,6 +1187,7 @@ class _DailyChallengeScreenState
     _answers.add(
       DailyAnswerRecord(
         categoryIndex: _question.categoryIndex,
+        difficulty: _question.difficulty,
         correct: correct,
       ),
     );
@@ -1242,9 +1245,13 @@ class _DailyChallengeScreenState
       for (final answer in _answers) {
         await CareerStatsService.recordAnswer(
           categoryIndex: answer.categoryIndex,
+          difficulty: answer.difficulty,
           correct: answer.correct,
         );
       }
+      await XpProgressService.recordDailyChallenge(
+        perfect: result.isPerfect,
+      );
     }
 
     if (!mounted) return;
