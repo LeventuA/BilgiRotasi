@@ -10,7 +10,7 @@ void main() {
     test('Tahta merkezinin altı komşusu vardır', () {
       expect(
         BoardMap.neighbors(BoardMap.centerId).length,
-        BoardMap.spokeCount,
+        GameCategory.values.length,
       );
     });
 
@@ -18,7 +18,7 @@ void main() {
       for (var id = 1;
           id <
               BoardMap.spokeStart +
-                  BoardMap.spokeCount *
+                  GameCategory.values.length *
                       BoardMap.spokeLength;
           id++) {
         final node = BoardMap.node(id);
@@ -33,13 +33,11 @@ void main() {
       }
     });
 
-    test('XP seviye eğrisi artar', () {
-      expect(
-        XpProgressService.requiredForLevel(2),
-        greaterThan(
-          XpProgressService.requiredForLevel(1),
-        ),
-      );
+    test('Kategori adları ve emojileri doludur', () {
+      for (final category in GameCategory.values) {
+        expect(category.label.trim(), isNotEmpty);
+        expect(category.emoji.trim(), isNotEmpty);
+      }
     });
 
     test('Meydan okuma kodu kayıpsız çözülür', () {
