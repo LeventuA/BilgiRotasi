@@ -61,6 +61,10 @@ class AdvancedLeaderboardResultScreen extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(20, 26, 20, 28),
               children: [
+                FamilyRecordCapture.standings(
+                  mode: title,
+                  standings: standings,
+                ),
                 Text(
                   title,
                   textAlign: TextAlign.center,
@@ -131,7 +135,17 @@ class AdvancedLeaderboardResultScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 15),
+                SocialShareButton(
+                  dark: true,
+                  title: title,
+                  text: SocialShareService.standingsText(
+                    title: title,
+                    headline: headline,
+                    standings: standings,
+                  ),
+                ),
+                const SizedBox(height: 10),
                 FilledButton.icon(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(

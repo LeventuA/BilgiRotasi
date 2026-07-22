@@ -7,6 +7,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'sound_data.dart';
 
@@ -19,6 +20,7 @@ part 'advanced_modes.dart';
 part 'retention_system.dart';
 part 'visual_collection.dart';
 part 'accessibility_settings.dart';
+part 'social_features.dart';
 
 class SoundFx {
   SoundFx._();
@@ -992,6 +994,24 @@ class _CareerStatsScreenState
                     const EdgeInsets.fromLTRB(18, 14, 18, 28),
                 children: [
                   _buildHero(stats),
+                  const SizedBox(height: 10),
+                  FutureBuilder<XpProgress>(
+                    future: XpProgressService.load(),
+                    builder: (context, xpSnapshot) {
+                      final xp = xpSnapshot.data;
+                      if (xp == null) {
+                        return const SizedBox.shrink();
+                      }
+
+                      return SocialShareButton(
+                        title: 'Bilgi Rotası Kariyerim',
+                        text: SocialShareService.careerText(
+                          stats,
+                          xp,
+                        ),
+                      );
+                    },
+                  ),
                   const SizedBox(height: 16),
                   const XpCareerCard(),
                   const SizedBox(height: 16),
@@ -1479,6 +1499,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 const CollectionHomeButton(),
                 const SizedBox(height: 10),
                 const AccessibilitySettingsButton(),
+                const SizedBox(height: 10),
+                SocialHomeButton(
+                  questionBank: widget.questionBank,
+                ),
                 const SizedBox(height: 16),
                 _buildNewGameCard(),
                 const SizedBox(height: 16),
@@ -1532,7 +1556,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.27',
+                  'Bilgi Rotası • Sürüm 1.28',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -3390,6 +3414,14 @@ class MarathonResultScreen extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                   ),
                 ),
+                FamilyRecordCapture.single(
+                  name: AppPreferencesService
+                      .current.defaultPlayerName,
+                  mode: 'Soru Maratonu',
+                  score: correct,
+                  total: questionCount,
+                  won: correct >= max(1, questionCount ~/ 2),
+                ),
                 const SizedBox(height: 18),
                 Container(
                   padding: const EdgeInsets.all(24),
@@ -3467,7 +3499,18 @@ class MarathonResultScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 15),
+                SocialShareButton(
+                  dark: true,
+                  title: 'Bilgi Rotası Maraton Sonucu',
+                  text: SocialShareService.resultText(
+                    title: '⚡ Soru Maratonu',
+                    score: '$correct / $questionCount',
+                    detail: '$modeLabel • Başarı %$percentage • '
+                        'En iyi seri $maxStreak',
+                  ),
+                ),
+                const SizedBox(height: 10),
                 FilledButton.icon(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
@@ -4005,6 +4048,23 @@ class _WinnerScreenState extends State<WinnerScreen>
                     _buildWinnerCard(),
                     const SizedBox(height: 16),
                     _buildRankingCard(),
+                    FamilyRecordCapture.board(
+                      players: widget.players,
+                      winner: widget.winner,
+                    ),
+                    const SizedBox(height: 10),
+                    SocialShareButton(
+                      dark: true,
+                      title: 'Bilgi Rotası Şampiyonu',
+                      text: <String>[
+                        '🧭 BİLGİ ROTASI',
+                        '🏆 ${widget.winner.name} şampiyon!',
+                        '${widget.winner.correctAnswers} doğru • '
+                            '${widget.winner.badges.length}/6 rozet',
+                        '',
+                        'Aynı telefonda bilgi düellosu!',
+                      ].join('\n'),
+                    ),
                     const SizedBox(height: 18),
                     FilledButton.icon(
                       onPressed: () {

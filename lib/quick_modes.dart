@@ -449,6 +449,18 @@ class QuickModeResultScreen extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(20, 28, 20, 28),
               children: [
+                FamilyRecordCapture.single(
+                  name: AppPreferencesService
+                      .current.defaultPlayerName,
+                  mode: title,
+                  score:
+                      SocialShareService.firstNumber(score),
+                  total: max(
+                    1,
+                    SocialShareService.firstNumber(score),
+                  ),
+                  won: true,
+                ),
                 Text(
                   title,
                   textAlign: TextAlign.center,
@@ -499,7 +511,18 @@ class QuickModeResultScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 15),
+                SocialShareButton(
+                  dark: true,
+                  title: title,
+                  text: SocialShareService.resultText(
+                    title: title,
+                    score: score,
+                    detail: detail,
+                    bonusXp: bonusXp,
+                  ),
+                ),
+                const SizedBox(height: 10),
                 FilledButton.icon(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
