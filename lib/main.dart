@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'sound_data.dart';
 
 part 'daily_challenge.dart';
+part 'question_feedback.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1405,7 +1406,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.19',
+                  'Bilgi Rotası • Sürüm 1.20',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -7313,18 +7314,64 @@ class QuestionScreen extends StatefulWidget {
   final bool isFinalQuestion;
 
   @override
-  State<QuestionScreen> createState() => _QuestionScreenState();
+  State<QuestionScreen> createState() =>
+      _QuestionScreenState();
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
+  static const List<String> _errorReasons = [
+    'Doğru cevap yanlış',
+    'Soru veya seçenekler belirsiz',
+    'Yazım hatası var',
+    'Bilgi eskimiş',
+    'Aynı soru tekrar ediyor',
+    'Diğer',
+  ];
+
   int? _selectedIndex;
+  String? _difficultyVote;
+  bool _errorReported = false;
+  bool _feedbackLoading = false;
 
   bool get _answered => _selectedIndex != null;
-  bool get _correct => _selectedIndex == widget.question.answerIndex;
+  bool get _correct =>
+      _selectedIndex == widget.question.answerIndex;
+
+  String get _gameMode {
+    if (widget.isFinalQuestion) return 'Final sorusu';
+    if (widget.isBadgeQuestion) return 'Rozet sorusu';
+    return 'Normal soru';
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_loadFeedbackState());
+    unawaited(QuestionFeedbackService.flushPending());
+  }
+
+  Future<void> _loadFeedbackState() async {
+    final vote =
+        await QuestionFeedbackService.difficultyVoteFor(
+      widget.question.id,
+    );
+    final reported =
+        await QuestionFeedbackService.hasErrorReport(
+      widget.question.id,
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _difficultyVote = vote;
+      _errorReported = reported;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final category = GameCategory.values[widget.question.categoryIndex];
+    final category =
+        GameCategory.values[widget.question.categoryIndex];
 
     return PopScope(
       canPop: false,
@@ -7351,41 +7398,55 @@ class _QuestionScreenState extends State<QuestionScreen> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(18, 8, 18, 20),
+            padding:
+                const EdgeInsets.fromLTRB(18, 8, 18, 20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment:
+                  CrossAxisAlignment.stretch,
               children: [
                 Container(
                   padding: const EdgeInsets.all(22),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(26),
-                    border: Border.all(color: category.color.withOpacity(0.28)),
+                    border: Border.all(
+                      color:
+                          category.color.withOpacity(0.28),
+                    ),
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(
+                            padding:
+                                const EdgeInsets.symmetric(
                               horizontal: 10,
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: category.color.withOpacity(0.14),
-                              borderRadius: BorderRadius.circular(999),
+                              color: category.color
+                                  .withOpacity(0.14),
+                              borderRadius:
+                                  BorderRadius.circular(999),
                             ),
                             child: Text(
                               widget.question.difficulty,
                               style: TextStyle(
                                 color: category.darkColor,
-                                fontWeight: FontWeight.w700,
+                                fontWeight:
+                                    FontWeight.w700,
                               ),
                             ),
                           ),
                           const Spacer(),
-                          Text(category.emoji, style: const TextStyle(fontSize: 26)),
+                          Text(
+                            category.emoji,
+                            style:
+                                const TextStyle(fontSize: 26),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 18),
@@ -7403,8 +7464,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 const SizedBox(height: 16),
                 Expanded(
                   child: ListView.separated(
-                    itemCount: widget.question.options.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 10),
+                    itemCount:
+                        widget.question.options.length,
+                    separatorBuilder: (_, __) =>
+                        const SizedBox(height: 10),
                     itemBuilder: (context, index) {
                       return _buildOption(index, category);
                     },
@@ -7417,21 +7480,31 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       color: _correct
                           ? const Color(0xFFDCFCE7)
                           : const Color(0xFFFEE2E2),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius:
+                          BorderRadius.circular(16),
                     ),
                     child: Text(
                       _correct
                           ? 'Doğru! ${widget.question.explanation}'
-                          : 'Yanlış. Doğru cevap: ${widget.question.options[widget.question.answerIndex]}. ${widget.question.explanation}',
-                      style: const TextStyle(fontWeight: FontWeight.w700),
+                          : 'Yanlış. Doğru cevap: '
+                              '${widget.question.options[widget.question.answerIndex]}. '
+                              '${widget.question.explanation}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 10),
+                  _buildFeedbackPanel(category),
+                  const SizedBox(height: 10),
                   FilledButton(
-                    onPressed: () => Navigator.pop(context, _correct),
+                    onPressed: () =>
+                        Navigator.pop(context, _correct),
                     child: const Text(
                       'Devam Et',
-                      style: TextStyle(fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                   ),
                 ],
@@ -7443,9 +7516,271 @@ class _QuestionScreenState extends State<QuestionScreen> {
     );
   }
 
-  Widget _buildOption(int index, GameCategory category) {
+  Widget _buildFeedbackPanel(GameCategory category) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(17),
+        border: Border.all(
+          color: const Color(0xFFE2E8F0),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            'Bu soru nasıldı? • İsteğe bağlı',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFF64748B),
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(
+                child: _feedbackButton(
+                  icon: Icons.thumb_up_alt_rounded,
+                  label: 'Kolaydı',
+                  selected:
+                      _difficultyVote == 'Kolay',
+                  color: const Color(0xFF16A34A),
+                  onPressed: _feedbackLoading ||
+                          _difficultyVote != null
+                      ? null
+                      : () => _voteDifficulty('Kolay'),
+                ),
+              ),
+              const SizedBox(width: 7),
+              Expanded(
+                child: _feedbackButton(
+                  icon: Icons.local_fire_department_rounded,
+                  label: 'Zordu',
+                  selected: _difficultyVote == 'Zor',
+                  color: const Color(0xFFEA580C),
+                  onPressed: _feedbackLoading ||
+                          _difficultyVote != null
+                      ? null
+                      : () => _voteDifficulty('Zor'),
+                ),
+              ),
+              const SizedBox(width: 7),
+              Expanded(
+                child: _feedbackButton(
+                  icon: Icons.report_problem_rounded,
+                  label: _errorReported
+                      ? 'Bildirildi'
+                      : 'Hatalı',
+                  selected: _errorReported,
+                  color: const Color(0xFFDC2626),
+                  onPressed: _feedbackLoading ||
+                          _errorReported
+                      ? null
+                      : _showErrorDialog,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _feedbackButton({
+    required IconData icon,
+    required String label,
+    required bool selected,
+    required Color color,
+    required VoidCallback? onPressed,
+  }) {
+    return OutlinedButton(
+      onPressed: onPressed,
+      style: OutlinedButton.styleFrom(
+        foregroundColor: color,
+        backgroundColor:
+            selected ? color.withOpacity(0.12) : null,
+        side: BorderSide(
+          color: selected
+              ? color
+              : const Color(0xFFCBD5E1),
+          width: selected ? 2 : 1,
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 4,
+          vertical: 11,
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 19),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            maxLines: 1,
+            style: const TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _voteDifficulty(String vote) async {
+    final selectedIndex = _selectedIndex;
+    if (selectedIndex == null) return;
+
+    setState(() => _feedbackLoading = true);
+
+    final accepted =
+        await QuestionFeedbackService.submitDifficultyVote(
+      question: widget.question,
+      selectedIndex: selectedIndex,
+      vote: vote,
+      gameMode: _gameMode,
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _feedbackLoading = false;
+      if (accepted) _difficultyVote = vote;
+    });
+
+    _showMessage(
+      accepted
+          ? '$vote geri bildirimin alındı.'
+          : 'Bu soru için daha önce oy verdin.',
+    );
+  }
+
+  Future<void> _showErrorDialog() async {
+    var reason = _errorReasons.first;
+    final controller = TextEditingController();
+
+    final submit = await showDialog<bool>(
+          context: context,
+          builder: (dialogContext) {
+            return StatefulBuilder(
+              builder: (context, setDialogState) {
+                return AlertDialog(
+                  title: const Text('Sorudaki hata nedir?'),
+                  content: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        DropdownButtonFormField<String>(
+                          initialValue: reason,
+                          decoration: const InputDecoration(
+                            labelText: 'Hata türü',
+                            border: OutlineInputBorder(),
+                          ),
+                          items: _errorReasons
+                              .map(
+                                (item) =>
+                                    DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(item),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            if (value != null) {
+                              setDialogState(
+                                () => reason = value,
+                              );
+                            }
+                          },
+                        ),
+                        const SizedBox(height: 12),
+                        TextField(
+                          controller: controller,
+                          minLines: 2,
+                          maxLines: 4,
+                          maxLength: 500,
+                          decoration: const InputDecoration(
+                            labelText:
+                                'Açıklama • İsteğe bağlı',
+                            hintText:
+                                'Hatanın ne olduğunu kısaca yazabilirsin.',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () =>
+                          Navigator.pop(dialogContext, false),
+                      child: const Text('Vazgeç'),
+                    ),
+                    FilledButton(
+                      onPressed: () =>
+                          Navigator.pop(dialogContext, true),
+                      child: const Text('Gönder'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+        ) ??
+        false;
+
+    final note = controller.text;
+    controller.dispose();
+
+    if (!submit || !mounted) return;
+
+    final selectedIndex = _selectedIndex;
+    if (selectedIndex == null) return;
+
+    setState(() => _feedbackLoading = true);
+
+    final accepted =
+        await QuestionFeedbackService.submitErrorReport(
+      question: widget.question,
+      selectedIndex: selectedIndex,
+      reason: reason,
+      note: note,
+      gameMode: _gameMode,
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _feedbackLoading = false;
+      if (accepted) _errorReported = true;
+    });
+
+    _showMessage(
+      accepted
+          ? 'Hata bildirimi alındı. Teşekkürler!'
+          : 'Bu soruyu daha önce bildirdin.',
+    );
+  }
+
+  void _showMessage(String message) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+  }
+
+  Widget _buildOption(
+    int index,
+    GameCategory category,
+  ) {
     final isSelected = _selectedIndex == index;
-    final isCorrectOption = widget.question.answerIndex == index;
+    final isCorrectOption =
+        widget.question.answerIndex == index;
 
     Color background = Colors.white;
     Color border = const Color(0xFFCBD5E1);
@@ -7476,10 +7811,16 @@ class _QuestionScreenState extends State<QuestionScreen> {
               },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 16,
+          ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: border, width: isSelected ? 2 : 1.2),
+            border: Border.all(
+              color: border,
+              width: isSelected ? 2 : 1.2,
+            ),
           ),
           child: Row(
             children: [
@@ -7488,7 +7829,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 height: 34,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: category.color.withOpacity(0.13),
+                  color:
+                      category.color.withOpacity(0.13),
                   shape: BoxShape.circle,
                 ),
                 child: Text(
@@ -7509,7 +7851,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   ),
                 ),
               ),
-              if (trailingIcon != null) Icon(trailingIcon),
+              if (trailingIcon != null)
+                Icon(trailingIcon),
             ],
           ),
         ),
