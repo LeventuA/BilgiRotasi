@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'dart:ui' as ui;
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ part 'retention_system.dart';
 part 'visual_collection.dart';
 part 'accessibility_settings.dart';
 part 'social_features.dart';
+part 'system_health.dart';
 
 class SoundFx {
   SoundFx._();
@@ -261,8 +263,7 @@ class GameSaveService {
     };
 
     try {
-      await _preferences.setString(
-        _saveKey,
+      await GameRecoveryService.saveWithBackup(
         jsonEncode(payload),
       );
     } catch (_) {
@@ -331,7 +332,20 @@ class GameSaveService {
         savedAt: savedAt,
         usedQuestionIds: usedQuestionIds,
       );
-    } catch (_) {
+    } catch (error, stack) {
+      await AppErrorLogService.record(
+        source: 'Kayıt yükleme',
+        error: error,
+        stack: stack,
+      );
+
+      final recovered =
+          await GameRecoveryService.recover();
+
+      if (recovered != null) {
+        return recovered;
+      }
+
       await clear();
       return null;
     }
@@ -340,6 +354,7 @@ class GameSaveService {
   static Future<void> clear() async {
     try {
       await _preferences.remove(_saveKey);
+      await GameRecoveryService.clearBackup();
     } catch (_) {
       // Kayıt silme sorunu arayüzü kilitlememeli.
     }
@@ -771,6 +786,8 @@ final List<CareerAchievement> careerAchievements = [
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await AppErrorLogService.initialize();
 
   try {
     await SoundFx.initialize();
@@ -1503,6 +1520,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 SocialHomeButton(
                   questionBank: widget.questionBank,
                 ),
+                const SizedBox(height: 10),
+                SystemHealthHomeButton(
+                  questionBank: widget.questionBank,
+                ),
                 const SizedBox(height: 16),
                 _buildNewGameCard(),
                 const SizedBox(height: 16),
@@ -1556,7 +1577,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.28',
+                  'Bilgi Rotası • Sürüm 1.29',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),

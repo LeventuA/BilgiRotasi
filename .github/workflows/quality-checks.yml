@@ -1,0 +1,34 @@
+name: Bilgi Rotasi Quality Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Depoyu al
+        uses: actions/checkout@v4
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Paketleri indir
+        run: flutter pub get
+
+      - name: Soru bankasını doğrula
+        run: python3 tools/validate_questions.py
+
+      - name: Kod analizi
+        run: flutter analyze --no-fatal-infos
+
+      - name: Otomatik testler
+        run: flutter test

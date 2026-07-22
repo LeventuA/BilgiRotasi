@@ -1,0 +1,76 @@
+import 'package:bilgi_rotasi/main.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  group('Bilgi Rotası temel sistem testleri', () {
+    test('Altı kategori bulunur', () {
+      expect(GameCategory.values.length, 6);
+    });
+
+    test('Tahta merkezinin altı komşusu vardır', () {
+      expect(
+        BoardMap.neighbors(BoardMap.centerId).length,
+        BoardMap.spokeCount,
+      );
+    });
+
+    test('Tahta düğümleri geçerli kategoriler üretir', () {
+      for (var id = 1;
+          id <
+              BoardMap.spokeStart +
+                  BoardMap.spokeCount *
+                      BoardMap.spokeLength;
+          id++) {
+        final node = BoardMap.node(id);
+
+        expect(
+          node.categoryIndex,
+          inInclusiveRange(
+            0,
+            GameCategory.values.length - 1,
+          ),
+        );
+      }
+    });
+
+    test('XP seviye eğrisi artar', () {
+      expect(
+        XpProgressService.requiredForLevel(2),
+        greaterThan(
+          XpProgressService.requiredForLevel(1),
+        ),
+      );
+    });
+
+    test('Meydan okuma kodu kayıpsız çözülür', () {
+      final original = ChallengeConfig(
+        challengerName: 'Test Oyuncusu',
+        targetScore: 7,
+        categoryIndex: -1,
+        difficulty: 'Karışık',
+        questionIds: const <String>[
+          'q001',
+          'q002',
+          'q003',
+        ],
+      );
+
+      final decoded = ChallengeConfig.decode(
+        original.code,
+      );
+
+      expect(
+        decoded.challengerName,
+        original.challengerName,
+      );
+      expect(
+        decoded.questionIds,
+        original.questionIds,
+      );
+      expect(
+        decoded.targetScore,
+        original.targetScore,
+      );
+    });
+  });
+}
