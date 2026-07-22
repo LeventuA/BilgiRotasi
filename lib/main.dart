@@ -25,6 +25,7 @@ part 'social_features.dart';
 part 'system_health.dart';
 part 'difficulty_balance.dart';
 part 'question_quality.dart';
+part 'main_navigation.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1489,15 +1490,9 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 _buildHeroHeader(),
-                const SizedBox(height: 16),
-                const XpHomeCard(),
-                const SizedBox(height: 10),
-                const GameplayBoostSettingsButton(),
-                const SizedBox(height: 10),
-                QuickModesHomeButton(
-                  questionBank: widget.questionBank,
-                ),
                 const SizedBox(height: 18),
+                _buildNewGameCard(),
+                const SizedBox(height: 14),
                 FutureBuilder<SavedGame?>(
                   future: _savedGameFuture,
                   builder: (context, snapshot) {
@@ -1519,74 +1514,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 DailyChallengeHomeCard(
                   questionBank: widget.questionBank,
                 ),
-                const SizedBox(height: 16),
-                const RetentionHomeCard(),
-                const SizedBox(height: 10),
-                const CollectionHomeButton(),
-                const SizedBox(height: 10),
-                const AccessibilitySettingsButton(),
-                const SizedBox(height: 10),
-                SocialHomeButton(
-                  questionBank: widget.questionBank,
-                ),
-                const SizedBox(height: 10),
-                SystemHealthHomeButton(
-                  questionBank: widget.questionBank,
-                ),
-                const SizedBox(height: 16),
-                _buildNewGameCard(),
-                const SizedBox(height: 16),
-                _buildFeatureStrip(),
-                const SizedBox(height: 16),
-                _buildCategoryCard(),
-                const SizedBox(height: 14),
-                FilledButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            const CareerStatsScreen(),
-                      ),
-                    );
-                  },
-                  style: FilledButton.styleFrom(
-                    backgroundColor:
-                        const Color(0xFFFFE082),
-                    foregroundColor:
-                        const Color(0xFF3A2448),
-                  ),
-                  icon: const Icon(
-                    Icons.insights_rounded,
-                  ),
-                  label: const Text(
-                    'İstatistikler & Başarımlar',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                OutlinedButton.icon(
-                  onPressed: () => _showRules(context),
-                  icon: const Icon(Icons.menu_book_rounded),
-                  label: const Text(
-                    'Nasıl Oynanır?',
-                    style: TextStyle(fontWeight: FontWeight.w800),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    side: const BorderSide(
-                      color: Color(0x99FFE082),
-                    ),
-                    minimumSize: const Size.fromHeight(54),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.31.0',
+                  'BÖLÜMLER',
+                  style: TextStyle(
+                    color: Color(0xFFFFE082),
+                    fontSize: 13,
+                    letterSpacing: 1.1,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                MainNavigationGrid(
+                  questionBank: widget.questionBank,
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Bilgi Rotası • Sürüm 1.32.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -1728,7 +1672,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  'Yeni bir bilgi düellosu başlat',
+                  'OYUNA BAŞLA',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 23,
@@ -1758,7 +1702,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: _actionBusy ? null : _openNewGame,
             icon: const Icon(Icons.add_circle_outline_rounded),
             label: const Text(
-              'Yeni Oyun Kur',
+              'Standart Tahta Oyununu Başlat',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w900,

@@ -70,5 +70,16 @@ void main() {
         original.targetScore,
       );
     });
+
+    test('Ana navigasyonda beş bölüm bulunur', () {
+      expect(MainNavigationSection.values.length, 5);
+      expect(
+        MainNavigationSection.values
+            .map((section) => section.title)
+            .toSet()
+            .length,
+        5,
+      );
+    });
   });
 }
