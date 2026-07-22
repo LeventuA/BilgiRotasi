@@ -64,6 +64,10 @@ jobs:
 
           sed -i 's/android:label="bilgi_rotasi"/android:label="Bilgi Rotası"/'             android/app/src/main/AndroidManifest.xml
 
+          if ! grep -q 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml; then
+            sed -i '/<application/i\    <uses-permission android:name="android.permission.INTERNET" />' android/app/src/main/AndroidManifest.xml
+          fi
+          grep -q 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml
           flutter build apk --release
 
       - name: APK dosyasını yükle
