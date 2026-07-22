@@ -15276,16 +15276,16 @@
   {
     "id": "q1092",
     "categoryIndex": 2,
-    "question": "Keops Piramidi’nin tamamlanması için doğru tarih eşleştirmesi hangisidir?",
+    "question": "Keops Piramidi'nin yaklaşık olarak hangi tarihte tamamlandığı kabul edilir?",
     "options": [
-      "1861",
-      "1853",
-      "MÖ 399",
+      "MÖ 1200 dolayları",
+      "MÖ 700 dolayları",
+      "MS 100 dolayları",
       "MÖ 2560 dolayları"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Keops Piramidi’nin tamamlanması için doğru tarih MÖ 2560 dolayları olarak verilir."
+    "explanation": "Keops için inşa edilen Büyük Piramit'in MÖ 26. yüzyılda, yaklaşık MÖ 2560'ta tamamlandığı kabul edilir."
   },
   {
     "id": "q1093",
@@ -22136,16 +22136,16 @@
   {
     "id": "q1582",
     "categoryIndex": 3,
-    "question": "1321 ile tarihlendirilen eser hangisidir?",
+    "question": "Dante'nin İlahi Komedya adlı eserini tamamladığı kabul edilen yıl hangisidir?",
     "options": [
-      "İlahi Komedya",
-      "Gece Kuşları",
-      "Yüzyıllık Yalnızlık",
-      "İlyada"
+      "1321",
+      "1265",
+      "1453",
+      "1605"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "1321, İlahi Komedya ile ilişkilidir."
+    "explanation": "Dante'nin İlahi Komedya'yı ölüm yılı olan 1321'de tamamladığı kabul edilir."
   },
   {
     "id": "q1583",
@@ -23956,16 +23956,16 @@
   {
     "id": "q1712",
     "categoryIndex": 3,
-    "question": "1869 ile tarihlendirilen eser hangisidir?",
+    "question": "Lev Tolstoy'un Savaş ve Barış adlı eseri ilk kez bütünüyle hangi yılda yayımlandı?",
     "options": [
-      "Guernica",
-      "Frankenstein",
-      "Savaş ve Barış",
-      "Avignonlu Kızlar"
+      "1859",
+      "1865",
+      "1869",
+      "1877"
     ],
     "answerIndex": 2,
     "difficulty": "Orta",
-    "explanation": "1869, Savaş ve Barış ile ilişkilidir."
+    "explanation": "Eserin bazı bölümleri 1865-1867 arasında tefrika edildi; Savaş ve Barış'ın tamamı 1869'da yayımlandı."
   },
   {
     "id": "q1713",
@@ -35422,16 +35422,16 @@
   {
     "id": "q2531",
     "categoryIndex": 5,
-    "question": "5 oyuncu düzeniyle oynanan ve “potaya atılan basketbol topu” kullanılan spor hangisidir?",
+    "question": "Beşer oyunculu iki takımın topu rakip potaya atarak sayı kazanmaya çalıştığı spor hangisidir?",
     "options": [
       "Basketbol",
-      "Saha lakrosu",
-      "Formula 1",
-      "Yedili ragbi"
+      "Hentbol",
+      "Voleybol",
+      "Sutopu"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "5 oyuncu, Basketbol ile ilişkilidir."
+    "explanation": "Basketbolda sahada her takım beş oyuncuyla yer alır; amaç topu rakip potadan geçirerek sayı kazanmaktır."
   },
   {
     "id": "q2532",
