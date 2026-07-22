@@ -17,6 +17,7 @@ part 'gameplay_boost.dart';
 part 'quick_modes.dart';
 part 'advanced_modes.dart';
 part 'retention_system.dart';
+part 'visual_collection.dart';
 
 class SoundFx {
   SoundFx._();
@@ -123,9 +124,18 @@ class SoundFx {
         );
       }
 
+      final atmosphere =
+          VisualCollectionService.sound;
+
+      await player.setPlaybackRate(
+        atmosphere.playbackRate,
+      );
+
       await player.play(
         DeviceFileSource(path),
-        volume: volume.clamp(0.0, 1.0).toDouble(),
+        volume: (
+          volume * atmosphere.volumeMultiplier
+        ).clamp(0.0, 1.0).toDouble(),
       );
 
       lastError = null;
@@ -779,6 +789,12 @@ Future<void> main() async {
     await RetentionProgressService.initialize();
   } catch (_) {
     // Günlük ve haftalık sistem açılamasa bile oyun devam eder.
+  }
+
+  try {
+    await VisualCollectionService.initialize();
+  } catch (_) {
+    // Koleksiyon sistemi açılamasa bile oyun devam eder.
   }
 
   runApp(const BilgiRotasiApp());
@@ -1437,6 +1453,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
                 const RetentionHomeCard(),
+                const SizedBox(height: 10),
+                const CollectionHomeButton(),
                 const SizedBox(height: 16),
                 _buildNewGameCard(),
                 const SizedBox(height: 16),
@@ -1490,7 +1508,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.25.1',
+                  'Bilgi Rotası • Sürüm 1.26',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -2271,7 +2289,7 @@ class _SoloRouteSetupScreenState
   final TextEditingController _nameController =
       TextEditingController(text: 'Oyuncu');
 
-  int _pawnType = 0;
+  int _pawnType = VisualCollectionService.current.favoritePawn;
   int _colorIndex = 1;
   bool _starting = false;
 
@@ -6826,9 +6844,7 @@ class GameBoard extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               const Positioned.fill(
-                child: CustomPaint(
-                  painter: BoardPainter(),
-                ),
+                child: LiveBoardLayer(),
               ),
               if (moveOptions.isNotEmpty)
                 Positioned.fill(
@@ -6953,11 +6969,17 @@ class GameBoard extends StatelessWidget {
 }
 
 class BoardPainter extends CustomPainter {
-  const BoardPainter();
+  const BoardPainter({this.pulse = 0});
 
-  static const _gold = Color(0xFFE8C76A);
-  static const _darkGold = Color(0xFF7B5721);
-  static const _deepPurple = Color(0xFF24122F);
+  final double pulse;
+
+  BoardThemeDefinition get _theme =>
+      VisualCollectionService.theme;
+
+  Color get _gold => _theme.gold;
+  Color get _darkGold => _theme.darkGold;
+  Color get _deepPurple =>
+      _theme.backgroundColors.last;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -6981,17 +7003,29 @@ class BoardPainter extends CustomPainter {
       true,
     );
 
+    if (pulse > 0) {
+      canvas.drawRRect(
+        boardShape.inflate(2 + pulse * 3),
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2 + pulse * 2
+          ..color = _gold.withOpacity(
+            0.10 + pulse * 0.18,
+          )
+          ..maskFilter = const MaskFilter.blur(
+            BlurStyle.normal,
+            7,
+          ),
+      );
+    }
+
     canvas.drawRRect(
       boardShape,
       Paint()
-        ..shader = const LinearGradient(
+        ..shader = LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF56336B),
-            Color(0xFF382047),
-            Color(0xFF1D1027),
-          ],
+          colors: _theme.backgroundColors,
         ).createShader(boardRect),
     );
 
@@ -7084,7 +7118,7 @@ class BoardPainter extends CustomPainter {
       Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = base * 0.071
-        ..color = const Color(0xFF2B1837),
+        ..color = _theme.foundation,
     );
 
     for (var arm = 0; arm < 6; arm++) {
@@ -7414,21 +7448,22 @@ class BoardPainter extends CustomPainter {
     canvas.drawPath(
       upper,
       Paint()
-        ..shader = const RadialGradient(
-          center: Alignment(-0.35, -0.38),
-          colors: [
-            Color(0xFF2B7184),
-            Color(0xFF153E50),
-            Color(0xFF071E2A),
-          ],
-        ).createShader(Rect.fromCircle(center: center, radius: radius)),
+        ..shader = RadialGradient(
+          center: const Alignment(-0.35, -0.38),
+          colors: _theme.centerColors,
+        ).createShader(
+          Rect.fromCircle(
+            center: center,
+            radius: radius,
+          ),
+        ),
     );
     canvas.drawPath(
       upper,
       Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = 3.2
-        ..color = const Color(0xFFFFD978),
+        ..color = _gold,
     );
 
     _drawText(
@@ -7487,7 +7522,12 @@ class BoardPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(
+    covariant BoardPainter oldDelegate,
+  ) {
+    return oldDelegate.pulse != pulse ||
+        oldDelegate._theme.id != _theme.id;
+  }
 }
 
 class DiceFace extends StatelessWidget {
