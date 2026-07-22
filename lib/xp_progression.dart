@@ -228,6 +228,7 @@ class XpProgressService {
     progress.lastReason = reason;
 
     await _save(progress);
+    await RetentionProgressService.recordXp(amount);
 
     return XpGainResult(
       amount: amount,
@@ -280,6 +281,7 @@ class XpProgressService {
     progress.lastReason = reason;
 
     await _save(progress);
+    await RetentionProgressService.recordXp(safeAmount);
 
     return XpGainResult(
       amount: safeAmount,

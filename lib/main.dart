@@ -16,6 +16,7 @@ part 'xp_progression.dart';
 part 'gameplay_boost.dart';
 part 'quick_modes.dart';
 part 'advanced_modes.dart';
+part 'retention_system.dart';
 
 class SoundFx {
   SoundFx._();
@@ -587,11 +588,27 @@ class CareerStatsService {
 
     await _save(stats);
 
-    return XpProgressService.recordAnswer(
+    final answerGain = await XpProgressService.recordAnswer(
       correct: correct,
       difficulty: difficulty,
       badgeEarned: badgeEarned,
       xpMultiplier: xpMultiplier,
+    );
+
+    final retentionGain =
+        await RetentionProgressService.recordAnswer(
+      categoryIndex: categoryIndex,
+      correct: correct,
+      difficulty: difficulty,
+      currentStreak: answerGain.currentStreak,
+    );
+
+    if (retentionGain == null) return answerGain;
+
+    return XpGainResult.combine(
+      <XpGainResult>[answerGain, retentionGain],
+      reason: '${answerGain.reason} + '
+          '${retentionGain.reason}',
     );
   }
 
@@ -631,9 +648,22 @@ class CareerStatsService {
     );
 
     await _save(stats);
-    return XpProgressService.recordMarathon(
+
+    final marathonGain =
+        await XpProgressService.recordMarathon(
       questionCount: questionCount,
       perfect: correct == questionCount && questionCount > 0,
+    );
+
+    final retentionGain =
+        await RetentionProgressService.recordMarathon();
+
+    if (retentionGain == null) return marathonGain;
+
+    return XpGainResult.combine(
+      <XpGainResult>[marathonGain, retentionGain],
+      reason: '${marathonGain.reason} + '
+          '${retentionGain.reason}',
     );
   }
 
@@ -743,6 +773,12 @@ Future<void> main() async {
     await GameplayBoostSettingsService.initialize();
   } catch (_) {
     // Oynanış ayarları açılamasa bile oyun devam eder.
+  }
+
+  try {
+    await RetentionProgressService.initialize();
+  } catch (_) {
+    // Günlük ve haftalık sistem açılamasa bile oyun devam eder.
   }
 
   runApp(const BilgiRotasiApp());
@@ -1312,6 +1348,7 @@ class _CareerStatsScreenState
     await CareerStatsService.clear();
     await DailyChallengeService.clear();
     await XpProgressService.clear();
+    await RetentionProgressService.clear();
 
     if (!mounted) return;
 
@@ -1399,6 +1436,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   questionBank: widget.questionBank,
                 ),
                 const SizedBox(height: 16),
+                const RetentionHomeCard(),
+                const SizedBox(height: 16),
                 _buildNewGameCard(),
                 const SizedBox(height: 16),
                 _buildFeatureStrip(),
@@ -1451,7 +1490,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.24',
+                  'Bilgi Rotası • Sürüm 1.25',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
