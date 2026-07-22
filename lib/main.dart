@@ -23,6 +23,7 @@ part 'visual_collection.dart';
 part 'accessibility_settings.dart';
 part 'social_features.dart';
 part 'system_health.dart';
+part 'difficulty_balance.dart';
 
 class SoundFx {
   SoundFx._();
@@ -253,7 +254,7 @@ class GameSaveService {
     if (players.isEmpty) return;
 
     final payload = <String, dynamic>{
-      'schema': 2,
+      'schema': 3,
       'savedAt': DateTime.now().toIso8601String(),
       'currentPlayerIndex': currentPlayerIndex,
       'players': players.map(_playerToJson).toList(),
@@ -367,6 +368,9 @@ class GameSaveService {
       'movePulse': player.movePulse,
       'correctAnswers': player.correctAnswers,
       'wrongAnswers': player.wrongAnswers,
+      'correctStreak': player.correctStreak,
+      'wrongStreak': player.wrongStreak,
+      'difficultyMode': player.difficultyMode.name,
       'doubleChance': player.doubleChance,
       'jokers': player.jokers.toJson(),
       'badges': player.badges.toList()..sort(),
@@ -382,6 +386,8 @@ class GameSaveService {
         (json['color'] as num?)?.toInt() ?? 0xFF2563EB,
       ),
       pawnType: (json['pawnType'] as num?)?.toInt() ?? 0,
+      difficultyMode:
+          difficultyModeFromName(json['difficultyMode']),
       jokers: JokerWallet.fromJson(json['jokers']),
     );
 
@@ -391,6 +397,10 @@ class GameSaveService {
         (json['correctAnswers'] as num?)?.toInt() ?? 0;
     player.wrongAnswers =
         (json['wrongAnswers'] as num?)?.toInt() ?? 0;
+    player.correctStreak =
+        (json['correctStreak'] as num?)?.toInt() ?? 0;
+    player.wrongStreak =
+        (json['wrongStreak'] as num?)?.toInt() ?? 0;
     player.doubleChance = json['doubleChance'] == true;
 
     final rawBadges = json['badges'];
@@ -1575,7 +1585,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.29.1',
+                  'Bilgi Rotası • Sürüm 1.30.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -2363,6 +2373,7 @@ class _SoloRouteSetupScreenState
   int _colorIndex = AppPreferencesService
       .current.defaultColorIndex;
   bool _starting = false;
+  DifficultyMode _difficultyMode = DifficultyMode.relaxed;
 
   @override
   void dispose() {
@@ -2576,6 +2587,13 @@ class _SoloRouteSetupScreenState
                 },
               ),
               const SizedBox(height: 18),
+              DifficultyModeCard(
+                value: _difficultyMode,
+                onChanged: (mode) {
+                  setState(() => _difficultyMode = mode);
+                },
+              ),
+              const SizedBox(height: 12),
               FilledButton.icon(
                 onPressed: _starting ? null : _startSoloRoute,
                 icon: const Icon(Icons.explore_rounded),
@@ -2605,6 +2623,7 @@ class _SoloRouteSetupScreenState
       name: name.isEmpty ? 'Oyuncu' : name,
       color: _colors[_colorIndex],
       pawnType: _pawnType,
+      difficultyMode: _difficultyMode,
     );
 
     await GameSaveService.clear();
@@ -2642,6 +2661,7 @@ class _MarathonSetupScreenState
     extends State<MarathonSetupScreen> {
   int? _categoryIndex;
   int _questionCount = 10;
+  DifficultyMode _difficultyMode = DifficultyMode.relaxed;
 
   int get _poolSize {
     if (_categoryIndex == null) {
@@ -2816,6 +2836,13 @@ class _MarathonSetupScreenState
               },
             ),
             const SizedBox(height: 18),
+            DifficultyModeCard(
+              value: _difficultyMode,
+              onChanged: (mode) {
+                setState(() => _difficultyMode = mode);
+              },
+            ),
+            const SizedBox(height: 12),
             FilledButton.icon(
               onPressed:
                   availableCounts.isEmpty ? null : _startMarathon,
@@ -2925,10 +2952,13 @@ class _MarathonSetupScreenState
                 const <QuizQuestion>[],
           );
 
-    final questions = widget.questionBank.diverseQuestions(
+    final questions =
+        DifficultyBalance.pickMarathonQuestions(
+      questionBank: widget.questionBank,
       pool: pool,
       count: min(_questionCount, pool.length),
       random: Random(),
+      mode: _difficultyMode,
     );
 
     Navigator.of(context).push(
@@ -3669,6 +3699,12 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
         : index,
   );
 
+  final List<DifficultyMode> _selectedDifficultyModes =
+      List<DifficultyMode>.filled(
+    6,
+    DifficultyMode.relaxed,
+  );
+
   static const List<Color> _playerColors = [
     Color(0xFFE11D48),
     Color(0xFF2563EB),
@@ -3786,21 +3822,40 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
                             ),
                             const SizedBox(width: 12),
                             Expanded(
-                              child: TextField(
-                                controller: _controllers[index],
-                                maxLength: 16,
-                                textCapitalization: TextCapitalization.words,
-                                decoration: InputDecoration(
-                                  counterText: '',
-                                  labelText: '${index + 1}. oyuncu',
-                                  helperText: 'Yanındaki piyona dokunarak seç',
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(18),
-                                    borderSide: BorderSide.none,
+                              child: Column(
+                                children: [
+                                  TextField(
+                                    controller: _controllers[index],
+                                    maxLength: 16,
+                                    textCapitalization:
+                                        TextCapitalization.words,
+                                    decoration: InputDecoration(
+                                      counterText: '',
+                                      labelText: '${index + 1}. oyuncu',
+                                      helperText:
+                                          'Yanındaki piyona dokunarak seç',
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(18),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  const SizedBox(height: 8),
+                                  DifficultyModeDropdown(
+                                    value:
+                                        _selectedDifficultyModes[index],
+                                    label: 'Oyuncunun soru seviyesi',
+                                    onChanged: (mode) {
+                                      setState(() {
+                                        _selectedDifficultyModes[index] =
+                                            mode;
+                                      });
+                                    },
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -3927,6 +3982,7 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
           name: name.isEmpty ? 'Oyuncu ${index + 1}' : name,
           color: _playerColors[index],
           pawnType: _selectedPawnTypes[index],
+          difficultyMode: _selectedDifficultyModes[index],
         ),
       );
     }
@@ -4505,16 +4561,26 @@ class _GameScreenState extends State<GameScreen> {
   PlayerData get _currentPlayer =>
       widget.players[_currentPlayerIndex];
 
-  String get _preferredQuestionDifficulty {
-    if (AppPreferencesService.current.childMode) {
-      return 'Kolay';
-    }
+  String _chooseQuestionDifficulty({
+    bool finalQuestion = false,
+  }) {
+    return _currentPlayer.difficultyMode.chooseDifficulty(
+      _random,
+      correctStreak: _currentPlayer.correctStreak,
+      wrongStreak: _currentPlayer.wrongStreak,
+      finalQuestion: finalQuestion,
+      forceRelaxed:
+          AppPreferencesService.current.childMode,
+    );
+  }
 
-    final badgeCount = _currentPlayer.badges.length;
+  String get _difficultyStatusText {
+    final mode = AppPreferencesService.current.childMode
+        ? DifficultyMode.relaxed
+        : _currentPlayer.difficultyMode;
 
-    if (badgeCount <= 1) return 'Kolay';
-    if (badgeCount <= 3) return 'Orta';
-    return 'Zor';
+    return '${mode.emoji} ${mode.label} • '
+        '${_currentPlayer.adaptiveDifficultyLabel}';
   }
 
   @override
@@ -4823,7 +4889,7 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                   child: Text(
                     '🧠 Soru seviyesi: '
-                    '$_preferredQuestionDifficulty   •   '
+                    '$_difficultyStatusText   •   '
                     '${_usedQuestionIds.length}/'
                     '${widget.questionBank.totalCount} farklı soru',
                     textAlign: TextAlign.center,
@@ -5040,7 +5106,7 @@ class _GameScreenState extends State<GameScreen> {
         await GameplayBoostDialogs.chooseQuestionPlan(
       context,
       baseCategoryIndex: baseCategoryIndex,
-      normalDifficulty: _preferredQuestionDifficulty,
+      normalDifficulty: _chooseQuestionDifficulty(),
       wallet: _currentPlayer.jokers,
     );
 
@@ -5369,7 +5435,9 @@ class _GameScreenState extends State<GameScreen> {
       categoryIndex: categoryIndex,
       random: _random,
       usedQuestionIds: _usedQuestionIds,
-      preferredDifficulty: 'Zor',
+      preferredDifficulty: _chooseQuestionDifficulty(
+        finalQuestion: true,
+      ),
     );
     final question = draw.question;
 
@@ -5389,6 +5457,8 @@ class _GameScreenState extends State<GameScreen> {
         false;
 
     if (!mounted) return;
+
+    _currentPlayer.registerAdaptiveAnswer(correct);
 
     if (correct) {
       _currentPlayer.correctAnswers++;
@@ -5467,6 +5537,7 @@ class _GameScreenState extends State<GameScreen> {
     required bool wasBadgeCell,
   }) async {
     final answeredPlayer = _currentPlayer;
+    answeredPlayer.registerAdaptiveAnswer(correct);
 
     if (correct) {
       answeredPlayer.correctAnswers++;
@@ -8505,21 +8576,28 @@ class PlayerData {
     required this.name,
     required this.color,
     required this.pawnType,
+    DifficultyMode? difficultyMode,
     JokerWallet? jokers,
-  }) : jokers = jokers ?? JokerWallet.starter();
+  })  : difficultyMode =
+            difficultyMode ?? DifficultyMode.relaxed,
+        jokers = jokers ?? JokerWallet.starter();
 
   final String name;
   final Color color;
   final int pawnType;
+  final DifficultyMode difficultyMode;
   final JokerWallet jokers;
   int position = 0;
   int movePulse = 0;
   int correctAnswers = 0;
   int wrongAnswers = 0;
+  int correctStreak = 0;
+  int wrongStreak = 0;
   bool doubleChance = false;
   final Set<int> badges = <int>{};
 
-  bool get hasAllBadges => badges.length == GameCategory.values.length;
+  bool get hasAllBadges =>
+      badges.length == GameCategory.values.length;
 }
 
 class QuestionDraw {
