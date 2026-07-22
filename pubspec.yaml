@@ -1,7 +1,7 @@
 name: bilgi_rotasi
 description: Aynı telefonda 2-6 kişilik Türkçe bilgi yarışması.
 publish_to: "none"
-version: 1.23.0+31
+version: 1.24.0+32
 
 environment:
   sdk: ">=3.3.0 <4.0.0"

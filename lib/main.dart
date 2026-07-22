@@ -15,6 +15,7 @@ part 'question_feedback.dart';
 part 'xp_progression.dart';
 part 'gameplay_boost.dart';
 part 'quick_modes.dart';
+part 'advanced_modes.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1450,7 +1451,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.23',
+                  'Bilgi Rotası • Sürüm 1.24',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),

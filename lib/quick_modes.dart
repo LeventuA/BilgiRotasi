@@ -117,7 +117,7 @@ class QuickModesHomeButton extends StatelessWidget {
       ),
       icon: const Icon(Icons.sports_esports_rounded),
       label: const Text(
-        'Yeni Modlar • Hayatta Kal, 60 Saniye, Düello',
+        '7 Oyun Modu • Hız, Aile, Takım, Turnuva',
         textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.w900),
       ),
@@ -216,6 +216,74 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
                       CategoryDuelSetupScreen(questionBank: widget.questionBank),
                     ),
                   ),
+                  const SizedBox(height: 12),
+                  _modeCard(
+                    emoji: '👨‍👩‍👧‍👦',
+                    title: 'Aile Modu',
+                    description:
+                        'Çocuk ve yetişkinler kendi zorluk seviyelerinde aynı turda yarışır.',
+                    record: '2–6 oyuncu • Kişiye göre zorluk',
+                    colors: const [
+                      Color(0xFF0F766E),
+                      Color(0xFF2563EB),
+                    ],
+                    onTap: () => _open(
+                      FamilyModeSetupScreen(
+                        questionBank: widget.questionBank,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  _modeCard(
+                    emoji: '🤝',
+                    title: 'Takım Modu',
+                    description:
+                        'İki takım altı kategorinin tamamında ortak bilgiyle mücadele eder.',
+                    record: '2 takım • Paylaşılan jokerler',
+                    colors: const [
+                      Color(0xFF6D28D9),
+                      Color(0xFF0F766E),
+                    ],
+                    onTap: () => _open(
+                      TeamModeSetupScreen(
+                        questionBank: widget.questionBank,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  _modeCard(
+                    emoji: '🏆',
+                    title: 'Turnuva Modu',
+                    description:
+                        '4 veya 8 oyunculu eleme ağacında yarı final ve finale yüksel.',
+                    record: 'Tek kaybeden elenir',
+                    colors: const [
+                      Color(0xFF92400E),
+                      Color(0xFF7C3AED),
+                    ],
+                    onTap: () => _open(
+                      TournamentSetupScreen(
+                        questionBank: widget.questionBank,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  _modeCard(
+                    emoji: '🎭',
+                    title: 'Karışık Çılgınlık',
+                    description:
+                        'Her soruda çifte XP, karışık şıklar veya joker hediyesi gibi sürprizler.',
+                    record: '15 soru • 7 rastgele kural',
+                    colors: const [
+                      Color(0xFF7C2D12),
+                      Color(0xFF6D28D9),
+                    ],
+                    onTap: () => _open(
+                      MixedMadnessIntroScreen(
+                        questionBank: widget.questionBank,
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   Container(
                     padding: const EdgeInsets.all(15),
@@ -255,10 +323,10 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
       ),
       child: const Column(
         children: [
-          Text('❤️⚡⚔️', style: TextStyle(fontSize: 48)),
+          Text('❤️⚡⚔️👨‍👩‍👧‍👦🤝🏆🎭', style: TextStyle(fontSize: 48)),
           SizedBox(height: 8),
           Text(
-            'Üç farklı mücadele',
+            'Yedi farklı mücadele',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
@@ -268,7 +336,7 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
           ),
           SizedBox(height: 7),
           Text(
-            'Canlarını koru, zamana karşı yarış ve rakibine meydan oku.',
+            'Hız, aile, takım, turnuva ve sürpriz kurallarla her oyunda başka bir rota.',
             textAlign: TextAlign.center,
             style: TextStyle(color: Color(0xFFE7E1F0), height: 1.35),
           ),
