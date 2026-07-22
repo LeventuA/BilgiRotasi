@@ -24,6 +24,7 @@ part 'accessibility_settings.dart';
 part 'social_features.dart';
 part 'system_health.dart';
 part 'difficulty_balance.dart';
+part 'question_quality.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1585,7 +1586,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.30.0',
+                  'Bilgi Rotası • Sürüm 1.31.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -7901,9 +7902,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
           ),
         ),
         body: SafeArea(
-          child: Padding(
+          child: SingleChildScrollView(
             padding:
                 const EdgeInsets.fromLTRB(18, 8, 18, 20),
+            keyboardDismissBehavior:
+                ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
               crossAxisAlignment:
                   CrossAxisAlignment.stretch,
@@ -7981,16 +7984,16 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   _buildJokerPanel(category),
                 ],
                 const SizedBox(height: 16),
-                Expanded(
-                  child: ListView.separated(
-                    itemCount:
-                        _question.options.length,
-                    separatorBuilder: (_, __) =>
-                        const SizedBox(height: 10),
-                    itemBuilder: (context, index) {
-                      return _buildOption(index, category);
-                    },
-                  ),
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics:
+                      const NeverScrollableScrollPhysics(),
+                  itemCount: _question.options.length,
+                  separatorBuilder: (_, __) =>
+                      const SizedBox(height: 10),
+                  itemBuilder: (context, index) {
+                    return _buildOption(index, category);
+                  },
                 ),
                 if (_answered) ...[
                   Container(
@@ -8722,9 +8725,23 @@ class QuestionBank {
   static Future<QuestionBank> load() async {
     final raw = await rootBundle.loadString('assets/questions.json');
     final decoded = jsonDecode(raw) as List<dynamic>;
-    final questions = decoded
-        .map((item) => QuizQuestion.fromJson(item as Map<String, dynamic>))
+    final allQuestions = decoded
+        .map(
+          (item) =>
+              QuizQuestion.fromJson(item as Map<String, dynamic>),
+        )
         .toList();
+
+    QuestionQualityGuard.updateLastScan(allQuestions);
+
+    final questions = allQuestions
+        .where(QuestionQualityGuard.isPlayable)
+        .toList(growable: false);
+
+    debugPrint(
+      'Soru kalite taraması: '
+      '${QuestionQualityGuard.summary}',
+    );
 
     final grouped = <int, List<QuizQuestion>>{};
     for (final question in questions) {
