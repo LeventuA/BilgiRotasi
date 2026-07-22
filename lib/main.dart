@@ -14,6 +14,7 @@ part 'daily_challenge.dart';
 part 'question_feedback.dart';
 part 'xp_progression.dart';
 part 'gameplay_boost.dart';
+part 'quick_modes.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1370,6 +1371,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 const XpHomeCard(),
                 const SizedBox(height: 10),
                 const GameplayBoostSettingsButton(),
+                const SizedBox(height: 10),
+                QuickModesHomeButton(
+                  questionBank: widget.questionBank,
+                ),
                 const SizedBox(height: 18),
                 FutureBuilder<SavedGame?>(
                   future: _savedGameFuture,
@@ -1445,7 +1450,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.22',
+                  'Bilgi Rotası • Sürüm 1.23',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
