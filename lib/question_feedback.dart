@@ -266,7 +266,7 @@ class QuestionFeedbackService {
       gameMode: gameMode,
       playerName: '',
       deviceId: id,
-      appVersion: '1.20',
+      appVersion: '1.22',
       sentFromQueue: false,
     );
   }

@@ -919,11 +919,13 @@ class DailyAnswerRecord {
     required this.categoryIndex,
     required this.difficulty,
     required this.correct,
+    required this.xpMultiplier,
   });
 
   final int categoryIndex;
   final String difficulty;
   final bool correct;
+  final int xpMultiplier;
 }
 
 class DailyChallengeScreen extends StatefulWidget {
@@ -950,6 +952,8 @@ class _DailyChallengeScreenState
   final Stopwatch _stopwatch = Stopwatch();
   final List<DailyAnswerRecord> _answers =
       <DailyAnswerRecord>[];
+  final JokerWallet _jokers = JokerWallet.starter();
+  final Set<String> _usedQuestionIds = <String>{};
 
   int _questionIndex = 0;
   int _correct = 0;
@@ -1172,11 +1176,48 @@ class _DailyChallengeScreenState
 
     setState(() => _busy = true);
 
+    final plan =
+        await GameplayBoostDialogs.chooseQuestionPlan(
+      context,
+      baseCategoryIndex: _question.categoryIndex,
+      normalDifficulty: _question.difficulty,
+      wallet: null,
+      allowCategoryChange: false,
+    );
+
+    if (!mounted) return;
+
+    var questionForPlay = _question;
+
+    if (plan.risky) {
+      questionForPlay =
+          GameplayBoostQuestionPicker.riskQuestion(
+            questionBank: widget.questionBank,
+            current: _question,
+            preferredDifficulty:
+                plan.preferredDifficulty,
+            usedQuestionIds: _usedQuestionIds,
+          ) ??
+          _question;
+    }
+
+    _usedQuestionIds.add(questionForPlay.id);
+
     final correct = await Navigator.of(context).push<bool>(
           MaterialPageRoute(
             fullscreenDialog: true,
             builder: (_) => QuestionScreen(
-              question: _question,
+              question: questionForPlay,
+              jokers: _jokers,
+              riskMode: plan.risky,
+              xpMultiplier: plan.xpMultiplier,
+              onChangeQuestion: (current) async {
+                return GameplayBoostQuestionPicker.replacement(
+                  questionBank: widget.questionBank,
+                  current: current,
+                  usedQuestionIds: _usedQuestionIds,
+                );
+              },
             ),
           ),
         ) ??
@@ -1186,9 +1227,10 @@ class _DailyChallengeScreenState
 
     _answers.add(
       DailyAnswerRecord(
-        categoryIndex: _question.categoryIndex,
-        difficulty: _question.difficulty,
+        categoryIndex: questionForPlay.categoryIndex,
+        difficulty: questionForPlay.difficulty,
         correct: correct,
+        xpMultiplier: plan.xpMultiplier,
       ),
     );
 
@@ -1242,16 +1284,34 @@ class _DailyChallengeScreenState
     }
 
     if (officialSaved) {
+      final gains = <XpGainResult>[];
+
       for (final answer in _answers) {
-        await CareerStatsService.recordAnswer(
-          categoryIndex: answer.categoryIndex,
-          difficulty: answer.difficulty,
-          correct: answer.correct,
+        gains.add(
+          await CareerStatsService.recordAnswer(
+            categoryIndex: answer.categoryIndex,
+            difficulty: answer.difficulty,
+            correct: answer.correct,
+            xpMultiplier: answer.xpMultiplier,
+          ),
         );
       }
-      await XpProgressService.recordDailyChallenge(
-        perfect: result.isPerfect,
+
+      gains.add(
+        await XpProgressService.recordDailyChallenge(
+          perfect: result.isPerfect,
+        ),
       );
+
+      if (mounted) {
+        await XpCelebration.show(
+          context,
+          XpGainResult.combine(
+            gains,
+            reason: 'Günlük görev toplamı',
+          ),
+        );
+      }
     }
 
     if (!mounted) return;

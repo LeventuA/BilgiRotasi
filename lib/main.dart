@@ -13,6 +13,7 @@ import 'sound_data.dart';
 part 'daily_challenge.dart';
 part 'question_feedback.dart';
 part 'xp_progression.dart';
+part 'gameplay_boost.dart';
 
 class SoundFx {
   SoundFx._();
@@ -336,6 +337,7 @@ class GameSaveService {
       'correctAnswers': player.correctAnswers,
       'wrongAnswers': player.wrongAnswers,
       'doubleChance': player.doubleChance,
+      'jokers': player.jokers.toJson(),
       'badges': player.badges.toList()..sort(),
     };
   }
@@ -349,6 +351,7 @@ class GameSaveService {
         (json['color'] as num?)?.toInt() ?? 0xFF2563EB,
       ),
       pawnType: (json['pawnType'] as num?)?.toInt() ?? 0,
+      jokers: JokerWallet.fromJson(json['jokers']),
     );
 
     player.position = (json['position'] as num?)?.toInt() ?? 0;
@@ -550,11 +553,12 @@ class CareerStatsService {
     await _save(stats);
   }
 
-  static Future<void> recordAnswer({
+  static Future<XpGainResult> recordAnswer({
     required int categoryIndex,
     required bool correct,
     String difficulty = 'Orta',
     bool badgeEarned = false,
+    int xpMultiplier = 1,
   }) async {
     final stats = await load();
 
@@ -580,14 +584,16 @@ class CareerStatsService {
     }
 
     await _save(stats);
-    await XpProgressService.recordAnswer(
+
+    return XpProgressService.recordAnswer(
       correct: correct,
       difficulty: difficulty,
       badgeEarned: badgeEarned,
+      xpMultiplier: xpMultiplier,
     );
   }
 
-  static Future<void> recordGameCompleted({
+  static Future<XpGainResult> recordGameCompleted({
     required bool solo,
   }) async {
     final stats = await load();
@@ -599,10 +605,12 @@ class CareerStatsService {
     }
 
     await _save(stats);
-    await XpProgressService.recordGameCompleted(solo: solo);
+    return XpProgressService.recordGameCompleted(
+      solo: solo,
+    );
   }
 
-  static Future<void> recordMarathon({
+  static Future<XpGainResult> recordMarathon({
     required int questionCount,
     required int correct,
     required int bestStreak,
@@ -621,7 +629,7 @@ class CareerStatsService {
     );
 
     await _save(stats);
-    await XpProgressService.recordMarathon(
+    return XpProgressService.recordMarathon(
       questionCount: questionCount,
       perfect: correct == questionCount && questionCount > 0,
     );
@@ -727,6 +735,12 @@ Future<void> main() async {
     await XpProgressService.initialize();
   } catch (_) {
     // XP sistemi açılamasa bile oyun açılmaya devam eder.
+  }
+
+  try {
+    await GameplayBoostSettingsService.initialize();
+  } catch (_) {
+    // Oynanış ayarları açılamasa bile oyun devam eder.
   }
 
   runApp(const BilgiRotasiApp());
@@ -1354,6 +1368,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 _buildHeroHeader(),
                 const SizedBox(height: 16),
                 const XpHomeCard(),
+                const SizedBox(height: 10),
+                const GameplayBoostSettingsButton(),
                 const SizedBox(height: 18),
                 FutureBuilder<SavedGame?>(
                   future: _savedGameFuture,
@@ -1429,7 +1445,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.21',
+                  'Bilgi Rotası • Sürüm 1.22',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -2811,6 +2827,8 @@ class MarathonScreen extends StatefulWidget {
 
 class _MarathonScreenState extends State<MarathonScreen> {
   final Stopwatch _stopwatch = Stopwatch();
+  final JokerWallet _jokers = JokerWallet.starter();
+  final Set<String> _usedQuestionIds = <String>{};
 
   int _questionIndex = 0;
   int _correct = 0;
@@ -3040,11 +3058,48 @@ class _MarathonScreenState extends State<MarathonScreen> {
 
     setState(() => _busy = true);
 
+    final plan =
+        await GameplayBoostDialogs.chooseQuestionPlan(
+      context,
+      baseCategoryIndex: _question.categoryIndex,
+      normalDifficulty: _question.difficulty,
+      wallet: null,
+      allowCategoryChange: false,
+    );
+
+    if (!mounted) return;
+
+    var questionForPlay = _question;
+
+    if (plan.risky) {
+      questionForPlay =
+          GameplayBoostQuestionPicker.riskQuestion(
+            questionBank: widget.questionBank,
+            current: _question,
+            preferredDifficulty:
+                plan.preferredDifficulty,
+            usedQuestionIds: _usedQuestionIds,
+          ) ??
+          _question;
+    }
+
+    _usedQuestionIds.add(questionForPlay.id);
+
     final correct = await Navigator.of(context).push<bool>(
           MaterialPageRoute(
             fullscreenDialog: true,
             builder: (_) => QuestionScreen(
-              question: _question,
+              question: questionForPlay,
+              jokers: _jokers,
+              riskMode: plan.risky,
+              xpMultiplier: plan.xpMultiplier,
+              onChangeQuestion: (current) async {
+                return GameplayBoostQuestionPicker.replacement(
+                  questionBank: widget.questionBank,
+                  current: current,
+                  usedQuestionIds: _usedQuestionIds,
+                );
+              },
             ),
           ),
         ) ??
@@ -3063,11 +3118,20 @@ class _MarathonScreenState extends State<MarathonScreen> {
       unawaited(SoundFx.wrong());
     }
 
-    await CareerStatsService.recordAnswer(
-      categoryIndex: _question.categoryIndex,
-      difficulty: _question.difficulty,
+    final answerGain =
+        await CareerStatsService.recordAnswer(
+      categoryIndex: questionForPlay.categoryIndex,
+      difficulty: questionForPlay.difficulty,
       correct: correct,
+      xpMultiplier: plan.xpMultiplier,
     );
+
+    if (mounted) {
+      await XpCelebration.show(
+        context,
+        answerGain,
+      );
+    }
 
     final finished =
         _questionIndex + 1 >= widget.questions.length;
@@ -3086,10 +3150,18 @@ class _MarathonScreenState extends State<MarathonScreen> {
         questionCount: widget.questions.length,
         score: _correct,
       );
-      await CareerStatsService.recordMarathon(
+      final marathonGain =
+          await CareerStatsService.recordMarathon(
         questionCount: widget.questions.length,
         correct: _correct,
         bestStreak: _maxStreak,
+      );
+
+      if (!mounted) return;
+
+      await XpCelebration.show(
+        context,
+        marathonGain,
       );
 
       if (!mounted) return;
@@ -4528,6 +4600,10 @@ class _GameScreenState extends State<GameScreen> {
                       ],
                     ),
                   ),
+                JokerWalletMiniBar(
+                  wallet: _currentPlayer.jokers,
+                ),
+                const SizedBox(height: 9),
                 Text(
                   'Doğru: ${_currentPlayer.correctAnswers}   •   '
                   'Yanlış: ${_currentPlayer.wrongAnswers}',
@@ -4661,7 +4737,28 @@ class _GameScreenState extends State<GameScreen> {
       }
     }
 
-    final diceResult = _random.nextInt(6) + 1;
+    var diceResult = _random.nextInt(6) + 1;
+
+    final useReroll =
+        await GameplayBoostDialogs.offerReroll(
+      context,
+      currentRoll: diceResult,
+      wallet: _currentPlayer.jokers,
+    );
+
+    if (!mounted) return;
+
+    if (useReroll &&
+        _currentPlayer.jokers.consume(
+          JokerKind.reroll,
+        )) {
+      unawaited(SoundFx.dice());
+      HapticFeedback.mediumImpact();
+      await Future<void>.delayed(
+        const Duration(milliseconds: 450),
+      );
+      diceResult = _random.nextInt(6) + 1;
+    }
 
     setState(() {
       _lastDice = diceResult;
@@ -4737,16 +4834,28 @@ class _GameScreenState extends State<GameScreen> {
       await _saveGame();
     }
 
-    final categoryIndex = selectedCategory ??
+    final baseCategoryIndex = selectedCategory ??
         (target.categoryIndex < 0
             ? _random.nextInt(GameCategory.values.length)
             : target.categoryIndex);
+
+    final plan =
+        await GameplayBoostDialogs.chooseQuestionPlan(
+      context,
+      baseCategoryIndex: baseCategoryIndex,
+      normalDifficulty: _preferredQuestionDifficulty,
+      wallet: _currentPlayer.jokers,
+    );
+
+    if (!mounted) return;
+
+    final categoryIndex = plan.categoryIndex;
 
     final draw = widget.questionBank.nextQuestion(
       categoryIndex: categoryIndex,
       random: _random,
       usedQuestionIds: _usedQuestionIds,
-      preferredDifficulty: _preferredQuestionDifficulty,
+      preferredDifficulty: plan.preferredDifficulty,
     );
     final question = draw.question;
 
@@ -4768,6 +4877,23 @@ class _GameScreenState extends State<GameScreen> {
             builder: (_) => QuestionScreen(
               question: question,
               isBadgeQuestion: target.isBadge,
+              jokers: _currentPlayer.jokers,
+              riskMode: plan.risky,
+              xpMultiplier: plan.xpMultiplier,
+              onChangeQuestion: (current) async {
+                final replacement =
+                    GameplayBoostQuestionPicker.replacement(
+                  questionBank: widget.questionBank,
+                  current: current,
+                  usedQuestionIds: _usedQuestionIds,
+                );
+
+                if (replacement != null) {
+                  await _saveGame();
+                }
+
+                return replacement;
+              },
             ),
           ),
         ) ??
@@ -4778,6 +4904,8 @@ class _GameScreenState extends State<GameScreen> {
     await _handleAnswer(
       correct: correct,
       categoryIndex: categoryIndex,
+      difficulty: question.difficulty,
+      xpMultiplier: plan.xpMultiplier,
       wasBadgeCell: target.isBadge,
     );
   }
@@ -5075,23 +5203,51 @@ class _GameScreenState extends State<GameScreen> {
         _isBusy = false;
       });
 
-      await CareerStatsService.recordAnswer(
+      final answerGain =
+          await CareerStatsService.recordAnswer(
         categoryIndex: categoryIndex,
+        difficulty: question.difficulty,
         correct: true,
       );
-      await CareerStatsService.recordGameCompleted(
+
+      if (mounted) {
+        await XpCelebration.show(
+          context,
+          answerGain,
+        );
+      }
+
+      final completionGain =
+          await CareerStatsService.recordGameCompleted(
         solo: widget.players.length == 1,
       );
+
+      if (mounted) {
+        await XpCelebration.show(
+          context,
+          completionGain,
+        );
+      }
       await GameSaveService.clear();
       unawaited(SoundFx.win());
       HapticFeedback.heavyImpact();
       await _showWinnerDialog(_currentPlayer);
     } else {
       _currentPlayer.wrongAnswers++;
-      await CareerStatsService.recordAnswer(
+      final answerGain =
+          await CareerStatsService.recordAnswer(
         categoryIndex: categoryIndex,
+        difficulty: question.difficulty,
         correct: false,
       );
+
+      if (mounted) {
+        await XpCelebration.show(
+          context,
+          answerGain,
+        );
+      }
+
       _advanceTurn();
 
       setState(() {
@@ -5109,6 +5265,8 @@ class _GameScreenState extends State<GameScreen> {
   Future<void> _handleAnswer({
     required bool correct,
     required int categoryIndex,
+    required String difficulty,
+    required int xpMultiplier,
     required bool wasBadgeCell,
   }) async {
     final answeredPlayer = _currentPlayer;
@@ -5142,11 +5300,18 @@ class _GameScreenState extends State<GameScreen> {
       );
       HapticFeedback.selectionClick();
 
-      await CareerStatsService.recordAnswer(
+      final xpGain =
+          await CareerStatsService.recordAnswer(
         categoryIndex: categoryIndex,
+        difficulty: difficulty,
         correct: true,
         badgeEarned: badgeEarned,
+        xpMultiplier: xpMultiplier,
       );
+
+      if (mounted) {
+        await XpCelebration.show(context, xpGain);
+      }
     } else {
       answeredPlayer.wrongAnswers++;
 
@@ -5173,10 +5338,17 @@ class _GameScreenState extends State<GameScreen> {
 
       unawaited(SoundFx.wrong());
 
-      await CareerStatsService.recordAnswer(
+      final xpGain =
+          await CareerStatsService.recordAnswer(
         categoryIndex: categoryIndex,
+        difficulty: difficulty,
         correct: false,
+        xpMultiplier: xpMultiplier,
       );
+
+      if (mounted) {
+        await XpCelebration.show(context, xpGain);
+      }
     }
 
     await _saveGame();
@@ -7330,12 +7502,22 @@ class QuestionScreen extends StatefulWidget {
     required this.question,
     this.isBadgeQuestion = false,
     this.isFinalQuestion = false,
+    this.jokers,
+    this.onChangeQuestion,
+    this.riskMode = false,
+    this.xpMultiplier = 1,
     super.key,
   });
 
   final QuizQuestion question;
   final bool isBadgeQuestion;
   final bool isFinalQuestion;
+  final JokerWallet? jokers;
+  final Future<QuizQuestion?> Function(
+    QuizQuestion current,
+  )? onChangeQuestion;
+  final bool riskMode;
+  final int xpMultiplier;
 
   @override
   State<QuestionScreen> createState() =>
@@ -7356,12 +7538,19 @@ class _QuestionScreenState extends State<QuestionScreen> {
   String? _difficultyVote;
   bool _errorReported = false;
   bool _feedbackLoading = false;
+  late QuizQuestion _question;
+  final Set<int> _hiddenOptions = <int>{};
+  final Set<int> _disabledOptions = <int>{};
+  bool _secondChanceArmed = false;
+  bool _secondChanceUsed = false;
+  bool _jokerBusy = false;
 
   bool get _answered => _selectedIndex != null;
   bool get _correct =>
-      _selectedIndex == widget.question.answerIndex;
+      _selectedIndex == _question.answerIndex;
 
   String get _gameMode {
+    if (widget.riskMode) return 'Riskli soru';
     if (widget.isFinalQuestion) return 'Final sorusu';
     if (widget.isBadgeQuestion) return 'Rozet sorusu';
     return 'Normal soru';
@@ -7370,6 +7559,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   void initState() {
     super.initState();
+    _question = widget.question;
     unawaited(_loadFeedbackState());
     unawaited(QuestionFeedbackService.flushPending());
   }
@@ -7377,11 +7567,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
   Future<void> _loadFeedbackState() async {
     final vote =
         await QuestionFeedbackService.difficultyVoteFor(
-      widget.question.id,
+      _question.id,
     );
     final reported =
         await QuestionFeedbackService.hasErrorReport(
-      widget.question.id,
+      _question.id,
     );
 
     if (!mounted) return;
@@ -7395,7 +7585,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     final category =
-        GameCategory.values[widget.question.categoryIndex];
+        GameCategory.values[_question.categoryIndex];
 
     return PopScope(
       canPop: false,
@@ -7457,7 +7647,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                   BorderRadius.circular(999),
                             ),
                             child: Text(
-                              widget.question.difficulty,
+                              _question.difficulty,
                               style: TextStyle(
                                 color: category.darkColor,
                                 fontWeight:
@@ -7475,7 +7665,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       ),
                       const SizedBox(height: 18),
                       Text(
-                        widget.question.text,
+                        _question.text,
                         style: const TextStyle(
                           fontSize: 23,
                           height: 1.25,
@@ -7485,11 +7675,26 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     ],
                   ),
                 ),
+                const LiveStreakPill(),
+                if (widget.riskMode) ...[
+                  const SizedBox(height: 10),
+                  RiskQuestionBanner(
+                    multiplier: widget.xpMultiplier,
+                  ),
+                ],
+                if (!_answered &&
+                    !widget.isFinalQuestion &&
+                    GameplayBoostSettingsService
+                        .current.jokersEnabled &&
+                    widget.jokers != null) ...[
+                  const SizedBox(height: 10),
+                  _buildJokerPanel(category),
+                ],
                 const SizedBox(height: 16),
                 Expanded(
                   child: ListView.separated(
                     itemCount:
-                        widget.question.options.length,
+                        _question.options.length,
                     separatorBuilder: (_, __) =>
                         const SizedBox(height: 10),
                     itemBuilder: (context, index) {
@@ -7509,10 +7714,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     ),
                     child: Text(
                       _correct
-                          ? 'Doğru! ${widget.question.explanation}'
+                          ? 'Doğru! ${_question.explanation}'
                           : 'Yanlış. Doğru cevap: '
-                              '${widget.question.options[widget.question.answerIndex]}. '
-                              '${widget.question.explanation}',
+                              '${_question.options[_question.answerIndex]}. '
+                              '${_question.explanation}',
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                       ),
@@ -7538,6 +7743,192 @@ class _QuestionScreenState extends State<QuestionScreen> {
         ),
       ),
     );
+  }
+
+  Widget _buildJokerPanel(
+    GameCategory category,
+  ) {
+    final wallet = widget.jokers!;
+
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(17),
+        border: Border.all(
+          color: category.color.withOpacity(0.25),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            'Jokerler • Her biri oyun başına 1 adet',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFF64748B),
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              JokerActionButton(
+                emoji: '✂️',
+                label: '50:50',
+                count: wallet.fiftyFifty,
+                onPressed: _jokerBusy ||
+                        wallet.fiftyFifty <= 0
+                    ? null
+                    : _useFiftyFifty,
+              ),
+              const SizedBox(width: 6),
+              JokerActionButton(
+                emoji: '🔄',
+                label: 'Değiştir',
+                count: wallet.changeQuestion,
+                onPressed: _jokerBusy ||
+                        wallet.changeQuestion <= 0 ||
+                        widget.onChangeQuestion == null
+                    ? null
+                    : _changeQuestion,
+              ),
+              const SizedBox(width: 6),
+              JokerActionButton(
+                emoji: '🍀',
+                label: '2. Şans',
+                count: wallet.secondChance,
+                active: _secondChanceArmed,
+                onPressed: _jokerBusy ||
+                        wallet.secondChance <= 0 ||
+                        _secondChanceArmed ||
+                        _secondChanceUsed
+                    ? null
+                    : _armSecondChance,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _useFiftyFifty() {
+    final wallet = widget.jokers;
+    if (wallet == null ||
+        !wallet.consume(JokerKind.fiftyFifty)) {
+      return;
+    }
+
+    final wrongOptions = <int>[
+      for (var index = 0;
+          index < _question.options.length;
+          index++)
+        if (index != _question.answerIndex)
+          index,
+    ]..shuffle(Random());
+
+    setState(() {
+      _hiddenOptions.addAll(
+        wrongOptions.take(2),
+      );
+    });
+
+    HapticFeedback.mediumImpact();
+    _showMessage('✂️ İki yanlış seçenek elendi.');
+  }
+
+  void _armSecondChance() {
+    final wallet = widget.jokers;
+    if (wallet == null ||
+        !wallet.consume(JokerKind.secondChance)) {
+      return;
+    }
+
+    setState(() {
+      _secondChanceArmed = true;
+    });
+
+    HapticFeedback.mediumImpact();
+    _showMessage(
+      '🍀 İlk cevabın yanlış olursa bir kez daha deneyebilirsin.',
+    );
+  }
+
+  Future<void> _changeQuestion() async {
+    final wallet = widget.jokers;
+    final callback = widget.onChangeQuestion;
+
+    if (wallet == null ||
+        callback == null ||
+        wallet.changeQuestion <= 0 ||
+        _jokerBusy) {
+      return;
+    }
+
+    setState(() => _jokerBusy = true);
+
+    final replacement = await callback(_question);
+
+    if (!mounted) return;
+
+    if (replacement == null) {
+      setState(() => _jokerBusy = false);
+      _showMessage(
+        'Bu kategoride kullanılabilir başka soru kalmadı.',
+      );
+      return;
+    }
+
+    wallet.consume(JokerKind.changeQuestion);
+
+    setState(() {
+      _question = replacement;
+      _selectedIndex = null;
+      _difficultyVote = null;
+      _errorReported = false;
+      _hiddenOptions.clear();
+      _disabledOptions.clear();
+      _secondChanceArmed = false;
+      _secondChanceUsed = false;
+      _jokerBusy = false;
+    });
+
+    await _loadFeedbackState();
+
+    if (!mounted) return;
+
+    HapticFeedback.mediumImpact();
+    _showMessage('🔄 Soru değiştirildi.');
+  }
+
+  void _selectOption(int index) {
+    if (_answered ||
+        _hiddenOptions.contains(index) ||
+        _disabledOptions.contains(index)) {
+      return;
+    }
+
+    HapticFeedback.selectionClick();
+
+    if (_secondChanceArmed &&
+        !_secondChanceUsed &&
+        index != _question.answerIndex) {
+      setState(() {
+        _secondChanceArmed = false;
+        _secondChanceUsed = true;
+        _disabledOptions.add(index);
+      });
+
+      HapticFeedback.heavyImpact();
+      _showMessage(
+        '🍀 İlk cevap yanlış. İkinci şansını kullan!',
+      );
+      return;
+    }
+
+    setState(() => _selectedIndex = index);
   }
 
   Widget _buildFeedbackPanel(GameCategory category) {
@@ -7663,7 +8054,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
     final accepted =
         await QuestionFeedbackService.submitDifficultyVote(
-      question: widget.question,
+      question: _question,
       selectedIndex: selectedIndex,
       vote: vote,
       gameMode: _gameMode,
@@ -7769,7 +8160,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
     final accepted =
         await QuestionFeedbackService.submitErrorReport(
-      question: widget.question,
+      question: _question,
       selectedIndex: selectedIndex,
       reason: reason,
       note: note,
@@ -7802,9 +8193,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
     int index,
     GameCategory category,
   ) {
+    if (_hiddenOptions.contains(index)) {
+      return const SizedBox.shrink();
+    }
+
+    final isDisabled =
+        _disabledOptions.contains(index);
     final isSelected = _selectedIndex == index;
     final isCorrectOption =
-        widget.question.answerIndex == index;
+        _question.answerIndex == index;
 
     Color background = Colors.white;
     Color border = const Color(0xFFCBD5E1);
@@ -7827,12 +8224,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
       borderRadius: BorderRadius.circular(18),
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
-        onTap: _answered
+        onTap: _answered || isDisabled
             ? null
-            : () {
-                HapticFeedback.selectionClick();
-                setState(() => _selectedIndex = index);
-              },
+            : () => _selectOption(index),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
           padding: const EdgeInsets.symmetric(
@@ -7842,7 +8236,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: border,
+              color: isDisabled
+                  ? const Color(0xFFE2E8F0)
+                  : border,
               width: isSelected ? 2 : 1.2,
             ),
           ),
@@ -7868,7 +8264,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  widget.question.options[index],
+                  _question.options[index],
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -7890,11 +8286,13 @@ class PlayerData {
     required this.name,
     required this.color,
     required this.pawnType,
-  });
+    JokerWallet? jokers,
+  }) : jokers = jokers ?? JokerWallet.starter();
 
   final String name;
   final Color color;
   final int pawnType;
+  final JokerWallet jokers;
   int position = 0;
   int movePulse = 0;
   int correctAnswers = 0;

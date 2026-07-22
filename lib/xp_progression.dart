@@ -157,32 +157,68 @@ class XpProgressService {
     }
   }
 
-  static Future<void> recordAnswer({
+  static Future<XpGainResult> recordAnswer({
     required bool correct,
     required String difficulty,
     required bool badgeEarned,
+    int xpMultiplier = 1,
   }) async {
     final progress = await load();
+    final oldLevel = progress.level;
+    final oldRank = progress.rank;
+    final previousStreak = progress.currentStreak;
+    final safeRiskMultiplier =
+        xpMultiplier.clamp(1, 3).toInt();
+
     var amount = 0;
     var reason = 'Yanlış cevap • XP kaybı yok';
 
     if (correct) {
       progress.currentStreak++;
-      final base = switch (difficulty.trim().toLowerCase()) {
+
+      final base = switch (
+        difficulty.trim().toLowerCase()
+      ) {
         'kolay' => 10,
         'zor' => 25,
         _ => 15,
       };
-      final streakBonus = progress.currentStreak >= 3
-          ? min(20, (progress.currentStreak - 2) * 3)
-          : 0;
-      amount = base + streakBonus + (badgeEarned ? 40 : 0);
-      progress.bestStreak = max(progress.bestStreak, progress.currentStreak);
-      reason = badgeEarned
-          ? 'Doğru cevap + rozet bonusu'
-          : streakBonus > 0
-              ? 'Doğru cevap + seri bonusu'
-              : 'Doğru cevap';
+
+      final streakMultiplier =
+          progress.currentStreak >= 10
+              ? 3
+              : progress.currentStreak >= 5
+                  ? 2
+                  : 1;
+
+      final streakBonus =
+          progress.currentStreak >= 3 ? 5 : 0;
+      final badgeBonus = badgeEarned ? 40 : 0;
+
+      amount = (
+        base * streakMultiplier +
+        streakBonus +
+        badgeBonus
+      ) * safeRiskMultiplier;
+
+      progress.bestStreak = max(
+        progress.bestStreak,
+        progress.currentStreak,
+      );
+
+      final parts = <String>[
+        'Doğru cevap',
+        if (streakMultiplier > 1)
+          '${streakMultiplier}x seri',
+        if (streakBonus > 0)
+          'seri bonusu',
+        if (badgeEarned)
+          'rozet bonusu',
+        if (safeRiskMultiplier > 1)
+          '${safeRiskMultiplier}x risk',
+      ];
+
+      reason = parts.join(' + ');
     } else {
       progress.currentStreak = 0;
     }
@@ -190,39 +226,72 @@ class XpProgressService {
     progress.totalXp += amount;
     progress.lastGain = amount;
     progress.lastReason = reason;
+
     await _save(progress);
+
+    return XpGainResult(
+      amount: amount,
+      oldLevel: oldLevel,
+      newLevel: progress.level,
+      previousStreak: previousStreak,
+      currentStreak: progress.currentStreak,
+      reason: reason,
+      xpMultiplier: safeRiskMultiplier,
+      oldRank: oldRank,
+      newRank: progress.rank,
+    );
   }
 
-  static Future<void> recordGameCompleted({required bool solo}) async {
-    await _award(
+  static Future<XpGainResult> recordGameCompleted({required bool solo}) async {
+    return _award(
       solo ? 120 : 180,
       solo ? 'Serbest Rota tamamlandı' : 'Çok oyunculu oyun kazanıldı',
     );
   }
 
-  static Future<void> recordMarathon({
+  static Future<XpGainResult> recordMarathon({
     required int questionCount,
     required bool perfect,
   }) async {
-    await _award(
+    return _award(
       max(50, questionCount * 3) + (perfect ? 100 : 0),
       perfect ? 'Kusursuz maraton bonusu' : 'Soru Maratonu tamamlandı',
     );
   }
 
-  static Future<void> recordDailyChallenge({required bool perfect}) async {
-    await _award(
+  static Future<XpGainResult> recordDailyChallenge({required bool perfect}) async {
+    return _award(
       perfect ? 150 : 75,
       perfect ? 'Kusursuz günlük görev' : 'Günlük görev tamamlandı',
     );
   }
 
-  static Future<void> _award(int amount, String reason) async {
+  static Future<XpGainResult> _award(
+    int amount,
+    String reason,
+  ) async {
     final progress = await load();
-    progress.totalXp += max(0, amount);
-    progress.lastGain = max(0, amount);
+    final oldLevel = progress.level;
+    final oldRank = progress.rank;
+    final safeAmount = max(0, amount);
+
+    progress.totalXp += safeAmount;
+    progress.lastGain = safeAmount;
     progress.lastReason = reason;
+
     await _save(progress);
+
+    return XpGainResult(
+      amount: safeAmount,
+      oldLevel: oldLevel,
+      newLevel: progress.level,
+      previousStreak: progress.currentStreak,
+      currentStreak: progress.currentStreak,
+      reason: reason,
+      xpMultiplier: 1,
+      oldRank: oldRank,
+      newRank: progress.rank,
+    );
   }
 
   static Future<void> clear() async {
