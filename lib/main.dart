@@ -18,6 +18,7 @@ part 'quick_modes.dart';
 part 'advanced_modes.dart';
 part 'retention_system.dart';
 part 'visual_collection.dart';
+part 'accessibility_settings.dart';
 
 class SoundFx {
   SoundFx._();
@@ -134,7 +135,9 @@ class SoundFx {
       await player.play(
         DeviceFileSource(path),
         volume: (
-          volume * atmosphere.volumeMultiplier
+          volume *
+              atmosphere.volumeMultiplier *
+              AppPreferencesService.soundMultiplier
         ).clamp(0.0, 1.0).toDouble(),
       );
 
@@ -797,6 +800,12 @@ Future<void> main() async {
     // Koleksiyon sistemi açılamasa bile oyun devam eder.
   }
 
+  try {
+    await AppPreferencesService.initialize();
+  } catch (_) {
+    // Erişilebilirlik ayarları açılamasa bile oyun devam eder.
+  }
+
   runApp(const BilgiRotasiApp());
 }
 
@@ -844,6 +853,11 @@ class _BilgiRotasiAppState extends State<BilgiRotasiApp> {
           ),
         ),
       ),
+      builder: (context, child) {
+        return AccessibilityAppFrame(
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
       home: FutureBuilder<QuestionBank>(
         future: _questionBankFuture,
         builder: (context, snapshot) {
@@ -1393,6 +1407,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _reloadSavedGame();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        unawaited(
+          FirstRunTutorial.showIfNeeded(context),
+        );
+      }
+    });
   }
 
   void _reloadSavedGame() {
@@ -1455,6 +1477,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 const RetentionHomeCard(),
                 const SizedBox(height: 10),
                 const CollectionHomeButton(),
+                const SizedBox(height: 10),
+                const AccessibilitySettingsButton(),
                 const SizedBox(height: 16),
                 _buildNewGameCard(),
                 const SizedBox(height: 16),
@@ -1508,7 +1532,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 18),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.26',
+                  'Bilgi Rotası • Sürüm 1.27',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -1767,7 +1791,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _onModeCardTap(int index) async {
-    HapticFeedback.selectionClick();
+    GameHaptics.selectionClick();
 
     switch (index) {
       case 0:
@@ -2287,10 +2311,14 @@ class _SoloRouteSetupScreenState
   ];
 
   final TextEditingController _nameController =
-      TextEditingController(text: 'Oyuncu');
+      TextEditingController(
+        text: AppPreferencesService
+            .current.defaultPlayerName,
+      );
 
   int _pawnType = VisualCollectionService.current.favoritePawn;
-  int _colorIndex = 1;
+  int _colorIndex = AppPreferencesService
+      .current.defaultColorIndex;
   bool _starting = false;
 
   @override
@@ -2393,7 +2421,7 @@ class _SoloRouteSetupScreenState
 
                     return InkWell(
                       onTap: () {
-                        HapticFeedback.selectionClick();
+                        GameHaptics.selectionClick();
                         setState(() => _colorIndex = index);
                       },
                       customBorder: const CircleBorder(),
@@ -2457,7 +2485,7 @@ class _SoloRouteSetupScreenState
 
                   return InkWell(
                     onTap: () {
-                      HapticFeedback.selectionClick();
+                      GameHaptics.selectionClick();
                       setState(() => _pawnType = index);
                     },
                     borderRadius: BorderRadius.circular(18),
@@ -2773,7 +2801,7 @@ class _MarathonSetupScreenState
 
     return InkWell(
       onTap: () {
-        HapticFeedback.selectionClick();
+        GameHaptics.selectionClick();
 
         setState(() {
           _categoryIndex = categoryIndex;
@@ -3558,14 +3586,24 @@ class PlayerSetupScreen extends StatefulWidget {
 class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
   int _playerCount = 2;
 
-  final List<TextEditingController> _controllers = List.generate(
+  final List<TextEditingController> _controllers =
+      List.generate(
     6,
-    (index) => TextEditingController(text: 'Oyuncu ${index + 1}'),
+    (index) => TextEditingController(
+      text: index == 0
+          ? AppPreferencesService
+              .current.defaultPlayerName
+          : 'Oyuncu ${index + 1}',
+    ),
   );
 
-  final List<int> _selectedPawnTypes = List<int>.generate(
+  final List<int> _selectedPawnTypes =
+      List<int>.generate(
     6,
-    (index) => index,
+    (index) => index == 0
+        ? VisualCollectionService
+            .current.favoritePawn
+        : index,
   );
 
   static const List<Color> _playerColors = [
@@ -3872,7 +3910,15 @@ class _WinnerScreenState extends State<WinnerScreen>
     _confettiController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 3600),
-    )..repeat();
+    );
+
+    if (AppPreferencesService
+            .current.animationMode ==
+        'minimal') {
+      _confettiController.value = 0.35;
+    } else {
+      _confettiController.repeat();
+    }
   }
 
   @override
@@ -4370,7 +4416,8 @@ class _GameScreenState extends State<GameScreen> {
   double _routeOpacity = 0;
   int? _landingNodeId;
   int _landingPulse = 0;
-  bool _soundEnabled = true;
+  bool _soundEnabled =
+      AppPreferencesService.current.soundEnabled;
   bool _allowRoutePop = false;
   bool _exitDialogOpen = false;
   final Set<String> _usedQuestionIds = <String>{};
@@ -4379,6 +4426,10 @@ class _GameScreenState extends State<GameScreen> {
       widget.players[_currentPlayerIndex];
 
   String get _preferredQuestionDifficulty {
+    if (AppPreferencesService.current.childMode) {
+      return 'Kolay';
+    }
+
     final badgeCount = _currentPlayer.badges.length;
 
     if (badgeCount <= 1) return 'Kolay';
@@ -4432,8 +4483,10 @@ class _GameScreenState extends State<GameScreen> {
 
               setState(() {
                 _soundEnabled = willEnable;
-                SoundFx.setEnabled(willEnable);
               });
+
+              await AppPreferencesService
+                  .setSoundEnabled(willEnable);
 
               if (willEnable) {
                 await SoundFx.test();
@@ -4519,6 +4572,7 @@ class _GameScreenState extends State<GameScreen> {
                 );
               },
             ),
+            const AccessibilityCategoryLegend(),
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 4, 12, 14),
               child: Text(
@@ -4782,7 +4836,7 @@ class _GameScreenState extends State<GameScreen> {
     });
 
     unawaited(SoundFx.dice());
-    HapticFeedback.mediumImpact();
+    GameHaptics.mediumImpact();
 
     for (var i = 0; i < 12; i++) {
       await Future<void>.delayed(
@@ -4796,7 +4850,7 @@ class _GameScreenState extends State<GameScreen> {
       });
 
       if (i.isEven) {
-        HapticFeedback.selectionClick();
+        GameHaptics.selectionClick();
       }
     }
 
@@ -4816,7 +4870,7 @@ class _GameScreenState extends State<GameScreen> {
           JokerKind.reroll,
         )) {
       unawaited(SoundFx.dice());
-      HapticFeedback.mediumImpact();
+      GameHaptics.mediumImpact();
       await Future<void>.delayed(
         const Duration(milliseconds: 450),
       );
@@ -4828,7 +4882,7 @@ class _GameScreenState extends State<GameScreen> {
       _status = '${_currentPlayer.name} $diceResult attı!';
     });
 
-    HapticFeedback.heavyImpact();
+    GameHaptics.heavyImpact();
 
     await Future<void>.delayed(
       const Duration(milliseconds: 1000),
@@ -4981,7 +5035,7 @@ class _GameScreenState extends State<GameScreen> {
       });
 
       unawaited(SoundFx.step());
-      HapticFeedback.selectionClick();
+      GameHaptics.selectionClick();
 
       await Future<void>.delayed(
         const Duration(milliseconds: 390),
@@ -5001,7 +5055,7 @@ class _GameScreenState extends State<GameScreen> {
     });
 
     unawaited(SoundFx.landing());
-    HapticFeedback.heavyImpact();
+    GameHaptics.heavyImpact();
 
     await Future<void>.delayed(
       const Duration(milliseconds: 520),
@@ -5024,7 +5078,7 @@ class _GameScreenState extends State<GameScreen> {
     if (!mounted) return null;
 
     unawaited(SoundFx.badge());
-    HapticFeedback.heavyImpact();
+    GameHaptics.heavyImpact();
 
     switch (effect) {
       case SpecialCellEffect.forwardTwo:
@@ -5197,7 +5251,7 @@ class _GameScreenState extends State<GameScreen> {
           '${_currentPlayer.name}, parlayan hedeflerden birine dokun.';
     });
 
-    HapticFeedback.mediumImpact();
+    GameHaptics.mediumImpact();
 
     final selected = await completer.future;
 
@@ -5217,7 +5271,7 @@ class _GameScreenState extends State<GameScreen> {
 
     if (completer == null || completer.isCompleted) return;
 
-    HapticFeedback.heavyImpact();
+    GameHaptics.heavyImpact();
     completer.complete(option);
   }
 
@@ -5293,7 +5347,7 @@ class _GameScreenState extends State<GameScreen> {
       }
       await GameSaveService.clear();
       unawaited(SoundFx.win());
-      HapticFeedback.heavyImpact();
+      GameHaptics.heavyImpact();
       await _showWinnerDialog(_currentPlayer);
     } else {
       _currentPlayer.wrongAnswers++;
@@ -5361,7 +5415,7 @@ class _GameScreenState extends State<GameScreen> {
             ? SoundFx.badge()
             : SoundFx.correct(),
       );
-      HapticFeedback.selectionClick();
+      GameHaptics.selectionClick();
 
       final xpGain =
           await CareerStatsService.recordAnswer(
@@ -7920,7 +7974,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       );
     });
 
-    HapticFeedback.mediumImpact();
+    GameHaptics.mediumImpact();
     _showMessage('✂️ İki yanlış seçenek elendi.');
   }
 
@@ -7935,7 +7989,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       _secondChanceArmed = true;
     });
 
-    HapticFeedback.mediumImpact();
+    GameHaptics.mediumImpact();
     _showMessage(
       '🍀 İlk cevabın yanlış olursa bir kez daha deneyebilirsin.',
     );
@@ -7984,7 +8038,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
     if (!mounted) return;
 
-    HapticFeedback.mediumImpact();
+    GameHaptics.mediumImpact();
     _showMessage('🔄 Soru değiştirildi.');
   }
 
@@ -7995,7 +8049,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       return;
     }
 
-    HapticFeedback.selectionClick();
+    GameHaptics.selectionClick();
 
     if (_secondChanceArmed &&
         !_secondChanceUsed &&
@@ -8006,7 +8060,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
         _disabledOptions.add(index);
       });
 
-      HapticFeedback.heavyImpact();
+      GameHaptics.heavyImpact();
       _showMessage(
         '🍀 İlk cevap yanlış. İkinci şansını kullan!',
       );
