@@ -41998,5 +41998,1629 @@
     "answerIndex": 1,
     "difficulty": "Zor",
     "explanation": "ABD, 2010 FIBA Dünya Basketbol Şampiyonası ile ilişkilidir."
+  },
+  {
+    "id": "q3001",
+    "categoryIndex": 0,
+    "question": "Dünyanın en derin gölü hangisidir?",
+    "options": [
+      "Hazar Denizi",
+      "Baykal Gölü",
+      "Tanganika Gölü",
+      "Superior Gölü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sibirya’daki Baykal Gölü yaklaşık 1.700 metre derinliğiyle dünyanın en derin gölüdür."
+  },
+  {
+    "id": "q3002",
+    "categoryIndex": 0,
+    "question": "Büyük Set Resifi, Avustralya’nın hangi eyaletinin açıklarında uzanır?",
+    "options": [
+      "Queensland",
+      "Victoria",
+      "Tazmanya",
+      "Güney Avustralya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Büyük Set Resifi, Avustralya’nın kuzeydoğusunda Queensland kıyıları boyunca uzanır."
+  },
+  {
+    "id": "q3003",
+    "categoryIndex": 0,
+    "question": "Malakka Boğazı hangi iki kara parçası arasında yer alır?",
+    "options": [
+      "Malay Yarımadası ile Sumatra",
+      "İber Yarımadası ile Fas",
+      "Sicilya ile İtalya",
+      "Kore Yarımadası ile Japonya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Malakka Boğazı, Malay Yarımadası ile Endonezya’nın Sumatra Adası arasındadır."
+  },
+  {
+    "id": "q3004",
+    "categoryIndex": 0,
+    "question": "Titicaca Gölü hangi iki ülkenin sınırında bulunur?",
+    "options": [
+      "Peru ile Bolivya",
+      "Şili ile Arjantin",
+      "Ekvador ile Kolombiya",
+      "Brezilya ile Paraguay"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Titicaca Gölü, And Dağları’nda Peru ile Bolivya arasında yer alır."
+  },
+  {
+    "id": "q3006",
+    "categoryIndex": 0,
+    "question": "Atacama Çölü ağırlıklı olarak hangi ülkededir?",
+    "options": [
+      "Şili",
+      "Meksika",
+      "Mısır",
+      "Moğolistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dünyanın en kurak bölgelerinden biri olan Atacama Çölü, Şili’nin kuzeyinde bulunur."
+  },
+  {
+    "id": "q3007",
+    "categoryIndex": 0,
+    "question": "Elbruz Dağı hangi sıradağ sistemindedir?",
+    "options": [
+      "Kafkas Dağları",
+      "Alpler",
+      "And Dağları",
+      "Kayalık Dağlar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Elbruz, Kafkas Dağları’nda yer alır ve Avrupa’nın en yüksek zirvesi kabul edilir."
+  },
+  {
+    "id": "q3008",
+    "categoryIndex": 0,
+    "question": "Mekong Deltası hangi ülkede denize ulaşır?",
+    "options": [
+      "Vietnam",
+      "Tayland",
+      "Kamboçya",
+      "Laos"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Mekong Nehri, Vietnam’ın güneyindeki geniş deltadan Güney Çin Denizi’ne dökülür."
+  },
+  {
+    "id": "q3009",
+    "categoryIndex": 0,
+    "question": "Okavango Deltası hangi ülkededir?",
+    "options": [
+      "Botsvana",
+      "Namibya",
+      "Kenya",
+      "Angola"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Okavango Nehri, Botsvana’daki Kalahari Havzası içinde denize ulaşmadan büyük bir iç delta oluşturur."
+  },
+  {
+    "id": "q3010",
+    "categoryIndex": 0,
+    "question": "Salar de Uyuni tuz düzlüğü hangi ülkededir?",
+    "options": [
+      "Bolivya",
+      "Peru",
+      "Şili",
+      "Arjantin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Salar de Uyuni, Bolivya’nın güneybatısında bulunan dünyanın en büyük tuz düzlüklerinden biridir."
+  },
+  {
+    "id": "q3011",
+    "categoryIndex": 0,
+    "question": "Bering Boğazı hangi iki kıtayı birbirinden ayırır?",
+    "options": [
+      "Asya ile Kuzey Amerika",
+      "Avrupa ile Afrika",
+      "Asya ile Avrupa",
+      "Kuzey Amerika ile Güney Amerika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bering Boğazı, Rusya’nın doğusu ile Alaska arasında Asya ve Kuzey Amerika’yı ayırır."
+  },
+  {
+    "id": "q3012",
+    "categoryIndex": 0,
+    "question": "Aşağıdaki ülkelerden hangisinin Tanganika Gölü’ne kıyısı yoktur?",
+    "options": [
+      "Kenya",
+      "Tanzanya",
+      "Burundi",
+      "Zambiya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Tanganika Gölü; Tanzanya, Demokratik Kongo Cumhuriyeti, Burundi ve Zambiya ile çevrilidir."
+  },
+  {
+    "id": "q3013",
+    "categoryIndex": 0,
+    "question": "Patagonya bölgesi hangi iki ülke arasında paylaşılır?",
+    "options": [
+      "Arjantin ile Şili",
+      "Peru ile Bolivya",
+      "Brezilya ile Uruguay",
+      "Kolombiya ile Venezuela"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Patagonya, Güney Amerika’nın güneyinde Arjantin ve Şili topraklarına yayılan bir bölgedir."
+  },
+  {
+    "id": "q3014",
+    "categoryIndex": 0,
+    "question": "Victoria Şelaleleri hangi nehir üzerindedir?",
+    "options": [
+      "Zambezi",
+      "Nil",
+      "Kongo",
+      "Limpopo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Victoria Şelaleleri, Zambiya ile Zimbabve sınırındaki Zambezi Nehri üzerindedir."
+  },
+  {
+    "id": "q3016",
+    "categoryIndex": 0,
+    "question": "Geleneksel coğrafi kabule göre Avrupa ile Asya arasındaki sınırın bir bölümünü hangi dağlar oluşturur?",
+    "options": [
+      "Ural Dağları",
+      "Atlas Dağları",
+      "Apenin Dağları",
+      "Pireneler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ural Dağları, Avrupa ile Asya arasındaki geleneksel sınır çizgisinin önemli bir bölümüdür."
+  },
+  {
+    "id": "q3017",
+    "categoryIndex": 0,
+    "question": "Aconcagua Dağı hangi sıradağlardadır?",
+    "options": [
+      "And Dağları",
+      "Himalayalar",
+      "Alpler",
+      "Kafkas Dağları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Aconcagua, Arjantin’deki And Dağları’nda bulunur ve Amerika kıtalarının en yüksek zirvesidir."
+  },
+  {
+    "id": "q3018",
+    "categoryIndex": 0,
+    "question": "Ren Nehri ağırlıklı olarak hangi ülkedeki deltadan Kuzey Denizi’ne ulaşır?",
+    "options": [
+      "Hollanda",
+      "İspanya",
+      "Polonya",
+      "İtalya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ren, Hollanda’da geniş bir delta sistemi oluşturarak Kuzey Denizi’ne dökülür."
+  },
+  {
+    "id": "q3019",
+    "categoryIndex": 0,
+    "question": "Mozambik Kanalı hangi ada ile Afrika ana karası arasındadır?",
+    "options": [
+      "Madagaskar",
+      "Sicilya",
+      "Sri Lanka",
+      "Borneo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Mozambik Kanalı, Madagaskar ile Mozambik kıyıları arasında uzanır."
+  },
+  {
+    "id": "q3020",
+    "categoryIndex": 0,
+    "question": "Gobi Çölü ağırlıklı olarak hangi iki ülkeye yayılır?",
+    "options": [
+      "Moğolistan ile Çin",
+      "Hindistan ile Pakistan",
+      "Mısır ile Libya",
+      "Şili ile Peru"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gobi, Moğolistan’ın güneyi ile Çin’in kuzeyine yayılan büyük bir soğuk çöldür."
+  },
+  {
+    "id": "q3021",
+    "categoryIndex": 1,
+    "question": "Baba (The Godfather) filminin yönetmeni kimdir?",
+    "options": [
+      "Francis Ford Coppola",
+      "Martin Scorsese",
+      "Ridley Scott",
+      "Stanley Kubrick"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "1972 yapımı Baba filmini Francis Ford Coppola yönetti; film Mario Puzo’nun romanından uyarlandı."
+  },
+  {
+    "id": "q3022",
+    "categoryIndex": 1,
+    "question": "Ruhların Kaçışı (Spirited Away) filminin yönetmeni kimdir?",
+    "options": [
+      "Hayao Miyazaki",
+      "Mamoru Hosoda",
+      "Satoshi Kon",
+      "Isao Takahata"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ruhların Kaçışı, Hayao Miyazaki’nin yazıp yönettiği Studio Ghibli filmidir."
+  },
+  {
+    "id": "q3023",
+    "categoryIndex": 1,
+    "question": "Parazit (Parasite) filminin yönetmeni kimdir?",
+    "options": [
+      "Bong Joon Ho",
+      "Park Chan-wook",
+      "Lee Chang-dong",
+      "Kim Jee-woon"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Parazit, Güney Koreli yönetmen Bong Joon Ho’nun filmidir ve En İyi Film Oscar’ını kazandı."
+  },
+  {
+    "id": "q3024",
+    "categoryIndex": 1,
+    "question": "Breaking Bad dizisinin yaratıcısı kimdir?",
+    "options": [
+      "Vince Gilligan",
+      "David Chase",
+      "Matthew Weiner",
+      "David Simon"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Breaking Bad, Vince Gilligan tarafından yaratılan ve AMC’de yayımlanan bir suç dramasıdır."
+  },
+  {
+    "id": "q3025",
+    "categoryIndex": 1,
+    "question": "The Wire dizisinin ana hikâyesi hangi ABD şehrinde geçer?",
+    "options": [
+      "Baltimore",
+      "Boston",
+      "Seattle",
+      "Miami"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "The Wire, Maryland eyaletindeki Baltimore’un kurumlarını ve suç dünyasını merkezine alır."
+  },
+  {
+    "id": "q3026",
+    "categoryIndex": 1,
+    "question": "The Office dizisinin ABD uyarlamasında çalışanların bağlı olduğu kâğıt şirketinin adı nedir?",
+    "options": [
+      "Dunder Mifflin",
+      "Sterling Cooper",
+      "Waystar Royco",
+      "Pied Piper"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dizinin büyük bölümü Dunder Mifflin adlı kurgusal kâğıt şirketinin Scranton şubesinde geçer."
+  },
+  {
+    "id": "q3027",
+    "categoryIndex": 1,
+    "question": "Interstellar filminin müziklerini kim bestelemiştir?",
+    "options": [
+      "Hans Zimmer",
+      "John Williams",
+      "Ennio Morricone",
+      "Howard Shore"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Christopher Nolan’ın Interstellar filminin özgün müzikleri Hans Zimmer tarafından bestelendi."
+  },
+  {
+    "id": "q3028",
+    "categoryIndex": 1,
+    "question": "Ucuz Roman (Pulp Fiction) filminin yönetmeni kimdir?",
+    "options": [
+      "Quentin Tarantino",
+      "David Fincher",
+      "Coen Kardeşler",
+      "Paul Thomas Anderson"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "1994 yapımı Ucuz Roman’ı Quentin Tarantino yönetti ve senaryosunu Roger Avary ile geliştirdi."
+  },
+  {
+    "id": "q3029",
+    "categoryIndex": 1,
+    "question": "Yüzüklerin Efendisi sinema üçlemesini kim yönetmiştir?",
+    "options": [
+      "Peter Jackson",
+      "George Lucas",
+      "Sam Raimi",
+      "Guillermo del Toro"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "J.R.R. Tolkien’in eserlerinden uyarlanan üç filmlik seriyi Yeni Zelandalı yönetmen Peter Jackson yönetti."
+  },
+  {
+    "id": "q3030",
+    "categoryIndex": 1,
+    "question": "Stranger Things dizisini yaratan kardeşler kimlerdir?",
+    "options": [
+      "Duffer Kardeşler",
+      "Coen Kardeşler",
+      "Russo Kardeşler",
+      "Safdie Kardeşler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Stranger Things, Matt ve Ross Duffer tarafından yaratıldı."
+  },
+  {
+    "id": "q3031",
+    "categoryIndex": 1,
+    "question": "Mad Men dizisinin merkezindeki reklamcının adı nedir?",
+    "options": [
+      "Don Draper",
+      "Tony Soprano",
+      "Jimmy McGill",
+      "Kendall Roy"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jon Hamm’ın canlandırdığı Don Draper, Mad Men’in merkezindeki reklam yöneticisidir."
+  },
+  {
+    "id": "q3032",
+    "categoryIndex": 1,
+    "question": "Better Call Saul dizisindeki Saul Goodman’ın gerçek adı nedir?",
+    "options": [
+      "Jimmy McGill",
+      "Chuck McGill",
+      "Howard Hamlin",
+      "Mike Ehrmantraut"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Saul Goodman adı, avukat Jimmy McGill’in mesleki kimliğidir."
+  },
+  {
+    "id": "q3033",
+    "categoryIndex": 1,
+    "question": "Casablanca filminin yönetmeni kimdir?",
+    "options": [
+      "Michael Curtiz",
+      "Billy Wilder",
+      "John Ford",
+      "Frank Capra"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1942 yapımı Casablanca, Michael Curtiz tarafından yönetildi."
+  },
+  {
+    "id": "q3034",
+    "categoryIndex": 1,
+    "question": "Guguk Kuşu (One Flew Over the Cuckoo’s Nest) filminin yönetmeni kimdir?",
+    "options": [
+      "Miloš Forman",
+      "Roman Polanski",
+      "Sidney Lumet",
+      "Alan J. Pakula"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ken Kesey’nin romanından uyarlanan 1975 yapımı filmi Miloš Forman yönetti."
+  },
+  {
+    "id": "q3035",
+    "categoryIndex": 1,
+    "question": "Amélie filminin yönetmeni kimdir?",
+    "options": [
+      "Jean-Pierre Jeunet",
+      "François Truffaut",
+      "Luc Besson",
+      "Michel Gondry"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2001 yapımı Fransız filmi Amélie’yi Jean-Pierre Jeunet yönetti."
+  },
+  {
+    "id": "q3036",
+    "categoryIndex": 1,
+    "question": "Büyük Budapeşte Oteli filminin yönetmeni kimdir?",
+    "options": [
+      "Wes Anderson",
+      "Noah Baumbach",
+      "Tim Burton",
+      "Taika Waititi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Büyük Budapeşte Oteli, Wes Anderson’ın yazıp yönettiği 2014 yapımı bir filmdir."
+  },
+  {
+    "id": "q3037",
+    "categoryIndex": 1,
+    "question": "Geliş (Arrival) filminin yönetmeni kimdir?",
+    "options": [
+      "Denis Villeneuve",
+      "Alfonso Cuarón",
+      "Duncan Jones",
+      "Alex Garland"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ted Chiang’ın öyküsünden uyarlanan Geliş filmini Denis Villeneuve yönetti."
+  },
+  {
+    "id": "q3038",
+    "categoryIndex": 1,
+    "question": "Cennet Sineması (Cinema Paradiso) filminin yönetmeni kimdir?",
+    "options": [
+      "Giuseppe Tornatore",
+      "Federico Fellini",
+      "Roberto Benigni",
+      "Paolo Sorrentino"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1988 yapımı Cennet Sineması, İtalyan yönetmen Giuseppe Tornatore’nin filmidir."
+  },
+  {
+    "id": "q3039",
+    "categoryIndex": 1,
+    "question": "Blade Runner 2049 filminin yönetmeni kimdir?",
+    "options": [
+      "Denis Villeneuve",
+      "Ridley Scott",
+      "Christopher Nolan",
+      "James Cameron"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Blade Runner 2049’u Denis Villeneuve yönetti; ilk Blade Runner filminin yönetmeni ise Ridley Scott’tı."
+  },
+  {
+    "id": "q3040",
+    "categoryIndex": 1,
+    "question": "Truman Show filminin yönetmeni kimdir?",
+    "options": [
+      "Peter Weir",
+      "Ron Howard",
+      "Robert Zemeckis",
+      "Barry Levinson"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Jim Carrey’nin başrolünde olduğu 1998 yapımı Truman Show’u Peter Weir yönetti."
+  },
+  {
+    "id": "q3041",
+    "categoryIndex": 2,
+    "question": "Magna Carta 1215 yılında hangi yerde mühürlenmiştir?",
+    "options": [
+      "Runnymede",
+      "Waterloo",
+      "Versailles",
+      "Canterbury"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kral John, Magna Carta’yı 1215’te Thames kıyısındaki Runnymede’de kabul etti."
+  },
+  {
+    "id": "q3042",
+    "categoryIndex": 2,
+    "question": "Milano Fermanı hangi yılda yayımlanmıştır?",
+    "options": [
+      "313",
+      "476",
+      "800",
+      "1054"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "313 tarihli Milano Fermanı, Roma İmparatorluğu’nda Hristiyanlara yönelik hoşgörüyü güvence altına aldı."
+  },
+  {
+    "id": "q3043",
+    "categoryIndex": 2,
+    "question": "Birinci İznik Konsili hangi yılda toplanmıştır?",
+    "options": [
+      "325",
+      "451",
+      "622",
+      "787"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Birinci İznik Konsili, İmparator I. Konstantin’in çağrısıyla 325 yılında toplandı."
+  },
+  {
+    "id": "q3044",
+    "categoryIndex": 2,
+    "question": "Hastings Muharebesi hangi yılda yapılmıştır?",
+    "options": [
+      "1066",
+      "1215",
+      "1415",
+      "1588"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1066’daki Hastings Muharebesi, Normanların İngiltere’yi ele geçirmesinde belirleyici oldu."
+  },
+  {
+    "id": "q3045",
+    "categoryIndex": 2,
+    "question": "İstanbul’un Osmanlılar tarafından fethedildiği yıl hangisidir?",
+    "options": [
+      "1453",
+      "1402",
+      "1492",
+      "1517"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "II. Mehmed komutasındaki Osmanlı ordusu Konstantinopolis’i 29 Mayıs 1453’te fethetti."
+  },
+  {
+    "id": "q3046",
+    "categoryIndex": 2,
+    "question": "Tordesillas Antlaşması ağırlıklı olarak hangi iki devletin denizaşırı nüfuz alanlarını ayırdı?",
+    "options": [
+      "İspanya ile Portekiz",
+      "İngiltere ile Fransa",
+      "Hollanda ile Belçika",
+      "Venedik ile Ceneviz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1494 tarihli Tordesillas Antlaşması, İspanya ve Portekiz’in keşif bölgelerini bir hatla ayırdı."
+  },
+  {
+    "id": "q3047",
+    "categoryIndex": 2,
+    "question": "Vestfalya Barışı hangi büyük savaşı sona erdirmiştir?",
+    "options": [
+      "Otuz Yıl Savaşı",
+      "Yedi Yıl Savaşı",
+      "Kırım Savaşı",
+      "Yüz Yıl Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1648’de imzalanan Vestfalya antlaşmaları Otuz Yıl Savaşı’nı sona erdirdi."
+  },
+  {
+    "id": "q3048",
+    "categoryIndex": 2,
+    "question": "1688 Şanlı Devrimi hangi ülkede gerçekleşmiştir?",
+    "options": [
+      "İngiltere",
+      "Fransa",
+      "İspanya",
+      "Rusya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Şanlı Devrim, İngiltere’de II. James’in devrilmesi ve parlamenter üstünlüğün güçlenmesiyle sonuçlandı."
+  },
+  {
+    "id": "q3049",
+    "categoryIndex": 2,
+    "question": "Haiti bağımsızlığını hangi yılda ilan etmiştir?",
+    "options": [
+      "1804",
+      "1776",
+      "1815",
+      "1848"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Haiti, köle ayaklanmalarıyla gelişen devrimin ardından 1804’te bağımsızlığını ilan etti."
+  },
+  {
+    "id": "q3050",
+    "categoryIndex": 2,
+    "question": "Viyana Kongresi esas olarak hangi savaş döneminin ardından Avrupa düzenini yeniden kurmak için toplandı?",
+    "options": [
+      "Napolyon Savaşları",
+      "Haçlı Seferleri",
+      "Kırım Savaşı",
+      "Otuz Yıl Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1814-1815 Viyana Kongresi, Napolyon Savaşları sonrasında Avrupa’daki sınırları ve güç dengesini düzenledi."
+  },
+  {
+    "id": "q3051",
+    "categoryIndex": 2,
+    "question": "Meiji Restorasyonu hangi ülkede gerçekleşmiştir?",
+    "options": [
+      "Japonya",
+      "Çin",
+      "Kore",
+      "Tayland"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "1868’deki Meiji Restorasyonu, Japonya’da imparatorluk yönetimini güçlendirip modernleşme dönemini başlattı."
+  },
+  {
+    "id": "q3052",
+    "categoryIndex": 2,
+    "question": "Süveyş Kanalı hangi yılda açılmıştır?",
+    "options": [
+      "1869",
+      "1789",
+      "1914",
+      "1936"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Akdeniz ile Kızıldeniz’i bağlayan Süveyş Kanalı 1869’da ulaşıma açıldı."
+  },
+  {
+    "id": "q3053",
+    "categoryIndex": 2,
+    "question": "1884-1885 Berlin Konferansı en çok hangi kıtanın sömürgeleştirilmesiyle ilişkilidir?",
+    "options": [
+      "Afrika",
+      "Güney Amerika",
+      "Avustralya",
+      "Antarktika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Berlin Konferansı, Avrupa devletlerinin Afrika üzerindeki sömürge iddialarını düzenleyen kurallar oluşturdu."
+  },
+  {
+    "id": "q3054",
+    "categoryIndex": 2,
+    "question": "1908 Jön Türk Devrimi’nin ardından Osmanlı Devleti’nde hangi düzen yeniden yürürlüğe girdi?",
+    "options": [
+      "Meşrutiyet",
+      "Mutlak monarşi",
+      "Cumhuriyet",
+      "Federal sistem"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1908 Devrimi, 1876 Anayasası’nı yeniden yürürlüğe koyarak II. Meşrutiyet dönemini başlattı."
+  },
+  {
+    "id": "q3055",
+    "categoryIndex": 2,
+    "question": "Lozan Barış Antlaşması hangi yılda imzalanmıştır?",
+    "options": [
+      "1923",
+      "1919",
+      "1920",
+      "1936"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Lozan Barış Antlaşması 24 Temmuz 1923’te imzalandı."
+  },
+  {
+    "id": "q3056",
+    "categoryIndex": 2,
+    "question": "D-Day çıkarmalarının ana bölgesi neresidir?",
+    "options": [
+      "Normandiya",
+      "Sicilya",
+      "Gelibolu",
+      "Kırım"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Müttefik kuvvetler 6 Haziran 1944’te Fransa’nın Normandiya kıyılarına çıkarma yaptı."
+  },
+  {
+    "id": "q3057",
+    "categoryIndex": 2,
+    "question": "1955 Bandung Konferansı hangi ülkede düzenlenmiştir?",
+    "options": [
+      "Endonezya",
+      "Hindistan",
+      "Mısır",
+      "Yugoslavya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Asya ve Afrika ülkelerini bir araya getiren Bandung Konferansı Endonezya’da yapıldı."
+  },
+  {
+    "id": "q3058",
+    "categoryIndex": 2,
+    "question": "Berlin Duvarı hangi yılda yıkılmıştır?",
+    "options": [
+      "1989",
+      "1961",
+      "1975",
+      "1991"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Berlin Duvarı 9 Kasım 1989’da geçişlerin açılmasıyla fiilen yıkılmaya başladı."
+  },
+  {
+    "id": "q3059",
+    "categoryIndex": 2,
+    "question": "Jül Sezar hangi şehirde öldürülmüştür?",
+    "options": [
+      "Roma",
+      "Atina",
+      "İskenderiye",
+      "Kartaca"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jül Sezar, MÖ 44’te Roma’daki Pompeius Kuriyası’nda senatörler tarafından öldürüldü."
+  },
+  {
+    "id": "q3060",
+    "categoryIndex": 2,
+    "question": "Rosetta Taşı hangi yılda bulunmuştur?",
+    "options": [
+      "1799",
+      "1492",
+      "1666",
+      "1871"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Rosetta Taşı, Napolyon’un Mısır seferi sırasında 1799’da Reşid yakınlarında bulundu."
+  },
+  {
+    "id": "q3061",
+    "categoryIndex": 3,
+    "question": "Jonathan Swift’in Gulliver’in Gezileri adlı eseri ilk kez hangi yıl yayımlanmıştır?",
+    "options": [
+      "1726",
+      "1667",
+      "1759",
+      "1818"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gulliver’in Gezileri 1726’da yayımlandı ve gezi anlatısı görünümündeki güçlü bir hiciv eseridir."
+  },
+  {
+    "id": "q3062",
+    "categoryIndex": 3,
+    "question": "Las Meninas tablosunun ressamı kimdir?",
+    "options": [
+      "Diego Velázquez",
+      "Francisco Goya",
+      "El Greco",
+      "Bartolomé Murillo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Las Meninas, İspanyol Barok ressamı Diego Velázquez’in 1656 tarihli başyapıtıdır."
+  },
+  {
+    "id": "q3063",
+    "categoryIndex": 3,
+    "question": "Arnolfini Portresi adlı tablonun ressamı kimdir?",
+    "options": [
+      "Jan van Eyck",
+      "Albrecht Dürer",
+      "Hans Holbein",
+      "Pieter Bruegel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "1434 tarihli Arnolfini Portresi, Erken Hollanda resminin önemli ismi Jan van Eyck’e aittir."
+  },
+  {
+    "id": "q3064",
+    "categoryIndex": 3,
+    "question": "Venüs’ün Doğuşu tablosunu kim yapmıştır?",
+    "options": [
+      "Sandro Botticelli",
+      "Raffaello",
+      "Titian",
+      "Caravaggio"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Venüs’ün Doğuşu, Floransalı Rönesans ressamı Sandro Botticelli’nin eseridir."
+  },
+  {
+    "id": "q3066",
+    "categoryIndex": 3,
+    "question": "Öpücük (The Kiss) tablosunun ressamı kimdir?",
+    "options": [
+      "Gustav Klimt",
+      "Egon Schiele",
+      "Edvard Munch",
+      "Paul Klee"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Öpücük, Gustav Klimt’in altın döneminin en ünlü eserlerinden biridir."
+  },
+  {
+    "id": "q3067",
+    "categoryIndex": 3,
+    "question": "Dava adlı romanın yazarı kimdir?",
+    "options": [
+      "Franz Kafka",
+      "Thomas Mann",
+      "Hermann Hesse",
+      "Robert Musil"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dava, Franz Kafka’nın ölümünden sonra 1925’te yayımlanan romanıdır."
+  },
+  {
+    "id": "q3068",
+    "categoryIndex": 3,
+    "question": "Mrs Dalloway adlı romanın yazarı kimdir?",
+    "options": [
+      "Virginia Woolf",
+      "George Eliot",
+      "Doris Lessing",
+      "Iris Murdoch"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Mrs Dalloway, Virginia Woolf’un 1925’te yayımlanan modernist romanıdır."
+  },
+  {
+    "id": "q3069",
+    "categoryIndex": 3,
+    "question": "Gülün Adı adlı romanın yazarı kimdir?",
+    "options": [
+      "Umberto Eco",
+      "Italo Calvino",
+      "Primo Levi",
+      "Alberto Moravia"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gülün Adı, göstergebilimci ve yazar Umberto Eco’nun ilk romanıdır."
+  },
+  {
+    "id": "q3070",
+    "categoryIndex": 3,
+    "question": "Körlük adlı romanın yazarı kimdir?",
+    "options": [
+      "José Saramago",
+      "Fernando Pessoa",
+      "Jorge Amado",
+      "Javier Marías"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Körlük, Portekizli Nobel ödüllü yazar José Saramago’nun romanıdır."
+  },
+  {
+    "id": "q3071",
+    "categoryIndex": 3,
+    "question": "Usta ile Margarita adlı romanın yazarı kimdir?",
+    "options": [
+      "Mihail Bulgakov",
+      "Boris Pasternak",
+      "İvan Bunin",
+      "Aleksandr Soljenitsin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Usta ile Margarita, Mihail Bulgakov’un Sovyet toplumunu hicveden fantastik romanıdır."
+  },
+  {
+    "id": "q3072",
+    "categoryIndex": 3,
+    "question": "Yabancı adlı romanın yazarı kimdir?",
+    "options": [
+      "Albert Camus",
+      "Jean-Paul Sartre",
+      "André Gide",
+      "Marcel Proust"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yabancı, Albert Camus’nün 1942’de yayımlanan romanıdır."
+  },
+  {
+    "id": "q3073",
+    "categoryIndex": 3,
+    "question": "Kendine Ait Bir Oda adlı denemenin yazarı kimdir?",
+    "options": [
+      "Virginia Woolf",
+      "Simone de Beauvoir",
+      "Sylvia Plath",
+      "Margaret Atwood"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kendine Ait Bir Oda, Virginia Woolf’un kadınlar ve edebiyat üzerine 1929 tarihli denemesidir."
+  },
+  {
+    "id": "q3074",
+    "categoryIndex": 3,
+    "question": "Tutunamayanlar romanının yazarı kimdir?",
+    "options": [
+      "Oğuz Atay",
+      "Yusuf Atılgan",
+      "Adalet Ağaoğlu",
+      "Orhan Kemal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tutunamayanlar, Oğuz Atay’ın modern Türk edebiyatının dönüm noktalarından sayılan romanıdır."
+  },
+  {
+    "id": "q3075",
+    "categoryIndex": 3,
+    "question": "Huzur romanının yazarı kimdir?",
+    "options": [
+      "Ahmet Hamdi Tanpınar",
+      "Peyami Safa",
+      "Yakup Kadri Karaosmanoğlu",
+      "Reşat Nuri Güntekin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Huzur, Ahmet Hamdi Tanpınar’ın İstanbul ve zaman temalarını işlediği romanıdır."
+  },
+  {
+    "id": "q3076",
+    "categoryIndex": 3,
+    "question": "Kuyucaklı Yusuf romanının yazarı kimdir?",
+    "options": [
+      "Sabahattin Ali",
+      "Kemal Tahir",
+      "Tarık Buğra",
+      "Sait Faik Abasıyanık"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kuyucaklı Yusuf, Sabahattin Ali’nin 1937’de kitaplaşan romanıdır."
+  },
+  {
+    "id": "q3077",
+    "categoryIndex": 3,
+    "question": "Memleketimden İnsan Manzaraları adlı eserin yazarı kimdir?",
+    "options": [
+      "Nâzım Hikmet",
+      "Orhan Veli Kanık",
+      "Cahit Sıtkı Tarancı",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Memleketimden İnsan Manzaraları, Nâzım Hikmet’in şiir, anlatı ve toplumsal panoramayı birleştiren eseridir."
+  },
+  {
+    "id": "q3078",
+    "categoryIndex": 3,
+    "question": "Çorak Ülke (The Waste Land) şiirinin şairi kimdir?",
+    "options": [
+      "T. S. Eliot",
+      "W. B. Yeats",
+      "Ezra Pound",
+      "W. H. Auden"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Çorak Ülke, T. S. Eliot’ın 1922’de yayımlanan modernist şiiridir."
+  },
+  {
+    "id": "q3079",
+    "categoryIndex": 3,
+    "question": "Dorian Gray’in Portresi romanının yazarı kimdir?",
+    "options": [
+      "Oscar Wilde",
+      "Bram Stoker",
+      "James Joyce",
+      "George Bernard Shaw"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dorian Gray’in Portresi, Oscar Wilde’ın yayımlanan tek romanıdır."
+  },
+  {
+    "id": "q3080",
+    "categoryIndex": 3,
+    "question": "Guernica tablosunun ressamı kimdir?",
+    "options": [
+      "Pablo Picasso",
+      "Joan Miró",
+      "Salvador Dalí",
+      "Georges Braque"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Picasso, Guernica’yı 1937’de İspanya İç Savaşı sırasında bombalanan kasabadan esinlenerek yaptı."
+  },
+  {
+    "id": "q3082",
+    "categoryIndex": 4,
+    "question": "Sb kimyasal simgesi hangi elemente aittir?",
+    "options": [
+      "Antimon",
+      "Arsenik",
+      "Kalay",
+      "Bizmut"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Antimonun simgesi, Latince stibium adından gelen Sb’dir."
+  },
+  {
+    "id": "q3083",
+    "categoryIndex": 4,
+    "question": "Elektrik direncinin SI birimi hangisidir?",
+    "options": [
+      "Ohm",
+      "Volt",
+      "Amper",
+      "Watt"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Elektrik direnci ohm ile ölçülür ve birimin simgesi Ω’dır."
+  },
+  {
+    "id": "q3084",
+    "categoryIndex": 4,
+    "question": "Avogadro sabitinin yaklaşık değeri hangisidir?",
+    "options": [
+      "6,022 × 10²³",
+      "9,81 × 10²",
+      "3,00 × 10⁸",
+      "1,60 × 10⁻¹⁹"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bir molde tam olarak 6,02214076 × 10²³ temel tanecik bulunur."
+  },
+  {
+    "id": "q3085",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi’nin en büyük uydusu hangisidir?",
+    "options": [
+      "Ganymede",
+      "Titan",
+      "Callisto",
+      "Ay"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Jüpiter’in uydusu Ganymede, Merkür gezegeninden bile daha büyük çaplıdır."
+  },
+  {
+    "id": "q3086",
+    "categoryIndex": 4,
+    "question": "Venüs’ün kendi ekseni etrafındaki dönüşü çoğu gezegene göre nasıldır?",
+    "options": [
+      "Ters yöndedir",
+      "Aynı yönde ve en hızlıdır",
+      "Hiç dönmez",
+      "Yalnızca mevsimsel olarak döner"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Venüs retrograd, yani Güneş Sistemi’ndeki çoğu gezegenin ters yönünde döner."
+  },
+  {
+    "id": "q3087",
+    "categoryIndex": 4,
+    "question": "Olympus Mons yanardağı hangi gezegendedir?",
+    "options": [
+      "Mars",
+      "Venüs",
+      "Merkür",
+      "Jüpiter"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Olympus Mons, Mars’ta bulunan Güneş Sistemi’nin en büyük yanardağıdır."
+  },
+  {
+    "id": "q3088",
+    "categoryIndex": 4,
+    "question": "DNA’da adenin bazı normalde hangi bazla eşleşir?",
+    "options": [
+      "Timin",
+      "Guanin",
+      "Sitozin",
+      "Urasil"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Çift sarmallı DNA’da adenin timinle, guanin ise sitozinle eşleşir."
+  },
+  {
+    "id": "q3089",
+    "categoryIndex": 4,
+    "question": "Hücrede protein sentezinin gerçekleştiği temel yapı hangisidir?",
+    "options": [
+      "Ribozom",
+      "Lizozom",
+      "Sentrozom",
+      "Golgi aygıtı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ribozomlar, RNA’daki genetik bilgiyi kullanarak amino asitlerden protein üretir."
+  },
+  {
+    "id": "q3090",
+    "categoryIndex": 4,
+    "question": "İnsülin hormonu pankreastaki hangi hücreler tarafından üretilir?",
+    "options": [
+      "Beta hücreleri",
+      "Alfa hücreleri",
+      "Alyuvarlar",
+      "Nöronlar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İnsülin, pankreastaki Langerhans adacıklarının beta hücrelerinden salgılanır."
+  },
+  {
+    "id": "q3091",
+    "categoryIndex": 4,
+    "question": "Kanda oksijen taşımakla görevli hücreler hangileridir?",
+    "options": [
+      "Alyuvarlar",
+      "Akyuvarlar",
+      "Trombositler",
+      "Nöronlar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Alyuvarlar, içlerindeki hemoglobin sayesinde oksijenin büyük bölümünü taşır."
+  },
+  {
+    "id": "q3092",
+    "categoryIndex": 4,
+    "question": "Aksolotl hangi hayvan grubundadır?",
+    "options": [
+      "İki yaşamlılar",
+      "Sürüngenler",
+      "Memeliler",
+      "Kabuklular"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Aksolotl, yaşamı boyunca larva özelliklerini koruyabilen bir semender türüdür."
+  },
+  {
+    "id": "q3093",
+    "categoryIndex": 4,
+    "question": "Ornitorenk aşağıdaki memeli gruplarından hangisine aittir?",
+    "options": [
+      "Tek delikliler",
+      "Keseliler",
+      "Primatlar",
+      "Kemirgenler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Ornitorenk, yumurtlayan memeliler olan tek delikliler grubundadır."
+  },
+  {
+    "id": "q3094",
+    "categoryIndex": 4,
+    "question": "Bilinen en büyük hayvan türü hangisidir?",
+    "options": [
+      "Mavi balina",
+      "Afrika fili",
+      "Balina köpekbalığı",
+      "Dev kalamar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mavi balina, kütle ve uzunluk bakımından bilinen en büyük hayvandır."
+  },
+  {
+    "id": "q3095",
+    "categoryIndex": 4,
+    "question": "Dalış sırasında en yüksek hıza ulaşabilen kuş hangisidir?",
+    "options": [
+      "Gökdoğan",
+      "Altın kartal",
+      "Deve kuşu",
+      "Albatros"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gökdoğan, av dalışlarında saatte 300 kilometrenin üzerine çıkabilir."
+  },
+  {
+    "id": "q3096",
+    "categoryIndex": 4,
+    "question": "Fotosentez sırasında atmosfere verilen oksijenin kaynağı ağırlıklı olarak hangisidir?",
+    "options": [
+      "Su molekülleri",
+      "Karbondioksit",
+      "Glikoz",
+      "Topraktaki azot"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Işığa bağlı tepkimelerde su parçalanır ve açığa çıkan oksijen atmosfere verilir."
+  },
+  {
+    "id": "q3097",
+    "categoryIndex": 4,
+    "question": "Ses dalgaları genel olarak hangi ortamda en hızlı yayılır?",
+    "options": [
+      "Katılarda",
+      "Gazlarda",
+      "Vakumda",
+      "Plazmada her zaman eşit hızda"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tanecikler katılarda birbirine daha yakın olduğu için ses çoğunlukla katılarda daha hızlı iletilir."
+  },
+  {
+    "id": "q3098",
+    "categoryIndex": 4,
+    "question": "Ozon molekülünün kimyasal formülü hangisidir?",
+    "options": [
+      "O₃",
+      "O₂",
+      "CO₂",
+      "N₂O"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ozon, üç oksijen atomundan oluşan O₃ molekülüdür."
+  },
+  {
+    "id": "q3099",
+    "categoryIndex": 4,
+    "question": "Dünya’nın tektonik levhaları ağırlıklı olarak hangi katmanın parçalarıdır?",
+    "options": [
+      "Litosfer",
+      "İç çekirdek",
+      "Dış çekirdek",
+      "Alt manto"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tektonik levhalar, kabuk ile üst mantonun en üst bölümünden oluşan litosfer parçalarıdır."
+  },
+  {
+    "id": "q3100",
+    "categoryIndex": 4,
+    "question": "Nötronun elektrik yükü nedir?",
+    "options": [
+      "Yüksüzdür",
+      "Pozitiftir",
+      "Negatiftir",
+      "Koşullara göre sürekli değişir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nötronun net elektrik yükü sıfırdır; proton pozitif, elektron negatiftir."
+  },
+  {
+    "id": "q3101",
+    "categoryIndex": 5,
+    "question": "İlk modern Olimpiyat Oyunları 1896’da hangi şehirde düzenlenmiştir?",
+    "options": [
+      "Atina",
+      "Paris",
+      "Londra",
+      "Roma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Modern Olimpiyatların ilk organizasyonu 1896’da Yunanistan’ın başkenti Atina’da yapıldı."
+  },
+  {
+    "id": "q3102",
+    "categoryIndex": 5,
+    "question": "İlk FIFA Dünya Kupası 1930’da hangi ülkede düzenlenmiştir?",
+    "options": [
+      "Uruguay",
+      "Brezilya",
+      "İtalya",
+      "Fransa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İlk Dünya Kupası 1930’da Uruguay’da düzenlendi ve ev sahibi takım şampiyon oldu."
+  },
+  {
+    "id": "q3103",
+    "categoryIndex": 5,
+    "question": "Basketbolu icat eden kişi kimdir?",
+    "options": [
+      "James Naismith",
+      "William G. Morgan",
+      "Pierre de Coubertin",
+      "Walter Camp"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "James Naismith, basketbolu 1891’de Springfield’da bir salon sporu olarak geliştirdi."
+  },
+  {
+    "id": "q3104",
+    "categoryIndex": 5,
+    "question": "Voleybolu geliştiren kişi kimdir?",
+    "options": [
+      "William G. Morgan",
+      "James Naismith",
+      "Jules Rimet",
+      "Avery Brundage"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "William G. Morgan, 1895’te başlangıçta “mintonette” adını verdiği voleybolu geliştirdi."
+  },
+  {
+    "id": "q3105",
+    "categoryIndex": 5,
+    "question": "Wimbledon tenis turnuvası hangi zeminde oynanır?",
+    "options": [
+      "Çim",
+      "Toprak",
+      "Sert kort",
+      "Halı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Wimbledon, Grand Slam turnuvaları içinde çim kortta oynanan organizasyondur."
+  },
+  {
+    "id": "q3106",
+    "categoryIndex": 5,
+    "question": "Roland-Garros tenis turnuvasının geleneksel kort zemini hangisidir?",
+    "options": [
+      "Toprak",
+      "Çim",
+      "Sert kort",
+      "Ahşap"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Roland-Garros, Paris’te kırmızı toprak kortlarda oynanır."
+  },
+  {
+    "id": "q3107",
+    "categoryIndex": 5,
+    "question": "Avustralya Açık tenis turnuvası günümüzde hangi zeminde oynanır?",
+    "options": [
+      "Sert kort",
+      "Çim",
+      "Toprak",
+      "Halı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Avustralya Açık, Melbourne Park’taki sert kortlarda oynanır."
+  },
+  {
+    "id": "q3108",
+    "categoryIndex": 5,
+    "question": "Resmî maraton mesafesi kaç kilometredir?",
+    "options": [
+      "42,195 km",
+      "40 km",
+      "50 km",
+      "21,0975 km"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Maratonun standart yarış mesafesi 42 kilometre 195 metredir."
+  },
+  {
+    "id": "q3109",
+    "categoryIndex": 5,
+    "question": "Dekatlon kaç farklı atletizm branşından oluşur?",
+    "options": [
+      "10",
+      "7",
+      "8",
+      "12"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "“Deka” on anlamına gelir; dekatlon iki güne yayılan on atletizm yarışından oluşur."
+  },
+  {
+    "id": "q3110",
+    "categoryIndex": 5,
+    "question": "Heptatlon kaç farklı atletizm branşından oluşur?",
+    "options": [
+      "7",
+      "5",
+      "8",
+      "10"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Heptatlon, yedi farklı atletizm yarışının puanlarının birleştirildiği çoklu branştır."
+  },
+  {
+    "id": "q3111",
+    "categoryIndex": 5,
+    "question": "Tour de France’ta sarı mayo neyi gösterir?",
+    "options": [
+      "Genel klasman liderini",
+      "En iyi sprinteri",
+      "En iyi dağcıyı",
+      "En genç bisikletçiyi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sarı mayo, Tour de France genel klasmanında toplam süresi en iyi olan bisikletçiye verilir."
+  },
+  {
+    "id": "q3112",
+    "categoryIndex": 5,
+    "question": "Giro d’Italia’da genel klasman lideri hangi renk mayoyu giyer?",
+    "options": [
+      "Pembe",
+      "Sarı",
+      "Kırmızı",
+      "Yeşil"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Giro d’Italia’nın genel klasman lideri “maglia rosa” adı verilen pembe mayoyu taşır."
+  },
+  {
+    "id": "q3113",
+    "categoryIndex": 5,
+    "question": "Formula 1’de “pole pozisyonu” ne anlama gelir?",
+    "options": [
+      "Yarışa ilk sıradan başlamak",
+      "En hızlı yarış turunu atmak",
+      "Pit yolundan başlamak",
+      "Sezonu lider bitirmek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Pole pozisyonu, sıralama turlarında en hızlı zamanı yapan pilotun yarışa en önden başlamasıdır."
+  },
+  {
+    "id": "q3114",
+    "categoryIndex": 5,
+    "question": "Basketbol potasının çemberi yerden yaklaşık kaç feet yüksekliktedir?",
+    "options": [
+      "10 feet",
+      "8 feet",
+      "12 feet",
+      "15 feet"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Standart basketbol çemberi zeminden 10 feet, yani yaklaşık 3,05 metre yüksektedir."
+  },
+  {
+    "id": "q3115",
+    "categoryIndex": 5,
+    "question": "Uzatma gerekmeyen standart bir beyzbol maçı kaç inning üzerinden oynanır?",
+    "options": [
+      "9",
+      "7",
+      "10",
+      "12"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Profesyonel beyzbolda standart maç dokuz inning sürer; eşitlikte ek inning oynanabilir."
+  },
+  {
+    "id": "q3116",
+    "categoryIndex": 5,
+    "question": "Krikette standart bir “over” kaç geçerli atıştan oluşur?",
+    "options": [
+      "6",
+      "5",
+      "8",
+      "10"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Modern krikette bir over, aynı atıcının yaptığı altı geçerli atıştan oluşur."
+  },
+  {
+    "id": "q3117",
+    "categoryIndex": 5,
+    "question": "Rugby union’da bir “try” kaç puan değerindedir?",
+    "options": [
+      "5",
+      "3",
+      "6",
+      "7"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Rugby union’da try beş puan kazandırır; ardından ekstra iki puanlık dönüş vuruşu denenebilir."
+  },
+  {
+    "id": "q3118",
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde normal süre kaç periyottan oluşur?",
+    "options": [
+      "3",
+      "2",
+      "4",
+      "5"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Buz hokeyinde normal oyun süresi, her biri 20 dakikalık üç periyottur."
+  },
+  {
+    "id": "q3119",
+    "categoryIndex": 5,
+    "question": "Paralimpik hareketin sembolündeki şekillerin adı nedir?",
+    "options": [
+      "Agitos",
+      "Laurels",
+      "Triskelions",
+      "Torches"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Paralimpik semboldeki üç kıvrımlı şekil “Agitos” olarak adlandırılır."
+  },
+  {
+    "id": "q3120",
+    "categoryIndex": 5,
+    "question": "Satrançta rok hamlesinde hangi iki taş birlikte hareket eder?",
+    "options": [
+      "Şah ile kale",
+      "Vezir ile fil",
+      "Şah ile vezir",
+      "Kale ile at"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Rok, şah ve kalenin aynı hamlede hareket ettiği tek satranç hamlesidir."
   }
 ]
