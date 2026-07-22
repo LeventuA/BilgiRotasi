@@ -43,7 +43,7 @@ void main() {
     test('Meydan okuma kodu kayıpsız çözülür', () {
       final original = ChallengeConfig(
         challengerName: 'Test Oyuncusu',
-        targetScore: 7,
+        targetScore: 2,
         categoryIndex: -1,
         difficulty: 'Karışık',
         questionIds: const <String>[
