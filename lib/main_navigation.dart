@@ -512,21 +512,6 @@ class SettingsCenterScreen extends StatelessWidget {
           ),
         ),
         _HubActionCard(
-          emoji: 'ℹ️',
-          title: 'Hakkında & Gizlilik',
-          description:
-              'Sürüm bilgisi, çevrimdışı kullanım, '
-              'yerel kayıtlar ve gizlilik açıklaması.',
-          accent: const Color(0xFF475569),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => AboutPrivacyScreen(
-                questionBank: questionBank,
-              ),
-            ),
-          ),
-        ),
-        _HubActionCard(
           emoji: '📘',
           title: 'Eğitimi Yeniden Göster',
           description:

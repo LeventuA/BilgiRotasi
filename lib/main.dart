@@ -1561,7 +1561,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.41.1',
+                  'Bilgi Rotası • Sürüm 1.41.2',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
