@@ -30,6 +30,7 @@ part 'main_navigation.dart';
 part 'game_ui_polish.dart';
 part 'pawn_step_sounds.dart';
 part 'premium_pawn_picker.dart';
+part 'pawn_visual_effects.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1559,7 +1560,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.40.0',
+                  'Bilgi Rotası • Sürüm 1.41.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -6706,6 +6707,19 @@ class _JumpingPawnState extends State<JumpingPawn>
             clipBehavior: Clip.none,
             alignment: Alignment.bottomCenter,
             children: [
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: CustomPaint(
+                    painter: PawnStepTrailPainter(
+                      progress: t,
+                      pawnType: widget.type,
+                      playerColor: widget.color,
+                      pulse: widget.movePulse,
+                      minimal: PawnVisualEffects.minimalAnimations,
+                    ),
+                  ),
+                ),
+              ),
               Positioned(
                 bottom: widget.height * 0.015,
                 child: Opacity(
@@ -6759,11 +6773,15 @@ class LandingBurst extends StatefulWidget {
   const LandingBurst({
     required this.color,
     required this.size,
+    required this.pawnType,
+    required this.playerColor,
     super.key,
   });
 
   final Color color;
   final double size;
+  final int pawnType;
+  final Color playerColor;
 
   @override
   State<LandingBurst> createState() => _LandingBurstState();
@@ -6797,11 +6815,24 @@ class _LandingBurstState extends State<LandingBurst>
         child: AnimatedBuilder(
           animation: _controller,
           builder: (context, _) {
-            return CustomPaint(
-              painter: LandingBurstPainter(
-                progress: _controller.value,
-                color: widget.color,
-              ),
+            return Stack(
+              fit: StackFit.expand,
+              children: [
+                CustomPaint(
+                  painter: LandingBurstPainter(
+                    progress: _controller.value,
+                    color: widget.color,
+                  ),
+                ),
+                CustomPaint(
+                  painter: PawnLandingSignaturePainter(
+                    progress: _controller.value,
+                    pawnType: widget.pawnType,
+                    playerColor: widget.playerColor,
+                    minimal: PawnVisualEffects.minimalAnimations,
+                  ),
+                ),
+              ],
             );
           },
         ),
@@ -6916,6 +6947,15 @@ class GameBoard extends StatelessWidget {
                   ? const Color(0xFF67E8F9)
                   : GameCategory.values[landingNode.categoryIndex].color;
           final landingSize = base * 0.17;
+          final safeCurrentPlayerIndex = players.isEmpty
+              ? 0
+              : currentPlayerIndex.clamp(0, players.length - 1).toInt();
+          final landingPawnType = players.isEmpty
+              ? 0
+              : players[safeCurrentPlayerIndex].pawnType;
+          final landingPlayerColor = players.isEmpty
+              ? const Color(0xFF67E8F9)
+              : players[safeCurrentPlayerIndex].color;
 
           return Stack(
             clipBehavior: Clip.none,
@@ -7009,6 +7049,8 @@ class GameBoard extends StatelessWidget {
                     key: ValueKey<int>(landingPulse),
                     color: landingColor,
                     size: landingSize,
+                    pawnType: landingPawnType,
+                    playerColor: landingPlayerColor,
                   ),
                 ),
               ...moveOptions.map((option) {

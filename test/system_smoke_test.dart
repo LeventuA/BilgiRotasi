@@ -168,5 +168,26 @@ void main() {
       expect(PawnPickerPresentation.isSpecial(15), isTrue);
       expect(PawnPickerPresentation.isSpecial(16), isFalse);
     });
+
+    test('On altı piyonun görsel efekt profili bulunur', () {
+      expect(PawnVisualEffects.profiles.length, 16);
+      expect(PawnVisualEffects.profiles.length, PawnCatalog.all.length);
+
+      final labels = PawnVisualEffects.profiles
+          .map((profile) => profile.label)
+          .toSet();
+      expect(labels.length, 16);
+      expect(PawnVisualEffects.profileFor(12).label, 'Kozmik yıldız tozu');
+      expect(PawnVisualEffects.profileFor(13).label, 'Canlı yaprak izleri');
+      expect(
+        PawnVisualEffects.profileFor(14).label,
+        'Altın sihir kıvılcımları',
+      );
+      expect(
+        PawnVisualEffects.profileFor(15).label,
+        'Taş tozu ve yüzük ışığı',
+      );
+      expect(PawnVisualEffects.normalize(-1), 15);
+    });
   });
 }
