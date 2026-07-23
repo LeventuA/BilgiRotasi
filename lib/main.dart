@@ -1563,7 +1563,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.42.0',
+                  'Bilgi Rotası • Sürüm 1.43.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -4449,6 +4449,7 @@ class _GameScreenState extends State<GameScreen> {
   int _currentPlayerIndex = 0;
   int? _lastDice;
   bool _diceRolling = false;
+  bool _bonusRollPending = false;
   bool _isBusy = false;
   String _status = 'Zarı at ve rotaya çık.';
   PlayerData? _winner;
@@ -4850,37 +4851,7 @@ class _GameScreenState extends State<GameScreen> {
       }
     }
 
-    var diceResult = _random.nextInt(6) + 1;
-
-    setState(() {
-      _lastDice = diceResult;
-      _diceRolling = false;
-    });
-
-    final useReroll =
-        await GameplayBoostDialogs.offerReroll(
-      context,
-      currentRoll: diceResult,
-      wallet: _currentPlayer.jokers,
-    );
-
-    if (!mounted) return;
-
-    if (useReroll &&
-        _currentPlayer.jokers.consume(
-          JokerKind.reroll,
-        )) {
-      setState(() {
-        _lastDice = null;
-        _diceRolling = true;
-      });
-      unawaited(SoundFx.dice());
-      GameHaptics.mediumImpact();
-      await Future<void>.delayed(
-        const Duration(milliseconds: 450),
-      );
-      diceResult = _random.nextInt(6) + 1;
-    }
+    final diceResult = _random.nextInt(6) + 1;
 
     setState(() {
       _lastDice = diceResult;
@@ -4948,13 +4919,24 @@ class _GameScreenState extends State<GameScreen> {
     if (specialEffect != null) {
       selectedCategory = await _resolveSpecialEffect(
         specialEffect,
-        selected,
       );
 
       if (!mounted) return;
 
       target = BoardMap.node(_currentPlayer.position);
       await _saveGame();
+
+      if (_bonusRollPending) {
+        setState(() {
+          _bonusRollPending = false;
+          _isBusy = false;
+          _lastDice = null;
+          _diceRolling = false;
+          _status =
+              '${_currentPlayer.name}, tekrar zar atma hakkı sende! 🎲';
+        });
+        return;
+      }
     }
 
     final baseCategoryIndex = selectedCategory ??
@@ -5086,8 +5068,24 @@ class _GameScreenState extends State<GameScreen> {
 
   Future<int?> _resolveSpecialEffect(
     SpecialCellEffect effect,
-    MoveOption originalMove,
   ) async {
+    if (effect == SpecialCellEffect.randomJoker) {
+      final kind = JokerKind.values[
+        _random.nextInt(JokerKind.values.length)
+      ];
+      _currentPlayer.jokers.grant(kind);
+
+      setState(() {
+        _status =
+            '${_currentPlayer.name}, ${kind.emoji} ${kind.title} jokeri kazandı!';
+      });
+
+      unawaited(SoundFx.badge());
+      GameHaptics.heavyImpact();
+      await _showJokerRewardDialog(kind);
+      return null;
+    }
+
     await _showSpecialEffectDialog(effect);
 
     if (!mounted) return null;
@@ -5096,30 +5094,15 @@ class _GameScreenState extends State<GameScreen> {
     GameHaptics.heavyImpact();
 
     switch (effect) {
-      case SpecialCellEffect.forwardTwo:
-        final path = BoardMap.continuePath(
-          previous: originalMove.path[
-              originalMove.path.length - 2],
-          current: originalMove.destination,
-          steps: 2,
-        );
-
-        await _animateSpecialMove(
-          path,
-          effect,
-        );
+      case SpecialCellEffect.rollAgain:
+        setState(() {
+          _bonusRollPending = true;
+          _status =
+              '${_currentPlayer.name} tekrar zar atma hakkı kazandı! 🎲';
+        });
         return null;
 
-      case SpecialCellEffect.backTwo:
-        final path = BoardMap.reversePath(
-          originalMove,
-          2,
-        );
-
-        await _animateSpecialMove(
-          path,
-          effect,
-        );
+      case SpecialCellEffect.randomJoker:
         return null;
 
       case SpecialCellEffect.chooseCategory:
@@ -5135,26 +5118,33 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  Future<void> _animateSpecialMove(
-    List<int> path,
-    SpecialCellEffect effect,
-  ) async {
-    final move = MoveOption(path);
-
-    setState(() {
-      _activeMove = move;
-      _routeOpacity = 1;
-      _landingNodeId = null;
-      _status =
-          '${effect.emoji} ${effect.title} etkisi uygulanıyor…';
-    });
-
-    await _animatePawnPath(path);
-
-    if (!mounted) return;
-
-    await _showLanding(
-      BoardMap.node(_currentPlayer.position),
+  Future<void> _showJokerRewardDialog(
+    JokerKind kind,
+  ) {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        return AlertDialog(
+          icon: Text(
+            kind.emoji,
+            style: const TextStyle(fontSize: 52),
+          ),
+          title: const Text('Joker Kazandın!'),
+          content: Text(
+            '${kind.title} jokerine +1 eklendi.\n\n'
+            'Yeni toplam: ${_currentPlayer.jokers.count(kind)}',
+            textAlign: TextAlign.center,
+          ),
+          actionsAlignment: MainAxisAlignment.center,
+          actions: [
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Harika'),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -5584,8 +5574,8 @@ class _GameScreenState extends State<GameScreen> {
 }
 
 enum SpecialCellEffect {
-  forwardTwo,
-  backTwo,
+  rollAgain,
+  randomJoker,
   chooseCategory,
   doubleChance,
 }
@@ -5593,10 +5583,10 @@ enum SpecialCellEffect {
 extension SpecialCellEffectX on SpecialCellEffect {
   String get title {
     switch (this) {
-      case SpecialCellEffect.forwardTwo:
-        return 'İleri 2';
-      case SpecialCellEffect.backTwo:
-        return 'Geri 2';
+      case SpecialCellEffect.rollAgain:
+        return 'Tekrar Zar At';
+      case SpecialCellEffect.randomJoker:
+        return 'Joker Kazan';
       case SpecialCellEffect.chooseCategory:
         return 'Kategori Seç';
       case SpecialCellEffect.doubleChance:
@@ -5606,10 +5596,10 @@ extension SpecialCellEffectX on SpecialCellEffect {
 
   String get emoji {
     switch (this) {
-      case SpecialCellEffect.forwardTwo:
-        return '⏩';
-      case SpecialCellEffect.backTwo:
-        return '⏪';
+      case SpecialCellEffect.rollAgain:
+        return '🎲';
+      case SpecialCellEffect.randomJoker:
+        return '🎁';
       case SpecialCellEffect.chooseCategory:
         return '🎯';
       case SpecialCellEffect.doubleChance:
@@ -5619,10 +5609,10 @@ extension SpecialCellEffectX on SpecialCellEffect {
 
   String get description {
     switch (this) {
-      case SpecialCellEffect.forwardTwo:
-        return 'Piyon aynı yönde iki kutu daha ilerler.';
-      case SpecialCellEffect.backTwo:
-        return 'Piyon geldiği yönün tersine iki kutu geri gider.';
+      case SpecialCellEffect.rollAgain:
+        return 'Bu kutuda soru açılmaz. Aynı oyuncu zarı yeniden atar.';
+      case SpecialCellEffect.randomJoker:
+        return 'Dört aktif jokerden biri rastgele seçilir ve +1 eklenir.';
       case SpecialCellEffect.chooseCategory:
         return 'Bu turda sorulacak kategoriyi sen seçersin.';
       case SpecialCellEffect.doubleChance:
@@ -5633,10 +5623,10 @@ extension SpecialCellEffectX on SpecialCellEffect {
 
   Color get color {
     switch (this) {
-      case SpecialCellEffect.forwardTwo:
+      case SpecialCellEffect.rollAgain:
         return const Color(0xFF06B6D4);
-      case SpecialCellEffect.backTwo:
-        return const Color(0xFFEF4444);
+      case SpecialCellEffect.randomJoker:
+        return const Color(0xFFF59E0B);
       case SpecialCellEffect.chooseCategory:
         return const Color(0xFF8B5CF6);
       case SpecialCellEffect.doubleChance:
@@ -5694,10 +5684,10 @@ class BoardMap {
   ];
 
   static const Map<int, SpecialCellEffect> specialCells = {
-    4: SpecialCellEffect.forwardTwo,
-    22: SpecialCellEffect.forwardTwo,
-    9: SpecialCellEffect.backTwo,
-    27: SpecialCellEffect.backTwo,
+    4: SpecialCellEffect.rollAgain,
+    22: SpecialCellEffect.rollAgain,
+    9: SpecialCellEffect.randomJoker,
+    27: SpecialCellEffect.randomJoker,
     14: SpecialCellEffect.chooseCategory,
     32: SpecialCellEffect.chooseCategory,
     18: SpecialCellEffect.doubleChance,

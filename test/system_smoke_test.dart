@@ -235,5 +235,39 @@ void main() {
 
       expect(challenge.code, 'BR1905');
     });
+
+
+    test('Zar jokeri kaldırılır ve özel kutular yenilenir', () {
+      expect(JokerKind.values.length, 4);
+
+      final wallet = JokerWallet(
+        fiftyFifty: 0,
+        changeQuestion: 0,
+        secondChance: 0,
+        categoryChange: 0,
+      );
+      wallet.grant(JokerKind.changeQuestion);
+      expect(wallet.changeQuestion, 1);
+      expect(wallet.toJson().containsKey('reroll'), isFalse);
+
+      expect(
+        BoardMap.specialCells.values
+            .where((effect) => effect == SpecialCellEffect.rollAgain)
+            .length,
+        2,
+      );
+      expect(
+        BoardMap.specialCells.values
+            .where((effect) => effect == SpecialCellEffect.randomJoker)
+            .length,
+        2,
+      );
+      expect(BoardMap.specialCells[4], SpecialCellEffect.rollAgain);
+      expect(BoardMap.specialCells[22], SpecialCellEffect.rollAgain);
+      expect(BoardMap.specialCells[9], SpecialCellEffect.randomJoker);
+      expect(BoardMap.specialCells[27], SpecialCellEffect.randomJoker);
+      expect((22 - 4).abs(), BoardMap.outerCount ~/ 2);
+      expect((27 - 9).abs(), BoardMap.outerCount ~/ 2);
+    });
   });
 }

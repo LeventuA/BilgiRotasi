@@ -271,8 +271,8 @@ class _GameplayBoostSettingsScreenState
             emoji: '🎁',
             title: 'Jokerler',
             subtitle:
-                '50:50, soru değiştir, ikinci şans, '
-                'kategori değiştir ve zar tekrar.',
+                '50:50, soru değiştir, ikinci şans ve '
+                'kategori değiştir.',
             value: _settings.jokersEnabled,
             onChanged: (value) => _update(
               _settings.copyWith(jokersEnabled: value),
@@ -302,9 +302,11 @@ class _GameplayBoostSettingsScreenState
             ),
             child: const Text(
               'Jokerler her yeni oyun veya maratonda '
-              'yenilenir. Her oyuncu her jokerden bir adetle '
-              'başlar. Yanlış cevap XP düşürmez; yalnızca '
-              'doğru cevap serisini sıfırlar.',
+              'yenilenir. Her oyuncu dört jokerin her birinden '
+              'bir adetle başlar. Tahtadaki hediye kutusu '
+              'rastgele bir jokere +1 ekler. Yanlış cevap '
+              'XP düşürmez; yalnızca doğru cevap serisini '
+              'sıfırlar.',
               style: TextStyle(
                 height: 1.4,
                 fontWeight: FontWeight.w700,
@@ -362,7 +364,22 @@ enum JokerKind {
   changeQuestion,
   secondChance,
   categoryChange,
-  reroll,
+}
+
+extension JokerKindX on JokerKind {
+  String get title => switch (this) {
+        JokerKind.fiftyFifty => '50:50',
+        JokerKind.changeQuestion => 'Soru Değiştir',
+        JokerKind.secondChance => 'İkinci Şans',
+        JokerKind.categoryChange => 'Kategori Değiştir',
+      };
+
+  String get emoji => switch (this) {
+        JokerKind.fiftyFifty => '✂️',
+        JokerKind.changeQuestion => '🔄',
+        JokerKind.secondChance => '🍀',
+        JokerKind.categoryChange => '🎨',
+      };
 }
 
 class JokerWallet {
@@ -371,14 +388,12 @@ class JokerWallet {
     this.changeQuestion = 1,
     this.secondChance = 1,
     this.categoryChange = 1,
-    this.reroll = 1,
   });
 
   int fiftyFifty;
   int changeQuestion;
   int secondChance;
   int categoryChange;
-  int reroll;
 
   factory JokerWallet.starter() => JokerWallet();
 
@@ -388,7 +403,6 @@ class JokerWallet {
       JokerKind.changeQuestion => changeQuestion,
       JokerKind.secondChance => secondChance,
       JokerKind.categoryChange => categoryChange,
-      JokerKind.reroll => reroll,
     };
   }
 
@@ -408,12 +422,29 @@ class JokerWallet {
       case JokerKind.categoryChange:
         categoryChange--;
         break;
-      case JokerKind.reroll:
-        reroll--;
-        break;
     }
 
     return true;
+  }
+
+  void grant(JokerKind kind, {int amount = 1}) {
+    final safeAmount = max(0, amount);
+    if (safeAmount == 0) return;
+
+    switch (kind) {
+      case JokerKind.fiftyFifty:
+        fiftyFifty += safeAmount;
+        break;
+      case JokerKind.changeQuestion:
+        changeQuestion += safeAmount;
+        break;
+      case JokerKind.secondChance:
+        secondChance += safeAmount;
+        break;
+      case JokerKind.categoryChange:
+        categoryChange += safeAmount;
+        break;
+    }
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -421,7 +452,6 @@ class JokerWallet {
         'changeQuestion': changeQuestion,
         'secondChance': secondChance,
         'categoryChange': categoryChange,
-        'reroll': reroll,
       };
 
   factory JokerWallet.fromJson(dynamic raw) {
@@ -441,7 +471,6 @@ class JokerWallet {
       changeQuestion: read('changeQuestion'),
       secondChance: read('secondChance'),
       categoryChange: read('categoryChange'),
-      reroll: read('reroll'),
     );
   }
 }
@@ -465,7 +494,6 @@ class JokerWalletMiniBar extends StatelessWidget {
       ('🔄', wallet.changeQuestion),
       ('🍀', wallet.secondChance),
       ('🎨', wallet.categoryChange),
-      ('🎲', wallet.reroll),
     ];
 
     return Container(
@@ -988,62 +1016,6 @@ class GameplayBoostDialogs {
     );
   }
 
-  static Future<bool> offerReroll(
-    BuildContext context, {
-    required int currentRoll,
-    required JokerWallet wallet,
-  }) async {
-    if (!GameplayBoostSettingsService
-            .current.jokersEnabled ||
-        wallet.reroll <= 0 ||
-        currentRoll > 3) {
-      return false;
-    }
-
-    return await showDialog<bool>(
-          context: context,
-          builder: (dialogContext) {
-            return AlertDialog(
-              icon: const Text(
-                '🎲',
-                style: TextStyle(fontSize: 47),
-              ),
-              title: Text(
-                '$currentRoll attın',
-              ),
-              content: Text(
-                'Zar Tekrar jokerini kullanarak '
-                'bir kez daha atabilirsin.\n\n'
-                'Kalan joker: ${wallet.reroll}',
-                textAlign: TextAlign.center,
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () =>
-                      Navigator.pop(
-                    dialogContext,
-                    false,
-                  ),
-                  child: const Text(
-                    'Yola Devam',
-                  ),
-                ),
-                FilledButton(
-                  onPressed: () =>
-                      Navigator.pop(
-                    dialogContext,
-                    true,
-                  ),
-                  child: const Text(
-                    'Tekrar At',
-                  ),
-                ),
-              ],
-            );
-          },
-        ) ??
-        false;
-  }
 }
 
 class GameplayBoostQuestionPicker {
