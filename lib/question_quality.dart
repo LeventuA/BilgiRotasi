@@ -175,6 +175,48 @@ class QuestionQualityGuard {
     return asksLetters && titleOrWordContext;
   }
 
+  static bool _looksLikeLowValueTextOrDateTask(
+    QuizQuestion question,
+    String normalizedQuestion,
+  ) {
+    final hasYear = RegExp(r'\b\d{3,4}\b')
+        .hasMatch(normalizedQuestion);
+
+    final trivialDateTask = hasYear &&
+        const <String>[
+          'hangi on yilda',
+          'hangi on yillik donemde',
+          'hangi yuzyilin icindedir',
+          'hangi yuzyilda yer alir',
+        ].any(normalizedQuestion.contains);
+
+    final trivialTitleTask = const <String>[
+      'basliginda kac kelime',
+      'basliginin ilk kelimesi',
+      'eser adinda kac kelime',
+      'eser adinin ilk kelimesi',
+      'kelimesinde kac harf',
+      'basliginda kac harf',
+    ].any(normalizedQuestion.contains);
+
+    final combinedTask = const <String>[
+      'ortak sayisal cevabi',
+      'sirasiyla dogru cevaplar',
+      'dogru cevap cifti',
+    ].any(normalizedQuestion.contains) &&
+        (normalizedQuestion.contains('kural') ||
+            normalizedQuestion.contains('soru'));
+
+    final vagueInstitutionTask = normalizedQuestion.contains(
+      'kurumu ekibi veya kisisi',
+    );
+
+    return trivialDateTask ||
+        trivialTitleTask ||
+        combinedTask ||
+        vagueInstitutionTask;
+  }
+
   static List<String> reasons(QuizQuestion question) {
     final reasons = <String>[];
     final normalizedQuestion = _normalize(question.text);
@@ -282,6 +324,13 @@ class QuestionQualityGuard {
       normalizedQuestion,
     )) {
       reasons.add('Kategori dışı harf sayma sorusu');
+    }
+
+    if (_looksLikeLowValueTextOrDateTask(
+      question,
+      normalizedQuestion,
+    )) {
+      reasons.add('Kategori dışı tarih/metin işlemi');
     }
 
     return reasons.toSet().toList(growable: false);

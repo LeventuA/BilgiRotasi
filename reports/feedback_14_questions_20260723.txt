@@ -1,0 +1,102 @@
+BİLGİ ROTASI – 14 GERİ BİLDİRİM DÜZELTMESİ
+==================================================================================
+
+TAMAMEN YENİLENEN 9 SORU
+----------------------------------------------------------------------------------
+q4026
+Eski: Rugby league sporunda bir takım sahada kaç oyuncuyla yer alır?
+Yeni: Rugby league maçında bir takım sahada kaç oyuncuyla yer alır?
+Doğru cevap: 13
+Zorluk: Orta
+Not: Anlamsız 21,0975 seçeneği kaldırıldı; seçenekler geçerli oyuncu sayılarından oluşturuldu.
+
+q52738
+Eski: “Horatius Kardeşlerin Yemini” başlığında kaç kelime vardır?
+Yeni: Horatius Kardeşlerin Yemini adlı tablonun ressamı kimdir?
+Doğru cevap: Jacques-Louis David
+Zorluk: Orta
+Not: Başlıktaki kelimeleri saydıran düşük kaliteli soru, gerçek sanat bilgisiyle değiştirildi.
+
+q51994
+Eski: “Araba Sevdası” başlığının ilk kelimesi hangisidir?
+Yeni: Araba Sevdası romanının yazarı kimdir?
+Doğru cevap: Recaizade Mahmut Ekrem
+Zorluk: Kolay
+Not: Başlığın ilk kelimesini soran soru, eser–yazar bilgisiyle değiştirildi.
+
+q15473
+Eski: Londra Yaz Olimpiyat Oyunları sürecinin başlıca kurumu, ekibi veya kişisi hangisidir?
+Yeni: 2012 Yaz Olimpiyatları hangi şehirde düzenlendi?
+Doğru cevap: Londra
+Zorluk: Kolay
+Not: Belirsiz kurum–ekip–kişi kalıbı kaldırıldı; ev sahibi şehir doğrudan soruldu.
+
+q52470
+Eski: 1318 yılı hangi on yıllık dönemde yer alır?
+Yeni: Osmanlı Devleti'nin kurucusu kimdir?
+Doğru cevap: Osman Gazi
+Zorluk: Kolay
+Not: Yılı on yıllığa dönüştüren aritmetik soru, temel tarih bilgisiyle değiştirildi.
+
+q6966
+Eski: 2024 Yaz Olimpiyatları hangi on yılda düzenlenmiştir?
+Yeni: 2024 Yaz Olimpiyatları hangi şehirde düzenlendi?
+Doğru cevap: Paris
+Zorluk: Kolay
+Not: Cevabı yıldan kolayca çıkarılan on yıl sorusu, ev sahibi şehir sorusuyla değiştirildi.
+
+q43910
+Eski: 1904 yılı hangi yüzyılın içindedir?
+Yeni: I. Dünya Savaşı hangi yılda başladı?
+Doğru cevap: 1914
+Zorluk: Kolay
+Not: Yılı yüzyıla dönüştüren mekanik soru, doğrudan tarih bilgisiyle değiştirildi.
+
+q14957
+Eski: Su topu sporundaki “Bir takımın suda, kaleci dâhil, kaç oyuncusu bulunur?” kuralı ile Netbol sporundaki “Bir takım sahada kaç oyuncuyla yer alır?” kuralının ortak sayısal cevabı nedir?
+Yeni: Su topunda bir takım oyun alanında aynı anda kaç oyuncuyla yer alır?
+Doğru cevap: 7
+Zorluk: Orta
+Not: İki ayrı sporu aynı soruda birleştiren yapı kaldırıldı; tek bir spor kuralı soruldu.
+
+q2603
+Eski: Beyzboldan daha büyük top hangi sporla ilişkilidir?
+Yeni: Softbol topu, beyzbol topuna göre genellikle nasıldır?
+Doğru cevap: Daha büyük çevreye sahiptir
+Zorluk: Orta
+Not: Bowling topunun da koşulu sağlaması nedeniyle belirsiz olan soru, softbol–beyzbol karşılaştırmasına çevrildi.
+
+ZORLUĞU GÜNCELLENEN 5 SORU
+----------------------------------------------------------------------------------
+q3513: Orta
+Soru: Karanfil Devrimi hangi yılda gerçekleşmiştir?
+Not: Tekil tarih bilgisi genel oyuncu kitlesi için Kolay değil, Orta kabul edildi.
+
+q10306: Orta
+Soru: Dogville aşağıdaki yapım türlerinden hangisidir?
+Not: Niş yapım bilgisi Kolay'dan Orta'ya taşındı.
+
+q5266: Orta
+Soru: Banff hangi kıtada veya coğrafi bölgede yer alır?
+Not: Banff bilgisi genel oyuncu için Kolay'dan Orta'ya taşındı.
+
+q4923: Zor
+Soru: Eşdeğer doz büyüklüğünün SI birimi hangisidir?
+Not: Uzmanlık gerektiren radyasyon birimi sorusu Zor yapıldı.
+
+q9365: Orta
+Soru: Killing Eve aşağıdaki yapım türlerinden hangisidir?
+Not: Niş dizi bilgisi Kolay'dan Orta'ya taşındı.
+
+KAYNAK KONTROLÜ
+----------------------------------------------------------------------------------
+Rugby league: https://www.internationalrugbyleague.com/about/laws-of-the-game
+Horatius Kardeşlerin Yemini: https://collections.louvre.fr/ark:/53355/cl010062239
+Araba Sevdası: https://islamansiklopedisi.org.tr/araba-sevdasi
+Londra 2012 / Paris 2024: https://olympics.com/
+Su topu: https://www.worldaquatics.com/
+Softbol: https://www.wbsc.org/
+
+Ek filtre: başlıkta kelime/harf sayma, başlığın ilk kelimesi,
+yılı on yıl/yüzyıla dönüştürme ve iki soruyu birleştirme kalıpları
+bundan sonra otomatik olarak oyundan elenir.
