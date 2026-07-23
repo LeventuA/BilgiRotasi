@@ -29,6 +29,7 @@ part 'question_quality.dart';
 part 'main_navigation.dart';
 part 'game_ui_polish.dart';
 part 'pawn_step_sounds.dart';
+part 'premium_pawn_picker.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1558,7 +1559,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.39.0',
+                  'Bilgi Rotası • Sürüm 1.40.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -3857,84 +3858,11 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
   }
 
   Future<void> _showPawnPicker(int playerIndex) async {
-    final selected = await showDialog<int>(
-      context: context,
-      builder: (dialogContext) {
-        return AlertDialog(
-          title: Text('${playerIndex + 1}. oyuncunun piyonu'),
-          contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
-          content: SizedBox(
-            width: double.maxFinite,
-            height: 430,
-            child: GridView.builder(
-              itemCount: PawnCatalog.all.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-                childAspectRatio: 0.72,
-              ),
-              itemBuilder: (context, index) {
-                final pawn = PawnCatalog.all[index];
-                final isSelected = _selectedPawnTypes[playerIndex] == index;
-
-                return Material(
-                  color: isSelected
-                      ? _playerColors[playerIndex].withOpacity(0.14)
-                      : const Color(0xFFF8FAFC),
-                  borderRadius: BorderRadius.circular(16),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(16),
-                    onTap: () => Navigator.pop(dialogContext, index),
-                    child: Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: isSelected
-                              ? _playerColors[playerIndex]
-                              : const Color(0xFFE2E8F0),
-                          width: isSelected ? 2.5 : 1,
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          PawnToken(
-                            type: index,
-                            color: _playerColors[playerIndex],
-                            active: isSelected,
-                            width: 58,
-                            height: 72,
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            pawn.name,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 10,
-                              height: 1.05,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(dialogContext),
-              child: const Text('Vazgeç'),
-            ),
-          ],
-        );
-      },
+    final selected = await PremiumPawnPicker.show(
+      context,
+      playerNumber: playerIndex + 1,
+      initialPawnType: _selectedPawnTypes[playerIndex],
+      playerColor: _playerColors[playerIndex],
     );
 
     if (selected == null || !mounted) return;

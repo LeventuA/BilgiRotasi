@@ -143,5 +143,30 @@ void main() {
 
       expect(signatures.length, 16);
     });
+
+    test('Premium piyon seçici tüm piyonları tanımlar', () {
+      expect(
+        PawnPickerPresentation.descriptions.length,
+        PawnCatalog.all.length,
+      );
+      expect(
+        PawnPickerPresentation.labels.length,
+        PawnCatalog.all.length,
+      );
+      expect(
+        PawnPickerPresentation.auraColors.length,
+        PawnCatalog.all.length,
+      );
+
+      for (var index = 0; index < PawnCatalog.all.length; index++) {
+        expect(PawnPickerPresentation.descriptionFor(index).trim(), isNotEmpty);
+        expect(PawnPickerPresentation.labelFor(index).trim(), isNotEmpty);
+      }
+
+      expect(PawnPickerPresentation.isSpecial(11), isFalse);
+      expect(PawnPickerPresentation.isSpecial(12), isTrue);
+      expect(PawnPickerPresentation.isSpecial(15), isTrue);
+      expect(PawnPickerPresentation.isSpecial(16), isFalse);
+    });
   });
 }
