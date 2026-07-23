@@ -1,0 +1,35 @@
+BİLGİ ROTASI – 14 GERİ BİLDİRİM DÜZELTMESİ ÖN RAPORU
+==============================================================================
+
+9 soru tamamen yenilenecek:
+- q4026: Rugby league maçında bir takım sahada kaç oyuncuyla yer alır?
+  Doğru cevap: 13 | Zorluk: Orta
+- q52738: Horatius Kardeşlerin Yemini adlı tablonun ressamı kimdir?
+  Doğru cevap: Jacques-Louis David | Zorluk: Orta
+- q51994: Araba Sevdası romanının yazarı kimdir?
+  Doğru cevap: Recaizade Mahmut Ekrem | Zorluk: Kolay
+- q15473: 2012 Yaz Olimpiyatları hangi şehirde düzenlendi?
+  Doğru cevap: Londra | Zorluk: Kolay
+- q52470: Osmanlı Devleti'nin kurucusu kimdir?
+  Doğru cevap: Osman Gazi | Zorluk: Kolay
+- q6966: 2024 Yaz Olimpiyatları hangi şehirde düzenlendi?
+  Doğru cevap: Paris | Zorluk: Kolay
+- q43910: I. Dünya Savaşı hangi yılda başladı?
+  Doğru cevap: 1914 | Zorluk: Kolay
+- q14957: Su topunda bir takım oyun alanında aynı anda kaç oyuncuyla yer alır?
+  Doğru cevap: 7 | Zorluk: Orta
+- q2603: Softbol topu, beyzbol topuna göre genellikle nasıldır?
+  Doğru cevap: Daha büyük çevreye sahiptir | Zorluk: Orta
+
+5 sorunun yalnızca zorluk etiketi güncellenecek:
+- q3513: Orta — Karanfil Devrimi hangi yılda gerçekleşmiştir?
+- q10306: Orta — Dogville aşağıdaki yapım türlerinden hangisidir?
+- q5266: Orta — Banff hangi kıtada veya coğrafi bölgede yer alır?
+- q4923: Zor — Eşdeğer doz büyüklüğünün SI birimi hangisidir?
+- q9365: Orta — Killing Eve aşağıdaki yapım türlerinden hangisidir?
+
+Kalıcı filtre eklenecek:
+- Başlıkta kelime/harf saydırma
+- Başlığın ilk kelimesini sorma
+- Bir yılı on yıl veya yüzyıla dönüştürme
+- İki soruyu tek soruda birleştirme
