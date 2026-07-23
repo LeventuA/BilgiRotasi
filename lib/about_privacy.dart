@@ -48,7 +48,7 @@ class AboutPrivacyScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 const Text(
-                  'Sürüm 1.43.0+55',
+                  'Sürüm 1.43.1+56',
                   style: TextStyle(
                     color: Color(0xFFFFE082),
                     fontWeight: FontWeight.w800,

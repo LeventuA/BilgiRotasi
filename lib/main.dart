@@ -33,6 +33,7 @@ part 'premium_pawn_picker.dart';
 part 'pawn_visual_effects.dart';
 part 'premium_dice.dart';
 part 'short_challenge_mode.dart';
+part 'board_target_presentation.dart';
 part 'about_privacy.dart';
 
 class SoundFx {
@@ -1563,7 +1564,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.43.0',
+                  'Bilgi Rotası • Sürüm 1.43.1',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -7062,9 +7063,10 @@ class GameBoard extends StatelessWidget {
               ...moveOptions.map((option) {
                 final destination = BoardMap.node(option.destination);
                 final point = BoardMap.position(size, option.destination);
-                final category = destination.categoryIndex < 0
-                    ? null
-                    : GameCategory.values[destination.categoryIndex];
+                final targetColor =
+                    BoardTargetPresentation.colorFor(destination);
+                final targetEmoji =
+                    BoardTargetPresentation.emojiFor(destination);
                 final targetSize = destination.isBadge
                     ? base * 0.088
                     : base * 0.074;
@@ -7074,11 +7076,12 @@ class GameBoard extends StatelessWidget {
                   top: point.dy - targetSize / 2,
                   child: Semantics(
                     button: true,
-                    label: BoardMap.routeTitle(option),
+                    label:
+                        BoardTargetPresentation.semanticsLabelFor(option),
                     child: RouteTargetPulse(
                       key: ValueKey<int>(option.destination),
-                      color: category?.color ?? const Color(0xFF155E75),
-                      emoji: category?.emoji ?? '🧭',
+                      color: targetColor,
+                      emoji: targetEmoji,
                       size: targetSize,
                       onTap: () => onMoveSelected?.call(option),
                     ),

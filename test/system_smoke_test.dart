@@ -269,5 +269,27 @@ void main() {
       expect((22 - 4).abs(), BoardMap.outerCount ~/ 2);
       expect((27 - 9).abs(), BoardMap.outerCount ~/ 2);
     });
+
+    test('Rota hedefleri özel kutunun simgesini gösterir', () {
+      for (final entry in BoardMap.specialCells.entries) {
+        final node = BoardMap.node(entry.key);
+
+        expect(
+          BoardTargetPresentation.emojiFor(node),
+          entry.value.emoji,
+        );
+        expect(
+          BoardTargetPresentation.colorFor(node),
+          entry.value.color,
+        );
+      }
+
+      final normalNode = BoardMap.node(BoardMap.outerId(1));
+      expect(normalNode.specialEffect, isNull);
+      expect(
+        BoardTargetPresentation.emojiFor(normalNode),
+        GameCategory.values[normalNode.categoryIndex].emoji,
+      );
+    });
   });
 }
