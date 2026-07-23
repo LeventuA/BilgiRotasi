@@ -166,11 +166,13 @@ class GameTurnHeader extends StatelessWidget {
   const GameTurnHeader({
     required this.player,
     required this.lastDice,
+    this.diceRolling = false,
     super.key,
   });
 
   final PlayerData player;
   final int? lastDice;
+  final bool diceRolling;
 
   @override
   Widget build(BuildContext context) {
@@ -235,7 +237,10 @@ class GameTurnHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          DiceFace(value: lastDice),
+          PremiumDiceFace(
+            value: lastDice,
+            rolling: diceRolling,
+          ),
         ],
       ),
     );

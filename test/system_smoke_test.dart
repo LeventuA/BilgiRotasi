@@ -189,5 +189,51 @@ void main() {
       );
       expect(PawnVisualEffects.normalize(-1), 15);
     });
+
+    test('Premium zar modeli altı yüzü doğru tanır', () {
+      expect(PremiumDiceModel.pipCount(null), 0);
+      expect(PremiumDiceModel.pipCount(1), 1);
+      expect(PremiumDiceModel.pipCount(6), 6);
+      expect(PremiumDiceModel.isLuckySix(6), isTrue);
+      expect(PremiumDiceModel.isLuckySix(5), isFalse);
+    });
+
+    test('Kısa meydan okuma kodu kararlı ve okunabilirdir', () {
+      expect(
+        ShortChallengeCodeService.normalize('br-1905'),
+        'BR1905',
+      );
+      expect(
+        ShortChallengeCodeService.normalize('1905'),
+        'BR1905',
+      );
+      expect(
+        ShortChallengeCodeService.isValid('BR1905'),
+        isTrue,
+      );
+      expect(
+        ShortChallengeCodeService.isValid('BR19'),
+        isFalse,
+      );
+      expect(
+        ShortChallengeCodeService.stableHash('BR1905'),
+        ShortChallengeCodeService.stableHash('BR1905'),
+      );
+      expect(ShortChallengeCodeService.questionCount, 10);
+      expect(ShortChallengeCodeService.targetScore, 7);
+    });
+
+    test('ChallengeConfig kısa kodu doğrudan paylaşır', () {
+      final challenge = ChallengeConfig(
+        challengerName: 'Test',
+        targetScore: 7,
+        categoryIndex: -1,
+        difficulty: 'Karışık',
+        questionIds: const <String>['q001'],
+        shortCode: 'BR1905',
+      );
+
+      expect(challenge.code, 'BR1905');
+    });
   });
 }

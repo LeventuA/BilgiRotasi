@@ -31,6 +31,8 @@ part 'game_ui_polish.dart';
 part 'pawn_step_sounds.dart';
 part 'premium_pawn_picker.dart';
 part 'pawn_visual_effects.dart';
+part 'premium_dice.dart';
+part 'short_challenge_mode.dart';
 part 'about_privacy.dart';
 
 class SoundFx {
@@ -1561,7 +1563,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.41.2',
+                  'Bilgi Rotası • Sürüm 1.42.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -4446,6 +4448,7 @@ class _GameScreenState extends State<GameScreen> {
   final Random _random = Random();
   int _currentPlayerIndex = 0;
   int? _lastDice;
+  bool _diceRolling = false;
   bool _isBusy = false;
   String _status = 'Zarı at ve rotaya çık.';
   PlayerData? _winner;
@@ -4664,6 +4667,7 @@ class _GameScreenState extends State<GameScreen> {
                 GameTurnHeader(
                   player: _currentPlayer,
                   lastDice: _lastDice,
+                  diceRolling: _diceRolling,
                 ),
                 const SizedBox(height: 16),
                 const Text(
@@ -4823,6 +4827,7 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       _isBusy = true;
       _lastDice = null;
+      _diceRolling = true;
       _status = '${_currentPlayer.name} zarı atıyor…';
     });
 
@@ -4847,6 +4852,11 @@ class _GameScreenState extends State<GameScreen> {
 
     var diceResult = _random.nextInt(6) + 1;
 
+    setState(() {
+      _lastDice = diceResult;
+      _diceRolling = false;
+    });
+
     final useReroll =
         await GameplayBoostDialogs.offerReroll(
       context,
@@ -4860,6 +4870,10 @@ class _GameScreenState extends State<GameScreen> {
         _currentPlayer.jokers.consume(
           JokerKind.reroll,
         )) {
+      setState(() {
+        _lastDice = null;
+        _diceRolling = true;
+      });
       unawaited(SoundFx.dice());
       GameHaptics.mediumImpact();
       await Future<void>.delayed(
@@ -4870,6 +4884,7 @@ class _GameScreenState extends State<GameScreen> {
 
     setState(() {
       _lastDice = diceResult;
+      _diceRolling = false;
       _status = '${_currentPlayer.name} $diceResult attı!';
     });
 

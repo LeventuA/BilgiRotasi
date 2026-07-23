@@ -111,7 +111,7 @@ class SocialShareService {
       challenge.code,
       '',
       'Bilgi Rotası uygulamasında '
-          'Sosyal & Meydan Okuma bölümüne gir.',
+          'Oyna > Meydan Okuma bölümüne gir.',
     ].join('\n');
   }
 }
@@ -481,7 +481,7 @@ class SocialHomeButton extends StatelessWidget {
       ),
       icon: const Icon(Icons.people_alt_rounded),
       label: const Text(
-        'Sosyal • Rekorlar, Paylaşım & Meydan Okuma',
+        'Sosyal • Rekorlar ve Paylaşım',
         textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.w900),
       ),
@@ -501,7 +501,7 @@ class SocialHubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sosyal & Meydan Okuma'),
+        title: const Text('Sosyal & Rekorlar'),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -546,7 +546,7 @@ class SocialHubScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Bilgini paylaş, ailene meydan oku',
+                      'Bilgini paylaş, aile rekorlarını gör',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -557,8 +557,8 @@ class SocialHubScreen extends StatelessWidget {
                     SizedBox(height: 7),
                     Text(
                       'Sonuçlarını paylaş, aynı telefondaki '
-                      'aile rekorlarını gör ve başka telefona '
-                      'aynı soru setini kodla gönder.',
+                      'aile rekorlarını gör ve kariyerindeki '
+                      'ilerlemeyi çevrenle paylaş.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFFE7E1F0),
@@ -569,28 +569,6 @@ class SocialHubScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              _socialCard(
-                context,
-                emoji: '🎯',
-                title: 'Meydan Okuma Kodu',
-                text:
-                    'Aynı soru listesini kodla başka telefona '
-                    'gönder; hedef skor belirle.',
-                colors: const <Color>[
-                  Color(0xFF7C3AED),
-                  Color(0xFF4338CA),
-                ],
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => ChallengeLobbyScreen(
-                        questionBank: questionBank,
-                      ),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height: 12),
               _socialCard(
                 context,
                 emoji: '👨‍👩‍👧‍👦',
@@ -652,9 +630,8 @@ class SocialHubScreen extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  'Meydan okuma kodu çevrim dışı çalışır. '
-                  'Kod, soru kimliklerini taşıdığı için iki '
-                  'telefonda da aynı sorular açılır.',
+                  'Meydan Okuma artık Oyna bölümünde. Sosyal bölümünde '
+                  'aile rekorları ve paylaşım araçları bulunur.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFFD8CCEA),
@@ -1025,6 +1002,7 @@ class ChallengeConfig {
     required this.categoryIndex,
     required this.difficulty,
     required this.questionIds,
+    this.shortCode,
   });
 
   final String challengerName;
@@ -1032,6 +1010,7 @@ class ChallengeConfig {
   final int categoryIndex;
   final String difficulty;
   final List<String> questionIds;
+  final String? shortCode;
 
   String get categoryLabel => categoryIndex < 0
       ? 'Karışık'
@@ -1047,6 +1026,11 @@ class ChallengeConfig {
       };
 
   String get code {
+    final compactCode = shortCode?.trim().toUpperCase();
+    if (compactCode != null && compactCode.isNotEmpty) {
+      return compactCode;
+    }
+
     final bytes = utf8.encode(jsonEncode(toJson()));
     final encoded = base64UrlEncode(bytes)
         .replaceAll('=', '');

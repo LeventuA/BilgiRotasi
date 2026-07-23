@@ -27,13 +27,13 @@ extension MainNavigationSectionX on MainNavigationSection {
 
   String get description => switch (this) {
         MainNavigationSection.play =>
-          'Tahta, Serbest Rota, Maraton ve diğer modlar',
+          'Tahta, maraton, meydan okuma ve diğer modlar',
         MainNavigationSection.daily =>
           'Günlük görev, haftalık hedefler ve lig',
         MainNavigationSection.career =>
           'XP, başarımlar, istatistikler ve koleksiyon',
         MainNavigationSection.social =>
-          'Paylaşım, aile rekorları ve meydan okuma',
+          'Paylaşım, aile rekorları ve kariyer özeti',
         MainNavigationSection.settings =>
           'Ses, görünüm, erişilebilirlik ve teknik araçlar',
       };
@@ -315,6 +315,18 @@ class PlayCenterScreen extends StatelessWidget {
           onTap: () => _open(
             context,
             MarathonSetupScreen(questionBank: questionBank),
+          ),
+        ),
+        _HubActionCard(
+          emoji: '🎯',
+          title: 'Meydan Okuma',
+          description:
+              'BR1905 gibi otomatik kısa kod üret; başka telefonda '
+              'aynı 10 soruda 7 doğru hedefiyle yarış.',
+          accent: const Color(0xFFBE185D),
+          onTap: () => _open(
+            context,
+            ShortChallengeModeScreen(questionBank: questionBank),
           ),
         ),
         _HubActionCard(
