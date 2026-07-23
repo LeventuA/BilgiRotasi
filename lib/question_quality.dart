@@ -41,7 +41,7 @@ class QuestionQualityGuard {
       r'^\s*[-+]?\d+(?:[.,]\d+)?'
       r'(?:\s*:\s*\d+(?:[.,]\d+)?)?'
       r'(?:\s*(?:mb|gb|tb|kb|km|m|cm|mm|kg|g|lt|l|'
-      r'saat|dakika|saniye|puan|adet|tane|yuzde|%))?\s*$',
+      r'saat|dakika|saniye|puan|adet|tane|yuzde|derece|°c|°f|%))?\s*$',
       caseSensitive: false,
     );
 
@@ -101,6 +101,12 @@ class QuestionQualityGuard {
       'indirimli fiyat',
       'yuzde artis',
       'yuzde azalis',
+      'kac derece artmis',
+      'kac derece azalmis',
+      'kac derece yukselmis',
+      'kac derece dusmus',
+      'derece artmis olur',
+      'derece azalmis olur',
     ];
 
     final hasStrongPhrase = strongPhrases.any(
@@ -142,6 +148,31 @@ class QuestionQualityGuard {
         (numberCount >= 1 &&
             hasStrongPhrase &&
             numericOptionCount >= 3);
+  }
+
+  static bool _looksLikeLetterCounting(
+    QuizQuestion question,
+    String normalizedQuestion,
+  ) {
+    final asksLetters = const <String>[
+      'kac harf vardir',
+      'kac harften olusur',
+      'harf sayisi kactir',
+      'kac karakter vardir',
+    ].any(normalizedQuestion.contains);
+
+    final titleOrWordContext = const <String>[
+      'eser adinda',
+      'eser basliginda',
+      'adinda bosluk',
+      'basliginda bosluk',
+      'noktalama isaretleri sayilmadan',
+      'bosluklar sayilmadan',
+      'yalnizca harfler',
+      'kelimesinde kac harf',
+    ].any(normalizedQuestion.contains);
+
+    return asksLetters && titleOrWordContext;
   }
 
   static List<String> reasons(QuizQuestion question) {
@@ -244,6 +275,13 @@ class QuestionQualityGuard {
       normalizedQuestion,
     )) {
       reasons.add('Kategori dışı matematik problemi');
+    }
+
+    if (_looksLikeLetterCounting(
+      question,
+      normalizedQuestion,
+    )) {
+      reasons.add('Kategori dışı harf sayma sorusu');
     }
 
     return reasons.toSet().toList(growable: false);

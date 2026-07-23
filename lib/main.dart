@@ -1530,7 +1530,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.34.0',
+                  'Bilgi Rotası • Sürüm 1.35.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -8640,10 +8640,95 @@ class QuestionBank {
   final Map<String, String> _familyKeyById = <String, String>{};
 
   static String questionFamilyKey(String text) {
-    return text
-        .toLowerCase()
-        .replaceAll(RegExp(r'\d+(?:[.,/]\d+)*'), '#')
+    final lower = text.toLowerCase();
+    final normalized = lower
+        .replaceAll('ç', 'c')
+        .replaceAll('ğ', 'g')
+        .replaceAll('ı', 'i')
+        .replaceAll('ö', 'o')
+        .replaceAll('ş', 's')
+        .replaceAll('ü', 'u')
+        .replaceAll('â', 'a')
+        .replaceAll('î', 'i')
+        .replaceAll('û', 'u')
+        .replaceAll(RegExp(r'[^a-z0-9°]+'), ' ')
         .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+
+    var temperatureScaleCount = 0;
+    if (normalized.contains('celsius') || lower.contains('°c')) {
+      temperatureScaleCount++;
+    }
+    if (normalized.contains('fahrenheit') || lower.contains('°f')) {
+      temperatureScaleCount++;
+    }
+    if (normalized.contains('kelvin')) {
+      temperatureScaleCount++;
+    }
+
+    if (temperatureScaleCount >= 2 &&
+        const <String>[
+          'kac derece',
+          'kac derecedir',
+          'olceginde',
+          'donusumu',
+          'donusturuldugunde',
+        ].any(normalized.contains)) {
+      return 'topic:temperature_conversion';
+    }
+
+    final numberCount = RegExp(
+      r'(?<![a-z])\d+(?:[.,]\d+)?',
+    ).allMatches(normalized).length;
+    final musicWords = normalized.contains('nota') &&
+        const <String>[
+          'vurus',
+          'dortluk',
+          'sekizlik',
+          'onaltilik',
+          'otuzikilik',
+          'noktali',
+          'olcu',
+        ].any(normalized.contains);
+    final musicCalculation = const <String>[
+      'toplam kac',
+      'toplamda kac',
+      'kac dortluk',
+      'kac vurus',
+      'vurus surer',
+      'vurus eder',
+      'zaman birimi kac',
+      'kac tam olcu',
+    ].any(normalized.contains);
+
+    if (numberCount >= 2 &&
+        musicWords &&
+        musicCalculation) {
+      return 'topic:music_note_duration';
+    }
+
+    final administrativeTemplate =
+        (normalized.contains('adli idari bolum') &&
+                const <String>[
+                  'hangi ulkeye baglidir',
+                  'hangi ulkeye aittir',
+                  'hangi ulkenin',
+                ].any(normalized.contains)) ||
+            normalized.contains(
+              'hangi ulkenin alt ulusal bolum',
+            ) ||
+            normalized.contains(
+              'alt ulusal bolumlerinden biri',
+            ) ||
+            (normalized.contains('idari bolum') &&
+                normalized.contains('hangi ulkeye'));
+
+    if (administrativeTemplate) {
+      return 'topic:administrative_division_country';
+    }
+
+    return normalized
+        .replaceAll(RegExp(r'\d+(?:[.,/]\d+)*'), '#')
         .trim();
   }
 
@@ -8800,8 +8885,26 @@ class QuestionBank {
       }
     }
 
+    final candidateFamilies =
+        <String, List<QuizQuestion>>{};
+
+    for (final candidate in candidates) {
+      final familyKey =
+          _familyKeyById[candidate.id] ??
+              questionFamilyKey(candidate.text);
+      candidateFamilies
+          .putIfAbsent(
+            familyKey,
+            () => <QuizQuestion>[],
+          )
+          .add(candidate);
+    }
+
+    final families = candidateFamilies.values.toList();
+    final selectedFamily =
+        families[random.nextInt(families.length)];
     final question =
-        candidates[random.nextInt(candidates.length)];
+        selectedFamily[random.nextInt(selectedFamily.length)];
 
     usedQuestionIds.add(question.id);
 
