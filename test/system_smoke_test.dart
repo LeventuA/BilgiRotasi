@@ -237,6 +237,32 @@ void main() {
     });
 
 
+
+    test('Altı tahta teması ayrı sanat profiline sahiptir', () {
+      expect(boardThemes.length, 6);
+      expect(BoardThemeArt.profileCount, boardThemes.length);
+
+      final themeIds = boardThemes.map((theme) => theme.id).toSet();
+      final artIds = BoardThemeArt.profiles
+          .map((profile) => profile.id)
+          .toSet();
+
+      expect(artIds, themeIds);
+      expect(
+        BoardThemeArt.profiles
+            .map((profile) => profile.centerEmoji)
+            .toSet()
+            .length,
+        boardThemes.length,
+      );
+
+      for (final theme in boardThemes) {
+        final profile = BoardThemeArt.profileFor(theme.id);
+        expect(profile.tagline.trim(), isNotEmpty);
+        expect(BoardThemeArt.centerEmoji(theme.id).trim(), isNotEmpty);
+      }
+    });
+
     test('Zar jokeri kaldırılır ve özel kutular yenilenir', () {
       expect(JokerKind.values.length, 4);
 

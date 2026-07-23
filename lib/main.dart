@@ -21,6 +21,7 @@ part 'quick_modes.dart';
 part 'advanced_modes.dart';
 part 'retention_system.dart';
 part 'visual_collection.dart';
+part 'board_theme_art.dart';
 part 'accessibility_settings.dart';
 part 'social_features.dart';
 part 'system_health.dart';
@@ -152,22 +153,14 @@ class SoundFx {
         );
       }
 
-      final atmosphere =
-          VisualCollectionService.sound;
-
       await player.setPlaybackRate(
-        (
-          atmosphere.playbackRate *
-              playbackRateMultiplier
-        ).clamp(0.5, 2.0).toDouble(),
+        playbackRateMultiplier.clamp(0.5, 2.0).toDouble(),
       );
 
       await player.play(
         DeviceFileSource(path),
         volume: (
-          volume *
-              atmosphere.volumeMultiplier *
-              AppPreferencesService.soundMultiplier
+          volume * AppPreferencesService.soundMultiplier
         ).clamp(0.0, 1.0).toDouble(),
       );
 
@@ -4531,8 +4524,16 @@ class _GameScreenState extends State<GameScreen> {
         }
       },
       child: Scaffold(
+        backgroundColor: BoardThemeArt.screenBackground(
+          VisualCollectionService.theme.id,
+        ),
         appBar: AppBar(
-        title: const Text('Bilgi Rotası'),
+          backgroundColor: BoardThemeArt.appBarColor(
+            VisualCollectionService.theme.id,
+          ),
+          foregroundColor: Colors.white,
+          surfaceTintColor: Colors.transparent,
+          title: const Text('Bilgi Rotası'),
         actions: [
           IconButton(
             tooltip: _soundEnabled ? 'Sesleri kapat' : 'Sesleri aç',
@@ -4613,7 +4614,18 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Widget _buildBoardCard() {
+    final themeId = VisualCollectionService.theme.id;
+
     return Card(
+      color: BoardThemeArt.boardCardColor(themeId),
+      surfaceTintColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+        side: BorderSide(
+          color: BoardThemeArt.borderColor(themeId).withOpacity(0.72),
+          width: 1.6,
+        ),
+      ),
       clipBehavior: Clip.none,
       child: Padding(
         padding: EdgeInsets.zero,
@@ -7157,6 +7169,15 @@ class BoardPainter extends CustomPainter {
         ).createShader(boardRect),
     );
 
+    BoardThemeArt.paintSurface(
+      canvas,
+      size,
+      boardRect,
+      base,
+      _theme,
+      pulse,
+    );
+
     canvas.drawRRect(
       boardShape.deflate(base * 0.012),
       Paint()
@@ -7596,7 +7617,7 @@ class BoardPainter extends CustomPainter {
 
     _drawText(
       canvas,
-      '🧭',
+      BoardThemeArt.centerEmoji(_theme.id),
       center.translate(0, -base * 0.025),
       base * 0.030,
       Colors.white,

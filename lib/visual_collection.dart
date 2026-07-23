@@ -32,7 +32,7 @@ const List<BoardThemeDefinition> boardThemes =
     id: 'classic',
     title: 'Klasik Bilgi Rotası',
     emoji: '🧭',
-    description: 'Mor, turkuaz ve altın klasik görünüm.',
+    description: 'Pusula çizgileri, keşif haritası ve altın klasik görünüm.',
     unlockLevel: 1,
     backgroundColors: <Color>[
       Color(0xFF56336B),
@@ -52,7 +52,7 @@ const List<BoardThemeDefinition> boardThemes =
     id: 'egypt',
     title: 'Antik Mısır',
     emoji: '🏺',
-    description: 'Kum taşı, lapis ve firavun altını.',
+    description: 'Hiyeroglifler, ankhlar, piramitler ve firavun altını.',
     unlockLevel: 5,
     backgroundColors: <Color>[
       Color(0xFF9A6A2F),
@@ -72,7 +72,7 @@ const List<BoardThemeDefinition> boardThemes =
     id: 'space',
     title: 'Uzay İstasyonu',
     emoji: '🚀',
-    description: 'Gece mavisi, neon mor ve yıldız ışığı.',
+    description: 'Yıldız alanı, yörüngeler ve neon istasyon devreleri.',
     unlockLevel: 10,
     backgroundColors: <Color>[
       Color(0xFF182A63),
@@ -92,7 +92,7 @@ const List<BoardThemeDefinition> boardThemes =
     id: 'forest',
     title: 'Bilgelik Ormanı',
     emoji: '🌲',
-    description: 'Zümrüt yeşili ve sıcak ahşap tonları.',
+    description: 'Ağaç halkaları, sarmaşıklar ve sıcak fener ışığı.',
     unlockLevel: 15,
     backgroundColors: <Color>[
       Color(0xFF28644A),
@@ -112,7 +112,7 @@ const List<BoardThemeDefinition> boardThemes =
     id: 'ocean',
     title: 'Derin Okyanus',
     emoji: '🌊',
-    description: 'Mercan parıltılı derin deniz tahtası.',
+    description: 'Kabarcıklar, mercanlar ve su altı ışık huzmeleri.',
     unlockLevel: 25,
     backgroundColors: <Color>[
       Color(0xFF087E8B),
@@ -132,7 +132,7 @@ const List<BoardThemeDefinition> boardThemes =
     id: 'future',
     title: 'Gelecek Şehri',
     emoji: '🌆',
-    description: 'Neon pembe, elektrik mavisi ve krom.',
+    description: 'Neon şehir çizgileri, hologramlar ve krom devreler.',
     unlockLevel: 35,
     backgroundColors: <Color>[
       Color(0xFF8B1E8F),
@@ -150,80 +150,25 @@ const List<BoardThemeDefinition> boardThemes =
   ),
 ];
 
-class SoundAtmosphere {
-  const SoundAtmosphere({
-    required this.id,
-    required this.title,
-    required this.emoji,
-    required this.description,
-    required this.unlockLevel,
-    required this.volumeMultiplier,
-    required this.playbackRate,
-  });
-
-  final String id;
-  final String title;
-  final String emoji;
-  final String description;
-  final int unlockLevel;
-  final double volumeMultiplier;
-  final double playbackRate;
-}
-
-const List<SoundAtmosphere> soundAtmospheres =
-    <SoundAtmosphere>[
-  SoundAtmosphere(
-    id: 'classic',
-    title: 'Klasik',
-    emoji: '🎲',
-    description: 'Oyunun standart ses dengesi.',
-    unlockLevel: 1,
-    volumeMultiplier: 1,
-    playbackRate: 1,
-  ),
-  SoundAtmosphere(
-    id: 'calm',
-    title: 'Sakin',
-    emoji: '🌙',
-    description: 'Daha yumuşak ve düşük yoğunluklu sesler.',
-    unlockLevel: 10,
-    volumeMultiplier: 0.68,
-    playbackRate: 0.93,
-  ),
-  SoundAtmosphere(
-    id: 'energetic',
-    title: 'Enerjik',
-    emoji: '⚡',
-    description: 'Daha canlı ve hızlı oyun hissi.',
-    unlockLevel: 20,
-    volumeMultiplier: 1,
-    playbackRate: 1.08,
-  ),
-];
-
 class VisualCollectionSettings {
   const VisualCollectionSettings({
     this.themeId = 'classic',
     this.favoritePawn = 0,
-    this.soundId = 'classic',
     this.liveBoard = true,
   });
 
   final String themeId;
   final int favoritePawn;
-  final String soundId;
   final bool liveBoard;
 
   VisualCollectionSettings copyWith({
     String? themeId,
     int? favoritePawn,
-    String? soundId,
     bool? liveBoard,
   }) {
     return VisualCollectionSettings(
       themeId: themeId ?? this.themeId,
       favoritePawn: favoritePawn ?? this.favoritePawn,
-      soundId: soundId ?? this.soundId,
       liveBoard: liveBoard ?? this.liveBoard,
     );
   }
@@ -231,7 +176,6 @@ class VisualCollectionSettings {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'themeId': themeId,
         'favoritePawn': favoritePawn,
-        'soundId': soundId,
         'liveBoard': liveBoard,
       };
 
@@ -242,7 +186,6 @@ class VisualCollectionSettings {
       themeId: json['themeId']?.toString() ?? 'classic',
       favoritePawn:
           (json['favoritePawn'] as num?)?.toInt() ?? 0,
-      soundId: json['soundId']?.toString() ?? 'classic',
       liveBoard: json['liveBoard'] != false,
     );
   }
@@ -287,12 +230,7 @@ class VisualCollectionService {
     if (!isThemeUnlocked(current.themeId)) {
       current = current.copyWith(themeId: 'classic');
     }
-
-    if (!isSoundUnlocked(current.soundId)) {
-      current = current.copyWith(soundId: 'classic');
-    }
-
-    final safePawn = current.favoritePawn
+final safePawn = current.favoritePawn
         .clamp(0, PawnCatalog.all.length - 1)
         .toInt();
 
@@ -312,26 +250,10 @@ class VisualCollectionService {
     );
   }
 
-  static SoundAtmosphere get sound {
-    return soundAtmospheres.firstWhere(
-      (item) => item.id == current.soundId,
-      orElse: () => soundAtmospheres.first,
-    );
-  }
-
   static bool isThemeUnlocked(String id) {
     final item = boardThemes.firstWhere(
       (theme) => theme.id == id,
       orElse: () => boardThemes.first,
-    );
-
-    return currentLevel >= item.unlockLevel;
-  }
-
-  static bool isSoundUnlocked(String id) {
-    final item = soundAtmospheres.firstWhere(
-      (sound) => sound.id == id,
-      orElse: () => soundAtmospheres.first,
     );
 
     return currentLevel >= item.unlockLevel;
@@ -342,14 +264,6 @@ class VisualCollectionService {
     if (!isThemeUnlocked(id)) return;
 
     current = current.copyWith(themeId: id);
-    await _save();
-  }
-
-  static Future<void> selectSound(String id) async {
-    await refreshLevel();
-    if (!isSoundUnlocked(id)) return;
-
-    current = current.copyWith(soundId: id);
     await _save();
   }
 
@@ -506,17 +420,6 @@ class _CollectionScreenState extends State<CollectionScreen> {
               ),
               const SizedBox(height: 10),
               _pawnGrid(),
-              const SizedBox(height: 18),
-              const Text(
-                'Ses atmosferi',
-                style: TextStyle(
-                  fontSize: 21,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              const SizedBox(height: 9),
-              for (final sound in soundAtmospheres)
-                _soundCard(sound),
               const SizedBox(height: 14),
               SwitchListTile(
                 value:
@@ -578,7 +481,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
           ),
           const SizedBox(height: 6),
           Text(
-            'Yeni seviyelerde tema ve ses atmosferleri açılır.',
+            'Yeni seviyelerde yepyeni tahta dünyaları açılır.',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white.withOpacity(0.82),
@@ -760,64 +663,6 @@ class _CollectionScreenState extends State<CollectionScreen> {
           ),
         );
       },
-    );
-  }
-
-  Widget _soundCard(SoundAtmosphere sound) {
-    final unlocked =
-        VisualCollectionService.isSoundUnlocked(sound.id);
-    final selected =
-        VisualCollectionService.current.soundId == sound.id;
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 9),
-      child: ListTile(
-        onTap: unlocked
-            ? () async {
-                await VisualCollectionService.selectSound(
-                  sound.id,
-                );
-                unawaited(SoundFx.test());
-              }
-            : () => _lockedMessage(
-                  'Bu ses atmosferi Seviye '
-                  '${sound.unlockLevel} olduğunda açılır.',
-                ),
-        tileColor: selected
-            ? const Color(0xFFF0FDF4)
-            : Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
-          side: BorderSide(
-            color: selected
-                ? const Color(0xFF86EFAC)
-                : const Color(0xFFE2E8F0),
-          ),
-        ),
-        leading: Text(
-          unlocked ? sound.emoji : '🔒',
-          style: const TextStyle(fontSize: 29),
-        ),
-        title: Text(
-          sound.title,
-          style: const TextStyle(
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-        subtitle: Text(
-          unlocked
-              ? sound.description
-              : 'Seviye ${sound.unlockLevel}',
-        ),
-        trailing: Icon(
-          selected
-              ? Icons.check_circle_rounded
-              : Icons.volume_up_rounded,
-          color: selected
-              ? const Color(0xFF16A34A)
-              : const Color(0xFF64748B),
-        ),
-      ),
     );
   }
 
