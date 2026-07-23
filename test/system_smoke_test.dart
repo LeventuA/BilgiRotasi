@@ -81,5 +81,25 @@ void main() {
         5,
       );
     });
+
+    test('Oyun arayüzü telefon ve geniş ekranı ayırır', () {
+      expect(GameUiMetrics.isCompact(412), isTrue);
+      expect(GameUiMetrics.isCompact(760), isFalse);
+      expect(GameUiMetrics.boardSize(900), 720);
+      expect(
+        GameUiMetrics.actionLabel(
+          busy: false,
+          hasAllBadges: false,
+        ),
+        'Zarı At',
+      );
+      expect(
+        GameUiMetrics.actionLabel(
+          busy: false,
+          hasAllBadges: true,
+        ),
+        'Final Sorusuna Geç',
+      );
+    });
   });
 }

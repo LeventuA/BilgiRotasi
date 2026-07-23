@@ -26,6 +26,7 @@ part 'system_health.dart';
 part 'difficulty_balance.dart';
 part 'question_quality.dart';
 part 'main_navigation.dart';
+part 'game_ui_polish.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1530,7 +1531,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.35.0',
+                  'Bilgi Rotası • Sürüm 1.36.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -4556,6 +4557,10 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final compactLayout = GameUiMetrics.isCompact(
+      MediaQuery.sizeOf(context).width,
+    );
+
     return PopScope<Object?>(
       canPop: _allowRoutePop,
       onPopInvokedWithResult: (didPop, result) {
@@ -4596,6 +4601,14 @@ class _GameScreenState extends State<GameScreen> {
           ),
         ],
       ),
+      bottomNavigationBar: compactLayout
+          ? GameMobileActionBar(
+              player: _currentPlayer,
+              busy: _isBusy,
+              hasWinner: _winner != null,
+              onPressed: _onMainAction,
+            )
+          : null,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -4608,19 +4621,26 @@ class _GameScreenState extends State<GameScreen> {
                   children: [
                     Expanded(child: _buildBoardCard()),
                     const SizedBox(width: 18),
-                    SizedBox(width: 350, child: _buildControlPanel()),
+                    SizedBox(
+                          width: 350,
+                          child: _buildControlPanel(
+                            showMainAction: true,
+                          ),
+                        ),
                   ],
                 ),
               );
             }
 
             return ListView(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 112),
               clipBehavior: Clip.none,
               children: [
                 _buildBoardCard(),
-                const SizedBox(height: 14),
-                _buildControlPanel(),
+                const SizedBox(height: 10),
+                _buildControlPanel(
+                  showMainAction: false,
+                ),
               ],
             );
           },
@@ -4639,16 +4659,13 @@ class _GameScreenState extends State<GameScreen> {
           children: [
             LayoutBuilder(
               builder: (context, constraints) {
-                final boardSize = constraints.maxWidth * 1.10;
+                final boardSize = GameUiMetrics.boardSize(
+                  constraints.maxWidth,
+                );
 
-                return SizedBox(
-                  height: boardSize,
-                  child: OverflowBox(
-                    alignment: Alignment.topCenter,
-                    minWidth: boardSize,
-                    maxWidth: boardSize,
-                    minHeight: boardSize,
-                    maxHeight: boardSize,
+                return Center(
+                  child: SizedBox.square(
+                    dimension: boardSize,
                     child: GameBoard(
                       players: widget.players,
                       currentPlayerIndex: _currentPlayerIndex,
@@ -4664,15 +4681,11 @@ class _GameScreenState extends State<GameScreen> {
               },
             ),
             const AccessibilityCategoryLegend(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12, 4, 12, 14),
-              child: Text(
-                _status,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+            GameStatusBanner(
+              status: _status,
+              busy: _isBusy,
+              waitingForRoute: _moveOptions.isNotEmpty,
+              playerColor: _currentPlayer.color,
             ),
           ],
         ),
@@ -4680,7 +4693,9 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  Widget _buildControlPanel() {
+  Widget _buildControlPanel({
+    required bool showMainAction,
+  }) {
     return Column(
       children: [
         Card(
@@ -4689,34 +4704,9 @@ class _GameScreenState extends State<GameScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(
-                  children: [
-                    PawnToken(
-                      type: _currentPlayer.pawnType,
-                      color: _currentPlayer.color,
-                      active: true,
-                      width: 58,
-                      height: 72,
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text('Sıra', style: TextStyle(fontSize: 13)),
-                          Text(
-                            _currentPlayer.name,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    DiceFace(value: _lastDice),
-                  ],
+                GameTurnHeader(
+                  player: _currentPlayer,
+                  lastDice: _lastDice,
                 ),
                 const SizedBox(height: 16),
                 const Text(
@@ -4724,58 +4714,36 @@ class _GameScreenState extends State<GameScreen> {
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 10),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: List.generate(GameCategory.values.length, (index) {
-                    final category = GameCategory.values[index];
-                    final earned = _currentPlayer.badges.contains(index);
-                    return Tooltip(
-                      message: category.label,
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 250),
-                        width: 38,
-                        height: 38,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: earned ? category.color : const Color(0xFFE5E7EB),
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: earned ? Colors.white : const Color(0xFFCBD5E1),
-                            width: 2,
-                          ),
-                          boxShadow: earned
-                              ? const [
-                                  BoxShadow(
-                                    blurRadius: 6,
-                                    color: Color(0x33000000),
-                                  ),
-                                ]
-                              : null,
-                        ),
-                        child: Text(earned ? '✓' : category.emoji),
+                GameBadgeStrip(
+                  player: _currentPlayer,
+                ),
+                if (showMainAction) ...[
+                  const SizedBox(height: 18),
+                  FilledButton.icon(
+                    onPressed: _isBusy || _winner != null
+                        ? null
+                        : _onMainAction,
+                    icon: Icon(
+                      GameUiMetrics.actionIcon(
+                        busy: _isBusy,
+                        hasAllBadges:
+                            _currentPlayer.hasAllBadges,
                       ),
-                    );
-                  }),
-                ),
-                const SizedBox(height: 18),
-                FilledButton.icon(
-                  onPressed: _isBusy || _winner != null ? null : _onMainAction,
-                  icon: Icon(
-                    _currentPlayer.hasAllBadges
-                        ? Icons.emoji_events_rounded
-                        : Icons.casino_rounded,
+                    ),
+                    label: Text(
+                      GameUiMetrics.actionLabel(
+                        busy: _isBusy,
+                        hasAllBadges:
+                            _currentPlayer.hasAllBadges,
+                      ),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
                   ),
-                  label: Text(
-                    _isBusy
-                        ? 'Bekle…'
-                        : _currentPlayer.hasAllBadges
-                            ? 'Final Sorusuna Geç'
-                            : 'Zarı At',
-                    style: const TextStyle(fontWeight: FontWeight.w900),
-                  ),
-                ),
-                const SizedBox(height: 10),
+                  const SizedBox(height: 10),
+                ] else
+                  const SizedBox(height: 12),
                 if (_currentPlayer.doubleChance)
                   Container(
                     margin: const EdgeInsets.only(bottom: 10),
@@ -4812,37 +4780,12 @@ class _GameScreenState extends State<GameScreen> {
                   wallet: _currentPlayer.jokers,
                 ),
                 const SizedBox(height: 9),
-                Text(
-                  'Doğru: ${_currentPlayer.correctAnswers}   •   '
-                  'Yanlış: ${_currentPlayer.wrongAnswers}',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 13),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 11,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF155E75).withOpacity(0.08),
-                    borderRadius: BorderRadius.circular(13),
-                    border: Border.all(
-                      color: const Color(0xFF155E75)
-                          .withOpacity(0.22),
-                    ),
-                  ),
-                  child: Text(
-                    '🧠 Soru seviyesi: '
-                    '$_difficultyStatusText   •   '
-                    '${_usedQuestionIds.length}/'
-                    '${widget.questionBank.totalCount} farklı soru',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+                GameProgressSummary(
+                  player: _currentPlayer,
+                  difficultyText: _difficultyStatusText,
+                  usedQuestionCount: _usedQuestionIds.length,
+                  totalQuestionCount:
+                      widget.questionBank.totalCount,
                 ),
               ],
             ),
