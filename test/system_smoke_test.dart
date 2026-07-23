@@ -101,5 +101,17 @@ void main() {
         'Final Sorusuna Geç',
       );
     });
+
+    test('Piyon kataloğu dört yeni özgün karakter içerir', () {
+      final names = PawnCatalog.all
+          .map((pawn) => pawn.name)
+          .toSet();
+
+      expect(PawnCatalog.all.length, greaterThanOrEqualTo(16));
+      expect(names, contains('Minik Galaksi Bilgesi'));
+      expect(names, contains('Fidan Muhafızı'));
+      expect(names, contains('Özgür Ev Cini'));
+      expect(names, contains('Mağara Sinsiği'));
+    });
   });
 }

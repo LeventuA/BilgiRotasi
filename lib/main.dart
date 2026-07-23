@@ -1531,7 +1531,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.37.0',
+                  'Bilgi Rotası • Sürüm 1.38.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -6159,6 +6159,26 @@ class PawnCatalog {
       name: 'Kupa Rozet',
       assetPath: 'assets/pawns/12_kupa_rozet.png',
       fallbackSymbol: '🏆',
+    ),
+    PawnDefinition(
+      name: 'Minik Galaksi Bilgesi',
+      assetPath: 'assets/pawns/13_minik_galaksi_bilgesi.png',
+      fallbackSymbol: '🌌',
+    ),
+    PawnDefinition(
+      name: 'Fidan Muhafızı',
+      assetPath: 'assets/pawns/14_fidan_muhafizi.png',
+      fallbackSymbol: '🌱',
+    ),
+    PawnDefinition(
+      name: 'Özgür Ev Cini',
+      assetPath: 'assets/pawns/15_ozgur_ev_cini.png',
+      fallbackSymbol: '🧦',
+    ),
+    PawnDefinition(
+      name: 'Mağara Sinsiği',
+      assetPath: 'assets/pawns/16_magara_sinsigi.png',
+      fallbackSymbol: '💍',
     ),
   ];
 
