@@ -32,7 +32,6 @@ part 'pawn_step_sounds.dart';
 part 'premium_pawn_picker.dart';
 part 'pawn_visual_effects.dart';
 part 'about_privacy.dart';
-part 'release_candidate.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1562,7 +1561,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • ${AppBuildInfo.shortLabel}',
+                  'Bilgi Rotası • Sürüm 1.41.1',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
