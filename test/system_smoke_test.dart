@@ -113,5 +113,35 @@ void main() {
       expect(names, contains('Özgür Ev Cini'));
       expect(names, contains('Mağara Sinsiği'));
     });
+
+    test('On altı piyonun hareket sesi birbirinden ayrıdır', () {
+      expect(PawnStepSoundFactory.profileCount, 16);
+      expect(
+        PawnStepSoundFactory.profileNames.length,
+        PawnCatalog.all.length,
+      );
+
+      final sounds = PawnStepSoundFactory.buildAll();
+      expect(sounds.length, 16);
+      final signatures = <int>{};
+
+      for (var index = 0; index < 16; index++) {
+        final bytes = sounds[
+          PawnStepSoundFactory.fileNameForPawn(index)
+        ];
+        expect(bytes, isNotNull);
+        expect(bytes!.length, greaterThan(1500));
+        expect(String.fromCharCodes(bytes.sublist(0, 4)), 'RIFF');
+        expect(String.fromCharCodes(bytes.sublist(8, 12)), 'WAVE');
+
+        var signature = 17;
+        for (final byte in bytes) {
+          signature = (signature * 31 + byte) & 0x7FFFFFFF;
+        }
+        signatures.add(signature);
+      }
+
+      expect(signatures.length, 16);
+    });
   });
 }

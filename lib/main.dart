@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:audioplayers/audioplayers.dart';
@@ -27,6 +28,7 @@ part 'difficulty_balance.dart';
 part 'question_quality.dart';
 part 'main_navigation.dart';
 part 'game_ui_polish.dart';
+part 'pawn_step_sounds.dart';
 
 class SoundFx {
   SoundFx._();
@@ -81,6 +83,18 @@ class SoundFx {
         _soundPaths[entry.key] = file.path;
       }
 
+      for (final entry in PawnStepSoundFactory.buildAll().entries) {
+        final file = File('${directory.path}/${entry.key}');
+        final bytes = entry.value;
+        final needsWrite =
+            !await file.exists() || await file.length() != bytes.length;
+
+        if (needsWrite) {
+          await file.writeAsBytes(bytes, flush: true);
+        }
+        _soundPaths[entry.key] = file.path;
+      }
+
       await Future.wait([
         _dicePlayer.setReleaseMode(ReleaseMode.stop),
         _stepPlayer.setReleaseMode(ReleaseMode.stop),
@@ -111,6 +125,7 @@ class SoundFx {
     AudioPlayer player,
     String fileName, {
     double volume = 1,
+    double playbackRateMultiplier = 1,
   }) async {
     if (!enabled) return false;
 
@@ -135,7 +150,10 @@ class SoundFx {
           VisualCollectionService.sound;
 
       await player.setPlaybackRate(
-        atmosphere.playbackRate,
+        (
+          atmosphere.playbackRate *
+              playbackRateMultiplier
+        ).clamp(0.5, 2.0).toDouble(),
       );
 
       await player.play(
@@ -164,10 +182,19 @@ class SoundFx {
   }
 
   static Future<bool> step() {
+    return pawnStep(0);
+  }
+
+  static Future<bool> pawnStep(
+    int pawnType, {
+    int stepIndex = 0,
+  }) {
     return _play(
       _stepPlayer,
-      'step.mp3',
-      volume: 0.88,
+      PawnStepSoundFactory.fileNameForPawn(pawnType),
+      volume: PawnStepSoundFactory.volumeForPawn(pawnType),
+      playbackRateMultiplier:
+          PawnStepSoundFactory.rateForStep(pawnType, stepIndex),
     );
   }
 
@@ -1531,7 +1558,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.38.0',
+                  'Bilgi Rotası • Sürüm 1.39.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -5062,13 +5089,22 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> _animatePawnPath(List<int> path) async {
+    final pawnType = _currentPlayer.pawnType;
+    var stepIndex = 0;
+
     for (final id in path.skip(1)) {
       setState(() {
         _currentPlayer.position = id;
         _currentPlayer.movePulse++;
       });
 
-      unawaited(SoundFx.step());
+      unawaited(
+        SoundFx.pawnStep(
+          pawnType,
+          stepIndex: stepIndex,
+        ),
+      );
+      stepIndex++;
       GameHaptics.selectionClick();
 
       await Future<void>.delayed(
