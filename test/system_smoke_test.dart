@@ -204,17 +204,17 @@ void main() {
       expect(PremiumDiceModel.isLuckySix(5), isFalse);
     });
 
-    test('Kısa meydan okuma kodu kararlı ve okunabilirdir', () {
+    test('Kısa meydan okuma kodu 10 20 30 soruyu taşır', () {
       expect(
         ShortChallengeCodeService.normalize('br-1905'),
         'BR1905',
       );
       expect(
-        ShortChallengeCodeService.normalize('1905'),
-        'BR1905',
+        ShortChallengeCodeService.normalize('2905'),
+        'BR2905',
       );
       expect(
-        ShortChallengeCodeService.isValid('BR1905'),
+        ShortChallengeCodeService.isValid('BR3905'),
         isTrue,
       );
       expect(
@@ -224,6 +224,34 @@ void main() {
       expect(
         ShortChallengeCodeService.stableHash('BR1905'),
         ShortChallengeCodeService.stableHash('BR1905'),
+      );
+      expect(
+        ShortChallengeCodeService.questionCountOptions,
+        <int>[10, 20, 30],
+      );
+      expect(
+        ShortChallengeCodeService.questionCountForCode('BR1905'),
+        10,
+      );
+      expect(
+        ShortChallengeCodeService.questionCountForCode('BR2905'),
+        20,
+      );
+      expect(
+        ShortChallengeCodeService.questionCountForCode('BR3905'),
+        30,
+      );
+      expect(
+        ShortChallengeCodeService.targetScoreForCode('BR1905'),
+        7,
+      );
+      expect(
+        ShortChallengeCodeService.targetScoreForCode('BR2905'),
+        14,
+      );
+      expect(
+        ShortChallengeCodeService.targetScoreForCode('BR3905'),
+        21,
       );
       expect(ShortChallengeCodeService.questionCount, 10);
       expect(ShortChallengeCodeService.targetScore, 7);

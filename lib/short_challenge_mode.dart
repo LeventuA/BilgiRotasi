@@ -5,11 +5,26 @@ class ShortChallengeCodeService {
 
   static const int questionCount = 10;
   static const int targetScore = 7;
+  static const List<int> questionCountOptions = <int>[10, 20, 30];
 
   static String generate([Random? random]) {
+    return generateForCount(questionCount, random);
+  }
+
+  static String generateForCount(
+    int count, [
+    Random? random,
+  ]) {
+    if (!questionCountOptions.contains(count)) {
+      throw const FormatException(
+        'Meydan okuma soru sayısı 10, 20 veya 30 olmalı.',
+      );
+    }
+
     final source = random ?? Random.secure();
-    final number = 1000 + source.nextInt(9000);
-    return 'BR$number';
+    final marker = count ~/ 10;
+    final suffix = source.nextInt(1000).toString().padLeft(3, '0');
+    return 'BR$marker$suffix';
   }
 
   static String normalize(String raw) {
@@ -40,6 +55,34 @@ class ShortChallengeCodeService {
     }
   }
 
+  static int questionCountForCode(String rawCode) {
+    final code = normalize(rawCode);
+    final marker = int.parse(code.substring(2, 3));
+
+    return switch (marker) {
+      2 => 20,
+      3 => 30,
+      _ => 10,
+    };
+  }
+
+  static int targetScoreForCount(int count) {
+    return switch (count) {
+      10 => 7,
+      20 => 14,
+      30 => 21,
+      _ => throw const FormatException(
+          'Meydan okuma soru sayısı desteklenmiyor.',
+        ),
+    };
+  }
+
+  static int targetScoreForCode(String rawCode) {
+    return targetScoreForCount(
+      questionCountForCode(rawCode),
+    );
+  }
+
   static int stableHash(String value) {
     var hash = 0x811C9DC5;
 
@@ -56,6 +99,7 @@ class ShortChallengeCodeService {
     String rawCode,
   ) {
     final code = normalize(rawCode);
+    final count = questionCountForCode(code);
     final questions = questionBank.questionsByCategory.values
         .expand((items) => items)
         .toList(growable: false);
@@ -70,7 +114,7 @@ class ShortChallengeCodeService {
         return a.id.compareTo(b.id);
       });
 
-    return ranked.take(questionCount).toList(growable: false);
+    return ranked.take(count).toList(growable: false);
   }
 
   static ChallengeConfig buildConfig({
@@ -79,9 +123,10 @@ class ShortChallengeCodeService {
     required String challengerName,
   }) {
     final code = normalize(rawCode);
+    final count = questionCountForCode(code);
     final questions = selectQuestions(questionBank, code);
 
-    if (questions.length < questionCount) {
+    if (questions.length < count) {
       throw const FormatException(
         'Meydan okuma için yeterli soru bulunamadı.',
       );
@@ -91,7 +136,7 @@ class ShortChallengeCodeService {
 
     return ChallengeConfig(
       challengerName: cleanName.isEmpty ? 'Bir oyuncu' : cleanName,
-      targetScore: targetScore,
+      targetScore: targetScoreForCount(count),
       categoryIndex: -1,
       difficulty: 'Karışık',
       questionIds: questions
@@ -118,6 +163,8 @@ class ShortChallengeModeScreen extends StatefulWidget {
 class _ShortChallengeModeScreenState
     extends State<ShortChallengeModeScreen> {
   late String _generatedCode;
+  int _selectedQuestionCount =
+      ShortChallengeCodeService.questionCount;
   final TextEditingController _joinController =
       TextEditingController();
   String? _error;
@@ -131,7 +178,10 @@ class _ShortChallengeModeScreenState
   @override
   void initState() {
     super.initState();
-    _generatedCode = ShortChallengeCodeService.generate();
+    _generatedCode =
+        ShortChallengeCodeService.generateForCount(
+      _selectedQuestionCount,
+    );
   }
 
   @override
@@ -169,8 +219,9 @@ class _ShortChallengeModeScreenState
               _joinCard(),
               const SizedBox(height: 14),
               const Text(
-                'Aynı kısa kod, aynı APK sürümünde iki telefonda da '
-                'aynı 10 soruyu aynı sırayla açar. Hedef skor 7 doğrudur.',
+                'Soru sayısı ve hedef kısa kodun içinde saklanır. '
+                'Karşı telefonda yalnızca kodu girmek yeterlidir. '
+                'Seçenekler: 10/7, 20/14 ve 30/21.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFFD8CCEA),
@@ -261,6 +312,43 @@ class _ShortChallengeModeScreenState
             ),
           ),
           const SizedBox(height: 15),
+          const Text(
+            'Soru sayısı ve hedef',
+            style: TextStyle(
+              color: Color(0xFF334155),
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final count
+                  in ShortChallengeCodeService.questionCountOptions)
+                ChoiceChip(
+                  label: Text(
+                    '$count soru • Hedef '
+                    '${ShortChallengeCodeService.targetScoreForCount(count)}',
+                  ),
+                  selected: _selectedQuestionCount == count,
+                  onSelected: (_) => _selectQuestionCount(count),
+                  selectedColor: const Color(0xFFD8B4FE),
+                  side: BorderSide(
+                    color: _selectedQuestionCount == count
+                        ? const Color(0xFF7C3AED)
+                        : const Color(0xFFCBD5E1),
+                  ),
+                  labelStyle: TextStyle(
+                    color: _selectedQuestionCount == count
+                        ? const Color(0xFF4C1D95)
+                        : const Color(0xFF475569),
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 15),
           Container(
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -288,6 +376,17 @@ class _ShortChallengeModeScreenState
                 letterSpacing: 4,
                 fontWeight: FontWeight.w900,
               ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            '$_selectedQuestionCount karışık soru • Hedef '
+            '${ShortChallengeCodeService.targetScoreForCount(_selectedQuestionCount)} '
+            'doğru',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color(0xFF64748B),
+              fontWeight: FontWeight.w800,
             ),
           ),
           const SizedBox(height: 11),
@@ -397,9 +496,24 @@ class _ShortChallengeModeScreenState
     );
   }
 
+  void _selectQuestionCount(int value) {
+    if (_selectedQuestionCount == value) return;
+
+    setState(() {
+      _selectedQuestionCount = value;
+      _generatedCode =
+          ShortChallengeCodeService.generateForCount(value);
+      _error = null;
+    });
+    GameHaptics.selectionClick();
+  }
+
   void _newCode() {
     setState(() {
-      _generatedCode = ShortChallengeCodeService.generate();
+      _generatedCode =
+          ShortChallengeCodeService.generateForCount(
+        _selectedQuestionCount,
+      );
       _error = null;
     });
     GameHaptics.selectionClick();
@@ -430,7 +544,9 @@ class _ShortChallengeModeScreenState
         '$_playerName sana meydan okuyor!',
         '',
         'Kod: $_generatedCode',
-        '10 karışık soru • Hedef 7 doğru',
+        '$_selectedQuestionCount karışık soru • Hedef '
+            '${ShortChallengeCodeService.targetScoreForCount(_selectedQuestionCount)} '
+            'doğru',
         '',
         'Bilgi Rotası uygulamasında Oyna > Meydan Okuma bölümüne gir.',
       ].join('\n'),
@@ -450,12 +566,18 @@ class _ShortChallengeModeScreenState
   }) {
     try {
       final code = ShortChallengeCodeService.normalize(rawCode);
+      final questionCount =
+          ShortChallengeCodeService.questionCountForCode(code);
+      final targetScore =
+          ShortChallengeCodeService.targetScoreForCount(
+        questionCount,
+      );
       final questions = ShortChallengeCodeService.selectQuestions(
         widget.questionBank,
         code,
       );
 
-      if (questions.length < ShortChallengeCodeService.questionCount) {
+      if (questions.length < questionCount) {
         throw const FormatException(
           'Bu sürümde meydan okuma için yeterli soru yok.',
         );
@@ -463,7 +585,7 @@ class _ShortChallengeModeScreenState
 
       final challenge = ChallengeConfig(
         challengerName: challengerName,
-        targetScore: ShortChallengeCodeService.targetScore,
+        targetScore: targetScore,
         categoryIndex: -1,
         difficulty: 'Karışık',
         questionIds: questions

@@ -1,6 +1,6 @@
 # Bilgi Rotası — RC2 Telefon Test Listesi
 
-Sürüm: **1.48.2+66 • RC2**
+Sürüm: **1.48.3+67 • RC2**
 
 > Bir kritik madde başarısızsa RC2 onaylanmaz. Hata düzeltilir,
 > yeni APK alınır ve ilgili bölüm yeniden test edilir.
@@ -9,7 +9,7 @@ Sürüm: **1.48.2+66 • RC2**
 
 - [ ] APK mevcut imzalı uygulamanın üzerine kuruldu.
 - [ ] XP, tema, piyon ve kayıtlı oyun korundu.
-- [ ] Hakkında ekranında `Sürüm 1.48.2+66 • RC2` göründü.
+- [ ] Hakkında ekranında `Sürüm 1.48.3+67 • RC2` göründü.
 - [ ] Uygulama çevrimdışıyken misafir olarak açılabildi.
 
 ## 2. İlk hesap seçimi
@@ -67,3 +67,14 @@ Sürüm: **1.48.2+66 • RC2**
 - [ ] Aynı Google hesabıyla giriş yapıldı.
 - [ ] XP, tema, piyon ve kayıtlı oyun geri geldi.
 - [ ] Boş telefon kaydı dolu bulut kaydının üzerine yazılmadı.
+
+## 8. Seçilebilir Meydan Okuma testi
+
+- [ ] Yeni meydan okuma ekranında 10, 20 ve 30 soru seçenekleri göründü.
+- [ ] 10 soru seçilince hedef 7 doğru olarak gösterildi.
+- [ ] 20 soru seçilince hedef 14 doğru olarak gösterildi.
+- [ ] 30 soru seçilince hedef 21 doğru olarak gösterildi.
+- [ ] Soru sayısı değişince yeni kısa kod otomatik üretildi.
+- [ ] Paylaşım metninde seçilen soru sayısı ve hedef doğru göründü.
+- [ ] İkinci telefonda yalnızca kod girilince soru sayısı otomatik çözüldü.
+- [ ] Aynı kod iki telefonda aynı soruları aynı sırayla açtı.

@@ -322,7 +322,7 @@ class PlayCenterScreen extends StatelessWidget {
           title: 'Meydan Okuma',
           description:
               'BR1905 gibi otomatik kısa kod üret; başka telefonda '
-              'aynı 10 soruda 7 doğru hedefiyle yarış.',
+              '10, 20 veya 30 soruluk hedeflerde yarış.',
           accent: const Color(0xFFBE185D),
           onTap: () => _open(
             context,
