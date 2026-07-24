@@ -56,4 +56,17 @@ void main() {
       contains('privacy-policy.html'),
     );
   });
+
+  test('gizlilik eylemleri gerçek bağlantı ve yönlendirme içerir', () {
+    final source = File(
+      'lib/about_privacy.dart',
+    ).readAsStringSync();
+
+    expect(source, contains('launchUrl('));
+    expect(source, contains("scheme: 'mailto'"));
+    expect(source, contains('AccountSettingsScreen'));
+    expect(source, contains('Tarayıcıda aç'));
+    expect(source, contains('E-posta gönder'));
+    expect(source, contains('Silme ekranını aç'));
+  });
 }
