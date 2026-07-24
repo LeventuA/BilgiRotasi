@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('Bilgi Rotası RC1 kalite kapısı', () {
+  group('Bilgi Rotası RC2 kalite kapısı', () {
     late List<Map<String, dynamic>> questions;
 
     setUpAll(() {
@@ -31,13 +31,13 @@ void main() {
     });
 
     test('RC1 sürüm bilgisi tek merkezden gelir', () {
-      expect(AppBuildInfo.versionName, '1.46.1');
-      expect(AppBuildInfo.buildNumber, 61);
-      expect(AppBuildInfo.channel, 'RC1');
-      expect(AppBuildInfo.version, '1.46.1+61');
+      expect(AppBuildInfo.versionName, '1.47.0');
+      expect(AppBuildInfo.buildNumber, 62);
+      expect(AppBuildInfo.channel, 'RC2');
+      expect(AppBuildInfo.version, '1.47.0+62');
       expect(
         AppBuildInfo.fullLabel,
-        'Sürüm 1.46.1+61 • RC1',
+        'Sürüm 1.47.0+62 • RC2',
       );
     });
 

@@ -6,7 +6,11 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
@@ -37,6 +41,7 @@ part 'short_challenge_mode.dart';
 part 'board_target_presentation.dart';
 part 'about_privacy.dart';
 part 'app_build_info.dart';
+part 'account_cloud.dart';
 
 class SoundFx {
   SoundFx._();
@@ -863,6 +868,12 @@ Future<void> main() async {
     // Erişilebilirlik ayarları açılamasa bile oyun devam eder.
   }
 
+  try {
+    await AccountCloudService.initialize();
+  } catch (_) {
+    // Firebase açılamasa bile misafir oyun devam eder.
+  }
+
   runApp(const BilgiRotasiApp());
 }
 
@@ -928,7 +939,7 @@ class _BilgiRotasiAppState extends State<BilgiRotasiApp> {
             );
           }
 
-          return HomeScreen(questionBank: snapshot.data!);
+          return AccountGate(questionBank: snapshot.data!);
         },
       ),
     );
@@ -1072,8 +1083,10 @@ class _CareerStatsScreenState
                   const SizedBox(height: 16),
                   _buildSummary(stats),
                   const SizedBox(height: 16),
-                  const DailyChallengeStatsCard(),
-                  const SizedBox(height: 16),
+                  if (AccountCloudService.dailyVisible) ...[
+                    const DailyChallengeStatsCard(),
+                    const SizedBox(height: 16),
+                  ],
                   _buildCategoryStats(stats),
                   const SizedBox(height: 16),
                   _buildAchievements(stats),
@@ -1518,6 +1531,8 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 _buildHeroHeader(),
+                const SizedBox(height: 10),
+                const AccountSummaryCard(),
                 const SizedBox(height: 12),
                 _buildNewGameCard(),
                 const SizedBox(height: 10),
@@ -1538,10 +1553,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     return _buildSavedGameCard(savedGame);
                   },
                 ),
-                const SizedBox(height: 12),
-                DailyChallengeHomeCard(
-                  questionBank: widget.questionBank,
-                ),
+                if (AccountCloudService.dailyVisible) ...[
+                  const SizedBox(height: 12),
+                  DailyChallengeHomeCard(
+                    questionBank: widget.questionBank,
+                  ),
+                ],
                 const SizedBox(height: 12),
                 const Text(
                   'BÖLÜMLER',

@@ -1,4 +1,4 @@
-name: RC1 kalite kapısı ve APK
+name: RC2 kalite kapısı ve APK
 
 on:
   push:
@@ -28,16 +28,18 @@ jobs:
       - name: Bağımlılıkları kur
         run: flutter pub get
 
-      - name: RC1 soru ve asset kalite kapısı
+      - name: RC2 soru ve asset kalite kapısı
         run: |
           python3 tools/rc1_quality_gate.py \
             --report reports/RC1_AUTOMATED_REPORT.md
 
-      - name: Yeni RC1 dosyalarını biçimlendir
+      - name: Yeni RC2 dosyalarını biçimlendir
         run: |
           dart format \
             lib/app_build_info.dart \
-            test/rc1_quality_gate_test.dart
+            lib/account_cloud.dart \
+            test/rc1_quality_gate_test.dart \
+            test/account_cloud_policy_test.dart
 
       - name: Flutter statik analiz
         run: flutter analyze --no-fatal-warnings --no-fatal-infos
@@ -79,6 +81,73 @@ jobs:
           test -f .flutter_build/lib/app_build_info.dart
           test -f .flutter_build/assets/questions.json
           test -f .flutter_build/assets/sounds/correct.mp3
+          test -f firebase/google-services.json
+
+      - name: Firebase Android yapılandırmasını hazırla
+        working-directory: .flutter_build
+        run: |
+          set -euo pipefail
+
+          cp ../firebase/google-services.json \
+            android/app/google-services.json
+
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          config_path = Path('android/app/google-services.json')
+          config = json.loads(config_path.read_text(encoding='utf-8'))
+          package_name = config['client'][0]['client_info']['android_client_info']['package_name']
+          if package_name != 'com.leventua.bilgirotasi':
+              raise SystemExit('Firebase paket adı uyuşmuyor.')
+
+          settings = Path('android/settings.gradle.kts')
+          settings_text = settings.read_text(encoding='utf-8')
+          plugin_line = '    id("com.google.gms.google-services") version "4.5.0" apply false\n'
+          if 'com.google.gms.google-services' not in settings_text:
+              anchor = 'plugins {\n'
+              if settings_text.count(anchor) != 1:
+                  raise SystemExit('Gradle plugins bloğu bulunamadı.')
+              settings_text = settings_text.replace(anchor, anchor + plugin_line, 1)
+          settings.write_text(settings_text, encoding='utf-8')
+
+          app_gradle = Path('android/app/build.gradle.kts')
+          app_text = app_gradle.read_text(encoding='utf-8')
+          app_plugin = '    id("com.google.gms.google-services")\n'
+          if 'com.google.gms.google-services' not in app_text:
+              anchor = 'plugins {\n'
+              if app_text.count(anchor) != 1:
+                  raise SystemExit('Uygulama plugins bloğu bulunamadı.')
+              app_text = app_text.replace(anchor, anchor + app_plugin, 1)
+          app_text = app_text.replace(
+              'minSdk = flutter.minSdkVersion',
+              'minSdk = 23',
+              1,
+          )
+          app_gradle.write_text(app_text, encoding='utf-8')
+
+          manifest = Path('android/app/src/main/AndroidManifest.xml')
+          manifest_text = manifest.read_text(encoding='utf-8')
+          if 'android.permission.INTERNET' not in manifest_text:
+              manifest_text, count = re.subn(
+                  r'(<manifest\b[^>]*>)',
+                  r'\1\n    <uses-permission android:name="android.permission.INTERNET" />',
+                  manifest_text,
+                  count=1,
+              )
+              if count != 1:
+                  raise SystemExit('Android manifest kökü bulunamadı.')
+          manifest.write_text(manifest_text, encoding='utf-8')
+
+          required = [
+              'com.google.gms.google-services',
+              'minSdk = 23',
+          ]
+          missing = [item for item in required if item not in app_text]
+          if missing:
+              raise SystemExit('Firebase Gradle kurulumu eksik: ' + ', '.join(missing))
+          PY
 
       - name: Android simge ve açılış ekranını hazırla
         working-directory: .flutter_build
@@ -273,7 +342,7 @@ jobs:
           mkdir -p dist
 
           SOURCE_APK=".flutter_build/build/app/outputs/flutter-apk/app-release.apk"
-          APK="dist/BilgiRotasi-1.46.1-61-signed.apk"
+          APK="dist/BilgiRotasi-1.47.0-62-signed.apk"
           test -f "$SOURCE_APK"
           cp "$SOURCE_APK" "$APK"
 
@@ -313,28 +382,30 @@ jobs:
           fi
 
           {
-            echo "# Bilgi Rotası RC1 Yapı Bilgisi"
+            echo "# Bilgi Rotası RC2 Yapı Bilgisi"
             echo
             echo "- Commit: ${GITHUB_SHA}"
-            echo "- Sürüm: 1.46.1+61"
-            echo "- Kanal: RC1"
+            echo "- Sürüm: 1.47.0+62"
+            echo "- Kanal: RC2"
             echo "- Paket adı: com.leventua.bilgirotasi"
             echo "- Sertifika SHA-1: 00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15"
             echo "- İmza: Kalıcı upload anahtarı"
             echo "- Workflow: ${GITHUB_RUN_ID}"
           } > reports/RC1_BUILD_INFO.md
 
-      - name: RC1 APK ve raporları yükle
+      - name: RC2 APK ve raporları yükle
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-Signed-RC1-1.46.1-61
+          name: BilgiRotasi-Signed-RC2-1.47.0-62
           path: |
-            dist/BilgiRotasi-1.46.1-61-signed.apk
+            dist/BilgiRotasi-1.47.0-62-signed.apk
             reports/RC1_AUTOMATED_REPORT.md
             reports/RC1_APK_SHA256.txt
             reports/RC1_BUILD_INFO.md
             reports/RC1_MANUAL_TEST_CHECKLIST.md
             release/RELEASE_IDENTITY.md
             release/SIGNED_BUILD_PIPELINE.md
+            release/FIREBASE_CLOUD_SYNC.md
+            firestore.rules
           if-no-files-found: error
           retention-days: 30

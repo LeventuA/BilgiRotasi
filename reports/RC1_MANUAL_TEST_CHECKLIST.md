@@ -1,76 +1,57 @@
-# Bilgi Rotası — RC1 Telefon Test Listesi
+# Bilgi Rotası — RC2 Telefon Test Listesi
 
-Sürüm: **1.46.1+61 • RC1**
+Sürüm: **1.47.0+62 • RC2**
 
-> Bir madde başarısızsa RC1 onaylanmaz. Hata düzeltilir,
+> Bir kritik madde başarısızsa RC2 onaylanmaz. Hata düzeltilir,
 > yeni APK alınır ve ilgili bölüm yeniden test edilir.
 
-## 1. Kurulum ve açılış
+## 1. Güncelleme ve açılış
 
-- [ ] APK mevcut uygulamanın üzerine sorunsuz kuruldu.
-- [ ] Uygulama ilk açılışta kapanmadı veya siyah ekranda kalmadı.
-- [ ] Ana sayfada soru sayısı ve altı kategori doğru göründü.
-- [ ] Hakkında ekranında `Sürüm 1.46.1+61 • RC1` göründü.
-- [ ] Uygulama internet kapalıyken açıldı.
+- [ ] APK mevcut imzalı uygulamanın üzerine kuruldu.
+- [ ] XP, tema, piyon ve kayıtlı oyun korundu.
+- [ ] Hakkında ekranında `Sürüm 1.47.0+62 • RC2` göründü.
+- [ ] Uygulama çevrimdışıyken misafir olarak açılabildi.
 
-## 2. Standart tahta oyunu
+## 2. İlk hesap seçimi
 
-- [ ] 2 oyunculu yeni oyun başlatıldı.
-- [ ] Zar, piyon hareketi, rota seçimi ve soru ekranı çalıştı.
-- [ ] Doğru ve yanlış cevap akışları çalıştı.
-- [ ] Altı kategoriden rozet alınabildi.
-- [ ] Tekrar Zar At kutusu soru açmadan sırayı korudu.
-- [ ] Rastgele Joker kutusu bir jokere `+1` ekledi.
-- [ ] Çifte Şans ve Kategori Seç alanları çalıştı.
-- [ ] Oyun kaydedildi, uygulama kapatılıp açıldı ve sürdü.
-- [ ] Final sorusu ve kazanan ekranı çalıştı.
+- [ ] İlk açılışta Google ile giriş ve Misafir seçenekleri göründü.
+- [ ] Misafir seçilince ana ekran açıldı.
+- [ ] Misafirde ana sayfadaki Günlük Görev kartı görünmedi.
+- [ ] Misafirde Bölümler alanındaki Günlük kartı görünmedi.
+- [ ] Misafirde Kariyer içindeki günlük istatistik kartı görünmedi.
+- [ ] Misafir diğer oyun modlarına erişebildi.
 
-## 3. Diğer oyun modları
+## 3. Google girişi
 
-- [ ] Serbest Rota başlatıldı ve tamamlanabildi.
-- [ ] Soru Maratonu başlatıldı ve sonuç ekranı açıldı.
-- [ ] Günlük Görev oynandı ve aynı gün ikinci resmî skor yazılmadı.
-- [ ] Kısa kodlu Meydan Okuma oluşturuldu.
-- [ ] Oluşturulan kısa kod giriş ekranında kabul edildi.
+- [ ] Google hesap seçme ekranı açıldı.
+- [ ] Giriş sonrası kullanıcı adı/e-posta göründü.
+- [ ] Günlük Görev giriş sonrası görünür oldu.
+- [ ] İlk girişte telefondaki mevcut ilerleme kaybolmadı.
+- [ ] `Şimdi eşitle` işlemi başarıyla tamamlandı.
 
-## 4. Kariyer ve kayıtlar
+## 4. Bulut geri yükleme
 
-- [ ] Doğru cevap sonrası XP arttı.
-- [ ] Yanlış cevap XP düşürmedi ve seriyi sıfırladı.
-- [ ] Seviye ve rütbe bilgileri doğru güncellendi.
-- [ ] Başarımlar uygun koşulda açıldı.
-- [ ] Aile Rekorları sonuçlardan sonra güncellendi.
-- [ ] Kariyer paylaşım ekranı açıldı.
+- [ ] Uygulama kapatılıp açıldığında Google oturumu korundu.
+- [ ] XP, başarımlar, temalar ve kayıtlı oyun korundu.
+- [ ] Firestore `users/{uid}` belgesi oluştu.
+- [ ] Aynı hesapla temiz kurulumda bulut verisi geri geldi.
 
-## 5. Tema, piyon ve ses
+## 5. Hesap ayrımı
 
-- [ ] Klasik ve Antik Mısır temaları oyunda düzgün göründü.
-- [ ] Kilitli Uzay, Orman, Okyanus ve Gelecek temaları önizlendi.
-- [ ] Kilitli tema önizlemede seçili temayı değiştirmedi.
-- [ ] Açık tema `Bu Temayı Kullan` ile seçildi.
-- [ ] Favori piyon seçimi kaydedildi.
-- [ ] Zar, hareket, doğru, yanlış, rozet ve kazanma sesleri çaldı.
-- [ ] Ses kapatıldığında oyun sesleri sustu.
+- [ ] Hesaptan çıkınca Google verisi yerine misafir kaydı geri geldi.
+- [ ] Misafir ve Google ilerlemeleri birbirine karışmadı.
+- [ ] Tekrar Google girişi yapılınca hesap kaydı geri geldi.
+- [ ] Başka kullanıcının Firestore belgesine erişim reddedildi.
 
-## 6. Ayarlar ve erişilebilirlik
+## 6. Mevcut oyun özellikleri
 
-- [ ] Yazı boyutu seçenekleri ekranı bozmadı.
-- [ ] Çocuk modu çalıştı.
-- [ ] Kategori destek modu çalıştı.
-- [ ] Titreşim anahtarı çalıştı.
-- [ ] Animasyon yoğunluğu seçenekleri çalıştı.
-- [ ] `Ses Atmosferi` hiçbir kullanıcı ekranında görünmedi.
-- [ ] Sistem Sağlığı normal kullanıcı menüsünde görünmedi.
-- [ ] Sosyal ekranın eski açıklama kutusu yoktu.
-
-## 7. Dayanıklılık
-
+- [ ] Standart oyun, kayıt ve devam çalıştı.
+- [ ] Serbest Rota ve Soru Maratonu çalıştı.
+- [ ] Günlük Görev Google hesabında çalıştı.
+- [ ] Tema, piyon, ses ve erişilebilirlik ayarları çalıştı.
 - [ ] Uygulama arka plana alınıp dönünce çalışmaya devam etti.
-- [ ] Peş peşe en az 30 soru oynandı ve kilitlenme olmadı.
-- [ ] Uygulama yeniden açıldığında ayarlar korundu.
-- [ ] Telefon yeniden başladıktan sonra ilerleme korundu.
 
-## RC1 sonucu
+## RC2 sonucu
 
 - Test edilen telefon:
 - Android sürümü:

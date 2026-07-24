@@ -1,15 +1,19 @@
 name: bilgi_rotasi
 description: Aynı telefonda 2-6 kişilik Türkçe bilgi yarışması.
 publish_to: "none"
-version: 1.46.1+61
+version: 1.47.0+62
 environment:
-  sdk: ">=3.3.0 <4.0.0"
+  sdk: ">=3.7.0 <4.0.0"
 
 dependencies:
   flutter_native_splash: ^2.4.8
   shared_preferences: ^2.5.5
   audioplayers: ^6.8.1
   share_plus: 10.1.2
+  firebase_core: ^4.12.1
+  firebase_auth: ^6.5.6
+  cloud_firestore: ^6.7.1
+  google_sign_in: ^7.2.0
   flutter:
     sdk: flutter
 
