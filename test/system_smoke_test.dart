@@ -263,6 +263,24 @@ void main() {
       }
     });
 
+    test('Kilitli tema seçilmeden tam önizlenebilir', () {
+      final lockedTheme = boardThemes.last;
+      final painter = BoardPainter(
+        themeOverride: lockedTheme,
+        pulse: 0.5,
+      );
+      final screen = ThemePreviewScreen(
+        theme: lockedTheme,
+      );
+
+      expect(painter.themeOverride, same(lockedTheme));
+      expect(screen.theme, same(lockedTheme));
+      expect(
+        BoardThemeArt.profileFor(lockedTheme.id).tagline.trim(),
+        isNotEmpty,
+      );
+    });
+
     test('Zar jokeri kaldırılır ve özel kutular yenilenir', () {
       expect(JokerKind.values.length, 4);
 

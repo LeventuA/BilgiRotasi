@@ -7109,12 +7109,16 @@ class GameBoard extends StatelessWidget {
 }
 
 class BoardPainter extends CustomPainter {
-  const BoardPainter({this.pulse = 0});
+  const BoardPainter({
+    this.pulse = 0,
+    this.themeOverride,
+  });
 
   final double pulse;
+  final BoardThemeDefinition? themeOverride;
 
   BoardThemeDefinition get _theme =>
-      VisualCollectionService.theme;
+      themeOverride ?? VisualCollectionService.theme;
 
   Color get _gold => _theme.gold;
   Color get _darkGold => _theme.darkGold;

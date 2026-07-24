@@ -513,84 +513,130 @@ class _CollectionScreenState extends State<CollectionScreen> {
       child: Material(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        child: InkWell(
-          onTap: unlocked
-              ? () => VisualCollectionService.selectTheme(
-                    theme.id,
-                  )
-              : () => _lockedMessage(
-                    'Bu tema Seviye ${theme.unlockLevel} '
-                    'olduğunda açılır.',
-                  ),
-          borderRadius: BorderRadius.circular(20),
-          child: Padding(
-            padding: const EdgeInsets.all(14),
-            child: Row(
-              children: [
-                Container(
-                  width: 57,
-                  height: 57,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: theme.backgroundColors,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Text(
-                    unlocked ? theme.emoji : '🔒',
-                    style: const TextStyle(fontSize: 28),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(14, 14, 10, 8),
+          child: Column(
+            children: [
+              InkWell(
+                onTap: unlocked
+                    ? () => VisualCollectionService.selectTheme(
+                          theme.id,
+                        )
+                    : () => _openThemePreview(theme),
+                borderRadius: BorderRadius.circular(16),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Row(
                     children: [
-                      Text(
-                        theme.title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w900,
+                      Container(
+                        width: 57,
+                        height: 57,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: theme.backgroundColors,
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Text(
+                          unlocked ? theme.emoji : '🔒',
+                          style: const TextStyle(fontSize: 28),
                         ),
                       ),
-                      Text(
-                        theme.description,
-                        style: const TextStyle(
-                          color: Color(0xFF64748B),
-                          fontSize: 12,
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              theme.title,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                            Text(
+                              theme.description,
+                              style: const TextStyle(
+                                color: Color(0xFF64748B),
+                                fontSize: 12,
+                              ),
+                            ),
+                            Text(
+                              unlocked
+                                  ? selected
+                                      ? 'Seçili tema'
+                                      : 'Kullanılabilir'
+                                  : 'Seviye ${theme.unlockLevel}',
+                              style: TextStyle(
+                                color: unlocked
+                                    ? const Color(0xFF16A34A)
+                                    : const Color(0xFFB45309),
+                                fontSize: 11,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Text(
-                        unlocked
-                            ? selected
-                                ? 'Seçili tema'
-                                : 'Kullanılabilir'
-                            : 'Seviye ${theme.unlockLevel}',
-                        style: TextStyle(
-                          color: unlocked
-                              ? const Color(0xFF16A34A)
-                              : const Color(0xFFB45309),
-                          fontSize: 11,
-                          fontWeight: FontWeight.w900,
-                        ),
+                      Icon(
+                        selected
+                            ? Icons.check_circle_rounded
+                            : unlocked
+                                ? Icons.radio_button_unchecked_rounded
+                                : Icons.lock_outline_rounded,
+                        color: selected
+                            ? const Color(0xFF16A34A)
+                            : const Color(0xFF94A3B8),
                       ),
                     ],
                   ),
                 ),
-                Icon(
-                  selected
-                      ? Icons.check_circle_rounded
-                      : unlocked
-                          ? Icons.radio_button_unchecked_rounded
-                          : Icons.lock_outline_rounded,
-                  color: selected
-                      ? const Color(0xFF16A34A)
-                      : const Color(0xFF94A3B8),
-                ),
-              ],
-            ),
+              ),
+              Row(
+                children: [
+                  if (!unlocked)
+                    const Expanded(
+                      child: Text(
+                        'Kilidi açmadan tahtayı inceleyebilirsin.',
+                        style: TextStyle(
+                          color: Color(0xFF64748B),
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    )
+                  else
+                    const Spacer(),
+                  TextButton.icon(
+                    onPressed: () => _openThemePreview(theme),
+                    icon: const Icon(
+                      Icons.visibility_rounded,
+                      size: 18,
+                    ),
+                    label: const Text(
+                      'Önizle',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _openThemePreview(
+    BoardThemeDefinition theme,
+  ) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ThemePreviewScreen(
+          theme: theme,
         ),
       ),
     );
@@ -669,6 +715,279 @@ class _CollectionScreenState extends State<CollectionScreen> {
   void _lockedMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message)),
+    );
+  }
+}
+
+
+class ThemePreviewScreen extends StatefulWidget {
+  const ThemePreviewScreen({
+    required this.theme,
+    super.key,
+  });
+
+  final BoardThemeDefinition theme;
+
+  @override
+  State<ThemePreviewScreen> createState() =>
+      _ThemePreviewScreenState();
+}
+
+class _ThemePreviewScreenState extends State<ThemePreviewScreen>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  bool get _unlocked =>
+      VisualCollectionService.isThemeUnlocked(widget.theme.id);
+
+  bool get _selected =>
+      VisualCollectionService.current.themeId == widget.theme.id;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2400),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _useTheme() async {
+    if (!_unlocked || _selected) return;
+
+    await VisualCollectionService.selectTheme(
+      widget.theme.id,
+    );
+
+    if (!mounted) return;
+    Navigator.of(context).pop();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = widget.theme;
+    final art = BoardThemeArt.profileFor(theme.id);
+    final live = VisualCollectionService.current.liveBoard;
+
+    return Scaffold(
+      backgroundColor: art.screenColor,
+      appBar: AppBar(
+        backgroundColor: art.appBarColor,
+        foregroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        title: Text('${theme.emoji} ${theme.title}'),
+      ),
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final horizontalPadding =
+                constraints.maxWidth >= 700 ? 42.0 : 14.0;
+
+            return ListView(
+              padding: EdgeInsets.fromLTRB(
+                horizontalPadding,
+                16,
+                horizontalPadding,
+                28,
+              ),
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(17),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: theme.backgroundColors,
+                    ),
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(
+                      color: theme.gold,
+                      width: 1.8,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        theme.emoji,
+                        style: const TextStyle(fontSize: 42),
+                      ),
+                      const SizedBox(width: 13),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              theme.title,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              theme.description,
+                              style: TextStyle(
+                                color: Colors.white.withOpacity(0.84),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 14),
+                Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: 680,
+                    ),
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: art.cardColor,
+                          borderRadius: BorderRadius.circular(26),
+                          border: Border.all(
+                            color: art.lineColor.withOpacity(0.88),
+                            width: 2,
+                          ),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x66000000),
+                              blurRadius: 22,
+                              offset: Offset(0, 12),
+                            ),
+                          ],
+                        ),
+                        child: AnimatedBuilder(
+                          animation: _controller,
+                          builder: (context, _) {
+                            return CustomPaint(
+                              painter: BoardPainter(
+                                pulse: live
+                                    ? _controller.value
+                                    : 0,
+                                themeOverride: theme,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 14),
+                Container(
+                  padding: const EdgeInsets.all(17),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.94),
+                    borderRadius: BorderRadius.circular(22),
+                    border: Border.all(
+                      color: art.lineColor.withOpacity(0.48),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            _unlocked
+                                ? Icons.lock_open_rounded
+                                : Icons.lock_rounded,
+                            color: _unlocked
+                                ? const Color(0xFF16A34A)
+                                : const Color(0xFFB45309),
+                          ),
+                          const SizedBox(width: 9),
+                          Expanded(
+                            child: Text(
+                              _unlocked
+                                  ? _selected
+                                      ? 'Bu tema şu anda seçili.'
+                                      : 'Bu tema kullanılabilir.'
+                                  : 'Seviye ${theme.unlockLevel} '
+                                      'olduğunda kullanıma açılır.',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        art.tagline,
+                        style: const TextStyle(
+                          color: Color(0xFF475569),
+                          height: 1.35,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 7),
+                      const Text(
+                        'Önizleme temayı seçmez ve kayıtlı '
+                        'görünümünü değiştirmez.',
+                        style: TextStyle(
+                          color: Color(0xFF64748B),
+                          fontSize: 11,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 14),
+                FilledButton.icon(
+                  onPressed:
+                      _unlocked && !_selected ? _useTheme : null,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: theme.backgroundColors.first,
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size.fromHeight(56),
+                  ),
+                  icon: Icon(
+                    _selected
+                        ? Icons.check_circle_rounded
+                        : _unlocked
+                            ? Icons.palette_rounded
+                            : Icons.lock_rounded,
+                  ),
+                  label: Text(
+                    _selected
+                        ? 'Şu an seçili'
+                        : _unlocked
+                            ? 'Bu Temayı Kullan'
+                            : 'Seviye ${theme.unlockLevel}\'te açılır',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: const Icon(Icons.arrow_back_rounded),
+                  label: const Text(
+                    'Koleksiyona Dön',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 }
