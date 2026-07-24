@@ -1,4 +1,4 @@
-name: RC2 kalite kapısı ve APK
+name: RC2 kalite kapısı, APK ve AAB
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   quality-and-build:
-    name: Kalite + APK
+    name: Kalite + APK + AAB
     runs-on: ubuntu-latest
 
     steps:
@@ -337,6 +337,10 @@ jobs:
         working-directory: .flutter_build
         run: flutter build apk --release
 
+      - name: Google Play AAB oluştur
+        working-directory: .flutter_build
+        run: flutter build appbundle --release
+
       - name: Paket kimliğini ve kalıcı imzayı doğrula
         shell: bash
         run: |
@@ -345,11 +349,18 @@ jobs:
           mkdir -p dist
 
           SOURCE_APK=".flutter_build/build/app/outputs/flutter-apk/app-release.apk"
+          SOURCE_AAB=".flutter_build/build/app/outputs/bundle/release/app-release.aab"
           APK="dist/BilgiRotasi-1.48.1-65-signed.apk"
+          AAB="dist/BilgiRotasi-1.48.1-65-signed.aab"
+
           test -f "$SOURCE_APK"
+          test -f "$SOURCE_AAB"
+
           cp "$SOURCE_APK" "$APK"
+          cp "$SOURCE_AAB" "$AAB"
 
           sha256sum "$APK" | tee reports/RC1_APK_SHA256.txt
+          sha256sum "$AAB" | tee reports/RC1_AAB_SHA256.txt
 
           SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
           test -n "$SDK_ROOT"
@@ -368,9 +379,28 @@ jobs:
           EXPECTED_SHA1="000EE43F410ABC6B4F634C4F716D76EB19084115"
 
           if [ "$ACTUAL_SHA1" != "$EXPECTED_SHA1" ]; then
-            echo "İmza SHA-1 uyuşmuyor."
+            echo "APK imza SHA-1 uyuşmuyor."
             echo "Beklenen: $EXPECTED_SHA1"
             echo "Bulunan : $ACTUAL_SHA1"
+            exit 1
+          fi
+
+          jarsigner -verify "$AAB"
+
+          AAB_CERT_OUTPUT="$(keytool -printcert -jarfile "$AAB")"
+          printf '%s\n' "$AAB_CERT_OUTPUT"
+
+          ACTUAL_AAB_SHA1="$(
+            printf '%s\n' "$AAB_CERT_OUTPUT" \
+              | awk -F': ' '/SHA1:/ {print $2; exit}' \
+              | tr '[:lower:]' '[:upper:]' \
+              | tr -d '[:space:]:'
+          )"
+
+          if [ "$ACTUAL_AAB_SHA1" != "$EXPECTED_SHA1" ]; then
+            echo "AAB imza SHA-1 uyuşmuyor."
+            echo "Beklenen: $EXPECTED_SHA1"
+            echo "Bulunan : $ACTUAL_AAB_SHA1"
             exit 1
           fi
 
@@ -393,17 +423,21 @@ jobs:
             echo "- Paket adı: com.leventua.bilgirotasi"
             echo "- Sertifika SHA-1: 00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15"
             echo "- İmza: Kalıcı upload anahtarı"
+            echo "- APK: dist/BilgiRotasi-1.48.1-65-signed.apk"
+            echo "- AAB: dist/BilgiRotasi-1.48.1-65-signed.aab"
             echo "- Workflow: ${GITHUB_RUN_ID}"
           } > reports/RC1_BUILD_INFO.md
 
-      - name: RC2 APK ve raporları yükle
+      - name: RC2 APK, AAB ve raporları yükle
         uses: actions/upload-artifact@v4
         with:
           name: BilgiRotasi-Signed-RC2-1.48.1-65
           path: |
             dist/BilgiRotasi-1.48.1-65-signed.apk
+            dist/BilgiRotasi-1.48.1-65-signed.aab
             reports/RC1_AUTOMATED_REPORT.md
             reports/RC1_APK_SHA256.txt
+            reports/RC1_AAB_SHA256.txt
             reports/RC1_BUILD_INFO.md
             reports/RC1_MANUAL_TEST_CHECKLIST.md
             release/RELEASE_IDENTITY.md
