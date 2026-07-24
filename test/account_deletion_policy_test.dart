@@ -7,6 +7,10 @@ void main() {
     final source = File(
       'lib/account_cloud.dart',
     ).readAsStringSync();
+    final compactSource = source.replaceAll(
+      RegExp(r'\s+'),
+      '',
+    );
 
     expect(
       source,
@@ -21,12 +25,12 @@ void main() {
       contains(".collection('users')"),
     );
     expect(
-      source,
-      contains('.doc(user.uid).delete()'),
+      compactSource,
+      contains(".collection('users').doc(user.uid).delete()"),
     );
     expect(
-      source,
-      contains('await user.delete();'),
+      compactSource,
+      contains('awaituser.delete();'),
     );
   });
 
