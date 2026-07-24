@@ -17,10 +17,10 @@ class AboutPrivacyScreen extends StatelessWidget {
         title: const Text('Hakkında & Gizlilik'),
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(18, 16, 18, 28),
+        padding: const EdgeInsets.fromLTRB(14, 10, 14, 22),
         children: [
           Container(
-            padding: const EdgeInsets.all(22),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [
@@ -28,27 +28,27 @@ class AboutPrivacyScreen extends StatelessWidget {
                   Color(0xFF155E75),
                 ],
               ),
-              borderRadius: BorderRadius.circular(28),
+              borderRadius: BorderRadius.circular(21),
             ),
             child: Column(
               children: [
                 Image.asset(
                   'assets/branding/splash_logo.png',
-                  width: 92,
-                  height: 92,
+                  width: 64,
+                  height: 64,
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
                 const Text(
                   'BİLGİ ROTASI',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 26,
+                    fontSize: 20,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
                 const SizedBox(height: 5),
                 const Text(
-                  'Sürüm 1.43.1+56',
+                  'Sürüm 1.45.0+59',
                   style: TextStyle(
                     color: Color(0xFFFFE082),
                     fontWeight: FontWeight.w800,
@@ -66,7 +66,7 @@ class AboutPrivacyScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 11),
           _section(
             emoji: '🔐',
             title: 'Gizlilik',
@@ -76,7 +76,7 @@ class AboutPrivacyScreen extends StatelessWidget {
                 'ayarlar, başarımlar ve istatistikler yalnızca '
                 'cihazda yerel olarak tutulur.',
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           _section(
             emoji: '📡',
             title: 'İnternet kullanımı',
@@ -85,7 +85,7 @@ class AboutPrivacyScreen extends StatelessWidget {
                 'Paylaş düğmesine basıldığında yalnızca '
                 'telefonun sistem paylaşım ekranı açılır.',
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           _section(
             emoji: '🧹',
             title: 'Verileri yönetme',
@@ -94,35 +94,14 @@ class AboutPrivacyScreen extends StatelessWidget {
                 'Android ayarlarından uygulama verileri '
                 'temizlendiğinde yerel kayıtlar silinir.',
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           _section(
-            emoji: '🛠️',
-            title: 'Teknik kontrol',
+            emoji: '🛡️',
+            title: 'Otomatik koruma',
             text:
-                'Soru bankası, kayıt yedeği ve teknik hata '
-                'günlüğü Sistem Sağlığı ekranından kontrol '
-                'edilebilir.',
-          ),
-          const SizedBox(height: 16),
-          FilledButton.icon(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => SystemHealthScreen(
-                    questionBank: questionBank,
-                  ),
-                ),
-              );
-            },
-            icon: const Icon(
-              Icons.health_and_safety_rounded,
-            ),
-            label: const Text(
-              'Sistem Sağlığını Aç',
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-              ),
-            ),
+                'Oyun kayıtları yerel yedekle korunur. '
+                'Teknik hata günlüğü ve kayıt kurtarma sistemi '
+                'arka planda otomatik çalışır.',
           ),
         ],
       ),
@@ -135,10 +114,10 @@ class AboutPrivacyScreen extends StatelessWidget {
     required String text,
   }) {
     return Container(
-      padding: const EdgeInsets.all(17),
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 11),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(21),
+        borderRadius: BorderRadius.circular(17),
         border: Border.all(
           color: const Color(0xFFD9E2EC),
         ),
@@ -148,7 +127,7 @@ class AboutPrivacyScreen extends StatelessWidget {
         children: [
           Text(
             emoji,
-            style: const TextStyle(fontSize: 30),
+            style: const TextStyle(fontSize: 24),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -158,7 +137,7 @@ class AboutPrivacyScreen extends StatelessWidget {
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 17,
+                    fontSize: 15,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -167,7 +146,8 @@ class AboutPrivacyScreen extends StatelessWidget {
                   text,
                   style: const TextStyle(
                     color: Color(0xFF475569),
-                    height: 1.42,
+                    height: 1.3,
+                  fontSize: 11.5,
                   ),
                 ),
               ],

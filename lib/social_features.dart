@@ -518,14 +518,14 @@ class SocialHubScreen extends StatelessWidget {
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(
-              18,
-              16,
-              18,
-              28,
+              14,
+              10,
+              14,
+              22,
             ),
             children: [
               Container(
-                padding: const EdgeInsets.all(22),
+                padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: <Color>[
@@ -533,7 +533,7 @@ class SocialHubScreen extends StatelessWidget {
                       Color(0xFF7C3AED),
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(21),
                   border: Border.all(
                     color: const Color(0x99FFE082),
                   ),
@@ -542,7 +542,7 @@ class SocialHubScreen extends StatelessWidget {
                   children: [
                     Text(
                       '🏆👨‍👩‍👧‍👦📨',
-                      style: TextStyle(fontSize: 52),
+                      style: TextStyle(fontSize: 38),
                     ),
                     SizedBox(height: 8),
                     Text(
@@ -550,7 +550,7 @@ class SocialHubScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 20,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -568,7 +568,7 @@ class SocialHubScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 11),
               _socialCard(
                 context,
                 emoji: '👨‍👩‍👧‍👦',
@@ -589,7 +589,7 @@ class SocialHubScreen extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 8),
               _socialCard(
                 context,
                 emoji: '📊',
@@ -619,27 +619,6 @@ class SocialHubScreen extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: const Color(0x16FFFFFF),
-                  borderRadius: BorderRadius.circular(19),
-                  border: Border.all(
-                    color: const Color(0x33FFFFFF),
-                  ),
-                ),
-                child: const Text(
-                  'Meydan Okuma artık Oyna bölümünde. Sosyal bölümünde '
-                  'aile rekorları ve paylaşım araçları bulunur.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFFD8CCEA),
-                    height: 1.4,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -659,12 +638,12 @@ class SocialHubScreen extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(20),
         child: Ink(
-          padding: const EdgeInsets.all(18),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: colors),
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: const Color(0x55FFFFFF),
             ),
@@ -673,7 +652,7 @@ class SocialHubScreen extends StatelessWidget {
             children: [
               Text(
                 emoji,
-                style: const TextStyle(fontSize: 44),
+                style: const TextStyle(fontSize: 34),
               ),
               const SizedBox(width: 13),
               Expanded(
@@ -685,7 +664,7 @@ class SocialHubScreen extends StatelessWidget {
                       title,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 20,
+                        fontSize: 17,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -694,7 +673,7 @@ class SocialHubScreen extends StatelessWidget {
                       text,
                       style: const TextStyle(
                         color: Color(0xFFEDE9FE),
-                        fontSize: 12,
+                        fontSize: 11,
                         height: 1.3,
                       ),
                     ),

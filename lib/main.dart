@@ -1512,14 +1512,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: SafeArea(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(20, 18, 20, 26),
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 22),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 _buildHeroHeader(),
-                const SizedBox(height: 18),
+                const SizedBox(height: 12),
                 _buildNewGameCard(),
-                const SizedBox(height: 14),
+                const SizedBox(height: 10),
                 FutureBuilder<SavedGame?>(
                   future: _savedGameFuture,
                   builder: (context, snapshot) {
@@ -1537,11 +1537,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     return _buildSavedGameCard(savedGame);
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 DailyChallengeHomeCard(
                   questionBank: widget.questionBank,
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 12),
                 const Text(
                   'BÖLÜMLER',
                   style: TextStyle(
@@ -1555,9 +1555,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 MainNavigationGrid(
                   questionBank: widget.questionBank,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.43.1',
+                  'Bilgi Rotası • Sürüm 1.45.0',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),
@@ -1577,9 +1577,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         Container(
-          width: 118,
-          height: 118,
-          padding: const EdgeInsets.all(6),
+          width: 84,
+          height: 84,
+          padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: const Color(0x1AFFFFFF),
@@ -1590,8 +1590,8 @@ class _HomeScreenState extends State<HomeScreen> {
             boxShadow: const [
               BoxShadow(
                 color: Color(0x6632E0D0),
-                blurRadius: 28,
-                spreadRadius: 3,
+                blurRadius: 20,
+                spreadRadius: 1,
               ),
             ],
           ),
@@ -1600,13 +1600,13 @@ class _HomeScreenState extends State<HomeScreen> {
             fit: BoxFit.contain,
           ),
         ),
-        const SizedBox(height: 14),
+        const SizedBox(height: 10),
         const Text(
           'BİLGİ ROTASI',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
-            fontSize: 31,
+            fontSize: 26,
             height: 1,
             letterSpacing: 1.5,
             fontWeight: FontWeight.w900,
@@ -1625,7 +1625,7 @@ class _HomeScreenState extends State<HomeScreen> {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Color(0xFFD7F6F2),
-            fontSize: 15,
+            fontSize: 13,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -1665,7 +1665,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildNewGameCard() {
     return Container(
-      padding: const EdgeInsets.all(22),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
@@ -1675,7 +1675,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Color(0xFF0F8278),
           ],
         ),
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(22),
         border: Border.all(
           color: const Color(0x99FFE082),
         ),
@@ -1694,7 +1694,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Text(
                 '🎲',
-                style: TextStyle(fontSize: 36),
+                style: TextStyle(fontSize: 29),
               ),
               SizedBox(width: 12),
               Expanded(
@@ -1702,7 +1702,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'OYUNA BAŞLA',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 23,
+                    fontSize: 20,
                     height: 1.1,
                     fontWeight: FontWeight.w900,
                   ),
@@ -1719,19 +1719,19 @@ class _HomeScreenState extends State<HomeScreen> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 18),
+          const SizedBox(height: 12),
           FilledButton.icon(
             style: FilledButton.styleFrom(
               backgroundColor: const Color(0xFFFFE082),
               foregroundColor: const Color(0xFF3A2448),
-              minimumSize: const Size.fromHeight(56),
+              minimumSize: const Size.fromHeight(50),
             ),
             onPressed: _actionBusy ? null : _openNewGame,
             icon: const Icon(Icons.add_circle_outline_rounded),
             label: const Text(
               'Standart Tahta Oyununu Başlat',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.w900,
               ),
             ),
@@ -2399,7 +2399,7 @@ class _SoloRouteSetupScreenState
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 23,
+                        fontSize: 20,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -2417,7 +2417,7 @@ class _SoloRouteSetupScreenState
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
               TextField(
                 controller: _nameController,
                 maxLength: 18,
@@ -2485,7 +2485,7 @@ class _SoloRouteSetupScreenState
                   },
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 12),
               const Text(
                 'Piyonunu seç',
                 style: TextStyle(
@@ -2558,7 +2558,7 @@ class _SoloRouteSetupScreenState
                   );
                 },
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 12),
               DifficultyModeCard(
                 value: _difficultyMode,
                 onChanged: (mode) {
@@ -2699,7 +2699,7 @@ class _MarathonSetupScreenState
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 23,
+                      fontSize: 20,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
@@ -2715,7 +2715,7 @@ class _MarathonSetupScreenState
                 ],
               ),
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 12),
             const Text(
               'Kategori',
               style: TextStyle(
@@ -2767,7 +2767,7 @@ class _MarathonSetupScreenState
                 setState(() => _questionCount = selection.first);
               },
             ),
-            const SizedBox(height: 14),
+            const SizedBox(height: 10),
             FutureBuilder<int>(
               future: MarathonScoreService.bestScore(
                 categoryIndex: _categoryIndex,
@@ -2807,7 +2807,7 @@ class _MarathonSetupScreenState
                 );
               },
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 12),
             DifficultyModeCard(
               value: _difficultyMode,
               onChanged: (mode) {
@@ -2888,7 +2888,7 @@ class _MarathonSetupScreenState
                   Text(
                     title,
                     style: const TextStyle(
-                      fontSize: 15,
+                      fontSize: 13,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
@@ -3050,7 +3050,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(999),
                   child: LinearProgressIndicator(
@@ -3075,7 +3075,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(28),
+                    borderRadius: BorderRadius.circular(22),
                     boxShadow: const [
                       BoxShadow(
                         color: Color(0x55000000),
@@ -3129,7 +3129,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 const Text(
                   'Her doğru cevap serini bir artırır. '
                   'Yanlış cevap seriyi sıfırlar.',
@@ -3444,7 +3444,7 @@ class MarathonResultScreen extends StatelessWidget {
                   total: questionCount,
                   won: correct >= max(1, questionCount ~/ 2),
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 12),
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
@@ -3479,7 +3479,7 @@ class MarathonResultScreen extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 16),
                       Row(
                         children: [
                           Expanded(
@@ -3508,7 +3508,7 @@ class MarathonResultScreen extends StatelessWidget {
                         ],
                       ),
                       if (!isNewRecord && previousBest > 0) ...[
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 12),
                         Text(
                           'Kişisel rekorun: '
                           '$previousBest / $questionCount',
@@ -3613,7 +3613,7 @@ class MarathonResultScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: FontWeight.w900,
             ),
           ),

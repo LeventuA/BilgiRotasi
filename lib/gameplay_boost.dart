@@ -186,14 +186,14 @@ class _GameplayBoostSettingsScreenState
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
-          18,
-          16,
-          18,
-          28,
+          14,
+          10,
+          14,
+          22,
         ),
         children: [
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [
@@ -201,13 +201,13 @@ class _GameplayBoostSettingsScreenState
                   Color(0xFF0F766E),
                 ],
               ),
-              borderRadius: BorderRadius.circular(26),
+              borderRadius: BorderRadius.circular(20),
             ),
             child: const Column(
               children: [
                 Text(
                   '🔥🎁⚡',
-                  style: TextStyle(fontSize: 43),
+                  style: TextStyle(fontSize: 32),
                 ),
                 SizedBox(height: 8),
                 Text(
@@ -215,7 +215,7 @@ class _GameplayBoostSettingsScreenState
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 22,
+                    fontSize: 19,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -231,7 +231,7 @@ class _GameplayBoostSettingsScreenState
               ],
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 11),
           _sectionTitle('Canlı oyun hissi'),
           _switchTile(
             emoji: '✨',
@@ -290,12 +290,12 @@ class _GameplayBoostSettingsScreenState
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 11),
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(13),
             decoration: BoxDecoration(
               color: const Color(0xFFFFF7D6),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(17),
               border: Border.all(
                 color: const Color(0xFFEAB308),
               ),
@@ -324,7 +324,7 @@ class _GameplayBoostSettingsScreenState
       child: Text(
         text,
         style: const TextStyle(
-          fontSize: 19,
+          fontSize: 16,
           fontWeight: FontWeight.w900,
         ),
       ),
@@ -339,13 +339,15 @@ class _GameplayBoostSettingsScreenState
     required ValueChanged<bool> onChanged,
   }) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 7),
       child: SwitchListTile(
         value: value,
+        dense: true,
+        visualDensity: VisualDensity.compact,
         onChanged: onChanged,
         secondary: Text(
           emoji,
-          style: const TextStyle(fontSize: 28),
+          style: const TextStyle(fontSize: 24),
         ),
         title: Text(
           title,

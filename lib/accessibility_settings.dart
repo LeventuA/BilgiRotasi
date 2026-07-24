@@ -463,19 +463,19 @@ class _AccessibilitySettingsScreenState
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
-          18,
-          16,
-          18,
-          28,
+          14,
+          10,
+          14,
+          22,
         ),
         children: [
           _hero(),
-          const SizedBox(height: 18),
+          const SizedBox(height: 12),
           _title('Kişiselleştirme'),
           _nameCard(),
           const SizedBox(height: 9),
           _colorCard(),
-          const SizedBox(height: 18),
+          const SizedBox(height: 12),
           _title('Okuma ve erişilebilirlik'),
           _textScaleCard(),
           _switchCard(
@@ -521,7 +521,7 @@ class _AccessibilitySettingsScreenState
               ),
             ),
           ),
-          const SizedBox(height: 18),
+          const SizedBox(height: 12),
           _title('Ses'),
           _switchCard(
             emoji: '🔊',
@@ -544,10 +544,10 @@ class _AccessibilitySettingsScreenState
             },
           ),
           _volumeCard(),
-          const SizedBox(height: 18),
+          const SizedBox(height: 12),
           _title('Animasyon yoğunluğu'),
           _animationCard(),
-          const SizedBox(height: 18),
+          const SizedBox(height: 12),
           _title('Oynanış ve yardım'),
           Card(
             child: ListTile(
@@ -613,7 +613,7 @@ class _AccessibilitySettingsScreenState
 
   Widget _hero() {
     return Container(
-      padding: const EdgeInsets.all(21),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [
@@ -621,13 +621,13 @@ class _AccessibilitySettingsScreenState
             Color(0xFF6D28D9),
           ],
         ),
-        borderRadius: BorderRadius.circular(27),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: const Column(
         children: [
           Text(
             '⚙️👁️🔊',
-            style: TextStyle(fontSize: 45),
+            style: TextStyle(fontSize: 32),
           ),
           SizedBox(height: 8),
           Text(
@@ -635,7 +635,7 @@ class _AccessibilitySettingsScreenState
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 23,
+              fontSize: 19,
               fontWeight: FontWeight.w900,
             ),
           ),
@@ -659,7 +659,7 @@ class _AccessibilitySettingsScreenState
       child: Text(
         text,
         style: const TextStyle(
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: FontWeight.w900,
         ),
       ),
@@ -669,7 +669,7 @@ class _AccessibilitySettingsScreenState
   Widget _nameCard() {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
             TextField(
@@ -717,7 +717,7 @@ class _AccessibilitySettingsScreenState
   Widget _colorCard() {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment:
               CrossAxisAlignment.start,
@@ -746,8 +746,8 @@ class _AccessibilitySettingsScreenState
                     ),
                     customBorder: const CircleBorder(),
                     child: Container(
-                      width: 45,
-                      height: 45,
+                      width: 38,
+                      height: 38,
                       decoration: BoxDecoration(
                         color: AppPreferencesService
                             .playerColors[index],
@@ -785,9 +785,9 @@ class _AccessibilitySettingsScreenState
 
   Widget _textScaleCard() {
     return Card(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 7),
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment:
               CrossAxisAlignment.stretch,
@@ -833,16 +833,16 @@ class _AccessibilitySettingsScreenState
 
   Widget _volumeCard() {
     return Card(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 7),
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
             Row(
               children: [
                 const Text(
                   '🎚️',
-                  style: TextStyle(fontSize: 29),
+                  style: TextStyle(fontSize: 24),
                 ),
                 const SizedBox(width: 11),
                 const Expanded(
@@ -890,7 +890,7 @@ class _AccessibilitySettingsScreenState
   Widget _animationCard() {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment:
               CrossAxisAlignment.stretch,
@@ -967,13 +967,15 @@ class _AccessibilitySettingsScreenState
     required ValueChanged<bool> onChanged,
   }) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 7),
       child: SwitchListTile(
         value: value,
+        dense: true,
+        visualDensity: VisualDensity.compact,
         onChanged: onChanged,
         secondary: Text(
           emoji,
-          style: const TextStyle(fontSize: 30),
+          style: const TextStyle(fontSize: 24),
         ),
         title: Text(
           title,

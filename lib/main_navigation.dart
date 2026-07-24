@@ -35,7 +35,7 @@ extension MainNavigationSectionX on MainNavigationSection {
         MainNavigationSection.social =>
           'Paylaşım, aile rekorları ve kariyer özeti',
         MainNavigationSection.settings =>
-          'Ses, görünüm, erişilebilirlik ve teknik araçlar',
+          'Ses, görünüm, erişilebilirlik ve oyun tercihleri',
       };
 
   List<Color> get colors => switch (this) {
@@ -180,7 +180,7 @@ class _MainNavigationCard extends StatelessWidget {
           section.title,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 19,
+            fontSize: 17,
             fontWeight: FontWeight.w900,
           ),
         ),
@@ -191,7 +191,7 @@ class _MainNavigationCard extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
             color: Color(0xFFE7E1F0),
-            fontSize: 11,
+            fontSize: 10.5,
             height: 1.3,
             fontWeight: FontWeight.w600,
           ),
@@ -203,20 +203,20 @@ class _MainNavigationCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(23),
+        borderRadius: BorderRadius.circular(19),
         child: Ink(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(13),
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: section.colors),
-            borderRadius: BorderRadius.circular(23),
+            borderRadius: BorderRadius.circular(19),
             border: Border.all(
               color: const Color(0x55FFFFFF),
             ),
             boxShadow: const [
               BoxShadow(
                 color: Color(0x33000000),
-                blurRadius: 12,
-                offset: Offset(0, 6),
+                blurRadius: 9,
+                offset: Offset(0, 4),
               ),
             ],
           ),
@@ -225,9 +225,9 @@ class _MainNavigationCard extends StatelessWidget {
                   children: [
                     Text(
                       section.emoji,
-                      style: const TextStyle(fontSize: 39),
+                      style: const TextStyle(fontSize: 31),
                     ),
-                    const SizedBox(width: 13),
+                    const SizedBox(width: 10),
                     Expanded(child: text),
                     const Icon(
                       Icons.chevron_right_rounded,
@@ -240,12 +240,12 @@ class _MainNavigationCard extends StatelessWidget {
                   children: [
                     Text(
                       section.emoji,
-                      style: const TextStyle(fontSize: 36),
+                      style: const TextStyle(fontSize: 29),
                     ),
-                    const SizedBox(height: 9),
+                    const SizedBox(height: 6),
                     text,
                     const Spacer(),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 6),
                     const Align(
                       alignment: Alignment.bottomRight,
                       child: Icon(
@@ -416,8 +416,7 @@ class CareerCenterScreen extends StatelessWidget {
           emoji: '🎨',
           title: 'Koleksiyon & Görünüm',
           description:
-              'Tahta temalarını, favori piyonu ve '
-              'ses atmosferini seç.',
+              'Tahta temalarını ve favori piyonu seç.',
           accent: const Color(0xFF0F766E),
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute(
@@ -445,8 +444,8 @@ class SettingsCenterScreen extends StatelessWidget {
       emoji: '⚙️',
       headline: 'Oyunu kendine göre düzenle',
       subtitle:
-          'Ses, görünüm, erişilebilirlik, jokerler ve '
-          'teknik araçlar artık tek bölümde.',
+          'Ses, görünüm, erişilebilirlik ve oyun tercihleri '
+          'tek bölümde.',
       colors: const [
         Color(0xFF334155),
         Color(0xFF0F5661),
@@ -482,7 +481,7 @@ class SettingsCenterScreen extends StatelessWidget {
         ),
         _HubActionCard(
           emoji: '🎨',
-          title: 'Tema, Piyon & Ses Atmosferi',
+          title: 'Tema & Piyon',
           description:
               'Koleksiyondaki görünümleri ve favori '
               'oyun parçalarını değiştir.',
@@ -490,21 +489,6 @@ class SettingsCenterScreen extends StatelessWidget {
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute(
               builder: (_) => const CollectionScreen(),
-            ),
-          ),
-        ),
-        _HubActionCard(
-          emoji: '🛡️',
-          title: 'Sistem Sağlığı & Teknik Kontrol',
-          description:
-              'Kayıt yedeğini, soru bankasını ve '
-              'teknik hata günlüğünü kontrol et.',
-          accent: const Color(0xFF047857),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => SystemHealthScreen(
-                questionBank: questionBank,
-              ),
             ),
           ),
         ),
@@ -579,22 +563,22 @@ class _NavigationHubScaffold extends StatelessWidget {
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(
-              18,
-              16,
-              18,
-              28,
+              14,
+              10,
+              14,
+              22,
             ),
             children: [
               Container(
-                padding: const EdgeInsets.all(22),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(colors: colors),
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(21),
                   boxShadow: const [
                     BoxShadow(
                       color: Color(0x33000000),
-                      blurRadius: 14,
-                      offset: Offset(0, 7),
+                      blurRadius: 10,
+                      offset: Offset(0, 5),
                     ),
                   ],
                 ),
@@ -602,7 +586,7 @@ class _NavigationHubScaffold extends StatelessWidget {
                   children: [
                     Text(
                       emoji,
-                      style: const TextStyle(fontSize: 54),
+                      style: const TextStyle(fontSize: 36),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -610,7 +594,7 @@ class _NavigationHubScaffold extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 20,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -627,13 +611,13 @@ class _NavigationHubScaffold extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
               for (var index = 0;
                   index < children.length;
                   index++) ...[
                 children[index],
                 if (index < children.length - 1)
-                  const SizedBox(height: 11),
+                  const SizedBox(height: 8),
               ],
             ],
           ),
@@ -666,26 +650,26 @@ class _HubActionCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 11),
           child: Row(
             children: [
               Container(
-                width: 54,
-                height: 54,
+                width: 46,
+                height: 46,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: accent.withValues(alpha: 0.13),
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(14),
                   border: Border.all(
                     color: accent.withValues(alpha: 0.35),
                   ),
                 ),
                 child: Text(
                   emoji,
-                  style: const TextStyle(fontSize: 29),
+                  style: const TextStyle(fontSize: 24),
                 ),
               ),
-              const SizedBox(width: 13),
+              const SizedBox(width: 11),
               Expanded(
                 child: Column(
                   crossAxisAlignment:
@@ -694,7 +678,7 @@ class _HubActionCard extends StatelessWidget {
                     Text(
                       title,
                       style: const TextStyle(
-                        fontSize: 17,
+                        fontSize: 15.5,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -703,7 +687,7 @@ class _HubActionCard extends StatelessWidget {
                       description,
                       style: const TextStyle(
                         color: Color(0xFF64748B),
-                        fontSize: 12,
+                        fontSize: 11,
                         height: 1.3,
                       ),
                     ),

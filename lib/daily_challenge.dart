@@ -407,7 +407,7 @@ class _DailyChallengeHomeCardState
         final completed = summary?.todayResult != null;
 
         return Container(
-          padding: const EdgeInsets.all(19),
+          padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -422,15 +422,15 @@ class _DailyChallengeHomeCardState
                       Color(0xFF6D28D9),
                     ],
             ),
-            borderRadius: BorderRadius.circular(26),
+            borderRadius: BorderRadius.circular(22),
             border: Border.all(
               color: const Color(0x99FFE082),
             ),
             boxShadow: const [
               BoxShadow(
                 color: Color(0x44000000),
-                blurRadius: 16,
-                offset: Offset(0, 8),
+                blurRadius: 12,
+                offset: Offset(0, 6),
               ),
             ],
           ),
@@ -441,9 +441,9 @@ class _DailyChallengeHomeCardState
                 children: [
                   Text(
                     completed ? '✅' : '📅',
-                    style: const TextStyle(fontSize: 40),
+                    style: const TextStyle(fontSize: 31),
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment:
@@ -465,7 +465,7 @@ class _DailyChallengeHomeCardState
                               : 'Bugünün 10 sorusu hazır',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 17,
                             height: 1.05,
                             fontWeight: FontWeight.w900,
                           ),
@@ -488,7 +488,7 @@ class _DailyChallengeHomeCardState
                   ),
                 ],
               ),
-              const SizedBox(height: 14),
+              const SizedBox(height: 10),
               FilledButton.icon(
                 onPressed: () async {
                   await Navigator.of(context).push(
@@ -505,6 +505,8 @@ class _DailyChallengeHomeCardState
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color(0xFFFFE082),
                   foregroundColor: const Color(0xFF3A2448),
+                  minimumSize: const Size.fromHeight(47),
+                  visualDensity: VisualDensity.compact,
                 ),
                 icon: Icon(
                   completed

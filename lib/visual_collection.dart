@@ -383,29 +383,29 @@ class _CollectionScreenState extends State<CollectionScreen> {
         builder: (context, _, __) {
           return ListView(
             padding: const EdgeInsets.fromLTRB(
-              18,
-              16,
-              18,
-              28,
+              14,
+              10,
+              14,
+              22,
             ),
             children: [
               _hero(),
-              const SizedBox(height: 18),
+              const SizedBox(height: 12),
               const Text(
                 'Tahta temaları',
                 style: TextStyle(
-                  fontSize: 21,
+                  fontSize: 17,
                   fontWeight: FontWeight.w900,
                 ),
               ),
               const SizedBox(height: 9),
               for (final theme in boardThemes)
                 _themeCard(theme),
-              const SizedBox(height: 18),
+              const SizedBox(height: 12),
               const Text(
                 'Piyon koleksiyonu',
                 style: TextStyle(
-                  fontSize: 21,
+                  fontSize: 17,
                   fontWeight: FontWeight.w900,
                 ),
               ),
@@ -422,13 +422,15 @@ class _CollectionScreenState extends State<CollectionScreen> {
               _pawnGrid(),
               const SizedBox(height: 14),
               SwitchListTile(
+                dense: true,
+                visualDensity: VisualDensity.compact,
                 value:
                     VisualCollectionService.current.liveBoard,
                 onChanged:
                     VisualCollectionService.setLiveBoard,
                 secondary: const Text(
                   '✨',
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(fontSize: 24),
                 ),
                 title: const Text(
                   'Canlı tahta parıltısı',
@@ -452,12 +454,12 @@ class _CollectionScreenState extends State<CollectionScreen> {
     final theme = VisualCollectionService.theme;
 
     return Container(
-      padding: const EdgeInsets.all(22),
+      padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: theme.backgroundColors,
         ),
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(21),
         border: Border.all(
           color: theme.gold,
           width: 2,
@@ -467,7 +469,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
         children: [
           Text(
             theme.emoji,
-            style: const TextStyle(fontSize: 58),
+            style: const TextStyle(fontSize: 38),
           ),
           const SizedBox(height: 7),
           Text(
@@ -475,7 +477,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 24,
+              fontSize: 19,
               fontWeight: FontWeight.w900,
             ),
           ),
@@ -500,7 +502,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
         VisualCollectionService.current.themeId == theme.id;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 9),
+      margin: const EdgeInsets.only(bottom: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
@@ -514,7 +516,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(14, 14, 10, 8),
+          padding: const EdgeInsets.fromLTRB(12, 11, 9, 6),
           child: Column(
             children: [
               InkWell(
@@ -529,8 +531,8 @@ class _CollectionScreenState extends State<CollectionScreen> {
                   child: Row(
                     children: [
                       Container(
-                        width: 57,
-                        height: 57,
+                        width: 48,
+                        height: 48,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -540,7 +542,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
                         ),
                         child: Text(
                           unlocked ? theme.emoji : '🔒',
-                          style: const TextStyle(fontSize: 28),
+                          style: const TextStyle(fontSize: 24),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -653,9 +655,9 @@ class _CollectionScreenState extends State<CollectionScreen> {
       gridDelegate:
           const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        crossAxisSpacing: 9,
-        mainAxisSpacing: 9,
-        childAspectRatio: 0.76,
+        crossAxisSpacing: 7,
+        mainAxisSpacing: 7,
+        childAspectRatio: 0.86,
       ),
       itemBuilder: (context, index) {
         final pawn = PawnCatalog.all[index];
@@ -669,7 +671,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
           borderRadius: BorderRadius.circular(18),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 180),
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
               color: active
                   ? const Color(0xFFF3E8FF)
@@ -689,8 +691,8 @@ class _CollectionScreenState extends State<CollectionScreen> {
                   type: index,
                   color: const Color(0xFF7C3AED),
                   active: active,
-                  width: 58,
-                  height: 72,
+                  width: 50,
+                  height: 62,
                 ),
                 const SizedBox(height: 5),
                 Text(
