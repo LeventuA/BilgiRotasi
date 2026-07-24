@@ -523,7 +523,7 @@ class AccountCloudService with WidgetsBindingObserver {
     final document = await _firestore!
         .collection('users')
         .doc(uid)
-        .get(const GetOptions(source: Source.server));
+        .get(GetOptions(source: Source.server));
 
     if (!document.exists) return null;
 
@@ -568,7 +568,7 @@ class AccountCloudService with WidgetsBindingObserver {
     );
 
     final verified = await reference.get(
-      const GetOptions(source: Source.server),
+      GetOptions(source: Source.server),
     );
     final verifiedSnapshot =
         verified.data()?['snapshotJson'];
