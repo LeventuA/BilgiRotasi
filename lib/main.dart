@@ -36,6 +36,7 @@ part 'premium_dice.dart';
 part 'short_challenge_mode.dart';
 part 'board_target_presentation.dart';
 part 'about_privacy.dart';
+part 'app_build_info.dart';
 
 class SoundFx {
   SoundFx._();
@@ -1557,7 +1558,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
                 const Text(
-                  'Bilgi Rotası • Sürüm 1.45.0',
+                  AppBuildInfo.compactLabel,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0x99FFFFFF),

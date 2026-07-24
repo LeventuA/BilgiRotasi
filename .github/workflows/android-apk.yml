@@ -1,4 +1,4 @@
-name: APK oluştur
+name: RC1 kalite kapısı ve APK
 
 on:
   push:
@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: APK
+  quality-and-build:
+    name: Kalite + APK
     runs-on: ubuntu-latest
 
     steps:
@@ -25,22 +25,44 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Temiz Flutter projesi oluştur ve bütün dosyaları kopyala
+      - name: Bağımlılıkları kur
+        run: flutter pub get
+
+      - name: RC1 soru ve asset kalite kapısı
+        run: |
+          python3 tools/rc1_quality_gate.py \
+            --report reports/RC1_AUTOMATED_REPORT.md
+
+      - name: Yeni RC1 dosyalarının biçimini kontrol et
+        run: |
+          dart format --output=none --set-exit-if-changed \
+            lib/app_build_info.dart \
+            test/rc1_quality_gate_test.dart
+
+      - name: Flutter statik analiz
+        run: flutter analyze --no-fatal-warnings --no-fatal-infos
+
+      - name: Flutter testleri
+        run: flutter test
+
+      - name: Temiz Android projesi oluştur
         shell: bash
         run: |
           set -euxo pipefail
 
           rm -rf .flutter_build
 
-          flutter create             --platforms=android             --org com.levent             --project-name bilgi_rotasi             .flutter_build
+          flutter create \
+            --platforms=android \
+            --org com.levent \
+            --project-name bilgi_rotasi \
+            .flutter_build
 
           rm -rf .flutter_build/lib
           cp -R lib .flutter_build/lib
 
-          if [ -d assets ]; then
-            rm -rf .flutter_build/assets
-            cp -R assets .flutter_build/assets
-          fi
+          rm -rf .flutter_build/assets
+          cp -R assets .flutter_build/assets
 
           cp pubspec.yaml .flutter_build/pubspec.yaml
 
@@ -49,31 +71,58 @@ jobs:
           fi
 
           if [ -f analysis_options.yaml ]; then
-            cp analysis_options.yaml .flutter_build/analysis_options.yaml
+            cp analysis_options.yaml \
+              .flutter_build/analysis_options.yaml
           fi
 
           test -f .flutter_build/lib/main.dart
-          test -f .flutter_build/lib/sound_data.dart
+          test -f .flutter_build/lib/app_build_info.dart
+          test -f .flutter_build/assets/questions.json
           test -f .flutter_build/assets/sounds/correct.mp3
 
-          cd .flutter_build
+      - name: Android simge ve açılış ekranını hazırla
+        working-directory: .flutter_build
+        run: |
           flutter pub get
-
           dart run flutter_launcher_icons
           dart run flutter_native_splash:create
 
-          sed -i 's/android:label="bilgi_rotasi"/android:label="Bilgi Rotası"/'             android/app/src/main/AndroidManifest.xml
+          sed -i \
+            's/android:label="bilgi_rotasi"/android:label="Bilgi Rotası"/' \
+            android/app/src/main/AndroidManifest.xml
 
-          if ! grep -q 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml; then
-            sed -i '/<application/i\    <uses-permission android:name="android.permission.INTERNET" />' android/app/src/main/AndroidManifest.xml
-          fi
-          grep -q 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml
-          flutter build apk --release
+      - name: Release APK oluştur
+        working-directory: .flutter_build
+        run: flutter build apk --release
 
-      - name: APK dosyasını yükle
+      - name: APK parmak izini oluştur
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          APK=".flutter_build/build/app/outputs/flutter-apk/app-release.apk"
+          test -f "$APK"
+
+          sha256sum "$APK" | tee reports/RC1_APK_SHA256.txt
+
+          {
+            echo "# Bilgi Rotası RC1 Yapı Bilgisi"
+            echo
+            echo "- Commit: ${GITHUB_SHA}"
+            echo "- Sürüm: 1.46.0+60"
+            echo "- Kanal: RC1"
+            echo "- Workflow: ${GITHUB_RUN_ID}"
+          } > reports/RC1_BUILD_INFO.md
+
+      - name: RC1 APK ve raporları yükle
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-APK
-          path: .flutter_build/build/app/outputs/flutter-apk/app-release.apk
+          name: BilgiRotasi-RC1-1.46.0-60
+          path: |
+            .flutter_build/build/app/outputs/flutter-apk/app-release.apk
+            reports/RC1_AUTOMATED_REPORT.md
+            reports/RC1_APK_SHA256.txt
+            reports/RC1_BUILD_INFO.md
+            reports/RC1_MANUAL_TEST_CHECKLIST.md
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 30
