@@ -31,13 +31,13 @@ void main() {
     });
 
     test('RC1 sürüm bilgisi tek merkezden gelir', () {
-      expect(AppBuildInfo.versionName, '1.46.0');
-      expect(AppBuildInfo.buildNumber, 60);
+      expect(AppBuildInfo.versionName, '1.46.1');
+      expect(AppBuildInfo.buildNumber, 61);
       expect(AppBuildInfo.channel, 'RC1');
-      expect(AppBuildInfo.version, '1.46.0+60');
+      expect(AppBuildInfo.version, '1.46.1+61');
       expect(
         AppBuildInfo.fullLabel,
-        'Sürüm 1.46.0+60 • RC1',
+        'Sürüm 1.46.1+61 • RC1',
       );
     });
 

@@ -1,6 +1,6 @@
 # Bilgi Rotası — RC1 Telefon Test Listesi
 
-Sürüm: **1.46.0+60 • RC1**
+Sürüm: **1.46.1+61 • RC1**
 
 > Bir madde başarısızsa RC1 onaylanmaz. Hata düzeltilir,
 > yeni APK alınır ve ilgili bölüm yeniden test edilir.
@@ -10,7 +10,7 @@ Sürüm: **1.46.0+60 • RC1**
 - [ ] APK mevcut uygulamanın üzerine sorunsuz kuruldu.
 - [ ] Uygulama ilk açılışta kapanmadı veya siyah ekranda kalmadı.
 - [ ] Ana sayfada soru sayısı ve altı kategori doğru göründü.
-- [ ] Hakkında ekranında `Sürüm 1.46.0+60 • RC1` göründü.
+- [ ] Hakkında ekranında `Sürüm 1.46.1+61 • RC1` göründü.
 - [ ] Uygulama internet kapalıyken açıldı.
 
 ## 2. Standart tahta oyunu
