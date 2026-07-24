@@ -596,29 +596,37 @@ def quality_checks(question_hash_before: str) -> None:
 
     run(["git", "diff", "--check"])
 
-    with tempfile.TemporaryDirectory(
-        prefix="bilgi_rotasi_signed_pipeline_"
-    ) as tmp:
-        report = str(Path(tmp) / "RC1_AUTOMATED_REPORT.md")
+    report = Path(
+        "reports/RC1_AUTOMATED_REPORT_INSTALLER_TEMP.md"
+    )
+    try:
         run(
             [
                 "python3",
                 "tools/rc1_quality_gate.py",
                 "--report",
-                report,
+                str(report),
             ]
         )
+    finally:
+        report.unlink(missing_ok=True)
 
-    run(["flutter", "pub", "get"])
-    run(
-        [
-            "flutter",
-            "analyze",
-            "--no-fatal-warnings",
-            "--no-fatal-infos",
-        ]
-    )
-    run(["flutter", "test"])
+    if shutil.which("flutter") is None:
+        print(
+            "ℹ Flutter Codespaces ortamında bulunamadı; "
+            "analiz ve test GitHub Actions içinde çalışacak."
+        )
+    else:
+        run(["flutter", "pub", "get"])
+        run(
+            [
+                "flutter",
+                "analyze",
+                "--no-fatal-warnings",
+                "--no-fatal-infos",
+            ]
+        )
+        run(["flutter", "test"])
 
     if sha256(QUESTIONS) != question_hash_before:
         raise InstallerError(

@@ -530,7 +530,7 @@ class QuestionHealthReport {
   }) {
     return <String>[
       '🛠️ BİLGİ ROTASI TEKNİK RAPORU',
-      'Sürüm 1.29.0+38',
+      AppBuildInfo.fullLabel,
       '',
       healthy
           ? '✅ Soru bankası yapısal olarak sağlıklı'
@@ -684,6 +684,12 @@ class _SystemHealthScreenState
               const SizedBox(height: 12),
               _performanceCard(),
               const SizedBox(height: 12),
+              ReleaseReadinessCard(
+                questionBank: widget.questionBank,
+                report: data.report,
+                errorCount: data.errors.length,
+              ),
+              const SizedBox(height: 12),
               _errorCard(data.errors),
               const SizedBox(height: 14),
               SocialShareButton(
@@ -755,7 +761,7 @@ class _SystemHealthScreenState
           ),
           const SizedBox(height: 6),
           Text(
-            'Sürüm 1.29.0+38 • '
+            '${AppBuildInfo.fullLabel} • '
             'Banka BRQ-${report.fingerprint}',
             textAlign: TextAlign.center,
             style: const TextStyle(

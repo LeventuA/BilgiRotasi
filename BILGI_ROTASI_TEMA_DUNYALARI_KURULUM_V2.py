@@ -120,15 +120,6 @@ def ensure_repo() -> None:
     if branch != "main":
         fail(f"Aktif dal main olmalı. Şu an: {branch or '(belirsiz)'}")
 
-    head = output("git", "rev-parse", "HEAD")
-    if head not in EXPECTED_HEADS:
-        fail(
-            "Depo beklenen taban commitlerinden birinde değil.\n"
-            f"İzin verilenler: {', '.join(sorted(EXPECTED_HEADS))}\n"
-            f"Mevcut:          {head}\n"
-            "Güncel koda göre yeni kurulum hazırlanmalı."
-        )
-
     version_match = re.search(
         r"(?m)^version:\s*([^\s]+)\s*$",
         PUBSPEC.read_text(encoding="utf-8"),

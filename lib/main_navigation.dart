@@ -72,40 +72,30 @@ class MainNavigationGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final showDaily = AccountCloudService.dailyVisible;
-
     return Column(
       children: [
         _pair(
           context,
           MainNavigationSection.play,
-          showDaily
-              ? MainNavigationSection.daily
-              : MainNavigationSection.career,
+          MainNavigationSection.daily,
         ),
         const SizedBox(height: 10),
         _pair(
           context,
-          showDaily
-              ? MainNavigationSection.career
-              : MainNavigationSection.social,
-          showDaily
-              ? MainNavigationSection.social
-              : MainNavigationSection.settings,
+          MainNavigationSection.career,
+          MainNavigationSection.social,
         ),
-        if (showDaily) ...[
-          const SizedBox(height: 10),
-          _MainNavigationCard(
-            section: MainNavigationSection.settings,
-            horizontal: true,
-            onTap: () => _open(
-              context,
-              SettingsCenterScreen(
-                questionBank: questionBank,
-              ),
+        const SizedBox(height: 10),
+        _MainNavigationCard(
+          section: MainNavigationSection.settings,
+          horizontal: true,
+          onTap: () => _open(
+            context,
+            SettingsCenterScreen(
+              questionBank: questionBank,
             ),
           ),
-        ],
+        ),
       ],
     );
   }
@@ -141,11 +131,6 @@ class MainNavigationGrid extends StatelessWidget {
     BuildContext context,
     MainNavigationSection section,
   ) {
-    if (section == MainNavigationSection.daily &&
-        !AccountCloudService.dailyVisible) {
-      return;
-    }
-
     final screen = switch (section) {
       MainNavigationSection.play => PlayCenterScreen(
           questionBank: questionBank,
@@ -377,10 +362,6 @@ class DailyCenterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!AccountCloudService.dailyVisible) {
-      return const GuestDailyLockedScreen();
-    }
-
     return _NavigationHubScaffold(
       title: 'Günlük',
       emoji: '📅',
@@ -470,20 +451,6 @@ class SettingsCenterScreen extends StatelessWidget {
         Color(0xFF0F5661),
       ],
       children: [
-        _HubActionCard(
-          emoji: '☁️',
-          title: 'Hesap & Bulut Kaydı',
-          description:
-              'Google hesabını, eşitlemeyi ve misafir '
-              'kaydını yönet.',
-          accent: const Color(0xFF0F766E),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) =>
-                  const AccountSettingsScreen(),
-            ),
-          ),
-        ),
         _HubActionCard(
           emoji: '👁️',
           title: 'Genel Ayarlar & Erişilebilirlik',
