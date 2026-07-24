@@ -56,8 +56,8 @@ class AboutPrivacyScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  '${report.total} soruluk, çevrimdışı '
-                  'oynanabilen Türkçe bilgi yarışması.',
+                  '${report.total} soruluk, temel bölümleri '
+                  'çevrimdışı oynanabilen Türkçe bilgi yarışması.',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Color(0xFFD8F1EE),
@@ -69,39 +69,73 @@ class AboutPrivacyScreen extends StatelessWidget {
           const SizedBox(height: 11),
           _section(
             emoji: '🔐',
-            title: 'Gizlilik',
+            title: 'Misafir kullanımı',
             text:
-                'Bilgi Rotası hesap oluşturmaz ve temel oyun '
-                'için kişisel bilgi istemez. Oyun kayıtları, '
-                'ayarlar, başarımlar ve istatistikler yalnızca '
-                'cihazda yerel olarak tutulur.',
+                'Hesap açmadan misafir olarak oynayabilirsin. '
+                'Misafir ilerlemesi, kayıtlı oyun, ayarlar ve '
+                'başarımlar yalnızca bu telefonda saklanır.',
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '☁️',
+            title: 'Google hesabı ve bulut kaydı',
+            text:
+                'Google ile giriş yapıldığında Firebase kullanıcı '
+                'kimliği, görünen ad, e-posta adresi, uygulama '
+                'sürümü, eşitleme zamanı ve oyun ilerlemesi bulut '
+                'kaydı için işlenir. Bu bilgiler reklam amacıyla '
+                'kullanılmaz.',
           ),
           const SizedBox(height: 8),
           _section(
             emoji: '📡',
             title: 'İnternet kullanımı',
             text:
-                'Ana oyun ve soru bankası çevrimdışı çalışır. '
-                'Paylaş düğmesine basıldığında yalnızca '
-                'telefonun sistem paylaşım ekranı açılır.',
+                'Ana oyun ve soru bankası çevrimdışı çalışabilir. '
+                'Google girişi, bulut eşitlemesi ve sistem paylaşım '
+                'özellikleri internet bağlantısı kullanabilir.',
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '🗑️',
+            title: 'Hesap ve veri silme',
+            text:
+                'Google hesabına bağlı Bilgi Rotası hesabını ve '
+                'bulut verilerini Hesap & Bulut Kaydı ekranındaki '
+                '“Hesabı ve bulut verilerini sil” düğmesiyle '
+                'kalıcı olarak silebilirsin.',
           ),
           const SizedBox(height: 8),
           _section(
             emoji: '🧹',
-            title: 'Verileri yönetme',
+            title: 'Yerel verileri yönetme',
             text:
                 'İstatistikler oyun içinden sıfırlanabilir. '
                 'Android ayarlarından uygulama verileri '
-                'temizlendiğinde yerel kayıtlar silinir.',
+                'temizlendiğinde cihazdaki yerel kayıtlar silinir.',
           ),
           const SizedBox(height: 8),
           _section(
             emoji: '🛡️',
-            title: 'Otomatik koruma',
+            title: 'Teknik koruma',
             text:
-                'Oyun kayıtları yerel yedekle korunur. '
-                'Teknik hata günlüğü ve kayıt kurtarma sistemi '
-                'arka planda otomatik çalışır.',
+                'Yerel kayıt kurtarma ve hata günlüğü sistemi '
+                'oyunun güvenli çalışmasına yardımcı olur. Teknik '
+                'hata günlüğü bulut oyun yedeğine gönderilmez.',
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '🌐',
+            title: 'Gizlilik politikası',
+            text:
+                'https://leventua.github.io/BilgiRotasi/'
+                'privacy-policy.html',
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '✉️',
+            title: 'Destek',
+            text: 'BilgiRotasi10@gmail.com',
           ),
         ],
       ),
@@ -114,7 +148,10 @@ class AboutPrivacyScreen extends StatelessWidget {
     required String text,
   }) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 11),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 13,
+        vertical: 11,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(17),
@@ -147,7 +184,7 @@ class AboutPrivacyScreen extends StatelessWidget {
                   style: const TextStyle(
                     color: Color(0xFF475569),
                     height: 1.3,
-                  fontSize: 11.5,
+                    fontSize: 11.5,
                   ),
                 ),
               ],

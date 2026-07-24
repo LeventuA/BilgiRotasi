@@ -38,6 +38,8 @@ jobs:
           dart format \
             lib/app_build_info.dart \
             lib/account_cloud.dart \
+            lib/about_privacy.dart \
+            test/account_deletion_policy_test.dart \
             test/rc1_quality_gate_test.dart \
             test/account_cloud_policy_test.dart \
             test/account_cloud_storage_backend_test.dart
@@ -343,7 +345,7 @@ jobs:
           mkdir -p dist
 
           SOURCE_APK=".flutter_build/build/app/outputs/flutter-apk/app-release.apk"
-          APK="dist/BilgiRotasi-1.47.1-63-signed.apk"
+          APK="dist/BilgiRotasi-1.48.0-64-signed.apk"
           test -f "$SOURCE_APK"
           cp "$SOURCE_APK" "$APK"
 
@@ -386,7 +388,7 @@ jobs:
             echo "# Bilgi Rotası RC2 Yapı Bilgisi"
             echo
             echo "- Commit: ${GITHUB_SHA}"
-            echo "- Sürüm: 1.47.1+63"
+            echo "- Sürüm: 1.48.0+64"
             echo "- Kanal: RC2"
             echo "- Paket adı: com.leventua.bilgirotasi"
             echo "- Sertifika SHA-1: 00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15"
@@ -397,9 +399,9 @@ jobs:
       - name: RC2 APK ve raporları yükle
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-Signed-RC2-1.47.1-63
+          name: BilgiRotasi-Signed-RC2-1.48.0-64
           path: |
-            dist/BilgiRotasi-1.47.1-63-signed.apk
+            dist/BilgiRotasi-1.48.0-64-signed.apk
             reports/RC1_AUTOMATED_REPORT.md
             reports/RC1_APK_SHA256.txt
             reports/RC1_BUILD_INFO.md

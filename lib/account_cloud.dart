@@ -244,6 +244,7 @@ class AccountCloudService with WidgetsBindingObserver {
   Timer? _syncTimer;
   bool _initialized = false;
   bool _syncing = false;
+  bool _deleting = false;
 
   static bool get dailyVisible {
     return AccountAccessPolicy.dailyVisible(state.value.mode);
@@ -267,6 +268,10 @@ class AccountCloudService with WidgetsBindingObserver {
 
   static Future<void> syncNow() {
     return _instance._syncNow(manual: true);
+  }
+
+  static Future<void> deleteAccountAndCloudData() {
+    return _instance._deleteAccountAndCloudData();
   }
 
   Future<void> _initialize() async {
@@ -610,7 +615,8 @@ class AccountCloudService with WidgetsBindingObserver {
 
     if (user == null ||
         _firestore == null ||
-        _syncing) {
+        _syncing ||
+        _deleting) {
       return;
     }
 
@@ -659,6 +665,93 @@ class AccountCloudService with WidgetsBindingObserver {
       );
     } finally {
       _syncing = false;
+    }
+  }
+
+  Future<void> _deleteAccountAndCloudData() async {
+    final user = _auth?.currentUser;
+
+    if (user == null ||
+        _firestore == null ||
+        _googleSignIn == null ||
+        _deleting) {
+      return;
+    }
+
+    _deleting = true;
+
+    state.value = AccountSessionState(
+      mode: AccountMode.google,
+      firebaseReady: true,
+      user: user,
+      busy: true,
+      lastSyncedAt: state.value.lastSyncedAt,
+    );
+
+    try {
+      final GoogleSignInAccount? googleUser =
+          await _googleSignIn!.authenticate();
+
+      if (googleUser == null) {
+        throw StateError(
+          'Hesap silme doğrulaması iptal edildi.',
+        );
+      }
+
+      final idToken = googleUser.authentication.idToken;
+
+      if (idToken == null || idToken.isEmpty) {
+        throw StateError(
+          'Google doğrulama anahtarı alınamadı.',
+        );
+      }
+
+      final credential = GoogleAuthProvider.credential(
+        idToken: idToken,
+      );
+
+      await user.reauthenticateWithCredential(credential);
+
+      await _firestore!
+          .collection('users')
+          .doc(user.uid)
+          .delete();
+
+      final preferences =
+          await SharedPreferences.getInstance();
+
+      await preferences.remove(
+        _userSnapshotKey(user.uid),
+      );
+      await preferences.remove(
+        _userDirtyKey(user.uid),
+      );
+      await preferences.remove(_guestSnapshotKey);
+      await preferences.setBool(
+        _guestSelectedKey,
+        true,
+      );
+
+      await AccountLocalSnapshot.clearGameData();
+      await user.delete();
+      await _googleSignIn?.signOut();
+      await _refreshGameServices();
+
+      state.value = const AccountSessionState(
+        mode: AccountMode.guest,
+        firebaseReady: true,
+        message: 'Hesap ve bulut verileri kalıcı olarak silindi.',
+      );
+    } catch (error) {
+      state.value = AccountSessionState(
+        mode: AccountMode.google,
+        firebaseReady: true,
+        user: _auth?.currentUser ?? user,
+        message: _deletionFriendlyError(error),
+        lastSyncedAt: state.value.lastSyncedAt,
+      );
+    } finally {
+      _deleting = false;
     }
   }
 
@@ -738,6 +831,30 @@ class AccountCloudService with WidgetsBindingObserver {
     try {
       await AppPreferencesService.initialize();
     } catch (_) {}
+  }
+
+  String _deletionFriendlyError(Object error) {
+    final text = error.toString().toLowerCase();
+
+    if (text.contains('iptal') ||
+        text.contains('canceled') ||
+        text.contains('cancelled')) {
+      return 'Hesap silme doğrulaması iptal edildi.';
+    }
+
+    if (text.contains('network') ||
+        text.contains('socket') ||
+        text.contains('timeout')) {
+      return 'Hesap silinemedi. İnternet bağlantını kontrol et.';
+    }
+
+    if (text.contains('requires-recent-login')) {
+      return 'Güvenlik için Google hesabını yeniden doğrulayıp '
+          'tekrar dene.';
+    }
+
+    return 'Hesap silme tamamlanamadı. '
+        'BilgiRotasi10@gmail.com adresinden destek alabilirsin.';
   }
 
   String _friendlyError(Object error) {
@@ -1148,6 +1265,24 @@ class AccountSettingsScreen extends StatelessWidget {
                             'Hesaptan çık',
                           ),
                         ),
+                        const SizedBox(height: 10),
+                        TextButton.icon(
+                          onPressed: session.busy
+                              ? null
+                              : () => _confirmAccountDeletion(
+                                    context,
+                                  ),
+                          style: TextButton.styleFrom(
+                            foregroundColor:
+                                const Color(0xFFB91C1C),
+                          ),
+                          icon: const Icon(
+                            Icons.delete_forever_rounded,
+                          ),
+                          label: const Text(
+                            'Hesabı ve bulut verilerini sil',
+                          ),
+                        ),
                       ] else
                         FilledButton.icon(
                           onPressed: session.busy ||
@@ -1196,6 +1331,54 @@ class AccountSettingsScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> _confirmAccountDeletion(
+    BuildContext context,
+  ) async {
+    final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (dialogContext) {
+            return AlertDialog(
+              icon: const Icon(
+                Icons.warning_amber_rounded,
+                color: Color(0xFFB91C1C),
+                size: 42,
+              ),
+              title: const Text(
+                'Hesap ve bulut verileri silinsin mi?',
+              ),
+              content: const Text(
+                'Google hesabına bağlı Bilgi Rotası hesabın, '
+                'bulut kaydın, XP, başarımlar, kayıtlı oyun, '
+                'temalar ve tercihler kalıcı olarak silinecek. '
+                'Bu işlem geri alınamaz. Güvenlik için Google '
+                'hesabını yeniden doğrulaman istenebilir.',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, false),
+                  child: const Text('Vazgeç'),
+                ),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    backgroundColor:
+                        const Color(0xFFB91C1C),
+                  ),
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, true),
+                  child: const Text('Kalıcı Olarak Sil'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+
+    if (!confirmed || !context.mounted) return;
+
+    await AccountCloudService.deleteAccountAndCloudData();
   }
 }
 
