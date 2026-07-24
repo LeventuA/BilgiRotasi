@@ -20,6 +20,7 @@ class PawnPickerPresentation {
     'Doğanın gücünü taşıyan küçük orman koruyucusu.',
     'Özgürlüğüne düşkün, kıvrak ve sihirli yolcu.',
     'Karanlık mağaralardan gelen sessiz ve kurnaz yolcu.',
+    'Gece kristallerinin ışığında sessizce yürüyen meraklı kara kedi.',
   ];
 
   static const List<String> labels = <String>[
@@ -27,6 +28,7 @@ class PawnPickerPresentation {
     'BİLGE', 'ŞANS', 'KÂŞİF', 'OKUR',
     'FİKİR', 'SABIR', 'MERAK', 'ŞAMPİYON',
     'KOZMİK', 'DOĞA', 'SİHİR', 'GİZEM',
+    'GECE',
   ];
 
   static const List<Color> auraColors = <Color>[
@@ -38,6 +40,7 @@ class PawnPickerPresentation {
     Color(0xFFA78BFA), Color(0xFFFFD54F),
     Color(0xFF9D7CFF), Color(0xFF45C16D),
     Color(0xFFFFC857), Color(0xFFB6A0FF),
+    Color(0xFF14B8A6),
   ];
 
   static int normalize(int pawnType) {
@@ -51,7 +54,7 @@ class PawnPickerPresentation {
   static Color auraFor(int pawnType) => auraColors[normalize(pawnType)];
   static bool isSpecial(int pawnType) {
     final value = normalize(pawnType);
-    return value >= 12 && value <= 15;
+    return value >= 12 && value <= 16;
   }
 }
 

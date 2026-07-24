@@ -1,6 +1,6 @@
 # Bilgi Rotası — RC2 Telefon Test Listesi
 
-Sürüm: **1.47.1+63 • RC2**
+Sürüm: **1.48.2+66 • RC2**
 
 > Bir kritik madde başarısızsa RC2 onaylanmaz. Hata düzeltilir,
 > yeni APK alınır ve ilgili bölüm yeniden test edilir.
@@ -9,7 +9,7 @@ Sürüm: **1.47.1+63 • RC2**
 
 - [ ] APK mevcut imzalı uygulamanın üzerine kuruldu.
 - [ ] XP, tema, piyon ve kayıtlı oyun korundu.
-- [ ] Hakkında ekranında `Sürüm 1.47.1+63 • RC2` göründü.
+- [ ] Hakkında ekranında `Sürüm 1.48.2+66 • RC2` göründü.
 - [ ] Uygulama çevrimdışıyken misafir olarak açılabildi.
 
 ## 2. İlk hesap seçimi

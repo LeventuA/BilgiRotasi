@@ -350,8 +350,8 @@ jobs:
 
           SOURCE_APK=".flutter_build/build/app/outputs/flutter-apk/app-release.apk"
           SOURCE_AAB=".flutter_build/build/app/outputs/bundle/release/app-release.aab"
-          APK="dist/BilgiRotasi-1.48.1-65-signed.apk"
-          AAB="dist/BilgiRotasi-1.48.1-65-signed.aab"
+          APK="dist/BilgiRotasi-1.48.2-66-signed.apk"
+          AAB="dist/BilgiRotasi-1.48.2-66-signed.aab"
 
           test -f "$SOURCE_APK"
           test -f "$SOURCE_AAB"
@@ -418,23 +418,23 @@ jobs:
             echo "# Bilgi Rotası RC2 Yapı Bilgisi"
             echo
             echo "- Commit: ${GITHUB_SHA}"
-            echo "- Sürüm: 1.48.1+65"
+            echo "- Sürüm: 1.48.2+66"
             echo "- Kanal: RC2"
             echo "- Paket adı: com.leventua.bilgirotasi"
             echo "- Sertifika SHA-1: 00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15"
             echo "- İmza: Kalıcı upload anahtarı"
-            echo "- APK: dist/BilgiRotasi-1.48.1-65-signed.apk"
-            echo "- AAB: dist/BilgiRotasi-1.48.1-65-signed.aab"
+            echo "- APK: dist/BilgiRotasi-1.48.2-66-signed.apk"
+            echo "- AAB: dist/BilgiRotasi-1.48.2-66-signed.aab"
             echo "- Workflow: ${GITHUB_RUN_ID}"
           } > reports/RC1_BUILD_INFO.md
 
       - name: RC2 APK, AAB ve raporları yükle
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-Signed-RC2-1.48.1-65
+          name: BilgiRotasi-Signed-RC2-1.48.2-66
           path: |
-            dist/BilgiRotasi-1.48.1-65-signed.apk
-            dist/BilgiRotasi-1.48.1-65-signed.aab
+            dist/BilgiRotasi-1.48.2-66-signed.apk
+            dist/BilgiRotasi-1.48.2-66-signed.aab
             reports/RC1_AUTOMATED_REPORT.md
             reports/RC1_APK_SHA256.txt
             reports/RC1_AAB_SHA256.txt

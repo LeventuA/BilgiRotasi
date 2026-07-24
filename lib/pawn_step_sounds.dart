@@ -4,7 +4,7 @@ class PawnStepSoundFactory {
   PawnStepSoundFactory._();
 
   static const int sampleRate = 22050;
-  static const int profileCount = 16;
+  static const int profileCount = 17;
 
   static const List<String> profileNames = <String>[
     'Renkli Halka Cam Tınısı',
@@ -22,12 +22,13 @@ class PawnStepSoundFactory {
     'Minik Galaksi Bilgesi Kozmik Çanı',
     'Fidan Muhafızı Dal ve Yaprak Sesi',
     'Özgür Ev Cini Kumaş ve Sihir Sesi',
-    'Mağara Sinsiği Taş ve Yüzük Sesi',
+    'Mağara Sinsiği Taş ve Kristal Sesi',
+    'Kara Kedi Gece Kristali Tınısı',
   ];
 
   static const List<double> _volume = <double>[
     .74, .72, .78, .82, .80, .78, .68, .72,
-    .66, .70, .72, .68, .66, .78, .70, .74,
+    .66, .70, .72, .68, .66, .78, .70, .74, .72,
   ];
 
   static const List<List<num>> _profile = <List<num>>[
@@ -47,6 +48,7 @@ class PawnStepSoundFactory {
     [124, 206, 478, .30, -.18, 2, 1],
     [136, 520, 1250, .13, .20, 2, 5],
     [132, 148, 842, .32, -.24, 2, 3],
+    [142, 920, 1840, .035, .20, 3, 5],
   ];
 
   static int normalize(int pawnType) =>

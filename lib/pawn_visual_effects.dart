@@ -33,7 +33,8 @@ class PawnVisualEffects {
     PawnFxProfile(label: 'Kozmik yıldız tozu', primary: Color(0xFF9D7CFF), secondary: Color(0xFF67E8F9), glyph: '★'),
     PawnFxProfile(label: 'Canlı yaprak izleri', primary: Color(0xFF22C55E), secondary: Color(0xFFBBF7D0), glyph: '❧'),
     PawnFxProfile(label: 'Altın sihir kıvılcımları', primary: Color(0xFFFFC857), secondary: Color(0xFFFFF1B8), glyph: '✧'),
-    PawnFxProfile(label: 'Taş tozu ve yüzük ışığı', primary: Color(0xFFB6A0FF), secondary: Color(0xFFE7E0FF), glyph: '◉'),
+    PawnFxProfile(label: 'Taş tozu ve kristal ışığı', primary: Color(0xFFB6A0FF), secondary: Color(0xFFE7E0FF), glyph: '◉'),
+    PawnFxProfile(label: 'Gece kristali pati izleri', primary: Color(0xFF14B8A6), secondary: Color(0xFF99F6E4), glyph: '✣'),
   ];
 
   static int normalize(int pawnType) {

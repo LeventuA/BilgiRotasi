@@ -6183,6 +6183,11 @@ class PawnCatalog {
       assetPath: 'assets/pawns/16_magara_sinsigi.png',
       fallbackSymbol: '💍',
     ),
+    PawnDefinition(
+      name: 'Kara Kedi',
+      assetPath: 'assets/pawns/17_kara_kedi.png',
+      fallbackSymbol: '🐈‍⬛',
+    ),
   ];
 
   static PawnDefinition at(int index) {
@@ -6207,6 +6212,94 @@ class PawnToken extends StatelessWidget {
   final double width;
   final double height;
 
+  Widget _buildPremiumSpecialPawn(PawnDefinition pawn) {
+    return SizedBox(
+      width: width,
+      height: height,
+      child: RepaintBoundary(
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            if (active)
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.transparent,
+                    boxShadow: [
+                      BoxShadow(
+                        color: color.withOpacity(0.62),
+                        blurRadius: width * 0.46,
+                        spreadRadius: width * 0.04,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            Positioned.fill(
+              child: Transform.translate(
+                offset: Offset(0, -height * 0.01),
+                child: Transform.scale(
+                  scale: active ? 1.16 : 1.08,
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    pawn.assetPath,
+                    fit: BoxFit.contain,
+                    alignment: Alignment.center,
+                    filterQuality: FilterQuality.high,
+                    gaplessPlayback: true,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Center(
+                        child: Text(
+                          pawn.fallbackSymbol,
+                          style: TextStyle(
+                            fontSize: width * 0.70,
+                            height: 1,
+                            shadows: const [
+                              Shadow(
+                                color: Colors.white,
+                                blurRadius: 5,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            if (active)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  width: max(9.0, width * 0.20),
+                  height: max(9.0, width * 0.20),
+                  decoration: BoxDecoration(
+                    color: color,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 2,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: color.withOpacity(0.95),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (type == 0) {
@@ -6223,6 +6316,10 @@ class PawnToken extends StatelessWidget {
     }
 
     final pawn = PawnCatalog.at(type);
+
+    if (type >= 12) {
+      return _buildPremiumSpecialPawn(pawn);
+    }
 
     return SizedBox(
       width: width,

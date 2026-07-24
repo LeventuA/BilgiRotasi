@@ -31,13 +31,13 @@ void main() {
     });
 
     test('RC2 sürüm bilgisi tek merkezden gelir', () {
-      expect(AppBuildInfo.versionName, '1.48.1');
-      expect(AppBuildInfo.buildNumber, 65);
+      expect(AppBuildInfo.versionName, '1.48.2');
+      expect(AppBuildInfo.buildNumber, 66);
       expect(AppBuildInfo.channel, 'RC2');
-      expect(AppBuildInfo.version, '1.48.1+65');
+      expect(AppBuildInfo.version, '1.48.2+66');
       expect(
         AppBuildInfo.fullLabel,
-        'Sürüm 1.48.1+65 • RC2',
+        'Sürüm 1.48.2+66 • RC2',
       );
     });
 
@@ -268,7 +268,7 @@ void main() {
         );
       }
 
-      expect(PawnCatalog.all.length, 16);
+      expect(PawnCatalog.all.length, 17);
       expect(
         PawnCatalog.all
             .map((pawn) => pawn.name)

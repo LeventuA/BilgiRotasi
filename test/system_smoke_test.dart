@@ -102,30 +102,31 @@ void main() {
       );
     });
 
-    test('Piyon kataloğu dört yeni özgün karakter içerir', () {
+    test('Piyon kataloğu beş özel karakter içerir', () {
       final names = PawnCatalog.all
           .map((pawn) => pawn.name)
           .toSet();
 
-      expect(PawnCatalog.all.length, greaterThanOrEqualTo(16));
+      expect(PawnCatalog.all.length, greaterThanOrEqualTo(17));
       expect(names, contains('Minik Galaksi Bilgesi'));
       expect(names, contains('Fidan Muhafızı'));
       expect(names, contains('Özgür Ev Cini'));
       expect(names, contains('Mağara Sinsiği'));
+      expect(names, contains('Kara Kedi'));
     });
 
-    test('On altı piyonun hareket sesi birbirinden ayrıdır', () {
-      expect(PawnStepSoundFactory.profileCount, 16);
+    test('On yedi piyonun hareket sesi birbirinden ayrıdır', () {
+      expect(PawnStepSoundFactory.profileCount, 17);
       expect(
         PawnStepSoundFactory.profileNames.length,
         PawnCatalog.all.length,
       );
 
       final sounds = PawnStepSoundFactory.buildAll();
-      expect(sounds.length, 16);
+      expect(sounds.length, 17);
       final signatures = <int>{};
 
-      for (var index = 0; index < 16; index++) {
+      for (var index = 0; index < 17; index++) {
         final bytes = sounds[
           PawnStepSoundFactory.fileNameForPawn(index)
         ];
@@ -141,7 +142,7 @@ void main() {
         signatures.add(signature);
       }
 
-      expect(signatures.length, 16);
+      expect(signatures.length, 17);
     });
 
     test('Premium piyon seçici tüm piyonları tanımlar', () {
@@ -166,17 +167,18 @@ void main() {
       expect(PawnPickerPresentation.isSpecial(11), isFalse);
       expect(PawnPickerPresentation.isSpecial(12), isTrue);
       expect(PawnPickerPresentation.isSpecial(15), isTrue);
-      expect(PawnPickerPresentation.isSpecial(16), isFalse);
+      expect(PawnPickerPresentation.isSpecial(16), isTrue);
+      expect(PawnPickerPresentation.isSpecial(17), isFalse);
     });
 
-    test('On altı piyonun görsel efekt profili bulunur', () {
-      expect(PawnVisualEffects.profiles.length, 16);
+    test('On yedi piyonun görsel efekt profili bulunur', () {
+      expect(PawnVisualEffects.profiles.length, 17);
       expect(PawnVisualEffects.profiles.length, PawnCatalog.all.length);
 
       final labels = PawnVisualEffects.profiles
           .map((profile) => profile.label)
           .toSet();
-      expect(labels.length, 16);
+      expect(labels.length, 17);
       expect(PawnVisualEffects.profileFor(12).label, 'Kozmik yıldız tozu');
       expect(PawnVisualEffects.profileFor(13).label, 'Canlı yaprak izleri');
       expect(
@@ -185,9 +187,13 @@ void main() {
       );
       expect(
         PawnVisualEffects.profileFor(15).label,
-        'Taş tozu ve yüzük ışığı',
+        'Taş tozu ve kristal ışığı',
       );
-      expect(PawnVisualEffects.normalize(-1), 15);
+      expect(
+        PawnVisualEffects.profileFor(16).label,
+        'Gece kristali pati izleri',
+      );
+      expect(PawnVisualEffects.normalize(-1), 16);
     });
 
     test('Premium zar modeli altı yüzü doğru tanır', () {
