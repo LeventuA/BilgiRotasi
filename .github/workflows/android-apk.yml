@@ -291,7 +291,7 @@ jobs:
           printf '%s\n' "$CERT_OUTPUT"
 
           ACTUAL_SHA1="$(
-            printf '%s\n' "$CERT_OUTPUT"               | awk -F': '                 '/certificate SHA-1 digest/ {print $2; exit}'               | tr '[:lower:]' '[:upper:]'               | tr -d '[:space:]:'
+            printf '%s\n' "$CERT_OUTPUT"               | awk -F': '                 '/certificate SHA-1 digest/ {print $NF; exit}'               | tr '[:lower:]' '[:upper:]'               | tr -d '[:space:]:'
           )"
           EXPECTED_SHA1="000EE43F410ABC6B4F634C4F716D76EB19084115"
 
