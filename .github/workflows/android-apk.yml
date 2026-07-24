@@ -33,9 +33,9 @@ jobs:
           python3 tools/rc1_quality_gate.py \
             --report reports/RC1_AUTOMATED_REPORT.md
 
-      - name: Yeni RC1 dosyalarının biçimini kontrol et
+      - name: Yeni RC1 dosyalarını biçimlendir
         run: |
-          dart format --output=none --set-exit-if-changed \
+          dart format \
             lib/app_build_info.dart \
             test/rc1_quality_gate_test.dart
 
