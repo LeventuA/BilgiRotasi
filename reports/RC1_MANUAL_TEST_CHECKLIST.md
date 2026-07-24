@@ -1,6 +1,6 @@
 # Bilgi Rotası — RC2 Telefon Test Listesi
 
-Sürüm: **1.47.0+62 • RC2**
+Sürüm: **1.47.1+63 • RC2**
 
 > Bir kritik madde başarısızsa RC2 onaylanmaz. Hata düzeltilir,
 > yeni APK alınır ve ilgili bölüm yeniden test edilir.
@@ -9,7 +9,7 @@ Sürüm: **1.47.0+62 • RC2**
 
 - [ ] APK mevcut imzalı uygulamanın üzerine kuruldu.
 - [ ] XP, tema, piyon ve kayıtlı oyun korundu.
-- [ ] Hakkında ekranında `Sürüm 1.47.0+62 • RC2` göründü.
+- [ ] Hakkında ekranında `Sürüm 1.47.1+63 • RC2` göründü.
 - [ ] Uygulama çevrimdışıyken misafir olarak açılabildi.
 
 ## 2. İlk hesap seçimi
@@ -59,3 +59,11 @@ Sürüm: **1.47.0+62 • RC2**
 - Test eden:
 - Sonuç: [ ] ONAYLANDI  [ ] REDDEDİLDİ
 - Bulunan hatalar:
+
+## 7. Bulut veri deposu hotfix testi
+
+- [ ] Hesap ekranında `Şimdi eşitle` sonrası yüklenen kayıt sayısı sıfırdan büyük göründü.
+- [ ] Uygulama kaldırılıp tekrar kuruldu.
+- [ ] Aynı Google hesabıyla giriş yapıldı.
+- [ ] XP, tema, piyon ve kayıtlı oyun geri geldi.
+- [ ] Boş telefon kaydı dolu bulut kaydının üzerine yazılmadı.

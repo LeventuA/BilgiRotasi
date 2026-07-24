@@ -14,7 +14,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_VERSION = "1.47.0+62"
+EXPECTED_VERSION = "1.47.1+63"
 MIN_TOTAL_QUESTIONS = 5000
 MIN_QUESTIONS_PER_CATEGORY = 500
 CATEGORY_COUNT = 6
@@ -29,6 +29,7 @@ REQUIRED_FILES = [
     "lib/account_cloud.dart",
     "firebase/google-services.json",
     "firestore.rules",
+    "test/account_cloud_storage_backend_test.dart",
     "assets/sounds/dice_roll.mp3",
     "assets/sounds/landing.mp3",
     "assets/sounds/correct.mp3",

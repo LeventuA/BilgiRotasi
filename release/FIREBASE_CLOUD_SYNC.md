@@ -22,3 +22,11 @@
 
 `google-services.json` içindeki proje tanımlayıcıları istemci yapılandırmasıdır.
 JKS imza anahtarı ve parolalar yalnızca GitHub Secrets içinde tutulmaya devam eder.
+
+## 1.47.1+63 veri deposu hotfix'i
+
+- Oyun ilerlemesi ve bulut yedeği artık aynı `SharedPreferencesAsync`
+  / Android DataStore alanını kullanır.
+- Bulut okuması doğrudan sunucudan yapılır.
+- Yazılan kayıt sunucudan tekrar okunarak doğrulanır.
+- Boş bir eski bulut belgesi, dolu telefon kaydının üzerine yazılmaz.

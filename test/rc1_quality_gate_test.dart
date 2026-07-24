@@ -30,14 +30,14 @@ void main() {
           .toList(growable: false);
     });
 
-    test('RC1 sürüm bilgisi tek merkezden gelir', () {
-      expect(AppBuildInfo.versionName, '1.47.0');
-      expect(AppBuildInfo.buildNumber, 62);
+    test('RC2 sürüm bilgisi tek merkezden gelir', () {
+      expect(AppBuildInfo.versionName, '1.47.1');
+      expect(AppBuildInfo.buildNumber, 63);
       expect(AppBuildInfo.channel, 'RC2');
-      expect(AppBuildInfo.version, '1.47.0+62');
+      expect(AppBuildInfo.version, '1.47.1+63');
       expect(
         AppBuildInfo.fullLabel,
-        'Sürüm 1.47.0+62 • RC2',
+        'Sürüm 1.47.1+63 • RC2',
       );
     });
 

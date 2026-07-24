@@ -133,6 +133,11 @@ class AccountLocalSnapshot {
   static const String controlPrefix =
       'bilgi_rotasi_account_';
 
+  // Oyun servisleri SharedPreferencesAsync kullanıyor.
+  // Bulut yedeği de aynı Android DataStore alanını okumalıdır.
+  static final SharedPreferencesAsync _preferences =
+      SharedPreferencesAsync();
+
   static bool shouldSyncKey(String key) {
     if (!key.startsWith('bilgi_rotasi_')) return false;
     if (key.startsWith(controlPrefix)) return false;
@@ -148,15 +153,17 @@ class AccountLocalSnapshot {
     return true;
   }
 
-  static Future<String> capture() async {
-    final preferences = await SharedPreferences.getInstance();
-    await preferences.reload();
+  static int valueCount(String raw) {
+    return AccountSnapshotCodec.decode(raw).length;
+  }
 
+  static Future<String> capture() async {
+    final allValues = await _preferences.getAll();
     final values = <String, Object?>{};
 
-    for (final key in preferences.getKeys()) {
-      if (!shouldSyncKey(key)) continue;
-      values[key] = preferences.get(key);
+    for (final entry in allValues.entries) {
+      if (!shouldSyncKey(entry.key)) continue;
+      values[entry.key] = entry.value;
     }
 
     final encoded = AccountSnapshotCodec.encode(values);
@@ -172,46 +179,38 @@ class AccountLocalSnapshot {
 
   static Future<void> restore(String raw) async {
     final values = AccountSnapshotCodec.decode(raw);
-    final preferences = await SharedPreferences.getInstance();
-    await preferences.reload();
-
-    final currentKeys = preferences
-        .getKeys()
+    final currentKeys = (await _preferences.getKeys())
         .where(shouldSyncKey)
         .toList(growable: false);
 
     for (final key in currentKeys) {
-      await preferences.remove(key);
+      await _preferences.remove(key);
     }
 
     for (final entry in values.entries) {
       final value = entry.value;
 
       if (value is String) {
-        await preferences.setString(entry.key, value);
+        await _preferences.setString(entry.key, value);
       } else if (value is int) {
-        await preferences.setInt(entry.key, value);
+        await _preferences.setInt(entry.key, value);
       } else if (value is double) {
-        await preferences.setDouble(entry.key, value);
+        await _preferences.setDouble(entry.key, value);
       } else if (value is bool) {
-        await preferences.setBool(entry.key, value);
+        await _preferences.setBool(entry.key, value);
       } else if (value is List<String>) {
-        await preferences.setStringList(entry.key, value);
+        await _preferences.setStringList(entry.key, value);
       }
     }
-
-    await preferences.reload();
   }
 
   static Future<void> clearGameData() async {
-    final preferences = await SharedPreferences.getInstance();
-    await preferences.reload();
-
-    for (final key in preferences
-        .getKeys()
+    final currentKeys = (await _preferences.getKeys())
         .where(shouldSyncKey)
-        .toList(growable: false)) {
-      await preferences.remove(key);
+        .toList(growable: false);
+
+    for (final key in currentKeys) {
+      await _preferences.remove(key);
     }
   }
 }
@@ -414,8 +413,14 @@ class AccountCloudService with WidgetsBindingObserver {
       }
 
       final remote = await _loadRemoteSnapshot(user.uid);
+      final localCount =
+          AccountLocalSnapshot.valueCount(guestSnapshot);
+      final remoteCount = remote == null
+          ? 0
+          : AccountLocalSnapshot.valueCount(remote);
 
-      if (remote == null) {
+      if (remote == null ||
+          (remoteCount == 0 && localCount > 0)) {
         await _writeRemoteSnapshot(
           user,
           guestSnapshot,
@@ -435,6 +440,9 @@ class AccountCloudService with WidgetsBindingObserver {
         mode: AccountMode.google,
         firebaseReady: true,
         user: user,
+        message:
+            'Bulut kaydı doğrulandı • '
+            '${max(localCount, remoteCount)} kayıt',
         lastSyncedAt: DateTime.now(),
       );
     } catch (error) {
@@ -453,17 +461,24 @@ class AccountCloudService with WidgetsBindingObserver {
     );
     final dirty =
         preferences.getBool(_userDirtyKey(user.uid)) == true;
+    final deviceSnapshot = await AccountLocalSnapshot.capture();
+    final deviceCount =
+        AccountLocalSnapshot.valueCount(deviceSnapshot);
 
     try {
       if (dirty &&
           localSnapshot != null &&
-          localSnapshot.isNotEmpty) {
+          localSnapshot.isNotEmpty &&
+          AccountLocalSnapshot.valueCount(localSnapshot) > 0) {
         await AccountLocalSnapshot.restore(localSnapshot);
         await _writeRemoteSnapshot(user, localSnapshot);
       } else {
         final remote = await _loadRemoteSnapshot(user.uid);
+        final remoteCount = remote == null
+            ? 0
+            : AccountLocalSnapshot.valueCount(remote);
 
-        if (remote != null) {
+        if (remote != null && remoteCount > 0) {
           await AccountLocalSnapshot.restore(remote);
           await _saveUserLocalSnapshot(
             user.uid,
@@ -471,12 +486,13 @@ class AccountCloudService with WidgetsBindingObserver {
             dirty: false,
           );
         } else {
-          final snapshot = localSnapshot != null &&
-                  localSnapshot.isNotEmpty
-              ? localSnapshot
-              : await AccountLocalSnapshot.capture();
+          final snapshot = deviceCount > 0
+              ? deviceSnapshot
+              : localSnapshot != null &&
+                      localSnapshot.isNotEmpty
+                  ? localSnapshot
+                  : deviceSnapshot;
 
-          await AccountLocalSnapshot.restore(snapshot);
           await _writeRemoteSnapshot(user, snapshot);
         }
       }
@@ -498,7 +514,7 @@ class AccountCloudService with WidgetsBindingObserver {
         user: user,
         message:
             'Bulut kaydı şu an alınamadı. '
-            'Telefondaki kayıtla devam ediliyor.',
+            'Telefondaki kayıt korunuyor.',
       );
     }
   }
@@ -507,7 +523,7 @@ class AccountCloudService with WidgetsBindingObserver {
     final document = await _firestore!
         .collection('users')
         .doc(uid)
-        .get();
+        .get(const GetOptions(source: Source.server));
 
     if (!document.exists) return null;
 
@@ -530,13 +546,17 @@ class AccountCloudService with WidgetsBindingObserver {
       );
     }
 
-    await _firestore!
+    final valueCount =
+        AccountLocalSnapshot.valueCount(snapshot);
+    final reference = _firestore!
         .collection('users')
-        .doc(user.uid)
-        .set(
+        .doc(user.uid);
+
+    await reference.set(
       <String, dynamic>{
-        'schema': 1,
+        'schema': 2,
         'snapshotJson': snapshot,
+        'snapshotValueCount': valueCount,
         'displayName': user.displayName ?? '',
         'email': user.email ?? '',
         'appVersion': AppBuildInfo.version,
@@ -546,6 +566,18 @@ class AccountCloudService with WidgetsBindingObserver {
       },
       SetOptions(merge: true),
     );
+
+    final verified = await reference.get(
+      const GetOptions(source: Source.server),
+    );
+    final verifiedSnapshot =
+        verified.data()?['snapshotJson'];
+
+    if (verifiedSnapshot != snapshot) {
+      throw StateError(
+        'Bulut kaydı sunucuda doğrulanamadı.',
+      );
+    }
 
     await _saveUserLocalSnapshot(
       user.uid,
@@ -596,6 +628,8 @@ class AccountCloudService with WidgetsBindingObserver {
 
     try {
       final snapshot = await AccountLocalSnapshot.capture();
+      final valueCount =
+          AccountLocalSnapshot.valueCount(snapshot);
 
       await _saveUserLocalSnapshot(
         user.uid,
@@ -609,6 +643,8 @@ class AccountCloudService with WidgetsBindingObserver {
         mode: AccountMode.google,
         firebaseReady: true,
         user: user,
+        message:
+            'Buluta $valueCount kayıt yüklendi ve doğrulandı.',
         lastSyncedAt: DateTime.now(),
       );
     } catch (_) {
@@ -617,8 +653,8 @@ class AccountCloudService with WidgetsBindingObserver {
         firebaseReady: true,
         user: user,
         message:
-            'Bulut eşitlemesi bekliyor. '
-            'Bağlantı gelince yeniden denenecek.',
+            'Bulut eşitlemesi tamamlanamadı. '
+            'Telefondaki kayıt korunuyor.',
         lastSyncedAt: state.value.lastSyncedAt,
       );
     } finally {
