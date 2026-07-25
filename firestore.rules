@@ -72,6 +72,23 @@ service cloud.firestore {
                        resource.data.questionCount;
 
       allow delete: if false;
+
+      match /progress/{userId} {
+        allow read: if signedIn()
+                    && request.auth.uid
+                       in get(
+                         /databases/$(database)/documents/live_duel_matches/$(matchId)
+                       ).data.playerUids;
+
+        allow create, update: if signedIn()
+                              && request.auth.uid == userId
+                              && request.resource.data.uid == userId
+                              && request.resource.data.answeredCount >= 0
+                              && request.resource.data.correctCount >= 0
+                              && request.resource.data.wrongCount >= 0;
+
+        allow delete: if false;
+      }
     }
   }
 }
