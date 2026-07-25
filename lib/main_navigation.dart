@@ -62,6 +62,29 @@ extension MainNavigationSectionX on MainNavigationSection {
       };
 }
 
+class MainNavigationPolicy {
+  MainNavigationPolicy._();
+
+  static List<MainNavigationSection> visibleSections(
+    AccountMode mode,
+  ) {
+    return <MainNavigationSection>[
+      MainNavigationSection.play,
+      if (AccountAccessPolicy.dailyVisible(mode))
+        MainNavigationSection.daily,
+      MainNavigationSection.career,
+      MainNavigationSection.social,
+      MainNavigationSection.settings,
+    ];
+  }
+
+  static bool dailyVisible(AccountMode mode) {
+    return visibleSections(mode).contains(
+      MainNavigationSection.daily,
+    );
+  }
+}
+
 class MainNavigationGrid extends StatelessWidget {
   const MainNavigationGrid({
     required this.questionBank,
@@ -72,31 +95,50 @@ class MainNavigationGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _pair(
-          context,
-          MainNavigationSection.play,
-          MainNavigationSection.daily,
-        ),
-        const SizedBox(height: 10),
-        _pair(
-          context,
-          MainNavigationSection.career,
-          MainNavigationSection.social,
-        ),
-        const SizedBox(height: 10),
-        _MainNavigationCard(
-          section: MainNavigationSection.settings,
-          horizontal: true,
-          onTap: () => _open(
-            context,
-            SettingsCenterScreen(
-              questionBank: questionBank,
+    return ValueListenableBuilder<AccountSessionState>(
+      valueListenable: AccountCloudService.state,
+      builder: (context, session, _) {
+        final showDaily = MainNavigationPolicy.dailyVisible(
+          session.mode,
+        );
+
+        return Column(
+          children: [
+            if (showDaily)
+              _pair(
+                context,
+                MainNavigationSection.play,
+                MainNavigationSection.daily,
+              )
+            else
+              _MainNavigationCard(
+                section: MainNavigationSection.play,
+                horizontal: true,
+                onTap: () => _openSection(
+                  context,
+                  MainNavigationSection.play,
+                ),
+              ),
+            const SizedBox(height: 10),
+            _pair(
+              context,
+              MainNavigationSection.career,
+              MainNavigationSection.social,
             ),
-          ),
-        ),
-      ],
+            const SizedBox(height: 10),
+            _MainNavigationCard(
+              section: MainNavigationSection.settings,
+              horizontal: true,
+              onTap: () => _open(
+                context,
+                SettingsCenterScreen(
+                  questionBank: questionBank,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -131,6 +173,19 @@ class MainNavigationGrid extends StatelessWidget {
     BuildContext context,
     MainNavigationSection section,
   ) {
+    if (section == MainNavigationSection.daily &&
+        !AccountCloudService.dailyVisible) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Günlük görevler Google hesabıyla giriş '
+            'yapıldığında açılır.',
+          ),
+        ),
+      );
+      return;
+    }
+
     final screen = switch (section) {
       MainNavigationSection.play => PlayCenterScreen(
           questionBank: questionBank,

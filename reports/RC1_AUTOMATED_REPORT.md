@@ -1,18 +1,18 @@
 # Bilgi Rotası RC2 Otomatik Kalite Raporu
 
 - Durum: **BAŞARILI**
-- Sürüm: `1.48.1+65`
-- Toplam soru: **5710**
-- Soru dosyası SHA-256: `15dac75db223ad8131bfd98037b3e34ee59b0147de14a9e96dc4939e1f3b32bf`
+- Sürüm: `1.48.4+68`
+- Toplam soru: **6710**
+- Soru dosyası SHA-256: `c1857ed189d935bbe2c1b8f444aa0fe41e3e69cf44f19c6df50c45701c4c8e30`
 
 ## Kategori dağılımı
 
-- Kategori 0: **924**
-- Kategori 1: **992**
-- Kategori 2: **877**
-- Kategori 3: **1014**
-- Kategori 4: **948**
-- Kategori 5: **955**
+- Kategori 0: **1094**
+- Kategori 1: **1192**
+- Kategori 2: **1027**
+- Kategori 3: **1174**
+- Kategori 4: **1088**
+- Kategori 5: **1135**
 
 ## Uyarılar
 

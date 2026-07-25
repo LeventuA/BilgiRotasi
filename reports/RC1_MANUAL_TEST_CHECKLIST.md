@@ -1,6 +1,6 @@
 # Bilgi Rotası — RC2 Telefon Test Listesi
 
-Sürüm: **1.48.3+67 • RC2**
+Sürüm: **1.48.4+68 • RC2**
 
 > Bir kritik madde başarısızsa RC2 onaylanmaz. Hata düzeltilir,
 > yeni APK alınır ve ilgili bölüm yeniden test edilir.
@@ -9,7 +9,7 @@ Sürüm: **1.48.3+67 • RC2**
 
 - [ ] APK mevcut imzalı uygulamanın üzerine kuruldu.
 - [ ] XP, tema, piyon ve kayıtlı oyun korundu.
-- [ ] Hakkında ekranında `Sürüm 1.48.3+67 • RC2` göründü.
+- [ ] Hakkında ekranında `Sürüm 1.48.4+68 • RC2` göründü.
 - [ ] Uygulama çevrimdışıyken misafir olarak açılabildi.
 
 ## 2. İlk hesap seçimi
@@ -78,3 +78,12 @@ Sürüm: **1.48.3+67 • RC2**
 - [ ] Paylaşım metninde seçilen soru sayısı ve hedef doğru göründü.
 - [ ] İkinci telefonda yalnızca kod girilince soru sayısı otomatik çözüldü.
 - [ ] Aynı kod iki telefonda aynı soruları aynı sırayla açtı.
+
+## 9. Misafir Günlük görünürlüğü testi
+
+- [ ] Misafir modunda ana sayfadaki Günlük Görev kartı görünmedi.
+- [ ] Misafir modunda Bölümler alanındaki Günlük kartı görünmedi.
+- [ ] Misafir modunda Oyna kartı tam genişlikte göründü.
+- [ ] Google hesabıyla giriş yapılınca Günlük kartı otomatik geri geldi.
+- [ ] Google hesabından çıkınca Günlük kartı tekrar gizlendi.
+- [ ] Misafir kullanıcı diğer oyun modlarına erişebildi.

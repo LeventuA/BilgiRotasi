@@ -82,6 +82,36 @@ void main() {
       );
     });
 
+    test('Misafir navigasyonunda Günlük bölümü gizlidir', () {
+      final guestSections =
+          MainNavigationPolicy.visibleSections(
+        AccountMode.guest,
+      );
+      final undecidedSections =
+          MainNavigationPolicy.visibleSections(
+        AccountMode.undecided,
+      );
+      final googleSections =
+          MainNavigationPolicy.visibleSections(
+        AccountMode.google,
+      );
+
+      expect(guestSections.length, 4);
+      expect(
+        guestSections,
+        isNot(contains(MainNavigationSection.daily)),
+      );
+      expect(
+        undecidedSections,
+        isNot(contains(MainNavigationSection.daily)),
+      );
+      expect(googleSections.length, 5);
+      expect(
+        googleSections,
+        contains(MainNavigationSection.daily),
+      );
+    });
+
     test('Oyun arayüzü telefon ve geniş ekranı ayırır', () {
       expect(GameUiMetrics.isCompact(412), isTrue);
       expect(GameUiMetrics.isCompact(760), isFalse);
