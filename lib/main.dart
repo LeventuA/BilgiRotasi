@@ -21,6 +21,7 @@ import 'sound_data.dart';
 part 'daily_challenge.dart';
 part 'question_feedback.dart';
 part 'xp_progression.dart';
+part 'career_collection_update.dart';
 part 'gameplay_boost.dart';
 part 'quick_modes.dart';
 part 'advanced_modes.dart';
@@ -661,6 +662,9 @@ class CareerStatsService {
     }
 
     await _save(stats);
+    await PassportProgressService.recordAnswer(
+      categoryIndex: categoryIndex,
+    );
 
     final answerGain = await XpProgressService.recordAnswer(
       correct: correct,

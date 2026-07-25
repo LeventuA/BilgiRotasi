@@ -11,11 +11,14 @@ class XpRank {
 
 const List<XpRank> xpRanks = <XpRank>[
   XpRank(1, 'Acemi Gezgin', '🧭', 'Bilgi yolculuğuna yeni başladı.'),
-  XpRank(5, 'Meraklı', '🔎', 'Her kategoride yeni bilgiler arıyor.'),
+  XpRank(5, 'Meraklı Kâşif', '🔎', 'Temel rotaları tanımaya başladı.'),
   XpRank(10, 'Bilgi Avcısı', '🎯', 'Doğru cevapların peşini bırakmıyor.'),
-  XpRank(20, 'Uzman', '🧠', 'Zorlu sorularda farkını gösteriyor.'),
-  XpRank(35, 'Bilge', '🦉', 'Geniş bilgi birikimiyle öne çıkıyor.'),
-  XpRank(50, 'Bilgi Efsanesi', '👑', 'Bilgi Rotası’nın zirvesine ulaştı.'),
+  XpRank(20, 'Bronz Bilge', '🥉', 'İstikrarlı ilerleyişini kanıtladı.'),
+  XpRank(35, 'Gümüş Bilge', '🥈', 'Zorlu sorularda farkını gösteriyor.'),
+  XpRank(50, 'Altın Bilge', '🥇', 'Geniş bilgi birikimiyle öne çıkıyor.'),
+  XpRank(70, 'Kristal Bilge', '💎', 'Bilgi Rotası’nın seçkin yolcularından.'),
+  XpRank(90, 'Usta Bilge', '🦉', 'Zirveye çok yakın bir bilgi ustası.'),
+  XpRank(100, 'Efsane Bilge', '👑', 'Bilgi Rotası’nın en yüksek seviyesine ulaştı.'),
 ];
 
 class XpSnapshot {
@@ -80,15 +83,20 @@ class XpProgressService {
     await load();
   }
 
-  static int requiredForLevel(int level) =>
-      100 + ((max(1, level) - 1) * 30);
+  static int requiredForLevel(int level) {
+    final safeLevel = max(1, level);
+    if (safeLevel >= 100) return 0;
+    final linear = 110 * safeLevel;
+    final curve = 12 * safeLevel * safeLevel;
+    return 40 + linear + curve;
+  }
 
   static XpSnapshot snapshot(int totalXp) {
     var level = 1;
     var remaining = max(0, totalXp);
     var required = requiredForLevel(level);
 
-    while (remaining >= required && level < 999) {
+    while (required > 0 && remaining >= required && level < 100) {
       remaining -= required;
       level++;
       required = requiredForLevel(level);
@@ -184,16 +192,10 @@ class XpProgressService {
         _ => 15,
       };
 
-      final streakMultiplier =
-          progress.currentStreak >= 10
-              ? 3
-              : progress.currentStreak >= 5
-                  ? 2
-                  : 1;
+      final streakMultiplier = 1;
 
-      final streakBonus =
-          progress.currentStreak >= 3 ? 5 : 0;
-      final badgeBonus = badgeEarned ? 40 : 0;
+      final streakBonus = progress.currentStreak >= 5 ? 3 : 0;
+      final badgeBonus = badgeEarned ? 15 : 0;
 
       amount = (
         base * streakMultiplier +
@@ -245,7 +247,7 @@ class XpProgressService {
 
   static Future<XpGainResult> recordGameCompleted({required bool solo}) async {
     return _award(
-      solo ? 120 : 180,
+      solo ? 45 : 65,
       solo ? 'Serbest Rota tamamlandı' : 'Çok oyunculu oyun kazanıldı',
     );
   }
@@ -255,14 +257,14 @@ class XpProgressService {
     required bool perfect,
   }) async {
     return _award(
-      max(50, questionCount * 3) + (perfect ? 100 : 0),
+      max(25, questionCount * 2) + (perfect ? 35 : 0),
       perfect ? 'Kusursuz maraton bonusu' : 'Soru Maratonu tamamlandı',
     );
   }
 
   static Future<XpGainResult> recordDailyChallenge({required bool perfect}) async {
     return _award(
-      perfect ? 150 : 75,
+      perfect ? 60 : 35,
       perfect ? 'Kusursuz günlük görev' : 'Günlük görev tamamlandı',
     );
   }

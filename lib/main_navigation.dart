@@ -479,6 +479,42 @@ class CareerCenterScreen extends StatelessWidget {
             ),
           ),
         ),
+        _HubActionCard(
+          emoji: '🛂',
+          title: 'Bilgi Rotası Pasaportu',
+          description:
+              'Altı kategoride zorlu mühürleri tamamla ve Büyük Bilge ol.',
+          accent: const Color(0xFFB45309),
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const BilgiPassportScreen(),
+            ),
+          ),
+        ),
+        _HubActionCard(
+          emoji: '💎',
+          title: 'Piyon Nadirlikleri',
+          description:
+              'Sıradan, Nadir, Destansı, Efsanevi ve Mitik piyonları incele.',
+          accent: const Color(0xFF2563EB),
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const PawnRarityScreen(),
+            ),
+          ),
+        ),
+        _HubActionCard(
+          emoji: '🎉',
+          title: 'Özel Etkinlikler',
+          description:
+              'Yıl içindeki özel rotaları ve dönemsel görünümleri takip et.',
+          accent: const Color(0xFFBE185D),
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const SpecialEventsScreen(),
+            ),
+          ),
+        ),
       ],
     );
   }
