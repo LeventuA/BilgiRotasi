@@ -140,6 +140,15 @@ class PassportRequirement {
   final int activeDays;
 }
 
+const List<String> _passportCategoryNames = <String>[
+  'Tarih',
+  'Coğrafya',
+  'Bilim',
+  'Sanat',
+  'Spor',
+  'Eğlence',
+];
+
 const List<PassportRequirement> passportRequirements =
     <PassportRequirement>[
   PassportRequirement('Bronz', 100, 65, 5),
@@ -311,7 +320,7 @@ class _PassportCategoryCard extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    category.title,
+                    _passportCategoryNames[categoryIndex],
                     style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w900,
@@ -362,7 +371,7 @@ class PawnRarityScreen extends StatelessWidget {
           return Card(
             child: ListTile(
               leading: CircleAvatar(
-                backgroundColor: rarity.color.withOpacity(0.18),
+                backgroundColor: rarity.color.withValues(alpha: 0.18),
                 child: Text(rarity.emoji),
               ),
               title: Text(
