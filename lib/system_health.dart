@@ -684,12 +684,6 @@ class _SystemHealthScreenState
               const SizedBox(height: 12),
               _performanceCard(),
               const SizedBox(height: 12),
-              ReleaseReadinessCard(
-                questionBank: widget.questionBank,
-                report: data.report,
-                errorCount: data.errors.length,
-              ),
-              const SizedBox(height: 12),
               _errorCard(data.errors),
               const SizedBox(height: 14),
               SocialShareButton(
