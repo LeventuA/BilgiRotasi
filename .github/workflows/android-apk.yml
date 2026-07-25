@@ -422,7 +422,7 @@ jobs:
             echo "# Bilgi Rotası RC2 Yapı Bilgisi"
             echo
             echo "- Commit: ${GITHUB_SHA}"
-            echo "- Sürüm: 1.48.5+69"
+            echo "- Sürüm: 1.53.0+74"
             echo "- Kanal: RC2"
             echo "- Paket adı: com.leventua.bilgirotasi"
             echo "- Sertifika SHA-1: 00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15"
