@@ -193,6 +193,8 @@ class LiveDuelMatchmakingService {
         final matchId = await _claimCandidate(
           ownReference: ownReference,
           candidateReference: candidateSnapshot.reference,
+          questionCount: own.questionCount,
+          opponentUid: candidateSnapshot.id,
         );
 
         if (matchId != null) return matchId;
@@ -205,9 +207,22 @@ class LiveDuelMatchmakingService {
   static Future<String?> _claimCandidate({
     required DocumentReference<Map<String, dynamic>> ownReference,
     required DocumentReference<Map<String, dynamic>> candidateReference,
+    required int questionCount,
+    required String opponentUid,
   }) async {
     final user = _requireUser();
     final matchReference = _matches.doc();
+
+    final seed = LiveDuelQuestionSetService.seedForMatch(
+      matchId: matchReference.id,
+      firstPlayerUid: user.uid,
+      secondPlayerUid: opponentUid,
+    );
+
+    final questionIds = await LiveDuelQuestionSetService.createQuestionIds(
+      questionCount: questionCount,
+      seed: seed,
+    );
 
     return _firestore.runTransaction<String?>((transaction) async {
       final ownSnapshot = await transaction.get(ownReference);
@@ -238,6 +253,8 @@ class LiveDuelMatchmakingService {
       transaction.set(matchReference, <String, dynamic>{
         'status': 'preparing',
         'questionCount': own.questionCount,
+        'questionIds': questionIds,
+        'questionSetVersion': 1,
         'playerUids': playerUids,
         'players': <Map<String, dynamic>>[
           <String, dynamic>{
