@@ -45,6 +45,7 @@ part 'about_privacy.dart';
 part 'app_build_info.dart';
 part 'account_cloud.dart';
 part 'live_duel_league.dart';
+part 'live_duel_matchmaking.dart';
 
 class SoundFx {
   SoundFx._();
@@ -165,9 +166,10 @@ class SoundFx {
 
       await player.play(
         DeviceFileSource(path),
-        volume: (volume * AppPreferencesService.soundMultiplier)
-            .clamp(0.0, 1.0)
-            .toDouble(),
+        volume:
+            (volume * AppPreferencesService.soundMultiplier)
+                .clamp(0.0, 1.0)
+                .toDouble(),
       );
 
       lastError = null;
@@ -378,9 +380,10 @@ class GameSaveService {
 
   static PlayerData _playerFromJson(Map<String, dynamic> json) {
     final player = PlayerData(
-      name: json['name']?.toString().trim().isNotEmpty == true
-          ? json['name'].toString()
-          : 'Oyuncu',
+      name:
+          json['name']?.toString().trim().isNotEmpty == true
+              ? json['name'].toString()
+              : 'Oyuncu',
       color: Color((json['color'] as num?)?.toInt() ?? 0xFF2563EB),
       pawnType: (json['pawnType'] as num?)?.toInt() ?? 0,
       difficultyMode: difficultyModeFromName(json['difficultyMode']),
@@ -483,10 +486,11 @@ class CareerStats {
         return List<int>.filled(GameCategory.values.length, 0);
       }
 
-      final values = raw
-          .map((value) => (value as num?)?.toInt() ?? 0)
-          .take(GameCategory.values.length)
-          .toList();
+      final values =
+          raw
+              .map((value) => (value as num?)?.toInt() ?? 0)
+              .take(GameCategory.values.length)
+              .toList();
 
       while (values.length < GameCategory.values.length) {
         values.add(0);
@@ -1014,9 +1018,8 @@ class _CareerStatsScreenState extends State<CareerStatsScreen> {
   }
 
   Widget _buildHero(CareerStats stats) {
-    final unlocked = careerAchievements
-        .where((item) => item.isUnlocked(stats))
-        .length;
+    final unlocked =
+        careerAchievements.where((item) => item.isUnlocked(stats)).length;
 
     return Container(
       padding: const EdgeInsets.all(22),
@@ -1203,9 +1206,8 @@ class _CareerStatsScreenState extends State<CareerStatsScreen> {
   }
 
   Widget _buildAchievements(CareerStats stats) {
-    final unlocked = careerAchievements
-        .where((item) => item.isUnlocked(stats))
-        .length;
+    final unlocked =
+        careerAchievements.where((item) => item.isUnlocked(stats)).length;
 
     return Container(
       padding: const EdgeInsets.all(18),
@@ -1259,9 +1261,10 @@ class _CareerStatsScreenState extends State<CareerStatsScreen> {
                 Text(
                   achievement.title,
                   style: TextStyle(
-                    color: unlocked
-                        ? const Color(0xFFFFE082)
-                        : const Color(0xFFB9AEC2),
+                    color:
+                        unlocked
+                            ? const Color(0xFFFFE082)
+                            : const Color(0xFFB9AEC2),
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -1654,8 +1657,8 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         await Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) =>
-                SoloRouteSetupScreen(questionBank: widget.questionBank),
+            builder:
+                (_) => SoloRouteSetupScreen(questionBank: widget.questionBank),
           ),
         );
         if (mounted) {
@@ -1666,8 +1669,8 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         await Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) =>
-                MarathonSetupScreen(questionBank: widget.questionBank),
+            builder:
+                (_) => MarathonSetupScreen(questionBank: widget.questionBank),
           ),
         );
         return;
@@ -1892,15 +1895,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => GameScreen(
-          questionBank: widget.questionBank,
-          players: savedGame.players,
-          initialPlayerIndex: savedGame.currentPlayerIndex,
-          initialUsedQuestionIds: savedGame.usedQuestionIds,
-          initialStatus:
-              'Kayıtlı oyun açıldı. Sıra '
-              '${savedGame.currentPlayer.name} oyuncusunda.',
-        ),
+        builder:
+            (_) => GameScreen(
+              questionBank: widget.questionBank,
+              players: savedGame.players,
+              initialPlayerIndex: savedGame.currentPlayerIndex,
+              initialUsedQuestionIds: savedGame.usedQuestionIds,
+              initialStatus:
+                  'Kayıtlı oyun açıldı. Sıra '
+                  '${savedGame.currentPlayer.name} oyuncusunda.',
+            ),
       ),
     );
 
@@ -2056,9 +2060,8 @@ class MarathonScoreService {
   static final SharedPreferencesAsync _preferences = SharedPreferencesAsync();
 
   static String _scoreKey(int? categoryIndex, int questionCount) {
-    final category = categoryIndex == null
-        ? 'mixed'
-        : 'category_$categoryIndex';
+    final category =
+        categoryIndex == null ? 'mixed' : 'category_$categoryIndex';
     return '${category}_$questionCount';
   }
 
@@ -2234,19 +2237,24 @@ class _SoloRouteSetupScreenState extends State<SoloRouteSetupScreen> {
                           color: selected ? Colors.black : Colors.white,
                           width: selected ? 3 : 2,
                         ),
-                        boxShadow: selected
-                            ? [
-                                BoxShadow(
-                                  color: color.withOpacity(0.48),
-                                  blurRadius: 12,
-                                  spreadRadius: 2,
-                                ),
-                              ]
-                            : null,
+                        boxShadow:
+                            selected
+                                ? [
+                                  BoxShadow(
+                                    color: color.withOpacity(0.48),
+                                    blurRadius: 12,
+                                    spreadRadius: 2,
+                                  ),
+                                ]
+                                : null,
                       ),
-                      child: selected
-                          ? const Icon(Icons.check_rounded, color: Colors.white)
-                          : null,
+                      child:
+                          selected
+                              ? const Icon(
+                                Icons.check_rounded,
+                                color: Colors.white,
+                              )
+                              : null,
                     ),
                   );
                 }),
@@ -2281,14 +2289,14 @@ class _SoloRouteSetupScreenState extends State<SoloRouteSetupScreen> {
                       duration: const Duration(milliseconds: 180),
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: selected
-                            ? playerColor.withOpacity(0.13)
-                            : Colors.white,
+                        color:
+                            selected
+                                ? playerColor.withOpacity(0.13)
+                                : Colors.white,
                         borderRadius: BorderRadius.circular(18),
                         border: Border.all(
-                          color: selected
-                              ? playerColor
-                              : const Color(0xFFD7DEE8),
+                          color:
+                              selected ? playerColor : const Color(0xFFD7DEE8),
                           width: selected ? 2.4 : 1.1,
                         ),
                       ),
@@ -2363,11 +2371,12 @@ class _SoloRouteSetupScreenState extends State<SoloRouteSetupScreen> {
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) => GameScreen(
-          questionBank: widget.questionBank,
-          players: [player],
-          initialStatus: 'Serbest Rota başladı. Altı rozeti topla! 🧭',
-        ),
+        builder:
+            (_) => GameScreen(
+              questionBank: widget.questionBank,
+              players: [player],
+              initialStatus: 'Serbest Rota başladı. Altı rozeti topla! 🧭',
+            ),
       ),
     );
   }
@@ -2621,14 +2630,15 @@ class _MarathonSetupScreenState extends State<MarathonSetupScreen> {
   }
 
   void _startMarathon() {
-    final pool = _categoryIndex == null
-        ? widget.questionBank.questionsByCategory.values
-              .expand((questions) => questions)
-              .toList()
-        : List<QuizQuestion>.from(
-            widget.questionBank.questionsByCategory[_categoryIndex] ??
-                const <QuizQuestion>[],
-          );
+    final pool =
+        _categoryIndex == null
+            ? widget.questionBank.questionsByCategory.values
+                .expand((questions) => questions)
+                .toList()
+            : List<QuizQuestion>.from(
+              widget.questionBank.questionsByCategory[_categoryIndex] ??
+                  const <QuizQuestion>[],
+            );
 
     final questions = DifficultyBalance.pickMarathonQuestions(
       questionBank: widget.questionBank,
@@ -2640,11 +2650,12 @@ class _MarathonSetupScreenState extends State<MarathonSetupScreen> {
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => MarathonScreen(
-          questionBank: widget.questionBank,
-          questions: questions,
-          categoryIndex: _categoryIndex,
-        ),
+        builder:
+            (_) => MarathonScreen(
+              questionBank: widget.questionBank,
+              questions: questions,
+              categoryIndex: _categoryIndex,
+            ),
       ),
     );
   }
@@ -2690,9 +2701,10 @@ class _MarathonScreenState extends State<MarathonScreen> {
   @override
   Widget build(BuildContext context) {
     final category = GameCategory.values[_question.categoryIndex];
-    final progress = widget.questions.isEmpty
-        ? 0.0
-        : _questionIndex / widget.questions.length;
+    final progress =
+        widget.questions.isEmpty
+            ? 0.0
+            : _questionIndex / widget.questions.length;
 
     return PopScope<Object?>(
       canPop: false,
@@ -2878,19 +2890,20 @@ class _MarathonScreenState extends State<MarathonScreen> {
         await Navigator.of(context).push<bool>(
           MaterialPageRoute(
             fullscreenDialog: true,
-            builder: (_) => QuestionScreen(
-              question: questionForPlay,
-              jokers: _jokers,
-              riskMode: plan.risky,
-              xpMultiplier: plan.xpMultiplier,
-              onChangeQuestion: (current) async {
-                return GameplayBoostQuestionPicker.replacement(
-                  questionBank: widget.questionBank,
-                  current: current,
-                  usedQuestionIds: _usedQuestionIds,
-                );
-              },
-            ),
+            builder:
+                (_) => QuestionScreen(
+                  question: questionForPlay,
+                  jokers: _jokers,
+                  riskMode: plan.risky,
+                  xpMultiplier: plan.xpMultiplier,
+                  onChangeQuestion: (current) async {
+                    return GameplayBoostQuestionPicker.replacement(
+                      questionBank: widget.questionBank,
+                      current: current,
+                      usedQuestionIds: _usedQuestionIds,
+                    );
+                  },
+                ),
           ),
         ) ??
         false;
@@ -2952,16 +2965,17 @@ class _MarathonScreenState extends State<MarathonScreen> {
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => MarathonResultScreen(
-            questionBank: widget.questionBank,
-            categoryIndex: widget.categoryIndex,
-            questionCount: widget.questions.length,
-            correct: _correct,
-            wrong: _wrong,
-            maxStreak: _maxStreak,
-            elapsed: _stopwatch.elapsed,
-            previousBest: previousBest,
-          ),
+          builder:
+              (_) => MarathonResultScreen(
+                questionBank: widget.questionBank,
+                categoryIndex: widget.categoryIndex,
+                questionCount: widget.questions.length,
+                correct: _correct,
+                wrong: _wrong,
+                maxStreak: _maxStreak,
+                elapsed: _stopwatch.elapsed,
+                previousBest: previousBest,
+              ),
         ),
       );
       return;
@@ -3035,13 +3049,13 @@ class MarathonResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final percentage = questionCount == 0
-        ? 0
-        : (correct / questionCount * 100).round();
+    final percentage =
+        questionCount == 0 ? 0 : (correct / questionCount * 100).round();
     final isNewRecord = correct > previousBest;
-    final modeLabel = categoryIndex == null
-        ? 'Karışık'
-        : GameCategory.values[categoryIndex!].label;
+    final modeLabel =
+        categoryIndex == null
+            ? 'Karışık'
+            : GameCategory.values[categoryIndex!].label;
 
     return PopScope<Object?>(
       canPop: false,
@@ -3164,8 +3178,9 @@ class MarathonResultScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) =>
-                            MarathonSetupScreen(questionBank: questionBank),
+                        builder:
+                            (_) =>
+                                MarathonSetupScreen(questionBank: questionBank),
                       ),
                     );
                   },
@@ -3257,9 +3272,10 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
   final List<TextEditingController> _controllers = List.generate(
     6,
     (index) => TextEditingController(
-      text: index == 0
-          ? AppPreferencesService.current.defaultPlayerName
-          : 'Oyuncu ${index + 1}',
+      text:
+          index == 0
+              ? AppPreferencesService.current.defaultPlayerName
+              : 'Oyuncu ${index + 1}',
     ),
   );
 
@@ -3487,8 +3503,9 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) =>
-            GameScreen(questionBank: widget.questionBank, players: players),
+        builder:
+            (_) =>
+                GameScreen(questionBank: widget.questionBank, players: players),
       ),
     );
   }
@@ -3634,9 +3651,10 @@ class _WinnerScreenState extends State<WinnerScreen>
                       onPressed: () {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (_) => PlayerSetupScreen(
-                              questionBank: widget.questionBank,
-                            ),
+                            builder:
+                                (_) => PlayerSetupScreen(
+                                  questionBank: widget.questionBank,
+                                ),
                           ),
                         );
                       },
@@ -3681,9 +3699,10 @@ class _WinnerScreenState extends State<WinnerScreen>
   Widget _buildWinnerCard() {
     final player = widget.winner;
     final totalAnswers = player.correctAnswers + player.wrongAnswers;
-    final successRate = totalAnswers == 0
-        ? 0
-        : (player.correctAnswers / totalAnswers * 100).round();
+    final successRate =
+        totalAnswers == 0
+            ? 0
+            : (player.correctAnswers / totalAnswers * 100).round();
 
     return Container(
       padding: const EdgeInsets.all(22),
@@ -3838,14 +3857,16 @@ class _WinnerScreenState extends State<WinnerScreen>
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
       decoration: BoxDecoration(
-        color: identical(player, widget.winner)
-            ? const Color(0x22FFE082)
-            : const Color(0x0FFFFFFF),
+        color:
+            identical(player, widget.winner)
+                ? const Color(0x22FFE082)
+                : const Color(0x0FFFFFFF),
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
-          color: identical(player, widget.winner)
-              ? const Color(0x88FFE082)
-              : const Color(0x22FFFFFF),
+          color:
+              identical(player, widget.winner)
+                  ? const Color(0x88FFE082)
+                  : const Color(0x22FFFFFF),
         ),
       ),
       child: Row(
@@ -3991,9 +4012,10 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   String get _difficultyStatusText {
-    final mode = AppPreferencesService.current.childMode
-        ? DifficultyMode.relaxed
-        : _currentPlayer.difficultyMode;
+    final mode =
+        AppPreferencesService.current.childMode
+            ? DifficultyMode.relaxed
+            : _currentPlayer.difficultyMode;
 
     return '${mode.emoji} ${mode.label} • '
         '${_currentPlayer.adaptiveDifficultyLabel}';
@@ -4004,9 +4026,8 @@ class _GameScreenState extends State<GameScreen> {
     super.initState();
 
     if (widget.players.isNotEmpty) {
-      _currentPlayerIndex = widget.initialPlayerIndex
-          .clamp(0, widget.players.length - 1)
-          .toInt();
+      _currentPlayerIndex =
+          widget.initialPlayerIndex.clamp(0, widget.players.length - 1).toInt();
     }
 
     _status = widget.initialStatus ?? 'Zarı at ve rotaya çık.';
@@ -4078,14 +4099,15 @@ class _GameScreenState extends State<GameScreen> {
             ),
           ],
         ),
-        bottomNavigationBar: compactLayout
-            ? GameMobileActionBar(
-                player: _currentPlayer,
-                busy: _isBusy,
-                hasWinner: _winner != null,
-                onPressed: _onMainAction,
-              )
-            : null,
+        bottomNavigationBar:
+            compactLayout
+                ? GameMobileActionBar(
+                  player: _currentPlayer,
+                  busy: _isBusy,
+                  hasWinner: _winner != null,
+                  onPressed: _onMainAction,
+                )
+                : null,
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
@@ -4199,9 +4221,8 @@ class _GameScreenState extends State<GameScreen> {
                 if (showMainAction) ...[
                   const SizedBox(height: 18),
                   FilledButton.icon(
-                    onPressed: _isBusy || _winner != null
-                        ? null
-                        : _onMainAction,
+                    onPressed:
+                        _isBusy || _winner != null ? null : _onMainAction,
                     icon: Icon(
                       GameUiMetrics.actionIcon(
                         busy: _isBusy,
@@ -4282,14 +4303,16 @@ class _GameScreenState extends State<GameScreen> {
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      color: active
-                          ? player.color.withOpacity(0.12)
-                          : const Color(0xFFF8FAFC),
+                      color:
+                          active
+                              ? player.color.withOpacity(0.12)
+                              : const Color(0xFFF8FAFC),
                       borderRadius: BorderRadius.circular(14),
                       border: Border.all(
-                        color: active
-                            ? player.color.withOpacity(0.55)
-                            : const Color(0xFFE2E8F0),
+                        color:
+                            active
+                                ? player.color.withOpacity(0.55)
+                                : const Color(0xFFE2E8F0),
                       ),
                     ),
                     child: Row(
@@ -4307,9 +4330,8 @@ class _GameScreenState extends State<GameScreen> {
                             player.name,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontWeight: active
-                                  ? FontWeight.w800
-                                  : FontWeight.w600,
+                              fontWeight:
+                                  active ? FontWeight.w800 : FontWeight.w600,
                             ),
                           ),
                         ),
@@ -4481,26 +4503,27 @@ class _GameScreenState extends State<GameScreen> {
         await Navigator.of(context).push<bool>(
           MaterialPageRoute(
             fullscreenDialog: true,
-            builder: (_) => QuestionScreen(
-              question: question,
-              isBadgeQuestion: target.isBadge,
-              jokers: _currentPlayer.jokers,
-              riskMode: plan.risky,
-              xpMultiplier: plan.xpMultiplier,
-              onChangeQuestion: (current) async {
-                final replacement = GameplayBoostQuestionPicker.replacement(
-                  questionBank: widget.questionBank,
-                  current: current,
-                  usedQuestionIds: _usedQuestionIds,
-                );
+            builder:
+                (_) => QuestionScreen(
+                  question: question,
+                  isBadgeQuestion: target.isBadge,
+                  jokers: _currentPlayer.jokers,
+                  riskMode: plan.risky,
+                  xpMultiplier: plan.xpMultiplier,
+                  onChangeQuestion: (current) async {
+                    final replacement = GameplayBoostQuestionPicker.replacement(
+                      questionBank: widget.questionBank,
+                      current: current,
+                      usedQuestionIds: _usedQuestionIds,
+                    );
 
-                if (replacement != null) {
-                  await _saveGame();
-                }
+                    if (replacement != null) {
+                      await _saveGame();
+                    }
 
-                return replacement;
-              },
-            ),
+                    return replacement;
+                  },
+                ),
           ),
         ) ??
         false;
@@ -4641,7 +4664,7 @@ class _GameScreenState extends State<GameScreen> {
             effect == SpecialCellEffect.doubleChance &&
                     _currentPlayer.doubleChance
                 ? 'Çifte Şans hakkın zaten hazır. '
-                      'Mevcut hakkın korunacak.'
+                    'Mevcut hakkın korunacak.'
                 : effect.description,
             textAlign: TextAlign.center,
           ),
@@ -4769,8 +4792,9 @@ class _GameScreenState extends State<GameScreen> {
         await Navigator.of(context).push<bool>(
           MaterialPageRoute(
             fullscreenDialog: true,
-            builder: (_) =>
-                QuestionScreen(question: question, isFinalQuestion: true),
+            builder:
+                (_) =>
+                    QuestionScreen(question: question, isFinalQuestion: true),
           ),
         ) ??
         false;
@@ -4859,10 +4883,11 @@ class _GameScreenState extends State<GameScreen> {
       }
 
       setState(() {
-        _status = answeredPlayer.hasAllBadges
-            ? 'Altı rozet tamam! Final sorusu hazır. 🏆'
-            : 'Doğru cevap!$badgeMessage '
-                  'Aynı oyuncu devam ediyor.';
+        _status =
+            answeredPlayer.hasAllBadges
+                ? 'Altı rozet tamam! Final sorusu hazır. 🏆'
+                : 'Doğru cevap!$badgeMessage '
+                    'Aynı oyuncu devam ediyor.';
         _isBusy = false;
       });
 
@@ -4929,11 +4954,12 @@ class _GameScreenState extends State<GameScreen> {
   Future<void> _showWinnerDialog(PlayerData player) async {
     await Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) => WinnerScreen(
-          questionBank: widget.questionBank,
-          winner: player,
-          players: widget.players,
-        ),
+        builder:
+            (_) => WinnerScreen(
+              questionBank: widget.questionBank,
+              winner: player,
+              players: widget.players,
+            ),
       ),
     );
   }
@@ -5279,9 +5305,8 @@ class BoardMap {
     }
 
     if (result.length < steps + 1) {
-      final previous = result.length >= 2
-          ? result[result.length - 2]
-          : option.destination;
+      final previous =
+          result.length >= 2 ? result[result.length - 2] : option.destination;
       final remaining = steps - (result.length - 1);
       final extension = continuePath(
         previous: previous,
@@ -5348,9 +5373,8 @@ class BoardMap {
       return outerId(currentNode.ring! + 1);
     }
 
-    final candidates = neighbors(
-      current,
-    ).where((candidate) => candidate != previous).toList();
+    final candidates =
+        neighbors(current).where((candidate) => candidate != previous).toList();
 
     return candidates.isEmpty ? previous : candidates.first;
   }
@@ -5958,22 +5982,24 @@ class RouteHighlightPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (options.isEmpty) return;
 
-    final glowPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = BoardMap.base(size) * 0.030
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round
-      ..color = const Color(0x667DE3FF)
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 7);
+    final glowPaint =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = BoardMap.base(size) * 0.030
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..color = const Color(0x667DE3FF)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 7);
 
-    final routePaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = BoardMap.base(size) * 0.012
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round
-      ..shader = const LinearGradient(
-        colors: [Color(0xFFFFE082), Color(0xFF67E8F9), Color(0xFFFFFFFF)],
-      ).createShader(Offset.zero & size);
+    final routePaint =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = BoardMap.base(size) * 0.012
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..shader = const LinearGradient(
+            colors: [Color(0xFFFFE082), Color(0xFF67E8F9), Color(0xFFFFFFFF)],
+          ).createShader(Offset.zero & size);
 
     for (final option in options) {
       if (option.path.length < 2) continue;
@@ -6337,9 +6363,10 @@ class LandingBurstPainter extends CustomPainter {
         Paint()
           ..strokeCap = StrokeCap.round
           ..strokeWidth = max(1.0, size.width * 0.032 * fade)
-          ..color = index.isEven
-              ? color.withOpacity(0.88 * fade)
-              : const Color(0xFFFFF3B0).withOpacity(0.95 * fade),
+          ..color =
+              index.isEven
+                  ? color.withOpacity(0.88 * fade)
+                  : const Color(0xFFFFF3B0).withOpacity(0.95 * fade),
       );
     }
   }
@@ -6381,26 +6408,27 @@ class GameBoard extends StatelessWidget {
           final size = Size(constraints.maxWidth, constraints.maxHeight);
           final base = BoardMap.base(size);
           final boardCenter = BoardMap.center(size);
-          final landingPoint = landingNodeId == null
-              ? null
-              : BoardMap.position(size, landingNodeId!);
-          final landingNode = landingNodeId == null
-              ? null
-              : BoardMap.node(landingNodeId!);
+          final landingPoint =
+              landingNodeId == null
+                  ? null
+                  : BoardMap.position(size, landingNodeId!);
+          final landingNode =
+              landingNodeId == null ? null : BoardMap.node(landingNodeId!);
           final landingColor =
               landingNode == null || landingNode.categoryIndex < 0
-              ? const Color(0xFF67E8F9)
-              : GameCategory.values[landingNode.categoryIndex].color;
+                  ? const Color(0xFF67E8F9)
+                  : GameCategory.values[landingNode.categoryIndex].color;
           final landingSize = base * 0.17;
-          final safeCurrentPlayerIndex = players.isEmpty
-              ? 0
-              : currentPlayerIndex.clamp(0, players.length - 1).toInt();
-          final landingPawnType = players.isEmpty
-              ? 0
-              : players[safeCurrentPlayerIndex].pawnType;
-          final landingPlayerColor = players.isEmpty
-              ? const Color(0xFF67E8F9)
-              : players[safeCurrentPlayerIndex].color;
+          final safeCurrentPlayerIndex =
+              players.isEmpty
+                  ? 0
+                  : currentPlayerIndex.clamp(0, players.length - 1).toInt();
+          final landingPawnType =
+              players.isEmpty ? 0 : players[safeCurrentPlayerIndex].pawnType;
+          final landingPlayerColor =
+              players.isEmpty
+                  ? const Color(0xFF67E8F9)
+                  : players[safeCurrentPlayerIndex].color;
 
           return Stack(
             clipBehavior: Clip.none,
@@ -6502,9 +6530,8 @@ class GameBoard extends StatelessWidget {
                 final targetEmoji = BoardTargetPresentation.emojiFor(
                   destination,
                 );
-                final targetSize = destination.isBadge
-                    ? base * 0.088
-                    : base * 0.074;
+                final targetSize =
+                    destination.isBadge ? base * 0.088 : base * 0.074;
 
                 return Positioned(
                   left: point.dx - targetSize / 2,
@@ -6616,33 +6643,33 @@ class BoardPainter extends CustomPainter {
       final angle = BoardMap.armAngle(arm);
       final left = angle - pi / 6;
       final right = angle + pi / 6;
-      final path = Path()
-        ..moveTo(
-          center.dx + cos(left) * base * 0.14,
-          center.dy + sin(left) * base * 0.14,
-        )
-        ..lineTo(
-          center.dx + cos(left) * base * 0.375,
-          center.dy + sin(left) * base * 0.375,
-        )
-        ..arcTo(
-          Rect.fromCircle(center: center, radius: base * 0.375),
-          left,
-          pi / 3,
-          false,
-        )
-        ..lineTo(
-          center.dx + cos(right) * base * 0.14,
-          center.dy + sin(right) * base * 0.14,
-        )
-        ..close();
+      final path =
+          Path()
+            ..moveTo(
+              center.dx + cos(left) * base * 0.14,
+              center.dy + sin(left) * base * 0.14,
+            )
+            ..lineTo(
+              center.dx + cos(left) * base * 0.375,
+              center.dy + sin(left) * base * 0.375,
+            )
+            ..arcTo(
+              Rect.fromCircle(center: center, radius: base * 0.375),
+              left,
+              pi / 3,
+              false,
+            )
+            ..lineTo(
+              center.dx + cos(right) * base * 0.14,
+              center.dy + sin(right) * base * 0.14,
+            )
+            ..close();
 
       canvas.drawPath(
         path,
         Paint()
-          ..color = arm.isEven
-              ? const Color(0x18000000)
-              : const Color(0x0EFFFFFF),
+          ..color =
+              arm.isEven ? const Color(0x18000000) : const Color(0x0EFFFFFF),
       );
       canvas.drawPath(
         path,
@@ -7196,48 +7223,49 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 : '${category.emoji} ${category.label}',
           ),
         ),
-        bottomNavigationBar: !_answered
-            ? null
-            : SafeArea(
-                top: false,
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(18, 10, 18, 12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      top: BorderSide(
-                        color: category.color.withValues(alpha: 0.24),
+        bottomNavigationBar:
+            !_answered
+                ? null
+                : SafeArea(
+                  top: false,
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(18, 10, 18, 12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border(
+                        top: BorderSide(
+                          color: category.color.withValues(alpha: 0.24),
+                        ),
                       ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x26000000),
+                          blurRadius: 14,
+                          offset: Offset(0, -4),
+                        ),
+                      ],
                     ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x26000000),
-                        blurRadius: 14,
-                        offset: Offset(0, -4),
+                    child: FilledButton.icon(
+                      onPressed: () => Navigator.pop(context, _correct),
+                      style: FilledButton.styleFrom(
+                        backgroundColor: category.darkColor,
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size.fromHeight(56),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(17),
+                        ),
                       ),
-                    ],
-                  ),
-                  child: FilledButton.icon(
-                    onPressed: () => Navigator.pop(context, _correct),
-                    style: FilledButton.styleFrom(
-                      backgroundColor: category.darkColor,
-                      foregroundColor: Colors.white,
-                      minimumSize: const Size.fromHeight(56),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(17),
-                      ),
-                    ),
-                    icon: const Icon(Icons.arrow_forward_rounded),
-                    label: const Text(
-                      'Devam Et',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w900,
+                      icon: const Icon(Icons.arrow_forward_rounded),
+                      label: const Text(
+                        'Devam Et',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(18, 8, 18, 20),
@@ -7319,17 +7347,18 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: _correct
-                          ? const Color(0xFFDCFCE7)
-                          : const Color(0xFFFEE2E2),
+                      color:
+                          _correct
+                              ? const Color(0xFFDCFCE7)
+                              : const Color(0xFFFEE2E2),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Text(
                       _correct
                           ? 'Doğru! ${_question.explanation}'
                           : 'Yanlış. Doğru cevap: '
-                                '${_question.options[_question.answerIndex]}. '
-                                '${_question.explanation}',
+                              '${_question.options[_question.answerIndex]}. '
+                              '${_question.explanation}',
                       style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                   ),
@@ -7374,9 +7403,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 emoji: '✂️',
                 label: '50:50',
                 count: wallet.fiftyFifty,
-                onPressed: _jokerBusy || wallet.fiftyFifty <= 0
-                    ? null
-                    : _useFiftyFifty,
+                onPressed:
+                    _jokerBusy || wallet.fiftyFifty <= 0
+                        ? null
+                        : _useFiftyFifty,
               ),
               const SizedBox(width: 6),
               JokerActionButton(
@@ -7385,10 +7415,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 count: wallet.changeQuestion,
                 onPressed:
                     _jokerBusy ||
-                        wallet.changeQuestion <= 0 ||
-                        widget.onChangeQuestion == null
-                    ? null
-                    : _changeQuestion,
+                            wallet.changeQuestion <= 0 ||
+                            widget.onChangeQuestion == null
+                        ? null
+                        : _changeQuestion,
               ),
               const SizedBox(width: 6),
               JokerActionButton(
@@ -7398,11 +7428,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 active: _secondChanceArmed,
                 onPressed:
                     _jokerBusy ||
-                        wallet.secondChance <= 0 ||
-                        _secondChanceArmed ||
-                        _secondChanceUsed
-                    ? null
-                    : _armSecondChance,
+                            wallet.secondChance <= 0 ||
+                            _secondChanceArmed ||
+                            _secondChanceUsed
+                        ? null
+                        : _armSecondChance,
               ),
             ],
           ),
@@ -7541,14 +7571,16 @@ class _QuestionScreenState extends State<QuestionScreen> {
               Expanded(
                 child: _feedbackButton(
                   icon: Icons.thumb_up_alt_rounded,
-                  label: _difficultyVote == 'Kolay'
-                      ? '✓ Kolaydı\nalındı'
-                      : 'Kolaydı',
+                  label:
+                      _difficultyVote == 'Kolay'
+                          ? '✓ Kolaydı\nalındı'
+                          : 'Kolaydı',
                   selected: _difficultyVote == 'Kolay',
                   color: const Color(0xFF16A34A),
-                  onPressed: _feedbackLoading || _difficultyVote != null
-                      ? null
-                      : () => _voteDifficulty('Kolay'),
+                  onPressed:
+                      _feedbackLoading || _difficultyVote != null
+                          ? null
+                          : () => _voteDifficulty('Kolay'),
                 ),
               ),
               const SizedBox(width: 7),
@@ -7558,9 +7590,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   label: _difficultyVote == 'Zor' ? '✓ Zordu\nalındı' : 'Zordu',
                   selected: _difficultyVote == 'Zor',
                   color: const Color(0xFFEA580C),
-                  onPressed: _feedbackLoading || _difficultyVote != null
-                      ? null
-                      : () => _voteDifficulty('Zor'),
+                  onPressed:
+                      _feedbackLoading || _difficultyVote != null
+                          ? null
+                          : () => _voteDifficulty('Zor'),
                 ),
               ),
               const SizedBox(width: 7),
@@ -7570,9 +7603,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   label: _errorReported ? '✓ Hata\nalındı' : 'Hatalı',
                   selected: _errorReported,
                   color: const Color(0xFFDC2626),
-                  onPressed: _feedbackLoading || _errorReported
-                      ? null
-                      : _showErrorDialog,
+                  onPressed:
+                      _feedbackLoading || _errorReported
+                          ? null
+                          : _showErrorDialog,
                 ),
               ),
             ],
@@ -7663,14 +7697,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
                             labelText: 'Hata türü',
                             border: OutlineInputBorder(),
                           ),
-                          items: _errorReasons
-                              .map(
-                                (item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(item),
-                                ),
-                              )
-                              .toList(),
+                          items:
+                              _errorReasons
+                                  .map(
+                                    (item) => DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Text(item),
+                                    ),
+                                  )
+                                  .toList(),
                           onChanged: (value) {
                             if (value != null) {
                               setDialogState(() => reason = value);
@@ -7900,19 +7935,20 @@ class QuestionBank {
 
   static String questionFamilyKey(String text) {
     final lower = text.toLowerCase();
-    final normalized = lower
-        .replaceAll('ç', 'c')
-        .replaceAll('ğ', 'g')
-        .replaceAll('ı', 'i')
-        .replaceAll('ö', 'o')
-        .replaceAll('ş', 's')
-        .replaceAll('ü', 'u')
-        .replaceAll('â', 'a')
-        .replaceAll('î', 'i')
-        .replaceAll('û', 'u')
-        .replaceAll(RegExp(r'[^a-z0-9°]+'), ' ')
-        .replaceAll(RegExp(r'\s+'), ' ')
-        .trim();
+    final normalized =
+        lower
+            .replaceAll('ç', 'c')
+            .replaceAll('ğ', 'g')
+            .replaceAll('ı', 'i')
+            .replaceAll('ö', 'o')
+            .replaceAll('ş', 's')
+            .replaceAll('ü', 'u')
+            .replaceAll('â', 'a')
+            .replaceAll('î', 'i')
+            .replaceAll('û', 'u')
+            .replaceAll(RegExp(r'[^a-z0-9°]+'), ' ')
+            .replaceAll(RegExp(r'\s+'), ' ')
+            .trim();
 
     var temperatureScaleCount = 0;
     if (normalized.contains('celsius') || lower.contains('°c')) {
@@ -7936,9 +7972,8 @@ class QuestionBank {
       return 'topic:temperature_conversion';
     }
 
-    final numberCount = RegExp(
-      r'(?<![a-z])\d+(?:[.,]\d+)?',
-    ).allMatches(normalized).length;
+    final numberCount =
+        RegExp(r'(?<![a-z])\d+(?:[.,]\d+)?').allMatches(normalized).length;
     final musicWords =
         normalized.contains('nota') &&
         const <String>[
@@ -8044,9 +8079,10 @@ class QuestionBank {
   static Future<QuestionBank> load() async {
     final raw = await rootBundle.loadString('assets/questions.json');
     final decoded = jsonDecode(raw) as List<dynamic>;
-    final allQuestions = decoded
-        .map((item) => QuizQuestion.fromJson(item as Map<String, dynamic>))
-        .toList();
+    final allQuestions =
+        decoded
+            .map((item) => QuizQuestion.fromJson(item as Map<String, dynamic>))
+            .toList();
 
     QuestionQualityGuard.updateLastScan(allQuestions);
 
@@ -8087,9 +8123,10 @@ class QuestionBank {
       throw StateError('Kategori için soru bulunamadı: $categoryIndex');
     }
 
-    var available = list
-        .where((question) => !usedQuestionIds.contains(question.id))
-        .toList();
+    var available =
+        list
+            .where((question) => !usedQuestionIds.contains(question.id))
+            .toList();
 
     var poolReset = false;
 
@@ -8102,13 +8139,16 @@ class QuestionBank {
     }
 
     final usedFamilyKeys = _familyKeysForIds(usedQuestionIds);
-    final familyFresh = available
-        .where(
-          (question) => !usedFamilyKeys.contains(
-            _familyKeyById[question.id] ?? questionFamilyKey(question.text),
-          ),
-        )
-        .toList();
+    final familyFresh =
+        available
+            .where(
+              (question) =>
+                  !usedFamilyKeys.contains(
+                    _familyKeyById[question.id] ??
+                        questionFamilyKey(question.text),
+                  ),
+            )
+            .toList();
 
     if (familyFresh.isNotEmpty) {
       available = familyFresh;
@@ -8117,9 +8157,10 @@ class QuestionBank {
     var candidates = available;
 
     if (preferredDifficulty != null) {
-      final preferred = available
-          .where((question) => question.difficulty == preferredDifficulty)
-          .toList();
+      final preferred =
+          available
+              .where((question) => question.difficulty == preferredDifficulty)
+              .toList();
 
       if (preferred.isNotEmpty) {
         candidates = preferred;
