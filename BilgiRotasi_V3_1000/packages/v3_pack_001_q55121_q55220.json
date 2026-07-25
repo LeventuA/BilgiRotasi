@@ -1,0 +1,1402 @@
+[
+  {
+    "categoryIndex": 1,
+    "question": "Back to the Future filminde zaman makinesine dönüştürülen otomobil modeli hangisidir?",
+    "options": [
+      "DeLorean DMC-12",
+      "Volkswagen Beetle",
+      "Chevrolet Camaro",
+      "Ford Mustang"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Doc Brown, paslanmaz çelik gövdeli DeLorean DMC-12’yi zaman makinesine dönüştürür.",
+    "id": "q55121"
+  },
+  {
+    "id": "q55122",
+    "categoryIndex": 0,
+    "question": "Turkana Gölü’nün büyük bölümü hangi ülkededir?",
+    "options": [
+      "Etiyopya",
+      "Kenya",
+      "Tanzanya",
+      "Uganda"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Turkana Gölü Doğu Afrika’daki Rift Vadisi’nde yer alır; gölün büyük kısmı Kenya sınırları içindedir."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Yedigöller Millî Parkı hangi ilimizdedir?",
+    "options": [
+      "Karabük",
+      "Düzce",
+      "Bolu",
+      "Kastamonu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Heyelan göllerinden oluşan Yedigöller Millî Parkı, Bolu sınırları içinde yer alır.",
+    "id": "q55123"
+  },
+  {
+    "id": "q55124",
+    "categoryIndex": 3,
+    "question": "Dorian Gray’in Portresi romanında yaşlanmanın izleri kimin üzerinde görünür?",
+    "options": [
+      "Basil’in ellerinde",
+      "Lord Henry’nin aynasında",
+      "Sibyl’in sahnesinde",
+      "Dorian’ın portresinde"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Dorian genç kalırken davranışlarının ve yaşlanmanın izleri gizlenen portresinde belirir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Hamlet hangi ülkenin prensidir?",
+    "options": [
+      "Danimarka",
+      "İskoçya",
+      "İngiltere",
+      "Norveç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Shakespeare’in oyununda Hamlet, Danimarka kralının oğludur.",
+    "id": "q55125"
+  },
+  {
+    "id": "q55126",
+    "categoryIndex": 4,
+    "question": "Dalak organının başlıca görevlerinden biri nedir?",
+    "options": [
+      "İnsülin salgılamak",
+      "Kanı süzmek",
+      "Safra üretmek",
+      "Oksijen depolamak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dalak yaşlanmış kan hücrelerinin uzaklaştırılmasına ve bağışıklık yanıtına katkı sağlar."
+  },
+  {
+    "id": "q55127",
+    "categoryIndex": 0,
+    "question": "Antarktika’daki Taylor Buzulu’ndan akan kızıl renkli oluşumun adı nedir?",
+    "options": [
+      "Kızıl Lagün",
+      "Demir Geçidi",
+      "Kan Şelalesi",
+      "Ateş Nehri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kan Şelalesi’nin kızıl rengi, buz altından gelen demir bakımından zengin tuzlu suyun havayla temas etmesinden kaynaklanır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Malazgirt Zaferi’nde Büyük Selçuklu ordusuna kim komuta etti?",
+    "options": [
+      "Tuğrul Bey",
+      "Melikşah",
+      "Kılıç Arslan",
+      "Alp Arslan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sultan Alp Arslan, 1071’de Bizans İmparatoru Romanos Diogenes’in ordusunu Malazgirt’te yendi.",
+    "id": "q55128"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Macbeth oyununun olayları hangi ülkede geçer?",
+    "options": [
+      "İskoçya",
+      "İtalya",
+      "İrlanda",
+      "Fransa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Macbeth, İskoç soyluları ve krallık mücadelesini merkezine alır.",
+    "id": "q55129"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Anadolu Selçuklu Devleti’nin en uzun süre başkentliğini yapan şehir hangisidir?",
+    "options": [
+      "Sivas",
+      "Konya",
+      "Erzurum",
+      "Kayseri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Konya, 12. yüzyılın sonlarından devletin yıkılışına kadar Anadolu Selçuklularının başkentiydi.",
+    "id": "q55130"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Jaws filminin yönetmeni kimdir?",
+    "options": [
+      "Martin Scorsese",
+      "Ridley Scott",
+      "Steven Spielberg",
+      "George Lucas"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "1975 tarihli Jaws, Steven Spielberg’ün büyük çıkış yaptığı gerilim filmidir.",
+    "id": "q55131"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "İshak Paşa Sarayı hangi ilçemizin yakınında bulunur?",
+    "options": [
+      "Niksar",
+      "Safranbolu",
+      "Midyat",
+      "Doğubayazıt"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "İshak Paşa Sarayı, Ağrı’nın Doğubayazıt ilçesi yakınındaki bir tepeye kurulmuştur.",
+    "id": "q55132"
+  },
+  {
+    "id": "q55133",
+    "categoryIndex": 2,
+    "question": "Antikythera Mekanizması hangi uygarlık döneminden kalma karmaşık bir aygıttır?",
+    "options": [
+      "Antik Yunan",
+      "Antik Mısır",
+      "Roma Cumhuriyeti",
+      "Fenike"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Antikythera Mekanizması, gök cisimlerinin hareketlerini hesaplamak için yapılmış Antik Yunan kökenli dişli bir aygıttır."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Ballıca Mağarası hangi ilimizdedir?",
+    "options": [
+      "Çorum",
+      "Tokat",
+      "Amasya",
+      "Yozgat"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sarkıt ve dikitleriyle tanınan Ballıca Mağarası, Tokat’ın Pazar ilçesindedir.",
+    "id": "q55134"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Jurassic Park’ın dinozor parkı hangi kurgusal adadadır?",
+    "options": [
+      "San Monique",
+      "Skull Island",
+      "Isla Nublar",
+      "Isla Sorna"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İlk Jurassic Park filmi, Kosta Rika açıklarındaki kurgusal Isla Nublar’da geçer.",
+    "id": "q55135"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Romeo ve Juliet hangi İtalyan şehrinde geçer?",
+    "options": [
+      "Napoli",
+      "Venedik",
+      "Floransa",
+      "Verona"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Montague ve Capulet ailelerinin hikâyesi Verona’da geçer.",
+    "id": "q55136"
+  },
+  {
+    "id": "q55137",
+    "categoryIndex": 5,
+    "question": "Sörfte dalganın iç kısmında oluşan tüp biçimli boşluğa ne denir?",
+    "options": [
+      "Barrel",
+      "Fairway",
+      "Pit alanı",
+      "End zone"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sörfçüler dalganın kıvrılıp oluşturduğu tünel bölümüne “barrel” ya da “tube” der."
+  },
+  {
+    "id": "q55138",
+    "categoryIndex": 1,
+    "question": "Knives Out filminde cinayeti çözmeye çalışan dedektifin adı nedir?",
+    "options": [
+      "Harry Hole",
+      "Benoit Blanc",
+      "Luther Stickell",
+      "Sam Spade"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Daniel Craig’in canlandırdığı Benoit Blanc, Knives Out filmlerinin eksantrik özel dedektifidir."
+  },
+  {
+    "id": "q55139",
+    "categoryIndex": 5,
+    "question": "Futbolda rakibin bacaklarının arasından top geçirmeye verilen yaygın ad nedir?",
+    "options": [
+      "Duvar",
+      "Köprü",
+      "Beşik",
+      "Makas"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Türkiye’de rakibin iki bacağı arasından top geçirme hareketi yaygın olarak “beşik” diye anılır."
+  },
+  {
+    "id": "q55140",
+    "categoryIndex": 1,
+    "question": "Get Out filmindeki zihinsel tutsaklık alanına ne ad verilir?",
+    "options": [
+      "Red Room",
+      "Upside Down",
+      "Dreaming",
+      "Sunken Place"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Filmde Chris’in bilincinin geri plana itildiği karanlık boşluk “Sunken Place” olarak anılır."
+  },
+  {
+    "id": "q55141",
+    "categoryIndex": 4,
+    "question": "Tiroit bezinin salgıladığı hormonlar en çok hangi süreci düzenler?",
+    "options": [
+      "Metabolizma hızını",
+      "Göz bebeği rengini",
+      "Kan pıhtılaşmasını",
+      "Kemik iliği üretimini"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tiroit hormonları hücrelerin enerji kullanımı ve vücudun metabolizma hızı üzerinde etkilidir."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Valla Kanyonu hangi ilimizdedir?",
+    "options": [
+      "Bolu",
+      "Kastamonu",
+      "Sinop",
+      "Bartın"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Valla Kanyonu, Kastamonu’nun Pınarbaşı ilçesinde Küre Dağları içinde yer alır.",
+    "id": "q55142"
+  },
+  {
+    "id": "q55143",
+    "categoryIndex": 4,
+    "question": "Böbreküstü bezlerinden salgılanan ve stres yanıtıyla ilişkilendirilen hormon hangisidir?",
+    "options": [
+      "Melatonin",
+      "İnsülin",
+      "Kortizol",
+      "Oksitosin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kortizol, böbreküstü bezlerinin kabuk kısmından salgılanır ve stres yanıtında rol oynar."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Futbolda top en son savunma oyuncusuna değip kale çizgisinden çıkarsa ne verilir?",
+    "options": [
+      "Endirekt serbest vuruş",
+      "Taç",
+      "Hakem atışı",
+      "Korner"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Top kaleye girmeden savunmadan dışarı çıktığında hücum takımı köşe vuruşu kullanır.",
+    "id": "q55144"
+  },
+  {
+    "id": "q55145",
+    "categoryIndex": 2,
+    "question": "Nebra Gökyüzü Diski hangi ülkede bulundu?",
+    "options": [
+      "Almanya",
+      "Yunanistan",
+      "İspanya",
+      "Mısır"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bronz Çağı’na ait Nebra Gökyüzü Diski, Almanya’nın Saksonya-Anhalt bölgesinde keşfedildi."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Yeniçeri Ocağı başlangıçta hangi askerî sistemle beslendi?",
+    "options": [
+      "İltizam",
+      "Devşirme",
+      "Tımar",
+      "Lonca"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Devşirme sistemiyle toplanan çocukların bir bölümü eğitimden sonra Yeniçeri Ocağı’na alınırdı.",
+    "id": "q55146"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Ulubey Kanyonu hangi ilimizin doğal simgelerindendir?",
+    "options": [
+      "Manisa",
+      "Afyonkarahisar",
+      "Uşak",
+      "Kütahya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ulubey Kanyonu, Uşak’ın güneyinde uzanan geniş bir kanyon sistemidir.",
+    "id": "q55147"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Odysseus’un yıllar süren yolculuk sonunda dönmeye çalıştığı ada hangisidir?",
+    "options": [
+      "Rodos",
+      "Girit",
+      "Delos",
+      "İthaka"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Odysseus, Troya Savaşı’ndan sonra eşi Penelope ve oğlu Telemakhos’un yaşadığı İthaka’ya dönmeye çalışır.",
+    "id": "q55148"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "İlyada destanının merkezindeki savaş hangisidir?",
+    "options": [
+      "Troya Savaşı",
+      "Maraton Muharebesi",
+      "Peloponez Savaşı",
+      "Pön Savaşları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İlyada, Troya Savaşı’nın kısa bir döneminde Akhilleus’un öfkesini anlatır.",
+    "id": "q55149"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Futbolda top yan çizgiyi tamamen geçtiğinde oyun nasıl başlar?",
+    "options": [
+      "Başlama vuruşuyla",
+      "Taç atışıyla",
+      "Kornerle",
+      "Penaltıyla"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Topun çıktığı noktadan rakip takım iki elle baş üzerinden taç atışı kullanır.",
+    "id": "q55150"
+  },
+  {
+    "id": "q55151",
+    "categoryIndex": 4,
+    "question": "“Ana bez” olarak da anılan endokrin bez hangisidir?",
+    "options": [
+      "Tiroit",
+      "Pankreas",
+      "Hipofiz",
+      "Timüs"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Hipofiz, birçok başka endokrin bezin çalışmasını etkileyen hormonlar salgıladığı için bu adla anılır."
+  },
+  {
+    "id": "q55152",
+    "categoryIndex": 3,
+    "question": "Dracula romanında Transilvanya’ya giden genç avukatın adı nedir?",
+    "options": [
+      "Gabriel Utterson",
+      "Victor Frankenstein",
+      "Arthur Holmwood",
+      "Jonathan Harker"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Jonathan Harker, Kont Dracula ile bir emlak işlemi için Transilvanya’daki şatoya gider."
+  },
+  {
+    "id": "q55153",
+    "categoryIndex": 5,
+    "question": "Futbolda dış ayakla verilen kıvrımlı pasa ne ad verilir?",
+    "options": [
+      "Trivela",
+      "Elastico",
+      "Panenka",
+      "Rabona"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Trivela, ayağın dış yüzüyle topa falso verilerek yapılan pas veya şuttur."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Futbolda ofsayt kararı için hücum oyuncusunun hangi anda konumu değerlendirilir?",
+    "options": [
+      "Hakem düdük çaldığında",
+      "Takım arkadaşı topa oynadığı anda",
+      "Top oyuncuya ulaştığında",
+      "Şut çekildikten sonra"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ofsayt konumu, pası alan oyuncunun değil pasın verildiği anın görüntüsüne göre belirlenir.",
+    "id": "q55154"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Muradiye Şelalesi hangi ilimizdedir?",
+    "options": [
+      "Bitlis",
+      "Hakkâri",
+      "Van",
+      "Muş"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bendimahi Çayı üzerindeki Muradiye Şelalesi, Van’ın Muradiye ilçesindedir.",
+    "id": "q55155"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Star Wars evreninde Han Solo’nun gemisinin adı nedir?",
+    "options": [
+      "Star Destroyer",
+      "Razor Crest",
+      "X-wing",
+      "Millennium Falcon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Han Solo ve Chewbacca’nın ünlü gemisi Millennium Falcon’dur.",
+    "id": "q55156"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Körlük romanında salgın boyunca görme yetisini koruyan kişi kimdir?",
+    "options": [
+      "Doktorun karısı",
+      "İlk körün karısı",
+      "Koyu gözlüklü genç kadın",
+      "Gözü bantlı yaşlı adam"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "José Saramago’nun romanında kör olmayan tek ana karakter doktorun karısıdır.",
+    "id": "q55157"
+  },
+  {
+    "id": "q55158",
+    "categoryIndex": 2,
+    "question": "Kiros Silindiri hangi imparatorluğun hükümdarı Büyük Kiros’la ilişkilidir?",
+    "options": [
+      "Roma İmparatorluğu",
+      "Ahameniş Pers İmparatorluğu",
+      "Maurya İmparatorluğu",
+      "Hitit İmparatorluğu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kiros Silindiri, Babil’in fethinden sonra Ahameniş hükümdarı Büyük Kiros adına hazırlanmıştır."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Only Murders in the Building dizisindeki üçlü hangi apartmanda yaşar?",
+    "options": [
+      "Belnord",
+      "Dakota",
+      "Arconia",
+      "Ansonia"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Charles, Oliver ve Mabel aynı kurgusal New York apartmanı olan Arconia’da yaşar.",
+    "id": "q55159"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Diş minesinin sertliğini sağlayan başlıca mineral hangisidir?",
+    "options": [
+      "Keratin",
+      "Kollajen",
+      "Dentin",
+      "Hidroksiapatit"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Diş minesinin büyük bölümü kalsiyum fosfat kristali olan hidroksiapatitten oluşur.",
+    "id": "q55160"
+  },
+  {
+    "id": "q55161",
+    "categoryIndex": 0,
+    "question": "Ounianga Gölleri hangi Sahra ülkesindedir?",
+    "options": [
+      "Çad",
+      "Mali",
+      "Moritanya",
+      "Nijer"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Ounianga Gölleri, Çad’ın kuzeyindeki aşırı kurak Sahra ortamında bulunan dikkat çekici bir göller grubudur."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Decameron’un hikâyeleri hangi felaketten kaçan bir grup tarafından anlatılır?",
+    "options": [
+      "Volkan patlaması",
+      "Veba salgını",
+      "Büyük sel",
+      "Savaş kuşatması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Boccaccio’nun karakterleri Floransa’daki Kara Ölüm’den uzaklaşarak on gün boyunca hikâyeler anlatır.",
+    "id": "q55162"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Aizanoi Antik Kenti hangi ilimizdedir?",
+    "options": [
+      "Manisa",
+      "Bilecik",
+      "Kütahya",
+      "Uşak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Zeus Tapınağı ve antik yapılarıyla bilinen Aizanoi, Kütahya’nın Çavdarhisar ilçesindedir.",
+    "id": "q55163"
+  },
+  {
+    "id": "q55164",
+    "categoryIndex": 4,
+    "question": "İki sinir hücresi arasındaki iletişim bölgesine ne denir?",
+    "options": [
+      "Nefron",
+      "Alveol",
+      "Tendon",
+      "Sinaps"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sinaps, bir nörondan diğer hücreye elektriksel veya kimyasal sinyal aktarılan bağlantı bölgesidir."
+  },
+  {
+    "id": "q55165",
+    "categoryIndex": 5,
+    "question": "Futbolda santrforun geriye gelerek alan açtığı role ne denir?",
+    "options": [
+      "Sahte dokuz",
+      "Kanat bek",
+      "Çapa",
+      "Libero"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sahte dokuz, klasik santrfor gibi önde beklemek yerine orta sahaya yaklaşarak savunmanın düzenini bozar."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Topkapı Sarayı’nda Divan-ı Hümayun toplantılarının yapıldığı bölüm hangisidir?",
+    "options": [
+      "Enderun",
+      "Kubbealtı",
+      "Harem",
+      "Has Oda"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Devlet işlerinin görüşüldüğü Divan-ı Hümayun, saraydaki Kubbealtı’nda toplanırdı.",
+    "id": "q55166"
+  },
+  {
+    "id": "q55167",
+    "categoryIndex": 0,
+    "question": "Dev bazalt sütunlarıyla tanınan Giant’s Causeway hangi ülkededir?",
+    "options": [
+      "İzlanda",
+      "İrlanda",
+      "Birleşik Krallık",
+      "Norveç"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Giant’s Causeway, Kuzey İrlanda kıyısında yer alan doğal bazalt sütunları topluluğudur."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Dönüşüm romanında Gregor Samsa’nın kız kardeşinin adı nedir?",
+    "options": [
+      "Marta",
+      "Anna",
+      "Clara",
+      "Grete"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Grete Samsa başlangıçta dönüşen ağabeyine bakım verir, fakat zamanla ondan uzaklaşır.",
+    "id": "q55168"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Akyuvarların temel görevi nedir?",
+    "options": [
+      "Bağışıklık savunması",
+      "Kemikleri uzatmak",
+      "Safra üretmek",
+      "Oksijen depolamak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Akyuvarlar mikropları tanıma, yok etme ve bağışıklık yanıtını yönetmede görev alır.",
+    "id": "q55169"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Severance dizisinde çalışanların iş ve özel yaşam anılarını ayıran işleme ne denir?",
+    "options": [
+      "Birleştirme",
+      "Ayrıştırma",
+      "Uyanış",
+      "Senkronizasyon"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Lumon çalışanlarının anıları “severance”, yani ayrıştırma işlemiyle ikiye bölünür.",
+    "id": "q55170"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "NBA’de bir hücum takımı şutunu kaç saniye içinde kullanmalıdır?",
+    "options": [
+      "30 saniye",
+      "14 saniye",
+      "24 saniye",
+      "35 saniye"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Şut saati, hücum takımının 24 saniye içinde çembere değen bir şut kullanmasını gerektirir.",
+    "id": "q55171"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Sagalassos Antik Kenti hangi ilimizdedir?",
+    "options": [
+      "Antalya",
+      "Isparta",
+      "Denizli",
+      "Burdur"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sagalassos, Burdur’un Ağlasun ilçesi yakınlarında yüksek bir dağ yamacına kurulmuştur.",
+    "id": "q55172"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Gladiator filmindeki başkahramanın adı nedir?",
+    "options": [
+      "Maximus",
+      "Commodus",
+      "Spartacus",
+      "Titus"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Russell Crowe’un canlandırdığı Maximus, ihanete uğrayan Romalı bir generaldir.",
+    "id": "q55173"
+  },
+  {
+    "id": "q55174",
+    "categoryIndex": 2,
+    "question": "Aktium Deniz Savaşı’nda Octavianus’un karşısındaki ünlü çift kimdi?",
+    "options": [
+      "Hannibal ve Dido",
+      "Marcus Antonius ve Kleopatra",
+      "Sezar ve Boudica",
+      "Perikles ve Aspasia"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "MÖ 31’deki Aktium Savaşı, Octavianus’un Marcus Antonius ile Kleopatra’ya karşı zaferiyle sonuçlandı."
+  },
+  {
+    "id": "q55175",
+    "categoryIndex": 3,
+    "question": "Frankenstein romanında yaratığı meydana getiren bilim insanının adı nedir?",
+    "options": [
+      "Faust",
+      "Moreau",
+      "Victor Frankenstein",
+      "Henry Jekyll"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mary Shelley’nin romanında Frankenstein adı yaratığa değil, onu meydana getiren Victor’a aittir."
+  },
+  {
+    "id": "q55176",
+    "categoryIndex": 5,
+    "question": "Basketbolda savunmacıyı geçmek için iki uzun adımla yön değiştiren harekete ne denir?",
+    "options": [
+      "Fadeaway",
+      "Alley-oop",
+      "Hook shot",
+      "Eurostep"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Eurostep, topu aldıktan sonra farklı yönlere atılan iki adımla savunmacının yanından geçmeyi amaçlar."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Zeugma Mozaik Müzesi hangi şehrimizdedir?",
+    "options": [
+      "Gaziantep",
+      "Şanlıurfa",
+      "Hatay",
+      "Adana"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Zeugma’dan çıkarılan mozaiklerin büyük bölümü Gaziantep’teki müzede sergilenir.",
+    "id": "q55177"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Oz Büyücüsü’nde Dorothy’nin köpeğinin adı nedir?",
+    "options": [
+      "Buck",
+      "Toto",
+      "Nana",
+      "Fang"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dorothy, Oz yolculuğuna küçük köpeği Toto ile çıkar.",
+    "id": "q55178"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kabotaj Kanunu hangi yıl yürürlüğe girdi?",
+    "options": [
+      "1923",
+      "1925",
+      "1926",
+      "1930"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye’nin kendi limanları arasındaki deniz taşımacılığı hakkını düzenleyen Kabotaj Kanunu 1926’da yürürlüğe girdi.",
+    "id": "q55179"
+  },
+  {
+    "id": "q55180",
+    "categoryIndex": 4,
+    "question": "Miyelin kılıfın sinir hücrelerindeki temel işlevi nedir?",
+    "options": [
+      "Hormon üretmek",
+      "Kandaki oksijeni taşımak",
+      "Kasları kemiklere bağlamak",
+      "Sinyal iletimini hızlandırmak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Miyelin, aksonu yalıtarak sinir iletilerinin daha hızlı ilerlemesine yardımcı olur."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Kapuzbaşı Şelaleleri hangi ilimizdedir?",
+    "options": [
+      "Kayseri",
+      "Sivas",
+      "Adana",
+      "Niğde"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kapuzbaşı Şelaleleri, Kayseri’nin Yahyalı ilçesinde Aladağlar’ın eteklerindedir.",
+    "id": "q55181"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Tortum Şelalesi hangi ilimizdedir?",
+    "options": [
+      "Bayburt",
+      "Erzurum",
+      "Artvin",
+      "Erzincan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tortum Şelalesi, Erzurum’un Uzundere ilçesinde Tortum Gölü’nün çıkışında bulunur.",
+    "id": "q55182"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "İnsan kalbi kaç odacıktan oluşur?",
+    "options": [
+      "İki",
+      "Üç",
+      "Dört",
+      "Beş"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kalpte iki kulakçık ve iki karıncık bulunur.",
+    "id": "q55183"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Oksijenli kanı tüm vücuda pompalayan kalp bölümü hangisidir?",
+    "options": [
+      "Sağ kulakçık",
+      "Sol kulakçık",
+      "Sağ karıncık",
+      "Sol karıncık"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sol karıncık güçlü kas duvarıyla kanı aort üzerinden vücuda pompalar.",
+    "id": "q55184"
+  },
+  {
+    "id": "q55185",
+    "categoryIndex": 0,
+    "question": "Yazın renkli mineral havuzlarına ayrılan Spotted Lake hangi ülkededir?",
+    "options": [
+      "Kanada",
+      "ABD",
+      "İzlanda",
+      "Yeni Zelanda"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Spotted Lake, Kanada’nın Britanya Kolumbiyası eyaletinde mineral yoğunluğuyla tanınır."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Akciğer atardamarı diğer atardamarlardan hangi yönüyle ayrılır?",
+    "options": [
+      "Kapakçığı yoktur",
+      "Oksijence fakir kan taşır",
+      "Yalnız çocuklarda bulunur",
+      "Kalbe doğru akar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Akciğer atardamarı sağ karıncıktan akciğerlere oksijence fakir kan götürür.",
+    "id": "q55186"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Godfather filmindeki mafya ailesinin soyadı nedir?",
+    "options": [
+      "Montana",
+      "Barzini",
+      "Corleone",
+      "Soprano"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Film, Vito Corleone’nin yönettiği Corleone ailesini merkezine alır.",
+    "id": "q55187"
+  },
+  {
+    "id": "q55188",
+    "categoryIndex": 2,
+    "question": "Milano Fermanı Roma İmparatorluğu’nda hangi dine hoşgörü tanınmasıyla bilinir?",
+    "options": [
+      "Zerdüştlük",
+      "Mitraizm",
+      "Yahudilik",
+      "Hristiyanlık"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "313 tarihli Milano Fermanı, Hristiyanların imparatorluk içinde ibadet özgürlüğü kazanmasında dönüm noktası oldu."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Islahat Fermanı hangi savaştan sonra ilan edildi?",
+    "options": [
+      "Kırım Savaşı",
+      "Trablusgarp Savaşı",
+      "Balkan Savaşları",
+      "93 Harbi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1856 Islahat Fermanı, Kırım Savaşı’nın ardından Paris Konferansı sürecinde ilan edildi.",
+    "id": "q55189"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Pulp Fiction filminin yönetmeni kimdir?",
+    "options": [
+      "David Fincher",
+      "Quentin Tarantino",
+      "Paul Thomas Anderson",
+      "Guy Ritchie"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pulp Fiction, Quentin Tarantino’nun doğrusal olmayan anlatımıyla tanınan filmidir.",
+    "id": "q55190"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Akciğer toplardamarları hangi tür kan taşır?",
+    "options": [
+      "Yalnız lenf sıvısı",
+      "Oksijence fakir kan",
+      "Oksijence zengin kan",
+      "Pıhtılaşmış kan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Akciğer toplardamarları oksijenlenmiş kanı akciğerlerden sol kulakçığa getirir.",
+    "id": "q55191"
+  },
+  {
+    "id": "q55192",
+    "categoryIndex": 3,
+    "question": "Sırça Fanus romanının başkahramanı kimdir?",
+    "options": [
+      "Jane Eyre",
+      "Clarissa Dalloway",
+      "Emma Bovary",
+      "Esther Greenwood"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sylvia Plath’ın romanı, genç yazar adayı Esther Greenwood’un ruhsal bunalımını anlatır."
+  },
+  {
+    "id": "q55193",
+    "categoryIndex": 5,
+    "question": "Basketbolda potaya doğru yüksek kavisle bırakılan yumuşak yakın mesafe şutu hangisidir?",
+    "options": [
+      "Floater",
+      "Skyhook",
+      "Bank shot",
+      "Smaç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Floater, uzun savunmacıların üzerinden geçmesi için topun potaya yüksek ve yumuşak bir kavisle gönderilmesidir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Harry Potter evrenindeki büyücülük gazetesinin adı nedir?",
+    "options": [
+      "Dırdırcı",
+      "Günlük Kâhin",
+      "Cadı Kazanı",
+      "Hogsmeade Postası"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Büyücülük dünyasının ana gazetesi Daily Prophet, Türkçede Günlük Kâhin adıyla bilinir.",
+    "id": "q55194"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Osmanlı Meclis-i Mebusanı ilk kez hangi dönemde açıldı?",
+    "options": [
+      "Tanzimat",
+      "II. Meşrutiyet",
+      "I. Meşrutiyet",
+      "Lale Devri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kanun-ı Esasi’nin ilanıyla başlayan I. Meşrutiyet döneminde 1877’de parlamento toplandı.",
+    "id": "q55195"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Nefes alırken aşağı doğru kasılan ana kas hangisidir?",
+    "options": [
+      "Biseps",
+      "Trapez",
+      "Gluteus",
+      "Diyafram"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Diyafram kasıldığında göğüs boşluğu genişler ve hava akciğerlere çekilir.",
+    "id": "q55196"
+  },
+  {
+    "id": "q55197",
+    "categoryIndex": 2,
+    "question": "1054 yılındaki Büyük Ayrılık hangi iki kilise geleneğini kesin biçimde ayırdı?",
+    "options": [
+      "Katolik ve Ortodoks",
+      "Anglikan ve Lutheran",
+      "Ortodoks ve Kıpti",
+      "Katolik ve Protestan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1054’te Roma ile Konstantinopolis arasındaki kopuş, Katolik ve Ortodoks kiliselerinin ayrılığını simgeler."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Savaş ve Barış romanının tarihsel arka planında hangi istilâ vardır?",
+    "options": [
+      "Roma’nın Galya seferi",
+      "Napolyon’un Rusya seferi",
+      "Haçlı Seferleri",
+      "Viking istilaları"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tolstoy’un romanı, özellikle 1812’deki Napolyon istilası sırasında Rus aristokrasisini izler.",
+    "id": "q55198"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Anna Karenina’nın yazarı kimdir?",
+    "options": [
+      "Nikolay Gogol",
+      "İvan Turgenyev",
+      "Lev Tolstoy",
+      "Anton Çehov"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Anna Karenina, Tolstoy’un toplum, aile ve aşkı işleyen büyük romanlarından biridir.",
+    "id": "q55199"
+  },
+  {
+    "id": "q55200",
+    "categoryIndex": 5,
+    "question": "Basketbolda perde yapan oyuncunun ardından potaya devrilmesiyle oluşan hücum düzenine ne denir?",
+    "options": [
+      "Fast break",
+      "Isolation",
+      "Triangle offense",
+      "Pick and roll"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Pick and roll’da bir oyuncu perde yapar, sonra boş alana veya potaya doğru hareket eder."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Osmanlı’nın Kuzey Afrika’daki son toprağını kaybettiği savaş hangisidir?",
+    "options": [
+      "Trablusgarp Savaşı",
+      "93 Harbi",
+      "Kırım Savaşı",
+      "Balkan Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1911-1912 Trablusgarp Savaşı sonunda Osmanlı, Libya üzerindeki egemenliğini İtalya’ya bıraktı.",
+    "id": "q55201"
+  },
+  {
+    "id": "q55202",
+    "categoryIndex": 4,
+    "question": "Gözdeki kör noktanın oluşma nedeni nedir?",
+    "options": [
+      "Merceğin saydam olmaması",
+      "Görme sinirinin çıktığı yerde ışık algılayıcı hücre bulunmaması",
+      "İrisin ışığı tamamen kapatması",
+      "Kornea damarlarının gölge oluşturması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Optik diskte görme siniri retinadan çıkar; bu bölgede çubuk ve koni hücreleri yoktur."
+  },
+  {
+    "id": "q55203",
+    "categoryIndex": 5,
+    "question": "Basketbolda şut sonrası rakibi potadan uzak tutmak için vücutla pozisyon almaya ne denir?",
+    "options": [
+      "Pump fake",
+      "Crossover",
+      "Box-out",
+      "Screen assist"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Box-out, ribaund şansını artırmak için rakiple pota arasına girip alan kapatmaktır."
+  },
+  {
+    "id": "q55204",
+    "categoryIndex": 1,
+    "question": "Her filminde Theodore’un konuştuğu yapay zekânın adı nedir?",
+    "options": [
+      "Dolores",
+      "Ava",
+      "Joi",
+      "Samantha"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Her filminde Theodore, Samantha adlı gelişmiş bir işletim sistemiyle duygusal bağ kurar."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Böbreğin süzme yapan temel işlevsel birimi nedir?",
+    "options": [
+      "Nefron",
+      "Alveol",
+      "Hepatosit",
+      "Akson"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Her böbrekte kanı süzen ve idrar oluşturan yaklaşık bir milyon nefron bulunur.",
+    "id": "q55205"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Groundhog Day filminde aynı günü tekrar yaşayan karakterin mesleği nedir?",
+    "options": [
+      "Radyo DJ’i",
+      "Hava durumu sunucusu",
+      "Doktor",
+      "Gazeteci fotoğrafçı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Phil Connors, dağ sıçanı günü etkinliğini izlemeye giden kibirli bir hava durumu sunucusudur.",
+    "id": "q55206"
+  },
+  {
+    "id": "q55207",
+    "categoryIndex": 1,
+    "question": "Ex Machina filmindeki insansı robotun adı nedir?",
+    "options": [
+      "Chappie",
+      "Alita",
+      "Ava",
+      "M3GAN"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ex Machina’nın merkezinde, bilinci sınanan Ava adlı insansı yapay zekâ vardır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Çanakkale Kara Savaşları’nın en bilinen cephelerinden biri hangisidir?",
+    "options": [
+      "Kafkasya",
+      "Hicaz",
+      "Galiçya",
+      "Anafartalar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Anafartalar, Gelibolu Yarımadası’ndaki kara savaşlarının kritik bölgelerindendi.",
+    "id": "q55208"
+  },
+  {
+    "id": "q55209",
+    "categoryIndex": 3,
+    "question": "Sineklerin Tanrısı romanında düzen ve konuşma hakkını simgeleyen nesne nedir?",
+    "options": [
+      "Deniz kabuğu",
+      "Pusula",
+      "Fener",
+      "Taç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Çocuklar toplantılarda deniz kabuğunu elinde tutan kişiye konuşma hakkı verir."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Voleybolda servis topunun rakip sahaya değerek doğrudan sayı olmasına ne denir?",
+    "options": [
+      "Ralli",
+      "Ace",
+      "Set point",
+      "Blok aut"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Rakip servisi oyunda tutamazsa servis kullanan oyuncu ace yapmış olur.",
+    "id": "q55210"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Safra sıvısını hangi organ üretir?",
+    "options": [
+      "Pankreas",
+      "Mide",
+      "Karaciğer",
+      "Safra kesesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Safra karaciğerde üretilir, safra kesesinde depolanıp yoğunlaştırılır.",
+    "id": "q55211"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Mad Max: Fury Road filminde savaş kamyonunu kullanan karakter kimdir?",
+    "options": [
+      "Sarah Connor",
+      "Trinity",
+      "The Bride",
+      "Imperator Furiosa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Furiosa, Immortan Joe’dan kaçışı yöneten savaşçı ve kamyon sürücüsüdür.",
+    "id": "q55212"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Avatar filmindeki olayların geçtiği gök cisminin adı nedir?",
+    "options": [
+      "Pandora",
+      "Arrakis",
+      "Endor",
+      "Krypton"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Pandora, gaz devi Polyphemus’un çevresinde dönen kurgusal bir uydudur.",
+    "id": "q55213"
+  },
+  {
+    "id": "q55214",
+    "categoryIndex": 5,
+    "question": "Basketbolda maça yedek başlayıp takıma önemli katkı veren oyuncuya ne denir?",
+    "options": [
+      "Oyun kurucu",
+      "Altıncı adam",
+      "Pivot",
+      "Libero"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Altıncı adam genellikle ilk beş dışında başlayıp süre ve skor katkısıyla öne çıkan yedek oyuncudur."
+  },
+  {
+    "id": "q55215",
+    "categoryIndex": 5,
+    "question": "Voleybolda arka hat oyuncusunun orta bölgeden sıçrayarak yaptığı hücuma ne denir?",
+    "options": [
+      "Tek ayak hücumu",
+      "Manşet",
+      "Pipe hücumu",
+      "Plonjon"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Pipe hücumunda arka hat oyuncusu üç metre çizgisinin gerisinden yükselerek ortadan saldırır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Amasya Genelgesi’ndeki temel ilke hangisidir?",
+    "options": [
+      "Manda yönetimi zorunludur",
+      "Egemenlik padişahındır",
+      "Başkent İstanbul kalmalıdır",
+      "Milletin bağımsızlığını yine milletin azmi kurtaracaktır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Amasya Genelgesi, Millî Mücadele’nin gerekçe ve yöntemini millet iradesine dayandırdı.",
+    "id": "q55216"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Eğirdir Gölü hangi ilimizdedir?",
+    "options": [
+      "Isparta",
+      "Konya",
+      "Burdur",
+      "Afyonkarahisar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Eğirdir Gölü, Isparta sınırları içinde bulunan büyük bir tatlı su gölüdür.",
+    "id": "q55217"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Erzurum Kongresi başlangıçta hangi bölgenin savunması için toplandı?",
+    "options": [
+      "Çukurova",
+      "Doğu Anadolu",
+      "Batı Anadolu",
+      "Trakya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Erzurum Kongresi bölgesel amaçla toplansa da vatanın bütünlüğüne ilişkin ulusal kararlar aldı.",
+    "id": "q55218"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Interstellar filmindeki dikdörtgen biçimli robotlardan biri hangisidir?",
+    "options": [
+      "WALL-E",
+      "HAL 9000",
+      "TARS",
+      "R2-D2"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "TARS, espri ve dürüstlük ayarları yapılabilen çok amaçlı bir robottur.",
+    "id": "q55219"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Bilardoda masanın kenarındaki lastikli bölüme ne denir?",
+    "options": [
+      "Cep",
+      "Istaka",
+      "Tebeşir",
+      "Bant"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Topların sekmesini sağlayan lastikli masa kenarlarına bant denir.",
+    "id": "q55220"
+  }
+]

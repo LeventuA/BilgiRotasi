@@ -1,0 +1,16 @@
+BİLGİ ROTASI – ÇİFT HAKKINDA & GİZLİLİK KARTI DÜZELTMESİ
+
+Sorun:
+Ayarlar ekranına aynı Hakkında & Gizlilik kartı iki kez eklenmiş.
+
+ZIP'i GitHub deposunun ana klasörüne yükleyip Commit changes deyin.
+Ardından Codespaces terminalinde:
+
+git pull
+unzip -o BilgiRotasi_Cift_Hakkinda_Karti_Duzeltme.zip
+python3 bilgi_rotasi_cift_hakkinda_duzelt.py
+
+Sonuç:
+- Ayarlar ekranında yalnızca bir Hakkında & Gizlilik kartı kalır.
+- Hakkında & Gizlilik ekranı korunur.
+- Sürüm 1.41.2+53 olur.

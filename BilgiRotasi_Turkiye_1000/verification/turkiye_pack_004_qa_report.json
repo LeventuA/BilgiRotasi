@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "package": 4,
+  "questionCount": 100,
+  "idRange": {
+    "start": "q58421",
+    "end": "q58520"
+  },
+  "categoryCounts": {
+    "Coğrafya": 0,
+    "Eğlence": 63,
+    "Tarih": 37,
+    "Sanat & Edebiyat": 0,
+    "Bilim & Doğa": 0,
+    "Spor": 0
+  },
+  "difficultyCounts": {
+    "Orta": 48,
+    "Zor": 6,
+    "Kolay": 46
+  },
+  "answerIndexCounts": {
+    "0": 25,
+    "1": 25,
+    "2": 25,
+    "3": 25
+  },
+  "exactQuestionDuplicates": 0,
+  "duplicateOptionSets": 0,
+  "shortExplanations": 0
+}

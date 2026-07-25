@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q54921",
+    "categoryIndex": 0,
+    "question": "Kare biçimli iki ulusal bayraktan biri hangi ülkeye aittir?",
+    "options": [
+      "Avusturya",
+      "İsviçre",
+      "Danimarka",
+      "İsveç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İsviçre ve Vatikan, kare biçimli ulusal bayrak kullanan iki bağımsız devlettir."
+  },
+  {
+    "id": "q54922",
+    "categoryIndex": 0,
+    "question": "Hilal ve yıldızın bulunduğu kırmızı bayrak hangi ülkeye aittir?",
+    "options": [
+      "Tunus",
+      "Pakistan",
+      "Türkiye",
+      "Azerbaycan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye bayrağında beyaz ay yıldız kırmızı zemin üzerinde yer alır."
+  },
+  {
+    "id": "q54923",
+    "categoryIndex": 0,
+    "question": "Ortadaki kırmızı dairesi “doğan güneşi” simgeleyen bayrak hangi ülkenindir?",
+    "options": [
+      "Bangladeş",
+      "Palau",
+      "Güney Kore",
+      "Japonya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Japonya bayrağındaki kırmızı disk Güneş’i temsil eder ve Hinomaru adıyla bilinir."
+  },
+  {
+    "id": "q54924",
+    "categoryIndex": 0,
+    "question": "Bayrağında yin-yang benzeri Taegeuk sembolü bulunan ülke hangisidir?",
+    "options": [
+      "Güney Kore",
+      "Kuzey Kore",
+      "Japonya",
+      "Moğolistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Güney Kore bayrağındaki kırmızı-mavi Taegeuk, evrendeki karşıt güçlerin dengesini simgeler."
+  },
+  {
+    "id": "q54925",
+    "categoryIndex": 0,
+    "question": "Bayrağında bir tüfek bulunan ülke hangisidir?",
+    "options": [
+      "Angola",
+      "Mozambik",
+      "Kenya",
+      "Zambiya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Mozambik bayrağında kitap ve çapayla birlikte AK tipi tüfek görülür."
+  },
+  {
+    "id": "q54926",
+    "categoryIndex": 0,
+    "question": "Bayrağında bir bina resmi bulunan ülke hangisidir?",
+    "options": [
+      "Laos",
+      "Tayland",
+      "Kamboçya",
+      "Myanmar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kamboçya bayrağının merkezinde Angkor Wat tapınağının beyaz tasviri bulunur."
+  },
+  {
+    "id": "q54927",
+    "categoryIndex": 0,
+    "question": "Bayrağında tek büyük yıldız bulunan Afrika ülkesi hangisidir?",
+    "options": [
+      "Kenya",
+      "Etiyopya",
+      "Sudan",
+      "Somali"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Somali bayrağındaki beyaz beş köşeli yıldız Somali halkının tarihî beş bölgesini simgeler."
+  },
+  {
+    "id": "q54928",
+    "categoryIndex": 0,
+    "question": "Bayrağında güneş ve altın kartal bulunan ülke hangisidir?",
+    "options": [
+      "Kazakistan",
+      "Kırgızistan",
+      "Özbekistan",
+      "Türkmenistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kazakistan bayrağında bozkır kartalı, güneş ve geleneksel süs şeridi bulunur."
+  },
+  {
+    "id": "q54929",
+    "categoryIndex": 0,
+    "question": "Bayrağındaki güneşin içinde tündük adı verilen çadır tepesi bulunan ülke hangisidir?",
+    "options": [
+      "Kazakistan",
+      "Kırgızistan",
+      "Tacikistan",
+      "Moğolistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Kırgızistan bayrağındaki çizgiler geleneksel yurdun tepe kafesini gösterir."
+  },
+  {
+    "id": "q54930",
+    "categoryIndex": 0,
+    "question": "Portekizce konuşulan Güney Amerika ülkesi hangisidir?",
+    "options": [
+      "Arjantin",
+      "Şili",
+      "Brezilya",
+      "Kolombiya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Brezilya eski bir Portekiz sömürgesidir ve kıtadaki en büyük Portekizce konuşan ülkedir."
+  },
+  {
+    "id": "q54931",
+    "categoryIndex": 0,
+    "question": "İspanyolcanın resmî dil olmadığı Güney Amerika ülkelerinden biri hangisidir?",
+    "options": [
+      "Peru",
+      "Ekvador",
+      "Paraguay",
+      "Brezilya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Brezilya’nın resmî dili Portekizcedir."
+  },
+  {
+    "id": "q54932",
+    "categoryIndex": 0,
+    "question": "Hollandacanın resmî dil olduğu Güney Amerika ülkesi hangisidir?",
+    "options": [
+      "Surinam",
+      "Guyana",
+      "Venezuela",
+      "Uruguay"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Surinam eski Hollanda sömürgesidir ve resmî dili Hollandacadır."
+  },
+  {
+    "id": "q54933",
+    "categoryIndex": 0,
+    "question": "İngilizcenin resmî dil olduğu Güney Amerika ülkesi hangisidir?",
+    "options": [
+      "Surinam",
+      "Guyana",
+      "Bolivya",
+      "Şili"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Guyana eski Britanya Guyanası’dır ve resmî dili İngilizcedir."
+  },
+  {
+    "id": "q54934",
+    "categoryIndex": 0,
+    "question": "Fransızcanın resmî dil olduğu Kanada eyaleti hangisidir?",
+    "options": [
+      "Ontario",
+      "Alberta",
+      "Quebec",
+      "Manitoba"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Quebec’in tek resmî dili Fransızcadır ve eyalette güçlü Frankofon kültür bulunur."
+  },
+  {
+    "id": "q54935",
+    "categoryIndex": 0,
+    "question": "Felemenkçe, Fransızca ve Almanca resmî dilleri olan ülke hangisidir?",
+    "options": [
+      "İsviçre",
+      "Lüksemburg",
+      "Hollanda",
+      "Belçika"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Belçika’nın dil toplulukları Felemenkçe, Fransızca ve Almanca konuşur."
+  },
+  {
+    "id": "q54936",
+    "categoryIndex": 0,
+    "question": "Almanca, Fransızca, İtalyanca ve Romanşça resmî dilleri olan ülke hangisidir?",
+    "options": [
+      "İsviçre",
+      "Avusturya",
+      "Belçika",
+      "Lihtenştayn"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İsviçre dört ulusal diliyle farklı dil bölgelerinden oluşan federal bir ülkedir."
+  },
+  {
+    "id": "q54937",
+    "categoryIndex": 0,
+    "question": "Maori dili hangi ülkenin resmî dillerinden biridir?",
+    "options": [
+      "Avustralya",
+      "Yeni Zelanda",
+      "Fiji",
+      "Samoa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Te reo Maori, İngilizce ve Yeni Zelanda İşaret Diliyle birlikte ülkede resmî statü taşır."
+  },
+  {
+    "id": "q54938",
+    "categoryIndex": 1,
+    "question": "“Sen Ağlama” albümü hangi sanatçıya aittir?",
+    "options": [
+      "Nilüfer",
+      "Ajda Pekkan",
+      "Sezen Aksu",
+      "Nükhet Duru"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sezen Aksu’nun 1984 tarihli Sen Ağlama albümü Türk pop müziğinde dönüm noktalarından biridir."
+  },
+  {
+    "id": "q54939",
+    "categoryIndex": 1,
+    "question": "“Şımarık” şarkısıyla uluslararası tanınan Türk popçu kimdir?",
+    "options": [
+      "Mustafa Sandal",
+      "Kenan Doğulu",
+      "Serdar Ortaç",
+      "Tarkan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Tarkan’ın Şımarık şarkısı öpücük sesi ve ritmiyle birçok ülkede liste başarısı kazandı."
+  },
+  {
+    "id": "q54940",
+    "categoryIndex": 1,
+    "question": "“Araba” şarkısını kim seslendirir?",
+    "options": [
+      "Mustafa Sandal",
+      "Tarkan",
+      "Kenan Doğulu",
+      "Çelik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mustafa Sandal’ın Araba şarkısı 1990’ların Türk pop hitlerinden biridir."
+  },
+  {
+    "id": "q54941",
+    "categoryIndex": 1,
+    "question": "“Çakkıdı” şarkısını kim seslendirir?",
+    "options": [
+      "Yalın",
+      "Kenan Doğulu",
+      "Murat Boz",
+      "Gökhan Özen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kenan Doğulu’nun Çakkıdı şarkısı 2006’da yayımlanan Festival albümünde yer alır."
+  },
+  {
+    "id": "q54942",
+    "categoryIndex": 1,
+    "question": "“Her Şeyi Yak” şarkısının Duman yorumuyla tanınan söz yazarı kimdir?",
+    "options": [
+      "Teoman",
+      "Kaan Tangöze",
+      "Sezen Aksu",
+      "Şebnem Ferah"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Şarkı Sezen Aksu ve Onno Tunç imzası taşır; Duman’ın rock yorumu da büyük ilgi gördü."
+  },
+  {
+    "id": "q54943",
+    "categoryIndex": 1,
+    "question": "“Paramparça” şarkısı hangi sanatçıya aittir?",
+    "options": [
+      "Kıraç",
+      "Haluk Levent",
+      "Emre Aydın",
+      "Teoman"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Paramparça, Teoman’ın en tanınan rock şarkılarından biridir."
+  },
+  {
+    "id": "q54944",
+    "categoryIndex": 1,
+    "question": "“Fırtına” şarkısıyla tanınan rock şarkıcısı kimdir?",
+    "options": [
+      "Şebnem Ferah",
+      "Özlem Tekin",
+      "Göksel",
+      "Sertab Erener"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Şebnem Ferah’ın Fırtına şarkısı Kadın albümünde yer alır."
+  },
+  {
+    "id": "q54945",
+    "categoryIndex": 1,
+    "question": "Eurovision 2003’ü Türkiye’ye kazandıran sanatçı kimdir?",
+    "options": [
+      "Şebnem Paker",
+      "Sertab Erener",
+      "Hadise",
+      "Athena"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sertab Erener Everyway That I Can şarkısıyla Türkiye’nin ilk Eurovision birinciliğini kazandı."
+  },
+  {
+    "id": "q54946",
+    "categoryIndex": 1,
+    "question": "Eurovision’da Türkiye’yi “For Real” şarkısıyla temsil eden grup hangisidir?",
+    "options": [
+      "maNga",
+      "Mor ve Ötesi",
+      "Athena",
+      "MFÖ"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Athena 2004 İstanbul Eurovision’unda For Real ile dördüncü oldu."
+  },
+  {
+    "id": "q54947",
+    "categoryIndex": 1,
+    "question": "Eurovision’da Türkiye’yi “We Could Be the Same” şarkısıyla temsil eden grup hangisidir?",
+    "options": [
+      "Athena",
+      "Duman",
+      "Mor ve Ötesi",
+      "maNga"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "maNga 2010 Eurovision Şarkı Yarışması’nda ikinci oldu."
+  },
+  {
+    "id": "q54948",
+    "categoryIndex": 1,
+    "question": "Yaprak Dökümü dizisindeki ailenin soyadı nedir?",
+    "options": [
+      "Tekin",
+      "Sütçüoğlu",
+      "Taşfırın",
+      "Ilıcalı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ali Rıza Bey ve ailesi Tekin soyadını taşır."
+  },
+  {
+    "id": "q54949",
+    "categoryIndex": 1,
+    "question": "Aşk-ı Memnu dizisindeki yalı hangi semttedir?",
+    "options": [
+      "Kadıköy",
+      "Sarıyer",
+      "Bakırköy",
+      "Üsküdar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dizide kullanılan Ziyagil Yalısı Sarıyer’de Boğaz kıyısındadır."
+  },
+  {
+    "id": "q54950",
+    "categoryIndex": 1,
+    "question": "Ezel dizisinde Ezel’in eski adı nedir?",
+    "options": [
+      "Cengiz Atay",
+      "Ali Kırgız",
+      "Ömer Uçar",
+      "Ramiz Karaeski"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İhanete uğrayan Ömer, yüzü ve kimliği değiştikten sonra Ezel Bayraktar olarak geri döner."
+  },
+  {
+    "id": "q54951",
+    "categoryIndex": 1,
+    "question": "Kuzey Güney dizisindeki iki kardeşin adları nedir?",
+    "options": [
+      "Yaman ve Selim",
+      "Ömer ve Ezel",
+      "Mert ve Kerem",
+      "Kuzey ve Güney"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Karakterleri zıt iki kardeş, aile ve aşk çatışmalarının merkezindedir."
+  },
+  {
+    "id": "q54952",
+    "categoryIndex": 1,
+    "question": "Medcezir dizisi hangi Amerikan dizisinden uyarlanmıştır?",
+    "options": [
+      "The O.C.",
+      "Gossip Girl",
+      "One Tree Hill",
+      "90210"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Medcezir, The O.C.’nin temel karakter ve sınıf çatışmasını İstanbul’a uyarlamıştır."
+  },
+  {
+    "id": "q54953",
+    "categoryIndex": 1,
+    "question": "Ufak Tefek Cinayetler dizisi hangi tür kadın arkadaş grubunu merkezine alır?",
+    "options": [
+      "Profesyonel sporcuları",
+      "Eski okul arkadaşlarını",
+      "Müzik grubunu",
+      "Polis ekibini"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dört kadının lise geçmişinden gelen sırları ve rekabetleri yıllar sonra yeniden açığa çıkar."
+  },
+  {
+    "id": "q54954",
+    "categoryIndex": 1,
+    "question": "Kulüp dizisinin büyük bölümü 1950’lerin hangi semtinde geçer?",
+    "options": [
+      "Kuzguncuk",
+      "Etiler",
+      "Beyoğlu",
+      "Bebek"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kulüp, 1950’lerin İstanbul gece hayatını ve azınlık toplumlarını Beyoğlu çevresinde anlatır."
+  },
+  {
+    "id": "q54955",
+    "categoryIndex": 2,
+    "question": "Osmanlı’da sarayın dış devletlerle yazışmalarını yöneten görevli kimdi?",
+    "options": [
+      "Defterdar",
+      "Nişancı",
+      "Kazasker",
+      "Reisülküttap"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Reisülküttap zamanla dış ilişkilerin başlıca görevlisine dönüşmüş ve hariciye nazırlığının öncülü olmuştur."
+  },
+  {
+    "id": "q54956",
+    "categoryIndex": 2,
+    "question": "Osmanlı’da ilmiye sınıfının en yüksek dinî otoritesi kimdi?",
+    "options": [
+      "Şeyhülislam",
+      "Sadrazam",
+      "Kaptan-ı Derya",
+      "Yeniçeri Ağası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Şeyhülislam fetva verir ve devlet kararlarının dinî hukukla ilişkisini değerlendirirdi."
+  },
+  {
+    "id": "q54957",
+    "categoryIndex": 2,
+    "question": "Osmanlı’da sadrazamın resmî çalışma ve yönetim merkezine ne denirdi?",
+    "options": [
+      "Topkapı",
+      "Babıali",
+      "Enderun",
+      "Divanhane"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Babıali zamanla Osmanlı hükümetini ve özellikle sadrazamlık makamını ifade eden ad oldu."
+  },
+  {
+    "id": "q54958",
+    "categoryIndex": 2,
+    "question": "Topkapı Sarayı’nda devlet adamlarının yetiştirildiği iç okul hangisiydi?",
+    "options": [
+      "Birun",
+      "Harem",
+      "Enderun",
+      "Sıbyan mektebi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Enderun Mektebi saray içinde seçkin yönetici ve görevliler yetiştirirdi."
+  },
+  {
+    "id": "q54959",
+    "categoryIndex": 2,
+    "question": "Osmanlı sarayının dış hizmetler bölümüne ne denirdi?",
+    "options": [
+      "Enderun",
+      "Harem",
+      "Divan",
+      "Birun"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Birun sarayın dış hizmetleri, törenleri ve çeşitli görevlilerini kapsardı."
+  },
+  {
+    "id": "q54960",
+    "categoryIndex": 2,
+    "question": "Divan-ı Hümayun toplantılarına klasik dönemde kim başkanlık ederdi?",
+    "options": [
+      "Sadrazam",
+      "Şeyhülislam",
+      "Kaptan-ı Derya",
+      "Defterdar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Padişahın divana doğrudan katılımı azaldıkça toplantıları sadrazam yönetmeye başladı."
+  },
+  {
+    "id": "q54961",
+    "categoryIndex": 2,
+    "question": "Osmanlı’da askerî ve hukuki davalara bakan yüksek görevli kimdi?",
+    "options": [
+      "Nişancı",
+      "Kazasker",
+      "Defterdar",
+      "Reisülküttap"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kazasker kadı ve müderris atamalarında etkiliydi; Anadolu ve Rumeli kazaskerleri bulunurdu."
+  },
+  {
+    "id": "q54962",
+    "categoryIndex": 2,
+    "question": "Lale Devri’nin sadrazamı kimdi?",
+    "options": [
+      "Köprülü Mehmed Paşa",
+      "Alemdar Mustafa Paşa",
+      "Nevşehirli Damat İbrahim Paşa",
+      "Sokullu Mehmed Paşa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "III. Ahmed döneminde Nevşehirli Damat İbrahim Paşa kültür, bahçe ve diplomasi faaliyetleriyle döneme damga vurdu."
+  },
+  {
+    "id": "q54963",
+    "categoryIndex": 2,
+    "question": "Osmanlı’nın ilk sürekli elçiliklerinden biri hangi Avrupa başkentinde açıldı?",
+    "options": [
+      "Roma",
+      "Viyana",
+      "Madrid",
+      "Londra"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "III. Selim döneminde Yusuf Agâh Efendi 1793’te Londra’ya sürekli elçi olarak gönderildi."
+  },
+  {
+    "id": "q54964",
+    "categoryIndex": 2,
+    "question": "Nizam-ı Cedid ordusunu kuran padişah kimdir?",
+    "options": [
+      "III. Selim",
+      "II. Mahmud",
+      "III. Ahmed",
+      "Abdülmecid"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "III. Selim Avrupa tarzı eğitim ve donanıma sahip Nizam-ı Cedid ordusunu kurdu."
+  },
+  {
+    "id": "q54965",
+    "categoryIndex": 2,
+    "question": "Yeniçeri Ocağı’nı kaldıran padişah kimdir?",
+    "options": [
+      "III. Selim",
+      "II. Mahmud",
+      "Abdülaziz",
+      "V. Murad"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "II. Mahmud 1826’daki Vak’a-i Hayriye ile Yeniçeri Ocağı’nı ortadan kaldırdı."
+  },
+  {
+    "id": "q54966",
+    "categoryIndex": 2,
+    "question": "Tanzimat Fermanı hangi padişah döneminde ilan edildi?",
+    "options": [
+      "II. Mahmud",
+      "Abdülaziz",
+      "Abdülmecid",
+      "II. Abdülhamid"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Abdülmecid tahta çıktıktan kısa süre sonra 1839 Gülhane Hatt-ı Hümayunu ilan edildi."
+  },
+  {
+    "id": "q54967",
+    "categoryIndex": 2,
+    "question": "Islahat Fermanı hangi yıl ilan edildi?",
+    "options": [
+      "1839",
+      "1876",
+      "1908",
+      "1856"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Islahat Fermanı Kırım Savaşı sonrasında Osmanlı tebaasının eşitliği konusunda yeni düzenlemeler getirdi."
+  },
+  {
+    "id": "q54968",
+    "categoryIndex": 2,
+    "question": "23 Nisan Türkiye’de hangi iki anlamla kutlanır?",
+    "options": [
+      "Ulusal Egemenlik ve Çocuk Bayramı",
+      "Cumhuriyet ve Gençlik Bayramı",
+      "Zafer ve Spor Bayramı",
+      "Emek ve Dayanışma Günü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "23 Nisan TBMM’nin açılışını ve çocuklara adanan millî bayramı birleştirir."
+  },
+  {
+    "id": "q54969",
+    "categoryIndex": 2,
+    "question": "19 Mayıs 1919’da Mustafa Kemal hangi şehre çıktı?",
+    "options": [
+      "Amasya",
+      "Samsun",
+      "Sivas",
+      "Erzurum"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mustafa Kemal’in Samsun’a çıkışı Millî Mücadele’nin başlangıç simgelerinden kabul edilir."
+  },
+  {
+    "id": "q54970",
+    "categoryIndex": 2,
+    "question": "Amasya Genelgesi’nin temel vurgusu neydi?",
+    "options": [
+      "Saltanat güçlendirilmelidir",
+      "Savaş hemen bırakılmalıdır",
+      "Milletin bağımsızlığını yine milletin kararı kurtaracaktır",
+      "Başkent taşınmalıdır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Genelge millî egemenlik fikrini açıkça ifade ederek kongreler sürecini başlattı."
+  },
+  {
+    "id": "q54971",
+    "categoryIndex": 2,
+    "question": "Sivas Kongresi’nde millî cemiyetler hangi çatı altında birleşti?",
+    "options": [
+      "İttihat ve Terakki",
+      "Hürriyet ve İtilaf",
+      "Kuvâ-yi İnzibatiye",
+      "Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dağınık bölgesel cemiyetler tek bir ulusal örgüt hâlinde birleştirildi."
+  },
+  {
+    "id": "q54972",
+    "categoryIndex": 3,
+    "question": "“Memleketimden İnsan Manzaraları” eserinin şairi kimdir?",
+    "options": [
+      "Nazım Hikmet",
+      "Orhan Veli",
+      "Cahit Sıtkı",
+      "Yahya Kemal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Nazım Hikmet’in geniş şiirsel yapıtı farklı toplumsal kesimlerden insanların hikâyelerini bir araya getirir."
+  },
+  {
+    "id": "q54973",
+    "categoryIndex": 3,
+    "question": "“Kuvâyi Milliye Destanı”nı kim yazdı?",
+    "options": [
+      "Mehmet Akif Ersoy",
+      "Nazım Hikmet",
+      "Fazıl Hüsnü Dağlarca",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Nazım Hikmet eserde Millî Mücadele’yi halk kahramanları ve tarihsel sahnelerle anlatır."
+  },
+  {
+    "id": "q54974",
+    "categoryIndex": 3,
+    "question": "“Anlatamıyorum” şiirinin şairi kimdir?",
+    "options": [
+      "Melih Cevdet Anday",
+      "Oktay Rifat",
+      "Orhan Veli Kanık",
+      "Cemal Süreya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Orhan Veli bu şiirde duyguları sözcüklere aktaramamanın çaresizliğini yalın dille anlatır."
+  },
+  {
+    "id": "q54975",
+    "categoryIndex": 3,
+    "question": "“Ben Sana Mecburum” şiirini kim yazdı?",
+    "options": [
+      "Cemal Süreya",
+      "Turgut Uyar",
+      "Edip Cansever",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Attilâ İlhan’ın şiiri yoğun aşk, yalnızlık ve kent imgeleri taşır."
+  },
+  {
+    "id": "q54976",
+    "categoryIndex": 3,
+    "question": "“Üvercinka” şiir kitabının şairi kimdir?",
+    "options": [
+      "Cemal Süreya",
+      "Turgut Uyar",
+      "Ece Ayhan",
+      "Sezai Karakoç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Üvercinka, İkinci Yeni’nin özgün imge ve aşk dilini taşıyan Cemal Süreya kitabıdır."
+  },
+  {
+    "id": "q54977",
+    "categoryIndex": 3,
+    "question": "“Göğe Bakma Durağı” şiirini kim yazdı?",
+    "options": [
+      "Edip Cansever",
+      "Turgut Uyar",
+      "Cemal Süreya",
+      "İlhan Berk"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Turgut Uyar’ın şiiri birlikte gökyüzüne bakma çağrısıyla sevgi ve kaçış duygusu kurar."
+  },
+  {
+    "id": "q54978",
+    "categoryIndex": 3,
+    "question": "“Masa da Masaymış Ha” şiiri kime aittir?",
+    "options": [
+      "Ece Ayhan",
+      "Turgut Uyar",
+      "Edip Cansever",
+      "Behçet Necatigil"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Edip Cansever masaya yüklenen nesneler üzerinden insanın iç yükünü şiirleştirir."
+  },
+  {
+    "id": "q54979",
+    "categoryIndex": 3,
+    "question": "“Monna Rosa” şiirinin şairi kimdir?",
+    "options": [
+      "Necip Fazıl Kısakürek",
+      "Cahit Zarifoğlu",
+      "İsmet Özel",
+      "Sezai Karakoç"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sezai Karakoç’un gençlik döneminde yazdığı Monna Rosa akrostiş yapısıyla da tanınır."
+  },
+  {
+    "id": "q54980",
+    "categoryIndex": 3,
+    "question": "“Sakarya Türküsü” şiiri kime aittir?",
+    "options": [
+      "Necip Fazıl Kısakürek",
+      "Yahya Kemal",
+      "Mehmet Akif",
+      "Arif Nihat Asya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Necip Fazıl şiirde Sakarya Nehri’ni milletin ve tarihin sembolü hâline getirir."
+  },
+  {
+    "id": "q54981",
+    "categoryIndex": 3,
+    "question": "“Bayrak” şiirinin şairi kimdir?",
+    "options": [
+      "Mehmet Emin Yurdakul",
+      "Arif Nihat Asya",
+      "Orhan Şaik Gökyay",
+      "Faruk Nafiz Çamlıbel"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Arif Nihat Asya bayrağı tarih, şehitlik ve bağımsızlık imgeleriyle yüceltir."
+  },
+  {
+    "id": "q54982",
+    "categoryIndex": 3,
+    "question": "“Han Duvarları” şiirini kim yazdı?",
+    "options": [
+      "Ahmet Kutsi Tecer",
+      "Kemalettin Kamu",
+      "Faruk Nafiz Çamlıbel",
+      "Orhan Seyfi Orhon"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Faruk Nafiz Anadolu yolculuğunu ve Maraşlı Şeyhoğlu Satılmış’ın dizelerini Han Duvarları’nda işler."
+  },
+  {
+    "id": "q54983",
+    "categoryIndex": 3,
+    "question": "“Bursa’da Zaman” şiirinin şairi kimdir?",
+    "options": [
+      "Yahya Kemal",
+      "Ahmet Haşim",
+      "Behçet Necatigil",
+      "Ahmet Hamdi Tanpınar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tanpınar Bursa’nın tarih, mimari ve zaman duygusunu şiirsel bir bütünlükle anlatır."
+  },
+  {
+    "id": "q54984",
+    "categoryIndex": 3,
+    "question": "“Sessiz Gemi” şiiri kime aittir?",
+    "options": [
+      "Yahya Kemal Beyatlı",
+      "Ahmet Haşim",
+      "Tevfik Fikret",
+      "Mehmet Akif Ersoy"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yahya Kemal sessizce limandan ayrılan gemi imgesiyle ölümü anlatır."
+  },
+  {
+    "id": "q54985",
+    "categoryIndex": 3,
+    "question": "“Merdiven” şiirini kim yazdı?",
+    "options": [
+      "Yahya Kemal",
+      "Ahmet Haşim",
+      "Tevfik Fikret",
+      "Cenap Şahabettin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ahmet Haşim’in Merdiven şiiri akşam, sonbahar ve yaşamın sona yaklaşması imgelerini taşır."
+  },
+  {
+    "id": "q54986",
+    "categoryIndex": 3,
+    "question": "“Sis” şiiriyle İstanbul’u karanlık bir şehir olarak eleştiren şair kimdir?",
+    "options": [
+      "Mehmet Akif",
+      "Ahmet Haşim",
+      "Tevfik Fikret",
+      "Yahya Kemal"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tevfik Fikret Sis’te dönemin baskıcı yönetimiyle özdeşleştirdiği İstanbul’a sert bir dil kullanır."
+  },
+  {
+    "id": "q54987",
+    "categoryIndex": 3,
+    "question": "İstiklâl Marşı’nın şairi kimdir?",
+    "options": [
+      "Yahya Kemal Beyatlı",
+      "Ziya Gökalp",
+      "Namık Kemal",
+      "Mehmet Akif Ersoy"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Mehmet Akif’in şiiri 12 Mart 1921’de TBMM tarafından millî marş olarak kabul edildi."
+  },
+  {
+    "id": "q54988",
+    "categoryIndex": 3,
+    "question": "“Çile” şiir kitabı hangi şaire aittir?",
+    "options": [
+      "Necip Fazıl Kısakürek",
+      "Sezai Karakoç",
+      "Cahit Zarifoğlu",
+      "Erdem Bayazıt"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Çile, Necip Fazıl’ın metafizik arayış ve iç çatışma temalı şiirlerini toplar."
+  },
+  {
+    "id": "q54989",
+    "categoryIndex": 4,
+    "question": "Kangurular neden geriye doğru kolayca yürüyemez?",
+    "options": [
+      "Gözleri geriyi görmediği için",
+      "Büyük kuyruk ve bacak yapıları nedeniyle",
+      "Kulakları engellediği için",
+      "Yalnız zıplama refleksi olduğu için"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Uzun ayakları ve denge sağlayan kalın kuyruğu geriye doğru hareketi çok zorlaştırır."
+  },
+  {
+    "id": "q54990",
+    "categoryIndex": 4,
+    "question": "Su aygırlarının derisinden çıkan kırmızımsı sıvı ne işe yarar?",
+    "options": [
+      "Kan yerine geçer",
+      "Su altında nefes sağlar",
+      "Güneş ve mikroplara karşı korur",
+      "Yavruları besler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hipposudoric asit içeren salgı doğal güneş kremi ve antibakteriyel koruma sağlar."
+  },
+  {
+    "id": "q54991",
+    "categoryIndex": 4,
+    "question": "Gergedan boynuzu hangi maddeden oluşur?",
+    "options": [
+      "Kemik",
+      "Fildişi",
+      "Kalsiyum kristali",
+      "Keratin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gergedan boynuzu saç ve tırnaklarda bulunan keratin liflerinin sıkışmasından oluşur."
+  },
+  {
+    "id": "q54992",
+    "categoryIndex": 4,
+    "question": "Narvalın uzun “boynuzu” gerçekte nedir?",
+    "options": [
+      "Uzatılmış bir diş",
+      "Kemik çıkıntısı",
+      "Boynuzsu deri",
+      "Sertleşmiş burun"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Erkek narvalın spiral dişi üst çeneden dışarı uzar ve duyusal sinirler içerir."
+  },
+  {
+    "id": "q54993",
+    "categoryIndex": 4,
+    "question": "Fillerin hortumu yaklaşık kaç kas içerir?",
+    "options": [
+      "Yaklaşık yüz",
+      "On binlerce",
+      "Yalnız on",
+      "Hiç kas içermez"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Fil hortumu kemiksizdir ve çok ince hareket sağlayan on binlerce kas demetinden oluşur."
+  },
+  {
+    "id": "q54994",
+    "categoryIndex": 4,
+    "question": "Zürafaların dilleri neden koyu renklidir?",
+    "options": [
+      "Yalnız gece kullandıkları için",
+      "Kan dolaşımı olmadığı için",
+      "Güneşten korunmaya yardım eder",
+      "Yedikleri yaprak boyadığı için"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Melanin bakımından zengin koyu dil, uzun süre yaprak toplarken güneş ışığına karşı koruma sağlayabilir."
+  },
+  {
+    "id": "q54995",
+    "categoryIndex": 4,
+    "question": "Timsahlar dillerini dışarı çıkarabilir mi?",
+    "options": [
+      "Evet, çok uzağa",
+      "Yalnız yavruyken",
+      "Sadece suda",
+      "Hayır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Timsahın dili alt çeneye bir zarla bağlıdır ve dışarı uzatılamaz."
+  },
+  {
+    "id": "q54996",
+    "categoryIndex": 4,
+    "question": "Baykuşların boynunu yaklaşık kaç derece çevirebildiği bilinir?",
+    "options": [
+      "270 derece",
+      "90 derece",
+      "180 derece",
+      "360 derece"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Özel boyun omurları ve damar yapısı baykuşun başını üç çeyrek tur çevirmesine izin verir."
+  },
+  {
+    "id": "q54997",
+    "categoryIndex": 4,
+    "question": "Ağaçkakanın dili kafatasının çevresinde nasıl konumlanabilir?",
+    "options": [
+      "Göğsünde saklanır",
+      "Başının arkasına doğru sarılır",
+      "Kanadına bağlıdır",
+      "Hiç dili yoktur"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Uzun dilin destek yapıları kafatasının arkasını ve bazı türlerde göz çevresini dolaşır."
+  },
+  {
+    "id": "q54998",
+    "categoryIndex": 4,
+    "question": "Flamingolar neden tek ayak üzerinde durabilir?",
+    "options": [
+      "Diğer ayağı olmadığı için",
+      "Suyu ısıtmak için",
+      "Kas enerjisini azaltan kilitlenme yapısı sayesinde",
+      "Uçmaya hazırlanmak için"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Eklem ve ağırlık merkezi düzeni, tek ayakta durmayı şaşırtıcı derecede az enerjiyle mümkün kılar."
+  },
+  {
+    "id": "q54999",
+    "categoryIndex": 4,
+    "question": "Deniz inekleri hangi hayvan grubuna aittir?",
+    "options": [
+      "Balıklar",
+      "Sürüngenler",
+      "Amfibiler",
+      "Memeliler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Manati ve dugonglar akciğerle nefes alan, yavrularını sütle besleyen sucul memelilerdir."
+  },
+  {
+    "id": "q55000",
+    "categoryIndex": 4,
+    "question": "Dugongların temel besini nedir?",
+    "options": [
+      "Deniz çayırları",
+      "Mercan",
+      "Balık",
+      "Denizanası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dugonglar sığ kıyı alanlarında deniz çayırlarını otlayan otçul memelilerdir."
+  },
+  {
+    "id": "q55001",
+    "categoryIndex": 4,
+    "question": "Orkalar aslında hangi hayvan ailesinin en büyük üyesidir?",
+    "options": [
+      "Köpekbalıkları",
+      "Yunuslar",
+      "Foklar",
+      "Balinalar ayrı ailesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Orka, okyanus yunusları ailesinin en büyük türüdür."
+  },
+  {
+    "id": "q55002",
+    "categoryIndex": 4,
+    "question": "Mavi balinanın kalbi yaklaşık hangi nesnenin büyüklüğüne benzetilir?",
+    "options": [
+      "Tenis topuna",
+      "Kaleme",
+      "Küçük bir otomobile",
+      "Ev büyüklüğüne"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yetişkin mavi balinanın kalbi yüzlerce kilogram olabilir ve küçük araç boyutuna yaklaşır."
+  },
+  {
+    "id": "q55003",
+    "categoryIndex": 4,
+    "question": "İspermeçet balinası hangi özelliğiyle rekor sahibidir?",
+    "options": [
+      "En uzun kuyruğa sahip olması",
+      "Karada koşması",
+      "Renk değiştirmesi",
+      "Hayvanlar arasındaki en büyük beyinlerden birine sahip olması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "İspermeçet balinasının beyni yaklaşık 8 kilogramla yaşayan hayvanların en ağır beynidir."
+  },
+  {
+    "id": "q55004",
+    "categoryIndex": 4,
+    "question": "Yunusların her bireye özgü olabilen iletişim sesine ne denir?",
+    "options": [
+      "İmza ıslığı",
+      "Alfa kükremesi",
+      "Yankı şarkısı",
+      "Sürü kodu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Şişe burunlu yunuslar kendilerini tanıtmak ve birbirlerini çağırmak için özgün imza ıslıkları geliştirir."
+  },
+  {
+    "id": "q55005",
+    "categoryIndex": 5,
+    "question": "Futbol Dünya Kupası’nı kazanan ilk ülke hangisidir?",
+    "options": [
+      "Brezilya",
+      "Uruguay",
+      "İtalya",
+      "Arjantin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Uruguay ev sahipliği yaptığı 1930 Dünya Kupası finalinde Arjantin’i yenerek ilk şampiyon oldu."
+  },
+  {
+    "id": "q55006",
+    "categoryIndex": 5,
+    "question": "Dünya Kupası tarihinde beş kez şampiyon olan ilk ülke hangisidir?",
+    "options": [
+      "Almanya",
+      "İtalya",
+      "Brezilya",
+      "Arjantin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Brezilya 1958, 1962, 1970, 1994 ve 2002’de Dünya Kupası’nı kazandı."
+  },
+  {
+    "id": "q55007",
+    "categoryIndex": 5,
+    "question": "Dünya Kupası’nı üç kez kazanan ilk futbolcu kimdir?",
+    "options": [
+      "Maradona",
+      "Beckenbauer",
+      "Zidane",
+      "Pelé"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Pelé 1958, 1962 ve 1970 Brezilya kadrolarında dünya şampiyonu oldu."
+  },
+  {
+    "id": "q55008",
+    "categoryIndex": 5,
+    "question": "“Tanrının Eli” golüyle tanınan futbolcu kimdir?",
+    "options": [
+      "Diego Maradona",
+      "Pelé",
+      "Johan Cruyff",
+      "Michel Platini"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Maradona 1986 Dünya Kupası’nda İngiltere’ye karşı topa eliyle dokunarak gol attı."
+  },
+  {
+    "id": "q55009",
+    "categoryIndex": 5,
+    "question": "“Yüzyılın Golü” olarak anılan 1986 Dünya Kupası golünü kim attı?",
+    "options": [
+      "Gary Lineker",
+      "Diego Maradona",
+      "Zico",
+      "Paolo Rossi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Maradona aynı İngiltere maçında birçok oyuncuyu geçerek unutulmaz ikinci golünü attı."
+  },
+  {
+    "id": "q55010",
+    "categoryIndex": 5,
+    "question": "Total Futbol anlayışıyla özdeşleşen Hollandalı yıldız kimdir?",
+    "options": [
+      "Marco van Basten",
+      "Ruud Gullit",
+      "Johan Cruyff",
+      "Dennis Bergkamp"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cruyff hem Ajax hem Hollanda millî takımında hareketli Total Futbol’un sahadaki simgesi oldu."
+  },
+  {
+    "id": "q55011",
+    "categoryIndex": 5,
+    "question": "Franz Beckenbauer hangi lakapla tanınır?",
+    "options": [
+      "El Pibe",
+      "O Fenômeno",
+      "Il Divino",
+      "Der Kaiser"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Almanca “İmparator” anlamındaki Der Kaiser lakabı liderliği ve zarif oyunundan gelir."
+  },
+  {
+    "id": "q55012",
+    "categoryIndex": 5,
+    "question": "“O Fenômeno” lakabı hangi Brezilyalı futbolcuya aittir?",
+    "options": [
+      "Ronaldo Nazário",
+      "Ronaldinho",
+      "Romário",
+      "Rivaldo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ronaldo’nun hız, güç ve golcülüğü ona Portekizce “Fenomen” lakabını kazandırdı."
+  },
+  {
+    "id": "q55013",
+    "categoryIndex": 5,
+    "question": "Ronaldinho’nun adı hangi oyun özelliğiyle özdeşleşir?",
+    "options": [
+      "Savunmada sertlik",
+      "Yaratıcı çalımlar ve neşeli oyun",
+      "Uzun taç atışı",
+      "Kalecilik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ronaldinho elastico gibi çalımları, pasları ve gülümseyen oyun tarzıyla tanındı."
+  },
+  {
+    "id": "q55014",
+    "categoryIndex": 5,
+    "question": "NBA logosundaki siluetin Jerry West’ten esinlendiği yaygın olarak kabul edilir mi?",
+    "options": [
+      "Hayır",
+      "Michael Jordan’dır",
+      "Evet",
+      "Magic Johnson’dır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tasarımcı Alan Siegel siluet için Jerry West’in bir fotoğrafından esinlendiğini açıklamıştır."
+  },
+  {
+    "id": "q55015",
+    "categoryIndex": 5,
+    "question": "“Air Jordan” lakabı hangi basketbolcuya aittir?",
+    "options": [
+      "Kobe Bryant",
+      "LeBron James",
+      "Julius Erving",
+      "Michael Jordan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Michael Jordan’ın sıçrama yeteneği ve Nike ayakkabı serisi Air Jordan adını dünyaca ünlü yaptı."
+  },
+  {
+    "id": "q55016",
+    "categoryIndex": 5,
+    "question": "“Black Mamba” lakabıyla tanınan basketbolcu kimdir?",
+    "options": [
+      "Kobe Bryant",
+      "Shaquille O’Neal",
+      "Allen Iverson",
+      "Dwyane Wade"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kobe Bryant sahadaki odaklanmış ve saldırgan kişiliği için Black Mamba kimliğini benimsedi."
+  },
+  {
+    "id": "q55017",
+    "categoryIndex": 5,
+    "question": "“King James” lakabı hangi basketbolcuya aittir?",
+    "options": [
+      "Kevin Durant",
+      "LeBron James",
+      "Stephen Curry",
+      "James Harden"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "LeBron James genç yaşlarından itibaren King James lakabıyla anılmıştır."
+  },
+  {
+    "id": "q55018",
+    "categoryIndex": 5,
+    "question": "“The Answer” lakabıyla tanınan basketbolcu kimdir?",
+    "options": [
+      "Jason Kidd",
+      "Steve Nash",
+      "Allen Iverson",
+      "Ray Allen"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Iverson kısa boyuna rağmen skorerliği ve kültürel etkisiyle The Answer lakabını taşıdı."
+  },
+  {
+    "id": "q55019",
+    "categoryIndex": 5,
+    "question": "“The Big Fundamental” lakabı hangi oyuncuya aittir?",
+    "options": [
+      "Kevin Garnett",
+      "Dirk Nowitzki",
+      "David Robinson",
+      "Tim Duncan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tim Duncan gösterişsiz ama kusursuz temel teknikleri nedeniyle bu lakapla tanındı."
+  },
+  {
+    "id": "q55020",
+    "categoryIndex": 5,
+    "question": "“Chef Curry” lakabıyla tanınan üçlük ustası kimdir?",
+    "options": [
+      "Stephen Curry",
+      "Klay Thompson",
+      "Damian Lillard",
+      "Trae Young"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Curry uzak mesafe şutları ve sayı üretme becerisiyle Chef Curry lakabını aldı."
+  }
+]

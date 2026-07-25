@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q54421",
+    "categoryIndex": 0,
+    "question": "İki ülkenin başkentlerini birbirinden yalnızca bir nehir ayıran en yakın başkent çifti hangisidir?",
+    "options": [
+      "Viyana ve Bratislava",
+      "Brazzaville ve Kinşasa",
+      "Tallinn ve Helsinki",
+      "Kopenhag ve Malmö"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kongo Nehri’nin karşı kıyılarındaki Brazzaville ve Kinşasa birbirini görebilen iki ulusal başkenttir."
+  },
+  {
+    "id": "q54422",
+    "categoryIndex": 0,
+    "question": "Viyana ile Bratislava hangi nehir üzerinde bulunur?",
+    "options": [
+      "Ren",
+      "Elbe",
+      "Tuna",
+      "Vistül"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Avusturya ve Slovakya başkentleri Tuna Nehri boyunca birbirine oldukça yakındır."
+  },
+  {
+    "id": "q54423",
+    "categoryIndex": 0,
+    "question": "ABD’nin Alaska eyaleti ile ana kara arasına hangi ülke girer?",
+    "options": [
+      "Rusya",
+      "Meksika",
+      "Grönland",
+      "Kanada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Alaska, ABD’nin diğer eyaletlerinden Kanada topraklarıyla ayrılır."
+  },
+  {
+    "id": "q54424",
+    "categoryIndex": 0,
+    "question": "Rusya’nın ana bölümünden ayrı Kaliningrad bölgesi hangi denizin kıyısındadır?",
+    "options": [
+      "Baltık Denizi",
+      "Karadeniz",
+      "Hazar Denizi",
+      "Barents Denizi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kaliningrad, Polonya ve Litvanya arasında Baltık kıyısında bulunan Rusya eksklavıdır."
+  },
+  {
+    "id": "q54425",
+    "categoryIndex": 0,
+    "question": "İspanya’nın Afrika kıyısındaki şehirlerinden biri hangisidir?",
+    "options": [
+      "Valencia",
+      "Ceuta",
+      "Bilbao",
+      "Sevilla"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ceuta, Cebelitarık Boğazı’nın güneyinde Fas kıyısında bulunan İspanyol şehridir."
+  },
+  {
+    "id": "q54426",
+    "categoryIndex": 0,
+    "question": "Fransa ile İspanya arasında Pirene Dağları’nda bulunan küçük ülke hangisidir?",
+    "options": [
+      "Monako",
+      "Lihtenştayn",
+      "Andorra",
+      "San Marino"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Andorra, Pireneler’de Fransa ve İspanya arasında yer alan kara ile çevrili prensliktir."
+  },
+  {
+    "id": "q54427",
+    "categoryIndex": 0,
+    "question": "İsviçre ile Avusturya arasında bulunan küçük ülke hangisidir?",
+    "options": [
+      "Lüksemburg",
+      "Andorra",
+      "Monako",
+      "Lihtenştayn"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Lihtenştayn Ren Vadisi’nde İsviçre ile Avusturya arasında bulunur."
+  },
+  {
+    "id": "q54428",
+    "categoryIndex": 0,
+    "question": "Fransa’nın Akdeniz kıyısında bulunan küçük şehir devleti hangisidir?",
+    "options": [
+      "Monako",
+      "Malta",
+      "San Marino",
+      "Vatikan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Monako Fransız Rivierası’nda yer alan ve dünyanın en küçük devletlerinden olan bir prensliktir."
+  },
+  {
+    "id": "q54429",
+    "categoryIndex": 0,
+    "question": "İtalya’nın içinde bulunan iki bağımsız devletten biri hangisidir?",
+    "options": [
+      "Monako",
+      "Vatikan",
+      "Andorra",
+      "Malta"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Vatikan Roma şehrinin içinde yer alan bağımsız bir şehir devletidir."
+  },
+  {
+    "id": "q54430",
+    "categoryIndex": 0,
+    "question": "Lüksemburg hangi üç ülkeyle sınır komşusudur?",
+    "options": [
+      "Belçika, Hollanda ve Almanya",
+      "Fransa, İsviçre ve Almanya",
+      "Belçika, Fransa ve Almanya",
+      "Belçika, Fransa ve Hollanda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Lüksemburg’un batısında Belçika, güneyinde Fransa, doğusunda Almanya bulunur."
+  },
+  {
+    "id": "q54431",
+    "categoryIndex": 0,
+    "question": "Dünyada en çok saat dilimi kullanan ülke, denizaşırı topraklarıyla birlikte hangisidir?",
+    "options": [
+      "Rusya",
+      "ABD",
+      "Birleşik Krallık",
+      "Fransa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Fransa’nın dünya geneline yayılmış denizaşırı bölgeleri çok sayıda saat dilimine uzanır."
+  },
+  {
+    "id": "q54432",
+    "categoryIndex": 0,
+    "question": "Çin ile Rusya arasında kalan kara ile çevrili ülke hangisidir?",
+    "options": [
+      "Moğolistan",
+      "Kazakistan",
+      "Kırgızistan",
+      "Tacikistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Moğolistan kuzeyde Rusya, güneyde ve diğer yönlerde Çin ile çevrilidir."
+  },
+  {
+    "id": "q54433",
+    "categoryIndex": 0,
+    "question": "Hindistan’ın içinde neredeyse tamamen çevrili olan ülke hangisidir?",
+    "options": [
+      "Nepal",
+      "Bangladeş",
+      "Bhutan",
+      "Pakistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bangladeş’in büyük bölümü Hindistan’la çevrilidir; güneydoğuda Myanmar’la kısa sınırı vardır."
+  },
+  {
+    "id": "q54434",
+    "categoryIndex": 0,
+    "question": "Senegal’in içine kama gibi uzanan ülke hangisidir?",
+    "options": [
+      "Gine-Bissau",
+      "Mali",
+      "Gambiya",
+      "Moritanya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Gambiya, Gambiya Nehri boyunca dar bir şerit hâlinde Senegal’in içine uzanır."
+  },
+  {
+    "id": "q54435",
+    "categoryIndex": 0,
+    "question": "Afrika’da hem Atlas Okyanusu’na hem Akdeniz’e kıyısı bulunan ülke hangisidir?",
+    "options": [
+      "Tunus",
+      "Libya",
+      "Cezayir",
+      "Fas"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Fas’ın batısında Atlas Okyanusu, kuzeyinde Akdeniz bulunur."
+  },
+  {
+    "id": "q54436",
+    "categoryIndex": 0,
+    "question": "Hem Karadeniz’e hem Hazar Denizi’ne kıyısı bulunan ülke hangisidir?",
+    "options": [
+      "Rusya",
+      "Gürcistan",
+      "Azerbaycan",
+      "Türkiye"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Rusya’nın güneybatıda Karadeniz’e, daha doğuda ise kapalı bir iç deniz olan Hazar’a kıyısı vardır."
+  },
+  {
+    "id": "q54437",
+    "categoryIndex": 0,
+    "question": "Büyük ve Küçük Diomede adaları arasından geçen boğaz hangisidir?",
+    "options": [
+      "Dover Boğazı",
+      "Bering Boğazı",
+      "Malakka Boğazı",
+      "Hürmüz Boğazı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Rusya ile ABD’ye ait Diomede adaları Bering Boğazı’nda uluslararası sınırın iki yanında yer alır."
+  },
+  {
+    "id": "q54438",
+    "categoryIndex": 1,
+    "question": "Aslan Kral’da Simba’nın babası kimdir?",
+    "options": [
+      "Scar",
+      "Rafiki",
+      "Mufasa",
+      "Timon"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mufasa, Gurur Toprakları’nın kralı ve Simba’ya yaşam döngüsünü öğreten babasıdır."
+  },
+  {
+    "id": "q54439",
+    "categoryIndex": 1,
+    "question": "Aslan Kral’da Mufasa’nın kıskanç kardeşi kimdir?",
+    "options": [
+      "Zazu",
+      "Pumbaa",
+      "Nala",
+      "Scar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Scar tahtı ele geçirmek için Mufasa’ya ihanet eder."
+  },
+  {
+    "id": "q54440",
+    "categoryIndex": 1,
+    "question": "Oyuncak Hikâyesi’nde uzay korucusu oyuncağın adı nedir?",
+    "options": [
+      "Buzz Lightyear",
+      "Woody",
+      "Rex",
+      "Hamm"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Buzz başlangıçta oyuncak olduğunu kabul etmeyen bir Space Ranger figürüdür."
+  },
+  {
+    "id": "q54441",
+    "categoryIndex": 1,
+    "question": "Kayıp Balık Nemo’da hafıza sorunu yaşayan balığın adı nedir?",
+    "options": [
+      "Coral",
+      "Dory",
+      "Deb",
+      "Peach"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dory kısa süreli hafıza kaybına rağmen Marlin’e Nemo’yu ararken yardım eder."
+  },
+  {
+    "id": "q54442",
+    "categoryIndex": 1,
+    "question": "Shrek filmlerindeki çizmeli kedinin İngilizce adı nedir?",
+    "options": [
+      "Kitty Softpaws",
+      "Tom Cat",
+      "Puss in Boots",
+      "Felix"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Puss in Boots kılıç kullanan, büyük gözlerle masum görünmeyi başaran bir maceracıdır."
+  },
+  {
+    "id": "q54443",
+    "categoryIndex": 1,
+    "question": "Buz Devri filmindeki meşe palamudu peşindeki karakter kimdir?",
+    "options": [
+      "Sid",
+      "Diego",
+      "Manny",
+      "Scrat"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Scrat’ın bitmeyen meşe palamudu takibi çoğu zaman büyük felaketlere yol açar."
+  },
+  {
+    "id": "q54444",
+    "categoryIndex": 1,
+    "question": "Kung Fu Panda’nın panda kahramanının adı nedir?",
+    "options": [
+      "Po",
+      "Shifu",
+      "Tai Lung",
+      "Oogway"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Po, erişte dükkânında çalışırken Ejderha Savaşçısı seçilen kung fu hayranıdır."
+  },
+  {
+    "id": "q54445",
+    "categoryIndex": 1,
+    "question": "Ratatouille filminde yemek yapan farenin adı nedir?",
+    "options": [
+      "Emile",
+      "Remy",
+      "Linguini",
+      "Django"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Remy olağanüstü koku ve tat duyusuyla Paris’te şef olmayı hayal eder."
+  },
+  {
+    "id": "q54446",
+    "categoryIndex": 1,
+    "question": "Wall-E’nin görevi nedir?",
+    "options": [
+      "Mars’ı keşfetmek",
+      "İnsanları uyandırmak",
+      "Dünya’daki çöpleri sıkıştırmak",
+      "Uzay gemisi sürmek"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Wall-E terk edilmiş Dünya’daki çöpleri küçük küpler hâlinde sıkıştıran bir robottur."
+  },
+  {
+    "id": "q54447",
+    "categoryIndex": 1,
+    "question": "Up filminde Carl’ın evini havalandıran şey nedir?",
+    "options": [
+      "Roketler",
+      "Dev pervaneler",
+      "Sıcak hava motoru",
+      "Balonlar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Carl binlerce helyum balonunu bacaya bağlayarak evini Güney Amerika’ya uçurur."
+  },
+  {
+    "id": "q54448",
+    "categoryIndex": 1,
+    "question": "Spirited Away filminde Chihiro’nun ailesi neye dönüşür?",
+    "options": [
+      "Domuza",
+      "Kurda",
+      "Taşa",
+      "Kuşa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Chihiro’nun anne ve babası ruhlar dünyasındaki yemekleri izinsiz yedikleri için domuza dönüşür."
+  },
+  {
+    "id": "q54449",
+    "categoryIndex": 1,
+    "question": "My Neighbor Totoro’da Totoro nasıl bir varlıktır?",
+    "options": [
+      "Robot",
+      "Orman ruhu",
+      "Ejderha",
+      "Deniz canavarı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Totoro kırsal bölgede yaşayan çocukların karşılaştığı büyük ve sevecen bir orman ruhudur."
+  },
+  {
+    "id": "q54450",
+    "categoryIndex": 1,
+    "question": "Death Note’taki deftere adı yazılan kişiye ne olur?",
+    "options": [
+      "Hafızasını kaybeder",
+      "Görünmez olur",
+      "Ölür",
+      "Zaman yolculuğu yapar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Death Note kurallarına göre adı ve yüzü bilinen kişi belirtilen biçimde ölür."
+  },
+  {
+    "id": "q54451",
+    "categoryIndex": 1,
+    "question": "Attack on Titan’da insanları devlerden koruyan büyük yapı nedir?",
+    "options": [
+      "Kubbeler",
+      "Yer altı tünelleri",
+      "Deniz bariyeri",
+      "Duvarlar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İnsanlığın büyük bölümü Maria, Rose ve Sina adlı dev duvarların içinde yaşar."
+  },
+  {
+    "id": "q54452",
+    "categoryIndex": 1,
+    "question": "Fullmetal Alchemist’te Elric kardeşler hangi simya yasağını ihlal eder?",
+    "options": [
+      "İnsan dönüştürme",
+      "Altın üretme",
+      "Zaman durdurma",
+      "Hayvan konuşması"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Annelerini geri getirme girişimi başarısız olur ve kardeşler bedenlerinin parçalarını kaybeder."
+  },
+  {
+    "id": "q54453",
+    "categoryIndex": 1,
+    "question": "Demon Slayer’ın başkahramanı kimdir?",
+    "options": [
+      "Zenitsu Agatsuma",
+      "Tanjiro Kamado",
+      "Inosuke Hashibira",
+      "Giyu Tomioka"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tanjiro ailesini öldüren iblislerden sonra kız kardeşi Nezuko’yu yeniden insan yapmaya çalışır."
+  },
+  {
+    "id": "q54454",
+    "categoryIndex": 1,
+    "question": "Cowboy Bebop’ın ödül avcısı ana karakteri kimdir?",
+    "options": [
+      "Jet Black",
+      "Vicious",
+      "Spike Spiegel",
+      "Faye Valentine"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Spike, Bebop gemisinde geçmişinden kaçan rahat tavırlı ama yetenekli bir ödül avcısıdır."
+  },
+  {
+    "id": "q54455",
+    "categoryIndex": 2,
+    "question": "Kristof Kolomb’un batıya giderek ulaşmak istediği bölge neresiydi?",
+    "options": [
+      "Avustralya",
+      "Antarktika",
+      "Afrika’nın güneyi",
+      "Asya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kolomb, Atlas Okyanusu üzerinden batıya giderek Asya’ya daha kısa deniz yolu bulmayı amaçladı."
+  },
+  {
+    "id": "q54456",
+    "categoryIndex": 2,
+    "question": "Vasco da Gama deniz yoluyla Avrupa’dan hangi ülkeye ulaştı?",
+    "options": [
+      "Hindistan",
+      "Çin",
+      "Japonya",
+      "Brezilya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Vasco da Gama 1498’de Ümit Burnu’nu dolaşarak Hindistan’ın Kalikut limanına ulaştı."
+  },
+  {
+    "id": "q54457",
+    "categoryIndex": 2,
+    "question": "Macellan seferi hangi okyanusa adını verdi?",
+    "options": [
+      "Atlas Okyanusu",
+      "Pasifik Okyanusu",
+      "Hint Okyanusu",
+      "Arktik Okyanusu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Macellan sakin gördüğü denize “barışçıl” anlamındaki Pasifik adını verdi."
+  },
+  {
+    "id": "q54458",
+    "categoryIndex": 2,
+    "question": "James Cook hangi okyanus bölgesindeki haritalarıyla tanınır?",
+    "options": [
+      "Arktik",
+      "Atlas’ın kuzeyi",
+      "Pasifik",
+      "Akdeniz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cook Yeni Zelanda, Avustralya’nın doğu kıyısı ve birçok Pasifik adasını ayrıntılı haritaladı."
+  },
+  {
+    "id": "q54459",
+    "categoryIndex": 2,
+    "question": "Charles Darwin’in yolculuk yaptığı geminin adı neydi?",
+    "options": [
+      "HMS Victory",
+      "Endeavour",
+      "Mayflower",
+      "HMS Beagle"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Darwin Beagle yolculuğunda topladığı gözlemleri daha sonra evrim düşüncesini geliştirmek için kullandı."
+  },
+  {
+    "id": "q54460",
+    "categoryIndex": 2,
+    "question": "Roald Amundsen hangi kutba ilk ulaşan keşif ekibine liderlik etti?",
+    "options": [
+      "Güney Kutbu",
+      "Kuzey Kutbu",
+      "Manyetik Kuzey Kutbu",
+      "Grönland merkezi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Amundsen’in Norveç ekibi Aralık 1911’de Güney Kutbu’na ulaştı."
+  },
+  {
+    "id": "q54461",
+    "categoryIndex": 2,
+    "question": "Ernest Shackleton’ın Antarktika gemisinin adı neydi?",
+    "options": [
+      "Discovery",
+      "Endurance",
+      "Terra Nova",
+      "Fram"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Endurance buzlar arasında sıkışıp battı ancak Shackleton tüm mürettebatını kurtarmayı başardı."
+  },
+  {
+    "id": "q54462",
+    "categoryIndex": 2,
+    "question": "İlk kez Everest’in zirvesine ulaşan ikili kimlerdir?",
+    "options": [
+      "George Mallory ve Andrew Irvine",
+      "Reinhold Messner ve Peter Habeler",
+      "Edmund Hillary ve Tenzing Norgay",
+      "Amundsen ve Scott"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Hillary ile Tenzing 29 Mayıs 1953’te Everest zirvesine ulaştı."
+  },
+  {
+    "id": "q54463",
+    "categoryIndex": 2,
+    "question": "Marie Curie hangi iki elementin keşfiyle ilişkilidir?",
+    "options": [
+      "Uranüs ve neptünyum",
+      "Helyum ve neon",
+      "Kobalt ve nikel",
+      "Polonyum ve radyum"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Curie çifti 1898’de polonyum ve radyumun varlığını duyurdu."
+  },
+  {
+    "id": "q54464",
+    "categoryIndex": 2,
+    "question": "Albert Einstein Nobel Ödülü’nü görelilikten çok hangi çalışma için aldı?",
+    "options": [
+      "Fotoelektrik etki",
+      "Atom bombası",
+      "Radyoaktivite",
+      "Kuantum dolanıklık"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Einstein 1921 Fizik Nobelini fotoelektrik etki yasasını açıklaması nedeniyle aldı."
+  },
+  {
+    "id": "q54465",
+    "categoryIndex": 2,
+    "question": "Nikola Tesla’nın geliştirilmesine büyük katkı verdiği elektrik sistemi hangisidir?",
+    "options": [
+      "Doğru akım",
+      "Alternatif akım",
+      "Statik elektrik",
+      "Pil hücresi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tesla’nın çok fazlı alternatif akım motorları ve sistemi uzun mesafeli elektrik iletimini kolaylaştırdı."
+  },
+  {
+    "id": "q54466",
+    "categoryIndex": 2,
+    "question": "Samuel Morse’un adı hangi iletişim koduyla yaşar?",
+    "options": [
+      "Braille alfabesi",
+      "ASCII",
+      "Mors alfabesi",
+      "Sezar şifresi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mors kodu harfleri kısa ve uzun sinyal dizileriyle iletir."
+  },
+  {
+    "id": "q54467",
+    "categoryIndex": 2,
+    "question": "Louis Braille görme engelliler için yazı sistemini kaç yaşlarında geliştirmeye başladı?",
+    "options": [
+      "Altmışlı yaşlarında",
+      "Doğumundan önce",
+      "Kırklı yaşlarında",
+      "Gençlik yıllarında"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Braille, Paris’te öğrenciyken 15 yaşına gelmeden kabartma nokta sistemini şekillendirdi."
+  },
+  {
+    "id": "q54468",
+    "categoryIndex": 2,
+    "question": "Florence Nightingale hangi savaş sırasında hemşirelik çalışmalarıyla ün kazandı?",
+    "options": [
+      "Kırım Savaşı",
+      "Napolyon Savaşları",
+      "Amerikan İç Savaşı",
+      "Boer Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nightingale Kırım Savaşı’nda hastane hijyeni ve kayıt sistemlerini geliştirerek ölüm oranlarını düşürmeye çalıştı."
+  },
+  {
+    "id": "q54469",
+    "categoryIndex": 2,
+    "question": "Clara Barton hangi yardım kuruluşunun Amerikan kolunu kurdu?",
+    "options": [
+      "UNICEF",
+      "Kızılhaç",
+      "Sınır Tanımayan Doktorlar",
+      "Salvation Army"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Clara Barton 1881’de Amerikan Kızılhaçı’nı kurdu."
+  },
+  {
+    "id": "q54470",
+    "categoryIndex": 2,
+    "question": "Rosa Parks otobüste yerini vermeyi reddettiği için hangi harekete simge oldu?",
+    "options": [
+      "Kadınların oy hakkı hareketi",
+      "İşçi hareketi",
+      "ABD sivil haklar hareketi",
+      "Çevre hareketi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Rosa Parks’ın 1955’te tutuklanması Montgomery Otobüs Boykotu’nu başlattı."
+  },
+  {
+    "id": "q54471",
+    "categoryIndex": 2,
+    "question": "Martin Luther King Jr.’ın ünlü “Bir hayalim var” konuşması hangi şehirde yapıldı?",
+    "options": [
+      "Atlanta",
+      "Chicago",
+      "Montgomery",
+      "Washington, D.C."
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "King konuşmasını 1963’te Lincoln Anıtı önündeki Washington Yürüyüşü’nde yaptı."
+  },
+  {
+    "id": "q54472",
+    "categoryIndex": 3,
+    "question": "Bir romanın olayları anlatan sesine ne denir?",
+    "options": [
+      "Anlatıcı",
+      "Editör",
+      "Dizgici",
+      "Eleştirmen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Anlatıcı birinci kişi, üçüncü kişi veya farklı bakış açılarıyla hikâyeyi okura aktarır."
+  },
+  {
+    "id": "q54473",
+    "categoryIndex": 3,
+    "question": "Olayların geçmişe dönerek anlatıldığı tekniğe ne denir?",
+    "options": [
+      "İç monolog",
+      "Geriye dönüş",
+      "Özetleme",
+      "Leitmotif"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Geriye dönüş mevcut zaman çizgisini keserek önceki olayları gösterir."
+  },
+  {
+    "id": "q54474",
+    "categoryIndex": 3,
+    "question": "Karakterin zihninden geçenlerin doğrudan verilmesine ne denir?",
+    "options": [
+      "Diyalog",
+      "Betimleme",
+      "İç monolog",
+      "Alıntılama"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İç monolog karakterin düşüncelerini araya anlatıcı açıklaması girmeden sunar."
+  },
+  {
+    "id": "q54475",
+    "categoryIndex": 3,
+    "question": "Bilinç akışı tekniği neyi taklit eder?",
+    "options": [
+      "Gazete haberini",
+      "Tiyatro sahnesini",
+      "Destan anlatımını",
+      "Zihindeki dağınık düşünce akışını"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bilinç akışı çağrışım, anı ve duyuların düzenlenmemiş zihinsel hareketini yansıtır."
+  },
+  {
+    "id": "q54476",
+    "categoryIndex": 3,
+    "question": "Bir eserde tekrar eden simge, söz veya ezgiye ne denir?",
+    "options": [
+      "Leitmotif",
+      "Epigraf",
+      "Dipnot",
+      "Paragraf"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Leitmotif belirli bir karakter, fikir veya duyguyla bağlantılı biçimde tekrar eder."
+  },
+  {
+    "id": "q54477",
+    "categoryIndex": 3,
+    "question": "Romanın başında yer alan kısa alıntıya ne denir?",
+    "options": [
+      "Epilog",
+      "Epigraf",
+      "Prolog",
+      "Indeks"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Epigraf eserin temasına ipucu vermek için başka bir metinden veya sözden alınabilir."
+  },
+  {
+    "id": "q54478",
+    "categoryIndex": 3,
+    "question": "Bir eserin olaylar sonrasını anlatan kapanış bölümüne ne denir?",
+    "options": [
+      "Prolog",
+      "Fragman",
+      "Epilog",
+      "Perde"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Epilog ana hikâye bittikten sonra karakterlerin geleceği hakkında bilgi verebilir."
+  },
+  {
+    "id": "q54479",
+    "categoryIndex": 3,
+    "question": "Tiyatro eserinin giriş bölümüne ne denir?",
+    "options": [
+      "Epilog",
+      "Koro",
+      "Perde arkası",
+      "Prolog"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Prolog oyunun başlamasından önce bağlam, karakter veya olay hakkında giriş sunar."
+  },
+  {
+    "id": "q54480",
+    "categoryIndex": 3,
+    "question": "Komik unsurlarla acı olayları birleştiren türe ne denir?",
+    "options": [
+      "Trajikomedi",
+      "Melodram",
+      "Fars",
+      "Pastoral"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Trajikomedi hem trajik hem komik tonları aynı eser içinde birleştirir."
+  },
+  {
+    "id": "q54481",
+    "categoryIndex": 3,
+    "question": "Aşırı abartılı ve hızlı komedi türüne ne denir?",
+    "options": [
+      "Tragedya",
+      "Fars",
+      "Elegy",
+      "Pastoral"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Fars yanlış anlaşılma, fiziksel komedi ve olasılık dışı durumlarla kahkaha yaratır."
+  },
+  {
+    "id": "q54482",
+    "categoryIndex": 3,
+    "question": "Bir kişinin yaşamını başka birinin yazdığı esere ne denir?",
+    "options": [
+      "Otobiyografi",
+      "Anı",
+      "Biyografi",
+      "Günlük"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Biyografi bir kişinin hayatını araştırma ve kaynaklara dayanarak başka bir yazarın anlatmasıdır."
+  },
+  {
+    "id": "q54483",
+    "categoryIndex": 3,
+    "question": "Yazarın kendi yaşamını anlattığı esere ne denir?",
+    "options": [
+      "Biyografi",
+      "Monografi",
+      "Deneme",
+      "Otobiyografi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Otobiyografi kişinin yaşamını kendi bakış açısından kaleme aldığı metindir."
+  },
+  {
+    "id": "q54484",
+    "categoryIndex": 3,
+    "question": "Gün gün tutulan kişisel yazılara ne denir?",
+    "options": [
+      "Günlük",
+      "Destan",
+      "Makale",
+      "Söyleşi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Günlükler olayları ve düşünceleri yazıldıkları tarihte kaydeder."
+  },
+  {
+    "id": "q54485",
+    "categoryIndex": 3,
+    "question": "Bir yazarın belirli bir konudaki kişisel düşüncelerini serbestçe anlattığı tür hangisidir?",
+    "options": [
+      "Tutanak",
+      "Deneme",
+      "Biyografi",
+      "Destan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Deneme kesin kanıtlama zorunluluğu olmadan kişisel ve düşünsel bir üslupla yazılır."
+  },
+  {
+    "id": "q54486",
+    "categoryIndex": 3,
+    "question": "Hayalî bir kusursuz toplum anlatısına ne denir?",
+    "options": [
+      "Distopya",
+      "Hiciv",
+      "Ütopya",
+      "Gotik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ütopya ideal siyasi ve toplumsal düzeni tasvir eden kurgudur."
+  },
+  {
+    "id": "q54487",
+    "categoryIndex": 3,
+    "question": "Baskıcı ve kötü bir gelecek toplumu anlatan türe ne denir?",
+    "options": [
+      "Ütopya",
+      "Pastoral",
+      "Romantik komedi",
+      "Distopya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Distopyalar gözetim, özgürlük kaybı ve totaliter düzen gibi tehlikeleri abartılı geleceklerle gösterir."
+  },
+  {
+    "id": "q54488",
+    "categoryIndex": 3,
+    "question": "Toplumsal kusurları mizah ve eleştiriyle gösteren türe ne denir?",
+    "options": [
+      "Hiciv",
+      "Ağıt",
+      "Masal",
+      "Pastoral"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hiciv kişileri, kurumları veya alışkanlıkları alaycı biçimde eleştirir."
+  },
+  {
+    "id": "q54489",
+    "categoryIndex": 4,
+    "question": "İnsan beyninin denge ve hareket koordinasyonundan sorumlu bölümü hangisidir?",
+    "options": [
+      "Hipotalamus",
+      "Beyincik",
+      "Büyük beyin kabuğu",
+      "Hipofiz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Beyincik kas hareketlerinin zamanlamasını ve dengeyi hassas biçimde düzenler."
+  },
+  {
+    "id": "q54490",
+    "categoryIndex": 4,
+    "question": "Vücut sıcaklığını düzenleyen beyin bölgesi hangisidir?",
+    "options": [
+      "Beyincik",
+      "Hipokampus",
+      "Hipotalamus",
+      "Omurilik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hipotalamus terleme, titreme, açlık ve susuzluk gibi homeostaz tepkilerini yönetir."
+  },
+  {
+    "id": "q54491",
+    "categoryIndex": 4,
+    "question": "Yeni anıların oluşmasında önemli beyin bölgesi hangisidir?",
+    "options": [
+      "Beyincik",
+      "Medulla",
+      "Pons",
+      "Hipokampus"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hipokampus yaşanan deneyimlerin uzun süreli belleğe dönüştürülmesinde kritik rol oynar."
+  },
+  {
+    "id": "q54492",
+    "categoryIndex": 4,
+    "question": "Korku ve duygusal öğrenmeyle yakından ilişkili beyin bölgesi hangisidir?",
+    "options": [
+      "Amigdala",
+      "Hipofiz",
+      "Beyincik",
+      "Talamus"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Amigdala tehditleri değerlendirme ve duygusal anıları güçlendirmede önemli rol üstlenir."
+  },
+  {
+    "id": "q54493",
+    "categoryIndex": 4,
+    "question": "Vücudun ana atardamarı hangisidir?",
+    "options": [
+      "Vena cava",
+      "Aort",
+      "Karotis",
+      "Pulmoner ven"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Aort sol karıncıktan çıkan oksijenli kanı vücudun büyük dolaşımına taşır."
+  },
+  {
+    "id": "q54494",
+    "categoryIndex": 4,
+    "question": "Kalbe kan getiren damarlara genel olarak ne denir?",
+    "options": [
+      "Atardamar",
+      "Kılcal damar",
+      "Toplardamar",
+      "Lenf kanalı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Toplardamarlar kanı dokulardan kalbe geri taşır."
+  },
+  {
+    "id": "q54495",
+    "categoryIndex": 4,
+    "question": "Atardamarların temel görevi nedir?",
+    "options": [
+      "Kanı kalbe getirmek",
+      "Yalnız oksijensiz kan taşımak",
+      "Hormon üretmek",
+      "Kanı kalpten uzaklaştırmak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Atardamarlar oksijen durumundan bağımsız olarak kanı kalpten dokulara veya akciğere götürür."
+  },
+  {
+    "id": "q54496",
+    "categoryIndex": 4,
+    "question": "Kan ile dokular arasındaki madde alışverişi en çok hangi damarlarda olur?",
+    "options": [
+      "Kılcal damarlar",
+      "Aort",
+      "Toplardamar kapakları",
+      "Koroner arter"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kılcal damarların tek hücre kalınlığındaki duvarı gaz ve besin değişimini kolaylaştırır."
+  },
+  {
+    "id": "q54497",
+    "categoryIndex": 4,
+    "question": "İnsan vücudunda oksijeni bağlayan protein hangisidir?",
+    "options": [
+      "İnsülin",
+      "Hemoglobin",
+      "Keratin",
+      "Kollajen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Alyuvarlardaki hemoglobin demir içeren yapısıyla oksijeni bağlayıp taşır."
+  },
+  {
+    "id": "q54498",
+    "categoryIndex": 4,
+    "question": "Kaslarda oksijen depolayan protein hangisidir?",
+    "options": [
+      "Hemoglobin",
+      "Melanin",
+      "Miyoglobin",
+      "Fibrinojen"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Miyoglobin kas hücrelerinde oksijeni bağlar ve yoğun çalışma sırasında kullanıma hazır tutar."
+  },
+  {
+    "id": "q54499",
+    "categoryIndex": 4,
+    "question": "Kemiklerin ana mineral bileşenlerinden biri hangisidir?",
+    "options": [
+      "Sodyum klorür",
+      "Demir oksit",
+      "Potasyum nitrat",
+      "Kalsiyum fosfat"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hidroksiapatit kristalleri olarak bulunan kalsiyum fosfat kemiğe sertlik verir."
+  },
+  {
+    "id": "q54500",
+    "categoryIndex": 4,
+    "question": "Cilde ve saça renk veren pigment hangisidir?",
+    "options": [
+      "Melanin",
+      "Klorofil",
+      "Keratin",
+      "Hemoglobin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Melanositlerin ürettiği melanin cilt, saç ve göz renginin önemli belirleyicisidir."
+  },
+  {
+    "id": "q54501",
+    "categoryIndex": 4,
+    "question": "Saç ve tırnakların temel yapısal proteini hangisidir?",
+    "options": [
+      "Kollajen",
+      "Keratin",
+      "Elastin",
+      "Aktin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Keratin sert ve dayanıklı lifler oluşturarak saç, tırnak ve derinin dış tabakasını güçlendirir."
+  },
+  {
+    "id": "q54502",
+    "categoryIndex": 4,
+    "question": "Vücuttaki bağ dokusunun temel proteinlerinden biri hangisidir?",
+    "options": [
+      "İnsülin",
+      "Miyoglobin",
+      "Kollajen",
+      "Amilaz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kollajen deri, tendon, kıkırdak ve kemiklere yapı ve dayanıklılık sağlar."
+  },
+  {
+    "id": "q54503",
+    "categoryIndex": 4,
+    "question": "Nişastayı parçalamaya ağızda başlayan enzim hangisidir?",
+    "options": [
+      "Pepsin",
+      "Lipaz",
+      "Laktaz",
+      "Amilaz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tükürük amilazı karmaşık karbonhidratları daha küçük şekerlere ayırmaya başlar."
+  },
+  {
+    "id": "q54504",
+    "categoryIndex": 4,
+    "question": "Midede protein sindirimine yardım eden enzim hangisidir?",
+    "options": [
+      "Pepsin",
+      "Amilaz",
+      "Laktaz",
+      "Katalaz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Pepsin asitli mide ortamında proteinleri daha küçük peptitlere parçalar."
+  },
+  {
+    "id": "q54505",
+    "categoryIndex": 5,
+    "question": "100 metre koşusu hangi atletizm türüne girer?",
+    "options": [
+      "Orta mesafe",
+      "Sprint",
+      "Maraton",
+      "Engelli dayanıklılık"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "100 metre kısa mesafede maksimum hız gerektiren klasik sprint yarışıdır."
+  },
+  {
+    "id": "q54506",
+    "categoryIndex": 5,
+    "question": "Atletizmde 1500 metre hangi tür koşudur?",
+    "options": [
+      "Sprint",
+      "Uzun mesafe maraton",
+      "Orta mesafe",
+      "Bayrak yarışı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "1500 metre hız ve dayanıklılığı birleştiren orta mesafe yarışıdır."
+  },
+  {
+    "id": "q54507",
+    "categoryIndex": 5,
+    "question": "Atletizmde 4x100 ne tür bir yarıştır?",
+    "options": [
+      "Engelli koşu",
+      "Kros",
+      "Yürüyüş",
+      "Bayrak yarışı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Dört sporcu sırayla 100 metre koşar ve bayrağı değişim alanında birbirine verir."
+  },
+  {
+    "id": "q54508",
+    "categoryIndex": 5,
+    "question": "Engelli koşuda sporcular neyin üzerinden geçer?",
+    "options": [
+      "Engellerin",
+      "Kum havuzunun",
+      "Su kanalının yalnızca",
+      "Filelerin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Engelli koşuda belirli aralıklarla yerleştirilen bariyerler koşu ritmini bozmadan aşılır."
+  },
+  {
+    "id": "q54509",
+    "categoryIndex": 5,
+    "question": "3000 metre su engelli koşusunda hangi ek engel vardır?",
+    "options": [
+      "Kum tepesi",
+      "Su çukuru",
+      "İp merdiven",
+      "Tünel"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Steeplechase yarışında sabit engellerin yanında her turda bir su çukuru bulunur."
+  },
+  {
+    "id": "q54510",
+    "categoryIndex": 5,
+    "question": "Uzun atlamada sporcu hangi bölgeye düşer?",
+    "options": [
+      "Su havuzuna",
+      "Çim alana",
+      "Kum havuzuna",
+      "Minder üzerine"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Atlet koşu yolundan hızlanır, basma tahtasından sıçrar ve kum havuzuna iner."
+  },
+  {
+    "id": "q54511",
+    "categoryIndex": 5,
+    "question": "Üç adım atlamanın üç aşaması hangileridir?",
+    "options": [
+      "Koşu, takla ve iniş",
+      "Sıçrama, dönme ve yuvarlanma",
+      "Atış, koşu ve atlama",
+      "Sekme, adım ve atlama"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Triple jump sporcusu aynı ayakla sekme, diğer ayağa adım ve son uzun atlamayı yapar."
+  },
+  {
+    "id": "q54512",
+    "categoryIndex": 5,
+    "question": "Yüksek atlamada sporcu hangi nesnenin üzerinden geçer?",
+    "options": [
+      "Çıtanın",
+      "Halkanın",
+      "File ağının",
+      "Duvarın"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Atlet koşu ve sıçramayla yatay çıtayı düşürmeden aşmaya çalışır."
+  },
+  {
+    "id": "q54513",
+    "categoryIndex": 5,
+    "question": "Sırıkla atlamada yükselmek için ne kullanılır?",
+    "options": [
+      "İp",
+      "Esnek sırık",
+      "Trambolin",
+      "Merdiven"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sporcu sırığı kutuya yerleştirip bükülme enerjisiyle kendini çıtanın üzerine taşır."
+  },
+  {
+    "id": "q54514",
+    "categoryIndex": 5,
+    "question": "Gülle atmada kullanılan nesne nasıl hareket ettirilir?",
+    "options": [
+      "Tekmeyle",
+      "Raketle vurularak",
+      "Omuzdan itilerek",
+      "İple savrularak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Gülle atılmaz, boyna yakın tutulup tek elle güçlü biçimde itilir."
+  },
+  {
+    "id": "q54515",
+    "categoryIndex": 5,
+    "question": "Disk atmada sporcu ne fırlatır?",
+    "options": [
+      "Metal top",
+      "Sivri mızrak",
+      "Zincirli ağırlık",
+      "Yassı dairesel disk"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Atlet dönüş hareketiyle diski dairesel sektörden mümkün olduğunca uzağa gönderir."
+  },
+  {
+    "id": "q54516",
+    "categoryIndex": 5,
+    "question": "Cirit atmada kullanılan araç hangisidir?",
+    "options": [
+      "Mızrak benzeri cirit",
+      "Disk",
+      "Gülle",
+      "Çekiç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cirit aerodinamik, uzun ve sivri bir araçtır; koşu sonrasında tek elle fırlatılır."
+  },
+  {
+    "id": "q54517",
+    "categoryIndex": 5,
+    "question": "Çekiç atmada ağırlık sporcunun eline nasıl bağlıdır?",
+    "options": [
+      "Lastik bantla",
+      "Tel ve sapla",
+      "Zincirsiz doğrudan",
+      "Tahta sırıkla"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Metal küre çelik tel ve tutma sapıyla sporcunun dönüş hareketine bağlanır."
+  },
+  {
+    "id": "q54518",
+    "categoryIndex": 5,
+    "question": "Kros koşusu genellikle nerede yapılır?",
+    "options": [
+      "Kapalı yüzme havuzunda",
+      "Buz pistinde",
+      "Doğal arazi üzerinde",
+      "Velodromda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kros parkurları çim, toprak, tepe ve çamur gibi değişken doğal zeminler içerir."
+  },
+  {
+    "id": "q54519",
+    "categoryIndex": 5,
+    "question": "Olimpik yürüyüşte sporcunun bir ayağı için temel kural nedir?",
+    "options": [
+      "İki ayak aynı anda havada",
+      "Yalnız topukla basmak",
+      "Her adımda zıplamak",
+      "Gözle görülebilir şekilde sürekli yerle temas"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Yarış yürüyüşünde görünen temas kaybı ve dizin erken bükülmesi ihlal sayılır."
+  },
+  {
+    "id": "q54520",
+    "categoryIndex": 5,
+    "question": "Maratonun adı hangi antik savaş alanından gelir?",
+    "options": [
+      "Maraton",
+      "Sparta",
+      "Troya",
+      "Olympia"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Efsane, Maraton Savaşı’ndan Atina’ya haber götüren koşucuya dayanır."
+  }
+]

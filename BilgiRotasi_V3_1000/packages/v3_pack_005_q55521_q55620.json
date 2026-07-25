@@ -1,0 +1,1402 @@
+[
+  {
+    "categoryIndex": 5,
+    "question": "Polo sporunda oyuncular topa hangi araçla vurur?",
+    "options": [
+      "Uzun saplı tokmak",
+      "Raket",
+      "Sopa biçimli kürek",
+      "Istaka"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Polo oyuncuları at üzerindeyken topa “mallet” denilen uzun saplı tokmakla vurur.",
+    "id": "q55521"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Roma İmparatoru Konstantin yeni başkentini hangi şehirde kurdu?",
+    "options": [
+      "İskenderiye",
+      "Konstantinopolis",
+      "Atina",
+      "Antakya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Konstantin, Byzantion’u yeniden düzenleyerek 330’da Konstantinopolis adıyla başkent yaptı.",
+    "id": "q55522"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bitkide suyu kökten yapraklara taşıyan doku hangisidir?",
+    "options": [
+      "Floem",
+      "Kambiyum",
+      "Ksilem",
+      "Epidermis"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ksilem boruları su ve mineralleri çoğunlukla yukarı yönde taşır.",
+    "id": "q55523"
+  },
+  {
+    "id": "q55524",
+    "categoryIndex": 3,
+    "question": "Kuyucaklı Yusuf’u evlat edinen kaymakamın adı nedir?",
+    "options": [
+      "Şakir",
+      "Hacı Ethem",
+      "Muazzez",
+      "Salahattin Bey"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kaymakam Salahattin Bey, ailesi öldürülen Yusuf’u evlat edinir."
+  },
+  {
+    "id": "q55525",
+    "categoryIndex": 3,
+    "question": "Ağrı Dağı Efsanesi romanındaki âşıkların adları nedir?",
+    "options": [
+      "Ahmet ve Gülbahar",
+      "Kerem ve Aslı",
+      "Ferhat ve Şirin",
+      "Mecnun ve Leyla"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yaşar Kemal’in romanı, Ahmet ile Gülbahar’ın geleneklere meydan okuyan aşkını anlatır."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "İlk basketbol maçlarında pota olarak ne kullanıldı?",
+    "options": [
+      "Metal çember",
+      "Şeftali sepeti",
+      "Balık ağı",
+      "Tahta sandık"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Naismith spor salonunun balkonuna iki şeftali sepeti astı.",
+    "id": "q55526"
+  },
+  {
+    "id": "q55527",
+    "categoryIndex": 1,
+    "question": "BoJack Horseman dizisinde Hollywood tabelası kazadan sonra hangi biçimde kalır?",
+    "options": [
+      "Hollywoodland",
+      "Hollyweird",
+      "Hollywoo",
+      "Holywood"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tabeladaki “D” harfi çalınınca şehir uzun süre “Hollywoo” diye anılır."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Bear dizisindeki restoran hangi şehirdedir?",
+    "options": [
+      "New York",
+      "Philadelphia",
+      "Boston",
+      "Chicago"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Carmy, ailesinden kalan sandviç dükkânını Chicago’da devralır.",
+    "id": "q55528"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bitkide şekerleri farklı organlara taşıyan doku hangisidir?",
+    "options": [
+      "Floem",
+      "Ksilem",
+      "Korteks",
+      "Stoma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Floem, yapraklarda üretilen şekerleri büyüyen veya depolayan dokulara iletir.",
+    "id": "q55529"
+  },
+  {
+    "id": "q55530",
+    "categoryIndex": 3,
+    "question": "Arnolfini’nin Evlenmesi tablosundaki dışbükey ayna hangi ressamın ayrıntıcılığıyla ünlüdür?",
+    "options": [
+      "Hieronymus Bosch",
+      "Jan van Eyck",
+      "Pieter Bruegel",
+      "Albrecht Dürer"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Jan van Eyck, odadaki figürleri ve küçük ayrıntıları dışbükey aynaya da yansıtmıştır."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Boston Celtics hangi şehirde oynar?",
+    "options": [
+      "Chicago",
+      "Miami",
+      "Boston",
+      "Dallas"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Celtics, Massachusetts eyaletinin Boston kentini temsil eder.",
+    "id": "q55531"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Roma İmparatorluğu’nun kalıcı biçimde Doğu ve Batı olarak ayrıldığı yıl hangisidir?",
+    "options": [
+      "476",
+      "313",
+      "527",
+      "395"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "I. Theodosius’un ölümünden sonra 395’te imparatorluk iki oğlu arasında bölündü.",
+    "id": "q55532"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Las Meninas tablosundaki aynada kimlerin yansıması görülür?",
+    "options": [
+      "Kral IV. Felipe ile Kraliçe Mariana",
+      "Ressamın anne ve babası",
+      "Prenses ile nedimesi",
+      "İki saray soytarısı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Arka duvardaki aynada İspanya Kralı IV. Felipe ile Kraliçe Mariana’nın yansıması görülür.",
+    "id": "q55533"
+  },
+  {
+    "id": "q55534",
+    "categoryIndex": 3,
+    "question": "Dünyevi Zevkler Bahçesi adlı üç parçalı eserin ressamı kimdir?",
+    "options": [
+      "El Greco",
+      "Hieronymus Bosch",
+      "Caravaggio",
+      "Goya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bosch’un triptiği cennet, dünyevi hazlar ve cehennem imgeleriyle doludur."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Ayçiçekleri dizisiyle tanınan ressam kimdir?",
+    "options": [
+      "Pierre-Auguste Renoir",
+      "Henri Matisse",
+      "Vincent van Gogh",
+      "Paul Cézanne"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Van Gogh, Arles’te sarı tonların hâkim olduğu bir dizi ayçiçeği resmi yaptı.",
+    "id": "q55535"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Venüs sinekkapanı kapanmayı neyle başlatır?",
+    "options": [
+      "Toprak ısınınca",
+      "Gölge görünce",
+      "Ay ışığı vurunca",
+      "Tetik tüylerine dokunulmasıyla"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Belirli sürede birden fazla dokunuş, kapanın gereksiz yere kapanmasını önleyen elektriksel yanıtı başlatır.",
+    "id": "q55536"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Cebelitarık Boğazı hangi iki kıtayı ayırır?",
+    "options": [
+      "Avrupa ve Afrika",
+      "Avrupa ve Asya",
+      "Kuzey Amerika ve Güney Amerika",
+      "Asya ve Afrika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cebelitarık Boğazı, İspanya ile Fas arasında Akdeniz’i Atlas Okyanusu’na bağlar.",
+    "id": "q55537"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Guernica tablosu hangi olaydan esinlenmiştir?",
+    "options": [
+      "Pompeii’nin yıkımı",
+      "Guernica’nın bombalanması",
+      "Waterloo Savaşı",
+      "Bastille Baskını"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Picasso, İspanya İç Savaşı’nda Guernica kasabasının bombalanmasına tepki olarak tabloyu yaptı.",
+    "id": "q55538"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Roma rakamlarında 50 sayısı hangi harfle gösterilir?",
+    "options": [
+      "X",
+      "C",
+      "L",
+      "V"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Roma rakamlarında L harfi 50 değerini temsil eder.",
+    "id": "q55539"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Malakka Boğazı hangi iki büyük su alanını birbirine bağlayan önemli bir geçittir?",
+    "options": [
+      "Kızıldeniz ve Basra Körfezi",
+      "Atlas Okyanusu ve Akdeniz",
+      "Büyük Okyanus ve Bering Denizi",
+      "Hint Okyanusu ve Güney Çin Denizi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Malakka Boğazı, Hint Okyanusu’ndan Güney Çin Denizi’ne uzanan yoğun bir deniz yoludur.",
+    "id": "q55540"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Chicago Bulls hangi NBA efsanesiyle en çok özdeşleşir?",
+    "options": [
+      "Michael Jordan",
+      "Tim Duncan",
+      "Larry Bird",
+      "Magic Johnson"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jordan, Bulls’la 1990’larda altı NBA şampiyonluğu kazandı.",
+    "id": "q55541"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Los Angeles Lakers’ın mor ve altın renkleri hangi şehirle özdeşleşir?",
+    "options": [
+      "Denver",
+      "Los Angeles",
+      "San Francisco",
+      "Phoenix"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Lakers 1960’ta Minneapolis’ten Los Angeles’a taşındı.",
+    "id": "q55542"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "New York Knicks iç saha maçlarını hangi ünlü salonda oynar?",
+    "options": [
+      "Barclays Center",
+      "TD Garden",
+      "Madison Square Garden",
+      "United Center"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Manhattan’daki Madison Square Garden, Knicks’in tarihî evidir.",
+    "id": "q55543"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Dünyanın en derin okyanus çukuru hangisidir?",
+    "options": [
+      "Porto Riko Çukuru",
+      "Tonga Çukuru",
+      "Java Çukuru",
+      "Mariana Çukuru"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Mariana Çukuru’ndaki Challenger Deep, bilinen en derin okyanus noktasıdır.",
+    "id": "q55544"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Ölü Deniz neden deniz seviyesinin altındaki en alçak kara alanlarından biridir?",
+    "options": [
+      "Kapalı bir çöküntü havzasında bulunduğu için",
+      "Volkan krateri olduğu için",
+      "Buzullar kazdığı için",
+      "Okyanus gelgitleri çektiği için"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ölü Deniz, dışarıya akışı olmayan tektonik bir çöküntü havzasında yer alır.",
+    "id": "q55545"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Genç ayçiçeklerinin Güneş’i takip etmesine ne denir?",
+    "options": [
+      "Fotoperiyodizm",
+      "Heliotropizm",
+      "Jeotropizm",
+      "Hidrotropizm"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Büyüyen ayçiçeği başları gün boyunca doğudan batıya yönelip gece yeniden doğuya döner.",
+    "id": "q55546"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Kaktüslerin dikenleri evrimsel olarak hangi yapının değişmiş hâlidir?",
+    "options": [
+      "Kök",
+      "Çiçek",
+      "Yaprak",
+      "Meyve"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dikene dönüşen yapraklar su kaybını azaltır ve bitkiyi otçullardan korur.",
+    "id": "q55547"
+  },
+  {
+    "id": "q55548",
+    "categoryIndex": 1,
+    "question": "Gravity Falls dizisindeki ikiz kardeşlerin adları nedir?",
+    "options": [
+      "Wirt ve Greg",
+      "Finn ve Jake",
+      "Rick ve Morty",
+      "Dipper ve Mabel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Dipper ve Mabel Pines yaz tatilini gizemlerle dolu Gravity Falls kasabasında geçirir."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Crown dizisi hangi kurumun yakın tarihini dramatize eder?",
+    "options": [
+      "Britanya monarşisi",
+      "ABD Kongresi",
+      "Fransız Akademisi",
+      "Vatikan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "The Crown, II. Elizabeth’in saltanatı çevresinde Britanya kraliyet ailesini anlatır.",
+    "id": "q55549"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Baykal Gölü hangi özelliğiyle dünya rekoruna sahiptir?",
+    "options": [
+      "En tuzlu göl olması",
+      "En derin tatlı su gölü olması",
+      "En geniş yüzölçümlü göl olması",
+      "En yüksek rakımlı göl olması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sibirya’daki Baykal Gölü yaklaşık 1.642 metreyle dünyanın en derin tatlı su gölüdür.",
+    "id": "q55550"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Liken hangi canlıların ortak yaşamından oluşur?",
+    "options": [
+      "Bitki ve böcek",
+      "Hayvan ve bakteri",
+      "Mantar ve alg ya da siyanobakteri",
+      "İki mantar türü"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mantar yapı ve su sağlarken fotosentetik ortak organik besin üretir.",
+    "id": "q55551"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Belleğin Azmi tablosundaki en ünlü nesneler hangileridir?",
+    "options": [
+      "Uçan şemsiyeler",
+      "Kırmızı balonlar",
+      "Kırık aynalar",
+      "Eriyen saatler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Salvador Dalí’nin sürrealist tablosunda yumuşayıp eriyen cep saatleri görülür.",
+    "id": "q55552"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Mikoriza hangi iki yapı arasındaki ortak yaşamdır?",
+    "options": [
+      "Mantar ve bitki kökü",
+      "Bakteri ve hayvan derisi",
+      "İki ağaç gövdesi",
+      "Alg ve mercan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Mantar kökün mineral ve su alımını artırırken bitkiden şeker alır.",
+    "id": "q55553"
+  },
+  {
+    "id": "q55554",
+    "categoryIndex": 2,
+    "question": "Taiping Ayaklanması hangi ülkede büyük bir iç savaşa dönüştü?",
+    "options": [
+      "Hindistan",
+      "Çin",
+      "İran",
+      "Japonya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1850’lerde başlayan Taiping Ayaklanması, Qing Hanedanı döneminde milyonlarca kişinin öldüğü büyük bir iç savaştı."
+  },
+  {
+    "id": "q55555",
+    "categoryIndex": 1,
+    "question": "Futurama dizisindeki teslimat şirketinin adı nedir?",
+    "options": [
+      "MomCorp",
+      "Omni Consumer",
+      "Planet Express",
+      "Interstellar Post"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Fry ve arkadaşları Profesör Farnsworth’un Planet Express şirketinde çalışır."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Wire dizisinin merkezindeki Amerikan şehri hangisidir?",
+    "options": [
+      "Cleveland",
+      "Detroit",
+      "New Orleans",
+      "Baltimore"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "The Wire, Baltimore’daki polis, suç, liman, eğitim ve medya kurumlarını farklı sezonlarda inceler.",
+    "id": "q55556"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Fleabag dizisinde başkarakter izleyiciyle nasıl özel bir bağ kurar?",
+    "options": [
+      "Kameraya doğrudan konuşur",
+      "Rüyalarını anlatır",
+      "Sadece ses kaydı bırakır",
+      "Her bölüm mektup yazar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fleabag sık sık dördüncü duvarı yıkar ve düşüncelerini kameraya paylaşır.",
+    "id": "q55557"
+  },
+  {
+    "id": "q55558",
+    "categoryIndex": 1,
+    "question": "Over the Garden Wall dizisindeki iki kardeşin adı nedir?",
+    "options": [
+      "Finn ve Jake",
+      "Wirt ve Greg",
+      "Mordecai ve Rigby",
+      "Dipper ve Mabel"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Wirt ve küçük kardeşi Greg, eve dönüş yolunu ararken gizemli Unknown’da dolaşır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Nika İsyanı hangi şehirde gerçekleşti?",
+    "options": [
+      "Ravenna",
+      "Atina",
+      "Konstantinopolis",
+      "Roma"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "532’de Hipodrom çevresinde başlayan Nika İsyanı Bizans başkentini büyük ölçüde tahrip etti.",
+    "id": "q55559"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Skyhook atışıyla özdeşleşen basketbolcu kimdir?",
+    "options": [
+      "Shaquille O’Neal",
+      "Allen Iverson",
+      "Dirk Nowitzki",
+      "Kareem Abdul-Jabbar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kareem’in yüksekten bıraktığı tek elli skyhook, savunması en zor şutlardan biriydi.",
+    "id": "q55560"
+  },
+  {
+    "id": "q55561",
+    "categoryIndex": 5,
+    "question": "Deniz kıyısındaki kumlu ve rüzgârlı geleneksel golf sahalarına ne denir?",
+    "options": [
+      "Links",
+      "Parkland",
+      "Pitch and putt",
+      "Desert course"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Links sahaları doğal kum tepeleri, sert zemin ve güçlü kıyı rüzgârlarıyla karakterizedir."
+  },
+  {
+    "id": "q55562",
+    "categoryIndex": 1,
+    "question": "Disco Elysium oyununda başkarakterin mesleği nedir?",
+    "options": [
+      "Avukat",
+      "Dedektif",
+      "Doktor",
+      "Gazeteci"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hafızasını kaybetmiş başkarakter, Revachol’da bir cinayeti araştıran dedektiftir."
+  },
+  {
+    "id": "q55563",
+    "categoryIndex": 3,
+    "question": "Medusa’nın Salı tablosu hangi Fransız ressama aittir?",
+    "options": [
+      "Gustave Courbet",
+      "Édouard Manet",
+      "Théodore Géricault",
+      "Eugène Delacroix"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Géricault, gerçek bir deniz faciasından esinlenerek umutsuz kazazedeleri dev bir tuvalde resmetti."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Hicret hangi iki şehir arasında gerçekleşti?",
+    "options": [
+      "Şam’dan Mekke’ye",
+      "Bağdat’tan Medine’ye",
+      "Medine’den Kudüs’e",
+      "Mekke’den Medine’ye"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hz. Muhammed ve ilk Müslümanlar 622’de Mekke’den Yesrib’e, yani Medine’ye göç etti.",
+    "id": "q55564"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Up filminde Carl’ın evi nasıl havalanır?",
+    "options": [
+      "Binlerce balonla",
+      "Roket motoruyla",
+      "Sihirli bir rüzgârla",
+      "Dev bir pervaneyle"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Carl, bacaya ve çatısına bağladığı çok sayıda helyum balonuyla evini uçurur.",
+    "id": "q55565"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Hazar Denizi coğrafi olarak aslında nedir?",
+    "options": [
+      "İç deniz kolu",
+      "Kapalı bir göl",
+      "Buzul fiyordu",
+      "Okyanus körfezi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hazar, okyanuslara doğal bağlantısı olmayan dünyanın en büyük kapalı su kütlesidir.",
+    "id": "q55566"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Abbâsî Devleti’nin başkenti hangi şehirdi?",
+    "options": [
+      "Kahire",
+      "Kurtuba",
+      "Bağdat",
+      "Şam"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Abbâsîler 762’de Bağdat’ı kurarak yönetim merkezlerini buraya taşıdı.",
+    "id": "q55567"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Mangrov ağaçlarının özel kökleri en çok hangi soruna uyum sağlar?",
+    "options": [
+      "Yoğun kar yüküne",
+      "Kurak dağ havasına",
+      "Volkanik lavlara",
+      "Oksijensiz ve tuzlu çamura"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mangrov kökleri hava almayı, tuzu yönetmeyi ve gelgitli çamurda tutunmayı sağlar.",
+    "id": "q55568"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Abbâsî Bağdat’ındaki ünlü çeviri ve bilim merkezinin adı nedir?",
+    "options": [
+      "Beytülhikme",
+      "Nizamiye",
+      "Darülfünun",
+      "Elhamra"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Beytülhikme’de Yunanca, Farsça ve Hintçe eserler Arapçaya çevrildi.",
+    "id": "q55569"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Coco filminde Miguel’in tutkuyla çalmak istediği enstrüman hangisidir?",
+    "options": [
+      "Akordeon",
+      "Gitar",
+      "Trompet",
+      "Keman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Miguel, ailesinin müzik yasağına rağmen gitar çalıp müzisyen olmayı hayal eder.",
+    "id": "q55570"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bir ekosistemde enerjinin temel kaynağı çoğunlukla nedir?",
+    "options": [
+      "Ay ışığı",
+      "Toprak mineralleri",
+      "Güneş",
+      "Rüzgâr sesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Üreticiler güneş enerjisini fotosentezle kimyasal enerjiye çevirir ve besin ağının temelini oluşturur.",
+    "id": "q55571"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Besin zincirinde bitkiler hangi roldedir?",
+    "options": [
+      "Ayrıştırıcı",
+      "Parazit",
+      "Tüketici",
+      "Üretici"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bitkiler ışık enerjisiyle kendi organik besinlerini ürettikleri için üretici kabul edilir.",
+    "id": "q55572"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Inside Out filmindeki duygular kimin zihninde çalışır?",
+    "options": [
+      "Riley",
+      "Mei",
+      "Boo",
+      "Mirabel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Neşe, Üzüntü, Öfke, Korku ve Tiksinti, Riley’nin zihnindeki kontrol merkezinde görev yapar.",
+    "id": "q55573"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Şarlman 800 yılında hangi unvanla taç giydi?",
+    "options": [
+      "Fransa Cumhurbaşkanı",
+      "Roma İmparatoru",
+      "İngiltere Kralı",
+      "Bizans Patriği"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Papa III. Leo, Şarlman’ı Noel günü Roma’da imparator olarak taçlandırdı.",
+    "id": "q55574"
+  },
+  {
+    "id": "q55575",
+    "categoryIndex": 3,
+    "question": "Olympia tablosunu yapan ressam kimdir?",
+    "options": [
+      "Paul Cézanne",
+      "Claude Monet",
+      "Édouard Manet",
+      "Edgar Degas"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Manet’nin Olympia’sı, doğrudan bakışı ve çağdaş konusu nedeniyle sergilendiğinde büyük tartışma yarattı."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Atina Okulu freskinde merkezde yürüyen iki filozof kimdir?",
+    "options": [
+      "Epikuros ve Zenon",
+      "Herakleitos ve Diogenes",
+      "Sokrates ve Pisagor",
+      "Platon ve Aristoteles"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Raphael, Platon ile Aristoteles’i farklı felsefi yönelimleri simgeleyecek biçimde merkeze yerleştirdi.",
+    "id": "q55576"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Victoria Gölü hangi kıtadadır?",
+    "options": [
+      "Afrika",
+      "Güney Amerika",
+      "Asya",
+      "Avrupa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Victoria Gölü, Kenya, Uganda ve Tanzanya arasında Doğu Afrika’da bulunur.",
+    "id": "q55577"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Ratatouille filmindeki Remy hangi hayvandır?",
+    "options": [
+      "Kedi",
+      "Fare",
+      "Tavşan",
+      "Köpek"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Remy, olağanüstü koku ve tat alma duyusuna sahip, aşçı olmak isteyen bir faredir.",
+    "id": "q55578"
+  },
+  {
+    "id": "q55579",
+    "categoryIndex": 2,
+    "question": "1857’deki Sipahi Ayaklanması hangi ülkede Britanya yönetimine karşı başladı?",
+    "options": [
+      "Güney Afrika",
+      "Kanada",
+      "Hindistan",
+      "Mısır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Britanya Doğu Hindistan Şirketi ordusundaki Hint askerlerin isyanı, 1857’de geniş çaplı bir ayaklanmaya dönüştü."
+  },
+  {
+    "id": "q55580",
+    "categoryIndex": 4,
+    "question": "Nautilus kabuğundaki odacıklar ne işe yarar?",
+    "options": [
+      "Yiyecek öğütür",
+      "Ses kaydeder",
+      "Elektrik üretir",
+      "Yüzdürme ve derinlik kontrolüne yardımcı olur"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Nautilus, kabuk odacıklarındaki gaz ve sıvı dengesini ayarlayarak su içindeki konumunu kontrol eder."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "1992 ABD Olimpiyat basketbol takımının lakabı neydi?",
+    "options": [
+      "Dream Team",
+      "Bad Boys",
+      "Redeem Team",
+      "Showtime"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Michael Jordan, Magic Johnson ve Larry Bird gibi yıldızları bir araya getiren takım Dream Team diye anıldı.",
+    "id": "q55581"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Güneş hangi tür gök cismidir?",
+    "options": [
+      "Uydu",
+      "Yıldız",
+      "Gezegen",
+      "Bulutsu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Güneş, çekirdeğinde hidrojen füzyonu yapan G tipi bir ana kol yıldızıdır.",
+    "id": "q55582"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Âdem’in Yaratılışı hangi yapının tavanındadır?",
+    "options": [
+      "Aziz Petrus Bazilikası kubbesi",
+      "Pantheon",
+      "Sistina Şapeli",
+      "Santa Croce"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Michelangelo’nun ünlü sahnesi Vatikan’daki Sistina Şapeli tavan fresklerinin parçasıdır.",
+    "id": "q55583"
+  },
+  {
+    "id": "q55584",
+    "categoryIndex": 0,
+    "question": "Socotra ile Afrika Boynuzu arasındaki deniz geçidinin adı nedir?",
+    "options": [
+      "Bengal Körfezi",
+      "Bothnia Körfezi",
+      "Biskay Körfezi",
+      "Aden Körfezi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Sokotra, Arap Denizi ile Aden Körfezi’nin buluştuğu bölgede yer alır."
+  },
+  {
+    "id": "q55585",
+    "categoryIndex": 3,
+    "question": "Siyah Kare adlı öncü soyut eserin ressamı kimdir?",
+    "options": [
+      "Kazimir Maleviç",
+      "Paul Klee",
+      "Vasili Kandinski",
+      "Piet Mondrian"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Maleviç’in Siyah Kare’si, Süprematizm akımının en simgesel eserlerinden biridir."
+  },
+  {
+    "id": "q55586",
+    "categoryIndex": 4,
+    "question": "Kivinin burun delikleri diğer birçok kuştan farklı olarak nerededir?",
+    "options": [
+      "Gözlerinin arkasında",
+      "Gagasının ucuna yakın",
+      "Dilinin altında",
+      "Boynunda"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kivi, gagasının ucuna yakın burun delikleriyle toprağın altındaki besinleri koklayabilir."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "WALL-E filminde robotun bulduğu küçük canlı nedir?",
+    "options": [
+      "Bir kelebek",
+      "Bir balık",
+      "Bir bitki",
+      "Bir kuş"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "WALL-E’nin bulduğu filiz, Dünya’nın yeniden yaşanabilir olabileceğinin kanıtıdır.",
+    "id": "q55587"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Voleybolu icat eden kişi kimdir?",
+    "options": [
+      "Thomas Arnold",
+      "James Naismith",
+      "Pierre de Coubertin",
+      "William G. Morgan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Morgan, 1895’te basketboldan daha az temaslı bir salon oyunu tasarladı.",
+    "id": "q55588"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İngiltere Parlamentosunun seçimle oluşan kanadı hangisidir?",
+    "options": [
+      "Avam Kamarası",
+      "Lordlar Kamarası",
+      "Kraliyet Konseyi",
+      "Taç Mahkemesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Avam Kamarası üyeleri seçimle belirlenir; Lordlar Kamarası ise farklı bir yapıya sahiptir.",
+    "id": "q55589"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Monsters, Inc. filmindeki canavarların yaşadığı şehrin adı nedir?",
+    "options": [
+      "Metroville",
+      "Monstropolis",
+      "Halloween Town",
+      "Zootopia"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Şirket ve canavarların dünyası Monstropolis adlı şehirde bulunur.",
+    "id": "q55590"
+  },
+  {
+    "id": "q55591",
+    "categoryIndex": 2,
+    "question": "Boxer Ayaklanması’nın başlıca hedefi neydi?",
+    "options": [
+      "Osmanlı vergi sistemi",
+      "Japon şogunluğu",
+      "Çin’deki yabancı nüfuz",
+      "Rusya’daki serflik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Boxerlar, 19. yüzyıl sonunda Çin’de yabancı güçlere ve misyonerlere karşı harekete geçti."
+  },
+  {
+    "id": "q55592",
+    "categoryIndex": 0,
+    "question": "Yellowknife hangi Kanada bölgesinin başkentidir?",
+    "options": [
+      "Alberta",
+      "Yukon",
+      "Nunavut",
+      "Kuzeybatı Toprakları"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Yellowknife, Kanada’nın Kuzeybatı Toprakları’nın yönetim merkezidir."
+  },
+  {
+    "id": "q55593",
+    "categoryIndex": 4,
+    "question": "Lir kuşu hangi yeteneğiyle ünlüdür?",
+    "options": [
+      "Çevresindeki sesleri taklit etmesiyle",
+      "Su altında uyumasıyla",
+      "Geriye doğru uçmasıyla",
+      "Renk değiştirmesiyle"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Lir kuşu başka kuşların yanı sıra kamera, testere ve alarm gibi çevresel sesleri de taklit edebilir."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kara Ölüm olarak bilinen büyük salgının temel hastalığı neydi?",
+    "options": [
+      "Çiçek",
+      "Veba",
+      "Kolera",
+      "Tifüs"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "14. yüzyıldaki Kara Ölüm, Yersinia pestis bakterisinin yol açtığı veba salgınıydı.",
+    "id": "q55594"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Jeanne d’Arc hangi ülkenin ulusal kahramanıdır?",
+    "options": [
+      "İngiltere",
+      "İtalya",
+      "Fransa",
+      "İspanya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Jeanne d’Arc, Yüz Yıl Savaşları sırasında Fransız kuvvetlerine moral ve liderlik sağladı.",
+    "id": "q55595"
+  },
+  {
+    "id": "q55596",
+    "categoryIndex": 0,
+    "question": "Nuuk hangi özerk bölgenin başkentidir?",
+    "options": [
+      "Svalbard",
+      "Faroe Adaları",
+      "Åland",
+      "Grönland"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Nuuk, Danimarka Krallığı içindeki özerk Grönland’ın başkentidir."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Orta Çağ Avrupa’sında loncaların temel görevi neydi?",
+    "options": [
+      "Zanaat ve ticareti düzenlemek",
+      "Vergi toplamak",
+      "Ordu kurmak",
+      "Toprak dağıtmak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Loncalar kaliteyi, eğitimi, fiyatları ve meslek üyelerinin çalışma koşullarını düzenlerdi.",
+    "id": "q55597"
+  },
+  {
+    "id": "q55598",
+    "categoryIndex": 0,
+    "question": "Ushuaia hangi ülkenin güney ucuna yakın bir şehridir?",
+    "options": [
+      "Peru",
+      "Arjantin",
+      "Şili",
+      "Uruguay"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ushuaia, Arjantin’in Ateş Toprakları bölgesinde ve dünyanın en güneydeki şehirlerinden biridir."
+  },
+  {
+    "id": "q55599",
+    "categoryIndex": 4,
+    "question": "Fırkateyn kuşlarının tüyleri nedeniyle kaçındığı davranış hangisidir?",
+    "options": [
+      "Uzun mesafe uçmak",
+      "Balık çalmak",
+      "Suya konmak",
+      "Yüksekten süzülmek"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Fırkateyn kuşlarının tüyleri su geçirmezlik açısından zayıftır; bu yüzden deniz yüzeyine konmaktan kaçınırlar."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Moğol İmparatorluğu’nun kurucusu kimdir?",
+    "options": [
+      "Timur",
+      "Batu Han",
+      "Kubilay Han",
+      "Cengiz Han"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Temuçin, 1206’da Cengiz Han ilan edilerek Moğol boylarını birleştirdi.",
+    "id": "q55600"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Volga Nehri hangi su kütlesine dökülür?",
+    "options": [
+      "Hazar Denizi",
+      "Baltık Denizi",
+      "Karadeniz",
+      "Aral Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Avrupa’nın en uzun nehri Volga, Rusya içlerinden akarak Hazar Denizi’ne ulaşır.",
+    "id": "q55601"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Voleybolun ilk adı neydi?",
+    "options": [
+      "Handball",
+      "Mintonette",
+      "Netball",
+      "Volley-tennis"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "William Morgan yeni oyuna badmintonu çağrıştıran Mintonette adını verdi.",
+    "id": "q55602"
+  },
+  {
+    "id": "q55603",
+    "categoryIndex": 3,
+    "question": "Kırmızı, Mavi ve Sarılı Kompozisyon eserleriyle tanınan ressam kimdir?",
+    "options": [
+      "Joan Miró",
+      "Marc Chagall",
+      "Piet Mondrian",
+      "Fernand Léger"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mondrian, siyah çizgilerle ayrılan ana renkli geometrik alanları De Stijl anlayışıyla kullandı."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Öpücük adlı altın tonlu tablo hangi ressama aittir?",
+    "options": [
+      "Amedeo Modigliani",
+      "Egon Schiele",
+      "Edvard Munch",
+      "Gustav Klimt"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Klimt’in altın dönemine ait Öpücük, geometrik desenlerle sarılmış bir çifti gösterir.",
+    "id": "q55604"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Shrek en başta nerede yalnız yaşamaktadır?",
+    "options": [
+      "Bataklıkta",
+      "Dağ mağarasında",
+      "Şatoda",
+      "Ormanda bir kulede"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Shrek, masal karakterleri gelene kadar bataklığındaki yalnız hayatından memnundur.",
+    "id": "q55605"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Plaj voleybolunda her takım sahada kaç oyuncuyla yer alır?",
+    "options": [
+      "Altı",
+      "İki",
+      "Dört",
+      "Yedi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Resmî plaj voleybolu iki kişilik takımlarla oynanır ve oyuncu değişikliği yoktur.",
+    "id": "q55606"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Nijer Nehri hangi körfeze dökülür?",
+    "options": [
+      "Bengal Körfezi",
+      "Aden Körfezi",
+      "Gine Körfezi",
+      "Meksika Körfezi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Nijer Nehri, Nijerya’daki geniş deltası üzerinden Gine Körfezi’ne dökülür.",
+    "id": "q55607"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Pekin’deki Yasak Şehir hangi hanedan döneminde inşa edilmeye başlandı?",
+    "options": [
+      "Tang",
+      "Song",
+      "Qing",
+      "Ming"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Yasak Şehir’in yapımı Ming Hanedanı döneminde, 15. yüzyılın başında başladı.",
+    "id": "q55608"
+  },
+  {
+    "id": "q55609",
+    "categoryIndex": 4,
+    "question": "Baobab ağacının kalın gövdesi hangi koşula uyum sağlamasına yardımcı olur?",
+    "options": [
+      "Kurak dönemler için su depolamaya",
+      "Böcekleri elektrikle uzaklaştırmaya",
+      "Tuzlu suda yüzmeye",
+      "Kar altında ısı üretmeye"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Baobabın süngerimsi gövdesi yağışlı dönemde su tutarak uzun kuraklıklara dayanmasına yardımcı olur."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Zambezi Nehri üzerindeki ünlü şelale hangisidir?",
+    "options": [
+      "Angel Şelalesi",
+      "Victoria Şelalesi",
+      "Iguazú Şelalesi",
+      "Tugela Şelalesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Victoria Şelalesi, Zambezi Nehri üzerinde Zambiya ile Zimbabve sınırındadır.",
+    "id": "q55610"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Kaieteur Şelalesi hangi Güney Amerika ülkesindedir?",
+    "options": [
+      "Surinam",
+      "Brezilya",
+      "Guyana",
+      "Venezuela"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kaieteur Şelalesi Guyana’daki Potaro Nehri üzerindedir.",
+    "id": "q55611"
+  },
+  {
+    "id": "q55612",
+    "categoryIndex": 5,
+    "question": "Su topunda oyuncunun geçici olarak oyun dışına gönderildiği cezaya ne denir?",
+    "options": [
+      "Fault",
+      "Icing",
+      "Let",
+      "Exclusion"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Exclusion cezasında oyuncu kısa süreliğine oyun alanından çıkar ve takımı eksik oynar."
+  },
+  {
+    "id": "q55613",
+    "categoryIndex": 0,
+    "question": "Erebus Dağı hangi kıtadaki etkin yanardağlardan biridir?",
+    "options": [
+      "Antarktika",
+      "Güney Amerika",
+      "Avrupa",
+      "Asya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ross Adası’ndaki Erebus, Antarktika’nın en bilinen etkin yanardağlarından biridir."
+  },
+  {
+    "id": "q55614",
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde pakın orta çizginin gerisinden rakip kale çizgisinin ötesine gönderilmesine hangi ihlal denir?",
+    "options": [
+      "Boarding",
+      "Icing",
+      "Offside",
+      "Hooking"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Belirli istisnalar dışında pakın çok uzaktan rakip kale çizgisini geçmesi oyunu durduran icing ihlalidir."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Voleybolda topa yukarıdan sert vurulan hücum hareketi hangisidir?",
+    "options": [
+      "Parmak pas",
+      "Servis karşılama",
+      "Smaç",
+      "Manşet"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Smaçta oyuncu sıçrayıp topu rakip alana güçlü ve dik açıyla gönderir.",
+    "id": "q55615"
+  },
+  {
+    "id": "q55616",
+    "categoryIndex": 0,
+    "question": "Göreme yakınındaki Paşabağları en çok hangi kaya oluşumlarıyla tanınır?",
+    "options": [
+      "Mercan resifleri",
+      "Fiyortlar",
+      "Bazalt sütunları",
+      "Peribacaları"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Paşabağları, Kapadokya’nın şapkalı peribacalarının en belirgin görüldüğü alanlardan biridir."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Futbolda 'Panenka' penaltısı nasıl kullanılır?",
+    "options": [
+      "Top kalenin ortasına yumuşakça aşırtılır",
+      "Top iki kişiyle sürülür",
+      "Kaleciye pas verilir",
+      "Topukla köşeye vurulur"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Antonín Panenka’nın 1976’da ünlendirdiği vuruşta kaleci köşeye giderken top ortaya hafifçe kaldırılır.",
+    "id": "q55617"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Kung Fu Panda’nın başkahramanı Po hangi hayvandır?",
+    "options": [
+      "Kızıl panda",
+      "Dev panda",
+      "Rakûn",
+      "Siyah ayı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Po, noodle dükkânında çalışan ve Ejderha Savaşçısı seçilen dev bir pandadır.",
+    "id": "q55618"
+  },
+  {
+    "id": "q55619",
+    "categoryIndex": 3,
+    "question": "Broadway Boogie Woogie tablosunun ressamı kimdir?",
+    "options": [
+      "Roy Lichtenstein",
+      "Mark Rothko",
+      "Piet Mondrian",
+      "Jackson Pollock"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mondrian, New York’un ızgara düzenini ve caz ritmini küçük renk bloklarıyla yorumladı."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "American Gothic tablosunda iki kişinin arkasındaki yapı nedir?",
+    "options": [
+      "Fabrika",
+      "Tren istasyonu",
+      "Kilise",
+      "Kırsal bir ev"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Grant Wood’un tablosu, sivri pencereli Iowa evinin önünde duran iki figürle tanınır.",
+    "id": "q55620"
+  }
+]

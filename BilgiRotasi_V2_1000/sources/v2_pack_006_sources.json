@@ -1,0 +1,402 @@
+[
+  {
+    "id": "q54621",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54622",
+    "sourceGroup": "geo_norway"
+  },
+  {
+    "id": "q54623",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54624",
+    "sourceGroup": "geo_noaa"
+  },
+  {
+    "id": "q54625",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54626",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54627",
+    "sourceGroup": "geo_noaa"
+  },
+  {
+    "id": "q54628",
+    "sourceGroup": "geo_namibia"
+  },
+  {
+    "id": "q54629",
+    "sourceGroup": "geo_france"
+  },
+  {
+    "id": "q54630",
+    "sourceGroup": "geo_peru"
+  },
+  {
+    "id": "q54631",
+    "sourceGroup": "geo_hawaii"
+  },
+  {
+    "id": "q54632",
+    "sourceGroup": "geo_turkey"
+  },
+  {
+    "id": "q54633",
+    "sourceGroup": "geo_turkey"
+  },
+  {
+    "id": "q54634",
+    "sourceGroup": "geo_turkey"
+  },
+  {
+    "id": "q54635",
+    "sourceGroup": "geo_turkey"
+  },
+  {
+    "id": "q54636",
+    "sourceGroup": "geo_unesco"
+  },
+  {
+    "id": "q54637",
+    "sourceGroup": "geo_turkey"
+  },
+  {
+    "id": "q54638",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54639",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54640",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54641",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54642",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54643",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54644",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54645",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54646",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54647",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54648",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54649",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54650",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54651",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54652",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54653",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54654",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q54655",
+    "sourceGroup": "hist_medicine"
+  },
+  {
+    "id": "q54656",
+    "sourceGroup": "hist_nobel"
+  },
+  {
+    "id": "q54657",
+    "sourceGroup": "hist_nobel"
+  },
+  {
+    "id": "q54658",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54659",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54660",
+    "sourceGroup": "hist_nobel"
+  },
+  {
+    "id": "q54661",
+    "sourceGroup": "hist_nobel"
+  },
+  {
+    "id": "q54662",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54663",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54664",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54665",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54666",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54667",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54668",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54669",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54670",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54671",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54672",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54673",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54674",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54675",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54676",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54677",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54678",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54679",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54680",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54681",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54682",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54683",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54684",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54685",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54686",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54687",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54688",
+    "sourceGroup": "art_architecture"
+  },
+  {
+    "id": "q54689",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54690",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54691",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54692",
+    "sourceGroup": "sci_nasa"
+  },
+  {
+    "id": "q54693",
+    "sourceGroup": "sci_usgs"
+  },
+  {
+    "id": "q54694",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54695",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54696",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54697",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54698",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54699",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54700",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54701",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54702",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54703",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54704",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q54705",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54706",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54707",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54708",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54709",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54710",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54711",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54712",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54713",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54714",
+    "sourceGroup": "sport_worldaquatics"
+  },
+  {
+    "id": "q54715",
+    "sourceGroup": "sport_worldrowing"
+  },
+  {
+    "id": "q54716",
+    "sourceGroup": "sport_canoe"
+  },
+  {
+    "id": "q54717",
+    "sourceGroup": "sport_canoe"
+  },
+  {
+    "id": "q54718",
+    "sourceGroup": "sport_sailing"
+  },
+  {
+    "id": "q54719",
+    "sourceGroup": "sport_surfing"
+  },
+  {
+    "id": "q54720",
+    "sourceGroup": "sport_diving"
+  }
+]

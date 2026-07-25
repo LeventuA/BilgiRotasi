@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q58621",
+    "categoryIndex": 2,
+    "question": "Anadolu Selçuklu Devleti'ni Moğol egemenliğine sokan savaş hangisidir?",
+    "options": [
+      "Kösedağ Savaşı",
+      "Yassıçemen Savaşı",
+      "Pasinler Savaşı",
+      "Miryokefalon Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1243 Kösedağ yenilgisi Anadolu Selçuklularını İlhanlı baskısı altına soktu."
+  },
+  {
+    "id": "q58622",
+    "categoryIndex": 2,
+    "question": "Divriği Ulu Camii ve Darüşşifası hangi Türk beyliği döneminde yaptırıldı?",
+    "options": [
+      "Danişmentliler",
+      "Mengücekliler",
+      "Saltuklular",
+      "Artuklular"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "UNESCO listesindeki yapı 13. yüzyılda Mengücekli Beyliği'nin Divriği kolu tarafından yaptırıldı."
+  },
+  {
+    "id": "q58623",
+    "categoryIndex": 2,
+    "question": "Malabadi Köprüsü hangi Türk beyliği döneminin eseridir?",
+    "options": [
+      "Karamanoğulları",
+      "Saltuklular",
+      "Artuklular",
+      "Mengücekliler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Batman Çayı üzerindeki Malabadi Köprüsü 12. yüzyılda Artuklular döneminde yapıldı."
+  },
+  {
+    "id": "q58624",
+    "categoryIndex": 2,
+    "question": "Erzurum'daki Çifte Minareli Medrese hangi döneme aittir?",
+    "options": [
+      "Bizans dönemi",
+      "Cumhuriyet dönemi",
+      "Osmanlı klasik dönemi",
+      "Anadolu Selçuklu dönemi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "13. yüzyıl yapısı Çifte Minareli Medrese Selçuklu taş işçiliğinin önemli örneklerindendir."
+  },
+  {
+    "id": "q58625",
+    "categoryIndex": 2,
+    "question": "Sivas'taki Gök Medrese hangi dönemin eseridir?",
+    "options": [
+      "Anadolu Selçuklu dönemi",
+      "Beylikler dönemi",
+      "Cumhuriyet dönemi",
+      "Osmanlı Lale Devri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gök Medrese 1271'de Selçuklu veziri Sahip Ata Fahreddin Ali tarafından yaptırıldı."
+  },
+  {
+    "id": "q58626",
+    "categoryIndex": 3,
+    "question": "Alemdağ'da Var Bir Yılan adlı öykü kitabının yazarı kimdir?",
+    "options": [
+      "Memduh Şevket Esendal",
+      "Sait Faik Abasıyanık",
+      "Haldun Taner",
+      "Sabahattin Ali"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Alemdağ'da Var Bir Yılan, Sait Faik'in gerçeküstü ve yenilikçi anlatımının öne çıktığı öykü kitaplarındandır."
+  },
+  {
+    "id": "q58627",
+    "categoryIndex": 3,
+    "question": "İnce Memed romanının olayları ağırlıklı olarak hangi bölgede geçer?",
+    "options": [
+      "Doğu Karadeniz",
+      "Trakya",
+      "Çukurova",
+      "İç Ege"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Roman Toroslar ve Çukurova çevresindeki köy yaşamını merkezine alır."
+  },
+  {
+    "id": "q58628",
+    "categoryIndex": 3,
+    "question": "Yaşar Kemal'in ilk romanı hangisidir?",
+    "options": [
+      "Yer Demir Gök Bakır",
+      "Ağrı Dağı Efsanesi",
+      "Teneke",
+      "İnce Memed"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "İnce Memed 1955'te kitap olarak yayımlandı ve Yaşar Kemal'in ilk romanı oldu."
+  },
+  {
+    "id": "q58629",
+    "categoryIndex": 3,
+    "question": "Orhan Pamuk'a Nobel Edebiyat Ödülü hangi yıl verildi?",
+    "options": [
+      "2006",
+      "2002",
+      "2010",
+      "1998"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Orhan Pamuk 2006'da Nobel Edebiyat Ödülü'nü kazanan ilk Türk yazar oldu."
+  },
+  {
+    "id": "q58630",
+    "categoryIndex": 3,
+    "question": "Kar romanının büyük bölümü hangi şehirde geçer?",
+    "options": [
+      "Van",
+      "Kars",
+      "Sivas",
+      "Erzurum"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Orhan Pamuk'un Kar romanında şair Ka, yoğun kar altındaki Kars'a gider."
+  },
+  {
+    "id": "q58631",
+    "categoryIndex": 3,
+    "question": "Masumiyet Müzesi romanındaki müze gerçek hayatta hangi semttedir?",
+    "options": [
+      "Balat",
+      "Ortaköy",
+      "Çukurcuma",
+      "Kuzguncuk"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Orhan Pamuk'un kurduğu Masumiyet Müzesi İstanbul'un Çukurcuma semtindedir."
+  },
+  {
+    "id": "q58632",
+    "categoryIndex": 3,
+    "question": "Saatleri Ayarlama Enstitüsü romanının yazarı kimdir?",
+    "options": [
+      "Peyami Safa",
+      "Oğuz Atay",
+      "Yusuf Atılgan",
+      "Ahmet Hamdi Tanpınar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Tanpınar'ın romanı modernleşme, bürokrasi ve zaman kavramını hicveder."
+  },
+  {
+    "id": "q58633",
+    "categoryIndex": 3,
+    "question": "Huzur romanının merkezindeki erkek karakter kimdir?",
+    "options": [
+      "Mümtaz",
+      "Hayri İrdal",
+      "Zebercet",
+      "Raif Efendi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ahmet Hamdi Tanpınar'ın Huzur romanı büyük ölçüde Mümtaz'ın dünyası üzerinden anlatılır."
+  },
+  {
+    "id": "q58634",
+    "categoryIndex": 3,
+    "question": "Ahmet Hamdi Tanpınar'ın 'Bursa'da Zaman' eseri hangi türdedir?",
+    "options": [
+      "Tiyatro",
+      "Şiir",
+      "Roman",
+      "Deneme"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bursa'da Zaman, Tanpınar'ın en bilinen şiirlerinden biridir."
+  },
+  {
+    "id": "q58635",
+    "categoryIndex": 3,
+    "question": "Tehlikeli Oyunlar romanının başkahramanı kimdir?",
+    "options": [
+      "Turgut Özben",
+      "Mümtaz",
+      "Hikmet Benol",
+      "Zebercet"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Oğuz Atay, romanı gecekonduda yaşayan Hikmet Benol'un zihninden kurar."
+  },
+  {
+    "id": "q58636",
+    "categoryIndex": 3,
+    "question": "Anayurt Oteli romanının yazarı kimdir?",
+    "options": [
+      "Oğuz Atay",
+      "Bilge Karasu",
+      "Ferit Edgü",
+      "Yusuf Atılgan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Yusuf Atılgan'ın romanı otel kâtibi Zebercet'in yalnızlığını anlatır."
+  },
+  {
+    "id": "q58637",
+    "categoryIndex": 3,
+    "question": "Anayurt Oteli'nin başkahramanının adı nedir?",
+    "options": [
+      "Zebercet",
+      "Raif Efendi",
+      "Bay C.",
+      "Murtaza"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Zebercet, küçük bir Anadolu kasabasındaki Anayurt Oteli'nin kâtibidir."
+  },
+  {
+    "id": "q58638",
+    "categoryIndex": 3,
+    "question": "Aylak Adam romanında başkahraman hangi harfle anılır?",
+    "options": [
+      "A.",
+      "C.",
+      "Z.",
+      "B."
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yusuf Atılgan başkahramanını roman boyunca C. olarak adlandırır."
+  },
+  {
+    "id": "q58639",
+    "categoryIndex": 3,
+    "question": "Kürk Mantolu Madonna'da Raif Efendi'nin Berlin'de âşık olduğu ressam kimdir?",
+    "options": [
+      "Neriman",
+      "Macide",
+      "Maria Puder",
+      "Feride"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Maria Puder, otoportresi 'Kürk Mantolu Madonna' ile Raif Efendi'nin dikkatini çeker."
+  },
+  {
+    "id": "q58640",
+    "categoryIndex": 3,
+    "question": "İçimizdeki Şeytan romanının iki ana karakteri kimlerdir?",
+    "options": [
+      "Raif ve Maria",
+      "Mümtaz ve Nuran",
+      "Yusuf ve Muazzez",
+      "Ömer ve Macide"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sabahattin Ali, romanı Ömer ile Macide'nin ilişkisi üzerinden kurar."
+  },
+  {
+    "id": "q58641",
+    "categoryIndex": 3,
+    "question": "Çalıkuşu romanının yazarı kimdir?",
+    "options": [
+      "Reşat Nuri Güntekin",
+      "Halide Edip Adıvar",
+      "Yakup Kadri Karaosmanoğlu",
+      "Peyami Safa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Çalıkuşu ilk olarak 1922'de tefrika edildi."
+  },
+  {
+    "id": "q58642",
+    "categoryIndex": 3,
+    "question": "Yaprak Dökümü romanında ailenin babasının adı nedir?",
+    "options": [
+      "Adnan Bey",
+      "Ali Rıza Bey",
+      "Hayri Bey",
+      "Reşat Bey"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Reşat Nuri'nin romanında Ali Rıza Bey, değişen değerler karşısında ailesini bir arada tutmaya çalışır."
+  },
+  {
+    "id": "q58643",
+    "categoryIndex": 3,
+    "question": "Dudaktan Kalbe romanının yazarı kimdir?",
+    "options": [
+      "Aka Gündüz",
+      "Halide Edip Adıvar",
+      "Reşat Nuri Güntekin",
+      "Refik Halit Karay"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Romanın merkezinde besteci Hüseyin Kenan ile Lamia'nın ilişkisi vardır."
+  },
+  {
+    "id": "q58644",
+    "categoryIndex": 3,
+    "question": "Ateşten Gömlek romanı hangi tarihsel mücadeleyi konu alır?",
+    "options": [
+      "Kırım Savaşı",
+      "93 Harbi",
+      "Balkan Savaşları",
+      "Kurtuluş Savaşı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Halide Edip Adıvar romanında Millî Mücadele'yi Ayşe, Peyami ve İhsan karakterleri üzerinden anlatır."
+  },
+  {
+    "id": "q58645",
+    "categoryIndex": 3,
+    "question": "Vurun Kahpeye romanının başkahramanı olan öğretmenin adı nedir?",
+    "options": [
+      "Aliye",
+      "Feride",
+      "Ayşe",
+      "Rabia"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Aliye, Anadolu kasabasındaki gerici baskılara karşı çalışan idealist bir öğretmendir."
+  },
+  {
+    "id": "q58646",
+    "categoryIndex": 3,
+    "question": "Yaban romanının anlatıcısı Ahmet Celal hangi mesleki geçmişe sahiptir?",
+    "options": [
+      "Gazeteci",
+      "Subay",
+      "Doktor",
+      "Öğretmen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ahmet Celal, I. Dünya Savaşı'nda kolunu kaybetmiş bir subaydır."
+  },
+  {
+    "id": "q58647",
+    "categoryIndex": 3,
+    "question": "Ankara romanının yazarı kimdir?",
+    "options": [
+      "Tarık Buğra",
+      "Kemal Tahir",
+      "Yakup Kadri Karaosmanoğlu",
+      "Halide Edip Adıvar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yakup Kadri, romanında Millî Mücadele'den Cumhuriyet'in geleceğine uzanan Ankara tasvirleri yapar."
+  },
+  {
+    "id": "q58648",
+    "categoryIndex": 3,
+    "question": "Dokuzuncu Hariciye Koğuşu romanı hangi yazarın hayatından izler taşır?",
+    "options": [
+      "Sabahattin Ali",
+      "Kemal Tahir",
+      "Tarık Buğra",
+      "Peyami Safa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Peyami Safa çocukluğunda yaşadığı kemik hastalığından esinlenmiştir."
+  },
+  {
+    "id": "q58649",
+    "categoryIndex": 3,
+    "question": "Matmazel Noraliya'nın Koltuğu romanının yazarı kimdir?",
+    "options": [
+      "Peyami Safa",
+      "Oğuz Atay",
+      "Yusuf Atılgan",
+      "Ahmet Hamdi Tanpınar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Peyami Safa'nın romanı Ferit'in manevî dönüşümünü anlatır."
+  },
+  {
+    "id": "q58650",
+    "categoryIndex": 3,
+    "question": "İstanbul'un İç Yüzü romanının yazarı kimdir?",
+    "options": [
+      "Ahmet Rasim",
+      "Refik Halit Karay",
+      "Memduh Şevket Esendal",
+      "Hüseyin Rahmi Gürpınar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Refik Halit, romanında II. Meşrutiyet çevresindeki İstanbul hayatını ele alır."
+  },
+  {
+    "id": "q58651",
+    "categoryIndex": 3,
+    "question": "Memleket Hikâyeleri adlı eserin yazarı kimdir?",
+    "options": [
+      "Ömer Seyfettin",
+      "Memduh Şevket Esendal",
+      "Refik Halit Karay",
+      "Sait Faik Abasıyanık"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Refik Halit'in Anadolu gözlemlerinden doğan hikâyeleri bu kitapta toplandı."
+  },
+  {
+    "id": "q58652",
+    "categoryIndex": 3,
+    "question": "Ayaşlı ile Kiracıları romanının yazarı kimdir?",
+    "options": [
+      "Tarık Buğra",
+      "Haldun Taner",
+      "Refik Halit Karay",
+      "Memduh Şevket Esendal"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Roman, Ankara'daki bir apartman dairesinde yaşayan farklı insanları anlatır."
+  },
+  {
+    "id": "q58653",
+    "categoryIndex": 3,
+    "question": "Mendil Altında ve Otlakçı eserleriyle tanınan hikâyeci kimdir?",
+    "options": [
+      "Memduh Şevket Esendal",
+      "Sait Faik Abasıyanık",
+      "Ömer Seyfettin",
+      "Sabahattin Ali"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Esendal, gündelik hayatın küçük olaylarını sade bir dille anlatan durum hikâyeleriyle tanınır."
+  },
+  {
+    "id": "q58654",
+    "categoryIndex": 3,
+    "question": "Semaver adlı hikâye kitabının yazarı kimdir?",
+    "options": [
+      "Orhan Kemal",
+      "Sait Faik Abasıyanık",
+      "Memduh Şevket Esendal",
+      "Haldun Taner"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Semaver, Sait Faik'in 1936'da yayımlanan ilk hikâye kitabıdır."
+  },
+  {
+    "id": "q58655",
+    "categoryIndex": 3,
+    "question": "Sait Faik Abasıyanık'ın müze olarak kullanılan evi hangi adadadır?",
+    "options": [
+      "Heybeliada",
+      "Büyükada",
+      "Burgazada",
+      "Kınalıada"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sait Faik'in Burgazada'daki evi günümüzde müze olarak ziyaret edilebilir."
+  },
+  {
+    "id": "q58656",
+    "categoryIndex": 3,
+    "question": "Lüzumsuz Adam adlı hikâye kitabının yazarı kimdir?",
+    "options": [
+      "Sabahattin Ali",
+      "Haldun Taner",
+      "Orhan Kemal",
+      "Sait Faik Abasıyanık"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sait Faik'in kitabı şehir insanlarının yalnızlığını ve gündelik hayatı işler."
+  },
+  {
+    "id": "q58657",
+    "categoryIndex": 3,
+    "question": "72. Koğuş adlı eserin yazarı kimdir?",
+    "options": [
+      "Orhan Kemal",
+      "Sabahattin Ali",
+      "Kemal Tahir",
+      "Yaşar Kemal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Orhan Kemal eserinde hapishane yaşamını ve yoksulluğu anlatır."
+  },
+  {
+    "id": "q58658",
+    "categoryIndex": 3,
+    "question": "Bereketli Topraklar Üzerinde romanının yazarı kimdir?",
+    "options": [
+      "Fakir Baykurt",
+      "Orhan Kemal",
+      "Kemal Tahir",
+      "Yaşar Kemal"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Roman, çalışmak için Çukurova'ya gelen üç köylünün hikâyesini anlatır."
+  },
+  {
+    "id": "q58659",
+    "categoryIndex": 3,
+    "question": "Murtaza romanındaki başkahramanın en belirgin özelliği nedir?",
+    "options": [
+      "Zengin olma tutkusu",
+      "Şiir yazması",
+      "Görev disiplinini hayatın önüne koyması",
+      "Sürekli seyahat etmesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Orhan Kemal, Murtaza'nın aşırı görev anlayışı üzerinden bürokrasiyi ve toplumsal yapıyı hicveder."
+  },
+  {
+    "id": "q58660",
+    "categoryIndex": 3,
+    "question": "Esir Şehrin İnsanları romanının yazarı kimdir?",
+    "options": [
+      "Halide Edip Adıvar",
+      "Tarık Buğra",
+      "Yakup Kadri Karaosmanoğlu",
+      "Kemal Tahir"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Roman işgal altındaki İstanbul'da Kamil Bey'in Millî Mücadele'ye katılışını anlatır."
+  },
+  {
+    "id": "q58661",
+    "categoryIndex": 3,
+    "question": "Yorgun Savaşçı romanının yazarı kimdir?",
+    "options": [
+      "Kemal Tahir",
+      "Attilâ İlhan",
+      "Samim Kocagöz",
+      "Tarık Buğra"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kemal Tahir romanında Osmanlı'nın sonundan Millî Mücadele'ye geçişi işler."
+  },
+  {
+    "id": "q58662",
+    "categoryIndex": 3,
+    "question": "Osmancık romanının merkezindeki tarihî kişi kimdir?",
+    "options": [
+      "Şeyh Edebali",
+      "Osman Gazi",
+      "Ertuğrul Gazi",
+      "Orhan Gazi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tarık Buğra'nın romanı Osman Bey'in kişisel ve siyasi dönüşümünü konu alır."
+  },
+  {
+    "id": "q58663",
+    "categoryIndex": 3,
+    "question": "Kurt Kanunu romanının yazarı kimdir?",
+    "options": [
+      "Orhan Kemal",
+      "Tarık Buğra",
+      "Kemal Tahir",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Roman, 1926 İzmir Suikastı girişiminin ardından yaşananları ele alır."
+  },
+  {
+    "id": "q58664",
+    "categoryIndex": 3,
+    "question": "Yılanların Öcü romanının yazarı kimdir?",
+    "options": [
+      "Talip Apaydın",
+      "Mahmut Makal",
+      "Orhan Kemal",
+      "Fakir Baykurt"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Fakir Baykurt'un romanı köydeki mülkiyet ve güç çatışmalarını anlatır."
+  },
+  {
+    "id": "q58665",
+    "categoryIndex": 3,
+    "question": "Kaplumbağalar romanının yazarı kimdir?",
+    "options": [
+      "Fakir Baykurt",
+      "Abbas Sayar",
+      "Kemal Bilbaşar",
+      "Talip Apaydın"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Roman, kıraç bir köyde bağ kurmaya çalışan insanların dayanışmasını anlatır."
+  },
+  {
+    "id": "q58666",
+    "categoryIndex": 3,
+    "question": "Bizim Köy adlı eserin yazarı kimdir?",
+    "options": [
+      "Yaşar Kemal",
+      "Mahmut Makal",
+      "Fakir Baykurt",
+      "Talip Apaydın"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mahmut Makal, öğretmenlik yaptığı köydeki yaşamı gözleme dayalı biçimde anlattı."
+  },
+  {
+    "id": "q58667",
+    "categoryIndex": 3,
+    "question": "Tütün Zamanı romanının yazarı kimdir?",
+    "options": [
+      "Samim Kocagöz",
+      "Kemal Bilbaşar",
+      "Necati Cumalı",
+      "Fakir Baykurt"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Necati Cumalı, Ege'deki tütün işçileri ve aşk hikâyesini ele aldı."
+  },
+  {
+    "id": "q58668",
+    "categoryIndex": 3,
+    "question": "Susuz Yaz öyküsünün yazarı kimdir?",
+    "options": [
+      "Orhan Kemal",
+      "Sait Faik Abasıyanık",
+      "Sabahattin Ali",
+      "Necati Cumalı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Metin Erksan'ın filmine kaynak olan Susuz Yaz, Necati Cumalı'nın öyküsüdür."
+  },
+  {
+    "id": "q58669",
+    "categoryIndex": 3,
+    "question": "Cemo romanının yazarı kimdir?",
+    "options": [
+      "Kemal Bilbaşar",
+      "Fakir Baykurt",
+      "Abbas Sayar",
+      "Yaşar Kemal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kemal Bilbaşar'ın romanı Doğu Anadolu'da geçen bir aşk ve toplumsal çatışma hikâyesidir."
+  },
+  {
+    "id": "q58670",
+    "categoryIndex": 3,
+    "question": "Yılkı Atı romanının yazarı kimdir?",
+    "options": [
+      "Talip Apaydın",
+      "Abbas Sayar",
+      "Fakir Baykurt",
+      "Kemal Bilbaşar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Abbas Sayar, romanında kışın doğaya bırakılan Dorukısrak'ın yaşam mücadelesini anlatır."
+  },
+  {
+    "id": "q58671",
+    "categoryIndex": 3,
+    "question": "Bir Düğün Gecesi romanının yazarı kimdir?",
+    "options": [
+      "Sevgi Soysal",
+      "Tomris Uyar",
+      "Adalet Ağaoğlu",
+      "Pınar Kür"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Adalet Ağaoğlu'nun romanı Dar Zamanlar üçlemesinin ikinci kitabıdır."
+  },
+  {
+    "id": "q58672",
+    "categoryIndex": 3,
+    "question": "Ölmeye Yatmak romanının merkezindeki kadın karakter kimdir?",
+    "options": [
+      "Feride",
+      "Tezel",
+      "Tante Rosa",
+      "Aysel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Adalet Ağaoğlu, Aysel'in bir otel odasında geçmişiyle hesaplaşmasını anlatır."
+  },
+  {
+    "id": "q58673",
+    "categoryIndex": 3,
+    "question": "Tante Rosa adlı eserin yazarı kimdir?",
+    "options": [
+      "Sevgi Soysal",
+      "Füruzan",
+      "Tomris Uyar",
+      "Nezihe Meriç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sevgi Soysal, birbirine bağlı öykülerde Tante Rosa'nın hayatını anlatır."
+  },
+  {
+    "id": "q58674",
+    "categoryIndex": 3,
+    "question": "Gecenin Öteki Yüzü adlı öykü kitabının yazarı kimdir?",
+    "options": [
+      "Tomris Uyar",
+      "Füruzan",
+      "Leylâ Erbil",
+      "Pınar Kür"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Füruzan kitapta göç, yoksulluk ve kadınların yaşamlarını işler."
+  },
+  {
+    "id": "q58675",
+    "categoryIndex": 3,
+    "question": "Gece adlı romanın yazarı kimdir?",
+    "options": [
+      "Yusuf Atılgan",
+      "Oğuz Atay",
+      "Bilge Karasu",
+      "Ferit Edgü"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bilge Karasu'nun Gece romanı karanlık bir baskı ortamını deneysel bir dille anlatır."
+  },
+  {
+    "id": "q58676",
+    "categoryIndex": 3,
+    "question": "Uzun Sürmüş Bir Günün Akşamı adlı eserin yazarı kimdir?",
+    "options": [
+      "Vüs'at O. Bener",
+      "Ferit Edgü",
+      "Oğuz Atay",
+      "Bilge Karasu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Bilge Karasu eserinde Bizans dönemindeki inanç ve iktidar çatışmalarını anlatır."
+  },
+  {
+    "id": "q58677",
+    "categoryIndex": 3,
+    "question": "Hakkâri'de Bir Mevsim romanının yazarı kimdir?",
+    "options": [
+      "Ferit Edgü",
+      "Rasim Özdenören",
+      "Vüs'at O. Bener",
+      "Bilge Karasu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ferit Edgü, doğudaki bir köyde öğretmenlik yapan anlatıcının deneyimini işler."
+  },
+  {
+    "id": "q58678",
+    "categoryIndex": 3,
+    "question": "Aylaklar romanının yazarı kimdir?",
+    "options": [
+      "Orhan Veli Kanık",
+      "Melih Cevdet Anday",
+      "Oktay Rifat",
+      "Haldun Taner"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Garip akımının şairlerinden Melih Cevdet Anday roman ve tiyatro eserleri de yazdı."
+  },
+  {
+    "id": "q58679",
+    "categoryIndex": 3,
+    "question": "İstanbul Hatırası romanının yazarı kimdir?",
+    "options": [
+      "Alper Canıgüz",
+      "Celil Oker",
+      "Ahmet Ümit",
+      "Mehmet Murat Somer"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ahmet Ümit'in polisiye romanı İstanbul'un tarihî katmanlarıyla bağlantılı cinayetleri anlatır."
+  },
+  {
+    "id": "q58680",
+    "categoryIndex": 3,
+    "question": "Beyoğlu Rapsodisi romanının yazarı kimdir?",
+    "options": [
+      "İhsan Oktay Anar",
+      "Emrah Serbes",
+      "Hakan Günday",
+      "Ahmet Ümit"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Roman Beyoğlu'nda yaşayan üç eski arkadaşın gizemli olaylarını konu alır."
+  },
+  {
+    "id": "q58681",
+    "categoryIndex": 3,
+    "question": "Puslu Kıtalar Atlası romanının yazarı kimdir?",
+    "options": [
+      "İhsan Oktay Anar",
+      "Nedim Gürsel",
+      "Orhan Pamuk",
+      "Hasan Ali Toptaş"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İhsan Oktay Anar'ın romanı 17. yüzyıl İstanbul'unda fantastik bir macera kurar."
+  },
+  {
+    "id": "q58682",
+    "categoryIndex": 3,
+    "question": "Puslu Kıtalar Atlası'nın önemli karakterlerinden Uzun İhsan Efendi neyle uğraşır?",
+    "options": [
+      "Maden işletmeciliğiyle",
+      "Düşler ve haritalarla",
+      "Saray aşçılığıyla",
+      "Deniz korsanlığıyla"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Uzun İhsan Efendi, dünyayı düşlerinde dolaşıp bir atlas hazırlayan gizemli bir kişidir."
+  },
+  {
+    "id": "q58683",
+    "categoryIndex": 3,
+    "question": "Mutluluk romanının yazarı kimdir?",
+    "options": [
+      "Yaşar Kemal",
+      "Orhan Pamuk",
+      "Zülfü Livaneli",
+      "Hakan Günday"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Zülfü Livaneli romanında farklı hayatların bir yolculukta kesişmesini anlatır."
+  },
+  {
+    "id": "q58684",
+    "categoryIndex": 3,
+    "question": "Aşk romanının yazarı kimdir?",
+    "options": [
+      "Ayşe Kulin",
+      "İnci Aral",
+      "Buket Uzuner",
+      "Elif Şafak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Elif Şafak romanında çağdaş bir hikâyeyle Mevlânâ ve Şems ilişkisini paralel anlatır."
+  },
+  {
+    "id": "q58685",
+    "categoryIndex": 3,
+    "question": "Baba ve Piç romanının yazarı kimdir?",
+    "options": [
+      "Elif Şafak",
+      "Ayşe Kulin",
+      "Perihan Mağden",
+      "Latife Tekin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Roman İstanbul ve Amerika'daki iki aile hikâyesini geçmişin sırlarıyla birleştirir."
+  },
+  {
+    "id": "q58686",
+    "categoryIndex": 3,
+    "question": "Sevgili Arsız Ölüm romanının yazarı kimdir?",
+    "options": [
+      "Leylâ Erbil",
+      "Latife Tekin",
+      "Sevgi Soysal",
+      "Adalet Ağaoğlu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Latife Tekin'in ilk romanı köyden kente göçü masalsı ve büyülü bir dille anlatır."
+  },
+  {
+    "id": "q58687",
+    "categoryIndex": 3,
+    "question": "Berci Kristin Çöp Masalları romanı hangi yaşam alanını anlatır?",
+    "options": [
+      "Bir yatılı okulu",
+      "Bir maden ocağını",
+      "Bir gecekondu mahallesini",
+      "Bir sahil kasabasını"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Latife Tekin, çöplük çevresinde kurulan kurgusal bir gecekondu mahallesini anlatır."
+  },
+  {
+    "id": "q58688",
+    "categoryIndex": 3,
+    "question": "Kumral Ada Mavi Tuna romanının yazarı kimdir?",
+    "options": [
+      "İnci Aral",
+      "Elif Şafak",
+      "Ayşe Kulin",
+      "Buket Uzuner"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Buket Uzuner'in romanı çocukluktan yetişkinliğe uzanan aşk ve dostluk ilişkilerini anlatır."
+  },
+  {
+    "id": "q58689",
+    "categoryIndex": 3,
+    "question": "Veda romanının yazarı kimdir?",
+    "options": [
+      "Ayşe Kulin",
+      "Elif Şafak",
+      "İnci Aral",
+      "Buket Uzuner"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ayşe Kulin, Osmanlı'nın son dönemini ailesinin hikâyesinden esinlenerek anlatır."
+  },
+  {
+    "id": "q58690",
+    "categoryIndex": 3,
+    "question": "Adı: Aylin romanının yazarı kimdir?",
+    "options": [
+      "Perihan Mağden",
+      "Ayşe Kulin",
+      "Pınar Kür",
+      "Elif Şafak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ayşe Kulin romanında sıra dışı yaşamıyla dikkat çeken Aylin Devrimel'in biyografik hikâyesini anlatır."
+  },
+  {
+    "id": "q58691",
+    "categoryIndex": 3,
+    "question": "Kinyas ve Kayra romanının yazarı kimdir?",
+    "options": [
+      "Emrah Serbes",
+      "Alper Canıgüz",
+      "Hakan Günday",
+      "Murat Menteş"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hakan Günday'ın ilk romanı iki karakterin karanlık yolculuğunu anlatır."
+  },
+  {
+    "id": "q58692",
+    "categoryIndex": 3,
+    "question": "Az romanının yazarı kimdir?",
+    "options": [
+      "İhsan Oktay Anar",
+      "Ahmet Ümit",
+      "Alper Canıgüz",
+      "Hakan Günday"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Hakan Günday'ın romanı Derdâ ve Derda adlı iki kişinin kesişen yaşamlarını anlatır."
+  },
+  {
+    "id": "q58693",
+    "categoryIndex": 3,
+    "question": "Safahat adlı şiir külliyatının yazarı kimdir?",
+    "options": [
+      "Mehmet Âkif Ersoy",
+      "Yahya Kemal Beyatlı",
+      "Tevfik Fikret",
+      "Necip Fazıl Kısakürek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Safahat, Mehmet Âkif'in yedi kitaptan oluşan şiir külliyatıdır."
+  },
+  {
+    "id": "q58694",
+    "categoryIndex": 3,
+    "question": "İstiklâl Marşı'nın bestecisi kimdir?",
+    "options": [
+      "Adnan Saygun",
+      "Osman Zeki Üngör",
+      "Cemal Reşit Rey",
+      "Ulvi Cemal Erkin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bugün kullanılan İstiklâl Marşı bestesi Osman Zeki Üngör'e aittir."
+  },
+  {
+    "id": "q58695",
+    "categoryIndex": 3,
+    "question": "'Korkma, sönmez bu şafaklarda yüzen al sancak' dizesi hangi eserin başlangıcıdır?",
+    "options": [
+      "Çanakkale Şehitlerine",
+      "Gençliğe Hitabe",
+      "İstiklâl Marşı",
+      "Onuncu Yıl Marşı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bu dize Mehmet Âkif Ersoy'un İstiklâl Marşı'nın ilk dizesidir."
+  },
+  {
+    "id": "q58696",
+    "categoryIndex": 3,
+    "question": "'Çanakkale Şehitlerine' şiirinin yazarı kimdir?",
+    "options": [
+      "Yahya Kemal Beyatlı",
+      "Orhan Veli Kanık",
+      "Nazım Hikmet",
+      "Mehmet Âkif Ersoy"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Şiir Safahat'ın Âsım bölümünde yer alır."
+  },
+  {
+    "id": "q58697",
+    "categoryIndex": 3,
+    "question": "'Sessiz Gemi' şiirinin şairi kimdir?",
+    "options": [
+      "Yahya Kemal Beyatlı",
+      "Ahmet Hamdi Tanpınar",
+      "Cahit Sıtkı Tarancı",
+      "Ahmet Haşim"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yahya Kemal, ölüm temasını gemi yolculuğu metaforuyla anlatır."
+  },
+  {
+    "id": "q58698",
+    "categoryIndex": 3,
+    "question": "'Sana dün bir tepeden baktım aziz İstanbul' dizesi kime aittir?",
+    "options": [
+      "Tevfik Fikret",
+      "Yahya Kemal Beyatlı",
+      "Orhan Veli Kanık",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dize Yahya Kemal'in İstanbul'u anlattığı şiirlerinden biridir."
+  },
+  {
+    "id": "q58699",
+    "categoryIndex": 3,
+    "question": "'Merdiven' şiirinin şairi kimdir?",
+    "options": [
+      "Cenap Şahabettin",
+      "Ahmet Hamdi Tanpınar",
+      "Ahmet Haşim",
+      "Yahya Kemal Beyatlı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Merdiven, Ahmet Haşim'in sembolist ve empresyonist şiir anlayışının tanınmış örneğidir."
+  },
+  {
+    "id": "q58700",
+    "categoryIndex": 3,
+    "question": "Göl Saatleri adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Yahya Kemal Beyatlı",
+      "Cahit Sıtkı Tarancı",
+      "Tevfik Fikret",
+      "Ahmet Haşim"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Göl Saatleri 1921'de yayımlanan Ahmet Haşim kitabıdır."
+  },
+  {
+    "id": "q58701",
+    "categoryIndex": 3,
+    "question": "Rübab-ı Şikeste adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Tevfik Fikret",
+      "Cenap Şahabettin",
+      "Ahmet Haşim",
+      "Mehmet Âkif Ersoy"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tevfik Fikret'in şiirlerinin önemli bölümü Rübab-ı Şikeste'de toplandı."
+  },
+  {
+    "id": "q58702",
+    "categoryIndex": 3,
+    "question": "'Sis' şiirinde İstanbul'u sert biçimde eleştiren şair kimdir?",
+    "options": [
+      "Mehmet Âkif Ersoy",
+      "Tevfik Fikret",
+      "Ahmet Haşim",
+      "Yahya Kemal Beyatlı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tevfik Fikret, Sis şiirinde baskıcı dönemin İstanbul'unu karanlık bir imgeyle anlatır."
+  },
+  {
+    "id": "q58703",
+    "categoryIndex": 3,
+    "question": "'Vatan Yahut Silistre' adlı tiyatro eserinin yazarı kimdir?",
+    "options": [
+      "Ziya Paşa",
+      "Şinasi",
+      "Namık Kemal",
+      "Abdülhak Hâmid Tarhan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Namık Kemal'in 1873'te sahnelenen eseri vatan sevgisini işler."
+  },
+  {
+    "id": "q58704",
+    "categoryIndex": 3,
+    "question": "Türk edebiyatındaki ilk yerli tiyatro eseri kabul edilen Şair Evlenmesi'ni kim yazdı?",
+    "options": [
+      "Ahmet Vefik Paşa",
+      "Namık Kemal",
+      "Direktör Ali Bey",
+      "Şinasi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Şinasi'nin Şair Evlenmesi adlı komedisi görücü usulü evliliği hicveder."
+  },
+  {
+    "id": "q58705",
+    "categoryIndex": 3,
+    "question": "'Makber' şiirinin şairi kimdir?",
+    "options": [
+      "Abdülhak Hâmid Tarhan",
+      "Muallim Naci",
+      "Recaizade Mahmut Ekrem",
+      "Namık Kemal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Abdülhak Hâmid, eşi Fatma Hanım'ın ölümü üzerine Makber'i yazdı."
+  },
+  {
+    "id": "q58706",
+    "categoryIndex": 3,
+    "question": "Araba Sevdası romanının yazarı kimdir?",
+    "options": [
+      "Samipaşazade Sezai",
+      "Recaizade Mahmut Ekrem",
+      "Nabizade Nâzım",
+      "Şemsettin Sami"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Araba Sevdası, yanlış Batılılaşmayı Bihruz Bey üzerinden hicveder."
+  },
+  {
+    "id": "q58707",
+    "categoryIndex": 3,
+    "question": "Araba Sevdası romanının başkahramanı kimdir?",
+    "options": [
+      "Ali Bey",
+      "İntibah'ın Mahpeyker'i",
+      "Bihruz Bey",
+      "Felâtun Bey"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bihruz Bey, gösterişe ve yanlış Batılılaşmaya düşkün bir gençtir."
+  },
+  {
+    "id": "q58708",
+    "categoryIndex": 3,
+    "question": "Sergüzeşt romanının yazarı kimdir?",
+    "options": [
+      "Recaizade Mahmut Ekrem",
+      "Halit Ziya Uşaklıgil",
+      "Nabizade Nâzım",
+      "Samipaşazade Sezai"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sergüzeşt, Dilber adlı cariyenin trajik yaşamını anlatır."
+  },
+  {
+    "id": "q58709",
+    "categoryIndex": 3,
+    "question": "Karabibik adlı uzun hikâyenin yazarı kimdir?",
+    "options": [
+      "Nabizade Nâzım",
+      "Şemsettin Sami",
+      "Samipaşazade Sezai",
+      "Ahmet Mithat Efendi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Karabibik, Anadolu köylüsünü gerçekçi biçimde ele alan erken eserlerdendir."
+  },
+  {
+    "id": "q58710",
+    "categoryIndex": 3,
+    "question": "Zehra romanının yazarı kimdir?",
+    "options": [
+      "Mehmet Rauf",
+      "Nabizade Nâzım",
+      "Hüseyin Rahmi Gürpınar",
+      "Halit Ziya Uşaklıgil"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Zehra, kıskançlık temasını işleyen natüralist özellikli bir romandır."
+  },
+  {
+    "id": "q58711",
+    "categoryIndex": 3,
+    "question": "Şıpsevdi romanının yazarı kimdir?",
+    "options": [
+      "Refik Halit Karay",
+      "Ahmet Mithat Efendi",
+      "Hüseyin Rahmi Gürpınar",
+      "Halit Ziya Uşaklıgil"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hüseyin Rahmi, Şıpsevdi'de alafrangalık özentisini hicveder."
+  },
+  {
+    "id": "q58712",
+    "categoryIndex": 3,
+    "question": "Mürebbiye romanının yazarı kimdir?",
+    "options": [
+      "Ahmet Mithat Efendi",
+      "Mehmet Rauf",
+      "Recaizade Mahmut Ekrem",
+      "Hüseyin Rahmi Gürpınar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mürebbiye, konaktaki aileyi etkileyen Fransız mürebbiye Anjel'i anlatır."
+  },
+  {
+    "id": "q58713",
+    "categoryIndex": 3,
+    "question": "Felâtun Bey ile Râkım Efendi romanını kim yazdı?",
+    "options": [
+      "Ahmet Mithat Efendi",
+      "Namık Kemal",
+      "Recaizade Mahmut Ekrem",
+      "Şemsettin Sami"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Roman yanlış ve doğru Batılılaşma biçimlerini iki karakter üzerinden karşılaştırır."
+  },
+  {
+    "id": "q58714",
+    "categoryIndex": 3,
+    "question": "Taaşşuk-ı Talat ve Fitnat romanının yazarı kimdir?",
+    "options": [
+      "Ahmet Mithat Efendi",
+      "Şemsettin Sami",
+      "Samipaşazade Sezai",
+      "Namık Kemal"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Eser Türk edebiyatındaki ilk yerli roman denemelerinden kabul edilir."
+  },
+  {
+    "id": "q58715",
+    "categoryIndex": 3,
+    "question": "Kamus-ı Türkî adlı sözlüğün yazarı kimdir?",
+    "options": [
+      "Muallim Naci",
+      "Şinasi",
+      "Şemsettin Sami",
+      "Ahmet Cevdet Paşa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Şemsettin Sami'nin Kamus-ı Türkî'si Türkçe sözlükçülük tarihinde önemli bir eserdir."
+  },
+  {
+    "id": "q58716",
+    "categoryIndex": 3,
+    "question": "Hece ölçüsüyle yazdığı 'Otuz Beş Yaş' şiiriyle tanınan şair kimdir?",
+    "options": [
+      "Fazıl Hüsnü Dağlarca",
+      "Ziya Osman Saba",
+      "Ahmet Muhip Dıranas",
+      "Cahit Sıtkı Tarancı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Cahit Sıtkı'nın Otuz Beş Yaş şiiri 1946 CHP Şiir Yarışması'nda birinci oldu."
+  },
+  {
+    "id": "q58717",
+    "categoryIndex": 3,
+    "question": "'Memleket İsterim' şiirinin şairi kimdir?",
+    "options": [
+      "Cahit Sıtkı Tarancı",
+      "Orhan Veli Kanık",
+      "Attilâ İlhan",
+      "Behçet Necatigil"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cahit Sıtkı şiirde barış ve huzur içindeki bir ülke özlemini dile getirir."
+  },
+  {
+    "id": "q58718",
+    "categoryIndex": 3,
+    "question": "'Fahriye Abla' şiirinin şairi kimdir?",
+    "options": [
+      "Cahit Sıtkı Tarancı",
+      "Ahmet Muhip Dıranas",
+      "Ziya Osman Saba",
+      "Behçet Necatigil"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ahmet Muhip Dıranas'ın Fahriye Abla şiiri Türk şiirinin tanınmış portrelerinden biridir."
+  },
+  {
+    "id": "q58719",
+    "categoryIndex": 3,
+    "question": "'Lavinia' şiirinin şairi kimdir?",
+    "options": [
+      "Edip Cansever",
+      "Cemal Süreya",
+      "Özdemir Asaf",
+      "Turgut Uyar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Lavinia, Özdemir Asaf'ın karşılıksız aşk temasını işleyen en tanınmış şiirlerindendir."
+  },
+  {
+    "id": "q58720",
+    "categoryIndex": 3,
+    "question": "'Seni bulmaktan önce aramak isterim' dizesi hangi şaire aittir?",
+    "options": [
+      "Cemal Süreya",
+      "Attilâ İlhan",
+      "Can Yücel",
+      "Özdemir Asaf"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bu dize Özdemir Asaf'ın Lavinia şiirinde yer alır."
+  }
+]

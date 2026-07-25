@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "questionCount": 100,
+  "idStart": "q57321",
+  "idEnd": "q57420",
+  "categoryCounts": {
+    "0": 16,
+    "1": 16,
+    "2": 17,
+    "3": 17,
+    "4": 17,
+    "5": 17
+  },
+  "difficultyCounts": {
+    "Kolay": 53,
+    "Orta": 46,
+    "Zor": 1
+  },
+  "answerIndexCounts": {
+    "0": 25,
+    "1": 25,
+    "2": 25,
+    "3": 25
+  },
+  "exactDuplicateQuestions": 0
+}

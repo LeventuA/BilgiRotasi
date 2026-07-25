@@ -1,0 +1,28 @@
+{
+  "project": "LeventuA/BilgiRotasi",
+  "bundle": "BilgiRotasi_Kaliteli_1000",
+  "createdOn": "2026-07-23",
+  "questionCount": 1000,
+  "packageCount": 10,
+  "idRange": "q53121-q54120",
+  "categoryCounts": {
+    "Coğrafya": 170,
+    "Eğlence": 170,
+    "Tarih": 170,
+    "Sanat & Edebiyat": 170,
+    "Bilim & Doğa": 160,
+    "Spor": 160
+  },
+  "difficultyCounts": {
+    "Kolay": 678,
+    "Orta": 301,
+    "Zor": 21
+  },
+  "globalValidation": "PASS",
+  "exactQuestionDuplicates": 0,
+  "questionAnswerDuplicates": 0,
+  "strongNearDuplicates": 0,
+  "preparedAgainstMainCommit": "74b5755ef230fb2da6a003fc47ddbf726a13951b",
+  "preparedAgainstQuestionsBlob": "ff731aebbc31844eef16fe1a50c1fde47e144577",
+  "runtimeExistingBankDuplicateCheck": true
+}

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "emptyBankCheck": {
+    "returnCode": 0,
+    "stdout": "Mevcut soru       : 0\nV4 paketi         : 1000\nTemiz kabul       : 1000\nÇakışma           : 0\nYeni olası toplam : 1000\nRapor             : /tmp/tmp5dpzb140/quality_v4_1000_install_output/v4_install_report_20260723T213615Z.json\n\nKontrol tamamlandı; ana dosya değiştirilmedi.\n",
+    "stderr": "",
+    "count": 0,
+    "unchanged": true,
+    "backupCount": 0
+  },
+  "emptyBankApply": {
+    "returnCode": 0,
+    "stdout": "Mevcut soru       : 0\nV4 paketi         : 1000\nTemiz kabul       : 1000\nÇakışma           : 0\nYeni olası toplam : 1000\nRapor             : /tmp/tmpb0w5c8ud/quality_v4_1000_install_output/v4_install_report_20260723T213615Z.json\n\nBaşarıyla eklendi : 1000\nYeni toplam       : 1000\nTam yedek         : /tmp/tmpb0w5c8ud/.question_backups/questions.json.20260723T213615Z.before_v4_1000.bak\n",
+    "stderr": "",
+    "count": 1000,
+    "unchanged": false,
+    "backupCount": 1
+  },
+  "artificialConflictAbort": {
+    "returnCode": 3,
+    "stdout": "Mevcut soru       : 1\nV4 paketi         : 1000\nTemiz kabul       : 999\nÇakışma           : 1\nYeni olası toplam : 1000\nRapor             : /tmp/tmp6mbkam9b/quality_v4_1000_install_output/v4_install_report_20260723T213616Z.json\n\nÇakışma bulundu; questions.json değiştirilmedi. Temizleri eklemek için --skip-conflicts kullanın.\n",
+    "stderr": "",
+    "count": 1,
+    "unchanged": true,
+    "backupCount": 0
+  },
+  "localV1V2V3Check": {
+    "returnCode": 0,
+    "stdout": "Mevcut soru       : 3000\nV4 paketi         : 1000\nTemiz kabul       : 1000\nÇakışma           : 0\nYeni olası toplam : 4000\nRapor             : /tmp/tmpebyj1_sa/quality_v4_1000_install_output/v4_install_report_20260723T213617Z.json\n\nKontrol tamamlandı; ana dosya değiştirilmedi.\n",
+    "stderr": "",
+    "count": 3000,
+    "unchanged": true,
+    "backupCount": 0
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "questionCount": 10000,
+  "idRange": "q13121-q23120",
+  "packageCount": 10,
+  "categoryCounts": {
+    "Coğrafya": 1670,
+    "Eğlence": 1670,
+    "Tarih": 1670,
+    "Sanat & Edebiyat": 1670,
+    "Bilim & Doğa": 1660,
+    "Spor": 1660
+  },
+  "difficultyCounts": {
+    "Kolay": 2502,
+    "Orta": 4996,
+    "Zor": 2502
+  },
+  "answerIndexCounts": {
+    "0": 2467,
+    "1": 2511,
+    "2": 2608,
+    "3": 2414
+  },
+  "modernHistoryQuestionCount": 360,
+  "previousBankCrosscheck": {
+    "referenceQuestionCount": 10000,
+    "referenceZipSha256": "8b95d0a0df6e36ef24d288b5075ec6ee2625a083df86a9cad0ac311daccaaded",
+    "exactQuestionDuplicates": 0,
+    "exactQuestionAnswerDuplicates": 0,
+    "sameAnswerSimilarityAtOrAbove090": 0
+  },
+  "checks": {
+    "continuousIds": true,
+    "uniqueIds": true,
+    "uniqueQuestionTexts": true,
+    "validOptions": true,
+    "validAnswerIndexes": true,
+    "allExplanationsPresent": true,
+    "allTenPackagesHave1000Questions": true
+  }
+}

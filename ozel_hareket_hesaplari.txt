@@ -1,0 +1,138 @@
+  static List<int> continuePath({
+    required int previous,
+    required int current,
+    required int steps,
+  }) {
+    final result = <int>[current];
+    var last = previous;
+    var cursor = current;
+
+    for (var index = 0; index < steps; index++) {
+      final next = _nextInDirection(
+        previous: last,
+        current: cursor,
+      );
+
+      result.add(next);
+      last = cursor;
+      cursor = next;
+    }
+
+    return result;
+  }
+
+  static List<int> reversePath(
+    MoveOption option,
+    int steps,
+  ) {
+    final reversed = option.path.reversed.toList();
+    final result = <int>[reversed.first];
+
+    for (var index = 1;
+        index < reversed.length &&
+            result.length < steps + 1;
+        index++) {
+      result.add(reversed[index]);
+    }
+
+    if (result.length < steps + 1) {
+      final previous = result.length >= 2
+          ? result[result.length - 2]
+          : option.destination;
+      final remaining = steps - (result.length - 1);
+      final extension = continuePath(
+        previous: previous,
+        current: result.last,
+        steps: remaining,
+      );
+
+      result.addAll(extension.skip(1));
+    }
+
+    return result;
+  }
+
+  static int _nextInDirection({
+    required int previous,
+    required int current,
+  }) {
+    final previousNode = node(previous);
+    final currentNode = node(current);
+
+    if (currentNode.kind == BoardNodeKind.outer &&
+        previousNode.kind == BoardNodeKind.outer) {
+      final clockwise =
+          (currentNode.ring! - previousNode.ring! + outerCount) %
+                  outerCount ==
+              1;
+
+      return outerId(
+        currentNode.ring! + (clockwise ? 1 : -1),
+      );
+    }
+
+    if (currentNode.kind == BoardNodeKind.spoke &&
+        previousNode.kind == BoardNodeKind.spoke &&
+        currentNode.arm == previousNode.arm) {
+      final movingOutward =
+          currentNode.step! > previousNode.step!;
+
+      if (movingOutward) {
+        return currentNode.step == spokeLength - 1
+            ? outerId(currentNode.arm! * 6)
+            : spokeId(
+                currentNode.arm!,
+                currentNode.step! + 1,
+              );
+      }
+
+      return currentNode.step == 0
+          ? centerId
+          : spokeId(
+              currentNode.arm!,
+              currentNode.step! - 1,
+            );
+    }
+
+    if (currentNode.kind == BoardNodeKind.spoke &&
+        previousNode.kind == BoardNodeKind.center) {
+      return currentNode.step == spokeLength - 1
+          ? outerId(currentNode.arm! * 6)
+          : spokeId(
+              currentNode.arm!,
+              currentNode.step! + 1,
+            );
+    }
+
+    if (currentNode.kind == BoardNodeKind.spoke &&
+        previousNode.kind == BoardNodeKind.outer) {
+      return currentNode.step == 0
+          ? centerId
+          : spokeId(
+              currentNode.arm!,
+              currentNode.step! - 1,
+            );
+    }
+
+    if (currentNode.kind == BoardNodeKind.center &&
+        previousNode.kind == BoardNodeKind.spoke) {
+      return spokeId(
+        (previousNode.arm! + 3) % spokeCount,
+        0,
+      );
+    }
+
+    if (currentNode.kind == BoardNodeKind.outer &&
+        previousNode.kind == BoardNodeKind.spoke) {
+      return outerId(currentNode.ring! + 1);
+    }
+
+    final candidates = neighbors(current)
+        .where((candidate) => candidate != previous)
+        .toList();
+
+    return candidates.isEmpty
+        ? previous
+        : candidates.first;
+  }
+

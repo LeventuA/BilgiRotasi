@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "questionCount": 1000,
+  "packageCount": 10,
+  "idRange": "q55121-q56120",
+  "categoryCounts": {
+    "1": 170,
+    "0": 170,
+    "3": 170,
+    "4": 160,
+    "2": 170,
+    "5": 160
+  },
+  "difficultyCounts": {
+    "Kolay": 525,
+    "Orta": 441,
+    "Zor": 34
+  },
+  "answerIndexCounts": {
+    "0": 250,
+    "1": 250,
+    "2": 250,
+    "3": 250
+  },
+  "schemaErrors": 0,
+  "exactQuestionDuplicates": 0,
+  "strongNearDuplicates": 0,
+  "exactOrStrongDuplicatesAgainstV1V2CandidateBanks": 0,
+  "crossCheckedCandidateQuestions": 2000,
+  "initialKeepAuditQuestions": 1066,
+  "probableSameFactDuplicatesAgainstInitialKeepAudit": 0,
+  "editorialReplacementsAfterSemanticAudit": 92,
+  "notes": [
+    "Güncel canlı soru bankasına karşı son kontrol kurulum sırasında yapılır.",
+    "Referans eşlemesi doğrulama için başvuru grubu önerisidir; bağımsız insan hakemliği değildir."
+  ]
+}

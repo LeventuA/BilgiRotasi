@@ -1,0 +1,27 @@
+  PlayerData get _currentPlayer =>
+      widget.players[_currentPlayerIndex];
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.players.isNotEmpty) {
+      _currentPlayerIndex = widget.initialPlayerIndex
+          .clamp(0, widget.players.length - 1)
+          .toInt();
+    }
+
+    _status = widget.initialStatus ?? 'Zarı at ve rotaya çık.';
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(_saveGame());
+    });
+  }
+
+  Future<void> _saveGame() {
+    return GameSaveService.save(
+      players: widget.players,
+      currentPlayerIndex: _currentPlayerIndex,
+    );
+  }
+

@@ -1,0 +1,12 @@
+{
+  "referenceBundleQuestionCount": 10000,
+  "referenceBundleSha256": "8b95d0a0df6e36ef24d288b5075ec6ee2625a083df86a9cad0ac311daccaaded",
+  "newBundleQuestionCount": 10000,
+  "newIdRange": "q13121-q23120",
+  "normalizedExactQuestionDuplicates": 0,
+  "normalizedExactQuestionAndAnswerDuplicates": 0,
+  "sameAnswerSimilarityThreshold": 0.9,
+  "sameAnswerSimilarityMatches": 0,
+  "uniqueStructuredFactKeys": 10000,
+  "note": "Farklı bilgilerde benzer soru kalıpları kullanılabilir; aynı bilgi, aynı soru ve aynı soru-doğru cevap çifti tekrarlanmamıştır."
+}

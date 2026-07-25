@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q53721",
+    "categoryIndex": 0,
+    "question": "Eyfel Kulesi hangi nehrin yakınında yükselir?",
+    "options": [
+      "Tuna Nehri",
+      "Sen Nehri",
+      "Ren Nehri",
+      "Loire Nehri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Eyfel Kulesi Paris’te, Sen Nehri’nin sol kıyısına yakın Champ de Mars alanında bulunur."
+  },
+  {
+    "id": "q53722",
+    "categoryIndex": 0,
+    "question": "Londra’dan geçen başlıca nehir hangisidir?",
+    "options": [
+      "Severn",
+      "Mersey",
+      "Thames",
+      "Clyde"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Thames Nehri Londra’nın merkezinden geçer ve Kuzey Denizi’ne doğru akar."
+  },
+  {
+    "id": "q53723",
+    "categoryIndex": 0,
+    "question": "Budapeşte’yi Buda ve Peşte olarak ikiye ayıran nehir hangisidir?",
+    "options": [
+      "Elbe",
+      "Vistül",
+      "Oder",
+      "Tuna"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Tuna Nehri’nin batısında Buda, doğusunda Peşte yer alır; iki yakayı çok sayıda köprü birleştirir."
+  },
+  {
+    "id": "q53724",
+    "categoryIndex": 0,
+    "question": "Prag’dan geçen nehir hangisidir?",
+    "options": [
+      "Vltava",
+      "Tuna",
+      "Sava",
+      "Dinyeper"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Vltava Nehri Prag’ın tarihî merkezinden geçer ve ünlü Karl Köprüsü nehrin iki yakasını bağlar."
+  },
+  {
+    "id": "q53725",
+    "categoryIndex": 0,
+    "question": "Kahire yakınındaki Gize Piramitleri hangi büyük nehrin batısındadır?",
+    "options": [
+      "Nijer",
+      "Nil",
+      "Kongo",
+      "Zambezi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Gize platosu Nil Nehri’nin batısında bulunur; antik Mısır yerleşimi ve tarımı nehir çevresinde gelişmiştir."
+  },
+  {
+    "id": "q53726",
+    "categoryIndex": 0,
+    "question": "Marakeş şehri hangi ülkededir?",
+    "options": [
+      "Tunus",
+      "Cezayir",
+      "Fas",
+      "Mısır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Marakeş, Fas’ın iç kesimlerinde çarşıları, meydanları ve kırmızı surlarıyla tanınan tarihî bir şehirdir."
+  },
+  {
+    "id": "q53727",
+    "categoryIndex": 0,
+    "question": "Dubrovnik şehri hangi denizin kıyısındadır?",
+    "options": [
+      "Ege Denizi",
+      "Karadeniz",
+      "Tiren Denizi",
+      "Adriyatik Denizi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dubrovnik, Hırvatistan’ın güneyinde Adriyatik kıyısında surlarla çevrili tarihî bir liman şehridir."
+  },
+  {
+    "id": "q53728",
+    "categoryIndex": 0,
+    "question": "Tallinn hangi ülkenin başkentidir?",
+    "options": [
+      "Estonya",
+      "Letonya",
+      "Litvanya",
+      "Finlandiya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tallinn, Baltık Denizi kıyısında yer alan Estonya’nın başkenti ve en büyük şehridir."
+  },
+  {
+    "id": "q53729",
+    "categoryIndex": 0,
+    "question": "Bratislava hangi ülkenin başkentidir?",
+    "options": [
+      "Slovenya",
+      "Slovakya",
+      "Hırvatistan",
+      "Sırbistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bratislava, Tuna Nehri kıyısında bulunan Slovakya’nın başkentidir."
+  },
+  {
+    "id": "q53730",
+    "categoryIndex": 0,
+    "question": "Tiflis hangi ülkenin başkentidir?",
+    "options": [
+      "Ermenistan",
+      "Azerbaycan",
+      "Gürcistan",
+      "Moldova"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tiflis, Kura Nehri vadisinde yer alan Gürcistan’ın başkenti ve kültür merkezidir."
+  },
+  {
+    "id": "q53731",
+    "categoryIndex": 0,
+    "question": "Suva hangi ada ülkesinin başkentidir?",
+    "options": [
+      "Samoa",
+      "Tonga",
+      "Vanuatu",
+      "Fiji"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Suva, Fiji’nin en büyük adası Viti Levu’nun güneydoğu kıyısında bulunur."
+  },
+  {
+    "id": "q53732",
+    "categoryIndex": 0,
+    "question": "Montevideo hangi ülkenin başkentidir?",
+    "options": [
+      "Uruguay",
+      "Paraguay",
+      "Bolivya",
+      "Ekvador"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Montevideo, Río de la Plata kıyısında bulunan Uruguay’ın başkenti ve en büyük şehridir."
+  },
+  {
+    "id": "q53733",
+    "categoryIndex": 0,
+    "question": "Quito hangi ülkenin başkentidir?",
+    "options": [
+      "Peru",
+      "Ekvador",
+      "Kolombiya",
+      "Bolivya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Quito, And Dağları’nda yaklaşık 2.850 metre yüksekte bulunan Ekvador’un başkentidir."
+  },
+  {
+    "id": "q53734",
+    "categoryIndex": 0,
+    "question": "La Paz hangi ülkenin yönetim merkezidir?",
+    "options": [
+      "Peru",
+      "Şili",
+      "Bolivya",
+      "Paraguay"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bolivya’nın anayasal başkenti Sucre olsa da hükümet ve parlamento yüksek rakımlı La Paz’da bulunur."
+  },
+  {
+    "id": "q53735",
+    "categoryIndex": 0,
+    "question": "Addis Ababa hangi ülkenin başkentidir?",
+    "options": [
+      "Eritre",
+      "Kenya",
+      "Sudan",
+      "Etiyopya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Addis Ababa Etiyopya’nın başkentidir ve Afrika Birliği’nin merkezine ev sahipliği yapar."
+  },
+  {
+    "id": "q53736",
+    "categoryIndex": 0,
+    "question": "Havana hangi ülkenin başkentidir?",
+    "options": [
+      "Küba",
+      "Dominik Cumhuriyeti",
+      "Jamaika",
+      "Porto Riko"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Havana, Küba’nın kuzeybatı kıyısında bulunan başkent ve önemli bir Karayip limanıdır."
+  },
+  {
+    "id": "q53737",
+    "categoryIndex": 0,
+    "question": "Ulan Batur hangi ülkenin başkentidir?",
+    "options": [
+      "Kazakistan",
+      "Moğolistan",
+      "Kırgızistan",
+      "Tacikistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ulan Batur, Moğolistan’ın siyasi ve ekonomik merkezi olup dünyanın en soğuk başkentlerinden biridir."
+  },
+  {
+    "id": "q53738",
+    "categoryIndex": 1,
+    "question": "Jurassic Park’ta dinozorları yeniden oluşturan şirketin adı nedir?",
+    "options": [
+      "Weyland-Yutani",
+      "Cyberdyne Systems",
+      "InGen",
+      "Tyrell Corporation"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "InGen, kehribar içindeki sivrisineklerden elde edilen DNA’yı kullanarak dinozorları klonlar."
+  },
+  {
+    "id": "q53739",
+    "categoryIndex": 1,
+    "question": "Terminatör serisindeki yapay zekâ sisteminin adı nedir?",
+    "options": [
+      "GLaDOS",
+      "HAL 9000",
+      "Ultron",
+      "Skynet"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Skynet bilinç kazandıktan sonra insanlığı tehdit olarak görür ve nükleer savaşı başlatır."
+  },
+  {
+    "id": "q53740",
+    "categoryIndex": 1,
+    "question": "Alien filmindeki uzay gemisinin adı nedir?",
+    "options": [
+      "Nostromo",
+      "Discovery One",
+      "Serenity",
+      "Endurance"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Nostromo, mürettebatının bilinmeyen bir yaşam formuyla karşılaştığı ticari çekici uzay gemisidir."
+  },
+  {
+    "id": "q53741",
+    "categoryIndex": 1,
+    "question": "Blade Runner’daki yapay insanlara ne denir?",
+    "options": [
+      "Sentinel",
+      "Replikant",
+      "Cylon",
+      "Synth"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Replikantlar biyomühendislikle üretilmiş insan benzeri varlıklardır ve onları avlayan görevlilere blade runner denir."
+  },
+  {
+    "id": "q53742",
+    "categoryIndex": 1,
+    "question": "E.T. filmindeki uzaylının eve dönmek için kullandığı ünlü ifade hangisidir?",
+    "options": [
+      "May the Force be with you",
+      "I’ll be back",
+      "E.T. home phone",
+      "Open the pod bay doors"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "E.T. basit İngilizcesiyle ailesine ulaşma isteğini “E.T. phone home” sözleriyle anlatır."
+  },
+  {
+    "id": "q53743",
+    "categoryIndex": 1,
+    "question": "Rocky Balboa hangi sporla uğraşır?",
+    "options": [
+      "Güreş",
+      "Karate",
+      "Atletizm",
+      "Boks"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Rocky, Philadelphia’da yaşayan ve dünya şampiyonuna karşı beklenmedik fırsat yakalayan bir boksördür."
+  },
+  {
+    "id": "q53744",
+    "categoryIndex": 1,
+    "question": "Karate Kid filminde Daniel’ın ustası kimdir?",
+    "options": [
+      "Mr. Miyagi",
+      "Master Shifu",
+      "Pai Mei",
+      "John Kreese"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mr. Miyagi, Daniel’a karateyi gündelik işler ve denge ilkeleri üzerinden öğretir."
+  },
+  {
+    "id": "q53745",
+    "categoryIndex": 1,
+    "question": "Hayalet Avcıları’nın İngilizce ekip adı nedir?",
+    "options": [
+      "Ghost Riders",
+      "Ghostbusters",
+      "Spectre Squad",
+      "Phantom Force"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ghostbusters ekibi New York’ta doğaüstü varlıkları yakalamak için özel ekipman kullanır."
+  },
+  {
+    "id": "q53746",
+    "categoryIndex": 1,
+    "question": "Indiana Jones’un mesleği nedir?",
+    "options": [
+      "Gazeteci",
+      "Astronom",
+      "Arkeolog",
+      "Avukat"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Indiana Jones üniversitede arkeoloji dersleri verirken kayıp eserlerin peşinde tehlikeli maceralara çıkar."
+  },
+  {
+    "id": "q53747",
+    "categoryIndex": 1,
+    "question": "Forrest Gump’ın çocukluk arkadaşı ve büyük aşkı kimdir?",
+    "options": [
+      "Elaine",
+      "Trinity",
+      "Adrian",
+      "Jenny"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Jenny Curran, Forrest’ın çocukluğundan beri hayatında olan ve yolları yıllar boyunca kesişen kişidir."
+  },
+  {
+    "id": "q53748",
+    "categoryIndex": 1,
+    "question": "Baba filmindeki Corleone ailesinin patriği kimdir?",
+    "options": [
+      "Vito Corleone",
+      "Michael Corleone",
+      "Sonny Corleone",
+      "Tom Hagen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Vito Corleone, New York’taki güçlü suç ailesinin lideri ve “Don”udur."
+  },
+  {
+    "id": "q53749",
+    "categoryIndex": 1,
+    "question": "Pulp Fiction’daki iki kiralık katil kimlerdir?",
+    "options": [
+      "Butch ve Marsellus",
+      "Vincent ve Jules",
+      "Mia ve Lance",
+      "Pumpkin ve Honey Bunny"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Vincent Vega ile Jules Winnfield, Marsellus Wallace için çalışan ve filmin önemli bölümlerinde birlikte görülen ikilidir."
+  },
+  {
+    "id": "q53750",
+    "categoryIndex": 1,
+    "question": "The Truman Show’da Truman’ın yaşadığı yapay kasabanın adı nedir?",
+    "options": [
+      "Pleasantville",
+      "Hill Valley",
+      "Seahaven",
+      "Twin Pines"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Seahaven dev bir televizyon stüdyosudur ve Truman dışındaki sakinlerin çoğu oyuncudur."
+  },
+  {
+    "id": "q53751",
+    "categoryIndex": 1,
+    "question": "Inception filminde rüya içinde rüya operasyonlarını yöneten karakter kimdir?",
+    "options": [
+      "Arthur",
+      "Eames",
+      "Saito",
+      "Dom Cobb"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dom Cobb insanların bilinçaltına girerek bilgi çalan ve bir fikri yerleştirme görevi alan uzmandır."
+  },
+  {
+    "id": "q53752",
+    "categoryIndex": 1,
+    "question": "Interstellar’da astronot Cooper’ın kızının adı nedir?",
+    "options": [
+      "Murph",
+      "Amelia",
+      "Brand",
+      "TARS"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Murph büyüdüğünde insanlığın kurtuluşunda belirleyici olacak yerçekimi denklemi üzerinde çalışır."
+  },
+  {
+    "id": "q53753",
+    "categoryIndex": 1,
+    "question": "The Matrix’te Neo’nun gerçek adı nedir?",
+    "options": [
+      "John Connor",
+      "Thomas Anderson",
+      "David Bowman",
+      "Rick Deckard"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Neo, Matrix içinde yazılım şirketinde çalışan Thomas Anderson adlı bir programcıdır."
+  },
+  {
+    "id": "q53754",
+    "categoryIndex": 1,
+    "question": "Mad Max: Fury Road’da savaşçı kadın karakter kimdir?",
+    "options": [
+      "Ripley",
+      "Sarah Connor",
+      "Furiosa",
+      "Trinity"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Imperator Furiosa, Immortan Joe’nun tutsaklarını kaçırarak özgürlüğe ulaştırmaya çalışan savaşçıdır."
+  },
+  {
+    "id": "q53755",
+    "categoryIndex": 2,
+    "question": "İlk Olimpiyat maratonunu kazanan sporcu hangi ülkedendi?",
+    "options": [
+      "Fransa",
+      "İtalya",
+      "Britanya",
+      "Yunanistan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Spyridon Louis, 1896 Atina Olimpiyatları’ndaki ilk modern maratonu kazanarak Yunanistan’da ulusal kahraman oldu."
+  },
+  {
+    "id": "q53756",
+    "categoryIndex": 2,
+    "question": "1903’te ilk motorlu uçuş nerede gerçekleştirildi?",
+    "options": [
+      "Kitty Hawk",
+      "Cape Canaveral",
+      "Dayton",
+      "Boston"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Wright Kardeşler ilk kontrollü motorlu uçuşlarını Kuzey Carolina’daki Kill Devil Hills yakınında yaptı."
+  },
+  {
+    "id": "q53757",
+    "categoryIndex": 2,
+    "question": "Lusitania yolcu gemisi hangi savaş sırasında batırıldı?",
+    "options": [
+      "Kırım Savaşı",
+      "I. Dünya Savaşı",
+      "II. Dünya Savaşı",
+      "İspanya İç Savaşı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Britanya gemisi Lusitania 1915’te bir Alman denizaltısı tarafından batırıldı ve olay ABD kamuoyunu etkiledi."
+  },
+  {
+    "id": "q53758",
+    "categoryIndex": 2,
+    "question": "Rusya’daki son çar kimdi?",
+    "options": [
+      "I. Aleksandr",
+      "III. Aleksandr",
+      "II. Nikolay",
+      "Büyük Petro"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "II. Nikolay 1917 Devrimi sırasında tahttan çekildi ve Romanov hanedanının yönetimi sona erdi."
+  },
+  {
+    "id": "q53759",
+    "categoryIndex": 2,
+    "question": "Titanic’in yardım çağrısına ulaşan geminin adı neydi?",
+    "options": [
+      "Californian",
+      "Olympic",
+      "Britannic",
+      "Carpathia"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "RMS Carpathia kazadan sonra bölgeye ulaşıp filikalardaki yaklaşık 700 kişiyi kurtardı."
+  },
+  {
+    "id": "q53760",
+    "categoryIndex": 2,
+    "question": "I. Dünya Savaşı’ndaki ateşkesi simgeleyen tarih hangisidir?",
+    "options": [
+      "11 Kasım 1918",
+      "28 Haziran 1914",
+      "1 Eylül 1939",
+      "8 Mayıs 1945"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Almanya ile Müttefikler arasındaki ateşkes 11 Kasım 1918 saat 11.00’de yürürlüğe girdi."
+  },
+  {
+    "id": "q53761",
+    "categoryIndex": 2,
+    "question": "II. Dünya Savaşı Avrupa’da hangi yılda başladı?",
+    "options": [
+      "1936",
+      "1939",
+      "1940",
+      "1941"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Almanya’nın 1 Eylül 1939’da Polonya’yı işgali üzerine Britanya ve Fransa savaş ilan etti."
+  },
+  {
+    "id": "q53762",
+    "categoryIndex": 2,
+    "question": "Pearl Harbor saldırısı hangi yılda gerçekleşti?",
+    "options": [
+      "1939",
+      "1942",
+      "1941",
+      "1944"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Japonya 7 Aralık 1941’de Hawaii’deki Pearl Harbor deniz üssüne saldırdı ve ABD savaşa girdi."
+  },
+  {
+    "id": "q53763",
+    "categoryIndex": 2,
+    "question": "Normandiya çıkarmasında kullanılan kod adlarından biri hangisidir?",
+    "options": [
+      "Operation Barbarossa",
+      "Operation Torch",
+      "Operation Market Garden",
+      "Operation Overlord"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Operation Overlord, 1944’te Müttefiklerin Normandiya üzerinden Batı Avrupa’ya dönüş planının genel kod adıydı."
+  },
+  {
+    "id": "q53764",
+    "categoryIndex": 2,
+    "question": "Soğuk Savaş sırasında uzaya ilk uyduyu gönderen ülke hangisidir?",
+    "options": [
+      "Sovyetler Birliği",
+      "ABD",
+      "Fransa",
+      "Çin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sovyetler Birliği 1957’de Sputnik 1’i yörüngeye göndererek Uzay Çağı’nı başlattı."
+  },
+  {
+    "id": "q53765",
+    "categoryIndex": 2,
+    "question": "Uzayda yürüyen ilk insan kimdir?",
+    "options": [
+      "Yuri Gagarin",
+      "Aleksey Leonov",
+      "Neil Armstrong",
+      "John Glenn"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sovyet kozmonot Aleksey Leonov 1965’te Voskhod 2 görevinde uzay aracının dışına çıktı."
+  },
+  {
+    "id": "q53766",
+    "categoryIndex": 2,
+    "question": "Ay’da yürüyen ikinci insan kimdir?",
+    "options": [
+      "Michael Collins",
+      "Pete Conrad",
+      "Buzz Aldrin",
+      "Alan Shepard"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Apollo 11’de Neil Armstrong’dan kısa süre sonra Buzz Aldrin Ay yüzeyine indi."
+  },
+  {
+    "id": "q53767",
+    "categoryIndex": 2,
+    "question": "Watergate skandalı sonrası istifa eden ABD başkanı kimdir?",
+    "options": [
+      "Gerald Ford",
+      "Jimmy Carter",
+      "Lyndon Johnson",
+      "Richard Nixon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Nixon 1974’te görevden ayrılarak istifa eden ilk ABD başkanı oldu."
+  },
+  {
+    "id": "q53768",
+    "categoryIndex": 2,
+    "question": "Güney Afrika’daki apartheid yönetimiyle mücadele eden örgüt hangisidir?",
+    "options": [
+      "Afrika Ulusal Kongresi",
+      "Afrika Birliği",
+      "Bağlantısızlar Hareketi",
+      "Güney Afrika Birliği"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Afrika Ulusal Kongresi, Nelson Mandela dâhil birçok liderle apartheid karşıtı mücadelenin merkezinde yer aldı."
+  },
+  {
+    "id": "q53769",
+    "categoryIndex": 2,
+    "question": "Avrupa Birliği’nin temelini güçlendiren 1992 antlaşması hangisidir?",
+    "options": [
+      "Roma Antlaşması",
+      "Maastricht Antlaşması",
+      "Şengen Antlaşması",
+      "Lizbon Antlaşması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Maastricht Antlaşması Avrupa Birliği’ni kurdu ve ortak para birimine giden süreci belirledi."
+  },
+  {
+    "id": "q53770",
+    "categoryIndex": 2,
+    "question": "Çekoslovakya’nın barışçıl biçimde iki ülkeye ayrılmasına ne ad verilir?",
+    "options": [
+      "Kadife Devrim",
+      "Prag Baharı",
+      "Kadife Boşanma",
+      "Demir Perde"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1 Ocak 1993’te Çek Cumhuriyeti ve Slovakya çatışma olmadan ayrı devletler hâline geldi."
+  },
+  {
+    "id": "q53771",
+    "categoryIndex": 2,
+    "question": "Hong Kong 1997’de hangi ülkeye devredildi?",
+    "options": [
+      "Japonya",
+      "Portekiz",
+      "Singapur",
+      "Çin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Britanya, 1 Temmuz 1997’de Hong Kong’un egemenliğini Çin’e devretti."
+  },
+  {
+    "id": "q53772",
+    "categoryIndex": 3,
+    "question": "Karamazov Kardeşler romanının yazarı kimdir?",
+    "options": [
+      "Fyodor Dostoyevski",
+      "Lev Tolstoy",
+      "Anton Çehov",
+      "İvan Turgenyev"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dostoyevski’nin son romanı olan Karamazov Kardeşler aile, inanç, ahlak ve suç temalarını işler."
+  },
+  {
+    "id": "q53773",
+    "categoryIndex": 3,
+    "question": "Anna Karenina romanının açılışında hangi tür ailelerden söz edilir?",
+    "options": [
+      "Zengin ve yoksul ailelerden",
+      "Mutlu ve mutsuz ailelerden",
+      "Şehirli ve köylü ailelerden",
+      "Genç ve yaşlı ailelerden"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Roman, mutlu ailelerin birbirine benzediğini, her mutsuz ailenin ise kendine özgü olduğunu söyleyen ünlü cümleyle başlar."
+  },
+  {
+    "id": "q53774",
+    "categoryIndex": 3,
+    "question": "Dracula romanının başlıca vampiri hangi bölgeden gelir?",
+    "options": [
+      "Normandiya",
+      "Bavyera",
+      "Transilvanya",
+      "Toskana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kont Dracula, Karpatlar’daki Transilvanya şatosundan İngiltere’ye gitmek için plan yapar."
+  },
+  {
+    "id": "q53775",
+    "categoryIndex": 3,
+    "question": "Notre-Dame’ın Kamburu romanındaki kambur zangoç kimdir?",
+    "options": [
+      "Frollo",
+      "Phoebus",
+      "Gringoire",
+      "Quasimodo"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Quasimodo, Paris’te Notre-Dame Katedrali’nin çanlarını çalan ve Esmeralda’ya bağlanan yalnız bir karakterdir."
+  },
+  {
+    "id": "q53776",
+    "categoryIndex": 3,
+    "question": "Operadaki Hayalet’in olayları hangi şehirdeki opera binasında geçer?",
+    "options": [
+      "Paris",
+      "Viyana",
+      "Milano",
+      "Londra"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gaston Leroux’nun romanı Paris Opera Binası’nın yeraltı geçitlerinde yaşayan gizemli hayaleti anlatır."
+  },
+  {
+    "id": "q53777",
+    "categoryIndex": 3,
+    "question": "Don Kişot’un sadık yol arkadaşının adı nedir?",
+    "options": [
+      "Rocinante",
+      "Sancho Panza",
+      "Dulcinea",
+      "Cardenio"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sancho Panza gerçekçi ve pratik yaklaşımıyla hayalperest Don Kişot’a eşlik eder."
+  },
+  {
+    "id": "q53778",
+    "categoryIndex": 3,
+    "question": "Savaş ve Barış hangi ülkenin Napolyon savaşlarındaki toplumunu anlatır?",
+    "options": [
+      "Fransa",
+      "Avusturya",
+      "Rusya",
+      "Polonya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Roman Rus aristokrasisini, aileleri ve 1812 Fransız işgalinin etkilerini geniş bir karakter kadrosuyla anlatır."
+  },
+  {
+    "id": "q53779",
+    "categoryIndex": 3,
+    "question": "Kürk Mantolu Madonna romanının yazarı kimdir?",
+    "options": [
+      "Peyami Safa",
+      "Ahmet Hamdi Tanpınar",
+      "Oğuz Atay",
+      "Sabahattin Ali"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sabahattin Ali’nin romanı Raif Efendi ile Maria Puder arasındaki içe dönük ve trajik ilişkiyi anlatır."
+  },
+  {
+    "id": "q53780",
+    "categoryIndex": 3,
+    "question": "Tutunamayanlar romanının yazarı kimdir?",
+    "options": [
+      "Oğuz Atay",
+      "Yusuf Atılgan",
+      "Orhan Pamuk",
+      "Adalet Ağaoğlu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Oğuz Atay’ın romanı modern bireyin yabancılaşmasını deneysel anlatım teknikleriyle işler."
+  },
+  {
+    "id": "q53781",
+    "categoryIndex": 3,
+    "question": "Saatleri Ayarlama Enstitüsü’nü kim yazdı?",
+    "options": [
+      "Reşat Nuri Güntekin",
+      "Ahmet Hamdi Tanpınar",
+      "Halit Ziya Uşaklıgil",
+      "Kemal Tahir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tanpınar’ın hiciv romanı modernleşme, bürokrasi ve zaman algısını hayalî bir kurum üzerinden anlatır."
+  },
+  {
+    "id": "q53782",
+    "categoryIndex": 3,
+    "question": "Serenad romanının yazarı kimdir?",
+    "options": [
+      "Orhan Pamuk",
+      "Elif Şafak",
+      "Zülfü Livaneli",
+      "Yaşar Kemal"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Livaneli’nin romanı tarih, aşk ve Struma faciasını günümüz İstanbul’unda kesişen bir hikâyeyle anlatır."
+  },
+  {
+    "id": "q53783",
+    "categoryIndex": 3,
+    "question": "Benim Adım Kırmızı romanının yazarı kimdir?",
+    "options": [
+      "İhsan Oktay Anar",
+      "Amin Maalouf",
+      "Nedim Gürsel",
+      "Orhan Pamuk"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Roman 16. yüzyıl Osmanlı nakkaşları arasında sanat, aşk ve cinayeti farklı anlatıcılarla işler."
+  },
+  {
+    "id": "q53784",
+    "categoryIndex": 3,
+    "question": "İstanbul’u Dinliyorum şiirini kim yazdı?",
+    "options": [
+      "Orhan Veli Kanık",
+      "Cahit Sıtkı Tarancı",
+      "Nazım Hikmet",
+      "Ahmet Haşim"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Orhan Veli’nin şiiri İstanbul’u gözler kapalıyken sesler, kokular ve duyular üzerinden betimler."
+  },
+  {
+    "id": "q53785",
+    "categoryIndex": 3,
+    "question": "Otuz Beş Yaş şiirinin şairi kimdir?",
+    "options": [
+      "Fazıl Hüsnü Dağlarca",
+      "Cahit Sıtkı Tarancı",
+      "Attilâ İlhan",
+      "Edip Cansever"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Cahit Sıtkı’nın ünlü şiiri yaşlanma ve ölüm duygusunu “Yaş otuz beş” dizesiyle işler."
+  },
+  {
+    "id": "q53786",
+    "categoryIndex": 3,
+    "question": "Mona Lisa’nın ressamı kimdir?",
+    "options": [
+      "Michelangelo",
+      "Raphael",
+      "Leonardo da Vinci",
+      "Botticelli"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Leonardo da Vinci, Mona Lisa’yı 16. yüzyıl başlarında yağlı boya ve sfumato tekniğiyle yaptı."
+  },
+  {
+    "id": "q53787",
+    "categoryIndex": 3,
+    "question": "Davut heykelinin ressam değil heykeltıraş sanatçısı kimdir?",
+    "options": [
+      "Donatello",
+      "Bernini",
+      "Rodin",
+      "Michelangelo"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Michelangelo’nun mermer Davut’u Floransa Cumhuriyeti’nin gücünü simgeleyen Rönesans başyapıtıdır."
+  },
+  {
+    "id": "q53788",
+    "categoryIndex": 3,
+    "question": "Düşünen Adam heykelinde figür hangi pozisyondadır?",
+    "options": [
+      "Oturur ve çenesini eline dayar",
+      "Ayakta kılıç tutar",
+      "Koşarken geriye bakar",
+      "Yatarak kitap okur"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Rodin’in figürü dirseğini dizine, çenesini eline dayamış yoğun düşünce hâlinde tasvir edilir."
+  },
+  {
+    "id": "q53789",
+    "categoryIndex": 4,
+    "question": "İnsan vücudunda kanı pompalayan organ hangisidir?",
+    "options": [
+      "Karaciğer",
+      "Kalp",
+      "Böbrek",
+      "Dalak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kalp ritmik kasılmalarla kanı akciğerlere ve vücudun geri kalanına gönderir."
+  },
+  {
+    "id": "q53790",
+    "categoryIndex": 4,
+    "question": "Nefes alırken oksijenin kana geçtiği başlıca organ hangisidir?",
+    "options": [
+      "Mide",
+      "Pankreas",
+      "Akciğer",
+      "Safra kesesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Akciğerlerdeki alveoller, oksijen ile karbondioksitin kan ve hava arasında değişimini sağlar."
+  },
+  {
+    "id": "q53791",
+    "categoryIndex": 4,
+    "question": "Kandaki atıkları süzerek idrar oluşturan organlar hangileridir?",
+    "options": [
+      "Akciğerler",
+      "Bademcikler",
+      "Safra kesesi",
+      "Böbrekler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Böbrekler kanı süzer, su ve mineral dengesini düzenler ve atıkları idrarla uzaklaştırır."
+  },
+  {
+    "id": "q53792",
+    "categoryIndex": 4,
+    "question": "Sindirimde besinlerin büyük bölümü hangi organda emilir?",
+    "options": [
+      "İnce bağırsak",
+      "Mide",
+      "Kalın bağırsak",
+      "Yemek borusu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İnce bağırsağın kıvrımlı yüzeyi besin maddelerinin kana ve lenfe emilmesi için geniş alan sağlar."
+  },
+  {
+    "id": "q53793",
+    "categoryIndex": 4,
+    "question": "İnsülin hormonunu üreten organ hangisidir?",
+    "options": [
+      "Karaciğer",
+      "Pankreas",
+      "Tiroid",
+      "Dalak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pankreastaki beta hücreleri kan şekerini düşürmeye yardımcı olan insülini üretir."
+  },
+  {
+    "id": "q53794",
+    "categoryIndex": 4,
+    "question": "Vücudun dengesini sağlamada iç kulağın hangi bölümü önemlidir?",
+    "options": [
+      "Kulak memesi",
+      "Kulak zarı",
+      "Yarım daire kanalları",
+      "Östaki borusu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İç kulaktaki yarım daire kanalları başın dönüş hareketlerini algılayarak denge sistemine bilgi gönderir."
+  },
+  {
+    "id": "q53795",
+    "categoryIndex": 4,
+    "question": "İnsan beyninin en büyük bölümü hangisidir?",
+    "options": [
+      "Beyincik",
+      "Omurilik soğanı",
+      "Hipofiz",
+      "Büyük beyin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Büyük beyin düşünme, hafıza, duyular ve istemli hareketlerin büyük bölümünü yönetir."
+  },
+  {
+    "id": "q53796",
+    "categoryIndex": 4,
+    "question": "Reflekslerin bir kısmı beyne ulaşmadan hangi yapı üzerinden gerçekleşebilir?",
+    "options": [
+      "Omurilik",
+      "Mide",
+      "Karaciğer",
+      "Kulak zarı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Refleks yayı, hızlı tepki için duyusal sinyali omurilikte doğrudan motor sinire bağlayabilir."
+  },
+  {
+    "id": "q53797",
+    "categoryIndex": 4,
+    "question": "Bitki hücrelerine sertlik veren dış yapı hangisidir?",
+    "options": [
+      "Hücre zarı",
+      "Hücre duvarı",
+      "Çekirdek",
+      "Ribozom"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Selülozdan oluşan hücre duvarı bitki hücresine biçim, dayanıklılık ve destek sağlar."
+  },
+  {
+    "id": "q53798",
+    "categoryIndex": 4,
+    "question": "Bitki hücresinde fotosentezin gerçekleştiği organel hangisidir?",
+    "options": [
+      "Mitokondri",
+      "Golgi aygıtı",
+      "Kloroplast",
+      "Lizozom"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kloroplastlar klorofil içerir ve ışık enerjisini kullanarak şeker üretir."
+  },
+  {
+    "id": "q53799",
+    "categoryIndex": 4,
+    "question": "Canlıların kalıtsal bilgisini taşıyan molekül hangisidir?",
+    "options": [
+      "ATP",
+      "Glikoz",
+      "Kolesterol",
+      "DNA"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "DNA üzerindeki genler, hücrelerin protein üretmesi ve özelliklerin nesillere aktarılması için bilgi taşır."
+  },
+  {
+    "id": "q53800",
+    "categoryIndex": 4,
+    "question": "Proteinlerin yapı taşları nelerdir?",
+    "options": [
+      "Amino asitler",
+      "Yağ asitleri",
+      "Nükleotitler",
+      "Monosakkaritler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Proteinler farklı sıralarda bağlanan amino asit zincirlerinin katlanmasıyla oluşur."
+  },
+  {
+    "id": "q53801",
+    "categoryIndex": 4,
+    "question": "Karbonhidratların basit yapı taşlarından biri hangisidir?",
+    "options": [
+      "Gliserol",
+      "Glikoz",
+      "Adenin",
+      "Kalsiyum"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Glikoz temel bir monosakkarittir ve hücrelerin başlıca hızlı enerji kaynaklarından biridir."
+  },
+  {
+    "id": "q53802",
+    "categoryIndex": 4,
+    "question": "Dünya’nın Güneş çevresindeki bir turu yaklaşık ne kadar sürer?",
+    "options": [
+      "24 saat",
+      "30 gün",
+      "365 gün 6 saat",
+      "10 yıl"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dünya’nın yörünge süresi yaklaşık 365,24 gündür; artık yıllar bu fazladan süreyi dengeler."
+  },
+  {
+    "id": "q53803",
+    "categoryIndex": 4,
+    "question": "Dünya’nın kendi ekseni çevresindeki dönüşü yaklaşık ne kadar sürer?",
+    "options": [
+      "12 saat",
+      "7 gün",
+      "30 gün",
+      "24 saat"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Dünya’nın eksen dönüşü gece ve gündüz döngüsünü oluşturur ve güneş gününe göre yaklaşık 24 saattir."
+  },
+  {
+    "id": "q53804",
+    "categoryIndex": 4,
+    "question": "Mevsimlerin oluşmasının başlıca nedeni nedir?",
+    "options": [
+      "Dünya’nın eksen eğikliği",
+      "Dünya’nın Güneş’e uzaklığının değişmesi",
+      "Ay’ın çekimi",
+      "Güneş lekeleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dünya’nın yaklaşık 23,5 derecelik eksen eğikliği yıl boyunca yarımkürelerin farklı miktarda güneş ışığı almasına yol açar."
+  },
+  {
+    "id": "q53805",
+    "categoryIndex": 5,
+    "question": "Futbolda taç atışı nasıl kullanılır?",
+    "options": [
+      "Tek elle omuzdan",
+      "İki elle başın üzerinden",
+      "Ayakla yerden",
+      "Başla vurarak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Taç atışında oyuncu iki ayağının bir bölümünü çizgide veya çizginin dışında tutup topu iki elle başının üzerinden atar."
+  },
+  {
+    "id": "q53806",
+    "categoryIndex": 5,
+    "question": "Futbolda korner vuruşu ne zaman verilir?",
+    "options": [
+      "Hücumcu ofsayta düşünce",
+      "Kaleci topu tuttuğunda",
+      "Savunma topu kendi kale çizgisinden dışarı gönderince",
+      "Top orta çizgiyi geçince"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Topa son olarak savunma oyuncusu dokunur ve top kale dışından çizgiyi geçerse hücum takımına köşe vuruşu verilir."
+  },
+  {
+    "id": "q53807",
+    "categoryIndex": 5,
+    "question": "Basketbolda top sürmeye ne denir?",
+    "options": [
+      "Servis",
+      "Volley",
+      "Scrum",
+      "Dripling"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncu hareket ederken topu zemine tekrar tekrar sektirerek dripling yapar."
+  },
+  {
+    "id": "q53808",
+    "categoryIndex": 5,
+    "question": "Basketbolda topu tutarak fazla adım atma ihlaline ne denir?",
+    "options": [
+      "Yürüme",
+      "Çift vuruş",
+      "Faul atışı",
+      "Ofsayt"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Topu sürmeden izin verilenden fazla adım atmak travelling, Türkçede yürüme ihlalidir."
+  },
+  {
+    "id": "q53809",
+    "categoryIndex": 5,
+    "question": "Voleybolda file üzerinde rakip hücumu durdurmaya ne denir?",
+    "options": [
+      "Manşet",
+      "Blok",
+      "Servis",
+      "Plase"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ön hat oyuncuları sıçrayıp ellerini file üzerine uzatarak rakibin hücum topunu geri çevirmeye çalışır."
+  },
+  {
+    "id": "q53810",
+    "categoryIndex": 5,
+    "question": "Voleybolda alttan iki kol birleştirilerek yapılan karşılamaya ne denir?",
+    "options": [
+      "Smaç",
+      "Blok",
+      "Manşet",
+      "Plonjon"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Manşet özellikle servis ve sert hücumları kontrol edip pasöre yönlendirmek için kullanılır."
+  },
+  {
+    "id": "q53811",
+    "categoryIndex": 5,
+    "question": "Teniste topun yere değmeden vurulmasına ne denir?",
+    "options": [
+      "Lob",
+      "Slice",
+      "Serve",
+      "Vole"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Vole çoğunlukla file yakınında, top sekmeden önce raketle karşılanır."
+  },
+  {
+    "id": "q53812",
+    "categoryIndex": 5,
+    "question": "Teniste rakibin üzerinden yüksek gönderilen vuruşa ne denir?",
+    "options": [
+      "Lob",
+      "Drop shot",
+      "Ace",
+      "Smash"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Lob, fileye yaklaşan rakibin arkasındaki boş alana yüksek ve derin gönderilir."
+  },
+  {
+    "id": "q53813",
+    "categoryIndex": 5,
+    "question": "Masa tenisinde servis kaç sayıda bir el değiştirir?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "5"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Normal oyunda servis ikişer sayıda değişir; 10-10’dan sonra her sayı sonunda el değiştirir."
+  },
+  {
+    "id": "q53814",
+    "categoryIndex": 5,
+    "question": "Badmintonda tüytop yere değerse ne olur?",
+    "options": [
+      "Oyun yeniden başlar",
+      "Yalnız servis değişir",
+      "Ralli biter",
+      "Top oyunda kalır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tüytop saha içinde veya dışında zemine temas ettiği anda ralli sona erer."
+  },
+  {
+    "id": "q53815",
+    "categoryIndex": 5,
+    "question": "Golf sahasında çukurun yerini gösteren direğe ne denir?",
+    "options": [
+      "Tee",
+      "Grip",
+      "Bunker",
+      "Bayrak direği"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bayrak direği uzaktan çukurun yerini gösterir ve green üzerinde oyunculara hedef sağlar."
+  },
+  {
+    "id": "q53816",
+    "categoryIndex": 5,
+    "question": "Golfte kumla dolu engellere ne denir?",
+    "options": [
+      "Bunker",
+      "Fairway",
+      "Green",
+      "Rough"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bunker, oyuncunun topu özel teknikle çıkarmasını gerektiren kum engelidir."
+  },
+  {
+    "id": "q53817",
+    "categoryIndex": 5,
+    "question": "Satrançta piyon son sıraya ulaşınca ne yapar?",
+    "options": [
+      "Oyundan çıkar",
+      "Başka bir taşa terfi eder",
+      "Geri döner",
+      "Şah olur"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Piyon son yataya ulaştığında çoğunlukla vezir olmak üzere at, fil veya kaleye terfi edebilir."
+  },
+  {
+    "id": "q53818",
+    "categoryIndex": 5,
+    "question": "Satrançta yalnız şahın hamle yapamadığı ama tehdit altında olmadığı duruma ne denir?",
+    "options": [
+      "Şah mat",
+      "Rok",
+      "Pat",
+      "Açmaz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sırası gelen oyuncunun yasal hamlesi yoksa fakat şahı tehdit altında değilse oyun patla berabere biter."
+  },
+  {
+    "id": "q53819",
+    "categoryIndex": 5,
+    "question": "Boksta raundlar arasında dinlenme süresi genellikle kaç dakikadır?",
+    "options": [
+      "30 saniye",
+      "2 dakika",
+      "5 dakika",
+      "1 dakika"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Profesyonel boksta raund araları çoğunlukla bir dakika sürer ve köşe ekibi bu sürede müdahale eder."
+  },
+  {
+    "id": "q53820",
+    "categoryIndex": 5,
+    "question": "Güreşte rakibin iki omzunu mindere sabitleyerek kazanılan sonuca ne denir?",
+    "options": [
+      "Tuş",
+      "İppon",
+      "Knockout",
+      "Ace"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tuş, rakibin iki omzunun hakem kontrolünde mindere bastırılmasıyla maçı doğrudan bitirebilir."
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "existingCount": 3753,
+  "incomingCount": 1000,
+  "acceptedCount": 999,
+  "conflictCount": 1,
+  "newTotalIfApplied": 4752,
+  "incomingCategoryCounts": {
+    "0": 130,
+    "1": 200,
+    "2": 130,
+    "3": 160,
+    "4": 180,
+    "5": 200
+  },
+  "acceptedCategoryCounts": {
+    "0": 129,
+    "1": 200,
+    "2": 130,
+    "3": 160,
+    "4": 180,
+    "5": 200
+  },
+  "conflicts": [
+    {
+      "id": "q56361",
+      "question": "2024 Yaz Olimpiyatları hangi şehirde düzenlendi?",
+      "reasons": [
+        "Soru metni q6966 ile aynı"
+      ]
+    }
+  ]
+}

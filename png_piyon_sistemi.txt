@@ -1,0 +1,212 @@
+class PawnDefinition {
+  const PawnDefinition({
+    required this.name,
+    required this.assetPath,
+    required this.fallbackSymbol,
+  });
+
+  final String name;
+  final String assetPath;
+  final String fallbackSymbol;
+}
+
+class PawnCatalog {
+  static const List<PawnDefinition> all = [
+    PawnDefinition(
+      name: 'Renkli Halka',
+      assetPath: 'assets/pawns/01_renkli_halka.png',
+      fallbackSymbol: '◉',
+    ),
+    PawnDefinition(
+      name: 'Bilgi Taşı',
+      assetPath: 'assets/pawns/02_bilgi_tasi.png',
+      fallbackSymbol: '💎',
+    ),
+    PawnDefinition(
+      name: 'Beyin Maskotu',
+      assetPath: 'assets/pawns/03_beyin_maskotu.png',
+      fallbackSymbol: '🧠',
+    ),
+    PawnDefinition(
+      name: 'Klasik Piyon',
+      assetPath: 'assets/pawns/04_klasik_piyon.png',
+      fallbackSymbol: '♟',
+    ),
+    PawnDefinition(
+      name: 'Bilge At',
+      assetPath: 'assets/pawns/05_bilge_at.png',
+      fallbackSymbol: '♞',
+    ),
+    PawnDefinition(
+      name: 'Kristal Zar',
+      assetPath: 'assets/pawns/06_kristal_zar.png',
+      fallbackSymbol: '🎲',
+    ),
+    PawnDefinition(
+      name: 'Pusula Yıldızı',
+      assetPath: 'assets/pawns/07_pusula_yildizi.png',
+      fallbackSymbol: '🧭',
+    ),
+    PawnDefinition(
+      name: 'Açık Kitap',
+      assetPath: 'assets/pawns/08_acik_kitap.png',
+      fallbackSymbol: '📖',
+    ),
+    PawnDefinition(
+      name: 'Ampul Fikri',
+      assetPath: 'assets/pawns/09_ampul_fikri.png',
+      fallbackSymbol: '💡',
+    ),
+    PawnDefinition(
+      name: 'Kum Saati',
+      assetPath: 'assets/pawns/10_kum_saati.png',
+      fallbackSymbol: '⏳',
+    ),
+    PawnDefinition(
+      name: 'Soru İşareti',
+      assetPath: 'assets/pawns/11_soru_isareti.png',
+      fallbackSymbol: '?',
+    ),
+    PawnDefinition(
+      name: 'Kupa Rozet',
+      assetPath: 'assets/pawns/12_kupa_rozet.png',
+      fallbackSymbol: '🏆',
+    ),
+  ];
+
+  static PawnDefinition at(int index) {
+    final normalized = (index % all.length + all.length) % all.length;
+    return all[normalized];
+  }
+}
+
+class PawnToken extends StatelessWidget {
+  const PawnToken({
+    required this.type,
+    required this.color,
+    required this.active,
+    required this.width,
+    required this.height,
+    super.key,
+  });
+
+  final int type;
+  final Color color;
+  final bool active;
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    final pawn = PawnCatalog.at(type);
+    final glowSize = active ? 1.10 : 0.88;
+
+    return SizedBox(
+      width: width,
+      height: height,
+      child: RepaintBoundary(
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            Positioned(
+              bottom: height * 0.10,
+              child: Container(
+                width: width * glowSize,
+                height: width * glowSize,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: color.withOpacity(active ? 0.58 : 0.24),
+                      blurRadius: active ? width * 0.50 : width * 0.27,
+                      spreadRadius: active ? width * 0.10 : width * 0.025,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned.fill(
+              child: Transform.translate(
+                offset: Offset(0, -height * 0.025),
+                child: Image.asset(
+                  pawn.assetPath,
+                  fit: BoxFit.contain,
+                  alignment: Alignment.bottomCenter,
+                  filterQuality: FilterQuality.high,
+                  gaplessPlayback: true,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Center(
+                      child: Text(
+                        pawn.fallbackSymbol,
+                        style: TextStyle(
+                          fontSize: width * 0.62,
+                          height: 1,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: height * 0.015,
+              child: Container(
+                width: width * 0.60,
+                height: max(3.0, height * 0.075),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(999),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color.lerp(color, Colors.white, 0.45)!,
+                      color,
+                      Color.lerp(color, Colors.black, 0.28)!,
+                    ],
+                  ),
+                  border: Border.all(
+                    color: const Color(0xFFFFE082),
+                    width: active ? 1.8 : 1.1,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xAA000000),
+                      offset: const Offset(0, 2),
+                      blurRadius: active ? 4 : 2,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            if (active)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  width: max(7.0, width * 0.18),
+                  height: max(7.0, width * 0.18),
+                  decoration: BoxDecoration(
+                    color: color,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 1.5,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: color.withOpacity(0.80),
+                        blurRadius: 6,
+                        spreadRadius: 1,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+

@@ -1,0 +1,53 @@
+{
+  "timestampUtc": "20260722T101537Z",
+  "mode": "apply",
+  "target": "/workspaces/BilgiRotasi/assets/questions.json",
+  "packages": [
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_SoruPaketi_001/packages/package_001_q3001_q3120.json",
+      "count": 120
+    }
+  ],
+  "existingCount": 3000,
+  "incomingCount": 120,
+  "acceptedCount": 116,
+  "conflictCount": 4,
+  "conflicts": [
+    {
+      "id": "q3005",
+      "question": "Tuna Nehri hangi denize dökülür?",
+      "reasons": [
+        "Soru metni mevcut q011 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3015",
+      "question": "İstanbul Boğazı hangi iki denizi birbirine bağlar?",
+      "reasons": [
+        "Soru metni mevcut q003 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3065",
+      "question": "Düşünen Adam heykelinin sanatçısı kimdir?",
+      "reasons": [
+        "Soru metni mevcut q080 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3081",
+      "question": "Atom numarası 74 olan element hangisidir?",
+      "reasons": [
+        "Soru metni mevcut q2181 ile birebir aynı"
+      ]
+    }
+  ],
+  "incomingByCategory": {
+    "Coğrafya": 20,
+    "Eğlence": 20,
+    "Tarih": 20,
+    "Sanat & Edebiyat": 20,
+    "Bilim & Doğa": 20,
+    "Spor": 20
+  }
+}

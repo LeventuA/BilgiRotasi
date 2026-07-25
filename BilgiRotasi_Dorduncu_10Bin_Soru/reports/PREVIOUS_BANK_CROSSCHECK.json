@@ -1,0 +1,11 @@
+{
+  "accessiblePreviousQuestionCount": 23000,
+  "newQuestionCount": 10000,
+  "newIdRange": "q33121-q43120",
+  "normalizedExactQuestionDuplicates": 0,
+  "normalizedExactQuestionAndAnswerDuplicates": 0,
+  "sourceQuestionsUsed": 20000,
+  "sourceQuestionReuseCount": 0,
+  "method": "Her yeni soru iki farklı eski soru ve doğru cevabı tek bir sıralı cevap sorusunda birleştirir.",
+  "note": "Kurulum betiği GitHub reposundaki tam questions.json üzerinde son kez ID ve birebir soru çakışması tarar."
+}

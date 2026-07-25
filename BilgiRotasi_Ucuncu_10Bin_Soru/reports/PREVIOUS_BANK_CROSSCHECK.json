@@ -1,0 +1,14 @@
+{
+  "referenceSources": [
+    "BilgiRotasi_10Bin_Soru_Paketleri_ARA_03.zip (3.000 soru)",
+    "BilgiRotasi_Ikinci_10Bin_Soru_FINAL.zip (10.000 soru)"
+  ],
+  "accessibleReferenceQuestionCount": 13000,
+  "newQuestionCount": 10000,
+  "newIdRange": "q23121-q33120",
+  "normalizedExactQuestionDuplicates": 0,
+  "normalizedExactQuestionAndAnswerDuplicates": 0,
+  "newSeriesExactDuplicates": 0,
+  "uniqueStructuredFactKeys": 10000,
+  "note": "GitHub’daki güncel questions.json kurulum sırasında yeniden taranır; erişilebilir yerel arşivler ayrıca üretim öncesinde çapraz kontrol edilmiştir."
+}

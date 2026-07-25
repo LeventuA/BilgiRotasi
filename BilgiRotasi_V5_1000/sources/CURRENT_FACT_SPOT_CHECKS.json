@@ -1,0 +1,90 @@
+{
+  "verifiedAt": "2026-07-24",
+  "scope": "Targeted official-source spot checks for selected 2025–2026 questions; this is not a source-by-source human audit of all 1,000 questions.",
+  "records": [
+    {
+      "topic": "2025 UEFA Champions League final",
+      "verifiedFacts": [
+        "Paris Saint-Germain won",
+        "Inter were runners-up",
+        "final was played in Munich"
+      ],
+      "officialSource": "https://www.uefa.com/uefachampionsleague/news/0299-1de417608530-15b01ff7b150-1000--paris-win-champions-league-doue-double-helps-secure-reco/"
+    },
+    {
+      "topic": "2025 UEFA Europa League final",
+      "verifiedFacts": [
+        "Tottenham Hotspur won",
+        "Manchester United were runners-up",
+        "final was played in Bilbao"
+      ],
+      "officialSource": "https://www.uefa.com/uefaeuropaleague/history/seasons/2025/clubs/"
+    },
+    {
+      "topic": "2025 EuroLeague final",
+      "verifiedFacts": [
+        "Fenerbahçe won",
+        "Monaco were runners-up",
+        "Final Four was held in Abu Dhabi"
+      ],
+      "officialSource": "https://www.euroleaguebasketball.net/en/euroleague/final-four/"
+    },
+    {
+      "topic": "2025 G7 Leaders Summit",
+      "verifiedFacts": [
+        "host country was Canada",
+        "summit location was Kananaskis, Alberta"
+      ],
+      "officialSource": "https://g7.canada.ca/en/"
+    },
+    {
+      "topic": "COP30",
+      "verifiedFacts": [
+        "held in 2025",
+        "host city was Belém",
+        "host country was Brazil"
+      ],
+      "officialSource": "https://unfccc.int/cop30/about-cop30"
+    },
+    {
+      "topic": "Expo 2025 Osaka, Kansai",
+      "verifiedFacts": [
+        "opened to the public in 2025",
+        "host city/region was Osaka, Japan"
+      ],
+      "officialSource": "https://www.expo2025.or.jp/en/"
+    },
+    {
+      "topic": "2025 United Nations Ocean Conference",
+      "verifiedFacts": [
+        "held in Nice, France",
+        "held in June 2025"
+      ],
+      "officialSource": "https://sdgs.un.org/conferences/ocean2025/about-unoc-2025"
+    },
+    {
+      "topic": "NASA SpaceX Crew-10",
+      "verifiedFacts": [
+        "launched in 2025",
+        "launched from Kennedy Space Center, Florida"
+      ],
+      "officialSource": "https://www.nasa.gov/news-release/nasas-spacex-crew-10-launches-to-international-space-station/"
+    },
+    {
+      "topic": "Blue Ghost Mission 1",
+      "verifiedFacts": [
+        "landed on the Moon in 2025",
+        "landing site was Mare Crisium"
+      ],
+      "officialSource": "https://www.nasa.gov/news-release/touchdown-carrying-nasa-science-fireflys-blue-ghost-lands-on-moon/"
+    },
+    {
+      "topic": "Milano Cortina 2026",
+      "verifiedFacts": [
+        "Italy was selected as host",
+        "the Games use the Milano Cortina host identity"
+      ],
+      "officialSource": "https://newsroom.olympics.com/record/908/media_id/2863"
+    }
+  ]
+}

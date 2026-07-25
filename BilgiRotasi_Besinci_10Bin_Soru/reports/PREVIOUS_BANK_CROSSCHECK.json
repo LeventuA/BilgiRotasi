@@ -1,0 +1,11 @@
+{
+  "accessibleReferenceQuestionCount": 33000,
+  "newQuestionCount": 10000,
+  "newIdRange": "q43121-q53120",
+  "normalizedExactQuestionDuplicates": 0,
+  "normalizedExactQuestionAndAnswerDuplicates": 0,
+  "newSeriesExactDuplicates": 0,
+  "uniqueStructuredFactKeys": 10000,
+  "allNewQuestionsEasy": true,
+  "note": "Yerel arşivlerde erişilebilen 33.000 soru üretim öncesi tarandı. Codespaces kurucusu GitHub’daki güncel questions.json dosyasını ayrıca tarar; beklenmeyen çakışmalar raporlanır."
+}

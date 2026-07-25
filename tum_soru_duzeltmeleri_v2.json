@@ -1,0 +1,1048 @@
+[
+  {
+    "id": "q1661",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Candide için doğru tarih veya dönem eşleştirmesi hangisidir?",
+    "question": "Voltaire'in Candide adlı eseri ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "1759",
+      "1813",
+      "1893",
+      "1943"
+    ],
+    "answerIndex": 0,
+    "explanation": "Voltaire'in hicivli felsefi eseri Candide ilk kez 1759 yılında yayımlandı.",
+    "reviewNote": "Belirsiz eşleştirme kalıbı kaldırıldı; eser, yazar ve yayımlanma yılı açıkça soruldu.",
+    "acceptedOldQuestions": [
+      "Candide için doğru tarih veya dönem eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1146",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Çin’in Qin Hanedanı altında birleşmesi için doğru yer eşleştirmesi hangisidir?",
+    "question": "Çin'i MÖ 221'de ilk kez tek bir imparatorluk altında birleştiren hükümdar kimdir?",
+    "options": [
+      "Qin Shi Huang",
+      "Hammurabi",
+      "Büyük İskender",
+      "Ashoka"
+    ],
+    "answerIndex": 0,
+    "explanation": "Qin Shi Huang, MÖ 221'de rakip krallıkları birleştirerek Çin'in ilk imparatoru oldu.",
+    "reviewNote": "Anlamsız yer eşleştirmesi yerine olayın baş aktörü soruldu.",
+    "acceptedOldQuestions": [
+      "Çin’in Qin Hanedanı altında birleşmesi için doğru yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1676",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Gurur ve Önyargı hangi tarih veya dönemde ortaya çıkmıştır?",
+    "question": "Jane Austen'ın Gurur ve Önyargı romanı ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "1813",
+      "1759",
+      "1869",
+      "1949"
+    ],
+    "answerIndex": 0,
+    "explanation": "Jane Austen'ın Gurur ve Önyargı romanı ilk kez 1813 yılında yayımlandı.",
+    "reviewNote": "“Ortaya çıkmıştır” ifadesi kaldırıldı; ilk yayımlanma yılı açıkça soruldu.",
+    "acceptedOldQuestions": [
+      "Gurur ve Önyargı hangi tarih veya dönemde ortaya çıkmıştır?"
+    ]
+  },
+  {
+    "id": "q1106",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Hammurabi Kanunları’nın hazırlanması için doğru kişi, taraf veya gelişme eşleştirmesi hangisidir?",
+    "question": "Hammurabi Kanunları hangi eski uygarlığa aittir?",
+    "options": [
+      "Babil",
+      "Roma",
+      "Hitit",
+      "Antik Mısır"
+    ],
+    "answerIndex": 0,
+    "explanation": "Hammurabi, Babil kralıydı; Hammurabi Kanunları Eski Babil dönemine ait bir hukuk metnidir.",
+    "reviewNote": "Önceki düzeltmede “Hammurabi” hem soru kökünde hem cevapta yer alıyordu. Soru, kanunların ait olduğu uygarlığı soracak şekilde tamamen değiştirildi.",
+    "acceptedOldQuestions": [
+      "Hammurabi Kanunları’nın hazırlanması için doğru kişi, taraf veya gelişme eşleştirmesi hangisidir?",
+      "Hammurabi Kanunları hangi Babil kralının adıyla anılır?"
+    ]
+  },
+  {
+    "id": "q1477",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "İtalya Krallığı’nın kurulması için doğru kişi, taraf veya gelişme eşleştirmesi hangisidir?",
+    "question": "1861'de kurulan İtalya Krallığı'nın ilk kralı kimdir?",
+    "options": [
+      "II. Vittorio Emanuele",
+      "Giuseppe Garibaldi",
+      "Camillo Cavour",
+      "Napolyon III"
+    ],
+    "answerIndex": 0,
+    "explanation": "Sardinya-Piyemonte Kralı II. Vittorio Emanuele, 1861'de birleşen İtalya'nın ilk kralı oldu.",
+    "reviewNote": "Belirsiz eşleştirme yerine tarihsel görev açıkça soruldu.",
+    "acceptedOldQuestions": [
+      "İtalya Krallığı’nın kurulması için doğru kişi, taraf veya gelişme eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1293",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Gutenberg İncili’nin basılması için doğru yer eşleştirmesi hangisidir?",
+    "question": "Gutenberg İncili 15. yüzyılda hangi Alman şehrinde basıldı?",
+    "options": [
+      "Mainz",
+      "Wittenberg",
+      "Nürnberg",
+      "Köln"
+    ],
+    "answerIndex": 0,
+    "explanation": "Gutenberg İncili, 1450'lerin ortalarında Almanya'nın Mainz şehrinde basıldı.",
+    "reviewNote": "Yer eşleştirme kalıbı doğal bir şehir sorusuna dönüştürüldü.",
+    "acceptedOldQuestions": [
+      "Gutenberg İncili’nin basılması için doğru yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1733",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Karamazov Kardeşler için doğru tür ya da sanat biçimi eşleştirmesi hangisidir?",
+    "question": "Dostoyevski'nin Karamazov Kardeşler adlı eseri hangi türdedir?",
+    "options": [
+      "Roman",
+      "Trajedi",
+      "Destan",
+      "Tablo"
+    ],
+    "answerIndex": 0,
+    "explanation": "Karamazov Kardeşler, Fyodor Dostoyevski'nin felsefi ve psikolojik yönleri güçlü bir romanıdır.",
+    "reviewNote": "Yapay eşleştirme ifadesi kaldırıldı; seçenekler aynı düzeyde ve kısa hâle getirildi.",
+    "acceptedOldQuestions": [
+      "Karamazov Kardeşler için doğru tür ya da sanat biçimi eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q949",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "Peaky Blinders ilk kez hangi yıl izleyici, oyuncu veya dinleyiciyle buluştu?",
+    "question": "Peaky Blinders dizisi ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "2013",
+      "2011",
+      "2015",
+      "2017"
+    ],
+    "answerIndex": 0,
+    "explanation": "Peaky Blinders dizisinin ilk bölümü 2013 yılında yayımlandı.",
+    "reviewNote": "“İzleyici, oyuncu veya dinleyici” gibi yapay ifade kaldırıldı.",
+    "acceptedOldQuestions": [
+      "Peaky Blinders ilk kez hangi yıl izleyici, oyuncu veya dinleyiciyle buluştu?"
+    ]
+  },
+  {
+    "id": "q1612",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Hamlet için doğru tür ya da sanat biçimi eşleştirmesi hangisidir?",
+    "question": "Shakespeare'in Hamlet adlı eseri hangi türde bir tiyatro oyunudur?",
+    "options": [
+      "Trajedi",
+      "Komedi",
+      "Destan",
+      "Roman"
+    ],
+    "answerIndex": 0,
+    "explanation": "Hamlet, William Shakespeare'in en tanınmış trajedilerinden biridir.",
+    "reviewNote": "Tür sorusu doğrudan ve doğal Türkçeyle yeniden yazıldı.",
+    "acceptedOldQuestions": [
+      "Hamlet için doğru tür ya da sanat biçimi eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1660",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "1759 ile tarihlendirilen eser hangisidir?",
+    "question": "Voltaire'in 1759'da yayımlanan hicivli felsefi eserinin adı nedir?",
+    "options": [
+      "Candide",
+      "Faust",
+      "Macbeth",
+      "İlahi Komedya"
+    ],
+    "answerIndex": 0,
+    "explanation": "Voltaire'in Candide adlı eseri 1759'da yayımlandı.",
+    "reviewNote": "Bağlamsız tarih sorusuna yazar ve eser türü bilgisi eklendi.",
+    "acceptedOldQuestions": [
+      "1759 ile tarihlendirilen eser hangisidir?"
+    ]
+  },
+  {
+    "id": "q2707",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "Atlı polo için doğru ekipman veya oyun aracı eşleştirmesi hangisidir?",
+    "question": "Atlı polo oynarken topa vurmak için hangi araç kullanılır?",
+    "options": [
+      "Uzun saplı tokmak",
+      "Tenis raketi",
+      "Golf sopası",
+      "Ağlı lakros sopası"
+    ],
+    "answerIndex": 0,
+    "explanation": "Atlı poloda oyuncular, at üzerindeyken uzun saplı bir tokmakla topa vurur.",
+    "reviewNote": "Ekipman listesi yerine sporun ayırt edici aracı doğrudan soruldu.",
+    "acceptedOldQuestions": [
+      "Atlı polo için doğru ekipman veya oyun aracı eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q856",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "Parazit için doğru yayın yılı eşleştirmesi hangisidir?",
+    "question": "Bong Joon-ho'nun Parazit filmi hangi yılda gösterime girdi?",
+    "options": [
+      "2019",
+      "2017",
+      "2020",
+      "2015"
+    ],
+    "answerIndex": 0,
+    "explanation": "Güney Kore yapımı Parazit filmi 2019 yılında gösterime girdi.",
+    "reviewNote": "Eser türü ve yönetmen belirtilerek yayın yılı sorusu netleştirildi.",
+    "acceptedOldQuestions": [
+      "Parazit için doğru yayın yılı eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1259",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Kösedağ Savaşı için doğru yer eşleştirmesi hangisidir?",
+    "question": "1243 Kösedağ Savaşı, Anadolu Selçuklu Devleti ile hangi güç arasında yapıldı?",
+    "options": [
+      "Moğollar",
+      "Bizans İmparatorluğu",
+      "Haçlılar",
+      "Safeviler"
+    ],
+    "answerIndex": 0,
+    "explanation": "Kösedağ Savaşı, 1243'te Anadolu Selçuklu Devleti ile Moğol kuvvetleri arasında yapıldı.",
+    "reviewNote": "Geniş ve belirsiz yer seçeneği yerine savaşın tarafları soruldu.",
+    "acceptedOldQuestions": [
+      "Kösedağ Savaşı için doğru yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q2327",
+    "expectedCategoryIndex": 4,
+    "expectedOldQuestion": "Akyuvar için doğru temel görev eşleştirmesi hangisidir?",
+    "question": "Akyuvarların temel görevi nedir?",
+    "options": [
+      "Vücudu enfeksiyonlara karşı savunmak",
+      "Oksijen taşımak",
+      "Kanın pıhtılaşmasını sağlamak",
+      "İnsülin salgılamak"
+    ],
+    "answerIndex": 0,
+    "explanation": "Akyuvarlar, bağışıklık sisteminin parçası olarak mikroplara ve enfeksiyonlara karşı savunmaya katılır.",
+    "reviewNote": "Yapay görev eşleştirmesi doğal bir biyoloji sorusuna çevrildi.",
+    "acceptedOldQuestions": [
+      "Akyuvar için doğru temel görev eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1782",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Küçük Prens için doğru tarih veya dönem eşleştirmesi hangisidir?",
+    "question": "Antoine de Saint-Exupéry'nin Küçük Prens adlı eseri ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "1943",
+      "1937",
+      "1949",
+      "1954"
+    ],
+    "answerIndex": 0,
+    "explanation": "Küçük Prens ilk kez 1943 yılında, Fransızca ve İngilizce olarak New York'ta yayımlandı.",
+    "reviewNote": "Yazar ve yayımlanma biçimi belirtilerek tarih sorusu netleştirildi.",
+    "acceptedOldQuestions": [
+      "Küçük Prens için doğru tarih veya dönem eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q780",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "Harry Potter karakteri hangi filmde yer alır?",
+    "question": "Harry Potter karakterini sinema filmlerinde hangi oyuncu canlandırmıştır?",
+    "options": [
+      "Daniel Radcliffe",
+      "Rupert Grint",
+      "Tom Felton",
+      "Elijah Wood"
+    ],
+    "answerIndex": 0,
+    "explanation": "Harry Potter karakterini sekiz filmlik sinema serisinde Daniel Radcliffe canlandırdı.",
+    "reviewNote": "Önceki düzeltme hâlâ film adını soruyor ve seçeneklerde birden fazla Harry Potter filmi bulunduruyordu. Soru, karakteri canlandıran oyuncuyu soracak şekilde tamamen değiştirildi.",
+    "acceptedOldQuestions": [
+      "Harry Potter karakteri hangi filmde yer alır?",
+      "Harry Potter karakterinin sinemada ilk kez göründüğü film hangisidir?"
+    ]
+  },
+  {
+    "id": "q1809",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Yüzyıllık Yalnızlık hangi tür ya da sanat biçiminde değerlendirilir?",
+    "question": "Gabriel García Márquez'in Yüzyıllık Yalnızlık romanı hangi edebî akımla özdeşleşmiştir?",
+    "options": [
+      "Büyülü gerçekçilik",
+      "Romantizm",
+      "Natüralizm",
+      "Fütürizm"
+    ],
+    "answerIndex": 0,
+    "explanation": "Yüzyıllık Yalnızlık, büyülü gerçekçiliğin en tanınmış örneklerinden biridir.",
+    "reviewNote": "Tür seçenekleri birbiriyle uyumlu edebî akımlara dönüştürüldü.",
+    "acceptedOldQuestions": [
+      "Yüzyıllık Yalnızlık hangi tür ya da sanat biçiminde değerlendirilir?"
+    ]
+  },
+  {
+    "id": "q1813",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Gülün Adı için doğru yaratıcı eşleştirmesi hangisidir?",
+    "question": "Gülün Adı romanının yazarı kimdir?",
+    "options": [
+      "Umberto Eco",
+      "Italo Calvino",
+      "Gabriel García Márquez",
+      "José Saramago"
+    ],
+    "answerIndex": 0,
+    "explanation": "Gülün Adı, İtalyan yazar Umberto Eco'nun romanıdır.",
+    "reviewNote": "“Yaratıcı eşleştirmesi” ifadesi kaldırılıp doğrudan yazar soruldu.",
+    "acceptedOldQuestions": [
+      "Gülün Adı için doğru yaratıcı eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1877",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Son Akşam Yemeği için doğru tarih veya dönem eşleştirmesi hangisidir?",
+    "question": "Leonardo da Vinci, Son Akşam Yemeği duvar resmini yaklaşık hangi yıllar arasında yaptı?",
+    "options": [
+      "1495-1498",
+      "1303-1305",
+      "1600-1603",
+      "1888-1889"
+    ],
+    "answerIndex": 0,
+    "explanation": "Leonardo da Vinci, Son Akşam Yemeği'ni Milano'da yaklaşık 1495 ile 1498 yılları arasında yaptı.",
+    "reviewNote": "Belirsiz dönem ifadesi somut bir tarih aralığına dönüştürüldü.",
+    "acceptedOldQuestions": [
+      "Son Akşam Yemeği için doğru tarih veya dönem eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1819",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Gülün Adı için doğru tür ya da sanat biçimi eşleştirmesi hangisidir?",
+    "question": "Umberto Eco'nun Gülün Adı eseri en çok hangi türde değerlendirilir?",
+    "options": [
+      "Tarihî polisiye roman",
+      "Distopik roman",
+      "Epik şiir",
+      "Biyografi"
+    ],
+    "answerIndex": 0,
+    "explanation": "Gülün Adı, Orta Çağ'da geçen tarihî ve polisiye unsurlar taşıyan bir romandır.",
+    "reviewNote": "Tür seçenekleri eş düzeyde ve anlaşılır hâle getirildi.",
+    "acceptedOldQuestions": [
+      "Gülün Adı için doğru tür ya da sanat biçimi eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q795",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "Kara Şövalye için doğru yayın yılı eşleştirmesi hangisidir?",
+    "question": "Christopher Nolan'ın Kara Şövalye filmi hangi yılda gösterime girdi?",
+    "options": [
+      "2008",
+      "2005",
+      "2010",
+      "2012"
+    ],
+    "answerIndex": 0,
+    "explanation": "Kara Şövalye filmi 2008 yılında gösterime girdi.",
+    "reviewNote": "Film ve yönetmen belirtilerek yayın yılı sorusu doğal hâle getirildi.",
+    "acceptedOldQuestions": [
+      "Kara Şövalye için doğru yayın yılı eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1980",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "1893 ile tarihlendirilen eser hangisidir?",
+    "question": "Edvard Munch'ın Çığlık adlı eserinin en bilinen ilk versiyonu hangi yılda yapıldı?",
+    "options": [
+      "1893",
+      "1889",
+      "1905",
+      "1913"
+    ],
+    "answerIndex": 0,
+    "explanation": "Edvard Munch, Çığlık'ın en bilinen ilk versiyonunu 1893 yılında yaptı.",
+    "reviewNote": "Bağlamsız tarih sorusuna sanatçı ve eser bilgisi eklendi.",
+    "acceptedOldQuestions": [
+      "1893 ile tarihlendirilen eser hangisidir?"
+    ]
+  },
+  {
+    "id": "q2920",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "1936 Yaz Olimpiyatları için doğru düzenlenme yılı eşleştirmesi hangisidir?",
+    "question": "1936 Yaz Olimpiyatları hangi şehirde düzenlendi?",
+    "options": [
+      "Berlin",
+      "Paris",
+      "Londra",
+      "Roma"
+    ],
+    "answerIndex": 0,
+    "explanation": "1936 Yaz Olimpiyatları Almanya'nın Berlin şehrinde düzenlendi.",
+    "reviewNote": "Sorunun içinde cevabın bulunması sorunu giderildi; ev sahibi şehir soruldu.",
+    "acceptedOldQuestions": [
+      "1936 Yaz Olimpiyatları için doğru düzenlenme yılı eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q994",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "Super Mario Bros. için doğru yayın yılı eşleştirmesi hangisidir?",
+    "question": "Nintendo'nun Super Mario Bros. oyunu ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "1985",
+      "1981",
+      "1991",
+      "1996"
+    ],
+    "answerIndex": 0,
+    "explanation": "Super Mario Bros. ilk kez 1985 yılında Famicom ve Nintendo Entertainment System için yayımlandı.",
+    "reviewNote": "Oyun ve geliştirici belirtilerek soru netleştirildi.",
+    "acceptedOldQuestions": [
+      "Super Mario Bros. için doğru yayın yılı eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q976",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "2017 yılında yayına başlayan ve Baran bo Odar ve Jantje Friese ile ilişkilendirilen dizi hangisidir?",
+    "question": "Baran bo Odar ve Jantje Friese tarafından yaratılan, 2017'de başlayan Alman dizisi hangisidir?",
+    "options": [
+      "Dark",
+      "Babylon Berlin",
+      "The Rain",
+      "Black Mirror"
+    ],
+    "answerIndex": 0,
+    "explanation": "Dark, Baran bo Odar ve Jantje Friese tarafından yaratıldı ve 2017'de yayımlanmaya başladı.",
+    "reviewNote": "“İlişkilendirilen” ifadesi kaldırılarak yaratıcı bilgisi açıkça yazıldı.",
+    "acceptedOldQuestions": [
+      "2017 yılında yayına başlayan ve Baran bo Odar ve Jantje Friese ile ilişkilendirilen dizi hangisidir?"
+    ]
+  },
+  {
+    "id": "q2852",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "2014 FIFA Dünya Kupası organizasyonunun şampiyonu veya öne çıkan galibi kimdir?",
+    "question": "2014 FIFA Dünya Kupası'nı hangi ülke kazandı?",
+    "options": [
+      "Almanya",
+      "Arjantin",
+      "Brezilya",
+      "İspanya"
+    ],
+    "answerIndex": 0,
+    "explanation": "Almanya, 2014 FIFA Dünya Kupası finalinde Arjantin'i yenerek şampiyon oldu.",
+    "reviewNote": "“Şampiyon veya öne çıkan galip” ifadesi kaldırıldı.",
+    "acceptedOldQuestions": [
+      "2014 FIFA Dünya Kupası organizasyonunun şampiyonu veya öne çıkan galibi kimdir?"
+    ]
+  },
+  {
+    "id": "q2971",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "2016 yılında Rio de Janeiro ev sahipliğinde düzenlenen organizasyon hangisidir?",
+    "question": "Rio de Janeiro'nun ev sahipliği yaptığı 2016 çok sporlu organizasyon hangisidir?",
+    "options": [
+      "2016 Yaz Olimpiyatları",
+      "2014 FIFA Dünya Kupası",
+      "2016 Avrupa Futbol Şampiyonası",
+      "2018 Kış Olimpiyatları"
+    ],
+    "answerIndex": 0,
+    "explanation": "Rio de Janeiro, 2016 Yaz Olimpiyatları'na ev sahipliği yaptı.",
+    "reviewNote": "Seçeneklerin türleri uyumlu hâle getirildi ve soru “çok sporlu” ifadesiyle netleştirildi.",
+    "acceptedOldQuestions": [
+      "2016 yılında Rio de Janeiro ev sahipliğinde düzenlenen organizasyon hangisidir?"
+    ]
+  },
+  {
+    "id": "q2998",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "2010 FIBA Dünya Basketbol Şampiyonası için doğru düzenlenme yılı eşleştirmesi hangisidir?",
+    "question": "2010 FIBA Dünya Basketbol Şampiyonası hangi ülkede düzenlendi?",
+    "options": [
+      "Türkiye",
+      "İspanya",
+      "Japonya",
+      "ABD"
+    ],
+    "answerIndex": 0,
+    "explanation": "2010 FIBA Dünya Basketbol Şampiyonası Türkiye'de düzenlendi.",
+    "reviewNote": "Sorunun içinde cevabın bulunması sorunu giderildi; ev sahibi ülke soruldu.",
+    "acceptedOldQuestions": [
+      "2010 FIBA Dünya Basketbol Şampiyonası için doğru düzenlenme yılı eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1015",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "Minecraft için doğru oyun karakteri eşleştirmesi hangisidir?",
+    "question": "Minecraft'ın varsayılan oynanabilir karakterlerinden biri hangisidir?",
+    "options": [
+      "Steve",
+      "Link",
+      "Joel",
+      "Arthur Morgan"
+    ],
+    "answerIndex": 0,
+    "explanation": "Steve, Minecraft'ın en bilinen varsayılan oynanabilir karakterlerinden biridir.",
+    "reviewNote": "Yapay eşleştirme kalıbı doğal karakter sorusuna dönüştürüldü.",
+    "acceptedOldQuestions": [
+      "Minecraft için doğru oyun karakteri eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1413",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Fransa ile ilişkilendirilen tarihî olay hangisidir?",
+    "question": "Fransız Devrimi hangi yılda başladı?",
+    "options": [
+      "1789",
+      "1776",
+      "1815",
+      "1848"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fransız Devrimi 1789 yılında başladı.",
+    "reviewNote": "Birden fazla olayın Fransa ile ilişkili olabilmesi nedeniyle soru kesin bir tarihe çevrildi.",
+    "acceptedOldQuestions": [
+      "Fransa ile ilişkilendirilen tarihî olay hangisidir?"
+    ]
+  },
+  {
+    "id": "q940",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "The Crown için doğru dizi yaratıcısı eşleştirmesi hangisidir?",
+    "question": "The Crown dizisinin yaratıcısı kimdir?",
+    "options": [
+      "Peter Morgan",
+      "David Chase",
+      "Vince Gilligan",
+      "Julian Fellowes"
+    ],
+    "answerIndex": 0,
+    "explanation": "The Crown dizisi Peter Morgan tarafından yaratıldı.",
+    "reviewNote": "Yapay eşleştirme ifadesi kaldırıldı ve seçenekler aynı meslek grubundan seçildi.",
+    "acceptedOldQuestions": [
+      "The Crown için doğru dizi yaratıcısı eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q2923",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "1936 Yaz Olimpiyatları için doğru şampiyon veya galip eşleştirmesi hangisidir?",
+    "question": "1936 Berlin Yaz Olimpiyatları'nın madalya sıralamasında hangi ülke birinci oldu?",
+    "options": [
+      "Almanya",
+      "ABD",
+      "İtalya",
+      "Finlandiya"
+    ],
+    "answerIndex": 0,
+    "explanation": "Ev sahibi Almanya, 1936 Berlin Yaz Olimpiyatları'nın madalya sıralamasında birinci oldu.",
+    "reviewNote": "Olimpiyatların tek bir şampiyonu olmadığı için madalya sıralaması açıkça soruldu.",
+    "acceptedOldQuestions": [
+      "1936 Yaz Olimpiyatları için doğru şampiyon veya galip eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q2883",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "2008 Avrupa Futbol Şampiyonası için doğru ev sahibi yer eşleştirmesi hangisidir?",
+    "question": "2008 Avrupa Futbol Şampiyonası hangi iki ülkenin ortak ev sahipliğinde düzenlendi?",
+    "options": [
+      "Avusturya ve İsviçre",
+      "Belçika ve Hollanda",
+      "Polonya ve Ukrayna",
+      "Fransa ve İtalya"
+    ],
+    "answerIndex": 0,
+    "explanation": "EURO 2008, Avusturya ve İsviçre'nin ortak ev sahipliğinde düzenlendi.",
+    "reviewNote": "Yer eşleştirmesi yerine ortak ev sahibi ülkeler doğrudan soruldu.",
+    "acceptedOldQuestions": [
+      "2008 Avrupa Futbol Şampiyonası için doğru ev sahibi yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1440",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Yunan İsyanı’nın başlaması için doğru yer eşleştirmesi hangisidir?",
+    "question": "1821 Yunan İsyanı'nın başlıca merkezlerinden biri olan Mora'nın diğer adı nedir?",
+    "options": [
+      "Peloponez",
+      "Attika",
+      "Makedonya",
+      "Girit"
+    ],
+    "answerIndex": 0,
+    "explanation": "Mora, günümüzde Peloponez olarak bilinen Yunan yarımadasıdır ve 1821 ayaklanmasının önemli merkezlerinden biriydi.",
+    "reviewNote": "Tartışmalı “başladığı yer” ifadesi yerine kesin bir coğrafya bilgisi soruldu.",
+    "acceptedOldQuestions": [
+      "Yunan İsyanı’nın başlaması için doğru yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1928",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "1665 dolayları ile tarihlendirilen eser hangisidir?",
+    "question": "Johannes Vermeer'in İnci Küpeli Kız tablosu yaklaşık hangi yılda yapıldı?",
+    "options": [
+      "1665",
+      "1498",
+      "1813",
+      "1893"
+    ],
+    "answerIndex": 0,
+    "explanation": "İnci Küpeli Kız tablosunun yaklaşık 1665 yılında yapıldığı kabul edilir.",
+    "reviewNote": "Bağlamsız tarih sorusuna sanatçı ve eser bilgisi eklendi.",
+    "acceptedOldQuestions": [
+      "1665 dolayları ile tarihlendirilen eser hangisidir?"
+    ]
+  },
+  {
+    "id": "q981",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "Leyla ile Mecnun dizisinin yaratıcısı veya yaratıcıları kimdir?",
+    "question": "Leyla ile Mecnun dizisinin yaratıcısı ve senaristi kimdir?",
+    "options": [
+      "Burak Aksak",
+      "Onur Ünlü",
+      "Gülse Birsel",
+      "Birol Güven"
+    ],
+    "answerIndex": 0,
+    "explanation": "Leyla ile Mecnun dizisinin yaratıcısı ve senaristi Burak Aksak'tır.",
+    "reviewNote": "Kullanıcı önerisine göre yanlış seçeneklerin tamamı Türk televizyon dünyasından seçildi.",
+    "acceptedOldQuestions": [
+      "Leyla ile Mecnun dizisinin yaratıcısı veya yaratıcıları kimdir?"
+    ]
+  },
+  {
+    "id": "q1112",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Maraton Savaşı için doğru yer eşleştirmesi hangisidir?",
+    "question": "MÖ 490'daki Maraton Savaşı hangi iki taraf arasında yapıldı?",
+    "options": [
+      "Atinalılar ve Persler",
+      "Romalılar ve Kartacalılar",
+      "Spartalılar ve Makedonlar",
+      "Bizanslılar ve Osmanlılar"
+    ],
+    "answerIndex": 0,
+    "explanation": "Maraton Savaşı, MÖ 490'da Atina kuvvetleri ile Pers ordusu arasında yapıldı.",
+    "reviewNote": "Cevabı adında bulunan yer sorusu yerine savaşın tarafları soruldu.",
+    "acceptedOldQuestions": [
+      "Maraton Savaşı için doğru yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1233",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Birinci Haçlı Seferi’nin başlaması için doğru yer eşleştirmesi hangisidir?",
+    "question": "Papa II. Urbanus, Birinci Haçlı Seferi çağrısını 1095'te hangi konsilde yaptı?",
+    "options": [
+      "Clermont Konsili",
+      "İznik Konsili",
+      "Trento Konsili",
+      "Viyana Kongresi"
+    ],
+    "answerIndex": 0,
+    "explanation": "Papa II. Urbanus, 1095'te Clermont Konsili'nde Birinci Haçlı Seferi çağrısını yaptı.",
+    "reviewNote": "Belirsiz coğrafya eşleştirmesi yerine tarihsel başlangıç olayı soruldu.",
+    "acceptedOldQuestions": [
+      "Birinci Haçlı Seferi’nin başlaması için doğru yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q2815",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "1986 FIFA Dünya Kupası hangi yıl düzenlenmiştir?",
+    "question": "1986 FIFA Dünya Kupası'nı hangi ülke kazandı?",
+    "options": [
+      "Arjantin",
+      "Batı Almanya",
+      "Brezilya",
+      "İtalya"
+    ],
+    "answerIndex": 0,
+    "explanation": "Arjantin, 1986 FIFA Dünya Kupası finalinde Batı Almanya'yı yenerek şampiyon oldu.",
+    "reviewNote": "Sorunun içinde cevabın bulunması sorunu giderildi; şampiyon ülke soruldu.",
+    "acceptedOldQuestions": [
+      "1986 FIFA Dünya Kupası hangi yıl düzenlenmiştir?"
+    ]
+  },
+  {
+    "id": "q2823",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "1998 FIFA Dünya Kupası hangi yıl düzenlenmiştir?",
+    "question": "1998 FIFA Dünya Kupası'nı hangi ülke kazandı?",
+    "options": [
+      "Fransa",
+      "Brezilya",
+      "İtalya",
+      "Almanya"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fransa, 1998 FIFA Dünya Kupası finalinde Brezilya'yı yenerek şampiyon oldu.",
+    "reviewNote": "Sorunun içinde cevabın bulunması sorunu giderildi; şampiyon ülke soruldu.",
+    "acceptedOldQuestions": [
+      "1998 FIFA Dünya Kupası hangi yıl düzenlenmiştir?"
+    ]
+  },
+  {
+    "id": "q2849",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "2014 FIFA Dünya Kupası hangi yıl düzenlenmiştir?",
+    "question": "2014 FIFA Dünya Kupası hangi ülkede düzenlendi?",
+    "options": [
+      "Brezilya",
+      "Güney Afrika",
+      "Rusya",
+      "Almanya"
+    ],
+    "answerIndex": 0,
+    "explanation": "2014 FIFA Dünya Kupası Brezilya'da düzenlendi.",
+    "reviewNote": "Sorunun içinde cevabın bulunması sorunu giderildi; ev sahibi ülke soruldu.",
+    "acceptedOldQuestions": [
+      "2014 FIFA Dünya Kupası hangi yıl düzenlenmiştir?"
+    ]
+  },
+  {
+    "id": "q1284",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "İstanbul ile ilişkili ve 1453 tarihinde gerçekleşen olay hangisidir?",
+    "question": "Fatih Sultan Mehmet'in 1453'te fethettiği Bizans başkenti hangisidir?",
+    "options": [
+      "İstanbul (Konstantinopolis)",
+      "Roma",
+      "Atina",
+      "Selanik"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fatih Sultan Mehmet, Bizans'ın başkenti Konstantinopolis'i 1453'te fethetti; şehir İstanbul olarak anılır.",
+    "reviewNote": "Cevabı soru kökünde veren ifade kaldırıldı ve tarihsel bağlam güçlendirildi.",
+    "acceptedOldQuestions": [
+      "İstanbul ile ilişkili ve 1453 tarihinde gerçekleşen olay hangisidir?"
+    ]
+  },
+  {
+    "id": "q1686",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "1818 ile tarihlendirilen eser hangisidir?",
+    "question": "Mary Shelley'nin Frankenstein romanı ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "1818",
+      "1813",
+      "1847",
+      "1897"
+    ],
+    "answerIndex": 0,
+    "explanation": "Mary Shelley'nin Frankenstein romanı ilk kez 1818 yılında yayımlandı.",
+    "reviewNote": "Bağlamsız tarih sorusuna yazar ve eser türü eklendi.",
+    "acceptedOldQuestions": [
+      "1818 ile tarihlendirilen eser hangisidir?"
+    ]
+  },
+  {
+    "id": "q1599",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "1605 ile tarihlendirilen eser hangisidir?",
+    "question": "Miguel de Cervantes'in Don Kişot romanının ilk bölümü hangi yılda yayımlandı?",
+    "options": [
+      "1605",
+      "1615",
+      "1595",
+      "1759"
+    ],
+    "answerIndex": 0,
+    "explanation": "Don Kişot'un ilk bölümü 1605'te, ikinci bölümü ise 1615'te yayımlandı.",
+    "reviewNote": "Bağlamsız tarih sorusu eserin hangi bölümünün kastedildiği belirtilerek netleştirildi.",
+    "acceptedOldQuestions": [
+      "1605 ile tarihlendirilen eser hangisidir?"
+    ]
+  },
+  {
+    "id": "q1624",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Romeo ve Juliet hangi tarih veya dönemde ortaya çıkmıştır?",
+    "question": "Shakespeare'in Romeo ve Juliet oyununu yaklaşık hangi yıllarda yazdığı kabul edilir?",
+    "options": [
+      "1594-1596",
+      "1510-1512",
+      "1660-1665",
+      "1810-1815"
+    ],
+    "answerIndex": 0,
+    "explanation": "Romeo ve Juliet'in yaklaşık 1594 ile 1596 yılları arasında yazıldığı kabul edilir.",
+    "reviewNote": "“Ortaya çıkmıştır” ifadesi yerine yaklaşık yazım dönemi açıkça soruldu.",
+    "acceptedOldQuestions": [
+      "Romeo ve Juliet hangi tarih veya dönemde ortaya çıkmıştır?"
+    ]
+  },
+  {
+    "id": "q708",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "Forrest Gump ilk kez hangi yıl izleyici, oyuncu veya dinleyiciyle buluştu?",
+    "question": "Forrest Gump filmi hangi yılda gösterime girdi?",
+    "options": [
+      "1994",
+      "1990",
+      "1998",
+      "2001"
+    ],
+    "answerIndex": 0,
+    "explanation": "Forrest Gump filmi 1994 yılında gösterime girdi.",
+    "reviewNote": "Yapay “izleyici, oyuncu veya dinleyici” ifadesi kaldırıldı.",
+    "acceptedOldQuestions": [
+      "Forrest Gump ilk kez hangi yıl izleyici, oyuncu veya dinleyiciyle buluştu?"
+    ]
+  },
+  {
+    "id": "q623",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "Jaws için doğru yayın yılı eşleştirmesi hangisidir?",
+    "question": "Steven Spielberg'in Jaws filmi hangi yılda gösterime girdi?",
+    "options": [
+      "1975",
+      "1972",
+      "1977",
+      "1980"
+    ],
+    "answerIndex": 0,
+    "explanation": "Steven Spielberg'in Jaws filmi 1975 yılında gösterime girdi.",
+    "reviewNote": "Film ve yönetmen belirtilerek yayın yılı sorusu netleştirildi.",
+    "acceptedOldQuestions": [
+      "Jaws için doğru yayın yılı eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q2806",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "1970 FIFA Dünya Kupası hangi yıl düzenlenmiştir?",
+    "question": "1970 FIFA Dünya Kupası'nı hangi ülke kazandı?",
+    "options": [
+      "Brezilya",
+      "İtalya",
+      "Batı Almanya",
+      "İngiltere"
+    ],
+    "answerIndex": 0,
+    "explanation": "Brezilya, 1970 FIFA Dünya Kupası finalinde İtalya'yı yenerek şampiyon oldu.",
+    "reviewNote": "Sorunun içinde cevabın bulunması sorunu giderildi; şampiyon ülke soruldu.",
+    "acceptedOldQuestions": [
+      "1970 FIFA Dünya Kupası hangi yıl düzenlenmiştir?"
+    ]
+  },
+  {
+    "id": "q605",
+    "expectedCategoryIndex": 1,
+    "expectedOldQuestion": "1972 yılında ilk kez yayımlanan eser hangisidir?",
+    "question": "Francis Ford Coppola'nın Baba filmi hangi yılda gösterime girdi?",
+    "options": [
+      "1972",
+      "1969",
+      "1975",
+      "1980"
+    ],
+    "answerIndex": 0,
+    "explanation": "Francis Ford Coppola'nın yönettiği Baba filmi 1972 yılında gösterime girdi.",
+    "reviewNote": "“Eser” ifadesi film olarak netleştirildi; yönetmen bilgisi eklendi.",
+    "acceptedOldQuestions": [
+      "1972 yılında ilk kez yayımlanan eser hangisidir?"
+    ]
+  },
+  {
+    "id": "q2892",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "2016 Avrupa Futbol Şampiyonası için doğru ev sahibi yer eşleştirmesi hangisidir?",
+    "question": "2016 Avrupa Futbol Şampiyonası hangi ülkede düzenlendi?",
+    "options": [
+      "Fransa",
+      "Portekiz",
+      "Almanya",
+      "Rusya"
+    ],
+    "answerIndex": 0,
+    "explanation": "EURO 2016 Fransa'da düzenlendi.",
+    "reviewNote": "Yer eşleştirmesi doğal bir ev sahibi ülke sorusuna dönüştürüldü.",
+    "acceptedOldQuestions": [
+      "2016 Avrupa Futbol Şampiyonası için doğru ev sahibi yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q12018",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "1980 Yaz Olimpiyatları ile 2003 NBA Finalleri organizasyonları arasında kaç yıl vardır?",
+    "question": "2003 NBA Finalleri'ni hangi takım kazandı?",
+    "options": [
+      "San Antonio Spurs",
+      "New Jersey Nets",
+      "Los Angeles Lakers",
+      "Detroit Pistons"
+    ],
+    "answerIndex": 0,
+    "explanation": "San Antonio Spurs, 2003 NBA Finalleri'nde New Jersey Nets'i yenerek şampiyon oldu.",
+    "reviewNote": "Alakasız iki organizasyon arasındaki yıl hesabı kaldırıldı; doğrudan spor bilgisi soruldu.",
+    "acceptedOldQuestions": [
+      "1980 Yaz Olimpiyatları ile 2003 NBA Finalleri organizasyonları arasında kaç yıl vardır?"
+    ]
+  },
+  {
+    "id": "q1790",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "1984 için doğru tarih veya dönem eşleştirmesi hangisidir?",
+    "question": "George Orwell'ın 1984 romanı ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "1949",
+      "1945",
+      "1954",
+      "1984"
+    ],
+    "answerIndex": 0,
+    "explanation": "George Orwell'ın 1984 adlı romanı ilk kez 1949 yılında yayımlandı.",
+    "reviewNote": "Eser adı ile yılın karışması önlendi; ilk yayımlanma yılı açıkça soruldu.",
+    "acceptedOldQuestions": [
+      "1984 için doğru tarih veya dönem eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1267",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Osmanlı Beyliği’nin kuruluşu için doğru yer eşleştirmesi hangisidir?",
+    "question": "Osmanlı Beyliği'nin kuruluş merkezi kabul edilen Söğüt günümüzde hangi ilin sınırları içindedir?",
+    "options": [
+      "Bilecik",
+      "Bursa",
+      "Kütahya",
+      "Eskişehir"
+    ],
+    "answerIndex": 0,
+    "explanation": "Osmanlı Beyliği'nin kuruluş merkezi kabul edilen Söğüt, günümüzde Bilecik iline bağlıdır.",
+    "reviewNote": "Geniş “Bilecik ve çevresi” seçeneği yerine kesin ve güncel idari bilgi soruldu.",
+    "acceptedOldQuestions": [
+      "Osmanlı Beyliği’nin kuruluşu için doğru yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q2822",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "1986 FIFA Dünya Kupası için doğru ev sahibi yer eşleştirmesi hangisidir?",
+    "question": "1986 FIFA Dünya Kupası hangi ülkede düzenlendi?",
+    "options": [
+      "Meksika",
+      "Brezilya",
+      "İspanya",
+      "ABD"
+    ],
+    "answerIndex": 0,
+    "explanation": "1986 FIFA Dünya Kupası Meksika'da düzenlendi.",
+    "reviewNote": "Yapay yer eşleştirmesi doğal bir ev sahibi ülke sorusuna dönüştürüldü.",
+    "acceptedOldQuestions": [
+      "1986 FIFA Dünya Kupası için doğru ev sahibi yer eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q2859",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "2018 yılında düzenlenen spor organizasyonu hangisidir?",
+    "question": "2018 FIFA Dünya Kupası hangi ülkede düzenlendi?",
+    "options": [
+      "Rusya",
+      "Brezilya",
+      "Katar",
+      "Almanya"
+    ],
+    "answerIndex": 0,
+    "explanation": "2018 FIFA Dünya Kupası Rusya'da düzenlendi.",
+    "reviewNote": "Cevabı adında bulunan organizasyon sorusu yerine ev sahibi ülke soruldu.",
+    "acceptedOldQuestions": [
+      "2018 yılında düzenlenen spor organizasyonu hangisidir?"
+    ]
+  },
+  {
+    "id": "q2922",
+    "expectedCategoryIndex": 5,
+    "expectedOldQuestion": "Almanya, 1936 yılında Berlin ile ilişkili hangi organizasyonun galibidir?",
+    "question": "Berlin, 1936 yılında hangi büyük spor organizasyonuna ev sahipliği yaptı?",
+    "options": [
+      "1936 Yaz Olimpiyatları",
+      "1934 FIFA Dünya Kupası",
+      "1936 Kış Olimpiyatları",
+      "1948 Yaz Olimpiyatları"
+    ],
+    "answerIndex": 0,
+    "explanation": "Berlin, 1936 Yaz Olimpiyatları'na ev sahipliği yaptı; 1936 Kış Olimpiyatları ise Garmisch-Partenkirchen'de düzenlendi.",
+    "reviewNote": "Almanya'nın organizasyonun “galibi” sayılması hatası kaldırıldı; ev sahipliği soruldu.",
+    "acceptedOldQuestions": [
+      "Almanya, 1936 yılında Berlin ile ilişkili hangi organizasyonun galibidir?"
+    ]
+  },
+  {
+    "id": "q1600",
+    "expectedCategoryIndex": 3,
+    "expectedOldQuestion": "Don Kişot için doğru tarih veya dönem eşleştirmesi hangisidir?",
+    "question": "Don Kişot romanının yazarı kimdir?",
+    "options": [
+      "Miguel de Cervantes",
+      "Lope de Vega",
+      "Dante Alighieri",
+      "Voltaire"
+    ],
+    "answerIndex": 0,
+    "explanation": "Don Kişot, İspanyol yazar Miguel de Cervantes tarafından yazıldı.",
+    "reviewNote": "Aynı eserin tarihini soran başka kayıt bulunduğu için bu soru yazar bilgisine dönüştürüldü.",
+    "acceptedOldQuestions": [
+      "Don Kişot için doğru tarih veya dönem eşleştirmesi hangisidir?"
+    ]
+  },
+  {
+    "id": "q1153",
+    "expectedCategoryIndex": 2,
+    "expectedOldQuestion": "Jül Sezar’ın öldürülmesi en çok hangi yerle ilişkilidir?",
+    "question": "Jül Sezar MÖ 44'te hangi şehirde öldürüldü?",
+    "options": [
+      "Roma",
+      "Atina",
+      "İskenderiye",
+      "Kartaca"
+    ],
+    "answerIndex": 0,
+    "explanation": "Jül Sezar, MÖ 44 yılında Roma'daki Senato toplantısı sırasında öldürüldü.",
+    "reviewNote": "Roma ve İtalya seçeneklerinin ikisinin de doğru sayılabilmesi sorunu giderildi; seçenekler şehirlerden oluşturuldu.",
+    "acceptedOldQuestions": [
+      "Jül Sezar’ın öldürülmesi en çok hangi yerle ilişkilidir?"
+    ]
+  }
+]

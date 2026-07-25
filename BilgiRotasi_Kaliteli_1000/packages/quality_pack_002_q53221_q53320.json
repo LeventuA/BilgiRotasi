@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q53221",
+    "categoryIndex": 0,
+    "question": "Dünyanın en derin tatlı su gölü hangisidir?",
+    "options": [
+      "Tanganika Gölü",
+      "Baykal Gölü",
+      "Superior Gölü",
+      "Titicaca Gölü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sibirya’daki Baykal Gölü’nün en derin noktası 1.600 metreden fazladır ve Dünya’daki donmamış yüzey tatlı suyunun büyük bölümünü barındırır."
+  },
+  {
+    "id": "q53222",
+    "categoryIndex": 0,
+    "question": "Dünyanın en yüksek kesintisiz şelalesi olan Angel Şelalesi hangi ülkededir?",
+    "options": [
+      "Brezilya",
+      "Kolombiya",
+      "Venezuela",
+      "Guyana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Angel Şelalesi Venezuela’daki Canaima Millî Parkı’nda bulunur ve yaklaşık 979 metrelik toplam yüksekliğe sahiptir."
+  },
+  {
+    "id": "q53223",
+    "categoryIndex": 0,
+    "question": "Atacama Çölü ağırlıklı olarak hangi ülkede yer alır?",
+    "options": [
+      "Peru",
+      "Arjantin",
+      "Bolivya",
+      "Şili"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Atacama, Şili’nin kuzeyinde uzanır ve bazı bölgeleri Dünya’nın kutuplar dışındaki en kurak yerleri arasındadır."
+  },
+  {
+    "id": "q53224",
+    "categoryIndex": 0,
+    "question": "Denize ulaşmadan Kalahari’de dağılan Okavango Deltası hangi ülkededir?",
+    "options": [
+      "Botsvana",
+      "Namibya",
+      "Angola",
+      "Zimbabve"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Okavango Nehri Botsvana içlerinde geniş bir iç deltaya dönüşür; suları okyanusa ulaşmak yerine sulak alanlara yayılır."
+  },
+  {
+    "id": "q53225",
+    "categoryIndex": 0,
+    "question": "Avrupa’nın en büyük aktif yanardağı olarak bilinen Etna hangi adadadır?",
+    "options": [
+      "Sardinya",
+      "Sicilya",
+      "Korsika",
+      "Girit"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Etna Yanardağı İtalya’ya bağlı Sicilya Adası’nın doğusunda yükselir ve sık aralıklarla etkinlik gösterir."
+  },
+  {
+    "id": "q53226",
+    "categoryIndex": 0,
+    "question": "Titicaca Gölü hangi iki ülkenin sınırındadır?",
+    "options": [
+      "Şili ve Arjantin",
+      "Ekvador ve Peru",
+      "Peru ve Bolivya",
+      "Bolivya ve Paraguay"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "And Dağları’ndaki Titicaca Gölü Peru ile Bolivya arasında yer alır ve yüksek rakımlı büyük göllerden biridir."
+  },
+  {
+    "id": "q53227",
+    "categoryIndex": 0,
+    "question": "Mariana Çukuru’nun bilinen en derin bölümüne ne ad verilir?",
+    "options": [
+      "Dragon Hole",
+      "Java Deep",
+      "Puerto Rico Deep",
+      "Challenger Deep"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Challenger Deep, Mariana Çukuru’nun güney ucundadır ve okyanusların ölçülmüş en derin noktası kabul edilir."
+  },
+  {
+    "id": "q53228",
+    "categoryIndex": 0,
+    "question": "Dünyanın en küçük bağımsız devleti hangisidir?",
+    "options": [
+      "Vatikan",
+      "Monako",
+      "San Marino",
+      "Lihtenştayn"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Roma’nın içinde yer alan Vatikan hem yüzölçümü hem de nüfus bakımından dünyanın en küçük bağımsız devletidir."
+  },
+  {
+    "id": "q53229",
+    "categoryIndex": 0,
+    "question": "Akdeniz’in en büyük adası hangisidir?",
+    "options": [
+      "Kıbrıs",
+      "Sicilya",
+      "Sardinya",
+      "Girit"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İtalya’nın güneyindeki Sicilya, yüzölçümü bakımından Akdeniz’in en büyük adasıdır."
+  },
+  {
+    "id": "q53230",
+    "categoryIndex": 0,
+    "question": "Ümit Burnu hangi ülkededir?",
+    "options": [
+      "Namibya",
+      "Mozambik",
+      "Güney Afrika",
+      "Madagaskar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ümit Burnu Güney Afrika’nın Cape Yarımadası’ndadır; Afrika’nın en güney noktası ise daha doğudaki Agulhas Burnu’dur."
+  },
+  {
+    "id": "q53231",
+    "categoryIndex": 0,
+    "question": "İzlanda’nın başkenti hangisidir?",
+    "options": [
+      "Helsinki",
+      "Oslo",
+      "Tórshavn",
+      "Reykjavík"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Reykjavík, İzlanda’nın başkenti ve en büyük şehridir; dünyanın en kuzeydeki egemen devlet başkentlerinden biridir."
+  },
+  {
+    "id": "q53232",
+    "categoryIndex": 0,
+    "question": "Gözyaşı damlasına benzeyen şekliyle bilinen ada ülkesi hangisidir?",
+    "options": [
+      "Sri Lanka",
+      "Maldivler",
+      "Mauritius",
+      "Madagaskar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Hindistan’ın güneydoğusunda bulunan Sri Lanka, haritadaki damla biçimi nedeniyle bazen “Hint Okyanusu’nun gözyaşı” diye anılır."
+  },
+  {
+    "id": "q53233",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük mercan resifi sistemi hangisidir?",
+    "options": [
+      "Belize Set Resifi",
+      "Büyük Set Resifi",
+      "Kızıldeniz Resifi",
+      "Yeni Kaledonya Resifi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Avustralya açıklarındaki Büyük Set Resifi binlerce ayrı resif ve adacıktan oluşan dev bir ekosistemdir."
+  },
+  {
+    "id": "q53234",
+    "categoryIndex": 0,
+    "question": "Cebelitarık Boğazı Avrupa’yı hangi kıtadan ayırır?",
+    "options": [
+      "Asya",
+      "Güney Amerika",
+      "Afrika",
+      "Kuzey Amerika"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cebelitarık Boğazı’nın kuzeyinde İspanya, güneyinde Fas bulunur; boğaz Atlas Okyanusu ile Akdeniz’i de bağlar."
+  },
+  {
+    "id": "q53235",
+    "categoryIndex": 0,
+    "question": "Dünyanın en uzun sıradağ sistemi hangisidir?",
+    "options": [
+      "Kayalık Dağlar",
+      "Himalayalar",
+      "Alpler",
+      "And Dağları"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "And Dağları Güney Amerika’nın batı kıyısı boyunca yaklaşık 7.000 kilometre uzanır ve en uzun kıtasal sıradağ sistemidir."
+  },
+  {
+    "id": "q53236",
+    "categoryIndex": 0,
+    "question": "Fiyortlarıyla ünlü Bergen şehri hangi ülkededir?",
+    "options": [
+      "Norveç",
+      "İsveç",
+      "Danimarka",
+      "Finlandiya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bergen Norveç’in batı kıyısındadır ve ülkenin ünlü fiyort bölgelerine açılan önemli bir limandır."
+  },
+  {
+    "id": "q53237",
+    "categoryIndex": 0,
+    "question": "Mekong Nehri hangi kıtadadır?",
+    "options": [
+      "Afrika",
+      "Asya",
+      "Güney Amerika",
+      "Avrupa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mekong Nehri Çin’den başlayarak Güneydoğu Asya’daki birçok ülkeden geçer ve Vietnam’da geniş bir deltaya ulaşır."
+  },
+  {
+    "id": "q53238",
+    "categoryIndex": 1,
+    "question": "Breaking Bad dizisinde Walter White’ın kullandığı takma ad nedir?",
+    "options": [
+      "Capone",
+      "Scarface",
+      "Heisenberg",
+      "Moriarty"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Walter White uyuşturucu dünyasında kimliğini gizlemek için fizikçi Werner Heisenberg’den esinlenen bu adı kullanır."
+  },
+  {
+    "id": "q53239",
+    "categoryIndex": 1,
+    "question": "Harry Potter’ın baykuşunun adı nedir?",
+    "options": [
+      "Errol",
+      "Crookshanks",
+      "Fawkes",
+      "Hedwig"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hedwig, Harry’ye Hagrid tarafından hediye edilen beyaz bir kar baykuşudur."
+  },
+  {
+    "id": "q53240",
+    "categoryIndex": 1,
+    "question": "Game of Thrones’ta Yedi Krallık’ın hükümdarlık sembolü olan tahtın adı nedir?",
+    "options": [
+      "Demir Taht",
+      "Ejder Tahtı",
+      "Kuzey Tahtı",
+      "Kızıl Taht"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Demir Taht’ın, fetih sırasında teslim olan düşmanların kılıçlarından dövüldüğü anlatılır."
+  },
+  {
+    "id": "q53241",
+    "categoryIndex": 1,
+    "question": "Toy Story serisindeki kovboy oyuncağın adı nedir?",
+    "options": [
+      "Buzz",
+      "Woody",
+      "Rex",
+      "Slinky"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Woody, Andy’nin en sevdiği oyuncaklardan biri ve oyuncak grubunun doğal lideridir."
+  },
+  {
+    "id": "q53242",
+    "categoryIndex": 1,
+    "question": "Kayıp Balık Nemo filminde Nemo hangi balık türüdür?",
+    "options": [
+      "Cerrah balığı",
+      "Melek balığı",
+      "Palyaço balığı",
+      "Aslan balığı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Nemo ile babası Marlin turuncu-beyaz çizgileriyle tanınan palyaço balıklarıdır."
+  },
+  {
+    "id": "q53243",
+    "categoryIndex": 1,
+    "question": "Grand Theft Auto V’in büyük bölümü hangi kurgusal şehirde geçer?",
+    "options": [
+      "Liberty City",
+      "Vice City",
+      "San Fierro",
+      "Los Santos"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Los Santos, Los Angeles ve Güney Kaliforniya’dan esinlenen kurgusal bir şehirdir."
+  },
+  {
+    "id": "q53244",
+    "categoryIndex": 1,
+    "question": "Minecraft’ın ana son bölümünde karşılaşılan büyük düşman hangisidir?",
+    "options": [
+      "Ender Dragon",
+      "Wither Storm",
+      "Elder Guardian",
+      "Ravager"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncu End boyutunda Ender Dragon ile savaşır; zaferden sonra oyunun bitiş yazıları görülebilir."
+  },
+  {
+    "id": "q53245",
+    "categoryIndex": 1,
+    "question": "Fortnite oyuncularını adaya taşıyan uçan aracın adı nedir?",
+    "options": [
+      "Loot Cruiser",
+      "Battle Bus",
+      "Storm Ship",
+      "Victory Van"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Battle Bus maçın başında adanın üzerinden uçar ve oyuncular seçtikleri noktada aşağı atlar."
+  },
+  {
+    "id": "q53246",
+    "categoryIndex": 1,
+    "question": "Pokémon’daki Roket Takımı’nın en tanınmış ikilisi kimlerdir?",
+    "options": [
+      "Ash ve Misty",
+      "Brock ve Tracey",
+      "Jessie ve James",
+      "May ve Max"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Jessie ile James, konuşan Meowth’la birlikte Pikachu’yu ele geçirmeye çalışmalarıyla tanınır."
+  },
+  {
+    "id": "q53247",
+    "categoryIndex": 1,
+    "question": "Scooby-Doo’nun en yakın insan arkadaşı kimdir?",
+    "options": [
+      "Fred",
+      "Velma",
+      "Daphne",
+      "Shaggy"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Shaggy ile Scooby, yemek sevgileri ve korktuklarında birlikte kaçmalarıyla serinin komik ikilisidir."
+  },
+  {
+    "id": "q53248",
+    "categoryIndex": 1,
+    "question": "The Witcher serisinin beyaz saçlı canavar avcısının adı nedir?",
+    "options": [
+      "Geralt",
+      "Vesemir",
+      "Dandelion",
+      "Emhyr"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Rivyalı Geralt, eğitim ve mutasyonlar geçirmiş profesyonel bir witcher’dır."
+  },
+  {
+    "id": "q53249",
+    "categoryIndex": 1,
+    "question": "The Last of Us’ta mantar salgınına karşı bağışıklığıyla öne çıkan karakter kimdir?",
+    "options": [
+      "Tess",
+      "Ellie",
+      "Marlene",
+      "Abby"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ellie enfekte olmasına rağmen dönüşmez; bu durum onu olası bir tedavi araştırmasının merkezine taşır."
+  },
+  {
+    "id": "q53250",
+    "categoryIndex": 1,
+    "question": "Frozen filmindeki konuşan kardan adamın adı nedir?",
+    "options": [
+      "Sven",
+      "Kristoff",
+      "Olaf",
+      "Hans"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Olaf, Elsa’nın büyüsüyle canlanan ve yaz mevsimini merak eden neşeli bir kardan adamdır."
+  },
+  {
+    "id": "q53251",
+    "categoryIndex": 1,
+    "question": "Star Trek’te sivri kulaklı Vulkan subayı kimdir?",
+    "options": [
+      "Scotty",
+      "Sulu",
+      "McCoy",
+      "Spock"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Spock yarı Vulkan, yarı insandır ve mantığa dayalı yaklaşımıyla tanınır."
+  },
+  {
+    "id": "q53252",
+    "categoryIndex": 1,
+    "question": "Batman’in suçla mücadele ettiği şehir hangisidir?",
+    "options": [
+      "Gotham City",
+      "Metropolis",
+      "Star City",
+      "Central City"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gotham City, karanlık atmosferi ve Batman’in düşmanlarıyla DC evreninin en bilinen kurgusal şehirlerindendir."
+  },
+  {
+    "id": "q53253",
+    "categoryIndex": 1,
+    "question": "Shrek filmlerinde Shrek’in konuşkan yol arkadaşının adı nedir?",
+    "options": [
+      "Puss",
+      "Eşek",
+      "Farquaad",
+      "Gingy"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Orijinal adı Donkey olan Eşek, durmadan konuşması ve sadakatiyle Shrek’in en yakın dostuna dönüşür."
+  },
+  {
+    "id": "q53254",
+    "categoryIndex": 1,
+    "question": "Inside Out filminde Riley’nin zihnindeki sarı renkli duygu hangisidir?",
+    "options": [
+      "Öfke",
+      "Korku",
+      "Neşe",
+      "Tiksinti"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Neşe, Riley’nin olumlu anılarını korumaya çalışan ve ilk filmin merkezinde yer alan duygudur."
+  },
+  {
+    "id": "q53255",
+    "categoryIndex": 2,
+    "question": "I. Dünya Savaşı’nı resmen sona erdiren başlıca barış antlaşması hangisidir?",
+    "options": [
+      "Lozan Antlaşması",
+      "Brest-Litovsk Antlaşması",
+      "Tordesillas Antlaşması",
+      "Versay Antlaşması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1919’da imzalanan Versay Antlaşması, Almanya ile Müttefikler arasındaki savaş durumunu sona erdirdi."
+  },
+  {
+    "id": "q53256",
+    "categoryIndex": 2,
+    "question": "Napolyon’un son büyük yenilgisi hangi savaşta gerçekleşti?",
+    "options": [
+      "Waterloo Savaşı",
+      "Austerlitz Savaşı",
+      "Trafalgar Savaşı",
+      "Borodino Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Napolyon 1815’te Waterloo’da yenildi ve kısa süre sonra ikinci kez tahttan çekildi."
+  },
+  {
+    "id": "q53257",
+    "categoryIndex": 2,
+    "question": "İlk insanlı uzay uçuşunu gerçekleştiren kozmonot kimdir?",
+    "options": [
+      "Aleksey Leonov",
+      "Yuri Gagarin",
+      "John Glenn",
+      "Valentina Tereşkova"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yuri Gagarin 1961’de Vostok 1 ile Dünya çevresinde bir tur atarak uzaya çıkan ilk insan oldu."
+  },
+  {
+    "id": "q53258",
+    "categoryIndex": 2,
+    "question": "Titanic hangi yılda battı?",
+    "options": [
+      "1905",
+      "1918",
+      "1912",
+      "1924"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Titanic, ilk seferi sırasında 14 Nisan’ı 15 Nisan 1912’ye bağlayan gece bir buzdağına çarparak battı."
+  },
+  {
+    "id": "q53259",
+    "categoryIndex": 2,
+    "question": "Süveyş Kanalı hangi iki denizi birbirine bağlar?",
+    "options": [
+      "Karadeniz ve Akdeniz",
+      "Atlas Okyanusu ve Hint Okyanusu",
+      "Ege ve Marmara",
+      "Akdeniz ve Kızıldeniz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1869’da açılan Süveyş Kanalı, Avrupa ile Asya arasındaki deniz yolunu Afrika’nın çevresini dolaşmadan kısaltır."
+  },
+  {
+    "id": "q53260",
+    "categoryIndex": 2,
+    "question": "Fransız Devrimi’nin sembolik başlangıcı sayılan hapishane hangisidir?",
+    "options": [
+      "Bastille",
+      "Alcatraz",
+      "Tower of London",
+      "Conciergerie"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Paris halkı 14 Temmuz 1789’da Bastille’i bastı; bu tarih bugün Fransa’nın ulusal bayramıdır."
+  },
+  {
+    "id": "q53261",
+    "categoryIndex": 2,
+    "question": "ABD Bağımsızlık Bildirgesi hangi yılda kabul edildi?",
+    "options": [
+      "1492",
+      "1776",
+      "1789",
+      "1812"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "On Üç Koloni’nin bağımsızlık bildirgesi 4 Temmuz 1776’da kabul edildi."
+  },
+  {
+    "id": "q53262",
+    "categoryIndex": 2,
+    "question": "Japonya’yı hızlı modernleşme dönemine sokan 1868 değişimi hangi adla bilinir?",
+    "options": [
+      "Taika Reformu",
+      "Şova Dönüşümü",
+      "Meiji Restorasyonu",
+      "Satsuma İsyanı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Meiji Restorasyonu şogunluk yönetimini sona erdirerek imparatorluk otoritesini ve kapsamlı modernleşmeyi güçlendirdi."
+  },
+  {
+    "id": "q53263",
+    "categoryIndex": 2,
+    "question": "Berlin Duvarı hangi yılda inşa edilmeye başlandı?",
+    "options": [
+      "1945",
+      "1956",
+      "1968",
+      "1961"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Doğu Alman yönetimi 13 Ağustos 1961’de Berlin’in iki tarafı arasındaki geçişi engellemeye başladı."
+  },
+  {
+    "id": "q53264",
+    "categoryIndex": 2,
+    "question": "Küba Füze Krizi hangi iki süper gücü nükleer savaşın eşiğine getirdi?",
+    "options": [
+      "ABD ve Sovyetler Birliği",
+      "ABD ve Çin",
+      "Britanya ve Fransa",
+      "Sovyetler Birliği ve Japonya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "1962 krizinde Sovyet füzelerinin Küba’ya yerleştirilmesi ABD ile Sovyetler Birliği arasında tehlikeli bir karşılaşma yarattı."
+  },
+  {
+    "id": "q53265",
+    "categoryIndex": 2,
+    "question": "Kara Ölüm olarak bilinen veba salgını Avrupa’yı en ağır hangi yüzyılda etkiledi?",
+    "options": [
+      "10. yüzyıl",
+      "14. yüzyıl",
+      "16. yüzyıl",
+      "18. yüzyıl"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kara Ölüm 1347-1351 yıllarında Avrupa nüfusunun çok büyük bir bölümünün ölümüne yol açtı."
+  },
+  {
+    "id": "q53266",
+    "categoryIndex": 2,
+    "question": "İpek Yolu’nun doğudaki başlıca başlangıç bölgesi hangi uygarlıktı?",
+    "options": [
+      "Roma",
+      "Mısır",
+      "Çin",
+      "İnka"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İpek Yolu ağları Çin’den başlayıp Orta Asya üzerinden Akdeniz dünyasına kadar uzanıyordu."
+  },
+  {
+    "id": "q53267",
+    "categoryIndex": 2,
+    "question": "İlk modern Olimpiyat Oyunları 1896’da hangi şehirde yapıldı?",
+    "options": [
+      "Paris",
+      "Londra",
+      "Roma",
+      "Atina"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Modern Olimpiyatların ilk organizasyonu 1896’da antik oyunların ülkesi Yunanistan’ın başkenti Atina’da düzenlendi."
+  },
+  {
+    "id": "q53268",
+    "categoryIndex": 2,
+    "question": "Büyük İskender’in öğretmeni olan filozof kimdi?",
+    "options": [
+      "Aristoteles",
+      "Sokrates",
+      "Platon",
+      "Pisagor"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Makedonya Kralı II. Philip, oğlu İskender’in eğitimi için Aristoteles’i görevlendirdi."
+  },
+  {
+    "id": "q53269",
+    "categoryIndex": 2,
+    "question": "Hindistan’ın bağımsızlık hareketinde şiddetsiz direnişle tanınan lider kimdir?",
+    "options": [
+      "Cevahirlal Nehru",
+      "Mahatma Gandhi",
+      "Subhas Chandra Bose",
+      "Muhammed Ali Cinnah"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Gandhi, sivil itaatsizlik ve şiddetsizlik ilkelerini Britanya yönetimine karşı kitlesel bir harekete dönüştürdü."
+  },
+  {
+    "id": "q53270",
+    "categoryIndex": 2,
+    "question": "Normanların İngiltere’yi fethetmesiyle sonuçlanan 1066 savaşı hangisidir?",
+    "options": [
+      "Agincourt Savaşı",
+      "Bosworth Savaşı",
+      "Hastings Savaşı",
+      "Somme Savaşı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Normandiya Dükü William, Hastings’te Kral Harold’ı yenerek İngiltere kralı oldu."
+  },
+  {
+    "id": "q53271",
+    "categoryIndex": 2,
+    "question": "Antik Olimpiyat Oyunlarının düzenlendiği kutsal merkez hangisiydi?",
+    "options": [
+      "Delphi",
+      "Sparta",
+      "Knossos",
+      "Olympia"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Antik oyunlar Zeus onuruna Olympia’da düzenleniyor ve Yunan dünyasından sporcuları bir araya getiriyordu."
+  },
+  {
+    "id": "q53272",
+    "categoryIndex": 3,
+    "question": "Yıldızlı Gece tablosunu kim yaptı?",
+    "options": [
+      "Vincent van Gogh",
+      "Claude Monet",
+      "Paul Cézanne",
+      "Edgar Degas"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Van Gogh, Yıldızlı Gece’yi 1889’da Saint-Rémy’de kaldığı dönemde yaptı."
+  },
+  {
+    "id": "q53273",
+    "categoryIndex": 3,
+    "question": "Venüs’ün Doğuşu tablosunun ressamı kimdir?",
+    "options": [
+      "Titian",
+      "Sandro Botticelli",
+      "Caravaggio",
+      "Raphael"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Botticelli’nin Rönesans tablosunda Venüs, denizden doğarak büyük bir deniz kabuğu üzerinde tasvir edilir."
+  },
+  {
+    "id": "q53274",
+    "categoryIndex": 3,
+    "question": "İnci Küpeli Kız tablosunu kim yaptı?",
+    "options": [
+      "Rembrandt",
+      "Frans Hals",
+      "Johannes Vermeer",
+      "Jan van Eyck"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Vermeer’in 17. yüzyıl eserinde koyu arka plan önünde büyük inci küpeli genç bir kız görülür."
+  },
+  {
+    "id": "q53275",
+    "categoryIndex": 3,
+    "question": "Çığlık tablosunun sanatçısı kimdir?",
+    "options": [
+      "Egon Schiele",
+      "Gustav Klimt",
+      "Paul Gauguin",
+      "Edvard Munch"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Norveçli ressam Edvard Munch, kaygıyı simgeleyen Çığlık’ın birden fazla sürümünü oluşturdu."
+  },
+  {
+    "id": "q53276",
+    "categoryIndex": 3,
+    "question": "Mona Lisa bugün hangi müzede sergilenir?",
+    "options": [
+      "Louvre Müzesi",
+      "Prado Müzesi",
+      "Uffizi Galerisi",
+      "Metropolitan Müzesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Leonardo da Vinci’nin Mona Lisa’sı Paris’teki Louvre Müzesi’nin en çok ziyaret edilen eserlerindendir."
+  },
+  {
+    "id": "q53277",
+    "categoryIndex": 3,
+    "question": "Sefiller romanının merkezindeki eski mahkûm kimdir?",
+    "options": [
+      "Javert",
+      "Jean Valjean",
+      "Marius",
+      "Thénardier"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Jean Valjean ekmek çaldığı için uzun süre hapis yatar ve özgürlüğünden sonra hayatını değiştirmeye çalışır."
+  },
+  {
+    "id": "q53278",
+    "categoryIndex": 3,
+    "question": "Muhteşem Gatsby romanını kim anlatır?",
+    "options": [
+      "Jay Gatsby",
+      "Tom Buchanan",
+      "Nick Carraway",
+      "George Wilson"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Nick Carraway, Gatsby’nin komşusu ve yaşanan olayların gözlemcisi olarak romanı birinci kişi ağzından anlatır."
+  },
+  {
+    "id": "q53279",
+    "categoryIndex": 3,
+    "question": "Sineklerin Tanrısı romanındaki çocuklar nerede mahsur kalır?",
+    "options": [
+      "Terk edilmiş bir okulda",
+      "Yer altı sığınağında",
+      "Kutup araştırma gemisinde",
+      "Issız bir adada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bir uçak kazasından kurtulan çocuklar yetişkinlerin bulunmadığı tropik bir adada kendi düzenlerini kurmaya çalışır."
+  },
+  {
+    "id": "q53280",
+    "categoryIndex": 3,
+    "question": "Hobbit romanının başkahramanı kimdir?",
+    "options": [
+      "Bilbo Baggins",
+      "Frodo Baggins",
+      "Samwise Gamgee",
+      "Peregrin Took"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bilbo, Gandalf ve on üç cüceyle birlikte Erebor’a doğru beklenmedik bir maceraya çıkar."
+  },
+  {
+    "id": "q53281",
+    "categoryIndex": 3,
+    "question": "Odysseia destanının eve dönmeye çalışan kahramanı kimdir?",
+    "options": [
+      "Achilles",
+      "Odysseus",
+      "Hector",
+      "Perseus"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Odysseus, Troya Savaşı’ndan sonra İthaka’ya dönebilmek için on yıl süren tehlikeli bir yolculuk yapar."
+  },
+  {
+    "id": "q53282",
+    "categoryIndex": 3,
+    "question": "İki Şehrin Hikâyesi’nde sözü edilen iki şehir hangileridir?",
+    "options": [
+      "Roma ve Venedik",
+      "Madrid ve Lizbon",
+      "Londra ve Paris",
+      "Dublin ve Belfast"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Charles Dickens’ın romanı Fransız Devrimi öncesi ve sırasında Londra ile Paris arasında geçer."
+  },
+  {
+    "id": "q53283",
+    "categoryIndex": 3,
+    "question": "Kuzgun şiirinin yazarı kimdir?",
+    "options": [
+      "Walt Whitman",
+      "Robert Frost",
+      "Emily Dickinson",
+      "Edgar Allan Poe"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Poe’nun anlatı şiirinde gizemli bir kuzgun, yas tutan anlatıcıya sürekli “Bir daha asla” diye cevap verir."
+  },
+  {
+    "id": "q53284",
+    "categoryIndex": 3,
+    "question": "Simyacı romanının yolculuğa çıkan çobanı kimdir?",
+    "options": [
+      "Santiago",
+      "Esteban",
+      "Florentino",
+      "Aureliano"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Santiago, gördüğü rüyanın peşinden Endülüs’ten Mısır piramitlerine doğru yola çıkar."
+  },
+  {
+    "id": "q53285",
+    "categoryIndex": 3,
+    "question": "Gece Kuşları tablosunun İngilizce adı nedir?",
+    "options": [
+      "Night Watch",
+      "Nighthawks",
+      "American Gothic",
+      "Blue Dancers"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Edward Hopper’ın Nighthawks tablosu, gece geç saatte aydınlık bir lokantada oturan insanları gösterir."
+  },
+  {
+    "id": "q53286",
+    "categoryIndex": 3,
+    "question": "Divan edebiyatında şairlerin şiirlerini topladığı kitaba ne denir?",
+    "options": [
+      "Mesnevi",
+      "Tezkire",
+      "Divan",
+      "Seyahatname"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bir şairin farklı nazım biçimlerindeki şiirlerini bir araya getiren esere divan adı verilir."
+  },
+  {
+    "id": "q53287",
+    "categoryIndex": 3,
+    "question": "Haiku şiiri geleneksel olarak hangi ülkeyle ilişkilidir?",
+    "options": [
+      "Çin",
+      "Hindistan",
+      "İran",
+      "Japonya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Haiku, Japon edebiyatında doğa ve anlık gözlemleri kısa bir yapı içinde anlatan geleneksel şiir biçimidir."
+  },
+  {
+    "id": "q53288",
+    "categoryIndex": 3,
+    "question": "Gotik katedrallerde ışığı renkli biçimde içeri alan süslü camlara ne denir?",
+    "options": [
+      "Vitray",
+      "Fresk",
+      "Mozaik",
+      "Kabartma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Vitray pencereler, renkli cam parçalarının bir araya getirilmesiyle oluşturulur ve özellikle Gotik mimaride öne çıkar."
+  },
+  {
+    "id": "q53289",
+    "categoryIndex": 4,
+    "question": "İnsan vücudunun en büyük organı hangisidir?",
+    "options": [
+      "Karaciğer",
+      "Deri",
+      "Akciğer",
+      "İnce bağırsak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Deri vücudun dış yüzeyini kaplar; ısı düzenleme, hissetme ve mikroplara karşı koruma görevleri üstlenir."
+  },
+  {
+    "id": "q53290",
+    "categoryIndex": 4,
+    "question": "İnsan vücudundaki en küçük kemik hangisidir?",
+    "options": [
+      "Çekiç kemiği",
+      "Örs kemiği",
+      "Üzengi kemiği",
+      "Kuyruk sokumu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Orta kulaktaki üzengi kemiği yalnızca birkaç milimetre uzunluğundadır ve ses titreşimlerinin aktarılmasına yardım eder."
+  },
+  {
+    "id": "q53291",
+    "categoryIndex": 4,
+    "question": "Ses hangi ortamda yayılamaz?",
+    "options": [
+      "Suda",
+      "Çelikte",
+      "Havada",
+      "Tam boşlukta"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ses mekanik bir dalgadır ve titreşimleri taşıyacak parçacıklara ihtiyaç duyar; tam boşlukta parçacık bulunmaz."
+  },
+  {
+    "id": "q53292",
+    "categoryIndex": 4,
+    "question": "Su donduğunda hacmi genellikle nasıl değişir?",
+    "options": [
+      "Artar",
+      "Azalır",
+      "Değişmez",
+      "Önce sıfırlanır"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Su molekülleri buz kristali oluştururken daha açık bir yapı kurar; bu yüzden buz sıvı su üzerinde yüzer."
+  },
+  {
+    "id": "q53293",
+    "categoryIndex": 4,
+    "question": "Dünyanın en büyük hayvanı hangisidir?",
+    "options": [
+      "Afrika fili",
+      "Mavi balina",
+      "Balina köpekbalığı",
+      "Dev kalamar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mavi balinalar 30 metreye yaklaşabilir ve bilinen tüm dinozorlardan bile daha ağır olabilir."
+  },
+  {
+    "id": "q53294",
+    "categoryIndex": 4,
+    "question": "Karadaki en hızlı hayvan hangisidir?",
+    "options": [
+      "Aslan",
+      "Pronghorn",
+      "Çita",
+      "Devekuşu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Çita kısa mesafelerde saatte 100 kilometrenin üzerine çıkabilen özel bir sprinterdir."
+  },
+  {
+    "id": "q53295",
+    "categoryIndex": 4,
+    "question": "Dalış sırasında en yüksek hıza ulaşan kuş hangisidir?",
+    "options": [
+      "Kartal",
+      "Albatros",
+      "Doğan kuşu",
+      "Gökdoğan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Gökdoğan avına dalarken saatte 300 kilometreden daha yüksek hızlara ulaşabilir."
+  },
+  {
+    "id": "q53296",
+    "categoryIndex": 4,
+    "question": "Yumurtlayan memelilerden biri hangisidir?",
+    "options": [
+      "Ornitorenk",
+      "Koala",
+      "Kanguru",
+      "Vombat"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ornitorenk, ekidnelerle birlikte yumurtlayan memeliler olan tekdelikliler grubundadır."
+  },
+  {
+    "id": "q53297",
+    "categoryIndex": 4,
+    "question": "Yavruları taşıyan erkek deniz canlısı hangisidir?",
+    "options": [
+      "Denizyıldızı",
+      "Denizatı",
+      "Denizanası",
+      "Müren"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dişi denizatı yumurtalarını erkeğin kesesine bırakır; embriyolar burada gelişir ve erkek tarafından doğurulur."
+  },
+  {
+    "id": "q53298",
+    "categoryIndex": 4,
+    "question": "Koalaların parmak izleri hangi canlılarınkine şaşırtıcı derecede benzer?",
+    "options": [
+      "Kuşların",
+      "Balıkların",
+      "İnsanların",
+      "Sürüngenlerin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Koala parmak uçlarındaki çizgiler insan parmak izlerine mikroskop altında bile oldukça benzer görünebilir."
+  },
+  {
+    "id": "q53299",
+    "categoryIndex": 4,
+    "question": "Yunuslar uyurken beyinlerinin nasıl bir bölümünü dinlendirebilir?",
+    "options": [
+      "Tamamını",
+      "Yalnız ön bölümünü",
+      "Hiçbir bölümünü",
+      "Bir yarısını"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Yunuslar tek yarımküreli uyku kullanır; beynin bir yarısı dinlenirken diğer yarısı nefes almayı ve çevreyi izlemeyi sürdürür."
+  },
+  {
+    "id": "q53300",
+    "categoryIndex": 4,
+    "question": "Kargaların uzun süre hatırlayabildiği şeylerden biri hangisidir?",
+    "options": [
+      "İnsan yüzleri",
+      "Renk körlüğü",
+      "Gezegen yörüngeleri",
+      "Deniz akıntıları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Deneyler kargaların kendileri için tehdit oluşturan insan yüzlerini yıllarca tanıyabildiğini göstermiştir."
+  },
+  {
+    "id": "q53301",
+    "categoryIndex": 4,
+    "question": "Venüs, çoğu gezegenden farklı olarak hangi yönde döner?",
+    "options": [
+      "Güneş’e doğru",
+      "Ters yönde",
+      "Hiç dönmeden",
+      "Kutup ekseninde"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Venüs’ün dönüş yönü Güneş Sistemi’ndeki çoğu gezegenin tersidir; buna retrograd dönüş denir."
+  },
+  {
+    "id": "q53302",
+    "categoryIndex": 4,
+    "question": "Bambu neden rekor sahibi bitkiler arasında sayılır?",
+    "options": [
+      "En uzun yaşadığı için",
+      "Hiç su istemediği için",
+      "Çok hızlı büyüdüğü için",
+      "Karanlıkta ışık verdiği için"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bazı bambu türlerinin uygun koşullarda bir günde onlarca santimetre büyüdüğü ölçülmüştür."
+  },
+  {
+    "id": "q53303",
+    "categoryIndex": 4,
+    "question": "Bal neden uygun koşullarda çok uzun süre bozulmadan kalabilir?",
+    "options": [
+      "İçinde hiç şeker olmadığı için",
+      "Sürekli donduğu için",
+      "Oksijen ürettiği için",
+      "Düşük su içeriği ve asitliği nedeniyle"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Balın düşük nemi, yüksek şeker yoğunluğu ve asitli ortamı mikroorganizmaların çoğalmasını zorlaştırır."
+  },
+  {
+    "id": "q53304",
+    "categoryIndex": 4,
+    "question": "İnsan vücudunda yetişkinlikte genellikle kaç kemik bulunur?",
+    "options": [
+      "206",
+      "186",
+      "226",
+      "246"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bebeklerde daha fazla kemik bulunur; büyüme sırasında bazı kemikler birleşerek yetişkinlerde yaklaşık 206 kemiğe düşer."
+  },
+  {
+    "id": "q53305",
+    "categoryIndex": 5,
+    "question": "Futbolda sarı kart neyi ifade eder?",
+    "options": [
+      "Doğrudan oyundan atılmayı",
+      "Resmî uyarıyı",
+      "Penaltı golünü",
+      "Oyuncu değişikliğini"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sarı kart disiplin uyarısıdır; aynı maçta ikinci sarı kartı gören oyuncu kırmızı kartla oyundan çıkarılır."
+  },
+  {
+    "id": "q53306",
+    "categoryIndex": 5,
+    "question": "Basketbolda üç farklı istatistikte çift haneye ulaşmaya ne denir?",
+    "options": [
+      "Hat-trick",
+      "Grand slam",
+      "Triple-double",
+      "Perfect game"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bir oyuncu sayı, ribaund, asist, top çalma veya blok gibi üç alanda en az 10’a ulaşırsa triple-double yapar."
+  },
+  {
+    "id": "q53307",
+    "categoryIndex": 5,
+    "question": "Beyzbolda topu saha dışına göndererek tüm kaleleri dolaşmayı sağlayan vuruş hangisidir?",
+    "options": [
+      "Bunt",
+      "Strikeout",
+      "Double play",
+      "Home run"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Home run çoğunlukla topun dış saha çitlerinin üzerinden geçmesiyle vurucunun ve kalelerdeki koşucuların sayı almasını sağlar."
+  },
+  {
+    "id": "q53308",
+    "categoryIndex": 5,
+    "question": "Golfte bir çukuru par değerinden üç vuruş eksik bitirmeye ne denir?",
+    "options": [
+      "Albatross",
+      "Birdie",
+      "Bogey",
+      "Par"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Albatross son derece nadirdir; örneğin par 5 bir çukurun iki vuruşta tamamlanması anlamına gelir."
+  },
+  {
+    "id": "q53309",
+    "categoryIndex": 5,
+    "question": "Satrançta şah ile kalenin aynı hamlede hareket ettiği özel hamle hangisidir?",
+    "options": [
+      "Terfi",
+      "Rok",
+      "Çatal",
+      "Açmaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Rok, şahı güvene almak ve kaleyi oyuna sokmak için yapılan tek hamlede iki taşın hareket ettiği özel kuraldır."
+  },
+  {
+    "id": "q53310",
+    "categoryIndex": 5,
+    "question": "Olimpiyat sembolünde kaç halka vardır?",
+    "options": [
+      "4",
+      "6",
+      "5",
+      "7"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Birbirine geçmiş beş halka Olimpiyat hareketini ve kıtalar arası buluşmayı simgeler."
+  },
+  {
+    "id": "q53311",
+    "categoryIndex": 5,
+    "question": "Voleybolda ilk dört set normalde kaç sayıda biter?",
+    "options": [
+      "21",
+      "15",
+      "30",
+      "25"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bir seti kazanmak için 25 sayıya ulaşmak ve en az iki sayı fark yapmak gerekir; karar seti 15 sayıda oynanır."
+  },
+  {
+    "id": "q53312",
+    "categoryIndex": 5,
+    "question": "Formula 1’de damalı bayrak neyi gösterir?",
+    "options": [
+      "Yarışın bittiğini",
+      "Güvenlik aracını",
+      "Pit yolunun kapandığını",
+      "Yağmur başladığını"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Siyah-beyaz damalı bayrak lider ve ardından gelen araçlar için yarışın sona erdiğini bildirir."
+  },
+  {
+    "id": "q53313",
+    "categoryIndex": 5,
+    "question": "Resmî maraton mesafesi kaç kilometredir?",
+    "options": [
+      "40 kilometre",
+      "42,195 kilometre",
+      "41,5 kilometre",
+      "45 kilometre"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Modern maratonun standart mesafesi 42 kilometre 195 metredir."
+  },
+  {
+    "id": "q53314",
+    "categoryIndex": 5,
+    "question": "Beyzbol sahasındaki elmasın kaç kalesi vardır?",
+    "options": [
+      "3",
+      "5",
+      "4",
+      "6"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Vurucu ana kaleden başlayıp birinci, ikinci ve üçüncü kaleyi dolaşarak yeniden ana kaleye ulaşır."
+  },
+  {
+    "id": "q53315",
+    "categoryIndex": 5,
+    "question": "Masa tenisinde bir set normalde kaç sayıda kazanılır?",
+    "options": [
+      "15",
+      "21",
+      "25",
+      "11"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncu 11 sayıya ulaşmalı ve en az iki sayı fark yapmalıdır; 10-10’dan sonra oyun uzar."
+  },
+  {
+    "id": "q53316",
+    "categoryIndex": 5,
+    "question": "Futbolda kaleci topa eliyle hangi alanda dokunabilir?",
+    "options": [
+      "Kendi ceza alanında",
+      "Rakip yarı sahada",
+      "Orta yuvarlakta",
+      "Korner alanında"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kaleci yalnızca kendi ceza alanı içinde topu eliyle oynayabilir; takım arkadaşının bilinçli ayak pası gibi istisnalar vardır."
+  },
+  {
+    "id": "q53317",
+    "categoryIndex": 5,
+    "question": "Teniste 40-40 skoruna ne denir?",
+    "options": [
+      "Love",
+      "Deuce",
+      "Ace",
+      "Break"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Deuce sonrasında oyunu kazanmak için bir oyuncunun art arda iki sayı alması gerekir."
+  },
+  {
+    "id": "q53318",
+    "categoryIndex": 5,
+    "question": "Eskrimde flörenin geçerli hedef bölgesi neresidir?",
+    "options": [
+      "Tüm vücut",
+      "Yalnız baş",
+      "Gövde",
+      "Kollar ve bacaklar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Flörede geçerli hedef, kollar ve baş hariç gövde bölgesidir; dokunuş yalnızca silahın ucuyla yapılır."
+  },
+  {
+    "id": "q53319",
+    "categoryIndex": 5,
+    "question": "Basketbolda serbest atış kaç sayı değerindedir?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "1"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Faul sonrası serbest atış çizgisinden kullanılan her başarılı atış takıma bir sayı kazandırır."
+  },
+  {
+    "id": "q53320",
+    "categoryIndex": 5,
+    "question": "Ragbi kale direkleri hangi harfe benzer?",
+    "options": [
+      "H",
+      "T",
+      "Y",
+      "M"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ragbide iki dik direk ve onları birleştiren yatay çubuk, büyük bir H biçimi oluşturur."
+  }
+]

@@ -1,0 +1,402 @@
+[
+  {
+    "id": "q54921",
+    "sourceGroup": "geo_flags"
+  },
+  {
+    "id": "q54922",
+    "sourceGroup": "geo_flags"
+  },
+  {
+    "id": "q54923",
+    "sourceGroup": "geo_flags"
+  },
+  {
+    "id": "q54924",
+    "sourceGroup": "geo_flags"
+  },
+  {
+    "id": "q54925",
+    "sourceGroup": "geo_flags"
+  },
+  {
+    "id": "q54926",
+    "sourceGroup": "geo_flags"
+  },
+  {
+    "id": "q54927",
+    "sourceGroup": "geo_flags"
+  },
+  {
+    "id": "q54928",
+    "sourceGroup": "geo_flags"
+  },
+  {
+    "id": "q54929",
+    "sourceGroup": "geo_flags"
+  },
+  {
+    "id": "q54930",
+    "sourceGroup": "geo_languages"
+  },
+  {
+    "id": "q54931",
+    "sourceGroup": "geo_languages"
+  },
+  {
+    "id": "q54932",
+    "sourceGroup": "geo_languages"
+  },
+  {
+    "id": "q54933",
+    "sourceGroup": "geo_languages"
+  },
+  {
+    "id": "q54934",
+    "sourceGroup": "geo_languages"
+  },
+  {
+    "id": "q54935",
+    "sourceGroup": "geo_languages"
+  },
+  {
+    "id": "q54936",
+    "sourceGroup": "geo_languages"
+  },
+  {
+    "id": "q54937",
+    "sourceGroup": "geo_languages"
+  },
+  {
+    "id": "q54938",
+    "sourceGroup": "ent_turkish_music"
+  },
+  {
+    "id": "q54939",
+    "sourceGroup": "ent_turkish_music"
+  },
+  {
+    "id": "q54940",
+    "sourceGroup": "ent_turkish_music"
+  },
+  {
+    "id": "q54941",
+    "sourceGroup": "ent_turkish_music"
+  },
+  {
+    "id": "q54942",
+    "sourceGroup": "ent_turkish_music"
+  },
+  {
+    "id": "q54943",
+    "sourceGroup": "ent_turkish_music"
+  },
+  {
+    "id": "q54944",
+    "sourceGroup": "ent_turkish_music"
+  },
+  {
+    "id": "q54945",
+    "sourceGroup": "ent_eurovision"
+  },
+  {
+    "id": "q54946",
+    "sourceGroup": "ent_eurovision"
+  },
+  {
+    "id": "q54947",
+    "sourceGroup": "ent_eurovision"
+  },
+  {
+    "id": "q54948",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54949",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54950",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54951",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54952",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54953",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54954",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54955",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54956",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54957",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54958",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54959",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54960",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54961",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54962",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54963",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54964",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54965",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54966",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54967",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54968",
+    "sourceGroup": "hist_turkish_republic"
+  },
+  {
+    "id": "q54969",
+    "sourceGroup": "hist_turkish_republic"
+  },
+  {
+    "id": "q54970",
+    "sourceGroup": "hist_turkish_republic"
+  },
+  {
+    "id": "q54971",
+    "sourceGroup": "hist_turkish_republic"
+  },
+  {
+    "id": "q54972",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54973",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54974",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54975",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54976",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54977",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54978",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54979",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54980",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54981",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54982",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54983",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54984",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54985",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54986",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54987",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54988",
+    "sourceGroup": "lit_turkish"
+  },
+  {
+    "id": "q54989",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54990",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54991",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54992",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54993",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54994",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54995",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54996",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54997",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54998",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54999",
+    "sourceGroup": "sci_noaa"
+  },
+  {
+    "id": "q55000",
+    "sourceGroup": "sci_noaa"
+  },
+  {
+    "id": "q55001",
+    "sourceGroup": "sci_noaa"
+  },
+  {
+    "id": "q55002",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q55003",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q55004",
+    "sourceGroup": "sci_noaa"
+  },
+  {
+    "id": "q55005",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55006",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55007",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55008",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55009",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55010",
+    "sourceGroup": "sport_uefa"
+  },
+  {
+    "id": "q55011",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55012",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55013",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55014",
+    "sourceGroup": "sport_nba"
+  },
+  {
+    "id": "q55015",
+    "sourceGroup": "sport_nba"
+  },
+  {
+    "id": "q55016",
+    "sourceGroup": "sport_nba"
+  },
+  {
+    "id": "q55017",
+    "sourceGroup": "sport_nba"
+  },
+  {
+    "id": "q55018",
+    "sourceGroup": "sport_nba"
+  },
+  {
+    "id": "q55019",
+    "sourceGroup": "sport_nba"
+  },
+  {
+    "id": "q55020",
+    "sourceGroup": "sport_nba"
+  }
+]

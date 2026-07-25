@@ -1,0 +1,88 @@
+{
+  "existingCount": 2762,
+  "incomingCount": 1000,
+  "acceptedCount": 991,
+  "conflictCount": 9,
+  "newTotalIfApplied": 3753,
+  "incomingCategoryCounts": {
+    "1": 170,
+    "0": 170,
+    "3": 170,
+    "4": 160,
+    "2": 170,
+    "5": 160
+  },
+  "acceptedCategoryCounts": {
+    "1": 168,
+    "0": 169,
+    "3": 167,
+    "4": 160,
+    "2": 169,
+    "5": 158
+  },
+  "conflicts": [
+    {
+      "id": "q55131",
+      "question": "Jaws filminin yönetmeni kimdir?",
+      "reasons": [
+        "q3298 ile çok benzer soru metni (J=0.50, S=0.89)"
+      ]
+    },
+    {
+      "id": "q55199",
+      "question": "Anna Karenina’nın yazarı kimdir?",
+      "reasons": [
+        "q3634 ile olası aynı bilgi (J=0.50, S=0.86)"
+      ]
+    },
+    {
+      "id": "q55224",
+      "question": "Parasite filminin yönetmeni kimdir?",
+      "reasons": [
+        "q4339 ile olası aynı bilgi (J=0.43, S=0.70)"
+      ]
+    },
+    {
+      "id": "q55302",
+      "question": "The Dinner Party adlı üçgen biçimli yerleştirmenin sanatçısı kimdir?",
+      "reasons": [
+        "q4672 ile olası aynı bilgi (J=0.56, S=0.79)"
+      ]
+    },
+    {
+      "id": "q55446",
+      "question": "İlk FIFA Dünya Kupası hangi ülkede düzenlendi?",
+      "reasons": [
+        "q4955 ile olası aynı bilgi (J=0.33, S=0.76)"
+      ]
+    },
+    {
+      "id": "q55452",
+      "question": "1950 Dünya Kupası’ndaki 'Maracanazo' maçını hangi ülke kazandı?",
+      "reasons": [
+        "q4955 ile olası aynı bilgi (J=0.40, S=0.73)"
+      ]
+    },
+    {
+      "id": "q55577",
+      "question": "Victoria Gölü hangi kıtadadır?",
+      "reasons": [
+        "q005 ile olası aynı bilgi (J=0.20, S=0.80)"
+      ]
+    },
+    {
+      "id": "q55600",
+      "question": "Moğol İmparatorluğu’nun kurucusu kimdir?",
+      "reasons": [
+        "Soru metni q057 ile aynı"
+      ]
+    },
+    {
+      "id": "q55697",
+      "question": "Fountain adlı hazır nesne eseri hangi sanatçıyla ilişkilidir?",
+      "reasons": [
+        "q4653 ile olası aynı bilgi (J=0.22, S=0.70)"
+      ]
+    }
+  ]
+}

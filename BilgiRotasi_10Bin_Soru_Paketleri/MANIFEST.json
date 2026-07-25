@@ -1,0 +1,26 @@
+{
+  "project": "LeventuA/BilgiRotasi",
+  "bundle": "BilgiRotasi_10Bin_Soru_Paketleri",
+  "bundleStatus": "COMPLETE",
+  "completedPackages": 10,
+  "plannedPackages": 10,
+  "completedQuestionCount": 10000,
+  "newIdRange": "q3121-q13120",
+  "protectedExistingIds": "q001-q3120",
+  "doesNotContainFullQuestionsJson": true,
+  "installerMaxPackageSize": 1000,
+  "allPackagesCombinedInstallerTest": "PASS",
+  "categoryTotals": {
+    "Coğrafya": 1670,
+    "Eğlence": 1670,
+    "Tarih": 1670,
+    "Sanat & Edebiyat": 1670,
+    "Bilim & Doğa": 1660,
+    "Spor": 1660
+  },
+  "difficultyTotals": {
+    "Orta": 6105,
+    "Zor": 3013,
+    "Kolay": 882
+  }
+}

@@ -1,0 +1,65 @@
+  Future<void> _handleAnswer({
+    required bool correct,
+    required int categoryIndex,
+    required bool wasBadgeCell,
+  }) async {
+    final answeredPlayer = _currentPlayer;
+
+    if (correct) {
+      answeredPlayer.correctAnswers++;
+      var badgeMessage = '';
+      var badgeEarned = false;
+
+      if (wasBadgeCell &&
+          !answeredPlayer.badges.contains(categoryIndex)) {
+        answeredPlayer.badges.add(categoryIndex);
+        badgeEarned = true;
+        badgeMessage =
+            ' ${GameCategory.values[categoryIndex].label} '
+            'rozeti kazanıldı!';
+      }
+
+      setState(() {
+        _status = answeredPlayer.hasAllBadges
+            ? 'Altı rozet tamam! Final sorusu hazır. 🏆'
+            : 'Doğru cevap!$badgeMessage '
+                'Aynı oyuncu devam ediyor.';
+        _isBusy = false;
+      });
+
+      unawaited(
+        badgeEarned
+            ? SoundFx.badge()
+            : SoundFx.correct(),
+      );
+      HapticFeedback.selectionClick();
+    } else {
+      answeredPlayer.wrongAnswers++;
+
+      if (answeredPlayer.doubleChance) {
+        answeredPlayer.doubleChance = false;
+
+        setState(() {
+          _lastDice = null;
+          _status =
+              'Yanlış cevap ama Çifte Şans kullanıldı! '
+              '${answeredPlayer.name} tekrar oynuyor. 🍀';
+          _isBusy = false;
+        });
+      } else {
+        _advanceTurn();
+
+        setState(() {
+          _status =
+              'Yanlış cevap. Sıra '
+              '${_currentPlayer.name} oyuncusunda.';
+          _isBusy = false;
+        });
+      }
+
+      unawaited(SoundFx.wrong());
+    }
+
+    await _saveGame();
+  }
+

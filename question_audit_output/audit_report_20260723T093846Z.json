@@ -1,0 +1,33 @@
+{
+  "timestampUtc": "20260723T093846Z",
+  "mode": "apply",
+  "sourceFile": "/workspaces/BilgiRotasi/assets/questions.json",
+  "sourceQuestionCount": 53063,
+  "keptQuestionCount": 1668,
+  "rejectedQuestionCount": 51395,
+  "keptPercentage": 3.14,
+  "rejectedPercentage": 96.86,
+  "keptByCategory": {
+    "Coğrafya": 224,
+    "Eğlence": 305,
+    "Tarih": 255,
+    "Sanat & Edebiyat": 431,
+    "Bilim & Doğa": 254,
+    "Spor": 199
+  },
+  "rejectedByCategory": {
+    "Coğrafya": 8644,
+    "Eğlence": 8554,
+    "Tarih": 8615,
+    "Sanat & Edebiyat": 8438,
+    "Bilim & Doğa": 8523,
+    "Spor": 8621
+  },
+  "knownAllowlistSize": 1066,
+  "expectedGitBlobSha": "2b97abd83d58a5d32b02ee7ded47adbf79a360ab",
+  "actualGitBlobSha": "2b97abd83d58a5d32b02ee7ded47adbf79a360ab",
+  "sourceMatchesExpectedBlob": true,
+  "idPolicy": "ID'ler korunur; boşluklar normaldir.",
+  "newQuestionsGenerated": 0,
+  "borderlineCount": 15888
+}

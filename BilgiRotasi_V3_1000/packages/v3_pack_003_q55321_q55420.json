@@ -1,0 +1,1402 @@
+[
+  {
+    "categoryIndex": 2,
+    "question": "Türkiye’nin ilk kadın başbakanı kimdir?",
+    "options": [
+      "Tansu Çiller",
+      "Safiye Ali",
+      "Türkan Akyol",
+      "Lale Aytaman"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tansu Çiller, 1993-1996 arasında Türkiye’nin ilk kadın başbakanı olarak görev yaptı.",
+    "id": "q55321"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Hayvan Çiftliği’ndeki “Dört ayak iyi, iki ayak...” sloganı hangi sözcükle tamamlanır?",
+    "options": [
+      "Güçlü",
+      "Kötü",
+      "Özgür",
+      "Yasak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hayvanların ilk sloganı “Dört ayak iyi, iki ayak kötü” biçimindedir.",
+    "id": "q55322"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Big Lebowski’de başkahraman hangi lakapla tanınır?",
+    "options": [
+      "The Boss",
+      "The Wolf",
+      "The Dude",
+      "The Kid"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Jeffrey Lebowski, çevresi tarafından çoğunlukla The Dude diye çağrılır.",
+    "id": "q55323"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Türkiye’nin ilk kadın valisi kimdir?",
+    "options": [
+      "Feriha Sanerk",
+      "Türkan Akyol",
+      "Sabiha Gökçen",
+      "Lale Aytaman"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Lale Aytaman, 1991’de Muğla valiliğine atanarak Türkiye’nin ilk kadın valisi oldu.",
+    "id": "q55324"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Türkiye İş Bankası hangi yıl kuruldu?",
+    "options": [
+      "1924",
+      "1920",
+      "1928",
+      "1933"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Cumhuriyet döneminin ilk ulusal bankalarından İş Bankası, 26 Ağustos 1924’te kuruldu.",
+    "id": "q55325"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Ragbide topu rakip kale çizgisinin arkasında yere bastırarak alınan skora ne denir?",
+    "options": [
+      "Drop",
+      "Try",
+      "Scrum",
+      "Ace"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Topun rakip in-goal alanında yere bastırılması “try” kazandırır.",
+    "id": "q55326"
+  },
+  {
+    "id": "q55327",
+    "categoryIndex": 3,
+    "question": "Yol romanında baba ile oğul nasıl bir dünyada yolculuk eder?",
+    "options": [
+      "Mars kolonisinde",
+      "Büyülü bir ormanda",
+      "Felaket sonrası harap bir dünyada",
+      "Orta Çağ Avrupa’sında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cormac McCarthy’nin romanında adı verilmeyen baba ve oğul, yıkılmış bir dünyada hayatta kalmaya çalışır."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Mesnevi adlı büyük tasavvuf eserinin yazarı kimdir?",
+    "options": [
+      "Hacı Bektaş Veli",
+      "Şeyh Galip",
+      "Yunus Emre",
+      "Mevlânâ"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Mevlânâ Celâleddîn-i Rûmî, Mesnevi’yi Farsça yazmış ve hikâyelerle tasavvufi düşünceleri anlatmıştır.",
+    "id": "q55328"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Sagrada Família bazilikası hangi şehirdedir?",
+    "options": [
+      "Barselona",
+      "Lizbon",
+      "Milano",
+      "Madrid"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Antoni Gaudí’nin tasarladığı Sagrada Família, Barselona’nın simgelerindendir.",
+    "id": "q55329"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "No Country for Old Men filminde Anton Chigurh’un sık kullandığı sıra dışı silah nedir?",
+    "options": [
+      "Alev makinesi",
+      "Basınçlı hayvan kesim tabancası",
+      "Zehirli şemsiye",
+      "Yay ve ok"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Chigurh, mezbahalarda kullanılan basınçlı bir captive bolt tabancasını silah olarak kullanır.",
+    "id": "q55330"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Mrs Dalloway romanının merkezindeki karakter kimdir?",
+    "options": [
+      "Septimus Smith",
+      "Peter Walsh",
+      "Clarissa Dalloway",
+      "Sally Seton"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Virginia Woolf’un romanı, Clarissa Dalloway’in bir parti hazırladığı tek günü izler.",
+    "id": "q55331"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Hücrede DNA’nın büyük bölümü nerede bulunur?",
+    "options": [
+      "Golgi aygıtı",
+      "Lizozom",
+      "Hücre zarı",
+      "Çekirdek"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ökaryot hücrelerde kromozomal DNA çekirdekte paketlenir; mitokondride de az miktarda DNA vardır.",
+    "id": "q55332"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Hücrenin ATP üretiminde başlıca görevli organeli hangisidir?",
+    "options": [
+      "Mitokondri",
+      "Koful",
+      "Ribozom",
+      "Sentrozom"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mitokondri, hücresel solunumla besin enerjisini ATP’ye dönüştürür.",
+    "id": "q55333"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Şair Evlenmesi adlı tiyatro eserini kim yazdı?",
+    "options": [
+      "Ahmet Vefik Paşa",
+      "Şinasi",
+      "Ziya Paşa",
+      "Namık Kemal"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Şinasi’nin töre komedisi, görücü usulü evliliği eleştirir ve ilk modern Türkçe oyunlardan sayılır.",
+    "id": "q55334"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Vatan Yahut Silistre’nin yazarı kimdir?",
+    "options": [
+      "Abdülhak Hamit Tarhan",
+      "Şemsettin Sami",
+      "Namık Kemal",
+      "Recaizade Mahmut Ekrem"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Namık Kemal’in 1873’te sahnelenen oyunu vatan sevgisi ve fedakârlık temasını işler.",
+    "id": "q55335"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Neuschwanstein Şatosu hangi ülkededir?",
+    "options": [
+      "Çekya",
+      "Avusturya",
+      "İsviçre",
+      "Almanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bavyera’daki Neuschwanstein, 19. yüzyılda Kral II. Ludwig için yaptırılmıştır.",
+    "id": "q55336"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Revenant filmindeki hikâye hangi doğal ortamda geçer?",
+    "options": [
+      "Kuzey Amerika vahşi doğası",
+      "Avustralya içleri",
+      "Amazon deltası",
+      "Sahra Çölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Film, 1820’lerde kürk avcılarının zorlu Kuzey Amerika sınır bölgesindeki mücadelesini anlatır.",
+    "id": "q55337"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Social Network filmi hangi internet girişiminin kuruluşunu anlatır?",
+    "options": [
+      "YouTube",
+      "Facebook",
+      "Twitter",
+      "Reddit"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Film, Facebook’un Harvard’daki başlangıcını ve kurucular arasındaki hukuki çatışmaları işler.",
+    "id": "q55338"
+  },
+  {
+    "id": "q55339",
+    "categoryIndex": 2,
+    "question": "Kolomb Takası terimi hangi iki dünya arasındaki bitki, hayvan ve hastalık alışverişini anlatır?",
+    "options": [
+      "Akdeniz ile Baltık",
+      "Afrika ile Asya",
+      "Eski Dünya ile Amerika",
+      "Avrupa ile Avustralya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1492 sonrasında Amerika ile Avrupa, Afrika ve Asya arasında canlılar ve hastalıklar büyük ölçekte taşındı."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Sol elini ve sol ayağını geride tutarak dövüşen boksöre ne denir?",
+    "options": [
+      "Switch hitter",
+      "Counterpuncher",
+      "Orthodox",
+      "Southpaw"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Southpaw duruşunda sağ el ve sağ ayak öndedir; güçlü sol el arkadan gelir.",
+    "id": "q55340"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Slumdog Millionaire’da Jamal hangi yarışmaya katılır?",
+    "options": [
+      "Kim Milyoner Olmak İster?",
+      "Jeopardy!",
+      "Survivor",
+      "The Voice"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jamal, Hindistan uyarlaması Kaun Banega Crorepati’de büyük ödüle ilerler.",
+    "id": "q55341"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Protein sentezini gerçekleştiren hücresel yapı hangisidir?",
+    "options": [
+      "Çekirdekçik",
+      "Ribozom",
+      "Lizozom",
+      "Peroksizom"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ribozomlar mRNA’daki bilgiyi okuyarak aminoasitleri protein zincirine dizer.",
+    "id": "q55342"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Köy Enstitüleri hangi yıl kuruldu?",
+    "options": [
+      "1937",
+      "1946",
+      "1940",
+      "1933"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Köy öğretmeni yetiştirmek amacıyla Köy Enstitüleri 17 Nisan 1940 tarihli yasayla kuruldu.",
+    "id": "q55343"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Fingal Mağarası hangi İskoç adasında bulunur?",
+    "options": [
+      "Skye",
+      "Mull",
+      "Islay",
+      "Staffa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bazalt sütunlarıyla ünlü Fingal Mağarası, Hebridler’deki Staffa Adası’ndadır.",
+    "id": "q55344"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "İnsan vücut hücrelerinde normalde kaç kromozom vardır?",
+    "options": [
+      "46",
+      "44",
+      "48",
+      "23"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Somatik hücrelerde anneden ve babadan gelen 23’er kromozomla toplam 46 kromozom bulunur.",
+    "id": "q55345"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Beyzbolda vurucu üç strike aldığında ne olur?",
+    "options": [
+      "Yürüyüş kazanır",
+      "Strikeout olur",
+      "Sayı alır",
+      "Oyun durur"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Üç strike alan vurucu strikeout olur ve o at-bat sona erer.",
+    "id": "q55346"
+  },
+  {
+    "id": "q55347",
+    "categoryIndex": 5,
+    "question": "Beyzbolda hiçbir rakip oyuncunun üsse ulaşamadığı kusursuz maça ne denir?",
+    "options": [
+      "Triple play",
+      "Shutout",
+      "Perfect game",
+      "Complete inning"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Perfect game’de atıcı ve savunma, karşı takımdan hiçbir oyuncunun üsse çıkmasına izin vermez."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Martian filminde Mark Watney Mars’ta ilk olarak hangi ürünü yetiştirir?",
+    "options": [
+      "Domates",
+      "Mısır",
+      "Pirinç",
+      "Patates"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Watney, yaşam alanında Mars toprağı ve elde ettiği suyla patates yetiştirir.",
+    "id": "q55348"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Ezel dizisinde Ramiz Karaeski hangi lakapla bilinir?",
+    "options": [
+      "Ramiz Dayı",
+      "Sekiz",
+      "Kenan Birkan",
+      "Tefo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tuncel Kurtiz’in canlandırdığı Ramiz Karaeski, dizide herkesin Ramiz Dayı diye tanıdığı güçlü bir figürdür.",
+    "id": "q55349"
+  },
+  {
+    "id": "q55350",
+    "categoryIndex": 5,
+    "question": "Beyzbolda koşucunun atış sırasında bir sonraki üsse ilerlemesine ne denir?",
+    "options": [
+      "Fedakârlık vuruşu",
+      "Üs çalma",
+      "Walk",
+      "Tag out"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Koşucu, top vurulmadan savunmanın zamanlamasını kullanarak bir sonraki üsse ulaşırsa üs çalmış olur."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Araba Sevdası romanının alafranga özentisi başkahramanı kimdir?",
+    "options": [
+      "Ali Bey",
+      "Rakım Efendi",
+      "Bihruz Bey",
+      "Felâtun Bey"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bihruz Bey, gösterişe ve yüzeysel Batılılaşmaya düşkünlüğüyle hicvedilir.",
+    "id": "q55351"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Dirseği büken üst kol kası hangisidir?",
+    "options": [
+      "Soleus",
+      "Deltoid",
+      "Triseps",
+      "Biseps"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Biseps kasıldığında ön kol dirsekten bükülür.",
+    "id": "q55352"
+  },
+  {
+    "id": "q55353",
+    "categoryIndex": 4,
+    "question": "İç kulaktaki otolit organları en çok neyi algılar?",
+    "options": [
+      "Doğrusal hızlanma ve başın eğimini",
+      "Koku moleküllerini",
+      "Sesin perdesini",
+      "Kan basıncını"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Utrikül ve sakkül adı verilen otolit organları, yerçekimini ve doğrusal hareketleri algılayarak dengeye katkı sağlar."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Eskrimde yalnız gövdenin geçerli hedef olduğu silah hangisidir?",
+    "options": [
+      "Sabre dışında pala",
+      "Flöre",
+      "Epe",
+      "Kılıç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Flörede kollar, baş ve bacaklar hedef dışıdır; esas hedef gövdedir.",
+    "id": "q55354"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Köy Enstitülerinin gelişiminde adı öne çıkan millî eğitim bakanı kimdir?",
+    "options": [
+      "Tevfik İleri",
+      "Reşit Galip",
+      "Hasan Âli Yücel",
+      "Saffet Arıkan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hasan Âli Yücel’in bakanlığı döneminde İsmail Hakkı Tonguç’la birlikte enstitüler yaygınlaştırıldı.",
+    "id": "q55355"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Snooker’da mümkün olan klasik maksimum seri kaç puandır?",
+    "options": [
+      "155",
+      "300",
+      "180",
+      "147"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "On beş kırmızı-siyah eşleşmesi ve ardından renkli toplar 147 puanlık seri oluşturur.",
+    "id": "q55356"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "On lobut bowlinginde kusursuz oyunun puanı kaçtır?",
+    "options": [
+      "300",
+      "200",
+      "240",
+      "360"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Arka arkaya 12 strike, on frame sonunda 300 puan getirir.",
+    "id": "q55357"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Hicaz Demiryolu’nun ana hattı Şam’dan hangi kutsal şehre ulaşıyordu?",
+    "options": [
+      "Bağdat",
+      "Medine",
+      "Kudüs",
+      "Mekke"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1908’de tamamlanan ana hat Şam ile Medine arasında hac ve askerî ulaşımı kolaylaştırdı.",
+    "id": "q55358"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Kardeş Payı dizisinde Metin ve Ali’nin asıl mesleği nedir?",
+    "options": [
+      "Marangozluk",
+      "Oto tamirciliği",
+      "Tesisatçılık",
+      "Elektrikçilik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İki kardeş geçimlerini tesisatçılıkla sağlar, boş zamanlarında dünyayı değiştirecek bir icat peşinde koşar.",
+    "id": "q55359"
+  },
+  {
+    "id": "q55360",
+    "categoryIndex": 5,
+    "question": "Krikette topun vurucunun bacağına çarpıp kaleye gidişini engellemesiyle verilen karara ne denir?",
+    "options": [
+      "Run out",
+      "Stumping",
+      "Wide",
+      "LBW"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "LBW, “leg before wicket” ifadesinin kısaltmasıdır ve belirli koşullarda vurucunun elenmesine yol açar."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İstanbul’un fethinde Osmanlı gemileri Haliç’e nasıl indirildi?",
+    "options": [
+      "Karadan kızaklarla",
+      "Tünelden",
+      "Parçalara ayrılarak",
+      "Akıntıya karşı çekilerek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gemiler yağlanmış kızaklar üzerinden karadan geçirilerek Haliç’e indirildi.",
+    "id": "q55361"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bran Şatosu hangi ülkededir?",
+    "options": [
+      "Slovakya",
+      "Romanya",
+      "Macaristan",
+      "Bulgaristan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Drakula efsanesiyle ilişkilendirilen Bran Şatosu, Romanya’nın Transilvanya bölgesindedir.",
+    "id": "q55362"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti’nin ilk resmî gazetesi hangisidir?",
+    "options": [
+      "Ceride-i Havadis",
+      "Tasvir-i Efkâr",
+      "Takvim-i Vekayi",
+      "Tercüman-ı Ahval"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Takvim-i Vekayi, II. Mahmud döneminde 1831’de yayımlanmaya başladı.",
+    "id": "q55363"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Kotor Körfezi hangi ülkededir?",
+    "options": [
+      "Arnavutluk",
+      "Hırvatistan",
+      "Slovenya",
+      "Karadağ"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dağlarla çevrili Kotor Körfezi, Karadağ’ın Adriyatik kıyısında yer alır.",
+    "id": "q55364"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Gibi dizisinin üç ana karakterinden biri hangisidir?",
+    "options": [
+      "İlkkan",
+      "Behzat",
+      "Sarp",
+      "Mecnun"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gibi’nin temel üçlüsü Yılmaz, İlkkan ve Ersoy’dan oluşur.",
+    "id": "q55365"
+  },
+  {
+    "id": "q55366",
+    "categoryIndex": 3,
+    "question": "Beni Asla Bırakma romanındaki öğrencilerin sakladığı temel gerçek nedir?",
+    "options": [
+      "Bir rüyada yaşamaları",
+      "Organ bağışı için yetiştirilen klonlar olmaları",
+      "Zaman yolcusu olmaları",
+      "Uzaydan gelmeleri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kathy ve arkadaşları, yaşamlarının organ bağışına göre planlandığını yavaş yavaş kavrar."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İlk özel Türkçe gazete kabul edilen yayın hangisidir?",
+    "options": [
+      "Ceride-i Havadis",
+      "Takvim-i Vekayi",
+      "Tercüman-ı Ahval",
+      "İkdam"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Şinasi ve Agâh Efendi’nin çıkardığı Tercüman-ı Ahval, 1860’ta yayımlandı.",
+    "id": "q55367"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Şahsiyet dizisinde Agâh Beyoğlu’na hangi hastalık teşhisi konur?",
+    "options": [
+      "Epilepsi",
+      "Parkinson",
+      "ALS",
+      "Alzheimer"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Agâh, Alzheimer teşhisini öğrendikten sonra geçmişteki bir hesabı kapatmaya karar verir.",
+    "id": "q55368"
+  },
+  {
+    "id": "q55369",
+    "categoryIndex": 4,
+    "question": "Kemik iliğinin temel görevlerinden biri nedir?",
+    "options": [
+      "Kan hücreleri üretmek",
+      "Protein sindirmek",
+      "Safra depolamak",
+      "Vücut sıcaklığını ölçmek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kırmızı kemik iliğinde alyuvar, akyuvar ve trombositlerin öncül hücreleri üretilir."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Dartta tek turda kapatılabilecek en yüksek sayı kaçtır?",
+    "options": [
+      "160",
+      "170",
+      "180",
+      "201"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Üç dartla 170, iki treble 20 ve bullseye ile kapatılabilir.",
+    "id": "q55370"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Vücudun biyolojik saatini ayarlamada önemli olan hormon hangisidir?",
+    "options": [
+      "İnsülin",
+      "Tiroksin",
+      "Melatonin",
+      "Adrenalin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Karanlıkta artan melatonin salgısı uyku-uyanıklık döngüsünün düzenlenmesine yardım eder.",
+    "id": "q55371"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Mai ve Siyah romanındaki hayalperest genç şair kimdir?",
+    "options": [
+      "Mümtaz",
+      "Ömer Behiç",
+      "Şinasi",
+      "Ahmet Cemil"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ahmet Cemil’in 'mai' hayalleri, hayatın 'siyah' gerçekleri karşısında yıkılır.",
+    "id": "q55372"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Mostar Köprüsü hangi ülkededir?",
+    "options": [
+      "Bosna-Hersek",
+      "Kuzey Makedonya",
+      "Sırbistan",
+      "Karadağ"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Neretva Nehri üzerindeki Mostar Köprüsü, Bosna-Hersek’in simge yapılarındandır.",
+    "id": "q55373"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Ahtapotların kaç kalbi vardır?",
+    "options": [
+      "Dört",
+      "Üç",
+      "Bir",
+      "İki"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ahtapotlarda iki kalp solungaçlara, bir kalp ise vücudun geri kalanına kan pompalar.",
+    "id": "q55374"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Hentbolda bir takım sahada kaleci dâhil kaç oyuncuyla oynar?",
+    "options": [
+      "Altı",
+      "On bir",
+      "Yedi",
+      "Sekiz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Hentbolda sahada altı alan oyuncusu ve bir kaleci bulunur.",
+    "id": "q55375"
+  },
+  {
+    "id": "q55376",
+    "categoryIndex": 4,
+    "question": "Lenf düğümleri vücutta en çok hangi işleve katkı sağlar?",
+    "options": [
+      "Kemikleri uzatmaya",
+      "Akciğerleri şişirmeye",
+      "Mide asidi üretmeye",
+      "Bağışıklık hücrelerinin yabancı maddeleri süzmesine"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Lenf düğümleri, lenf sıvısını süzer ve bağışıklık hücrelerinin mikroplarla karşılaşmasını sağlar."
+  },
+  {
+    "id": "q55377",
+    "categoryIndex": 5,
+    "question": "Krikette hızlı atıcının topu vurucunun ayaklarına çok yakın düşürmesine ne denir?",
+    "options": [
+      "Yorker",
+      "Bouncer",
+      "Full toss",
+      "Googly"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yorker, topun vurucunun ayaklarının dibine ya da kale çizgisine yakın düşmesini hedefleyen zor bir atıştır."
+  },
+  {
+    "id": "q55378",
+    "categoryIndex": 1,
+    "question": "The Menu filmindeki ünlü şefi kim canlandırır?",
+    "options": [
+      "Christoph Waltz",
+      "Ralph Fiennes",
+      "Willem Dafoe",
+      "Gary Oldman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ralph Fiennes filmde Hawthorn restoranının takıntılı şefi Julian Slowik’i canlandırır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Mimar Sinan hangi padişah döneminde başmimarlığa getirildi?",
+    "options": [
+      "Fatih Sultan Mehmed",
+      "Yavuz Sultan Selim",
+      "Kanuni Sultan Süleyman",
+      "IV. Murad"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sinan, 1530’ların sonunda Kanuni döneminde Hassa başmimarı oldu.",
+    "id": "q55379"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Yaban romanının anlatıcısı kimdir?",
+    "options": [
+      "Ali Rıza Bey",
+      "Mansur",
+      "İhsan",
+      "Ahmet Celâl"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Savaşta kolunu kaybeden subay Ahmet Celâl, bir Anadolu köyünde aydın-köylü kopukluğunu gözlemler.",
+    "id": "q55380"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Renkli havuzları ve beyaz travertenleriyle ünlü Huanglong hangi ülkededir?",
+    "options": [
+      "Çin",
+      "Japonya",
+      "Nepal",
+      "Moğolistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Huanglong’un kalsit terasları Çin’in Sichuan eyaletindedir.",
+    "id": "q55381"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Aşk-ı Memnu dizisindeki Ziyagil Köşkü hangi su yoluna bakar?",
+    "options": [
+      "Sapanca Gölü",
+      "İstanbul Boğazı",
+      "Meriç Nehri",
+      "Haliç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ziyagil ailesinin yaşadığı köşk, İstanbul Boğazı kıyısındadır.",
+    "id": "q55382"
+  },
+  {
+    "id": "q55383",
+    "categoryIndex": 5,
+    "question": "Krikette vurucu kaleye dönemeden savunmanın kaleyi bozmasıyla nasıl elenir?",
+    "options": [
+      "Bowled",
+      "Caught",
+      "Run out",
+      "LBW"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Vurucu güvenli çizgiye ulaşmadan top kaleye değdirilirse run out kararı verilir."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Muhteşem Yüzyıl dizisi hangi Osmanlı padişahının dönemini anlatır?",
+    "options": [
+      "II. Mahmud",
+      "Fatih Sultan Mehmed",
+      "Yavuz Sultan Selim",
+      "Kanuni Sultan Süleyman"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Dizi, Kanuni Sultan Süleyman’ın saltanatı ve saray çevresindeki olayları işler.",
+    "id": "q55384"
+  },
+  {
+    "id": "q55385",
+    "categoryIndex": 3,
+    "question": "Varolmanın Dayanılmaz Hafifliği romanındaki cerrahın adı nedir?",
+    "options": [
+      "Tomas",
+      "Sabina",
+      "Franz",
+      "Jaromil"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Milan Kundera’nın romanında Tomas, Tereza ve Sabina arasındaki ilişkiler tarihsel olaylarla iç içe geçer."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Diriliş: Ertuğrul dizisinde Ertuğrul Bey hangi boya mensuptur?",
+    "options": [
+      "Bayat Boyu",
+      "Kayı Boyu",
+      "Avşar Boyu",
+      "Çepni Boyu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ertuğrul Bey, Oğuzların Bozok kolundaki Kayı Boyu’nun liderlerinden biri olarak anlatılır.",
+    "id": "q55386"
+  },
+  {
+    "id": "q55387",
+    "categoryIndex": 2,
+    "question": "Tarihî İpek Yolu adını en çok taşınan hangi değerli üründen alır?",
+    "options": [
+      "Baharat",
+      "Tuz",
+      "İpek",
+      "Demir"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Çin ipeği, yolun en simgesel ve değerli ticaret ürünlerinden biriydi."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Hallstatt kasabası hangi ülkededir?",
+    "options": [
+      "Slovenya",
+      "Almanya",
+      "İsviçre",
+      "Avusturya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hallstatt, Alp dağları ve gölüyle tanınan Avusturya kasabasıdır.",
+    "id": "q55388"
+  },
+  {
+    "id": "q55389",
+    "categoryIndex": 0,
+    "question": "Wadi Rum çöl vadisi hangi ülkededir?",
+    "options": [
+      "Ürdün",
+      "Tunus",
+      "Fas",
+      "Mısır"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kızıl kumları ve kaya oluşumlarıyla tanınan Wadi Rum, Ürdün’ün güneyindedir."
+  },
+  {
+    "id": "q55390",
+    "categoryIndex": 4,
+    "question": "Hıçkırık sırasında istemsiz olarak kasılan temel yapı hangisidir?",
+    "options": [
+      "Aşil tendonu",
+      "Diyafram",
+      "Pankreas",
+      "Kulak zarı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Diyaframın ani kasılmasını ses tellerinin hızla kapanması izler ve hıçkırık sesi oluşur."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kutadgu Bilig adlı eseri kim yazdı?",
+    "options": [
+      "Edip Ahmet Yükneki",
+      "Kaşgarlı Mahmud",
+      "Yusuf Has Hacib",
+      "Ahmet Yesevi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yusuf Has Hacib, 11. yüzyılda Karahanlı hükümdarına sunduğu Kutadgu Bilig’i yazdı.",
+    "id": "q55391"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kutadgu Bilig hangi hükümdara sunuldu?",
+    "options": [
+      "Satuk Buğra Han",
+      "Bilge Kağan",
+      "Alp Arslan",
+      "Tabgaç Buğra Han"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Yusuf Has Hacib, Kutadgu Bilig’i Karahanlı hükümdarı Tabgaç Buğra Han’a sundu.",
+    "id": "q55392"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Okçulukta hedefin merkezindeki en yüksek puanlı bölge kaç puandır?",
+    "options": [
+      "10",
+      "9",
+      "8",
+      "12"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Modern hedef okçuluğunda iç sarı halkalar 10 ve 9 puan değerindedir.",
+    "id": "q55393"
+  },
+  {
+    "id": "q55394",
+    "categoryIndex": 4,
+    "question": "Tüylerin diken diken olmasını sağlayan küçük kasların adı nedir?",
+    "options": [
+      "Sfinkterler",
+      "Arrector pili kasları",
+      "İnterkostal kaslar",
+      "Rotator manşet"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Kıl köklerine bağlı arrector pili kasları soğuk veya duygusal uyarıyla kasılarak tüyleri dikleştirir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Ateşten Gömlek romanının kadın başkahramanı kimdir?",
+    "options": [
+      "Macide",
+      "Feride",
+      "Ayşe",
+      "Bihter"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İzmir’in işgalinde ailesini kaybeden Ayşe, Millî Mücadele’ye katılır.",
+    "id": "q55395"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Pamukkale’ye benzeyen beyaz teraslarıyla tanınan Badab-e Surt hangi ülkededir?",
+    "options": [
+      "Azerbaycan",
+      "Ermenistan",
+      "Irak",
+      "İran"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Badab-e Surt, İran’ın Mazenderan bölgesindeki renkli traverten teraslarıdır.",
+    "id": "q55396"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Sigiriya kaya kalesi hangi ülkededir?",
+    "options": [
+      "Sri Lanka",
+      "Bangladeş",
+      "Hindistan",
+      "Nepal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sigiriya, Sri Lanka’nın merkezinde saray kalıntıları bulunan dev bir kaya sütunudur.",
+    "id": "q55397"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Yargı dizisinde Ceylin Erguvan’ın mesleği nedir?",
+    "options": [
+      "Gazeteci",
+      "Avukat",
+      "Savcı",
+      "Hâkim"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ceylin, kuralları esnetmekten çekinmeyen başarılı bir avukattır.",
+    "id": "q55398"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Yunuslar uyurken nasıl nefes almaya devam eder?",
+    "options": [
+      "Nefeslerini günlerce tutarak",
+      "Solungaç açarak",
+      "Beyinlerinin bir yarısını uyanık tutarak",
+      "Tamamen su üstünde donarak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tek yarımküreli uyku, yunusun yüzeye çıkıp bilinçli biçimde nefes almasını sağlar.",
+    "id": "q55399"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Aylak Adam romanının başkahramanı hangi harfle anılır?",
+    "options": [
+      "A.",
+      "B.",
+      "M.",
+      "C."
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Yusuf Atılgan’ın romanındaki başkahraman yalnızca “C.” harfiyle anılır.",
+    "id": "q55400"
+  },
+  {
+    "id": "q55401",
+    "categoryIndex": 0,
+    "question": "Aletsch Buzulu hangi ülkenin Alpler bölgesindedir?",
+    "options": [
+      "İsviçre",
+      "Avusturya",
+      "Fransa",
+      "İtalya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Aletsch, İsviçre Alpleri’ndeki en büyük buzullardan biridir."
+  },
+  {
+    "id": "q55402",
+    "categoryIndex": 4,
+    "question": "Parmak izi desenleri insan gelişiminin hangi döneminde oluşmaya başlar?",
+    "options": [
+      "Yetişkinlikte",
+      "Anne karnında",
+      "Doğumdan sonra",
+      "Ergenlikte"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Parmak izi sırtları fetüs gelişimi sırasında oluşur ve yaşam boyunca temel desenini korur."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Jiuzhaigou Vadisi hangi ülkededir?",
+    "options": [
+      "Güney Kore",
+      "Japonya",
+      "Çin",
+      "Moğolistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Renkli gölleriyle Jiuzhaigou, Çin’in Sichuan eyaletinde yer alır.",
+    "id": "q55403"
+  },
+  {
+    "id": "q55404",
+    "categoryIndex": 3,
+    "question": "Kiralık Konak romanındaki yaşlı konak sahibinin adı nedir?",
+    "options": [
+      "Ali Rıza Bey",
+      "Mümtaz",
+      "Adnan Bey",
+      "Naim Efendi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Yakup Kadri’nin romanında Naim Efendi’nin konağı kuşaklar arasındaki değer çatışmasını simgeler."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Orhun Yazıtları hangi Türk devletinin dönemine aittir?",
+    "options": [
+      "II. Göktürk Kağanlığı",
+      "Büyük Selçuklular",
+      "Karahanlılar",
+      "Uygur Kağanlığı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bilge Kağan, Kül Tigin ve Tonyukuk yazıtları II. Göktürk döneminde dikildi.",
+    "id": "q55405"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bukalemunların gözlerini birbirinden bağımsız hareket ettirmesi ne sağlar?",
+    "options": [
+      "Renk değiştirmelerini",
+      "Aynı anda farklı yönleri taramalarını",
+      "Daha iyi duymalarını",
+      "Gece parlamalarını"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Her gözün ayrı yöne bakabilmesi, çevreyi geniş bir açıyla taramalarına yardımcı olur.",
+    "id": "q55406"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Jeju Adası hangi ülkeye bağlıdır?",
+    "options": [
+      "Çin",
+      "Japonya",
+      "Güney Kore",
+      "Filipinler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Volkanik Jeju Adası, Güney Kore’nin güneyinde özel bir eyalettir.",
+    "id": "q55407"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İstanbul’daki Topkapı Sarayı’nı yaptıran padişah kimdir?",
+    "options": [
+      "Yavuz Sultan Selim",
+      "II. Bayezid",
+      "Kanuni Sultan Süleyman",
+      "Fatih Sultan Mehmed"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Topkapı Sarayı’nın ilk yapıları, fetihten sonra Fatih Sultan Mehmed döneminde inşa edildi.",
+    "id": "q55408"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "İkinci Bahar dizisinde Ali Haydar’ın işlettiği yer nedir?",
+    "options": [
+      "Kebapçı",
+      "Kitabevi",
+      "Pastane",
+      "Balıkçı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ali Haydar, Samatya’da bir kebapçı işletir; Hanım ise mutfağa aşçı olarak gelir.",
+    "id": "q55409"
+  },
+  {
+    "id": "q55410",
+    "categoryIndex": 2,
+    "question": "1819 Peterloo Katliamı hangi İngiliz şehrinde gerçekleşti?",
+    "options": [
+      "Leeds",
+      "Manchester",
+      "Bristol",
+      "Liverpool"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Parlamento reformu isteyen kalabalığa süvarilerin saldırdığı Peterloo olayı Manchester’daki St Peter’s Field’da yaşandı."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Uluru kaya oluşumu hangi ülkededir?",
+    "options": [
+      "Namibya",
+      "Güney Afrika",
+      "Avustralya",
+      "Yeni Zelanda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Uluru, Avustralya’nın merkezinde Anangu halkı için kutsal bir kumtaşı kütlesidir.",
+    "id": "q55411"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Sait Faik Abasıyanık en çok hangi İstanbul adasıyla özdeşleşir?",
+    "options": [
+      "Kınalıada",
+      "Büyükada",
+      "Heybeliada",
+      "Burgazada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Yazarın uzun süre yaşadığı Burgazada’daki evi bugün müze olarak kullanılır.",
+    "id": "q55412"
+  },
+  {
+    "id": "q55413",
+    "categoryIndex": 4,
+    "question": "Dünyanın bilinen en büyük balığı hangisidir?",
+    "options": [
+      "Balina köpekbalığı",
+      "Mavi balina",
+      "Dev manta",
+      "Beyaz köpekbalığı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mavi balina memelidir; balina köpekbalığı ise bilinen en büyük balık türüdür."
+  },
+  {
+    "id": "q55414",
+    "categoryIndex": 3,
+    "question": "Huzur romanının başkahramanı kimdir?",
+    "options": [
+      "Ahmet Cemil",
+      "Mümtaz",
+      "Hayri İrdal",
+      "Ömer Behiç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ahmet Hamdi Tanpınar’ın Huzur romanı Mümtaz’ın aşkı, İstanbul’u ve iç dünyası çevresinde gelişir."
+  },
+  {
+    "id": "q55415",
+    "categoryIndex": 0,
+    "question": "Svalbard takımadaları hangi ülkenin egemenliğindedir?",
+    "options": [
+      "İsveç",
+      "Finlandiya",
+      "Norveç",
+      "Danimarka"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kuzey Buz Denizi’ndeki Svalbard, Norveç’e bağlı bir takımadadır."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Banff Millî Parkı hangi ülkededir?",
+    "options": [
+      "ABD",
+      "Norveç",
+      "İsviçre",
+      "Kanada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Banff, Kanada Kayalık Dağları’nda kurulan ülkenin en eski millî parkıdır.",
+    "id": "q55416"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "İnce Memed’in hikâyesi ağırlıklı olarak hangi bölgede geçer?",
+    "options": [
+      "Çukurova",
+      "Doğu Karadeniz",
+      "Kapadokya",
+      "Trakya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yaşar Kemal, Toroslar ve Çukurova çevresinde ağalığa başkaldıran İnce Memed’i anlatır.",
+    "id": "q55417"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Badmintonda kullanılan tüylü oyun aracına ne denir?",
+    "options": [
+      "Balloon",
+      "Shuttlecock",
+      "Puck",
+      "Pelota"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Shuttlecock ya da tüy top, mantar taban ve tüylerden oluşur.",
+    "id": "q55418"
+  },
+  {
+    "id": "q55419",
+    "categoryIndex": 5,
+    "question": "Golfte bir deliği par sayısından üç vuruş az tamamlamaya ne denir?",
+    "options": [
+      "Bogey",
+      "Birdie",
+      "Albatros",
+      "Kartal"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Albatros son derece nadirdir; örneğin par 5 bir deliği iki vuruşta bitirmek anlamına gelir."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Bir Başkadır dizisinde Peri’nin mesleği nedir?",
+    "options": [
+      "Mimar",
+      "Avukat",
+      "Öğretmen",
+      "Psikiyatrist"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Peri, farklı toplumsal çevrelerden gelen insanlarla çalışan bir psikiyatristtir.",
+    "id": "q55420"
+  }
+]

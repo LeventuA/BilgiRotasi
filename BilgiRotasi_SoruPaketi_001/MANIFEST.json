@@ -1,0 +1,26 @@
+{
+  "project": "LeventuA/BilgiRotasi",
+  "packageName": "BilgiRotasi_SoruPaketi_001",
+  "packageVersion": "1.0.0",
+  "createdOn": "2026-07-22",
+  "protectedExistingIds": "q001-q3000",
+  "newIdRange": "q3001-q3120",
+  "questionCount": 120,
+  "maxQuestionsPerPackage": 500,
+  "questionsByCategory": {
+    "Coğrafya": 20,
+    "Eğlence": 20,
+    "Tarih": 20,
+    "Sanat & Edebiyat": 20,
+    "Bilim & Doğa": 20,
+    "Spor": 20
+  },
+  "longTermTarget": {
+    "questionsPerCategory": 5000,
+    "totalQuestions": 30000
+  },
+  "changesFullQuestionFile": false,
+  "installer": "install_questions.py",
+  "packageFile": "packages/package_001_q3001_q3120.json",
+  "verificationFile": "verification/package_001_sources.json"
+}

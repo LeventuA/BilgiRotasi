@@ -1,0 +1,402 @@
+[
+  {
+    "id": "q55621",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55622",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55623",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55624",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55625",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55626",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55627",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55628",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55629",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55630",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55631",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55632",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55633",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55634",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55635",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55636",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55637",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55638",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55639",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55640",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55641",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55642",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55643",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55644",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55645",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55646",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55647",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55648",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55649",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55650",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55651",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55652",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55653",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55654",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55655",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55656",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55657",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55658",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55659",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55660",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55661",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55662",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55663",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55664",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55665",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55666",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55667",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55668",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55669",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55670",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55671",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55672",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55673",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55674",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55675",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55676",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55677",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55678",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55679",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55680",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55681",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55682",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55683",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55684",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55685",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55686",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55687",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55688",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55689",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55690",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55691",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55692",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55693",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55694",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55695",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55696",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55697",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55698",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55699",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55700",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55701",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55702",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55703",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55704",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55705",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55706",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55707",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55708",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55709",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55710",
+    "referenceGroup": "sci_reference"
+  },
+  {
+    "id": "q55711",
+    "referenceGroup": "sport_reference"
+  },
+  {
+    "id": "q55712",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55713",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55714",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55715",
+    "referenceGroup": "ent_primary"
+  },
+  {
+    "id": "q55716",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55717",
+    "referenceGroup": "hist_reference"
+  },
+  {
+    "id": "q55718",
+    "referenceGroup": "art_reference"
+  },
+  {
+    "id": "q55719",
+    "referenceGroup": "geo_reference"
+  },
+  {
+    "id": "q55720",
+    "referenceGroup": "sport_reference"
+  }
+]

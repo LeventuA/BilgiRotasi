@@ -1,0 +1,10 @@
+{
+  "method": "Editoryal hazırlama + otomatik yapısal QA + V1 çapraz tekrar denetimi + Codespaces çalışma zamanında güncel banka denetimi",
+  "preparedAgainstLastKnownQuestionId": "q54120",
+  "runtimeCurrentBankRequired": true,
+  "sourceIndex": "verification/VERIFICATION_INDEX.csv",
+  "notes": [
+    "Zamanla değişebilecek güncel şampiyonluk, görev sahibi ve fiyat sorularından kaçınıldı.",
+    "Yanlış veya tartışmalı superlatifler daha dar ve güvenli ifadelerle düzeltildi."
+  ]
+}

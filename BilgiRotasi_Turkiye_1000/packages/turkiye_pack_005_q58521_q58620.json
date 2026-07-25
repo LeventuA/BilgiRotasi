@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q58521",
+    "categoryIndex": 2,
+    "question": "İzmir İktisat Kongresi hangi yıl toplandı?",
+    "options": [
+      "1923",
+      "1919",
+      "1921",
+      "1925"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İzmir İktisat Kongresi 17 Şubat-4 Mart 1923 tarihleri arasında toplandı."
+  },
+  {
+    "id": "q58522",
+    "categoryIndex": 2,
+    "question": "Atatürk Orman Çiftliği hangi yıl kuruldu?",
+    "options": [
+      "1933",
+      "1925",
+      "1928",
+      "1923"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mustafa Kemal, Ankara'da modern tarım örneği oluşturmak amacıyla çiftliği 1925'te kurdu."
+  },
+  {
+    "id": "q58523",
+    "categoryIndex": 2,
+    "question": "Anıtkabir'in mimarları kimlerdir?",
+    "options": [
+      "Behruz Çinici ve Altuğ Çinici",
+      "Sedad Hakkı Eldem ve Turgut Cansever",
+      "Emin Onat ve Orhan Arda",
+      "Vedat Tek ve Mimar Kemaleddin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Anıtkabir'in proje yarışmasını Emin Onat ve Orhan Arda'nın tasarımı kazandı."
+  },
+  {
+    "id": "q58524",
+    "categoryIndex": 2,
+    "question": "Anıtkabir hangi tepede yer alır?",
+    "options": [
+      "Çankaya Tepesi",
+      "Hıdırlıktepe",
+      "Aktepe",
+      "Rasattepe"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ankara'daki Rasattepe, Anıtkabir yapıldıktan sonra Anıttepe adıyla anılmaya başladı."
+  },
+  {
+    "id": "q58525",
+    "categoryIndex": 2,
+    "question": "Mustafa Kemal Atatürk'ün naaşı Anıtkabir'e hangi yıl nakledildi?",
+    "options": [
+      "1953",
+      "1938",
+      "1944",
+      "1960"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Atatürk'ün naaşı 10 Kasım 1953'te Etnografya Müzesinden Anıtkabir'e taşındı."
+  },
+  {
+    "id": "q58526",
+    "categoryIndex": 2,
+    "question": "Dolmabahçe Sarayı'nda vefat eden Türkiye Cumhuriyeti kurucusu kimdir?",
+    "options": [
+      "İsmet İnönü",
+      "Mustafa Kemal Atatürk",
+      "Celal Bayar",
+      "Kazım Karabekir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Atatürk 10 Kasım 1938'de Dolmabahçe Sarayı'nda hayatını kaybetti."
+  },
+  {
+    "id": "q58527",
+    "categoryIndex": 2,
+    "question": "Atatürk'ün 'Nutuk' adlı eseri hangi yıllar arasındaki olayları anlatır?",
+    "options": [
+      "1908-1918",
+      "1923-1938",
+      "1919-1927",
+      "1914-1923"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Nutuk, Samsun'a çıkıştan 1927'ye kadar Millî Mücadele ve Cumhuriyet'in kuruluş sürecini ele alır."
+  },
+  {
+    "id": "q58528",
+    "categoryIndex": 2,
+    "question": "Nutuk ilk kez hangi siyasi kurumda okunmuştur?",
+    "options": [
+      "Sivas Kongresi",
+      "İzmir İktisat Kongresi",
+      "TBMM açılışı",
+      "Cumhuriyet Halk Fırkası Kurultayı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Atatürk Nutuk'u 15-20 Ekim 1927'de CHP'nin ikinci büyük kurultayında okudu."
+  },
+  {
+    "id": "q58529",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti'nin kurucusu kabul edilen hükümdar kimdir?",
+    "options": [
+      "Osman Gazi",
+      "I. Murad",
+      "Orhan Gazi",
+      "Ertuğrul Gazi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Osman Gazi, 13. yüzyılın sonunda bağımsız bir beylik kurarak hanedana adını verdi."
+  },
+  {
+    "id": "q58530",
+    "categoryIndex": 2,
+    "question": "Osmanlıların Rumeli'deki ilk kalıcı üssü kabul edilen kale hangisidir?",
+    "options": [
+      "Kilitbahir Kalesi",
+      "Çimpe Kalesi",
+      "Anadolu Hisarı",
+      "Rumeli Hisarı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Çimpe Kalesi'nin alınması Osmanlıların Rumeli'ye yerleşmesinde dönüm noktası oldu."
+  },
+  {
+    "id": "q58531",
+    "categoryIndex": 2,
+    "question": "1326'da fethedildikten sonra Osmanlı'nın ilk büyük başkenti olan şehir hangisidir?",
+    "options": [
+      "Edirne",
+      "İstanbul",
+      "Bursa",
+      "Söğüt"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bursa, 1326'daki fethin ardından Osmanlı'nın ilk büyük yönetim merkezi ve başkenti oldu."
+  },
+  {
+    "id": "q58532",
+    "categoryIndex": 2,
+    "question": "İstanbul'dan önce Osmanlı Devleti'nin başkenti hangi şehirdi?",
+    "options": [
+      "Ankara",
+      "Bursa",
+      "Söğüt",
+      "Edirne"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Edirne, 1360'lı yıllardan 1453'e kadar Osmanlı başkenti oldu."
+  },
+  {
+    "id": "q58533",
+    "categoryIndex": 2,
+    "question": "İstanbul'u fetheden Osmanlı padişahı kimdir?",
+    "options": [
+      "II. Mehmed",
+      "II. Bayezid",
+      "I. Bayezid",
+      "II. Murad"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "II. Mehmed 29 Mayıs 1453'te İstanbul'u fethederek Fatih unvanıyla anıldı."
+  },
+  {
+    "id": "q58534",
+    "categoryIndex": 2,
+    "question": "İstanbul'un fethinde gemilerin karadan yürütüldüğü yer hangi su yolunu aşmayı amaçlıyordu?",
+    "options": [
+      "Çanakkale Boğazı",
+      "Haliç",
+      "Marmara Denizi",
+      "İstanbul Boğazı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Osmanlı gemileri Haliç'teki zinciri aşmak için Galata sırtlarından karadan indirildi."
+  },
+  {
+    "id": "q58535",
+    "categoryIndex": 2,
+    "question": "Rumeli Hisarı hangi padişah döneminde yaptırıldı?",
+    "options": [
+      "Kanuni Sultan Süleyman",
+      "II. Abdülhamid",
+      "Fatih Sultan Mehmed",
+      "Yıldırım Bayezid"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Fatih Sultan Mehmed, İstanbul kuşatması öncesinde boğazı denetlemek için Rumeli Hisarı'nı yaptırdı."
+  },
+  {
+    "id": "q58536",
+    "categoryIndex": 2,
+    "question": "Anadolu Hisarı hangi Osmanlı padişahı döneminde yaptırıldı?",
+    "options": [
+      "Fatih Sultan Mehmed",
+      "Orhan Gazi",
+      "II. Murad",
+      "Yıldırım Bayezid"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Anadolu Hisarı, 1390'larda Yıldırım Bayezid tarafından yaptırıldı."
+  },
+  {
+    "id": "q58537",
+    "categoryIndex": 2,
+    "question": "Osmanlı tarihinde 'Yıldırım' lakabıyla bilinen padişah kimdir?",
+    "options": [
+      "I. Bayezid",
+      "I. Mehmed",
+      "II. Murad",
+      "I. Murad"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "I. Bayezid hızlı askerî hareketleri nedeniyle Yıldırım lakabıyla anıldı."
+  },
+  {
+    "id": "q58538",
+    "categoryIndex": 2,
+    "question": "Ankara Savaşı'nda Yıldırım Bayezid'i mağlup eden hükümdar kimdir?",
+    "options": [
+      "Şah İsmail",
+      "Timur",
+      "Cengiz Han",
+      "Uzun Hasan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "1402 Ankara Savaşı'nda Timur'un ordusu Osmanlı kuvvetlerini yendi."
+  },
+  {
+    "id": "q58539",
+    "categoryIndex": 2,
+    "question": "Ankara Savaşı'ndan sonra Osmanlı'da yaşanan taht mücadelesi dönemine ne ad verilir?",
+    "options": [
+      "Tanzimat Dönemi",
+      "Lale Devri",
+      "Fetret Devri",
+      "Meşrutiyet Dönemi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "1402-1413 arasındaki Fetret Devri, Bayezid'in oğulları arasındaki mücadeleyle geçti."
+  },
+  {
+    "id": "q58540",
+    "categoryIndex": 2,
+    "question": "Fetret Devri'ni sona erdirerek Osmanlı birliğini yeniden kuran padişah kimdir?",
+    "options": [
+      "I. Selim",
+      "II. Murad",
+      "II. Bayezid",
+      "I. Mehmed"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Çelebi Mehmed olarak bilinen I. Mehmed, 1413'te rakiplerini yenerek birliği sağladı."
+  },
+  {
+    "id": "q58541",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti'nde ilk düzenli yaya ve müsellem birlikleri hangi padişah döneminde kuruldu?",
+    "options": [
+      "Orhan Gazi",
+      "I. Murad",
+      "Osman Gazi",
+      "Fatih Sultan Mehmed"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Orhan Gazi döneminde yaya ve müsellem adlı ilk düzenli askerî birlikler oluşturuldu."
+  },
+  {
+    "id": "q58542",
+    "categoryIndex": 2,
+    "question": "Yeniçeri Ocağı hangi askerî sistemin parçasıydı?",
+    "options": [
+      "Lonca sistemi",
+      "Kapıkulu sistemi",
+      "Ayanlık sistemi",
+      "Tımar sistemi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yeniçeriler, merkez ordusundaki Kapıkulu piyadelerinin temel sınıfını oluşturdu."
+  },
+  {
+    "id": "q58543",
+    "categoryIndex": 2,
+    "question": "Tımar sisteminde sipahilere hizmet karşılığında tahsis edilen gelir kaynağı neydi?",
+    "options": [
+      "Gümrük gelirleri",
+      "Vakıf bağışları",
+      "Toprak vergileri",
+      "Maden işletmeleri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tımarlı sipahiler belirli toprakların vergi gelirini alır ve karşılığında asker beslerdi."
+  },
+  {
+    "id": "q58544",
+    "categoryIndex": 2,
+    "question": "Devşirme sistemi ağırlıklı olarak hangi amaçla uygulanıyordu?",
+    "options": [
+      "Deniz ticaretini geliştirmek",
+      "Toprak vergisini toplamak",
+      "Medrese öğrencisi seçmek",
+      "Merkez için asker ve yönetici yetiştirmek"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Devşirilen çocuklar Enderun veya Acemi Ocağı'nda eğitilerek devlet hizmetine alınırdı."
+  },
+  {
+    "id": "q58545",
+    "categoryIndex": 2,
+    "question": "Osmanlı sarayında devlet adamı yetiştiren okul hangisiydi?",
+    "options": [
+      "Enderun",
+      "Mühendishane",
+      "Darülfünun",
+      "Sahn-ı Seman"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Topkapı Sarayı'ndaki Enderun, saray görevlileri ve yöneticiler yetiştiren seçkin bir eğitim kurumuydu."
+  },
+  {
+    "id": "q58546",
+    "categoryIndex": 2,
+    "question": "Fatih Sultan Mehmed'in kurduğu yüksek düzeyli medrese topluluğu hangisidir?",
+    "options": [
+      "Enderun",
+      "Sahn-ı Seman",
+      "Darülmuallimin",
+      "Süleymaniye Medreseleri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sahn-ı Seman medreseleri Fatih Külliyesi içinde dönemin en ileri eğitim kurumlarıydı."
+  },
+  {
+    "id": "q58547",
+    "categoryIndex": 2,
+    "question": "Osmanlı tarihindeki ilk deniz savaşı hangi devletle yapıldı?",
+    "options": [
+      "İspanya",
+      "Portekiz",
+      "Venedik",
+      "Ceneviz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "1416'da Çalı Bey komutasındaki Osmanlı donanması Venedik donanmasıyla savaştı."
+  },
+  {
+    "id": "q58548",
+    "categoryIndex": 2,
+    "question": "Preveze Deniz Zaferi'nin Osmanlı komutanı kimdir?",
+    "options": [
+      "Turgut Reis",
+      "Kılıç Ali Paşa",
+      "Piyale Paşa",
+      "Barbaros Hayreddin Paşa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Barbaros Hayreddin Paşa 1538'de Haçlı donanmasını Preveze'de yendi."
+  },
+  {
+    "id": "q58549",
+    "categoryIndex": 2,
+    "question": "Osmanlı donanmasının Hint Okyanusu seferleriyle tanınan amirali kimdir?",
+    "options": [
+      "Seydi Ali Reis",
+      "Kemal Reis",
+      "Kılıç Ali Paşa",
+      "Piri Reis"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Seydi Ali Reis, Hint Okyanusu seferlerini Mir'atü'l-Memalik adlı eserinde anlattı."
+  },
+  {
+    "id": "q58550",
+    "categoryIndex": 2,
+    "question": "Dünya haritasıyla tanınan Osmanlı denizcisi kimdir?",
+    "options": [
+      "Seydi Ali Reis",
+      "Piri Reis",
+      "Barbaros Hayreddin Paşa",
+      "Turgut Reis"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Piri Reis'in 1513 tarihli dünya haritasının bir bölümü günümüze ulaşmıştır."
+  },
+  {
+    "id": "q58551",
+    "categoryIndex": 2,
+    "question": "Piri Reis'in denizcilik bilgilerini topladığı eserin adı nedir?",
+    "options": [
+      "Mir'atü'l-Memalik",
+      "Seyahatname",
+      "Kitab-ı Bahriye",
+      "Cihannüma"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kitab-ı Bahriye, Akdeniz limanlarını ve denizcilik bilgilerini ayrıntılı biçimde anlatır."
+  },
+  {
+    "id": "q58552",
+    "categoryIndex": 2,
+    "question": "Kanuni Sultan Süleyman'ın Avrupa'daki en önemli meydan zaferlerinden biri hangisidir?",
+    "options": [
+      "Niğbolu Muharebesi",
+      "Varna Muharebesi",
+      "Ankara Savaşı",
+      "Mohaç Meydan Muharebesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1526'daki Mohaç zaferi Macar Krallığı'nın siyasi yapısını kökten değiştirdi."
+  },
+  {
+    "id": "q58553",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti'nin en uzun süre tahtta kalan padişahı kimdir?",
+    "options": [
+      "Kanuni Sultan Süleyman",
+      "IV. Mehmed",
+      "II. Abdülhamid",
+      "Fatih Sultan Mehmed"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kanuni Sultan Süleyman 1520-1566 arasında yaklaşık 46 yıl hüküm sürdü."
+  },
+  {
+    "id": "q58554",
+    "categoryIndex": 2,
+    "question": "Kanuni döneminde hazırlanan kanunlarla tanınan şeyhülislam kimdir?",
+    "options": [
+      "Molla Gürani",
+      "Ebussuud Efendi",
+      "Zenbilli Ali Efendi",
+      "Akşemseddin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Ebussuud Efendi, fetvaları ve hukuk düzenlemeleriyle Kanuni döneminin önemli din ve hukuk bilginidir."
+  },
+  {
+    "id": "q58555",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti'nin Mısır'ı fethettiği savaş hangisidir?",
+    "options": [
+      "Mohaç Savaşı",
+      "Çaldıran Savaşı",
+      "Ridaniye Savaşı",
+      "Mercidabık Savaşı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yavuz Sultan Selim 1517 Ridaniye zaferiyle Kahire'yi alarak Memlük Devleti'ne son verdi."
+  },
+  {
+    "id": "q58556",
+    "categoryIndex": 2,
+    "question": "Yavuz Sultan Selim'in Safevilere karşı kazandığı savaş hangisidir?",
+    "options": [
+      "Otlukbeli Savaşı",
+      "Turnadağ Savaşı",
+      "Mercidabık Savaşı",
+      "Çaldıran Savaşı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1514 Çaldıran Savaşı'nda Osmanlı ordusu Şah İsmail'in kuvvetlerini yendi."
+  },
+  {
+    "id": "q58557",
+    "categoryIndex": 2,
+    "question": "Anadolu'daki son büyük Türk beyliği olan Dulkadiroğullarına son veren savaş hangisidir?",
+    "options": [
+      "Turnadağ Savaşı",
+      "Otlukbeli Savaşı",
+      "Çaldıran Savaşı",
+      "Mercidabık Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "1515 Turnadağ Savaşı ile Dulkadiroğulları Osmanlı topraklarına katıldı."
+  },
+  {
+    "id": "q58558",
+    "categoryIndex": 2,
+    "question": "Osmanlı'nın Akkoyunlu hükümdarı Uzun Hasan'ı yendiği savaş hangisidir?",
+    "options": [
+      "Varna Savaşı",
+      "Otlukbeli Savaşı",
+      "Ankara Savaşı",
+      "Çaldıran Savaşı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Fatih Sultan Mehmed 1473'te Otlukbeli'nde Akkoyunlu hükümdarı Uzun Hasan'ı yendi."
+  },
+  {
+    "id": "q58559",
+    "categoryIndex": 2,
+    "question": "II. Kosova Savaşı Osmanlıların hangi bölgede kalıcılığını güçlendirdi?",
+    "options": [
+      "Kuzey Afrika",
+      "Arabistan",
+      "Balkanlar",
+      "Kafkasya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1448'deki zafer, Haçlıların Osmanlıları Balkanlardan çıkarma umutlarını büyük ölçüde sona erdirdi."
+  },
+  {
+    "id": "q58560",
+    "categoryIndex": 2,
+    "question": "Varna Savaşı'nda Osmanlı ordusuna hangi padişah komuta etti?",
+    "options": [
+      "Fatih Sultan Mehmed",
+      "I. Mehmed",
+      "Yıldırım Bayezid",
+      "II. Murad"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "II. Murad 1444 Varna Savaşı'nda Haçlı ordusunu mağlup etti."
+  },
+  {
+    "id": "q58561",
+    "categoryIndex": 2,
+    "question": "Niğbolu Savaşı hangi Osmanlı padişahı döneminde kazanıldı?",
+    "options": [
+      "Yıldırım Bayezid",
+      "II. Murad",
+      "Fatih Sultan Mehmed",
+      "I. Murad"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "1396 Niğbolu zaferi Yıldırım Bayezid döneminde kazanıldı."
+  },
+  {
+    "id": "q58562",
+    "categoryIndex": 2,
+    "question": "I. Kosova Savaşı'ndan sonra savaş meydanında öldürülen Osmanlı padişahı kimdir?",
+    "options": [
+      "Yıldırım Bayezid",
+      "I. Murad",
+      "II. Murad",
+      "Orhan Gazi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "I. Murad 1389'daki Kosova zaferinden sonra savaş alanında öldürüldü."
+  },
+  {
+    "id": "q58563",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti'nin Rumeli'deki ilk başkenti hangi şehirdi?",
+    "options": [
+      "Filibe",
+      "Sofya",
+      "Edirne",
+      "Selanik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Edirne, fethedildikten sonra Osmanlıların Balkanlardaki yönetim merkezi ve başkenti oldu."
+  },
+  {
+    "id": "q58564",
+    "categoryIndex": 2,
+    "question": "İstanbul'un fethinden sonra Ayasofya hangi amaçla kullanılmaya başlandı?",
+    "options": [
+      "Medrese",
+      "Kışla",
+      "Saray",
+      "Cami"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ayasofya 1453'ten sonra camiye çevrildi ve Osmanlı döneminde çeşitli eklerle güçlendirildi."
+  },
+  {
+    "id": "q58565",
+    "categoryIndex": 2,
+    "question": "Topkapı Sarayı'nın yapımını başlatan padişah kimdir?",
+    "options": [
+      "Fatih Sultan Mehmed",
+      "Kanuni Sultan Süleyman",
+      "II. Bayezid",
+      "Yavuz Sultan Selim"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Topkapı Sarayı'nın ilk yapıları İstanbul'un fethinden sonra Fatih döneminde inşa edildi."
+  },
+  {
+    "id": "q58566",
+    "categoryIndex": 2,
+    "question": "Dolmabahçe Sarayı hangi padişah döneminde tamamlandı?",
+    "options": [
+      "II. Mahmud",
+      "Sultan Abdülmecid",
+      "Abdülaziz",
+      "II. Abdülhamid"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dolmabahçe Sarayı 1856'da Sultan Abdülmecid döneminde tamamlandı."
+  },
+  {
+    "id": "q58567",
+    "categoryIndex": 2,
+    "question": "Yıldız Sarayı'nı yönetim merkezi olarak kullanan padişah kimdir?",
+    "options": [
+      "Abdülaziz",
+      "Mehmed Reşad",
+      "II. Abdülhamid",
+      "V. Murad"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "II. Abdülhamid güvenlik ve yönetim gerekçeleriyle Yıldız Sarayı'nı merkez yaptı."
+  },
+  {
+    "id": "q58568",
+    "categoryIndex": 2,
+    "question": "Lale Devri hangi padişah döneminde yaşandı?",
+    "options": [
+      "III. Selim",
+      "II. Mahmud",
+      "I. Mahmud",
+      "III. Ahmed"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1718-1730 arasındaki Lale Devri III. Ahmed ve Sadrazam Nevşehirli Damat İbrahim Paşa dönemidir."
+  },
+  {
+    "id": "q58569",
+    "categoryIndex": 2,
+    "question": "Lale Devri'ni sona erdiren ayaklanma hangisidir?",
+    "options": [
+      "Patrona Halil İsyanı",
+      "Kabakulak İsyanı",
+      "31 Mart Vakası",
+      "Celali İsyanları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1730 Patrona Halil İsyanı III. Ahmed'in tahttan çekilmesine ve Lale Devri'nin bitmesine yol açtı."
+  },
+  {
+    "id": "q58570",
+    "categoryIndex": 2,
+    "question": "Osmanlı'da ilk Türkçe matbaayı kuran kişi kimdir?",
+    "options": [
+      "Takiyüddin",
+      "İbrahim Müteferrika",
+      "Evliya Çelebi",
+      "Kâtip Çelebi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İbrahim Müteferrika ve Said Efendi 1727'de Türkçe eser basan matbaayı kurdu."
+  },
+  {
+    "id": "q58571",
+    "categoryIndex": 2,
+    "question": "Osmanlı'da ilk Türkçe matbaada basılan eser hangisidir?",
+    "options": [
+      "Kitab-ı Bahriye",
+      "Seyahatname",
+      "Vankulu Lügati",
+      "Cihannüma"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "1729'da basılan Vankulu Lügati matbaanın ilk kitabıydı."
+  },
+  {
+    "id": "q58572",
+    "categoryIndex": 2,
+    "question": "Yeniçeri Ocağı'nın kaldırılması olayı hangi adla bilinir?",
+    "options": [
+      "Vak'a-i Vakvakiye",
+      "Babıali Baskını",
+      "31 Mart Vakası",
+      "Vak'a-i Hayriye"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Osmanlı resmî tarihçiliğinde 1826'daki olay 'Hayırlı Olay' anlamında Vak'a-i Hayriye diye anılır."
+  },
+  {
+    "id": "q58573",
+    "categoryIndex": 2,
+    "question": "Tanzimat Fermanı'nı Gülhane Parkı'nda okuyan devlet adamı kimdir?",
+    "options": [
+      "Mustafa Reşid Paşa",
+      "Mithat Paşa",
+      "Fuad Paşa",
+      "Âli Paşa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Hariciye Nazırı Mustafa Reşid Paşa 3 Kasım 1839'da fermanı okudu."
+  },
+  {
+    "id": "q58574",
+    "categoryIndex": 2,
+    "question": "Islahat Fermanı hangi savaşın ardından ilan edildi?",
+    "options": [
+      "Trablusgarp Savaşı",
+      "Kırım Savaşı",
+      "93 Harbi",
+      "Balkan Savaşları"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Islahat Fermanı 1856'da Kırım Savaşı sonrasında ilan edildi."
+  },
+  {
+    "id": "q58575",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti'nin ilk anayasası hangisidir?",
+    "options": [
+      "Tanzimat Fermanı",
+      "Teşkilat-ı Esasiye",
+      "Kanun-ı Esasi",
+      "Mecelle"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kanun-ı Esasi 1876'da ilan edilerek I. Meşrutiyet'i başlattı."
+  },
+  {
+    "id": "q58576",
+    "categoryIndex": 2,
+    "question": "I. Meşrutiyet hangi padişah döneminde ilan edildi?",
+    "options": [
+      "Mehmed Reşad",
+      "V. Murad",
+      "Abdülaziz",
+      "II. Abdülhamid"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "I. Meşrutiyet 23 Aralık 1876'da II. Abdülhamid döneminde ilan edildi."
+  },
+  {
+    "id": "q58577",
+    "categoryIndex": 2,
+    "question": "Osmanlı'nın ilk parlamentosunun alt kanadı hangisiydi?",
+    "options": [
+      "Meclis-i Mebusan",
+      "Divan-ı Hümayun",
+      "Meclis-i Ayan",
+      "Şûra-yı Devlet"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Osmanlı parlamentosu seçilmiş Meclis-i Mebusan ile atanmış Meclis-i Ayan'dan oluşuyordu."
+  },
+  {
+    "id": "q58578",
+    "categoryIndex": 2,
+    "question": "II. Meşrutiyet hangi yıl ilan edildi?",
+    "options": [
+      "1876",
+      "1908",
+      "1912",
+      "1905"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "23 Temmuz 1908'de Kanun-ı Esasi yeniden yürürlüğe kondu."
+  },
+  {
+    "id": "q58579",
+    "categoryIndex": 2,
+    "question": "31 Mart Vakası'nı bastırmak üzere İstanbul'a gelen ordunun adı nedir?",
+    "options": [
+      "Nizam-ı Cedid",
+      "Sekban-ı Cedid",
+      "Hareket Ordusu",
+      "Kuvayı Milliye"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Selanik'ten gelen Hareket Ordusu 1909'da ayaklanmayı bastırdı."
+  },
+  {
+    "id": "q58580",
+    "categoryIndex": 2,
+    "question": "Osmanlı'nın Trablusgarp Savaşı sonunda İtalya ile imzaladığı antlaşma hangisidir?",
+    "options": [
+      "Londra Antlaşması",
+      "Bükreş Antlaşması",
+      "Berlin Antlaşması",
+      "Uşi Antlaşması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "1912 tarihli Uşi Antlaşması'yla Trablusgarp ve Bingazi İtalya'ya bırakıldı."
+  },
+  {
+    "id": "q58581",
+    "categoryIndex": 2,
+    "question": "Mustafa Kemal'in 'Şerif' takma adıyla görev yaptığı savaş hangisidir?",
+    "options": [
+      "Trablusgarp Savaşı",
+      "Balkan Savaşları",
+      "Çanakkale Savaşı",
+      "Kurtuluş Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Mustafa Kemal gizlice Trablusgarp'a geçerek Derne ve Tobruk'ta görev yaptı."
+  },
+  {
+    "id": "q58582",
+    "categoryIndex": 2,
+    "question": "Balkan Savaşları sonunda Osmanlı Devleti'nin başkentini savunmak için oluşturduğu son hat hangi şehrin batısındaydı?",
+    "options": [
+      "Selanik",
+      "İstanbul",
+      "Sofya",
+      "Edirne"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Çatalca hattı, İstanbul'un batısında Bulgar ordusunun ilerleyişini durdurdu."
+  },
+  {
+    "id": "q58583",
+    "categoryIndex": 2,
+    "question": "Çanakkale Savaşı'nda 18 Mart deniz zaferinin simge gemilerinden biri hangisidir?",
+    "options": [
+      "Ertuğrul Fırkateyni",
+      "Hamidiye Kruvazörü",
+      "Nusret Mayın Gemisi",
+      "Yavuz Zırhlısı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Nusret'in döşediği mayınlar İtilaf donanmasına ağır kayıplar verdirdi."
+  },
+  {
+    "id": "q58584",
+    "categoryIndex": 2,
+    "question": "Çanakkale Savaşı'nda Mustafa Kemal'in komuta ettiği tümen hangisiydi?",
+    "options": [
+      "7. Tümen",
+      "1. Tümen",
+      "57. Tümen",
+      "19. Tümen"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mustafa Kemal, Arıburnu çıkarmasına karşı 19. Tümenle kritik müdahalede bulundu."
+  },
+  {
+    "id": "q58585",
+    "categoryIndex": 2,
+    "question": "Çanakkale'de tamamı şehit düşen ve simgeleşen alay hangisidir?",
+    "options": [
+      "57. Alay",
+      "27. Alay",
+      "19. Alay",
+      "9. Alay"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "57. Alay, Conkbayırı ve çevresindeki savunmasıyla anılır."
+  },
+  {
+    "id": "q58586",
+    "categoryIndex": 2,
+    "question": "'Ben size taarruzu değil, ölmeyi emrediyorum' sözü hangi cephede söylendi?",
+    "options": [
+      "Sakarya Cephesi",
+      "Çanakkale Cephesi",
+      "Suriye Cephesi",
+      "Kafkas Cephesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mustafa Kemal bu emri Arıburnu'nda ilerlemeyi durdurmak için verdi."
+  },
+  {
+    "id": "q58587",
+    "categoryIndex": 2,
+    "question": "Sarıkamış Harekâtı hangi cephede gerçekleşti?",
+    "options": [
+      "Hicaz-Yemen Cephesi",
+      "Çanakkale Cephesi",
+      "Kafkas Cephesi",
+      "Irak Cephesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sarıkamış Harekâtı 1914-1915 kışında Rus ordusuna karşı Kafkas Cephesi'nde yapıldı."
+  },
+  {
+    "id": "q58588",
+    "categoryIndex": 2,
+    "question": "Kut'ül Amare Zaferi hangi cephede kazanıldı?",
+    "options": [
+      "Çanakkale Cephesi",
+      "Galiçya Cephesi",
+      "Kafkas Cephesi",
+      "Irak Cephesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Osmanlı kuvvetleri 1916'da Kut'ta İngiliz birliğini teslim aldı."
+  },
+  {
+    "id": "q58589",
+    "categoryIndex": 2,
+    "question": "Mondros Ateşkes Antlaşması hangi savaşın ardından imzalandı?",
+    "options": [
+      "I. Dünya Savaşı",
+      "Balkan Savaşları",
+      "Kırım Savaşı",
+      "Kurtuluş Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "30 Ekim 1918 tarihli Mondros Ateşkesi Osmanlı'nın I. Dünya Savaşı'ndan çekilmesini sağladı."
+  },
+  {
+    "id": "q58590",
+    "categoryIndex": 2,
+    "question": "Mondros Ateşkesi'nin imzalandığı geminin adı nedir?",
+    "options": [
+      "Goeben",
+      "Agamemnon",
+      "Yavuz",
+      "Queen Elizabeth"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Ateşkes Limni Adası'nın Mondros Limanı'ndaki HMS Agamemnon zırhlısında imzalandı."
+  },
+  {
+    "id": "q58591",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti'ni parçalamayı öngören ancak uygulanamayan antlaşma hangisidir?",
+    "options": [
+      "Mondros Ateşkesi",
+      "Mudanya Ateşkesi",
+      "Sevr Antlaşması",
+      "Lozan Antlaşması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "1920 Sevr Antlaşması, Millî Mücadele'nin başarısı nedeniyle yürürlüğe giremedi."
+  },
+  {
+    "id": "q58592",
+    "categoryIndex": 2,
+    "question": "Millî Mücadele'de halkın oluşturduğu yerel direniş birliklerine ne ad verildi?",
+    "options": [
+      "Redif birlikleri",
+      "Hareket Ordusu",
+      "Nizam-ı Cedid",
+      "Kuvayı Milliye"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kuvayı Milliye birlikleri düzenli ordu kurulana kadar işgallere karşı yerel savunma yaptı."
+  },
+  {
+    "id": "q58593",
+    "categoryIndex": 2,
+    "question": "Batı Cephesi'nde düzenli ordunun kurulmasına karşı çıkan eski Kuvayı Milliye lideri kimdir?",
+    "options": [
+      "Çerkez Ethem",
+      "Demirci Mehmet Efe",
+      "Yörük Ali Efe",
+      "Şahin Bey"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Çerkez Ethem'in kuvvetleri 1920 sonu ve 1921 başında düzenli orduyla çatıştı."
+  },
+  {
+    "id": "q58594",
+    "categoryIndex": 2,
+    "question": "Gaziantep savunmasının simge isimlerinden Şahin Bey'in gerçek adı nedir?",
+    "options": [
+      "Kara Fatma",
+      "Mehmed Said",
+      "Sütçü İmam",
+      "Ali Saip"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Şahin Bey olarak bilinen Mehmed Said, Kilis-Antep yolunda Fransız kuvvetlerine karşı direndi."
+  },
+  {
+    "id": "q58595",
+    "categoryIndex": 2,
+    "question": "Maraş direnişinin başlamasında simgeleşen kişi kimdir?",
+    "options": [
+      "Şahin Bey",
+      "Hasan Tahsin",
+      "Sütçü İmam",
+      "Yörük Ali Efe"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sütçü İmam'ın 1919'da işgalcilere karşı açtığı ateş Maraş direnişinin sembolü oldu."
+  },
+  {
+    "id": "q58596",
+    "categoryIndex": 2,
+    "question": "İzmir'in işgaline karşı ilk kurşunu attığı kabul edilen gazeteci kimdir?",
+    "options": [
+      "Sütçü İmam",
+      "Kara Fatma",
+      "Şahin Bey",
+      "Hasan Tahsin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hasan Tahsin 15 Mayıs 1919'da İzmir'de işgal askerlerine ateş açtı."
+  },
+  {
+    "id": "q58597",
+    "categoryIndex": 2,
+    "question": "Aydın çevresindeki Millî Mücadele direnişiyle tanınan efe kimdir?",
+    "options": [
+      "Yörük Ali Efe",
+      "Kara Fatma",
+      "Çakırcalı Mehmet Efe",
+      "Demirci Mehmet Efe"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yörük Ali Efe, Malgaç Baskını gibi eylemlerle Aydın direnişinde öne çıktı."
+  },
+  {
+    "id": "q58598",
+    "categoryIndex": 2,
+    "question": "Millî Mücadele'de kadın milis lideri olarak tanınan 'Kara Fatma'nın gerçek adı nedir?",
+    "options": [
+      "Gördesli Makbule",
+      "Fatma Seher Erden",
+      "Halide Edip Adıvar",
+      "Nezahat Onbaşı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Fatma Seher Erden, Doğu ve Batı cephelerinde gönüllü birlikler yönetti."
+  },
+  {
+    "id": "q58599",
+    "categoryIndex": 2,
+    "question": "Sakarya Savaşı'ndan önce ordunun ihtiyaçlarını karşılamak için yayımlanan emirler hangisidir?",
+    "options": [
+      "Takrir-i Sükûn Emirleri",
+      "Amasya Tamimi",
+      "Tekâlif-i Milliye Emirleri",
+      "Misak-ı Millî"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mustafa Kemal, 7-8 Ağustos 1921'de halkın kaynaklarını seferber eden Tekâlif-i Milliye emirlerini yayımladı."
+  },
+  {
+    "id": "q58600",
+    "categoryIndex": 2,
+    "question": "Başkomutanlık yetkisi TBMM tarafından ilk kez kime verildi?",
+    "options": [
+      "İsmet Paşa",
+      "Kazım Karabekir",
+      "Fevzi Paşa",
+      "Mustafa Kemal Paşa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "TBMM 5 Ağustos 1921'de Mustafa Kemal'e üç aylığına başkomutanlık yetkisi verdi."
+  },
+  {
+    "id": "q58601",
+    "categoryIndex": 2,
+    "question": "Doğu Cephesi komutanı olarak Ermenistan'a karşı başarı kazanan paşa kimdir?",
+    "options": [
+      "Kazım Karabekir",
+      "Ali Fuat Cebesoy",
+      "Rauf Orbay",
+      "Refet Bele"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kazım Karabekir komutasındaki 15. Kolordu Doğu Cephesi'nde başarı sağladı."
+  },
+  {
+    "id": "q58602",
+    "categoryIndex": 2,
+    "question": "Batı Cephesi'nin önemli komutanı ve Cumhuriyet'in ikinci cumhurbaşkanı kimdir?",
+    "options": [
+      "Fevzi Çakmak",
+      "İsmet İnönü",
+      "Kazım Karabekir",
+      "Ali Fuat Cebesoy"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İsmet İnönü, İnönü savaşlarında Batı Cephesi komutanı olarak görev yaptı."
+  },
+  {
+    "id": "q58603",
+    "categoryIndex": 2,
+    "question": "Türkiye Cumhuriyeti'nin ilk başbakanı kimdir?",
+    "options": [
+      "Celal Bayar",
+      "Fevzi Çakmak",
+      "İsmet İnönü",
+      "Rauf Orbay"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cumhuriyet ilan edildikten sonra ilk hükûmeti İsmet İnönü kurdu."
+  },
+  {
+    "id": "q58604",
+    "categoryIndex": 2,
+    "question": "Türkiye Cumhuriyeti'nin ilk cumhurbaşkanı kimdir?",
+    "options": [
+      "İsmet İnönü",
+      "Celal Bayar",
+      "Fevzi Çakmak",
+      "Mustafa Kemal Atatürk"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Atatürk 29 Ekim 1923'te TBMM tarafından cumhurbaşkanı seçildi."
+  },
+  {
+    "id": "q58605",
+    "categoryIndex": 2,
+    "question": "Türkiye Cumhuriyeti'nin ikinci cumhurbaşkanı kimdir?",
+    "options": [
+      "İsmet İnönü",
+      "Celal Bayar",
+      "Cemal Gürsel",
+      "Cevdet Sunay"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İsmet İnönü, Atatürk'ün ölümünün ardından 11 Kasım 1938'de cumhurbaşkanı seçildi."
+  },
+  {
+    "id": "q58606",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin ilk kadın savaş pilotu kimdir?",
+    "options": [
+      "Nüzhet Gökdoğan",
+      "Sabiha Gökçen",
+      "Afet İnan",
+      "Bedriye Tahir Gökmen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sabiha Gökçen 1930'larda askerî pilot olarak görev yaptı."
+  },
+  {
+    "id": "q58607",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin ilk kadın muhtarı kimdir?",
+    "options": [
+      "Afet İnan",
+      "Sabiha Gökçen",
+      "Gül Esin",
+      "Satı Kadın"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Gül Esin 1933'te Aydın'ın Çine ilçesindeki Karpuzlu köyünde muhtar seçildi."
+  },
+  {
+    "id": "q58608",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin ilk kadın il belediye başkanı kimdir?",
+    "options": [
+      "Gül Esin",
+      "Lale Aytaman",
+      "Türkan Akyol",
+      "Müfide İlhan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Müfide İlhan, 1950'de Mersin Belediye Başkanı seçilerek bir il belediyesini yöneten ilk kadın oldu."
+  },
+  {
+    "id": "q58609",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin ilk kadın bakanı kimdir?",
+    "options": [
+      "Türkan Akyol",
+      "Lale Aytaman",
+      "Tansu Çiller",
+      "Müfide İlhan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Türkan Akyol 1971'de Sağlık ve Sosyal Yardım Bakanı oldu."
+  },
+  {
+    "id": "q58610",
+    "categoryIndex": 2,
+    "question": "Cumhuriyet tarihinin ilk kadın valisi kimdir?",
+    "options": [
+      "Sabiha Gökçen",
+      "Lale Aytaman",
+      "Müfide İlhan",
+      "Türkan Akyol"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Lale Aytaman 1991'de Muğla Valisi olarak atandı."
+  },
+  {
+    "id": "q58611",
+    "categoryIndex": 2,
+    "question": "Türkiye'de ilk radyo yayını hangi şehirde başladı?",
+    "options": [
+      "İzmir",
+      "Ankara",
+      "İstanbul",
+      "Bursa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Türkiye'deki ilk düzenli radyo yayını 1927'de İstanbul'da başladı."
+  },
+  {
+    "id": "q58612",
+    "categoryIndex": 2,
+    "question": "Türkiye'de televizyon deneme yayınlarını başlatan kurum hangisidir?",
+    "options": [
+      "Mimar Sinan Üniversitesi",
+      "TRT",
+      "Ankara Üniversitesi",
+      "İstanbul Teknik Üniversitesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "İTÜ 1952'de Türkiye'nin ilk televizyon deneme yayınlarını yaptı."
+  },
+  {
+    "id": "q58613",
+    "categoryIndex": 2,
+    "question": "TRT'nin düzenli televizyon yayınları hangi yıl başladı?",
+    "options": [
+      "1968",
+      "1952",
+      "1964",
+      "1974"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "TRT televizyonu 31 Ocak 1968'de Ankara'dan düzenli yayına başladı."
+  },
+  {
+    "id": "q58614",
+    "categoryIndex": 2,
+    "question": "Türkiye'de ilk metro hattı olarak kabul edilen tarihî ulaşım sistemi hangisidir?",
+    "options": [
+      "Marmaray",
+      "Tünel",
+      "İzmir Metrosu",
+      "Ankaray"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1875'te açılan Karaköy-Beyoğlu Tüneli dünyanın en eski yer altı demiryollarındandır."
+  },
+  {
+    "id": "q58615",
+    "categoryIndex": 2,
+    "question": "Bugünkü Türkiye sınırlarında inşa edilen ilk demiryolu hattı hangi iki yer arasındaydı?",
+    "options": [
+      "İstanbul ile Ankara",
+      "Bursa ile Mudanya",
+      "İzmir ile Aydın",
+      "Mersin ile Adana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İzmir-Aydın demiryolunun ilk bölümü 1866'da işletmeye açıldı."
+  },
+  {
+    "id": "q58616",
+    "categoryIndex": 2,
+    "question": "Anadolu'da kurulan ilk Türk denizci beyliği hangisidir?",
+    "options": [
+      "Aydınoğulları",
+      "Menteşeoğulları",
+      "Karesioğulları",
+      "Çaka Beyliği"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Çaka Bey 11. yüzyılın sonunda İzmir merkezli bir denizci beylik kurdu."
+  },
+  {
+    "id": "q58617",
+    "categoryIndex": 2,
+    "question": "Anadolu Selçuklu Devleti'nin başkenti hangi şehirdi?",
+    "options": [
+      "Konya",
+      "Kayseri",
+      "Sivas",
+      "Erzurum"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Konya, 12. yüzyıldan itibaren Anadolu Selçuklularının başkenti oldu."
+  },
+  {
+    "id": "q58618",
+    "categoryIndex": 2,
+    "question": "Malazgirt Savaşı'nda Bizans ordusunu yenen Selçuklu sultanı kimdir?",
+    "options": [
+      "Kılıç Arslan",
+      "Alp Arslan",
+      "Tuğrul Bey",
+      "Melikşah"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Alp Arslan'ın 1071 zaferi Anadolu'nun Türkleşme sürecinde dönüm noktası oldu."
+  },
+  {
+    "id": "q58619",
+    "categoryIndex": 2,
+    "question": "Miryokefalon Savaşı hangi devletin Anadolu üzerindeki yeniden hâkimiyet umutlarını kırdı?",
+    "options": [
+      "Latin İmparatorluğu",
+      "Haçlı Kontlukları",
+      "Bizans İmparatorluğu",
+      "Moğol İmparatorluğu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1176 Miryokefalon zaferi Anadolu Selçuklularının bölgede kalıcılığını güçlendirdi."
+  },
+  {
+    "id": "q58620",
+    "categoryIndex": 2,
+    "question": "Anadolu Selçuklularının en parlak dönemlerinden birini yaşatan sultan kimdir?",
+    "options": [
+      "II. Gıyaseddin Keyhüsrev",
+      "I. Kılıç Arslan",
+      "II. Kılıç Arslan",
+      "I. Alaeddin Keykubad"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Alaeddin Keykubad döneminde ticaret yolları, kervansaraylar ve şehirler gelişti."
+  }
+]

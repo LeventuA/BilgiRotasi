@@ -1,0 +1,19 @@
+{
+  "method": "Editoryal hazırlama + otomatik şema QA + paket içi yakın tekrar taraması + V1/V2 aday bankalarıyla çapraz tarama + ilk güçlü banka denetimi + Codespaces içinde canlı banka taraması",
+  "preparedAfterId": "q55120",
+  "runtimeCurrentBankRequired": true,
+  "editorialReplacementsAfterSemanticAudit": 92,
+  "nearDuplicateRules": [
+    "Normalize edilmiş soru metni aynıysa çatışma",
+    "SequenceMatcher benzerliği en az 0.88 ise çatışma",
+    "Doğru cevap aynı ve benzerlik en az 0.70 ise çatışma",
+    "Doğru cevap aynı ve içerik kelimesi Jaccard benzerliği en az 0.52 ise çatışma"
+  ],
+  "editorialPolicy": [
+    "Kuru seri soru kalıpları azaltıldı.",
+    "Her soruda kısa ve öğretici açıklama zorunlu tutuldu.",
+    "Zamanla hızla değişebilecek görev sahibi, fiyat ve güncel sıralama sorularından kaçınıldı.",
+    "Semantik denetim sonrasında 92 soru yeniden yazıldı veya değiştirildi."
+  ],
+  "verificationCaveat": "Sorular model tarafından editoryal olarak hazırlanmıştır; otomatik denetimler bağımsız insan kaynak doğrulamasının yerine geçmez."
+}

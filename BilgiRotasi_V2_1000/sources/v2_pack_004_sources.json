@@ -1,0 +1,402 @@
+[
+  {
+    "id": "q54421",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54422",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54423",
+    "sourceGroup": "geo_worldfactbook"
+  },
+  {
+    "id": "q54424",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54425",
+    "sourceGroup": "geo_worldfactbook"
+  },
+  {
+    "id": "q54426",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54427",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54428",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54429",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54430",
+    "sourceGroup": "geo_worldfactbook"
+  },
+  {
+    "id": "q54431",
+    "sourceGroup": "geo_timezones"
+  },
+  {
+    "id": "q54432",
+    "sourceGroup": "geo_worldfactbook"
+  },
+  {
+    "id": "q54433",
+    "sourceGroup": "geo_worldfactbook"
+  },
+  {
+    "id": "q54434",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54435",
+    "sourceGroup": "geo_worldfactbook"
+  },
+  {
+    "id": "q54436",
+    "sourceGroup": "geo_worldfactbook"
+  },
+  {
+    "id": "q54437",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54438",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54439",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54440",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54441",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54442",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54443",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54444",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54445",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54446",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54447",
+    "sourceGroup": "ent_animation"
+  },
+  {
+    "id": "q54448",
+    "sourceGroup": "ent_anime"
+  },
+  {
+    "id": "q54449",
+    "sourceGroup": "ent_anime"
+  },
+  {
+    "id": "q54450",
+    "sourceGroup": "ent_anime"
+  },
+  {
+    "id": "q54451",
+    "sourceGroup": "ent_anime"
+  },
+  {
+    "id": "q54452",
+    "sourceGroup": "ent_anime"
+  },
+  {
+    "id": "q54453",
+    "sourceGroup": "ent_anime"
+  },
+  {
+    "id": "q54454",
+    "sourceGroup": "ent_anime"
+  },
+  {
+    "id": "q54455",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54456",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54457",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54458",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54459",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54460",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54461",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54462",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54463",
+    "sourceGroup": "hist_nobel"
+  },
+  {
+    "id": "q54464",
+    "sourceGroup": "hist_nobel"
+  },
+  {
+    "id": "q54465",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54466",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54467",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54468",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54469",
+    "sourceGroup": "hist_redcross"
+  },
+  {
+    "id": "q54470",
+    "sourceGroup": "hist_smithsonian"
+  },
+  {
+    "id": "q54471",
+    "sourceGroup": "hist_nps"
+  },
+  {
+    "id": "q54472",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54473",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54474",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54475",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54476",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54477",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54478",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54479",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54480",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54481",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54482",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54483",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54484",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54485",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54486",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54487",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54488",
+    "sourceGroup": "lit_terms"
+  },
+  {
+    "id": "q54489",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54490",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54491",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54492",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54493",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54494",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54495",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54496",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54497",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54498",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54499",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54500",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54501",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54502",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54503",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54504",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q54505",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54506",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54507",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54508",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54509",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54510",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54511",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54512",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54513",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54514",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54515",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54516",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54517",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54518",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54519",
+    "sourceGroup": "sport_worldathletics"
+  },
+  {
+    "id": "q54520",
+    "sourceGroup": "sport_olympics"
+  }
+]

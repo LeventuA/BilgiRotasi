@@ -1,0 +1,34 @@
+{
+  "package": "package_022_q23121_q24120.json",
+  "status": "PASS",
+  "questionCount": 1000,
+  "idRange": "q23121-q24120",
+  "categoryCounts": {
+    "Coğrafya": 167,
+    "Eğlence": 167,
+    "Tarih": 167,
+    "Sanat & Edebiyat": 167,
+    "Bilim & Doğa": 166,
+    "Spor": 166
+  },
+  "difficultyCounts": {
+    "Orta": 514,
+    "Zor": 335,
+    "Kolay": 151
+  },
+  "answerIndexCounts": {
+    "0": 259,
+    "1": 231,
+    "2": 243,
+    "3": 267
+  },
+  "checks": {
+    "uniqueIds": true,
+    "uniqueQuestionTexts": true,
+    "fourUniqueOptions": true,
+    "validAnswerIndexes": true,
+    "explanationsPresent": true,
+    "sourceRecordForEveryQuestion": true
+  },
+  "sha256": "fa8515826a67a1e2f504a6715a220b0aaa3fb97141ffcfcda03ce40bd0d064a7"
+}

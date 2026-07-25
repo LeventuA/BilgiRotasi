@@ -1,0 +1,87 @@
+{
+  "project": "LeventuA/BilgiRotasi",
+  "bundle": "BilgiRotasi_Besinci_10Bin_Soru",
+  "bundleVersion": "5.0.0",
+  "createdOn": "2026-07-23",
+  "questionCount": 10000,
+  "idRange": "q43121-q53120",
+  "packageCount": 10,
+  "maxQuestionsPerPackage": 1000,
+  "doesNotContainFullQuestionsJson": true,
+  "allQuestionsEasy": true,
+  "categoryCounts": {
+    "Coğrafya": 1670,
+    "Eğlence": 1670,
+    "Tarih": 1670,
+    "Sanat & Edebiyat": 1670,
+    "Bilim & Doğa": 1660,
+    "Spor": 1660
+  },
+  "difficultyCounts": {
+    "Kolay": 10000
+  },
+  "installer": "install_questions.py",
+  "packages": [
+    {
+      "file": "packages/package_042_q43121_q44120.json",
+      "idRange": "q43121-q44120",
+      "questionCount": 1000,
+      "sha256": "7bfe2e35e33cc3c8d1c6729c60b8e6534f2f68a8246c2a092eadb7f2ea7bb9d9"
+    },
+    {
+      "file": "packages/package_043_q44121_q45120.json",
+      "idRange": "q44121-q45120",
+      "questionCount": 1000,
+      "sha256": "d86cd1d099da82c6c1ce4166200a089f1826b945b8df052f71658da73f7208fd"
+    },
+    {
+      "file": "packages/package_044_q45121_q46120.json",
+      "idRange": "q45121-q46120",
+      "questionCount": 1000,
+      "sha256": "db2e3e053d8effb19f83a4af8cfefb9ddc7171a672ce176997d5f657db1b9b6f"
+    },
+    {
+      "file": "packages/package_045_q46121_q47120.json",
+      "idRange": "q46121-q47120",
+      "questionCount": 1000,
+      "sha256": "9d7938de920b26697ebd7ba643dac42715bf4ecb558e733435affbef02f32cc4"
+    },
+    {
+      "file": "packages/package_046_q47121_q48120.json",
+      "idRange": "q47121-q48120",
+      "questionCount": 1000,
+      "sha256": "35377df16406691057e3537b1942392ebdf9e222b74ffdb5068a83dcd1e80f19"
+    },
+    {
+      "file": "packages/package_047_q48121_q49120.json",
+      "idRange": "q48121-q49120",
+      "questionCount": 1000,
+      "sha256": "c8946b3fc7b02dc138f4b01d574ba6df496347adb590dbccf873ab9ea2d8f049"
+    },
+    {
+      "file": "packages/package_048_q49121_q50120.json",
+      "idRange": "q49121-q50120",
+      "questionCount": 1000,
+      "sha256": "9cc5bc8c539b900eca0573ee6baac77ef57d0b528f49bd32c84596b10c965e43"
+    },
+    {
+      "file": "packages/package_049_q50121_q51120.json",
+      "idRange": "q50121-q51120",
+      "questionCount": 1000,
+      "sha256": "78eeb2698a6ad8964eda86ee570cac90591a4bc64dff02439e948fbff15bfd2d"
+    },
+    {
+      "file": "packages/package_050_q51121_q52120.json",
+      "idRange": "q51121-q52120",
+      "questionCount": 1000,
+      "sha256": "7b3754718793e5d75400e2dc5bce950033591dd4e76c122514d2777c66069bae"
+    },
+    {
+      "file": "packages/package_051_q52121_q53120.json",
+      "idRange": "q52121-q53120",
+      "questionCount": 1000,
+      "sha256": "226d1d3a9fa2f0207716b546b51931704a992b540edd4a340ef3f1229bf26b30"
+    }
+  ],
+  "allPackagesCombinedInstallerTest": "PASS"
+}

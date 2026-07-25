@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q59021",
+    "categoryIndex": 5,
+    "question": "Üç kez Olimpiyat şampiyonu olan diğer Türk halterci kimdir?",
+    "options": [
+      "Halil Mutlu",
+      "Taner Sağır",
+      "Daniyar İsmayilov",
+      "Erol Bilgin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Halil Mutlu 1996, 2000 ve 2004 Olimpiyatlarında altın madalya kazandı."
+  },
+  {
+    "id": "q59022",
+    "categoryIndex": 5,
+    "question": "Taner Sağır hangi spor dalında Olimpiyat şampiyonu oldu?",
+    "options": [
+      "Güreş",
+      "Halter",
+      "Judo",
+      "Boks"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Taner Sağır 2004 Atina Olimpiyatları'nda halterde altın madalya kazandı."
+  },
+  {
+    "id": "q59023",
+    "categoryIndex": 5,
+    "question": "Mete Gazoz Olimpiyat şampiyonu olduğu spor dalı hangisidir?",
+    "options": [
+      "Modern pentatlon",
+      "Eskrim",
+      "Okçuluk",
+      "Atıcılık"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mete Gazoz 2020 Tokyo Olimpiyatları'nda klasik yay bireyselde altın madalya kazandı."
+  },
+  {
+    "id": "q59024",
+    "categoryIndex": 5,
+    "question": "Mete Gazoz'un Olimpiyat altını kazandığı yay kategorisi hangisidir?",
+    "options": [
+      "Arbalet",
+      "Geleneksel yay",
+      "Makaralı yay",
+      "Klasik yay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Olimpik okçulukta bireysel ve takım müsabakaları klasik yayla yapılır."
+  },
+  {
+    "id": "q59025",
+    "categoryIndex": 5,
+    "question": "Busenaz Sürmeneli Olimpiyat şampiyonu olduğu spor dalı hangisidir?",
+    "options": [
+      "Boks",
+      "Tekvando",
+      "Judo",
+      "Güreş"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Busenaz Sürmeneli 2020 Tokyo Olimpiyatları'nda kadınlar boksta altın madalya kazandı."
+  },
+  {
+    "id": "q59026",
+    "categoryIndex": 5,
+    "question": "Busenaz Sürmeneli Türkiye adına hangi ilke imza attı?",
+    "options": [
+      "İlk kadın güreşçi olmak",
+      "Olimpiyatlarda boksta altın kazanan ilk kadın olmak",
+      "İlk tenis Grand Slam'i kazanmak",
+      "İlk yüzme finaline çıkmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sürmeneli, Türkiye'nin kadınlar bokstaki ilk Olimpiyat şampiyonu oldu."
+  },
+  {
+    "id": "q59027",
+    "categoryIndex": 5,
+    "question": "Buse Naz Çakıroğlu hangi spor dalında Olimpiyat madalyaları kazandı?",
+    "options": [
+      "Karate",
+      "Judo",
+      "Boks",
+      "Tekvando"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Buse Naz Çakıroğlu kadınlar boksta Olimpiyat finallerine yükselerek madalya kazandı."
+  },
+  {
+    "id": "q59028",
+    "categoryIndex": 5,
+    "question": "Rıza Kayaalp hangi güreş stilinde dünya ve Avrupa şampiyonlukları kazandı?",
+    "options": [
+      "Yağlı güreş",
+      "Plaj güreşi",
+      "Serbest güreş",
+      "Grekoromen güreş"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Rıza Kayaalp ağır sıklet grekoromen güreşin en başarılı Türk sporcularındandır."
+  },
+  {
+    "id": "q59029",
+    "categoryIndex": 5,
+    "question": "Yasemin Adar Türkiye adına hangi alanda dünya şampiyonu olan ilk kadın sporcu oldu?",
+    "options": [
+      "Güreş",
+      "Judo",
+      "Boks",
+      "Halter"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yasemin Adar 2017'de kadınlar güreşinde Türkiye'nin ilk dünya şampiyonu oldu."
+  },
+  {
+    "id": "q59030",
+    "categoryIndex": 5,
+    "question": "Hülya Şenyurt hangi spor dalında Türkiye'ye kadınlardaki ilk Olimpiyat madalyasını kazandırdı?",
+    "options": [
+      "Tekvando",
+      "Judo",
+      "Halter",
+      "Güreş"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Hülya Şenyurt 1992 Barcelona'da judoda bronz madalya aldı."
+  },
+  {
+    "id": "q59031",
+    "categoryIndex": 5,
+    "question": "Servet Tazegül hangi spor dalında Olimpiyat şampiyonu oldu?",
+    "options": [
+      "Judo",
+      "Boks",
+      "Tekvando",
+      "Karate"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Servet Tazegül 2012 Londra Olimpiyatları'nda tekvandoda altın madalya kazandı."
+  },
+  {
+    "id": "q59032",
+    "categoryIndex": 5,
+    "question": "Nur Tatar hangi spor dalında Olimpiyat madalyaları kazandı?",
+    "options": [
+      "Eskrim",
+      "Judo",
+      "Karate",
+      "Tekvando"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Nur Tatar 2012'de gümüş, 2016'da bronz Olimpiyat madalyası aldı."
+  },
+  {
+    "id": "q59033",
+    "categoryIndex": 5,
+    "question": "Şahika Ercümen hangi spor dalında dünya rekorlarıyla tanınır?",
+    "options": [
+      "Serbest dalış",
+      "Yelken",
+      "Kano",
+      "Sörf"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Şahika Ercümen nefes tutarak yapılan serbest dalış disiplinlerinde rekorlar kırdı."
+  },
+  {
+    "id": "q59034",
+    "categoryIndex": 5,
+    "question": "Derya Can hangi spor dalında Türkiye'yi temsil eder?",
+    "options": [
+      "Dağ bisikleti",
+      "Serbest dalış",
+      "Triatlon",
+      "Okçuluk"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Derya Can paletli ve paletsiz serbest dalış kategorilerinde rekorlar kıran sporcudur."
+  },
+  {
+    "id": "q59035",
+    "categoryIndex": 5,
+    "question": "Süreyya Ayhan hangi atletizm branşında Avrupa şampiyonu oldu?",
+    "options": [
+      "100 metre",
+      "Yüksek atlama",
+      "1500 metre",
+      "Maraton"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Süreyya Ayhan 2002 Avrupa Atletizm Şampiyonası'nda 1500 metrede altın madalya kazandı."
+  },
+  {
+    "id": "q59036",
+    "categoryIndex": 5,
+    "question": "Ramil Guliyev Türkiye adına dünya şampiyonu olduğu atletizm branşı hangisidir?",
+    "options": [
+      "400 metre",
+      "100 metre",
+      "110 metre engelli",
+      "200 metre"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ramil Guliyev 2017 Londra Dünya Şampiyonası'nda 200 metreyi kazandı."
+  },
+  {
+    "id": "q59037",
+    "categoryIndex": 5,
+    "question": "Yasmani Copello Olimpiyat madalyasını hangi atletizm dalında kazandı?",
+    "options": [
+      "400 metre engelli",
+      "Üç adım atlama",
+      "110 metre engelli",
+      "Cirit atma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Copello 2016 Rio Olimpiyatları'nda 400 metre engellide bronz madalya aldı."
+  },
+  {
+    "id": "q59038",
+    "categoryIndex": 5,
+    "question": "Eşref Apak hangi atletizm branşında Olimpiyat madalyası kazandı?",
+    "options": [
+      "Disk atma",
+      "Çekiç atma",
+      "Gülle atma",
+      "Cirit atma"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Eşref Apak 2004 Atina Olimpiyatları'nda çekiç atmada bronz madalya aldı."
+  },
+  {
+    "id": "q59039",
+    "categoryIndex": 5,
+    "question": "Tuğba Danışmaz 2023 Avrupa Salon Atletizm Şampiyonası'nda hangi branşta altın madalya kazandı?",
+    "options": [
+      "Yüksek atlama",
+      "Sırıkla atlama",
+      "Üç adım atlama",
+      "Uzun atlama"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tuğba Danışmaz, İstanbul'daki 2023 Avrupa Salon Şampiyonası'nda üç adım atlamada birinci oldu."
+  },
+  {
+    "id": "q59040",
+    "categoryIndex": 5,
+    "question": "İlke Özyüksel hangi çoklu spor dalında Türkiye'yi temsil eder?",
+    "options": [
+      "Triatlon",
+      "Dekatlon",
+      "Biatlon",
+      "Modern pentatlon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Modern pentatlon yüzme, eskrim, binicilik ve koşu-atış etaplarından oluşur."
+  },
+  {
+    "id": "q59041",
+    "categoryIndex": 5,
+    "question": "Ferhat Arıcan hangi jimnastik aletinde Olimpiyat madalyası kazandı?",
+    "options": [
+      "Paralel bar",
+      "Atlama masası",
+      "Halka",
+      "Kulplu beygir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ferhat Arıcan 2020 Tokyo Olimpiyatları'nda paralel barda bronz madalya aldı."
+  },
+  {
+    "id": "q59042",
+    "categoryIndex": 5,
+    "question": "İbrahim Çolak dünya şampiyonu olduğu jimnastik aleti hangisidir?",
+    "options": [
+      "Barfiks",
+      "Halka",
+      "Paralel bar",
+      "Kulplu beygir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İbrahim Çolak 2019'da halka aletinde dünya şampiyonu oldu."
+  },
+  {
+    "id": "q59043",
+    "categoryIndex": 5,
+    "question": "Adem Asil dünya şampiyonluğunu hangi jimnastik aletinde kazandı?",
+    "options": [
+      "Yer hareketleri",
+      "Barfiks",
+      "Halka",
+      "Atlama masası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Adem Asil 2022 Dünya Şampiyonası'nda halkada altın madalya aldı."
+  },
+  {
+    "id": "q59044",
+    "categoryIndex": 5,
+    "question": "Vahram Papazyan, Osmanlı Devleti'ni 1912 Stockholm Olimpiyatları'nda hangi branşta temsil etti?",
+    "options": [
+      "Yüzme",
+      "Bisiklet",
+      "Güreş",
+      "Atletizm"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Vahram Papazyan, Stockholm 1912'de orta ve uzun mesafe koşularında yarıştı."
+  },
+  {
+    "id": "q59045",
+    "categoryIndex": 5,
+    "question": "Semih Saygıner hangi spor dalında dünya çapında tanınır?",
+    "options": [
+      "Üç bant bilardo",
+      "Snooker",
+      "Bowling",
+      "Masa tenisi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Semih Saygıner üç bant bilardoda dünya ve Avrupa şampiyonlukları kazanmıştır."
+  },
+  {
+    "id": "q59046",
+    "categoryIndex": 5,
+    "question": "Tayfun Taşdemir hangi spor dalında dünya şampiyonu oldu?",
+    "options": [
+      "Okçuluk",
+      "Üç bant bilardo",
+      "Eskrim",
+      "Golf"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tayfun Taşdemir 2022'de üç bant bilardoda bireysel dünya şampiyonu oldu."
+  },
+  {
+    "id": "q59047",
+    "categoryIndex": 5,
+    "question": "Çağla Büyükakçay Türk tenisinde hangi ilki gerçekleştirdi?",
+    "options": [
+      "Dünya birincisi olmak",
+      "Grand Slam kazanan ilk Türk olmak",
+      "WTA turnuvası kazanan ilk Türk olmak",
+      "Olimpiyat şampiyonu olmak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Çağla Büyükakçay 2016 İstanbul Cup'ı kazanarak WTA tekler şampiyonu olan ilk Türk tenisçi oldu."
+  },
+  {
+    "id": "q59048",
+    "categoryIndex": 5,
+    "question": "Grand Slam ana tablosunda maç kazanan ilk Türk erkek tenisçi kimdir?",
+    "options": [
+      "Altuğ Çelikbilek",
+      "Cem İlkel",
+      "Ergi Kırkın",
+      "Marsel İlhan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Marsel İlhan, Grand Slam ana tablosunda galibiyet alan ilk Türk erkek tenisçi oldu."
+  },
+  {
+    "id": "q59049",
+    "categoryIndex": 5,
+    "question": "Cem Bölükbaşı hangi motor sporları serisinde yarışan ilk Türk pilot oldu?",
+    "options": [
+      "Formula 2",
+      "Formula 1",
+      "IndyCar",
+      "MotoGP"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cem Bölükbaşı 2022'de FIA Formula 2 Şampiyonası'nda yarıştı."
+  },
+  {
+    "id": "q59050",
+    "categoryIndex": 5,
+    "question": "Kenan Sofuoğlu dünya şampiyonluklarını ağırlıklı olarak hangi motosiklet sınıfında kazandı?",
+    "options": [
+      "Superbike",
+      "Supersport",
+      "Motokros",
+      "MotoGP"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kenan Sofuoğlu beş kez Dünya Supersport şampiyonu oldu."
+  },
+  {
+    "id": "q59051",
+    "categoryIndex": 5,
+    "question": "Toprak Razgatlıoğlu hangi motosiklet şampiyonasında dünya şampiyonu oldu?",
+    "options": [
+      "Supersport 300",
+      "Dakar Rallisi",
+      "World Superbike",
+      "MotoGP"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Toprak Razgatlıoğlu 2021'de Dünya Superbike şampiyonluğunu kazandı."
+  },
+  {
+    "id": "q59052",
+    "categoryIndex": 5,
+    "question": "İsmail Balaban hangi geleneksel Türk sporunda başpehlivan oldu?",
+    "options": [
+      "Cirit",
+      "Kuşak güreşi",
+      "Okçuluk",
+      "Yağlı güreş"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İsmail Balaban Kırkpınar Yağlı Güreşleri'nde başpehlivanlık kazandı."
+  },
+  {
+    "id": "q59053",
+    "categoryIndex": 5,
+    "question": "Kırkpınar Yağlı Güreşleri hangi şehirde düzenlenir?",
+    "options": [
+      "Edirne",
+      "Bursa",
+      "Balıkesir",
+      "Kırklareli"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tarihî Kırkpınar güreşleri Edirne Sarayiçi'nde yapılır."
+  },
+  {
+    "id": "q59054",
+    "categoryIndex": 5,
+    "question": "Kırkpınar'da şampiyon olan en üst düzey güreşçiye ne ad verilir?",
+    "options": [
+      "Başaltı",
+      "Başpehlivan",
+      "Cazgır",
+      "Kispetçi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Başpehlivanlık, Kırkpınar'ın baş boyunda birinci olan güreşçiye verilir."
+  },
+  {
+    "id": "q59055",
+    "categoryIndex": 5,
+    "question": "Yağlı güreşçilerin giydiği deri pantolonun adı nedir?",
+    "options": [
+      "Şalvar",
+      "Judogi",
+      "Kispet",
+      "Dobok"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kispet manda veya dana derisinden yapılan geleneksel yağlı güreş giysisidir."
+  },
+  {
+    "id": "q59056",
+    "categoryIndex": 5,
+    "question": "Kırkpınar'da pehlivanları seyirciye tanıtan görevliye ne denir?",
+    "options": [
+      "Davulcu",
+      "Kispetçi",
+      "Meydan hakemi",
+      "Cazgır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Cazgır dua ve manilerle pehlivanları er meydanına çağırır."
+  },
+  {
+    "id": "q59057",
+    "categoryIndex": 5,
+    "question": "Türk atlı sporlarından ciritte temel amaç nedir?",
+    "options": [
+      "Rakibe cirit değdirmek ve kaçınmak",
+      "Hedefe ok atmak",
+      "At üzerinde güreşmek",
+      "Topu kaleye atmak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cirit oyununda biniciler tahta mızrakları rakibe isabet ettirmeye çalışır."
+  },
+  {
+    "id": "q59058",
+    "categoryIndex": 5,
+    "question": "Geleneksel Türk okçuluğunda yayın çekildiği elin başparmağına takılan yüzüğe ne ad verilir?",
+    "options": [
+      "Matrak",
+      "Zihgir",
+      "Kispet",
+      "Tirkeş"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Zihgir, başparmağı kiriş baskısından koruyan okçu yüzüğüdür."
+  },
+  {
+    "id": "q59059",
+    "categoryIndex": 5,
+    "question": "Matrakçı Nasuh'un ustası olduğu geleneksel savaş oyunu hangi araçla oynanır?",
+    "options": [
+      "Taş gülleyle",
+      "At üzerinde ciritle",
+      "Matrak adı verilen değnekle",
+      "Ok ve yayla"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Matrak oyununda oyuncular, matrak adı verilen yumuşak değnek ve kalkanla teknik mücadele yapar."
+  },
+  {
+    "id": "q59060",
+    "categoryIndex": 5,
+    "question": "Türkiye'nin Formula 1 yarışlarına ev sahipliği yapan pistinin adı nedir?",
+    "options": [
+      "Ankara Yarış Pisti",
+      "İzmir Park",
+      "Körfez Pisti",
+      "İstanbul Park"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İstanbul Park, Formula 1 Türkiye Grand Prix'sine ev sahipliği yapan ve 8. virajıyla tanınan pisttir."
+  },
+  {
+    "id": "q59061",
+    "categoryIndex": 5,
+    "question": "İstanbul Park pistinin en meşhur bölümü hangisidir?",
+    "options": [
+      "8. viraj",
+      "Eau Rouge",
+      "Parabolica",
+      "Copse"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dört apeksli uzun sol viraj, pilotlar ve lastikler için zorluğuyla ün kazandı."
+  },
+  {
+    "id": "q59062",
+    "categoryIndex": 5,
+    "question": "Dünya Ralli Şampiyonası'nın 2018-2020 Türkiye ayakları hangi turizm ilçesi çevresinde düzenlendi?",
+    "options": [
+      "Safranbolu",
+      "Marmaris",
+      "Uludağ",
+      "Kapadokya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "WRC Türkiye rallileri 2018, 2019 ve 2020'de Muğla'nın Marmaris ilçesi çevresindeki toprak etaplarda yapıldı."
+  },
+  {
+    "id": "q59063",
+    "categoryIndex": 5,
+    "question": "Rıza Kayaalp ve Taha Akgül hangi iki farklı güreş stilinin öne çıkan isimleridir?",
+    "options": [
+      "Yağlı ve plaj",
+      "Kuşak ve sumo",
+      "Grekoromen ve serbest",
+      "Judo ve tekvando"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Rıza Kayaalp grekoromen, Taha Akgül serbest stilde ağır sıklette başarı kazandı."
+  },
+  {
+    "id": "q59064",
+    "categoryIndex": 5,
+    "question": "Türkiye'nin Olimpiyatlarda en çok madalya kazandığı spor dalı hangisidir?",
+    "options": [
+      "Halter",
+      "Tekvando",
+      "Boks",
+      "Güreş"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye'nin Olimpiyat tarihindeki madalyalarının büyük bölümü serbest ve grekoromen güreşten gelmiştir."
+  },
+  {
+    "id": "q59065",
+    "categoryIndex": 5,
+    "question": "Türk Millî Takımı'nın 2002 Dünya Kupası'ndaki kaptanı kimdi?",
+    "options": [
+      "Bülent Korkmaz",
+      "Rüştü Reçber",
+      "Hakan Şükür",
+      "Tugay Kerimoğlu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bülent Korkmaz, turnuvada millî takımın kaptanlığını yaptı."
+  },
+  {
+    "id": "q59066",
+    "categoryIndex": 5,
+    "question": "Galatasaray tarihinde 'Büyük Kaptan' lakabıyla anılan savunmacı kimdir?",
+    "options": [
+      "Hakan Ünsal",
+      "Bülent Korkmaz",
+      "Cüneyt Tanman",
+      "Tugay Kerimoğlu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bülent Korkmaz altyapıdan yetişip uzun yıllar Galatasaray kaptanlığı yaptı."
+  },
+  {
+    "id": "q59067",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe stadına uzun yıllar adı verilen eski başbakan ve kulüp başkanı kimdir?",
+    "options": [
+      "Faruk Ilgaz",
+      "Ali Şen",
+      "Şükrü Saracoğlu",
+      "Aziz Yıldırım"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Şükrü Saracoğlu hem Türkiye başbakanlığı hem de uzun süre Fenerbahçe başkanlığı yaptı."
+  },
+  {
+    "id": "q59068",
+    "categoryIndex": 5,
+    "question": "Beşiktaş'ın stadına uzun yıllar adı verilen onursal başkanı kimdir?",
+    "options": [
+      "Şeref Bey",
+      "Gordon Milne",
+      "Hakkı Yeten",
+      "Süleyman Seba"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Süleyman Seba 1984-2000 arasında Beşiktaş başkanlığı yaptı."
+  },
+  {
+    "id": "q59069",
+    "categoryIndex": 5,
+    "question": "Trabzonspor'un ilk lig şampiyonluğundaki teknik direktörü kimdi?",
+    "options": [
+      "Ahmet Suat Özyazıcı",
+      "Ertuğrul Sağlam",
+      "Özkan Sümer",
+      "Şenol Güneş"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ahmet Suat Özyazıcı, Trabzonspor'u 1975-76 sezonunda ilk şampiyonluğuna taşıdı."
+  },
+  {
+    "id": "q59070",
+    "categoryIndex": 5,
+    "question": "Trabzonspor'un 2021-22 şampiyonluğundaki teknik direktörü kimdi?",
+    "options": [
+      "Şenol Güneş",
+      "Abdullah Avcı",
+      "Ersun Yanal",
+      "Ünal Karaman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Abdullah Avcı yönetimindeki Trabzonspor 38 yıl aradan sonra lig şampiyonu oldu."
+  },
+  {
+    "id": "q59071",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe'nin 2013 UEFA Avrupa Ligi yarı finalindeki rakibi kimdi?",
+    "options": [
+      "Lazio",
+      "Chelsea",
+      "Benfica",
+      "Sevilla"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Fenerbahçe ilk maçı 1-0 kazandı ancak Lizbon'daki rövanşta elendi."
+  },
+  {
+    "id": "q59072",
+    "categoryIndex": 5,
+    "question": "Beşiktaş'ın 2017-18 Şampiyonlar Ligi grubundaki Portekiz takımı hangisiydi?",
+    "options": [
+      "Benfica",
+      "Sporting",
+      "Braga",
+      "Porto"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Beşiktaş, Porto deplasmanında 3-1 kazanarak gruba güçlü başladı."
+  },
+  {
+    "id": "q59073",
+    "categoryIndex": 5,
+    "question": "Galatasaray'ın Şampiyonlar Ligi'nde 2013'te çeyrek finalde karşılaştığı takım hangisiydi?",
+    "options": [
+      "Real Madrid",
+      "Bayern Münih",
+      "Barcelona",
+      "Manchester United"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Galatasaray İstanbul'daki rövanşı 3-2 kazansa da toplam skorda elendi."
+  },
+  {
+    "id": "q59074",
+    "categoryIndex": 5,
+    "question": "Galatasaray'ın 2012-13 Şampiyonlar Ligi son 16 turunda elediği takım hangisiydi?",
+    "options": [
+      "Milan",
+      "Schalke 04",
+      "Borussia Dortmund",
+      "Valencia"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Galatasaray Almanya'daki rövanşı 3-2 kazanarak çeyrek finale çıktı."
+  },
+  {
+    "id": "q59075",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin ilk UNESCO Küresel Jeoparkı hangi alandır?",
+    "options": [
+      "Kaçkar Jeoparkı",
+      "Nemrut Jeoparkı",
+      "Kula-Salihli Jeoparkı",
+      "Kapadokya Jeoparkı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Manisa'daki Kula-Salihli Jeoparkı, genç volkanik şekilleri ve jeolojik mirasıyla 2013'te UNESCO ağına katıldı."
+  },
+  {
+    "id": "q59076",
+    "categoryIndex": 0,
+    "question": "Narman'daki kırmızı renkli peribacaları hangi ilimizdedir?",
+    "options": [
+      "Bayburt",
+      "Erzincan",
+      "Kars",
+      "Erzurum"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Narman Peribacaları, Erzurum'un Narman ilçesinde aşınmayla şekillenmiş kırmızı tortul oluşumlardır."
+  },
+  {
+    "id": "q59077",
+    "categoryIndex": 0,
+    "question": "Eğirdir Gölü'nün kuzey bölümü hangi adla bilinir?",
+    "options": [
+      "Hoyran Gölü",
+      "Gölcük",
+      "Beyşehir Gölü",
+      "Kovada Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Dar bir boğazla ayrılan gölün kuzey kesimi Hoyran, güney kesimi Eğirdir adıyla anılır."
+  },
+  {
+    "id": "q59078",
+    "categoryIndex": 0,
+    "question": "Kula çevresindeki genç volkan konilerine halk arasında hangi ad verilir?",
+    "options": [
+      "Obruk",
+      "Divlit",
+      "Longoz",
+      "Kırgıbayır"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Manisa Kula'daki küçük volkan konileri yörede divlit adıyla bilinir."
+  },
+  {
+    "id": "q59079",
+    "categoryIndex": 0,
+    "question": "Belen Geçidi hangi iki coğrafi alan arasında tarihî bir bağlantı sağlar?",
+    "options": [
+      "Ergene Ovası ile İstanbul Boğazı",
+      "Van Gölü ile Muş Ovası",
+      "İskenderun Körfezi ile Amik Ovası",
+      "Konya Ovası ile Göller Yöresi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Amanos Dağları üzerindeki Belen Geçidi, Akdeniz kıyısıyla Amik Ovası ve Suriye yönünü birbirine bağlar."
+  },
+  {
+    "id": "q59080",
+    "categoryIndex": 0,
+    "question": "Gelibolu Yarımadası'nın doğu kıyısını hangi boğaz sınırlar?",
+    "options": [
+      "Kerç Boğazı",
+      "Korint Kanalı",
+      "İstanbul Boğazı",
+      "Çanakkale Boğazı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gelibolu Yarımadası'nın doğusunda Çanakkale Boğazı, batısında Ege Denizi bulunur."
+  },
+  {
+    "id": "q59081",
+    "categoryIndex": 0,
+    "question": "Ulubey Kanyonu hangi ilimizin önemli jeomorfolojik oluşumudur?",
+    "options": [
+      "Uşak",
+      "Denizli",
+      "Manisa",
+      "Kütahya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ulubey Kanyonu, Uşak'ta Banaz ve Dokusele çaylarının aşındırmasıyla oluşan geniş bir kanyon sistemidir."
+  },
+  {
+    "id": "q59082",
+    "categoryIndex": 2,
+    "question": "Millî Mücadele'nin ilk siyasi partisi sayılan Anadolu ve Rumeli Müdafaa-i Hukuk Grubu hangi kurum içinde kuruldu?",
+    "options": [
+      "Sivas Kongresi",
+      "TBMM",
+      "Son Osmanlı Mebusan Meclisi",
+      "Meclis-i Ayan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Mustafa Kemal, 1921'de TBMM'deki Müdafaa-i Hukuk yanlılarını Birinci Grup adıyla örgütledi."
+  },
+  {
+    "id": "q59083",
+    "categoryIndex": 2,
+    "question": "Cumhuriyet döneminin ilk muhalefet partisi hangisidir?",
+    "options": [
+      "Millî Kalkınma Partisi",
+      "Serbest Cumhuriyet Fırkası",
+      "Terakkiperver Cumhuriyet Fırkası",
+      "Demokrat Parti"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kazım Karabekir ve arkadaşları 1924'te Terakkiperver Cumhuriyet Fırkasını kurdu."
+  },
+  {
+    "id": "q59084",
+    "categoryIndex": 2,
+    "question": "Serbest Cumhuriyet Fırkasını Atatürk'ün isteğiyle kuran devlet adamı kimdir?",
+    "options": [
+      "Kazım Karabekir",
+      "Rauf Orbay",
+      "Celal Bayar",
+      "Ali Fethi Okyar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ali Fethi Okyar, kontrollü muhalefet denemesi amacıyla 1930'da partiyi kurdu."
+  },
+  {
+    "id": "q59085",
+    "categoryIndex": 2,
+    "question": "Menemen Olayı sırasında öldürülen yedek subay öğretmenin adı nedir?",
+    "options": [
+      "Mustafa Fehmi Kubilay",
+      "Sütçü İmam",
+      "Hasan Tahsin",
+      "Şahin Bey"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kubilay, 23 Aralık 1930'da Menemen'deki ayaklanmaya müdahale ederken öldürüldü."
+  },
+  {
+    "id": "q59086",
+    "categoryIndex": 2,
+    "question": "1926'da Mustafa Kemal'e yönelik suikast girişiminin ortaya çıkarıldığı şehir hangisidir?",
+    "options": [
+      "Bursa",
+      "İzmir",
+      "Ankara",
+      "Samsun"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Plan, Mustafa Kemal'in İzmir ziyareti öncesinde suikastçılardan birinin ihbarıyla ortaya çıktı."
+  },
+  {
+    "id": "q59087",
+    "categoryIndex": 2,
+    "question": "Amasya Görüşmeleri'nde İstanbul Hükûmetini temsil eden devlet adamı kimdi?",
+    "options": [
+      "Tevfik Paşa",
+      "Ali Rıza Paşa",
+      "Salih Paşa",
+      "Damat Ferit Paşa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Ekim 1919'daki görüşmelerde Heyet-i Temsiliye adına Mustafa Kemal, İstanbul Hükûmeti adına Salih Paşa yer aldı."
+  },
+  {
+    "id": "q59088",
+    "categoryIndex": 2,
+    "question": "Sivas Kongresi'nde bütün millî cemiyetler hangi ad altında birleştirildi?",
+    "options": [
+      "Hürriyet ve İtilaf Fırkası",
+      "Kuvayı Milliye Cemiyeti",
+      "Müdafaa-i Milliye Vekâleti",
+      "Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kongre, bölgesel direniş cemiyetlerini tek bir ulusal örgüt çatısı altında topladı."
+  },
+  {
+    "id": "q59089",
+    "categoryIndex": 3,
+    "question": "Mai ve Siyah romanında edebiyat hayalleri kuran genç şairin adı nedir?",
+    "options": [
+      "Ahmet Cemil",
+      "Bihruz Bey",
+      "Mümtaz",
+      "Raif Efendi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Halit Ziya'nın romanı Ahmet Cemil'in 'mai' hayallerden 'siyah' hayal kırıklıklarına geçişini anlatır."
+  },
+  {
+    "id": "q59090",
+    "categoryIndex": 3,
+    "question": "Sinekli Bakkal romanının merkezindeki genç kadının adı nedir?",
+    "options": [
+      "Feride",
+      "Rabia",
+      "Neriman",
+      "Aliye"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Rabia, güzel sesi ve güçlü kişiliğiyle mahallenin farklı dünyalarını bir araya getirir."
+  },
+  {
+    "id": "q59091",
+    "categoryIndex": 3,
+    "question": "Kuyucaklı Yusuf romanında Yusuf'un sevdiği genç kadının adı nedir?",
+    "options": [
+      "Nuran",
+      "Macide",
+      "Muazzez",
+      "Maria Puder"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yusuf ile Muazzez'in ilişkisi kasabadaki çıkar düzeni ve baskılarla trajik bir sona sürüklenir."
+  },
+  {
+    "id": "q59092",
+    "categoryIndex": 3,
+    "question": "Çalıkuşu romanında Feride'nin çocukluk aşkı ve nişanlısı kimdir?",
+    "options": [
+      "Müjgan",
+      "Hayrullah Bey",
+      "Levent",
+      "Kâmran"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Feride, Kâmran'ın sadakatsizliğini öğrendikten sonra Anadolu'da öğretmenlik yapmaya gider."
+  },
+  {
+    "id": "q59093",
+    "categoryIndex": 3,
+    "question": "Puslu Kıtalar Atlası'nda Uzun İhsan Efendi'nin oğlu kimdir?",
+    "options": [
+      "Bünyamin",
+      "Ebrehe",
+      "Kubelik",
+      "Alibaz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Romanın macerası büyük ölçüde Bünyamin'in İstanbul'un karanlık dünyasına karışmasıyla gelişir."
+  },
+  {
+    "id": "q59094",
+    "categoryIndex": 3,
+    "question": "Huzur romanında Mümtaz'ın âşık olduğu kadın kimdir?",
+    "options": [
+      "Suad",
+      "Nuran",
+      "Neriman",
+      "Macide"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mümtaz ile Nuran'ın İstanbul'da gelişen ilişkisi romanın ana duygusal eksenini oluşturur."
+  },
+  {
+    "id": "q59095",
+    "categoryIndex": 3,
+    "question": "Aşk-ı Memnu romanında Adnan Bey'in kızı kimdir?",
+    "options": [
+      "Katina",
+      "Firdevs Hanım",
+      "Nihal",
+      "Peyker"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Nihal, annesini küçük yaşta kaybetmiş ve babasına güçlü bir bağlılık geliştirmiştir."
+  },
+  {
+    "id": "q59096",
+    "categoryIndex": 3,
+    "question": "Sedad Hakkı Eldem'in uzun yıllar belgeleyip çağdaş tasarımlarına kaynak yaptığı konut geleneği hangisidir?",
+    "options": [
+      "Bauhaus apartmanı",
+      "Gotik konut",
+      "Roma villası",
+      "Türk evi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sedad Hakkı Eldem, geleneksel Türk evini rölövelerle belgeleyip modern mimarlıkla yorumladı."
+  },
+  {
+    "id": "q59097",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ilk kadın kimyacılarından ve Sorbonne'da doktora yapan bilim insanı kimdir?",
+    "options": [
+      "Remziye Hisar",
+      "Nüzhet Gökdoğan",
+      "Safiye Ali",
+      "Fatma Şakir Memik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Remziye Hisar, Türkiye'de modern kimyanın öncü kadın akademisyenlerinden biridir."
+  },
+  {
+    "id": "q59098",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ilk kadın astronomu ve ilk kadın dekanlarından biri kimdir?",
+    "options": [
+      "Jale İnan",
+      "Nüzhet Gökdoğan",
+      "Remziye Hisar",
+      "Türkan Akyol"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Nüzhet Gökdoğan, İstanbul Üniversitesi Astronomi Enstitüsünün gelişmesinde önemli rol oynadı."
+  },
+  {
+    "id": "q59099",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ilk kadın arkeoloğu olarak tanınan bilim insanı kimdir?",
+    "options": [
+      "Muazzez İlmiye Çığ",
+      "Halet Çambel",
+      "Jale İnan",
+      "Safiye Ali"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Jale İnan, Perge ve Side kazılarındaki çalışmalarıyla Türk arkeolojisinin öncü isimlerindendir."
+  },
+  {
+    "id": "q59100",
+    "categoryIndex": 4,
+    "question": "Karatepe-Aslantaş kazılarıyla tanınan arkeolog ve eskrimci kimdir?",
+    "options": [
+      "Afet İnan",
+      "Jale İnan",
+      "Muazzez İlmiye Çığ",
+      "Halet Çambel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Halet Çambel, Hitit hiyerogliflerinin çözümüne katkı sağlayan Karatepe kazılarını yönetti."
+  },
+  {
+    "id": "q59101",
+    "categoryIndex": 4,
+    "question": "Sümer ve Hitit tabletleri üzerine çalışmalarıyla tanınan bilim insanı kimdir?",
+    "options": [
+      "Muazzez İlmiye Çığ",
+      "Jale İnan",
+      "Halet Çambel",
+      "Nüzhet Gökdoğan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Muazzez İlmiye Çığ, İstanbul Arkeoloji Müzelerinde binlerce çivi yazılı tableti sınıflandırdı."
+  },
+  {
+    "id": "q59102",
+    "categoryIndex": 4,
+    "question": "Feza Gürsey hangi fizik alanındaki çalışmalarıyla tanınır?",
+    "options": [
+      "Akustik mühendisliği",
+      "Kuramsal fizik",
+      "Jeofizik",
+      "Meteoroloji"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Feza Gürsey parçacık fiziği, simetri ve grup teorisi alanlarında önemli katkılar yaptı."
+  },
+  {
+    "id": "q59103",
+    "categoryIndex": 4,
+    "question": "İTÜpSAT1 hangi tür uzay aracıdır?",
+    "options": [
+      "Uzay teleskobu",
+      "Haberleşme uçağı",
+      "Küp uydu",
+      "İnsanlı kapsül"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İstanbul Teknik Üniversitesi tarafından geliştirilen İTÜpSAT1, 2009'da fırlatılan bir CubeSat'tır."
+  },
+  {
+    "id": "q59104",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ilk uzaktan algılama uydularından BİLSAT hangi amaçla kullanıldı?",
+    "options": [
+      "İnsanlı uçuş",
+      "Televizyon dizisi yayını",
+      "Ay yüzeyine iniş",
+      "Yer gözlemi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "BİLSAT, görüntüleme ve uzaktan algılama teknolojilerinde deneyim kazanmak için kullanıldı."
+  },
+  {
+    "id": "q59105",
+    "categoryIndex": 4,
+    "question": "Türksat 6A'yı yörüngeye taşıyan roket hangisidir?",
+    "options": [
+      "Falcon 9",
+      "Soyuz 2",
+      "Long March 5",
+      "Ariane 5"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Türksat 6A, Temmuz 2024'te SpaceX'in Falcon 9 roketiyle fırlatıldı."
+  },
+  {
+    "id": "q59106",
+    "categoryIndex": 4,
+    "question": "Alper Gezeravcı Uluslararası Uzay İstasyonu'nda kaç Türk bilimsel deneyi yürüttü?",
+    "options": [
+      "21",
+      "13",
+      "10",
+      "7"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Axiom Mission 3 sırasında farklı üniversite ve kurumların hazırladığı 13 deney gerçekleştirildi."
+  },
+  {
+    "id": "q59107",
+    "categoryIndex": 4,
+    "question": "Burdur Gölü'ne özgü Aphanius sureyanus türünün yaygın Türkçe adı nedir?",
+    "options": [
+      "Van sazanı",
+      "İnci kefali",
+      "Burdur dişli sazancığı",
+      "Siraz balığı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Aphanius sureyanus yalnızca Burdur Gölü havzasında yaşayan Burdur dişli sazancığıdır."
+  },
+  {
+    "id": "q59108",
+    "categoryIndex": 4,
+    "question": "Kızılırmak Deltası uluslararası öneme sahip sulak alanları koruyan hangi sözleşme kapsamında listelenmiştir?",
+    "options": [
+      "Kyoto Orman Antlaşması",
+      "Montrö Sözleşmesi",
+      "Bern Denizcilik Protokolü",
+      "Ramsar Sözleşmesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kızılırmak Deltası kuş çeşitliliği ve sulak alan habitatları nedeniyle Ramsar alanıdır."
+  },
+  {
+    "id": "q59109",
+    "categoryIndex": 4,
+    "question": "Akkuyu Nükleer Güç Santrali'nde kullanılması planlanan reaktör tipi hangisidir?",
+    "options": [
+      "VVER-1200",
+      "AP600",
+      "RBMK-1000",
+      "CANDU-6"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Akkuyu'da Rus tasarımı basınçlı su reaktörü VVER-1200 üniteleri planlanmıştır."
+  },
+  {
+    "id": "q59110",
+    "categoryIndex": 5,
+    "question": "Türkiye A Millî Futbol Takımı 2003 FIFA Konfederasyonlar Kupası'nı kaçıncı tamamladı?",
+    "options": [
+      "Birinci",
+      "Üçüncü",
+      "Dördüncü",
+      "İkinci"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Türkiye, üçüncülük maçında Kolombiya'yı 2-1 yenerek turnuvayı üçüncü bitirdi."
+  },
+  {
+    "id": "q59111",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe'nin Manchester United'ı 3-0 yendiği 2004 Şampiyonlar Ligi maçında üç golü de kim attı?",
+    "options": [
+      "Nicolas Anelka",
+      "Pierre van Hooijdonk",
+      "Tuncay Şanlı",
+      "Alex de Souza"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tuncay Şanlı, Kadıköy'deki maçta hat-trick yaparak unutulmaz bir performans sergiledi."
+  },
+  {
+    "id": "q59112",
+    "categoryIndex": 5,
+    "question": "Mete Gazoz 2023'te hangi önemli bireysel unvanı kazandı?",
+    "options": [
+      "Olimpiyat halter şampiyonluğu",
+      "Avrupa güreş şampiyonluğu",
+      "Dünya eskrim şampiyonluğu",
+      "Dünya okçuluk şampiyonluğu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mete Gazoz Berlin'deki 2023 Dünya Okçuluk Şampiyonası'nda klasik yay bireyselde altın madalya aldı."
+  },
+  {
+    "id": "q59113",
+    "categoryIndex": 5,
+    "question": "Yasemin Adar kadınlar güreşinde Avrupa şampiyonu olan ilk Türk sporcu unvanını hangi yıl aldı?",
+    "options": [
+      "2016",
+      "2008",
+      "2020",
+      "2012"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Yasemin Adar 2016 Avrupa Güreş Şampiyonası'nda altın madalya kazanarak bir ilke imza attı."
+  },
+  {
+    "id": "q59114",
+    "categoryIndex": 5,
+    "question": "Türkiye erkek voleybol millî takımı 2021 ve 2023'te hangi Avrupa organizasyonunu kazandı?",
+    "options": [
+      "Avrupa Gümüş Ligi",
+      "CEV Avrupa Altın Ligi",
+      "CEV Şampiyonlar Ligi",
+      "Dünya Kulüpler Şampiyonası"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Filenin Efeleri, CEV Avrupa Altın Ligi'nde 2019'un ardından 2021 ve 2023'te de şampiyon oldu."
+  },
+  {
+    "id": "q59115",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe'nin 1968 Balkan Kupası zaferi Türk kulüp futbolu açısından hangi ilkti?",
+    "options": [
+      "Şampiyonlar Ligi'ne katılan ilk takım olmak",
+      "Dünya Kulüpler Kupası'na çıkmak",
+      "Uluslararası kupa kazanan ilk Türk futbol takımı olmak",
+      "Namağlup lig şampiyonu olmak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Fenerbahçe'nin AEK Atina'yı geçerek aldığı Balkan Kupası, Türk futbol kulüplerinin ilk uluslararası kupası kabul edilir."
+  },
+  {
+    "id": "q59116",
+    "categoryIndex": 3,
+    "question": "Yunus Emre Oratoryosu'nun bestecisi kimdir?",
+    "options": [
+      "Cemal Reşit Rey",
+      "Ulvi Cemal Erkin",
+      "Necil Kazım Akses",
+      "Ahmed Adnan Saygun"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ahmed Adnan Saygun'un 1942'de bestelediği eser, Yunus Emre'nin şiirlerini çok sesli müzikle buluşturur."
+  },
+  {
+    "id": "q59117",
+    "categoryIndex": 3,
+    "question": "Köçekçe adlı orkestra süitinin bestecisi kimdir?",
+    "options": [
+      "Ulvi Cemal Erkin",
+      "Cemal Reşit Rey",
+      "Ahmed Adnan Saygun",
+      "Hasan Ferit Alnar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Ulvi Cemal Erkin, geleneksel köçek müziklerinden esinlenerek Köçekçe süitini besteledi."
+  },
+  {
+    "id": "q59118",
+    "categoryIndex": 3,
+    "question": "İstanbul Resim ve Heykel Müzesi'nin kurucu müdürlüğünü yapan ressam kimdir?",
+    "options": [
+      "Bedri Rahmi Eyüboğlu",
+      "Halil Dikmen",
+      "İbrahim Çallı",
+      "Osman Hamdi Bey"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Halil Dikmen, 1937'de açılan İstanbul Resim ve Heykel Müzesi'nin ilk müdürü oldu."
+  },
+  {
+    "id": "q59119",
+    "categoryIndex": 5,
+    "question": "Taha Akgül Olimpiyat altın madalyasını hangi oyunlarda kazandı?",
+    "options": [
+      "2008 Pekin Olimpiyatları",
+      "2012 Londra Olimpiyatları",
+      "2016 Rio Olimpiyatları",
+      "2020 Tokyo Olimpiyatları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Taha Akgül, Rio 2016'da erkekler serbest güreş 125 kiloda Olimpiyat şampiyonu oldu."
+  },
+  {
+    "id": "q59120",
+    "categoryIndex": 2,
+    "question": "Takvim-i Vekayi hangi yıl yayımlanmaya başladı?",
+    "options": [
+      "1839",
+      "1826",
+      "1860",
+      "1831"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Osmanlı'nın ilk resmî gazetesi Takvim-i Vekayi, II. Mahmud döneminde 1831'de yayımlanmaya başladı."
+  }
+]

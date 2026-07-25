@@ -1,0 +1,652 @@
+{
+  "geo_turkey": {
+    "sourceName": "T.C. Kültür ve Turizm Bakanlığı / ilgili resmî arşiv",
+    "url": "https://www.ktb.gov.tr/",
+    "scope": "Türkiye kültürü, coğrafyası, sanat ve tarih"
+  },
+  "geo_unesco": {
+    "sourceName": "UNESCO",
+    "url": "https://www.unesco.org/",
+    "scope": "Kültürel miras, tarih ve gelenek"
+  },
+  "geo_britannica": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_flags": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_worldfactbook": {
+    "sourceName": "CIA World Factbook",
+    "url": "https://www.cia.gov/the-world-factbook/",
+    "scope": "Ülke ve sınır bilgileri"
+  },
+  "geo_noaa": {
+    "sourceName": "NOAA",
+    "url": "https://www.noaa.gov/",
+    "scope": "Okyanus, atmosfer ve deniz yaşamı"
+  },
+  "ent_turkish_cinema": {
+    "sourceName": "T.C. Kültür ve Turizm Bakanlığı / ilgili resmî arşiv",
+    "url": "https://www.ktb.gov.tr/",
+    "scope": "Türkiye kültürü, coğrafyası, sanat ve tarih"
+  },
+  "ent_film_festivals": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "ent_turkish_tv": {
+    "sourceName": "T.C. Kültür ve Turizm Bakanlığı / ilgili resmî arşiv",
+    "url": "https://www.ktb.gov.tr/",
+    "scope": "Türkiye kültürü, coğrafyası, sanat ve tarih"
+  },
+  "ent_classic_film": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "ent_games": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "hist_unesco": {
+    "sourceName": "UNESCO",
+    "url": "https://www.unesco.org/",
+    "scope": "Kültürel miras, tarih ve gelenek"
+  },
+  "hist_britannica": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "hist_un": {
+    "sourceName": "UNESCO",
+    "url": "https://www.unesco.org/",
+    "scope": "Kültürel miras, tarih ve gelenek"
+  },
+  "hist_ottoman": {
+    "sourceName": "T.C. Kültür ve Turizm Bakanlığı / ilgili resmî arşiv",
+    "url": "https://www.ktb.gov.tr/",
+    "scope": "Türkiye kültürü, coğrafyası, sanat ve tarih"
+  },
+  "hist_turkish": {
+    "sourceName": "T.C. Kültür ve Turizm Bakanlığı / ilgili resmî arşiv",
+    "url": "https://www.ktb.gov.tr/",
+    "scope": "Türkiye kültürü, coğrafyası, sanat ve tarih"
+  },
+  "hist_turkish_republic": {
+    "sourceName": "T.C. Kültür ve Turizm Bakanlığı / ilgili resmî arşiv",
+    "url": "https://www.ktb.gov.tr/",
+    "scope": "Türkiye kültürü, coğrafyası, sanat ve tarih"
+  },
+  "hist_nasa": {
+    "sourceName": "NASA",
+    "url": "https://science.nasa.gov/",
+    "scope": "Uzay, astronomi ve görev tarihi"
+  },
+  "hist_medicine": {
+    "sourceName": "NIH / NLM",
+    "url": "https://www.nih.gov/",
+    "scope": "İnsan biyolojisi ve tıp tarihi"
+  },
+  "art_mythology": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "art_britannica": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "art_japan": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "lit_britannica": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "lit_publisher": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "sci_smithsonian": {
+    "sourceName": "Smithsonian Institution",
+    "url": "https://www.si.edu/",
+    "scope": "Doğa tarihi, kültür ve tarih"
+  },
+  "sci_birds": {
+    "sourceName": "Britannica / ilgili bilim kurumu",
+    "url": "https://www.britannica.com/science",
+    "scope": "Bilimsel genel bilgi"
+  },
+  "sci_nature": {
+    "sourceName": "Britannica / ilgili bilim kurumu",
+    "url": "https://www.britannica.com/science",
+    "scope": "Bilimsel genel bilgi"
+  },
+  "sci_kew": {
+    "sourceName": "Royal Botanic Gardens, Kew",
+    "url": "https://www.kew.org/",
+    "scope": "Bitki bilimi"
+  },
+  "sci_nasa": {
+    "sourceName": "NASA",
+    "url": "https://science.nasa.gov/",
+    "scope": "Uzay, astronomi ve görev tarihi"
+  },
+  "sci_usgs": {
+    "sourceName": "USGS",
+    "url": "https://www.usgs.gov/",
+    "scope": "Jeoloji, yanardağ ve doğal oluşumlar"
+  },
+  "sci_nih": {
+    "sourceName": "NIH / NLM",
+    "url": "https://www.nih.gov/",
+    "scope": "İnsan biyolojisi ve tıp tarihi"
+  },
+  "sport_uefa": {
+    "sourceName": "UEFA",
+    "url": "https://www.uefa.com/",
+    "scope": "Avrupa futbolu"
+  },
+  "sport_fifa": {
+    "sourceName": "FIFA",
+    "url": "https://www.fifa.com/",
+    "scope": "Futbol tarihi ve turnuvalar"
+  },
+  "sport_turkey": {
+    "sourceName": "İlgili uluslararası spor federasyonu",
+    "url": "https://www.olympics.com/",
+    "scope": "Spor kuralı ve tarih kaydı"
+  },
+  "sport_unesco": {
+    "sourceName": "UNESCO",
+    "url": "https://www.unesco.org/",
+    "scope": "Kültürel miras, tarih ve gelenek"
+  },
+  "sport_nba_rules": {
+    "sourceName": "NBA",
+    "url": "https://www.nba.com/",
+    "scope": "Basketbol kuralları ve tarihi"
+  },
+  "sport_itf": {
+    "sourceName": "International Tennis Federation",
+    "url": "https://www.itftennis.com/",
+    "scope": "Tenis kuralları ve tarihi"
+  },
+  "sport_fivb": {
+    "sourceName": "FIVB",
+    "url": "https://www.fivb.com/",
+    "scope": "Voleybol kuralları"
+  },
+  "sport_fide": {
+    "sourceName": "FIDE",
+    "url": "https://www.fide.com/",
+    "scope": "Satranç kuralları"
+  },
+  "geo_statistics": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_finland": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_nz": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_nationalgeographic": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "ent_lotr": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "ent_harrypotter": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "ent_starwars": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "ent_horror": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "hist_japan": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "art_music": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "art_louvre": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "art_museum": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "sci_ocean": {
+    "sourceName": "NOAA",
+    "url": "https://www.noaa.gov/",
+    "scope": "Okyanus, atmosfer ve deniz yaşamı"
+  },
+  "sport_fia": {
+    "sourceName": "FIA",
+    "url": "https://www.fia.com/",
+    "scope": "Motor sporları kuralları"
+  },
+  "sport_boxing": {
+    "sourceName": "İlgili uluslararası spor federasyonu",
+    "url": "https://www.olympics.com/",
+    "scope": "Spor kuralı ve tarih kaydı"
+  },
+  "geo_volcano": {
+    "sourceName": "USGS",
+    "url": "https://www.usgs.gov/",
+    "scope": "Jeoloji, yanardağ ve doğal oluşumlar"
+  },
+  "geo_usgs": {
+    "sourceName": "USGS",
+    "url": "https://www.usgs.gov/",
+    "scope": "Jeoloji, yanardağ ve doğal oluşumlar"
+  },
+  "geo_iceland": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_nps": {
+    "sourceName": "U.S. National Park Service",
+    "url": "https://www.nps.gov/",
+    "scope": "Millî parklar ve tarihî alanlar"
+  },
+  "geo_unep": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "ent_thriller": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "hist_britishmuseum": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "hist_istanbul": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "art_technique": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "sci_noaa": {
+    "sourceName": "NOAA",
+    "url": "https://www.noaa.gov/",
+    "scope": "Okyanus, atmosfer ve deniz yaşamı"
+  },
+  "sci_entomology": {
+    "sourceName": "Britannica / ilgili bilim kurumu",
+    "url": "https://www.britannica.com/science",
+    "scope": "Bilimsel genel bilgi"
+  },
+  "geo_timezones": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "ent_animation": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "ent_anime": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "hist_nobel": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "hist_redcross": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "hist_smithsonian": {
+    "sourceName": "Smithsonian Institution",
+    "url": "https://www.si.edu/",
+    "scope": "Doğa tarihi, kültür ve tarih"
+  },
+  "hist_nps": {
+    "sourceName": "U.S. National Park Service",
+    "url": "https://www.nps.gov/",
+    "scope": "Millî parklar ve tarihî alanlar"
+  },
+  "lit_terms": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "sport_worldathletics": {
+    "sourceName": "World Athletics",
+    "url": "https://worldathletics.org/",
+    "scope": "Atletizm kuralları ve tarihi"
+  },
+  "sport_olympics": {
+    "sourceName": "Olympics",
+    "url": "https://www.olympics.com/",
+    "scope": "Olimpiyat tarihi ve sporcular"
+  },
+  "geo_eurotunnel": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "ent_music": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "ent_turkish_music": {
+    "sourceName": "T.C. Kültür ve Turizm Bakanlığı / ilgili resmî arşiv",
+    "url": "https://www.ktb.gov.tr/",
+    "scope": "Türkiye kültürü, coğrafyası, sanat ve tarih"
+  },
+  "hist_vatican": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "lit_turkish": {
+    "sourceName": "T.C. Kültür ve Turizm Bakanlığı / ilgili resmî arşiv",
+    "url": "https://www.ktb.gov.tr/",
+    "scope": "Türkiye kültürü, coğrafyası, sanat ve tarih"
+  },
+  "sci_britannica": {
+    "sourceName": "Britannica / ilgili bilim kurumu",
+    "url": "https://www.britannica.com/science",
+    "scope": "Bilimsel genel bilgi"
+  },
+  "sci_fda": {
+    "sourceName": "U.S. FDA",
+    "url": "https://www.fda.gov/",
+    "scope": "Gıda ve günlük bilim"
+  },
+  "sci_chemistry": {
+    "sourceName": "Britannica / ilgili bilim kurumu",
+    "url": "https://www.britannica.com/science",
+    "scope": "Bilimsel genel bilgi"
+  },
+  "geo_norway": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_namibia": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_france": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_peru": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_hawaii": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "ent_tv": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "art_architecture": {
+    "sourceName": "Britannica / ilgili müze, yayıncı veya eser kaydı",
+    "url": "https://www.britannica.com/",
+    "scope": "Sanat ve edebiyat"
+  },
+  "sport_worldaquatics": {
+    "sourceName": "World Aquatics",
+    "url": "https://www.worldaquatics.com/",
+    "scope": "Yüzme ve su sporları"
+  },
+  "sport_worldrowing": {
+    "sourceName": "World Rowing",
+    "url": "https://worldrowing.com/",
+    "scope": "Kürek sporu"
+  },
+  "sport_canoe": {
+    "sourceName": "International Canoe Federation",
+    "url": "https://www.canoeicf.com/",
+    "scope": "Kano ve kayak"
+  },
+  "sport_sailing": {
+    "sourceName": "World Sailing",
+    "url": "https://www.sailing.org/",
+    "scope": "Yelken"
+  },
+  "sport_surfing": {
+    "sourceName": "İlgili uluslararası spor federasyonu",
+    "url": "https://www.olympics.com/",
+    "scope": "Spor kuralı ve tarih kaydı"
+  },
+  "sport_diving": {
+    "sourceName": "İlgili uluslararası spor federasyonu",
+    "url": "https://www.olympics.com/",
+    "scope": "Spor kuralı ve tarih kaydı"
+  },
+  "sci_ecology": {
+    "sourceName": "Britannica / ilgili bilim kurumu",
+    "url": "https://www.britannica.com/science",
+    "scope": "Bilimsel genel bilgi"
+  },
+  "sport_fis": {
+    "sourceName": "International Ski and Snowboard Federation",
+    "url": "https://www.fis-ski.com/",
+    "scope": "Kayak disiplinleri"
+  },
+  "sport_curling": {
+    "sourceName": "World Curling",
+    "url": "https://worldcurling.org/",
+    "scope": "Curling kuralları"
+  },
+  "sport_isu": {
+    "sourceName": "International Skating Union",
+    "url": "https://www.isu.org/",
+    "scope": "Buz pateni"
+  },
+  "geo_food": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "ent_biopic": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "ent_music_film": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "hist_ukparliament": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "hist_usarchives": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "hist_australia": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "hist_nz": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî arşiv",
+    "url": "https://www.britannica.com/",
+    "scope": "Tarihsel bilgi"
+  },
+  "sci_physics": {
+    "sourceName": "Britannica / ilgili bilim kurumu",
+    "url": "https://www.britannica.com/science",
+    "scope": "Bilimsel genel bilgi"
+  },
+  "sport_nba": {
+    "sourceName": "NBA",
+    "url": "https://www.nba.com/",
+    "scope": "Basketbol kuralları ve tarihi"
+  },
+  "geo_languages": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "ent_eurovision": {
+    "sourceName": "Eurovision",
+    "url": "https://eurovision.tv/",
+    "scope": "Eurovision tarih kaydı"
+  },
+  "geo_singapore": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_australia": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_canada": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_seattle": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_belgium": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_germany": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_czech": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_hungary": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_denmark": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "geo_italy": {
+    "sourceName": "Encyclopaedia Britannica / ilgili resmî coğrafya kurumu",
+    "url": "https://www.britannica.com/",
+    "scope": "Coğrafya ve yer bilgisi"
+  },
+  "ent_superhero": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "ent_scifi_tv": {
+    "sourceName": "Resmî yapım, yayıncı ve eser jeneriği / BFI",
+    "url": "https://www.bfi.org.uk/",
+    "scope": "Film, dizi, oyun ve müzik eser bilgisi"
+  },
+  "sci_food": {
+    "sourceName": "Britannica / ilgili bilim kurumu",
+    "url": "https://www.britannica.com/science",
+    "scope": "Bilimsel genel bilgi"
+  },
+  "sport_nfl": {
+    "sourceName": "NFL",
+    "url": "https://www.nfl.com/",
+    "scope": "Amerikan futbolu"
+  },
+  "sport_nhl": {
+    "sourceName": "NHL",
+    "url": "https://www.nhl.com/",
+    "scope": "Buz hokeyi"
+  },
+  "sport_mlb": {
+    "sourceName": "MLB",
+    "url": "https://www.mlb.com/",
+    "scope": "Beyzbol"
+  },
+  "sport_rugby": {
+    "sourceName": "İlgili uluslararası spor federasyonu",
+    "url": "https://www.olympics.com/",
+    "scope": "Spor kuralı ve tarih kaydı"
+  },
+  "sport_golf": {
+    "sourceName": "İlgili uluslararası spor federasyonu",
+    "url": "https://www.olympics.com/",
+    "scope": "Spor kuralı ve tarih kaydı"
+  },
+  "sport_cricket": {
+    "sourceName": "İlgili uluslararası spor federasyonu",
+    "url": "https://www.olympics.com/",
+    "scope": "Spor kuralı ve tarih kaydı"
+  }
+}

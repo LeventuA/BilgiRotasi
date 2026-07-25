@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "questionCount": 100,
+  "idRange": "q54421-q54520",
+  "categoryCounts": {
+    "Coğrafya": 17,
+    "Eğlence": 17,
+    "Tarih": 17,
+    "Sanat & Edebiyat": 17,
+    "Bilim & Doğa": 16,
+    "Spor": 16
+  },
+  "difficultyCounts": {
+    "Orta": 30,
+    "Kolay": 69,
+    "Zor": 1
+  },
+  "answerIndexCounts": {
+    "0": 25,
+    "1": 25,
+    "2": 25,
+    "3": 25
+  },
+  "packageFile": "v2_pack_004_q54421_q54520.json",
+  "sourceFile": "v2_pack_004_sources.json"
+}

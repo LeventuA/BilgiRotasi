@@ -1,0 +1,324 @@
+class CareerStats {
+  CareerStats({
+    this.totalQuestions = 0,
+    this.totalCorrect = 0,
+    this.totalWrong = 0,
+    this.gamesStarted = 0,
+    this.soloWins = 0,
+    this.multiplayerWins = 0,
+    this.marathonRuns = 0,
+    this.perfectMarathons = 0,
+    this.bestStreak = 0,
+    this.totalBadges = 0,
+    List<int>? categoryAnswered,
+    List<int>? categoryCorrect,
+  })  : categoryAnswered = categoryAnswered ??
+            List<int>.filled(GameCategory.values.length, 0),
+        categoryCorrect = categoryCorrect ??
+            List<int>.filled(GameCategory.values.length, 0);
+
+  int totalQuestions;
+  int totalCorrect;
+  int totalWrong;
+  int gamesStarted;
+  int soloWins;
+  int multiplayerWins;
+  int marathonRuns;
+  int perfectMarathons;
+  int bestStreak;
+  int totalBadges;
+  final List<int> categoryAnswered;
+  final List<int> categoryCorrect;
+
+  int get completedGames =>
+      soloWins + multiplayerWins + marathonRuns;
+
+  int get accuracy {
+    if (totalQuestions == 0) return 0;
+    return (totalCorrect / totalQuestions * 100).round();
+  }
+
+  int categoryAccuracy(int index) {
+    if (index < 0 ||
+        index >= categoryAnswered.length ||
+        categoryAnswered[index] == 0) {
+      return 0;
+    }
+
+    return (categoryCorrect[index] /
+            categoryAnswered[index] *
+            100)
+        .round();
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'totalQuestions': totalQuestions,
+      'totalCorrect': totalCorrect,
+      'totalWrong': totalWrong,
+      'gamesStarted': gamesStarted,
+      'soloWins': soloWins,
+      'multiplayerWins': multiplayerWins,
+      'marathonRuns': marathonRuns,
+      'perfectMarathons': perfectMarathons,
+      'bestStreak': bestStreak,
+      'totalBadges': totalBadges,
+      'categoryAnswered': categoryAnswered,
+      'categoryCorrect': categoryCorrect,
+    };
+  }
+
+  factory CareerStats.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    List<int> readList(String key) {
+      final raw = json[key];
+
+      if (raw is! List) {
+        return List<int>.filled(
+          GameCategory.values.length,
+          0,
+        );
+      }
+
+      final values = raw
+          .map((value) => (value as num?)?.toInt() ?? 0)
+          .take(GameCategory.values.length)
+          .toList();
+
+      while (values.length < GameCategory.values.length) {
+        values.add(0);
+      }
+
+      return values;
+    }
+
+    return CareerStats(
+      totalQuestions:
+          (json['totalQuestions'] as num?)?.toInt() ?? 0,
+      totalCorrect:
+          (json['totalCorrect'] as num?)?.toInt() ?? 0,
+      totalWrong:
+          (json['totalWrong'] as num?)?.toInt() ?? 0,
+      gamesStarted:
+          (json['gamesStarted'] as num?)?.toInt() ?? 0,
+      soloWins: (json['soloWins'] as num?)?.toInt() ?? 0,
+      multiplayerWins:
+          (json['multiplayerWins'] as num?)?.toInt() ?? 0,
+      marathonRuns:
+          (json['marathonRuns'] as num?)?.toInt() ?? 0,
+      perfectMarathons:
+          (json['perfectMarathons'] as num?)?.toInt() ?? 0,
+      bestStreak:
+          (json['bestStreak'] as num?)?.toInt() ?? 0,
+      totalBadges:
+          (json['totalBadges'] as num?)?.toInt() ?? 0,
+      categoryAnswered: readList('categoryAnswered'),
+      categoryCorrect: readList('categoryCorrect'),
+    );
+  }
+}
+
+class CareerStatsService {
+  CareerStatsService._();
+
+  static const String _key =
+      'bilgi_rotasi_career_stats_v1';
+  static final SharedPreferencesAsync _preferences =
+      SharedPreferencesAsync();
+
+  static Future<CareerStats> load() async {
+    try {
+      final raw = await _preferences.getString(_key);
+
+      if (raw == null || raw.trim().isEmpty) {
+        return CareerStats();
+      }
+
+      final decoded = jsonDecode(raw);
+
+      if (decoded is Map<String, dynamic>) {
+        return CareerStats.fromJson(decoded);
+      }
+
+      if (decoded is Map) {
+        return CareerStats.fromJson(
+          Map<String, dynamic>.from(decoded),
+        );
+      }
+    } catch (_) {
+      // Bozuk istatistik kaydı oyunu etkilememeli.
+    }
+
+    return CareerStats();
+  }
+
+  static Future<void> _save(CareerStats stats) async {
+    try {
+      await _preferences.setString(
+        _key,
+        jsonEncode(stats.toJson()),
+      );
+    } catch (_) {
+      // İstatistik kaydı oyunu durdurmamalı.
+    }
+  }
+
+  static Future<void> recordGameStarted() async {
+    final stats = await load();
+    stats.gamesStarted++;
+    await _save(stats);
+  }
+
+  static Future<void> recordAnswer({
+    required int categoryIndex,
+    required bool correct,
+    bool badgeEarned = false,
+  }) async {
+    final stats = await load();
+
+    stats.totalQuestions++;
+
+    if (correct) {
+      stats.totalCorrect++;
+    } else {
+      stats.totalWrong++;
+    }
+
+    if (categoryIndex >= 0 &&
+        categoryIndex < GameCategory.values.length) {
+      stats.categoryAnswered[categoryIndex]++;
+
+      if (correct) {
+        stats.categoryCorrect[categoryIndex]++;
+      }
+    }
+
+    if (badgeEarned) {
+      stats.totalBadges++;
+    }
+
+    await _save(stats);
+  }
+
+  static Future<void> recordGameCompleted({
+    required bool solo,
+  }) async {
+    final stats = await load();
+
+    if (solo) {
+      stats.soloWins++;
+    } else {
+      stats.multiplayerWins++;
+    }
+
+    await _save(stats);
+  }
+
+  static Future<void> recordMarathon({
+    required int questionCount,
+    required int correct,
+    required int bestStreak,
+  }) async {
+    final stats = await load();
+
+    stats.marathonRuns++;
+
+    if (correct == questionCount && questionCount > 0) {
+      stats.perfectMarathons++;
+    }
+
+    stats.bestStreak = max(
+      stats.bestStreak,
+      bestStreak,
+    );
+
+    await _save(stats);
+  }
+
+  static Future<void> clear() async {
+    try {
+      await _preferences.remove(_key);
+    } catch (_) {
+      // Sıfırlama sorunu ekranı kilitlememeli.
+    }
+  }
+}
+
+class CareerAchievement {
+  const CareerAchievement({
+    required this.emoji,
+    required this.title,
+    required this.description,
+    required this.isUnlocked,
+  });
+
+  final String emoji;
+  final String title;
+  final String description;
+  final bool Function(CareerStats stats) isUnlocked;
+}
+
+final List<CareerAchievement> careerAchievements = [
+  CareerAchievement(
+    emoji: '👣',
+    title: 'İlk Adım',
+    description: 'İlk sorunu cevapla.',
+    isUnlocked: (stats) => stats.totalQuestions >= 1,
+  ),
+  CareerAchievement(
+    emoji: '🎯',
+    title: 'Bilgi Avcısı',
+    description: '25 doğru cevaba ulaş.',
+    isUnlocked: (stats) => stats.totalCorrect >= 25,
+  ),
+  CareerAchievement(
+    emoji: '🧠',
+    title: 'Bilgi Ustası',
+    description: '100 doğru cevaba ulaş.',
+    isUnlocked: (stats) => stats.totalCorrect >= 100,
+  ),
+  CareerAchievement(
+    emoji: '🏅',
+    title: 'Rozet Koleksiyoncusu',
+    description: 'Toplam 6 rozet kazan.',
+    isUnlocked: (stats) => stats.totalBadges >= 6,
+  ),
+  CareerAchievement(
+    emoji: '🧭',
+    title: 'Serbest Kaşif',
+    description: 'Serbest Rota modunu tamamla.',
+    isUnlocked: (stats) => stats.soloWins >= 1,
+  ),
+  CareerAchievement(
+    emoji: '👑',
+    title: 'Bilgi Şampiyonu',
+    description: 'Çok oyunculu bir oyun kazan.',
+    isUnlocked: (stats) => stats.multiplayerWins >= 1,
+  ),
+  CareerAchievement(
+    emoji: '⚡',
+    title: 'Maratoncu',
+    description: 'Bir Soru Maratonu tamamla.',
+    isUnlocked: (stats) => stats.marathonRuns >= 1,
+  ),
+  CareerAchievement(
+    emoji: '💯',
+    title: 'Kusursuz Tur',
+    description: 'Bir maratonda bütün soruları bil.',
+    isUnlocked: (stats) => stats.perfectMarathons >= 1,
+  ),
+  CareerAchievement(
+    emoji: '🔥',
+    title: 'Seri Ustası',
+    description: '10 doğru cevaplık seri yap.',
+    isUnlocked: (stats) => stats.bestStreak >= 10,
+  ),
+  CareerAchievement(
+    emoji: '🌟',
+    title: 'Yüz Soru',
+    description: 'Toplam 100 soru cevapla.',
+    isUnlocked: (stats) => stats.totalQuestions >= 100,
+  ),
+];
+

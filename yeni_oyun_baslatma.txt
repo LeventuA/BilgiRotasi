@@ -1,0 +1,28 @@
+  Future<void> _startGame() async {
+    final players = <PlayerData>[];
+
+    for (var index = 0; index < _playerCount; index++) {
+      final name = _controllers[index].text.trim();
+
+      players.add(
+        PlayerData(
+          name: name.isEmpty ? 'Oyuncu ${index + 1}' : name,
+          color: _playerColors[index],
+          pawnType: _selectedPawnTypes[index],
+        ),
+      );
+    }
+
+    await GameSaveService.clear();
+
+    if (!mounted) return;
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => GameScreen(
+          questionBank: widget.questionBank,
+          players: players,
+        ),
+      ),
+    );
+  }

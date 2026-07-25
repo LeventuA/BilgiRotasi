@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q58121",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin yüzölçümü bakımından en büyük gölü hangisidir?",
+    "options": [
+      "Van Gölü",
+      "Eğirdir Gölü",
+      "Beyşehir Gölü",
+      "Tuz Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Van Gölü, yaklaşık 3.700 km² yüzölçümüyle Türkiye'nin en büyük gölüdür."
+  },
+  {
+    "id": "q58122",
+    "categoryIndex": 0,
+    "question": "Tamamı Türkiye sınırları içinde kalan en uzun nehir hangisidir?",
+    "options": [
+      "Büyük Menderes",
+      "Kızılırmak",
+      "Yeşilırmak",
+      "Sakarya Nehri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kızılırmak yaklaşık 1.355 kilometre uzunluğundadır ve bütünüyle Türkiye sınırları içinde akar."
+  },
+  {
+    "id": "q58123",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin en yüksek noktası hangi dağın zirvesidir?",
+    "options": [
+      "Süphan Dağı",
+      "Erciyes Dağı",
+      "Ağrı Dağı",
+      "Kaçkar Dağı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ağrı Dağı'nın 5.137 metrelik zirvesi Türkiye'nin en yüksek noktasıdır."
+  },
+  {
+    "id": "q58124",
+    "categoryIndex": 0,
+    "question": "Dünyanın en eski tapınak alanlarından Göbeklitepe hangi ilimizdedir?",
+    "options": [
+      "Gaziantep",
+      "Diyarbakır",
+      "Mardin",
+      "Şanlıurfa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Göbeklitepe, Şanlıurfa kent merkezinin kuzeydoğusunda yer alır."
+  },
+  {
+    "id": "q58125",
+    "categoryIndex": 0,
+    "question": "Pamukkale travertenlerini oluşturan sıcak su kaynakları hangi il sınırlarındadır?",
+    "options": [
+      "Denizli",
+      "Muğla",
+      "Aydın",
+      "Uşak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Pamukkale travertenleri Denizli'nin Pamukkale ilçesindedir."
+  },
+  {
+    "id": "q58126",
+    "categoryIndex": 0,
+    "question": "Kapadokya'nın peribacaları ağırlıklı olarak hangi il çevresinde görülür?",
+    "options": [
+      "Kayseri",
+      "Nevşehir",
+      "Niğde",
+      "Sivas"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kapadokya'nın en bilinen peribacaları Nevşehir çevresindeki Göreme, Ürgüp ve Avanos'tadır."
+  },
+  {
+    "id": "q58127",
+    "categoryIndex": 0,
+    "question": "İstanbul Boğazı hangi iki denizi birbirine bağlar?",
+    "options": [
+      "Ege Denizi ile Akdeniz",
+      "Marmara Denizi ile Ege Denizi",
+      "Karadeniz ile Marmara Denizi",
+      "Karadeniz ile Ege Denizi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İstanbul Boğazı, Karadeniz'den Marmara Denizi'ne doğal bir geçit oluşturur."
+  },
+  {
+    "id": "q58128",
+    "categoryIndex": 0,
+    "question": "Çanakkale Boğazı'nın bağladığı iki deniz hangileridir?",
+    "options": [
+      "Karadeniz ile Marmara Denizi",
+      "Akdeniz ile Karadeniz",
+      "Ege Denizi ile Karadeniz",
+      "Marmara Denizi ile Ege Denizi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Çanakkale Boğazı, Marmara Denizi'ni Ege Denizi'ne bağlar."
+  },
+  {
+    "id": "q58129",
+    "categoryIndex": 0,
+    "question": "Tuz Gölü Türkiye'nin hangi coğrafi bölgesindedir?",
+    "options": [
+      "İç Anadolu Bölgesi",
+      "Marmara Bölgesi",
+      "Ege Bölgesi",
+      "Doğu Anadolu Bölgesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tuz Gölü, İç Anadolu'nun kapalı havzalarından birinde yer alır."
+  },
+  {
+    "id": "q58130",
+    "categoryIndex": 0,
+    "question": "Fırat Nehri Türkiye'de hangi iki ana kolun birleşmesiyle oluşur?",
+    "options": [
+      "Kızılırmak ve Delice",
+      "Karasu ve Murat",
+      "Dicle ve Botan",
+      "Sakarya ve Porsuk"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Fırat, Erzincan yakınlarında Karasu ile Murat nehirlerinin birleşmesiyle oluşur."
+  },
+  {
+    "id": "q58131",
+    "categoryIndex": 0,
+    "question": "Dicle Nehri Türkiye'den çıktıktan sonra hangi ülkeye geçer?",
+    "options": [
+      "İran",
+      "Suriye",
+      "Irak",
+      "Gürcistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Dicle, Türkiye'den sonra Irak'a geçer ve Fırat'la birleşerek Şattülarap'ı oluşturur."
+  },
+  {
+    "id": "q58132",
+    "categoryIndex": 0,
+    "question": "Köprülü Kanyon Millî Parkı hangi ilimizdedir?",
+    "options": [
+      "Mersin",
+      "Muğla",
+      "Isparta",
+      "Antalya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Köprülü Kanyon Millî Parkı Antalya'nın Manavgat ilçesi yakınındadır."
+  },
+  {
+    "id": "q58133",
+    "categoryIndex": 0,
+    "question": "Yedigöller Millî Parkı hangi il sınırları içindedir?",
+    "options": [
+      "Bolu",
+      "Kastamonu",
+      "Düzce",
+      "Karabük"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yedigöller Millî Parkı Bolu'nun kuzeyinde yer alır."
+  },
+  {
+    "id": "q58134",
+    "categoryIndex": 0,
+    "question": "Kaçkar Dağları Millî Parkı'nın büyük bölümü hangi ilimizdedir?",
+    "options": [
+      "Trabzon",
+      "Rize",
+      "Giresun",
+      "Artvin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kaçkar Dağları Millî Parkı ağırlıklı olarak Rize'nin Çamlıhemşin ilçesindedir."
+  },
+  {
+    "id": "q58135",
+    "categoryIndex": 0,
+    "question": "Kazdağı Millî Parkı hangi ilimizin sınırları içindedir?",
+    "options": [
+      "Çanakkale",
+      "Manisa",
+      "Balıkesir",
+      "İzmir"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kazdağı Millî Parkı Balıkesir'in Edremit ilçesi sınırlarında bulunur."
+  },
+  {
+    "id": "q58136",
+    "categoryIndex": 0,
+    "question": "Munzur Vadisi Millî Parkı hangi ilimizdedir?",
+    "options": [
+      "Erzincan",
+      "Bingöl",
+      "Elazığ",
+      "Tunceli"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Munzur Vadisi Millî Parkı Tunceli'de, Munzur Dağları ile vadi boyunca uzanır."
+  },
+  {
+    "id": "q58137",
+    "categoryIndex": 0,
+    "question": "Düden Şelalesi hangi ilimizde bulunur?",
+    "options": [
+      "Antalya",
+      "Burdur",
+      "Mersin",
+      "Muğla"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Düden Şelalesi Antalya kent merkezine yakın bir doğal oluşumdur."
+  },
+  {
+    "id": "q58138",
+    "categoryIndex": 0,
+    "question": "Tortum Şelalesi hangi il sınırlarındadır?",
+    "options": [
+      "Erzincan",
+      "Erzurum",
+      "Kars",
+      "Artvin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tortum Şelalesi Erzurum'un Uzundere ilçesindedir."
+  },
+  {
+    "id": "q58139",
+    "categoryIndex": 0,
+    "question": "Yukarı Düden ve Aşağı Düden şelaleleri hangi ilimizdedir?",
+    "options": [
+      "Mersin",
+      "Isparta",
+      "Antalya",
+      "Muğla"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Düden Çayı'nın iki farklı kolundaki şelaleler Antalya'nın başlıca doğal simgelerindendir."
+  },
+  {
+    "id": "q58140",
+    "categoryIndex": 0,
+    "question": "Beyşehir Gölü hangi iki ilin sınırları arasında yer alır?",
+    "options": [
+      "Burdur ve Denizli",
+      "Kayseri ve Nevşehir",
+      "Afyonkarahisar ve Kütahya",
+      "Konya ve Isparta"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Beyşehir Gölü'nün büyük kısmı Konya, güneybatı bölümü ise Isparta sınırlarındadır."
+  },
+  {
+    "id": "q58141",
+    "categoryIndex": 0,
+    "question": "Sapanca Gölü hangi iki il arasında uzanır?",
+    "options": [
+      "Sakarya ve Kocaeli",
+      "Bursa ve Yalova",
+      "İstanbul ve Tekirdağ",
+      "Bolu ve Düzce"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sapanca Gölü, Sakarya ile Kocaeli illeri arasında yer alır."
+  },
+  {
+    "id": "q58142",
+    "categoryIndex": 0,
+    "question": "Uzungöl hangi ilimizin Çaykara ilçesindedir?",
+    "options": [
+      "Giresun",
+      "Trabzon",
+      "Rize",
+      "Artvin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Uzungöl, Trabzon'un Çaykara ilçesinde heyelan setiyle oluşmuş bir göldür."
+  },
+  {
+    "id": "q58143",
+    "categoryIndex": 0,
+    "question": "Abant Gölü hangi ilimizin doğal simgelerindendir?",
+    "options": [
+      "Eskişehir",
+      "Bilecik",
+      "Bolu",
+      "Düzce"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Abant Gölü, Bolu'nun yaklaşık 35 kilometre güneybatısındadır."
+  },
+  {
+    "id": "q58144",
+    "categoryIndex": 0,
+    "question": "Kuş Cenneti Millî Parkı hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Çanakkale",
+      "Sakarya",
+      "Bursa",
+      "Balıkesir"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kuş Cenneti Millî Parkı, Balıkesir'in Bandırma ilçesi yakınındaki sulak alanda yer alır."
+  },
+  {
+    "id": "q58145",
+    "categoryIndex": 0,
+    "question": "İznik Gölü hangi coğrafi bölgemizde bulunur?",
+    "options": [
+      "Marmara Bölgesi",
+      "Ege Bölgesi",
+      "Karadeniz Bölgesi",
+      "İç Anadolu Bölgesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İznik Gölü Bursa ili sınırlarında, Marmara Bölgesi'ndedir."
+  },
+  {
+    "id": "q58146",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin en derin gölü hangisidir?",
+    "options": [
+      "Çıldır Gölü",
+      "Van Gölü",
+      "Hazar Gölü",
+      "Salda Gölü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Van Gölü'nün en derin yeri yaklaşık 450 metreyi aşar."
+  },
+  {
+    "id": "q58147",
+    "categoryIndex": 0,
+    "question": "Çıldır Gölü hangi iki ilimizin sınırları içindedir?",
+    "options": [
+      "Erzurum ve Ağrı",
+      "Iğdır ve Van",
+      "Ardahan ve Kars",
+      "Artvin ve Rize"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Çıldır Gölü, Ardahan ile Kars sınırında yer alır."
+  },
+  {
+    "id": "q58148",
+    "categoryIndex": 0,
+    "question": "Meke Gölü olarak bilinen volkanik maar hangi ilimizdedir?",
+    "options": [
+      "Nevşehir",
+      "Niğde",
+      "Aksaray",
+      "Konya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Meke Gölü, Konya'nın Karapınar ilçesindeki volkanik bir maar gölüdür."
+  },
+  {
+    "id": "q58149",
+    "categoryIndex": 0,
+    "question": "Narlıgöl krater gölü hangi iki il sınırına yakın konumdadır?",
+    "options": [
+      "Aksaray ve Niğde",
+      "Nevşehir ve Kayseri",
+      "Burdur ve Isparta",
+      "Konya ve Karaman"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Narlıgöl, Aksaray'ın Gülağaç ilçesi ile Niğde sınırına yakın bir krater gölüdür."
+  },
+  {
+    "id": "q58150",
+    "categoryIndex": 0,
+    "question": "Erciyes Dağı hangi volkanik bölgenin en belirgin yükseltisidir?",
+    "options": [
+      "Bolu dağları",
+      "Kayseri çevresi",
+      "Van çevresi",
+      "Kars platosu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Erciyes Dağı, Kayseri ovasının güneyinde yükselen sönmüş bir stratovolkandır."
+  },
+  {
+    "id": "q58151",
+    "categoryIndex": 0,
+    "question": "Hasan Dağı hangi iki il arasında yükselir?",
+    "options": [
+      "Kayseri ve Sivas",
+      "Nevşehir ve Kırşehir",
+      "Aksaray ve Niğde",
+      "Konya ve Karaman"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hasan Dağı, Aksaray ile Niğde sınırında bulunan volkanik bir dağdır."
+  },
+  {
+    "id": "q58152",
+    "categoryIndex": 0,
+    "question": "Süphan Dağı hangi gölün kuzey kıyısında yükselir?",
+    "options": [
+      "Erçek Gölü",
+      "Hazar Gölü",
+      "Çıldır Gölü",
+      "Van Gölü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Süphan Dağı, Van Gölü'nün kuzeyinde yer alan sönmüş bir volkandır."
+  },
+  {
+    "id": "q58153",
+    "categoryIndex": 0,
+    "question": "Uludağ hangi ilimizin güneyinde yükselir?",
+    "options": [
+      "Bursa",
+      "Bilecik",
+      "Kütahya",
+      "Balıkesir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Uludağ, Bursa kent merkezinin güneyinde yükselir ve önemli bir kış turizmi merkezidir."
+  },
+  {
+    "id": "q58154",
+    "categoryIndex": 0,
+    "question": "Palandöken Dağları hangi kentin hemen güneyinde yer alır?",
+    "options": [
+      "Ağrı",
+      "Erzurum",
+      "Kars",
+      "Erzincan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Palandöken Dağları Erzurum kent merkezinin güneyinde uzanır."
+  },
+  {
+    "id": "q58155",
+    "categoryIndex": 0,
+    "question": "Ilgaz Dağları hangi iki il arasında doğal sınır oluşturur?",
+    "options": [
+      "Bolu ve Düzce",
+      "Karabük ve Bartın",
+      "Kastamonu ve Çankırı",
+      "Samsun ve Sinop"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ilgaz Dağları, Kastamonu ile Çankırı arasında uzanır."
+  },
+  {
+    "id": "q58156",
+    "categoryIndex": 0,
+    "question": "Beydağları kıyıya paralel olarak hangi ilimizin batısında yükselir?",
+    "options": [
+      "Hatay",
+      "Mersin",
+      "Adana",
+      "Antalya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Beydağları, Antalya Körfezi'nin batısında Torosların bir bölümünü oluşturur."
+  },
+  {
+    "id": "q58157",
+    "categoryIndex": 0,
+    "question": "Aladağlar Millî Parkı hangi üç il sınırına yayılır?",
+    "options": [
+      "Niğde, Kayseri ve Adana",
+      "Sivas, Malatya ve Kahramanmaraş",
+      "Erzurum, Erzincan ve Bayburt",
+      "Konya, Karaman ve Mersin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Aladağlar Millî Parkı Niğde, Kayseri ve Adana illerine yayılır."
+  },
+  {
+    "id": "q58158",
+    "categoryIndex": 0,
+    "question": "Bolkar Dağları hangi büyük dağ sisteminin parçasıdır?",
+    "options": [
+      "Kuzey Anadolu Dağları",
+      "Toros Dağları",
+      "Amanos Dağları",
+      "Yıldız Dağları"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bolkar Dağları, Orta Torosların önemli bir bölümüdür."
+  },
+  {
+    "id": "q58159",
+    "categoryIndex": 0,
+    "question": "Amanos Dağları başka hangi adla bilinir?",
+    "options": [
+      "Küre Dağları",
+      "Canik Dağları",
+      "Nur Dağları",
+      "Bey Dağları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hatay ile Osmaniye arasında uzanan Amanoslar, Nur Dağları adıyla da bilinir."
+  },
+  {
+    "id": "q58160",
+    "categoryIndex": 0,
+    "question": "Yıldız Dağları Türkiye'nin hangi bölümünde yer alır?",
+    "options": [
+      "Batı Karadeniz",
+      "İç Ege",
+      "Güney Marmara",
+      "Trakya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Yıldız Dağları, diğer adıyla Istranca Dağları, Trakya'nın kuzeyindedir."
+  },
+  {
+    "id": "q58161",
+    "categoryIndex": 0,
+    "question": "Küre Dağları Millî Parkı hangi iki ilimiz arasında uzanır?",
+    "options": [
+      "Kastamonu ve Bartın",
+      "Sinop ve Samsun",
+      "Karabük ve Bolu",
+      "Düzce ve Zonguldak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Küre Dağları Millî Parkı Kastamonu ve Bartın sınırlarında yer alır."
+  },
+  {
+    "id": "q58162",
+    "categoryIndex": 0,
+    "question": "Türkiye'de çayın ticari ölçekte en yoğun yetiştirildiği il hangisidir?",
+    "options": [
+      "Giresun",
+      "Rize",
+      "Trabzon",
+      "Artvin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Rize, nemli iklimi ve yamaçları sayesinde Türkiye'nin çay üretim merkezidir."
+  },
+  {
+    "id": "q58163",
+    "categoryIndex": 0,
+    "question": "Fındık üretimiyle özdeşleşen Ordu ve Giresun hangi bölgemizdedir?",
+    "options": [
+      "Ege Bölgesi",
+      "Marmara Bölgesi",
+      "Karadeniz Bölgesi",
+      "Doğu Anadolu Bölgesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ordu ve Giresun, Doğu Karadeniz kıyılarında önemli fındık üretim merkezleridir."
+  },
+  {
+    "id": "q58164",
+    "categoryIndex": 0,
+    "question": "Türkiye'de muz üretiminin merkezi sayılan iki kıyı ilçesi hangileridir?",
+    "options": [
+      "Erdek ve Bandırma",
+      "Bodrum ve Çeşme",
+      "Fethiye ve Marmaris",
+      "Anamur ve Alanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mersin'in Anamur ve Antalya'nın Alanya ilçeleri sıcak iklimleriyle muz üretiminde öne çıkar."
+  },
+  {
+    "id": "q58165",
+    "categoryIndex": 0,
+    "question": "Malatya denince akla gelen coğrafi işaretli meyve hangisidir?",
+    "options": [
+      "Kayısı",
+      "Nar",
+      "Kiraz",
+      "İncir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Malatya kayısısı, kentin iklimiyle özdeşleşmiş dünyaca bilinen bir üründür."
+  },
+  {
+    "id": "q58166",
+    "categoryIndex": 0,
+    "question": "Aydın'ın dünya çapında tanınan kuru meyvesi hangisidir?",
+    "options": [
+      "Erik",
+      "İncir",
+      "Üzüm",
+      "Kayısı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Aydın inciri, özellikle Sarılop çeşidiyle bilinir."
+  },
+  {
+    "id": "q58167",
+    "categoryIndex": 0,
+    "question": "Taşköprü sarımsağı hangi ilimize aittir?",
+    "options": [
+      "Çorum",
+      "Tokat",
+      "Kastamonu",
+      "Amasya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Taşköprü, Kastamonu'nun sarımsağıyla ünlü ilçesidir."
+  },
+  {
+    "id": "q58168",
+    "categoryIndex": 0,
+    "question": "Anzer balı hangi ilimizdeki yaylalarda üretilir?",
+    "options": [
+      "Trabzon",
+      "Gümüşhane",
+      "Artvin",
+      "Rize"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Anzer balı, Rize'nin İkizdere ilçesindeki Anzer Yaylası'nda üretilir."
+  },
+  {
+    "id": "q58169",
+    "categoryIndex": 0,
+    "question": "Ayder Yaylası hangi ilimizdedir?",
+    "options": [
+      "Rize",
+      "Artvin",
+      "Giresun",
+      "Trabzon"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ayder Yaylası Rize'nin Çamlıhemşin ilçesinde yer alır."
+  },
+  {
+    "id": "q58170",
+    "categoryIndex": 0,
+    "question": "Pokut ve Sal yaylaları hangi ilimizin doğal turizm alanlarıdır?",
+    "options": [
+      "Ordu",
+      "Rize",
+      "Artvin",
+      "Giresun"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Pokut ve Sal yaylaları Rize'nin Çamlıhemşin ilçesindedir."
+  },
+  {
+    "id": "q58171",
+    "categoryIndex": 0,
+    "question": "Kafkasör Yaylası hangi ilimizin yakınındadır?",
+    "options": [
+      "Rize",
+      "Ardahan",
+      "Artvin",
+      "Kars"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kafkasör Yaylası Artvin kent merkezine yaklaşık 10 kilometre uzaklıktadır."
+  },
+  {
+    "id": "q58172",
+    "categoryIndex": 0,
+    "question": "Bozcaada hangi ilimize bağlıdır?",
+    "options": [
+      "Tekirdağ",
+      "İzmir",
+      "Balıkesir",
+      "Çanakkale"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bozcaada, Ege Denizi'nde Çanakkale iline bağlı bir ilçedir."
+  },
+  {
+    "id": "q58173",
+    "categoryIndex": 0,
+    "question": "Cunda Adası'nın resmî adı nedir?",
+    "options": [
+      "Alibey Adası",
+      "Paşalimanı Adası",
+      "Avşa Adası",
+      "Marmara Adası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Balıkesir'in Ayvalık ilçesindeki Cunda'nın resmî adı Alibey Adası'dır."
+  },
+  {
+    "id": "q58174",
+    "categoryIndex": 0,
+    "question": "Avşa Adası hangi denizde bulunur?",
+    "options": [
+      "Ege Denizi",
+      "Marmara Denizi",
+      "Karadeniz",
+      "Akdeniz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Avşa Adası, Balıkesir'in Marmara ilçesine bağlıdır ve Marmara Denizi'ndedir."
+  },
+  {
+    "id": "q58175",
+    "categoryIndex": 0,
+    "question": "Kekova'nın batık kent kalıntıları hangi ilimizin kıyısındadır?",
+    "options": [
+      "İzmir",
+      "Muğla",
+      "Antalya",
+      "Mersin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kekova, Antalya'nın Demre ilçesi açıklarında yer alır."
+  },
+  {
+    "id": "q58176",
+    "categoryIndex": 0,
+    "question": "Kelebekler Vadisi hangi ilçenin kıyısındadır?",
+    "options": [
+      "Bodrum",
+      "Kaş",
+      "Marmaris",
+      "Fethiye"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kelebekler Vadisi, Muğla'nın Fethiye ilçesindeki Faralya köyü yakınındadır."
+  },
+  {
+    "id": "q58177",
+    "categoryIndex": 0,
+    "question": "Ölüdeniz lagünü hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Muğla",
+      "İzmir",
+      "Aydın",
+      "Antalya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ölüdeniz, Muğla'nın Fethiye ilçesinde bulunan ünlü bir lagündür."
+  },
+  {
+    "id": "q58178",
+    "categoryIndex": 0,
+    "question": "İztuzu Plajı hangi deniz kaplumbağasının önemli yuvalama alanıdır?",
+    "options": [
+      "Yeşil deniz kaplumbağası",
+      "Caretta caretta",
+      "Şahin gagalı kaplumbağa",
+      "Deri sırtlı kaplumbağa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Muğla'daki İztuzu Plajı, caretta carettaların Akdeniz'deki önemli yuvalama alanlarındandır."
+  },
+  {
+    "id": "q58179",
+    "categoryIndex": 0,
+    "question": "Akyaka'daki Azmak Nehri hangi körfeze dökülür?",
+    "options": [
+      "Edremit Körfezi",
+      "İskenderun Körfezi",
+      "Gökova Körfezi",
+      "İzmit Körfezi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Azmak Nehri, Muğla'nın Akyaka beldesinde Gökova Körfezi'ne ulaşır."
+  },
+  {
+    "id": "q58180",
+    "categoryIndex": 0,
+    "question": "Saklıkent Kanyonu hangi iki ilin sınırına yakın konumdadır?",
+    "options": [
+      "Isparta ve Burdur",
+      "İzmir ve Manisa",
+      "Mersin ve Adana",
+      "Muğla ve Antalya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Saklıkent Kanyonu Muğla'nın Seydikemer ilçesinde, Antalya sınırına yakındır."
+  },
+  {
+    "id": "q58181",
+    "categoryIndex": 0,
+    "question": "Ihlara Vadisi hangi akarsuyun aşındırmasıyla oluşmuştur?",
+    "options": [
+      "Melendiz Çayı",
+      "Porsuk Çayı",
+      "Göksu Nehri",
+      "Zamantı Irmağı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ihlara Vadisi, Melendiz Çayı'nın volkanik tabakaları aşındırmasıyla oluşmuştur."
+  },
+  {
+    "id": "q58182",
+    "categoryIndex": 0,
+    "question": "Damlataş Mağarası hangi turizm ilçemizdedir?",
+    "options": [
+      "Kemer",
+      "Alanya",
+      "Marmaris",
+      "Kaş"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Damlataş Mağarası Antalya'nın Alanya ilçesinde, kalenin batı kıyısındadır."
+  },
+  {
+    "id": "q58183",
+    "categoryIndex": 0,
+    "question": "Karaca Mağarası hangi ilimizin Torul ilçesindedir?",
+    "options": [
+      "Bayburt",
+      "Trabzon",
+      "Gümüşhane",
+      "Erzincan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Karaca Mağarası Gümüşhane'nin Torul ilçesinde yer alır."
+  },
+  {
+    "id": "q58184",
+    "categoryIndex": 0,
+    "question": "İnsuyu Mağarası hangi ilimizin yakınındadır?",
+    "options": [
+      "Antalya",
+      "Isparta",
+      "Denizli",
+      "Burdur"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "İnsuyu Mağarası Burdur kent merkezinin güneydoğusundadır."
+  },
+  {
+    "id": "q58185",
+    "categoryIndex": 0,
+    "question": "Cennet ve Cehennem obrukları hangi ilimizin Silifke ilçesindedir?",
+    "options": [
+      "Mersin",
+      "Adana",
+      "Antalya",
+      "Hatay"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cennet ve Cehennem obrukları Mersin'in Silifke ilçesindeki Narlıkuyu yakınındadır."
+  },
+  {
+    "id": "q58186",
+    "categoryIndex": 0,
+    "question": "Konya'daki Meke Maarı hangi jeolojik süreçle oluşmuştur?",
+    "options": [
+      "Akarsu biriktirmesi",
+      "Volkanik patlama",
+      "Kireçtaşı çözünmesi",
+      "Buzul aşındırması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Meke Maarı, yer altı suyuyla magmanın etkileştiği volkanik patlamalarla oluşmuştur."
+  },
+  {
+    "id": "q58187",
+    "categoryIndex": 0,
+    "question": "Pamukkale'nin beyaz basamakları hangi mineralin çökelmesiyle oluşur?",
+    "options": [
+      "Demir oksit",
+      "Sodyum klorür",
+      "Kalsiyum karbonat",
+      "Silisyum dioksit"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sıcak sulardaki kalsiyum karbonat çökelerek traverten basamaklarını oluşturur."
+  },
+  {
+    "id": "q58188",
+    "categoryIndex": 0,
+    "question": "Karapınar çevresinde sık görülen obrukların oluşumunda temel etken nedir?",
+    "options": [
+      "Lav akıntılarının soğuması",
+      "Dalgaların kıyıyı aşındırması",
+      "Buzulların erimesi",
+      "Yer altındaki çözünür kayaçların çökmesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Yer altı sularının kireçtaşı gibi kayaçları çözmesi boşluk ve çökmelere yol açar."
+  },
+  {
+    "id": "q58189",
+    "categoryIndex": 0,
+    "question": "Türkiye'de en fazla jeotermal kaynak hangi bölgede yoğunlaşır?",
+    "options": [
+      "Ege Bölgesi",
+      "Karadeniz Bölgesi",
+      "Güneydoğu Anadolu Bölgesi",
+      "Doğu Anadolu Bölgesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Batı Anadolu'daki aktif faylar nedeniyle jeotermal kaynaklar özellikle Ege'de yoğundur."
+  },
+  {
+    "id": "q58190",
+    "categoryIndex": 0,
+    "question": "Kızılcahamam ve Haymana kaplıcaları hangi ilimizdedir?",
+    "options": [
+      "Afyonkarahisar",
+      "Ankara",
+      "Eskişehir",
+      "Kütahya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kızılcahamam ve Haymana, Ankara'nın termal turizm merkezleridir."
+  },
+  {
+    "id": "q58191",
+    "categoryIndex": 0,
+    "question": "Afyonkarahisar'ın termal turizmde öne çıkan ilçelerinden biri hangisidir?",
+    "options": [
+      "Ayvalık",
+      "Ürgüp",
+      "Sandıklı",
+      "Safranbolu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sandıklı, Hüdai kaplıcalarıyla Afyonkarahisar'ın önemli termal merkezlerindendir."
+  },
+  {
+    "id": "q58192",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin Asya kıtasındaki bölümüne ne ad verilir?",
+    "options": [
+      "Mezopotamya",
+      "Trakya",
+      "Kafkasya",
+      "Anadolu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye topraklarının büyük bölümü Anadolu Yarımadası üzerindedir."
+  },
+  {
+    "id": "q58193",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin Avrupa kıtasındaki toprakları hangi tarihî-coğrafi adla bilinir?",
+    "options": [
+      "Doğu Trakya",
+      "Güney Marmara",
+      "Batı Anadolu",
+      "Kuzey Ege"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye'nin Avrupa'daki bölümü Doğu Trakya olarak adlandırılır."
+  },
+  {
+    "id": "q58194",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin en batıdaki noktası hangi ada üzerindedir?",
+    "options": [
+      "Marmara Adası",
+      "Gökçeada",
+      "Kekova",
+      "Bozcaada"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Türkiye'nin en batı noktası Gökçeada'daki İnce Burun'dur."
+  },
+  {
+    "id": "q58195",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin en kuzey noktası hangi ilimizdedir?",
+    "options": [
+      "Artvin",
+      "Samsun",
+      "Sinop",
+      "Kırklareli"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Türkiye'nin en kuzey noktası Sinop'taki İnceburun'dur."
+  },
+  {
+    "id": "q58196",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin en güney noktası hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Şanlıurfa",
+      "Mersin",
+      "Kilis",
+      "Hatay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Türkiye'nin en güney noktası Hatay'ın Yayladağı ilçesi çevresindedir."
+  },
+  {
+    "id": "q58197",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin en doğu noktası hangi ilimizdedir?",
+    "options": [
+      "Iğdır",
+      "Van",
+      "Hakkâri",
+      "Ağrı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Türkiye'nin en doğu noktası Iğdır'ın Aralık ilçesi yakınındadır."
+  },
+  {
+    "id": "q58198",
+    "categoryIndex": 0,
+    "question": "Meriç Nehri Türkiye ile hangi ülke arasında sınırın bir bölümünü oluşturur?",
+    "options": [
+      "Suriye",
+      "Yunanistan",
+      "Bulgaristan",
+      "Gürcistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Meriç Nehri'nin aşağı çığırı Türkiye-Yunanistan sınırının önemli bir kısmını oluşturur."
+  },
+  {
+    "id": "q58199",
+    "categoryIndex": 0,
+    "question": "Aras Nehri Türkiye'den çıktıktan sonra Kafkasya'da hangi büyük nehre katılır?",
+    "options": [
+      "Don Nehri",
+      "Volga Nehri",
+      "Kura Nehri",
+      "Terek Nehri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Aras, Azerbaycan'da Kura Nehri'ne katılarak Hazar Denizi'ne ulaşır."
+  },
+  {
+    "id": "q58200",
+    "categoryIndex": 0,
+    "question": "Asi Nehri Türkiye'ye hangi ülkeden girer?",
+    "options": [
+      "İran",
+      "Irak",
+      "Gürcistan",
+      "Suriye"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Asi Nehri Lübnan'dan doğar, Suriye üzerinden Hatay'a girer."
+  },
+  {
+    "id": "q58201",
+    "categoryIndex": 0,
+    "question": "Büyük Menderes Nehri hangi denize dökülür?",
+    "options": [
+      "Ege Denizi",
+      "Karadeniz",
+      "Akdeniz",
+      "Marmara Denizi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Büyük Menderes, Aydın'ın Söke ilçesi yakınlarında Ege Denizi'ne dökülür."
+  },
+  {
+    "id": "q58202",
+    "categoryIndex": 0,
+    "question": "Gediz Nehri hangi körfeze ulaşır?",
+    "options": [
+      "İzmit Körfezi",
+      "İzmir Körfezi",
+      "Edremit Körfezi",
+      "Gökova Körfezi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Gediz Nehri, Menemen Ovası üzerinden İzmir Körfezi'nin kuzeyine dökülür."
+  },
+  {
+    "id": "q58203",
+    "categoryIndex": 0,
+    "question": "Seyhan ve Ceyhan nehirleri hangi ovanın oluşumunda başlıca rol oynar?",
+    "options": [
+      "Gediz Ovası",
+      "Bafra Ovası",
+      "Çukurova",
+      "Çarşamba Ovası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Seyhan ve Ceyhan'ın taşıdığı alüvyonlar Çukurova'nın oluşumuna katkı sağlamıştır."
+  },
+  {
+    "id": "q58204",
+    "categoryIndex": 0,
+    "question": "Kızılırmak'ın oluşturduğu Bafra Deltası hangi ilimizdedir?",
+    "options": [
+      "Amasya",
+      "Ordu",
+      "Sinop",
+      "Samsun"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kızılırmak, Samsun'un Bafra ilçesi yakınında Karadeniz'e dökülür."
+  },
+  {
+    "id": "q58205",
+    "categoryIndex": 0,
+    "question": "Yeşilırmak'ın oluşturduğu Çarşamba Deltası hangi ilimizdedir?",
+    "options": [
+      "Samsun",
+      "Tokat",
+      "Ordu",
+      "Giresun"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yeşilırmak, Samsun'un Çarşamba ilçesi yakınında geniş bir delta oluşturur."
+  },
+  {
+    "id": "q58206",
+    "categoryIndex": 0,
+    "question": "Dalyan Kanalı'nın ulaştığı Köyceğiz Gölü hangi ilimizdedir?",
+    "options": [
+      "Antalya",
+      "Muğla",
+      "Aydın",
+      "Denizli"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Köyceğiz Gölü, Dalyan kanalıyla Akdeniz'e bağlanan Muğla'daki bir göldür."
+  },
+  {
+    "id": "q58207",
+    "categoryIndex": 0,
+    "question": "Ulubat Gölü hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Kütahya",
+      "Bilecik",
+      "Bursa",
+      "Balıkesir"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ulubat Gölü Bursa'nın batısında, Karacabey ve Mustafakemalpaşa yakınındadır."
+  },
+  {
+    "id": "q58208",
+    "categoryIndex": 0,
+    "question": "Hazar Gölü hangi ilimizdedir?",
+    "options": [
+      "Tunceli",
+      "Malatya",
+      "Bingöl",
+      "Elazığ"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hazar Gölü Elazığ'ın Sivrice ilçesi yakınında tektonik kökenli bir göldür."
+  },
+  {
+    "id": "q58209",
+    "categoryIndex": 0,
+    "question": "Erçek Gölü hangi ilimizin doğusunda yer alır?",
+    "options": [
+      "Van",
+      "Bitlis",
+      "Hakkâri",
+      "Ağrı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Erçek Gölü, Van kent merkezinin doğusunda kapalı havzada bulunur."
+  },
+  {
+    "id": "q58210",
+    "categoryIndex": 0,
+    "question": "Eber Gölü hangi ilimizdedir?",
+    "options": [
+      "Isparta",
+      "Afyonkarahisar",
+      "Burdur",
+      "Konya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Eber Gölü Afyonkarahisar'ın Çay ilçesi yakınındadır."
+  },
+  {
+    "id": "q58211",
+    "categoryIndex": 0,
+    "question": "Acıgöl hangi iki il arasında yer alır?",
+    "options": [
+      "Konya ve Aksaray",
+      "Manisa ve Uşak",
+      "Denizli ve Afyonkarahisar",
+      "Burdur ve Isparta"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Acıgöl, Denizli'nin Çardak ilçesi ile Afyonkarahisar'ın Dazkırı ilçesi arasındadır."
+  },
+  {
+    "id": "q58212",
+    "categoryIndex": 0,
+    "question": "Altındere Vadisi Millî Parkı hangi tarihî yapıyla ünlüdür?",
+    "options": [
+      "İshak Paşa Sarayı",
+      "Ani Harabeleri",
+      "Alahan Manastırı",
+      "Sümela Manastırı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Altındere Vadisi Millî Parkı, Trabzon'daki Sümela Manastırı'nı çevreler."
+  },
+  {
+    "id": "q58213",
+    "categoryIndex": 0,
+    "question": "Termessos Antik Kenti hangi dağın eteklerindedir?",
+    "options": [
+      "Güllük Dağı",
+      "Kazdağı",
+      "Spil Dağı",
+      "Uludağ"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Termessos, Antalya'daki Güllük Dağı Millî Parkı içinde yer alır."
+  },
+  {
+    "id": "q58214",
+    "categoryIndex": 0,
+    "question": "Spil Dağı Millî Parkı hangi ilimizin yakınındadır?",
+    "options": [
+      "Uşak",
+      "Manisa",
+      "Kütahya",
+      "İzmir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Spil Dağı, Manisa kent merkezinin güneyinde yükselir."
+  },
+  {
+    "id": "q58215",
+    "categoryIndex": 0,
+    "question": "Dilek Yarımadası-Büyük Menderes Deltası Millî Parkı hangi ilimizdedir?",
+    "options": [
+      "İzmir",
+      "Denizli",
+      "Aydın",
+      "Muğla"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Millî park Aydın'ın Kuşadası ve Söke ilçeleri sınırındadır."
+  },
+  {
+    "id": "q58216",
+    "categoryIndex": 0,
+    "question": "Gala Gölü Millî Parkı hangi ilimizdedir?",
+    "options": [
+      "Tekirdağ",
+      "Çanakkale",
+      "Kırklareli",
+      "Edirne"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Gala Gölü, Edirne'nin Enez ve İpsala ilçeleri arasında yer alır."
+  },
+  {
+    "id": "q58217",
+    "categoryIndex": 0,
+    "question": "Sultan Sazlığı Millî Parkı hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Kayseri",
+      "Sivas",
+      "Nevşehir",
+      "Niğde"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sultan Sazlığı, Kayseri'nin Develi, Yahyalı ve Yeşilhisar ilçeleri arasındadır."
+  },
+  {
+    "id": "q58218",
+    "categoryIndex": 0,
+    "question": "Kuşadası'nın karşı kıyısında yer alan Yunan adası hangisidir?",
+    "options": [
+      "Midilli",
+      "Sisam",
+      "Sakız",
+      "Rodos"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sisam Adası, Ege Denizi'nde Kuşadası ve Dilek Yarımadası'nın karşısında bulunur."
+  },
+  {
+    "id": "q58219",
+    "categoryIndex": 0,
+    "question": "Datça Yarımadası hangi iki denizi birbirinden ayırır?",
+    "options": [
+      "Karadeniz ile Marmara Denizi",
+      "Akdeniz ile Karadeniz",
+      "Ege Denizi ile Akdeniz",
+      "Marmara Denizi ile Ege Denizi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Datça Yarımadası, Ege ile Akdeniz'in geçiş alanında uzanır."
+  },
+  {
+    "id": "q58220",
+    "categoryIndex": 0,
+    "question": "Likya Yolu ağırlıklı olarak hangi iki ilimizin kıyıları boyunca uzanır?",
+    "options": [
+      "Mersin ve Adana",
+      "Balıkesir ve Çanakkale",
+      "İzmir ve Aydın",
+      "Muğla ve Antalya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Likya Yolu, Fethiye'den başlayıp Antalya çevresine uzanan uzun mesafeli bir yürüyüş rotasıdır."
+  }
+]

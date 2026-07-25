@@ -1,0 +1,59 @@
+{
+  "totalQuestions": 3000,
+  "questionsPerCategory": {
+    "0": 500,
+    "1": 500,
+    "2": 500,
+    "3": 500,
+    "4": 500,
+    "5": 500
+  },
+  "difficultyTotal": {
+    "Kolay": 900,
+    "Orta": 1200,
+    "Zor": 900
+  },
+  "difficultyPerCategory": {
+    "0": {
+      "Kolay": 150,
+      "Orta": 200,
+      "Zor": 150
+    },
+    "1": {
+      "Kolay": 150,
+      "Orta": 200,
+      "Zor": 150
+    },
+    "2": {
+      "Kolay": 150,
+      "Orta": 200,
+      "Zor": 150
+    },
+    "3": {
+      "Kolay": 150,
+      "Orta": 200,
+      "Zor": 150
+    },
+    "4": {
+      "Kolay": 150,
+      "Orta": 200,
+      "Zor": 150
+    },
+    "5": {
+      "Kolay": 150,
+      "Orta": 200,
+      "Zor": 150
+    }
+  },
+  "answerIndexDistribution": {
+    "0": 750,
+    "1": 750,
+    "2": 750,
+    "3": 750
+  },
+  "uniqueQuestionTexts": 3000,
+  "duplicateQuestionTexts": 0,
+  "invalidQuestionCount": 0,
+  "sha256": "6c9316095c03a97dc23931e7a1e2aa207d5601b379ef8e90c51bc0d55535ae26",
+  "fileSizeBytes": 1141821
+}

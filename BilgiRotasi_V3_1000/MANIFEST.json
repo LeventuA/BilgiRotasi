@@ -1,0 +1,30 @@
+{
+  "project": "LeventuA/BilgiRotasi",
+  "bundle": "BilgiRotasi_V3_1000",
+  "createdOn": "2026-07-23",
+  "questionCount": 1000,
+  "idRange": "q55121-q56120",
+  "globalQA": "PASS",
+  "preparedAfterV2LastQuestion": "q55120",
+  "runtimeDuplicateCheck": true,
+  "editorialReplacementsAfterSemanticAudit": 92,
+  "categoryCounts": {
+    "1": 170,
+    "0": 170,
+    "3": 170,
+    "4": 160,
+    "2": 170,
+    "5": 160
+  },
+  "difficultyCounts": {
+    "Kolay": 525,
+    "Orta": 441,
+    "Zor": 34
+  },
+  "answerIndexCounts": {
+    "0": 250,
+    "1": 250,
+    "2": 250,
+    "3": 250
+  }
+}

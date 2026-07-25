@@ -1,0 +1,402 @@
+[
+  {
+    "id": "q55021",
+    "sourceGroup": "geo_nps"
+  },
+  {
+    "id": "q55022",
+    "sourceGroup": "geo_nps"
+  },
+  {
+    "id": "q55023",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q55024",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q55025",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q55026",
+    "sourceGroup": "geo_singapore"
+  },
+  {
+    "id": "q55027",
+    "sourceGroup": "geo_australia"
+  },
+  {
+    "id": "q55028",
+    "sourceGroup": "geo_canada"
+  },
+  {
+    "id": "q55029",
+    "sourceGroup": "geo_seattle"
+  },
+  {
+    "id": "q55030",
+    "sourceGroup": "geo_nps"
+  },
+  {
+    "id": "q55031",
+    "sourceGroup": "geo_belgium"
+  },
+  {
+    "id": "q55032",
+    "sourceGroup": "geo_germany"
+  },
+  {
+    "id": "q55033",
+    "sourceGroup": "geo_czech"
+  },
+  {
+    "id": "q55034",
+    "sourceGroup": "geo_hungary"
+  },
+  {
+    "id": "q55035",
+    "sourceGroup": "geo_denmark"
+  },
+  {
+    "id": "q55036",
+    "sourceGroup": "geo_belgium"
+  },
+  {
+    "id": "q55037",
+    "sourceGroup": "geo_italy"
+  },
+  {
+    "id": "q55038",
+    "sourceGroup": "ent_superhero"
+  },
+  {
+    "id": "q55039",
+    "sourceGroup": "ent_superhero"
+  },
+  {
+    "id": "q55040",
+    "sourceGroup": "ent_superhero"
+  },
+  {
+    "id": "q55041",
+    "sourceGroup": "ent_superhero"
+  },
+  {
+    "id": "q55042",
+    "sourceGroup": "ent_superhero"
+  },
+  {
+    "id": "q55043",
+    "sourceGroup": "ent_superhero"
+  },
+  {
+    "id": "q55044",
+    "sourceGroup": "ent_superhero"
+  },
+  {
+    "id": "q55045",
+    "sourceGroup": "ent_scifi_tv"
+  },
+  {
+    "id": "q55046",
+    "sourceGroup": "ent_scifi_tv"
+  },
+  {
+    "id": "q55047",
+    "sourceGroup": "ent_scifi_tv"
+  },
+  {
+    "id": "q55048",
+    "sourceGroup": "ent_scifi_tv"
+  },
+  {
+    "id": "q55049",
+    "sourceGroup": "ent_scifi_tv"
+  },
+  {
+    "id": "q55050",
+    "sourceGroup": "ent_scifi_tv"
+  },
+  {
+    "id": "q55051",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q55052",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q55053",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q55054",
+    "sourceGroup": "ent_tv"
+  },
+  {
+    "id": "q55055",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55056",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55057",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55058",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55059",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55060",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55061",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55062",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55063",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55064",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55065",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55066",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55067",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55068",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55069",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55070",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55071",
+    "sourceGroup": "hist_nasa"
+  },
+  {
+    "id": "q55072",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55073",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55074",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55075",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55076",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55077",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55078",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55079",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55080",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55081",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55082",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55083",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55084",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55085",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55086",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55087",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55088",
+    "sourceGroup": "art_mythology"
+  },
+  {
+    "id": "q55089",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q55090",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q55091",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q55092",
+    "sourceGroup": "sci_nih"
+  },
+  {
+    "id": "q55093",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q55094",
+    "sourceGroup": "sci_chemistry"
+  },
+  {
+    "id": "q55095",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55096",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55097",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55098",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55099",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55100",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55101",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55102",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55103",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55104",
+    "sourceGroup": "sci_food"
+  },
+  {
+    "id": "q55105",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55106",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55107",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55108",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55109",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55110",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q55111",
+    "sourceGroup": "sport_nba"
+  },
+  {
+    "id": "q55112",
+    "sourceGroup": "sport_nfl"
+  },
+  {
+    "id": "q55113",
+    "sourceGroup": "sport_nhl"
+  },
+  {
+    "id": "q55114",
+    "sourceGroup": "sport_mlb"
+  },
+  {
+    "id": "q55115",
+    "sourceGroup": "sport_rugby"
+  },
+  {
+    "id": "q55116",
+    "sourceGroup": "sport_itf"
+  },
+  {
+    "id": "q55117",
+    "sourceGroup": "sport_itf"
+  },
+  {
+    "id": "q55118",
+    "sourceGroup": "sport_golf"
+  },
+  {
+    "id": "q55119",
+    "sourceGroup": "sport_sailing"
+  },
+  {
+    "id": "q55120",
+    "sourceGroup": "sport_cricket"
+  }
+]

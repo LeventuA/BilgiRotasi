@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q54221",
+    "categoryIndex": 0,
+    "question": "Dört tarafı yalnızca tek bir ülkeyle çevrili en büyük ülke hangisidir?",
+    "options": [
+      "Eswatini",
+      "Lesotho",
+      "San Marino",
+      "Vatikan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Lesotho’nun kara sınırlarının tamamı Güney Afrika ile çevrilidir."
+  },
+  {
+    "id": "q54222",
+    "categoryIndex": 0,
+    "question": "İki ayrı kara parçasından oluşan ve Malezya tarafından bölünen ülke hangisidir?",
+    "options": [
+      "Singapur",
+      "Doğu Timor",
+      "Brunei",
+      "Filipinler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Brunei’nin iki bölümü Malezya’nın Sarawak eyaletindeki Limbang bölgesiyle birbirinden ayrılır."
+  },
+  {
+    "id": "q54223",
+    "categoryIndex": 0,
+    "question": "Dünyanın en yüksek başkenti olarak sıkça anılan şehir hangisidir?",
+    "options": [
+      "Quito",
+      "Bogotá",
+      "Thimphu",
+      "La Paz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bolivya’nın yönetim merkezi La Paz yaklaşık 3.650 metre rakımda kuruludur."
+  },
+  {
+    "id": "q54224",
+    "categoryIndex": 0,
+    "question": "Deniz seviyesine göre en alçakta bulunan başkentlerden biri hangisidir?",
+    "options": [
+      "Bakü",
+      "Amsterdam",
+      "Kopenhag",
+      "Helsinki"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Azerbaycan’ın başkenti Bakü, Hazar Denizi kıyısında deniz seviyesinin yaklaşık 28 metre altındadır."
+  },
+  {
+    "id": "q54225",
+    "categoryIndex": 0,
+    "question": "Aynı anda hem Avrupa’da hem Afrika’da toprağı bulunan ülke hangisidir?",
+    "options": [
+      "Portekiz",
+      "İspanya",
+      "İtalya",
+      "Yunanistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "İspanya’nın ana karası Avrupa’dadır; Ceuta ve Melilla şehirleri Kuzey Afrika kıyısındadır."
+  },
+  {
+    "id": "q54226",
+    "categoryIndex": 0,
+    "question": "Üç başkenti bulunan ülke hangisidir?",
+    "options": [
+      "Fas",
+      "Kanada",
+      "Güney Afrika",
+      "Avustralya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Pretoria yürütme, Cape Town yasama, Bloemfontein ise yargı başkentidir."
+  },
+  {
+    "id": "q54227",
+    "categoryIndex": 0,
+    "question": "Resmî başkenti olmayan ada ülkesi hangisidir?",
+    "options": [
+      "Palau",
+      "Tuvalu",
+      "Kiribati",
+      "Nauru"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Nauru’nun resmî başkenti yoktur; hükümet binaları Yaren bölgesindedir."
+  },
+  {
+    "id": "q54228",
+    "categoryIndex": 0,
+    "question": "Dünyada en fazla adaya sahip ülke hangisidir?",
+    "options": [
+      "İsveç",
+      "Endonezya",
+      "Filipinler",
+      "Norveç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "İsveç’in resmî sayımlarında yüz binlerce ada bulunur; büyük çoğunluğu ıssızdır."
+  },
+  {
+    "id": "q54229",
+    "categoryIndex": 0,
+    "question": "“Bin Göller Ülkesi” olarak bilinen ülke hangisidir?",
+    "options": [
+      "İsveç",
+      "Finlandiya",
+      "Kanada",
+      "İzlanda"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Finlandiya’da resmî ölçütlere göre yaklaşık 188 bin göl bulunur."
+  },
+  {
+    "id": "q54230",
+    "categoryIndex": 0,
+    "question": "“Uzun Beyaz Bulut Ülkesi” anlamındaki Aotearoa adı hangi ülke için kullanılır?",
+    "options": [
+      "Fiji",
+      "Samoa",
+      "Yeni Zelanda",
+      "Tonga"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Aotearoa, Yeni Zelanda’nın Maori dilindeki yaygın adıdır."
+  },
+  {
+    "id": "q54231",
+    "categoryIndex": 0,
+    "question": "Kutup ayıları doğal olarak hangi kutup bölgesinde yaşar?",
+    "options": [
+      "Antarktika",
+      "Himalayalar",
+      "Patagonya",
+      "Arktik"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kutup ayıları Kanada, Alaska, Grönland, Svalbard ve Rusya çevresindeki Arktik deniz buzlarında yaşar."
+  },
+  {
+    "id": "q54232",
+    "categoryIndex": 0,
+    "question": "Ekvator çizgisi hangi Güney Amerika ülkesine adını vermiştir?",
+    "options": [
+      "Ekvador",
+      "Kolombiya",
+      "Peru",
+      "Guyana"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ekvador’un İspanyolca adı doğrudan “ekvator” anlamına gelir."
+  },
+  {
+    "id": "q54233",
+    "categoryIndex": 0,
+    "question": "Kapladığı alan bakımından dünyanın en büyük ülkesi hangisidir?",
+    "options": [
+      "Kanada",
+      "Rusya",
+      "Çin",
+      "ABD"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Rusya yaklaşık 17 milyon kilometrekareyle dünyanın en geniş ülkesidir."
+  },
+  {
+    "id": "q54234",
+    "categoryIndex": 0,
+    "question": "Hem Ekvator hem de başlangıç meridyenine yakın konumuyla bilinen Gine Körfezi hangi okyanustadır?",
+    "options": [
+      "Hint Okyanusu",
+      "Pasifik Okyanusu",
+      "Atlas Okyanusu",
+      "Arktik Okyanusu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Gine Körfezi Batı Afrika kıyısında Atlas Okyanusu’nun bir parçasıdır."
+  },
+  {
+    "id": "q54235",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük iç deltalarından Okavango denize ulaşmadan hangi çölde kaybolur?",
+    "options": [
+      "Sahra",
+      "Namib",
+      "Gobi",
+      "Kalahari"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Okavango Nehri Botsvana’da Kalahari Havzası içinde geniş sulak alanlara dağılır."
+  },
+  {
+    "id": "q54236",
+    "categoryIndex": 0,
+    "question": "Çöllerle kaplı olmasına rağmen kıyısında soğuk Benguela Akıntısı bulunan ülke hangisidir?",
+    "options": [
+      "Namibya",
+      "Kenya",
+      "Mozambik",
+      "Somali"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Benguela Akıntısı Namibya kıyılarını serinletir ve Namib Çölü’nün kuraklığına katkıda bulunur."
+  },
+  {
+    "id": "q54237",
+    "categoryIndex": 0,
+    "question": "Dünyanın en geniş mangrov ormanı Sundarbans hangi iki ülkeye yayılır?",
+    "options": [
+      "Hindistan ve Myanmar",
+      "Bangladeş ve Hindistan",
+      "Bangladeş ve Nepal",
+      "Sri Lanka ve Hindistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sundarbans, Ganj-Brahmaputra deltasında Bangladeş ile Hindistan arasında uzanır."
+  },
+  {
+    "id": "q54238",
+    "categoryIndex": 1,
+    "question": "Yeşilçam’da “İnek Şaban” karakterini kim canlandırır?",
+    "options": [
+      "Şener Şen",
+      "İlyas Salman",
+      "Kemal Sunal",
+      "Tarık Akan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kemal Sunal, Hababam Sınıfı filmlerindeki saf ve komik İnek Şaban rolüyle özdeşleşmiştir."
+  },
+  {
+    "id": "q54239",
+    "categoryIndex": 1,
+    "question": "Neşeli Günler filminde aile hangi ürün yüzünden ikiye ayrılır?",
+    "options": [
+      "Reçel",
+      "Yoğurt",
+      "Peynir",
+      "Turşu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kazım sirkeyle, Saadet ise limonla turşu yapılacağını savununca aile dağılır."
+  },
+  {
+    "id": "q54240",
+    "categoryIndex": 1,
+    "question": "Selvi Boylum Al Yazmalım filmindeki ünlü “Sevgi neydi” sorusunun cevabı nedir?",
+    "options": [
+      "Emekti",
+      "Özgürlüktü",
+      "Tutkuydu",
+      "Gururdu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Film, sevginin yalnızca tutku değil emek ve sorumluluk olduğunu vurgular."
+  },
+  {
+    "id": "q54241",
+    "categoryIndex": 1,
+    "question": "Vizontele filminde köye ilk kez getirilen cihaz hangisidir?",
+    "options": [
+      "Radyo",
+      "Televizyon",
+      "Telefon",
+      "Sinema projektörü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kasaba halkının “resimli radyo” diye merak ettiği televizyon, filmin merkezindeki yeniliktir."
+  },
+  {
+    "id": "q54242",
+    "categoryIndex": 1,
+    "question": "Organize İşler filmindeki suç ekibinin liderini kim canlandırır?",
+    "options": [
+      "Cem Yılmaz",
+      "Şener Şen",
+      "Yılmaz Erdoğan",
+      "Ata Demirer"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yılmaz Erdoğan, dolandırıcı ekibin karizmatik lideri Asım Noyan’ı canlandırır."
+  },
+  {
+    "id": "q54243",
+    "categoryIndex": 1,
+    "question": "Babam ve Oğlum filminde küçük Deniz’in babasının adı nedir?",
+    "options": [
+      "Hüseyin",
+      "Salim",
+      "Mehmet",
+      "Sadık"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sadık, siyasi geçmişi ve hastalığı nedeniyle oğluyla birlikte yıllar sonra ailesinin çiftliğine döner."
+  },
+  {
+    "id": "q54244",
+    "categoryIndex": 1,
+    "question": "Yalan Dünya dizisinde olayların büyük bölümü hangi şehirde geçer?",
+    "options": [
+      "İstanbul",
+      "İzmir",
+      "Ankara",
+      "Bursa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dizi, İstanbul Cihangir’de karşı dairelerde yaşayan iki ailenin komik ilişkilerini anlatır."
+  },
+  {
+    "id": "q54245",
+    "categoryIndex": 1,
+    "question": "İşler Güçler dizisinde başlıca karakterler hangi mesleği yapar?",
+    "options": [
+      "Polislik",
+      "Oyunculuk",
+      "Doktorluk",
+      "Gazetecilik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ahmet, Murat ve Sadi oyunculuk kariyerlerini sürdürmeye çalışan üç arkadaştır."
+  },
+  {
+    "id": "q54246",
+    "categoryIndex": 1,
+    "question": "Bir Başkadır dizisi ağırlıklı olarak hangi şehirde geçer?",
+    "options": [
+      "Ankara",
+      "Adana",
+      "İstanbul",
+      "Diyarbakır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Farklı toplumsal çevrelerden karakterlerin yolları İstanbul’da kesişir."
+  },
+  {
+    "id": "q54247",
+    "categoryIndex": 1,
+    "question": "The Lord of the Rings’te Aragorn’un yeniden dövdürülen kılıcının adı nedir?",
+    "options": [
+      "Glamdring",
+      "Sting",
+      "Orcrist",
+      "Andúril"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Narsil’in parçalarından yeniden dövülen Andúril, Aragorn’un krallık iddiasını simgeler."
+  },
+  {
+    "id": "q54248",
+    "categoryIndex": 1,
+    "question": "Harry Potter’da ruh emen Azkaban gardiyanlarına ne denir?",
+    "options": [
+      "Dementor",
+      "Death Eater",
+      "Inferi",
+      "Basilisk"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dementorlar mutluluk duygusunu emer ve en korkunç saldırıları “Dementor öpücüğü”dür."
+  },
+  {
+    "id": "q54249",
+    "categoryIndex": 1,
+    "question": "Star Wars’ta Jedi’ların başlıca silahı hangisidir?",
+    "options": [
+      "Blaster",
+      "Işın kılıcı",
+      "Vibroblade",
+      "Elektroasa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Işın kılıcı enerji bıçağı oluşturan ve Jedi ile Sith’lerle özdeşleşen silahtır."
+  },
+  {
+    "id": "q54250",
+    "categoryIndex": 1,
+    "question": "Back to the Future’da zaman yolculuğu için gereken hız kaç mil/saattir?",
+    "options": [
+      "55",
+      "100",
+      "88",
+      "120"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "DeLorean 88 mil/saate ulaştığında akı kapasitörü zaman yolculuğunu başlatır."
+  },
+  {
+    "id": "q54251",
+    "categoryIndex": 1,
+    "question": "The Exorcist filminde şeytan çıkarma ayininin uygulandığı kızın adı nedir?",
+    "options": [
+      "Carrie",
+      "Rosemary",
+      "Nancy",
+      "Regan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Regan MacNeil’in davranışları doğaüstü hâle gelince iki rahip şeytan çıkarma ayini uygular."
+  },
+  {
+    "id": "q54252",
+    "categoryIndex": 1,
+    "question": "The Witcher oyunlarında Geralt’ın atlarına genellikle verdiği isim nedir?",
+    "options": [
+      "Roach",
+      "Shadowfax",
+      "Epona",
+      "Agro"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Geralt farklı atlara sahip olsa da hepsini genellikle Roach adıyla çağırır."
+  },
+  {
+    "id": "q54253",
+    "categoryIndex": 1,
+    "question": "Dark Souls serisinde dinlenme ve kayıt noktası işlevi gören şey nedir?",
+    "options": [
+      "Fountain",
+      "Bonfire",
+      "Crystal",
+      "Portal"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bonfire karakteri iyileştirir ve düşmanları yeniden doğururken ilerleme merkezi görevi görür."
+  },
+  {
+    "id": "q54254",
+    "categoryIndex": 1,
+    "question": "Half-Life serisinin levye kullanan bilim insanı kimdir?",
+    "options": [
+      "Barney Calhoun",
+      "Eli Vance",
+      "Gordon Freeman",
+      "Adrian Shephard"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Gordon Freeman, Black Mesa kazası sonrası uzaylı istilasıyla mücadele eden teorik fizikçidir."
+  },
+  {
+    "id": "q54255",
+    "categoryIndex": 2,
+    "question": "Dünyanın bilinen ilk yazılı destanlarından biri hangisidir?",
+    "options": [
+      "İlyada",
+      "Beowulf",
+      "Şehname",
+      "Gılgamış Destanı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gılgamış Destanı Sümer ve Akad tabletlerinde korunmuş, ölümsüzlük arayışını anlatan çok eski bir eserdir."
+  },
+  {
+    "id": "q54256",
+    "categoryIndex": 2,
+    "question": "Fenikelilerin Akdeniz tarihine en önemli katkılarından biri hangisidir?",
+    "options": [
+      "Alfabe sistemi",
+      "Barut",
+      "Kâğıt para",
+      "Matbaa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fenike alfabesi Yunan ve Latin alfabelerinin gelişimini etkileyen ses temelli bir yazı sistemiydi."
+  },
+  {
+    "id": "q54257",
+    "categoryIndex": 2,
+    "question": "Pers Kraliyet Yolu hangi imparatorluk döneminde gelişti?",
+    "options": [
+      "Roma İmparatorluğu",
+      "Ahameniş Pers İmparatorluğu",
+      "Bizans İmparatorluğu",
+      "Moğol İmparatorluğu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kraliyet Yolu, Sardes ile Susa arasında haberleşmeyi hızlandıran geniş bir yol ağıydı."
+  },
+  {
+    "id": "q54258",
+    "categoryIndex": 2,
+    "question": "Antik Roma’da halkın eğlendiği araba yarışlarının büyük arenası hangisiydi?",
+    "options": [
+      "Kolezyum",
+      "Pantheon",
+      "Circus Maximus",
+      "Caracalla Hamamı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Circus Maximus yüz binlerce seyirci alabilen dev bir atlı araba yarışı alanıydı."
+  },
+  {
+    "id": "q54259",
+    "categoryIndex": 2,
+    "question": "Jül Sezar hangi ayın adına ilham vermiştir?",
+    "options": [
+      "Haziran",
+      "Ağustos",
+      "Eylül",
+      "Temmuz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Latincedeki Julius ayı Jül Sezar’ın onuruna adlandırılmış, Türkçede Temmuz olarak kullanılmıştır."
+  },
+  {
+    "id": "q54260",
+    "categoryIndex": 2,
+    "question": "Augustus hangi ayın adına ilham vermiştir?",
+    "options": [
+      "Ağustos",
+      "Mayıs",
+      "Ekim",
+      "Aralık"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Roma Senatosu Sextilis ayını İmparator Augustus’un onuruna Augustus olarak yeniden adlandırdı."
+  },
+  {
+    "id": "q54261",
+    "categoryIndex": 2,
+    "question": "Orta Çağ’da Avrupa’yı Asya’ya bağlayan ticaret yollarının genel adı neydi?",
+    "options": [
+      "Baharat Çemberi",
+      "İpek Yolu",
+      "Kral Yolu",
+      "Amber Hattı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İpek Yolu tek bir yol değil, Çin’den Akdeniz’e uzanan kara ve deniz ticaret ağlarının adıdır."
+  },
+  {
+    "id": "q54262",
+    "categoryIndex": 2,
+    "question": "Marco Polo’nun seyahatleri en çok hangi hükümdarın sarayıyla ilişkilidir?",
+    "options": [
+      "Cengiz Han",
+      "Timur",
+      "Kubılay Han",
+      "Akbar Şah"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Marco Polo anlatısına göre Çin’de Yuan hükümdarı Kubılay Han’ın hizmetinde yıllar geçirdi."
+  },
+  {
+    "id": "q54263",
+    "categoryIndex": 2,
+    "question": "Kara Ölüm sırasında hastalara bakan gagalı maskeli kişilere ne denirdi?",
+    "options": [
+      "Lonca hekimi",
+      "Kilise muhafızı",
+      "Saray cerrahı",
+      "Veba doktoru"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gagalı maske özellikle sonraki veba salgınlarında kötü havadan koruduğuna inanılan kokulu maddeler taşırdı."
+  },
+  {
+    "id": "q54264",
+    "categoryIndex": 2,
+    "question": "Azteklerin başkenti Tenochtitlan hangi göl üzerinde kurulmuştu?",
+    "options": [
+      "Texcoco Gölü",
+      "Titicaca Gölü",
+      "Nikaragua Gölü",
+      "Maracaibo Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tenochtitlan, adalar ve geçit yollarıyla Texcoco Gölü üzerinde büyük bir kent olarak gelişti."
+  },
+  {
+    "id": "q54265",
+    "categoryIndex": 2,
+    "question": "İnkaların uzun yol sistemindeki haberci koşuculara ne denirdi?",
+    "options": [
+      "Samuray",
+      "Chasqui",
+      "Hoplite",
+      "Janissary"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Chasqui koşucuları mesaj ve küçük eşyaları röle sistemiyle And Dağları boyunca taşırdı."
+  },
+  {
+    "id": "q54266",
+    "categoryIndex": 2,
+    "question": "Samurayların bağlılık ve savaşçı ahlakı hangi adla bilinir?",
+    "options": [
+      "Shinto",
+      "Zen",
+      "Bushido",
+      "Kabuki"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bushido, samuraylarla ilişkilendirilen sadakat, cesaret ve onur ilkelerini ifade eder."
+  },
+  {
+    "id": "q54267",
+    "categoryIndex": 2,
+    "question": "Japonya’da askerî yöneticiye verilen unvan neydi?",
+    "options": [
+      "Daimyo",
+      "Samuray",
+      "Mikado",
+      "Şogun"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Şogun, imparator adına ülkenin askerî ve siyasi yönetimini elinde tutan komutandı."
+  },
+  {
+    "id": "q54268",
+    "categoryIndex": 2,
+    "question": "Osmanlı’da devşirme kökenli seçkin piyade ocağı hangisiydi?",
+    "options": [
+      "Yeniçeri Ocağı",
+      "Sipahi Ocağı",
+      "Akıncı Ocağı",
+      "Humbaracı Ocağı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yeniçeriler merkez ordusunun maaşlı ve sürekli piyade birlikleriydi."
+  },
+  {
+    "id": "q54269",
+    "categoryIndex": 2,
+    "question": "Osmanlı’da tımarlı sipahilerin temel görevi neydi?",
+    "options": [
+      "Vergi basmak",
+      "Savaşta atlı asker sağlamak",
+      "Donanma yönetmek",
+      "Saray eğitimi vermek"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tımar sahibi sipahiler gelirleri karşılığında sefere katılır ve cebelü adı verilen askerler getirirdi."
+  },
+  {
+    "id": "q54270",
+    "categoryIndex": 2,
+    "question": "Kurtuluş Savaşı’ndaki Büyük Taarruz hangi yıl başladı?",
+    "options": [
+      "1919",
+      "1920",
+      "1922",
+      "1921"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Büyük Taarruz 26 Ağustos 1922’de başladı ve kısa sürede Yunan ordusunun Anadolu’dan çekilmesini sağladı."
+  },
+  {
+    "id": "q54271",
+    "categoryIndex": 2,
+    "question": "İlk Türk kadın savaş pilotu kimdir?",
+    "options": [
+      "Afet İnan",
+      "Halide Edib Adıvar",
+      "Nene Hatun",
+      "Sabiha Gökçen"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sabiha Gökçen askerî pilot olarak görev yaptı ve dünyanın ilk kadın savaş pilotlarından biri kabul edilir."
+  },
+  {
+    "id": "q54272",
+    "categoryIndex": 3,
+    "question": "Müzikte bir eserin hızını belirten terime ne denir?",
+    "options": [
+      "Tempo",
+      "Tını",
+      "Armoni",
+      "Kadans"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tempo müziğin ne kadar hızlı veya yavaş icra edileceğini belirtir."
+  },
+  {
+    "id": "q54273",
+    "categoryIndex": 3,
+    "question": "Müzikte sesin yüksek veya alçak olma özelliğine ne denir?",
+    "options": [
+      "Ritim",
+      "Perde",
+      "Tını",
+      "Form"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Perde, ses dalgasının frekansına bağlı olarak sesi tiz veya pes algılamamızı sağlar."
+  },
+  {
+    "id": "q54274",
+    "categoryIndex": 3,
+    "question": "Bir müzik eserinin ana ezgisine ne denir?",
+    "options": [
+      "Ritim",
+      "Tempo",
+      "Melodi",
+      "Dinamik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Melodi, art arda gelen notaların anlamlı bir ezgi oluşturmasıdır."
+  },
+  {
+    "id": "q54275",
+    "categoryIndex": 3,
+    "question": "Orkestrayı yöneten kişiye ne denir?",
+    "options": [
+      "Solist",
+      "Librettist",
+      "Virtüöz",
+      "Şef"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Orkestra şefi tempo, girişler, yorum ve topluluk dengesini baton ve hareketlerle yönetir."
+  },
+  {
+    "id": "q54276",
+    "categoryIndex": 3,
+    "question": "Operadaki metne ne denir?",
+    "options": [
+      "Libretto",
+      "Sonat",
+      "Requiem",
+      "Etüt"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Libretto, opera veya müzikal gibi sahne eserlerinde söylenen ve konuşulan metindir."
+  },
+  {
+    "id": "q54277",
+    "categoryIndex": 3,
+    "question": "Dört çalgıcıdan oluşan müzik topluluğuna ne denir?",
+    "options": [
+      "Trio",
+      "Kuartet",
+      "Düet",
+      "Kentet"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kuartet, dört icracı veya dört çalgı için yazılan topluluğu ifade eder."
+  },
+  {
+    "id": "q54278",
+    "categoryIndex": 3,
+    "question": "Keman ailesinin en büyük ve en pes sesli yaylı çalgısı hangisidir?",
+    "options": [
+      "Viyola",
+      "Çello",
+      "Kontrbas",
+      "Keman"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kontrbas orkestranın yaylı grubunda en kalın sesleri üretir."
+  },
+  {
+    "id": "q54279",
+    "categoryIndex": 3,
+    "question": "Piyanoda standart olarak kaç tuş bulunur?",
+    "options": [
+      "76",
+      "92",
+      "100",
+      "88"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Modern tam boy piyanolarda 52 beyaz ve 36 siyah olmak üzere 88 tuş vardır."
+  },
+  {
+    "id": "q54280",
+    "categoryIndex": 3,
+    "question": "Guernica tablosunu yapan sanatçı hangi ülkedendi?",
+    "options": [
+      "İspanya",
+      "Fransa",
+      "İtalya",
+      "Meksika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Pablo Picasso İspanya’nın Malaga şehrinde doğmuş, yaşamının büyük bölümünü Fransa’da geçirmiştir."
+  },
+  {
+    "id": "q54281",
+    "categoryIndex": 3,
+    "question": "Mona Lisa’nın başka bir yaygın adı nedir?",
+    "options": [
+      "La Primavera",
+      "La Gioconda",
+      "La Pietà",
+      "La Maja"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mona Lisa İtalyancada La Gioconda, Fransızcada La Joconde adıyla da bilinir."
+  },
+  {
+    "id": "q54282",
+    "categoryIndex": 3,
+    "question": "Rodin’in Öpücük heykeli ilk olarak hangi büyük projeye aitti?",
+    "options": [
+      "Zafer Takı",
+      "İlahi Komedya Anıtı",
+      "Cehennemin Kapıları",
+      "Düşler Bahçesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Öpücük, Dante’nin Paolo ve Francesca öyküsünden esinlenen Cehennemin Kapıları projesi için tasarlandı."
+  },
+  {
+    "id": "q54283",
+    "categoryIndex": 3,
+    "question": "Kübizm akımının öncü iki sanatçısı kimlerdir?",
+    "options": [
+      "Monet ve Renoir",
+      "Dalí ve Magritte",
+      "Matisse ve Derain",
+      "Picasso ve Braque"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Pablo Picasso ile Georges Braque nesneleri çoklu bakış açılarından parçalayan Kübizmi geliştirdi."
+  },
+  {
+    "id": "q54284",
+    "categoryIndex": 3,
+    "question": "İzlenimcilik akımının adı hangi tablodan gelir?",
+    "options": [
+      "İzlenim, Gün Doğumu",
+      "Yıldızlı Gece",
+      "Nilüferler",
+      "Kırda Öğle Yemeği"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Claude Monet’nin İzlenim, Gün Doğumu tablosu eleştirmenlerin “İzlenimcilik” adını kullanmasına yol açtı."
+  },
+  {
+    "id": "q54285",
+    "categoryIndex": 3,
+    "question": "Franz Kafka’nın Dava romanındaki başkahramanın adı nedir?",
+    "options": [
+      "Gregor Samsa",
+      "Josef K.",
+      "Meursault",
+      "Winston Smith"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Josef K. nedenini bilmediği bir suçlama nedeniyle anlaşılmaz bir hukuk sistemiyle mücadele eder."
+  },
+  {
+    "id": "q54286",
+    "categoryIndex": 3,
+    "question": "Usta ile Margarita romanını kim yazdı?",
+    "options": [
+      "Boris Pasternak",
+      "Aleksandr Soljenitsin",
+      "Mihail Bulgakov",
+      "Vladimir Nabokov"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bulgakov’un romanı Sovyet Moskova’sına gelen şeytanî bir grubun hicivli hikâyesini anlatır."
+  },
+  {
+    "id": "q54287",
+    "categoryIndex": 3,
+    "question": "Yüzyıllık Yalnızlık romanındaki kasabanın adı nedir?",
+    "options": [
+      "Comala",
+      "Santa María",
+      "Yoknapatawpha",
+      "Macondo"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Buendía ailesinin kurduğu Macondo, roman boyunca büyür, değişir ve unutulmaya yüz tutar."
+  },
+  {
+    "id": "q54288",
+    "categoryIndex": 3,
+    "question": "Beyaz Diş romanının yazarı kimdir?",
+    "options": [
+      "Jack London",
+      "Mark Twain",
+      "Rudyard Kipling",
+      "Ernest Hemingway"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jack London, kurt-köpek melezi Beyaz Diş’in vahşi doğadan insan dünyasına geçişini anlatır."
+  },
+  {
+    "id": "q54289",
+    "categoryIndex": 4,
+    "question": "Hangi memeli pullarla kaplıdır?",
+    "options": [
+      "Armadillo",
+      "Pangolin",
+      "Kirpi",
+      "Tembel hayvan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Pangolinlerin vücudu keratinden oluşan sert pullarla kaplıdır."
+  },
+  {
+    "id": "q54290",
+    "categoryIndex": 4,
+    "question": "Hangi hayvan tehlike anında midesini dışarı çıkararak beslenebilir?",
+    "options": [
+      "Denizatı",
+      "Müren",
+      "Denizyıldızı",
+      "Kalamar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Bazı denizyıldızları midelerini ağızlarından dışarı çıkarıp avı vücut dışında sindirir."
+  },
+  {
+    "id": "q54291",
+    "categoryIndex": 4,
+    "question": "Hangi kuş kendi vücut ağırlığının yaklaşık iki katı kadar su taşıyabilen boğaz kesesine sahiptir?",
+    "options": [
+      "Martı",
+      "Leylek",
+      "Flamingo",
+      "Pelikan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Pelikanın esnek gaga kesesi balıkları toplar ve kısa süreliğine büyük miktarda su tutabilir."
+  },
+  {
+    "id": "q54292",
+    "categoryIndex": 4,
+    "question": "Tembel hayvanlar neden haftada yaklaşık bir kez yere iner?",
+    "options": [
+      "Dışkılamak için",
+      "Su içmek için",
+      "Tüy değiştirmek için",
+      "Uyumak için"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tembel hayvanların çoğu türü dışkılamak için ağacın dibine iner ve bu yolculuk onlar için risklidir."
+  },
+  {
+    "id": "q54293",
+    "categoryIndex": 4,
+    "question": "Koalaların temel besini nedir?",
+    "options": [
+      "Bambu",
+      "Okaliptüs yaprağı",
+      "Akasya tohumu",
+      "Çam kozalağı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Koalalar düşük enerjili ve toksinli okaliptüs yapraklarını özel sindirim sistemleriyle tüketir."
+  },
+  {
+    "id": "q54294",
+    "categoryIndex": 4,
+    "question": "Dev pandaların temel besini nedir?",
+    "options": [
+      "Okaliptüs",
+      "Balık",
+      "Bambu",
+      "Meyve"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Pandalar etçil atalara sahip olsa da beslenmelerinin büyük bölümünü bambu oluşturur."
+  },
+  {
+    "id": "q54295",
+    "categoryIndex": 4,
+    "question": "Hangi hayvanın dili vücudunun yaklaşık iki katına kadar uzayabilir?",
+    "options": [
+      "Su aygırı",
+      "Gergedan",
+      "Kunduz",
+      "Karıncayiyen"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dev karıncayiyenin uzun ve yapışkan dili termit ile karıncaları yuvalarından toplamaya uyumludur."
+  },
+  {
+    "id": "q54296",
+    "categoryIndex": 4,
+    "question": "Dünyanın en büyük kemirgeni hangisidir?",
+    "options": [
+      "Kapibara",
+      "Kunduz",
+      "Kirpi",
+      "Marmot"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Güney Amerika’da yaşayan kapibaralar 60 kilogramı aşabilen yarı sucul kemirgenlerdir."
+  },
+  {
+    "id": "q54297",
+    "categoryIndex": 4,
+    "question": "Kutup tilkisinin tüy rengi mevsime göre nasıl değişebilir?",
+    "options": [
+      "Kışın siyah, yazın kırmızı",
+      "Kışın beyaz, yazın kahverengi",
+      "Her mevsim mavi",
+      "Yalnız yavruyken beyaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Renk değişimi kutup tilkisine kar ve tundra ortamlarında mevsimsel kamuflaj sağlar."
+  },
+  {
+    "id": "q54298",
+    "categoryIndex": 4,
+    "question": "Hangi gezegende altıgen biçimli dev bir kutup fırtınası vardır?",
+    "options": [
+      "Jüpiter",
+      "Uranüs",
+      "Satürn",
+      "Neptün"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Satürn’ün kuzey kutbundaki altıgen jet akımı Voyager ve Cassini görevleriyle gözlenmiştir."
+  },
+  {
+    "id": "q54299",
+    "categoryIndex": 4,
+    "question": "Mars gökyüzü gündüzleri yüzeye yakın gözlemciye hangi tonda görünür?",
+    "options": [
+      "Parlak mavi",
+      "Yeşil",
+      "Mor",
+      "Kızılımsı veya turuncu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mars atmosferindeki ince toz, gündüz gökyüzüne kızılımsı bir ton verir; gün batımı çevresi mavimsi olabilir."
+  },
+  {
+    "id": "q54300",
+    "categoryIndex": 4,
+    "question": "Güneş’in görünür yüzeyine ne denir?",
+    "options": [
+      "Fotosfer",
+      "Korona",
+      "Kromosfer",
+      "Çekirdek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fotosfer, Güneş’ten gördüğümüz ışığın büyük bölümünün yayıldığı yaklaşık 5.500 derece sıcaklıktaki katmandır."
+  },
+  {
+    "id": "q54301",
+    "categoryIndex": 4,
+    "question": "Güneş tutulması sırasında Güneş’in dış atmosferinin görünen bölümüne ne denir?",
+    "options": [
+      "Fotosfer",
+      "Korona",
+      "Manyetosfer",
+      "Troposfer"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tam tutulmada parlak fotosfer örtülünce Güneş’in soluk ve sıcak koronası görünür hâle gelir."
+  },
+  {
+    "id": "q54302",
+    "categoryIndex": 4,
+    "question": "Kuzey ve güney ışıklarını oluşturan parçacıkların başlıca kaynağı nedir?",
+    "options": [
+      "Ay toprağı",
+      "Okyanus buharı",
+      "Güneş rüzgârı",
+      "Dünya çekirdeği"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Güneş’ten gelen yüklü parçacıklar manyetik alan boyunca kutuplara yönelip atmosferle çarpışır."
+  },
+  {
+    "id": "q54303",
+    "categoryIndex": 4,
+    "question": "İnsanlarda kanın pıhtılaşmasına yardımcı olan hücre parçacıkları hangileridir?",
+    "options": [
+      "Alyuvarlar",
+      "Lenfositler",
+      "Nöronlar",
+      "Trombositler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Trombositler damar hasarında birbirine yapışır ve pıhtılaşma sürecini başlatır."
+  },
+  {
+    "id": "q54304",
+    "categoryIndex": 4,
+    "question": "Akciğerlerde gaz alışverişinin gerçekleştiği küçük keseciklere ne denir?",
+    "options": [
+      "Alveol",
+      "Bronş",
+      "Nefron",
+      "Sinaps"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Alveollerin ince duvarları oksijen ve karbondioksitin kılcal damarlarla değişimini sağlar."
+  },
+  {
+    "id": "q54305",
+    "categoryIndex": 5,
+    "question": "Futbolda “duvar pası” kaç oyuncu arasında yapılır?",
+    "options": [
+      "Üç oyuncu",
+      "İki oyuncu",
+      "Dört oyuncu",
+      "Yalnız bir oyuncu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bir oyuncu topu arkadaşına verir, koşusunu sürdürür ve topu tek pasla geri alır."
+  },
+  {
+    "id": "q54306",
+    "categoryIndex": 5,
+    "question": "Futbolda topu rakibin bacaklarının arasından geçirmeye ne denir?",
+    "options": [
+      "Rabona",
+      "Röveşata",
+      "Beşik veya nutmeg",
+      "Panenka"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Nutmeg, topun rakibin iki bacağı arasından geçirilmesiyle yapılan çalım hareketidir."
+  },
+  {
+    "id": "q54307",
+    "categoryIndex": 5,
+    "question": "Futbolda havadaki topa geriye doğru sıçrayarak vurulan harekete ne denir?",
+    "options": [
+      "Rabona",
+      "Vole",
+      "Plase",
+      "Röveşata"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Röveşatada oyuncu sırtını kaleye dönüp havada makas benzeri hareketle topa vurur."
+  },
+  {
+    "id": "q54308",
+    "categoryIndex": 5,
+    "question": "Basketbolda topu potaya tek elle yumuşakça bırakan yakın mesafe atışına ne denir?",
+    "options": [
+      "Turnike",
+      "Hook shot",
+      "Fadeaway",
+      "Jump ball"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Turnike çoğunlukla iki adımlık yaklaşımın ardından potaya yakın tek elle tamamlanır."
+  },
+  {
+    "id": "q54309",
+    "categoryIndex": 5,
+    "question": "Basketbolda sırtı potaya dönük tek elle kavisli atışa ne denir?",
+    "options": [
+      "Layup",
+      "Hook shot",
+      "Bank shot",
+      "Set shot"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Hook shot’ta oyuncu vücudunu savunmacıyla top arasına koyup kolunu yay çizerek uzatır."
+  },
+  {
+    "id": "q54310",
+    "categoryIndex": 5,
+    "question": "Basketbolda topu panyaya çarptırarak atılan şuta ne denir?",
+    "options": [
+      "Air ball",
+      "Floater",
+      "Bank shot",
+      "Free throw"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bank shot, topun çembere girmeden önce pota levhasına çarptırıldığı atıştır."
+  },
+  {
+    "id": "q54311",
+    "categoryIndex": 5,
+    "question": "Teniste topa yoğun üst dönüş veren vuruşa ne denir?",
+    "options": [
+      "Slice",
+      "Drop shot",
+      "Volley",
+      "Topspin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Topspin topun ileri yönde dönmesini sağlayarak fileyi güvenli geçip korta hızla düşmesine yardım eder."
+  },
+  {
+    "id": "q54312",
+    "categoryIndex": 5,
+    "question": "Teniste topa geriye doğru dönüş veren vuruşa ne denir?",
+    "options": [
+      "Slice",
+      "Topspin",
+      "Smash",
+      "Lob"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Slice topu alttan keserek geri dönüş kazandırır ve sekmeyi alçaltır."
+  },
+  {
+    "id": "q54313",
+    "categoryIndex": 5,
+    "question": "Voleybolda hücumcunun vurabilmesi için topu hazırlayan oyuncuya ne denir?",
+    "options": [
+      "Libero",
+      "Pasör",
+      "Smaçör",
+      "Orta oyuncu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pasör takımın hücum düzenini kurar ve topu uygun yükseklik ile konuma taşır."
+  },
+  {
+    "id": "q54314",
+    "categoryIndex": 5,
+    "question": "Voleybolda pasörün ikinci topu beklenmedik biçimde rakip sahaya bırakmasına ne denir?",
+    "options": [
+      "Manşet",
+      "Blok out",
+      "Pasör plasesi",
+      "Servis karşılama"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Pasör plasesinde pas verecekmiş gibi görünen pasör topu tek veya çift elle rakip sahadaki boşluğa gönderir."
+  },
+  {
+    "id": "q54315",
+    "categoryIndex": 5,
+    "question": "Satrançta şahın önündeki savunmayı açmak için taş feda etmeye ne denebilir?",
+    "options": [
+      "Rok",
+      "Pat",
+      "Terfi",
+      "Gambit"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Gambitte oyuncu gelişim, merkez veya saldırı avantajı için genellikle piyon feda eder."
+  },
+  {
+    "id": "q54316",
+    "categoryIndex": 5,
+    "question": "Satrançta yalnızca iki şah kalırsa sonuç ne olur?",
+    "options": [
+      "Beraberlik",
+      "Beyaz kazanır",
+      "Siyah kazanır",
+      "Oyun yeniden başlar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İki şah birbirini mat edemeyeceği için yetersiz materyal nedeniyle oyun berabere biter."
+  },
+  {
+    "id": "q54317",
+    "categoryIndex": 5,
+    "question": "Formula 1’de pit stopun temel amacı nedir?",
+    "options": [
+      "Pilot değiştirmek",
+      "Lastik değiştirmek ve araca hizmet vermek",
+      "Tur sayısını azaltmak",
+      "Puan hesaplamak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pit stop sırasında ekip lastikleri değiştirir, hasarı onarabilir ve izin verilen ayarları yapabilir."
+  },
+  {
+    "id": "q54318",
+    "categoryIndex": 5,
+    "question": "Formula 1’de güvenlik aracı piste neden çıkar?",
+    "options": [
+      "Startı hızlandırmak için",
+      "Pole pozisyonu belirlemek için",
+      "Tehlikeli durumda araçları yavaşlatmak için",
+      "Yakıt vermek için"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kaza, enkaz veya kötü hava durumunda safety car tüm araçları kontrollü hızda toplar."
+  },
+  {
+    "id": "q54319",
+    "categoryIndex": 5,
+    "question": "Boksta rakibin çenesine aşağıdan yukarı vurulan yumruğa ne denir?",
+    "options": [
+      "Jab",
+      "Hook",
+      "Cross",
+      "Uppercut"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Uppercut yakın mesafede aşağıdan yukarı doğru özellikle çene ve gövdeye atılır."
+  },
+  {
+    "id": "q54320",
+    "categoryIndex": 5,
+    "question": "Boksta düz ve hızlı ön el yumruğuna ne denir?",
+    "options": [
+      "Jab",
+      "Uppercut",
+      "Hook",
+      "Overhand"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jab mesafeyi ölçmek, rakibi rahatsız etmek ve kombinasyon hazırlamak için kullanılır."
+  }
+]

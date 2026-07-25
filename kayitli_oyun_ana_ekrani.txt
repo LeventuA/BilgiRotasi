@@ -1,0 +1,429 @@
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({required this.questionBank, super.key});
+
+  final QuestionBank questionBank;
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late Future<SavedGame?> _savedGameFuture;
+  bool _actionBusy = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _reloadSavedGame();
+  }
+
+  void _reloadSavedGame() {
+    _savedGameFuture = GameSaveService.load();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(20, 18, 20, 28),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 58,
+                    height: 58,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF155E75),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    alignment: Alignment.center,
+                    child: const Text(
+                      '🧠',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Bilgi Rotası',
+                          style: TextStyle(
+                            fontSize: 30,
+                            height: 1,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        SizedBox(height: 6),
+                        Text('Zarı at, bilginle yolu aç.'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              FutureBuilder<SavedGame?>(
+                future: _savedGameFuture,
+                builder: (context, snapshot) {
+                  final savedGame = snapshot.data;
+
+                  if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return const Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(18),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 22,
+                              height: 22,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.5,
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Text('Kayıtlı oyun kontrol ediliyor…'),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+
+                  if (savedGame == null) {
+                    return const SizedBox.shrink();
+                  }
+
+                  return _buildSavedGameCard(savedGame);
+                },
+              ),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF164E63),
+                      Color(0xFF0F766E),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Aynı telefonda\n2–6 kişilik bilgi düellosu',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28,
+                        height: 1.15,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    Text(
+                      '${widget.questionBank.totalCount} soru • '
+                      '6 kategori • İnternetsiz',
+                      style: const TextStyle(
+                        color: Color(0xFFD5F5F1),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    FilledButton.icon(
+                      style: FilledButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: const Color(0xFF164E63),
+                      ),
+                      onPressed: _actionBusy ? null : _openNewGame,
+                      icon: const Icon(Icons.add_circle_outline_rounded),
+                      label: const Text(
+                        'Yeni Oyun Kur',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 18),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Kategoriler',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      Wrap(
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: List.generate(
+                          GameCategory.values.length,
+                          (index) => CategoryPill(
+                            category: GameCategory.values[index],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 14),
+              OutlinedButton.icon(
+                onPressed: () => _showRules(context),
+                icon: const Icon(Icons.menu_book_rounded),
+                label: const Text('Nasıl Oynanır?'),
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(52),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSavedGameCard(SavedGame savedGame) {
+    final currentPlayer = savedGame.currentPlayer;
+
+    return Card(
+      child: Container(
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF3B1D52),
+              Color(0xFF1E3A5F),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                PawnToken(
+                  type: currentPlayer.pawnType,
+                  color: currentPlayer.color,
+                  active: true,
+                  width: 58,
+                  height: 72,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Kayıtlı oyun',
+                        style: TextStyle(
+                          color: Color(0xFFFFE082),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        'Sıra ${currentPlayer.name} oyuncusunda',
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        '${savedGame.players.length} oyuncu • '
+                        '${savedGame.totalBadges} rozet • '
+                        '${_formatDate(savedGame.savedAt)}',
+                        style: const TextStyle(
+                          color: Color(0xFFD8CCEA),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 14),
+            FilledButton.icon(
+              onPressed: _actionBusy
+                  ? null
+                  : () => _continueGame(savedGame),
+              icon: const Icon(Icons.play_arrow_rounded),
+              label: const Text(
+                'Oyuna Devam Et',
+                style: TextStyle(fontWeight: FontWeight.w900),
+              ),
+            ),
+            TextButton.icon(
+              onPressed:
+                  _actionBusy ? null : _deleteSavedGame,
+              style: TextButton.styleFrom(
+                foregroundColor: const Color(0xFFFFCDD2),
+              ),
+              icon: const Icon(Icons.delete_outline_rounded),
+              label: const Text('Kayıtlı Oyunu Sil'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _continueGame(SavedGame savedGame) async {
+    if (_actionBusy) return;
+
+    setState(() => _actionBusy = true);
+
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => GameScreen(
+          questionBank: widget.questionBank,
+          players: savedGame.players,
+          initialPlayerIndex: savedGame.currentPlayerIndex,
+          initialStatus:
+              'Kayıtlı oyun açıldı. Sıra '
+              '${savedGame.currentPlayer.name} oyuncusunda.',
+        ),
+      ),
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _actionBusy = false;
+      _reloadSavedGame();
+    });
+  }
+
+  Future<void> _openNewGame() async {
+    if (_actionBusy) return;
+
+    setState(() => _actionBusy = true);
+
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => PlayerSetupScreen(
+          questionBank: widget.questionBank,
+        ),
+      ),
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _actionBusy = false;
+      _reloadSavedGame();
+    });
+  }
+
+  Future<void> _deleteSavedGame() async {
+    final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Kayıtlı oyun silinsin mi?'),
+              content: const Text(
+                'Oyuncuların konumları, rozetleri ve '
+                'istatistikleri silinecek.',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: const Text('Vazgeç'),
+                ),
+                FilledButton(
+                  onPressed: () => Navigator.pop(context, true),
+                  child: const Text('Kaydı Sil'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+
+    if (!confirmed) return;
+
+    setState(() => _actionBusy = true);
+    await GameSaveService.clear();
+
+    if (!mounted) return;
+
+    setState(() {
+      _actionBusy = false;
+      _reloadSavedGame();
+    });
+  }
+
+  String _formatDate(DateTime date) {
+    final local = date.toLocal();
+    final day = local.day.toString().padLeft(2, '0');
+    final month = local.month.toString().padLeft(2, '0');
+    final hour = local.hour.toString().padLeft(2, '0');
+    final minute = local.minute.toString().padLeft(2, '0');
+
+    return '$day.$month.${local.year} $hour:$minute';
+  }
+
+  void _showRules(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Nasıl oynanır?'),
+          content: const SingleChildScrollView(
+            child: Text(
+              '• Bütün oyuncular oyuna ortadaki '
+              'altıgenden başlar.\n\n'
+              '• Zar atıldıktan sonra gidilecek yol seçilir. '
+              'Kavşaklarda dış halkada sağa, sola veya '
+              'merkeze doğru ilerlenebilir.\n\n'
+              '• Gelinen rengin kategorisinden dört şıklı '
+              'soru açılır.\n\n'
+              '• Doğru cevap veren oyuncu yeniden oynar. '
+              'Yanlış cevapta sıra diğer oyuncuya geçer.\n\n'
+              '• Beyaz çerçeveli özel alanlarda doğru cevap '
+              'veren oyuncu o kategorinin rozetini kazanır.\n\n'
+              '• Altı rozeti tamamlayan oyuncu final '
+              'sorusunu doğru cevaplayınca oyunu kazanır.',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Anladım'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+

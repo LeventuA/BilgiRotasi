@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q58421",
+    "categoryIndex": 1,
+    "question": "Sarmaşık filminin yönetmeni kimdir?",
+    "options": [
+      "Tolga Karaçelik",
+      "Onur Ünlü",
+      "Pelin Esmer",
+      "Emin Alper"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2015 yapımı psikolojik dramı Tolga Karaçelik yönetti."
+  },
+  {
+    "id": "q58422",
+    "categoryIndex": 1,
+    "question": "Kelebekler filminin yönetmeni kimdir?",
+    "options": [
+      "Yüksel Aksu",
+      "Tolga Karaçelik",
+      "Reha Erdem",
+      "Çağan Irmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kelebekler, Tolga Karaçelik'in yazıp yönettiği 2018 yapımı filmdir."
+  },
+  {
+    "id": "q58423",
+    "categoryIndex": 1,
+    "question": "Kurak Günler filminin yönetmeni kimdir?",
+    "options": [
+      "Nuri Bilge Ceylan",
+      "Tolga Karaçelik",
+      "Emin Alper",
+      "Zeki Demirkubuz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2022 yapımı Kurak Günler'in yönetmeni Emin Alper'dir."
+  },
+  {
+    "id": "q58424",
+    "categoryIndex": 1,
+    "question": "Kız Kardeşler filminin yönetmeni kimdir?",
+    "options": [
+      "Reha Erdem",
+      "Yeşim Ustaoğlu",
+      "Pelin Esmer",
+      "Emin Alper"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Emin Alper, Anadolu'da üç kız kardeşin hikâyesini anlattığı filmi yönetti."
+  },
+  {
+    "id": "q58425",
+    "categoryIndex": 1,
+    "question": "Masumiyet filminde Yusuf karakterini kim canlandırdı?",
+    "options": [
+      "Güven Kıraç",
+      "Cengiz Küçükayvaz",
+      "Derya Alabora",
+      "Haluk Bilginer"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Güven Kıraç, Zeki Demirkubuz'un filminde hapisten çıkan Yusuf'u oynadı."
+  },
+  {
+    "id": "q58426",
+    "categoryIndex": 1,
+    "question": "Kader filminin yönetmeni kimdir?",
+    "options": [
+      "Emin Alper",
+      "Zeki Demirkubuz",
+      "Nuri Bilge Ceylan",
+      "Reha Erdem"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kader, Zeki Demirkubuz'un Masumiyet'teki karakterlerin geçmişini anlattığı filmidir."
+  },
+  {
+    "id": "q58427",
+    "categoryIndex": 1,
+    "question": "Eşkıya filminin sinema salonlarında büyük bir canlanma yarattığı yıl hangisidir?",
+    "options": [
+      "2001",
+      "2006",
+      "1996",
+      "1986"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Eşkıya 1996'da gösterime girdi ve Türk sinemasının seyirciyle yeniden buluşmasında dönüm noktası oldu."
+  },
+  {
+    "id": "q58428",
+    "categoryIndex": 1,
+    "question": "Selvi Boylum Al Yazmalım filminde Asya karakterini kim canlandırdı?",
+    "options": [
+      "Müjde Ar",
+      "Hülya Koçyiğit",
+      "Fatma Girik",
+      "Türkan Şoray"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Türkan Şoray, unutulmaz filmde Asya karakterini canlandırdı."
+  },
+  {
+    "id": "q58429",
+    "categoryIndex": 1,
+    "question": "Selvi Boylum Al Yazmalım filminde İlyas karakterini kim oynadı?",
+    "options": [
+      "Kadir İnanır",
+      "Ediz Hun",
+      "Tarık Akan",
+      "Ahmet Mekin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kadir İnanır, kamyon şoförü İlyas karakterini canlandırdı."
+  },
+  {
+    "id": "q58430",
+    "categoryIndex": 1,
+    "question": "Selvi Boylum Al Yazmalım filminin unutulmaz müziklerini kim besteledi?",
+    "options": [
+      "Barış Manço",
+      "Cahit Berkay",
+      "Melih Kibar",
+      "Fikret Kızılok"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Moğollar grubundan Cahit Berkay filmin müziklerini besteledi."
+  },
+  {
+    "id": "q58431",
+    "categoryIndex": 1,
+    "question": "Vesikalı Yarim filminde Sabiha karakterini kim canlandırdı?",
+    "options": [
+      "Filiz Akın",
+      "Hülya Koçyiğit",
+      "Türkan Şoray",
+      "Fatma Girik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Türkan Şoray filmde pavyon çalışanı Sabiha rolündeydi."
+  },
+  {
+    "id": "q58432",
+    "categoryIndex": 1,
+    "question": "Canım Kardeşim filminde Murat karakterini kim oynadı?",
+    "options": [
+      "Kahraman Kıral",
+      "Halit Akçatepe",
+      "Kemal Sunal",
+      "Tarık Akan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tarık Akan, hasta kardeşinin hayalini gerçekleştirmeye çalışan Murat'ı canlandırdı."
+  },
+  {
+    "id": "q58433",
+    "categoryIndex": 1,
+    "question": "Maden filminde İlyas karakterini kim canlandırdı?",
+    "options": [
+      "Cüneyt Arkın",
+      "Halil Ergün",
+      "Kadir İnanır",
+      "Tarık Akan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Cüneyt Arkın, maden işçilerinin hakları için mücadele eden İlyas rolündeydi."
+  },
+  {
+    "id": "q58434",
+    "categoryIndex": 1,
+    "question": "Yol filmi Cannes Film Festivali'nde hangi ödülü kazandı?",
+    "options": [
+      "Altın Ayı",
+      "Altın Palmiye",
+      "En İyi Yönetmen",
+      "Altın Aslan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yol, 1982'de Costa-Gavras'ın Kayıp filmiyle Altın Palmiye'yi paylaştı."
+  },
+  {
+    "id": "q58435",
+    "categoryIndex": 1,
+    "question": "Yol filminin senaryosunu yazan ve projeyi cezaevinden yönlendiren sinemacı kimdir?",
+    "options": [
+      "Atıf Yılmaz",
+      "Şerif Gören",
+      "Yılmaz Güney",
+      "Zeki Ökten"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yılmaz Güney filmin senaryosunu yazdı; çekimleri Şerif Gören yönetti."
+  },
+  {
+    "id": "q58436",
+    "categoryIndex": 1,
+    "question": "Umut filminin yönetmeni ve başrol oyuncusu kimdir?",
+    "options": [
+      "Lütfi Akad",
+      "Halit Refiğ",
+      "Metin Erksan",
+      "Yılmaz Güney"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Yılmaz Güney 1970 yapımı Umut'u yönetti ve Cabbar karakterini oynadı."
+  },
+  {
+    "id": "q58437",
+    "categoryIndex": 1,
+    "question": "Susuz Yaz filminin yönetmeni kimdir?",
+    "options": [
+      "Metin Erksan",
+      "Lütfi Akad",
+      "Yılmaz Güney",
+      "Atıf Yılmaz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Metin Erksan'ın Susuz Yaz filmi Berlin'de Altın Ayı kazandı."
+  },
+  {
+    "id": "q58438",
+    "categoryIndex": 1,
+    "question": "Susuz Yaz hangi büyük uluslararası ödülü kazanan ilk Türk filmi oldu?",
+    "options": [
+      "Oscar",
+      "Altın Ayı",
+      "Altın Aslan",
+      "Altın Palmiye"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Susuz Yaz 1964 Berlin Film Festivali'nde Altın Ayı kazandı."
+  },
+  {
+    "id": "q58439",
+    "categoryIndex": 1,
+    "question": "Gelin, Düğün ve Diyet üçlemesinin yönetmeni kimdir?",
+    "options": [
+      "Halit Refiğ",
+      "Atıf Yılmaz",
+      "Lütfi Akad",
+      "Metin Erksan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Lütfi Akad'ın göç üçlemesi 1970'lerin toplumsal dönüşümünü anlatır."
+  },
+  {
+    "id": "q58440",
+    "categoryIndex": 1,
+    "question": "Ah Güzel İstanbul filminin yönetmeni kimdir?",
+    "options": [
+      "Memduh Ün",
+      "Ertem Eğilmez",
+      "Metin Erksan",
+      "Atıf Yılmaz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "1966 yapımı film Atıf Yılmaz tarafından yönetildi."
+  },
+  {
+    "id": "q58441",
+    "categoryIndex": 1,
+    "question": "Zeki Müren'in sinema oyuncusu olarak başrol aldığı ilk film hangisidir?",
+    "options": [
+      "Beklenen Şarkı",
+      "Hayat Bazen Tatlıdır",
+      "Son Beste",
+      "Bahçevan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Zeki Müren 1953 yapımı Beklenen Şarkı ile sinemada başrol oynadı."
+  },
+  {
+    "id": "q58442",
+    "categoryIndex": 1,
+    "question": "Sezen Aksu'nun 1991'de yayımlanan ve 'Hadi Bakalım'ı içeren albümü hangisidir?",
+    "options": [
+      "Firuze",
+      "Gülümse",
+      "Deliveren",
+      "Işık Doğudan Yükselir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Gülümse albümü, Hadi Bakalım ve Her Şeyi Yak gibi sevilen şarkıları içerir."
+  },
+  {
+    "id": "q58443",
+    "categoryIndex": 1,
+    "question": "Tarkan'ın uluslararası çıkışını güçlendiren albümünün adı nedir?",
+    "options": [
+      "Karma",
+      "Metamorfoz",
+      "Ölürüm Sana",
+      "Aacayipsin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1997 tarihli Ölürüm Sana albümündeki Şımarık dünya çapında ilgi gördü."
+  },
+  {
+    "id": "q58444",
+    "categoryIndex": 1,
+    "question": "Sezen Aksu'nun doğum adı nedir?",
+    "options": [
+      "Ayşe Sezen Yıldırım",
+      "Fatma Sezen Aksu",
+      "Sezen Deniz Yıldırım",
+      "Fatma Sezen Yıldırım"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sanatçı, Fatma Sezen Yıldırım adıyla dünyaya geldi ve Sezen Aksu adıyla tanındı."
+  },
+  {
+    "id": "q58445",
+    "categoryIndex": 1,
+    "question": "Ajda Pekkan'ın yaygın lakabı hangisidir?",
+    "options": [
+      "Süperstar",
+      "Minik Serçe",
+      "Baba",
+      "Sanat Güneşi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ajda Pekkan uzun kariyeri boyunca 'Süperstar' olarak anıldı."
+  },
+  {
+    "id": "q58446",
+    "categoryIndex": 1,
+    "question": "'Sanat Güneşi' lakabıyla tanınan sanatçı kimdir?",
+    "options": [
+      "Bülent Ersoy",
+      "Zeki Müren",
+      "Nesrin Sipahi",
+      "Müzeyyen Senar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Zeki Müren, Türk sanat müziğindeki etkisi nedeniyle 'Sanat Güneşi' olarak anılır."
+  },
+  {
+    "id": "q58447",
+    "categoryIndex": 1,
+    "question": "'Bozkırın Tezenesi' lakabı hangi halk ozanına aittir?",
+    "options": [
+      "Mahzuni Şerif",
+      "Âşık Veysel",
+      "Neşet Ertaş",
+      "Musa Eroğlu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Neşet Ertaş, bozlak geleneğinin büyük temsilcisi olarak bu lakapla anılır."
+  },
+  {
+    "id": "q58448",
+    "categoryIndex": 1,
+    "question": "'Uzun İnce Bir Yoldayım' türküsünün söz ve müziği kime aittir?",
+    "options": [
+      "Ruhi Su",
+      "Neşet Ertaş",
+      "Âşık Mahzuni Şerif",
+      "Âşık Veysel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Âşık Veysel'in en tanınmış eserlerinden biri Uzun İnce Bir Yoldayım'dır."
+  },
+  {
+    "id": "q58449",
+    "categoryIndex": 1,
+    "question": "'Gönül Dağı' türküsüyle özdeşleşen halk ozanı kimdir?",
+    "options": [
+      "Neşet Ertaş",
+      "Arif Sağ",
+      "Âşık Veysel",
+      "Musa Eroğlu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gönül Dağı, Neşet Ertaş'ın en bilinen türkülerindendir."
+  },
+  {
+    "id": "q58450",
+    "categoryIndex": 1,
+    "question": "Barış Manço'nun çocuklara seslendiği televizyon programı hangisidir?",
+    "options": [
+      "Televole",
+      "7'den 77'ye",
+      "Hodri Meydan",
+      "Adam Olacak Çocuklar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "7'den 77'ye programında 'Adam Olacak Çocuk' bölümü de yer alıyordu."
+  },
+  {
+    "id": "q58451",
+    "categoryIndex": 1,
+    "question": "Barış Manço'nun uzun yıllar birlikte çalıştığı grubun adı nedir?",
+    "options": [
+      "3 Hürel",
+      "Moğollar",
+      "Kurtalan Ekspres",
+      "Mavi Işıklar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kurtalan Ekspres, Barış Manço'nun sahne ve albüm çalışmalarında eşlik eden grubuydu."
+  },
+  {
+    "id": "q58452",
+    "categoryIndex": 1,
+    "question": "Cem Karaca 'Resimdeki Gözyaşları' şarkısını hangi grubuyla kaydetti?",
+    "options": [
+      "Kardaşlar",
+      "Dervişan",
+      "Kurtalan Ekspres",
+      "Apaşlar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Resimdeki Gözyaşları, Cem Karaca ve Apaşlar tarafından 1968'de yayımlandı."
+  },
+  {
+    "id": "q58453",
+    "categoryIndex": 1,
+    "question": "Anadolu rock grubu Moğollar'ın kurucularından ve önemli üyelerinden biri kimdir?",
+    "options": [
+      "Cahit Berkay",
+      "Mazhar Alanson",
+      "Fuat Güner",
+      "Özkan Uğur"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Cahit Berkay, Moğollar'ın gitar ve yaylı tambur çalan kurucu isimlerindendir."
+  },
+  {
+    "id": "q58454",
+    "categoryIndex": 1,
+    "question": "MFÖ grubunun adı hangi üç sanatçının adlarının baş harflerinden oluşur?",
+    "options": [
+      "Metin, Fatih, Oğuz",
+      "Mazhar, Fuat, Özkan",
+      "Murat, Ferhat, Ömer",
+      "Mahmut, Fikret, Oktay"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "MFÖ adı Mazhar Alanson, Fuat Güner ve Özkan Uğur'un adlarının baş harflerinden gelir."
+  },
+  {
+    "id": "q58455",
+    "categoryIndex": 1,
+    "question": "MFÖ Türkiye'yi Eurovision'da ilk kez hangi şarkıyla temsil etti?",
+    "options": [
+      "Sufi",
+      "Opera",
+      "Diday Diday Day",
+      "Halley"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "MFÖ 1985 Eurovision Şarkı Yarışması'na Diday Diday Day ile katıldı."
+  },
+  {
+    "id": "q58456",
+    "categoryIndex": 1,
+    "question": "Türkiye'ye Eurovision'daki ilk birinciliğini kazandıran şarkı hangisidir?",
+    "options": [
+      "Dinle",
+      "For Real",
+      "Deli",
+      "Everyway That I Can"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sertab Erener 2003'te Everyway That I Can ile Türkiye'ye ilk Eurovision zaferini getirdi."
+  },
+  {
+    "id": "q58457",
+    "categoryIndex": 1,
+    "question": "Sertab Erener Eurovision'u hangi yıl kazandı?",
+    "options": [
+      "2003",
+      "2005",
+      "2001",
+      "1997"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2003 Eurovision Şarkı Yarışması Riga'da düzenlendi ve Sertab Erener birinci oldu."
+  },
+  {
+    "id": "q58458",
+    "categoryIndex": 1,
+    "question": "Athena grubu Eurovision'da Türkiye'yi hangi şarkıyla temsil etti?",
+    "options": [
+      "Love Me Back",
+      "For Real",
+      "Deli",
+      "Shake It Up Şekerim"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Athena 2004 Eurovision Şarkı Yarışması'nda For Real ile dördüncü oldu."
+  },
+  {
+    "id": "q58459",
+    "categoryIndex": 1,
+    "question": "Mor ve Ötesi Eurovision'da Türkiye'yi hangi şarkıyla temsil etti?",
+    "options": [
+      "We Could Be the Same",
+      "For Real",
+      "Deli",
+      "Love Me Back"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mor ve Ötesi 2008'de Deli ile Türkiye'yi temsil etti."
+  },
+  {
+    "id": "q58460",
+    "categoryIndex": 1,
+    "question": "Manga grubu Eurovision 2010'da hangi şarkıyla ikinci oldu?",
+    "options": [
+      "Love Me Back",
+      "Deli",
+      "For Real",
+      "We Could Be the Same"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Manga, Oslo'daki yarışmada We Could Be the Same ile ikinci oldu."
+  },
+  {
+    "id": "q58461",
+    "categoryIndex": 1,
+    "question": "Hadise Eurovision'da Türkiye'yi hangi şarkıyla temsil etti?",
+    "options": [
+      "Düm Tek Tek",
+      "Love Me Back",
+      "Shake It Up Şekerim",
+      "Everyway That I Can"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hadise 2009 Eurovision'da Düm Tek Tek ile dördüncü oldu."
+  },
+  {
+    "id": "q58462",
+    "categoryIndex": 1,
+    "question": "Nilüfer'in ilk çıkış yaptığı ve adını duyurduğu şarkılardan biri hangisidir?",
+    "options": [
+      "Sen Ağlama",
+      "Dünya Dönüyor",
+      "Firuze",
+      "Gülümse"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Nilüfer, 1970'lerin başında Dünya Dönüyor gibi şarkılarla tanındı."
+  },
+  {
+    "id": "q58463",
+    "categoryIndex": 1,
+    "question": "'Sarı Odalar' şarkısını seslendiren sanatçı kimdir?",
+    "options": [
+      "Nilüfer",
+      "Sertab Erener",
+      "Sezen Aksu",
+      "Levent Yüksel"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sarı Odalar, Sezen Aksu'nun 2000 tarihli Deliveren albümünde yer alır."
+  },
+  {
+    "id": "q58464",
+    "categoryIndex": 1,
+    "question": "'Med Cezir' albümüyle çıkış yapan sanatçı kimdir?",
+    "options": [
+      "Kenan Doğulu",
+      "Çelik",
+      "Mirkelam",
+      "Levent Yüksel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Levent Yüksel'in 1993 tarihli Med Cezir albümü Türk popunun önemli çıkış albümlerindendir."
+  },
+  {
+    "id": "q58465",
+    "categoryIndex": 1,
+    "question": "'Her Gece' şarkısıyla 1990'larda büyük çıkış yapan sanatçı kimdir?",
+    "options": [
+      "Mirkelam",
+      "Levent Yüksel",
+      "Harun Kolçak",
+      "Çelik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mirkelam, Her Gece şarkısının klibiyle 1995'te geniş kitlelere ulaştı."
+  },
+  {
+    "id": "q58466",
+    "categoryIndex": 1,
+    "question": "'Yaparım Bilirsin' şarkısını seslendiren sanatçı kimdir?",
+    "options": [
+      "Serdar Ortaç",
+      "Kenan Doğulu",
+      "Tarkan",
+      "Mustafa Sandal"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yaparım Bilirsin, Kenan Doğulu'nun 1993 tarihli ilk albümüne adını verir."
+  },
+  {
+    "id": "q58467",
+    "categoryIndex": 1,
+    "question": "'Araba' şarkısıyla tanınan pop sanatçısı kimdir?",
+    "options": [
+      "Tarkan",
+      "Serdar Ortaç",
+      "Mustafa Sandal",
+      "Kenan Doğulu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Araba, Mustafa Sandal'ın 1990'lardaki en bilinen şarkılarındandır."
+  },
+  {
+    "id": "q58468",
+    "categoryIndex": 1,
+    "question": "'Karabiberim' şarkısını seslendiren sanatçı kimdir?",
+    "options": [
+      "Çelik",
+      "Harun Kolçak",
+      "Mustafa Sandal",
+      "Serdar Ortaç"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Karabiberim, Serdar Ortaç'ın 1994 tarihli ilk albümünün çıkış şarkısıdır."
+  },
+  {
+    "id": "q58469",
+    "categoryIndex": 1,
+    "question": "'Cevapsız Çınlama' şarkısıyla geniş kitlelere ulaşan sanatçı kimdir?",
+    "options": [
+      "Aleyna Tilki",
+      "Mabel Matiz",
+      "Edis",
+      "Simge"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Aleyna Tilki, Emrah Karaduman ile seslendirdiği Cevapsız Çınlama ile tanındı."
+  },
+  {
+    "id": "q58470",
+    "categoryIndex": 1,
+    "question": "'Martılar' şarkısını seslendiren pop sanatçısı kimdir?",
+    "options": [
+      "Buray",
+      "Edis",
+      "Mabel Matiz",
+      "Murat Boz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Martılar, Edis'in 2021'de yayımlanan pop şarkısıdır."
+  },
+  {
+    "id": "q58471",
+    "categoryIndex": 1,
+    "question": "'Antidepresan' şarkısını Mert Demir ile birlikte seslendiren sanatçı kimdir?",
+    "options": [
+      "Edis",
+      "Gökhan Türkmen",
+      "Mabel Matiz",
+      "Melike Şahin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Antidepresan, Mert Demir ve Mabel Matiz'in ortak çalışmasıdır."
+  },
+  {
+    "id": "q58472",
+    "categoryIndex": 1,
+    "question": "'Tutuşmuş Beraber' şarkısıyla tanınan sanatçı kimdir?",
+    "options": [
+      "Ceylan Ertem",
+      "Gaye Su Akyol",
+      "Kalben",
+      "Melike Şahin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tutuşmuş Beraber, Melike Şahin'in geniş kitlelere ulaşan şarkılarındandır."
+  },
+  {
+    "id": "q58473",
+    "categoryIndex": 1,
+    "question": "'İstikrarlı Hayal Hakikattir' albümünün sahibi kimdir?",
+    "options": [
+      "Gaye Su Akyol",
+      "Ceylan Ertem",
+      "Melike Şahin",
+      "Kalben"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Gaye Su Akyol'un 2018 tarihli albümü geleneksel ve alternatif sesleri birleştirir."
+  },
+  {
+    "id": "q58474",
+    "categoryIndex": 1,
+    "question": "Duman grubunun solisti kimdir?",
+    "options": [
+      "Hayko Cepkin",
+      "Kaan Tangöze",
+      "Emre Aydın",
+      "Teoman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kaan Tangöze, Duman'ın vokalisti ve başlıca şarkı yazarlarındandır."
+  },
+  {
+    "id": "q58475",
+    "categoryIndex": 1,
+    "question": "Mor ve Ötesi grubunun solisti kimdir?",
+    "options": [
+      "Kerem Kabadayı",
+      "Burak Güven",
+      "Harun Tekin",
+      "Kaan Tangöze"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Harun Tekin, Mor ve Ötesi'nin vokalisti ve gitaristidir."
+  },
+  {
+    "id": "q58476",
+    "categoryIndex": 1,
+    "question": "Manga grubunun solisti kimdir?",
+    "options": [
+      "Can Bonomo",
+      "Emre Aydın",
+      "Hayko Cepkin",
+      "Ferman Akgül"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ferman Akgül, alternatif rock grubu Manga'nın solistidir."
+  },
+  {
+    "id": "q58477",
+    "categoryIndex": 1,
+    "question": "Athena grubunun solisti kimdir?",
+    "options": [
+      "Gökhan Özoğuz",
+      "Hakan Özoğuz",
+      "Ferman Akgül",
+      "Harun Tekin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gökhan Özoğuz, kardeşi Hakan'la kurduğu Athena'nın vokalistidir."
+  },
+  {
+    "id": "q58478",
+    "categoryIndex": 1,
+    "question": "Pentagram grubunun uluslararası kullandığı diğer adı nedir?",
+    "options": [
+      "Mavi Sakal",
+      "Mezarkabul",
+      "Kurban",
+      "Kurtalan Ekspres"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Türk heavy metal grubu Pentagram, uluslararası yayınlarında Mezarkabul adını da kullanır."
+  },
+  {
+    "id": "q58479",
+    "categoryIndex": 1,
+    "question": "'Senden Daha Güzel' şarkısı hangi gruba aittir?",
+    "options": [
+      "Kurban",
+      "Mor ve Ötesi",
+      "Duman",
+      "Athena"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Senden Daha Güzel, Duman'ın en tanınmış şarkılarındandır."
+  },
+  {
+    "id": "q58480",
+    "categoryIndex": 1,
+    "question": "'Beni Benimle Bırak' şarkısını hangi grup seslendirdi?",
+    "options": [
+      "Duman",
+      "Manga",
+      "Yüksek Sadakat",
+      "Gripin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Beni Benimle Bırak, Gripin'in geniş kitlelere ulaşan şarkılarındandır."
+  },
+  {
+    "id": "q58481",
+    "categoryIndex": 1,
+    "question": "'Belki Üstümüzden Bir Kuş Geçer' şarkısı hangi gruba aittir?",
+    "options": [
+      "Yüksek Sadakat",
+      "Pinhani",
+      "Gripin",
+      "Redd"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Şarkı Yüksek Sadakat'in ilk albümünde yer alır."
+  },
+  {
+    "id": "q58482",
+    "categoryIndex": 1,
+    "question": "'Ne Güzel Güldün' şarkısıyla tanınan grup hangisidir?",
+    "options": [
+      "Gripin",
+      "Pinhani",
+      "Redd",
+      "Seksendört"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ne Güzel Güldün, Pinhani'nin sevilen şarkılarındandır."
+  },
+  {
+    "id": "q58483",
+    "categoryIndex": 1,
+    "question": "'Boş Gemiler' şarkısını seslendiren grup hangisidir?",
+    "options": [
+      "Adamlar",
+      "Büyük Ev Ablukada",
+      "Yüzyüzeyken Konuşuruz",
+      "Son Feci Bisiklet"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Boş Gemiler, Yüzyüzeyken Konuşuruz grubunun tanınmış şarkılarındandır."
+  },
+  {
+    "id": "q58484",
+    "categoryIndex": 2,
+    "question": "Türkiye Büyük Millet Meclisi ilk kez hangi tarihte açıldı?",
+    "options": [
+      "19 Mayıs 1919",
+      "30 Ağustos 1922",
+      "29 Ekim 1923",
+      "23 Nisan 1920"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "TBMM, Millî Mücadele'yi yönetmek üzere 23 Nisan 1920'de Ankara'da açıldı."
+  },
+  {
+    "id": "q58485",
+    "categoryIndex": 2,
+    "question": "Mustafa Kemal'in Samsun'a çıkışı hangi tarihte gerçekleşti?",
+    "options": [
+      "19 Mayıs 1919",
+      "29 Ekim 1923",
+      "30 Ağustos 1922",
+      "23 Nisan 1920"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "19 Mayıs 1919, Millî Mücadele'nin başlangıç simgelerinden kabul edilir."
+  },
+  {
+    "id": "q58486",
+    "categoryIndex": 2,
+    "question": "Büyük Taarruz'un kesin zaferle sonuçlandığı başkomutanlık meydan muharebesi hangisidir?",
+    "options": [
+      "Sakarya Meydan Muharebesi",
+      "Dumlupınar Meydan Muharebesi",
+      "Kütahya-Eskişehir Muharebeleri",
+      "I. İnönü Muharebesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "30 Ağustos 1922'deki Dumlupınar zaferi işgal kuvvetlerinin Anadolu'dan çekilişini hızlandırdı."
+  },
+  {
+    "id": "q58487",
+    "categoryIndex": 2,
+    "question": "Kurtuluş Savaşı'nda 'Hattı müdafaa yoktur, sathı müdafaa vardır' sözü hangi savaşla ilişkilidir?",
+    "options": [
+      "I. İnönü Muharebesi",
+      "Çanakkale Savaşı",
+      "Sakarya Meydan Muharebesi",
+      "Dumlupınar Meydan Muharebesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mustafa Kemal bu emri 1921'de Sakarya Meydan Muharebesi sırasında verdi."
+  },
+  {
+    "id": "q58488",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin bağımsızlığını uluslararası alanda tanıyan barış antlaşması hangisidir?",
+    "options": [
+      "Sevr Antlaşması",
+      "Mondros Ateşkes Antlaşması",
+      "Mudanya Ateşkes Antlaşması",
+      "Lozan Barış Antlaşması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Lozan Barış Antlaşması 24 Temmuz 1923'te imzalandı."
+  },
+  {
+    "id": "q58489",
+    "categoryIndex": 2,
+    "question": "Kurtuluş Savaşı'nda silahlı çatışmaları sona erdiren ateşkes hangisidir?",
+    "options": [
+      "Mudanya Ateşkes Antlaşması",
+      "Ankara Antlaşması",
+      "Mondros Ateşkes Antlaşması",
+      "Gümrü Antlaşması"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "11 Ekim 1922 tarihli Mudanya Ateşkesi, Doğu Trakya'nın savaşılmadan teslimini sağladı."
+  },
+  {
+    "id": "q58490",
+    "categoryIndex": 2,
+    "question": "Millî Mücadele'nin gerekçe, amaç ve yönteminin açıklandığı belge hangisidir?",
+    "options": [
+      "Teşkilat-ı Esasiye",
+      "Amasya Genelgesi",
+      "Lozan Antlaşması",
+      "Misak-ı Millî"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "22 Haziran 1919 tarihli Amasya Genelgesi, milletin bağımsızlığını yine milletin kararlılığının kurtaracağını ilan etti."
+  },
+  {
+    "id": "q58491",
+    "categoryIndex": 2,
+    "question": "Millî Mücadele sırasında ulusal bir kongre niteliği taşıyan toplantı hangisidir?",
+    "options": [
+      "Balıkesir Kongresi",
+      "Erzurum Kongresi",
+      "Sivas Kongresi",
+      "Alaşehir Kongresi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sivas Kongresi bütün yurdu temsil eden delegelerin katılımıyla toplandı."
+  },
+  {
+    "id": "q58492",
+    "categoryIndex": 2,
+    "question": "Erzurum Kongresi'nin toplanmasında öncelikli tehdit hangi bölgeye yönelikti?",
+    "options": [
+      "Trakya",
+      "Batı Anadolu",
+      "Çukurova",
+      "Doğu Anadolu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Erzurum Kongresi, Doğu Anadolu'nun bölünmesine karşı bölgesel girişimle toplandı fakat ulusal kararlar aldı."
+  },
+  {
+    "id": "q58493",
+    "categoryIndex": 2,
+    "question": "Son Osmanlı Mebusan Meclisinin kabul ettiği ulusal sınırlar bildirgesi hangisidir?",
+    "options": [
+      "Misak-ı Millî",
+      "Tekâlif-i Milliye",
+      "Hıyanet-i Vataniye Kanunu",
+      "Amasya Genelgesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Misak-ı Millî, 1920'de bağımsızlık ve ulusal sınır ilkelerini belirledi."
+  },
+  {
+    "id": "q58494",
+    "categoryIndex": 2,
+    "question": "Mustafa Kemal'e 'Gazi' unvanı ve mareşallik rütbesi hangi zaferden sonra verildi?",
+    "options": [
+      "Çanakkale Zaferi",
+      "Sakarya Meydan Muharebesi",
+      "I. İnönü Zaferi",
+      "Dumlupınar Zaferi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "TBMM, Sakarya zaferinden sonra Mustafa Kemal'e Gazi unvanı ve mareşallik verdi."
+  },
+  {
+    "id": "q58495",
+    "categoryIndex": 2,
+    "question": "Kurtuluş Savaşı'nın düzenli ordusunun Batı Cephesi'ndeki ilk zaferi hangisidir?",
+    "options": [
+      "Gediz Muharebesi",
+      "Dumlupınar Meydan Muharebesi",
+      "I. İnönü Muharebesi",
+      "Sakarya Meydan Muharebesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ocak 1921'de kazanılan I. İnönü, düzenli ordunun ilk önemli başarısıdır."
+  },
+  {
+    "id": "q58496",
+    "categoryIndex": 2,
+    "question": "Fransa'nın Güney Cephesi'nden çekilmesini sağlayan 1921 tarihli anlaşma hangisidir?",
+    "options": [
+      "Gümrü Antlaşması",
+      "Kars Antlaşması",
+      "Moskova Antlaşması",
+      "Ankara Antlaşması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "20 Ekim 1921 tarihli Ankara Antlaşması ile Fransa, işgal ettiği güney bölgelerinden büyük ölçüde çekildi."
+  },
+  {
+    "id": "q58497",
+    "categoryIndex": 2,
+    "question": "TBMM Hükûmetinin imzaladığı ilk uluslararası antlaşma hangisidir?",
+    "options": [
+      "Gümrü Antlaşması",
+      "Ankara Antlaşması",
+      "Moskova Antlaşması",
+      "Kars Antlaşması"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gümrü Antlaşması 3 Aralık 1920'de Ermenistan ile imzalandı."
+  },
+  {
+    "id": "q58498",
+    "categoryIndex": 2,
+    "question": "İstanbul'un işgaline tepki olarak Ankara'da hangi kurum açıldı?",
+    "options": [
+      "Danıştay",
+      "Türkiye Büyük Millet Meclisi",
+      "Türk Tarih Kurumu",
+      "Yargıtay"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İstanbul'un 16 Mart 1920'de işgalinden sonra yeni meclisin Ankara'da toplanması hızlandı."
+  },
+  {
+    "id": "q58499",
+    "categoryIndex": 2,
+    "question": "Saltanat hangi yıl kaldırıldı?",
+    "options": [
+      "1920",
+      "1924",
+      "1922",
+      "1923"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "TBMM 1 Kasım 1922'de saltanatı kaldırdı."
+  },
+  {
+    "id": "q58500",
+    "categoryIndex": 2,
+    "question": "Halifelik hangi yıl kaldırıldı?",
+    "options": [
+      "1925",
+      "1922",
+      "1923",
+      "1924"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "3 Mart 1924'te halifelik kaldırıldı ve Osmanlı hanedanı yurt dışına çıkarıldı."
+  },
+  {
+    "id": "q58501",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin ilk anayasası kabul edilen 1921 metninin adı nedir?",
+    "options": [
+      "Teşkilat-ı Esasiye Kanunu",
+      "Medeni Kanun",
+      "Kanun-ı Esasi",
+      "Takrir-i Sükûn Kanunu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1921 Teşkilat-ı Esasiye Kanunu, egemenliğin kayıtsız şartsız millete ait olduğunu vurguladı."
+  },
+  {
+    "id": "q58502",
+    "categoryIndex": 2,
+    "question": "Türk Medeni Kanunu hazırlanırken ağırlıklı olarak hangi ülkenin kanunu örnek alındı?",
+    "options": [
+      "Almanya",
+      "İsviçre",
+      "İtalya",
+      "Fransa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1926 Türk Medeni Kanunu, İsviçre Medeni Kanunu temel alınarak hazırlandı."
+  },
+  {
+    "id": "q58503",
+    "categoryIndex": 2,
+    "question": "Yeni Türk harfleri hangi yıl kabul edildi?",
+    "options": [
+      "1924",
+      "1930",
+      "1928",
+      "1926"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Latin temelli Türk alfabesi 1 Kasım 1928'de kabul edildi."
+  },
+  {
+    "id": "q58504",
+    "categoryIndex": 2,
+    "question": "Kadınlara milletvekili seçme ve seçilme hakkı hangi yıl verildi?",
+    "options": [
+      "1930",
+      "1938",
+      "1926",
+      "1934"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "5 Aralık 1934'te anayasa ve seçim kanununda yapılan değişiklikle kadınlara milletvekili seçme ve seçilme hakkı tanındı."
+  },
+  {
+    "id": "q58505",
+    "categoryIndex": 2,
+    "question": "Türkiye'de kadınlar belediye seçimlerine katılma hakkını hangi yıl kazandı?",
+    "options": [
+      "1930",
+      "1935",
+      "1923",
+      "1934"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1930 Belediye Kanunu kadınlara belediye seçimlerinde seçme ve seçilme hakkı verdi."
+  },
+  {
+    "id": "q58506",
+    "categoryIndex": 2,
+    "question": "Mustafa Kemal'e 'Atatürk' soyadı hangi kurum tarafından verildi?",
+    "options": [
+      "Cumhurbaşkanlığı",
+      "Türkiye Büyük Millet Meclisi",
+      "Türk Dil Kurumu",
+      "Bakanlar Kurulu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "TBMM, 24 Kasım 1934 tarihli kanunla Mustafa Kemal'e Atatürk soyadını verdi."
+  },
+  {
+    "id": "q58507",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin ilk kadın milletvekilleri hangi seçimde Meclise girdi?",
+    "options": [
+      "1927 seçimleri",
+      "1946 seçimleri",
+      "1935 seçimleri",
+      "1931 seçimleri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1935 genel seçimlerinde 18 kadın milletvekili TBMM'ye girdi."
+  },
+  {
+    "id": "q58508",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin çok partili hayata kalıcı geçişini sağlayan seçim hangi yıl yapıldı?",
+    "options": [
+      "1960",
+      "1938",
+      "1950",
+      "1946"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "1946 seçimleri çok partili dönemin başlangıcı oldu; iktidar değişimi ise 1950'de gerçekleşti."
+  },
+  {
+    "id": "q58509",
+    "categoryIndex": 2,
+    "question": "Türkiye'de iktidarın seçimle ilk kez el değiştirdiği yıl hangisidir?",
+    "options": [
+      "1950",
+      "1961",
+      "1946",
+      "1954"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "1950 seçimlerini Demokrat Parti kazandı ve CHP'den iktidarı devraldı."
+  },
+  {
+    "id": "q58510",
+    "categoryIndex": 2,
+    "question": "Ankara hangi yıl Türkiye'nin başkenti ilan edildi?",
+    "options": [
+      "1924",
+      "1923",
+      "1920",
+      "1922"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ankara, Cumhuriyet'in ilanından kısa süre önce 13 Ekim 1923'te başkent oldu."
+  },
+  {
+    "id": "q58511",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin Milletler Cemiyetine katıldığı yıl hangisidir?",
+    "options": [
+      "1929",
+      "1923",
+      "1932",
+      "1938"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Türkiye, Milletler Cemiyetinin daveti üzerine 1932'de üyeliğe kabul edildi."
+  },
+  {
+    "id": "q58512",
+    "categoryIndex": 2,
+    "question": "Boğazlarda Türkiye'nin egemenliğini güçlendiren sözleşme hangisidir?",
+    "options": [
+      "Lozan Boğazlar Sözleşmesi",
+      "Sadabat Paktı",
+      "Balkan Antantı",
+      "Montrö Boğazlar Sözleşmesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1936 Montrö Sözleşmesi Türkiye'ye boğazları silahlandırma ve geçişleri düzenleme yetkisi verdi."
+  },
+  {
+    "id": "q58513",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin NATO'ya katıldığı yıl hangisidir?",
+    "options": [
+      "1952",
+      "1949",
+      "1960",
+      "1955"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye, Yunanistan ile birlikte 18 Şubat 1952'de NATO üyesi oldu."
+  },
+  {
+    "id": "q58514",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin Kore Savaşı'na gönderdiği birliğin adı nedir?",
+    "options": [
+      "Şark Ordusu",
+      "Türk Tugayı",
+      "Mavi Vatan Filosu",
+      "Kuvayı Milliye"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türk Tugayı, 1950'den itibaren Birleşmiş Milletler kuvvetleri içinde Kore'de görev yaptı."
+  },
+  {
+    "id": "q58515",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin Avrupa Ekonomik Topluluğu ile ortaklık kuran 1963 antlaşması hangisidir?",
+    "options": [
+      "Londra Anlaşması",
+      "Maastricht Antlaşması",
+      "Ankara Anlaşması",
+      "Roma Antlaşması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ankara Anlaşması, Türkiye ile AET arasında ortaklık ilişkisini başlattı."
+  },
+  {
+    "id": "q58516",
+    "categoryIndex": 2,
+    "question": "Türkiye'de ilk düzenli nüfus sayımı Cumhuriyet döneminde hangi yıl yapıldı?",
+    "options": [
+      "1935",
+      "1930",
+      "1923",
+      "1927"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Cumhuriyet'in ilk genel nüfus sayımı 28 Ekim 1927'de gerçekleştirildi."
+  },
+  {
+    "id": "q58517",
+    "categoryIndex": 2,
+    "question": "Cumhuriyet döneminin ilk yükseköğretim reformuyla 1933'te kurulan kurum hangisidir?",
+    "options": [
+      "İstanbul Üniversitesi",
+      "Ankara Üniversitesi",
+      "Ege Üniversitesi",
+      "İstanbul Teknik Üniversitesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Darülfünun kapatılarak 1933'te İstanbul Üniversitesi kuruldu."
+  },
+  {
+    "id": "q58518",
+    "categoryIndex": 2,
+    "question": "Türk Dil Kurumu hangi yıl kuruldu?",
+    "options": [
+      "1930",
+      "1932",
+      "1935",
+      "1928"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türk Dili Tetkik Cemiyeti adıyla 1932'de kurulan kurum daha sonra Türk Dil Kurumu adını aldı."
+  },
+  {
+    "id": "q58519",
+    "categoryIndex": 2,
+    "question": "Türk Tarih Kurumu hangi yıl kuruldu?",
+    "options": [
+      "1928",
+      "1935",
+      "1931",
+      "1932"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Türk Tarihi Tetkik Cemiyeti 1931'de kuruldu ve daha sonra Türk Tarih Kurumu adını aldı."
+  },
+  {
+    "id": "q58520",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin ilk beş yıllık sanayi planı hangi dönemde uygulanmaya başladı?",
+    "options": [
+      "1920'ler",
+      "1970'ler",
+      "1950'ler",
+      "1930'lar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Birinci Beş Yıllık Sanayi Planı 1934'te uygulamaya kondu."
+  }
+]

@@ -1,0 +1,303 @@
+{
+  "existingCount": 4752,
+  "incomingCount": 1000,
+  "acceptedCount": 958,
+  "conflictCount": 42,
+  "newTotalIfApplied": 5710,
+  "conflicts": [
+    {
+      "id": "q57156",
+      "question": "Badmintonda raketle vurulan tüylü oyun aracına ne denir?",
+      "reasons": [
+        "Soru metni q118 ile aynı"
+      ]
+    },
+    {
+      "id": "q57160",
+      "question": "Mai ve Siyah eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23880 ile aynı"
+      ]
+    },
+    {
+      "id": "q57178",
+      "question": "The Hay Wain adlı eserin sanatçısı kimdir?",
+      "reasons": [
+        "Soru metni q4624 ile aynı"
+      ]
+    },
+    {
+      "id": "q57190",
+      "question": "Impression, Sunrise adlı eserin sanatçısı kimdir?",
+      "reasons": [
+        "Soru metni q4633 ile aynı"
+      ]
+    },
+    {
+      "id": "q57194",
+      "question": "Paatal Lok dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "reasons": [
+        "Soru metni q5333 ile aynı"
+      ]
+    },
+    {
+      "id": "q57275",
+      "question": "Apandis insan vücudunda nerede bulunur?",
+      "reasons": [
+        "Soru metni q5886 ile aynı"
+      ]
+    },
+    {
+      "id": "q57307",
+      "question": "Pamukkale hangi ülkede veya ülkelerde bulunur?",
+      "reasons": [
+        "Soru metni q5124 ile aynı"
+      ]
+    },
+    {
+      "id": "q57326",
+      "question": "The Sims oyunlarında karakterlerin konuştuğu kurgusal dilin adı nedir?",
+      "reasons": [
+        "q54051 ile olası aynı bilgi (J=0.75, S=0.95, ortak=6)"
+      ]
+    },
+    {
+      "id": "q57346",
+      "question": "Hakkâri’de Bir Mevsim eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23285 ile aynı"
+      ]
+    },
+    {
+      "id": "q57357",
+      "question": "Ever Given gemisinin Süveyş Kanalı'nı kapatması hangi yıl gerçekleşti?",
+      "reasons": [
+        "q56621 ile olası aynı bilgi (J=0.75, S=0.99, ortak=6)"
+      ]
+    },
+    {
+      "id": "q57384",
+      "question": "Voleybolda farklı renk forma giyen savunma uzmanına ne denir?",
+      "reasons": [
+        "q53207 ile olası aynı bilgi (J=0.75, S=0.98, ortak=6)"
+      ]
+    },
+    {
+      "id": "q57388",
+      "question": "Araba Sevdası eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23462 ile aynı"
+      ]
+    },
+    {
+      "id": "q57440",
+      "question": "The Bear dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "reasons": [
+        "Soru metni q5308 ile aynı"
+      ]
+    },
+    {
+      "id": "q57472",
+      "question": "Olympia adlı eserin sanatçısı kimdir?",
+      "reasons": [
+        "Soru metni q4630 ile aynı"
+      ]
+    },
+    {
+      "id": "q57483",
+      "question": "1688'deki Şanlı Devrim hangi ülkede gerçekleşti?",
+      "reasons": [
+        "q55693 ile olası aynı bilgi (J=0.80, S=0.94, ortak=4)"
+      ]
+    },
+    {
+      "id": "q57502",
+      "question": "Robinson Crusoe eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23800 ile aynı"
+      ]
+    },
+    {
+      "id": "q57520",
+      "question": "The Angelus adlı eserin sanatçısı kimdir?",
+      "reasons": [
+        "Soru metni q4629 ile aynı"
+      ]
+    },
+    {
+      "id": "q57560",
+      "question": "Delhi Crime ve Lupin dizilerinin ilk yayınlandığı ortak kanal veya platform hangisidir?",
+      "reasons": [
+        "Soru metni q15351 ile aynı"
+      ]
+    },
+    {
+      "id": "q57590",
+      "question": "Tehran dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "reasons": [
+        "Soru metni q5335 ile aynı"
+      ]
+    },
+    {
+      "id": "q57610",
+      "question": "Anayurt Oteli eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23698 ile aynı"
+      ]
+    },
+    {
+      "id": "q57645",
+      "question": "Chang’e 6 görevinin Ay’ın uzak yüzünden örnek getirmesi hangi yılda gerçekleşti?",
+      "reasons": [
+        "q56243 ile olası aynı bilgi (J=0.75, S=0.96, ortak=6)"
+      ]
+    },
+    {
+      "id": "q57662",
+      "question": "Solaris filminin yönetmeni kimdir?",
+      "reasons": [
+        "Soru metni q3298 ile aynı"
+      ]
+    },
+    {
+      "id": "q57734",
+      "question": "Squid Game dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "reasons": [
+        "Soru metni q5328 ile aynı"
+      ]
+    },
+    {
+      "id": "q57766",
+      "question": "Puslu Kıtalar Atlası eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23336 ile aynı"
+      ]
+    },
+    {
+      "id": "q57790",
+      "question": "The Stone Breakers adlı eserin sanatçısı kimdir?",
+      "reasons": [
+        "Soru metni q4627 ile aynı"
+      ]
+    },
+    {
+      "id": "q57795",
+      "question": "Odysseus uzay aracının Ay’a inişi hangi yılda gerçekleşti?",
+      "reasons": [
+        "q56255 ile olası aynı bilgi (J=0.80, S=0.95, ortak=4)"
+      ]
+    },
+    {
+      "id": "q57800",
+      "question": "En İyi Film Oscarını kazanan Oppenheimer filminin yönetmeni kimdir?",
+      "reasons": [
+        "Soru metni q4343 ile aynı"
+      ]
+    },
+    {
+      "id": "q57807",
+      "question": "Birleşik Krallık'ın Avrupa Birliği'nden ayrılması hangi yıl gerçekleşti?",
+      "reasons": [
+        "q56381 ile olası aynı bilgi (J=0.75, S=0.99, ortak=6)"
+      ]
+    },
+    {
+      "id": "q57820",
+      "question": "Usta ile Margarita eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23830 ile aynı"
+      ]
+    },
+    {
+      "id": "q57852",
+      "question": "1924 Kış Olimpiyat Oyunları hangi ülkede düzenlenmiştir?",
+      "reasons": [
+        "Soru metni q24456 ile aynı"
+      ]
+    },
+    {
+      "id": "q57862",
+      "question": "Whistler’s Mother adlı eserin sanatçısı kimdir?",
+      "reasons": [
+        "Soru metni q4632 ile aynı"
+      ]
+    },
+    {
+      "id": "q57888",
+      "question": "1896 Yaz Olimpiyat Oyunları’nın ana ev sahibi şehri hangisidir?",
+      "reasons": [
+        "Soru metni q3955 ile aynı"
+      ]
+    },
+    {
+      "id": "q57898",
+      "question": "David Copperfield eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23518 ile aynı"
+      ]
+    },
+    {
+      "id": "q57920",
+      "question": "The Wire dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "reasons": [
+        "Soru metni q5289 ile aynı"
+      ]
+    },
+    {
+      "id": "q57934",
+      "question": "Mantıku’t-Tayr eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23292 ile aynı"
+      ]
+    },
+    {
+      "id": "q57936",
+      "question": "Satranç sporunda standart tahtada kaç kare bulunur?",
+      "reasons": [
+        "Soru metni q4061 ile aynı"
+      ]
+    },
+    {
+      "id": "q57964",
+      "question": "The Gleaners adlı eserin sanatçısı kimdir?",
+      "reasons": [
+        "Soru metni q4628 ile aynı"
+      ]
+    },
+    {
+      "id": "q58006",
+      "question": "Sevgili Arsız Ölüm eserinin yazarı kimdir?",
+      "reasons": [
+        "Soru metni q23145 ile aynı"
+      ]
+    },
+    {
+      "id": "q58046",
+      "question": "Severance dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "reasons": [
+        "Soru metni q5307 ile aynı"
+      ]
+    },
+    {
+      "id": "q58058",
+      "question": "En İyi Film Oscarını kazanan Nomadland filminin yönetmeni kimdir?",
+      "reasons": [
+        "Soru metni q4340 ile aynı"
+      ]
+    },
+    {
+      "id": "q58097",
+      "question": "Élite ve Kingdom dizilerinin ilk yayınlandığı ortak kanal veya platform hangisidir?",
+      "reasons": [
+        "Soru metni q14323 ile aynı"
+      ]
+    },
+    {
+      "id": "q58111",
+      "question": "En İyi Film Oscarını kazanan CODA filminin yönetmeni kimdir?",
+      "reasons": [
+        "Soru metni q4341 ile aynı"
+      ]
+    }
+  ]
+}

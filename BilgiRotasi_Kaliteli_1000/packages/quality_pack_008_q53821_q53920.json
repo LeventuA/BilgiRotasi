@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q53821",
+    "categoryIndex": 0,
+    "question": "Mısır’ın başkenti hangisidir?",
+    "options": [
+      "İskenderiye",
+      "Kahire",
+      "Luksor",
+      "Gize"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kahire, Nil Nehri yakınında bulunan Mısır’ın başkenti ve en büyük metropolüdür."
+  },
+  {
+    "id": "q53822",
+    "categoryIndex": 0,
+    "question": "Kanada’nın başkenti hangisidir?",
+    "options": [
+      "Toronto",
+      "Vancouver",
+      "Ottawa",
+      "Montreal"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ottawa, Ontario eyaletinde bulunan Kanada’nın federal başkentidir."
+  },
+  {
+    "id": "q53823",
+    "categoryIndex": 0,
+    "question": "Avustralya’nın başkenti hangisidir?",
+    "options": [
+      "Sydney",
+      "Melbourne",
+      "Brisbane",
+      "Canberra"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Canberra, Sydney ile Melbourne arasındaki başkent rekabetine çözüm olarak planlanmış bir şehirdir."
+  },
+  {
+    "id": "q53824",
+    "categoryIndex": 0,
+    "question": "Brezilya’nın başkenti hangisidir?",
+    "options": [
+      "Brasília",
+      "Rio de Janeiro",
+      "São Paulo",
+      "Salvador"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Brasília, ülkenin iç kesimlerinde planlı olarak kurulmuş ve 1960’ta başkent olmuştur."
+  },
+  {
+    "id": "q53825",
+    "categoryIndex": 0,
+    "question": "Yeni Zelanda’nın başkenti hangisidir?",
+    "options": [
+      "Auckland",
+      "Wellington",
+      "Christchurch",
+      "Queenstown"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Wellington, Kuzey Adası’nın güney ucunda bulunan Yeni Zelanda başkentidir."
+  },
+  {
+    "id": "q53826",
+    "categoryIndex": 0,
+    "question": "İsviçre’nin federal yönetim merkezi hangi şehirdir?",
+    "options": [
+      "Zürih",
+      "Cenevre",
+      "Bern",
+      "Lozan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bern resmî olarak “federal şehir” diye anılır ve İsviçre hükümeti ile parlamentosuna ev sahipliği yapar."
+  },
+  {
+    "id": "q53827",
+    "categoryIndex": 0,
+    "question": "Fas’ın başkenti hangisidir?",
+    "options": [
+      "Kazablanka",
+      "Marakeş",
+      "Fes",
+      "Rabat"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Rabat Atlas Okyanusu kıyısında bulunan Fas’ın siyasi başkentidir."
+  },
+  {
+    "id": "q53828",
+    "categoryIndex": 0,
+    "question": "Türkiye’nin en uzun nehri hangisidir?",
+    "options": [
+      "Kızılırmak",
+      "Fırat",
+      "Sakarya",
+      "Yeşilırmak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kızılırmak’ın tamamı Türkiye sınırları içindedir ve yaklaşık 1.355 kilometre uzunluğundadır."
+  },
+  {
+    "id": "q53829",
+    "categoryIndex": 0,
+    "question": "Türkiye’nin en büyük gölü hangisidir?",
+    "options": [
+      "Tuz Gölü",
+      "Van Gölü",
+      "Beyşehir Gölü",
+      "Eğirdir Gölü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Van Gölü, Doğu Anadolu’da bulunan sodalı ve kapalı havzalı büyük bir göldür."
+  },
+  {
+    "id": "q53830",
+    "categoryIndex": 0,
+    "question": "Türkiye’nin en yüksek dağı hangisidir?",
+    "options": [
+      "Erciyes",
+      "Süphan",
+      "Ağrı Dağı",
+      "Kaçkar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ağrı Dağı 5.137 metreyle Türkiye’nin en yüksek zirvesidir."
+  },
+  {
+    "id": "q53831",
+    "categoryIndex": 0,
+    "question": "Dicle Nehri hangi denize ulaşan sistemin parçasıdır?",
+    "options": [
+      "Karadeniz",
+      "Akdeniz",
+      "Kızıldeniz",
+      "Basra Körfezi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dicle, Fırat’la birleşerek Şattülarap’ı oluşturur ve sular Basra Körfezi’ne ulaşır."
+  },
+  {
+    "id": "q53832",
+    "categoryIndex": 0,
+    "question": "Amazon Nehri hangi okyanusa dökülür?",
+    "options": [
+      "Atlas Okyanusu",
+      "Pasifik Okyanusu",
+      "Hint Okyanusu",
+      "Arktik Okyanusu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Amazon, Brezilya’nın kuzeydoğu kıyısında dev bir ağız sistemiyle Atlas Okyanusu’na dökülür."
+  },
+  {
+    "id": "q53833",
+    "categoryIndex": 0,
+    "question": "Mississippi Nehri hangi körfeze dökülür?",
+    "options": [
+      "Hudson Körfezi",
+      "Meksika Körfezi",
+      "Kaliforniya Körfezi",
+      "Biskay Körfezi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mississippi, Louisiana kıyısındaki geniş deltasıyla Meksika Körfezi’ne ulaşır."
+  },
+  {
+    "id": "q53834",
+    "categoryIndex": 0,
+    "question": "Kongo Nehri hangi kıtadadır?",
+    "options": [
+      "Asya",
+      "Güney Amerika",
+      "Afrika",
+      "Avrupa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kongo Nehri Orta Afrika’dan geçer ve su debisi bakımından dünyanın en büyük nehirlerinden biridir."
+  },
+  {
+    "id": "q53835",
+    "categoryIndex": 0,
+    "question": "Everest Dağı hangi iki ülkenin sınırındadır?",
+    "options": [
+      "Hindistan ve Nepal",
+      "Bhutan ve Çin",
+      "Pakistan ve Hindistan",
+      "Nepal ve Çin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Everest’in zirvesi Nepal ile Çin’in Tibet bölgesi arasındaki sınır üzerinde yer alır."
+  },
+  {
+    "id": "q53836",
+    "categoryIndex": 0,
+    "question": "K2 Dağı hangi iki ülkenin sınır bölgesindedir?",
+    "options": [
+      "Pakistan ve Çin",
+      "Nepal ve Çin",
+      "Hindistan ve Bhutan",
+      "Afganistan ve Pakistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "K2, Karakurum Sıradağları’nda Pakistan yönetimindeki Gilgit-Baltistan ile Çin sınırında yükselir."
+  },
+  {
+    "id": "q53837",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük sıcak çölü hangisidir?",
+    "options": [
+      "Gobi",
+      "Sahra",
+      "Kalahari",
+      "Atacama"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sahra, Kuzey Afrika’nın büyük bölümünü kaplayan dünyanın en geniş sıcak çölüdür."
+  },
+  {
+    "id": "q53838",
+    "categoryIndex": 1,
+    "question": "The Sopranos dizisinin mafya lideri kimdir?",
+    "options": [
+      "Michael Corleone",
+      "Tommy Shelby",
+      "Tony Soprano",
+      "Walter White"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tony Soprano, New Jersey merkezli suç ailesini yönetirken panik atakları nedeniyle terapiye gider."
+  },
+  {
+    "id": "q53839",
+    "categoryIndex": 1,
+    "question": "Sherlock dizisinde Sherlock Holmes’u kim canlandırır?",
+    "options": [
+      "Martin Freeman",
+      "David Tennant",
+      "Matt Smith",
+      "Benedict Cumberbatch"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Benedict Cumberbatch modern Londra uyarlamasında Sherlock Holmes’u canlandırır."
+  },
+  {
+    "id": "q53840",
+    "categoryIndex": 1,
+    "question": "Peaky Blinders’ta Thomas Shelby’yi kim canlandırır?",
+    "options": [
+      "Cillian Murphy",
+      "Tom Hardy",
+      "Paul Anderson",
+      "Sam Neill"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cillian Murphy, Shelby ailesinin hırslı ve stratejik lideri Thomas Shelby rolündedir."
+  },
+  {
+    "id": "q53841",
+    "categoryIndex": 1,
+    "question": "The Witcher dizisindeki bardın adı nedir?",
+    "options": [
+      "Eskel",
+      "Jaskier",
+      "Lambert",
+      "Cahir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Jaskier, Geralt’ın maceralarını şarkılara dönüştüren konuşkan bir ozandır."
+  },
+  {
+    "id": "q53842",
+    "categoryIndex": 1,
+    "question": "The Mandalorian’ın gerçek adı nedir?",
+    "options": [
+      "Boba Fett",
+      "Paz Vizsla",
+      "Din Djarin",
+      "Bo-Katan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Başta yalnızca Mandalorian diye anılan ödül avcısının adının Din Djarin olduğu daha sonra açıklanır."
+  },
+  {
+    "id": "q53843",
+    "categoryIndex": 1,
+    "question": "Star Wars’ta Luke Skywalker’ın ikiz kardeşi kimdir?",
+    "options": [
+      "Padmé Amidala",
+      "Rey",
+      "Ahsoka Tano",
+      "Leia Organa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Luke ile Leia, Anakin Skywalker ve Padmé Amidala’nın ikiz çocuklarıdır."
+  },
+  {
+    "id": "q53844",
+    "categoryIndex": 1,
+    "question": "Marvel evreninde Wakanda’nın kralı ve kahramanı kimdir?",
+    "options": [
+      "Black Panther",
+      "Falcon",
+      "Blade",
+      "War Machine"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "T’Challa, Wakanda kralı olarak Black Panther unvanını taşır."
+  },
+  {
+    "id": "q53845",
+    "categoryIndex": 1,
+    "question": "Guardians of the Galaxy’de konuşan rakunun adı nedir?",
+    "options": [
+      "Groot",
+      "Rocket",
+      "Drax",
+      "Cosmo"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Rocket silah ve teknoloji konusunda uzman, genetik olarak değiştirilmiş bir rakundur."
+  },
+  {
+    "id": "q53846",
+    "categoryIndex": 1,
+    "question": "Guardians of the Galaxy’de yalnızca adını söylemesiyle tanınan ağaç karakter kimdir?",
+    "options": [
+      "Rocket",
+      "Mantis",
+      "Groot",
+      "Nebula"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Groot’un konuşması çoğunlukla “I am Groot” cümlesinden oluşur ancak yakınları tonundaki anlamı anlayabilir."
+  },
+  {
+    "id": "q53847",
+    "categoryIndex": 1,
+    "question": "X-Men’in telepatik kurucusu kimdir?",
+    "options": [
+      "Magneto",
+      "Cyclops",
+      "Wolverine",
+      "Professor X"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Charles Xavier, mutantların insanlarla barış içinde yaşamasını savunan X-Men okulunun kurucusudur."
+  },
+  {
+    "id": "q53848",
+    "categoryIndex": 1,
+    "question": "Deadpool’un gerçek adı nedir?",
+    "options": [
+      "Wade Wilson",
+      "Logan Howlett",
+      "Matt Murdock",
+      "Frank Castle"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Wade Wilson iyileşme yeteneği kazandıktan sonra Deadpool kimliğini kullanır."
+  },
+  {
+    "id": "q53849",
+    "categoryIndex": 1,
+    "question": "Daredevil’ın gündüz mesleği nedir?",
+    "options": [
+      "Gazeteci",
+      "Avukat",
+      "Doktor",
+      "Polis"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Matt Murdock gündüzleri avukatlık yapar, geceleri Hell’s Kitchen’da suçla savaşır."
+  },
+  {
+    "id": "q53850",
+    "categoryIndex": 1,
+    "question": "The Punisher’ın gerçek adı nedir?",
+    "options": [
+      "Billy Russo",
+      "Matt Murdock",
+      "Frank Castle",
+      "Marc Spector"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Frank Castle ailesinin öldürülmesinden sonra suçlulara karşı ölümcül bir savaş başlatır."
+  },
+  {
+    "id": "q53851",
+    "categoryIndex": 1,
+    "question": "Moon Knight’ın temel kimliklerinden biri hangisidir?",
+    "options": [
+      "Stephen Strange",
+      "Sam Wilson",
+      "Scott Lang",
+      "Marc Spector"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Marc Spector, dissosiyatif kimlikleri ve Mısır tanrısı Khonshu’yla bağlantısı olan Moon Knight’tır."
+  },
+  {
+    "id": "q53852",
+    "categoryIndex": 1,
+    "question": "Doctor Strange’in mesleği süper kahraman olmadan önce neydi?",
+    "options": [
+      "Cerrah",
+      "Fizikçi",
+      "Avukat",
+      "Pilot"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Stephen Strange başarılı bir beyin cerrahıyken geçirdiği kazadan sonra mistik sanatlara yönelir."
+  },
+  {
+    "id": "q53853",
+    "categoryIndex": 1,
+    "question": "Ant-Man kostümünün en bilinen özelliği nedir?",
+    "options": [
+      "Zamanı durdurması",
+      "Kullanıcısını küçültmesi",
+      "Görünmez yapması",
+      "Uçuş sağlaması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pym parçacıkları kostüm kullanıcısının boyutunu küçültüp büyütmesine olanak verir."
+  },
+  {
+    "id": "q53854",
+    "categoryIndex": 1,
+    "question": "Black Widow’un gerçek adı nedir?",
+    "options": [
+      "Wanda Maximoff",
+      "Yelena Belova",
+      "Natasha Romanoff",
+      "Carol Danvers"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Natasha Romanoff eski bir casus ve Avengers ekibinin önemli üyelerinden biridir."
+  },
+  {
+    "id": "q53855",
+    "categoryIndex": 2,
+    "question": "Antik Roma’nın ilk imparatoru kimdir?",
+    "options": [
+      "Jül Sezar",
+      "Nero",
+      "Traianus",
+      "Augustus"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Octavianus, MÖ 27’de Augustus unvanını alarak Roma’nın ilk imparatoru oldu."
+  },
+  {
+    "id": "q53856",
+    "categoryIndex": 2,
+    "question": "Pompeii hangi yıldaki patlamayla gömüldü?",
+    "options": [
+      "MS 79",
+      "MÖ 44",
+      "MS 313",
+      "MS 476"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Vezüv Yanardağı MS 79’da patlayarak Pompeii’yi kül ve volkanik malzeme altında bıraktı."
+  },
+  {
+    "id": "q53857",
+    "categoryIndex": 2,
+    "question": "Roma İmparatorluğu’nun batı kısmı hangi yılda sona erdi?",
+    "options": [
+      "395",
+      "476",
+      "527",
+      "800"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Batı Roma’nın son imparatoru Romulus Augustulus 476’da tahttan indirildi."
+  },
+  {
+    "id": "q53858",
+    "categoryIndex": 2,
+    "question": "İstanbul’un eski adlarından biri hangisidir?",
+    "options": [
+      "Antakya",
+      "Ninova",
+      "Konstantinopolis",
+      "Persepolis"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Şehir Roma İmparatoru Konstantin döneminde Konstantinopolis adını aldı."
+  },
+  {
+    "id": "q53859",
+    "categoryIndex": 2,
+    "question": "Haçlıların 1204’te ele geçirip yağmaladığı şehir hangisidir?",
+    "options": [
+      "Kudüs",
+      "Roma",
+      "Şam",
+      "Konstantinopolis"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dördüncü Haçlı Seferi hedefinden saparak Bizans başkenti Konstantinopolis’i ele geçirdi."
+  },
+  {
+    "id": "q53860",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti’nin kurucusu kimdir?",
+    "options": [
+      "Osman Gazi",
+      "Orhan Gazi",
+      "Ertuğrul Gazi",
+      "I. Murad"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Osman Gazi, 13. yüzyıl sonlarında Osmanlı Beyliği’nin kurucusu kabul edilir."
+  },
+  {
+    "id": "q53861",
+    "categoryIndex": 2,
+    "question": "Osmanlı’nın ilk başkenti olarak kabul edilen yer hangisidir?",
+    "options": [
+      "Bursa",
+      "Söğüt",
+      "Edirne",
+      "İznik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Söğüt, Osmanlı Beyliği’nin kuruluş dönemindeki merkezi ve ilk başkent olarak kabul edilir."
+  },
+  {
+    "id": "q53862",
+    "categoryIndex": 2,
+    "question": "Osmanlı’nın fethettiği ilk büyük Bizans şehri ve sonraki başkenti hangisidir?",
+    "options": [
+      "İzmir",
+      "Konya",
+      "Bursa",
+      "Ankara"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bursa 1326’da alındı ve Osmanlı’nın önemli erken başkentlerinden biri oldu."
+  },
+  {
+    "id": "q53863",
+    "categoryIndex": 2,
+    "question": "İstanbul’dan önce Osmanlı’nın başkenti hangi şehirdi?",
+    "options": [
+      "Bursa",
+      "Manisa",
+      "Amasya",
+      "Edirne"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Edirne 1360’larda Osmanlı başkenti oldu ve 1453’e kadar bu işlevi sürdürdü."
+  },
+  {
+    "id": "q53864",
+    "categoryIndex": 2,
+    "question": "Kanuni Sultan Süleyman’ın en uzun süren seferlerinden biri hangi şehre karşıydı?",
+    "options": [
+      "Viyana",
+      "Paris",
+      "Moskova",
+      "Madrid"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Osmanlı ordusu 1529’da Viyana’yı kuşattı ancak şehri alamadı."
+  },
+  {
+    "id": "q53865",
+    "categoryIndex": 2,
+    "question": "Osmanlı’da matbaayı Türkçe eser basmak için kuran kişi kimdir?",
+    "options": [
+      "Kâtip Çelebi",
+      "İbrahim Müteferrika",
+      "Evliya Çelebi",
+      "Takiyüddin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "İbrahim Müteferrika 1727’de Türkçe ve Arap harfli eserler basan matbaayı kurdu."
+  },
+  {
+    "id": "q53866",
+    "categoryIndex": 2,
+    "question": "Tanzimat Fermanı hangi yılda ilan edildi?",
+    "options": [
+      "1808",
+      "1856",
+      "1839",
+      "1876"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Gülhane Hatt-ı Hümayunu olarak da bilinen Tanzimat Fermanı 1839’da ilan edildi."
+  },
+  {
+    "id": "q53867",
+    "categoryIndex": 2,
+    "question": "I. Meşrutiyet hangi yılda ilan edildi?",
+    "options": [
+      "1839",
+      "1908",
+      "1920",
+      "1876"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kanun-ı Esasi’nin ilanıyla 1876’da Osmanlı’da I. Meşrutiyet dönemi başladı."
+  },
+  {
+    "id": "q53868",
+    "categoryIndex": 2,
+    "question": "II. Meşrutiyet hangi yılda yeniden ilan edildi?",
+    "options": [
+      "1908",
+      "1876",
+      "1905",
+      "1912"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "1908’de anayasanın yeniden yürürlüğe girmesiyle II. Meşrutiyet başladı."
+  },
+  {
+    "id": "q53869",
+    "categoryIndex": 2,
+    "question": "Türkiye’de saltanat hangi yılda kaldırıldı?",
+    "options": [
+      "1920",
+      "1922",
+      "1923",
+      "1924"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "TBMM 1 Kasım 1922’de saltanatı kaldırarak Osmanlı monarşisine son verdi."
+  },
+  {
+    "id": "q53870",
+    "categoryIndex": 2,
+    "question": "Türkiye Cumhuriyeti hangi tarihte ilan edildi?",
+    "options": [
+      "23 Nisan 1920",
+      "30 Ağustos 1922",
+      "29 Ekim 1923",
+      "3 Mart 1924"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cumhuriyet 29 Ekim 1923’te ilan edildi ve Mustafa Kemal ilk cumhurbaşkanı seçildi."
+  },
+  {
+    "id": "q53871",
+    "categoryIndex": 2,
+    "question": "Halifelik Türkiye’de hangi yılda kaldırıldı?",
+    "options": [
+      "1922",
+      "1923",
+      "1928",
+      "1924"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "TBMM 3 Mart 1924’te halifeliği kaldırdı ve eğitim ile yönetim alanında başka reformlar yaptı."
+  },
+  {
+    "id": "q53872",
+    "categoryIndex": 3,
+    "question": "Kiralık Konak romanının yazarı kimdir?",
+    "options": [
+      "Yakup Kadri Karaosmanoğlu",
+      "Halide Edib Adıvar",
+      "Reşat Nuri Güntekin",
+      "Peyami Safa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kiralık Konak, Osmanlı’dan Cumhuriyet’e geçişte kuşak çatışmasını anlatır."
+  },
+  {
+    "id": "q53873",
+    "categoryIndex": 3,
+    "question": "Yaban romanının yazarı kimdir?",
+    "options": [
+      "Kemal Tahir",
+      "Yakup Kadri Karaosmanoğlu",
+      "Tarık Buğra",
+      "Orhan Kemal"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yaban, Millî Mücadele yıllarında bir aydın ile Anadolu köylüsü arasındaki uzaklığı işler."
+  },
+  {
+    "id": "q53874",
+    "categoryIndex": 3,
+    "question": "Sinekli Bakkal romanının yazarı kimdir?",
+    "options": [
+      "Fatma Aliye",
+      "Suat Derviş",
+      "Halide Edib Adıvar",
+      "Tomris Uyar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sinekli Bakkal, II. Abdülhamid döneminde İstanbul’un mahalle yaşamını ve kültürel karşılaşmaları anlatır."
+  },
+  {
+    "id": "q53875",
+    "categoryIndex": 3,
+    "question": "Dokuzuncu Hariciye Koğuşu romanını kim yazdı?",
+    "options": [
+      "Ahmet Hamdi Tanpınar",
+      "Memduh Şevket Esendal",
+      "Sabahattin Ali",
+      "Peyami Safa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Roman, hasta bir gencin hastane deneyimini ve iç dünyasını güçlü psikolojik anlatımla işler."
+  },
+  {
+    "id": "q53876",
+    "categoryIndex": 3,
+    "question": "Eylül romanının yazarı kimdir?",
+    "options": [
+      "Mehmet Rauf",
+      "Halit Ziya Uşaklıgil",
+      "Hüseyin Rahmi Gürpınar",
+      "Samipaşazade Sezai"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Eylül, Türk edebiyatının ilk psikolojik romanlarından biri kabul edilir."
+  },
+  {
+    "id": "q53877",
+    "categoryIndex": 3,
+    "question": "Araba Sevdası romanını kim yazdı?",
+    "options": [
+      "Namık Kemal",
+      "Recaizade Mahmut Ekrem",
+      "Şinasi",
+      "Ahmet Mithat Efendi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Araba Sevdası, yanlış Batılılaşmayı Bihruz Bey üzerinden hicveder."
+  },
+  {
+    "id": "q53878",
+    "categoryIndex": 3,
+    "question": "İntibah romanının yazarı kimdir?",
+    "options": [
+      "Ziya Paşa",
+      "Şemsettin Sami",
+      "Namık Kemal",
+      "Muallim Naci"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İntibah, Namık Kemal’in toplumsal ve ahlaki çatışmaları ele alan romanıdır."
+  },
+  {
+    "id": "q53879",
+    "categoryIndex": 3,
+    "question": "Taaşşuk-ı Talat ve Fitnat’ın yazarı kimdir?",
+    "options": [
+      "Namık Kemal",
+      "Ahmet Mithat Efendi",
+      "Nabizade Nâzım",
+      "Şemsettin Sami"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Eser, Türk edebiyatının ilk yerli roman örneklerinden biri kabul edilir."
+  },
+  {
+    "id": "q53880",
+    "categoryIndex": 3,
+    "question": "Mai ve Siyah romanının yazarı kimdir?",
+    "options": [
+      "Halit Ziya Uşaklıgil",
+      "Mehmet Rauf",
+      "Cenap Şahabettin",
+      "Tevfik Fikret"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mai ve Siyah, hayalleri ile gerçekler arasında sıkışan Ahmet Cemil’in hikâyesini anlatır."
+  },
+  {
+    "id": "q53881",
+    "categoryIndex": 3,
+    "question": "Fatih-Harbiye romanının yazarı kimdir?",
+    "options": [
+      "Tarık Buğra",
+      "Peyami Safa",
+      "Yakup Kadri Karaosmanoğlu",
+      "Kemal Tahir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Roman Doğu-Batı çatışmasını Neriman’ın iki semt ve iki yaşam tarzı arasındaki seçimi üzerinden işler."
+  },
+  {
+    "id": "q53882",
+    "categoryIndex": 3,
+    "question": "Kuyucaklı Yusuf romanının yazarı kimdir?",
+    "options": [
+      "Yaşar Kemal",
+      "Orhan Kemal",
+      "Sabahattin Ali",
+      "Kemal Bilbaşar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kuyucaklı Yusuf, taşra düzeni ve adaletsizlik içinde büyüyen Yusuf’un trajik hayatını anlatır."
+  },
+  {
+    "id": "q53883",
+    "categoryIndex": 3,
+    "question": "Bereketli Topraklar Üzerinde romanını kim yazdı?",
+    "options": [
+      "Kemal Tahir",
+      "Fakir Baykurt",
+      "Yaşar Kemal",
+      "Orhan Kemal"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Roman, çalışmak için Çukurova’ya gelen üç köylünün ağır emek koşullarını anlatır."
+  },
+  {
+    "id": "q53884",
+    "categoryIndex": 3,
+    "question": "Devlet Ana romanının yazarı kimdir?",
+    "options": [
+      "Kemal Tahir",
+      "Tarık Buğra",
+      "Orhan Kemal",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Devlet Ana, Osmanlı Beyliği’nin kuruluş dönemini tarihî ve toplumsal bir bakışla işler."
+  },
+  {
+    "id": "q53885",
+    "categoryIndex": 3,
+    "question": "Küçük Ağa romanının yazarı kimdir?",
+    "options": [
+      "Kemal Tahir",
+      "Tarık Buğra",
+      "Yakup Kadri Karaosmanoğlu",
+      "Samim Kocagöz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Küçük Ağa, Millî Mücadele’ye karşı başlayan bir din adamının zamanla dönüşümünü anlatır."
+  },
+  {
+    "id": "q53886",
+    "categoryIndex": 3,
+    "question": "Çalıkuşu romanının başkahramanı kimdir?",
+    "options": [
+      "Neriman",
+      "Bihter",
+      "Feride",
+      "Handan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Feride, öğretmenlik yapmak için Anadolu’ya giden hareketli ve dirençli bir genç kadındır."
+  },
+  {
+    "id": "q53887",
+    "categoryIndex": 3,
+    "question": "Aşk-ı Memnu’daki yasak ilişkinin merkezindeki kadın karakter kimdir?",
+    "options": [
+      "Nihal",
+      "Firdevs",
+      "Peyker",
+      "Bihter"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bihter, Adnan Bey’le evliyken Behlül’le yasak bir ilişkiye girer."
+  },
+  {
+    "id": "q53888",
+    "categoryIndex": 3,
+    "question": "İnce Memed romanındaki başkahraman hangi toplumsal düzene başkaldırır?",
+    "options": [
+      "Ağalık düzenine",
+      "Lonca düzenine",
+      "Saray düzenine",
+      "Tımar düzenine"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İnce Memed, köylüleri ezen Abdi Ağa’ya ve Çukurova’daki ağalık sistemine karşı direnir."
+  },
+  {
+    "id": "q53889",
+    "categoryIndex": 4,
+    "question": "Dünya’ya en yakın yıldız hangisidir?",
+    "options": [
+      "Proxima Centauri",
+      "Güneş",
+      "Sirius",
+      "Betelgeuse"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Güneş, Dünya’nın içinde bulunduğu sistemin merkezindeki yıldızdır."
+  },
+  {
+    "id": "q53890",
+    "categoryIndex": 4,
+    "question": "Güneş’ten sonra Dünya’ya en yakın yıldız hangisidir?",
+    "options": [
+      "Sirius",
+      "Vega",
+      "Proxima Centauri",
+      "Alpha Centauri A"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Proxima Centauri yaklaşık 4,24 ışık yılı uzaklıkta kırmızı cüce bir yıldızdır."
+  },
+  {
+    "id": "q53891",
+    "categoryIndex": 4,
+    "question": "Gece gökyüzünün en parlak yıldızı hangisidir?",
+    "options": [
+      "Vega",
+      "Polaris",
+      "Rigel",
+      "Sirius"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sirius, Büyük Köpek takımyıldızında bulunan ve Dünya’dan çok parlak görünen bir yıldız sistemidir."
+  },
+  {
+    "id": "q53892",
+    "categoryIndex": 4,
+    "question": "Kutup Yıldızı’nın yaygın adı nedir?",
+    "options": [
+      "Polaris",
+      "Sirius",
+      "Arcturus",
+      "Deneb"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Polaris gökyüzünün kuzey kutbuna yakın olduğu için yön bulmada kullanılmıştır."
+  },
+  {
+    "id": "q53893",
+    "categoryIndex": 4,
+    "question": "Dünya’ya en yakın galaksi kümelerinden biri olan Andromeda nedir?",
+    "options": [
+      "Bir yıldız",
+      "Bir galaksi",
+      "Bir gezegen",
+      "Bir bulutsu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Andromeda, Samanyolu’na en yakın büyük sarmal galaksidir."
+  },
+  {
+    "id": "q53894",
+    "categoryIndex": 4,
+    "question": "Samanyolu nasıl bir galaksidir?",
+    "options": [
+      "Eliptik galaksi",
+      "Düzensiz galaksi",
+      "Çubuklu sarmal galaksi",
+      "Halka galaksi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Samanyolu’nun merkezinde çubuk biçimli yıldız yoğunluğu ve dışarı uzanan sarmal kollar bulunur."
+  },
+  {
+    "id": "q53895",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi hangi galakside bulunur?",
+    "options": [
+      "Andromeda",
+      "Sombrero",
+      "Üçgen",
+      "Samanyolu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Güneş Sistemi Samanyolu’nun Orion Kolu adı verilen küçük bir kol bölgesindedir."
+  },
+  {
+    "id": "q53896",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi’nde kaç gezegen vardır?",
+    "options": [
+      "8",
+      "7",
+      "9",
+      "10"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Plüton’un 2006’da cüce gezegen sınıfına alınmasından sonra resmî gezegen sayısı sekizdir."
+  },
+  {
+    "id": "q53897",
+    "categoryIndex": 4,
+    "question": "Güneş’e en yakın gezegen hangisidir?",
+    "options": [
+      "Venüs",
+      "Merkür",
+      "Dünya",
+      "Mars"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Merkür Güneş’e en yakın yörüngede hareket eden küçük kayalık gezegendir."
+  },
+  {
+    "id": "q53898",
+    "categoryIndex": 4,
+    "question": "Dünya’ya komşu iki gezegen hangileridir?",
+    "options": [
+      "Merkür ve Jüpiter",
+      "Mars ve Jüpiter",
+      "Venüs ve Mars",
+      "Venüs ve Merkür"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dünya’nın yörüngesinin iç tarafında Venüs, dış tarafında Mars bulunur."
+  },
+  {
+    "id": "q53899",
+    "categoryIndex": 4,
+    "question": "Plüton bugün hangi sınıfta değerlendirilir?",
+    "options": [
+      "Uydu",
+      "Asteroit",
+      "Kuyruklu yıldız",
+      "Cüce gezegen"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Uluslararası Astronomi Birliği Plüton’u 2006’da cüce gezegen olarak sınıflandırdı."
+  },
+  {
+    "id": "q53900",
+    "categoryIndex": 4,
+    "question": "Satürn’ün en büyük uydusu hangisidir?",
+    "options": [
+      "Titan",
+      "Europa",
+      "Ganymede",
+      "Triton"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Titan kalın atmosferi ve yüzeyindeki sıvı hidrokarbon gölleriyle dikkat çeker."
+  },
+  {
+    "id": "q53901",
+    "categoryIndex": 4,
+    "question": "Jüpiter’in en büyük uydusu hangisidir?",
+    "options": [
+      "Io",
+      "Ganymede",
+      "Europa",
+      "Callisto"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ganymede, Merkür gezegeninden bile daha büyük olan Güneş Sistemi’nin en büyük uydusudur."
+  },
+  {
+    "id": "q53902",
+    "categoryIndex": 4,
+    "question": "Mars’ın iki küçük uydusundan biri hangisidir?",
+    "options": [
+      "Titan",
+      "Europa",
+      "Phobos",
+      "Miranda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mars’ın Phobos ve Deimos adlı iki küçük, düzensiz şekilli uydusu vardır."
+  },
+  {
+    "id": "q53903",
+    "categoryIndex": 4,
+    "question": "Neptün’ün en büyük uydusu hangisidir?",
+    "options": [
+      "Titania",
+      "Charon",
+      "Iapetus",
+      "Triton"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Triton ters yönde yörüngesi nedeniyle yakalanmış bir Kuiper Kuşağı cismi olabilir."
+  },
+  {
+    "id": "q53904",
+    "categoryIndex": 4,
+    "question": "Dünya atmosferindeki oksijenin yaklaşık oranı nedir?",
+    "options": [
+      "%21",
+      "%5",
+      "%50",
+      "%78"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kuru havanın yaklaşık yüzde 21’i oksijenden oluşur."
+  },
+  {
+    "id": "q53905",
+    "categoryIndex": 5,
+    "question": "FIFA Dünya Kupası kaç yılda bir düzenlenir?",
+    "options": [
+      "2 yılda bir",
+      "4 yılda bir",
+      "3 yılda bir",
+      "5 yılda bir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Erkekler FIFA Dünya Kupası normal koşullarda dört yılda bir düzenlenir."
+  },
+  {
+    "id": "q53906",
+    "categoryIndex": 5,
+    "question": "UEFA Avrupa Futbol Şampiyonası kaç yılda bir düzenlenir?",
+    "options": [
+      "Her yıl",
+      "2 yılda bir",
+      "4 yılda bir",
+      "5 yılda bir"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Avrupa Şampiyonası, Dünya Kupası’yla dönüşümlü olacak biçimde dört yıllık aralıklarla düzenlenir."
+  },
+  {
+    "id": "q53907",
+    "categoryIndex": 5,
+    "question": "Yaz Olimpiyatları kaç yılda bir yapılır?",
+    "options": [
+      "2 yılda bir",
+      "3 yılda bir",
+      "6 yılda bir",
+      "4 yılda bir"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Yaz Olimpiyatları normalde dört yıllık olimpiyat döngüsüyle gerçekleştirilir."
+  },
+  {
+    "id": "q53908",
+    "categoryIndex": 5,
+    "question": "Kış Olimpiyatları için standart olimpiyat döngüsü kaç yıldır?",
+    "options": [
+      "4 yılda bir",
+      "Her yıl",
+      "2 yılda bir",
+      "5 yılda bir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kış Olimpiyatları da dört yılda bir yapılır ancak Yaz Oyunları’ndan iki yıl ayrı takvimde düzenlenir."
+  },
+  {
+    "id": "q53909",
+    "categoryIndex": 5,
+    "question": "Futbolda kale direkleri arasındaki mesafe yaklaşık kaç metredir?",
+    "options": [
+      "5 metre",
+      "7,32 metre",
+      "6,50 metre",
+      "9 metre"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Standart futbol kalesinin iç genişliği 8 yard, yani yaklaşık 7,32 metredir."
+  },
+  {
+    "id": "q53910",
+    "categoryIndex": 5,
+    "question": "Futbol kalesinin yüksekliği yaklaşık kaç metredir?",
+    "options": [
+      "2 metre",
+      "3 metre",
+      "2,44 metre",
+      "3,50 metre"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Standart kale yerden üst direğe 8 feet, yani yaklaşık 2,44 metre yüksekliğindedir."
+  },
+  {
+    "id": "q53911",
+    "categoryIndex": 5,
+    "question": "Basketbol çemberinin çapı yaklaşık kaç santimetredir?",
+    "options": [
+      "30 santimetre",
+      "60 santimetre",
+      "75 santimetre",
+      "45 santimetre"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Standart basketbol çemberinin iç çapı yaklaşık 45 santimetredir."
+  },
+  {
+    "id": "q53912",
+    "categoryIndex": 5,
+    "question": "Bir NBA maçı kaç çeyrekten oluşur?",
+    "options": [
+      "4",
+      "2",
+      "3",
+      "5"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "NBA maçı on ikişer dakikalık dört çeyrekten oluşur."
+  },
+  {
+    "id": "q53913",
+    "categoryIndex": 5,
+    "question": "FIBA basketbol maçında bir çeyrek kaç dakikadır?",
+    "options": [
+      "8 dakika",
+      "10 dakika",
+      "12 dakika",
+      "15 dakika"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "FIBA kurallarında maç dört adet on dakikalık çeyrekten oluşur."
+  },
+  {
+    "id": "q53914",
+    "categoryIndex": 5,
+    "question": "Voleybolda bir takım maçı kazanmak için kaç set almalıdır?",
+    "options": [
+      "2",
+      "4",
+      "3",
+      "5"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Salon voleybolunda beş set üzerinden oynanan maçı ilk üç seti kazanan takım alır."
+  },
+  {
+    "id": "q53915",
+    "categoryIndex": 5,
+    "question": "Teniste erkekler Grand Slam tekler maçları en fazla kaç set sürer?",
+    "options": [
+      "3 set",
+      "4 set",
+      "6 set",
+      "5 set"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Erkekler Grand Slam teklerinde maçlar beş setin en iyisi formatında oynanır."
+  },
+  {
+    "id": "q53916",
+    "categoryIndex": 5,
+    "question": "Teniste kadınlar Grand Slam tekler maçları en fazla kaç set sürer?",
+    "options": [
+      "3 set",
+      "2 set",
+      "4 set",
+      "5 set"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kadınlar Grand Slam teklerinde maçlar üç setin en iyisi formatındadır."
+  },
+  {
+    "id": "q53917",
+    "categoryIndex": 5,
+    "question": "Beyzbolda dört kötü atış alan vurucuya ne olur?",
+    "options": [
+      "Oyun dışı kalır",
+      "Birinci kaleye yürür",
+      "İkinci kaleye geçer",
+      "Yeni vuruş hakkı alır"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Pitcher dört ball atarsa vurucu walk kazanır ve birinci kaleye ilerler."
+  },
+  {
+    "id": "q53918",
+    "categoryIndex": 5,
+    "question": "Amerikan futbolunda saha golü kaç puan değerindedir?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "6"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Topun direkler arasından geçirilmesiyle yapılan field goal üç puan kazandırır."
+  },
+  {
+    "id": "q53919",
+    "categoryIndex": 5,
+    "question": "Ragbi birliğinde conversion vuruşu kaç puan değerindedir?",
+    "options": [
+      "1",
+      "3",
+      "5",
+      "2"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Try sonrasında direkler arasından geçirilen conversion vuruşu iki puan getirir."
+  },
+  {
+    "id": "q53920",
+    "categoryIndex": 5,
+    "question": "Dartta merkezdeki çift bull kaç puan değerindedir?",
+    "options": [
+      "50",
+      "25",
+      "40",
+      "60"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Dart tahtasının iç merkez bölümü double bull olarak 50 puan, dış merkez ise 25 puan değerindedir."
+  }
+]

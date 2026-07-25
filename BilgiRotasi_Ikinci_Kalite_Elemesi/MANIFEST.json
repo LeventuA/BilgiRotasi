@@ -1,0 +1,26 @@
+{
+  "project": "LeventuA/BilgiRotasi",
+  "bundle": "BilgiRotasi_Ikinci_Kalite_Elemesi",
+  "createdOn": "2026-07-23",
+  "purpose": "İlk elemeden kalan soruları daha sıkı oynanabilirlik denetiminden geçirmek",
+  "newQuestionsGenerated": 0,
+  "preparedAgainstGitBlobSha": "0e79e826226a044356a65f5b5fdb43737f76036d",
+  "expectedCurrentQuestionCount": 1668,
+  "localTest": {
+    "status": "PASS",
+    "sourceCount": 999,
+    "keepCount": 375,
+    "rewriteCount": 355,
+    "rejectCount": 269,
+    "categoryAfter": {
+      "Spor": 54,
+      "Sanat & Edebiyat": 110,
+      "Eğlence": 54,
+      "Coğrafya": 29,
+      "Tarih": 53,
+      "Bilim & Doğa": 75
+    }
+  },
+  "checkModeChangesQuestionsJson": false,
+  "applyCreatesBackup": true
+}

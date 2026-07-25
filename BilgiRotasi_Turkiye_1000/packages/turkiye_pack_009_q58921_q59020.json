@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q58921",
+    "categoryIndex": 5,
+    "question": "Beşiktaş 2016-17 UEFA Avrupa Ligi'nde hangi aşamaya ulaştı?",
+    "options": [
+      "Çeyrek final",
+      "Son 32",
+      "Yarı final",
+      "Final"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Beşiktaş çeyrek finalde Lyon'a penaltı atışları sonunda elendi."
+  },
+  {
+    "id": "q58922",
+    "categoryIndex": 5,
+    "question": "Beşiktaş 2017-18 Şampiyonlar Ligi grubunu nasıl tamamladı?",
+    "options": [
+      "Üçüncü",
+      "Lider ve namağlup",
+      "Sonuncu",
+      "İkinci ve namağlup"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Beşiktaş, Porto, Leipzig ve Monaco'nun bulunduğu grubu 14 puanla lider bitirdi."
+  },
+  {
+    "id": "q58923",
+    "categoryIndex": 5,
+    "question": "Türkiye A Millî Futbol Takımı Dünya Kupası'ndaki en iyi derecesini hangi yıl elde etti?",
+    "options": [
+      "1996",
+      "1954",
+      "2002",
+      "2008"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye, 2002 Dünya Kupası'nı üçüncü tamamladı."
+  },
+  {
+    "id": "q58924",
+    "categoryIndex": 5,
+    "question": "Türkiye 2002 Dünya Kupası üçüncülük maçında hangi ülkeyi yendi?",
+    "options": [
+      "Senegal",
+      "Brezilya",
+      "Japonya",
+      "Güney Kore"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye ev sahibi Güney Kore'yi 3-2 yenerek dünya üçüncüsü oldu."
+  },
+  {
+    "id": "q58925",
+    "categoryIndex": 5,
+    "question": "Dünya Kupası tarihinin en hızlı gollerinden birini 2002 üçüncülük maçında atan Türk futbolcu kimdir?",
+    "options": [
+      "Hakan Şükür",
+      "İlhan Mansız",
+      "Hasan Şaş",
+      "Ümit Davala"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hakan Şükür Güney Kore maçının yaklaşık 11. saniyesinde gol attı."
+  },
+  {
+    "id": "q58926",
+    "categoryIndex": 5,
+    "question": "Türkiye'yi 2002 Dünya Kupası üçüncülüğüne taşıyan teknik direktör kimdi?",
+    "options": [
+      "Fatih Terim",
+      "Şenol Güneş",
+      "Mustafa Denizli",
+      "Guus Hiddink"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Şenol Güneş yönetimindeki millî takım turnuvayı üçüncü tamamladı."
+  },
+  {
+    "id": "q58927",
+    "categoryIndex": 5,
+    "question": "Türkiye 2002 Dünya Kupası çeyrek finalinde hangi takımı eledi?",
+    "options": [
+      "Güney Kore",
+      "Kosta Rika",
+      "Senegal",
+      "Japonya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İlhan Mansız'ın altın golüyle Senegal 1-0 mağlup edildi."
+  },
+  {
+    "id": "q58928",
+    "categoryIndex": 5,
+    "question": "Türkiye'nin 2002 Dünya Kupası'nda Senegal'e attığı altın golün sahibi kimdi?",
+    "options": [
+      "Hasan Şaş",
+      "Hakan Şükür",
+      "Nihat Kahveci",
+      "İlhan Mansız"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İlhan Mansız uzatmada attığı golle Türkiye'yi yarı finale taşıdı."
+  },
+  {
+    "id": "q58929",
+    "categoryIndex": 5,
+    "question": "Türkiye 2002 Dünya Kupası son 16 turunda hangi ev sahibi ülkeyi eledi?",
+    "options": [
+      "Japonya",
+      "Çin",
+      "Meksika",
+      "Güney Kore"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ümit Davala'nın golüyle Japonya 1-0 yenildi."
+  },
+  {
+    "id": "q58930",
+    "categoryIndex": 5,
+    "question": "A Millî Futbol Takımı Avrupa Şampiyonası'ndaki en iyi derecesini hangi yıl elde etti?",
+    "options": [
+      "2000",
+      "2008",
+      "1996",
+      "2016"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye EURO 2008'de yarı finale yükseldi."
+  },
+  {
+    "id": "q58931",
+    "categoryIndex": 5,
+    "question": "Türkiye EURO 2008 çeyrek finalinde hangi takımı penaltılarla eledi?",
+    "options": [
+      "İsviçre",
+      "Çekya",
+      "Hırvatistan",
+      "Avusturya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Semih Şentürk'ün 120+2. dakikadaki golü sonrası Türkiye penaltılarda tur atladı."
+  },
+  {
+    "id": "q58932",
+    "categoryIndex": 5,
+    "question": "EURO 2008'de Hırvatistan maçında son saniye beraberlik golünü kim attı?",
+    "options": [
+      "Arda Turan",
+      "Tuncay Şanlı",
+      "Nihat Kahveci",
+      "Semih Şentürk"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Semih Şentürk uzatmanın son anlarında skoru 1-1 yaptı."
+  },
+  {
+    "id": "q58933",
+    "categoryIndex": 5,
+    "question": "Türkiye EURO 2008 yarı finalinde hangi takıma elendi?",
+    "options": [
+      "Almanya",
+      "Portekiz",
+      "Hollanda",
+      "İspanya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye, Basel'deki yarı finali Almanya'ya 3-2 kaybetti."
+  },
+  {
+    "id": "q58934",
+    "categoryIndex": 5,
+    "question": "Türkiye'nin EURO 2000'de ilk kez ulaştığı aşama hangisidir?",
+    "options": [
+      "Yarı final",
+      "Çeyrek final",
+      "Final",
+      "Son 16"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Türkiye EURO 2000'de grubundan çıkıp çeyrek finalde Portekiz'e elendi."
+  },
+  {
+    "id": "q58935",
+    "categoryIndex": 5,
+    "question": "A Millî Takım'ın Avrupa Şampiyonası'ndaki ilk golünü atan futbolcu kimdir?",
+    "options": [
+      "Hakan Şükür",
+      "Arif Erdem",
+      "Okan Buruk",
+      "Tugay Kerimoğlu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Okan Buruk, EURO 2000'de İtalya'ya karşı Türkiye'nin Avrupa Şampiyonası tarihindeki ilk golünü attı."
+  },
+  {
+    "id": "q58936",
+    "categoryIndex": 5,
+    "question": "'Taçsız Kral' lakabıyla tanınan Türk futbolcu kimdir?",
+    "options": [
+      "Can Bartu",
+      "Lefter Küçükandonyadis",
+      "Hakkı Yeten",
+      "Metin Oktay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Metin Oktay golcülüğü ve Galatasaray'la bağı nedeniyle Taçsız Kral olarak anıldı."
+  },
+  {
+    "id": "q58937",
+    "categoryIndex": 5,
+    "question": "'Ordinaryüs' lakabıyla tanınan Fenerbahçe efsanesi kimdir?",
+    "options": [
+      "Lefter Küçükandonyadis",
+      "Can Bartu",
+      "Alex de Souza",
+      "Zeki Rıza Sporel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Lefter, oyun zekâsı ve golcülüğü nedeniyle Ordinaryüs lakabını aldı."
+  },
+  {
+    "id": "q58938",
+    "categoryIndex": 5,
+    "question": "Beşiktaş'ın futbolcu, teknik direktör ve başkan olarak hizmet eden 'Baba' lakaplı efsanesi kimdir?",
+    "options": [
+      "Süleyman Seba",
+      "Hakkı Yeten",
+      "Sanlı Sarıalioğlu",
+      "Şeref Görkey"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hakkı Yeten, futbolculuktan başkanlığa uzanan kariyeriyle Beşiktaş tarihinin simge isimlerindendir."
+  },
+  {
+    "id": "q58939",
+    "categoryIndex": 5,
+    "question": "Futbol ve basketbol millî takımlarında forma giyen 'Sinyor' lakaplı sporcu kimdir?",
+    "options": [
+      "Lefter Küçükandonyadis",
+      "Metin Oktay",
+      "Can Bartu",
+      "Turgay Şeren"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Can Bartu hem futbol hem basketbol millî takımlarında Türkiye'yi temsil etti."
+  },
+  {
+    "id": "q58940",
+    "categoryIndex": 5,
+    "question": "'Berlin Panteri' lakabıyla tanınan kaleci kimdir?",
+    "options": [
+      "Volkan Demirel",
+      "Rüştü Reçber",
+      "Şenol Güneş",
+      "Turgay Şeren"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Turgay Şeren, 1951'de Berlin'de Batı Almanya'ya karşı gösterdiği performansla bu lakabı aldı."
+  },
+  {
+    "id": "q58941",
+    "categoryIndex": 5,
+    "question": "Bir Dünya Kupası'nda forma giyen ilk Türk kalecilerden ve 1954 kadrosunun kaptanlarından biri kimdir?",
+    "options": [
+      "Turgay Şeren",
+      "Şenol Güneş",
+      "Cihat Arman",
+      "Rüştü Reçber"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Turgay Şeren Türkiye'nin 1954 Dünya Kupası kadrosunda yer aldı."
+  },
+  {
+    "id": "q58942",
+    "categoryIndex": 5,
+    "question": "Türk futbolunda 'Uçan Kaleci' lakabıyla tanınan isim kimdir?",
+    "options": [
+      "Turgay Şeren",
+      "Cihat Arman",
+      "Varol Ürkmez",
+      "Rüştü Reçber"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Cihat Arman akrobatik kurtarışları ve sarı formasıyla Fenerbahçe tarihinin simgelerindendir."
+  },
+  {
+    "id": "q58943",
+    "categoryIndex": 5,
+    "question": "Süper Lig tarihinde bir sezonda 39 golle rekor kıran futbolcu kimdir?",
+    "options": [
+      "Aykut Kocaman",
+      "Hakan Şükür",
+      "Tanju Çolak",
+      "Metin Oktay"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tanju Çolak 1987-88 sezonunda Galatasaray formasıyla 39 gol attı."
+  },
+  {
+    "id": "q58944",
+    "categoryIndex": 5,
+    "question": "Süper Lig tarihinin en çok gol atan futbolcusu kimdir?",
+    "options": [
+      "Tanju Çolak",
+      "Aykut Kocaman",
+      "Hami Mandıralı",
+      "Hakan Şükür"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hakan Şükür Süper Lig kariyerinde 249 gol attı."
+  },
+  {
+    "id": "q58945",
+    "categoryIndex": 5,
+    "question": "Trabzonspor tarihinin frikikleriyle ünlü golcüsü kimdir?",
+    "options": [
+      "Hami Mandıralı",
+      "Fatih Tekke",
+      "Şota Arveladze",
+      "Gökdeniz Karadeniz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hami Mandıralı sert şutları ve duran top golleriyle tanındı."
+  },
+  {
+    "id": "q58946",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe tarihinde 'Kral' lakabıyla tanınan Brezilyalı futbolcu kimdir?",
+    "options": [
+      "Pierre van Hooijdonk",
+      "Alex de Souza",
+      "Elvir Bolić",
+      "Roberto Carlos"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Alex de Souza 2004-2012 arasında Fenerbahçe'nin kaptanlığı ve oyun kuruculuğunu yaptı."
+  },
+  {
+    "id": "q58947",
+    "categoryIndex": 5,
+    "question": "Alex de Souza Süper Lig'de hangi mevkideki oyunu ve asistleriyle öne çıktı?",
+    "options": [
+      "Santrfor",
+      "Stoper",
+      "Oyun kurucu orta saha",
+      "Kaleci"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Alex, 10 numara rolünde pasları, duran topları ve golleriyle fark yarattı."
+  },
+  {
+    "id": "q58948",
+    "categoryIndex": 5,
+    "question": "Beşiktaş'ta 'Atom Karınca' lakabıyla tanınan futbolcu kimdir?",
+    "options": [
+      "Feyyaz Uçar",
+      "Ali Gültiken",
+      "Metin Tekin",
+      "Rıza Çalımbay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Rıza Çalımbay enerjisi ve mücadeleci oyunuyla Atom Karınca diye anıldı."
+  },
+  {
+    "id": "q58949",
+    "categoryIndex": 5,
+    "question": "Beşiktaş'ın 'Metin-Ali-Feyyaz' üçlüsündeki Ali kimdir?",
+    "options": [
+      "Ali Gültiken",
+      "Ali Kemal Denizci",
+      "Ali Eren Beşerler",
+      "Ali Tandoğan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Metin Tekin, Ali Gültiken ve Feyyaz Uçar 1980'lerin sonu ile 1990'ların başında etkili bir hücum üçlüsüydü."
+  },
+  {
+    "id": "q58950",
+    "categoryIndex": 5,
+    "question": "Galatasaray'da uzun yıllar 10 numaralı formayı giyen Rumen yıldız kimdir?",
+    "options": [
+      "Adrian Ilie",
+      "Gheorghe Hagi",
+      "Gheorghe Popescu",
+      "Iulian Filipescu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hagi, Galatasaray'ın dört lig ve UEFA Kupası başarısında kilit rol oynadı."
+  },
+  {
+    "id": "q58951",
+    "categoryIndex": 5,
+    "question": "Galatasaray'ın 2000 UEFA Kupası finalinde son penaltıyı gole çeviren futbolcu kimdi?",
+    "options": [
+      "Hakan Şükür",
+      "Gheorghe Hagi",
+      "Gheorghe Popescu",
+      "Ümit Davala"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Popescu'nun penaltısı Galatasaray'a kupayı getirdi."
+  },
+  {
+    "id": "q58952",
+    "categoryIndex": 5,
+    "question": "Galatasaray'ın 2000 UEFA Kupası yarı finalinde elediği takım hangisidir?",
+    "options": [
+      "Arsenal",
+      "Borussia Dortmund",
+      "Mallorca",
+      "Leeds United"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Galatasaray Leeds United'ı iki maç sonunda 4-2'lik toplam skorla eledi."
+  },
+  {
+    "id": "q58953",
+    "categoryIndex": 5,
+    "question": "Galatasaray 2000 UEFA Kupası çeyrek finalinde hangi takımı eledi?",
+    "options": [
+      "Mallorca",
+      "Leeds United",
+      "Bologna",
+      "Arsenal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Galatasaray Mallorca'yı deplasmanda 4-1, İstanbul'da 2-1 yenerek eledi."
+  },
+  {
+    "id": "q58954",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe'nin 1968 Balkan Kupası finalinde yendiği takım hangisidir?",
+    "options": [
+      "Olympiakos",
+      "AEK Atina",
+      "Dinamo Zagreb",
+      "Partizan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Fenerbahçe, AEK Atina'yı üç maçlık final sonunda yenerek Balkan Kupası'nı kazandı."
+  },
+  {
+    "id": "q58955",
+    "categoryIndex": 5,
+    "question": "Samsunspor'un trafik kazasında hayatını kaybeden efsane futbolcusu kimdir?",
+    "options": [
+      "Tanju Çolak",
+      "Emin Kar",
+      "Muzaffer Badalıoğlu",
+      "Celil Sağır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "20 Ocak 1989'daki takım otobüsü kazasında Muzaffer Badalıoğlu da hayatını kaybetti."
+  },
+  {
+    "id": "q58956",
+    "categoryIndex": 5,
+    "question": "Eskişehirspor formasıyla iki kez lig gol kralı olan efsane futbolcu kimdir?",
+    "options": [
+      "Kamuran Yavuz",
+      "Ender Konca",
+      "Nihat Atacan",
+      "Fethi Heper"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Fethi Heper, Eskişehirspor'un zirveye oynadığı dönemde iki kez gol kralı oldu."
+  },
+  {
+    "id": "q58957",
+    "categoryIndex": 5,
+    "question": "Göztepe'nin 1969 Fuar Şehirleri Kupası yarı finalindeki rakibi hangi takımdı?",
+    "options": [
+      "Újpest",
+      "Hamburg",
+      "Roma",
+      "Arsenal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Göztepe yarı finalde Macaristan'ın Újpest takımına elendi."
+  },
+  {
+    "id": "q58958",
+    "categoryIndex": 5,
+    "question": "Göztepe 1970 Kupa Galipleri Kupası'nda hangi aşamaya ulaştı?",
+    "options": [
+      "Son 16",
+      "Çeyrek final",
+      "Yarı final",
+      "Final"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Göztepe, 1969-70 sezonunda Kupa Galipleri Kupası çeyrek finaline yükseldi."
+  },
+  {
+    "id": "q58959",
+    "categoryIndex": 5,
+    "question": "Mustafa Denizli futbolculuk kariyerinin büyük bölümünü hangi İzmir kulübünde geçirdi?",
+    "options": [
+      "Karşıyaka",
+      "İzmirspor",
+      "Altay",
+      "Göztepe"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mustafa Denizli uzun yıllar Altay forması giydi ve kulübün simge oyuncularından biri oldu."
+  },
+  {
+    "id": "q58960",
+    "categoryIndex": 5,
+    "question": "Üç büyük takımı da Süper Lig şampiyonu yapan ilk teknik direktör kimdir?",
+    "options": [
+      "Christoph Daum",
+      "Fatih Terim",
+      "Şenol Güneş",
+      "Mustafa Denizli"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Mustafa Denizli Galatasaray, Fenerbahçe ve Beşiktaş'la lig şampiyonluğu yaşadı."
+  },
+  {
+    "id": "q58961",
+    "categoryIndex": 5,
+    "question": "Türkiye'yi Avrupa Şampiyonası'na ilk kez götüren teknik direktör kimdir?",
+    "options": [
+      "Fatih Terim",
+      "Şenol Güneş",
+      "Mustafa Denizli",
+      "Sepp Piontek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fatih Terim yönetimindeki Türkiye EURO 1996'ya katıldı."
+  },
+  {
+    "id": "q58962",
+    "categoryIndex": 5,
+    "question": "Türkiye'yi ilk kez Dünya Kupası'na taşıyan eleme başarısı hangi turnuva öncesinde geldi?",
+    "options": [
+      "1938 Dünya Kupası",
+      "1954 Dünya Kupası",
+      "1970 Dünya Kupası",
+      "1962 Dünya Kupası"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Türkiye, İspanya'yı kura atışıyla geçerek 1954 Dünya Kupası'na katıldı."
+  },
+  {
+    "id": "q58963",
+    "categoryIndex": 5,
+    "question": "1954 Dünya Kupası elemelerinde Türkiye'nin İspanya'yı geçmesini belirleyen kura çeken çocuk kimdi?",
+    "options": [
+      "Enzo Bearzot",
+      "Gianni Rivera",
+      "Franco Gemma",
+      "Luigi Riva"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Roma'daki kura çekiminde İtalyan çocuk Franco Gemma'nın çektiği kâğıt Türkiye'yi finallere taşıdı."
+  },
+  {
+    "id": "q58964",
+    "categoryIndex": 5,
+    "question": "A Millî Futbol Takımı formasıyla 120 maça çıkan kaleci kimdir?",
+    "options": [
+      "Turgay Şeren",
+      "Volkan Demirel",
+      "Şenol Güneş",
+      "Rüştü Reçber"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Rüştü Reçber, millî formayı 120 kez giyerek Türkiye futbol tarihinde önemli bir rekora ulaştı."
+  },
+  {
+    "id": "q58965",
+    "categoryIndex": 5,
+    "question": "Rüştü Reçber 2002 Dünya Kupası'nın ardından hangi İspanyol kulübüne transfer oldu?",
+    "options": [
+      "Barcelona",
+      "Real Madrid",
+      "Sevilla",
+      "Valencia"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Rüştü, 2003'te Fenerbahçe'den Barcelona'ya transfer oldu."
+  },
+  {
+    "id": "q58966",
+    "categoryIndex": 5,
+    "question": "Arda Turan İspanya'da ilk olarak hangi kulübe transfer oldu?",
+    "options": [
+      "Sevilla",
+      "Atlético Madrid",
+      "Real Sociedad",
+      "Barcelona"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Arda Turan 2011'de Galatasaray'dan Atlético Madrid'e gitti."
+  },
+  {
+    "id": "q58967",
+    "categoryIndex": 5,
+    "question": "Arda Turan Atlético Madrid ile hangi Avrupa kupasını kazandı?",
+    "options": [
+      "Intertoto Kupası",
+      "Kupa Galipleri Kupası",
+      "UEFA Avrupa Ligi",
+      "Şampiyonlar Ligi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Atlético Madrid 2011-12 sezonunda UEFA Avrupa Ligi şampiyonu oldu."
+  },
+  {
+    "id": "q58968",
+    "categoryIndex": 5,
+    "question": "Nihat Kahveci İspanya'da hangi kulüpte yıldızlaştı?",
+    "options": [
+      "Deportivo La Coruña",
+      "Valencia",
+      "Villarreal",
+      "Real Sociedad"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Nihat, Real Sociedad'ın 2002-03 sezonunda La Liga ikincisi olan kadrosunda önemli rol oynadı."
+  },
+  {
+    "id": "q58969",
+    "categoryIndex": 5,
+    "question": "Tugay Kerimoğlu İngiltere'de uzun yıllar hangi kulüpte oynadı?",
+    "options": [
+      "Blackburn Rovers",
+      "Liverpool",
+      "Everton",
+      "West Ham United"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tugay, 2001-2009 arasında Blackburn Rovers forması giydi."
+  },
+  {
+    "id": "q58970",
+    "categoryIndex": 5,
+    "question": "Tugay Kerimoğlu Blackburn Rovers ile hangi İngiliz kupasını kazandı?",
+    "options": [
+      "Şampiyona play-off'u",
+      "Lig Kupası",
+      "FA Cup",
+      "Community Shield"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Blackburn Rovers 2002 Lig Kupası finalinde Tottenham'ı yendi."
+  },
+  {
+    "id": "q58971",
+    "categoryIndex": 5,
+    "question": "Hakan Çalhanoğlu hangi özelliğiyle özellikle tanınır?",
+    "options": [
+      "Stoper savunması",
+      "Kalecilik",
+      "Duran top ve frikik vuruşları",
+      "Uzun taç atışları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Hakan Çalhanoğlu kariyeri boyunca frikik golleri ve oyun kuruculuğuyla öne çıktı."
+  },
+  {
+    "id": "q58972",
+    "categoryIndex": 5,
+    "question": "Merih Demiral EURO 2024 son 16 turunda hangi takıma iki gol attı?",
+    "options": [
+      "Gürcistan",
+      "Hollanda",
+      "Çekya",
+      "Avusturya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Merih Demiral'ın iki golü Türkiye'yi Avusturya karşısında çeyrek finale taşıdı."
+  },
+  {
+    "id": "q58973",
+    "categoryIndex": 5,
+    "question": "EURO 2024'te Türkiye'nin Gürcistan'a attığı uzun mesafeli golle öne çıkan genç futbolcu kimdi?",
+    "options": [
+      "Arda Güler",
+      "Orkun Kökçü",
+      "Kenan Yıldız",
+      "Barış Alper Yılmaz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Arda Güler'in sol ayağıyla attığı gol turnuvanın en dikkat çekici gollerinden biri oldu."
+  },
+  {
+    "id": "q58974",
+    "categoryIndex": 5,
+    "question": "Arda Güler Fenerbahçe'den hangi kulübe transfer oldu?",
+    "options": [
+      "Atlético Madrid",
+      "Real Madrid",
+      "Barcelona",
+      "Milan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Arda Güler 2023 yazında Real Madrid'e transfer oldu."
+  },
+  {
+    "id": "q58975",
+    "categoryIndex": 5,
+    "question": "Kenan Yıldız profesyonel çıkışını hangi İtalyan kulübünde yaptı?",
+    "options": [
+      "Roma",
+      "Milan",
+      "Juventus",
+      "Inter"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kenan Yıldız Juventus altyapısından A takıma yükseldi."
+  },
+  {
+    "id": "q58976",
+    "categoryIndex": 5,
+    "question": "EuroLeague şampiyonu olan ilk Türk basketbol takımı hangisidir?",
+    "options": [
+      "Galatasaray",
+      "Beşiktaş",
+      "Anadolu Efes",
+      "Fenerbahçe"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Fenerbahçe, 2017'de İstanbul'daki Final Four'da Olympiakos'u yenerek EuroLeague'i kazandı."
+  },
+  {
+    "id": "q58977",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe'yi 2017 EuroLeague şampiyonluğuna taşıyan başantrenör kimdi?",
+    "options": [
+      "Željko Obradović",
+      "David Blatt",
+      "Aydın Örs",
+      "Ergin Ataman"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Obradović yönetimindeki Fenerbahçe, kulüp tarihinin ilk EuroLeague kupasını aldı."
+  },
+  {
+    "id": "q58978",
+    "categoryIndex": 5,
+    "question": "Anadolu Efes EuroLeague şampiyonluğunu üst üste hangi iki yılda kazandı?",
+    "options": [
+      "2022 ve 2023",
+      "2021 ve 2022",
+      "2019 ve 2020",
+      "2017 ve 2018"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Anadolu Efes Ergin Ataman yönetiminde arka arkaya iki EuroLeague şampiyonluğu yaşadı."
+  },
+  {
+    "id": "q58979",
+    "categoryIndex": 5,
+    "question": "Anadolu Efes'i 2021 ve 2022 EuroLeague şampiyonluklarına taşıyan başantrenör kimdi?",
+    "options": [
+      "Ufuk Sarıca",
+      "Aydın Örs",
+      "Ergin Ataman",
+      "Željko Obradović"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ergin Ataman, Efes'le iki kez üst üste Avrupa'nın en büyük kulüp kupasını kazandı."
+  },
+  {
+    "id": "q58980",
+    "categoryIndex": 5,
+    "question": "Anadolu Efes'in 1996'da kazandığı ve Türk basketbolunun ilk Avrupa kupası olan organizasyon hangisidir?",
+    "options": [
+      "EuroCup",
+      "Saporta Kupası",
+      "EuroLeague",
+      "Koraç Kupası"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Efes Pilsen, 1996 Koraç Kupası finalinde Stefanel Milano'yu geçerek bir ilke imza attı."
+  },
+  {
+    "id": "q58981",
+    "categoryIndex": 5,
+    "question": "Efes Pilsen'i 1996 Koraç Kupası şampiyonluğuna taşıyan başantrenör kimdi?",
+    "options": [
+      "Aydın Örs",
+      "Çetin Yılmaz",
+      "Ergin Ataman",
+      "Murat Didin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Aydın Örs yönetimindeki Efes, Türk basketboluna ilk Avrupa kupasını getirdi."
+  },
+  {
+    "id": "q58982",
+    "categoryIndex": 5,
+    "question": "Galatasaray erkek basketbol takımı 2016'da hangi Avrupa kupasını kazandı?",
+    "options": [
+      "EuroLeague",
+      "EuroCup",
+      "FIBA Europe Cup",
+      "Koraç Kupası"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Galatasaray Odeabank, Strasbourg'u geçerek 2016 EuroCup şampiyonu oldu."
+  },
+  {
+    "id": "q58983",
+    "categoryIndex": 5,
+    "question": "Beşiktaş erkek basketbol takımı 2012'de hangi Avrupa kupasını kazandı?",
+    "options": [
+      "EuroCup",
+      "EuroLeague",
+      "FIBA EuroChallenge",
+      "Koraç Kupası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Beşiktaş Milangaz, 2012'de FIBA EuroChallenge kupasını kazandı."
+  },
+  {
+    "id": "q58984",
+    "categoryIndex": 5,
+    "question": "Türkiye A Millî Erkek Basketbol Takımı'nın yaygın lakabı nedir?",
+    "options": [
+      "Filenin Sultanları",
+      "Altın Çocuklar",
+      "Potanın Perileri",
+      "12 Dev Adam"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Millî erkek basketbol takımı 2001 Avrupa Şampiyonası öncesinde 12 Dev Adam adıyla özdeşleşti."
+  },
+  {
+    "id": "q58985",
+    "categoryIndex": 5,
+    "question": "Türkiye A Millî Kadın Basketbol Takımı'nın yaygın lakabı nedir?",
+    "options": [
+      "Potanın Perileri",
+      "Netin Sultanları",
+      "Filenin Sultanları",
+      "12 Dev Adam"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kadın basketbol millî takımı Potanın Perileri olarak anılır."
+  },
+  {
+    "id": "q58986",
+    "categoryIndex": 5,
+    "question": "12 Dev Adam 2001 Avrupa Basketbol Şampiyonası'nı kaçıncı tamamladı?",
+    "options": [
+      "Birinci",
+      "İkinci",
+      "Dördüncü",
+      "Üçüncü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye İstanbul'daki finalde Yugoslavya'ya yenilerek Avrupa ikincisi oldu."
+  },
+  {
+    "id": "q58987",
+    "categoryIndex": 5,
+    "question": "Türkiye 2010 FIBA Dünya Şampiyonası'nda hangi madalyayı kazandı?",
+    "options": [
+      "Altın",
+      "Madalya kazanamadı",
+      "Gümüş",
+      "Bronz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye ev sahibi olduğu turnuvada finale yükselip ABD'ye yenildi."
+  },
+  {
+    "id": "q58988",
+    "categoryIndex": 5,
+    "question": "2010 Dünya Basketbol Şampiyonası yarı finalinde Sırbistan'a karşı son saniye basketini atan oyuncu kimdi?",
+    "options": [
+      "Ömer Aşık",
+      "Hidayet Türkoğlu",
+      "Sinan Güler",
+      "Kerem Tunçeri"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kerem Tunçeri bitime saniyeler kala pota altından sayı bularak Türkiye'yi finale taşıdı."
+  },
+  {
+    "id": "q58989",
+    "categoryIndex": 5,
+    "question": "NBA All-Star seçilen ilk Türk basketbolcu kimdir?",
+    "options": [
+      "Mehmet Okur",
+      "Cedi Osman",
+      "Hidayet Türkoğlu",
+      "Alperen Şengün"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mehmet Okur 2007 NBA All-Star maçına seçildi."
+  },
+  {
+    "id": "q58990",
+    "categoryIndex": 5,
+    "question": "Hidayet Türkoğlu NBA'de en uzun süre hangi takımla özdeşleşti?",
+    "options": [
+      "Toronto Raptors",
+      "Orlando Magic",
+      "Phoenix Suns",
+      "Sacramento Kings"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türkoğlu, Orlando Magic'in 2009 NBA Finalleri'ne çıkan kadrosunun önemli isimlerinden biriydi."
+  },
+  {
+    "id": "q58991",
+    "categoryIndex": 5,
+    "question": "Hidayet Türkoğlu 2008'de hangi NBA bireysel ödülünü kazandı?",
+    "options": [
+      "Yılın Çaylağı",
+      "Altıncı Adam",
+      "En Çok Gelişme Gösteren Oyuncu",
+      "Yılın Savunmacısı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Türkoğlu 2007-08 sezonunun Most Improved Player ödülünü aldı."
+  },
+  {
+    "id": "q58992",
+    "categoryIndex": 5,
+    "question": "Alperen Şengün NBA'de hangi takımla çıkış yaptı?",
+    "options": [
+      "Boston Celtics",
+      "Chicago Bulls",
+      "Miami Heat",
+      "Houston Rockets"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Alperen Şengün 2021'den itibaren Houston Rockets formasıyla önemli rol üstlendi."
+  },
+  {
+    "id": "q58993",
+    "categoryIndex": 5,
+    "question": "Cedi Osman NBA kariyerine hangi takımda başladı?",
+    "options": [
+      "Cleveland Cavaliers",
+      "Denver Nuggets",
+      "Milwaukee Bucks",
+      "Utah Jazz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cedi Osman 2017'de Cleveland Cavaliers kadrosuna katıldı."
+  },
+  {
+    "id": "q58994",
+    "categoryIndex": 5,
+    "question": "Ersan İlyasova NBA'de en uzun süre hangi takımla oynadı?",
+    "options": [
+      "Detroit Pistons",
+      "Milwaukee Bucks",
+      "Philadelphia 76ers",
+      "Atlanta Hawks"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "İlyasova NBA kariyerinin büyük bölümünü Milwaukee Bucks'ta geçirdi."
+  },
+  {
+    "id": "q58995",
+    "categoryIndex": 5,
+    "question": "İbrahim Kutluay EuroLeague şampiyonluğu yaşadığı Panathinaikos'ta hangi ülkenin liginde oynadı?",
+    "options": [
+      "İtalya",
+      "İspanya",
+      "Yunanistan",
+      "Sırbistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kutluay, 2002'de Yunanistan temsilcisi Panathinaikos ile EuroLeague kupasını kazandı."
+  },
+  {
+    "id": "q58996",
+    "categoryIndex": 5,
+    "question": "Türkiye'de basketbolun en üst düzey erkekler ligi hangi adla bilinir?",
+    "options": [
+      "Türkiye Basketbol Birinci Ligi",
+      "Millî Basketbol Ligi",
+      "EuroLeague Türkiye",
+      "Basketbol Süper Ligi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Basketbol Süper Ligi, Türkiye'deki en üst seviye profesyonel erkekler ligidir."
+  },
+  {
+    "id": "q58997",
+    "categoryIndex": 5,
+    "question": "Türkiye Kadınlar Basketbol Süper Ligi'nde Avrupa başarılarıyla öne çıkan kulüplerden biri hangisidir?",
+    "options": [
+      "Fenerbahçe",
+      "Altınordu",
+      "Samsunspor",
+      "Kasımpaşa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fenerbahçe kadın basketbol takımı EuroLeague Women'da şampiyonluklar kazandı."
+  },
+  {
+    "id": "q58998",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe kadın basketbol takımı EuroLeague Women şampiyonluğunu ilk kez hangi yıl kazandı?",
+    "options": [
+      "2020",
+      "2023",
+      "2017",
+      "2013"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Fenerbahçe Alagöz Holding, 2023 finalinde ÇBK Mersin'i yenerek ilk kez kupayı aldı."
+  },
+  {
+    "id": "q58999",
+    "categoryIndex": 5,
+    "question": "Türkiye A Millî Kadın Voleybol Takımı'nın lakabı nedir?",
+    "options": [
+      "12 Dev Adam",
+      "Altın Kızlar",
+      "Filenin Sultanları",
+      "Potanın Perileri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kadın voleybol millî takımı Filenin Sultanları adıyla anılır."
+  },
+  {
+    "id": "q59000",
+    "categoryIndex": 5,
+    "question": "Filenin Sultanları 2023'te hangi büyük küresel turnuvayı kazandı?",
+    "options": [
+      "Dünya Şampiyonası",
+      "Olimpiyat Oyunları",
+      "Akdeniz Oyunları",
+      "FIVB Milletler Ligi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye 2023 Milletler Ligi finalinde Çin'i yenerek şampiyon oldu."
+  },
+  {
+    "id": "q59001",
+    "categoryIndex": 5,
+    "question": "Türkiye kadın voleybol millî takımı 2023 Avrupa Şampiyonası finalinde hangi takımı yendi?",
+    "options": [
+      "Sırbistan",
+      "İtalya",
+      "Polonya",
+      "Hollanda"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye, Brüksel'deki finalde Sırbistan'ı 3-2 yenerek Avrupa şampiyonu oldu."
+  },
+  {
+    "id": "q59002",
+    "categoryIndex": 5,
+    "question": "Filenin Sultanları'nı 2023 Avrupa şampiyonluğuna taşıyan başantrenör kimdi?",
+    "options": [
+      "Giovanni Guidetti",
+      "Daniele Santarelli",
+      "Ferhat Akbaş",
+      "José Roberto Guimarães"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İtalyan antrenör Santarelli 2023'te millî takımla Milletler Ligi ve Avrupa Şampiyonası'nı kazandı."
+  },
+  {
+    "id": "q59003",
+    "categoryIndex": 5,
+    "question": "2023 Avrupa Şampiyonası'nın en değerli oyuncusu seçilen Türk voleybolcu kimdi?",
+    "options": [
+      "Eda Erdem",
+      "Zehra Güneş",
+      "Melissa Vargas",
+      "Hande Baladın"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Melissa Vargas finaldeki etkili performansıyla turnuvanın MVP'si oldu."
+  },
+  {
+    "id": "q59004",
+    "categoryIndex": 5,
+    "question": "Millî voleybolcu Eda Erdem hangi mevkide oynar?",
+    "options": [
+      "Pasör",
+      "Libero",
+      "Smaçör",
+      "Orta oyuncu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Eda Erdem blok ve hücum etkinliğiyle orta oyuncu pozisyonunda görev yapar."
+  },
+  {
+    "id": "q59005",
+    "categoryIndex": 5,
+    "question": "Eda Erdem uzun yıllar hangi kulübün kaptanlığını yaptı?",
+    "options": [
+      "Fenerbahçe",
+      "Eczacıbaşı",
+      "Galatasaray",
+      "VakıfBank"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Eda Erdem, Fenerbahçe kadın voleybol takımının simge kaptanlarından biridir."
+  },
+  {
+    "id": "q59006",
+    "categoryIndex": 5,
+    "question": "Zehra Güneş hangi mevkide oynayan millî voleybolcudur?",
+    "options": [
+      "Pasör",
+      "Orta oyuncu",
+      "Pasör çaprazı",
+      "Libero"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Zehra Güneş blok ve hızlı hücumlarıyla orta oyuncu olarak görev yapar."
+  },
+  {
+    "id": "q59007",
+    "categoryIndex": 5,
+    "question": "Cansu Özbay'ın voleyboldaki mevkisi nedir?",
+    "options": [
+      "Smaçör",
+      "Libero",
+      "Pasör",
+      "Orta oyuncu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cansu Özbay hücum organizasyonunu kuran pasör pozisyonunda oynar."
+  },
+  {
+    "id": "q59008",
+    "categoryIndex": 5,
+    "question": "Gizem Örge hangi mevkide oynar?",
+    "options": [
+      "Pasör çaprazı",
+      "Pasör",
+      "Orta oyuncu",
+      "Libero"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gizem Örge savunma ve manşet görevlerinin öne çıktığı libero pozisyonundadır."
+  },
+  {
+    "id": "q59009",
+    "categoryIndex": 5,
+    "question": "VakıfBank kadın voleybol takımının uzun yıllar başantrenörlüğünü yapan İtalyan isim kimdir?",
+    "options": [
+      "Giovanni Guidetti",
+      "Daniele Santarelli",
+      "Massimo Barbolini",
+      "Marco Fenoglio"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Guidetti, VakıfBank'la çok sayıda lig, Şampiyonlar Ligi ve Dünya Kulüpler Şampiyonası kazandı."
+  },
+  {
+    "id": "q59010",
+    "categoryIndex": 5,
+    "question": "VakıfBank 2013'te hangi rekor seriyi tamamlayarak dünya çapında dikkat çekti?",
+    "options": [
+      "100 maç deplasmanda yenilmemek",
+      "Üst üste 73 resmî maç kazanmak",
+      "Bir sezonda set vermemek",
+      "Beş yıl yenilgisiz kalmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "VakıfBank 2012-13 ve 2013-14 döneminde 73 maçlık galibiyet serisi yakaladı."
+  },
+  {
+    "id": "q59011",
+    "categoryIndex": 5,
+    "question": "Eczacıbaşı kadın voleybol takımı hangi Avrupa kupasını ilk kez 1999'da kazandı?",
+    "options": [
+      "Şampiyonlar Ligi",
+      "Challenge Kupası",
+      "Kupa Galipleri Kupası",
+      "CEV Kupası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Eczacıbaşı 1999'da Avrupa Kupa Galipleri Kupası'nı kazanarak Türk voleybolu için önemli bir ilke imza attı."
+  },
+  {
+    "id": "q59012",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe kadın voleybol takımı 2012'de hangi büyük kulüp turnuvasını kazandı?",
+    "options": [
+      "CEV Kupası",
+      "Challenge Kupası",
+      "Balkan Kupası",
+      "CEV Şampiyonlar Ligi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Fenerbahçe Universal, Bakü'deki Final Four'da Şampiyonlar Ligi kupasını aldı."
+  },
+  {
+    "id": "q59013",
+    "categoryIndex": 5,
+    "question": "Türkiye erkek voleybol millî takımının yaygın lakabı nedir?",
+    "options": [
+      "Filenin Efeleri",
+      "12 Dev Adam",
+      "Potanın Devleri",
+      "Altın Fileler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "A Millî Erkek Voleybol Takımı Filenin Efeleri olarak anılır."
+  },
+  {
+    "id": "q59014",
+    "categoryIndex": 5,
+    "question": "Türkiye erkek voleybol millî takımı 2023'te hangi turnuvayı kazanarak VNL'ye yükseldi?",
+    "options": [
+      "Avrupa Altın Ligi",
+      "FIVB Challenger Cup",
+      "Dünya Şampiyonası",
+      "Akdeniz Oyunları"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Türkiye, Katar'ı yenerek 2023 Challenger Cup şampiyonu oldu ve Milletler Ligi bileti aldı."
+  },
+  {
+    "id": "q59015",
+    "categoryIndex": 5,
+    "question": "Olimpiyatlarda altın madalya kazanan ilk Türk kadın sporcu kimdir?",
+    "options": [
+      "Hülya Şenyurt",
+      "Busenaz Sürmeneli",
+      "Nurcan Taylan",
+      "Yasemin Adar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Nurcan Taylan 2004 Atina Olimpiyatları'nda halterde altın madalya kazandı."
+  },
+  {
+    "id": "q59016",
+    "categoryIndex": 5,
+    "question": "Türkiye'ye Olimpiyatlarda ilk madalyayı kazandıran sporcu kimdir?",
+    "options": [
+      "Naim Süleymanoğlu",
+      "Yaşar Erkan",
+      "Mithat Bayrak",
+      "Ahmet Kireççi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Güreşçi Ahmet Kireççi 1936 Berlin Olimpiyatları'nda bronz madalya kazandı."
+  },
+  {
+    "id": "q59017",
+    "categoryIndex": 5,
+    "question": "Türkiye'ye Olimpiyatlardaki ilk altın madalyayı kazandıran sporcu kimdir?",
+    "options": [
+      "Yaşar Erkan",
+      "Celal Atik",
+      "Ahmet Kireççi",
+      "Mithat Bayrak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yaşar Erkan 1936 Berlin'de grekoromen güreşte altın madalya aldı."
+  },
+  {
+    "id": "q59018",
+    "categoryIndex": 5,
+    "question": "'Cep Herkülü' lakabıyla tanınan Türk halterci kimdir?",
+    "options": [
+      "Halil Mutlu",
+      "Naim Süleymanoğlu",
+      "Nurcan Taylan",
+      "Taner Sağır"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Naim Süleymanoğlu küçük yapısına karşın kırdığı dünya rekorları nedeniyle Cep Herkülü diye anıldı."
+  },
+  {
+    "id": "q59019",
+    "categoryIndex": 5,
+    "question": "Naim Süleymanoğlu kaç kez Olimpiyat şampiyonu oldu?",
+    "options": [
+      "Beş",
+      "İki",
+      "Üç",
+      "Dört"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Naim Süleymanoğlu 1988, 1992 ve 1996 Olimpiyatlarında altın madalya kazandı."
+  },
+  {
+    "id": "q59020",
+    "categoryIndex": 5,
+    "question": "Naim Süleymanoğlu Türkiye adına ilk Olimpiyat altınını hangi şehirde kazandı?",
+    "options": [
+      "Atina",
+      "Atlanta",
+      "Barselona",
+      "Seul"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "1988 Seul Olimpiyatları'nda Türkiye adına yarışarak altın madalya aldı."
+  }
+]

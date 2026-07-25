@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "packageName": "Bilgi Rotası Türkiye Özel 1.000",
+  "questionCount": 1000,
+  "idRange": {
+    "start": "q58121",
+    "end": "q59120",
+    "sequential": true
+  },
+  "categoryCounts": {
+    "Coğrafya": 170,
+    "Eğlence": 200,
+    "Tarih": 150,
+    "Sanat & Edebiyat": 160,
+    "Bilim & Doğa": 140,
+    "Spor": 180
+  },
+  "difficultyCounts": {
+    "Kolay": 479,
+    "Orta": 436,
+    "Zor": 85
+  },
+  "answerIndexCounts": {
+    "0": 250,
+    "1": 250,
+    "2": 250,
+    "3": 250
+  },
+  "questionLength": {
+    "min": 23,
+    "max": 116,
+    "average": 60.32
+  },
+  "explanationLength": {
+    "min": 39,
+    "max": 121,
+    "average": 74.7
+  },
+  "schemaErrors": 0,
+  "internalExactQuestionDuplicates": 0,
+  "internalStrongNearDuplicates": 0,
+  "exactDuplicatesAgainstPreviousV1V5Candidates": 0,
+  "strongNearDuplicatesAgainstPreviousV1V5Candidates": 0,
+  "previousCandidateQuestionsCompared": 5000,
+  "answerExplicitlyContainedInQuestion": 0,
+  "bannedObviousTemplateCount": 0,
+  "duplicateOptionsCount": 0,
+  "knownOldBankDuplicateProactivelyReplaced": 1,
+  "reservePoolCount": 120,
+  "reservePoolCategories": {
+    "Coğrafya": 20,
+    "Eğlence": 20,
+    "Tarih": 20,
+    "Sanat & Edebiyat": 20,
+    "Bilim & Doğa": 20,
+    "Spor": 20
+  },
+  "editorialNotes": [
+    "Takım adından şehir cevabı çıkan sorular reddedildi.",
+    "Doğru cevabın soru metninde açıkça yer aldığı maddeler reddedildi.",
+    "Aynı kalıbın yalnızca kişi, şehir veya takım adı değiştirilmiş seri örnekleri elendi.",
+    "Her soruda kısa açıklama ve dört farklı seçenek bulunur.",
+    "Sorular model tarafından yazıldı; tamamı bağımsız bir insan editör tarafından kaynak kaynak doğrulanmış değildir."
+  ]
+}

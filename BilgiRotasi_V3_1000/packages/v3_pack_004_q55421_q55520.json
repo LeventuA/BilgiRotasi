@@ -1,0 +1,1402 @@
+[
+  {
+    "categoryIndex": 3,
+    "question": "Devlet Ana romanı hangi devletin kuruluş dönemini işler?",
+    "options": [
+      "Osmanlı",
+      "Karahanlı",
+      "Türkiye Cumhuriyeti",
+      "Selçuklu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kemal Tahir’in romanı, Osmanlı Beyliği’nin doğuşunu toplumsal yapıyla birlikte ele alır.",
+    "id": "q55421"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Kulüp dizisinin hikâyesi ağırlıklı olarak hangi dönemin İstanbul’unda geçer?",
+    "options": [
+      "1990’lar",
+      "1950’ler",
+      "1920’ler",
+      "1970’ler"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kulüp, 1950’lerin kozmopolit İstanbul’unda bir gece kulübü çevresindeki hayatları anlatır.",
+    "id": "q55422"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Antik Mısır’da ölü bedenini korumak için uygulanan işleme ne denir?",
+    "options": [
+      "Yakma",
+      "Gömütleme",
+      "Mumyalama",
+      "Taşlama"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mumyalama, bedenin çürümesini yavaşlatmak için uygulanan koruma işlemidir.",
+    "id": "q55423"
+  },
+  {
+    "id": "q55424",
+    "categoryIndex": 4,
+    "question": "Okçu balığı avını nasıl düşürür?",
+    "options": [
+      "Kumda tuzak kazarak",
+      "Kuyruğuyla ses çıkararak",
+      "Elektrik vererek",
+      "Ağzından su fışkırtarak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Okçu balığı, su üzerindeki böceklere isabetli su jetleri göndererek onları suya düşürür."
+  },
+  {
+    "id": "q55425",
+    "categoryIndex": 0,
+    "question": "Assal Gölü hangi ülkededir?",
+    "options": [
+      "Cibuti",
+      "Eritre",
+      "Somali",
+      "Etiyopya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Assal Gölü, Cibuti’de deniz seviyesinin altında bulunan son derece tuzlu bir krater gölüdür."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Antik Mısır uygarlığının geliştiği büyük nehir hangisidir?",
+    "options": [
+      "İndus",
+      "Nil",
+      "Tuna",
+      "Fırat"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Nil’in düzenli taşkınları Mısır’da tarım ve yerleşim için verimli toprak sağladı.",
+    "id": "q55426"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Mount Rushmore anıtı hangi ABD eyaletindedir?",
+    "options": [
+      "Kuzey Dakota",
+      "Wyoming",
+      "Güney Dakota",
+      "Montana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Dört başkanın yüzünün oyulduğu Mount Rushmore, Güney Dakota’daki Black Hills bölgesindedir.",
+    "id": "q55427"
+  },
+  {
+    "id": "q55428",
+    "categoryIndex": 4,
+    "question": "Tabanca karidesinin çıkardığı güçlü ses nasıl oluşur?",
+    "options": [
+      "Suyun dışına sıçramasından",
+      "Solungaçlarını titreştirmesinden",
+      "Kabuklarını birbirine sürtmesinden",
+      "Kıskacının oluşturduğu kavitasyon kabarcığından"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Karidesin hızla kapanan kıskacı çöken bir kavitasyon kabarcığı oluşturur; bu da güçlü ses ve şok dalgası üretir."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Kayakta kapılar arasından kısa ve keskin dönüşlerle yapılan yarış hangisidir?",
+    "options": [
+      "Slalom",
+      "Sprint",
+      "Pursuit",
+      "Halfpipe"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Slalomda sporcular birbirine yakın kapılar arasında hızlı dönüşler yapar.",
+    "id": "q55429"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Tutunamayanlar romanında Turgut Özben kimin hayatını araştırır?",
+    "options": [
+      "Zebercet",
+      "Selim Işık",
+      "Hayri İrdal",
+      "Raif Efendi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Turgut, intihar eden arkadaşı Selim’in tanıdıklarıyla görüşerek onun dünyasını anlamaya çalışır.",
+    "id": "q55430"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Anayurt Oteli’nin yalnız başkahramanı kimdir?",
+    "options": [
+      "Mümtaz",
+      "Bay C.",
+      "Zebercet",
+      "Murtaza"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Zebercet, küçük bir kasabadaki otelin kâtibi ve yöneticisidir.",
+    "id": "q55431"
+  },
+  {
+    "id": "q55432",
+    "categoryIndex": 0,
+    "question": "Daintree Yağmur Ormanı hangi ülkededir?",
+    "options": [
+      "Yeni Zelanda",
+      "Endonezya",
+      "Papua Yeni Gine",
+      "Avustralya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Daintree, Avustralya’nın Queensland eyaletinde çok eski tropik yağmur ormanlarını barındırır."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Uysallar dizisinde Oktay Uysal’ın mesleği nedir?",
+    "options": [
+      "Mimar",
+      "Müzisyen",
+      "Polis",
+      "Doktor"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Oktay, görünürde düzenli bir hayatı olan ancak gizli bir punk kimliği kuran mimardır.",
+    "id": "q55433"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "İşler Güçler dizisindeki üç oyuncu hangi ortak hayalin peşindedir?",
+    "options": [
+      "Yurt dışına taşınmak",
+      "Kendi filmlerini çekmek",
+      "Müzik grubu kurmak",
+      "Bir restoran açmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ahmet, Murat ve Sadi geçim işleri arasında kendi filmlerini yapmaya çalışır.",
+    "id": "q55434"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "İğneada Longoz Ormanları hangi ilimizdedir?",
+    "options": [
+      "Edirne",
+      "Tekirdağ",
+      "Kırklareli",
+      "Çanakkale"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İğneada Longoz Ormanları Millî Parkı Kırklareli sınırlarındadır.",
+    "id": "q55435"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Rosetta Taşı, Mısır hiyerogliflerinin çözülmesine hangi özelliğiyle yardım etti?",
+    "options": [
+      "Alfabeyi resimlemesi",
+      "Bir sözlük olması",
+      "Harita taşıması",
+      "Aynı metni üç yazıyla içermesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Taşta hiyeroglif, demotik ve Antik Yunanca aynı karar metni yer alıyordu.",
+    "id": "q55436"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Akdeniz’de koloniler kurup alfabeyi yaygınlaştıran denizci halk hangisidir?",
+    "options": [
+      "Fenikeliler",
+      "Persler",
+      "Sümerler",
+      "Makedonlar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fenikeli tüccarlar Doğu Akdeniz’den İspanya’ya uzanan deniz ağları kurdu ve alfabelerini taşıdı.",
+    "id": "q55437"
+  },
+  {
+    "id": "q55438",
+    "categoryIndex": 4,
+    "question": "“Ölümsüz denizanası” olarak anılan Turritopsis dohrnii ne yapabilmesiyle dikkat çeker?",
+    "options": [
+      "Karada yaşayabilmesiyle",
+      "Yetişkinlikten genç polip evresine dönebilmesiyle",
+      "Hiç oksijen kullanmamasıyla",
+      "Işık hızında yüzmesiyle"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bu tür, uygun koşullarda hücrelerini yeniden düzenleyerek yaşam döngüsünün daha genç bir evresine dönebilir."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Çukur dizisindeki Koçovalı ailesinin mahallesi hangi şehirdedir?",
+    "options": [
+      "İzmir",
+      "Ankara",
+      "İstanbul",
+      "Adana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kurgusal Çukur mahallesi, İstanbul’da Koçovalı ailesinin kontrol ettiği bir bölge olarak anlatılır.",
+    "id": "q55439"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Karamazov Kardeşler’de babasını öldürmekle suçlanan kardeş hangisidir?",
+    "options": [
+      "Alyoşa",
+      "İvan",
+      "Smerdyakov",
+      "Dmitri"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Fyodor Pavloviç’in öldürülmesinden sonra Dmitri Karamazov yargılanır.",
+    "id": "q55440"
+  },
+  {
+    "id": "q55441",
+    "categoryIndex": 1,
+    "question": "Moonlight filminin merkezindeki karakterin adı nedir?",
+    "options": [
+      "Chiron",
+      "Troy",
+      "Malcolm",
+      "Jamal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Moonlight, Chiron’ın çocukluk, gençlik ve yetişkinlik dönemlerini üç bölümde anlatır."
+  },
+  {
+    "id": "q55442",
+    "categoryIndex": 1,
+    "question": "Edge of Tomorrow filminde olayların sürekli tekrarlanmasının temel nedeni nedir?",
+    "options": [
+      "Klonlama programı",
+      "Bir zaman döngüsü",
+      "Sanal gerçeklik",
+      "Bir rüya deneyi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Başkarakter, uzaylılarla bağlantılı bir olayın ardından aynı günü tekrar tekrar yaşamaya başlar."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Beyzbolda atıcının topu gönderirken üzerinde durduğu yükseltiye ne denir?",
+    "options": [
+      "Home plate",
+      "Dugout",
+      "Atıcı tepesi",
+      "Outfield"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Pitcher, sahanın ortasındaki yükseltilmiş atıcı tepesi üzerinden atış yapar.",
+    "id": "q55443"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Fil hortumunda kemik bulunur mu?",
+    "options": [
+      "Evet, iki tane",
+      "Evet, bir tane",
+      "Yalnız yavrularda",
+      "Hayır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hortum, on binlerce kas demetinden oluşan kemiksiz ve son derece esnek bir organdır.",
+    "id": "q55444"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Pers İmparatorluğu’ndaki Kral Yolu’nun temel amacı neydi?",
+    "options": [
+      "Haberleşme ve yönetimi hızlandırmak",
+      "Sulama yapmak",
+      "Piramit taşımak",
+      "Korsanları engellemek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kral Yolu, imparatorluğun merkezleri arasında ulak ve devlet görevlilerinin hızlı hareketini sağladı.",
+    "id": "q55445"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "İlk FIFA Dünya Kupası hangi ülkede düzenlendi?",
+    "options": [
+      "Fransa",
+      "Uruguay",
+      "İtalya",
+      "Brezilya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "1930’daki ilk Dünya Kupası Uruguay’da yapıldı ve ev sahibi takım şampiyon oldu.",
+    "id": "q55446"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Perito Moreno Buzulu hangi ülkededir?",
+    "options": [
+      "Şili",
+      "Bolivya",
+      "Arjantin",
+      "Peru"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Perito Moreno, Arjantin Patagonyası’ndaki Los Glaciares Millî Parkı’nda bulunur.",
+    "id": "q55447"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Maraton Muharebesi hangi iki güç arasında yapıldı?",
+    "options": [
+      "Mısır ve Hititler",
+      "Kartaca ve Roma",
+      "Sparta ve Roma",
+      "Atina ve Persler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "MÖ 490’da Atinalılar, Pers ordusunu Maraton Ovası’nda yendi.",
+    "id": "q55448"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Futbolda top çizginin üzerinde kaldığında oyundan çıkmış sayılır mı?",
+    "options": [
+      "Hayır, topun tamamı çizgiyi geçmelidir",
+      "Evet, top çizgiye değdiği anda çıkar",
+      "Yalnız hakem düdük çalarsa çıkar",
+      "Sadece havadan geçtiğinde çıkar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Futbolda topun oyundan çıkması için tamamının taç veya kale çizgisini geçmesi gerekir.",
+    "id": "q55449"
+  },
+  {
+    "id": "q55450",
+    "categoryIndex": 0,
+    "question": "Pamir Dağları için kullanılan yaygın lakap hangisidir?",
+    "options": [
+      "Bin Göller Ülkesi",
+      "Dünyanın Çatısı",
+      "Beyaz Kıta",
+      "Ateş Çemberi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yüksek platoları ve dağları nedeniyle Pamir bölgesi sıkça “Dünyanın Çatısı” diye anılır."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Gurur ve Önyargı romanında Bay Darcy’nin malikânesinin adı nedir?",
+    "options": [
+      "Thornfield",
+      "Manderley",
+      "Pemberley",
+      "Wuthering Heights"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Elizabeth Bennet’ın ziyaret ettiği Bay Darcy’ye ait malikâne Pemberley’dir.",
+    "id": "q55451"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "1950 Dünya Kupası’ndaki 'Maracanazo' maçını hangi ülke kazandı?",
+    "options": [
+      "İspanya",
+      "Brezilya",
+      "Arjantin",
+      "Uruguay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Uruguay, Rio de Janeiro’daki final niteliğindeki maçta Brezilya’yı 2-1 yenerek şampiyon oldu.",
+    "id": "q55452"
+  },
+  {
+    "id": "q55453",
+    "categoryIndex": 1,
+    "question": "The Bear dizisinde Carmy’nin devraldığı sandviç dükkânının kısa adı nedir?",
+    "options": [
+      "The Beef",
+      "Central Perk",
+      "Los Pollos",
+      "Merlotte’s"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dükkânın tam adı The Original Beef of Chicagoland olsa da ekip onu “The Beef” diye anar."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Tembel hayvanların kürkünde yaşayan algler ne işe yarayabilir?",
+    "options": [
+      "Kürklerini ısıtır",
+      "Kamuflaja katkı sağlar",
+      "Zehir üretir",
+      "Uçmalarını sağlar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Nemli kürkteki algler yeşilimsi ton oluşturarak ağaçlarda görünürlüğü azaltabilir.",
+    "id": "q55454"
+  },
+  {
+    "id": "q55455",
+    "categoryIndex": 5,
+    "question": "Curling’de son taşı atma avantajına ne denir?",
+    "options": [
+      "Power play",
+      "Draw",
+      "Hammer",
+      "Guard"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hammer, bir end içindeki son taşı atma hakkıdır ve önemli bir taktik avantaj sağlar."
+  },
+  {
+    "id": "q55456",
+    "categoryIndex": 1,
+    "question": "The Queen’s Gambit dizisinin başkahramanı hangi oyunda yeteneklidir?",
+    "options": [
+      "Poker",
+      "Go",
+      "Briç",
+      "Satranç"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Beth Harmon, çocuk yaşta olağanüstü satranç yeteneği keşfedilen bir karakterdir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Benim Adım Kırmızı romanının merkezindeki sanatçılar hangi alanda çalışır?",
+    "options": [
+      "Minyatür",
+      "Fotoğraf",
+      "Heykel",
+      "Seramik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Orhan Pamuk’un romanı, 16. yüzyıl İstanbul’undaki nakkaşlar ve üslup çatışmaları çevresinde gelişir.",
+    "id": "q55457"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Aşk romanında Şems-i Tebrizi’nin hayatı kimin dönüşümüyle paralel anlatılır?",
+    "options": [
+      "Nina Sayers",
+      "Ella Rubinstein",
+      "Peri Nalbantoğlu",
+      "Aylin Radomisli"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Elif Şafak, çağdaş Ella’nın yaşamını Mevlânâ ve Şems’in hikâyesiyle iç içe geçirir.",
+    "id": "q55458"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Termopylae Geçidi’nde Spartalılara liderlik eden kral kimdi?",
+    "options": [
+      "Solon",
+      "Perikles",
+      "Leonidas",
+      "Filip"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sparta Kralı Leonidas, MÖ 480’de Pers ordusuna karşı küçük bir kuvveti yönetti.",
+    "id": "q55459"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Deniz samurları kabuklu canlıları açmak için ne kullanabilir?",
+    "options": [
+      "Balık kemiği",
+      "Kum balonu",
+      "Deniz yosunu kamçısı",
+      "Taş"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Deniz samurları taşları örs veya çekiç gibi kullanabilen alet kullanan memelilerdendir.",
+    "id": "q55460"
+  },
+  {
+    "id": "q55461",
+    "categoryIndex": 3,
+    "question": "Matmazel Noraliya’nın Koltuğu romanının başkahramanı kimdir?",
+    "options": [
+      "Ferit",
+      "Selim Işık",
+      "Zebercet",
+      "Murtaza"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Peyami Safa’nın romanında Ferit, maddî ve ruhsal bunalımların ardından dönüşüm yaşar."
+  },
+  {
+    "id": "q55462",
+    "categoryIndex": 0,
+    "question": "Drakensberg sıradağları ağırlıklı olarak hangi iki ülke boyunca uzanır?",
+    "options": [
+      "Etiyopya ve Eritre",
+      "Güney Afrika ve Lesotho",
+      "Kenya ve Tanzanya",
+      "Fas ve Cezayir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Drakensberg, Güney Afrika’nın doğusu ile Lesotho çevresinde yükselen büyük bir dağ sistemidir."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Aksolotl hangi özelliğiyle bilim insanlarının ilgisini çeker?",
+    "options": [
+      "Işık üretmesi",
+      "Taşa dönüşmesi",
+      "Uzuvlarını yenileyebilmesi",
+      "Kanatsız uçması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Aksolotl bacak, kuyruk ve bazı organ dokularını belirgin iz bırakmadan yenileyebilir.",
+    "id": "q55463"
+  },
+  {
+    "id": "q55464",
+    "categoryIndex": 1,
+    "question": "Ted Lasso dizisindeki futbol kulübünün adı nedir?",
+    "options": [
+      "Richmond United",
+      "London Royals",
+      "West Ham City",
+      "AFC Richmond"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ted Lasso, kurgusal İngiliz kulübü AFC Richmond’ın teknik direktörlüğünü üstlenir."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Tardigradlar zorlu koşullarda hangi duruma geçebilir?",
+    "options": [
+      "Kriptobiyoz",
+      "Kış tüylenmesi",
+      "Metamorfoz",
+      "Fotosentez"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Su ayıları metabolizmalarını neredeyse durdurarak kuraklık ve aşırı koşullara dayanabilir.",
+    "id": "q55465"
+  },
+  {
+    "id": "q55466",
+    "categoryIndex": 1,
+    "question": "Mr. Robot dizisindeki hacker grubunun adı nedir?",
+    "options": [
+      "Anonymous X",
+      "fsociety",
+      "Zero Day",
+      "Dark Army"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Elliot, tüketici borçlarını silmeyi amaçlayan fsociety adlı hacker grubuna katılır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Peloponez Savaşı’nın başlıca rakip şehir devletleri hangileriydi?",
+    "options": [
+      "Roma ve Kartaca",
+      "Thebai ve Makedonya",
+      "Atina ve Sparta",
+      "Korint ve Troya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "MÖ 431-404 arasındaki savaşta Atina deniz gücü ile Sparta kara gücü karşı karşıya geldi.",
+    "id": "q55467"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Keşanlı Ali Destanı’nın yazarı kimdir?",
+    "options": [
+      "Orhan Asena",
+      "Güngör Dilmen",
+      "Turgut Özakman",
+      "Haldun Taner"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Haldun Taner’in epik tiyatro eseri, bir gecekondu mahallesinde kahraman yaratılmasını sorgular.",
+    "id": "q55468"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "2006 Dünya Kupası finalinde kırmızı kart gören Fransız yıldız kimdi?",
+    "options": [
+      "Zinedine Zidane",
+      "Patrick Vieira",
+      "Thierry Henry",
+      "David Trezeguet"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Zidane uzatmalarda Marco Materazzi’ye kafa attığı için oyundan atıldı.",
+    "id": "q55469"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Kaldırımlar şiirinin şairi kimdir?",
+    "options": [
+      "Cahit Sıtkı Tarancı",
+      "Necip Fazıl Kısakürek",
+      "Ahmet Hamdi Tanpınar",
+      "Ahmet Muhip Dıranas"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Necip Fazıl’ın şiiri, gece yürüyen yalnız insan ile kaldırımlar arasında güçlü bir bağ kurar.",
+    "id": "q55470"
+  },
+  {
+    "id": "q55471",
+    "categoryIndex": 2,
+    "question": "Haiti Devrimi’nin öne çıkan liderlerinden biri kimdir?",
+    "options": [
+      "José de San Martín",
+      "Miguel Hidalgo",
+      "Toussaint Louverture",
+      "Simón Bolívar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Toussaint Louverture, köleliğe ve Fransız sömürge yönetimine karşı Haiti Devrimi’nin önemli lideriydi."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "İspanya erkek millî futbol takımı ilk Dünya Kupası’nı hangi yıl kazandı?",
+    "options": [
+      "2006",
+      "2014",
+      "2018",
+      "2010"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İspanya, Güney Afrika’daki finalde Hollanda’yı Andrés Iniesta’nın golüyle yendi.",
+    "id": "q55472"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Serengeti Millî Parkı hangi ülkededir?",
+    "options": [
+      "Tanzanya",
+      "Kenya",
+      "Güney Afrika",
+      "Uganda"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Serengeti, Tanzanya’nın kuzeyinde büyük hayvan göçleriyle tanınan bir savan alanıdır.",
+    "id": "q55473"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Büyük İskender’in fetihlerinden sonra yayılan kültürel döneme ne denir?",
+    "options": [
+      "Arkaik Dönem",
+      "Helenistik Dönem",
+      "Pax Romana",
+      "Feodal Dönem"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yunan ve Doğu kültürlerinin kaynaştığı dönem, Helenistik olarak adlandırılır.",
+    "id": "q55474"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Lalibela’nın kayaya oyulmuş kiliseleri hangi ülkededir?",
+    "options": [
+      "Sudan",
+      "Kenya",
+      "Etiyopya",
+      "Eritre"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Lalibela’daki Orta Çağ kiliseleri, Etiyopya’da tek parça kayadan aşağı doğru oyulmuştur.",
+    "id": "q55475"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Sopranos’ta Tony Soprano’nun terapistinin adı nedir?",
+    "options": [
+      "Dr. Wendy Carr",
+      "Dr. Lilian Thurman",
+      "Dr. Helen Sharpe",
+      "Dr. Jennifer Melfi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tony, panik atakları nedeniyle psikiyatrist Dr. Jennifer Melfi ile görüşmeye başlar.",
+    "id": "q55476"
+  },
+  {
+    "id": "q55477",
+    "categoryIndex": 3,
+    "question": "Orhan Kemal’in Murtaza romanında başkahraman hangi işle tanınır?",
+    "options": [
+      "Gece bekçiliği",
+      "Postacılık",
+      "Öğretmenlik",
+      "Terzilik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Murtaza, görev anlayışını abartılı bir disipline dönüştüren bir gece bekçisidir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Garip akımını Orhan Veli ile birlikte başlatan iki şair kimdir?",
+    "options": [
+      "Necip Fazıl ve Cahit Sıtkı",
+      "Melih Cevdet ve Oktay Rifat",
+      "Ahmet Haşim ve Yahya Kemal",
+      "Cemal Süreya ve Edip Cansever"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1941’de yayımlanan Garip kitabında Orhan Veli, Melih Cevdet Anday ve Oktay Rifat yer aldı.",
+    "id": "q55478"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Roma Cumhuriyeti’nde en yüksek yıllık seçilmiş iki yöneticiye ne denirdi?",
+    "options": [
+      "Tribün",
+      "Praetor",
+      "Konsül",
+      "Senatör"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İki konsül ordulara ve yönetime başkanlık eder, birbirlerinin yetkisini dengeleyebilirdi.",
+    "id": "q55479"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Home Alone filminde Kevin’ın ailesi Noel tatili için hangi şehre gider?",
+    "options": [
+      "Londra",
+      "Roma",
+      "New York",
+      "Paris"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "McCallister ailesi Paris’e giderken Kevin yanlışlıkla evde yalnız kalır.",
+    "id": "q55480"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Karınca kolonilerindeki işçi karıncaların cinsiyeti genellikle nedir?",
+    "options": [
+      "Dişi",
+      "Erkek",
+      "Cinsiyetsiz",
+      "Yarı yarıya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İşçiler, döllenmiş yumurtalardan gelişen ancak çoğunlukla üremeyen dişilerdir.",
+    "id": "q55481"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Cemal Süreya en çok hangi şiir hareketiyle ilişkilidir?",
+    "options": [
+      "Garip",
+      "İkinci Yeni",
+      "Beş Hececiler",
+      "Yedi Meşaleciler"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Cemal Süreya, yoğun imge ve alışılmadık çağrışımlarıyla İkinci Yeni’nin önde gelen şairlerindendir.",
+    "id": "q55482"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Pön Savaşları hangi iki devlet arasında yapıldı?",
+    "options": [
+      "Atina ve Sparta",
+      "Roma ve Mısır",
+      "Roma ve Kartaca",
+      "Persler ve Makedonya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Üç Pön Savaşı, Batı Akdeniz hâkimiyeti için Roma ile Kartaca’yı karşı karşıya getirdi.",
+    "id": "q55483"
+  },
+  {
+    "id": "q55484",
+    "categoryIndex": 3,
+    "question": "Parasız Yatılı adlı öykü kitabının yazarı kimdir?",
+    "options": [
+      "Tomris Uyar",
+      "Sevgi Soysal",
+      "Adalet Ağaoğlu",
+      "Füruzan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Parasız Yatılı, Füruzan’ın yoksulluk ve kadın deneyimlerine odaklanan önemli öykü kitabıdır."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bal arıları zengin bir besin kaynağının yönünü nasıl anlatır?",
+    "options": [
+      "Sallanma dansıyla",
+      "Yüksek sesle ötüp",
+      "Yuvaya taş dizerek",
+      "Kanat rengini değiştirerek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sallanma dansının açısı ve süresi, Güneş’e göre yön ve yaklaşık uzaklık bilgisi verir.",
+    "id": "q55485"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "House dizisinde Gregory House’un uzmanlık alanı nedir?",
+    "options": [
+      "Kalp cerrahisi",
+      "Tanı tıbbı",
+      "Adli patoloji",
+      "Çocuk psikiyatrisi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "House, açıklanamayan vakaları çözmeye odaklanan tanı ekibinin başındadır.",
+    "id": "q55486"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "2014 Dünya Kupası finalinin uzatmalarındaki tek golü kim attı?",
+    "options": [
+      "Miroslav Klose",
+      "Mesut Özil",
+      "Mario Götze",
+      "Thomas Müller"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Götze’nin 113. dakikadaki golü Almanya’ya Arjantin karşısında şampiyonluğu getirdi.",
+    "id": "q55487"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Roma lejyonerlerinin kullandığı kısa kılıcın adı nedir?",
+    "options": [
+      "Pilum",
+      "Scutum",
+      "Spatha",
+      "Gladius"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gladius, yakın dövüşte kullanılan kısa ve çift ağızlı Roma kılıcıydı.",
+    "id": "q55488"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Kelebekler tat alma reseptörlerinin önemli bir bölümünü nerede taşır?",
+    "options": [
+      "Ayaklarında",
+      "Kanat uçlarında",
+      "Anten kökünde",
+      "Gözlerinde"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ayaklardaki kimyasal reseptörler, kondukları bitkinin yumurta bırakmaya uygunluğunu anlamaya yardım eder.",
+    "id": "q55489"
+  },
+  {
+    "id": "q55490",
+    "categoryIndex": 3,
+    "question": "Yenişehir’de Bir Öğle Vakti romanının yazarı kimdir?",
+    "options": [
+      "Pınar Kür",
+      "Sevgi Soysal",
+      "Tezer Özlü",
+      "Leylâ Erbil"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sevgi Soysal, romanda Ankara’daki farklı yaşamları devrilmek üzere olan bir kavak çevresinde buluşturur."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Peaky Blinders dizisi ağırlıklı olarak hangi İngiliz şehrinde geçer?",
+    "options": [
+      "Liverpool",
+      "Leeds",
+      "Birmingham",
+      "Manchester"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Shelby ailesinin hikâyesi Birinci Dünya Savaşı sonrası Birmingham’da başlar.",
+    "id": "q55491"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Dünyanın en uzun sıradağ sistemi hangi okyanusun tabanında uzanır?",
+    "options": [
+      "Hint Okyanusu",
+      "Arktik Okyanusu",
+      "Büyük Okyanus",
+      "Atlas Okyanusu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Orta Atlantik Sırtı, Atlas Okyanusu tabanında kuzeyden güneye uzanan dev bir dağ sistemidir.",
+    "id": "q55492"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Yılanlar dillerini çıkararak kokuyu hangi organa taşır?",
+    "options": [
+      "Jacobson organı",
+      "Işık organı",
+      "Kulak zarı",
+      "Hava kesesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Çatallı dil havadaki parçacıkları toplar ve ağız tavanındaki vomeronazal organa iletir.",
+    "id": "q55493"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Hasretinden Prangalar Eskittim kitabının şairi kimdir?",
+    "options": [
+      "Ataol Behramoğlu",
+      "Ahmed Arif",
+      "Cemal Süreya",
+      "Can Yücel"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ahmed Arif’in tek şiir kitabı, Anadolu, sevda ve direniş temalarıyla tanınır.",
+    "id": "q55494"
+  },
+  {
+    "id": "q55495",
+    "categoryIndex": 5,
+    "question": "Türkiye’de düzenlenen ilk Formula 1 Grand Prix’sini kazanan pilot kimdir?",
+    "options": [
+      "Fernando Alonso",
+      "Felipe Massa",
+      "Kimi Räikkönen",
+      "Michael Schumacher"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2005’te İstanbul Park’ta yapılan ilk Türkiye Grand Prix’sini McLaren pilotu Kimi Räikkönen kazandı."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Kurbağalar suyun önemli bir kısmını nasıl alır?",
+    "options": [
+      "Yalnız ağızlarından içerek",
+      "Solungaçlarından süzerek",
+      "Yiyeceklerini yakarak",
+      "Derilerinden emerek"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Birçok kurbağada karın ve bacak bölgesindeki geçirgen deri su emiliminde önemlidir.",
+    "id": "q55496"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Jül Sezar’ın Rubicon Nehri’ni geçmesi neyin başlangıcı oldu?",
+    "options": [
+      "Roma iç savaşının",
+      "Roma’nın kuruluşunun",
+      "Pön Savaşlarının",
+      "Spartaküs isyanının"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sezar’ın ordusuyla İtalya sınırını geçmesi, Senato’ya karşı açık isyan anlamına geliyordu.",
+    "id": "q55497"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Boksta bir raundun sona erdiğini genellikle hangi ses bildirir?",
+    "options": [
+      "Düdük",
+      "Gong veya zil",
+      "Siren",
+      "Alkış"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Raundun başlangıç ve bitişi ring kenarındaki gong ya da zille bildirilir.",
+    "id": "q55498"
+  },
+  {
+    "id": "q55499",
+    "categoryIndex": 0,
+    "question": "Danakil Çöküntüsü büyük ölçüde hangi iki ülkenin sınırları içindedir?",
+    "options": [
+      "Mısır ve Sudan",
+      "Nijer ve Çad",
+      "Etiyopya ve Eritre",
+      "Kenya ve Uganda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Aşırı sıcaklığı ve tuz düzlükleriyle bilinen Danakil Çöküntüsü Etiyopya ile Eritre arasında uzanır."
+  },
+  {
+    "id": "q55500",
+    "categoryIndex": 0,
+    "question": "Dallol’un renkli hidrotermal alanları hangi ülkededir?",
+    "options": [
+      "Namibya",
+      "Bolivya",
+      "İzlanda",
+      "Etiyopya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dallol, Etiyopya’nın Danakil Çöküntüsü’ndeki asitli kaynakları ve parlak mineral renkleriyle tanınır."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "UEFA Şampiyonlar Ligi marşında hangi üç dil kullanılır?",
+    "options": [
+      "İngilizce, Fransızca ve Almanca",
+      "Almanca, İtalyanca ve Rusça",
+      "İngilizce, İspanyolca ve İtalyanca",
+      "Fransızca, Latince ve Portekizce"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tony Britten’ın marşı UEFA’nın üç resmî dilinden sözler içerir.",
+    "id": "q55501"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Narcos’un ilk sezonlarında hangi uyuşturucu baronu merkezde yer alır?",
+    "options": [
+      "El Chapo",
+      "Pablo Escobar",
+      "Griselda Blanco",
+      "Amado Carrillo"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dizinin ilk iki sezonu Medellín Karteli lideri Pablo Escobar’ın yükselişini ve düşüşünü anlatır.",
+    "id": "q55502"
+  },
+  {
+    "id": "q55503",
+    "categoryIndex": 0,
+    "question": "Lofoten Adaları hangi ülkeye aittir?",
+    "options": [
+      "İsveç",
+      "İzlanda",
+      "Norveç",
+      "Finlandiya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Lofoten, Norveç’in kuzeybatı kıyısındaki dağlık bir takımadadır."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Taklamakan Çölü hangi ülkenin batısındadır?",
+    "options": [
+      "Moğolistan",
+      "Kazakistan",
+      "Hindistan",
+      "Çin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Taklamakan, Çin’in Sincan Uygur Özerk Bölgesi’ndeki Tarım Havzası’nı kaplar.",
+    "id": "q55504"
+  },
+  {
+    "id": "q55505",
+    "categoryIndex": 1,
+    "question": "The Boys dizisindeki süper kahramanları yöneten şirketin adı nedir?",
+    "options": [
+      "Vought",
+      "Wayne Enterprises",
+      "Umbrella",
+      "Stark Industries"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Vought, süper kahramanları marka ve ürün gibi yöneten dev şirkettir."
+  },
+  {
+    "id": "q55506",
+    "categoryIndex": 4,
+    "question": "At nalı yengecinin kanı neden mavi görünür?",
+    "options": [
+      "Işığı tamamen yansıttığı için",
+      "Bakır içeren hemosiyanin taşıdığı için",
+      "Klorofil içerdiği için",
+      "İyot depoladığı için"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "At nalı yengecinde oksijeni demirli hemoglobin yerine bakır içeren hemosiyanin taşır."
+  },
+  {
+    "id": "q55507",
+    "categoryIndex": 0,
+    "question": "Namib Çölü’nün okyanus kıyısındaki ünlü kumulları hangi ülkede bulunur?",
+    "options": [
+      "Botsvana",
+      "Angola",
+      "Namibya",
+      "Mozambik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Namib Çölü’nün Atlantik kıyısına ulaşan dev kumulları Namibya’dadır."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Avrupa Şampiyon Kulüpler Kupası’nın ilk şampiyonu hangi takımdır?",
+    "options": [
+      "Milan",
+      "Ajax",
+      "Benfica",
+      "Real Madrid"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Real Madrid 1956’daki ilk finalde Reims’i yenerek kupayı kazandı.",
+    "id": "q55508"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Liverpool’un iç saha maçlarını oynadığı stadyum hangisidir?",
+    "options": [
+      "Anfield",
+      "Stamford Bridge",
+      "Old Trafford",
+      "Goodison Park"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Liverpool, 1892’den beri Anfield’da iç saha maçlarını oynar.",
+    "id": "q55509"
+  },
+  {
+    "id": "q55510",
+    "categoryIndex": 2,
+    "question": "Afyon Savaşları ağırlıklı olarak Çin ile hangi devlet arasında yapıldı?",
+    "options": [
+      "Hollanda",
+      "Birleşik Krallık",
+      "Japonya",
+      "Rusya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "19. yüzyıldaki Afyon Savaşları’nın başlıca tarafları Qing Çin’i ile Britanya’ydı."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Pax Romana ifadesi neyi anlatır?",
+    "options": [
+      "Roma’nın kuruluş efsanesini",
+      "Köle isyanlarını",
+      "Roma dünyasındaki uzun görece barış dönemini",
+      "Hristiyanlığın yasaklanmasını"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Augustus döneminden başlayarak yaklaşık iki yüzyıl süren istikrar Pax Romana diye anılır.",
+    "id": "q55511"
+  },
+  {
+    "id": "q55512",
+    "categoryIndex": 0,
+    "question": "Danube Deltası’nın en büyük bölümü hangi ülkenin sınırları içindedir?",
+    "options": [
+      "Sırbistan",
+      "Bulgaristan",
+      "Macaristan",
+      "Romanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tuna Nehri Karadeniz’e ulaşmadan önce büyük ölçüde Romanya’da geniş bir delta oluşturur."
+  },
+  {
+    "id": "q55513",
+    "categoryIndex": 0,
+    "question": "Fly Geyser hangi ABD eyaletindedir?",
+    "options": [
+      "Nevada",
+      "Arizona",
+      "Wyoming",
+      "Utah"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Renkli mineral teraslarıyla tanınan Fly Geyser, Nevada’daki Black Rock Çölü yakınında insan etkisiyle oluşmuştur."
+  },
+  {
+    "id": "q55514",
+    "categoryIndex": 4,
+    "question": "Mürekkep balıklarının göz bebeği genellikle hangi biçimdedir?",
+    "options": [
+      "Yıldız biçiminde",
+      "W biçiminde",
+      "Tam kare",
+      "Üçgen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mürekkep balıklarının belirgin W biçimli göz bebekleri farklı ışık koşullarında geniş görüş sağlar."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Antik Yunan’da bağımsız şehir devletine ne ad verilirdi?",
+    "options": [
+      "Forum",
+      "Agora",
+      "Polis",
+      "Senato"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Atina ve Sparta gibi bağımsız şehir devletleri “polis” olarak adlandırılırdı.",
+    "id": "q55515"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Borussia Dortmund taraftarlarının ünlü 'Sarı Duvar' tribünü hangi stadyumdadır?",
+    "options": [
+      "Allianz Arena",
+      "Olympiastadion",
+      "Veltins-Arena",
+      "Signal Iduna Park"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Güney tribünü, yoğun sarı-siyah görüntüsü ve atmosferiyle Sarı Duvar diye bilinir.",
+    "id": "q55516"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Severance dizisindeki çalışanların görev yaptığı şirketin adı nedir?",
+    "options": [
+      "Lumon Industries",
+      "Massive Dynamic",
+      "Initech",
+      "E-Corp"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Lumon, çalışanların iş ve özel hayat anılarını ayıran kıdem tazminatı prosedürünü uygular.",
+    "id": "q55517"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Ajax’ın stadyumu hangi efsane futbolcunun adını taşır?",
+    "options": [
+      "Ruud Gullit",
+      "Johan Cruyff",
+      "Marco van Basten",
+      "Dennis Bergkamp"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Amsterdam Arena, 2018’de Johan Cruyff Arena olarak yeniden adlandırıldı.",
+    "id": "q55518"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Puslu Kıtalar Atlası’nda Uzun İhsan Efendi’nin oğlunun adı nedir?",
+    "options": [
+      "Ebrehe",
+      "Alibaz",
+      "Bünyamin",
+      "Kubelik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Romanın genç kahramanı Bünyamin, babasının atlasıyla bağlantılı büyük bir maceraya sürüklenir.",
+    "id": "q55519"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Yapraklardaki gaz alışverişini sağlayan küçük açıklıklara ne denir?",
+    "options": [
+      "Nefron",
+      "Alveol",
+      "Lentisel kökü",
+      "Stoma"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Stomalar açılıp kapanarak karbondioksit girişini ve su buharı kaybını düzenler.",
+    "id": "q55520"
+  }
+]

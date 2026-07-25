@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "packageCount": 10,
+  "questionCount": 10000,
+  "idRange": "q3121-q13120",
+  "uniqueIds": true,
+  "uniqueNormalizedQuestionTexts": true,
+  "uniqueFactKeys": true,
+  "installerCheckAndApply": "PASS",
+  "categoryTotals": {
+    "Coğrafya": 1670,
+    "Eğlence": 1670,
+    "Tarih": 1670,
+    "Sanat & Edebiyat": 1670,
+    "Bilim & Doğa": 1660,
+    "Spor": 1660
+  },
+  "difficultyTotals": {
+    "Orta": 6105,
+    "Zor": 3013,
+    "Kolay": 882
+  },
+  "answerIndexTotals": {
+    "0": 2512,
+    "1": 2546,
+    "2": 2428,
+    "3": 2514
+  },
+  "packageSha256": {
+    "package_002_q3121_q4120.json": "a62a8379af95d2fa28fd5a67811e2b081dff1365deb733ad050908f272ad63cb",
+    "package_003_q4121_q5120.json": "43786a1c4918d54bcb61a18241e93e5d974dc0f4f2046ee07e4596c9475ae749",
+    "package_004_q5121_q6120.json": "ed69f32f00fb365f72b1e6b31c8fccbcb01aa0b20c62f6aace8aa977b125693c",
+    "package_005_q6121_q7120.json": "74e393cf394335a5bbf827fa5e332922b49f9c4df8414c6560f59c1c3c3fe744",
+    "package_006_q7121_q8120.json": "00e6f0377fec32478ff28cc181120a111742c7424dcfca3a186bf6ff41c9ecfb",
+    "package_007_q8121_q9120.json": "d714b25b2c1d12ba810053a0c7d0310040dbadb46f2a149124de181ee961ce3a",
+    "package_008_q9121_q10120.json": "7c6794f00427da67e892ee9a9b8c67124920bb8dcc2b09f3ac6fbf63c9c3d0f3",
+    "package_009_q10121_q11120.json": "38a04d024670159a347cb9a07fb8a5164b372857121886996e1f0429482d1fbf",
+    "package_010_q11121_q12120.json": "db77ee8aaa98cbccbb67fbc44bc26255e776b242e08cba2a6b5e5ac9439143b6",
+    "package_011_q12121_q13120.json": "c341c83605b53b24d6a11785ce0f8b0cb7ded7e6d5cecf6689113430673b34d4"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "questionCount": 1000,
+  "packageCount": 10,
+  "idRange": "q54121-q55120",
+  "categoryCounts": {
+    "0": 170,
+    "1": 170,
+    "2": 170,
+    "3": 170,
+    "4": 160,
+    "5": 160
+  },
+  "difficultyCounts": {
+    "Kolay": 552,
+    "Orta": 416,
+    "Zor": 32
+  },
+  "answerIndexCounts": {
+    "1": 250,
+    "2": 250,
+    "3": 250,
+    "0": 250
+  },
+  "exactQuestionDuplicates": 0,
+  "questionAnswerDuplicates": 0,
+  "strongNearDuplicates": 0,
+  "exactDuplicatesAgainstV1": 0,
+  "strongNearDuplicatesAgainstV1": 0,
+  "sourceRecords": 1000,
+  "errors": [],
+  "editorialCorrections": [
+    "Kutup ayısı yaşam bölgesi sorusu Arktik olarak düzeltildi.",
+    "Karadeniz ve Hazar kıyısı sorusu Rusya olarak düzeltildi.",
+    "Grand Prismatic superlatifi ABD ile sınırlandırıldı.",
+    "Usain Bolt madalya sayısı sekiz olarak düzeltildi.",
+    "Fanny Blankers-Koen sorusundaki yanlış spor ifadesi kaldırıldı.",
+    "Laika sorusu ilk yörünge köpeği olarak netleştirildi."
+  ]
+}

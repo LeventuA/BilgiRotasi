@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q53521",
+    "categoryIndex": 0,
+    "question": "Turkuaz gölleri ve basamaklı şelaleleriyle ünlü Plitvice Millî Parkı hangi ülkededir?",
+    "options": [
+      "Slovenya",
+      "Hırvatistan",
+      "Karadağ",
+      "Bosna-Hersek"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Plitvice Gölleri, Hırvatistan’ın iç kesimlerinde traverten setlerle birbirine bağlanan göl ve şelalelerden oluşur."
+  },
+  {
+    "id": "q53522",
+    "categoryIndex": 0,
+    "question": "Peribacalarıyla tanınan Kapadokya bölgesi hangi ülkededir?",
+    "options": [
+      "Gürcistan",
+      "Ermenistan",
+      "Türkiye",
+      "İran"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kapadokya, Orta Anadolu’da volkanik tüflerin aşınmasıyla oluşan peribacaları ve kaya yerleşimleriyle tanınır."
+  },
+  {
+    "id": "q53523",
+    "categoryIndex": 0,
+    "question": "Binlerce tarihî tapınağın bulunduğu Bagan hangi ülkededir?",
+    "options": [
+      "Kamboçya",
+      "Laos",
+      "Tayland",
+      "Myanmar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bagan, Myanmar’daki İravadi Nehri ovasında yer alan geniş bir Budist tapınak ve pagoda alanıdır."
+  },
+  {
+    "id": "q53524",
+    "categoryIndex": 0,
+    "question": "Kireçtaşı adacıklarıyla ünlü Ha Long Körfezi hangi ülkededir?",
+    "options": [
+      "Vietnam",
+      "Filipinler",
+      "Tayland",
+      "Malezya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ha Long Körfezi, Vietnam’ın kuzeyinde denizden yükselen binlerce kireçtaşı sütunuyla tanınır."
+  },
+  {
+    "id": "q53525",
+    "categoryIndex": 0,
+    "question": "Kızıl kumları ve kaya kemerleriyle bilinen Vadi Rum hangi ülkededir?",
+    "options": [
+      "Umman",
+      "Ürdün",
+      "Suudi Arabistan",
+      "İsrail"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Vadi Rum, Ürdün’ün güneyinde çöl manzaraları ve kumtaşı oluşumlarıyla “Ay Vadisi” adıyla da bilinir."
+  },
+  {
+    "id": "q53526",
+    "categoryIndex": 0,
+    "question": "Moher Kayalıkları hangi ülkededir?",
+    "options": [
+      "İskoçya",
+      "İzlanda",
+      "İrlanda",
+      "Norveç"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Moher Kayalıkları İrlanda’nın batı kıyısında Atlas Okyanusu üzerinde yüzlerce metre yükselir."
+  },
+  {
+    "id": "q53527",
+    "categoryIndex": 0,
+    "question": "Buzul suyunun verdiği mavi-yeşil rengiyle ünlü Louise Gölü hangi ülkededir?",
+    "options": [
+      "ABD",
+      "Norveç",
+      "Yeni Zelanda",
+      "Kanada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Louise Gölü Kanada’nın Alberta eyaletindeki Banff Millî Parkı’nda bulunur."
+  },
+  {
+    "id": "q53528",
+    "categoryIndex": 0,
+    "question": "Patagonya bölgesi hangi iki ülkenin güneyine yayılır?",
+    "options": [
+      "Arjantin ve Şili",
+      "Peru ve Bolivya",
+      "Brezilya ve Uruguay",
+      "Şili ve Peru"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Patagonya, And Dağları’nın iki yanında Arjantin ile Şili’nin güney kesimlerini kapsar."
+  },
+  {
+    "id": "q53529",
+    "categoryIndex": 0,
+    "question": "Avrupa’nın en yüksek dağı olarak kabul edilen Elbruz hangi ülkededir?",
+    "options": [
+      "Gürcistan",
+      "Rusya",
+      "İsviçre",
+      "İtalya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kafkas Dağları’ndaki Elbruz 5.642 metre yüksekliğiyle Avrupa’nın en yüksek zirvesi kabul edilir."
+  },
+  {
+    "id": "q53530",
+    "categoryIndex": 0,
+    "question": "Kuzey Amerika’nın en yüksek dağı Denali hangi ABD eyaletindedir?",
+    "options": [
+      "Washington",
+      "Colorado",
+      "Alaska",
+      "Montana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Denali Alaska Sıradağları’nda yükselir ve 6.190 metreyle Kuzey Amerika’nın en yüksek dağıdır."
+  },
+  {
+    "id": "q53531",
+    "categoryIndex": 0,
+    "question": "Güney Amerika’nın en yüksek dağı Aconcagua hangi ülkededir?",
+    "options": [
+      "Şili",
+      "Peru",
+      "Bolivya",
+      "Arjantin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Aconcagua, Arjantin’in Mendoza bölgesinde And Dağları üzerinde 6.961 metreye ulaşır."
+  },
+  {
+    "id": "q53532",
+    "categoryIndex": 0,
+    "question": "Ren Nehri hangi denize dökülür?",
+    "options": [
+      "Kuzey Denizi",
+      "Baltık Denizi",
+      "Karadeniz",
+      "Akdeniz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ren, İsviçre Alpleri’nden doğar ve Hollanda’daki delta kollarıyla Kuzey Denizi’ne ulaşır."
+  },
+  {
+    "id": "q53533",
+    "categoryIndex": 0,
+    "question": "Tuna Nehri hangi denize dökülür?",
+    "options": [
+      "Adriyatik Denizi",
+      "Karadeniz",
+      "Ege Denizi",
+      "Baltık Denizi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tuna Avrupa’nın birçok ülkesinden geçtikten sonra Romanya ve Ukrayna’daki deltasıyla Karadeniz’e dökülür."
+  },
+  {
+    "id": "q53534",
+    "categoryIndex": 0,
+    "question": "Ohri Gölü hangi iki ülke arasında yer alır?",
+    "options": [
+      "Sırbistan ve Karadağ",
+      "Bulgaristan ve Yunanistan",
+      "Kuzey Makedonya ve Arnavutluk",
+      "Hırvatistan ve Slovenya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Avrupa’nın en eski ve en derin göllerinden Ohri, Kuzey Makedonya ile Arnavutluk sınırındadır."
+  },
+  {
+    "id": "q53535",
+    "categoryIndex": 0,
+    "question": "Maldivler’in başkenti hangisidir?",
+    "options": [
+      "Colombo",
+      "Suva",
+      "Dili",
+      "Malé"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Malé, Maldivler’in yoğun nüfuslu başkent adası ve ülkenin yönetim merkezidir."
+  },
+  {
+    "id": "q53536",
+    "categoryIndex": 0,
+    "question": "Dünyada dikdörtgen biçiminde olmayan tek ulusal bayrak hangi ülkeye aittir?",
+    "options": [
+      "Nepal",
+      "Bhutan",
+      "İsviçre",
+      "Sri Lanka"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Nepal bayrağı üst üste iki üçgenden oluşur ve standart dörtgen ulusal bayraklardan ayrılır."
+  },
+  {
+    "id": "q53537",
+    "categoryIndex": 0,
+    "question": "Galápagos Adaları hangi ülkeye bağlıdır?",
+    "options": [
+      "Peru",
+      "Ekvador",
+      "Kolombiya",
+      "Şili"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Galápagos takımadaları Pasifik Okyanusu’nda Ekvador’a bağlıdır ve benzersiz canlı türleriyle tanınır."
+  },
+  {
+    "id": "q53538",
+    "categoryIndex": 1,
+    "question": "Breaking Bad’de Walter White’ın eski öğrencisi ve ortağı kimdir?",
+    "options": [
+      "Hank Schrader",
+      "Saul Goodman",
+      "Jesse Pinkman",
+      "Gus Fring"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Jesse Pinkman, Walter’la birlikte metamfetamin üretimine girer ve dizinin ahlaki çatışmalarının merkezinde yer alır."
+  },
+  {
+    "id": "q53539",
+    "categoryIndex": 1,
+    "question": "Better Call Saul’da Saul Goodman’ın gerçek adı nedir?",
+    "options": [
+      "Chuck McGill",
+      "Howard Hamlin",
+      "Lalo Salamanca",
+      "Jimmy McGill"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Jimmy McGill zamanla renkli ve kuralları esneten avukat Saul Goodman kimliğine dönüşür."
+  },
+  {
+    "id": "q53540",
+    "categoryIndex": 1,
+    "question": "The Boys dizisindeki en güçlü ve korkulan süper kahraman kimdir?",
+    "options": [
+      "Homelander",
+      "Butcher",
+      "A-Train",
+      "Soldier Boy"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Homelander, Vought’un Seven grubunun lideridir ve kamuoyu önündeki kahraman imajının arkasında acımasız bir karakter taşır."
+  },
+  {
+    "id": "q53541",
+    "categoryIndex": 1,
+    "question": "House of the Dragon dizisinin merkezindeki ejderha hanedanı hangisidir?",
+    "options": [
+      "Stark",
+      "Targaryen",
+      "Lannister",
+      "Baratheon"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dizi, Targaryen Hanedanı içindeki taht mücadelesini ve Ejderhaların Dansı’na giden süreci anlatır."
+  },
+  {
+    "id": "q53542",
+    "categoryIndex": 1,
+    "question": "Lost dizisinde adaya düşen uçağın sefer numarası nedir?",
+    "options": [
+      "Ajira 316",
+      "Pan Am 103",
+      "Oceanic 815",
+      "Oceanic 108"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Oceanic Airlines’ın 815 seferi Pasifik üzerindeki gizemli adaya düşer ve hayatta kalanları bir araya getirir."
+  },
+  {
+    "id": "q53543",
+    "categoryIndex": 1,
+    "question": "Supernatural dizisindeki avcı kardeşlerin adları nedir?",
+    "options": [
+      "Damon ve Stefan Salvatore",
+      "Rick ve Shane Grimes",
+      "Michael ve Lincoln Burrows",
+      "Sam ve Dean Winchester"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sam ile Dean Winchester, aile mirası olarak doğaüstü varlıkları avlayarak ülkeyi dolaşır."
+  },
+  {
+    "id": "q53544",
+    "categoryIndex": 1,
+    "question": "Prison Break’te hapishane planlarını vücuduna dövme yaptıran kişi kimdir?",
+    "options": [
+      "Michael Scofield",
+      "Lincoln Burrows",
+      "Fernando Sucre",
+      "Theodore Bagwell"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Michael, haksız yere idama mahkûm edilen kardeşi Lincoln’ü kaçırmak için hapishane planlarını gizli dövme olarak taşır."
+  },
+  {
+    "id": "q53545",
+    "categoryIndex": 1,
+    "question": "Peaky Blinders dizisinin merkezindeki suç ailesinin soyadı nedir?",
+    "options": [
+      "Soprano",
+      "Shelby",
+      "Corleone",
+      "Roy"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Birmingham’daki Peaky Blinders çetesi, Thomas Shelby liderliğindeki Shelby ailesi çevresinde şekillenir."
+  },
+  {
+    "id": "q53546",
+    "categoryIndex": 1,
+    "question": "Dark dizisindeki zaman döngülerinin merkezindeki kasabanın adı nedir?",
+    "options": [
+      "Hawkins",
+      "Twin Peaks",
+      "Winden",
+      "Derry"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Winden’deki mağaralar, nükleer santral ve aile bağlantıları farklı dönemleri birbirine bağlayan zaman döngüsünü oluşturur."
+  },
+  {
+    "id": "q53547",
+    "categoryIndex": 1,
+    "question": "Rick and Morty’de boyutlar arası geçiş sağlayan cihaz hangisidir?",
+    "options": [
+      "Sonic tornavida",
+      "Omnitrix",
+      "Flux capacitor",
+      "Portal tabancası"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Rick’in yeşil portallar açan tabancası farklı gezegenlere ve paralel evrenlere anında geçiş sağlar."
+  },
+  {
+    "id": "q53548",
+    "categoryIndex": 1,
+    "question": "SüngerBob’un evcil salyangozunun adı nedir?",
+    "options": [
+      "Gary",
+      "Larry",
+      "Patrick",
+      "Harold"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gary bir deniz salyangozudur ancak ev kedisi gibi miyavlayarak iletişim kurar."
+  },
+  {
+    "id": "q53549",
+    "categoryIndex": 1,
+    "question": "Pokémon anime serisinde Ash’in memleketi hangi kasabadır?",
+    "options": [
+      "Cerulean City",
+      "Pallet Town",
+      "Pewter City",
+      "Lavender Town"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ash Ketchum Pokémon yolculuğuna Kanto bölgesindeki Pallet Town’dan başlar."
+  },
+  {
+    "id": "q53550",
+    "categoryIndex": 1,
+    "question": "Super Mario oyunlarında sık sık kurtarılan prenses kimdir?",
+    "options": [
+      "Princess Daisy",
+      "Rosalina",
+      "Princess Peach",
+      "Pauline"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mantar Krallığı’nın hükümdarı Peach, Bowser tarafından kaçırıldığı pek çok oyunda Mario’nun hedefidir."
+  },
+  {
+    "id": "q53551",
+    "categoryIndex": 1,
+    "question": "Grand Theft Auto: San Andreas’ın ana karakterinin lakabı nedir?",
+    "options": [
+      "Niko",
+      "Trevor",
+      "Tommy",
+      "CJ"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Carl Johnson, kısaca CJ, Los Santos’a dönerek Grove Street Families çetesini yeniden güçlendirmeye çalışır."
+  },
+  {
+    "id": "q53552",
+    "categoryIndex": 1,
+    "question": "Red Dead Redemption 2’nin ana oynanabilir kanun kaçağı kimdir?",
+    "options": [
+      "Arthur Morgan",
+      "John Marston",
+      "Dutch van der Linde",
+      "Micah Bell"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Arthur Morgan, Van der Linde çetesinin deneyimli üyesidir ve değişen dünyada sadakatini sorgular."
+  },
+  {
+    "id": "q53553",
+    "categoryIndex": 1,
+    "question": "The Legend of Zelda’da güç, bilgelik ve cesareti temsil eden kutsal sembol hangisidir?",
+    "options": [
+      "Sheikah Slate",
+      "Triforce",
+      "Ocarina",
+      "Majora’s Mask"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Triforce üç altın üçgenden oluşur ve Güç, Bilgelik ile Cesaret erdemlerini temsil eder."
+  },
+  {
+    "id": "q53554",
+    "categoryIndex": 1,
+    "question": "BioShock oyunundaki su altı şehrinin adı nedir?",
+    "options": [
+      "Columbia",
+      "Midgar",
+      "Rapture",
+      "City 17"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Rapture, okyanusun dibinde Andrew Ryan tarafından kurulan ve genetik deneylerle çöken ütopik şehirdir."
+  },
+  {
+    "id": "q53555",
+    "categoryIndex": 2,
+    "question": "Napolyon Kanunları olarak bilinen medeni kanun hangi ülkede ortaya çıktı?",
+    "options": [
+      "İtalya",
+      "İspanya",
+      "Avusturya",
+      "Fransa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1804 tarihli Napolyon Kanunu, Fransa’daki özel hukuk sistemini birleştirdi ve birçok ülkeyi etkiledi."
+  },
+  {
+    "id": "q53556",
+    "categoryIndex": 2,
+    "question": "Termopylae Savaşı’nda Perslere karşı direnen Yunan kent devleti hangisiydi?",
+    "options": [
+      "Sparta",
+      "Atina",
+      "Korint",
+      "Tebai"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kral Leonidas liderliğindeki Spartalılar ve diğer Yunan birlikleri dar geçitte Pers ordusunu geciktirdi."
+  },
+  {
+    "id": "q53557",
+    "categoryIndex": 2,
+    "question": "Roma’daki gladyatör dövüşleriyle en çok ilişkilendirilen yapı hangisidir?",
+    "options": [
+      "Pantheon",
+      "Kolezyum",
+      "Forum",
+      "Circus Maximus"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kolezyum’da gladyatör karşılaşmaları, hayvan avları ve çeşitli kamu gösterileri düzenlenirdi."
+  },
+  {
+    "id": "q53558",
+    "categoryIndex": 2,
+    "question": "Şarlman 800 yılında hangi unvanla taçlandırıldı?",
+    "options": [
+      "Papa",
+      "Konsül",
+      "İmparator",
+      "Firavun"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Papa III. Leo, 800 yılının Noel gününde Şarlman’ı Romalıların İmparatoru olarak taçlandırdı."
+  },
+  {
+    "id": "q53559",
+    "categoryIndex": 2,
+    "question": "Cengiz Han hangi imparatorluğun kurucusudur?",
+    "options": [
+      "Timur İmparatorluğu",
+      "Babür İmparatorluğu",
+      "Hun İmparatorluğu",
+      "Moğol İmparatorluğu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Temuçin adıyla doğan Cengiz Han, Moğol kabilelerini birleştirerek geniş bir imparatorluğun temelini attı."
+  },
+  {
+    "id": "q53560",
+    "categoryIndex": 2,
+    "question": "Yüz Yıl Savaşları sırasında Fransa’ya ilham veren genç kadın kimdi?",
+    "options": [
+      "Jeanne d’Arc",
+      "Marie Antoinette",
+      "Eleanor of Aquitaine",
+      "Catherine de Medici"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jeanne d’Arc, Orléans kuşatmasının kaldırılmasına katkı sağladı ve Fransız direnişinin simgesi oldu."
+  },
+  {
+    "id": "q53561",
+    "categoryIndex": 2,
+    "question": "Hernán Cortés hangi imparatorluğun yıkılışıyla ilişkilidir?",
+    "options": [
+      "İnka İmparatorluğu",
+      "Aztek İmparatorluğu",
+      "Maya uygarlığı",
+      "Osmanlı İmparatorluğu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Cortés ve müttefikleri 1521’de Aztek başkenti Tenochtitlan’ı ele geçirdi."
+  },
+  {
+    "id": "q53562",
+    "categoryIndex": 2,
+    "question": "Francisco Pizarro hangi imparatorluğu fethetti?",
+    "options": [
+      "Aztek İmparatorluğu",
+      "Mali İmparatorluğu",
+      "İnka İmparatorluğu",
+      "Bizans İmparatorluğu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Pizarro’nun kuvvetleri 1530’larda İnka hükümdarı Atahualpa’yı ele geçirerek imparatorluğu çökertti."
+  },
+  {
+    "id": "q53563",
+    "categoryIndex": 2,
+    "question": "Mayflower gemisi 1620’de hangi koloninin yerleşimcilerini taşıdı?",
+    "options": [
+      "Jamestown Kolonisi",
+      "Virginia Kolonisi",
+      "Georgia Kolonisi",
+      "Plymouth Kolonisi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mayflower yolcuları bugünkü Massachusetts kıyısında Plymouth yerleşimini kurdu."
+  },
+  {
+    "id": "q53564",
+    "categoryIndex": 2,
+    "question": "Salem Cadı Mahkemeleri hangi Amerikan kolonisinde gerçekleşti?",
+    "options": [
+      "Massachusetts",
+      "Virginia",
+      "Pennsylvania",
+      "Maryland"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1692-1693 yıllarındaki davalar Massachusetts Körfezi Kolonisi’nde korku ve toplumsal gerilim ortamında yapıldı."
+  },
+  {
+    "id": "q53565",
+    "categoryIndex": 2,
+    "question": "Louisiana Satın Alması’nda ABD toprağı hangi ülkeden aldı?",
+    "options": [
+      "İspanya",
+      "Fransa",
+      "Britanya",
+      "Meksika"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "ABD 1803’te Napolyon yönetimindeki Fransa’dan Louisiana bölgesini satın alarak topraklarını yaklaşık iki katına çıkardı."
+  },
+  {
+    "id": "q53566",
+    "categoryIndex": 2,
+    "question": "Kalıcı ilk fotoğrafı üreten öncü kimdir?",
+    "options": [
+      "Louis Daguerre",
+      "George Eastman",
+      "Nicéphore Niépce",
+      "Eadweard Muybridge"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Niépce 1820’lerde ışığa duyarlı bir yüzey üzerinde saatler süren pozlamayla kalıcı bir görüntü elde etti."
+  },
+  {
+    "id": "q53567",
+    "categoryIndex": 2,
+    "question": "Penisilini keşfeden bilim insanı kimdir?",
+    "options": [
+      "Louis Pasteur",
+      "Robert Koch",
+      "Joseph Lister",
+      "Alexander Fleming"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Fleming 1928’de bir küfün bakterilerin büyümesini engellediğini fark ederek penisilin araştırmalarını başlattı."
+  },
+  {
+    "id": "q53568",
+    "categoryIndex": 2,
+    "question": "II. Dünya Savaşı’nda Enigma şifrelerinin çözülmesiyle ilişkilendirilen matematikçi kimdir?",
+    "options": [
+      "Alan Turing",
+      "John von Neumann",
+      "Claude Shannon",
+      "Kurt Gödel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Turing, Bletchley Park’ta Alman Enigma mesajlarını çözmeye yardımcı olan makinelerin ve yöntemlerin geliştirilmesinde önemli rol oynadı."
+  },
+  {
+    "id": "q53569",
+    "categoryIndex": 2,
+    "question": "Hiroşima’ya atılan atom bombasının kod adı neydi?",
+    "options": [
+      "Fat Man",
+      "Little Boy",
+      "Trinity",
+      "Enola"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Little Boy adlı uranyum bombası 6 Ağustos 1945’te Enola Gay uçağından Hiroşima’ya bırakıldı."
+  },
+  {
+    "id": "q53570",
+    "categoryIndex": 2,
+    "question": "İlk yazılı Osmanlı anayasası hangi adla bilinir?",
+    "options": [
+      "Tanzimat Fermanı",
+      "Islahat Fermanı",
+      "Kanun-ı Esasi",
+      "Teşkilat-ı Esasiye"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kanun-ı Esasi 1876’da ilan edildi ve Osmanlı Devleti’nde meşrutiyet dönemini başlattı."
+  },
+  {
+    "id": "q53571",
+    "categoryIndex": 2,
+    "question": "Dünyanın çevresini dolaşan ilk seferi tamamlayan geminin adı neydi?",
+    "options": [
+      "Trinidad",
+      "Santa María",
+      "Endeavour",
+      "Victoria"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Magellan seferinden geri dönebilen tek gemi Victoria’ydı; seferi Juan Sebastián Elcano tamamladı."
+  },
+  {
+    "id": "q53572",
+    "categoryIndex": 3,
+    "question": "Bülbülü Öldürmek romanını çocukluk gözünden anlatan karakter kimdir?",
+    "options": [
+      "Scout Finch",
+      "Jo March",
+      "Jane Eyre",
+      "Hester Prynne"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Scout Finch, babası Atticus’un ırkçılıkla çevrili bir davada savunma yaptığı yılları çocuk bakışıyla anlatır."
+  },
+  {
+    "id": "q53573",
+    "categoryIndex": 3,
+    "question": "Büyük Umutlar romanının başkahramanının lakabı nedir?",
+    "options": [
+      "Dick",
+      "Pip",
+      "Tom",
+      "Oliver"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Philip Pirrip kendisini Pip olarak tanıtır; roman onun yoksul çocukluktan toplumsal yükseliş arzusuna uzanan hayatını izler."
+  },
+  {
+    "id": "q53574",
+    "categoryIndex": 3,
+    "question": "Uğultulu Tepeler’in gizemli ve tutkulu erkek karakteri kimdir?",
+    "options": [
+      "Mr. Rochester",
+      "Mr. Darcy",
+      "Heathcliff",
+      "Edward Ferrars"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Heathcliff’in Catherine Earnshaw’a duyduğu takıntılı sevgi, romanın kuşaklar süren çatışmasını başlatır."
+  },
+  {
+    "id": "q53575",
+    "categoryIndex": 3,
+    "question": "Sefiller’de Jean Valjean’ı yıllarca takip eden polis müfettişi kimdir?",
+    "options": [
+      "Marius",
+      "Thenardier",
+      "Enjolras",
+      "Javert"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Javert yasayı mutlak kabul eder ve Valjean’ın değişebileceği düşüncesiyle yüzleşmekte zorlanır."
+  },
+  {
+    "id": "q53576",
+    "categoryIndex": 3,
+    "question": "Monte Kristo Kontu’nun gerçek adı nedir?",
+    "options": [
+      "Edmond Dantès",
+      "Athos",
+      "Aramis",
+      "Fernand Mondego"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Edmond Dantès haksız yere hapsedildikten sonra kaçar ve Monte Kristo Kontu kimliğiyle intikam planlar."
+  },
+  {
+    "id": "q53577",
+    "categoryIndex": 3,
+    "question": "Üç Silahşörler romanında silahşörlere katılmak isteyen genç kimdir?",
+    "options": [
+      "Rochefort",
+      "d’Artagnan",
+      "Planchet",
+      "Buckingham"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "d’Artagnan Paris’e giderek Athos, Porthos ve Aramis’le dost olur; grubun ünlü “hepimiz birimiz için” ruhuna katılır."
+  },
+  {
+    "id": "q53578",
+    "categoryIndex": 3,
+    "question": "Seksen Günde Devriâlem’in dünya turuna çıkan kahramanı kimdir?",
+    "options": [
+      "Passepartout",
+      "Captain Nemo",
+      "Phileas Fogg",
+      "Robinson Crusoe"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Phileas Fogg, Londra’daki kulübünde yaptığı iddia üzerine dünyayı seksen günde dolaşmaya çalışır."
+  },
+  {
+    "id": "q53579",
+    "categoryIndex": 3,
+    "question": "Denizler Altında Yirmi Bin Fersah’taki Nautilus’un kaptanı kimdir?",
+    "options": [
+      "Kaptan Ahab",
+      "Kaptan Hook",
+      "Kaptan Smollett",
+      "Kaptan Nemo"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kaptan Nemo, teknolojik denizaltısı Nautilus’la okyanuslarda bağımsız bir yaşam sürer."
+  },
+  {
+    "id": "q53580",
+    "categoryIndex": 3,
+    "question": "Robinson Crusoe’nun adada dost olduğu kişinin adı nedir?",
+    "options": [
+      "Cuma",
+      "Pazar",
+      "Sancho",
+      "Jim"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Crusoe, kurtardığı adama tanıştıkları günün adını vererek onu Cuma diye çağırır."
+  },
+  {
+    "id": "q53581",
+    "categoryIndex": 3,
+    "question": "Define Adası’ndaki tek bacaklı korsan kimdir?",
+    "options": [
+      "Kaptan Flint",
+      "Long John Silver",
+      "Billy Bones",
+      "Ben Gunn"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Long John Silver hem sevimli bir aşçı hem de tehlikeli bir korsan lideri olarak romanın en karmaşık karakteridir."
+  },
+  {
+    "id": "q53582",
+    "categoryIndex": 3,
+    "question": "Gulliver’in Gezileri’nde çok küçük insanların yaşadığı ülke hangisidir?",
+    "options": [
+      "Brobdingnag",
+      "Laputa",
+      "Lilliput",
+      "Houyhnhnm"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Gulliver ilk yolculuğunda yaklaşık 15 santimetre boyundaki Lilliputluların ülkesine düşer."
+  },
+  {
+    "id": "q53583",
+    "categoryIndex": 3,
+    "question": "Campbell çorba kutularını sanat eserine dönüştüren sanatçı kimdir?",
+    "options": [
+      "Roy Lichtenstein",
+      "Keith Haring",
+      "Jean-Michel Basquiat",
+      "Andy Warhol"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Warhol seri üretim tüketim nesnelerini tekrarlayarak Pop Art’ın en tanınan eserlerinden Campbell’s Soup Cans’i yarattı."
+  },
+  {
+    "id": "q53584",
+    "categoryIndex": 3,
+    "question": "Balon Köpek heykelleriyle tanınan çağdaş sanatçı kimdir?",
+    "options": [
+      "Jeff Koons",
+      "Damien Hirst",
+      "Anish Kapoor",
+      "Ai Weiwei"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Jeff Koons’un dev, parlak metal Balloon Dog heykelleri çocuk balon oyuncaklarının anıtsal yorumlarıdır."
+  },
+  {
+    "id": "q53585",
+    "categoryIndex": 3,
+    "question": "Kaplumbağa Terbiyecisi tablosunun ressamı kimdir?",
+    "options": [
+      "Şeker Ahmet Paşa",
+      "Osman Hamdi Bey",
+      "İbrahim Çallı",
+      "Bedri Rahmi Eyüboğlu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Osman Hamdi Bey’in 1906 tarihli eseri, kaplumbağalar arasında ney taşıyan yaşlı bir terbiyeciyi gösterir."
+  },
+  {
+    "id": "q53586",
+    "categoryIndex": 3,
+    "question": "Mona Lisa’da yumuşak ve dumanlı geçişler oluşturan teknik hangisidir?",
+    "options": [
+      "Pointilizm",
+      "Impasto",
+      "Sfumato",
+      "Grizay"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Leonardo’nun sfumato tekniği belirgin çizgileri azaltarak yüz ve arka planda yumuşak ton geçişleri oluşturur."
+  },
+  {
+    "id": "q53587",
+    "categoryIndex": 3,
+    "question": "Bir eserin ıslak sıva üzerine boyandığı duvar resmi tekniği hangisidir?",
+    "options": [
+      "Vitray",
+      "Gravür",
+      "Kolaj",
+      "Fresk"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Freskte pigmentler ıslak sıvaya uygulanır ve sıva kurudukça renkler duvarın parçası hâline gelir."
+  },
+  {
+    "id": "q53588",
+    "categoryIndex": 3,
+    "question": "Noktalardan oluşan renklerin uzaktan birleşmesine dayanan resim tekniği hangisidir?",
+    "options": [
+      "Pointilizm",
+      "Kübizm",
+      "Fütürizm",
+      "Sürrealizm"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Pointilizmde küçük saf renk noktaları yan yana yerleştirilir; göz bu renkleri uzaktan optik olarak karıştırır."
+  },
+  {
+    "id": "q53589",
+    "categoryIndex": 4,
+    "question": "Binlerce mikroskobik dişe sahip olabilen hayvan hangisidir?",
+    "options": [
+      "Kurbağa",
+      "Salyangoz",
+      "Ahtapot",
+      "Denizatı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Salyangozların radula adlı şerit biçimli ağız organında yiyeceği kazımaya yarayan binlerce küçük diş bulunabilir."
+  },
+  {
+    "id": "q53590",
+    "categoryIndex": 4,
+    "question": "Elektrik üretebilen yılan balığına benzeyen balık hangisidir?",
+    "options": [
+      "Müren",
+      "Barakuda",
+      "Elektrikli yılan balığı",
+      "Testere balığı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Elektrikli yılan balığı özel hücrelerinden güçlü elektrik boşalmaları üreterek avlanabilir ve kendini savunabilir."
+  },
+  {
+    "id": "q53591",
+    "categoryIndex": 4,
+    "question": "Kurbağalar suyun önemli bölümünü vücutlarının hangi kısmından alır?",
+    "options": [
+      "Dişlerinden",
+      "Akciğerlerinden",
+      "Tırnaklarından",
+      "Derilerinden"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kurbağaların geçirgen derisi suyu ve bazı gazları doğrudan emebilir; bu yüzden nemli ortamlar onlar için önemlidir."
+  },
+  {
+    "id": "q53592",
+    "categoryIndex": 4,
+    "question": "Hangi büyük kara hayvanı zıplayamaz?",
+    "options": [
+      "Fil",
+      "Gergedan",
+      "Zebra",
+      "Zürafa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fillerin ağır gövdesi ve bacak anatomisi, dört ayağın aynı anda yerden kesildiği gerçek bir sıçramaya uygun değildir."
+  },
+  {
+    "id": "q53593",
+    "categoryIndex": 4,
+    "question": "Devekuşunun hangi organı beyninden daha büyüktür?",
+    "options": [
+      "Kalbi",
+      "Gözü",
+      "Dili",
+      "Midesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Devekuşu gözleri yaklaşık beş santimetre çapındadır ve beyninden daha büyük olabilir."
+  },
+  {
+    "id": "q53594",
+    "categoryIndex": 4,
+    "question": "Kelebekler tatları hangi organlarıyla algılayabilir?",
+    "options": [
+      "Kanatlarıyla",
+      "Antenleriyle",
+      "Ayaklarıyla",
+      "Gözleriyle"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kelebeklerin ayaklarındaki tat reseptörleri, kondukları bitkinin yumurta bırakmaya uygun olup olmadığını anlamalarına yardım eder."
+  },
+  {
+    "id": "q53595",
+    "categoryIndex": 4,
+    "question": "Yılanlar kokuları toplamaya yardım eden hangi organlarını dışarı çıkarır?",
+    "options": [
+      "Kulaklarını",
+      "Dişlerini",
+      "Kuyruklarını",
+      "Dillerini"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Yılanın çatallı dili havadaki parçacıkları toplar ve bunları damağındaki Jacobson organına taşır."
+  },
+  {
+    "id": "q53596",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi’nde yılı en kısa süren gezegen hangisidir?",
+    "options": [
+      "Merkür",
+      "Venüs",
+      "Mars",
+      "Jüpiter"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Merkür Güneş’e en yakın gezegendir ve yörüngesini yaklaşık 88 Dünya gününde tamamlar."
+  },
+  {
+    "id": "q53597",
+    "categoryIndex": 4,
+    "question": "Jüpiter’deki dev fırtınanın adı nedir?",
+    "options": [
+      "Büyük Mavi Nokta",
+      "Büyük Kırmızı Leke",
+      "Karanlık Altıgen",
+      "Fırtına Gözü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Büyük Kırmızı Leke yüzlerce yıldır gözlenen, Dünya’dan daha geniş olabilen dev bir atmosfer girdabıdır."
+  },
+  {
+    "id": "q53598",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi’nin en yüksek yanardağı Olympus Mons hangi gezegendedir?",
+    "options": [
+      "Venüs",
+      "Dünya",
+      "Mars",
+      "Merkür"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Olympus Mons, Mars’ta yaklaşık 22 kilometre yükselen dev bir kalkan yanardağıdır."
+  },
+  {
+    "id": "q53599",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi’ndeki en hızlı rüzgârlar hangi gezegende ölçülmüştür?",
+    "options": [
+      "Jüpiter",
+      "Satürn",
+      "Mars",
+      "Neptün"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Neptün atmosferindeki rüzgârlar saatte 2.000 kilometreyi aşabilen hızlara ulaşabilir."
+  },
+  {
+    "id": "q53600",
+    "categoryIndex": 4,
+    "question": "Neredeyse yana yatmış biçimde dönen gezegen hangisidir?",
+    "options": [
+      "Uranüs",
+      "Satürn",
+      "Venüs",
+      "Neptün"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Uranüs’ün eksen eğikliği yaklaşık 98 derecedir; gezegen yörüngesinde adeta yan yatmış gibi döner."
+  },
+  {
+    "id": "q53601",
+    "categoryIndex": 4,
+    "question": "Bir kuyruklu yıldızın kuyruğu hangi yönü gösterir?",
+    "options": [
+      "Güneş’e doğruyu",
+      "Güneş’ten uzağı",
+      "Hareket yönünü",
+      "Dünya’ya doğruyu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Güneş rüzgârı ve ışınım basıncı, gaz ile tozu Güneş’in ters yönüne iter; kuyruk her zaman hareket yönünü göstermez."
+  },
+  {
+    "id": "q53602",
+    "categoryIndex": 4,
+    "question": "Kara deliğin ışığın bile kaçamadığı sınırına ne denir?",
+    "options": [
+      "Fotoküre",
+      "Manyetosfer",
+      "Olay ufku",
+      "Kromosfer"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Olay ufkunun içinde kaçış hızı ışık hızını aşacağı için dışarıya hiçbir bilgi ulaşamaz."
+  },
+  {
+    "id": "q53603",
+    "categoryIndex": 4,
+    "question": "Bir maddenin katı hâlden doğrudan gaz hâline geçmesine ne denir?",
+    "options": [
+      "Yoğuşma",
+      "Erime",
+      "Donma",
+      "Süblimleşme"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kuru buzun sıvılaşmadan karbondioksit gazına dönüşmesi süblimleşmeye günlük bir örnektir."
+  },
+  {
+    "id": "q53604",
+    "categoryIndex": 4,
+    "question": "Kuzey ışıklarının bilimsel adı nedir?",
+    "options": [
+      "Aurora borealis",
+      "Aurora australis",
+      "Solar flares",
+      "Zodiac light"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Aurora borealis, Güneş’ten gelen yüklü parçacıkların Dünya atmosferiyle etkileşmesi sonucu kuzey enlemlerinde görülür."
+  },
+  {
+    "id": "q53605",
+    "categoryIndex": 5,
+    "question": "Bir futbol maçı normal sürede kaç dakika oynanır?",
+    "options": [
+      "80",
+      "90",
+      "100",
+      "120"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Futbol maçı iki 45 dakikalık devreden oluşur; hakem kaybolan süre için uzatma dakikaları ekleyebilir."
+  },
+  {
+    "id": "q53606",
+    "categoryIndex": 5,
+    "question": "Bir futbol takımında sahada kaç oyuncu bulunur?",
+    "options": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bir takım sahada biri kaleci olmak üzere on bir oyuncuyla yer alır."
+  },
+  {
+    "id": "q53607",
+    "categoryIndex": 5,
+    "question": "Bir basketbol takımında sahada aynı anda kaç oyuncu bulunur?",
+    "options": [
+      "4",
+      "6",
+      "7",
+      "5"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Basketbolda her takım beş oyuncuyla sahada yer alır ve oyuncu değişikliğiyle kadro dönüşür."
+  },
+  {
+    "id": "q53608",
+    "categoryIndex": 5,
+    "question": "Bir voleybol takımında sahada kaç oyuncu bulunur?",
+    "options": [
+      "6",
+      "5",
+      "7",
+      "8"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Salon voleybolunda takım sahada altı oyuncuyla oynar; plaj voleybolunda ise iki oyuncu bulunur."
+  },
+  {
+    "id": "q53609",
+    "categoryIndex": 5,
+    "question": "Wimbledon hangi kort yüzeyinde oynanır?",
+    "options": [
+      "Toprak",
+      "Çim",
+      "Sert zemin",
+      "Halı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Wimbledon dört Grand Slam arasında doğal çim kortlarda oynanan tek turnuvadır."
+  },
+  {
+    "id": "q53610",
+    "categoryIndex": 5,
+    "question": "Roland Garros hangi kort yüzeyinde oynanır?",
+    "options": [
+      "Çim",
+      "Sert zemin",
+      "Toprak",
+      "Halı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Fransa Açık olarak da bilinen Roland Garros, Paris’te kırmızı toprak kortlarda düzenlenir."
+  },
+  {
+    "id": "q53611",
+    "categoryIndex": 5,
+    "question": "ABD Açık tenis turnuvası hangi yüzeyde oynanır?",
+    "options": [
+      "Çim",
+      "Toprak",
+      "Ahşap",
+      "Sert zemin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "ABD Açık, New York’taki sert kortlarda düzenlenen sezonun son Grand Slam turnuvasıdır."
+  },
+  {
+    "id": "q53612",
+    "categoryIndex": 5,
+    "question": "Melbourne’de düzenlenen Avustralya Açık’ın kort tipi hangisidir?",
+    "options": [
+      "Sert zemin",
+      "Çim",
+      "Toprak",
+      "Halı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Avustralya Açık Melbourne’de sert kortlarda oynanır ve takvim yılının ilk Grand Slam’idir."
+  },
+  {
+    "id": "q53613",
+    "categoryIndex": 5,
+    "question": "Olimpik yüzme havuzunun uzunluğu kaç metredir?",
+    "options": [
+      "25 metre",
+      "50 metre",
+      "40 metre",
+      "100 metre"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Uzun kulvar yarışlarında kullanılan olimpik havuz bir uçtan diğerine 50 metredir."
+  },
+  {
+    "id": "q53614",
+    "categoryIndex": 5,
+    "question": "Standart açık hava atletizm pistinin bir turu kaç metredir?",
+    "options": [
+      "200 metre",
+      "300 metre",
+      "400 metre",
+      "500 metre"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "En iç kulvarda tam tur 400 metredir; dış kulvarların başlangıç çizgileri mesafeyi dengelemek için ileridedir."
+  },
+  {
+    "id": "q53615",
+    "categoryIndex": 5,
+    "question": "Dekatlon kaç farklı atletizm dalından oluşur?",
+    "options": [
+      "7",
+      "8",
+      "12",
+      "10"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Dekatlon iki güne yayılan koşu, atlama ve atma disiplinlerinden oluşan on yarışlık birleşik etkinliktir."
+  },
+  {
+    "id": "q53616",
+    "categoryIndex": 5,
+    "question": "Heptatlon kaç farklı atletizm dalından oluşur?",
+    "options": [
+      "7",
+      "5",
+      "9",
+      "10"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Heptatlon yedi farklı koşu, atlama ve atma disiplininin puanlarının toplamıyla değerlendirilir."
+  },
+  {
+    "id": "q53617",
+    "categoryIndex": 5,
+    "question": "Biathlon hangi iki temel sporu birleştirir?",
+    "options": [
+      "Yüzme ve bisiklet",
+      "Kayaklı koşu ve tüfekle atış",
+      "Koşu ve okçuluk",
+      "Kayakla atlama ve paten"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Biathlonda sporcular kayaklı koşu etapları arasında hedeflere tüfekle ateş eder."
+  },
+  {
+    "id": "q53618",
+    "categoryIndex": 5,
+    "question": "Triatlonun üç bölümü hangileridir?",
+    "options": [
+      "Koşu, okçuluk ve kürek",
+      "Yüzme, güreş ve atış",
+      "Yüzme, bisiklet ve koşu",
+      "Bisiklet, kayak ve tenis"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Triatlon sırasıyla yüzme, bisiklet ve koşu bölümlerinden oluşur."
+  },
+  {
+    "id": "q53619",
+    "categoryIndex": 5,
+    "question": "Modern pentatlonun adındaki “penta” kaç dalı ifade eder?",
+    "options": [
+      "3",
+      "7",
+      "10",
+      "5"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Pentatlon sözcüğündeki penta beş anlamına gelir; modern format beş farklı beceri alanını birleştirir."
+  },
+  {
+    "id": "q53620",
+    "categoryIndex": 5,
+    "question": "Golfte topu tek vuruşta deliğe sokmaya ne denir?",
+    "options": [
+      "Hole-in-one",
+      "Birdie",
+      "Eagle",
+      "Albatross"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hole-in-one, çoğunlukla kısa par 3 çukurlarda başlangıç vuruşunun doğrudan deliğe girmesidir."
+  }
+]

@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q57221",
+    "categoryIndex": 4,
+    "question": "Bir cismin sıvı içinde yukarı yönlü kaldırma kuvveti görmesini açıklayan ilke hangisidir?",
+    "options": [
+      "Arşimet İlkesi",
+      "Bernoulli İlkesi",
+      "Hooke Yasası",
+      "Pascal İlkesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Arşimet İlkesi'ne göre kaldırma kuvveti, cismin yer değiştirdiği sıvının ağırlığına eşittir."
+  },
+  {
+    "id": "q57222",
+    "categoryIndex": 5,
+    "question": "2020 UEFA Avrupa Ligi finalini hangi takım kazandı?",
+    "options": [
+      "Tottenham Hotspur",
+      "Sevilla",
+      "Villarreal",
+      "Manchester City"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2020 UEFA Avrupa Ligi finalinde kupayı Sevilla kazandı."
+  },
+  {
+    "id": "q57223",
+    "categoryIndex": 0,
+    "question": "2024 G20 Zirvesi nerede düzenlendi?",
+    "options": [
+      "Maranhão",
+      "Ishikawa",
+      "Rio de Janeiro",
+      "Malatya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2024 G20 Zirvesi, Rio de Janeiro bölgesinde veya kentinde düzenlendi."
+  },
+  {
+    "id": "q57224",
+    "categoryIndex": 1,
+    "question": "Vampire Survivors ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "2019",
+      "1978",
+      "1986",
+      "2022"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Vampire Survivors, ilk ticari sürümünü 2022 yılında aldı."
+  },
+  {
+    "id": "q57225",
+    "categoryIndex": 2,
+    "question": "Yüz Yıl Savaşı ağırlıklı olarak hangi bölgede yaşandı?",
+    "options": [
+      "Batı Avrupa",
+      "Balkanlar",
+      "İskandinavya",
+      "Kafkasya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İngiltere ve Fransa hanedanları arasındaki Yüz Yıl Savaşı'nın ana cepheleri Batı Avrupa'daydı."
+  },
+  {
+    "id": "q57226",
+    "categoryIndex": 3,
+    "question": "“Tomorrow, and Tomorrow, and Tomorrow” romanının merkezindeki arkadaşlar ne geliştirir?",
+    "options": [
+      "Masa oyunları",
+      "Video oyunları",
+      "Belgesel filmler",
+      "Robotik araçlar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Gabrielle Zevin’in romanı, birlikte video oyunları geliştiren Sam ve Sadie’nin uzun yıllara yayılan ilişkisini anlatır."
+  },
+  {
+    "id": "q57227",
+    "categoryIndex": 4,
+    "question": "Omurilik soğanı insan vücudunda nerede bulunur?",
+    "options": [
+      "Midenin hemen sonrasında",
+      "Karın boşluğunda ince bağırsağın çevresinde",
+      "Beyin sapının alt bölümünde",
+      "Göğüs boşluğunda iki akciğer arasında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Omurilik soğanı, beyin sapının alt bölümünde bulunur."
+  },
+  {
+    "id": "q57228",
+    "categoryIndex": 5,
+    "question": "2022 FIFA Dünya Kupası’nın ev sahibi hangisidir?",
+    "options": [
+      "İtalya",
+      "Rusya",
+      "Çekoslovakya",
+      "Katar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2022 FIFA Dünya Kupası Katar ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q57229",
+    "categoryIndex": 0,
+    "question": "2024'te büyük heyelanın yaşandığı Enga ili hangi ülkededir?",
+    "options": [
+      "Papua Yeni Gine",
+      "Fiji",
+      "Solomon Adaları",
+      "Vanuatu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mayıs 2024'teki büyük heyelan, Papua Yeni Gine'nin Enga ilindeki yerleşimleri etkiledi."
+  },
+  {
+    "id": "q57230",
+    "categoryIndex": 1,
+    "question": "2022 yapımı “The Banshees of Inisherin” filmini kim yönetti?",
+    "options": [
+      "Chloé Zhao",
+      "Martin McDonagh",
+      "Christopher Nolan",
+      "Celine Song"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“The Banshees of Inisherin”, Martin McDonagh tarafından yönetilen ve 2022 yılında gösterime giren bir filmdir."
+  },
+  {
+    "id": "q57231",
+    "categoryIndex": 2,
+    "question": "Ever Given gemisi 2021'de hangi su yolunu günlerce kapattı?",
+    "options": [
+      "Panama Kanalı",
+      "Kiel Kanalı",
+      "Süveyş Kanalı",
+      "Korint Kanalı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ever Given, Mart 2021'de Süveyş Kanalı'nda karaya oturarak küresel deniz trafiğini yaklaşık altı gün aksattı."
+  },
+  {
+    "id": "q57232",
+    "categoryIndex": 3,
+    "question": "“Night Watch” hangi edebiyat ödülünü kazandı?",
+    "options": [
+      "2020 Pulitzer Kurgu Ödülü",
+      "2022 Booker Ödülü",
+      "2022 Uluslararası Booker Ödülü",
+      "2024 Pulitzer Kurgu Ödülü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "“Night Watch”, 2024 Pulitzer Kurgu Ödülü ile ödüllendirildi."
+  },
+  {
+    "id": "q57233",
+    "categoryIndex": 4,
+    "question": "2024'te ilan edilen dördüncü küresel mercan ağarması olayını hangi kurum doğruladı?",
+    "options": [
+      "NOAA",
+      "USGS",
+      "CERN",
+      "ESA"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "NOAA, 2024'te okyanus sıcaklıklarının yol açtığı dördüncü küresel mercan ağarması olayını doğruladı."
+  },
+  {
+    "id": "q57234",
+    "categoryIndex": 5,
+    "question": "Yelkende teknenin pruvasını rüzgârın içinden geçirerek yön değiştirmesine ne denir?",
+    "options": [
+      "Apaz",
+      "Tramola",
+      "Kavança",
+      "Orsa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tramolada teknenin burnu rüzgâr yönünü keserek bir kontradan diğerine geçer."
+  },
+  {
+    "id": "q57235",
+    "categoryIndex": 0,
+    "question": "Hunga Tonga-Hunga Ha'apai patlaması en çok hangi bölgeyi etkiledi?",
+    "options": [
+      "Derna",
+      "Glasgow",
+      "Tonga takımadaları",
+      "Rio Grande do Sul"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hunga Tonga-Hunga Ha'apai patlaması, özellikle Tonga takımadaları çevresinde etkili oldu."
+  },
+  {
+    "id": "q57236",
+    "categoryIndex": 1,
+    "question": "Seven Samurai ile Rashomon yapımlarında ortak olan yönetmeni kimdir?",
+    "options": [
+      "John Schlesinger",
+      "Robert Redford",
+      "Kathryn Bigelow",
+      "Akira Kurosawa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Seven Samurai ve Rashomon, Akira Kurosawa imzasını taşıyan iki yapımdır."
+  },
+  {
+    "id": "q57237",
+    "categoryIndex": 2,
+    "question": "COP26 sonunda kabul edilen temel siyasi metnin adı nedir?",
+    "options": [
+      "Glasgow İklim Paktı",
+      "Edinburgh Protokolü",
+      "Paris Yol Haritası",
+      "Kyoto Bildirisi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Glasgow İklim Paktı, COP26'nın sonunda ülkelerin emisyon hedeflerini güçlendirmesini isteyen ortak metin olarak kabul edildi."
+  },
+  {
+    "id": "q57238",
+    "categoryIndex": 3,
+    "question": "2020 tarihli “Piranesi” romanını kim yazdı?",
+    "options": [
+      "Jennifer Egan",
+      "Susanna Clarke",
+      "Kaveh Akbar",
+      "Andy Weir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Piranesi”, Susanna Clarke tarafından yazılmış ve 2020 yılında yayımlanmış bir romandır."
+  },
+  {
+    "id": "q57239",
+    "categoryIndex": 4,
+    "question": "Mars'ta karbondioksitten oksijen üreten Perseverance deneyi hangisiydi?",
+    "options": [
+      "MEDA",
+      "SHERLOC",
+      "MOXIE",
+      "PIXL"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "MOXIE deneyi, Mars atmosferindeki karbondioksiti oksijene dönüştürerek yerinde kaynak kullanımını sınadı."
+  },
+  {
+    "id": "q57240",
+    "categoryIndex": 5,
+    "question": "Hentbolda bir takım sahada kaleci dâhil kaç oyuncuyla yer alır?",
+    "options": [
+      "6",
+      "9",
+      "8",
+      "7"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hentbolda sahada altı alan oyuncusu ve bir kaleci olmak üzere yedi oyuncu bulunur."
+  },
+  {
+    "id": "q57241",
+    "categoryIndex": 0,
+    "question": "2024 Copa América finali nerede düzenlendi?",
+    "options": [
+      "Miami Gardens",
+      "La Palma",
+      "Tonga takımadaları",
+      "Borgo Egnazia"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2024 Copa América finali, Miami Gardens bölgesinde veya kentinde düzenlendi."
+  },
+  {
+    "id": "q57242",
+    "categoryIndex": 1,
+    "question": "“Ted Lasso” yapımında öne çıkan isim hangisidir?",
+    "options": [
+      "Quinta Brunson",
+      "Jason Sudeikis",
+      "Cody ve May",
+      "Phoebe Dynevor"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Ted Lasso” yapımında öne çıkan oyuncu veya karakter Jason Sudeikis olarak bilinir."
+  },
+  {
+    "id": "q57243",
+    "categoryIndex": 2,
+    "question": "2023 BRICS Zirvesi'nde kaç ülkeye üyelik daveti yapıldı?",
+    "options": [
+      "5",
+      "3",
+      "6",
+      "10"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Zirvede Arjantin, Mısır, Etiyopya, İran, Suudi Arabistan ve Birleşik Arap Emirlikleri olmak üzere altı ülke davet edildi."
+  },
+  {
+    "id": "q57244",
+    "categoryIndex": 3,
+    "question": "2022 tarihli “Lessons in Chemistry” romanını kim yazdı?",
+    "options": [
+      "Miranda July",
+      "Andy Weir",
+      "James McBride",
+      "Bonnie Garmus"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Lessons in Chemistry”, Bonnie Garmus tarafından yazılmış ve 2022 yılında yayımlanmış bir romandır."
+  },
+  {
+    "id": "q57245",
+    "categoryIndex": 4,
+    "question": "2020 Nobel Fizyoloji veya Tıp Ödülü hangi çalışma veya keşif için verildi?",
+    "options": [
+      "Hepatit C virüsünün keşfi",
+      "DART çarpmasının Dimorphos üzerindeki sonuçları",
+      "Güneş'in kutup bölgeleri",
+      "Mars atmosferi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2020 Nobel Fizyoloji veya Tıp Ödülü, Hepatit C virüsünün keşfi alanındaki çalışma veya keşifleri ödüllendirdi."
+  },
+  {
+    "id": "q57246",
+    "categoryIndex": 5,
+    "question": "Golfte bir çukuru par değerinden üç vuruş az tamamlamaya ne denir?",
+    "options": [
+      "Bogey",
+      "Albatros",
+      "Birdie",
+      "Eagle"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Albatros ya da double eagle, bir çukurun par değerinden üç vuruş daha azla tamamlanmasıdır."
+  },
+  {
+    "id": "q57247",
+    "categoryIndex": 0,
+    "question": "Expo 2025 Osaka'nın açılması hangi ülkede düzenlendi?",
+    "options": [
+      "Endonezya",
+      "Birleşik Krallık",
+      "Japonya",
+      "Katar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Expo 2025 Osaka'nın açılması, Japonya ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q57248",
+    "categoryIndex": 1,
+    "question": "2024 tarihli “Prince of Persia: The Lost Crown” oyununu hangi stüdyo geliştirdi?",
+    "options": [
+      "Nintendo",
+      "Arkane Lyon",
+      "Guerrilla Games",
+      "Ubisoft Montpellier"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "“Prince of Persia: The Lost Crown”, Ubisoft Montpellier tarafından geliştirilen ve 2024 yılında yayımlanan bir oyundur."
+  },
+  {
+    "id": "q57249",
+    "categoryIndex": 2,
+    "question": "Expo 2025 Osaka’nın açılması hangi yıla aittir?",
+    "options": [
+      "2025",
+      "2012",
+      "2021",
+      "2003"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Expo 2025 Osaka’nın açılması, 2025 yılında gerçekleşti."
+  },
+  {
+    "id": "q57250",
+    "categoryIndex": 3,
+    "question": "2024 tarihli “The Women” romanını kim yazdı?",
+    "options": [
+      "Anthony Doerr",
+      "Kristin Hannah",
+      "Daniel Mason",
+      "James McBride"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“The Women”, Kristin Hannah tarafından yazılmış ve 2024 yılında yayımlanmış bir romandır."
+  },
+  {
+    "id": "q57251",
+    "categoryIndex": 4,
+    "question": "Alveoller insan vücudunda nerede bulunur?",
+    "options": [
+      "Boyun tabanı ile omuz arasında",
+      "Omurga boyunca",
+      "Akciğerlerin uç hava keseciklerinde",
+      "Beynin tabanında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Alveoller, akciğerlerin uç hava keseciklerinde bulunur."
+  },
+  {
+    "id": "q57252",
+    "categoryIndex": 5,
+    "question": "Okçulukta bir okun daha önce hedefe saplanmış oku ikiye ayırmasına verilen geleneksel ad nedir?",
+    "options": [
+      "Split end",
+      "Perfect ten",
+      "Bullseye",
+      "Robin Hood atışı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bir okun önceki okun gövdesine girerek onu yarması, Robin Hood efsanesine gönderme yapan nadir bir atıştır."
+  },
+  {
+    "id": "q57253",
+    "categoryIndex": 0,
+    "question": "2023 G7 Zirvesi nerede düzenlendi?",
+    "options": [
+      "Hiroşima",
+      "Belém",
+      "Tahiti",
+      "Miami Gardens"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2023 G7 Zirvesi, Hiroşima bölgesinde veya kentinde düzenlendi."
+  },
+  {
+    "id": "q57254",
+    "categoryIndex": 1,
+    "question": "2021 yapımı “The Worst Person in the World” filmini kim yönetti?",
+    "options": [
+      "Alex Garland",
+      "Joachim Trier",
+      "Greta Gerwig",
+      "Todd Field"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“The Worst Person in the World”, Joachim Trier tarafından yönetilen ve 2021 yılında gösterime giren bir filmdir."
+  },
+  {
+    "id": "q57255",
+    "categoryIndex": 2,
+    "question": "AUKUS ortaklığı kapsamında Avustralya'ya hangi tür denizaltı teknolojisinin sağlanması planlandı?",
+    "options": [
+      "Dizel nehir denizaltısı",
+      "Balistik füze kruvazörü",
+      "Nükleer tahrikli denizaltı",
+      "Nükleer silahlı denizaltı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "AUKUS, Avustralya'nın nükleer silah değil nükleer tahrik kullanan denizaltılar edinmesine yönelik iş birliği içerir."
+  },
+  {
+    "id": "q57256",
+    "categoryIndex": 3,
+    "question": "2024 tarihli “All Fours” romanını kim yazdı?",
+    "options": [
+      "Rebecca Yarros",
+      "Susanna Clarke",
+      "Emily St. John Mandel",
+      "Miranda July"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“All Fours”, Miranda July tarafından yazılmış ve 2024 yılında yayımlanmış bir romandır."
+  },
+  {
+    "id": "q57257",
+    "categoryIndex": 4,
+    "question": "Chandrayaan-3'ün Ay'a inişi görevinin temel hedefi neydi?",
+    "options": [
+      "Ay'ın güney kutup bölgesine yakın alan",
+      "Mars atmosferi",
+      "Hassas Ay inişi teknolojisi",
+      "Kuantum noktaları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Chandrayaan-3'ün Ay'a inişi, Ay'ın güney kutup bölgesine yakın alan hedefi ya da konusuyla bağlantılıydı."
+  },
+  {
+    "id": "q57258",
+    "categoryIndex": 5,
+    "question": "2020 UEFA Şampiyonlar Ligi finali hangi şehirde oynandı?",
+    "options": [
+      "Belgrad",
+      "Lizbon",
+      "Bilbao",
+      "Kaunas"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2020 UEFA Şampiyonlar Ligi finali, Lizbon şehrinde oynandı."
+  },
+  {
+    "id": "q57259",
+    "categoryIndex": 0,
+    "question": "COP28 İklim Konferansı hangi yılda gerçekleşti?",
+    "options": [
+      "2026",
+      "2021",
+      "2023",
+      "2022"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "COP28 İklim Konferansı, 2023 yılında gerçekleşti."
+  },
+  {
+    "id": "q57260",
+    "categoryIndex": 1,
+    "question": "Cléo from 5 to 7 ile Vagabond yapımlarında ortak olan yönetmeni kimdir?",
+    "options": [
+      "Fanny Herrero",
+      "Barry Jenkins",
+      "Paolo Sorrentino",
+      "Agnès Varda"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Cléo from 5 to 7 ve Vagabond, Agnès Varda imzasını taşıyan iki yapımdır."
+  },
+  {
+    "id": "q57261",
+    "categoryIndex": 2,
+    "question": "Barbados cumhuriyet olduğunda ülkenin ilk devlet başkanı kim oldu?",
+    "options": [
+      "Sandra Mason",
+      "Mia Mottley",
+      "Paula-Mae Weekes",
+      "Portia Simpson-Miller"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Daha önce genel vali olan Sandra Mason, 30 Kasım 2021'de Barbados'un ilk cumhurbaşkanı olarak göreve başladı."
+  },
+  {
+    "id": "q57262",
+    "categoryIndex": 3,
+    "question": "“The Seven Moons of Maali Almeida” romanının ana karakterinin mesleği nedir?",
+    "options": [
+      "Gazeteci",
+      "Savaş fotoğrafçısı",
+      "Doktor",
+      "Avukat"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Maali Almeida, ölümünden sonra kendi cinayetini çözmeye çalışan Sri Lankalı bir savaş fotoğrafçısıdır."
+  },
+  {
+    "id": "q57263",
+    "categoryIndex": 4,
+    "question": "Chandrayaan-3'ün Ay'a inişi hangi kurum veya kurumlar tarafından yürütüldü?",
+    "options": [
+      "Carolyn Bertozzi, Morten Meldal ve Barry Sharpless",
+      "Firefly Aerospace",
+      "ISRO",
+      "Victor Ambros ve Gary Ruvkun"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Chandrayaan-3'ün Ay'a inişi, ISRO tarafından yürütülen veya desteklenen bir çalışmadır."
+  },
+  {
+    "id": "q57264",
+    "categoryIndex": 5,
+    "question": "Super Bowl LV'i kazanan takım hangisiydi?",
+    "options": [
+      "New England Patriots",
+      "Los Angeles Rams",
+      "Kansas City Chiefs",
+      "Tampa Bay Buccaneers"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tampa Bay Buccaneers, kendi stadyumunda oynanan Super Bowl LV'te Kansas City Chiefs'i yendi."
+  },
+  {
+    "id": "q57265",
+    "categoryIndex": 0,
+    "question": "Loch Ness hangi ülkede veya ülkelerde bulunur?",
+    "options": [
+      "Birleşik Krallık",
+      "Arjantin ve Brezilya",
+      "Hırvatistan",
+      "Meksika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Loch Ness, Birleşik Krallık sınırları içinde yer alan bir doğal oluşumdur."
+  },
+  {
+    "id": "q57266",
+    "categoryIndex": 1,
+    "question": "The Seventh Seal filminin yönetmeni kimdir?",
+    "options": [
+      "Jean-Luc Godard",
+      "Ingmar Bergman",
+      "Wong Kar-wai",
+      "Denis Villeneuve"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "The Seventh Seal, Ingmar Bergman tarafından yönetilen 1957 yapımı bir filmdir."
+  },
+  {
+    "id": "q57267",
+    "categoryIndex": 2,
+    "question": "DART uzay aracının Dimorphos’a çarpması hangi yılda gerçekleşti?",
+    "options": [
+      "1986",
+      "1945",
+      "2022",
+      "1962"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "DART uzay aracının Dimorphos’a çarpması, 2022 yılında Dimorphos ile bağlantılı olarak gerçekleşti."
+  },
+  {
+    "id": "q57268",
+    "categoryIndex": 3,
+    "question": "2022 tarihli “Sea of Tranquility” romanını kim yazdı?",
+    "options": [
+      "Kaveh Akbar",
+      "Jennifer Egan",
+      "Maggie O'Farrell",
+      "Emily St. John Mandel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Sea of Tranquility”, Emily St. John Mandel tarafından yazılmış ve 2022 yılında yayımlanmış bir romandır."
+  },
+  {
+    "id": "q57269",
+    "categoryIndex": 4,
+    "question": "Atom numarası 21 olan element hangisidir?",
+    "options": [
+      "Skandiyum",
+      "Ksenon",
+      "Tulyum",
+      "Hidrojen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Atom numarası 21 olan element Skandiyum, kimyasal simgesi ise Sc’dir."
+  },
+  {
+    "id": "q57270",
+    "categoryIndex": 5,
+    "question": "Profesyonel dart maçlarının çoğunda oyuncular hangi başlangıç puanından geriye sayar?",
+    "options": [
+      "401",
+      "501",
+      "301",
+      "701"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "501 formatında oyuncular her atışta puanlarını azaltır ve tam sıfıra çift bölmeyle ulaşmaya çalışır."
+  },
+  {
+    "id": "q57271",
+    "categoryIndex": 0,
+    "question": "2024 yılında gerçekleşen coğrafi gelişme hangisidir?",
+    "options": [
+      "Anadolu'nun Orta Çağ Dönemi Ahşap Hipostil Camileri'nin UNESCO listesine alınması",
+      "2023 FIFA Kadınlar Dünya Kupası finali",
+      "2024 G20 Zirvesi",
+      "2023 G7 Zirvesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2024 G20 Zirvesi, 2024 yılının öne çıkan coğrafi gelişmelerinden biridir."
+  },
+  {
+    "id": "q57272",
+    "categoryIndex": 1,
+    "question": "Titane filmi hangi yıl gösterime girmiştir?",
+    "options": [
+      "2023",
+      "2022",
+      "2009",
+      "2021"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Julia Ducournau imzalı Titane, 2021 yılında gösterime girdi."
+  },
+  {
+    "id": "q57273",
+    "categoryIndex": 2,
+    "question": "2020'de NATO'nun otuzuncu üyesi olan Balkan ülkesi hangisidir?",
+    "options": [
+      "Kuzey Makedonya",
+      "Karadağ",
+      "Sırbistan",
+      "Bosna-Hersek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kuzey Makedonya, 27 Mart 2020'de NATO'ya katılarak ittifakın otuzuncu üyesi oldu."
+  },
+  {
+    "id": "q57274",
+    "categoryIndex": 3,
+    "question": "2023'te Royal Academy of Arts'ta büyük retrospektifi açılan performans sanatçısı kimdi?",
+    "options": [
+      "Cindy Sherman",
+      "Marina Abramović",
+      "Jenny Holzer",
+      "Tracey Emin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Marina Abramović'in 2023 Londra retrospektifi, Royal Academy'de bir kadın sanatçıya ayrılan ilk büyük solo sergiydi."
+  },
+  {
+    "id": "q57275",
+    "categoryIndex": 4,
+    "question": "Apandis insan vücudunda nerede bulunur?",
+    "options": [
+      "Vücuttan kalbin sağ kulakçığına uzanır",
+      "Karaciğerin alt yüzünde",
+      "Kör bağırsağa bağlı olarak sağ alt karında",
+      "Ön kolun serçe parmak tarafında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Apandis, kör bağırsağa bağlı olarak sağ alt karında bulunur."
+  },
+  {
+    "id": "q57276",
+    "categoryIndex": 5,
+    "question": "Masa tenisinde normal bir set kaç sayıya ulaşan oyuncu tarafından kazanılır?",
+    "options": [
+      "21",
+      "15",
+      "25",
+      "11"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Masa tenisinde set 11 sayıda biter; 10-10 sonrasında kazanmak için iki sayı fark gerekir."
+  },
+  {
+    "id": "q57277",
+    "categoryIndex": 0,
+    "question": "Atacama Çölü hangi ülkede veya ülkelerde bulunur?",
+    "options": [
+      "Şili",
+      "Tanzanya",
+      "Japonya",
+      "Norveç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Atacama Çölü, Şili sınırları içinde yer alan bir doğal oluşumdur."
+  },
+  {
+    "id": "q57278",
+    "categoryIndex": 1,
+    "question": "2020 yapımı “Another Round” filmini kim yönetti?",
+    "options": [
+      "Ryusuke Hamaguchi",
+      "Thomas Vinterberg",
+      "Martin McDonagh",
+      "Yorgos Lanthimos"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Another Round”, Thomas Vinterberg tarafından yönetilen ve 2020 yılında gösterime giren bir filmdir."
+  },
+  {
+    "id": "q57279",
+    "categoryIndex": 2,
+    "question": "2024 Birleşik Krallık genel seçiminde iktidara gelen parti hangisiydi?",
+    "options": [
+      "Muhafazakâr Parti",
+      "Liberal Demokratlar",
+      "İşçi Partisi",
+      "İskoç Ulusal Partisi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İşçi Partisi, 4 Temmuz 2024 seçiminde Avam Kamarası'nda büyük çoğunluk kazanarak 14 yıllık Muhafazakâr iktidarı bitirdi."
+  },
+  {
+    "id": "q57280",
+    "categoryIndex": 3,
+    "question": "2023 tarihli “The Bee Sting” romanını kim yazdı?",
+    "options": [
+      "Kristin Hannah",
+      "Brit Bennett",
+      "Bonnie Garmus",
+      "Paul Murray"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“The Bee Sting”, Paul Murray tarafından yazılmış ve 2023 yılında yayımlanmış bir romandır."
+  },
+  {
+    "id": "q57281",
+    "categoryIndex": 4,
+    "question": "James Webb'in ilk tam renkli görüntülerinin yayımlanması çalışmasının ana bilimsel hedefi neydi?",
+    "options": [
+      "SMACS 0723 derin alanı",
+      "Tüm gökyüzünü kızılötesi tayflarla haritalamak",
+      "Yapay sinir ağlarıyla makine öğrenmesi",
+      "Kara deliklerle ilgili keşifler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "James Webb'in ilk tam renkli görüntülerinin yayımlanması, SMACS 0723 derin alanı konusuna odaklanan bir bilimsel gelişmedir."
+  },
+  {
+    "id": "q57282",
+    "categoryIndex": 5,
+    "question": "2023 FIFA Kadınlar Dünya Kupası'nı hangi ülke kazandı?",
+    "options": [
+      "Avustralya",
+      "İspanya",
+      "İngiltere",
+      "İsveç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İspanya, Sidney'deki finalde İngiltere'yi 1-0 yenerek ilk kadınlar dünya şampiyonluğunu aldı."
+  },
+  {
+    "id": "q57283",
+    "categoryIndex": 0,
+    "question": "Giant’s Causeway hangi ülkede veya ülkelerde bulunur?",
+    "options": [
+      "İspanya",
+      "Yeni Zelanda",
+      "Birleşik Krallık",
+      "İsviçre ve İtalya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Giant’s Causeway, Birleşik Krallık sınırları içinde yer alan bir doğal oluşumdur."
+  },
+  {
+    "id": "q57284",
+    "categoryIndex": 1,
+    "question": "2021 yapımı “CODA” filmini kim yönetti?",
+    "options": [
+      "Ruben Östlund",
+      "Justine Triet",
+      "Joachim Trier",
+      "Sian Heder"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“CODA”, Sian Heder tarafından yönetilen ve 2021 yılında gösterime giren bir filmdir."
+  },
+  {
+    "id": "q57285",
+    "categoryIndex": 2,
+    "question": "Maraton Muharebesi günümüzde hangi ülkenin sınırları içinde gerçekleşti?",
+    "options": [
+      "Yunanistan",
+      "Türkiye",
+      "İtalya",
+      "Mısır"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "MÖ 490'daki Maraton Muharebesi, günümüzde Yunanistan sınırları içinde bulunan Maraton Ovası'nda yapıldı."
+  },
+  {
+    "id": "q57286",
+    "categoryIndex": 3,
+    "question": "“James”, hangi klasik romanı Jim’in bakış açısından yeniden yorumlar?",
+    "options": [
+      "Moby Dick",
+      "Huckleberry Finn",
+      "Büyük Umutlar",
+      "Gazap Üzümleri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Percival Everett’in “James” romanı, Mark Twain’in “Huckleberry Finn” eserini Jim’in bakış açısından yeniden anlatır."
+  },
+  {
+    "id": "q57287",
+    "categoryIndex": 4,
+    "question": "Mutlak sıfır sıcaklığı Celsius ölçeğinde yaklaşık kaç derecedir?",
+    "options": [
+      "-100 °C",
+      "0 °C",
+      "-273,15 °C",
+      "-459 °C"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mutlak sıfır 0 kelvine eşittir ve Celsius ölçeğinde yaklaşık -273,15 dereceye karşılık gelir."
+  },
+  {
+    "id": "q57288",
+    "categoryIndex": 5,
+    "question": "Futbolda oyuncu doğrudan taç atışından top aldığında ofsayt kararı verilir mi?",
+    "options": [
+      "Yalnız ilk yarıda",
+      "Evet, her zaman",
+      "Yalnız ceza alanında",
+      "Hayır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Futbol kurallarında taç atışı, kale vuruşu ve köşe vuruşundan doğrudan top alan oyuncu ofsayt sayılmaz."
+  },
+  {
+    "id": "q57289",
+    "categoryIndex": 0,
+    "question": "2024 G20 Zirvesi hangi ülkede düzenlendi?",
+    "options": [
+      "Brezilya",
+      "Türkiye",
+      "Birleşik Arap Emirlikleri",
+      "Hindistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2024 G20 Zirvesi, Brezilya ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q57290",
+    "categoryIndex": 1,
+    "question": "2022 çıkışlı “Un Verano Sin Ti” albümü hangi sanatçıya aittir?",
+    "options": [
+      "Charli XCX",
+      "Bad Bunny",
+      "Taylor Swift",
+      "SZA"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Un Verano Sin Ti”, Bad Bunny tarafından yayımlanan ve 2022 dönemine damga vuran albümlerden biridir."
+  },
+  {
+    "id": "q57291",
+    "categoryIndex": 2,
+    "question": "Liz Truss'un başbakanlığı yaklaşık kaç gün sürdü?",
+    "options": [
+      "180 gün",
+      "100 gün",
+      "49 gün",
+      "19 gün"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Liz Truss 49 gün görevde kalarak Birleşik Krallık tarihinin en kısa süre görev yapan başbakanı oldu."
+  },
+  {
+    "id": "q57292",
+    "categoryIndex": 3,
+    "question": "“The Netanyahus” romanının olayları ağırlıklı olarak hangi ortamda geçer?",
+    "options": [
+      "Bir savaş gemisinde",
+      "Finans merkezinde",
+      "Bakanlık binasında",
+      "Bir üniversite kampüsünde"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Joshua Cohen’in romanı, Netanyahu ailesinin Amerikalı bir tarihçinin çalıştığı üniversiteyi ziyareti çevresinde gelişir."
+  },
+  {
+    "id": "q57293",
+    "categoryIndex": 4,
+    "question": "Emirates Mars Mission Hope'un fırlatılması hangi kurum veya kurumlar tarafından yürütüldü?",
+    "options": [
+      "Birleşik Arap Emirlikleri Uzay Ajansı",
+      "Alain Aspect, John Clauser ve Anton Zeilinger",
+      "Roger Penrose, Reinhard Genzel ve Andrea Ghez",
+      "Katalin Karikó ve Drew Weissman"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Emirates Mars Mission Hope'un fırlatılması, Birleşik Arap Emirlikleri Uzay Ajansı tarafından yürütülen veya desteklenen bir çalışmadır."
+  },
+  {
+    "id": "q57294",
+    "categoryIndex": 5,
+    "question": "MotoGP sıralamasında yarışa ilk sıradan başlama hakkına ne denir?",
+    "options": [
+      "Holeshot",
+      "Pole pozisyonu",
+      "Wildcard",
+      "Slipstream"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sıralama turlarının en hızlı sürücüsü yarışa gridin ilk cebinden, yani pole pozisyonundan başlar."
+  },
+  {
+    "id": "q57295",
+    "categoryIndex": 0,
+    "question": "Uluru hangi ülkede veya ülkelerde bulunur?",
+    "options": [
+      "Filipinler",
+      "Yemen",
+      "Avustralya",
+      "Türkiye"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Uluru, Avustralya sınırları içinde yer alan bir doğal oluşumdur."
+  },
+  {
+    "id": "q57296",
+    "categoryIndex": 1,
+    "question": "2020 yapımı “The Father” filmini kim yönetti?",
+    "options": [
+      "Sian Heder",
+      "Christopher Nolan",
+      "Daniel Kwan ve Daniel Scheinert",
+      "Florian Zeller"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“The Father”, Florian Zeller tarafından yönetilen ve 2020 yılında gösterime giren bir filmdir."
+  },
+  {
+    "id": "q57297",
+    "categoryIndex": 2,
+    "question": "Pakistan'da 2022'de güvensizlik oyuyla görevden alınan başbakan kimdi?",
+    "options": [
+      "İmran Han",
+      "Navaz Şerif",
+      "Şahbaz Şerif",
+      "Asıf Ali Zerdari"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İmran Han, Nisan 2022'de parlamentodaki güvensizlik oylamasını kaybederek görevden alınan ilk Pakistan başbakanı oldu."
+  },
+  {
+    "id": "q57298",
+    "categoryIndex": 3,
+    "question": "Orange and Yellow adlı yapıtın yaratıcısı kimdir?",
+    "options": [
+      "Zaha Hadid",
+      "Mark Rothko",
+      "Salvador Dalí",
+      "Frank Lloyd Wright"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Orange and Yellow, Mark Rothko tarafından oluşturulmuştur."
+  },
+  {
+    "id": "q57299",
+    "categoryIndex": 4,
+    "question": "2024 Nobel Fizik Ödülü hangi yıl verildi?",
+    "options": [
+      "2023",
+      "2022",
+      "2024",
+      "2026"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2024 Nobel Fizik Ödülü, 2024 yılında gerçekleşti."
+  },
+  {
+    "id": "q57300",
+    "categoryIndex": 5,
+    "question": "Artistik jimnastikte erkeklere özgü, iki kulplu alet hangisidir?",
+    "options": [
+      "Trambolin",
+      "Denge aleti",
+      "Asimetrik paralel",
+      "Kulplu beygir"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kulplu beygirde sporcu kolları üzerinde sürekli dairesel hareketler ve makas geçişleri yapar."
+  },
+  {
+    "id": "q57301",
+    "categoryIndex": 0,
+    "question": "2021 G20 Zirvesi nerede düzenlendi?",
+    "options": [
+      "Roma",
+      "Rio de Janeiro",
+      "Dubai",
+      "Maranhão"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2021 G20 Zirvesi, Roma bölgesinde veya kentinde düzenlendi."
+  },
+  {
+    "id": "q57302",
+    "categoryIndex": 1,
+    "question": "2023 yapımı “The Zone of Interest” filmini kim yönetti?",
+    "options": [
+      "Luca Guadagnino",
+      "Jonathan Glazer",
+      "Florian Zeller",
+      "Ryusuke Hamaguchi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“The Zone of Interest”, Jonathan Glazer tarafından yönetilen ve 2023 yılında gösterime giren bir filmdir."
+  },
+  {
+    "id": "q57303",
+    "categoryIndex": 2,
+    "question": "Dünya Sağlık Örgütünün merkezi hangi şehirdedir?",
+    "options": [
+      "Viyana",
+      "New York",
+      "Cenevre",
+      "Brüksel"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dünya Sağlık Örgütünün merkezi İsviçre'nin Cenevre kentindedir; COVID-19 pandemi açıklaması da buradaki merkezden yapıldı."
+  },
+  {
+    "id": "q57304",
+    "categoryIndex": 3,
+    "question": "2020 tarihli “Hamnet” romanını kim yazdı?",
+    "options": [
+      "Abraham Verghese",
+      "Kristin Hannah",
+      "Amor Towles",
+      "Maggie O'Farrell"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Hamnet”, Maggie O'Farrell tarafından yazılmış ve 2020 yılında yayımlanmış bir romandır."
+  },
+  {
+    "id": "q57305",
+    "categoryIndex": 4,
+    "question": "Parker Solar Probe'un Güneş koronasında uçtuğunun açıklanması çalışmasının ana bilimsel hedefi neydi?",
+    "options": [
+      "Güneş'in dış atmosferi",
+      "mRNA aşılarına temel oluşturan keşifler",
+      "Attosaniyelik ışık darbeleri",
+      "Jüpiter'in Truva asteroitleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Parker Solar Probe'un Güneş koronasında uçtuğunun açıklanması, Güneş'in dış atmosferi konusuna odaklanan bir bilimsel gelişmedir."
+  },
+  {
+    "id": "q57306",
+    "categoryIndex": 5,
+    "question": "2024 UEFA Avrupa Ligi finalini hangi takım kazandı?",
+    "options": [
+      "Anadolu Efes",
+      "Atalanta",
+      "Fenerbahçe",
+      "Real Madrid"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2024 UEFA Avrupa Ligi finalinde kupayı Atalanta kazandı."
+  },
+  {
+    "id": "q57307",
+    "categoryIndex": 0,
+    "question": "Pamukkale hangi ülkede veya ülkelerde bulunur?",
+    "options": [
+      "Yeni Zelanda",
+      "Güney Afrika",
+      "Türkiye",
+      "Brezilya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Pamukkale, Türkiye sınırları içinde yer alan bir doğal oluşumdur."
+  },
+  {
+    "id": "q57308",
+    "categoryIndex": 1,
+    "question": "Spirited Away filminin yönetmeni kimdir?",
+    "options": [
+      "Satoshi Kon",
+      "Mamoru Hosoda",
+      "Makoto Shinkai",
+      "Hayao Miyazaki"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Spirited Away, Studio Ghibli'nin kurucularından Hayao Miyazaki tarafından yönetildi."
+  },
+  {
+    "id": "q57309",
+    "categoryIndex": 2,
+    "question": "II. Elizabeth'in ardından III. Charles hangi ülkenin tahtına çıktı?",
+    "options": [
+      "Birleşik Krallık",
+      "İspanya",
+      "Hollanda",
+      "Norveç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "II. Elizabeth'in 2022'deki ölümünün ardından III. Charles, Birleşik Krallık hükümdarı oldu."
+  },
+  {
+    "id": "q57310",
+    "categoryIndex": 3,
+    "question": "2023'te Glasgow'da düzenlenen “CUT & RUN” sergisinin arkasındaki anonim sanatçı kimdi?",
+    "options": [
+      "JR",
+      "Banksy",
+      "Invader",
+      "Shepard Fairey"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Banksy'nin “CUT & RUN” sergisi, 2023'te Glasgow Modern Sanat Galerisi'nde açıldı."
+  },
+  {
+    "id": "q57311",
+    "categoryIndex": 4,
+    "question": "Mutlak sıfır Celsius ölçeğinde yaklaşık kaç derecedir?",
+    "options": [
+      "-196 °C",
+      "-100 °C",
+      "-273,15 °C",
+      "0 °C"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mutlak sıfır, parçacıkların erişebileceği en düşük enerji durumunu ifade eder ve yaklaşık -273,15 °C’dir."
+  },
+  {
+    "id": "q57312",
+    "categoryIndex": 5,
+    "question": "2024 Copa América finali hangi şehirde oynandı?",
+    "options": [
+      "Belgrad",
+      "Abu Dabi",
+      "Münih",
+      "Miami Gardens"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "2024 Copa América finali, Miami Gardens şehrinde oynandı."
+  },
+  {
+    "id": "q57313",
+    "categoryIndex": 0,
+    "question": "Kenya ülkesinde bulunan Bomet için kullanılan idari birim türü hangisidir?",
+    "options": [
+      "Kontluk/ilçe",
+      "İdari bölge",
+      "Özerk il",
+      "Halk bölgesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "ISO 3166-2 kaydında Bomet, Kenya için “County” türünde; Türkçe karşılığıyla kontluk/ilçe olarak sınıflandırılır."
+  },
+  {
+    "id": "q57314",
+    "categoryIndex": 1,
+    "question": "“Wednesday” ilk olarak hangi platform veya kanalda yayımlandı?",
+    "options": [
+      "Hazelight Studios",
+      "Netflix",
+      "Supergiant Games",
+      "Apple TV+"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Wednesday”, ilk yayımlandığı dönemde Netflix üzerinden izleyiciyle buluştu."
+  },
+  {
+    "id": "q57315",
+    "categoryIndex": 2,
+    "question": "Barbados'un cumhuriyet olması hangi yıl gerçekleşti?",
+    "options": [
+      "2024",
+      "2023",
+      "2021",
+      "2025"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Barbados'un cumhuriyet olması, 2021 yılında gerçekleşti."
+  },
+  {
+    "id": "q57316",
+    "categoryIndex": 3,
+    "question": "Sineklerin Tanrısı eserinin yazarı kimdir?",
+    "options": [
+      "Kemal Tahir",
+      "Nabizade Nâzım",
+      "Elif Şafak",
+      "William Golding"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sineklerin Tanrısı, William Golding tarafından kaleme alınmıştır."
+  },
+  {
+    "id": "q57317",
+    "categoryIndex": 4,
+    "question": "2022 Nobel Fizyoloji veya Tıp Ödülü kimlere verildi?",
+    "options": [
+      "Svante Pääbo",
+      "David Julius ve Ardem Patapoutian",
+      "Telomere-to-Telomere Konsorsiyumu",
+      "NASA, ESA ve CSA"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2022 Nobel Fizyoloji veya Tıp Ödülü, Svante Pääbo tarafından kazanıldı."
+  },
+  {
+    "id": "q57318",
+    "categoryIndex": 5,
+    "question": "Polo maçında bir oyun periyoduna ne denir?",
+    "options": [
+      "End",
+      "Chukka",
+      "Heat",
+      "Inning"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Polo karşılaşmaları chukka adı verilen süreli bölümlere ayrılır; sayı turnuvaya göre değişebilir."
+  },
+  {
+    "id": "q57319",
+    "categoryIndex": 0,
+    "question": "2023 G20 Zirvesi hangi ülkede düzenlendi?",
+    "options": [
+      "Endonezya",
+      "Birleşik Arap Emirlikleri",
+      "Hindistan",
+      "Azerbaycan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2023 G20 Zirvesi, Hindistan ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q57320",
+    "categoryIndex": 1,
+    "question": "“Only Murders in the Building” ilk kez hangi yıl yayımlandı?",
+    "options": [
+      "2026",
+      "2025",
+      "2024",
+      "2021"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Only Murders in the Building”, ilk kez 2021 yılında yayımlandı."
+  }
+]

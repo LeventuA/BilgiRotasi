@@ -1,0 +1,117 @@
+{
+  "auditedKnownQuestionCount": 43120,
+  "knownKeepCount": 1066,
+  "knownRejectCount": 42054,
+  "knownKeepByCategory": {
+    "0": 103,
+    "1": 221,
+    "3": 325,
+    "4": 178,
+    "5": 81,
+    "2": 158
+  },
+  "knownKeepBySeries": {
+    "early_generated": 655,
+    "second": 157,
+    "third": 254
+  },
+  "knownRejectReasonCounts": [
+    {
+      "reason": "İki ayrı soruyu birleştiren yapay ve yorucu format.",
+      "count": 10000
+    },
+    {
+      "reason": "Trivia yerine temel hesaplama/alıştırma şablonu.",
+      "count": 10000
+    },
+    {
+      "reason": "Seri üretim, hesaplama, sıralama veya veri tabanı şablonu.",
+      "count": 4850
+    },
+    {
+      "reason": "sıralama/karşılaştırma",
+      "count": 3148
+    },
+    {
+      "reason": "Trivia değeri düşük veya fazla niş şablon.",
+      "count": 3090
+    },
+    {
+      "reason": "kod/idari veri",
+      "count": 1819
+    },
+    {
+      "reason": "hesaplama",
+      "count": 1622
+    },
+    {
+      "reason": "Aynı kalıptan/cevaptan fazla soru bulunduğu için çeşitlilik kotasında elendi.",
+      "count": 1452
+    },
+    {
+      "reason": "sıralama/karşılaştırma; aşırı uzun",
+      "count": 1328
+    },
+    {
+      "reason": "formül alıştırması",
+      "count": 1270
+    },
+    {
+      "reason": "aşırı uzun",
+      "count": 1178
+    },
+    {
+      "reason": "hesaplama; müzik hesabı",
+      "count": 1005
+    },
+    {
+      "reason": "müzik hesabı",
+      "count": 362
+    },
+    {
+      "reason": "hesaplama; formül alıştırması",
+      "count": 322
+    },
+    {
+      "reason": "yüzyıl/on yıl alıştırması",
+      "count": 228
+    },
+    {
+      "reason": "birleşik/meta soru",
+      "count": 111
+    },
+    {
+      "reason": "aşırı uzun; birden fazla soru",
+      "count": 83
+    },
+    {
+      "reason": "birden fazla soru",
+      "count": 60
+    },
+    {
+      "reason": "sıralama/karşılaştırma; aşırı uzun; birden fazla soru",
+      "count": 45
+    },
+    {
+      "reason": "sıralama/karşılaştırma; birden fazla soru",
+      "count": 42
+    },
+    {
+      "reason": "hesaplama; aşırı uzun; birden fazla soru",
+      "count": 21
+    },
+    {
+      "reason": "hesaplama; birden fazla soru",
+      "count": 18
+    }
+  ],
+  "coverage": [
+    "q3001-q6120",
+    "q13121-q53120"
+  ],
+  "runtimeAuditRanges": [
+    "q001-q3000",
+    "q6121-q13120"
+  ],
+  "note": "Yerel paketlerde erişilebilen 43.120 soru metin, bilgi ailesi ve tekrar yoğunluğu açısından denetlendi. Kalan 10.000 soru gerçek repo dosyası üzerinde aynı betik tarafından sıkı filtreyle değerlendirilir."
+}

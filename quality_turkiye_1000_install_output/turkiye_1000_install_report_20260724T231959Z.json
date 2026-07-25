@@ -1,0 +1,30 @@
+{
+  "existingCount": 5710,
+  "incomingCount": 1000,
+  "originalCleanCount": 998,
+  "reserveSubstitutionCount": 2,
+  "acceptedCount": 1000,
+  "unresolvedConflictCount": 0,
+  "newTotalIfApplied": 6710,
+  "substitutions": [
+    {
+      "id": "q58127",
+      "rejectedQuestion": "İstanbul Boğazı hangi iki denizi birbirine bağlar?",
+      "rejectedReasons": [
+        "Soru metni q003 ile aynı"
+      ],
+      "replacementReserveId": "reserve001",
+      "replacementQuestion": "Van Gölü'ndeki adaların yüzölçümü bakımından en büyüğü hangisidir?"
+    },
+    {
+      "id": "q58641",
+      "rejectedQuestion": "Çalıkuşu romanının yazarı kimdir?",
+      "rejectedReasons": [
+        "Soru metni q074 ile aynı"
+      ],
+      "replacementReserveId": "reserve019",
+      "replacementQuestion": "Gül Yetiştiren Adam romanının yazarı kimdir?"
+    }
+  ],
+  "unresolvedConflicts": []
+}

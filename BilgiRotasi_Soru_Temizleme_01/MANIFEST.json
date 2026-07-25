@@ -1,0 +1,19 @@
+{
+  "project": "LeventuA/BilgiRotasi",
+  "bundle": "BilgiRotasi_Soru_Temizleme_01",
+  "createdOn": "2026-07-23",
+  "purpose": "Mevcut soru bankasını ciddi kalite elemesinden geçirmek",
+  "newQuestionsGenerated": 0,
+  "knownAuditedQuestionCount": 43120,
+  "knownAllowlistBeforeRuntimeChecks": 1066,
+  "knownTestKeptAfterRuntimeChecks": 999,
+  "knownTestRejectedAfterRuntimeChecks": 42121,
+  "runtimeAuditRanges": [
+    "q001-q3000",
+    "q6121-q13120"
+  ],
+  "expectedCurrentQuestionCount": 53120,
+  "expectedGitBlobSha": "2b97abd83d58a5d32b02ee7ded47adbf79a360ab",
+  "installerTest": "PASS",
+  "installerTestResultQuestionCount": 999
+}

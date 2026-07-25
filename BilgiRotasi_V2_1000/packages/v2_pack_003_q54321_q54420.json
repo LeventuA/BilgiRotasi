@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q54321",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük göl adası Manitoulin hangi ülkededir?",
+    "options": [
+      "ABD",
+      "Kanada",
+      "Finlandiya",
+      "Rusya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Manitoulin Adası, Kanada’daki Huron Gölü içinde yer alır ve dünyanın en büyük tatlı su gölü adasıdır."
+  },
+  {
+    "id": "q54322",
+    "categoryIndex": 0,
+    "question": "Bir gölün içindeki adada bulunan göl örnekleriyle ünlü Taal hangi ülkededir?",
+    "options": [
+      "Endonezya",
+      "Japonya",
+      "Filipinler",
+      "Yeni Zelanda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Taal Gölü içindeki Volcano Island ve onun krater gölü iç içe geçmiş coğrafi yapısıyla tanınır."
+  },
+  {
+    "id": "q54323",
+    "categoryIndex": 0,
+    "question": "Amazon Nehri’nin ağzındaki büyük Marajó Adası hangi ülkededir?",
+    "options": [
+      "Peru",
+      "Kolombiya",
+      "Venezuela",
+      "Brezilya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Marajó Adası Brezilya’nın kuzeyinde Amazon-Tocantins ağız sisteminde yer alır."
+  },
+  {
+    "id": "q54324",
+    "categoryIndex": 0,
+    "question": "Komodo ejderlerinin doğal olarak yaşadığı ülke hangisidir?",
+    "options": [
+      "Endonezya",
+      "Malezya",
+      "Papua Yeni Gine",
+      "Filipinler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Komodo, Rinca ve birkaç küçük ada Endonezya’daki vahşi Komodo ejderlerinin doğal yaşam alanıdır."
+  },
+  {
+    "id": "q54325",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük aktif volkanlarından Mauna Loa hangi adadadır?",
+    "options": [
+      "Maui",
+      "Hawaii Büyük Adası",
+      "Oahu",
+      "Kauai"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mauna Loa, Hawaii takımadalarının en büyük adası olan Hawaii Adası’nda yükselir."
+  },
+  {
+    "id": "q54326",
+    "categoryIndex": 0,
+    "question": "Krakatau Yanardağı hangi iki büyük ada arasındaki boğazdadır?",
+    "options": [
+      "Borneo ve Sulawesi",
+      "Luzon ve Mindanao",
+      "Cava ve Sumatra",
+      "Honshu ve Hokkaido"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Krakatau, Endonezya’daki Sunda Boğazı’nda Cava ile Sumatra arasında bulunur."
+  },
+  {
+    "id": "q54327",
+    "categoryIndex": 0,
+    "question": "Vezüv Yanardağı hangi büyük İtalyan şehrine yakındır?",
+    "options": [
+      "Roma",
+      "Milano",
+      "Floransa",
+      "Napoli"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Vezüv, Napoli Körfezi kıyısında kente ve Pompeii kalıntılarına yakın aktif bir yanardağdır."
+  },
+  {
+    "id": "q54328",
+    "categoryIndex": 0,
+    "question": "Cotopaxi Yanardağı hangi ülkededir?",
+    "options": [
+      "Ekvador",
+      "Peru",
+      "Şili",
+      "Kolombiya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Cotopaxi, Ekvador Andları’nda karla kaplı ve oldukça etkin bir stratovolkandır."
+  },
+  {
+    "id": "q54329",
+    "categoryIndex": 0,
+    "question": "Kilauea Yanardağı hangi ülkeye aittir?",
+    "options": [
+      "Meksika",
+      "ABD",
+      "Japonya",
+      "İzlanda"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kilauea, ABD’nin Hawaii eyaletindeki Büyük Ada üzerinde yer alan çok etkin bir yanardağdır."
+  },
+  {
+    "id": "q54330",
+    "categoryIndex": 0,
+    "question": "Eyjafjallajökull Yanardağı hangi ülkededir?",
+    "options": [
+      "Norveç",
+      "Grönland",
+      "İzlanda",
+      "Finlandiya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2010’daki patlaması Avrupa hava trafiğini etkileyen Eyjafjallajökull İzlanda’dadır."
+  },
+  {
+    "id": "q54331",
+    "categoryIndex": 0,
+    "question": "ABD’nin en büyük sıcak su kaynağı Grand Prismatic Spring hangi millî parktadır?",
+    "options": [
+      "Yosemite",
+      "Banff",
+      "Grand Canyon",
+      "Yellowstone"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Grand Prismatic Spring, Yellowstone’daki renkli termofil mikroorganizmalarıyla ünlü dev jeotermal kaynaktır."
+  },
+  {
+    "id": "q54332",
+    "categoryIndex": 0,
+    "question": "Pamukkale’deki beyaz terasları oluşturan temel mineral hangisidir?",
+    "options": [
+      "Kalsiyum karbonat",
+      "Demir oksit",
+      "Kuvars",
+      "Kükürt"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sıcak kaynak suyundaki kalsiyum karbonat çökelerek beyaz traverten basamaklarını oluşturur."
+  },
+  {
+    "id": "q54333",
+    "categoryIndex": 0,
+    "question": "Kızıldeniz’in adında “kızıl” geçmesine rağmen suyu genellikle hangi renkte görünür?",
+    "options": [
+      "Kırmızı",
+      "Mavi",
+      "Siyah",
+      "Sarı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kızıldeniz normalde mavidir; adının kökeni alg patlamaları veya eski yön-renk gelenekleriyle açıklanır."
+  },
+  {
+    "id": "q54334",
+    "categoryIndex": 0,
+    "question": "Karadeniz’in derin sularında oksijenin çok az olmasının başlıca nedeni nedir?",
+    "options": [
+      "Güneş ışığının fazla olması",
+      "Tuzluluğun sıfır olması",
+      "Su tabakalarının karışmaması",
+      "Gelgitlerin çok güçlü olması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Yoğun tuzlu alt su ile daha hafif üst su tabakaları karışmadığı için derinlerde oksijensiz ortam oluşur."
+  },
+  {
+    "id": "q54335",
+    "categoryIndex": 0,
+    "question": "Aral Gölü’nün küçülmesinin temel insan kaynaklı nedeni nedir?",
+    "options": [
+      "Volkanik patlama",
+      "Deniz seviyesinin yükselmesi",
+      "Buzul oluşumu",
+      "Nehir sularının sulamaya çevrilmesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Amu Derya ve Sir Derya sularının büyük ölçekli pamuk sulamasına aktarılması gölü dramatik biçimde küçülttü."
+  },
+  {
+    "id": "q54336",
+    "categoryIndex": 0,
+    "question": "Hollanda’da denizden kazanılan ve setlerle korunan topraklara ne denir?",
+    "options": [
+      "Polder",
+      "Fiyort",
+      "Atol",
+      "Tundra"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Polder, suyu pompalanmış ve setlerle çevrilmiş alçak arazi parçasıdır."
+  },
+  {
+    "id": "q54337",
+    "categoryIndex": 0,
+    "question": "Mercan adalarının halka biçimindeki türüne ne denir?",
+    "options": [
+      "Fiyort",
+      "Atol",
+      "Delta",
+      "Lagün tepesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Atoller genellikle çöken volkanik adaların çevresinde büyüyen mercan resiflerinden oluşur."
+  },
+  {
+    "id": "q54338",
+    "categoryIndex": 1,
+    "question": "Kibar Feyzo filminde başlık parası isteyen ağanın adı nedir?",
+    "options": [
+      "Abdi Ağa",
+      "Züğürt Ağa",
+      "Maho Ağa",
+      "Berber Ali"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Maho Ağa köylüleri sömüren düzenin temsilcisidir ve Feyzo onun kurallarına başkaldırır."
+  },
+  {
+    "id": "q54339",
+    "categoryIndex": 1,
+    "question": "Çöpçüler Kralı filminde Apti’nin mesleği nedir?",
+    "options": [
+      "Kapıcı",
+      "Bakkal",
+      "Dolmuş şoförü",
+      "Çöpçü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kemal Sunal’ın canlandırdığı Apti, mahallede çöpçülük yaparken Hacer’e âşık olur."
+  },
+  {
+    "id": "q54340",
+    "categoryIndex": 1,
+    "question": "Davaro filminde Memo’nun kan davasındaki rakibi kimdir?",
+    "options": [
+      "Sülo",
+      "Şaban",
+      "Bilo",
+      "Maho"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Memo ile Sülo ailelerin sürdürdüğü kan davasını komik olaylarla aşmaya çalışır."
+  },
+  {
+    "id": "q54341",
+    "categoryIndex": 1,
+    "question": "Züğürt Ağa filminde köyünü satıp İstanbul’a gelen ağayı kim canlandırır?",
+    "options": [
+      "Kemal Sunal",
+      "Şener Şen",
+      "İlyas Salman",
+      "Kadir İnanır"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Şener Şen’in ağası, değişen ekonomik düzende otoritesini ve servetini kaybeder."
+  },
+  {
+    "id": "q54342",
+    "categoryIndex": 1,
+    "question": "Muhsin Bey filmindeki türkücü adayı Ali Nazik’i kim canlandırır?",
+    "options": [
+      "Şener Şen",
+      "Tarık Akan",
+      "Uğur Yücel",
+      "Erdal Özyağcılar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ali Nazik, şöhret olmak için İstanbul’a gelen ve Muhsin Kanadıkırık’tan yardım isteyen gençtir."
+  },
+  {
+    "id": "q54343",
+    "categoryIndex": 1,
+    "question": "Masumiyet filminde Yusuf’u kim canlandırır?",
+    "options": [
+      "Haluk Bilginer",
+      "Tuncel Kurtiz",
+      "Uğur Yücel",
+      "Güven Kıraç"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Güven Kıraç, hapisten çıktıktan sonra Bekir ve Uğur’un yıkıcı ilişkisine karışan Yusuf rolündedir."
+  },
+  {
+    "id": "q54344",
+    "categoryIndex": 1,
+    "question": "Şahsiyet dizisinde Agâh Beyoğlu’nu kim canlandırır?",
+    "options": [
+      "Haluk Bilginer",
+      "Erdal Beşikçioğlu",
+      "Çetin Tekindor",
+      "Uğur Yücel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Haluk Bilginer bu rolle Uluslararası Emmy’de En İyi Erkek Oyuncu ödülünü kazanmıştır."
+  },
+  {
+    "id": "q54345",
+    "categoryIndex": 1,
+    "question": "Masum dizisindeki emekli komiserin adı nedir?",
+    "options": [
+      "Behzat",
+      "Cevdet",
+      "Agâh",
+      "Harun"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Cevdet ve ailesinin sakin görünen hayatı, gizlenen suçların ortaya çıkmasıyla çözülür."
+  },
+  {
+    "id": "q54346",
+    "categoryIndex": 1,
+    "question": "Bir Zamanlar Çukurova dizisi hangi şehir çevresinde geçer?",
+    "options": [
+      "Gaziantep",
+      "İzmir",
+      "Adana",
+      "Bursa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dizi 1970’lerde Adana ve Çukurova’daki büyük çiftlikler çevresinde geçer."
+  },
+  {
+    "id": "q54347",
+    "categoryIndex": 1,
+    "question": "The Shawshank Redemption filmindeki anlatıcının lakabı nedir?",
+    "options": [
+      "Brooks",
+      "Tommy",
+      "Bogs",
+      "Red"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Morgan Freeman’ın canlandırdığı Ellis Boyd Redding, hapishanede “Red” adıyla tanınır."
+  },
+  {
+    "id": "q54348",
+    "categoryIndex": 1,
+    "question": "Fight Club’ın ilk kuralı nedir?",
+    "options": [
+      "Dövüş Kulübü hakkında konuşmamak",
+      "İlk darbeyi atmamak",
+      "Ayakkabıyla dövüşmemek",
+      "Her maçı kazanmak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tyler Durden’ın kurduğu kulübün ilk ve ikinci kuralı kulüp hakkında konuşmamaktır."
+  },
+  {
+    "id": "q54349",
+    "categoryIndex": 1,
+    "question": "Se7en filmindeki katil cinayetlerini hangi kavrama göre düzenler?",
+    "options": [
+      "Yedi harika",
+      "Yedi ölümcül günah",
+      "Yedi renk",
+      "Yedi gezegen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "John Doe kurbanlarını kibir, açgözlülük ve öfke gibi yedi ölümcül günaha göre seçer."
+  },
+  {
+    "id": "q54350",
+    "categoryIndex": 1,
+    "question": "The Sixth Sense filmindeki çocuğun adı nedir?",
+    "options": [
+      "Danny Torrance",
+      "Elliott",
+      "Cole Sear",
+      "Kevin McCallister"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Cole, ölü insanları gördüğünü psikolog Malcolm Crowe’a anlatır."
+  },
+  {
+    "id": "q54351",
+    "categoryIndex": 1,
+    "question": "No Country for Old Men filmindeki acımasız kiralık katil kimdir?",
+    "options": [
+      "Hannibal Lecter",
+      "John Doe",
+      "Keyser Söze",
+      "Anton Chigurh"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Anton Chigurh kurbanlarının kaderini bazen yazı tura atarak belirleyen soğukkanlı bir katildir."
+  },
+  {
+    "id": "q54352",
+    "categoryIndex": 1,
+    "question": "Portal oyunundaki oyuncu karakterin adı nedir?",
+    "options": [
+      "Chell",
+      "Alyx",
+      "Jade",
+      "Faith"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Chell, Aperture Science test odalarından portal silahı kullanarak kaçmaya çalışır."
+  },
+  {
+    "id": "q54353",
+    "categoryIndex": 1,
+    "question": "BioShock Infinite hangi uçan şehirde geçer?",
+    "options": [
+      "Rapture",
+      "Columbia",
+      "Midgar",
+      "City 17"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Columbia bulutların üzerinde dolaşan, Amerikan istisnacılığı fikri üzerine kurulmuş kurgusal şehirdir."
+  },
+  {
+    "id": "q54354",
+    "categoryIndex": 1,
+    "question": "Death Stranding’in paket taşıyan ana karakteri kimdir?",
+    "options": [
+      "Cliff Unger",
+      "Higgs Monaghan",
+      "Sam Porter Bridges",
+      "Fragile"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sam, parçalanmış Amerika’daki yerleşimleri birbirine bağlamak için yük ve bilgi taşır."
+  },
+  {
+    "id": "q54355",
+    "categoryIndex": 2,
+    "question": "Sümer şehir devletlerindeki basamaklı tapınaklara ne denirdi?",
+    "options": [
+      "Akropol",
+      "Stupa",
+      "Pagoda",
+      "Ziggurat"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Zigguratlar kerpiçten yapılmış katlı tapınak platformlarıydı."
+  },
+  {
+    "id": "q54356",
+    "categoryIndex": 2,
+    "question": "Eski Mısır’da ölülerin organlarının saklandığı kaplara ne denirdi?",
+    "options": [
+      "Kanopik kavanozlar",
+      "Amfora",
+      "Krater",
+      "Urne"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kanopik kaplar mumyalama sırasında çıkarılan iç organları korumak için kullanılırdı."
+  },
+  {
+    "id": "q54357",
+    "categoryIndex": 2,
+    "question": "Rosetta Taşı üzerinde kaç farklı yazı sistemi bulunur?",
+    "options": [
+      "İki",
+      "Üç",
+      "Dört",
+      "Beş"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Taşta hiyeroglif, Demotik ve Antik Yunanca olmak üzere üç yazı biçimi vardır."
+  },
+  {
+    "id": "q54358",
+    "categoryIndex": 2,
+    "question": "Tutankhamun’un mezarını 1922’de bulan arkeolog kimdir?",
+    "options": [
+      "Heinrich Schliemann",
+      "Arthur Evans",
+      "Howard Carter",
+      "Flinders Petrie"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Howard Carter, Krallar Vadisi’nde büyük ölçüde bozulmamış Tutankhamun mezarını keşfetti."
+  },
+  {
+    "id": "q54359",
+    "categoryIndex": 2,
+    "question": "Troya kentini ortaya çıkarmasıyla tanınan arkeolog kimdir?",
+    "options": [
+      "Howard Carter",
+      "Arthur Evans",
+      "Leonard Woolley",
+      "Heinrich Schliemann"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Schliemann Hisarlık’ta yaptığı kazılarla Troya yerleşim katlarını dünyaya duyurdu."
+  },
+  {
+    "id": "q54360",
+    "categoryIndex": 2,
+    "question": "Knossos Sarayı hangi uygarlıkla ilişkilidir?",
+    "options": [
+      "Minos uygarlığı",
+      "Miken uygarlığı",
+      "Etrüskler",
+      "Fenikeliler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Girit’teki Knossos, Minos uygarlığının en büyük saray merkeziydi."
+  },
+  {
+    "id": "q54361",
+    "categoryIndex": 2,
+    "question": "Antik Yunan’da ağır piyade askerine ne denirdi?",
+    "options": [
+      "Lejyoner",
+      "Hoplite",
+      "Samuray",
+      "Sipahi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hoplite askerleri büyük yuvarlak kalkan ve mızrakla falanks düzeninde savaşırdı."
+  },
+  {
+    "id": "q54362",
+    "categoryIndex": 2,
+    "question": "Spartalı askerlerin kalkan duvarı düzeninin adı neydi?",
+    "options": [
+      "Lejyon",
+      "Testudo",
+      "Falanks",
+      "Kama"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Falanks, hoplitlerin kalkan ve mızraklarla sıkı saflar hâlinde ilerlediği düzendi."
+  },
+  {
+    "id": "q54363",
+    "categoryIndex": 2,
+    "question": "Roma lejyonerlerinin kalkanlarla kaplumbağa biçimi oluşturduğu düzene ne denirdi?",
+    "options": [
+      "Falanks",
+      "Kama",
+      "Kare",
+      "Testudo"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Testudo düzeninde askerler kalkanlarını öne, yanlara ve başlarının üzerine yerleştirirdi."
+  },
+  {
+    "id": "q54364",
+    "categoryIndex": 2,
+    "question": "Kartaca hangi günümüz ülkesinin topraklarındaydı?",
+    "options": [
+      "Tunus",
+      "Fas",
+      "Libya",
+      "Cezayir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Antik Kartaca’nın kalıntıları Tunus şehrinin yakınındadır."
+  },
+  {
+    "id": "q54365",
+    "categoryIndex": 2,
+    "question": "Hannibal’ın Roma’ya karşı kazandığı en büyük zaferlerden biri hangi savaştır?",
+    "options": [
+      "Maraton Savaşı",
+      "Cannae Savaşı",
+      "Actium Savaşı",
+      "Zama Savaşı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Hannibal MÖ 216’da Cannae’de Roma ordusunu çift taraflı kuşatmayla ağır yenilgiye uğrattı."
+  },
+  {
+    "id": "q54366",
+    "categoryIndex": 2,
+    "question": "Hannibal’ı sonunda yenen Romalı komutan kimdi?",
+    "options": [
+      "Jül Sezar",
+      "Pompeius",
+      "Scipio Africanus",
+      "Marcus Aurelius"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Scipio Africanus MÖ 202’de Zama Savaşı’nda Hannibal’ı yenerek İkinci Pön Savaşı’nı bitirdi."
+  },
+  {
+    "id": "q54367",
+    "categoryIndex": 2,
+    "question": "Roma’nın “beş iyi imparator”undan filozof hükümdar hangisidir?",
+    "options": [
+      "Nero",
+      "Caligula",
+      "Commodus",
+      "Marcus Aurelius"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Marcus Aurelius Stoacı düşüncelerini Kendime Düşünceler adlı notlarında topladı."
+  },
+  {
+    "id": "q54368",
+    "categoryIndex": 2,
+    "question": "Bizans’ta 532 yılında büyük yıkıma yol açan ayaklanma hangisidir?",
+    "options": [
+      "Nika İsyanı",
+      "Spartaküs İsyanı",
+      "Celali İsyanları",
+      "Jön Türk Devrimi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Hipodrom taraftarlarının başlattığı Nika İsyanı Konstantinopolis’in geniş bölümünü yaktı."
+  },
+  {
+    "id": "q54369",
+    "categoryIndex": 2,
+    "question": "İstanbul’daki Yerebatan Sarnıcı hangi imparator döneminde yaptırıldı?",
+    "options": [
+      "Konstantin",
+      "I. Justinianus",
+      "Theodosius",
+      "Herakleios"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yerebatan Sarnıcı 6. yüzyılda Büyük Saray’ın su ihtiyacını karşılamak için inşa edildi."
+  },
+  {
+    "id": "q54370",
+    "categoryIndex": 2,
+    "question": "Osmanlıların Rumeli’de kalıcı biçimde yayılması hangi yüzyılda hızlandı?",
+    "options": [
+      "12. yüzyıl",
+      "16. yüzyıl",
+      "14. yüzyıl",
+      "18. yüzyıl"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Osmanlılar 1350’lerden itibaren Gelibolu üzerinden Rumeli’de kaleler ve şehirler ele geçirerek yerleşti."
+  },
+  {
+    "id": "q54371",
+    "categoryIndex": 2,
+    "question": "Cumhuriyetin ilk başbakanı kimdir?",
+    "options": [
+      "Celal Bayar",
+      "Fevzi Çakmak",
+      "Kazım Karabekir",
+      "İsmet İnönü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İsmet İnönü, Cumhuriyetin ilanından sonra Türkiye’nin ilk başbakanı oldu."
+  },
+  {
+    "id": "q54372",
+    "categoryIndex": 3,
+    "question": "Bir tablonun arka planında uzak nesnelerin soluk ve mavimsi gösterilmesine ne denir?",
+    "options": [
+      "Hava perspektifi",
+      "Tek kaçışlı perspektif",
+      "Sfumato",
+      "Kolaj"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Hava perspektifi atmosferin uzak nesnelerde kontrastı ve renk doygunluğunu azaltması etkisini taklit eder."
+  },
+  {
+    "id": "q54373",
+    "categoryIndex": 3,
+    "question": "Boyanın kalın ve dokulu sürülmesine ne denir?",
+    "options": [
+      "Grizay",
+      "Impasto",
+      "Fresk",
+      "Sfumato"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Impasto tekniğinde fırça veya spatula izleri yüzeyde belirgin bir kabartı oluşturur."
+  },
+  {
+    "id": "q54374",
+    "categoryIndex": 3,
+    "question": "Yalnız gri tonlarıyla yapılan resim tekniğine ne denir?",
+    "options": [
+      "Vitray",
+      "Pastel",
+      "Grizay",
+      "Pointilizm"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Grizay, heykel etkisi vermek veya alt boyama yapmak için gri tonlara dayanan tekniktir."
+  },
+  {
+    "id": "q54375",
+    "categoryIndex": 3,
+    "question": "Farklı malzemelerin yüzeye yapıştırılmasıyla oluşturulan sanata ne denir?",
+    "options": [
+      "Fresk",
+      "Gravür",
+      "Sulu boya",
+      "Kolaj"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kolajda gazete, kumaş, fotoğraf ve benzeri parçalar bir kompozisyonda birleştirilir."
+  },
+  {
+    "id": "q54376",
+    "categoryIndex": 3,
+    "question": "Taş veya metal yüzeye oyulan çizgilerden baskı alma tekniğine ne denir?",
+    "options": [
+      "Gravür",
+      "Vitray",
+      "Mozaik",
+      "Heykel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gravürde oyulan yüzeye mürekkep uygulanır ve kâğıda basılarak çoğaltılabilir görüntü elde edilir."
+  },
+  {
+    "id": "q54377",
+    "categoryIndex": 3,
+    "question": "Küçük renkli taş veya cam parçalarıyla yapılan görüntüye ne denir?",
+    "options": [
+      "Fresk",
+      "Mozaik",
+      "Kolaj",
+      "Kabartma"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mozaikte tessera adı verilen küçük parçalar yan yana getirilerek desen veya sahne oluşturulur."
+  },
+  {
+    "id": "q54378",
+    "categoryIndex": 3,
+    "question": "Heykelin zeminden hafifçe yükseldiği tekniğe ne denir?",
+    "options": [
+      "Büst",
+      "Enstalasyon",
+      "Kabartma",
+      "Mobil"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kabartmada figürler arka yüzeye bağlı kalır ve yüzeyden farklı derecelerde öne çıkar."
+  },
+  {
+    "id": "q54379",
+    "categoryIndex": 3,
+    "question": "Yalnız baş ve omuzları gösteren heykele ne denir?",
+    "options": [
+      "Torso",
+      "Rölyef",
+      "Totem",
+      "Büst"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Büst, kişinin başını, boynunu ve çoğunlukla göğsün üst kısmını tasvir eder."
+  },
+  {
+    "id": "q54380",
+    "categoryIndex": 3,
+    "question": "Hareket eden parçalardan oluşan heykele ne denir?",
+    "options": [
+      "Kinetik heykel",
+      "Büst",
+      "Monolit",
+      "Rölyef"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kinetik heykeller rüzgâr, motor veya izleyici etkisiyle gerçek hareket içerir."
+  },
+  {
+    "id": "q54381",
+    "categoryIndex": 3,
+    "question": "Mekâna özel nesne ve düzenlemelerden oluşan çağdaş sanat türü hangisidir?",
+    "options": [
+      "Minyatür",
+      "Enstalasyon",
+      "Portre",
+      "Natürmort"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Enstalasyon izleyicinin içine girebildiği veya mekânı bütünüyle deneyimlediği sanat düzenlemesidir."
+  },
+  {
+    "id": "q54382",
+    "categoryIndex": 3,
+    "question": "Meyve, çiçek ve gündelik nesneleri gösteren resim türüne ne denir?",
+    "options": [
+      "Portre",
+      "Peyzaj",
+      "Natürmort",
+      "Janr resmi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Natürmort cansız nesnelerin ışık, renk ve kompozisyon içinde düzenlenmesine dayanır."
+  },
+  {
+    "id": "q54383",
+    "categoryIndex": 3,
+    "question": "Doğa manzaralarını konu alan resim türü hangisidir?",
+    "options": [
+      "Portre",
+      "Natürmort",
+      "Otoportre",
+      "Peyzaj"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Peyzaj resimleri dağ, deniz, kır veya şehir manzaralarını ana konu yapar."
+  },
+  {
+    "id": "q54384",
+    "categoryIndex": 3,
+    "question": "Sanatçının kendisini resmettiği çalışmaya ne denir?",
+    "options": [
+      "Otoportre",
+      "Natürmort",
+      "Triptych",
+      "Eskiz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Otoportre, sanatçının kendi yüzünü veya bedenini konu aldığı portredir."
+  },
+  {
+    "id": "q54385",
+    "categoryIndex": 3,
+    "question": "Üç panelli sanat eserine ne denir?",
+    "options": [
+      "Diptik",
+      "Triptik",
+      "Poliptik",
+      "Monogram"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Triptik menteşeli veya yan yana üç panelden oluşan resim ya da kabartma düzenidir."
+  },
+  {
+    "id": "q54386",
+    "categoryIndex": 3,
+    "question": "Kör Baykuş romanının yazarı kimdir?",
+    "options": [
+      "Samed Behrengi",
+      "Orhan Pamuk",
+      "Sadık Hidayet",
+      "Amin Maalouf"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İranlı yazar Sadık Hidayet’in Kör Baykuş’u karanlık ve gerçeküstü anlatımıyla tanınır."
+  },
+  {
+    "id": "q54387",
+    "categoryIndex": 3,
+    "question": "Körleşme romanını kim yazdı?",
+    "options": [
+      "José Saramago",
+      "Hermann Hesse",
+      "Thomas Mann",
+      "Elias Canetti"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Canetti’nin ilk romanı Körleşme, kitaplarla çevrili Profesör Kien’in zihinsel çöküşünü anlatır."
+  },
+  {
+    "id": "q54388",
+    "categoryIndex": 3,
+    "question": "Bozkırkurdu romanının yazarı kimdir?",
+    "options": [
+      "Hermann Hesse",
+      "Thomas Mann",
+      "Stefan Zweig",
+      "Franz Kafka"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bozkırkurdu, Harry Haller’in toplumla ve kendi içindeki ikilikle çatışmasını anlatır."
+  },
+  {
+    "id": "q54389",
+    "categoryIndex": 4,
+    "question": "Karidesin kalbi vücudunun hangi bölümüne yakındır?",
+    "options": [
+      "Kuyruğun ucuna",
+      "Baş-göğüs bölgesine",
+      "Karın altına",
+      "Arka yüzgece"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Karidesin kalbi baş ile göğsün birleştiği sefalotoraks bölümünde, kabuğun hemen altında bulunur."
+  },
+  {
+    "id": "q54390",
+    "categoryIndex": 4,
+    "question": "Hangi deniz canlısının beyni halka biçiminde yemek borusunu çevreler?",
+    "options": [
+      "Yunus",
+      "Deniz kaplumbağası",
+      "Ahtapot",
+      "Köpekbalığı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ahtapotun merkezi beyni yemek borusunun çevresinde halka benzeri bir yapı oluşturur."
+  },
+  {
+    "id": "q54391",
+    "categoryIndex": 4,
+    "question": "Deniz kaplumbağaları yumurtalarını genellikle nereye bırakır?",
+    "options": [
+      "Mercanlara",
+      "Deniz tabanına",
+      "Kayalık mağaraya",
+      "Kumsala"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Dişi deniz kaplumbağaları karaya çıkıp kuma yuva kazar ve yumurtalarını gömer."
+  },
+  {
+    "id": "q54392",
+    "categoryIndex": 4,
+    "question": "Yavru deniz kaplumbağaları denize yönelirken hangi doğal ipucunu kullanır?",
+    "options": [
+      "Ufuktaki parlaklığı",
+      "Kumun kokusunu",
+      "Kuş seslerini",
+      "Gelgit sesini"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Doğal koşullarda deniz ufku karadan daha parlak görünür ve yavruları suya yönlendirir."
+  },
+  {
+    "id": "q54393",
+    "categoryIndex": 4,
+    "question": "Köpekbalıkları elektrik alanlarını algılayan hangi özel organlara sahiptir?",
+    "options": [
+      "Jacobson organı",
+      "Lorenzini ampulleri",
+      "Ekolokasyon kesesi",
+      "Malpighi tüpleri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Lorenzini ampulleri avların kas hareketlerinden doğan çok zayıf elektrik sinyallerini algılar."
+  },
+  {
+    "id": "q54394",
+    "categoryIndex": 4,
+    "question": "Yarasalar karanlıkta yön bulmak için hangi sistemi kullanır?",
+    "options": [
+      "Manyetik görme",
+      "Koku haritası",
+      "Ekolokasyon",
+      "Isı üretimi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yarasalar yüksek frekanslı sesler çıkarıp yankıların dönüş süresinden çevrelerini algılar."
+  },
+  {
+    "id": "q54395",
+    "categoryIndex": 4,
+    "question": "Dişi sivrisinekler neden kan emer?",
+    "options": [
+      "Uçabilmek için",
+      "Vücutlarını soğutmak için",
+      "Şeker depolamak için",
+      "Yumurta üretimi için protein almak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Birçok dişi sivrisinek yumurta gelişimi için kandaki proteinlere ihtiyaç duyar; enerji için nektar da tüketir."
+  },
+  {
+    "id": "q54396",
+    "categoryIndex": 4,
+    "question": "Ateş böceklerinin ışık üretmesine ne denir?",
+    "options": [
+      "Biyolüminesans",
+      "Floresans",
+      "Fotosentez",
+      "Kemosentez"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ateş böcekleri lusiferin adlı maddenin kontrollü kimyasal tepkimesiyle ışık üretir."
+  },
+  {
+    "id": "q54397",
+    "categoryIndex": 4,
+    "question": "Bazı mantarların karanlıkta ışık vermesine ne denir?",
+    "options": [
+      "Radyasyon",
+      "Biyolüminesans",
+      "Yansıma",
+      "Fosforesans boya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bazı mantarlar kimyasal tepkimeyle yeşilimsi ışık yayar; olaya foxfire da denir."
+  },
+  {
+    "id": "q54398",
+    "categoryIndex": 4,
+    "question": "Dünya’daki oksijenin önemli bölümünü üreten mikroskobik deniz canlıları hangileridir?",
+    "options": [
+      "Zooplanktonlar",
+      "Mercanlar",
+      "Fitoplanktonlar",
+      "Denizanaları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Okyanuslardaki fitoplankton fotosentez yaparak küresel oksijen üretiminin büyük bölümüne katkıda bulunur."
+  },
+  {
+    "id": "q54399",
+    "categoryIndex": 4,
+    "question": "Mercanlar bitki mi, hayvan mı?",
+    "options": [
+      "Bitki",
+      "Mantar",
+      "Bakteri",
+      "Hayvan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Mercan kolonileri, polip adı verilen küçük omurgasız hayvanlardan oluşur."
+  },
+  {
+    "id": "q54400",
+    "categoryIndex": 4,
+    "question": "Mercan beyazlamasının temel nedeni nedir?",
+    "options": [
+      "Yardımcı alglerin mercanı terk etmesi",
+      "Mercanın taşlaşması",
+      "Balıkların rengini yemesi",
+      "Tuzun kristalleşmesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Isı stresi gibi koşullarda mercanlar renk ve enerji sağlayan simbiyotik algleri kaybeder."
+  },
+  {
+    "id": "q54401",
+    "categoryIndex": 4,
+    "question": "Bir kara deliğin merkezindeki aşırı yoğun bölgeye ne denir?",
+    "options": [
+      "Olay ufku",
+      "Tekillik",
+      "Korona",
+      "Manyetosfer"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Klasik genel görelilikte maddenin sonsuz yoğunluğa yaklaştığı merkez bölge tekillik olarak tanımlanır."
+  },
+  {
+    "id": "q54402",
+    "categoryIndex": 4,
+    "question": "Bir yıldızın yakıtı tükenince oluşabilecek küçük ve yoğun kalıntıya ne denir?",
+    "options": [
+      "Kahverengi cüce",
+      "Kırmızı dev",
+      "Beyaz cüce",
+      "Protostar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Güneş benzeri yıldızlar dış katmanlarını attıktan sonra sıcak beyaz cüce çekirdek bırakabilir."
+  },
+  {
+    "id": "q54403",
+    "categoryIndex": 4,
+    "question": "Çok büyük yıldızların patlayarak ölmesine ne denir?",
+    "options": [
+      "Nova",
+      "Pulsar",
+      "Kuasar",
+      "Süpernova"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Süpernova patlaması ağır elementleri uzaya saçar ve geride nötron yıldızı veya kara delik bırakabilir."
+  },
+  {
+    "id": "q54404",
+    "categoryIndex": 4,
+    "question": "Hızla dönen ve düzenli radyo sinyalleri gönderen nötron yıldızına ne denir?",
+    "options": [
+      "Pulsar",
+      "Kuasar",
+      "Magnetar bulutu",
+      "Beyaz cüce"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Pulsarın ışını Dünya’ya her dönüşte ulaştığında çok düzenli atımlar gözlenir."
+  },
+  {
+    "id": "q54405",
+    "categoryIndex": 5,
+    "question": "Futbolda “pressing” neyi amaçlar?",
+    "options": [
+      "Topu yalnız kaleciye vermeyi",
+      "Rakibe zaman ve alan bırakmamayı",
+      "Oyunu sürekli durdurmayı",
+      "Savunmayı ceza sahasına çekmeyi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pres yapan takım topa sahip rakibe hızla baskı kurarak hata veya top kaybı yaratmaya çalışır."
+  },
+  {
+    "id": "q54406",
+    "categoryIndex": 5,
+    "question": "Futbolda “gegenpressing” ne zaman başlar?",
+    "options": [
+      "Korner kullanılınca",
+      "Devre arasında",
+      "Top kaybedilir kaybedilmez",
+      "Rakip gol atınca"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Gegenpressing, top kaybından hemen sonra rakibin hücuma çıkmasını önlemek için toplu baskıdır."
+  },
+  {
+    "id": "q54407",
+    "categoryIndex": 5,
+    "question": "Futbolda “false nine” hangi oyuncu rolüdür?",
+    "options": [
+      "Hücumcu kaleci",
+      "Çizgiye basan bek",
+      "Savunmaya gömülen kanat",
+      "Geriye çekilen santrfor"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sahte dokuz, stoperleri yerinden çıkarmak ve orta sahada üstünlük kurmak için geriye gelir."
+  },
+  {
+    "id": "q54408",
+    "categoryIndex": 5,
+    "question": "Basketbolda “pick and roll” oyununda perde yapan oyuncu sonra ne yapar?",
+    "options": [
+      "Potaya devrilir",
+      "Kendi sahasına döner",
+      "Kenara çıkar",
+      "Hakeme gider"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Perde sonrası uzun oyuncu potaya yönelir ve pas alarak sayı fırsatı arar."
+  },
+  {
+    "id": "q54409",
+    "categoryIndex": 5,
+    "question": "Basketbolda “pick and pop” oyununda perde yapan oyuncu sonra ne yapar?",
+    "options": [
+      "Potaya devrilir",
+      "Dışarı açılır",
+      "Topu bırakır",
+      "Savunmaya koşar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Pick and pop’ta perdeci potaya gitmek yerine orta veya uzun mesafe şutu için dışarı çıkar."
+  },
+  {
+    "id": "q54410",
+    "categoryIndex": 5,
+    "question": "Basketbolda “air ball” ne demektir?",
+    "options": [
+      "Topun tavana değmesi",
+      "Smaç sırasında düşmesi",
+      "Şutun çembere ve panyaya değmemesi",
+      "Pasın auta çıkması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Air ball hedefi tamamen ıskalayan ve ne çembere ne de panyaya değen şuttur."
+  },
+  {
+    "id": "q54411",
+    "categoryIndex": 5,
+    "question": "Teniste “drop shot” hangi amaçla kullanılır?",
+    "options": [
+      "Topu tribüne göndermek",
+      "Servisi hızlandırmak",
+      "Rakibin başının üstünden aşırmak",
+      "Topu file arkasına kısa düşürmek"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Drop shot rakibi arka çizgiden öne koşturmak için topu yumuşak biçimde file yakınına bırakır."
+  },
+  {
+    "id": "q54412",
+    "categoryIndex": 5,
+    "question": "Teniste “smash” çoğunlukla hangi topa vurulur?",
+    "options": [
+      "Yüksek gelen topa",
+      "Yere yakın topa",
+      "Servis atmadan önce",
+      "Fileye değen topa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Smash, baş üstünden güçlü biçimde vurulan ve genellikle lobu cezalandıran hücum vuruşudur."
+  },
+  {
+    "id": "q54413",
+    "categoryIndex": 5,
+    "question": "Voleybolda arka sıradaki oyuncu hücum çizgisinin önünden sıçrayıp smaç vurabilir mi?",
+    "options": [
+      "Evet",
+      "Hayır",
+      "Yalnız kaptansa",
+      "Sadece ilk sette"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Arka sıra oyuncusu file üstündeki topa ön bölgeden hücum ederse arka hat ihlali oluşur."
+  },
+  {
+    "id": "q54414",
+    "categoryIndex": 5,
+    "question": "Voleybolda bir oyuncu topa art arda iki kez dokunabilir mi?",
+    "options": [
+      "Her zaman evet",
+      "Yalnız servis sırasında",
+      "Genellikle hayır",
+      "Sadece libero dokunabilir"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Blok teması gibi istisnalar dışında aynı oyuncunun arka arkaya iki teması çift vuruş ihlalidir."
+  },
+  {
+    "id": "q54415",
+    "categoryIndex": 5,
+    "question": "Satrançta “açmaz” ne demektir?",
+    "options": [
+      "Şahın iki kare yürümesi",
+      "Piyonun geri gitmesi",
+      "Oyunun süresiz uzaması",
+      "Bir taşın hareket edince daha değerli taşı açığa bırakması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mutlak açmazda taş hareket ederse şah tehdit altında kalacağı için taş oynayamaz."
+  },
+  {
+    "id": "q54416",
+    "categoryIndex": 5,
+    "question": "Satrançta “şiş” taktiği nasıl işler?",
+    "options": [
+      "Değerli taş çekilince arkasındaki taş alınır",
+      "İki taş aynı anda korunur",
+      "Şah kale ile yer değiştirir",
+      "Piyon çapraz gider"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Şişte öndeki değerli taş saldırıdan kaçar ve arkasındaki daha az değerli taş savunmasız kalır."
+  },
+  {
+    "id": "q54417",
+    "categoryIndex": 5,
+    "question": "Formula 1’de “undercut” stratejisi neyi hedefler?",
+    "options": [
+      "Daha az tur atmayı",
+      "Erken pit stopla rakibin önüne geçmeyi",
+      "Rakibi pist dışına itmeyi",
+      "Yakıt tasarrufunu bırakmayı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yeni lastiklerle hızlı turlar atan pilot, rakibi pitten çıktığında önüne geçmeye çalışır."
+  },
+  {
+    "id": "q54418",
+    "categoryIndex": 5,
+    "question": "Formula 1’de “slipstream” ne sağlar?",
+    "options": [
+      "Lastikleri anında ısıtma",
+      "Yakıt ekleme",
+      "Öndeki aracın hava koridorunda hız avantajı",
+      "Fren mesafesini uzatma"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Takipteki araç öndekinin oluşturduğu düşük dirençli hava bölgesinden yararlanabilir."
+  },
+  {
+    "id": "q54419",
+    "categoryIndex": 5,
+    "question": "Boksta “hook” yumruğu nasıl bir yörünge izler?",
+    "options": [
+      "Düz öne",
+      "Aşağıdan yukarı",
+      "Yukarıdan aşağı",
+      "Yandan kavisli"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hook dirsek bükülü hâlde yana doğru kavis çizerek özellikle çeneye veya gövdeye gider."
+  },
+  {
+    "id": "q54420",
+    "categoryIndex": 5,
+    "question": "Boksta “cross” genellikle hangi elle atılır?",
+    "options": [
+      "Arkadaki güçlü elle",
+      "Öndeki elle",
+      "İki elle birden",
+      "Yalnız sol elle"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Cross, jab’in ardından arka elin kalça ve omuz dönüşüyle düz biçimde gönderildiği güçlü yumruktur."
+  }
+]

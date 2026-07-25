@@ -1,0 +1,402 @@
+[
+  {
+    "id": "q54321",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54322",
+    "sourceGroup": "geo_volcano"
+  },
+  {
+    "id": "q54323",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54324",
+    "sourceGroup": "geo_unesco"
+  },
+  {
+    "id": "q54325",
+    "sourceGroup": "geo_usgs"
+  },
+  {
+    "id": "q54326",
+    "sourceGroup": "geo_volcano"
+  },
+  {
+    "id": "q54327",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54328",
+    "sourceGroup": "geo_volcano"
+  },
+  {
+    "id": "q54329",
+    "sourceGroup": "geo_usgs"
+  },
+  {
+    "id": "q54330",
+    "sourceGroup": "geo_iceland"
+  },
+  {
+    "id": "q54331",
+    "sourceGroup": "geo_nps"
+  },
+  {
+    "id": "q54332",
+    "sourceGroup": "geo_unesco"
+  },
+  {
+    "id": "q54333",
+    "sourceGroup": "geo_noaa"
+  },
+  {
+    "id": "q54334",
+    "sourceGroup": "geo_noaa"
+  },
+  {
+    "id": "q54335",
+    "sourceGroup": "geo_unep"
+  },
+  {
+    "id": "q54336",
+    "sourceGroup": "geo_britannica"
+  },
+  {
+    "id": "q54337",
+    "sourceGroup": "geo_noaa"
+  },
+  {
+    "id": "q54338",
+    "sourceGroup": "ent_turkish_cinema"
+  },
+  {
+    "id": "q54339",
+    "sourceGroup": "ent_turkish_cinema"
+  },
+  {
+    "id": "q54340",
+    "sourceGroup": "ent_turkish_cinema"
+  },
+  {
+    "id": "q54341",
+    "sourceGroup": "ent_turkish_cinema"
+  },
+  {
+    "id": "q54342",
+    "sourceGroup": "ent_turkish_cinema"
+  },
+  {
+    "id": "q54343",
+    "sourceGroup": "ent_turkish_cinema"
+  },
+  {
+    "id": "q54344",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54345",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54346",
+    "sourceGroup": "ent_turkish_tv"
+  },
+  {
+    "id": "q54347",
+    "sourceGroup": "ent_classic_film"
+  },
+  {
+    "id": "q54348",
+    "sourceGroup": "ent_classic_film"
+  },
+  {
+    "id": "q54349",
+    "sourceGroup": "ent_thriller"
+  },
+  {
+    "id": "q54350",
+    "sourceGroup": "ent_thriller"
+  },
+  {
+    "id": "q54351",
+    "sourceGroup": "ent_classic_film"
+  },
+  {
+    "id": "q54352",
+    "sourceGroup": "ent_games"
+  },
+  {
+    "id": "q54353",
+    "sourceGroup": "ent_games"
+  },
+  {
+    "id": "q54354",
+    "sourceGroup": "ent_games"
+  },
+  {
+    "id": "q54355",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54356",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54357",
+    "sourceGroup": "hist_britishmuseum"
+  },
+  {
+    "id": "q54358",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54359",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54360",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54361",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54362",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54363",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54364",
+    "sourceGroup": "hist_unesco"
+  },
+  {
+    "id": "q54365",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54366",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54367",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54368",
+    "sourceGroup": "hist_britannica"
+  },
+  {
+    "id": "q54369",
+    "sourceGroup": "hist_istanbul"
+  },
+  {
+    "id": "q54370",
+    "sourceGroup": "hist_ottoman"
+  },
+  {
+    "id": "q54371",
+    "sourceGroup": "hist_turkish_republic"
+  },
+  {
+    "id": "q54372",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54373",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54374",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54375",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54376",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54377",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54378",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54379",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54380",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54381",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54382",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54383",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54384",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54385",
+    "sourceGroup": "art_technique"
+  },
+  {
+    "id": "q54386",
+    "sourceGroup": "lit_britannica"
+  },
+  {
+    "id": "q54387",
+    "sourceGroup": "lit_britannica"
+  },
+  {
+    "id": "q54388",
+    "sourceGroup": "lit_britannica"
+  },
+  {
+    "id": "q54389",
+    "sourceGroup": "sci_ocean"
+  },
+  {
+    "id": "q54390",
+    "sourceGroup": "sci_ocean"
+  },
+  {
+    "id": "q54391",
+    "sourceGroup": "sci_noaa"
+  },
+  {
+    "id": "q54392",
+    "sourceGroup": "sci_noaa"
+  },
+  {
+    "id": "q54393",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54394",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54395",
+    "sourceGroup": "sci_entomology"
+  },
+  {
+    "id": "q54396",
+    "sourceGroup": "sci_smithsonian"
+  },
+  {
+    "id": "q54397",
+    "sourceGroup": "sci_kew"
+  },
+  {
+    "id": "q54398",
+    "sourceGroup": "sci_noaa"
+  },
+  {
+    "id": "q54399",
+    "sourceGroup": "sci_noaa"
+  },
+  {
+    "id": "q54400",
+    "sourceGroup": "sci_noaa"
+  },
+  {
+    "id": "q54401",
+    "sourceGroup": "sci_nasa"
+  },
+  {
+    "id": "q54402",
+    "sourceGroup": "sci_nasa"
+  },
+  {
+    "id": "q54403",
+    "sourceGroup": "sci_nasa"
+  },
+  {
+    "id": "q54404",
+    "sourceGroup": "sci_nasa"
+  },
+  {
+    "id": "q54405",
+    "sourceGroup": "sport_fifa"
+  },
+  {
+    "id": "q54406",
+    "sourceGroup": "sport_uefa"
+  },
+  {
+    "id": "q54407",
+    "sourceGroup": "sport_uefa"
+  },
+  {
+    "id": "q54408",
+    "sourceGroup": "sport_nba_rules"
+  },
+  {
+    "id": "q54409",
+    "sourceGroup": "sport_nba_rules"
+  },
+  {
+    "id": "q54410",
+    "sourceGroup": "sport_nba_rules"
+  },
+  {
+    "id": "q54411",
+    "sourceGroup": "sport_itf"
+  },
+  {
+    "id": "q54412",
+    "sourceGroup": "sport_itf"
+  },
+  {
+    "id": "q54413",
+    "sourceGroup": "sport_fivb"
+  },
+  {
+    "id": "q54414",
+    "sourceGroup": "sport_fivb"
+  },
+  {
+    "id": "q54415",
+    "sourceGroup": "sport_fide"
+  },
+  {
+    "id": "q54416",
+    "sourceGroup": "sport_fide"
+  },
+  {
+    "id": "q54417",
+    "sourceGroup": "sport_fia"
+  },
+  {
+    "id": "q54418",
+    "sourceGroup": "sport_fia"
+  },
+  {
+    "id": "q54419",
+    "sourceGroup": "sport_boxing"
+  },
+  {
+    "id": "q54420",
+    "sourceGroup": "sport_boxing"
+  }
+]

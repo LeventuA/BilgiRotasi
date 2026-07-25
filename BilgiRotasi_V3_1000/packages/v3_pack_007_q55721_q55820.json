@@ -1,0 +1,1402 @@
+[
+  {
+    "categoryIndex": 3,
+    "question": "Pointilizm tekniğinde görüntü nasıl oluşturulur?",
+    "options": [
+      "Küçük renk noktalarıyla",
+      "Kalın siyah çizgilerle",
+      "Tek renk lekelerle",
+      "Kâğıt kesikleriyle"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Pointilist ressamlar, uzaktan birleşiyormuş gibi görünen küçük renk noktalarını yan yana kullanır.",
+    "id": "q55721"
+  },
+  {
+    "id": "q55722",
+    "categoryIndex": 2,
+    "question": "1955 Bandung Konferansı hangi kıtaların yeni bağımsız devletlerini bir araya getirdi?",
+    "options": [
+      "Avrupa ve Amerika",
+      "Asya ve Afrika",
+      "Asya ve Avrupa",
+      "Afrika ve Güney Amerika"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bandung’da buluşan Asya ve Afrika ülkeleri sömürgecilik karşıtı iş birliğini güçlendirdi."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Boston Çay Partisi’nde protestocular hangi ürünü denize döktü?",
+    "options": [
+      "Tütün",
+      "Kahve",
+      "Çay",
+      "Şeker"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Koloniciler, Britanya’nın çay vergisini protesto ederek 1773’te çay sandıklarını limana attı.",
+    "id": "q55723"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Manat para birimini kullanan Kafkas ülkesi hangisidir?",
+    "options": [
+      "Tacikistan",
+      "Ermenistan",
+      "Gürcistan",
+      "Azerbaycan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Azerbaycan’ın ulusal para birimi manattır.",
+    "id": "q55724"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Fransız Devrimi’nin simgesel başlangıcı sayılan olay hangisidir?",
+    "options": [
+      "Bastille Baskını",
+      "Waterloo Savaşı",
+      "Paris Komünü",
+      "Versailles Antlaşması"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "14 Temmuz 1789’da Parisliler Bastille Hapishanesi’ni ele geçirdi.",
+    "id": "q55725"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Fransız Devrimi’nin Terör Dönemi’yle en çok ilişkilendirilen lider kimdir?",
+    "options": [
+      "Danton dışında Napoleon",
+      "Robespierre",
+      "Lafayette",
+      "Talleyrand"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Maximilien Robespierre, Kamu Güvenliği Komitesi ve Terör Dönemi’nin başlıca figürüdür.",
+    "id": "q55726"
+  },
+  {
+    "id": "q55727",
+    "categoryIndex": 0,
+    "question": "Ohri Gölü bilimsel açıdan neden dikkat çeker?",
+    "options": [
+      "Aktif bir lav gölü barındırması",
+      "Deniz suyundan daha tuzlu olması",
+      "Çok eski oluşu ve endemik türleri",
+      "Her yıl tamamen kuruması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kuzey Makedonya ile Arnavutluk arasındaki Ohri, uzun jeolojik geçmişi ve yalnız burada yaşayan türleriyle önemlidir."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Olimpik eskrimde kaç farklı silah türü vardır?",
+    "options": [
+      "Beş",
+      "İki",
+      "Dört",
+      "Üç"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Flöre, epe ve kılıç olimpik eskrimin üç silahıdır.",
+    "id": "q55728"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Dragon Ball evreninde yedi top bir araya gelince kim çağrılır?",
+    "options": [
+      "Shenron",
+      "Porunga",
+      "Beerus",
+      "Frieza"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dünya’nın yedi Dragon Ball’u toplandığında dilek gerçekleştiren ejderha Shenron belirir.",
+    "id": "q55729"
+  },
+  {
+    "id": "q55730",
+    "categoryIndex": 1,
+    "question": "Return of the Obra Dinn oyununda oyuncunun görevi nedir?",
+    "options": [
+      "Bir korsan hazinesi bulmak",
+      "Gemidekilerin başına ne geldiğini çözmek",
+      "Bir koloni kurmak",
+      "Gemiyi yarıştırmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Oyuncu bir sigorta müfettişi olarak kayıp mürettebatın kimliğini ve ölüm nedenlerini belirler."
+  },
+  {
+    "id": "q55731",
+    "categoryIndex": 1,
+    "question": "Ori and the Blind Forest oyunundaki ana karakter nasıl bir varlıktır?",
+    "options": [
+      "Ejderha yavrusu",
+      "Robot şövalye",
+      "Beyaz bir koruyucu ruh",
+      "İnsan büyücü"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ori, Nibel ormanını kurtarmaya çalışan küçük ve ışık saçan bir koruyucu ruhtur."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Küçük renk noktalarını yan yana getirerek görüntü oluşturan teknik hangisidir?",
+    "options": [
+      "Monotip",
+      "Kübizm",
+      "Fresk",
+      "Pointilizm"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Seurat ve Signac, renklerin gözde karışması için saf renk noktaları kullandı.",
+    "id": "q55732"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Kübizm nesneleri nasıl göstermesiyle tanınır?",
+    "options": [
+      "Birden çok bakış açısını aynı yüzeyde",
+      "Yalnız tek renk kullanarak",
+      "Sadece doğada çizerek",
+      "Fotoğraf kadar gerçekçi biçimde"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kübist sanatçılar nesneleri geometrik parçalara ayırıp farklı açılardan eş zamanlı gösterdi.",
+    "id": "q55733"
+  },
+  {
+    "id": "q55734",
+    "categoryIndex": 0,
+    "question": "Aït Benhaddou adlı tarihî kerpiç yerleşim hangi ülkededir?",
+    "options": [
+      "Tunus",
+      "Fas",
+      "Cezayir",
+      "Ürdün"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Aït Benhaddou, Fas’ta kervan yolları üzerinde kurulmuş surlu bir ksar yerleşimidir."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Koruna hangi Orta Avrupa ülkesinin para birimidir?",
+    "options": [
+      "Avusturya",
+      "Slovenya",
+      "Çekya",
+      "Slovakya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Çekya’nın para birimi Çek korunasıdır.",
+    "id": "q55735"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Sürrealizm en çok hangi kaynaklardan beslenir?",
+    "options": [
+      "Matematiksel ölçüler",
+      "Sadece doğa gözlemi",
+      "Saray törenleri",
+      "Rüyalar ve bilinçaltı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sürrealistler, otomatik yazı ve rüya imgeleriyle bilinçaltını açığa çıkarmaya çalıştı.",
+    "id": "q55736"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Dada hareketinin temel tavrı neydi?",
+    "options": [
+      "Geleneksel sanat ve mantığa başkaldırı",
+      "Sadece manzara resmi yapma",
+      "Antik sanatı aynen kopyalama",
+      "Kraliyet portrelerini yüceltme"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Dada, Birinci Dünya Savaşı’nın akıl dışılığına karşı absürt ve anti-sanatçı yöntemler kullandı.",
+    "id": "q55737"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Empresyonist ressamlar en çok neyi yakalamaya çalıştı?",
+    "options": [
+      "Kesin anatomik ölçüleri",
+      "Anlık ışık ve atmosferi",
+      "Dini sembolleri",
+      "Mitolojik soy ağaçlarını"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Empresyonistler açık havada hızlı fırça darbeleriyle değişen ışığı ve renkleri resmetti.",
+    "id": "q55738"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Ley para birimini kullanan Balkan ülkesi hangisidir?",
+    "options": [
+      "Arnavutluk",
+      "Bulgaristan",
+      "Romanya",
+      "Sırbistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Romanya’nın ulusal para birimi leydir.",
+    "id": "q55739"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Napolyon Bonapart kendisini hangi yıl imparator ilan etti?",
+    "options": [
+      "1815",
+      "1812",
+      "1789",
+      "1804"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Napolyon, 1804’te Paris’teki Notre-Dame Katedrali’nde imparator olarak taç giydi.",
+    "id": "q55740"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Portal oyunundaki yapay zekânın adı nedir?",
+    "options": [
+      "GLaDOS",
+      "Cortana",
+      "EVE",
+      "SHODAN"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "GLaDOS, Aperture Science testlerini yöneten alaycı yapay zekâdır.",
+    "id": "q55741"
+  },
+  {
+    "id": "q55742",
+    "categoryIndex": 0,
+    "question": "Zhangjiajie’nin yüksek kumtaşı sütunları hangi ülkededir?",
+    "options": [
+      "Japonya",
+      "Çin",
+      "Moğolistan",
+      "Vietnam"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Zhangjiajie, Çin’in Hunan eyaletinde sisler arasındaki dik kumtaşı sütunlarıyla tanınır."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Ekspresyonizmde biçimler neden sıkça çarpıtılır?",
+    "options": [
+      "Malzemeden tasarruf etmek için",
+      "Perspektifi tamamen düzeltmek için",
+      "Duygusal etkiyi güçlendirmek için",
+      "Fotoğrafı taklit etmek için"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ekspresyonistler dış gerçeklikten çok içsel duygu ve gerilimi aktarmayı amaçladı.",
+    "id": "q55743"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Napolyon’un son büyük yenilgisi hangi muharebedir?",
+    "options": [
+      "Austerlitz",
+      "Wagram",
+      "Jena",
+      "Waterloo"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Napolyon, 18 Haziran 1815’te Waterloo’da Müttefik ordularına yenildi.",
+    "id": "q55744"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Artistik jimnastikte halka aleti hangi kategoride yer alır?",
+    "options": [
+      "Erkekler",
+      "Kadınlar",
+      "Yalnız gençler",
+      "Karma çiftler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sabit halkalar erkekler artistik jimnastik programındaki altı aletten biridir.",
+    "id": "q55745"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Half-Life serisinin başkahramanı Gordon Freeman’ın mesleği nedir?",
+    "options": [
+      "Dedektif",
+      "Fizikçi",
+      "Gazeteci",
+      "Asker"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Gordon Freeman, Black Mesa araştırma tesisinde çalışan teorik fizikçidir.",
+    "id": "q55746"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Samanyolu’na en yakın büyük galaksi hangisidir?",
+    "options": [
+      "Sombrero",
+      "Centaurus A",
+      "Andromeda",
+      "Triangulum dışında Whirlpool"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Andromeda yaklaşık 2,5 milyon ışık yılı uzaklıkta Yerel Grup’un diğer büyük galaksisidir.",
+    "id": "q55747"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Last of Us’ta Ellie’yi özel kılan özellik nedir?",
+    "options": [
+      "Zihin okuyabilmesi",
+      "Robot olması",
+      "Zamanı durdurabilmesi",
+      "Enfeksiyona bağışık görünmesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ellie ısırılmasına rağmen Cordyceps enfeksiyonunun belirtilerini göstermemiştir.",
+    "id": "q55748"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Işık yılı neyin birimidir?",
+    "options": [
+      "Uzaklık",
+      "Parlaklık",
+      "Zaman",
+      "Hız"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bir ışık yılı, ışığın boşlukta bir yılda aldığı yaklaşık 9,46 trilyon kilometrelik mesafedir.",
+    "id": "q55749"
+  },
+  {
+    "id": "q55750",
+    "categoryIndex": 4,
+    "question": "DNA dizisi değişmeden genlerin çalışma biçiminin değişmesini inceleyen alan hangisidir?",
+    "options": [
+      "Jeodezi",
+      "Epigenetik",
+      "Taksonomi",
+      "Optik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Epigenetik, DNA harflerini değiştirmeden gen etkinliğini etkileyen kimyasal işaretleri ve mekanizmaları inceler."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Denge aleti olimpik artistik jimnastikte hangi kategoridedir?",
+    "options": [
+      "Yalnız gösteri",
+      "Erkekler",
+      "Kadınlar",
+      "Karma takım"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yaklaşık 10 santimetre genişliğindeki denge aleti kadınlar programında bulunur.",
+    "id": "q55751"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Nötron yıldızı nasıl oluşur?",
+    "options": [
+      "Kuyruklu yıldızın donmasıyla",
+      "Galaksinin parçalanmasıyla",
+      "Gezegenlerin birleşmesiyle",
+      "Büyük bir yıldızın çekirdeğinin çökmesiyle"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bazı süpernovalardan sonra yıldız çekirdeği aşırı sıkışarak nötron yıldızına dönüşür.",
+    "id": "q55752"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Kulplu beygir hangi jimnastik kategorisinin aletidir?",
+    "options": [
+      "Erkekler",
+      "Trambolin",
+      "Kadınlar",
+      "Ritmik jimnastik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kulplu beygirde sporcular kollarıyla destek alarak kesintisiz dairesel hareketler yapar.",
+    "id": "q55753"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Barok sanatın karakteristik özelliği hangisidir?",
+    "options": [
+      "Sade geometrik boşluk",
+      "Dramatik hareket ve güçlü ışık",
+      "Tam simetri ve durgunluk",
+      "Yalnız pastel manzaralar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Barok eserler hareket, teatral kompozisyon ve ışık-gölgeyle izleyiciyi etkilemeye çalışır.",
+    "id": "q55754"
+  },
+  {
+    "id": "q55755",
+    "categoryIndex": 1,
+    "question": "Journey oyununda karakterin atkısı ne işe yarar?",
+    "options": [
+      "Harita görevi görür",
+      "Zamanı geri alır",
+      "Uçuş ve süzülme enerjisi sağlar",
+      "Düşmanları dondurur"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Atkıdaki ışıklı semboller doldukça karakter kısa süreli uçabilir veya süzülebilir."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Grand Theft Auto V’te kaç ana oynanabilir karakter vardır?",
+    "options": [
+      "Bir",
+      "İki",
+      "Dört",
+      "Üç"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Michael, Franklin ve Trevor arasında geçiş yapılabilir.",
+    "id": "q55756"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Rokoko üslubu en çok hangi özelliklerle tanınır?",
+    "options": [
+      "Zarif süsleme ve pastel renkler",
+      "Katı geometrik bloklar",
+      "Karanlık savaş sahneleri",
+      "Kaba beton yüzeyler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "18. yüzyıl Rokokosu, kıvrımlı süsler, açık renkler ve eğlenceli saray temaları kullanır.",
+    "id": "q55757"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Minecraft’taki yeşil ve patlayan düşmanın adı nedir?",
+    "options": [
+      "Slime",
+      "Creeper",
+      "Enderman",
+      "Zombie"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Creeper sessizce yaklaşır ve oyuncunun yanında patlayarak çevreye zarar verir.",
+    "id": "q55758"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Stardew Valley’de oyuncu çiftliği kimden miras alır?",
+    "options": [
+      "Eski patronundan",
+      "Belediye başkanından",
+      "Büyükbabasından",
+      "Komşusundan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Karakter, şehir hayatını bırakıp büyükbabasından kalan çiftliğe taşınır.",
+    "id": "q55759"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Süpernova nedir?",
+    "options": [
+      "Gezegenin donması",
+      "Galaksinin yavaş dönüşü",
+      "Kuyruklu yıldızın kuyruğu",
+      "Yıldızın şiddetli patlaması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Süpernovalar büyük yıldızların son evresinde veya beyaz cüce sistemlerinde meydana gelen parlak patlamalardır.",
+    "id": "q55760"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Sırıkla atlamada sporcu sırığı ne için kullanır?",
+    "options": [
+      "Çıtayı aşmak üzere yükselmek için",
+      "Cirit gibi fırlatmak için",
+      "Koşu kulvarını çizmek için",
+      "Mesafeyi ölçmek için"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Esnek sırık koşu enerjisini bükülme enerjisine, ardından dikey yükselişe dönüştürür.",
+    "id": "q55761"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Yıldızların doğduğu gaz ve toz bulutlarına ne denir?",
+    "options": [
+      "Asteroit",
+      "Bulutsu",
+      "Kuasar",
+      "Krater"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bazı bulutsularda gaz ve toz kütleçekimle çöker, yeni yıldızlar oluşturur.",
+    "id": "q55762"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Animal Crossing oyunlarında temel para birimi nedir?",
+    "options": [
+      "Gil",
+      "Rupees",
+      "Bells",
+      "Caps"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncular eşya alıp satarken Bells adlı oyun içi parayı kullanır.",
+    "id": "q55763"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Güneş gelecekte ana kol evresinden sonra hangi evreye geçecektir?",
+    "options": [
+      "Mavi süperdev",
+      "Nötron yıldızı",
+      "Kara delik",
+      "Kırmızı dev"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Çekirdekteki hidrojen azaldığında Güneş genişleyip kırmızı dev evresine girecektir.",
+    "id": "q55764"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Dirhem hangi Kuzey Afrika ülkesinin para birimidir?",
+    "options": [
+      "Fas",
+      "Libya",
+      "Cezayir",
+      "Tunus"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fas’ın resmî para birimi Fas dirhemidir.",
+    "id": "q55765"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Napolyon Savaşları sonrasında Avrupa düzenini yeniden kuran toplantı hangisidir?",
+    "options": [
+      "Yalta Konferansı",
+      "Viyana Kongresi",
+      "Berlin Kongresi",
+      "Paris Konferansı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1814-1815 Viyana Kongresi, güç dengesi ve sınırları yeniden düzenledi.",
+    "id": "q55766"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Elder Scrolls V: Skyrim’de oyuncunun unvanı nedir?",
+    "options": [
+      "Grey Warden",
+      "Tarnished",
+      "Dragonborn",
+      "Chosen Undead"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ana karakter ejderha ruhlarını emebilen ve Thu'um kullanabilen Dragonborn’dur.",
+    "id": "q55767"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Neoklasisizm hangi dönemin sanatına yönelmiştir?",
+    "options": [
+      "Orta Çağ Gotik",
+      "Tarih öncesi mağara",
+      "Sanayi sonrası pop",
+      "Antik Yunan ve Roma"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Neoklasik sanatçılar antik dünyanın ölçü, düzen ve yurttaşlık ideallerini canlandırdı.",
+    "id": "q55768"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Birr hangi Afrika ülkesinin para birimidir?",
+    "options": [
+      "Etiyopya",
+      "Eritre",
+      "Uganda",
+      "Kenya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Etiyopya’nın ulusal para birimi birrdir.",
+    "id": "q55769"
+  },
+  {
+    "id": "q55770",
+    "categoryIndex": 0,
+    "question": "Beyaz Çöl’deki rüzgârla şekillenmiş tebeşir kayaları hangi ülkededir?",
+    "options": [
+      "Ürdün",
+      "Mısır",
+      "Fas",
+      "Cezayir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mısır’ın Batı Çölü’ndeki Beyaz Çöl, mantar ve kule biçimli açık renkli kaya oluşumlarına sahiptir."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi dışındaki bir yıldızın çevresinde dolanan gezegene ne denir?",
+    "options": [
+      "Planetoid uydu",
+      "Cüce gezegen",
+      "Ötegezegen",
+      "Meteoroid"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ötegezegenler başka yıldızların çevresinde dolanan gezegenlerdir.",
+    "id": "q55771"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Yüksek atlamada sırtı çıtaya dönük modern tekniğin adı nedir?",
+    "options": [
+      "Straddle Run",
+      "Scissor Kick",
+      "Western Roll",
+      "Fosbury Flop"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dick Fosbury’nin ünlendirdiği teknikte atlet çıtayı sırtüstü yay çizerek geçer.",
+    "id": "q55772"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Witcher 3’ün başkahramanı kimdir?",
+    "options": [
+      "Geralt of Rivia",
+      "Dandelion",
+      "Vesemir",
+      "Emhyr var Emreis"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Geralt, canavar avcılığı yapan mutasyonlu bir witcher’dır.",
+    "id": "q55773"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Dünya’daki mevsimlerin temel nedeni nedir?",
+    "options": [
+      "Güneş’e olan uzaklığın büyük değişimi",
+      "Eksen eğikliği",
+      "Ay’ın evreleri",
+      "Dünya’nın dönüş hızının değişmesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yaklaşık 23,5 derecelik eksen eğikliği, yıl içinde ışın açısı ve gündüz süresini değiştirir.",
+    "id": "q55774"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Güney Amerika bağımsızlık hareketlerinin 'Kurtarıcı' lakaplı lideri kimdir?",
+    "options": [
+      "Augusto Sandino",
+      "José Martí",
+      "Simón Bolívar",
+      "Porfirio Díaz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bolívar, Venezuela, Kolombiya, Ekvador, Peru ve Bolivya’nın bağımsızlık süreçlerinde etkili oldu.",
+    "id": "q55775"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Pop art en çok hangi görüntü dünyasını sanata taşıdı?",
+    "options": [
+      "Bilimsel diyagramları",
+      "Orta Çağ el yazmalarını",
+      "Sadece dini ikonları",
+      "Reklam ve tüketim kültürünü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Pop art, çizgi roman, marka, ürün ve ünlü görüntülerini yüksek sanat bağlamına taşıdı.",
+    "id": "q55776"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Bayrak yarışında sporcuların birbirine aktardığı nesne nedir?",
+    "options": [
+      "Baton",
+      "Disk",
+      "Puck",
+      "Mızrak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Koşucular belirlenmiş değişim alanında batonu takım arkadaşına devreder.",
+    "id": "q55777"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Elden Ring’de oyuncu karakterlerine verilen genel ad nedir?",
+    "options": [
+      "Arisen",
+      "Tarnished",
+      "Hunter",
+      "Hollow"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Lütfun çağrısıyla Lands Between’e dönen sürgün savaşçılara Tarnished denir.",
+    "id": "q55778"
+  },
+  {
+    "id": "q55779",
+    "categoryIndex": 0,
+    "question": "Wakhan Koridoru hangi ülkenin doğuya uzanan dar bölümüdür?",
+    "options": [
+      "Kırgızistan",
+      "Tacikistan",
+      "Afganistan",
+      "Pakistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Wakhan Koridoru, Afganistan’ı Çin sınırına kadar uzatan dar ve dağlık bir toprak şerididir."
+  },
+  {
+    "id": "q55780",
+    "categoryIndex": 5,
+    "question": "Rugby’de oyuncuların birbirine kenetlenerek top için ittiği yeniden başlatma düzenine ne denir?",
+    "options": [
+      "Line-out",
+      "Maul",
+      "Ruck",
+      "Scrum"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Scrum’da iki takımın forvetleri düzenli bir formasyonda birbirini iterken top ortaya bırakılır."
+  },
+  {
+    "id": "q55781",
+    "categoryIndex": 5,
+    "question": "Snooker’da beyaz topun açılış vuruşunda yerleştirildiği yarım daireye ne denir?",
+    "options": [
+      "D",
+      "Baulk line",
+      "Black spot",
+      "Pocket arc"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Snooker masasındaki baulk çizgisinin üzerinde bulunan yarım daire “D” olarak adlandırılır."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Kutup ışıkları hangi olayla oluşur?",
+    "options": [
+      "Ay ışığının buzdan yansımasıyla",
+      "Yüklü Güneş parçacıklarının atmosferle etkileşmesiyle",
+      "Yıldızların yakınlaşmasıyla",
+      "Volkan gazlarının donmasıyla"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Manyetik alanın yönlendirdiği parçacıklar üst atmosferdeki gazları uyararak ışık yaydırır.",
+    "id": "q55782"
+  },
+  {
+    "id": "q55783",
+    "categoryIndex": 5,
+    "question": "Flöre ve kılıçta hangi kural saldırı önceliğini belirler?",
+    "options": [
+      "Serbest vuruş",
+      "Altın sayı",
+      "Geçiş hakkı",
+      "Avantaj çizgisi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Flöre ve kılıçta eş zamanlı tuşlarda doğru başlayan saldırıya göre “right of way” yani geçiş hakkı uygulanır."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Som para birimini kullanan Orta Asya ülkesi hangisidir?",
+    "options": [
+      "Tacikistan",
+      "Kazakistan",
+      "Türkmenistan",
+      "Kırgızistan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kırgızistan’ın ulusal para birimi somdur.",
+    "id": "q55784"
+  },
+  {
+    "id": "q55785",
+    "categoryIndex": 1,
+    "question": "Hades oyununda Zagreus’un temel amacı nedir?",
+    "options": [
+      "Yeraltı Dünyası’ndan kaçmak",
+      "Bir şehri yönetmek",
+      "Titanları uyandırmak",
+      "Olimpos’u ele geçirmek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Zagreus, babası Hades’in ülkesinden çıkarak yüzeye ulaşmaya çalışır."
+  },
+  {
+    "id": "q55786",
+    "categoryIndex": 5,
+    "question": "Olimpiyatlarda Türkiye adına okçulukta ilk altın madalyayı kazanan sporcu kimdir?",
+    "options": [
+      "Göktuğ Ergin",
+      "Mete Gazoz",
+      "Samet Ak",
+      "Yasemin Ecem Anagöz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mete Gazoz, Tokyo 2020’de erkekler bireysel okçulukta Türkiye’nin bu branştaki ilk olimpiyat altınını kazandı."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Minimalist sanatın temel yaklaşımı hangisidir?",
+    "options": [
+      "Rastgele renkleri karıştırmak",
+      "Yalnız tarih resmi yapmak",
+      "Biçimi ve malzemeyi en aza indirmek",
+      "Her yüzeyi ayrıntıyla doldurmak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Minimalizm, basit geometriler ve tekrarlarla eserin fiziksel varlığına odaklanır.",
+    "id": "q55787"
+  },
+  {
+    "id": "q55788",
+    "categoryIndex": 0,
+    "question": "Richat Yapısı adı verilen dev halkalı oluşum hangi ülkededir?",
+    "options": [
+      "Çad",
+      "Nijer",
+      "Mali",
+      "Moritanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sahra’daki “Afrika’nın Gözü” olarak da bilinen Richat Yapısı, Moritanya’da aşınmayla belirginleşmiş jeolojik halkalardan oluşur."
+  },
+  {
+    "id": "q55789",
+    "categoryIndex": 5,
+    "question": "Türkiye’ye olimpiyatlarda altın madalya kazandıran ilk kadın sporcu kimdir?",
+    "options": [
+      "Nurcan Taylan",
+      "Busenaz Sürmeneli",
+      "Hülya Şenyurt",
+      "Buse Tosun Çavuşoğlu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Halterci Nurcan Taylan, 2004 Atina Olimpiyatları’nda altın madalya kazandı."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Fresk tekniğinde boya hangi yüzeye uygulanır?",
+    "options": [
+      "Metal levha",
+      "Islak sıva",
+      "Kuru cam",
+      "Kumaş kolaj"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Buon fresco’da pigmentler taze kireç sıvaya sürülür ve kururken yüzeyle bütünleşir.",
+    "id": "q55790"
+  },
+  {
+    "id": "q55791",
+    "categoryIndex": 0,
+    "question": "Taal Yanardağı hangi ülkenin Luzon Adası’ndadır?",
+    "options": [
+      "Endonezya",
+      "Papua Yeni Gine",
+      "Filipinler",
+      "Japonya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Taal, Filipinler’de büyük bir kaldera gölü içindeki volkanik ada sistemiyle dikkat çeker."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Quetzal hangi ülkenin para birimidir?",
+    "options": [
+      "Nikaragua",
+      "Honduras",
+      "El Salvador",
+      "Guatemala"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Guatemala’nın para birimi, kutsal quetzal kuşunun adını taşır.",
+    "id": "q55792"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Ozon tabakasının büyük bölümü atmosferin hangi katmanındadır?",
+    "options": [
+      "Stratosfer",
+      "Mezosfer",
+      "Troposfer",
+      "Termosfer"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Stratosferik ozon, Güneş’ten gelen zararlı morötesi ışınımın önemli bölümünü soğurur.",
+    "id": "q55793"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Yunanistan 19. yüzyılda hangi imparatorluğa karşı bağımsızlık savaşı verdi?",
+    "options": [
+      "Avusturya İmparatorluğu",
+      "Osmanlı İmparatorluğu",
+      "Britanya İmparatorluğu",
+      "Rus İmparatorluğu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "1821’de başlayan Yunan İsyanı, 1830’da bağımsızlığın tanınmasıyla sonuçlandı.",
+    "id": "q55794"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Hollow Knight hangi yeraltı krallığında geçer?",
+    "options": [
+      "Albion",
+      "Hyrule",
+      "Hallownest",
+      "Drangleic"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Oyuncu, böceklerin yaşadığı harap Hallownest krallığını keşfeder.",
+    "id": "q55795"
+  },
+  {
+    "id": "q55796",
+    "categoryIndex": 2,
+    "question": "1956 Süveyş Krizi sırasında kanalı millîleştiren Mısır lideri kimdi?",
+    "options": [
+      "Hüsnü Mübarek",
+      "Enver Sedat",
+      "Kral Faruk",
+      "Cemal Abdülnasır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Nasır’ın Süveyş Kanalı’nı millîleştirmesi Britanya, Fransa ve İsrail’in müdahalesine yol açtı."
+  },
+  {
+    "id": "q55797",
+    "categoryIndex": 2,
+    "question": "1968 Prag Baharı hangi ülkede reform hareketi olarak başladı?",
+    "options": [
+      "Çekoslovakya",
+      "Macaristan",
+      "Polonya",
+      "Romanya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Alexander Dubček dönemindeki reformlar Sovyet öncülüğündeki müdahaleyle bastırıldı."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Mozaik görüntüler hangi tür parçalarla oluşturulur?",
+    "options": [
+      "Yalnız kurşun kalemle",
+      "Küçük taş, cam veya seramik parçalarıyla",
+      "Kâğıt katlayarak",
+      "Tek parça mermerle"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tessera adı verilen küçük renkli parçalar yan yana yerleştirilerek mozaik yapılır.",
+    "id": "q55798"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Sultanahmet Camii kaç minaresiyle tanınır?",
+    "options": [
+      "Sekiz",
+      "Beş",
+      "Altı",
+      "Dört"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "17. yüzyılda yapılan Sultanahmet Camii, tamamlandığında altı minaresiyle dikkat çekti.",
+    "id": "q55799"
+  },
+  {
+    "id": "q55800",
+    "categoryIndex": 0,
+    "question": "Öresund Köprüsü hangi iki ülkeyi birbirine bağlar?",
+    "options": [
+      "İsveç ve Finlandiya",
+      "Almanya ve Danimarka",
+      "Norveç ve Danimarka",
+      "Danimarka ve İsveç"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Öresund bağlantısı Kopenhag ile Malmö’yü köprü, yapay ada ve tünel üzerinden birleştirir."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "1848’de Avrupa’nın birçok ülkesinde görülen ayaklanmalara ne ad verilir?",
+    "options": [
+      "Halkların Baharı",
+      "Uzun Parlamento",
+      "Gül Devrimi",
+      "Büyük Uyanış"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Liberal, milliyetçi ve toplumsal taleplerle yayılan 1848 devrimleri Halkların Baharı diye anılır.",
+    "id": "q55801"
+  },
+  {
+    "id": "q55802",
+    "categoryIndex": 5,
+    "question": "“Mr. Magic” lakabıyla tanınan Türk bilardo oyuncusu kimdir?",
+    "options": [
+      "Savaş Bulut",
+      "Semih Saygıner",
+      "Tayfun Taşdemir",
+      "Kenan Sofuoğlu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Semih Saygıner, üç bant bilardodaki yaratıcı vuruşları ve uluslararası başarılarıyla “Mr. Magic” diye anılır."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Sera gazları Dünya’yı nasıl ısıtır?",
+    "options": [
+      "Dünya’nın dönüşünü hızlandırarak",
+      "Okyanusları tuzlandırarak",
+      "Yüzeyden yayılan kızılötesi ışınımı tutarak",
+      "Güneş ışığını tamamen engelleyerek"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Karbondioksit ve metan gibi gazlar, uzaya kaçacak ısı ışınımının bir bölümünü yeniden yayar.",
+    "id": "q55803"
+  },
+  {
+    "id": "q55804",
+    "categoryIndex": 2,
+    "question": "Dayanışma adıyla bilinen bağımsız sendika hareketi hangi ülkede ortaya çıktı?",
+    "options": [
+      "Doğu Almanya",
+      "Bulgaristan",
+      "Arnavutluk",
+      "Polonya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Lech Wałęsa’nın öne çıktığı Dayanışma hareketi, Polonya’daki komünist yönetimin dönüşümünde etkili oldu."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Squash topu oyunda tutulurken kaç duvardan yararlanılabilir?",
+    "options": [
+      "Dört duvardan",
+      "Yalnız ön duvardan",
+      "İki yan duvardan",
+      "Tavandan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Top ön duvara ulaşmak koşuluyla yan ve arka duvarlardan da sektirilebilir.",
+    "id": "q55805"
+  },
+  {
+    "id": "q55806",
+    "categoryIndex": 0,
+    "question": "Kerguelen Adaları hangi ülkenin denizaşırı toprağıdır?",
+    "options": [
+      "Güney Afrika",
+      "Fransa",
+      "Avustralya",
+      "Birleşik Krallık"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Hint Okyanusu’nun güneyindeki uzak Kerguelen Adaları, Fransız Güney ve Antarktika Toprakları’na bağlıdır."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Selimiye Camii hangi şehirdedir?",
+    "options": [
+      "İstanbul",
+      "Bursa",
+      "Edirne",
+      "Konya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mimar Sinan’ın ustalık eseri olarak nitelediği Selimiye, Edirne’nin merkezindedir.",
+    "id": "q55807"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Alman birliğinin kurulmasında 'Demir Şansölye' olarak tanınan kişi kimdir?",
+    "options": [
+      "Helmuth von Moltke",
+      "Friedrich Engels",
+      "Kaiser Wilhelm II",
+      "Otto von Bismarck"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Prusya Başbakanı Bismarck, savaşlar ve diplomasiyle 1871 Alman İmparatorluğu’nun kurulmasını sağladı.",
+    "id": "q55808"
+  },
+  {
+    "id": "q55809",
+    "categoryIndex": 4,
+    "question": "Hidrotermal bacaların çevresindeki ekosistemler enerjiyi çoğunlukla hangi süreçten sağlar?",
+    "options": [
+      "Kemosentez",
+      "Fermantasyon",
+      "Fotosentez",
+      "Buharlaşma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Güneş ışığının ulaşmadığı derinliklerde bakteriler kimyasal maddelerin enerjisini kullanarak organik besin üretir."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Padel kortunun tenis kortundan belirgin farkı nedir?",
+    "options": [
+      "Sadece tek kişi oynanması",
+      "Duvarların oyuna dâhil olması",
+      "Filesinin olmaması",
+      "Top yerine disk kullanılması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Padelde cam ve tel duvarlardan seken top oyun içinde kalabilir.",
+    "id": "q55810"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Hades oyununda kaçmaya çalışan başkahraman kimdir?",
+    "options": [
+      "Orpheus",
+      "Theseus",
+      "Zagreus",
+      "Thanatos"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yeraltı tanrısı Hades’in oğlu Zagreus, babasının diyarından çıkmaya çalışır.",
+    "id": "q55811"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kırım Savaşı’nda Rusya’ya karşı Osmanlı’nın yanında yer alan başlıca devletlerden biri hangisiydi?",
+    "options": [
+      "İsveç",
+      "Prusya",
+      "İspanya",
+      "Britanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Britanya ve Fransa, 1853-1856 Kırım Savaşı’nda Osmanlı İmparatorluğu’nun yanında savaştı.",
+    "id": "q55812"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Dünya’nın manyetik alanını oluşturan ana süreç hangisidir?",
+    "options": [
+      "Sıvı dış çekirdekteki metal hareketleri",
+      "Dağlardaki mıknatıslar",
+      "Ay’ın gölgesi",
+      "Okyanus gelgitleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Elektrik iletkeni sıvı demirin dönmesi ve taşınması jeodinamo etkisi üretir.",
+    "id": "q55813"
+  },
+  {
+    "id": "q55814",
+    "categoryIndex": 2,
+    "question": "Kadife Devrim hangi ülkede komünist yönetimin barışçıl biçimde sona ermesini sağladı?",
+    "options": [
+      "Romanya",
+      "Çekoslovakya",
+      "Yugoslavya",
+      "Sovyetler Birliği"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1989’daki kitlesel ve büyük ölçüde barışçıl protestolar Çekoslovakya’da rejim değişikliğine yol açtı."
+  },
+  {
+    "id": "q55815",
+    "categoryIndex": 4,
+    "question": "Mantis karidesi görme sistemiyle ilgili hangi özelliğiyle bilinir?",
+    "options": [
+      "Yalnız siyah beyaz görmesiyle",
+      "Gözlerinin hiç hareket etmemesiyle",
+      "Çok sayıda renk algılayıcı reseptöre sahip olmasıyla",
+      "Gözlerini deri altında taşımasıyla"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mantis karideslerinin karmaşık gözlerinde insanlardan farklı ve çok sayıda fotoreseptör tipi bulunur."
+  },
+  {
+    "id": "q55816",
+    "categoryIndex": 0,
+    "question": "Nemrut Krater Gölü hangi ilimizdedir?",
+    "options": [
+      "Adıyaman",
+      "Ağrı",
+      "Van",
+      "Bitlis"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Nemrut Krater Gölü, Bitlis’in Tatvan ilçesi yakınındaki Nemrut Kalderası’nda bulunur."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Ses genellikle hangi ortamda en hızlı yayılır?",
+    "options": [
+      "Katılarda",
+      "Boşlukta",
+      "Plazma dışında sıvılarda",
+      "Gazlarda"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Parçacıkların yakın ve bağların güçlü olduğu katılarda titreşimler daha hızlı aktarılır.",
+    "id": "q55817"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Mısır hiyerogliflerinin çözülmesinde Rosetta Taşı’nı kullanan bilim insanı kimdir?",
+    "options": [
+      "Howard Carter",
+      "Jean-François Champollion",
+      "Heinrich Schliemann",
+      "Arthur Evans"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Champollion, Rosetta Taşı’ndaki paralel metinlerden yararlanarak hiyerogliflerin çözümünde büyük ilerleme sağladı.",
+    "id": "q55818"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Süleymaniye Camii’nin mimarı kimdir?",
+    "options": [
+      "Vedat Tek",
+      "Mimar Kemaleddin",
+      "Mimar Sinan",
+      "Sedefkâr Mehmed Ağa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kanuni Sultan Süleyman adına yapılan külliyeyi 16. yüzyılda Mimar Sinan tasarladı.",
+    "id": "q55819"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Pickleball’da kullanılan topun özelliği nedir?",
+    "options": [
+      "Tamamen metal olması",
+      "Tüylü olması",
+      "Süngerden yapılması",
+      "Delikli plastik olması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Pickleball topu hafif, içi boş ve çok sayıda deliği bulunan plastiktir.",
+    "id": "q55820"
+  }
+]

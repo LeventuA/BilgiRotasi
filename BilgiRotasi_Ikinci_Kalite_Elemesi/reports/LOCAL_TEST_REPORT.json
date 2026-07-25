@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "sourceCount": 999,
+  "keepCount": 375,
+  "rewriteCount": 355,
+  "rejectCount": 269,
+  "categoryAfter": {
+    "Spor": 54,
+    "Sanat & Edebiyat": 110,
+    "Eğlence": 54,
+    "Coğrafya": 29,
+    "Tarih": 53,
+    "Bilim & Doğa": 75
+  }
+}

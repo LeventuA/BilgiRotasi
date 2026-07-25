@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q58021",
+    "categoryIndex": 0,
+    "question": "2021 G20 Zirvesi hangi yılda gerçekleşti?",
+    "options": [
+      "2021",
+      "2025",
+      "2022",
+      "2023"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2021 G20 Zirvesi, 2021 yılında gerçekleşti."
+  },
+  {
+    "id": "q58022",
+    "categoryIndex": 1,
+    "question": "Prince of Persia: The Lost Crown ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "2005",
+      "2024",
+      "1980",
+      "2001"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Prince of Persia: The Lost Crown, ilk ticari sürümünü 2024 yılında aldı."
+  },
+  {
+    "id": "q58023",
+    "categoryIndex": 4,
+    "question": "Hera görevinin fırlatılması hangi kurum veya kurumlar tarafından yürütüldü?",
+    "options": [
+      "David Baker, Demis Hassabis ve John Jumper",
+      "Svante Pääbo",
+      "ESA",
+      "Carolyn Bertozzi, Morten Meldal ve Barry Sharpless"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hera görevinin fırlatılması, ESA tarafından yürütülen veya desteklenen bir çalışmadır."
+  },
+  {
+    "id": "q58024",
+    "categoryIndex": 5,
+    "question": "2025 EuroLeague finalinde ikinci olan takım hangisidir?",
+    "options": [
+      "Inter",
+      "Roma",
+      "Paris Saint-Germain",
+      "Monaco"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2025 EuroLeague finalinde Monaco ikinci oldu."
+  },
+  {
+    "id": "q58025",
+    "categoryIndex": 0,
+    "question": "2021 Avrupa sellerinde Ahr Vadisi en ağır yıkımı hangi ülkede yaşadı?",
+    "options": [
+      "Almanya",
+      "Avusturya",
+      "Hollanda",
+      "Belçika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Temmuz 2021 sellerinde Almanya'nın Ahr Vadisi çok ağır can ve altyapı kaybı yaşadı."
+  },
+  {
+    "id": "q58026",
+    "categoryIndex": 1,
+    "question": "Oldboy ile The Handmaiden yapımlarında ortak olan yönetmeni kimdir?",
+    "options": [
+      "Baran bo Odar ve Jantje Friese",
+      "Park Chan-wook",
+      "George Kay ve François Uzan",
+      "Mel Gibson"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Oldboy ve The Handmaiden, Park Chan-wook imzasını taşıyan iki yapımdır."
+  },
+  {
+    "id": "q58027",
+    "categoryIndex": 4,
+    "question": "SPHEREx görevinin ana hedefi neydi?",
+    "options": [
+      "Jüpiter'in Truva asteroitleri",
+      "Jezero Krateri",
+      "Tüm gökyüzünü kızılötesi tayflarla haritalamak",
+      "Hepatit C virüsünün keşfi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "SPHEREx görevi, Tüm gökyüzünü kızılötesi tayflarla haritalamak üzerine odaklandı."
+  },
+  {
+    "id": "q58028",
+    "categoryIndex": 5,
+    "question": "Lakrosta topu taşımak ve atmak için kullanılan ağlı sopanın adı nedir?",
+    "options": [
+      "Bat",
+      "Paddle",
+      "Mallet",
+      "Crosse"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Lakros sopasına crosse denir; ucundaki ağlı cep topu yakalamaya, taşımaya ve fırlatmaya yarar."
+  },
+  {
+    "id": "q58029",
+    "categoryIndex": 0,
+    "question": "Ölü Deniz hangi ülkede veya ülkelerde bulunur?",
+    "options": [
+      "Ürdün ve İsrail",
+      "Botsvana",
+      "Malezya",
+      "Arjantin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ölü Deniz, Ürdün ve İsrail sınırları içinde yer alan bir doğal oluşumdur."
+  },
+  {
+    "id": "q58030",
+    "categoryIndex": 1,
+    "question": "“The White Lotus” dizisi ilk sezonu hangi platform veya kanalda yayımlandı?",
+    "options": [
+      "Netflix",
+      "HBO",
+      "Apple TV+",
+      "Disney+"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“The White Lotus”, 2021 yılında HBO üzerinden izleyiciyle buluşan öne çıkan dizilerden biridir."
+  },
+  {
+    "id": "q58031",
+    "categoryIndex": 4,
+    "question": "Kelvin sıcaklık ölçeği adını hangi bilim insanından alır?",
+    "options": [
+      "James Joule",
+      "Michael Faraday",
+      "William Thomson (Lord Kelvin)",
+      "James Watt"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kelvin ölçeği adını İskoç fizikçi William Thomson’dan, yani Lord Kelvin’den alır."
+  },
+  {
+    "id": "q58032",
+    "categoryIndex": 5,
+    "question": "2021 UEFA Avrupa Ligi finalinde ikinci olan takım hangisidir?",
+    "options": [
+      "İngiltere",
+      "Barcelona",
+      "Liverpool",
+      "Manchester United"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2021 UEFA Avrupa Ligi finalinde Manchester United ikinci oldu."
+  },
+  {
+    "id": "q58033",
+    "categoryIndex": 0,
+    "question": "Uluslararası dil kodlarında “ho” kısaltması hangi dil için kullanılır?",
+    "options": [
+      "Hiri Motu",
+      "Tacikçe",
+      "Avestçe",
+      "Katalanca"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "ISO 639-1 dil kodları içinde “ho”, Hiri Motu dilini temsil eder."
+  },
+  {
+    "id": "q58034",
+    "categoryIndex": 1,
+    "question": "Anatomy of a Fall filmi hangi yıl gösterime girmiştir?",
+    "options": [
+      "2017",
+      "2023",
+      "2021",
+      "2024"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Justine Triet imzalı Anatomy of a Fall, 2023 yılında gösterime girdi."
+  },
+  {
+    "id": "q58035",
+    "categoryIndex": 4,
+    "question": "Aşağıdaki bilimsel gelişmelerden hangisi 2020 yılında yaşandı?",
+    "options": [
+      "2022 Nobel Fizyoloji veya Tıp Ödülü",
+      "SPHEREx'in fırlatılması",
+      "Tianwen-1 görevinin fırlatılması",
+      "2022 Nobel Kimya Ödülü"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tianwen-1 görevinin fırlatılması, 2020 yılında gerçekleşen önemli bilimsel gelişmelerden biridir."
+  },
+  {
+    "id": "q58036",
+    "categoryIndex": 5,
+    "question": "2020 UEFA Avrupa Ligi finalinde ikinci olan takım hangisidir?",
+    "options": [
+      "Bayer Leverkusen",
+      "Borussia Dortmund",
+      "Manchester United",
+      "Inter"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2020 UEFA Avrupa Ligi finalinde Inter ikinci oldu."
+  },
+  {
+    "id": "q58037",
+    "categoryIndex": 0,
+    "question": "Rio Grande do Sul selleri hangi yılda gerçekleşti?",
+    "options": [
+      "2024",
+      "2025",
+      "2026",
+      "2022"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Rio Grande do Sul selleri, 2024 yılında gerçekleşti."
+  },
+  {
+    "id": "q58038",
+    "categoryIndex": 1,
+    "question": "“Bridgerton” ilk olarak hangi platform veya kanalda yayımlandı?",
+    "options": [
+      "Larian Studios",
+      "Netflix",
+      "Team Asobi",
+      "Prime Video"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Bridgerton”, ilk yayımlandığı dönemde Netflix üzerinden izleyiciyle buluştu."
+  },
+  {
+    "id": "q58039",
+    "categoryIndex": 4,
+    "question": "Işık yılı hangi fiziksel büyüklüğün birimidir?",
+    "options": [
+      "Işık şiddeti",
+      "Enerji",
+      "Uzaklık",
+      "Zaman"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bir ışık yılı, ışığın boşlukta bir yılda aldığı yaklaşık 9,46 trilyon kilometrelik uzaklıktır."
+  },
+  {
+    "id": "q58040",
+    "categoryIndex": 5,
+    "question": "1928 Kış Olimpiyat Oyunları’nın ana ev sahibi şehri veya ortak ev sahibi adı hangisidir?",
+    "options": [
+      "Calgary",
+      "Lake Placid",
+      "Cortina d’Ampezzo",
+      "St. Moritz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "1928 Kış Olimpiyatları St. Moritz, İsviçre ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q58041",
+    "categoryIndex": 0,
+    "question": "Arenal Yanardağı hangi ülkede veya ülkelerde bulunur?",
+    "options": [
+      "Kosta Rika",
+      "Polonya ve Belarus",
+      "Ürdün ve İsrail",
+      "Meksika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Arenal Yanardağı, Kosta Rika sınırları içinde yer alan bir doğal oluşumdur."
+  },
+  {
+    "id": "q58042",
+    "categoryIndex": 1,
+    "question": "“Ripley” dizisi ilk sezonu hangi platform veya kanalda yayımlandı?",
+    "options": [
+      "Disney+",
+      "Netflix",
+      "Apple TV+",
+      "HBO"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Ripley”, 2024 yılında Netflix üzerinden izleyiciyle buluşan öne çıkan dizilerden biridir."
+  },
+  {
+    "id": "q58043",
+    "categoryIndex": 4,
+    "question": "2023 Nobel Fizyoloji veya Tıp Ödülü hangi çalışma veya keşif için verildi?",
+    "options": [
+      "mikroRNA ve gen düzenlenmesi",
+      "Mars yörüngesi ve yüzeyi",
+      "mRNA aşılarına temel oluşturan keşifler",
+      "Mars atmosferi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2023 Nobel Fizyoloji veya Tıp Ödülü, mRNA aşılarına temel oluşturan keşifler alanındaki çalışma veya keşifleri ödüllendirdi."
+  },
+  {
+    "id": "q58044",
+    "categoryIndex": 5,
+    "question": "Wembley Stadyumu hangi şehirde bulunur?",
+    "options": [
+      "Buenos Aires",
+      "Augusta",
+      "Pebble Beach",
+      "Londra"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Wembley Stadyumu, Londra şehrinde bulunan önemli bir spor tesisidir."
+  },
+  {
+    "id": "q58045",
+    "categoryIndex": 0,
+    "question": "2024 Maui orman yangınlarının anma etkinlikleri hangi ülkede yaşandı?",
+    "options": [
+      "Amerika Birleşik Devletleri",
+      "Mısır",
+      "Avustralya",
+      "Kanada"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2024 Maui orman yangınlarının anma etkinlikleri, Amerika Birleşik Devletleri sınırları içinde yaşandı."
+  },
+  {
+    "id": "q58046",
+    "categoryIndex": 1,
+    "question": "Severance dizisinin yaratıcısı veya yaratıcıları kimdir?",
+    "options": [
+      "Ryan Condal ve George R. R. Martin",
+      "Dan Erickson",
+      "Éric Rochant",
+      "Carlos Montero ve Darío Madrona"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Severance, Dan Erickson tarafından geliştirilen ve 2022 yılında başlayan bir dizidir."
+  },
+  {
+    "id": "q58047",
+    "categoryIndex": 4,
+    "question": "Atom numarası 24 olan element hangisidir?",
+    "options": [
+      "Renyum",
+      "Seryum",
+      "Krom",
+      "Lütesyum"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Atom numarası 24 olan element Krom, kimyasal simgesi ise Cr’dir."
+  },
+  {
+    "id": "q58048",
+    "categoryIndex": 5,
+    "question": "1904 Yaz Olimpiyat Oyunları’nın ana ev sahibi şehri hangisidir?",
+    "options": [
+      "Londra",
+      "Anvers",
+      "Barselona",
+      "St. Louis"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "1904 Yaz Olimpiyat Oyunları St. Louis, Amerika Birleşik Devletleri merkezli düzenlendi."
+  },
+  {
+    "id": "q58049",
+    "categoryIndex": 0,
+    "question": "2023 G20 Zirvesi hangi yılda gerçekleşti?",
+    "options": [
+      "2023",
+      "2024",
+      "2025",
+      "2026"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2023 G20 Zirvesi, 2023 yılında gerçekleşti."
+  },
+  {
+    "id": "q58050",
+    "categoryIndex": 1,
+    "question": "House of the Dragon dizisinin yaratıcısı veya yaratıcıları kimdir?",
+    "options": [
+      "Chris Brancato, Carlo Bernard ve Doug Miro",
+      "Ryan Condal ve George R. R. Martin",
+      "Hwang Dong-hyuk",
+      "Dan Erickson"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "House of the Dragon, Ryan Condal ve George R. R. Martin tarafından geliştirilen ve 2022 yılında başlayan bir dizidir."
+  },
+  {
+    "id": "q58051",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi'nde kendi ekseni çevresinde ters yönde dönen gezegenlerden biri hangisidir?",
+    "options": [
+      "Jüpiter",
+      "Mars",
+      "Venüs",
+      "Neptün"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Venüs, çoğu gezegenin tersine doğudan batıya doğru dönen retrograd bir dönüşe sahiptir."
+  },
+  {
+    "id": "q58052",
+    "categoryIndex": 5,
+    "question": "2022 EuroLeague finali hangi şehirde oynandı?",
+    "options": [
+      "Münih",
+      "Lizbon",
+      "Dublin",
+      "Belgrad"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "2022 EuroLeague finali, Belgrad şehrinde oynandı."
+  },
+  {
+    "id": "q58053",
+    "categoryIndex": 0,
+    "question": "Es-Semara (EH-partial) bölgesi hangi ülkenin sınırları içinde bulunur?",
+    "options": [
+      "Fas",
+      "Kamboçya",
+      "Nepal",
+      "Güney Sudan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Es-Semara (EH-partial), ISO 3166-2 kayıtlarında Fas ülkesine bağlı bir idari bölüm olarak gösterilir."
+  },
+  {
+    "id": "q58054",
+    "categoryIndex": 1,
+    "question": "“The Last of Us” yapımında öne çıkan isim hangisidir?",
+    "options": [
+      "Anya Taylor-Joy",
+      "Pedro Pascal ve Bella Ramsey",
+      "Cody ve May",
+      "Quinta Brunson"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“The Last of Us” yapımında öne çıkan oyuncu veya karakter Pedro Pascal ve Bella Ramsey olarak bilinir."
+  },
+  {
+    "id": "q58055",
+    "categoryIndex": 4,
+    "question": "SLIM aracının Ay'a inişi hangi kurum veya kurumlar tarafından yürütüldü?",
+    "options": [
+      "Katalin Karikó ve Drew Weissman",
+      "ISRO",
+      "JAXA",
+      "Benjamin List ve David MacMillan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "SLIM aracının Ay'a inişi, JAXA tarafından yürütülen veya desteklenen bir çalışmadır."
+  },
+  {
+    "id": "q58056",
+    "categoryIndex": 5,
+    "question": "Bisiklet yol yarışında ana sporcu grubuna ne denir?",
+    "options": [
+      "Paddock",
+      "Flamme rouge",
+      "Velodrom",
+      "Peloton"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Peloton, hava direncini azaltmak ve taktik uygulamak için birlikte ilerleyen ana bisikletçi grubudur."
+  },
+  {
+    "id": "q58057",
+    "categoryIndex": 0,
+    "question": "Vallée du Bandama bölümü hangi ülkenin yönetim sistemine dâhildir?",
+    "options": [
+      "Côte d’Ivoire",
+      "Christmas Adası",
+      "Cocos (Keeling) Adaları",
+      "ABD Virjin Adaları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Vallée du Bandama, ISO 3166-2 kayıtlarında Côte d’Ivoire ülkesine bağlı bir idari bölüm olarak gösterilir."
+  },
+  {
+    "id": "q58058",
+    "categoryIndex": 1,
+    "question": "En İyi Film Oscarını kazanan Nomadland filminin yönetmeni kimdir?",
+    "options": [
+      "Richard Attenborough",
+      "Chloé Zhao",
+      "Peter Farrelly",
+      "Rob Marshall"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2020 yapımı Nomadland, Chloé Zhao tarafından yönetildi ve En İyi Film Oscarını kazandı."
+  },
+  {
+    "id": "q58059",
+    "categoryIndex": 4,
+    "question": "Günümüzde yaşayan en büyük hayvan türü hangisidir?",
+    "options": [
+      "Balina köpekbalığı",
+      "Afrika fili",
+      "Mavi balina",
+      "Dev kalamar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mavi balina 30 metreye yaklaşabilen boyu ve 150 tonu aşabilen kütlesiyle bilinen en büyük hayvandır."
+  },
+  {
+    "id": "q58060",
+    "categoryIndex": 5,
+    "question": "Paris 2024'te kadınlar 100 metreyi kazanarak Saint Lucia'ya ilk olimpiyat altınını getiren atlet kimdi?",
+    "options": [
+      "Shelly-Ann Fraser-Pryce",
+      "Elaine Thompson-Herah",
+      "Sha’Carri Richardson",
+      "Julien Alfred"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Julien Alfred, kadınlar 100 metrede kazanarak Saint Lucia tarihinin ilk olimpiyat madalyasını ve altınını aldı."
+  },
+  {
+    "id": "q58061",
+    "categoryIndex": 1,
+    "question": "Do doğal minör gamının bağıl majörü hangisidir?",
+    "options": [
+      "Re diyez majör",
+      "Sol majör",
+      "La diyez majör",
+      "Fa diyez majör"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bir doğal minör gamın bağıl majörü kök sesin üç yarım ses üstündedir; Do minörün bağıl majörü Re diyez majördür."
+  },
+  {
+    "id": "q58062",
+    "categoryIndex": 4,
+    "question": "Bir ahtapotun kaç kalbi vardır?",
+    "options": [
+      "1",
+      "3",
+      "2",
+      "4"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ahtapotlarda iki kalp solungaçlara, bir kalp ise vücudun geri kalanına kan pompalar."
+  },
+  {
+    "id": "q58063",
+    "categoryIndex": 5,
+    "question": "2022 Kış Olimpiyat Oyunları hangi ülkede düzenlenmiştir?",
+    "options": [
+      "İsviçre",
+      "Amerika Birleşik Devletleri",
+      "Çin",
+      "Yugoslavya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2022 Kış Olimpiyatları Çin sınırlarında gerçekleştirildi."
+  },
+  {
+    "id": "q58064",
+    "categoryIndex": 1,
+    "question": "Aşağıdaki En İyi Film Oscar’ı sahiplerinden hangisi Sian Heder tarafından 2021 yılında yönetilmiştir?",
+    "options": [
+      "Oppenheimer",
+      "Kramer vs. Kramer",
+      "Amadeus",
+      "CODA"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sian Heder, 2021 yapımı CODA filminin yönetmenidir."
+  },
+  {
+    "id": "q58065",
+    "categoryIndex": 4,
+    "question": "Kutup ışıkları çoğunlukla Güneş'ten gelen hangi etkenle oluşur?",
+    "options": [
+      "Yüklü parçacıklar",
+      "Ses dalgaları",
+      "Göktaşı tozu",
+      "Ay ışığı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Güneş rüzgârındaki yüklü parçacıklar atmosfer gazlarıyla çarpışınca aurora olarak görülen ışımalar oluşur."
+  },
+  {
+    "id": "q58066",
+    "categoryIndex": 5,
+    "question": "İlk Formula 1 dünya şampiyonluğunu 2021'de kazanan pilot kimdi?",
+    "options": [
+      "Charles Leclerc",
+      "Max Verstappen",
+      "Valtteri Bottas",
+      "Lewis Hamilton"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Max Verstappen, 2021 Abu Dabi Grand Prix'sindeki sonuçla ilk Formula 1 dünya şampiyonluğuna ulaştı."
+  },
+  {
+    "id": "q58067",
+    "categoryIndex": 1,
+    "question": "The Godfather ile The Godfather Part II yapımlarında ortak olan yönetmeni kimdir?",
+    "options": [
+      "Ridley Scott",
+      "Robert Zemeckis",
+      "Francis Ford Coppola",
+      "Sydney Newman, C. E. Webber ve Donald Wilson"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "The Godfather ve The Godfather Part II, Francis Ford Coppola imzasını taşıyan iki yapımdır."
+  },
+  {
+    "id": "q58068",
+    "categoryIndex": 4,
+    "question": "2022 Nobel Kimya Ödülü hangi çalışma veya keşif için verildi?",
+    "options": [
+      "İnsan genomundaki kalan boşlukları tamamlamak",
+      "mRNA aşılarına temel oluşturan keşifler",
+      "SMACS 0723 derin alanı",
+      "Tıklama ve biyoortogonal kimya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2022 Nobel Kimya Ödülü, Tıklama ve biyoortogonal kimya alanındaki çalışma veya keşifleri ödüllendirdi."
+  },
+  {
+    "id": "q58069",
+    "categoryIndex": 5,
+    "question": "2022 UEFA Avrupa Ligi finalinde ikinci olan takım hangisidir?",
+    "options": [
+      "Rangers",
+      "Liverpool",
+      "Manchester City",
+      "Inter"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2022 UEFA Avrupa Ligi finalinde Rangers ikinci oldu."
+  },
+  {
+    "id": "q58070",
+    "categoryIndex": 1,
+    "question": "Metroid oyununun ana geliştiricisi hangisidir?",
+    "options": [
+      "Team Cherry",
+      "Nintendo",
+      "FromSoftware",
+      "Cyan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Metroid oyununun geliştirme çalışması Nintendo tarafından yürütüldü."
+  },
+  {
+    "id": "q58071",
+    "categoryIndex": 4,
+    "question": "Onikiparmak bağırsağı insan vücudunda nerede bulunur?",
+    "options": [
+      "Böbrekler ile mesane arasında",
+      "Göğüs boşluğunda iki akciğer arasında",
+      "Midenin hemen sonrasında",
+      "Alt bacağın dış tarafında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Onikiparmak bağırsağı, midenin hemen sonrasında bulunur."
+  },
+  {
+    "id": "q58072",
+    "categoryIndex": 5,
+    "question": "2024 Avustralya Açık'ta ilk Grand Slam şampiyonluğunu kazanan erkek tenisçi kimdi?",
+    "options": [
+      "Novak Djokovic",
+      "Carlos Alcaraz",
+      "Daniil Medvedev",
+      "Jannik Sinner"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Jannik Sinner, 2024 Avustralya Açık finalinde Daniil Medvedev karşısında iki set geriden gelerek kazandı."
+  },
+  {
+    "id": "q58073",
+    "categoryIndex": 1,
+    "question": "Nope filminin yönetmeni kimdir?",
+    "options": [
+      "Jordan Peele",
+      "Barry Jenkins",
+      "Damián Szifron",
+      "Yorgos Lanthimos"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Nope, Jordan Peele tarafından yönetilen 2022 yapımı bir filmdir."
+  },
+  {
+    "id": "q58074",
+    "categoryIndex": 4,
+    "question": "Böbrekler insan vücudunda nerede bulunur?",
+    "options": [
+      "Beynin tabanında",
+      "Bel bölgesinde omurganın iki yanında",
+      "Beyin sapının alt bölümünde",
+      "Kalbin sol karıncığından çıkar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Böbrekler, bel bölgesinde omurganın iki yanında bulunur."
+  },
+  {
+    "id": "q58075",
+    "categoryIndex": 5,
+    "question": "Super Bowl LVII'yi kazanan takım hangisiydi?",
+    "options": [
+      "Cincinnati Bengals",
+      "Philadelphia Eagles",
+      "Kansas City Chiefs",
+      "Buffalo Bills"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kansas City Chiefs, Super Bowl LVII'de Philadelphia Eagles'ı 38-35 mağlup etti."
+  },
+  {
+    "id": "q58076",
+    "categoryIndex": 1,
+    "question": "Drive My Car filminin yönetmeni kimdir?",
+    "options": [
+      "Asghar Farhadi",
+      "Steve McQueen",
+      "Federico Fellini",
+      "Ryusuke Hamaguchi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Drive My Car, Ryusuke Hamaguchi tarafından yönetilen 2021 yapımı bir filmdir."
+  },
+  {
+    "id": "q58077",
+    "categoryIndex": 4,
+    "question": "Crew Dragon Demo-2 uçuşu hangi hedef veya konuyla bağlantılıydı?",
+    "options": [
+      "ABD'den insanlı yörünge uçuşlarını yeniden başlatmak",
+      "Soyu tükenmiş insan türlerinin genomları",
+      "Karanlık madde ve karanlık enerji",
+      "16 Psyche asteroidi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Crew Dragon Demo-2 uçuşu, ABD'den insanlı yörünge uçuşlarını yeniden başlatmak hedefi ya da konusuyla bağlantılıydı."
+  },
+  {
+    "id": "q58078",
+    "categoryIndex": 5,
+    "question": "Kulüp tarihindeki ilk NBA şampiyonluğunu 2023'te kazanan takım hangisiydi?",
+    "options": [
+      "Miami Heat",
+      "Denver Nuggets",
+      "Phoenix Suns",
+      "Cleveland Cavaliers"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Denver Nuggets, 2023 NBA Finalleri'nde Miami Heat'i yenerek ilk şampiyonluğunu kazandı."
+  },
+  {
+    "id": "q58079",
+    "categoryIndex": 1,
+    "question": "2021 tarihli “Metroid Dread” oyununu hangi stüdyo geliştirdi?",
+    "options": [
+      "Guerrilla Games",
+      "Game Science",
+      "MercurySteam",
+      "Capcom"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "“Metroid Dread”, MercurySteam tarafından geliştirilen ve 2021 yılında yayımlanan bir oyundur."
+  },
+  {
+    "id": "q58080",
+    "categoryIndex": 4,
+    "question": "Bir elementin atom numarası çekirdeğindeki hangi parçacığın sayısını gösterir?",
+    "options": [
+      "Nötron",
+      "Elektron kabuğu",
+      "Foton",
+      "Proton"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Atom numarası proton sayısına eşittir ve bir elementin periyodik tablodaki kimliğini belirler."
+  },
+  {
+    "id": "q58081",
+    "categoryIndex": 5,
+    "question": "2023 UEFA Şampiyonlar Ligi finalini hangi takım kazandı?",
+    "options": [
+      "Manchester City",
+      "Atalanta",
+      "Sevilla",
+      "Paris Saint-Germain"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2023 UEFA Şampiyonlar Ligi finalinde kupayı Manchester City kazandı."
+  },
+  {
+    "id": "q58082",
+    "categoryIndex": 1,
+    "question": "Hogwarts Legacy ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "2024",
+      "2023",
+      "1999",
+      "2021"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hogwarts Legacy, ilk ticari sürümünü 2023 yılında aldı."
+  },
+  {
+    "id": "q58083",
+    "categoryIndex": 4,
+    "question": "2024 Nobel Kimya Ödülü kimlere verildi?",
+    "options": [
+      "ESA ve NASA",
+      "Çin Ulusal Uzay İdaresi",
+      "David Baker, Demis Hassabis ve John Jumper",
+      "Firefly Aerospace"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2024 Nobel Kimya Ödülü, David Baker, Demis Hassabis ve John Jumper tarafından kazanıldı."
+  },
+  {
+    "id": "q58084",
+    "categoryIndex": 5,
+    "question": "Krikette wicket yapısındaki dik çubuklara ne denir?",
+    "options": [
+      "Boundary",
+      "Bail",
+      "Crease",
+      "Stump"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bir wicket üç stump ve onların üzerinde duran iki bail parçasından oluşur."
+  },
+  {
+    "id": "q58085",
+    "categoryIndex": 1,
+    "question": "Nope filmi hangi yıl gösterime girmiştir?",
+    "options": [
+      "2022",
+      "2013",
+      "2012",
+      "2020"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Jordan Peele imzalı Nope, 2022 yılında gösterime girdi."
+  },
+  {
+    "id": "q58086",
+    "categoryIndex": 4,
+    "question": "Paratiroit bezleri insan vücudunda nerede bulunur?",
+    "options": [
+      "Karaciğerin alt yüzünde",
+      "Tiroit bezinin arka yüzünde",
+      "Üst kolda",
+      "İnce bağırsağın son bölümünde"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Paratiroit bezleri, tiroit bezinin arka yüzünde bulunur."
+  },
+  {
+    "id": "q58087",
+    "categoryIndex": 5,
+    "question": "“Kuş Yuvası” olarak bilinen Pekin Ulusal Stadyumu hangi iki sporla öne çıkar?",
+    "options": [
+      "Salon sporları",
+      "Golf",
+      "Atletizm ve futbol",
+      "Kriket ve ragbi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Pekin Ulusal Stadyumu, 2008 Olimpiyatları’ndaki atletizm yarışları ve futbol karşılaşmalarıyla öne çıktı."
+  },
+  {
+    "id": "q58088",
+    "categoryIndex": 1,
+    "question": "2021 yapımı “The Mitchells vs. the Machines” filminin yönetmeni kimdir?",
+    "options": [
+      "Peter Ramsey",
+      "Kirk DeMicco",
+      "Chris Miller",
+      "Mike Rianda"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“The Mitchells vs. the Machines”, Mike Rianda yönetmenliğinde hazırlanan ve 2021'de yayımlanan animasyon filmidir."
+  },
+  {
+    "id": "q58089",
+    "categoryIndex": 4,
+    "question": "İlk boşluksuz insan genom dizisinin yayımlanması hangi kurum veya kurumlar tarafından yürütüldü?",
+    "options": [
+      "Telomere-to-Telomere Konsorsiyumu",
+      "Firefly Aerospace",
+      "NASA",
+      "Alain Aspect, John Clauser ve Anton Zeilinger"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İlk boşluksuz insan genom dizisinin yayımlanması, Telomere-to-Telomere Konsorsiyumu tarafından yürütülen veya desteklenen bir çalışmadır."
+  },
+  {
+    "id": "q58090",
+    "categoryIndex": 5,
+    "question": "2022 Kış Olimpiyat Oyunları’nın ana ev sahibi şehri veya ortak ev sahibi adı hangisidir?",
+    "options": [
+      "Sapporo",
+      "Pekin",
+      "Torino",
+      "Oslo"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "2022 Kış Olimpiyatları Pekin, Çin ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q58091",
+    "categoryIndex": 1,
+    "question": "“Beef” yapımında öne çıkan isim hangisidir?",
+    "options": [
+      "Cody ve May",
+      "Anya Taylor-Joy",
+      "Steven Yeun ve Ali Wong",
+      "Jenna Ortega"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "“Beef” yapımında öne çıkan oyuncu veya karakter Steven Yeun ve Ali Wong olarak bilinir."
+  },
+  {
+    "id": "q58092",
+    "categoryIndex": 4,
+    "question": "Kuvvet büyüklüğünün SI birimi hangisidir?",
+    "options": [
+      "siemens",
+      "sievert",
+      "lumen",
+      "newton"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kuvvet için SI birimi newton, birim simgesi ise N şeklindedir."
+  },
+  {
+    "id": "q58093",
+    "categoryIndex": 1,
+    "question": "En İyi Film Oscarını kazanan Nomadland hangi yıl gösterime girmiştir?",
+    "options": [
+      "2020",
+      "2013",
+      "2023",
+      "2019"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nomadland, 2020 yılında gösterime giren ve daha sonra En İyi Film Oscarını kazanan bir yapımdır."
+  },
+  {
+    "id": "q58094",
+    "categoryIndex": 4,
+    "question": "Kılcal damarlar insan vücudunda nerede bulunur?",
+    "options": [
+      "Kalın bağırsağın son bölümünde",
+      "Dokuların içinde yaygın ağlar hâlinde",
+      "Beynin tabanında",
+      "Boynun ön bölümünde"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kılcal damarlar, dokuların içinde yaygın ağlar hâlinde bulunur."
+  },
+  {
+    "id": "q58095",
+    "categoryIndex": 1,
+    "question": "“Beef” ilk kez hangi yıl yayımlandı?",
+    "options": [
+      "2020",
+      "2024",
+      "2023",
+      "2025"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "“Beef”, ilk kez 2023 yılında yayımlandı."
+  },
+  {
+    "id": "q58096",
+    "categoryIndex": 4,
+    "question": "Artemis I görevi çalışmasının ana bilimsel hedefi neydi?",
+    "options": [
+      "Hassas Ay inişi teknolojisi",
+      "Güneş'in dış atmosferi",
+      "Soyu tükenmiş insan türlerinin genomları",
+      "Orion kapsülünü mürettebatsız olarak Ay çevresinde sınamak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Artemis I görevi, Orion kapsülünü mürettebatsız olarak Ay çevresinde sınamak konusuna odaklanan bir bilimsel gelişmedir."
+  },
+  {
+    "id": "q58097",
+    "categoryIndex": 1,
+    "question": "Élite ve Kingdom dizilerinin ilk yayınlandığı ortak kanal veya platform hangisidir?",
+    "options": [
+      "Netflix",
+      "Channel 4",
+      "USA Network",
+      "HBO"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Her iki yapım da ilk yayınında Netflix ile ilişkilidir."
+  },
+  {
+    "id": "q58098",
+    "categoryIndex": 4,
+    "question": "JUICE hangi yıl fırlatıldı?",
+    "options": [
+      "2020",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "JUICE görevinin fırlatılması, 2023 yılında gerçekleşti."
+  },
+  {
+    "id": "q58099",
+    "categoryIndex": 1,
+    "question": "“The Last of Us” ilk kez hangi yıl yayımlandı?",
+    "options": [
+      "2020",
+      "2026",
+      "2023",
+      "2025"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "“The Last of Us”, ilk kez 2023 yılında yayımlandı."
+  },
+  {
+    "id": "q58100",
+    "categoryIndex": 4,
+    "question": "2021'de yalnızca sivillerden oluşan ilk yörünge uçuşunun adı neydi?",
+    "options": [
+      "Crew-1",
+      "Polaris Dawn",
+      "Axiom-1",
+      "Inspiration4"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "SpaceX'in Inspiration4 görevi, profesyonel astronot bulunmayan dört kişilik ekibi üç gün boyunca yörüngede taşıdı."
+  },
+  {
+    "id": "q58101",
+    "categoryIndex": 1,
+    "question": "2022 tarihli “God of War Ragnarök” oyununu hangi stüdyo geliştirdi?",
+    "options": [
+      "Santa Monica Studio",
+      "Remedy Entertainment",
+      "Nintendo",
+      "Ubisoft Montpellier"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "“God of War Ragnarök”, Santa Monica Studio tarafından geliştirilen ve 2022 yılında yayımlanan bir oyundur."
+  },
+  {
+    "id": "q58102",
+    "categoryIndex": 4,
+    "question": "2024'te yayımlanan ayrıntılı insan beyni haritası yaklaşık ne büyüklükte bir doku parçasını temel aldı?",
+    "options": [
+      "Bir kübik santimetre",
+      "Bir kübik milimetre",
+      "Bir tek nöron",
+      "Bir tam beyin yarımküresi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Harvard ve Google araştırmacıları, bir kübik milimetrelik insan beyin dokusunun son derece ayrıntılı bağlantı haritasını yayımladı."
+  },
+  {
+    "id": "q58103",
+    "categoryIndex": 1,
+    "question": "The Hunt ile Another Round yapımlarında ortak olan yönetmeni kimdir?",
+    "options": [
+      "Hugh Hudson",
+      "Clint Eastwood",
+      "Thomas Vinterberg",
+      "James L. Brooks"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "The Hunt ve Another Round, Thomas Vinterberg imzasını taşıyan iki yapımdır."
+  },
+  {
+    "id": "q58104",
+    "categoryIndex": 4,
+    "question": "2021 Nobel Fizyoloji veya Tıp Ödülü kimlere verildi?",
+    "options": [
+      "Telomere-to-Telomere Konsorsiyumu",
+      "NASA",
+      "JAXA",
+      "David Julius ve Ardem Patapoutian"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2021 Nobel Fizyoloji veya Tıp Ödülü, David Julius ve Ardem Patapoutian tarafından kazanıldı."
+  },
+  {
+    "id": "q58105",
+    "categoryIndex": 1,
+    "question": "Lupin dizisinin yaratıcısı veya yaratıcıları kimdir?",
+    "options": [
+      "George Kay ve François Uzan",
+      "Tom Tykwer, Achim von Borries ve Henk Handloegten",
+      "Ryan Condal ve George R. R. Martin",
+      "Mitchell Hurwitz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Lupin, George Kay ve François Uzan tarafından geliştirilen ve 2021 yılında başlayan bir dizidir."
+  },
+  {
+    "id": "q58106",
+    "categoryIndex": 4,
+    "question": "Lucy uzay aracının fırlatılması görevinin ana hedefi neydi?",
+    "options": [
+      "16 Psyche asteroidi",
+      "Jüpiter'in Truva asteroitleri",
+      "Yapay sinir ağlarıyla makine öğrenmesi",
+      "Ay'ın güney kutup bölgesine yakın alan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Lucy uzay aracının fırlatılması görevi, Jüpiter'in Truva asteroitleri üzerine odaklandı."
+  },
+  {
+    "id": "q58107",
+    "categoryIndex": 1,
+    "question": "2022 çıkışlı “SOS” albümü hangi sanatçıya aittir?",
+    "options": [
+      "Taylor Swift",
+      "Billie Eilish",
+      "SZA",
+      "Doja Cat"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "“SOS”, SZA tarafından yayımlanan ve 2022 dönemine damga vuran albümlerden biridir."
+  },
+  {
+    "id": "q58108",
+    "categoryIndex": 4,
+    "question": "Amonyum sülfat bileşiğinin moleküler veya formül gösterimi hangisidir?",
+    "options": [
+      "O3",
+      "MgH2O2",
+      "NH3",
+      "N2H8SO4"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Amonyum sülfat için kullanılan kimyasal gösterim N2H8SO4 biçimindedir."
+  },
+  {
+    "id": "q58109",
+    "categoryIndex": 1,
+    "question": "“Elden Ring” hangi evren, mekân veya temayla öne çıkar?",
+    "options": [
+      "Lands Between",
+      "Dungeons & Dragons kuralları",
+      "Yunan mitolojisinin yeraltı dünyası",
+      "PlayStation 5"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "“Elden Ring”, özellikle Lands Between unsuruyla öne çıkar."
+  },
+  {
+    "id": "q58110",
+    "categoryIndex": 4,
+    "question": "2024'te Ay'a inerek Apollo döneminden sonra bunu başaran ilk ABD aracı hangisiydi?",
+    "options": [
+      "Nova-C Pathfinder",
+      "Odysseus",
+      "Orion",
+      "Peregrine"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Intuitive Machines'in Odysseus aracı, Şubat 2024'te Ay'a yumuşak iniş yapan ilk özel araç oldu."
+  },
+  {
+    "id": "q58111",
+    "categoryIndex": 1,
+    "question": "En İyi Film Oscarını kazanan CODA filminin yönetmeni kimdir?",
+    "options": [
+      "Guillermo del Toro",
+      "Rob Marshall",
+      "Sian Heder",
+      "Miloš Forman"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2021 yapımı CODA, Sian Heder tarafından yönetildi ve En İyi Film Oscarını kazandı."
+  },
+  {
+    "id": "q58112",
+    "categoryIndex": 1,
+    "question": "“Astro Bot” hangi evren, mekân veya temayla öne çıkar?",
+    "options": [
+      "Yunan mitolojisinin yeraltı dünyası",
+      "Dungeons & Dragons kuralları",
+      "Lands Between",
+      "PlayStation 5"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "“Astro Bot”, özellikle PlayStation 5 unsuruyla öne çıkar."
+  },
+  {
+    "id": "q58113",
+    "categoryIndex": 1,
+    "question": "2021 yapımı “Drive My Car” filmini kim yönetti?",
+    "options": [
+      "Ryusuke Hamaguchi",
+      "Daniel Kwan ve Daniel Scheinert",
+      "Celine Song",
+      "Christopher Nolan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "“Drive My Car”, Ryusuke Hamaguchi tarafından yönetilen ve 2021 yılında gösterime giren bir filmdir."
+  },
+  {
+    "id": "q58114",
+    "categoryIndex": 1,
+    "question": "Titane filminin yönetmeni kimdir?",
+    "options": [
+      "Akira Kurosawa",
+      "Julia Ducournau",
+      "Tom Tykwer",
+      "Sofia Coppola"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Titane, Julia Ducournau tarafından yönetilen 2021 yapımı bir filmdir."
+  },
+  {
+    "id": "q58115",
+    "categoryIndex": 1,
+    "question": "“Bridgerton” ilk kez hangi yıl yayımlandı?",
+    "options": [
+      "2024",
+      "2022",
+      "2020",
+      "2026"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "“Bridgerton”, ilk kez 2020 yılında yayımlandı."
+  },
+  {
+    "id": "q58116",
+    "categoryIndex": 1,
+    "question": "“Arcane” ilk olarak hangi platform veya kanalda yayımlandı?",
+    "options": [
+      "ABC",
+      "Apple TV+",
+      "Hulu",
+      "Netflix"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Arcane”, ilk yayımlandığı dönemde Netflix üzerinden izleyiciyle buluştu."
+  },
+  {
+    "id": "q58117",
+    "categoryIndex": 1,
+    "question": "Mass Effect serisinin oyuncu tarafından özelleştirilen ana kahramanı kimdir?",
+    "options": [
+      "Komutan Shepard",
+      "Master Chief",
+      "Sam Fisher",
+      "Marcus Fenix"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Komutan Shepard, Mass Effect üçlemesinde insanlığı Reaper tehdidine karşı yönlendiren başkahramandır."
+  },
+  {
+    "id": "q58118",
+    "categoryIndex": 1,
+    "question": "“Elden Ring” hangi oyun stüdyosu tarafından geliştirildi?",
+    "options": [
+      "Team Asobi",
+      "FromSoftware",
+      "Supergiant Games",
+      "Hazelight Studios"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "“Elden Ring”, FromSoftware tarafından geliştirilen bir video oyunudur."
+  },
+  {
+    "id": "q58119",
+    "categoryIndex": 1,
+    "question": "“Arcane” ilk kez hangi yıl yayımlandı?",
+    "options": [
+      "2020",
+      "2026",
+      "2021",
+      "2024"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "“Arcane”, ilk kez 2021 yılında yayımlandı."
+  },
+  {
+    "id": "q58120",
+    "categoryIndex": 1,
+    "question": "“Severance” dizisi ilk sezonu hangi platform veya kanalda yayımlandı?",
+    "options": [
+      "Disney+",
+      "Netflix",
+      "HBO",
+      "Apple TV+"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Severance”, 2022 yılında Apple TV+ üzerinden izleyiciyle buluşan öne çıkan dizilerden biridir."
+  }
+]

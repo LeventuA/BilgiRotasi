@@ -1,0 +1,161 @@
+  Widget _buildFeatureStrip() {
+    const features = [
+      ('🧭', 'Serbest Rota', 'Tek kişilik tahta'),
+      ('🧠', 'Soru Maratonu', 'Hızlı bilgi turu'),
+      ('💾', 'Kaydet ve dön', 'Kaldığın yerden'),
+    ];
+
+    return Row(
+      children: [
+        for (var index = 0; index < features.length; index++) ...[
+          Expanded(
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: _actionBusy
+                    ? null
+                    : () => _onModeCardTap(index),
+                borderRadius: BorderRadius.circular(18),
+                splashColor: const Color(0x33FFE082),
+                highlightColor: const Color(0x1FFFFFFF),
+                child: Ink(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 12,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0x16FFFFFF),
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(
+                      color: const Color(0x55FFFFFF),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        features[index].$1,
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        features[index].$2,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        features[index].$3,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Color(0xFFCBC1D6),
+                          fontSize: 9,
+                          height: 1.1,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          if (index < features.length - 1)
+            const SizedBox(width: 8),
+        ],
+      ],
+    );
+  }
+
+  Future<void> _onModeCardTap(int index) async {
+    HapticFeedback.selectionClick();
+
+    switch (index) {
+      case 0:
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => SoloRouteSetupScreen(
+              questionBank: widget.questionBank,
+            ),
+          ),
+        );
+        if (mounted) {
+          setState(_reloadSavedGame);
+        }
+        return;
+
+      case 1:
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => MarathonSetupScreen(
+              questionBank: widget.questionBank,
+            ),
+          ),
+        );
+        return;
+
+      case 2:
+        await _openSavedGameShortcut();
+        return;
+    }
+  }
+
+  Future<void> _openSavedGameShortcut() async {
+    if (_actionBusy) return;
+
+    setState(() => _actionBusy = true);
+
+    final savedGame = await GameSaveService.load();
+
+    if (!mounted) return;
+
+    if (savedGame != null) {
+      setState(() => _actionBusy = false);
+      await _continueGame(savedGame);
+      return;
+    }
+
+    setState(() => _actionBusy = false);
+
+    final startNewGame = await showDialog<bool>(
+          context: context,
+          builder: (dialogContext) {
+            return AlertDialog(
+              icon: const Text(
+                '💾',
+                style: TextStyle(fontSize: 44),
+              ),
+              title: const Text('Kayıtlı oyun yok'),
+              content: const Text(
+                'Tahta oyunundan çıkarken “Kaydet ve Çık” '
+                'seçeneğini kullandığında buradan tek dokunuşla '
+                'oyuna dönebilirsin.',
+                textAlign: TextAlign.center,
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, false),
+                  child: const Text('Kapat'),
+                ),
+                FilledButton(
+                  onPressed: () =>
+                      Navigator.pop(dialogContext, true),
+                  child: const Text('Yeni Oyun Kur'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+
+    if (startNewGame && mounted) {
+      await _openNewGame();
+    }
+  }
+

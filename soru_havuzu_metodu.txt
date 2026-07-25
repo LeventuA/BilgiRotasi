@@ -1,0 +1,58 @@
+  QuestionDraw nextQuestion({
+    required int categoryIndex,
+    required Random random,
+    required Set<String> usedQuestionIds,
+    String? preferredDifficulty,
+  }) {
+    final list = questionsByCategory[categoryIndex];
+
+    if (list == null || list.isEmpty) {
+      throw StateError(
+        'Kategori için soru bulunamadı: $categoryIndex',
+      );
+    }
+
+    var available = list
+        .where(
+          (question) => !usedQuestionIds.contains(question.id),
+        )
+        .toList();
+
+    var poolReset = false;
+
+    if (available.isEmpty) {
+      final categoryIds = list
+          .map((question) => question.id)
+          .toSet();
+
+      usedQuestionIds.removeWhere(categoryIds.contains);
+      available = List<QuizQuestion>.from(list);
+      poolReset = true;
+    }
+
+    var candidates = available;
+
+    if (preferredDifficulty != null) {
+      final preferred = available
+          .where(
+            (question) =>
+                question.difficulty == preferredDifficulty,
+          )
+          .toList();
+
+      if (preferred.isNotEmpty) {
+        candidates = preferred;
+      }
+    }
+
+    final question =
+        candidates[random.nextInt(candidates.length)];
+
+    usedQuestionIds.add(question.id);
+
+    return QuestionDraw(
+      question: question,
+      poolReset: poolReset,
+    );
+  }
+

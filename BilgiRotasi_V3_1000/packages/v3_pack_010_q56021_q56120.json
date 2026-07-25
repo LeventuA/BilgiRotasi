@@ -1,0 +1,1402 @@
+[
+  {
+    "categoryIndex": 4,
+    "question": "GPU hangi tür işlemler için özellikle tasarlanmıştır?",
+    "options": [
+      "Paralel grafik hesaplamaları",
+      "Ses kaydı",
+      "Dosya adlandırma",
+      "Metin yazdırma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "GPU çok sayıda küçük çekirdekle görüntü oluşturma ve paralel hesaplamaları hızlandırır.",
+    "id": "q56021"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Senfoni orkestrasındaki en kalabalık çalgı ailesi genellikle hangisidir?",
+    "options": [
+      "Klavyeliler",
+      "Yaylılar",
+      "Vurmalılar",
+      "Bakır üflemeliler"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Keman, viyola, viyolonsel ve kontrbaslardan oluşan yaylılar geniş bir bölüm oluşturur.",
+    "id": "q56022"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "QR kod, geleneksel barkoda göre nasıl bilgi saklar?",
+    "options": [
+      "Ses dalgasında",
+      "Yalnız tek çizgide",
+      "İki boyutta",
+      "Manyetik şeritte"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "QR kod siyah-beyaz modülleri hem yatay hem dikey yönde kullanır.",
+    "id": "q56023"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "GPS konum belirlemek için başlıca neyi kullanır?",
+    "options": [
+      "Pusuladaki mıknatısı",
+      "Yer altı kablolarını",
+      "Radyo şarkılarını",
+      "Uydulardan gelen zaman sinyallerini"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Alıcı, birden fazla uydudan gelen sinyallerin gecikmesini ölçerek konumunu hesaplar.",
+    "id": "q56024"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Red Hot Chili Peppers’ın bas gitaristi hangi sahne adıyla bilinir?",
+    "options": [
+      "Flea",
+      "Slash",
+      "Edge",
+      "Sting"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Michael Balzary, enerjik bas çalma tarzıyla Flea sahne adını kullanır.",
+    "id": "q56025"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Coldplay grubunun solisti kimdir?",
+    "options": [
+      "Thom Yorke",
+      "Chris Martin",
+      "Brandon Flowers",
+      "Matt Bellamy"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Chris Martin, Coldplay’in solisti, piyanisti ve başlıca şarkı yazarlarındandır.",
+    "id": "q56026"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Rıza Kayaalp hangi güreş stilinde yarışmıştır?",
+    "options": [
+      "Serbest stil",
+      "Sumo",
+      "Grekoromen",
+      "Yağlı güreş"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Rıza Kayaalp, üst gövde tekniklerinin kullanıldığı grekoromen ağır sıklette başarılar kazandı.",
+    "id": "q56027"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Yağmur gölgesi etkisi dağın hangi tarafında kuraklık oluşturur?",
+    "options": [
+      "Zirvenin tam üzerinde",
+      "Rüzgâr alan yamacında",
+      "Ekvatora bakan yamacında",
+      "Rüzgâr altı yamacında"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hava dağın rüzgâr alan tarafında yükselip yağış bırakınca arka tarafta daha kuru koşullar oluşur.",
+    "id": "q56028"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Denizden karaya doğru gündüz esen yerel rüzgâra ne denir?",
+    "options": [
+      "Deniz meltemi",
+      "Muson",
+      "Kara meltemi",
+      "Fön"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gündüz kara daha hızlı ısındığı için serin hava denizden karaya yönelir.",
+    "id": "q56029"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Gece karadan denize doğru esen yerel rüzgâr hangisidir?",
+    "options": [
+      "Deniz meltemi",
+      "Kara meltemi",
+      "Alize",
+      "Samyeli"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Gece kara daha hızlı soğur; yüksek basınçlı karadan denize doğru hafif rüzgâr eser.",
+    "id": "q56030"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Fön rüzgârı dağın aşağı yamacında nasıl bir hava oluşturur?",
+    "options": [
+      "Sürekli karlı",
+      "Soğuk ve nemli",
+      "Sıcak ve kuru",
+      "Tuzlu ve sisli"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yükselirken nemini kaybeden hava, aşağı inerken sıkışıp ısınarak sıcak ve kuru hâle gelir.",
+    "id": "q56031"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Taha Akgül hangi güreş stilinde Olimpiyat şampiyonu oldu?",
+    "options": [
+      "Yağlı güreş",
+      "Grekoromen",
+      "Judo",
+      "Serbest stil"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Taha Akgül, 2016 Rio’da serbest stil 125 kiloda altın madalya kazandı.",
+    "id": "q56032"
+  },
+  {
+    "id": "q56033",
+    "categoryIndex": 2,
+    "question": "İkonoklazm tartışmaları Bizans’ta neyin kullanımına karşıydı?",
+    "options": [
+      "Dinî tasvirlerin",
+      "Manastırların",
+      "Sikke basımının",
+      "Latince dilinin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bizans ikonoklazmı, kutsal kişileri betimleyen ikonların kullanımı ve saygı görmesi üzerine yaşandı."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Bir oyunun seyirci önündeki ilk gösterimine ne denir?",
+    "options": [
+      "Prova",
+      "Prömiyer",
+      "Matine",
+      "Finale"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Prömiyer, bir yapımın halka açık ilk sahnelenişi ya da gösterimidir.",
+    "id": "q56034"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "DNA’nın çift sarmal modelini öneren iki bilim insanı kimdir?",
+    "options": [
+      "Darwin ve Wallace",
+      "Curie ve Becquerel",
+      "Watson ve Crick",
+      "Bohr ve Rutherford"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Watson ve Crick’in 1953 modeli, Rosalind Franklin’in X-ışını kırınım verileri dâhil mevcut bulgulara dayanıyordu.",
+    "id": "q56035"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Radiohead’in Creep şarkısı ilk olarak hangi albümde yer aldı?",
+    "options": [
+      "OK Computer",
+      "Kid A",
+      "The Bends",
+      "Pablo Honey"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Creep, grubun 1993 tarihli ilk albümü Pablo Honey’de yayımlandı.",
+    "id": "q56036"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Dünya Sağlık Örgütü çiçek hastalığının yok edildiğini hangi yıl ilan etti?",
+    "options": [
+      "1980",
+      "1975",
+      "1990",
+      "1969"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Küresel aşılama kampanyasının ardından Dünya Sağlık Asamblesi 1980’de eradikasyonu ilan etti.",
+    "id": "q56037"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Mete Gazoz hangi spor dalında Olimpiyat şampiyonu oldu?",
+    "options": [
+      "Pentatlon",
+      "Okçuluk",
+      "Atıcılık",
+      "Eskrim"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mete Gazoz, Tokyo 2020’de klasik yay erkekler bireysel yarışını kazandı.",
+    "id": "q56038"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "World Wide Web’i geliştiren kişi kimdir?",
+    "options": [
+      "Linus Torvalds",
+      "Steve Wozniak",
+      "Tim Berners-Lee",
+      "Vint Cerf"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Berners-Lee, CERN’de HTTP, HTML ve URL temellerini birleştirerek web sistemini geliştirdi.",
+    "id": "q56039"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İlk halka açık buharlı demiryollarından Stockton-Darlington hattıyla ilişkilendirilen mühendis kimdir?",
+    "options": [
+      "James Watt",
+      "Robert Fulton",
+      "Isambard Brunel",
+      "George Stephenson"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "George Stephenson’un Locomotion No. 1 lokomotifi 1825’te Stockton-Darlington hattında çalıştı.",
+    "id": "q56040"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Arctic Monkeys hangi İngiliz şehrinde kuruldu?",
+    "options": [
+      "Sheffield",
+      "Newcastle",
+      "Bristol",
+      "Oxford"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Arctic Monkeys, 2002’de Sheffield’da kuruldu.",
+    "id": "q56041"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bluetooth adı hangi tarihî hükümdarın lakabından gelir?",
+    "options": [
+      "Erik the Red",
+      "Harald Bluetooth",
+      "Richard the Lionheart",
+      "William the Conqueror"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kablosuz standart, Danimarka ve Norveç’i birleştiren Kral Harald Bluetooth’a gönderme yapar.",
+    "id": "q56042"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Tropikal siklonlara Atlas Okyanusu’nda genellikle ne ad verilir?",
+    "options": [
+      "Tayfun",
+      "Bora",
+      "Kasırga",
+      "Hamsin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Aynı tür fırtına Atlas’ta kasırga, Batı Pasifik’te tayfun olarak adlandırılır.",
+    "id": "q56043"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Sahnedeki oyuncuların önceden yazılmamış biçimde anlık üretim yapmasına ne denir?",
+    "options": [
+      "Dublaj",
+      "Montaj",
+      "Koreografi",
+      "Doğaçlama"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Doğaçlamada oyuncular durum ve karaktere göre replik ya da hareketleri o anda oluşturur.",
+    "id": "q56044"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Bir öykünün merkezindeki ana karaktere ne denir?",
+    "options": [
+      "Protagonist",
+      "Anlatıcı",
+      "Antagonist",
+      "Figüran"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Protagonist, olayların çevresinde geliştiği başlıca karakterdir.",
+    "id": "q56045"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Tropikal siklonlara Batı Büyük Okyanus’ta genellikle ne denir?",
+    "options": [
+      "Kasırga",
+      "Tayfun",
+      "Fön",
+      "Hortum"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Batı Pasifik’te oluşan güçlü tropikal siklonlar tayfun adıyla bilinir.",
+    "id": "q56046"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Weeknd hangi ülkedendir?",
+    "options": [
+      "Avustralya",
+      "Birleşik Krallık",
+      "Kanada",
+      "ABD"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Abel Tesfaye, Toronto doğumlu Kanadalı bir şarkıcı ve yapımcıdır.",
+    "id": "q56047"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Billie Eilish’in sık birlikte çalıştığı ağabeyi kimdir?",
+    "options": [
+      "Jack Antonoff",
+      "Mark Ronson",
+      "Pharrell",
+      "Finneas"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Finneas O’Connell, Billie Eilish’in yapımcısı ve ortak şarkı yazarıdır.",
+    "id": "q56048"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Sezen Aksu hangi lakapla anılır?",
+    "options": [
+      "Minik Serçe",
+      "Taçsız Kral",
+      "Bozkırın Tezenesi",
+      "Sanat Güneşi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sezen Aksu, Türk pop müziğindeki etkisiyle Minik Serçe lakabını taşır.",
+    "id": "q56049"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "USB kısaltmasının açılımı nedir?",
+    "options": [
+      "Unified System Board",
+      "Universal Serial Bus",
+      "Universal Storage Battery",
+      "User Signal Bridge"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "USB, cihazları bağlamak ve veri ile güç taşımak için geliştirilen evrensel seri veri yoludur.",
+    "id": "q56050"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Tsunamilerin en yaygın nedeni nedir?",
+    "options": [
+      "Kıyıdaki sis",
+      "Günlük gelgitler",
+      "Deniz tabanındaki büyük depremler",
+      "Kutup rüzgârları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Deniz tabanını aniden yer değiştiren büyük depremler, uzun dalga boylu tsunami dalgaları oluşturabilir.",
+    "id": "q56051"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "HTML ne tür bir dildir?",
+    "options": [
+      "Şifreleme algoritması",
+      "Veritabanı motoru",
+      "İşletim sistemi",
+      "İşaretleme dili"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "HTML, web sayfasındaki başlık, paragraf, bağlantı ve diğer yapıların anlamını işaretler.",
+    "id": "q56052"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Ana karakterin karşısındaki güç veya kişiye ne denir?",
+    "options": [
+      "Antagonist",
+      "Koro",
+      "Editör",
+      "Protagonist"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Antagonist, başkahramanın amacına engel olan kişi, grup veya güçtür.",
+    "id": "q56053"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Soyut bir düşüncenin kişiler ve olaylarla sürekli temsil edildiği anlatı türüne ne denir?",
+    "options": [
+      "Biyografi",
+      "Alegori",
+      "Parodi",
+      "Dipnot"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Alegoride yüzeydeki hikâye, ahlakî, siyasî veya felsefî ikinci bir anlam taşır.",
+    "id": "q56054"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bir volkanın tepesindeki çanak biçimli açıklığa ne denir?",
+    "options": [
+      "Falez",
+      "Delta",
+      "Krater",
+      "Moren"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Krater, volkanik malzemenin çıktığı bacanın çevresindeki çanak biçimli açıklıktır.",
+    "id": "q56055"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Kaldera, sıradan bir kratere göre nasıl oluşur?",
+    "options": [
+      "Nehir aşındırmasıyla",
+      "Buzul sürüklemesiyle",
+      "Mercan birikmesiyle",
+      "Volkan tepesinin geniş ölçüde çökmesiyle"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Büyük patlama sonrası magma odası boşalınca volkanın üst bölümü çökerek kaldera oluşturabilir.",
+    "id": "q56056"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Busenaz Sürmeneli hangi spor dalında Olimpiyat altını kazandı?",
+    "options": [
+      "Boks",
+      "Güreş",
+      "Tekvando",
+      "Judo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Busenaz Sürmeneli, Tokyo 2020’de kadınlar velter sıklette şampiyon oldu.",
+    "id": "q56057"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "HTTP hangi amaçla kullanılan bir protokoldür?",
+    "options": [
+      "Pil şarj etmek",
+      "Web kaynaklarını aktarmak",
+      "Görüntü sıkıştırmak",
+      "Uydu yörüngesi hesaplamak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tarayıcı ve sunucular web sayfası istek ve yanıtlarını HTTP üzerinden iletir.",
+    "id": "q56058"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Depremin yer içindeki başlangıç noktasına ne denir?",
+    "options": [
+      "Krater",
+      "Merkez üssü",
+      "Odak",
+      "Fay aynası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Deprem enerjisinin açığa çıktığı yer içindeki nokta odak ya da hiposantırdır.",
+    "id": "q56059"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Panama Kanalı hangi iki okyanusu birbirine bağlar?",
+    "options": [
+      "Büyük ve Hint Okyanusu",
+      "Atlas ve Hint Okyanusu",
+      "Arktik ve Atlas Okyanusu",
+      "Atlas ve Büyük Okyanus"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kanal, Panama Kıstağı’nı geçerek Karayip Denizi ile Büyük Okyanus’u bağlar.",
+    "id": "q56060"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Türkiye’nin ilk kadın dünya güreş şampiyonu kimdir?",
+    "options": [
+      "Yasemin Adar",
+      "Evin Demirhan",
+      "Tuba Demir",
+      "Buse Tosun Çavuşoğlu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yasemin Adar, 2017’de dünya şampiyonu olarak Türk kadın güreşinde bir ilki gerçekleştirdi.",
+    "id": "q56061"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Bir şeyi 'gibi' demeden başka bir şey olarak ifade eden söz sanatına ne denir?",
+    "options": [
+      "Mübalağa",
+      "İstiare",
+      "Tezat",
+      "Teşbih"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "İstiare ya da eğretilemede benzetmenin unsurlarından biri söylenmeden anlam aktarılır.",
+    "id": "q56062"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "'Asrın Güreşçisi' unvanıyla anılan Türk sporcu kimdir?",
+    "options": [
+      "Taha Akgül",
+      "Rıza Kayaalp",
+      "Hamza Yerlikaya",
+      "Ahmet Ayık"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Hamza Yerlikaya, iki Olimpiyat ve çok sayıda dünya şampiyonluğuyla bu unvanı aldı.",
+    "id": "q56063"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Dünyanın ilk yer altı metrosu hangi şehirde açıldı?",
+    "options": [
+      "Berlin",
+      "New York",
+      "Paris",
+      "Londra"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Metropolitan Railway, 1863’te Londra’da buharlı trenlerle hizmete başladı.",
+    "id": "q56064"
+  },
+  {
+    "id": "q56065",
+    "categoryIndex": 2,
+    "question": "Pön Savaşları Roma ile hangi şehir devleti arasında yapıldı?",
+    "options": [
+      "Kartaca",
+      "Sparta",
+      "Korint",
+      "Atina"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Roma ile Kartaca, Batı Akdeniz hâkimiyeti için üç büyük Pön Savaşı yaptı."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "DNS’in temel görevi nedir?",
+    "options": [
+      "Dosyaları sıkıştırmak",
+      "Alan adlarını IP adresleriyle eşleştirmek",
+      "Şifre üretmek",
+      "Ekran parlaklığını ayarlamak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "DNS, insanların okuyabildiği alan adlarını ağdaki sayısal adreslere çevirir.",
+    "id": "q56066"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Beklenenle gerçekleşen arasındaki anlamlı tersliğe ne denir?",
+    "options": [
+      "Epigraf",
+      "Pastoral",
+      "İroni",
+      "Aliterasyon"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İroni, sözün veya durumun görünen anlamıyla asıl sonuç arasındaki karşıtlıktan doğar.",
+    "id": "q56067"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Uluslararası Kızılhaç hareketinin kurucusu kimdir?",
+    "options": [
+      "Albert Schweitzer",
+      "Florence Nightingale",
+      "Louis Pasteur",
+      "Henry Dunant"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dunant’ın Solferino Savaşı sonrası çalışmaları 1863’te Kızılhaç Komitesi’nin kurulmasına yol açtı.",
+    "id": "q56068"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Şifreleme neyi amaçlar?",
+    "options": [
+      "Veriyi yetkisiz kişilere okunamaz hâle getirmek",
+      "Ekran çözünürlüğünü yükseltmek",
+      "Dosyanın boyutunu her zaman küçültmek",
+      "İnternet hızını artırmak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Şifreleme, anahtar kullanarak düz veriyi yalnız yetkili tarafların çözebileceği biçime dönüştürür.",
+    "id": "q56069"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Deprem odağının yeryüzündeki tam karşılığına ne denir?",
+    "options": [
+      "Fay hattı",
+      "Merkez üssü",
+      "Odak",
+      "Manto"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Odak noktasının yeryüzündeki izdüşümü merkez üssü ya da episantırdır.",
+    "id": "q56070"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Hababam Sınıfı’nın sert ama öğrencilerini önemseyen müdür yardımcısı kimdir?",
+    "options": [
+      "Kel Mahmut",
+      "Damat Ferit",
+      "Mahmut Hoca",
+      "Güdük Necmi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Münir Özkul’un canlandırdığı Mahmut Hoca, serinin en unutulmaz öğretmenidir.",
+    "id": "q56071"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Hidayet Türkoğlu NBA’de en uzun dönemlerinden birini hangi takımda geçirdi?",
+    "options": [
+      "Chicago Bulls",
+      "Boston Celtics",
+      "New York Knicks",
+      "Orlando Magic"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Türkoğlu, Orlando Magic’te özellikle 2008-2009 sezonunda NBA finaline çıkan kadronun önemli parçasıydı.",
+    "id": "q56072"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Açık kaynak yazılımın belirgin özelliği nedir?",
+    "options": [
+      "Kaynak kodunun incelenebilir olması",
+      "İnternetsiz açılamaması",
+      "Ücretli olmasının yasak olması",
+      "Yalnız tek cihazda çalışması"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Açık kaynak lisansları, kodu görme, değiştirme ve belirli koşullarla dağıtma hakkı verir.",
+    "id": "q56073"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "NBA şampiyonluğu kazanan ilk Türk basketbolcu kimdir?",
+    "options": [
+      "Hidayet Türkoğlu",
+      "Mehmet Okur",
+      "Mirsad Türkcan",
+      "Ersan İlyasova"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mehmet Okur, Detroit Pistons ile 2004 NBA şampiyonluğunu kazandı.",
+    "id": "q56074"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Geleneksel bir sone kaç dizeden oluşur?",
+    "options": [
+      "16",
+      "12",
+      "14",
+      "8"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İtalyan ve İngiliz sone biçimlerinin ikisi de on dört dizeden oluşur.",
+    "id": "q56075"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Cem Karaca en çok hangi müzik akımıyla özdeşleşir?",
+    "options": [
+      "Elektronik müzik",
+      "Türk sanat müziği",
+      "Arabesk",
+      "Anadolu rock"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Cem Karaca, rock altyapısını Anadolu ezgileri ve toplumsal sözlerle birleştirdi.",
+    "id": "q56076"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Nobel Ödülleri hangi mucidin vasiyetiyle kuruldu?",
+    "options": [
+      "Alfred Nobel",
+      "Gustave Eiffel",
+      "Thomas Edison",
+      "Alexander Bell"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Alfred Nobel servetinin büyük bölümünü insanlığa yarar sağlayanları ödüllendirmek için bıraktı.",
+    "id": "q56077"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "MFÖ grubunun adı hangi üç üyenin baş harflerinden oluşur?",
+    "options": [
+      "Mehmet, Faruk ve Onur",
+      "Mazhar, Fuat ve Özkan",
+      "Murat, Feridun ve Ömer",
+      "Mert, Fikret ve Okan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Grubun adı Mazhar Alanson, Fuat Güner ve Özkan Uğur’un adlarının baş harfleridir.",
+    "id": "q56078"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Algoritma nedir?",
+    "options": [
+      "Elektrik kablosu türü",
+      "Ekrandaki tek renk",
+      "Bir problemi çözmek için adım dizisi",
+      "Bilgisayarın fiziksel kasası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Algoritma, girdi üzerinde belirli sırayla uygulanacak açık işlemleri tanımlar.",
+    "id": "q56079"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Transistör elektronik devrede en temel olarak ne yapabilir?",
+    "options": [
+      "Işığı depolar",
+      "Sesi mekanik olarak kaydeder",
+      "Suyu soğutur",
+      "Anahtar veya yükselteç gibi çalışır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Transistör küçük bir sinyalle daha büyük akımı kontrol ederek dijital anahtarlama ve yükseltme sağlar.",
+    "id": "q56080"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Karagöz oyununda Karagöz’ün eğitimli ve ölçülü arkadaşı kimdir?",
+    "options": [
+      "Hacivat",
+      "Kavuklu",
+      "Pişekâr",
+      "İbiş"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hacivat, Karagöz’ün karşısında daha süslü ve ölçülü konuşan karakterdir.",
+    "id": "q56081"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Kıta sahanlığı nedir?",
+    "options": [
+      "Okyanusun en derin çukuru",
+      "Kıtanın deniz altında uzanan sığ kenarı",
+      "Ada üzerindeki plato",
+      "Buzulun son bölümü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kıta sahanlığı, kıyıdan açık denize doğru hafif eğimle uzanan sığ deniz tabanıdır.",
+    "id": "q56082"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kadınlara oy hakkı hareketinin Britanya’daki önde gelen isimlerinden biri kimdir?",
+    "options": [
+      "Simone de Beauvoir",
+      "Marie Curie",
+      "Emmeline Pankhurst",
+      "Rosa Luxemburg"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Pankhurst, 1903’te Kadınların Sosyal ve Politik Birliği’ni kurdu.",
+    "id": "q56083"
+  },
+  {
+    "id": "q56084",
+    "categoryIndex": 3,
+    "question": "Nighthawks tablosunda gece açık bir lokantayı resmeden sanatçı kimdir?",
+    "options": [
+      "Andrew Wyeth",
+      "Grant Wood",
+      "Norman Rockwell",
+      "Edward Hopper"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hopper’ın Nighthawks tablosu, şehir gecesinde aydınlık bir lokantadaki yalnız figürleri gösterir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Sisyphos’un sonsuza dek yapmak zorunda olduğu iş nedir?",
+    "options": [
+      "Kayayı tepeye taşımak",
+      "Ateşi korumak",
+      "Labirentte dolaşmak",
+      "Denizi boşaltmak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sisyphos’un kayası zirveye yaklaşınca aşağı yuvarlanır ve ceza yeniden başlar.",
+    "id": "q56085"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Metrik ölçü sistemi ilk olarak hangi ülkede geliştirildi?",
+    "options": [
+      "Britanya",
+      "Fransa",
+      "İtalya",
+      "Almanya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Metre ve kilogram temelli sistem Fransız Devrimi sırasında standartlaştırıldı.",
+    "id": "q56086"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Tarkan’ın Şımarık şarkısıyla özdeşleşen ses efekti nedir?",
+    "options": [
+      "Araba kornası",
+      "Kapı zili",
+      "Öpücük sesi",
+      "Saat tiktağı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Şarkının nakaratındaki öpücük sesleri, parçanın uluslararası alanda tanınan unsurlarındandır.",
+    "id": "q56087"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Athena Türkiye’yi Eurovision’da hangi şarkıyla temsil etti?",
+    "options": [
+      "Everyway That I Can",
+      "Deli",
+      "We Could Be the Same",
+      "For Real"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Athena, 2004 İstanbul Eurovision’unda For Real ile Türkiye adına yarıştı.",
+    "id": "q56088"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Okyanus tabanında yeni kabuğun oluştuğu yerler genellikle neresidir?",
+    "options": [
+      "Okyanus ortası sırtları",
+      "Mercan lagünleri",
+      "Derin deniz çukurları",
+      "Kıta içi ovalar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Levhalar ayrılırken magma yükselir ve okyanus ortası sırtlarında yeni okyanusal kabuk oluşturur.",
+    "id": "q56089"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Entegre devre nedir?",
+    "options": [
+      "Tek bir bakır kablo",
+      "Birçok elektronik bileşenin tek çipte birleşmesi",
+      "Mekanik dişli sistemi",
+      "Pil içindeki sıvı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Entegre devreler transistör, direnç ve bağlantıları küçük yarı iletken yüzeyinde birleştirir.",
+    "id": "q56090"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "LASER kısaltmasındaki temel fikir nedir?",
+    "options": [
+      "Manyetik alanla renk üretme",
+      "Ses dalgasıyla enerji toplama",
+      "Uyarılmış ışınım yayımıyla ışık yükseltme",
+      "Isıyla görüntü büyütme"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Lazer, eş fazlı ve dar bir ışık demeti üretmek için uyarılmış yayımı kullanır.",
+    "id": "q56091"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Dünya boylamları için Greenwich’i başlangıç meridyeni seçen konferans hangi yıl yapıldı?",
+    "options": [
+      "1815",
+      "1776",
+      "1919",
+      "1884"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Washington’daki Uluslararası Meridyen Konferansı 1884’te Greenwich’i 0 derece kabul etti.",
+    "id": "q56092"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "NBA’de forma giyen ilk Türk basketbolcu kimdir?",
+    "options": [
+      "Mirsad Türkcan",
+      "Hidayet Türkoğlu",
+      "Mehmet Okur",
+      "İbrahim Kutluay"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Mirsad Türkcan, 1999’da New York Knicks formasıyla NBA’de oynayan ilk Türk oldu.",
+    "id": "q56093"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "'Ordinaryüs' lakabıyla anılan Fenerbahçeli futbolcu kimdir?",
+    "options": [
+      "Can Bartu",
+      "Lefter Küçükandonyadis",
+      "Alex de Souza",
+      "Zeki Rıza Sporel"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Lefter, teknik yeteneği ve golcülüğü nedeniyle Ordinaryüs lakabını aldı.",
+    "id": "q56094"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "3D yazıcıların kullandığı üretim yaklaşımı hangisidir?",
+    "options": [
+      "Elle oyma",
+      "Kimyasal çözündürme",
+      "Katmanlı üretim",
+      "Yalnız döküm"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "3D yazıcı nesneyi dijital modele göre malzemeyi katman katman ekleyerek oluşturur.",
+    "id": "q56095"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "maNga Eurovision’da hangi şarkıyla ikinci oldu?",
+    "options": [
+      "Shake It Up Şekerim",
+      "Deli",
+      "Love Me Back",
+      "We Could Be the Same"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "maNga, 2010 Eurovision Şarkı Yarışması’nda We Could Be the Same ile ikinci oldu.",
+    "id": "q56096"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "'Taçsız Kral' lakabı hangi futbolcuya aittir?",
+    "options": [
+      "Metin Oktay",
+      "Hakan Şükür",
+      "Tanju Çolak",
+      "Lefter Küçükandonyadis"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Galatasaray efsanesi Metin Oktay, golcülüğü ve kişiliğiyle Taçsız Kral diye anıldı.",
+    "id": "q56097"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Erkin Koray’ın öncülerinden sayıldığı müzik türü hangisidir?",
+    "options": [
+      "Grunge",
+      "Anadolu rock",
+      "Salsa",
+      "Fado"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Erkin Koray, elektro gitarı Anadolu ezgileriyle birleştiren öncü sanatçılardandır.",
+    "id": "q56098"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Beşiktaş’ın efsane başkanlarından Süleyman Seba gençliğinde hangi mevkide futbol oynadı?",
+    "options": [
+      "Sol bek",
+      "Stoper",
+      "Forvet",
+      "Kaleci"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Süleyman Seba, Beşiktaş’ın futbol takımında hücum oyuncusu olarak forma giydi.",
+    "id": "q56099"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "İkarus’un kanatlarını bir arada tutan madde neydi?",
+    "options": [
+      "İpek",
+      "Kil",
+      "Demir",
+      "Balmumu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İkarus Güneş’e fazla yaklaşınca balmumu eridi ve kanatları dağıldı.",
+    "id": "q56100"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Zeki Müren hangi lakapla anılır?",
+    "options": [
+      "Sanat Güneşi",
+      "Baba",
+      "Minik Serçe",
+      "Bozkırın Tezenesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Zeki Müren, Türk sanat müziğindeki yeri nedeniyle Sanat Güneşi olarak anılır.",
+    "id": "q56101"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Neşet Ertaş’ın yaygın lakabı nedir?",
+    "options": [
+      "Anadolu Kaplanı",
+      "Bozkırın Tezenesi",
+      "Sanat Güneşi",
+      "Minik Serçe"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Neşet Ertaş, bağlama ustalığı ve bozlaklarıyla Bozkırın Tezenesi diye anılır.",
+    "id": "q56102"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Avrupa Altın Ayakkabı ödülünü kazanan Türk futbolcu kimdir?",
+    "options": [
+      "Hakan Şükür",
+      "Metin Oktay",
+      "Tanju Çolak",
+      "Burak Yılmaz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tanju Çolak, 1987-1988 sezonunda Galatasaray formasıyla 39 lig golü atarak ödülü kazandı.",
+    "id": "q56103"
+  },
+  {
+    "id": "q56104",
+    "categoryIndex": 3,
+    "question": "Amerikan Gotiği tablosundaki çiftin arkasında hangi yapı görülür?",
+    "options": [
+      "Bir kilise içi",
+      "Bir tren istasyonu",
+      "Bir gökdelen",
+      "Bir çiftlik evi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Grant Wood’un tablosunda dirgen tutan adam ve yanındaki kadın, gotik pencereli bir çiftlik evinin önündedir."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Tektonik levhaların birbirinden uzaklaştığı sınıra ne denir?",
+    "options": [
+      "Iraksak sınır",
+      "Yakınsak sınır",
+      "Dönüşüm sınırı",
+      "Pasif kıyı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Iraksak sınırlarda levhalar ayrılır ve aradaki boşluk yeni kabukla dolabilir.",
+    "id": "q56105"
+  },
+  {
+    "id": "q56106",
+    "categoryIndex": 0,
+    "question": "San Andreas Fayı hangi iki tektonik levhanın sınırındadır?",
+    "options": [
+      "Hint-Avustralya ve Antarktika",
+      "Pasifik ve Kuzey Amerika",
+      "Afrika ve Avrasya",
+      "Nazca ve Güney Amerika"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "San Andreas, Pasifik Levhası ile Kuzey Amerika Levhasının yatay yönde birbirinin yanından geçtiği bir sınırdır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İlk başarılı insan kalp naklini gerçekleştiren cerrah kimdir?",
+    "options": [
+      "Michael DeBakey",
+      "Joseph Murray",
+      "Christiaan Barnard",
+      "René Favaloro"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Barnard, 1967’de Güney Afrika’nın Cape Town kentinde ilk insan kalp naklini yaptı.",
+    "id": "q56107"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Müzik notalarını taşıyan beş paralel çizgiye ne denir?",
+    "options": [
+      "Kadans",
+      "Gam",
+      "Arpej",
+      "Porte"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Porte, notaların yüksekliklerini göstermek için kullanılan beş çizgiden oluşur.",
+    "id": "q56108"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İlk antibiyotiklerin yaygın kullanımını hızlandıran savaş hangisidir?",
+    "options": [
+      "İkinci Dünya Savaşı",
+      "Kırım Savaşı",
+      "Napolyon Savaşları",
+      "Yedi Yıl Savaşları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Penisilin, İkinci Dünya Savaşı sırasında kitlesel üretilerek enfeksiyon tedavisinde yaygınlaştı.",
+    "id": "q56109"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bir levhanın diğerinin altına daldığı sürece ne denir?",
+    "options": [
+      "Aşınım",
+      "Dalma-batma",
+      "Menderesleşme",
+      "Buharlaşma"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yoğun olan okyanusal levha, yakınsak sınırda başka bir levhanın altına dalabilir.",
+    "id": "q56110"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "2002 Dünya Kupası’nda Türkiye’nin teknik direktörü kimdi?",
+    "options": [
+      "Guus Hiddink",
+      "Fatih Terim",
+      "Şenol Güneş",
+      "Mustafa Denizli"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Şenol Güneş yönetimindeki millî takım turnuvayı üçüncü tamamladı.",
+    "id": "q56111"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Pandora’nın açtığı kap, dünyaya neyin yayılmasına yol açar?",
+    "options": [
+      "Denizlerin",
+      "Dillerin",
+      "Mevsimlerin",
+      "Kötülüklerin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Yunan mitinde Pandora’nın kabından hastalık ve sıkıntılar çıkar; içeride umut kalır.",
+    "id": "q56112"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İlk başarılı böbrek nakli hangi tür donörler arasında yapıldı?",
+    "options": [
+      "Tek yumurta ikizleri",
+      "Anne ile çocuk",
+      "İki yabancı kişi",
+      "Yapay organ ile insan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "1954’te Joseph Murray’nin ekibi, bağışıklık reddi riskini azaltan tek yumurta ikizleri arasında nakil yaptı.",
+    "id": "q56113"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Küllerinden yeniden doğan efsanevi kuş hangisidir?",
+    "options": [
+      "Siren",
+      "Anka kuşu",
+      "Griffon",
+      "Pegasus"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Anka ya da phoenix, yaşam döngüsünün sonunda yanıp küllerinden yeniden doğar.",
+    "id": "q56114"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Mercator haritası kutuplara yakın bölgeleri nasıl gösterme eğilimindedir?",
+    "options": [
+      "Gerçekte olduğundan küçük",
+      "Yalnızca ters yönde",
+      "Gerçekte olduğundan büyük",
+      "Tamamen görünmez"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mercator projeksiyonu açıları korur ancak alanları, özellikle kutuplara doğru, büyütür.",
+    "id": "q56115"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "2002 Dünya Kupası çeyrek finalinde Senegal’e altın golü kim attı?",
+    "options": [
+      "Hasan Şaş",
+      "Yıldıray Baştürk",
+      "Ümit Davala",
+      "İlhan Mansız"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İlhan Mansız’ın uzatmadaki golü Türkiye’yi yarı finale taşıdı.",
+    "id": "q56116"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Türkiye’nin Olimpiyat tarihindeki ilk altın madalyasını hangi güreşçi kazandı?",
+    "options": [
+      "Yaşar Erkan",
+      "Gazanfər Bilge",
+      "Celal Atik",
+      "Ahmet Kireççi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yaşar Erkan, 1936 Berlin’de grekoromen tüy sıklette Türkiye’nin ilk Olimpiyat altınını aldı.",
+    "id": "q56117"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İlk insanlı sıcak hava balonu uçuşunu hangi kardeşler gerçekleştirdi?",
+    "options": [
+      "Lumière kardeşler",
+      "Montgolfier kardeşler",
+      "Michelin kardeşler",
+      "Wright kardeşler"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Montgolfier kardeşlerin balonu, 1783’te Paris yakınında ilk serbest insanlı uçuşu gerçekleştirdi.",
+    "id": "q56118"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bulut bilişimde veriler ve işlemler genellikle nerede yürütülür?",
+    "options": [
+      "Kâğıt arşivde",
+      "Yalnız kullanıcının klavyesinde",
+      "Uzak sunucularda",
+      "Televizyon anteninde"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bulut hizmetleri depolama ve hesaplamayı internet üzerinden erişilen veri merkezlerinde sağlar.",
+    "id": "q56119"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Orpheus’un olağanüstü yeteneği hangi sanattaydı?",
+    "options": [
+      "Mimari",
+      "Dokuma",
+      "Heykel",
+      "Müzik"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Orpheus’un lir çalması insanları, hayvanları ve hatta taşları büyüleyebilirdi.",
+    "id": "q56120"
+  }
+]

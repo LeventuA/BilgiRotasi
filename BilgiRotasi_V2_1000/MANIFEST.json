@@ -1,0 +1,10 @@
+{
+  "project": "LeventuA/BilgiRotasi",
+  "bundle": "BilgiRotasi_V2_1000",
+  "createdOn": "2026-07-23",
+  "questionCount": 1000,
+  "idRange": "q54121-q55120",
+  "globalQA": "PASS",
+  "preparedAgainstMainLastQuestion": "q54120",
+  "runtimeDuplicateCheck": true
+}

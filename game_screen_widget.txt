@@ -1,0 +1,14 @@
+class GameScreen extends StatefulWidget {
+  const GameScreen({
+    required this.questionBank,
+    required this.players,
+    this.initialPlayerIndex = 0,
+    this.initialStatus,
+    super.key,
+  });
+
+  final QuestionBank questionBank;
+  final List<PlayerData> players;
+  final int initialPlayerIndex;
+  final String? initialStatus;
+

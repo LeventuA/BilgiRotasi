@@ -1,0 +1,142 @@
+class SoundFx {
+  SoundFx._();
+
+  static bool enabled = true;
+  static bool _initialized = false;
+  static String? lastError;
+
+  static final AudioPlayer _dicePlayer =
+      AudioPlayer(playerId: 'bilgi_rotasi_dice');
+  static final AudioPlayer _stepPlayer =
+      AudioPlayer(playerId: 'bilgi_rotasi_step');
+  static final AudioPlayer _effectPlayer =
+      AudioPlayer(playerId: 'bilgi_rotasi_effect');
+  static final AudioPlayer _musicPlayer =
+      AudioPlayer(playerId: 'bilgi_rotasi_music');
+
+  static Future<void> initialize() async {
+    if (_initialized) return;
+
+    try {
+      await AudioPlayer.global.ensureInitialized();
+      await AudioPlayer.global.setAudioContext(
+        AudioContextConfig(
+          route: AudioContextConfigRoute.system,
+          focus: AudioContextConfigFocus.mixWithOthers,
+          respectSilence: false,
+        ).build(),
+      );
+
+      await Future.wait([
+        _dicePlayer.setReleaseMode(ReleaseMode.stop),
+        _stepPlayer.setReleaseMode(ReleaseMode.stop),
+        _effectPlayer.setReleaseMode(ReleaseMode.stop),
+        _musicPlayer.setReleaseMode(ReleaseMode.stop),
+      ]);
+
+      _initialized = true;
+      lastError = null;
+    } catch (error) {
+      lastError = error.toString();
+      rethrow;
+    }
+  }
+
+  static void setEnabled(bool value) {
+    enabled = value;
+
+    if (!value) {
+      unawaited(_dicePlayer.stop());
+      unawaited(_stepPlayer.stop());
+      unawaited(_effectPlayer.stop());
+      unawaited(_musicPlayer.stop());
+    }
+  }
+
+  static Future<bool> _play(
+    AudioPlayer player,
+    String fileName, {
+    double volume = 1,
+  }) async {
+    if (!enabled) return false;
+
+    try {
+      await initialize();
+
+      await player.play(
+        AssetSource(
+          'sounds/$fileName',
+          mimeType: 'audio/mpeg',
+        ),
+        volume: volume.clamp(0.0, 1.0).toDouble(),
+      );
+
+      lastError = null;
+      return true;
+    } catch (error) {
+      lastError = error.toString();
+      return false;
+    }
+  }
+
+  static Future<bool> dice() {
+    return _play(
+      _dicePlayer,
+      'dice_roll.mp3',
+      volume: 1,
+    );
+  }
+
+  static Future<bool> step() {
+    return _play(
+      _stepPlayer,
+      'step.mp3',
+      volume: 0.88,
+    );
+  }
+
+  static Future<bool> landing() {
+    return _play(
+      _effectPlayer,
+      'landing.mp3',
+      volume: 1,
+    );
+  }
+
+  static Future<bool> correct() {
+    return _play(
+      _effectPlayer,
+      'correct.mp3',
+      volume: 1,
+    );
+  }
+
+  static Future<bool> wrong() {
+    return _play(
+      _effectPlayer,
+      'wrong.mp3',
+      volume: 1,
+    );
+  }
+
+  static Future<bool> badge() {
+    return _play(
+      _effectPlayer,
+      'badge.mp3',
+      volume: 1,
+    );
+  }
+
+  static Future<bool> win() {
+    return _play(
+      _musicPlayer,
+      'win.mp3',
+      volume: 1,
+    );
+  }
+
+  static Future<bool> test() {
+    return correct();
+  }
+}
+

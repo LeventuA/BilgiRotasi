@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "emptyBankCheck": "PASS",
+  "emptyBankApply": "PASS",
+  "installedQuestionCount": 1000,
+  "backupCreation": "PASS",
+  "conflictAbortTest": "PASS"
+}

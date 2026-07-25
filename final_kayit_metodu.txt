@@ -1,0 +1,58 @@
+  Future<void> _askFinalQuestion() async {
+    if (_isBusy || _winner != null) return;
+
+    setState(() {
+      _isBusy = true;
+      _status = '${_currentPlayer.name} final sorusunda!';
+    });
+
+    final categoryIndex =
+        _random.nextInt(GameCategory.values.length);
+    final question = widget.questionBank.randomQuestion(
+      categoryIndex,
+      _random,
+    );
+
+    final correct = await Navigator.of(context).push<bool>(
+          MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (_) => QuestionScreen(
+              question: question,
+              isFinalQuestion: true,
+            ),
+          ),
+        ) ??
+        false;
+
+    if (!mounted) return;
+
+    if (correct) {
+      _currentPlayer.correctAnswers++;
+
+      setState(() {
+        _winner = _currentPlayer;
+        _status =
+            '${_currentPlayer.name} Bilgi Rotası şampiyonu!';
+        _isBusy = false;
+      });
+
+      await GameSaveService.clear();
+      unawaited(SoundFx.win());
+      HapticFeedback.heavyImpact();
+      await _showWinnerDialog(_currentPlayer);
+    } else {
+      _currentPlayer.wrongAnswers++;
+      _advanceTurn();
+
+      setState(() {
+        _status =
+            'Final kaçtı. Sıra '
+            '${_currentPlayer.name} oyuncusunda.';
+        _isBusy = false;
+      });
+
+      unawaited(SoundFx.wrong());
+      await _saveGame();
+    }
+  }
+

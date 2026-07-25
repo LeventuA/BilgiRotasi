@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "questionCount": 1000,
+  "idStart": "q57121",
+  "idEnd": "q58120",
+  "categoryCounts": {
+    "0": 160,
+    "1": 190,
+    "2": 150,
+    "3": 150,
+    "4": 180,
+    "5": 170
+  },
+  "difficultyCounts": {
+    "Kolay": 500,
+    "Orta": 491,
+    "Zor": 9
+  },
+  "answerIndexCounts": {
+    "0": 250,
+    "1": 250,
+    "2": 250,
+    "3": 250
+  },
+  "recent2020_2026Count": 700,
+  "evergreenCount": 300,
+  "recentYearCounts": {
+    "2023": 136,
+    "2020": 101,
+    "2022": 135,
+    "2021": 144,
+    "2024": 149,
+    "2025": 32,
+    "2026": 3
+  },
+  "exactInternalDuplicates": 0,
+  "exactDuplicatesAgainstV1V4Candidates": 0,
+  "strongInternalNearDuplicates": 0,
+  "note": "Questions are model-authored/curated and automatically validated; current 2025–2026 examples received official-source spot checks, but not every item received independent human source-by-source review.",
+  "editorialRewriteCount": 144,
+  "calculationQuestionCount": 0,
+  "placeholderOptionCount": 0,
+  "currentFactsOfficialSpotCheck": true
+}

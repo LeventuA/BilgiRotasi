@@ -1,0 +1,158 @@
+{
+  "timestampUtc": "20260723T143928Z",
+  "existingCount": 777,
+  "incomingCount": 1000,
+  "acceptedCount": 985,
+  "conflictCount": 15,
+  "newTotalIfApplied": 1762,
+  "categoryCountsAccepted": {
+    "Coğrafya": 163,
+    "Eğlence": 170,
+    "Tarih": 168,
+    "Sanat & Edebiyat": 168,
+    "Bilim & Doğa": 156,
+    "Spor": 160
+  },
+  "difficultyCountsAccepted": {
+    "Orta": 301,
+    "Kolay": 663,
+    "Zor": 21
+  },
+  "conflicts": [
+    {
+      "id": "q53182",
+      "category": "Sanat & Edebiyat",
+      "question": "Düşünen Adam heykelinin sanatçısı kimdir?",
+      "correctAnswer": "Auguste Rodin",
+      "reasons": [
+        "q080: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53261",
+      "category": "Tarih",
+      "question": "ABD Bağımsızlık Bildirgesi hangi yılda kabul edildi?",
+      "correctAnswer": "1776",
+      "reasons": [
+        "q058: aynı bilgi güçlü biçimde yeniden sorulmuş (Jaccard=0.71, benzerlik=0.92)"
+      ]
+    },
+    {
+      "id": "q53289",
+      "category": "Bilim & Doğa",
+      "question": "İnsan vücudunun en büyük organı hangisidir?",
+      "correctAnswer": "Deri",
+      "reasons": [
+        "q097: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53396",
+      "category": "Bilim & Doğa",
+      "question": "Dünya atmosferinde en fazla bulunan gaz hangisidir?",
+      "correctAnswer": "Azot",
+      "reasons": [
+        "q092: aynı bilgi güçlü biçimde yeniden sorulmuş (Jaccard=0.67, benzerlik=0.92)"
+      ]
+    },
+    {
+      "id": "q53492",
+      "category": "Bilim & Doğa",
+      "question": "Güneş Sistemi’nin en büyük gezegeni hangisidir?",
+      "correctAnswer": "Jüpiter",
+      "reasons": [
+        "q085: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53728",
+      "category": "Coğrafya",
+      "question": "Tallinn hangi ülkenin başkentidir?",
+      "correctAnswer": "Estonya",
+      "reasons": [
+        "q236: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53730",
+      "category": "Coğrafya",
+      "question": "Tiflis hangi ülkenin başkentidir?",
+      "correctAnswer": "Gürcistan",
+      "reasons": [
+        "q264: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53829",
+      "category": "Coğrafya",
+      "question": "Türkiye’nin en büyük gölü hangisidir?",
+      "correctAnswer": "Van Gölü",
+      "reasons": [
+        "q013: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53860",
+      "category": "Tarih",
+      "question": "Osmanlı Devleti’nin kurucusu kimdir?",
+      "correctAnswer": "Osman Gazi",
+      "reasons": [
+        "q053: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53880",
+      "category": "Sanat & Edebiyat",
+      "question": "Mai ve Siyah romanının yazarı kimdir?",
+      "correctAnswer": "Halit Ziya Uşaklıgil",
+      "reasons": [
+        "q23880: aynı bilgi güçlü biçimde yeniden sorulmuş (Jaccard=0.60, benzerlik=0.90)"
+      ]
+    },
+    {
+      "id": "q53889",
+      "category": "Bilim & Doğa",
+      "question": "Dünya’ya en yakın yıldız hangisidir?",
+      "correctAnswer": "Güneş",
+      "reasons": [
+        "q082: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53921",
+      "category": "Coğrafya",
+      "question": "Norveç’in başkenti hangisidir?",
+      "correctAnswer": "Oslo",
+      "reasons": [
+        "q169: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53922",
+      "category": "Coğrafya",
+      "question": "Finlandiya’nın başkenti hangisidir?",
+      "correctAnswer": "Helsinki",
+      "reasons": [
+        "q177: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53924",
+      "category": "Coğrafya",
+      "question": "Portekiz’in başkenti hangisidir?",
+      "correctAnswer": "Lizbon",
+      "reasons": [
+        "q138: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    },
+    {
+      "id": "q53925",
+      "category": "Coğrafya",
+      "question": "İrlanda’nın başkenti hangisidir?",
+      "correctAnswer": "Dublin",
+      "reasons": [
+        "q146: birebir aynı soru metni (Jaccard=1.00, benzerlik=1.00)"
+      ]
+    }
+  ]
+}

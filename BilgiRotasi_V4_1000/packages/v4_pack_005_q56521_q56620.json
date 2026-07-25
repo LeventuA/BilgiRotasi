@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q56521",
+    "categoryIndex": 4,
+    "question": "“Perseverance” görevi hangi yılda öne çıktı?",
+    "options": [
+      "2021",
+      "2023",
+      "2020",
+      "2022"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "“Perseverance” görevinin bu soruda anlatılan önemli aşaması 2021 yılında gerçekleşti."
+  },
+  {
+    "id": "q56522",
+    "categoryIndex": 5,
+    "question": "2020 Formula 1 Dünya Şampiyonası şampiyonu kim oldu?",
+    "options": [
+      "Fildişi Sahili",
+      "Lewis Hamilton",
+      "İtalya",
+      "Los Angeles Lakers"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2020 Formula 1 Dünya Şampiyonası, Lewis Hamilton zaferiyle tamamlandı."
+  },
+  {
+    "id": "q56523",
+    "categoryIndex": 0,
+    "question": "4 Ağustos 2020’de büyük bir liman patlamasının yaşandığı şehir hangisidir?",
+    "options": [
+      "Hayfa",
+      "İskenderiye",
+      "Beyrut",
+      "Trablus"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "4 Ağustos 2020’deki büyük liman patlaması Lübnan’ın başkenti Beyrut’ta meydana geldi."
+  },
+  {
+    "id": "q56524",
+    "categoryIndex": 1,
+    "question": "“Alan Wake 2” hangi türde bir oyundur?",
+    "options": [
+      "Aksiyon rol yapma",
+      "Platform",
+      "Aksiyon-macera",
+      "Hayatta kalma korku"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Alan Wake 2”, 2023 yılında yayımlanan Hayatta kalma korku türünde bir oyundur."
+  },
+  {
+    "id": "q56525",
+    "categoryIndex": 2,
+    "question": "COP27’de kayıp ve zarar fonu kurulması kararı: Fon en doğrudan hangi sorunla ilgilidir?",
+    "options": [
+      "İklim değişikliğinin yol açtığı kayıp ve zararlar",
+      "Siber suçlar",
+      "Küresel vergi kaçakçılığı",
+      "Uzay çöpleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "COP27’de iklim etkilerinden ağır zarar gören ülkeler için fon kurulması kabul edildi. Bu bilgi 2022 yılındaki gelişmeyle ilişkilidir."
+  },
+  {
+    "id": "q56526",
+    "categoryIndex": 3,
+    "question": "“Trust” için doğru konu veya çeviri bilgisi hangisidir?",
+    "options": [
+      "otoriterleşen bir İrlanda’yı anlatan distopya",
+      "servet, finans ve anlatının güvenilirliği üzerine kurulu roman",
+      "1980’ler Glasgow’unda geçen bir aile hikâyesi",
+      "Bulgarcadan Angela Rodel tarafından çevrildi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Kitabın ayırt edici ayrıntısı şudur: servet, finans ve anlatının güvenilirliği üzerine kurulu roman. Bu bilgi 2023 yılındaki gelişmeyle ilişkilidir."
+  },
+  {
+    "id": "q56527",
+    "categoryIndex": 4,
+    "question": "2024 yılında John Hopfield ve Geoffrey Hinton hangi Nobel kategorisinde ödül aldı?",
+    "options": [
+      "Nobel Ekonomi Ödülü",
+      "Nobel Kimya Ödülü",
+      "Nobel Fizik Ödülü",
+      "Nobel Fizyoloji veya Tıp Ödülü"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "John Hopfield ve Geoffrey Hinton, 2024 Nobel Fizik Ödülü sahibi oldu."
+  },
+  {
+    "id": "q56528",
+    "categoryIndex": 5,
+    "question": "2024 NBA Finalleri hakkında doğru bilgi hangisidir?",
+    "options": [
+      "Bagnaia Ducati ile şampiyon oldu",
+      "Final penaltılarla sonuçlandı",
+      "Hamilton yedinci dünya şampiyonluğunu aldı",
+      "Finaller MVP’si Jaylen Brown oldu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2024 tarihli organizasyon için öne çıkan bilgi şudur: Finaller MVP’si Jaylen Brown oldu."
+  },
+  {
+    "id": "q56529",
+    "categoryIndex": 0,
+    "question": "2025 Eurovision Şarkı Yarışması nerede gerçekleşti?",
+    "options": [
+      "Basel",
+      "Şarm eş-Şeyh",
+      "Lusail",
+      "Glasgow"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2025 Eurovision Şarkı Yarışması, 2025 yılında Basel ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56530",
+    "categoryIndex": 1,
+    "question": "“Dune” aşağıdaki başarılardan hangisiyle ilişkilidir?",
+    "options": [
+      "2021 En İyi Film Oscar’ı",
+      "2022’de altı Oscar",
+      "2025 En İyi Film Oscar’ı",
+      "2025 En İyi Animasyon Oscar’ı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "2021 yapımı “Dune”, 2022’de altı Oscar başarısıyla öne çıktı."
+  },
+  {
+    "id": "q56531",
+    "categoryIndex": 2,
+    "question": "WHO’nun COVID-19 küresel sağlık acil durumunu sona erdirmesi: Kararı hangi kuruluş açıkladı?",
+    "options": [
+      "Dünya Bankası",
+      "Uluslararası Kızılhaç Komitesi",
+      "Dünya Sağlık Örgütü",
+      "UNICEF"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Dünya Sağlık Örgütü 5 Mayıs 2023’te COVID-19 için küresel acil durumun sona erdiğini açıkladı."
+  },
+  {
+    "id": "q56532",
+    "categoryIndex": 3,
+    "question": "“Prophet Song” adlı eserin yazarı kimdir?",
+    "options": [
+      "Han Kang",
+      "Percival Everett",
+      "Damon Galgut",
+      "Paul Lynch"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Paul Lynch tarafından yazılan “Prophet Song”, 2023 yılında önemli bir edebiyat ödülüyle gündeme geldi."
+  },
+  {
+    "id": "q56533",
+    "categoryIndex": 4,
+    "question": "“Crew Dragon Demo-2” çalışmasının ana hedefi veya çalışma bölgesi hangisidir?",
+    "options": [
+      "Uluslararası Uzay İstasyonu",
+      "Mars atmosferi",
+      "Ay’ın güney kutup bölgesi",
+      "Ay çevresi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2020 tarihli çalışmanın ana hedefi veya bölgesi Uluslararası Uzay İstasyonu idi."
+  },
+  {
+    "id": "q56534",
+    "categoryIndex": 5,
+    "question": "2021 UEFA Avrupa Ligi organizasyonunu ikinci sırada kim tamamladı?",
+    "options": [
+      "Manchester City",
+      "Manchester United",
+      "Sergio Pérez",
+      "Lando Norris"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "2021 UEFA Avrupa Ligi organizasyonunda ikinci sırayı Manchester United aldı."
+  },
+  {
+    "id": "q56535",
+    "categoryIndex": 0,
+    "question": "2025 G7 Zirvesi nerede gerçekleşti?",
+    "options": [
+      "Malmö",
+      "Kahramanmaraş çevresi",
+      "Kananaskis",
+      "Münih"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2025 G7 Zirvesi, 2025 yılında Kananaskis ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56536",
+    "categoryIndex": 1,
+    "question": "“Baby Reindeer” dizisinde Donny Dunn karakterini kim canlandırır?",
+    "options": [
+      "Jason Sudeikis",
+      "Jennifer Coolidge",
+      "Steven Yeun",
+      "Richard Gadd"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Richard Gadd, 2024 yapımı dizide Donny Dunn karakterini canlandırır."
+  },
+  {
+    "id": "q56537",
+    "categoryIndex": 2,
+    "question": "2025 Nobel Edebiyat Ödülü: Ödülü kazanan yazar kimdi?",
+    "options": [
+      "László Krasznahorkai",
+      "Jon Fosse",
+      "Han Kang",
+      "Annie Ernaux"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Macar yazar László Krasznahorkai 2025 Nobel Edebiyat Ödülü’nü kazandı."
+  },
+  {
+    "id": "q56538",
+    "categoryIndex": 3,
+    "question": "“Olivia Rodrigo” ile “En İyi Yeni Sanatçı” ödülünün kazanıldığı Grammy töreni hangi yıl yapıldı?",
+    "options": [
+      "2023",
+      "2022",
+      "2025",
+      "2024"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Olivia Rodrigo” bu ana kategori başarısını 2022 Grammy Ödülleri’nde elde etti."
+  },
+  {
+    "id": "q56539",
+    "categoryIndex": 4,
+    "question": "“Bir mRNA COVID-19 aşısına ilk geniş kapsamlı kullanım izni” neden önemliydi?",
+    "options": [
+      "yapay zekâ sistemleri için risk temelli kurallar",
+      "COVID-19’un dünya çapında hızla yayılması",
+      "mRNA aşılarının kitlesel kullanıma geçişi",
+      "yapay zekânın proteinlerin üç boyutlu yapısını yüksek doğrulukla öngörmesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2020 tarihli gelişme, mRNA aşılarının kitlesel kullanıma geçişi bakımından önem taşıdı."
+  },
+  {
+    "id": "q56540",
+    "categoryIndex": 5,
+    "question": "2025 NBA Finalleri için öne çıkan ev sahibi veya final yeri hangisidir?",
+    "options": [
+      "Abu Dabi",
+      "Londra",
+      "Lizbon",
+      "Oklahoma City ve Indianapolis"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2025 NBA Finalleri, Oklahoma City ve Indianapolis ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56541",
+    "categoryIndex": 0,
+    "question": "Expo 2025 Osaka hangi ülkede gerçekleşti?",
+    "options": [
+      "Japonya",
+      "Almanya",
+      "Ürdün",
+      "Brezilya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Expo 2025 Osaka, Japonya sınırları içinde gerçekleşti."
+  },
+  {
+    "id": "q56542",
+    "categoryIndex": 1,
+    "question": "“Hades” ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "2021",
+      "2020",
+      "2022",
+      "2023"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Hades” 2020 yılında piyasaya çıktı. Bu yapım 2020 yılında yayımlandı."
+  },
+  {
+    "id": "q56543",
+    "categoryIndex": 2,
+    "question": "Bölgesel Kapsamlı Ekonomik Ortaklık anlaşmasının imzalanması: RCEP en çok hangi bölgeyle ilişkilidir?",
+    "options": [
+      "Güney Amerika",
+      "Kuzey Avrupa",
+      "Asya-Pasifik",
+      "Batı Afrika"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "RCEP, 2020’de 15 Asya-Pasifik ekonomisi tarafından imzalandı."
+  },
+  {
+    "id": "q56544",
+    "categoryIndex": 3,
+    "question": "2024 Grammy En İyi Yeni Sanatçı ödülünü kazanan Victoria Monét hangi ülkedendir?",
+    "options": [
+      "Fransa",
+      "Birleşik Krallık",
+      "Kanada",
+      "Amerika Birleşik Devletleri"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Victoria Monét, 2024 Grammy Ödülleri’nde En İyi Yeni Sanatçı seçilen Amerika Birleşik Devletleri kökenli bir müzisyendir."
+  },
+  {
+    "id": "q56545",
+    "categoryIndex": 4,
+    "question": "2020 Nobel Kimya Ödülü’nü kim veya kimler kazandı?",
+    "options": [
+      "Emmanuelle Charpentier ve Jennifer Doudna",
+      "Harvey Alter, Michael Houghton ve Charles Rice",
+      "Roger Penrose, Reinhard Genzel ve Andrea Ghez",
+      "Moungi Bawendi, Louis Brus ve Alexei Ekimov"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Emmanuelle Charpentier ve Jennifer Doudna, 2020 yılında CRISPR-Cas9 genom düzenleme yöntemi çalışmalarıyla ödüllendirildi."
+  },
+  {
+    "id": "q56546",
+    "categoryIndex": 5,
+    "question": "2025 UEFA Avrupa Ligi hakkında doğru bilgi hangisidir?",
+    "options": [
+      "Bronz madalyayı Lorenzo Musetti aldı",
+      "Final 1-0 bitti",
+      "Finaller MVP’si Stephen Curry oldu",
+      "Bronz madalyayı Pablo Carreño Busta aldı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "2025 tarihli organizasyon için öne çıkan bilgi şudur: Final 1-0 bitti."
+  },
+  {
+    "id": "q56547",
+    "categoryIndex": 0,
+    "question": "2021 Eurovision Şarkı Yarışması hangi ülkede gerçekleşti?",
+    "options": [
+      "Ürdün",
+      "Tonga",
+      "Hollanda",
+      "Azerbaycan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2021 Eurovision Şarkı Yarışması, Hollanda sınırları içinde gerçekleşti."
+  },
+  {
+    "id": "q56548",
+    "categoryIndex": 1,
+    "question": "“Animal Crossing: New Horizons” oyununu hangi stüdyo geliştirdi?",
+    "options": [
+      "Game Science",
+      "Playground Games",
+      "Supergiant Games",
+      "Nintendo EPD"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Nintendo EPD, 2020 yapımı “Animal Crossing: New Horizons” oyununun geliştiricisidir."
+  },
+  {
+    "id": "q56549",
+    "categoryIndex": 2,
+    "question": "Dünya Sağlık Asamblesinin Pandemi Anlaşması’nı kabul etmesi hangi yılda gerçekleşti?",
+    "options": [
+      "2025",
+      "2021",
+      "2020",
+      "2022"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dünya Sağlık Asamblesi Mayıs 2025’te uluslararası Pandemi Anlaşması’nı kabul etti."
+  },
+  {
+    "id": "q56550",
+    "categoryIndex": 3,
+    "question": "“Night Watch” hangi ödülle 2024 yılında öne çıktı?",
+    "options": [
+      "Uluslararası Booker Ödülü",
+      "Pulitzer Kurgu Ödülü",
+      "Booker Ödülü",
+      "Nobel Edebiyat Ödülü sahibi yazarın eseri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Night Watch”, 2024 yılında Pulitzer Kurgu Ödülü ile ilişkilidir."
+  },
+  {
+    "id": "q56551",
+    "categoryIndex": 4,
+    "question": "“Chang’e 6” çalışmasının arkasındaki kurum veya ekip hangisidir?",
+    "options": [
+      "ISRO",
+      "ESA ve JAXA",
+      "Çin Ulusal Uzay İdaresi",
+      "Intuitive Machines ve NASA CLPS"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Çin Ulusal Uzay İdaresi, 2024 tarihli “Chang’e 6” görevinin yürütücüsüdür."
+  },
+  {
+    "id": "q56552",
+    "categoryIndex": 5,
+    "question": "2023 Formula 1 Dünya Şampiyonası şampiyonu kim oldu?",
+    "options": [
+      "Francesco Bagnaia",
+      "Fenerbahçe",
+      "İtalya",
+      "Max Verstappen"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "2023 Formula 1 Dünya Şampiyonası, Max Verstappen zaferiyle tamamlandı."
+  },
+  {
+    "id": "q56553",
+    "categoryIndex": 0,
+    "question": "2022 FIFA Dünya Kupası finali hangi ülkede gerçekleşti?",
+    "options": [
+      "Katar",
+      "Pakistan",
+      "Türkiye",
+      "Tonga"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2022 FIFA Dünya Kupası finali, Katar sınırları içinde gerçekleşti."
+  },
+  {
+    "id": "q56554",
+    "categoryIndex": 1,
+    "question": "“Astro Bot” oyununu hangi stüdyo geliştirdi?",
+    "options": [
+      "BlueTwelve Studio",
+      "Team Asobi",
+      "Naughty Dog",
+      "Sucker Punch Productions"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Team Asobi, 2024 yapımı “Astro Bot” oyununun geliştiricisidir."
+  },
+  {
+    "id": "q56555",
+    "categoryIndex": 2,
+    "question": "George Floyd’un ölümünün ardından başlayan küresel protestolar: Olayın başladığı ABD şehri hangisiydi?",
+    "options": [
+      "Boston",
+      "Seattle",
+      "Minneapolis",
+      "Miami"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "George Floyd, Mayıs 2020’de Minneapolis’te öldü; olay dünya çapında protestolara yol açtı."
+  },
+  {
+    "id": "q56556",
+    "categoryIndex": 3,
+    "question": "Georgi Gospodinov hangi eserle 2023 ödül sezonunda öne çıktı?",
+    "options": [
+      "Demon Copperhead",
+      "Orbital",
+      "The Seven Moons of Maali Almeida",
+      "Time Shelter"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Georgi Gospodinov, “Time Shelter” eseriyle 2023 yılında öne çıktı."
+  },
+  {
+    "id": "q56557",
+    "categoryIndex": 4,
+    "question": "2024 yılında David Baker, Demis Hassabis ve John Jumper hangi Nobel kategorisinde ödül aldı?",
+    "options": [
+      "Nobel Kimya Ödülü",
+      "Nobel Fizyoloji veya Tıp Ödülü",
+      "Nobel Fizik Ödülü",
+      "Nobel Ekonomi Ödülü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "David Baker, Demis Hassabis ve John Jumper, 2024 Nobel Kimya Ödülü sahibi oldu."
+  },
+  {
+    "id": "q56558",
+    "categoryIndex": 5,
+    "question": "2020 Formula 1 Dünya Şampiyonası hakkında doğru bilgi hangisidir?",
+    "options": [
+      "Ademola Lookman finalde hat-trick yaptı",
+      "Hamilton yedinci dünya şampiyonluğunu aldı",
+      "Final 1-0 bitti",
+      "Finaller MVP’si Stephen Curry oldu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "2020 tarihli organizasyon için öne çıkan bilgi şudur: Hamilton yedinci dünya şampiyonluğunu aldı."
+  },
+  {
+    "id": "q56559",
+    "categoryIndex": 0,
+    "question": "COP27 İklim Konferansı nerede gerçekleşti?",
+    "options": [
+      "Lizbon",
+      "Pekin",
+      "Şarm eş-Şeyh",
+      "Yeni Delhi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "COP27 İklim Konferansı, 2022 yılında Şarm eş-Şeyh ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56560",
+    "categoryIndex": 1,
+    "question": "“Squid Game” dizisi ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "2020",
+      "2023",
+      "2022",
+      "2021"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Squid Game” dizisinin ilk sezonu 2021 yılında yayımlandı."
+  },
+  {
+    "id": "q56561",
+    "categoryIndex": 2,
+    "question": "AUKUS güvenlik ortaklığının duyurulması: AUKUS’u kuran üç ülke hangileridir?",
+    "options": [
+      "Avustralya, Birleşik Krallık ve ABD",
+      "Fransa, Almanya ve İtalya",
+      "Japonya, Hindistan ve Kanada",
+      "ABD, Meksika ve Brezilya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "AUKUS, Eylül 2021’de Avustralya, Birleşik Krallık ve ABD tarafından duyuruldu."
+  },
+  {
+    "id": "q56562",
+    "categoryIndex": 3,
+    "question": "Percival Everett hangi eserle 2025 ödül sezonunda öne çıktı?",
+    "options": [
+      "Night Watch",
+      "James",
+      "The Netanyahus",
+      "Trust"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Percival Everett, “James” eseriyle 2025 yılında öne çıktı."
+  },
+  {
+    "id": "q56563",
+    "categoryIndex": 4,
+    "question": "2024 yılında Victor Ambros ve Gary Ruvkun hangi Nobel kategorisinde ödül aldı?",
+    "options": [
+      "Nobel Ekonomi Ödülü",
+      "Nobel Kimya Ödülü",
+      "Nobel Fizyoloji veya Tıp Ödülü",
+      "Nobel Fizik Ödülü"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Victor Ambros ve Gary Ruvkun, 2024 Nobel Fizyoloji veya Tıp Ödülü sahibi oldu."
+  },
+  {
+    "id": "q56564",
+    "categoryIndex": 5,
+    "question": "Tokyo 2020 erkekler tenis tekler hakkında doğru bilgi hangisidir?",
+    "options": [
+      "Finalde tek golü Kai Havertz attı",
+      "Joan Mir Suzuki ile şampiyon oldu",
+      "Finaller MVP’si Jaylen Brown oldu",
+      "Bronz madalyayı Pablo Carreño Busta aldı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "2021 tarihli organizasyon için öne çıkan bilgi şudur: Bronz madalyayı Pablo Carreño Busta aldı."
+  },
+  {
+    "id": "q56565",
+    "categoryIndex": 0,
+    "question": "2021 Cumbre Vieja volkanik patlaması nerede gerçekleşti?",
+    "options": [
+      "La Palma",
+      "Ankara’nın Polatlı ilçesi",
+      "Yünnan",
+      "Carbis Bay"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2021 Cumbre Vieja volkanik patlaması, 2021 yılında La Palma ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56566",
+    "categoryIndex": 1,
+    "question": "“The Last of Us” dizisinde Joel Miller karakterini kim canlandırır?",
+    "options": [
+      "Adam Scott",
+      "Pedro Pascal",
+      "Jeremy Allen White",
+      "Andrew Scott"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pedro Pascal, 2023 yapımı dizide Joel Miller karakterini canlandırır."
+  },
+  {
+    "id": "q56567",
+    "categoryIndex": 2,
+    "question": "Paris Saint-Germain’in ilk UEFA Şampiyonlar Ligi şampiyonluğu: Finalde mağlup edilen takım hangisiydi?",
+    "options": [
+      "Real Madrid",
+      "Bayern Münih",
+      "Inter",
+      "Arsenal"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "PSG, 2025 finalinde Inter’i 5-0 yenerek ilk Şampiyonlar Ligi kupasını aldı."
+  },
+  {
+    "id": "q56568",
+    "categoryIndex": 3,
+    "question": "Barbara Kingsolver hangi eserle 2023 ödül sezonunda öne çıktı?",
+    "options": [
+      "The Seven Moons of Maali Almeida",
+      "Orbital",
+      "The Promise",
+      "Demon Copperhead"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Barbara Kingsolver, “Demon Copperhead” eseriyle 2023 yılında öne çıktı."
+  },
+  {
+    "id": "q56569",
+    "categoryIndex": 4,
+    "question": "“SPHEREx” çalışmasının temel amacı veya önemi hangisidir?",
+    "options": [
+      "Gökyüzünü yüzlerce kızılötesi renkte haritalamak",
+      "Ganymede, Callisto ve Europa’yı incelemek",
+      "Bir gök cisminin yörüngesini değiştiren ilk gezegen savunması deneyi",
+      "Ticari bir aracın başarılı Ay inişlerinden birini gerçekleştirmek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2025 tarihli çalışmanın temel amacı veya önemi şuydu: Gökyüzünü yüzlerce kızılötesi renkte haritalamak."
+  },
+  {
+    "id": "q56570",
+    "categoryIndex": 5,
+    "question": "2023 MotoGP Dünya Şampiyonası için öne çıkan ev sahibi veya final yeri hangisidir?",
+    "options": [
+      "Sevilla",
+      "Valensiya’da sonuçlanan sezon",
+      "Belgrad",
+      "Prag"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "2023 MotoGP Dünya Şampiyonası, Valensiya’da sonuçlanan sezon ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56571",
+    "categoryIndex": 0,
+    "question": "Ekim 2024’te İspanya’da ağır sellere sahne olan bölge hangisidir?",
+    "options": [
+      "Endülüs",
+      "Galiçya",
+      "Valensiya",
+      "Katalonya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ekim 2024’teki ölümcül seller en ağır biçimde İspanya’nın Valensiya bölgesini etkiledi."
+  },
+  {
+    "id": "q56572",
+    "categoryIndex": 1,
+    "question": "2023 yapımı “Oppenheimer” filminin yönetmeni kimdir?",
+    "options": [
+      "Jon M. Chu",
+      "Sean Baker",
+      "Denis Villeneuve",
+      "Christopher Nolan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Oppenheimer”, 2023 yılında Christopher Nolan yönetmenliğinde gösterime girdi."
+  },
+  {
+    "id": "q56573",
+    "categoryIndex": 2,
+    "question": "Chang’e 6’nın Ay’ın uzak yüzünden örnek getirmesi: Görevi yürüten ülke hangisiydi?",
+    "options": [
+      "Çin",
+      "Japonya",
+      "Hindistan",
+      "Güney Kore"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Çin’in Chang’e 6 görevi Haziran 2024’te Ay’ın uzak yüzünden ilk örnekleri getirdi."
+  },
+  {
+    "id": "q56574",
+    "categoryIndex": 3,
+    "question": "“Heart Lamp” adlı eserin yazarı kimdir?",
+    "options": [
+      "David Szalay",
+      "Banu Mushtaq",
+      "Percival Everett",
+      "Colson Whitehead"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Banu Mushtaq tarafından yazılan “Heart Lamp”, 2025 yılında önemli bir edebiyat ödülüyle gündeme geldi."
+  },
+  {
+    "id": "q56575",
+    "categoryIndex": 4,
+    "question": "soyu tükenmiş homininlerin genomları ve insan evrimi hangi yıl Nobel’le ödüllendirildi?",
+    "options": [
+      "2020",
+      "2023",
+      "2022",
+      "2021"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Soyu tükenmiş homininlerin genomları ve insan evrimi 2022 Nobel ödüllerinde öne çıktı."
+  },
+  {
+    "id": "q56576",
+    "categoryIndex": 5,
+    "question": "2021 Afrika Uluslar Kupası hakkında doğru bilgi hangisidir?",
+    "options": [
+      "Kupa penaltılarla kazanıldı",
+      "Quartararo ilk dünya şampiyonluğunu aldı",
+      "Bagnaia unvanını korudu",
+      "Final penaltılarla sonuçlandı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2022 tarihli organizasyon için öne çıkan bilgi şudur: Final penaltılarla sonuçlandı."
+  },
+  {
+    "id": "q56577",
+    "categoryIndex": 0,
+    "question": "2023 UEFA Şampiyonlar Ligi finali hangi ülkede gerçekleşti?",
+    "options": [
+      "Türkiye",
+      "Kanada",
+      "Pakistan",
+      "Filistin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2023 UEFA Şampiyonlar Ligi finali, Türkiye sınırları içinde gerçekleşti."
+  },
+  {
+    "id": "q56578",
+    "categoryIndex": 1,
+    "question": "“It Takes Two” ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "2023",
+      "2021",
+      "2020",
+      "2022"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“It Takes Two” 2021 yılında piyasaya çıktı."
+  },
+  {
+    "id": "q56579",
+    "categoryIndex": 2,
+    "question": "ABD Kongre Binası baskını hangi yılda gerçekleşti?",
+    "options": [
+      "2022",
+      "2023",
+      "2021",
+      "2020"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "6 Ocak 2021’de kalabalık, Washington’daki ABD Kongre Binası’na girdi."
+  },
+  {
+    "id": "q56580",
+    "categoryIndex": 3,
+    "question": "“The Nickel Boys” adlı eserin yazarı kimdir?",
+    "options": [
+      "Paul Lynch",
+      "Jayne Anne Phillips",
+      "Hernan Diaz",
+      "Colson Whitehead"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Colson Whitehead tarafından yazılan “The Nickel Boys”, 2020 yılında önemli bir edebiyat ödülüyle gündeme geldi."
+  },
+  {
+    "id": "q56581",
+    "categoryIndex": 4,
+    "question": "“Hope Mars görevi” çalışmasının arkasındaki kurum veya ekip hangisidir?",
+    "options": [
+      "Birleşik Arap Emirlikleri Uzay Ajansı ve MBRSC",
+      "NASA ve Advanced Space",
+      "Çin Ulusal Uzay İdaresi",
+      "Intuitive Machines ve NASA CLPS"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Birleşik Arap Emirlikleri Uzay Ajansı ve MBRSC, 2021 tarihli “Hope Mars görevi” görevinin yürütücüsüdür."
+  },
+  {
+    "id": "q56582",
+    "categoryIndex": 5,
+    "question": "2021 NBA Finalleri hakkında doğru bilgi hangisidir?",
+    "options": [
+      "Finalde tek golü Rodri attı",
+      "Finaller MVP’si Giannis Antetokounmpo oldu",
+      "Verstappen üçüncü dünya şampiyonluğunu aldı",
+      "Final 4-1 bitti"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "2021 tarihli organizasyon için öne çıkan bilgi şudur: Finaller MVP’si Giannis Antetokounmpo oldu."
+  },
+  {
+    "id": "q56583",
+    "categoryIndex": 0,
+    "question": "EURO 2024 finali nerede gerçekleşti?",
+    "options": [
+      "Ankara’nın Polatlı ilçesi",
+      "Hiroşima",
+      "Berlin",
+      "Sind ve Belucistan başta olmak üzere Pakistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "EURO 2024 finali, 2024 yılında Berlin ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56584",
+    "categoryIndex": 1,
+    "question": "2020 yapımı “Nomadland” filminin yönetmeni kimdir?",
+    "options": [
+      "Pete Docter",
+      "Greta Gerwig",
+      "Sean Baker",
+      "Chloé Zhao"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Nomadland”, 2020 yılında Chloé Zhao yönetmenliğinde gösterime girdi."
+  },
+  {
+    "id": "q56585",
+    "categoryIndex": 2,
+    "question": "OSIRIS-REx örnek kapsülünün Dünya’ya dönmesi hangi yılda gerçekleşti?",
+    "options": [
+      "2023",
+      "2020",
+      "2021",
+      "2022"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "OSIRIS-REx, Eylül 2023’te Bennu asteroidinden alınan örnekleri Dünya’ya ulaştırdı."
+  },
+  {
+    "id": "q56586",
+    "categoryIndex": 3,
+    "question": "2025 Grammy Ödülleri’nde “En İyi Yeni Sanatçı” ödülünü hangi eser veya sanatçı kazandı?",
+    "options": [
+      "Midnights",
+      "Chappell Roan",
+      "WILDFLOWER",
+      "Leave the Door Open"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2025 Grammy töreninde “En İyi Yeni Sanatçı” ödülü “Chappell Roan” ile ilişkilendirildi."
+  },
+  {
+    "id": "q56587",
+    "categoryIndex": 4,
+    "question": "yapay sinir ağlarıyla makine öğrenmesini mümkün kılan temel çalışmalar hangi yıl Nobel’le ödüllendirildi?",
+    "options": [
+      "2022",
+      "2020",
+      "2024",
+      "2021"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yapay sinir ağlarıyla makine öğrenmesini mümkün kılan temel çalışmalar 2024 Nobel ödüllerinde öne çıktı."
+  },
+  {
+    "id": "q56588",
+    "categoryIndex": 5,
+    "question": "2023 EuroLeague Finali hakkında doğru bilgi hangisidir?",
+    "options": [
+      "Verstappen ilk dünya şampiyonluğunu aldı",
+      "Finaller MVP’si Jaylen Brown oldu",
+      "Final 81-70 bitti",
+      "Final 79-78 bitti"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2023 tarihli organizasyon için öne çıkan bilgi şudur: Final 79-78 bitti."
+  },
+  {
+    "id": "q56589",
+    "categoryIndex": 0,
+    "question": "Jingmai Dağı eski çay ormanlarının UNESCO listesine alınması hangi ülkede gerçekleşti?",
+    "options": [
+      "Çin",
+      "Filistin",
+      "Pakistan",
+      "Türkiye"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jingmai Dağı eski çay ormanlarının UNESCO listesine alınması, Çin sınırları içinde gerçekleşti. Bu bilgi 2023 yılındaki gelişmeyle ilişkilidir."
+  },
+  {
+    "id": "q56590",
+    "categoryIndex": 1,
+    "question": "“Wicked” filminde Elphaba karakterini kim canlandırdı?",
+    "options": [
+      "Emilia Jones",
+      "Cynthia Erivo",
+      "Demi Moore",
+      "Tom Cruise"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Cynthia Erivo, 2024 yapımı filmde Elphaba rolünü üstlendi."
+  },
+  {
+    "id": "q56591",
+    "categoryIndex": 2,
+    "question": "Türkiye Cumhuriyeti’nin 100. yılının kutlanması hangi yılda gerçekleşti?",
+    "options": [
+      "2020",
+      "2022",
+      "2023",
+      "2021"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cumhuriyetin ilanının yüzüncü yılı 29 Ekim 2023’te kutlandı."
+  },
+  {
+    "id": "q56592",
+    "categoryIndex": 3,
+    "question": "2022 Grammy töreninde “We Are” ile ödül alan sanatçı kimdir?",
+    "options": [
+      "Bad Bunny",
+      "Kendrick Lamar",
+      "Lizzo",
+      "Jon Batiste"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Jon Batiste, 2022 Grammy töreninde “We Are” ile öne çıktı."
+  },
+  {
+    "id": "q56593",
+    "categoryIndex": 4,
+    "question": "“Hera” görevi hangi yılda öne çıktı?",
+    "options": [
+      "2024",
+      "2021",
+      "2022",
+      "2020"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "“Hera” görevinin bu soruda anlatılan önemli aşaması 2024 yılında gerçekleşti."
+  },
+  {
+    "id": "q56594",
+    "categoryIndex": 5,
+    "question": "2023 NBA Finalleri için öne çıkan ev sahibi veya final yeri hangisidir?",
+    "options": [
+      "Gdańsk",
+      "Denver ve Miami",
+      "Berlin",
+      "Boston ve Dallas"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "2023 NBA Finalleri, Denver ve Miami ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56595",
+    "categoryIndex": 0,
+    "question": "2023 Afrika Uluslar Kupası finali hangi ülkede gerçekleşti?",
+    "options": [
+      "Ürdün",
+      "Hindistan",
+      "Fildişi Sahili",
+      "Azerbaycan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2023 Afrika Uluslar Kupası finali, Fildişi Sahili sınırları içinde gerçekleşti."
+  },
+  {
+    "id": "q56596",
+    "categoryIndex": 1,
+    "question": "“Fallout” dizisinde Lucy MacLean karakterini kim canlandırır?",
+    "options": [
+      "Pedro Pascal",
+      "Andrew Scott",
+      "Richard Gadd",
+      "Ella Purnell"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ella Purnell, 2024 yapımı dizide Lucy MacLean karakterini canlandırır."
+  },
+  {
+    "id": "q56597",
+    "categoryIndex": 2,
+    "question": "COP28’de fosil yakıtlardan uzaklaşma çağrısı: COP28 hangi şehirde düzenlendi?",
+    "options": [
+      "Dubai",
+      "Doha",
+      "Riyad",
+      "Maskat"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "COP28, Dubai’de sona eren metinde enerji sistemlerinde fosil yakıtlardan uzaklaşma çağrısı yaptı. Bu bilgi 2023 yılındaki gelişmeyle ilişkilidir."
+  },
+  {
+    "id": "q56598",
+    "categoryIndex": 3,
+    "question": "2025 Grammy Ödülleri’nde “Yılın Şarkısı” ödülünü hangi eser veya sanatçı kazandı?",
+    "options": [
+      "What Was I Made For?",
+      "Not Like Us",
+      "DeBÍ TiRAR MáS FOToS",
+      "luther"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2025 Grammy töreninde “Yılın Şarkısı” ödülü “Not Like Us” ile ilişkilendirildi."
+  },
+  {
+    "id": "q56599",
+    "categoryIndex": 4,
+    "question": "Harvey Alter, Michael Houghton ve Charles Rice, 2020 Nobel Ödülü’nü hangi alandaki çalışmasıyla aldı?",
+    "options": [
+      "sıcaklık ve dokunma reseptörleri",
+      "soyu tükenmiş homininlerin genomları ve insan evrimi",
+      "Hepatit C virüsünün keşfi",
+      "attosaniyelik ışık darbeleri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ödül, Hepatit C virüsünün keşfi alanındaki çalışmalar nedeniyle verildi."
+  },
+  {
+    "id": "q56600",
+    "categoryIndex": 5,
+    "question": "2023 Formula 1 Dünya Şampiyonası için öne çıkan ev sahibi veya final yeri hangisidir?",
+    "options": [
+      "İstanbul",
+      "Yaoundé",
+      "Tokyo",
+      "22 yarışlık sezon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2023 Formula 1 Dünya Şampiyonası, 22 yarışlık sezon ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56601",
+    "categoryIndex": 0,
+    "question": "Ever Given gemisi 2021 yılında hangi önemli su yolunu yaklaşık altı gün kapattı?",
+    "options": [
+      "Süveyş Kanalı",
+      "Kiel Kanalı",
+      "Korint Kanalı",
+      "Panama Kanalı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ever Given, Mart 2021’de Süveyş Kanalı’nı yaklaşık altı gün boyunca kapattı."
+  },
+  {
+    "id": "q56602",
+    "categoryIndex": 1,
+    "question": "“Stray” oyununu hangi stüdyo geliştirdi?",
+    "options": [
+      "Arkane Lyon",
+      "BlueTwelve Studio",
+      "Naughty Dog",
+      "Hazelight Studios"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "BlueTwelve Studio, 2022 yapımı “Stray” oyununun geliştiricisidir."
+  },
+  {
+    "id": "q56603",
+    "categoryIndex": 2,
+    "question": "Güney Afrika’da ulusal birlik hükûmeti kurulması: Seçimde meclis çoğunluğunu ilk kez kaybeden parti hangisiydi?",
+    "options": [
+      "Inkatha Özgürlük Partisi",
+      "Ekonomik Özgürlük Savaşçıları",
+      "Afrika Ulusal Kongresi",
+      "Demokratik İttifak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "ANC, 2024 seçiminde apartheid sonrasındaki ilk kez tek başına çoğunluğu kaybetti."
+  },
+  {
+    "id": "q56604",
+    "categoryIndex": 3,
+    "question": "“About Damn Time”, 2023 Grammy Ödülleri’nde hangi ana kategoriyi kazandı?",
+    "options": [
+      "Yılın Albümü",
+      "En İyi Yeni Sanatçı",
+      "Yılın Şarkısı",
+      "Yılın Kaydı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“About Damn Time”, 2023 yılında Yılın Kaydı kategorisinde ödül aldı."
+  },
+  {
+    "id": "q56605",
+    "categoryIndex": 4,
+    "question": "“OSIRIS-REx örnek dönüşü” çalışmasının arkasındaki kurum veya ekip hangisidir?",
+    "options": [
+      "NASA",
+      "Çin Ulusal Uzay İdaresi",
+      "JAXA",
+      "Avrupa Uzay Ajansı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "NASA, 2023 tarihli “OSIRIS-REx örnek dönüşü” görevinin yürütücüsüdür."
+  },
+  {
+    "id": "q56606",
+    "categoryIndex": 5,
+    "question": "2023 MotoGP Dünya Şampiyonası şampiyonu kim oldu?",
+    "options": [
+      "Lewis Hamilton",
+      "Francesco Bagnaia",
+      "Denver Nuggets",
+      "Tottenham Hotspur"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2023 MotoGP Dünya Şampiyonası, Francesco Bagnaia zaferiyle tamamlandı."
+  },
+  {
+    "id": "q56607",
+    "categoryIndex": 0,
+    "question": "2022 G7 Zirvesi hangi ülkede gerçekleşti?",
+    "options": [
+      "Ürdün",
+      "Birleşik Arap Emirlikleri",
+      "Almanya",
+      "Kanada"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2022 G7 Zirvesi, Almanya sınırları içinde gerçekleşti."
+  },
+  {
+    "id": "q56608",
+    "categoryIndex": 1,
+    "question": "“CODA” aşağıdaki başarılardan hangisiyle ilişkilidir?",
+    "options": [
+      "2021 En İyi Animasyon Oscar’ı",
+      "2024 En İyi Kadın Oyuncu Oscar’ı",
+      "2023 En İyi Uluslararası Film Oscar’ı",
+      "2022 En İyi Film Oscar’ı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "2021 yapımı “CODA”, 2022 En İyi Film Oscar’ı başarısıyla öne çıktı."
+  },
+  {
+    "id": "q56609",
+    "categoryIndex": 2,
+    "question": "Wagner grubunun Rusya’daki kısa süreli isyanı: İsyanla özdeşleşen lider kimdi?",
+    "options": [
+      "Yevgeni Prigojin",
+      "Ramzan Kadirov",
+      "Sergey Şoygu",
+      "Aleksey Navalni"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Haziran 2023 isyanını Wagner lideri Yevgeni Prigojin yönetti."
+  },
+  {
+    "id": "q56610",
+    "categoryIndex": 3,
+    "question": "Marieke Lucas Rijneveld hangi eserle 2020 ödül sezonunda öne çıktı?",
+    "options": [
+      "The Nickel Boys",
+      "The Discomfort of Evening",
+      "The Vegetarian",
+      "The Night Watchman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Marieke Lucas Rijneveld, “The Discomfort of Evening” eseriyle 2020 yılında öne çıktı."
+  },
+  {
+    "id": "q56611",
+    "categoryIndex": 4,
+    "question": "2022 Nobel Fizik Ödülü’nü kim veya kimler kazandı?",
+    "options": [
+      "Victor Ambros ve Gary Ruvkun",
+      "Emmanuelle Charpentier ve Jennifer Doudna",
+      "Alain Aspect, John Clauser ve Anton Zeilinger",
+      "Pierre Agostini, Ferenc Krausz ve Anne L’Huillier"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Alain Aspect, John Clauser ve Anton Zeilinger, 2022 yılında kuantum dolanıklığı deneyleri çalışmalarıyla ödüllendirildi."
+  },
+  {
+    "id": "q56612",
+    "categoryIndex": 5,
+    "question": "2024 UEFA Şampiyonlar Ligi şampiyonu kim oldu?",
+    "options": [
+      "Alexander Zverev",
+      "Lewis Hamilton",
+      "Manchester City",
+      "Real Madrid"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "2024 UEFA Şampiyonlar Ligi, Real Madrid zaferiyle tamamlandı."
+  },
+  {
+    "id": "q56613",
+    "categoryIndex": 0,
+    "question": "COP28 İklim Konferansı hangi ülkede gerçekleşti?",
+    "options": [
+      "Birleşik Arap Emirlikleri",
+      "İsveç",
+      "İtalya",
+      "Fas"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "COP28 İklim Konferansı, Birleşik Arap Emirlikleri sınırları içinde gerçekleşti. Bu bilgi 2023 yılındaki gelişmeyle ilişkilidir."
+  },
+  {
+    "id": "q56614",
+    "categoryIndex": 1,
+    "question": "“The Boy and the Heron” filminde Mahito Maki karakterini kim canlandırdı?",
+    "options": [
+      "Timothée Chalamet",
+      "Soma Santoki",
+      "Leonardo DiCaprio",
+      "Hidetoshi Nishijima"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Soma Santoki, 2023 yapımı filmde Mahito Maki rolünü üstlendi."
+  },
+  {
+    "id": "q56615",
+    "categoryIndex": 2,
+    "question": "Facebook şirketinin kurumsal adını değiştirmesi hangi yılda gerçekleşti?",
+    "options": [
+      "2023",
+      "2022",
+      "2021",
+      "2020"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Facebook şirketi Ekim 2021’de kurumsal adını Meta olarak değiştirdi."
+  },
+  {
+    "id": "q56616",
+    "categoryIndex": 3,
+    "question": "“Leave the Door Open” ile “Yılın Kaydı” ödülünün kazanıldığı Grammy töreni hangi yıl yapıldı?",
+    "options": [
+      "2025",
+      "2024",
+      "2023",
+      "2022"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Leave the Door Open” bu ana kategori başarısını 2022 Grammy Ödülleri’nde elde etti."
+  },
+  {
+    "id": "q56617",
+    "categoryIndex": 4,
+    "question": "“Avrupa Birliği Yapay Zekâ Yasası’nın yürürlüğe girmesi” neden önemliydi?",
+    "options": [
+      "yapay zekâ sistemleri için risk temelli kurallar",
+      "yapay zekânın proteinlerin üç boyutlu yapısını yüksek doğrulukla öngörmesi",
+      "mRNA aşılarının kitlesel kullanıma geçişi",
+      "ksenotransplantasyon araştırmalarında önemli bir klinik adım"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "2024 tarihli gelişme, yapay zekâ sistemleri için risk temelli kurallar bakımından önem taşıdı."
+  },
+  {
+    "id": "q56618",
+    "categoryIndex": 5,
+    "question": "2022 NBA Finalleri şampiyonu kim oldu?",
+    "options": [
+      "Tottenham Hotspur",
+      "Golden State Warriors",
+      "İspanya",
+      "Eintracht Frankfurt"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2022 NBA Finalleri, Golden State Warriors zaferiyle tamamlandı."
+  },
+  {
+    "id": "q56619",
+    "categoryIndex": 0,
+    "question": "2024 G7 Zirvesi nerede gerçekleşti?",
+    "options": [
+      "Tonga takımadaları",
+      "Miami",
+      "Fasano",
+      "Sind ve Belucistan başta olmak üzere Pakistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2024 G7 Zirvesi, 2024 yılında Fasano ile doğrudan ilişkilidir."
+  },
+  {
+    "id": "q56620",
+    "categoryIndex": 1,
+    "question": "“House of the Dragon” dizisi ilk kez hangi yılda yayımlandı?",
+    "options": [
+      "2023",
+      "2020",
+      "2021",
+      "2022"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“House of the Dragon” dizisinin ilk sezonu 2022 yılında yayımlandı."
+  }
+]

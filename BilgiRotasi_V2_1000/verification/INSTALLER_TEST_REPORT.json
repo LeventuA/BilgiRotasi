@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "checkAgainstV1": "PASS",
+  "applyAgainstV1": "PASS",
+  "installedTotal": 2000,
+  "backupCreation": "PASS",
+  "conflictAbort": "PASS"
+}

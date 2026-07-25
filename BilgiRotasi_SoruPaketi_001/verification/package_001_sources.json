@@ -1,0 +1,976 @@
+{
+  "package": "package_001_q3001_q3120",
+  "idRange": "q3001-q3120",
+  "questionCount": 120,
+  "checkedOn": "2026-07-22",
+  "method": [
+    "Soru metni doğal Türkçe açısından gözden geçirildi.",
+    "Dört seçeneğin aynı cevap türünde olması kontrol edildi.",
+    "answerIndex ile doğru seçeneğin eşleşmesi programatik olarak test edildi.",
+    "Her soruya kısa ve öğretici explanation alanı eklendi.",
+    "Her soru için bir kaynak referansı kaydedildi.",
+    "Kurulum sırasında güncel questions.json üzerinde ID ve tekrar taraması yapılır."
+  ],
+  "sourcesByQuestionId": {
+    "q3001": {
+      "category": "Coğrafya",
+      "sourceTitle": "UNESCO World Heritage Centre — Lake Baikal",
+      "sourceUrl": "https://whc.unesco.org/en/list/754",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3002": {
+      "category": "Coğrafya",
+      "sourceTitle": "UNESCO World Heritage Centre — Great Barrier Reef",
+      "sourceUrl": "https://whc.unesco.org/en/list/154",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3003": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Strait of Malacca",
+      "sourceUrl": "https://www.britannica.com/place/Strait-of-Malacca",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3004": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Lake Titicaca",
+      "sourceUrl": "https://www.britannica.com/place/Lake-Titicaca",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3005": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Danube River",
+      "sourceUrl": "https://www.britannica.com/place/Danube-River",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3006": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Atacama Desert",
+      "sourceUrl": "https://www.britannica.com/place/Atacama-Desert",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3007": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Mount Elbrus",
+      "sourceUrl": "https://www.britannica.com/place/Mount-Elbrus",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3008": {
+      "category": "Coğrafya",
+      "sourceTitle": "USGS — Mekong River seasonal flooding",
+      "sourceUrl": "https://eros.usgs.gov/earthshots/rivers-and-rain",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3009": {
+      "category": "Coğrafya",
+      "sourceTitle": "UNESCO World Heritage Centre — Okavango Delta",
+      "sourceUrl": "https://whc.unesco.org/en/list/1432",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3010": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Uyuni Salt Flat",
+      "sourceUrl": "https://www.britannica.com/place/Uyuni-Salt-Flat",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3011": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Bering Strait",
+      "sourceUrl": "https://www.britannica.com/place/Bering-Strait",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3012": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Lake Tanganyika",
+      "sourceUrl": "https://www.britannica.com/place/Lake-Tanganyika",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3013": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Patagonia",
+      "sourceUrl": "https://www.britannica.com/place/Patagonia-region-Argentina",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3014": {
+      "category": "Coğrafya",
+      "sourceTitle": "UNESCO World Heritage Centre — Mosi-oa-Tunya / Victoria Falls",
+      "sourceUrl": "https://whc.unesco.org/en/list/509",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3015": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Bosporus",
+      "sourceUrl": "https://www.britannica.com/place/Bosporus",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3016": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Ural Mountains",
+      "sourceUrl": "https://www.britannica.com/place/Ural-Mountains",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3017": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Aconcagua",
+      "sourceUrl": "https://www.britannica.com/place/Aconcagua",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3018": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Rhine River",
+      "sourceUrl": "https://www.britannica.com/place/Rhine-River",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3019": {
+      "category": "Coğrafya",
+      "sourceTitle": "Encyclopaedia Britannica — Mozambique Channel",
+      "sourceUrl": "https://www.britannica.com/place/Mozambique-Channel",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3020": {
+      "category": "Coğrafya",
+      "sourceTitle": "National Geographic — Deserts",
+      "sourceUrl": "https://www.nationalgeographic.com/environment/article/deserts",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3021": {
+      "category": "Eğlence",
+      "sourceTitle": "Encyclopaedia Britannica — The Godfather",
+      "sourceUrl": "https://www.britannica.com/topic/The-Godfather-film-by-Coppola",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3022": {
+      "category": "Eğlence",
+      "sourceTitle": "Studio Ghibli — Spirited Away",
+      "sourceUrl": "https://www.ghibli.jp/works/chihiro/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3023": {
+      "category": "Eğlence",
+      "sourceTitle": "The Academy — 2020 Oscars",
+      "sourceUrl": "https://www.oscars.org/oscars/ceremonies/2020",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3024": {
+      "category": "Eğlence",
+      "sourceTitle": "AMC — Breaking Bad",
+      "sourceUrl": "https://www.amc.com/shows/breaking-bad",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3025": {
+      "category": "Eğlence",
+      "sourceTitle": "HBO — The Wire",
+      "sourceUrl": "https://www.hbo.com/the-wire",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3026": {
+      "category": "Eğlence",
+      "sourceTitle": "NBC — The Office",
+      "sourceUrl": "https://www.nbc.com/the-office",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3027": {
+      "category": "Eğlence",
+      "sourceTitle": "Warner Bros. — Interstellar",
+      "sourceUrl": "https://www.warnerbros.com/movies/interstellar",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3028": {
+      "category": "Eğlence",
+      "sourceTitle": "Miramax — Pulp Fiction",
+      "sourceUrl": "https://www.miramax.com/movie/pulp-fiction/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3029": {
+      "category": "Eğlence",
+      "sourceTitle": "Warner Bros. — The Lord of the Rings",
+      "sourceUrl": "https://www.warnerbros.com/movies/lord-rings-fellowship-ring",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3030": {
+      "category": "Eğlence",
+      "sourceTitle": "Netflix — Stranger Things",
+      "sourceUrl": "https://www.netflix.com/title/80057281",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3031": {
+      "category": "Eğlence",
+      "sourceTitle": "AMC — Mad Men",
+      "sourceUrl": "https://www.amc.com/shows/mad-men",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3032": {
+      "category": "Eğlence",
+      "sourceTitle": "AMC — Better Call Saul",
+      "sourceUrl": "https://www.amc.com/shows/better-call-saul",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3033": {
+      "category": "Eğlence",
+      "sourceTitle": "Encyclopaedia Britannica — Casablanca",
+      "sourceUrl": "https://www.britannica.com/topic/Casablanca-film-by-Curtiz",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3034": {
+      "category": "Eğlence",
+      "sourceTitle": "Encyclopaedia Britannica — One Flew over the Cuckoo’s Nest",
+      "sourceUrl": "https://www.britannica.com/topic/One-Flew-over-the-Cuckoos-Nest-film-by-Forman",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3035": {
+      "category": "Eğlence",
+      "sourceTitle": "Encyclopaedia Britannica — Amélie",
+      "sourceUrl": "https://www.britannica.com/topic/Amelie",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3036": {
+      "category": "Eğlence",
+      "sourceTitle": "Searchlight Pictures — The Grand Budapest Hotel",
+      "sourceUrl": "https://www.searchlightpictures.com/thegrandbudapesthotel/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3037": {
+      "category": "Eğlence",
+      "sourceTitle": "Paramount Pictures — Arrival",
+      "sourceUrl": "https://www.paramountpictures.com/movies/arrival",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3038": {
+      "category": "Eğlence",
+      "sourceTitle": "Encyclopaedia Britannica — Cinema Paradiso",
+      "sourceUrl": "https://www.britannica.com/topic/Cinema-Paradiso",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3039": {
+      "category": "Eğlence",
+      "sourceTitle": "Warner Bros. — Blade Runner 2049",
+      "sourceUrl": "https://www.warnerbros.com/movies/blade-runner-2049",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3040": {
+      "category": "Eğlence",
+      "sourceTitle": "Encyclopaedia Britannica — The Truman Show",
+      "sourceUrl": "https://www.britannica.com/topic/The-Truman-Show",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3041": {
+      "category": "Tarih",
+      "sourceTitle": "British Library — Magna Carta: an introduction",
+      "sourceUrl": "https://www.bl.uk/magna-carta/articles/magna-carta-an-introduction",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3042": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Edict of Milan",
+      "sourceUrl": "https://www.britannica.com/event/Edict-of-Milan",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3043": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Council of Nicaea",
+      "sourceUrl": "https://www.britannica.com/event/Council-of-Nicaea-Christianity-325",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3044": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Battle of Hastings",
+      "sourceUrl": "https://www.britannica.com/event/Battle-of-Hastings",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3045": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Fall of Constantinople",
+      "sourceUrl": "https://www.britannica.com/event/Fall-of-Constantinople-1453",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3046": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Treaty of Tordesillas",
+      "sourceUrl": "https://www.britannica.com/event/Treaty-of-Tordesillas",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3047": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Peace of Westphalia",
+      "sourceUrl": "https://www.britannica.com/event/Peace-of-Westphalia",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3048": {
+      "category": "Tarih",
+      "sourceTitle": "UK Parliament — The Glorious Revolution",
+      "sourceUrl": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/parliamentaryauthority/revolution/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3049": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Haitian Revolution",
+      "sourceUrl": "https://www.britannica.com/topic/Haitian-Revolution",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3050": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Congress of Vienna",
+      "sourceUrl": "https://www.britannica.com/event/Congress-of-Vienna",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3051": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Meiji Restoration",
+      "sourceUrl": "https://www.britannica.com/event/Meiji-Restoration",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3052": {
+      "category": "Tarih",
+      "sourceTitle": "Suez Canal Authority — Canal History",
+      "sourceUrl": "https://www.suezcanal.gov.eg/English/About/SuezCanal/Pages/CanalHistory.aspx",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3053": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Berlin West Africa Conference",
+      "sourceUrl": "https://www.britannica.com/event/Berlin-West-Africa-Conference",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3054": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Young Turks",
+      "sourceUrl": "https://www.britannica.com/topic/Young-Turks-Turkish-nationalist-movement",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3055": {
+      "category": "Tarih",
+      "sourceTitle": "Türkiye Cumhuriyeti Dışişleri Bakanlığı — Lausanne Peace Treaty",
+      "sourceUrl": "https://www.mfa.gov.tr/lausanne-peace-treaty.en.mfa",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3056": {
+      "category": "Tarih",
+      "sourceTitle": "U.S. National Archives — Eisenhower’s Order of the Day",
+      "sourceUrl": "https://www.archives.gov/milestone-documents/general-eisenhowers-order-of-the-day",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3057": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Bandung Conference",
+      "sourceUrl": "https://www.britannica.com/event/Bandung-Conference",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3058": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Berlin Wall",
+      "sourceUrl": "https://www.britannica.com/topic/Berlin-Wall",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3059": {
+      "category": "Tarih",
+      "sourceTitle": "Encyclopaedia Britannica — Julius Caesar",
+      "sourceUrl": "https://www.britannica.com/biography/Julius-Caesar-Roman-ruler",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3060": {
+      "category": "Tarih",
+      "sourceTitle": "The British Museum — Rosetta Stone",
+      "sourceUrl": "https://www.britishmuseum.org/collection/object/Y_EA24",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3061": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Encyclopaedia Britannica — Gulliver’s Travels",
+      "sourceUrl": "https://www.britannica.com/topic/Gullivers-Travels",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3062": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Museo del Prado — Las Meninas",
+      "sourceUrl": "https://www.museodelprado.es/en/the-collection/art-work/las-meninas/9fdc7800-9ade-48b0-ab8b-edee94ea877f",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3063": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "The National Gallery — The Arnolfini Portrait",
+      "sourceUrl": "https://www.nationalgallery.org.uk/paintings/jan-van-eyck-the-arnolfini-portrait",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3064": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Uffizi Galleries — The Birth of Venus",
+      "sourceUrl": "https://www.uffizi.it/en/artworks/birth-of-venus",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3065": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Musée Rodin — The Thinker",
+      "sourceUrl": "https://www.musee-rodin.fr/en/musee/collections/oeuvres/thinker",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3066": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Belvedere Museum — The Kiss",
+      "sourceUrl": "https://www.belvedere.at/en/kiss-gustav-klimt",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3067": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Encyclopaedia Britannica — The Trial",
+      "sourceUrl": "https://www.britannica.com/topic/The-Trial-novel-by-Kafka",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3068": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Encyclopaedia Britannica — Mrs. Dalloway",
+      "sourceUrl": "https://www.britannica.com/topic/Mrs-Dalloway-novel-by-Woolf",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3069": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Encyclopaedia Britannica — Umberto Eco",
+      "sourceUrl": "https://www.britannica.com/biography/Umberto-Eco",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3070": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Nobel Prize — José Saramago",
+      "sourceUrl": "https://www.nobelprize.org/prizes/literature/1998/saramago/facts/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3071": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Encyclopaedia Britannica — Mikhail Bulgakov",
+      "sourceUrl": "https://www.britannica.com/biography/Mikhail-Bulgakov",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3072": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Encyclopaedia Britannica — The Stranger",
+      "sourceUrl": "https://www.britannica.com/topic/The-Stranger-novel-by-Camus",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3073": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Encyclopaedia Britannica — A Room of One’s Own",
+      "sourceUrl": "https://www.britannica.com/topic/A-Room-of-Ones-Own",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3074": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Türkiye Diyanet Vakfı İslâm Ansiklopedisi — Oğuz Atay",
+      "sourceUrl": "https://islamansiklopedisi.org.tr/atay-oguz",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3075": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Türkiye Diyanet Vakfı İslâm Ansiklopedisi — Ahmet Hamdi Tanpınar",
+      "sourceUrl": "https://islamansiklopedisi.org.tr/tanpinar-ahmet-hamdi",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3076": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Türkiye Diyanet Vakfı İslâm Ansiklopedisi — Sabahattin Ali",
+      "sourceUrl": "https://islamansiklopedisi.org.tr/ali-sabahattin",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3077": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Encyclopaedia Britannica — Nâzım Hikmet",
+      "sourceUrl": "https://www.britannica.com/biography/Nazim-Hikmet",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3078": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Poetry Foundation — The Waste Land",
+      "sourceUrl": "https://www.poetryfoundation.org/poems/47311/the-waste-land",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3079": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Encyclopaedia Britannica — The Picture of Dorian Gray",
+      "sourceUrl": "https://www.britannica.com/topic/The-Picture-of-Dorian-Gray-novel-by-Wilde",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3080": {
+      "category": "Sanat & Edebiyat",
+      "sourceTitle": "Museo Reina Sofía — Guernica",
+      "sourceUrl": "https://www.museoreinasofia.es/en/collection/artwork/guernica",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3081": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "IUPAC — Periodic Table of Elements",
+      "sourceUrl": "https://iupac.org/what-we-do/periodic-table-of-elements/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3082": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "IUPAC — Periodic Table of Elements",
+      "sourceUrl": "https://iupac.org/what-we-do/periodic-table-of-elements/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3083": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "BIPM — SI Brochure",
+      "sourceUrl": "https://www.bipm.org/en/publications/si-brochure",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3084": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "NIST — Avogadro constant",
+      "sourceUrl": "https://physics.nist.gov/cgi-bin/cuu/Value?na",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3085": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "NASA Solar System Exploration — Ganymede",
+      "sourceUrl": "https://science.nasa.gov/jupiter/moons/ganymede/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3086": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "NASA Solar System Exploration — Venus",
+      "sourceUrl": "https://science.nasa.gov/venus/facts/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3087": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "NASA — Mars: Olympus Mons",
+      "sourceUrl": "https://science.nasa.gov/mars/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3088": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "National Human Genome Research Institute — DNA",
+      "sourceUrl": "https://www.genome.gov/genetics-glossary/DNA",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3089": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "Encyclopaedia Britannica — Ribosome",
+      "sourceUrl": "https://www.britannica.com/science/ribosome",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3090": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "NIDDK — Insulin, Medicines, & Other Diabetes Treatments",
+      "sourceUrl": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3091": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "National Cancer Institute — Red blood cell",
+      "sourceUrl": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/red-blood-cell",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3092": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "San Diego Zoo Wildlife Alliance — Axolotl",
+      "sourceUrl": "https://animals.sandiegozoo.org/animals/axolotl",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3093": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "Australian Museum — Platypus",
+      "sourceUrl": "https://australian.museum/learn/animals/mammals/platypus/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3094": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "NOAA Fisheries — Blue Whale",
+      "sourceUrl": "https://www.fisheries.noaa.gov/species/blue-whale",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3095": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "Cornell Lab of Ornithology — Peregrine Falcon",
+      "sourceUrl": "https://www.allaboutbirds.org/guide/Peregrine_Falcon/overview",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3096": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "Encyclopaedia Britannica — Photosynthesis",
+      "sourceUrl": "https://www.britannica.com/science/photosynthesis",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3097": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "HyperPhysics — Speed of Sound",
+      "sourceUrl": "http://hyperphysics.phy-astr.gsu.edu/hbase/Sound/souspe.html",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3098": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "NASA Ozone Watch — Facts",
+      "sourceUrl": "https://ozonewatch.gsfc.nasa.gov/facts/ozone.html",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3099": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "USGS — This Dynamic Earth",
+      "sourceUrl": "https://pubs.usgs.gov/gip/dynamic/dynamic.html",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3100": {
+      "category": "Bilim & Doğa",
+      "sourceTitle": "CERN — The Standard Model",
+      "sourceUrl": "https://home.cern/science/physics/standard-model",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3101": {
+      "category": "Spor",
+      "sourceTitle": "Olympics — Athens 1896",
+      "sourceUrl": "https://olympics.com/en/olympic-games/athens-1896",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3102": {
+      "category": "Spor",
+      "sourceTitle": "FIFA — Uruguay 1930",
+      "sourceUrl": "https://www.fifa.com/tournaments/mens/worldcup/1930uruguay",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3103": {
+      "category": "Spor",
+      "sourceTitle": "Springfield College — Where Basketball Was Invented",
+      "sourceUrl": "https://springfield.edu/where-basketball-was-invented-the-birthplace-of-basketball",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3104": {
+      "category": "Spor",
+      "sourceTitle": "International Volleyball Hall of Fame — William G. Morgan",
+      "sourceUrl": "https://www.volleyhall.org/william-g-morgan.html",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3105": {
+      "category": "Spor",
+      "sourceTitle": "Wimbledon — The Grounds",
+      "sourceUrl": "https://www.wimbledon.com/en_GB/about_wimbledon/the_grounds.html",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3106": {
+      "category": "Spor",
+      "sourceTitle": "Roland-Garros — Tournament",
+      "sourceUrl": "https://www.rolandgarros.com/en-us/page/roland-garros-tournament",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3107": {
+      "category": "Spor",
+      "sourceTitle": "Australian Open — Tournament",
+      "sourceUrl": "https://ausopen.com/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3108": {
+      "category": "Spor",
+      "sourceTitle": "World Athletics — Competition and Technical Rules",
+      "sourceUrl": "https://worldathletics.org/about-iaaf/documents/book-of-rules",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3109": {
+      "category": "Spor",
+      "sourceTitle": "Olympics — Decathlon",
+      "sourceUrl": "https://olympics.com/en/news/decathlon-events-rules-scoring-points-table",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3110": {
+      "category": "Spor",
+      "sourceTitle": "World Athletics — Combined Events",
+      "sourceUrl": "https://worldathletics.org/disciplines/combined-events/heptathlon",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3111": {
+      "category": "Spor",
+      "sourceTitle": "Tour de France — Jerseys",
+      "sourceUrl": "https://www.letour.fr/en/the-jerseys-tour-de-france",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3112": {
+      "category": "Spor",
+      "sourceTitle": "Giro d’Italia — Jerseys",
+      "sourceUrl": "https://www.giroditalia.it/en/jerseys/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3113": {
+      "category": "Spor",
+      "sourceTitle": "Formula 1 — Glossary",
+      "sourceUrl": "https://www.formula1.com/en/championship/inside-f1/glossary.html",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3114": {
+      "category": "Spor",
+      "sourceTitle": "NBA — Official Court Dimensions",
+      "sourceUrl": "https://official.nba.com/rule-no-1-court-dimensions-equipment/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3115": {
+      "category": "Spor",
+      "sourceTitle": "MLB — Official Baseball Rules",
+      "sourceUrl": "https://www.mlb.com/official-information/official-rules",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3116": {
+      "category": "Spor",
+      "sourceTitle": "MCC — Laws of Cricket: The Over",
+      "sourceUrl": "https://www.lords.org/mcc/the-laws-of-cricket/the-over",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3117": {
+      "category": "Spor",
+      "sourceTitle": "World Rugby — Scoring Points",
+      "sourceUrl": "https://passport.world.rugby/laws-of-the-game/laws-by-number/8-scoring/",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3118": {
+      "category": "Spor",
+      "sourceTitle": "NHL — Official Rules",
+      "sourceUrl": "https://media.nhl.com/site/asset/public/ext/2023-24/2023-24Rulebook.pdf",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3119": {
+      "category": "Spor",
+      "sourceTitle": "International Paralympic Committee — Paralympic Symbol",
+      "sourceUrl": "https://www.paralympic.org/paralympic-symbol",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    },
+    "q3120": {
+      "category": "Spor",
+      "sourceTitle": "FIDE — Laws of Chess",
+      "sourceUrl": "https://handbook.fide.com/chapter/E012023",
+      "verificationStatus": "verified",
+      "checkedOn": "2026-07-22",
+      "verificationNote": "Soru, doğru cevap, seçenek türleri ve kısa açıklama tek tek gözden geçirildi."
+    }
+  }
+}

@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q53121",
+    "categoryIndex": 0,
+    "question": "Ejderha kanı ağaçlarıyla ünlü Sokotra Adası hangi ülkeye bağlıdır?",
+    "options": [
+      "Umman",
+      "Yemen",
+      "Madagaskar",
+      "Endonezya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sokotra, Yemen’e bağlı bir takımadadır. Adanın şemsiye biçimli ejderha kanı ağaçları başka yerde çok nadir görülür."
+  },
+  {
+    "id": "q53122",
+    "categoryIndex": 0,
+    "question": "Yağmurdan sonra dev bir aynaya dönüşen Salar de Uyuni hangi ülkededir?",
+    "options": [
+      "Bolivya",
+      "Şili",
+      "Peru",
+      "Arjantin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Salar de Uyuni, Bolivya’daki dünyanın en büyük tuz düzlüklerinden biridir; ince su tabakası gökyüzünü yansıtır."
+  },
+  {
+    "id": "q53123",
+    "categoryIndex": 0,
+    "question": "Kıyısı olmayan tek deniz olarak bilinen Sargasso Denizi hangi okyanustadır?",
+    "options": [
+      "Hint Okyanusu",
+      "Atlas Okyanusu",
+      "Pasifik Okyanusu",
+      "Arktik Okyanusu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sargasso Denizi karalarla değil, Atlas Okyanusu’ndaki akıntılarla çevrilidir."
+  },
+  {
+    "id": "q53124",
+    "categoryIndex": 0,
+    "question": "Topraklarının tamamı deniz seviyesinden 1.000 metreden yüksek olan ülke hangisidir?",
+    "options": [
+      "Nepal",
+      "Lesotho",
+      "Bhutan",
+      "Bolivya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Lesotho’nun en alçak noktası bile yaklaşık 1.400 metrededir; bu nedenle ülkeye “Gökyüzündeki Krallık” denir."
+  },
+  {
+    "id": "q53125",
+    "categoryIndex": 0,
+    "question": "Baarle kasabasındaki karmaşık sınır ve iç içe geçmiş mahalleler hangi iki ülkeye aittir?",
+    "options": [
+      "Belçika ve Hollanda",
+      "Fransa ve Almanya",
+      "İspanya ve Portekiz",
+      "İtalya ve İsviçre"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Baarle-Hertog ve Baarle-Nassau, Belçika ile Hollanda’ya ait çok sayıda iç içe geçmiş parçadan oluşur."
+  },
+  {
+    "id": "q53126",
+    "categoryIndex": 0,
+    "question": "Dünya üzerindeki karalara en uzak okyanus noktası hangi adla bilinir?",
+    "options": [
+      "Ümit Burnu",
+      "Point Nemo",
+      "Mariana Noktası",
+      "Ekvator Düğümü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Point Nemo, Güney Pasifik’te karaya en uzak noktadır; en yakın kara parçaları yaklaşık 2.700 kilometre uzaktadır."
+  },
+  {
+    "id": "q53127",
+    "categoryIndex": 0,
+    "question": "Aşırı sıcaklığı ve renkli tuz oluşumlarıyla tanınan Danakil Çöküntüsü hangi ülkededir?",
+    "options": [
+      "Etiyopya",
+      "Fas",
+      "Namibya",
+      "Kenya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Danakil Çöküntüsü Etiyopya’nın kuzeydoğusundadır ve Dünya’nın en sıcak, en sıra dışı bölgelerinden biridir."
+  },
+  {
+    "id": "q53128",
+    "categoryIndex": 0,
+    "question": "Kırmızımsı suları ve flamingolarıyla bilinen Natron Gölü hangi ülkededir?",
+    "options": [
+      "Tanzanya",
+      "Botsvana",
+      "Uganda",
+      "Zambiya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Natron Gölü Tanzanya’dadır. Alkali suyu, tuza uyumlu mikroorganizmalar ve flamingolar için özel bir yaşam alanı oluşturur."
+  },
+  {
+    "id": "q53129",
+    "categoryIndex": 0,
+    "question": "On binlerce bazalt sütundan oluşan Giant’s Causeway hangi bölgede bulunur?",
+    "options": [
+      "Kuzey İrlanda",
+      "İzlanda",
+      "İskoçya",
+      "Galler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Giant’s Causeway, eski volkanik faaliyetlerin oluşturduğu altıgen bazalt sütunlarıyla Kuzey İrlanda kıyısındadır."
+  },
+  {
+    "id": "q53130",
+    "categoryIndex": 0,
+    "question": "Işıldayan larvalarıyla ünlü Waitomo mağaraları hangi ülkededir?",
+    "options": [
+      "Yeni Zelanda",
+      "Avustralya",
+      "Kanada",
+      "Norveç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Waitomo mağaralarının tavanında yaşayan ışıldayan larvalar, karanlıkta yıldızlı gökyüzü görünümü oluşturur."
+  },
+  {
+    "id": "q53131",
+    "categoryIndex": 0,
+    "question": "Çikolata Tepeleri adı verilen yüzlerce konik tepe hangi ülkededir?",
+    "options": [
+      "Filipinler",
+      "Malezya",
+      "Vietnam",
+      "Sri Lanka"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bohol Adası’ndaki Çikolata Tepeleri kurak mevsimde kahverengiye döndüğü için bu adı almıştır."
+  },
+  {
+    "id": "q53132",
+    "categoryIndex": 0,
+    "question": "Beyaz kum tepelerinin arasında yağmur mevsiminde lagünler oluşan Lençóis Maranhenses hangi ülkededir?",
+    "options": [
+      "Brezilya",
+      "Meksika",
+      "Kolombiya",
+      "Portekiz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Lençóis Maranhenses, Brezilya’da kumullar ile mevsimlik tatlı su lagünlerini bir araya getiren sıra dışı bir milli parktır."
+  },
+  {
+    "id": "q53133",
+    "categoryIndex": 0,
+    "question": "Yıllardır yanan Darvaza gaz krateri hangi ülkededir?",
+    "options": [
+      "Türkmenistan",
+      "Azerbaycan",
+      "Kazakistan",
+      "Özbekistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Darvaza krateri Türkmenistan’daki Karakum Çölü’ndedir ve “Cehennemin Kapısı” lakabıyla tanınır."
+  },
+  {
+    "id": "q53134",
+    "categoryIndex": 0,
+    "question": "Keskin kireçtaşı kuleleriyle ünlü Tsingy de Bemaraha hangi adadadır?",
+    "options": [
+      "Madagaskar",
+      "Borneo",
+      "Sumatra",
+      "Sri Lanka"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Tsingy de Bemaraha, Madagaskar’da yağmur ve erozyonun şekillendirdiği sivri kireçtaşı oluşumlarından meydana gelir."
+  },
+  {
+    "id": "q53135",
+    "categoryIndex": 0,
+    "question": "Doğal pembe rengiyle tanınan Hillier Gölü hangi ülkededir?",
+    "options": [
+      "Avustralya",
+      "Kanada",
+      "Güney Afrika",
+      "Şili"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Hillier Gölü Batı Avustralya açıklarındaki Middle Island’da bulunur; pembe rengi tuzlu ortam mikroorganizmalarıyla ilişkilidir."
+  },
+  {
+    "id": "q53136",
+    "categoryIndex": 0,
+    "question": "Masa biçimli Roraima Dağı hangi üç ülkenin sınır bölgesindedir?",
+    "options": [
+      "Venezuela, Guyana ve Brezilya",
+      "Peru, Bolivya ve Şili",
+      "Kenya, Uganda ve Tanzanya",
+      "Çin, Nepal ve Hindistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Roraima Dağı, Venezuela-Guyana-Brezilya sınırlarının kesiştiği bölgede yükselen bir tepuidir."
+  },
+  {
+    "id": "q53137",
+    "categoryIndex": 0,
+    "question": "Gambiya ülkesini, Atlas Okyanusu kıyısı dışında neredeyse tamamen hangi ülke çevreler?",
+    "options": [
+      "Senegal",
+      "Mali",
+      "Gine",
+      "Moritanya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gambiya, aynı adlı nehir boyunca uzanan dar bir ülkedir ve kara sınırlarının tamamına yakını Senegal’ledir."
+  },
+  {
+    "id": "q53138",
+    "categoryIndex": 1,
+    "question": "The Office dizisinde çalışanların kâğıt sattığı şirketin adı nedir?",
+    "options": [
+      "Dunder Mifflin",
+      "Sterling Cooper",
+      "Wernham Hogg",
+      "Waystar Royco"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dunder Mifflin’in Scranton şubesi, The Office’in başlıca mekânıdır."
+  },
+  {
+    "id": "q53139",
+    "categoryIndex": 1,
+    "question": "Stranger Things dizisinin büyük bölümü hangi kurgusal kasabada geçer?",
+    "options": [
+      "Hawkins",
+      "Sunnydale",
+      "Riverdale",
+      "Twin Peaks"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hawkins, Indiana’da geçen olaylar gizli deneyler ve Upside Down adlı boyutla bağlantılıdır."
+  },
+  {
+    "id": "q53140",
+    "categoryIndex": 1,
+    "question": "Geleceğe Dönüş filminde zaman makinesine dönüştürülen otomobil hangisidir?",
+    "options": [
+      "DeLorean",
+      "Ford Mustang",
+      "Volkswagen Beetle",
+      "Chevrolet Camaro"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Doc Brown, paslanmaz çelik gövdeli DeLorean DMC-12’yi zaman makinesine dönüştürür."
+  },
+  {
+    "id": "q53141",
+    "categoryIndex": 1,
+    "question": "Matrix filminde Neo gerçeği öğrenmek için hangi renk hapı seçer?",
+    "options": [
+      "Kırmızı",
+      "Mavi",
+      "Yeşil",
+      "Beyaz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kırmızı hap Neo’yu Matrix’in yapay dünyasından çıkarır; mavi hap ise eski hayatına dönmeyi simgeler."
+  },
+  {
+    "id": "q53142",
+    "categoryIndex": 1,
+    "question": "Yüzüklerin Efendisi’nde Gollum’un eski adı nedir?",
+    "options": [
+      "Sméagol",
+      "Déagol",
+      "Faramir",
+      "Gríma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sméagol, Tek Yüzük’ün etkisiyle zaman içinde Gollum adıyla bilinen kişiliğe dönüşür."
+  },
+  {
+    "id": "q53143",
+    "categoryIndex": 1,
+    "question": "Star Wars evreninde Chewbacca hangi türe aittir?",
+    "options": [
+      "Wookiee",
+      "Ewok",
+      "Twi’lek",
+      "Jawa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Chewbacca, Kashyyyk gezegeninden gelen bir Wookiee’dir ve Han Solo’nun yakın dostudur."
+  },
+  {
+    "id": "q53144",
+    "categoryIndex": 1,
+    "question": "Karayip Korsanları serisinde Jack Sparrow’un ünlü gemisinin adı nedir?",
+    "options": [
+      "Black Pearl",
+      "Flying Dutchman",
+      "Queen Anne’s Revenge",
+      "Interceptor"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Black Pearl, hızı ve siyah yelkenleriyle serinin en tanınan gemisidir."
+  },
+  {
+    "id": "q53145",
+    "categoryIndex": 1,
+    "question": "The Legend of Zelda oyunlarında oyuncunun yönettiği kahramanın adı nedir?",
+    "options": [
+      "Link",
+      "Zelda",
+      "Ganondorf",
+      "Epona"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Serinin adı Prenses Zelda’dan gelse de ana oynanabilir kahraman çoğunlukla Link’tir."
+  },
+  {
+    "id": "q53146",
+    "categoryIndex": 1,
+    "question": "Pac-Man’de kırmızı hayaletin adı nedir?",
+    "options": [
+      "Blinky",
+      "Pinky",
+      "Inky",
+      "Clyde"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Blinky kırmızı hayalettir ve Pac-Man’i diğer hayaletlerden daha doğrudan takip etmesiyle bilinir."
+  },
+  {
+    "id": "q53147",
+    "categoryIndex": 1,
+    "question": "Pokémon evreninde Pikachu hangi temel türe aittir?",
+    "options": [
+      "Elektrik",
+      "Ateş",
+      "Su",
+      "Çimen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Pikachu Elektrik türündedir ve en tanınmış hareketlerinden biri Thunderbolt’tur."
+  },
+  {
+    "id": "q53148",
+    "categoryIndex": 1,
+    "question": "Super Mario oyunlarında Mario’nun yeşil kıyafetli kardeşi kimdir?",
+    "options": [
+      "Luigi",
+      "Wario",
+      "Yoshi",
+      "Toad"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Luigi, Mario’nun kardeşidir ve ilk kez 1983 tarihli Mario Bros. oyununda yer almıştır."
+  },
+  {
+    "id": "q53149",
+    "categoryIndex": 1,
+    "question": "SüngerBob hangi restoranda aşçı olarak çalışır?",
+    "options": [
+      "Krusty Krab",
+      "Chum Bucket",
+      "Kelp Shake",
+      "Salty Spitoon"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "SüngerBob, Bay Yengeç’in işlettiği Krusty Krab’da yengeç burger hazırlayan aşçıdır."
+  },
+  {
+    "id": "q53150",
+    "categoryIndex": 1,
+    "question": "Avatar: Son Hava Bükücü’de Aang’in uçan bizonunun adı nedir?",
+    "options": [
+      "Appa",
+      "Momo",
+      "Naga",
+      "Pabu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Appa, Aang’in hem dostu hem de grubun başlıca ulaşım aracıdır."
+  },
+  {
+    "id": "q53151",
+    "categoryIndex": 1,
+    "question": "Simpsonlar ailesi hangi kurgusal şehirde yaşar?",
+    "options": [
+      "Springfield",
+      "Quahog",
+      "South Park",
+      "Arlen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "The Simpsons’ın Springfield’ının hangi ABD eyaletinde bulunduğu özellikle belirsiz bırakılmıştır."
+  },
+  {
+    "id": "q53152",
+    "categoryIndex": 1,
+    "question": "Doctor Who dizisindeki TARDIS dışarıdan neye benzer?",
+    "options": [
+      "Mavi polis kulübesine",
+      "Kırmızı telefon kulübesine",
+      "Ambulansa",
+      "Tren vagonuna"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "TARDIS’in dış görünüşü 1960’ların İngiliz polis kulübelerini andırır; içi ise dışından çok daha büyüktür."
+  },
+  {
+    "id": "q53153",
+    "categoryIndex": 1,
+    "question": "Wednesday dizisinde Wednesday Addams’a eşlik eden hareketli elin adı nedir?",
+    "options": [
+      "Thing",
+      "Lurch",
+      "Fester",
+      "Pugsley"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Thing, Türkçede genellikle “Şey” diye anılan ve Addams ailesine yardım eden canlı bir eldir."
+  },
+  {
+    "id": "q53154",
+    "categoryIndex": 1,
+    "question": "Stranger Things’te Hawkins’in karanlık paralel boyutuna ne ad verilir?",
+    "options": [
+      "Upside Down",
+      "Dark Place",
+      "Shadow Realm",
+      "Netherworld"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Upside Down, Hawkins’in çürümüş ve tehlikeli bir yansıması gibi görünen paralel boyuttur."
+  },
+  {
+    "id": "q53155",
+    "categoryIndex": 2,
+    "question": "Rosetta Taşı’nın çözülmesi özellikle hangi eski yazının okunmasını sağladı?",
+    "options": [
+      "Mısır hiyeroglifleri",
+      "Çivi yazısı",
+      "Runik yazı",
+      "Maya glifleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Aynı metnin Yunanca, Demotik ve hiyerogliflerle yazılması, Mısır hiyerogliflerinin çözülmesinde anahtar oldu."
+  },
+  {
+    "id": "q53156",
+    "categoryIndex": 2,
+    "question": "Londra’nın büyük bölümünü yok eden Büyük Londra Yangını hangi yılda çıktı?",
+    "options": [
+      "1666",
+      "1605",
+      "1776",
+      "1815"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yangın 1666’da bir fırında başladı ve dört gün boyunca şehrin büyük bölümünü etkiledi."
+  },
+  {
+    "id": "q53157",
+    "categoryIndex": 2,
+    "question": "Magna Carta 1215’te İngiltere’de hangi yerde mühürlendi?",
+    "options": [
+      "Runnymede",
+      "Stonehenge",
+      "Canterbury",
+      "Hastings"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kral John, soyluların baskısıyla Magna Carta’yı Thames kıyısındaki Runnymede’de kabul etti."
+  },
+  {
+    "id": "q53158",
+    "categoryIndex": 2,
+    "question": "Boston Çay Partisi sırasında protestocular çayları nereye döktü?",
+    "options": [
+      "Boston Limanı’na",
+      "Hudson Nehri’ne",
+      "Atlantik Kanalı’na",
+      "Charles Gölü’ne"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "1773’te protestocular, İngiliz vergi politikasına tepki olarak çay sandıklarını Boston Limanı’na attı."
+  },
+  {
+    "id": "q53159",
+    "categoryIndex": 2,
+    "question": "Kristof Kolomb’dan yüzyıllar önce Kuzey Amerika’ya ulaştığı kabul edilen Viking kimdir?",
+    "options": [
+      "Leif Erikson",
+      "Kızıl Erik",
+      "Ragnar Lodbrok",
+      "Harald Hardrada"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Leif Erikson’un yaklaşık 1000 yılında Vinland olarak adlandırılan Kuzey Amerika bölgesine ulaştığı kabul edilir."
+  },
+  {
+    "id": "q53160",
+    "categoryIndex": 2,
+    "question": "Johannes Gutenberg’in Avrupa’da yaygınlaştırdığı büyük yenilik hangisidir?",
+    "options": [
+      "Hareketli metal harfli matbaa",
+      "Buhar makinesi",
+      "Teleskop",
+      "Pusula"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gutenberg’in baskı sistemi kitapların daha hızlı ve daha ucuz çoğaltılmasını sağladı."
+  },
+  {
+    "id": "q53161",
+    "categoryIndex": 2,
+    "question": "Pompeii kentini MS 79’da küller altında bırakan yanardağ hangisidir?",
+    "options": [
+      "Vezüv",
+      "Etna",
+      "Stromboli",
+      "Santorini"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Vezüv’ün patlaması Pompeii ve Herculaneum’u volkanik kül ve malzemeyle kapladı."
+  },
+  {
+    "id": "q53162",
+    "categoryIndex": 2,
+    "question": "Apollo 11’in Ay’a inen modülünün çağrı adı neydi?",
+    "options": [
+      "Eagle",
+      "Columbia",
+      "Odyssey",
+      "Challenger"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Neil Armstrong ve Buzz Aldrin Ay yüzeyine Eagle adlı Ay modülüyle indi; Columbia yörüngede kaldı."
+  },
+  {
+    "id": "q53163",
+    "categoryIndex": 2,
+    "question": "Berlin Ablukası sırasında Batı Berlin’e temel ihtiyaçlar nasıl ulaştırıldı?",
+    "options": [
+      "Hava köprüsüyle",
+      "Denizaltılarla",
+      "Yer altı tünelleriyle",
+      "Nehir mavnalarıyla"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1948-1949 arasında Müttefik uçakları yiyecek ve yakıtı Berlin Hava Köprüsü ile taşıdı."
+  },
+  {
+    "id": "q53164",
+    "categoryIndex": 2,
+    "question": "II. Dünya Savaşı’ndaki D-Day çıkarmaları hangi bölgede yapıldı?",
+    "options": [
+      "Normandiya",
+      "Sicilya",
+      "Gelibolu",
+      "Girit"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "6 Haziran 1944’te Müttefik kuvvetleri Fransa’nın Normandiya kıyılarına çıkarma yaptı."
+  },
+  {
+    "id": "q53165",
+    "categoryIndex": 2,
+    "question": "Osmanlı’daki Lale Devri’ni sona erdiren ayaklanmanın lideri kimdi?",
+    "options": [
+      "Patrona Halil",
+      "Kabakçı Mustafa",
+      "Şeyh Bedreddin",
+      "Celal Bayar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1730’daki Patrona Halil Ayaklanması, III. Ahmed’in tahttan çekilmesine ve Lale Devri’nin bitmesine yol açtı."
+  },
+  {
+    "id": "q53166",
+    "categoryIndex": 2,
+    "question": "Bizans’ın özellikle deniz savaşlarında kullandığı yanıcı silah hangi adla bilinir?",
+    "options": [
+      "Rum ateşi",
+      "Ejder nefesi",
+      "Kara barut",
+      "Napalm"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Rum ateşi su üzerinde de yanabilen gizemli bir karışımdı ve Bizans donanmasına önemli üstünlük sağladı."
+  },
+  {
+    "id": "q53167",
+    "categoryIndex": 2,
+    "question": "Toprak Askerler olarak bilinen Terracotta Ordusu hangi hükümdarın mezarını koruyordu?",
+    "options": [
+      "Qin Shi Huang",
+      "Kubılay Han",
+      "Sun Yat-sen",
+      "İmparator Wu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Binlerce gerçek boyutlu asker heykeli, Çin’in ilk imparatoru Qin Shi Huang’ın mezar kompleksi için yapıldı."
+  },
+  {
+    "id": "q53168",
+    "categoryIndex": 2,
+    "question": "Machu Picchu en çok hangi uygarlıkla ilişkilidir?",
+    "options": [
+      "İnka",
+      "Aztek",
+      "Maya",
+      "Olmek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Machu Picchu, 15. yüzyılda And Dağları’nda inşa edilmiş bir İnka yerleşimidir."
+  },
+  {
+    "id": "q53169",
+    "categoryIndex": 2,
+    "question": "Barutun ilk geliştirildiği ülke hangisidir?",
+    "options": [
+      "Çin",
+      "Hindistan",
+      "İtalya",
+      "Mısır"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Barut, Çinli simyacılar tarafından geliştirildi ve daha sonra İpek Yolu üzerinden batıya yayıldı."
+  },
+  {
+    "id": "q53170",
+    "categoryIndex": 2,
+    "question": "Kâğıt paranın yaygın kullanımına öncülük eden Song Hanedanı hangi ülkede hüküm sürdü?",
+    "options": [
+      "Çin",
+      "Japonya",
+      "Kore",
+      "Moğolistan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Song döneminde ticaretin büyümesi, devlet destekli kâğıt paranın yaygınlaşmasını sağladı."
+  },
+  {
+    "id": "q53171",
+    "categoryIndex": 2,
+    "question": "Hannibal, Roma’ya karşı yürüttüğü seferde hangi dağları filleriyle aştı?",
+    "options": [
+      "Alpler",
+      "Pireneler",
+      "Karpatlar",
+      "Apeninler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kartacalı komutan Hannibal, İkinci Pön Savaşı sırasında ordusunu ve fillerini Alpler üzerinden İtalya’ya geçirdi."
+  },
+  {
+    "id": "q53172",
+    "categoryIndex": 3,
+    "question": "Sherlock Holmes’un Londra’daki ünlü adresi hangisidir?",
+    "options": [
+      "221B Baker Street",
+      "10 Downing Street",
+      "12 Grimmauld Place",
+      "42 Wallaby Way"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Arthur Conan Doyle’un öykülerinde Holmes ve Dr. Watson, 221B Baker Street adresinde yaşar."
+  },
+  {
+    "id": "q53173",
+    "categoryIndex": 3,
+    "question": "Moby-Dick romanının anlatıcısı kendini hangi adla tanıtır?",
+    "options": [
+      "Ishmael",
+      "Ahab",
+      "Queequeg",
+      "Starbuck"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Romanın ünlü açılışı “Bana Ishmael deyin” sözleriyle başlar."
+  },
+  {
+    "id": "q53174",
+    "categoryIndex": 3,
+    "question": "Dorian Gray’in Portresi’nde yaşlanmanın izleri kimin üzerinde belirir?",
+    "options": [
+      "Portresinde",
+      "Hizmetkârında",
+      "Evinde",
+      "Günlüğünde"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dorian genç görünümünü korurken işlediği kötülüklerin ve yaşlanmanın izleri portresinde ortaya çıkar."
+  },
+  {
+    "id": "q53175",
+    "categoryIndex": 3,
+    "question": "Don Kişot’un dev sandığı yapılar gerçekte nedir?",
+    "options": [
+      "Yel değirmenleri",
+      "Su kuleleri",
+      "Katedraller",
+      "Kale burçları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Don Kişot, La Mancha ovasındaki yel değirmenlerini dev sanarak onlara saldırır."
+  },
+  {
+    "id": "q53176",
+    "categoryIndex": 3,
+    "question": "Shakespeare’in Hamlet oyunu hangi ülkede geçer?",
+    "options": [
+      "Danimarka",
+      "İskoçya",
+      "İtalya",
+      "İspanya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hamlet’in olayları Danimarka’daki Elsinore Şatosu’nda geçer."
+  },
+  {
+    "id": "q53177",
+    "categoryIndex": 3,
+    "question": "Alice Harikalar Diyarında’nın başında Alice hangi hayvanı takip eder?",
+    "options": [
+      "Beyaz Tavşan",
+      "Sırıtan Kedi",
+      "Mavi Tırtıl",
+      "Mart Tavşanı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Alice, cebinden saat çıkaran Beyaz Tavşan’ın peşinden giderek tavşan deliğine düşer."
+  },
+  {
+    "id": "q53178",
+    "categoryIndex": 3,
+    "question": "Hayvan Çiftliği’nde çiftliğin yönetimini ele geçiren hayvanlar hangileridir?",
+    "options": [
+      "Domuzlar",
+      "Atlar",
+      "Koyunlar",
+      "Köpekler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Napoleon ve Snowball başta olmak üzere domuzlar, devrimden sonra yönetici sınıfa dönüşür."
+  },
+  {
+    "id": "q53179",
+    "categoryIndex": 3,
+    "question": "George Orwell’ın 1984 romanında insanların en büyük korkularıyla yüzleştiği yer neresidir?",
+    "options": [
+      "101 Numaralı Oda",
+      "Sevgi Bakanlığı avlusu",
+      "Zafer Meydanı",
+      "Bellek Deliği"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "101 Numaralı Oda, her mahkûmun kendisine özel en büyük korkusuyla karşılaştırıldığı işkence odasıdır."
+  },
+  {
+    "id": "q53180",
+    "categoryIndex": 3,
+    "question": "Küçük Prens’in yaşadığı asteroidin adı nedir?",
+    "options": [
+      "B-612",
+      "A-113",
+      "LV-426",
+      "NCC-1701"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Küçük Prens, B-612 adlı küçük asteroitte gülü ve üç yanardağıyla yaşar."
+  },
+  {
+    "id": "q53181",
+    "categoryIndex": 3,
+    "question": "Eriyen saatleriyle tanınan Belleğin Azmi tablosunu kim yaptı?",
+    "options": [
+      "Salvador Dalí",
+      "René Magritte",
+      "Pablo Picasso",
+      "Joan Miró"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Salvador Dalí’nin 1931 tarihli sürrealist tablosunda yumuşak, eriyen saatler görülür."
+  },
+  {
+    "id": "q53182",
+    "categoryIndex": 3,
+    "question": "Düşünen Adam heykelinin sanatçısı kimdir?",
+    "options": [
+      "Auguste Rodin",
+      "Henry Moore",
+      "Alberto Giacometti",
+      "Constantin Brâncuși"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Rodin’in Düşünen Adam’ı başlangıçta Cehennemin Kapıları adlı büyük çalışmanın bir parçasıydı."
+  },
+  {
+    "id": "q53183",
+    "categoryIndex": 3,
+    "question": "Picasso’nun Guernica tablosuna adını veren yerin bombalanması hangi savaş sırasında oldu?",
+    "options": [
+      "İspanya İç Savaşı",
+      "I. Dünya Savaşı",
+      "Kırım Savaşı",
+      "Fransa-Prusya Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Guernica, 1937’de Bask kasabasının bombalanmasına karşı yapılmış güçlü bir savaş karşıtı eserdir."
+  },
+  {
+    "id": "q53184",
+    "categoryIndex": 3,
+    "question": "Kanagawa Açıklarında Büyük Dalga adlı baskının sanatçısı kimdir?",
+    "options": [
+      "Katsushika Hokusai",
+      "Hiroshige",
+      "Yayoi Kusama",
+      "Takashi Murakami"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Hokusai’nin ünlü tahta baskısında dev dalganın arkasında Fuji Dağı görülür."
+  },
+  {
+    "id": "q53185",
+    "categoryIndex": 3,
+    "question": "Michelangelo’nun Davut heykeli hangi malzemeden yapılmıştır?",
+    "options": [
+      "Mermer",
+      "Bronz",
+      "Ahşap",
+      "Granit"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Michelangelo, Davut’u tek bir büyük Carrara mermeri bloğundan yontmuştur."
+  },
+  {
+    "id": "q53186",
+    "categoryIndex": 3,
+    "question": "Gustav Klimt’in Öpücük tablosunda en dikkat çekici malzeme etkisi hangisidir?",
+    "options": [
+      "Altın varak görünümü",
+      "Kömür çizgileri",
+      "Mozaik taşları",
+      "Neon ışık"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Öpücük, Klimt’in Altın Dönemi’nin simgesidir; yüzeyinde altın yaprak ve zengin dekoratif desenler kullanılmıştır."
+  },
+  {
+    "id": "q53187",
+    "categoryIndex": 3,
+    "question": "Banksy’nin bir müzayedede kısmen parçalanan eseri daha sonra hangi adı aldı?",
+    "options": [
+      "Love Is in the Bin",
+      "Girl with Balloon",
+      "Exit Through the Gift Shop",
+      "Flower Thrower"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Girl with Balloon müzayedede çerçevesindeki mekanizma tarafından parçalanınca eser Love Is in the Bin adını aldı."
+  },
+  {
+    "id": "q53188",
+    "categoryIndex": 3,
+    "question": "Franz Kafka’nın Dönüşüm eserinde Gregor Samsa sabah neye dönüşmüş olarak uyanır?",
+    "options": [
+      "Dev bir böceğe",
+      "Bir kurda",
+      "Taştan heykele",
+      "Görünmez bir adama"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gregor Samsa’nın açıklanamayan dönüşümü, eserin yabancılaşma temasının merkezindedir."
+  },
+  {
+    "id": "q53189",
+    "categoryIndex": 4,
+    "question": "Küp biçiminde dışkı üreten hayvan hangisidir?",
+    "options": [
+      "Vombat",
+      "Koala",
+      "Kunduz",
+      "Tembel hayvan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Vombatların bağırsak yapısı dışkıyı köşeli biçime getirir; küpler işaret bırakırken yuvarlanmaz."
+  },
+  {
+    "id": "q53190",
+    "categoryIndex": 4,
+    "question": "Hangi gezegende bir gün, bir yıldan daha uzun sürer?",
+    "options": [
+      "Venüs",
+      "Mars",
+      "Jüpiter",
+      "Merkür"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Venüs’ün kendi ekseni etrafındaki dönüşü yaklaşık 243 Dünya günü, Güneş çevresindeki turu ise yaklaşık 225 gündür."
+  },
+  {
+    "id": "q53191",
+    "categoryIndex": 4,
+    "question": "Ahtapotların kanı neden mavi görünür?",
+    "options": [
+      "Bakır içeren hemosiyanin nedeniyle",
+      "Deniz suyunu emdiği için",
+      "Klorofil taşıdığı için",
+      "Işığı tamamen yansıttığı için"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ahtapotlar oksijen taşımak için demirli hemoglobin yerine bakır içeren hemosiyanin kullanır."
+  },
+  {
+    "id": "q53192",
+    "categoryIndex": 4,
+    "question": "Flamingoların pembe renginin başlıca kaynağı nedir?",
+    "options": [
+      "Besinlerindeki karotenoidler",
+      "Güneş ışığı",
+      "Tuzlu su",
+      "Doğuştan pembe pigment"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Alg ve küçük kabuklulardaki karotenoid pigmentleri flamingoların tüylerine pembe renk verir."
+  },
+  {
+    "id": "q53193",
+    "categoryIndex": 4,
+    "question": "Kolları ve bazı organları yeniden büyütebilmesiyle tanınan semender hangisidir?",
+    "options": [
+      "Aksolotl",
+      "Komodo ejderi",
+      "İguana",
+      "Bukalemun"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Aksolotllar uzuvların yanı sıra omurilik ve kalp dokusunun bazı bölümlerini de yenileyebilir."
+  },
+  {
+    "id": "q53194",
+    "categoryIndex": 4,
+    "question": "Tardigradların yaygın lakabı nedir?",
+    "options": [
+      "Su ayısı",
+      "Kum tilkisi",
+      "Taş kurbağası",
+      "Buz böceği"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tardigradlar mikroskobik, sekiz bacaklı canlılardır ve aşırı koşullara dayanıklılıklarıyla bilinir."
+  },
+  {
+    "id": "q53195",
+    "categoryIndex": 4,
+    "question": "Botanik sınıflandırmaya göre hangisi gerçek bir meyve türü olan “berry”dir?",
+    "options": [
+      "Muz",
+      "Çilek",
+      "Ahududu",
+      "Böğürtlen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Muz botanik olarak bir berry sayılır; çilek ve ahududu ise çok sayıda küçük meyvecikten oluşur."
+  },
+  {
+    "id": "q53196",
+    "categoryIndex": 4,
+    "question": "Fosil kayıtlarına göre hangisi daha eskidir?",
+    "options": [
+      "Köpekbalıkları",
+      "Ağaçlar",
+      "Dinozorlar",
+      "Çiçekli bitkiler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Köpekbalığı ataları 400 milyon yıldan daha eskiye uzanır; ilk ağaçlar daha sonra ortaya çıktı."
+  },
+  {
+    "id": "q53197",
+    "categoryIndex": 4,
+    "question": "Kışın vücudunun bir bölümünü dondurup baharda yeniden canlanabilen kurbağa hangisidir?",
+    "options": [
+      "Orman kurbağası",
+      "Boğa kurbağası",
+      "Ok kurbağası",
+      "Ağaç kurbağası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kuzey Amerika orman kurbağası, dokularında buz oluşmasına rağmen glikoz sayesinde hücrelerini koruyabilir."
+  },
+  {
+    "id": "q53198",
+    "categoryIndex": 4,
+    "question": "Deniz su samurları uyurken birbirlerinden uzaklaşmamak için ne yapabilir?",
+    "options": [
+      "El ele tutuşabilir",
+      "Kuyruklarını düğümleyebilir",
+      "Kuma gömülebilir",
+      "Kayalara tırmanabilir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Deniz su samurları bazen el ele tutuşur veya yosunlara sarılarak akıntıyla sürüklenmeyi önler."
+  },
+  {
+    "id": "q53199",
+    "categoryIndex": 4,
+    "question": "Mantis karidesinin çok hızlı yumruğu suda hangi olayı oluşturabilir?",
+    "options": [
+      "Kavitasyon kabarcıkları",
+      "Gelgit",
+      "Manyetik alan",
+      "Tuz kristalleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Yumruğun ani basınç düşüşü oluşturduğu kabarcıklar çökerken ikinci bir darbe ve kısa süreli ışık üretebilir."
+  },
+  {
+    "id": "q53200",
+    "categoryIndex": 4,
+    "question": "Erkek ornitorenklerin arka ayaklarında bulunan savunma aracı nedir?",
+    "options": [
+      "Zehirli mahmuz",
+      "Elektrikli organ",
+      "Keskin pençe kılıfı",
+      "Mürekkep kesesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Erkek ornitorenklerin arka ayaklarındaki mahmuzlar, özellikle üreme döneminde etkili zehir aktarabilir."
+  },
+  {
+    "id": "q53201",
+    "categoryIndex": 4,
+    "question": "İnsan sesini taklit edebilmesiyle şaşırtan kuşlardan biri hangisidir?",
+    "options": [
+      "Kuzgun",
+      "Devekuşu",
+      "Penguen",
+      "Albatros"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kuzgunlar güçlü öğrenme yeteneklerine sahiptir ve esaret altında insan sesleri dâhil çeşitli sesleri taklit edebilir."
+  },
+  {
+    "id": "q53202",
+    "categoryIndex": 4,
+    "question": "Ay’daki astronot ayak izlerinin çok uzun süre kalmasının temel nedeni nedir?",
+    "options": [
+      "Rüzgâr ve yağmurun olmaması",
+      "Ay toprağının donmuş olması",
+      "Yer çekiminin bulunmaması",
+      "Güneş ışığının ulaşmaması"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ay’da izleri hızla aşındıracak atmosfer, yağmur ve rüzgâr yoktur; mikrometeoritler zamanla çok yavaş değişim yaratır."
+  },
+  {
+    "id": "q53203",
+    "categoryIndex": 4,
+    "question": "Bir yıldırım kanalının sıcaklığı, Güneş’in görünen yüzeyiyle karşılaştırıldığında nasıldır?",
+    "options": [
+      "Daha sıcak olabilir",
+      "Her zaman daha soğuktur",
+      "Tam olarak aynıdır",
+      "Sıcaklığı yoktur"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yıldırım kanalı yaklaşık 30.000°C’ye ulaşabilir; bu, Güneş’in yaklaşık 5.500°C’lik görünen yüzeyinden sıcaktır."
+  },
+  {
+    "id": "q53204",
+    "categoryIndex": 4,
+    "question": "Ortalama yoğunluğu sudan düşük olan gezegen hangisidir?",
+    "options": [
+      "Satürn",
+      "Jüpiter",
+      "Neptün",
+      "Dünya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Satürn’ün ortalama yoğunluğu sudan düşüktür; yeterince büyük bir su kütlesi varsayılsa teorik olarak yüzebilirdi."
+  },
+  {
+    "id": "q53205",
+    "categoryIndex": 5,
+    "question": "Teniste skor söylenirken “love” ne anlama gelir?",
+    "options": [
+      "Sıfır",
+      "Beraberlik",
+      "Avantaj",
+      "Maç puanı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tenis skorunda love sıfır puanı ifade eder; örneğin 15-love, 15-0 demektir."
+  },
+  {
+    "id": "q53206",
+    "categoryIndex": 5,
+    "question": "Golfte bir çukuru par değerinden bir vuruş eksik tamamlamaya ne denir?",
+    "options": [
+      "Birdie",
+      "Bogey",
+      "Eagle",
+      "Ace"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Birdie parın bir altıdır; eagle iki altı, bogey ise bir üstüdür."
+  },
+  {
+    "id": "q53207",
+    "categoryIndex": 5,
+    "question": "Voleybolda farklı renkte forma giyen savunma uzmanına ne denir?",
+    "options": [
+      "Libero",
+      "Pasör",
+      "Smaçör",
+      "Orta oyuncu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Libero arka alan savunmasında uzmanlaşır ve forma rengi takım arkadaşlarından farklıdır."
+  },
+  {
+    "id": "q53208",
+    "categoryIndex": 5,
+    "question": "Curling oyuncuları taşın önündeki buzu neden süpürür?",
+    "options": [
+      "Taşın hızını ve yönünü etkilemek için",
+      "Buzu eritip çukur açmak için",
+      "Rakibin çizgisini silmek için",
+      "Taşı durdurmak için"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Süpürme buz yüzeyindeki sürtünmeyi değiştirerek taşın daha uzağa ve daha az kıvrılarak gitmesini sağlayabilir."
+  },
+  {
+    "id": "q53209",
+    "categoryIndex": 5,
+    "question": "Tour de France’ta sarı mayo hangi bisikletçiye verilir?",
+    "options": [
+      "Genel klasman liderine",
+      "En genç bisikletçiye",
+      "Dağ etapları liderine",
+      "En çok etap kazanana"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sarı mayo, etap süreleri toplamında genel klasmanın lideri olan bisikletçi tarafından giyilir."
+  },
+  {
+    "id": "q53210",
+    "categoryIndex": 5,
+    "question": "Snooker’da standart bir seride yapılabilecek en yüksek sayı kaçtır?",
+    "options": [
+      "147",
+      "155",
+      "180",
+      "120"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "On beş kırmızı topun her birinden sonra siyahı ve ardından renkli topları sokmak 147 puanlık maksimum seri getirir."
+  },
+  {
+    "id": "q53211",
+    "categoryIndex": 5,
+    "question": "Boksta “southpaw” duruşu genellikle hangi elini önde tutan sporcu için kullanılır?",
+    "options": [
+      "Sağ elini",
+      "Sol elini",
+      "İki elini eşit",
+      "Ellerini çapraz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Southpaw boksör çoğunlukla solaktır; güçlü sol eli arkada, sağ eli ve sağ ayağı önde durur."
+  },
+  {
+    "id": "q53212",
+    "categoryIndex": 5,
+    "question": "Badmintonda raketle vurulan tüylü ekipmanın adı nedir?",
+    "options": [
+      "Tüytop",
+      "Disk",
+      "Puck",
+      "Pelota"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tüytop, İngilizcede shuttlecock olarak bilinir ve tüyleri nedeniyle havada hızla yavaşlar."
+  },
+  {
+    "id": "q53213",
+    "categoryIndex": 5,
+    "question": "Ragbi birliğinde bir “try” kaç puan değerindedir?",
+    "options": [
+      "5",
+      "3",
+      "6",
+      "7"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Try beş puan getirir ve ardından iki puanlık conversion vuruşu denenebilir."
+  },
+  {
+    "id": "q53214",
+    "categoryIndex": 5,
+    "question": "NBA’de hücum eden takımın şut atması için kaç saniyesi vardır?",
+    "options": [
+      "24",
+      "30",
+      "20",
+      "35"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "NBA şut saati 24 saniyedir; süre dolmadan topun çembere değmesi gerekir."
+  },
+  {
+    "id": "q53215",
+    "categoryIndex": 5,
+    "question": "Futbolda bir oyuncunun aynı maçta üç gol atmasına ne denir?",
+    "options": [
+      "Hat-trick",
+      "Clean sheet",
+      "Brace",
+      "Grand slam"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hat-trick, bir oyuncunun tek maçta üç gol kaydetmesidir."
+  },
+  {
+    "id": "q53216",
+    "categoryIndex": 5,
+    "question": "Standart bir beyzbol maçı kaç inning üzerinden oynanır?",
+    "options": [
+      "9",
+      "7",
+      "10",
+      "12"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Profesyonel beyzbol maçları normalde dokuz inning sürer; eşitlikte ekstra inning oynanabilir."
+  },
+  {
+    "id": "q53217",
+    "categoryIndex": 5,
+    "question": "Eskrimde tüm vücudun geçerli hedef olduğu silah hangisidir?",
+    "options": [
+      "Epe",
+      "Flöre",
+      "Kılıç",
+      "Rapier"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Epe disiplininde baştan ayağa bütün vücut hedef sayılır ve yalnızca uçla yapılan dokunuşlar geçerlidir."
+  },
+  {
+    "id": "q53218",
+    "categoryIndex": 5,
+    "question": "Krikette bir atıcının art arda üç atışta üç vurucuyu oyun dışı bırakmasına ne denir?",
+    "options": [
+      "Hat-trick",
+      "Home run",
+      "Break point",
+      "Triple-double"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Krikette hat-trick, aynı atıcının birbirini izleyen üç geçerli atışta üç wicket almasıdır."
+  },
+  {
+    "id": "q53219",
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde rakip oyuncu ceza aldığında oluşan sayısal üstünlüğe ne denir?",
+    "options": [
+      "Power play",
+      "Face-off",
+      "Icing",
+      "Hat line"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Power play sırasında cezalı oyuncunun takımı eksik oynar ve rakip takım geçici sayısal üstünlük kazanır."
+  },
+  {
+    "id": "q53220",
+    "categoryIndex": 5,
+    "question": "Satrançta bir piyonun yanından iki kare ilerleyen rakip piyonu hemen yakalamasına ne denir?",
+    "options": [
+      "Geçerken alma",
+      "Rok",
+      "Terfi",
+      "Şah çekme"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Geçerken alma yalnızca rakip piyonun başlangıç karesinden iki kare ilerlediği hamlenin hemen ardından yapılabilir."
+  }
+]

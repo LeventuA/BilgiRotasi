@@ -1,0 +1,96 @@
+class SoundFx {
+  SoundFx._();
+
+  static bool enabled = true;
+
+  static final AudioPlayer _dicePlayer = AudioPlayer();
+  static final AudioPlayer _stepPlayer = AudioPlayer();
+  static final AudioPlayer _effectPlayer = AudioPlayer();
+  static final AudioPlayer _musicPlayer = AudioPlayer();
+
+  static void setEnabled(bool value) {
+    enabled = value;
+
+    if (!value) {
+      unawaited(_dicePlayer.stop());
+      unawaited(_stepPlayer.stop());
+      unawaited(_effectPlayer.stop());
+      unawaited(_musicPlayer.stop());
+    }
+  }
+
+  static Future<void> _play(
+    AudioPlayer player,
+    String fileName, {
+    double volume = 1,
+  }) async {
+    if (!enabled) return;
+
+    try {
+      await player.stop();
+      await player.play(
+        AssetSource('sounds/$fileName'),
+        volume: volume,
+      );
+    } catch (_) {
+      // Ses hatası oyunu durdurmamalı.
+    }
+  }
+
+  static Future<void> dice() {
+    return _play(
+      _dicePlayer,
+      'dice_roll.wav',
+      volume: 0.72,
+    );
+  }
+
+  static Future<void> step() {
+    return _play(
+      _stepPlayer,
+      'step.wav',
+      volume: 0.46,
+    );
+  }
+
+  static Future<void> landing() {
+    return _play(
+      _effectPlayer,
+      'landing.wav',
+      volume: 0.68,
+    );
+  }
+
+  static Future<void> correct() {
+    return _play(
+      _effectPlayer,
+      'correct.wav',
+      volume: 0.76,
+    );
+  }
+
+  static Future<void> wrong() {
+    return _play(
+      _effectPlayer,
+      'wrong.wav',
+      volume: 0.65,
+    );
+  }
+
+  static Future<void> badge() {
+    return _play(
+      _effectPlayer,
+      'badge.wav',
+      volume: 0.82,
+    );
+  }
+
+  static Future<void> win() {
+    return _play(
+      _musicPlayer,
+      'win.wav',
+      volume: 0.86,
+    );
+  }
+}
+

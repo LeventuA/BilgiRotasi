@@ -1,0 +1,77 @@
+{
+  "recent-geography": {
+    "description": "2020–2026 zirveler, afetler, spor ev sahipliği ve UNESCO yer bilgileri.",
+    "primaryDomains": [
+      "un.org",
+      "unesco.org",
+      "official organizers"
+    ]
+  },
+  "recent-science": {
+    "description": "2020–2025 uzay görevleri, Nobel bilim ödülleri ve araştırma dönüm noktaları.",
+    "primaryDomains": [
+      "nasa.gov",
+      "esa.int",
+      "nobelprize.org",
+      "isro.gov.in",
+      "global.jaxa.jp"
+    ]
+  },
+  "recent-literature": {
+    "description": "2020–2025 Booker, International Booker, Pulitzer ve Nobel edebiyat bilgileri.",
+    "primaryDomains": [
+      "thebookerprizes.com",
+      "pulitzer.org",
+      "nobelprize.org"
+    ]
+  },
+  "recent-entertainment": {
+    "description": "2020–2024 dizi ve oyunların platform, stüdyo, oyuncu, karakter ve tema bilgileri.",
+    "primaryDomains": [
+      "official network/streaming/publisher pages"
+    ]
+  },
+  "recent-sports": {
+    "description": "2020–2025 UEFA, EuroLeague ve FIFA final sonuçları ve ev sahibi şehirler.",
+    "primaryDomains": [
+      "uefa.com",
+      "euroleaguebasketball.net",
+      "fifa.com"
+    ]
+  },
+  "recent-history": {
+    "description": "2020–2024 dünya tarihine geçen kurumsal ve siyasi gelişmeler.",
+    "primaryDomains": [
+      "who.int",
+      "europa.eu",
+      "nato.int",
+      "un.org"
+    ]
+  },
+  "legacy-curated-rewrite-source": {
+    "description": "Önceki geniş aday havuzundan doğal, tek bilgiye dayalı ve güncel maddeler; V1–V4 adaylarıyla yeniden karşılaştırıldı.",
+    "primaryDomains": [
+      "mixed stable references"
+    ]
+  },
+  "evergreen-curated-source": {
+    "description": "Önceki geniş aday havuzundan seçilmiş zamansız, doğal ve bilgi odaklı sorular.",
+    "primaryDomains": [
+      "mixed stable references"
+    ]
+  },
+  "current-official-spot-checks": {
+    "description": "Selected 2025–2026 sports, science, summit, climate, expo and Olympic facts checked against official primary sources.",
+    "recordFile": "sources/CURRENT_FACT_SPOT_CHECKS.json",
+    "primaryDomains": [
+      "uefa.com",
+      "euroleaguebasketball.net",
+      "g7.canada.ca",
+      "unfccc.int",
+      "expo2025.or.jp",
+      "un.org",
+      "nasa.gov",
+      "olympics.com"
+    ]
+  }
+}

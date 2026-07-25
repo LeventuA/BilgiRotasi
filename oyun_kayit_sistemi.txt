@@ -1,0 +1,165 @@
+class SavedGame {
+  const SavedGame({
+    required this.players,
+    required this.currentPlayerIndex,
+    required this.savedAt,
+  });
+
+  final List<PlayerData> players;
+  final int currentPlayerIndex;
+  final DateTime savedAt;
+
+  PlayerData get currentPlayer {
+    final safeIndex = currentPlayerIndex.clamp(0, players.length - 1).toInt();
+    return players[safeIndex];
+  }
+
+  int get totalBadges {
+    return players.fold<int>(
+      0,
+      (total, player) => total + player.badges.length,
+    );
+  }
+}
+
+class GameSaveService {
+  GameSaveService._();
+
+  static const String _saveKey = 'bilgi_rotasi_saved_game_v1';
+  static final SharedPreferencesAsync _preferences =
+      SharedPreferencesAsync();
+
+  static Future<void> save({
+    required List<PlayerData> players,
+    required int currentPlayerIndex,
+  }) async {
+    if (players.isEmpty) return;
+
+    final payload = <String, dynamic>{
+      'schema': 1,
+      'savedAt': DateTime.now().toIso8601String(),
+      'currentPlayerIndex': currentPlayerIndex,
+      'players': players.map(_playerToJson).toList(),
+    };
+
+    try {
+      await _preferences.setString(
+        _saveKey,
+        jsonEncode(payload),
+      );
+    } catch (_) {
+      // Kayıt sorunu oyunun çalışmasını durdurmamalı.
+    }
+  }
+
+  static Future<SavedGame?> load() async {
+    try {
+      final raw = await _preferences.getString(_saveKey);
+      if (raw == null || raw.trim().isEmpty) return null;
+
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map<String, dynamic>) {
+        await clear();
+        return null;
+      }
+
+      final rawPlayers = decoded['players'];
+      if (rawPlayers is! List || rawPlayers.isEmpty) {
+        await clear();
+        return null;
+      }
+
+      final players = <PlayerData>[];
+      for (final item in rawPlayers) {
+        if (item is Map<String, dynamic>) {
+          players.add(_playerFromJson(item));
+        } else if (item is Map) {
+          players.add(
+            _playerFromJson(
+              Map<String, dynamic>.from(item),
+            ),
+          );
+        }
+      }
+
+      if (players.isEmpty) {
+        await clear();
+        return null;
+      }
+
+      final rawIndex = (decoded['currentPlayerIndex'] as num?)?.toInt() ?? 0;
+      final currentPlayerIndex =
+          rawIndex.clamp(0, players.length - 1).toInt();
+      final savedAt = DateTime.tryParse(
+            decoded['savedAt']?.toString() ?? '',
+          ) ??
+          DateTime.now();
+
+      return SavedGame(
+        players: players,
+        currentPlayerIndex: currentPlayerIndex,
+        savedAt: savedAt,
+      );
+    } catch (_) {
+      await clear();
+      return null;
+    }
+  }
+
+  static Future<void> clear() async {
+    try {
+      await _preferences.remove(_saveKey);
+    } catch (_) {
+      // Kayıt silme sorunu arayüzü kilitlememeli.
+    }
+  }
+
+  static Map<String, dynamic> _playerToJson(PlayerData player) {
+    return <String, dynamic>{
+      'name': player.name,
+      'color': player.color.value,
+      'pawnType': player.pawnType,
+      'position': player.position,
+      'movePulse': player.movePulse,
+      'correctAnswers': player.correctAnswers,
+      'wrongAnswers': player.wrongAnswers,
+      'badges': player.badges.toList()..sort(),
+    };
+  }
+
+  static PlayerData _playerFromJson(Map<String, dynamic> json) {
+    final player = PlayerData(
+      name: json['name']?.toString().trim().isNotEmpty == true
+          ? json['name'].toString()
+          : 'Oyuncu',
+      color: Color(
+        (json['color'] as num?)?.toInt() ?? 0xFF2563EB,
+      ),
+      pawnType: (json['pawnType'] as num?)?.toInt() ?? 0,
+    );
+
+    player.position = (json['position'] as num?)?.toInt() ?? 0;
+    player.movePulse = (json['movePulse'] as num?)?.toInt() ?? 0;
+    player.correctAnswers =
+        (json['correctAnswers'] as num?)?.toInt() ?? 0;
+    player.wrongAnswers =
+        (json['wrongAnswers'] as num?)?.toInt() ?? 0;
+
+    final rawBadges = json['badges'];
+    if (rawBadges is List) {
+      player.badges.addAll(
+        rawBadges
+            .whereType<num>()
+            .map((value) => value.toInt())
+            .where(
+              (value) =>
+                  value >= 0 &&
+                  value < GameCategory.values.length,
+            ),
+      );
+    }
+
+    return player;
+  }
+}
+

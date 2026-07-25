@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q53921",
+    "categoryIndex": 0,
+    "question": "Norveç’in başkenti hangisidir?",
+    "options": [
+      "Bergen",
+      "Oslo",
+      "Stockholm",
+      "Kopenhag"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Oslo, Norveç’in güneydoğusunda bir fiyordun kıyısında bulunan başkent ve en büyük şehirdir."
+  },
+  {
+    "id": "q53922",
+    "categoryIndex": 0,
+    "question": "Finlandiya’nın başkenti hangisidir?",
+    "options": [
+      "Turku",
+      "Tampere",
+      "Helsinki",
+      "Tallinn"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Helsinki, Finlandiya’nın güney kıyısında Baltık Denizi’ne açılan başkenttir."
+  },
+  {
+    "id": "q53923",
+    "categoryIndex": 0,
+    "question": "Danimarka’nın başkenti hangisidir?",
+    "options": [
+      "Aarhus",
+      "Odense",
+      "Malmö",
+      "Kopenhag"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kopenhag, Danimarka’nın başkenti ve ülkenin en büyük kentidir."
+  },
+  {
+    "id": "q53924",
+    "categoryIndex": 0,
+    "question": "Portekiz’in başkenti hangisidir?",
+    "options": [
+      "Lizbon",
+      "Porto",
+      "Faro",
+      "Braga"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Lizbon, Tejo Nehri’nin Atlas Okyanusu’na ulaştığı bölgede kurulmuş Portekiz başkentidir."
+  },
+  {
+    "id": "q53925",
+    "categoryIndex": 0,
+    "question": "İrlanda’nın başkenti hangisidir?",
+    "options": [
+      "Cork",
+      "Dublin",
+      "Galway",
+      "Belfast"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dublin, İrlanda’nın doğu kıyısında Liffey Nehri çevresinde kurulmuş başkenttir."
+  },
+  {
+    "id": "q53926",
+    "categoryIndex": 0,
+    "question": "Polonya’nın başkenti hangisidir?",
+    "options": [
+      "Kraków",
+      "Gdańsk",
+      "Varşova",
+      "Wrocław"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Varşova, Vistül Nehri kıyısında bulunan Polonya’nın başkenti ve en büyük şehridir."
+  },
+  {
+    "id": "q53927",
+    "categoryIndex": 0,
+    "question": "Macaristan’ın başkenti hangisidir?",
+    "options": [
+      "Debrecen",
+      "Szeged",
+      "Bratislava",
+      "Budapeşte"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Budapeşte, Tuna’nın iki yakasındaki Buda ve Peşte’nin birleşmesiyle oluşmuştur."
+  },
+  {
+    "id": "q53928",
+    "categoryIndex": 0,
+    "question": "Romanya’nın başkenti hangisidir?",
+    "options": [
+      "Bükreş",
+      "Braşov",
+      "Kaloşvar",
+      "Sibiu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bükreş, Romanya’nın başkenti ve ülkenin en büyük kentidir."
+  },
+  {
+    "id": "q53929",
+    "categoryIndex": 0,
+    "question": "Bulgaristan’ın başkenti hangisidir?",
+    "options": [
+      "Varna",
+      "Sofya",
+      "Filibe",
+      "Burgaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sofya, Vitoşa Dağı eteklerinde bulunan Bulgaristan başkentidir."
+  },
+  {
+    "id": "q53930",
+    "categoryIndex": 0,
+    "question": "Sırbistan’ın başkenti hangisidir?",
+    "options": [
+      "Novi Sad",
+      "Niş",
+      "Belgrad",
+      "Saraybosna"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Belgrad, Tuna ile Sava nehirlerinin birleştiği noktada kurulmuştur."
+  },
+  {
+    "id": "q53931",
+    "categoryIndex": 0,
+    "question": "Hırvatistan’ın başkenti hangisidir?",
+    "options": [
+      "Split",
+      "Dubrovnik",
+      "Rijeka",
+      "Zagreb"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Zagreb, Hırvatistan’ın iç kesimlerinde bulunan başkent ve en büyük şehirdir."
+  },
+  {
+    "id": "q53932",
+    "categoryIndex": 0,
+    "question": "Slovenya’nın başkenti hangisidir?",
+    "options": [
+      "Ljubljana",
+      "Maribor",
+      "Bled",
+      "Koper"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ljubljana, aynı adlı nehir çevresinde kurulmuş Slovenya’nın küçük ve yeşil başkentidir."
+  },
+  {
+    "id": "q53933",
+    "categoryIndex": 0,
+    "question": "Arnavutluk’un başkenti hangisidir?",
+    "options": [
+      "Dıraç",
+      "Tiran",
+      "İşkodra",
+      "Avlonya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tiran, Arnavutluk’un siyasi, ekonomik ve kültürel merkezidir."
+  },
+  {
+    "id": "q53934",
+    "categoryIndex": 0,
+    "question": "Bosna-Hersek’in başkenti hangisidir?",
+    "options": [
+      "Mostar",
+      "Tuzla",
+      "Saraybosna",
+      "Banja Luka"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Saraybosna, Dinar Alpleri içindeki vadide bulunan Bosna-Hersek başkentidir."
+  },
+  {
+    "id": "q53935",
+    "categoryIndex": 0,
+    "question": "Karadağ’ın başkenti hangisidir?",
+    "options": [
+      "Kotor",
+      "Budva",
+      "Çetine",
+      "Podgorica"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Podgorica ülkenin idari başkentidir; tarihî kraliyet başkenti ise Çetine’dir."
+  },
+  {
+    "id": "q53936",
+    "categoryIndex": 0,
+    "question": "Kuzey Makedonya’nın başkenti hangisidir?",
+    "options": [
+      "Üsküp",
+      "Ohri",
+      "Manastır",
+      "Tetova"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Üsküp, Vardar Nehri kıyısında bulunan Kuzey Makedonya’nın başkentidir."
+  },
+  {
+    "id": "q53937",
+    "categoryIndex": 0,
+    "question": "Kosova’nın başkenti hangisidir?",
+    "options": [
+      "Prizren",
+      "Priştine",
+      "İpek",
+      "Yakova"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Priştine, Kosova’nın yönetim, eğitim ve kültür merkezidir."
+  },
+  {
+    "id": "q53938",
+    "categoryIndex": 1,
+    "question": "Stranger Things’te Eleven’ın en yakın arkadaşlarından ve sevgilisinden biri kimdir?",
+    "options": [
+      "Dustin Henderson",
+      "Steve Harrington",
+      "Mike Wheeler",
+      "Jonathan Byers"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mike, Eleven’ı saklayan ve Hawkins’teki olaylarda arkadaş grubunu bir arada tutan karakterlerden biridir."
+  },
+  {
+    "id": "q53939",
+    "categoryIndex": 1,
+    "question": "Game of Thrones’ta “Kış geliyor” sözü hangi haneye aittir?",
+    "options": [
+      "Lannister Hanesi",
+      "Targaryen Hanesi",
+      "Greyjoy Hanesi",
+      "Stark Hanesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Winter is coming” Stark Hanesi’nin sloganıdır ve Kuzey’in zorlu koşullarına hazırlığı simgeler."
+  },
+  {
+    "id": "q53940",
+    "categoryIndex": 1,
+    "question": "The Office’te Scranton şubesinin uzun süreli müdürü kimdir?",
+    "options": [
+      "Michael Scott",
+      "Jim Halpert",
+      "Dwight Schrute",
+      "Andy Bernard"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Michael Scott çalışanlarıyla arkadaş olmaya çalışan, beceriksiz ama unutulmaz bir bölge müdürüdür."
+  },
+  {
+    "id": "q53941",
+    "categoryIndex": 1,
+    "question": "Friends dizisinde “How you doin” sözüyle tanınan karakter kimdir?",
+    "options": [
+      "Chandler Bing",
+      "Joey Tribbiani",
+      "Ross Geller",
+      "Gunther"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Joey bu ifadeyi flört ederken kullandığı kendine özgü selamlama olarak tekrarlar."
+  },
+  {
+    "id": "q53942",
+    "categoryIndex": 1,
+    "question": "How I Met Your Mother’da takım elbise tutkunu karakter kimdir?",
+    "options": [
+      "Ted Mosby",
+      "Marshall Eriksen",
+      "Barney Stinson",
+      "Ranjit"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Barney “Suit up!” sözü ve ayrıntılı kurallarıyla takım elbiseyi yaşam tarzına dönüştürür."
+  },
+  {
+    "id": "q53943",
+    "categoryIndex": 1,
+    "question": "The Big Bang Theory’de Sheldon’ın oda arkadaşı kimdir?",
+    "options": [
+      "Howard Wolowitz",
+      "Raj Koothrappali",
+      "Stuart Bloom",
+      "Leonard Hofstadter"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Leonard, Sheldon’ın katı ev kurallarına rağmen onunla uzun yıllar aynı daireyi paylaşır."
+  },
+  {
+    "id": "q53944",
+    "categoryIndex": 1,
+    "question": "Brooklyn Nine-Nine’da Jake Peralta’nın kaptanı kimdir?",
+    "options": [
+      "Raymond Holt",
+      "Terry Jeffords",
+      "Charles Boyle",
+      "Michael Hitchcock"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kaptan Holt sakin, disiplinli ve kuru mizahıyla 99. karakolu yönetir."
+  },
+  {
+    "id": "q53945",
+    "categoryIndex": 1,
+    "question": "Supernatural’da kardeşlerin kullandığı klasik otomobil hangisidir?",
+    "options": [
+      "Ford Mustang",
+      "Chevrolet Impala",
+      "Dodge Charger",
+      "Pontiac Firebird"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dean’in 1967 Chevrolet Impala’sı kardeşlerin evi ve yol arkadaşı gibidir."
+  },
+  {
+    "id": "q53946",
+    "categoryIndex": 1,
+    "question": "Prison Break’te Michael Scofield kimi kurtarmak için hapse girer?",
+    "options": [
+      "Babasını",
+      "Oğlunu",
+      "Kardeşi Lincoln’ü",
+      "Eski patronunu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Michael, idama mahkûm edilen kardeşi Lincoln Burrows’u kaçırmak için planlı biçimde Fox River’a girer."
+  },
+  {
+    "id": "q53947",
+    "categoryIndex": 1,
+    "question": "Sherlock Holmes’un en büyük düşmanlarından biri kimdir?",
+    "options": [
+      "Inspector Lestrade",
+      "Mycroft Holmes",
+      "Dr. Watson",
+      "Professor Moriarty"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Moriarty, Holmes’a zekâ bakımından meydan okuyabilen suç dehasıdır."
+  },
+  {
+    "id": "q53948",
+    "categoryIndex": 1,
+    "question": "Batman’in yardımcısı Robin’in ilk gerçek adı nedir?",
+    "options": [
+      "Dick Grayson",
+      "Jason Todd",
+      "Tim Drake",
+      "Damian Wayne"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Dick Grayson sirk ailesini kaybettikten sonra Bruce Wayne tarafından yetiştirilir ve ilk Robin olur."
+  },
+  {
+    "id": "q53949",
+    "categoryIndex": 1,
+    "question": "Superman’in Dünya’daki adı nedir?",
+    "options": [
+      "Bruce Wayne",
+      "Clark Kent",
+      "Barry Allen",
+      "Hal Jordan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kal-El, Dünya’da Clark Kent adıyla büyür ve Daily Planet’te gazeteci olarak çalışır."
+  },
+  {
+    "id": "q53950",
+    "categoryIndex": 1,
+    "question": "The Flash’ın en bilinen kimliği hangisidir?",
+    "options": [
+      "Oliver Queen",
+      "Arthur Curry",
+      "Barry Allen",
+      "Victor Stone"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Barry Allen, Speed Force bağlantısıyla süper hız kazanan adli laboratuvar uzmanıdır."
+  },
+  {
+    "id": "q53951",
+    "categoryIndex": 1,
+    "question": "Aquaman’ın gerçek adı nedir?",
+    "options": [
+      "Hal Jordan",
+      "John Jones",
+      "Ray Palmer",
+      "Arthur Curry"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Arthur Curry, Atlantis tahtının varisi ve denizlerle iletişim kurabilen Aquaman’dir."
+  },
+  {
+    "id": "q53952",
+    "categoryIndex": 1,
+    "question": "Wonder Woman’ın gerçek adı nedir?",
+    "options": [
+      "Diana Prince",
+      "Kara Danvers",
+      "Selina Kyle",
+      "Lois Lane"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Themyscira prensesi Diana, insan dünyasında Diana Prince adını kullanır."
+  },
+  {
+    "id": "q53953",
+    "categoryIndex": 1,
+    "question": "Green Arrow’un gerçek adı nedir?",
+    "options": [
+      "Bruce Wayne",
+      "Oliver Queen",
+      "Barry Allen",
+      "John Constantine"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Oliver Queen okçuluk becerilerini ve servetini Star City’de suçla savaşmak için kullanır."
+  },
+  {
+    "id": "q53954",
+    "categoryIndex": 1,
+    "question": "Joker’in en sık karşı karşıya geldiği kahraman kimdir?",
+    "options": [
+      "Superman",
+      "Aquaman",
+      "Batman",
+      "Green Lantern"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Joker, Gotham’da Batman’in düzen anlayışına kaosla meydan okuyan baş düşmanıdır."
+  },
+  {
+    "id": "q53955",
+    "categoryIndex": 2,
+    "question": "Rönesans ilk olarak hangi İtalyan şehrinde güç kazandı?",
+    "options": [
+      "Roma",
+      "Venedik",
+      "Napoli",
+      "Floransa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Floransa’nın zengin tüccar aileleri ve sanat hamileri 14. ve 15. yüzyılda Rönesans kültürünü besledi."
+  },
+  {
+    "id": "q53956",
+    "categoryIndex": 2,
+    "question": "Medici ailesi en çok hangi şehirle ilişkilidir?",
+    "options": [
+      "Floransa",
+      "Milano",
+      "Cenova",
+      "Bologna"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Medici ailesi bankacılık ve sanat hamiliği yoluyla Floransa siyasetinde yüzyıllarca etkili oldu."
+  },
+  {
+    "id": "q53957",
+    "categoryIndex": 2,
+    "question": "Leonardo da Vinci hangi dönemin sanatçısıdır?",
+    "options": [
+      "Barok",
+      "Rönesans",
+      "Romantizm",
+      "Empresyonizm"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Leonardo, sanat, anatomi ve mühendisliği birleştiren Rönesans’ın simge isimlerinden biridir."
+  },
+  {
+    "id": "q53958",
+    "categoryIndex": 2,
+    "question": "Martin Luther’in 95 Tez’i geleneksel anlatıya göre hangi şehirde yayımlandı?",
+    "options": [
+      "Roma",
+      "Cenevre",
+      "Wittenberg",
+      "Prag"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Luther’in 1517’de Wittenberg’de tezlerini duyurması Protestan Reformu’nun sembolik başlangıcı sayılır."
+  },
+  {
+    "id": "q53959",
+    "categoryIndex": 2,
+    "question": "Katolik Kilisesi’nin Reform’a yanıt hareketine ne denir?",
+    "options": [
+      "Büyük Uyanış",
+      "Aydınlanma",
+      "Restorasyon",
+      "Karşı Reform"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Karşı Reform, Katolik öğretisini güçlendirme ve kilise içi yenilenme hareketlerini kapsadı."
+  },
+  {
+    "id": "q53960",
+    "categoryIndex": 2,
+    "question": "Otuz Yıl Savaşları’nı sona erdiren antlaşmalar bütünü hangisidir?",
+    "options": [
+      "Westphalia Barışı",
+      "Utrecht Barışı",
+      "Versay Barışı",
+      "Viyana Kongresi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1648 Westphalia antlaşmaları Avrupa’daki din ve güç savaşlarını sonlandıran önemli bir dönüm noktasıdır."
+  },
+  {
+    "id": "q53961",
+    "categoryIndex": 2,
+    "question": "İngiltere’de 1688’deki iktidar değişimi hangi adla bilinir?",
+    "options": [
+      "Güller Savaşı",
+      "Şanlı Devrim",
+      "Püriten Devrimi",
+      "Büyük Reform"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Şanlı Devrim, II. James’in devrilip William ve Mary’nin sınırlı monarşi koşullarıyla tahta çıkmasını sağladı."
+  },
+  {
+    "id": "q53962",
+    "categoryIndex": 2,
+    "question": "Aydınlanma düşünürlerinden Toplum Sözleşmesi’nin yazarı kimdir?",
+    "options": [
+      "Voltaire",
+      "Montesquieu",
+      "Jean-Jacques Rousseau",
+      "John Locke"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Rousseau siyasi meşruiyetin halkın genel iradesine dayanması gerektiğini savundu."
+  },
+  {
+    "id": "q53963",
+    "categoryIndex": 2,
+    "question": "Kuvvetler ayrılığı düşüncesiyle tanınan filozof kimdir?",
+    "options": [
+      "Descartes",
+      "Hobbes",
+      "Diderot",
+      "Montesquieu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Montesquieu yasama, yürütme ve yargının ayrılmasının özgürlüğü koruyacağını savundu."
+  },
+  {
+    "id": "q53964",
+    "categoryIndex": 2,
+    "question": "Amerikan Bağımsızlık Bildirgesi’nin başlıca yazarı kimdir?",
+    "options": [
+      "Thomas Jefferson",
+      "George Washington",
+      "Benjamin Franklin",
+      "James Madison"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jefferson bildirgenin ilk taslağını hazırladı; metin komite ve Kongre tarafından değiştirildi."
+  },
+  {
+    "id": "q53965",
+    "categoryIndex": 2,
+    "question": "Fransız Devrimi sırasında giyotinle idam edilen kral kimdir?",
+    "options": [
+      "XIV. Louis",
+      "XVI. Louis",
+      "XV. Louis",
+      "Napolyon"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "XVI. Louis 1793’te cumhuriyete karşı suçlu bulunarak Paris’te idam edildi."
+  },
+  {
+    "id": "q53966",
+    "categoryIndex": 2,
+    "question": "Napolyon’un Rusya seferi hangi yılda gerçekleşti?",
+    "options": [
+      "1804",
+      "1815",
+      "1812",
+      "1821"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Napolyon 1812’de Rusya’yı işgal etti ancak ikmal sorunları, direniş ve kış nedeniyle ordusunun büyük bölümünü kaybetti."
+  },
+  {
+    "id": "q53967",
+    "categoryIndex": 2,
+    "question": "Viyana Kongresi hangi liderin yenilgilerinden sonra Avrupa’yı yeniden düzenledi?",
+    "options": [
+      "Bismarck",
+      "Metternich",
+      "Garibaldi",
+      "Napolyon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1814-1815 Viyana Kongresi, Napolyon savaşları sonrası güç dengesini yeniden kurmaya çalıştı."
+  },
+  {
+    "id": "q53968",
+    "categoryIndex": 2,
+    "question": "İtalya’nın birleşmesinde “Kızıl Gömlekliler”e liderlik eden kişi kimdi?",
+    "options": [
+      "Giuseppe Garibaldi",
+      "Giuseppe Mazzini",
+      "Cavour",
+      "Victor Emmanuel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Garibaldi’nin gönüllü kuvvetleri Güney İtalya’yı ele geçirerek birleşme sürecine katkı sağladı."
+  },
+  {
+    "id": "q53969",
+    "categoryIndex": 2,
+    "question": "Almanya’nın birleşmesinde öne çıkan Prusyalı devlet adamı kimdi?",
+    "options": [
+      "Kaiser Wilhelm II",
+      "Otto von Bismarck",
+      "Metternich",
+      "Frederick Engels"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bismarck savaş ve diplomasi yoluyla Alman devletlerini Prusya liderliğinde birleştirdi."
+  },
+  {
+    "id": "q53970",
+    "categoryIndex": 2,
+    "question": "İlk telefon görüşmesinde Alexander Graham Bell kimi çağırdı?",
+    "options": [
+      "Thomas Edison",
+      "Samuel Morse",
+      "Thomas Watson",
+      "Nikola Tesla"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bell 1876’daki deneyde yardımcısına “Bay Watson, buraya gelin” diye seslendi."
+  },
+  {
+    "id": "q53971",
+    "categoryIndex": 2,
+    "question": "Elektrik ampulünü ticari olarak yaygınlaştıran mucit kimdir?",
+    "options": [
+      "Nikola Tesla",
+      "Michael Faraday",
+      "James Watt",
+      "Thomas Edison"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Edison uzun ömürlü akkor lamba ve elektrik dağıtım sistemi geliştirerek aydınlatmayı ticari hâle getirdi."
+  },
+  {
+    "id": "q53972",
+    "categoryIndex": 3,
+    "question": "Hamlet’in babasının ölümünden sorumlu kişi kimdir?",
+    "options": [
+      "Claudius",
+      "Polonius",
+      "Laertes",
+      "Horatio"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Hayalet, Hamlet’e kardeşi Claudius’un onu zehirleyerek öldürdüğünü söyler."
+  },
+  {
+    "id": "q53973",
+    "categoryIndex": 3,
+    "question": "Romeo ve Juliet hangi iki düşman aileye mensuptur?",
+    "options": [
+      "York ve Lancaster",
+      "Montague ve Capulet",
+      "Bennet ve Darcy",
+      "Stark ve Lannister"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Verona’daki Montague ve Capulet ailelerinin kavgası genç âşıkların trajedisini doğurur."
+  },
+  {
+    "id": "q53974",
+    "categoryIndex": 3,
+    "question": "Macbeth’i iktidar hırsına sürükleyen kehaneti kimler verir?",
+    "options": [
+      "Üç şövalye",
+      "Saray soytarıları",
+      "Üç cadı",
+      "Roma elçileri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cadılar Macbeth’e kral olacağını söyleyerek hırsının ve korkularının harekete geçmesine yol açar."
+  },
+  {
+    "id": "q53975",
+    "categoryIndex": 3,
+    "question": "Othello’yu kıskançlığa sürükleyen kötü niyetli karakter kimdir?",
+    "options": [
+      "Cassio",
+      "Roderigo",
+      "Brabantio",
+      "Iago"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Iago yalan ve imalarla Othello’yu Desdemona’nın sadakatsiz olduğuna inandırır."
+  },
+  {
+    "id": "q53976",
+    "categoryIndex": 3,
+    "question": "Kral Lear krallığını kimler arasında bölmek ister?",
+    "options": [
+      "Üç kızı arasında",
+      "Üç oğlu arasında",
+      "Generalleri arasında",
+      "Komşu krallar arasında"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Lear, Goneril, Regan ve Cordelia’dan sevgilerini sözle kanıtlamalarını isteyerek felaketi başlatır."
+  },
+  {
+    "id": "q53977",
+    "categoryIndex": 3,
+    "question": "Bir Yaz Gecesi Rüyası’ndaki yaramaz peri kimdir?",
+    "options": [
+      "Oberon",
+      "Puck",
+      "Bottom",
+      "Lysander"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Puck yanlış kişilere aşk iksiri uygulayarak ormandaki karmaşayı büyütür."
+  },
+  {
+    "id": "q53978",
+    "categoryIndex": 3,
+    "question": "Venedik Taciri’ndeki borç veren karakter kimdir?",
+    "options": [
+      "Antonio",
+      "Bassanio",
+      "Shylock",
+      "Lorenzo"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Shylock borcun ödenmemesi durumunda Antonio’dan bir libre et talep eden sözleşmeyi yapar."
+  },
+  {
+    "id": "q53979",
+    "categoryIndex": 3,
+    "question": "Fırtına oyunundaki büyücü dük kimdir?",
+    "options": [
+      "Caliban",
+      "Ariel",
+      "Ferdinand",
+      "Prospero"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sürgündeki Prospero büyüsüyle fırtına çıkararak düşmanlarını adasına getirir."
+  },
+  {
+    "id": "q53980",
+    "categoryIndex": 3,
+    "question": "Cimri adlı oyunun yazarı kimdir?",
+    "options": [
+      "Molière",
+      "Racine",
+      "Corneille",
+      "Beaumarchais"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Molière’in komedisinde Harpagon’un aşırı para tutkusu aile yaşamını altüst eder."
+  },
+  {
+    "id": "q53981",
+    "categoryIndex": 3,
+    "question": "Faust’un şeytanla yaptığı anlaşmadaki şeytanî karakter kimdir?",
+    "options": [
+      "Beelzebub",
+      "Mephistopheles",
+      "Lucifer",
+      "Mephisto"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mephistopheles Faust’a bilgi ve haz vaat ederek ruhu üzerine bir anlaşma yapar."
+  },
+  {
+    "id": "q53982",
+    "categoryIndex": 3,
+    "question": "İlahi Komedya’da Dante’ye Cehennem ve Araf’ta rehberlik eden şair kimdir?",
+    "options": [
+      "Homeros",
+      "Ovidius",
+      "Vergilius",
+      "Horatius"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Roma şairi Vergilius aklı temsil eder ve Dante’yi Beatrice’e ulaşana kadar yönlendirir."
+  },
+  {
+    "id": "q53983",
+    "categoryIndex": 3,
+    "question": "Odysseia destanının geleneksel yazarı kimdir?",
+    "options": [
+      "Hesiodos",
+      "Sofokles",
+      "Euripides",
+      "Homeros"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İlyada ve Odysseia antik gelenekte kör ozan Homeros’a atfedilir."
+  },
+  {
+    "id": "q53984",
+    "categoryIndex": 3,
+    "question": "İlyada destanı hangi savaşın kısa bir dönemini anlatır?",
+    "options": [
+      "Troya Savaşı",
+      "Peloponez Savaşı",
+      "Pers Savaşları",
+      "Pön Savaşları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İlyada, Troya Savaşı’nın son yılı içinde Achilles’in öfkesi çevresinde gelişir."
+  },
+  {
+    "id": "q53985",
+    "categoryIndex": 3,
+    "question": "Antigone tragedyasının yazarı kimdir?",
+    "options": [
+      "Aiskhylos",
+      "Sofokles",
+      "Euripides",
+      "Aristophanes"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sofokles’in tragedyası devlet buyruğu ile vicdan ve aile görevi arasındaki çatışmayı işler."
+  },
+  {
+    "id": "q53986",
+    "categoryIndex": 3,
+    "question": "Medea tragedyasının yazarı kimdir?",
+    "options": [
+      "Sofokles",
+      "Aiskhylos",
+      "Euripides",
+      "Menandros"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Euripides’in oyununda Medea, kendisini terk eden Jason’dan korkunç bir intikam alır."
+  },
+  {
+    "id": "q53987",
+    "categoryIndex": 3,
+    "question": "Lysistrata komedisinin yazarı kimdir?",
+    "options": [
+      "Euripides",
+      "Platon",
+      "Herodotos",
+      "Aristophanes"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Aristophanes’in komedisinde kadınlar savaşı durdurmak için ortak bir eylem düzenler."
+  },
+  {
+    "id": "q53988",
+    "categoryIndex": 3,
+    "question": "Poetika adlı eseri yazan filozof kimdir?",
+    "options": [
+      "Aristoteles",
+      "Platon",
+      "Sokrates",
+      "Epikuros"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Aristoteles Poetika’da özellikle tragedyanın yapısını, taklidi ve katharsis kavramını inceler."
+  },
+  {
+    "id": "q53989",
+    "categoryIndex": 4,
+    "question": "Dünya’nın en dıştaki katı tabakasına ne denir?",
+    "options": [
+      "Manto",
+      "Yer kabuğu",
+      "Dış çekirdek",
+      "İç çekirdek"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yer kabuğu kıtaları ve okyanus tabanını oluşturan ince, katı dış tabakadır."
+  },
+  {
+    "id": "q53990",
+    "categoryIndex": 4,
+    "question": "Yer kabuğunun altında hangi katman bulunur?",
+    "options": [
+      "İç çekirdek",
+      "Atmosfer",
+      "Manto",
+      "Hidrosfer"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Manto, yer kabuğunun altında yaklaşık 2.900 kilometre derinliğe kadar uzanır."
+  },
+  {
+    "id": "q53991",
+    "categoryIndex": 4,
+    "question": "Dünya’nın sıvı metalden oluşan katmanı hangisidir?",
+    "options": [
+      "Yer kabuğu",
+      "Üst manto",
+      "İç çekirdek",
+      "Dış çekirdek"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dış çekirdek çoğunlukla sıvı demir ve nikelden oluşur; hareketi Dünya’nın manyetik alanını üretir."
+  },
+  {
+    "id": "q53992",
+    "categoryIndex": 4,
+    "question": "Dünya’nın en içteki katmanı hangisidir?",
+    "options": [
+      "İç çekirdek",
+      "Manto",
+      "Dış çekirdek",
+      "Yer kabuğu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İç çekirdek yüksek basınç nedeniyle katı kalan demir-nikel ağırlıklı merkez bölgedir."
+  },
+  {
+    "id": "q53993",
+    "categoryIndex": 4,
+    "question": "Kıtaların hareketini açıklayan kuram hangisidir?",
+    "options": [
+      "Görelilik kuramı",
+      "Levha tektoniği",
+      "Hücre kuramı",
+      "Kuantum kuramı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Levha tektoniği, yer kabuğunu oluşturan levhaların manto üzerinde hareket ettiğini açıklar."
+  },
+  {
+    "id": "q53994",
+    "categoryIndex": 4,
+    "question": "Depremlerin çoğu nerelerde oluşur?",
+    "options": [
+      "Okyanusların merkezinde",
+      "Atmosferin üstünde",
+      "Tektonik levha sınırlarında",
+      "Nehir deltalarında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Levhaların çarpıştığı, ayrıldığı veya birbirine sürtündüğü sınırlarda gerilim birikerek deprem oluşturur."
+  },
+  {
+    "id": "q53995",
+    "categoryIndex": 4,
+    "question": "Volkanlardan çıkan erimiş kaya yüzeye ulaşmadan önce ne ad alır?",
+    "options": [
+      "Lav",
+      "Bazalt",
+      "Kül",
+      "Magma"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Erimiş kaya yer altında magma, yüzeye çıktıktan sonra lav olarak adlandırılır."
+  },
+  {
+    "id": "q53996",
+    "categoryIndex": 4,
+    "question": "Yüzeye çıkan erimiş kayaya ne denir?",
+    "options": [
+      "Lav",
+      "Magma",
+      "Granit",
+      "Obsidyen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Magma volkan ağzından veya çatlaklardan dışarı çıktığında lav adını alır."
+  },
+  {
+    "id": "q53997",
+    "categoryIndex": 4,
+    "question": "Magmanın hızla soğumasıyla oluşan doğal volkanik cam hangisidir?",
+    "options": [
+      "Mermer",
+      "Obsidyen",
+      "Kireçtaşı",
+      "Kuvars"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Obsidyen, lavın kristal oluşmasına zaman kalmadan çok hızlı soğumasıyla meydana gelir."
+  },
+  {
+    "id": "q53998",
+    "categoryIndex": 4,
+    "question": "Kireçtaşının başkalaşmasıyla oluşan kaya hangisidir?",
+    "options": [
+      "Granit",
+      "Bazalt",
+      "Mermer",
+      "Kumtaşı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kireçtaşı ısı ve basınç altında yeniden kristalleşerek mermere dönüşür."
+  },
+  {
+    "id": "q53999",
+    "categoryIndex": 4,
+    "question": "Kum tanelerinin sıkışıp çimentolanmasıyla oluşan kaya hangisidir?",
+    "options": [
+      "Mermer",
+      "Granit",
+      "Obsidyen",
+      "Kumtaşı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kumtaşı, biriken kum tanelerinin zamanla basınç ve minerallerle birleşmesi sonucu oluşur."
+  },
+  {
+    "id": "q54000",
+    "categoryIndex": 4,
+    "question": "Canlı kalıntılarının taşlaşmış izlerine ne denir?",
+    "options": [
+      "Fosil",
+      "Kristal",
+      "Magma",
+      "Mineral"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fosiller geçmiş canlıların kemik, kabuk, iz veya diğer kalıntılarının kayaçlarda korunmuş hâlidir."
+  },
+  {
+    "id": "q54001",
+    "categoryIndex": 4,
+    "question": "Dinozorların yok oluşuyla ilişkilendirilen büyük gök cisminin çarptığı krater hangisidir?",
+    "options": [
+      "Barringer Krateri",
+      "Chicxulub Krateri",
+      "Vredefort Krateri",
+      "Tycho Krateri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Chicxulub Krateri Meksika’daki Yucatán Yarımadası altında bulunur ve 66 milyon yıl önceki çarpmayla ilişkilidir."
+  },
+  {
+    "id": "q54002",
+    "categoryIndex": 4,
+    "question": "Dinozorları inceleyen bilim dalı hangisidir?",
+    "options": [
+      "Arkeoloji",
+      "Jeoloji",
+      "Paleontoloji",
+      "Antropoloji"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Paleontoloji fosiller üzerinden geçmiş yaşamı ve canlıların evrimini araştırır."
+  },
+  {
+    "id": "q54003",
+    "categoryIndex": 4,
+    "question": "İnsan geçmişini maddi kalıntılarla inceleyen bilim dalı hangisidir?",
+    "options": [
+      "Astronomi",
+      "Ekoloji",
+      "Meteoroloji",
+      "Arkeoloji"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Arkeoloji yerleşimler, araçlar, yapılar ve diğer maddi kalıntılar aracılığıyla insan kültürlerini inceler."
+  },
+  {
+    "id": "q54004",
+    "categoryIndex": 4,
+    "question": "Hava olaylarını inceleyen bilim dalı hangisidir?",
+    "options": [
+      "Meteoroloji",
+      "Jeoloji",
+      "Oşinografi",
+      "Botanik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Meteoroloji atmosferdeki sıcaklık, basınç, nem, rüzgâr ve yağış gibi olayları inceler."
+  },
+  {
+    "id": "q54005",
+    "categoryIndex": 5,
+    "question": "Futbolda bir oyuncunun iki gol atmasına ne denir?",
+    "options": [
+      "Hat-trick",
+      "Brace",
+      "Clean sheet",
+      "Double fault"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "İngilizce futbol kullanımında aynı oyuncunun bir maçta iki gol atması brace olarak adlandırılır."
+  },
+  {
+    "id": "q54006",
+    "categoryIndex": 5,
+    "question": "Futbolda kalecinin gol yemeden maçı tamamlamasına ne denir?",
+    "options": [
+      "Hat-trick",
+      "Brace",
+      "Clean sheet",
+      "Golden goal"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Takımın kalesinde gol görmediği maç kaleci için clean sheet olarak kaydedilir."
+  },
+  {
+    "id": "q54007",
+    "categoryIndex": 5,
+    "question": "Futbolda maçın uzatma bölümünde atılan ilk golle oyunun bitmesini sağlayan eski kurala ne denirdi?",
+    "options": [
+      "Gümüş kart",
+      "Serbest gol",
+      "Ani servis",
+      "Altın gol"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Altın gol kuralında uzatmada ilk golü atan takım maçı anında kazanırdı."
+  },
+  {
+    "id": "q54008",
+    "categoryIndex": 5,
+    "question": "Basketbolda rakibin şutunu havada engellemeye ne denir?",
+    "options": [
+      "Blok",
+      "Asist",
+      "Ribaund",
+      "Top çalma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Savunmacı top çembere giderken yasal biçimde dokunup yönünü değiştirirse blok yapar."
+  },
+  {
+    "id": "q54009",
+    "categoryIndex": 5,
+    "question": "Basketbolda kaçan şuttan sonra topu kontrol etmeye ne denir?",
+    "options": [
+      "Asist",
+      "Ribaund",
+      "Blok",
+      "Turnover"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kaçan atışın ardından topu alan oyuncu hücum veya savunma ribaundu kazanır."
+  },
+  {
+    "id": "q54010",
+    "categoryIndex": 5,
+    "question": "Basketbolda takım arkadaşına basketle sonuçlanan pas vermeye ne denir?",
+    "options": [
+      "Ribaund",
+      "Faul",
+      "Asist",
+      "Perde"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Pas doğrudan takım arkadaşının sayı bulmasını sağlarsa pası veren oyuncuya asist yazılır."
+  },
+  {
+    "id": "q54011",
+    "categoryIndex": 5,
+    "question": "Basketbolda topu rakipten kapmaya ne denir?",
+    "options": [
+      "Blok",
+      "Ribaund",
+      "Turnike",
+      "Top çalma"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Savunmacının rakibin pasını veya kontrolündeki topu kurallara uygun ele geçirmesi top çalmadır."
+  },
+  {
+    "id": "q54012",
+    "categoryIndex": 5,
+    "question": "Teniste servis atarken çizgi ihlaline ne denir?",
+    "options": [
+      "Foot fault",
+      "Double fault",
+      "Let",
+      "Deuce"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Servis sırasında oyuncunun ayağı taban çizgisine veya yasak alana değerse foot fault verilir."
+  },
+  {
+    "id": "q54013",
+    "categoryIndex": 5,
+    "question": "Teniste iki servis hakkının da hatalı olmasına ne denir?",
+    "options": [
+      "Ace",
+      "Double fault",
+      "Let",
+      "Break"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncu birinci ve ikinci servisi de kaçırırsa sayı rakibe gider ve double fault kaydedilir."
+  },
+  {
+    "id": "q54014",
+    "categoryIndex": 5,
+    "question": "Teniste servis fileye değip doğru kutuya düşerse ne olur?",
+    "options": [
+      "Sayı kaybedilir",
+      "Rakip sayı alır",
+      "Servis tekrarlanır",
+      "Oyun biter"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bu durum let olarak adlandırılır ve servis yeniden kullanılır."
+  },
+  {
+    "id": "q54015",
+    "categoryIndex": 5,
+    "question": "Voleybolda topa bir takım en fazla kaç kez dokunabilir?",
+    "options": [
+      "2",
+      "4",
+      "5",
+      "3"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Blok teması dışında takım topu rakip sahaya göndermeden önce en fazla üç vuruş yapabilir."
+  },
+  {
+    "id": "q54016",
+    "categoryIndex": 5,
+    "question": "Hentbolda oyuncu topu sürmeden en fazla kaç adım atabilir?",
+    "options": [
+      "3",
+      "2",
+      "4",
+      "5"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncu topu sürmeden en fazla üç adım atabilir ve topu en fazla üç saniye tutabilir."
+  },
+  {
+    "id": "q54017",
+    "categoryIndex": 5,
+    "question": "Su topunda oyuncular havuz tabanına basabilir mi?",
+    "options": [
+      "Evet",
+      "Hayır",
+      "Yalnız kaleci",
+      "Yalnız mola sırasında"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Standart su topu havuzu oyuncuların tabana basamayacağı kadar derindir; oyuncular sürekli yüzmek veya su üstünde kalmak zorundadır."
+  },
+  {
+    "id": "q54018",
+    "categoryIndex": 5,
+    "question": "Beyzbolda vurucunun arkasında topu yakalayan oyuncuya ne denir?",
+    "options": [
+      "Pitcher",
+      "Shortstop",
+      "Catcher",
+      "Outfielder"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Catcher ana kalenin arkasında çömelir, pitcher’ın atışlarını karşılar ve savunmayı yönlendirir."
+  },
+  {
+    "id": "q54019",
+    "categoryIndex": 5,
+    "question": "Krikette topu sopayla karşılayan oyuncuya ne denir?",
+    "options": [
+      "Bowler",
+      "Wicketkeeper",
+      "Fielder",
+      "Batter"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Batter, bowler’ın gönderdiği topu vurarak koşu kazanmaya ve wicket’ını korumaya çalışır."
+  },
+  {
+    "id": "q54020",
+    "categoryIndex": 5,
+    "question": "Golfte oyuncuların vuruş sayılarını karşılaştırmak için kullanılan kişisel denge sistemine ne denir?",
+    "options": [
+      "Handicap",
+      "Par",
+      "Caddie",
+      "Putt"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Handicap farklı seviyedeki golfçilerin daha adil koşullarda yarışmasını sağlayan sayısal ölçüdür."
+  }
+]

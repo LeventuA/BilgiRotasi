@@ -1,0 +1,52 @@
+  Future<void> _confirmExit() async {
+    final action = await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Oyundan çıkılsın mı?'),
+          content: const Text(
+            'İlerlemeni kaydedip daha sonra devam '
+            'edebilir veya bu oyunu tamamen silebilirsin.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'cancel'),
+              child: const Text('Devam Et'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'delete'),
+              style: TextButton.styleFrom(
+                foregroundColor: const Color(0xFFDC2626),
+              ),
+              child: const Text('Oyunu Sil'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, 'save'),
+              child: const Text('Kaydet ve Çık'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (!mounted || action == null || action == 'cancel') {
+      return;
+    }
+
+    final completer = _moveCompleter;
+    if (completer != null &&
+        !completer.isCompleted &&
+        _moveOptions.isNotEmpty) {
+      completer.complete(_moveOptions.first);
+    }
+
+    if (action == 'delete') {
+      await GameSaveService.clear();
+    } else {
+      await _saveGame();
+    }
+
+    if (!mounted) return;
+
+    Navigator.of(context).popUntil((route) => route.isFirst);
+  }

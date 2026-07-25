@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q54821",
+    "categoryIndex": 0,
+    "question": "Pizza ile özdeşleşen İtalyan şehri hangisidir?",
+    "options": [
+      "Roma",
+      "Napoli",
+      "Milano",
+      "Torino"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Napoli, ince hamurlu ve odun ateşinde pişen Napoli pizzasının doğduğu şehir kabul edilir."
+  },
+  {
+    "id": "q54822",
+    "categoryIndex": 0,
+    "question": "Porto şarabı adını hangi ülkenin şehrinden alır?",
+    "options": [
+      "İspanya",
+      "İtalya",
+      "Portekiz",
+      "Fransa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Port şarabı Douro Vadisi’nde üretilir ve tarihsel olarak Porto’dan ihraç edilir."
+  },
+  {
+    "id": "q54823",
+    "categoryIndex": 0,
+    "question": "Şampanya adını hangi ülkenin bölgesinden alır?",
+    "options": [
+      "İtalya",
+      "İspanya",
+      "Belçika",
+      "Fransa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Champagne bölgesinde belirli yöntemle üretilen köpüklü şarap Champagne adını kullanabilir."
+  },
+  {
+    "id": "q54824",
+    "categoryIndex": 0,
+    "question": "Parmesan peyniri adını hangi İtalyan şehrinden alır?",
+    "options": [
+      "Parma",
+      "Pisa",
+      "Padova",
+      "Palermo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Parmigiano Reggiano adı Parma ve Reggio Emilia çevresindeki geleneksel üretim bölgesinden gelir."
+  },
+  {
+    "id": "q54825",
+    "categoryIndex": 0,
+    "question": "Gouda peyniri adını hangi ülkedeki şehirden alır?",
+    "options": [
+      "İsviçre",
+      "Hollanda",
+      "Belçika",
+      "Danimarka"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Gouda, Hollanda’da peynirin tarihsel olarak pazarlandığı aynı adlı şehirden adını alır."
+  },
+  {
+    "id": "q54826",
+    "categoryIndex": 0,
+    "question": "Cheddar peyniri adını hangi ülkedeki köyden alır?",
+    "options": [
+      "Fransa",
+      "İrlanda",
+      "İngiltere",
+      "ABD"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Cheddar, İngiltere’nin Somerset bölgesindeki Cheddar köyü ve mağaralarıyla ilişkilidir."
+  },
+  {
+    "id": "q54827",
+    "categoryIndex": 0,
+    "question": "Sushi hangi ülkenin mutfağıyla özdeşleşmiştir?",
+    "options": [
+      "Çin",
+      "Güney Kore",
+      "Tayland",
+      "Japonya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sushi sirkeyle tatlandırılmış pirincin balık, sebze veya başka malzemelerle birleştirildiği Japon yemeğidir."
+  },
+  {
+    "id": "q54828",
+    "categoryIndex": 0,
+    "question": "Taco hangi ülkenin mutfağına aittir?",
+    "options": [
+      "Meksika",
+      "İspanya",
+      "Arjantin",
+      "Peru"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Taco, tortilla içine çeşitli dolgu malzemeleri konularak hazırlanan Meksika yemeğidir."
+  },
+  {
+    "id": "q54829",
+    "categoryIndex": 0,
+    "question": "Paella hangi İspanyol şehriyle özdeşleşir?",
+    "options": [
+      "Madrid",
+      "Valencia",
+      "Sevilla",
+      "Bilbao"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Pirinç, safran ve çeşitli malzemelerle yapılan paella Valencia bölgesinde doğmuştur."
+  },
+  {
+    "id": "q54830",
+    "categoryIndex": 0,
+    "question": "Gulaş hangi ülkenin geleneksel yemeğidir?",
+    "options": [
+      "Polonya",
+      "Romanya",
+      "Macaristan",
+      "Çekya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Gulaş, Macar çobanların et ve kırmızı biberle hazırladığı çorba-yahni geleneğinden gelir."
+  },
+  {
+    "id": "q54831",
+    "categoryIndex": 0,
+    "question": "Pho çorbası hangi ülkenin mutfağına aittir?",
+    "options": [
+      "Laos",
+      "Kamboçya",
+      "Malezya",
+      "Vietnam"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Pho, aromatik et suyu, pirinç eriştesi ve otlarla hazırlanan Vietnam yemeğidir."
+  },
+  {
+    "id": "q54832",
+    "categoryIndex": 0,
+    "question": "Kimchi hangi ülkenin mutfağıyla özdeşleşmiştir?",
+    "options": [
+      "Güney Kore",
+      "Japonya",
+      "Moğolistan",
+      "Filipinler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kimchi genellikle lahana veya turpun baharatlarla fermente edilmesiyle hazırlanır."
+  },
+  {
+    "id": "q54833",
+    "categoryIndex": 0,
+    "question": "Ceviche özellikle hangi Güney Amerika ülkesinin ulusal yemeği sayılır?",
+    "options": [
+      "Brezilya",
+      "Peru",
+      "Şili",
+      "Bolivya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Peru cevichesi çiğ balığın narenciye suyu, soğan ve acı biberle marine edilmesine dayanır."
+  },
+  {
+    "id": "q54834",
+    "categoryIndex": 0,
+    "question": "Tagine hangi Kuzey Afrika ülkesinin mutfağıyla özdeşleşmiştir?",
+    "options": [
+      "Mısır",
+      "Libya",
+      "Fas",
+      "Sudan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tagine hem konik kapaklı pişirme kabının hem de içinde yavaş pişirilen yemeğin adıdır."
+  },
+  {
+    "id": "q54835",
+    "categoryIndex": 0,
+    "question": "Fondü hangi Alp ülkesiyle özdeşleşmiştir?",
+    "options": [
+      "Avusturya",
+      "Slovenya",
+      "Fransa",
+      "İsviçre"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Peynir fondüsü İsviçre’nin dağlık bölgelerinde ekmekle tüketilen geleneksel bir yemektir."
+  },
+  {
+    "id": "q54836",
+    "categoryIndex": 0,
+    "question": "Baklava hangi geniş coğrafyanın ortak tatlı geleneklerinden biridir?",
+    "options": [
+      "Osmanlı coğrafyası ve Doğu Akdeniz",
+      "Kuzey Kutbu",
+      "Güney Amerika içleri",
+      "Sahra altı Afrika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Baklavanın farklı biçimleri Türkiye, Balkanlar, Kafkasya ve Doğu Akdeniz mutfaklarında görülür."
+  },
+  {
+    "id": "q54837",
+    "categoryIndex": 0,
+    "question": "Türk kahvesi hangi pişirme özelliğiyle ayrılır?",
+    "options": [
+      "Filtre kâğıdından geçmesi",
+      "Telvesiyle birlikte cezvede pişmesi",
+      "Soğuk suda bekletilmesi",
+      "Buharla süzülmesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Çok ince öğütülmüş kahve suyla cezvede kaynatılır ve fincana telvesiyle dökülür."
+  },
+  {
+    "id": "q54838",
+    "categoryIndex": 1,
+    "question": "Titanic filminde Rose’un taktığı mavi elmasın adı nedir?",
+    "options": [
+      "Koh-i-Noor",
+      "Umut Elması",
+      "Okyanusun Kalbi",
+      "Kuzey Yıldızı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kurgusal Heart of the Ocean kolyesi filmin hazine arayışının merkezindedir."
+  },
+  {
+    "id": "q54839",
+    "categoryIndex": 1,
+    "question": "Cast Away filminde Chuck’ın voleybol topuna verdiği ad nedir?",
+    "options": [
+      "Friday",
+      "Spalding",
+      "Oliver",
+      "Wilson"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Chuck adada yalnızlığını azaltmak için kanlı el iziyle yüz yaptığı topa Wilson adını verir."
+  },
+  {
+    "id": "q54840",
+    "categoryIndex": 1,
+    "question": "The Usual Suspects filmindeki gizemli suç dehasının adı nedir?",
+    "options": [
+      "Keyser Söze",
+      "Anton Chigurh",
+      "John Doe",
+      "Frank Costello"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Keyser Söze’nin gerçek kimliği filmin anlatı ve final sürprizinin merkezindedir."
+  },
+  {
+    "id": "q54841",
+    "categoryIndex": 1,
+    "question": "Goodfellas filmindeki anlatıcı gangster kimdir?",
+    "options": [
+      "Jimmy Conway",
+      "Henry Hill",
+      "Tommy DeVito",
+      "Paulie Cicero"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Henry Hill çocukluğundan tanık koruma programına uzanan mafya hayatını anlatır."
+  },
+  {
+    "id": "q54842",
+    "categoryIndex": 1,
+    "question": "Taxi Driver filmindeki yalnız taksi şoförünün adı nedir?",
+    "options": [
+      "Jake LaMotta",
+      "Rupert Pupkin",
+      "Travis Bickle",
+      "Max Cady"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Travis Bickle geceleri New York sokaklarında çalışırken giderek şiddetli bir takıntıya sürüklenir."
+  },
+  {
+    "id": "q54843",
+    "categoryIndex": 1,
+    "question": "One Flew Over the Cuckoo’s Nest filmindeki asi hasta kimdir?",
+    "options": [
+      "Chief Bromden",
+      "Billy Bibbit",
+      "Dale Harding",
+      "R. P. McMurphy"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "McMurphy psikiyatri koğuşundaki katı Hemşire Ratched düzenine meydan okur."
+  },
+  {
+    "id": "q54844",
+    "categoryIndex": 1,
+    "question": "The Green Mile filmindeki doğaüstü güçlere sahip mahkûm kimdir?",
+    "options": [
+      "John Coffey",
+      "Paul Edgecomb",
+      "Percy Wetmore",
+      "Eduard Delacroix"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "John Coffey başkalarının hastalık ve acılarını emebilen iri ama nazik bir mahkûmdur."
+  },
+  {
+    "id": "q54845",
+    "categoryIndex": 1,
+    "question": "A Beautiful Mind filmindeki matematikçi kimdir?",
+    "options": [
+      "Alan Turing",
+      "John Nash",
+      "Stephen Hawking",
+      "Kurt Gödel"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Film Nobel ödüllü matematikçi John Nash’in kariyerini ve şizofreniyle mücadelesini dramatize eder."
+  },
+  {
+    "id": "q54846",
+    "categoryIndex": 1,
+    "question": "The Imitation Game filmi hangi matematikçinin hayatından esinlenir?",
+    "options": [
+      "John Nash",
+      "Claude Shannon",
+      "Alan Turing",
+      "Bertrand Russell"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Film Turing’in Enigma şifrelerini çözme çalışmalarını ve uğradığı haksızlığı anlatır."
+  },
+  {
+    "id": "q54847",
+    "categoryIndex": 1,
+    "question": "Bohemian Rhapsody filminde Freddie Mercury’yi kim canlandırır?",
+    "options": [
+      "Taron Egerton",
+      "Austin Butler",
+      "Sacha Baron Cohen",
+      "Rami Malek"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Rami Malek Queen’in solisti Freddie Mercury rolüyle En İyi Erkek Oyuncu Oscarını kazandı."
+  },
+  {
+    "id": "q54848",
+    "categoryIndex": 1,
+    "question": "Rocketman filmi hangi müzisyenin hayatını anlatır?",
+    "options": [
+      "Elton John",
+      "David Bowie",
+      "Freddie Mercury",
+      "George Michael"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Rocketman, Elton John’un çocukluğundan şöhretine uzanan müzikal biyografi filmidir."
+  },
+  {
+    "id": "q54849",
+    "categoryIndex": 1,
+    "question": "Walk the Line filmi hangi müzisyeni merkezine alır?",
+    "options": [
+      "Elvis Presley",
+      "Johnny Cash",
+      "Bob Dylan",
+      "Ray Charles"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Film Johnny Cash’in kariyeri ile June Carter’la ilişkisini anlatır."
+  },
+  {
+    "id": "q54850",
+    "categoryIndex": 1,
+    "question": "Ray filmi hangi müzisyenin hayatını anlatır?",
+    "options": [
+      "Stevie Wonder",
+      "Marvin Gaye",
+      "Ray Charles",
+      "James Brown"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Jamie Foxx, görme engelli piyanist ve şarkıcı Ray Charles’ı canlandırır."
+  },
+  {
+    "id": "q54851",
+    "categoryIndex": 1,
+    "question": "8 Mile filmindeki rapçinin sahne adı nedir?",
+    "options": [
+      "Slim Shady",
+      "Papa Doc",
+      "Future",
+      "B-Rabbit"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Eminem’in canlandırdığı Jimmy Smith rap savaşlarında B-Rabbit adını kullanır."
+  },
+  {
+    "id": "q54852",
+    "categoryIndex": 1,
+    "question": "Whiplash filmindeki acımasız müzik eğitmeni kimdir?",
+    "options": [
+      "Terence Fletcher",
+      "Andrew Neiman",
+      "Buddy Rich",
+      "Hank Levy"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fletcher genç davulcu Andrew’u psikolojik ve fiziksel baskıyla mükemmelliğe zorlar."
+  },
+  {
+    "id": "q54853",
+    "categoryIndex": 1,
+    "question": "La La Land filminde Sebastian hangi müzik türüne tutkuyla bağlıdır?",
+    "options": [
+      "Opera",
+      "Caz",
+      "Heavy metal",
+      "Klasik Türk müziği"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sebastian geleneksel cazı yaşatacağı kendi kulübünü açmayı hayal eder."
+  },
+  {
+    "id": "q54854",
+    "categoryIndex": 1,
+    "question": "School of Rock filminde sahte öğretmen hangi enstrümanı çalar?",
+    "options": [
+      "Keman",
+      "Trompet",
+      "Gitar",
+      "Davul"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dewey Finn gitaristtir ve öğrencilerden gizlice bir rock grubu kurar."
+  },
+  {
+    "id": "q54855",
+    "categoryIndex": 2,
+    "question": "Magna Carta hangi kralın yetkilerini sınırlamak için kabul edildi?",
+    "options": [
+      "VIII. Henry",
+      "I. Richard",
+      "Fatih William",
+      "Kral John"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "İngiliz baronları 1215’te Kral John’u belirli hukuk ve vergi ilkelerini kabul etmeye zorladı."
+  },
+  {
+    "id": "q54856",
+    "categoryIndex": 2,
+    "question": "İngiliz Parlamentosunun “Haklar Bildirgesi” hangi yüzyılda kabul edildi?",
+    "options": [
+      "17. yüzyıl",
+      "15. yüzyıl",
+      "18. yüzyıl",
+      "20. yüzyıl"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1689 Bill of Rights monarşinin yetkilerini sınırlandırıp parlamentonun konumunu güçlendirdi."
+  },
+  {
+    "id": "q54857",
+    "categoryIndex": 2,
+    "question": "ABD Anayasası hangi şehirde hazırlandı?",
+    "options": [
+      "Washington, D.C.",
+      "Philadelphia",
+      "Boston",
+      "New York"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "1787 Anayasa Konvansiyonu Philadelphia’daki Independence Hall’da toplandı."
+  },
+  {
+    "id": "q54858",
+    "categoryIndex": 2,
+    "question": "Fransız İnsan ve Yurttaş Hakları Bildirisi hangi yıl kabul edildi?",
+    "options": [
+      "1776",
+      "1815",
+      "1789",
+      "1848"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bildirge Fransız Devrimi sırasında özgürlük, eşitlik ve egemenlik ilkelerini ilan etti."
+  },
+  {
+    "id": "q54859",
+    "categoryIndex": 2,
+    "question": "Haiti Devrimi hangi özelliğiyle tarihte benzersizdir?",
+    "options": [
+      "İlk sanayi devrimi olması",
+      "Roma’yı yıkması",
+      "Matbaayı icat etmesi",
+      "Başarılı köle isyanıyla bağımsız devlet kurulması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Köleleştirilmiş insanlar Fransız sömürge yönetimini yenerek 1804’te Haiti’yi kurdu."
+  },
+  {
+    "id": "q54860",
+    "categoryIndex": 2,
+    "question": "Latin Amerika bağımsızlık hareketlerinin “Kurtarıcı”sı Simón Bolívar hangi kıtada savaştı?",
+    "options": [
+      "Güney Amerika",
+      "Afrika",
+      "Asya",
+      "Avrupa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bolívar Venezuela, Kolombiya, Ekvador, Peru ve Bolivya bağımsızlıklarında rol oynadı."
+  },
+  {
+    "id": "q54861",
+    "categoryIndex": 2,
+    "question": "Bolivya ülkesi adını hangi kişiden alır?",
+    "options": [
+      "José de San Martín",
+      "Simón Bolívar",
+      "Cristóbal Colón",
+      "Amerigo Vespucci"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yeni devlet 1825’te bağımsızlık lideri Bolívar’ın onuruna Bolivya adını aldı."
+  },
+  {
+    "id": "q54862",
+    "categoryIndex": 2,
+    "question": "Amerika kıtaları adını hangi kâşiften alır?",
+    "options": [
+      "Kristof Kolomb",
+      "Ferdinand Magellan",
+      "Amerigo Vespucci",
+      "Vasco da Gama"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Haritacı Martin Waldseemüller yeni kıtaya Vespucci’nin Latince adı Americus’tan America dedi."
+  },
+  {
+    "id": "q54863",
+    "categoryIndex": 2,
+    "question": "Avustralya’ya gelen Birinci Filo hangi ülkeden yola çıktı?",
+    "options": [
+      "Fransa",
+      "Hollanda",
+      "Portekiz",
+      "Britanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "1787’de Britanya’dan çıkan gemiler hükümlü ve görevlileri taşıyarak Sydney Cove’a ulaştı."
+  },
+  {
+    "id": "q54864",
+    "categoryIndex": 2,
+    "question": "Yeni Zelanda’daki Waitangi Antlaşması Britanya ile hangi halk arasında imzalandı?",
+    "options": [
+      "Maoriler",
+      "Aborjinler",
+      "İnuitler",
+      "Sami halkı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1840 antlaşması Britanya tacı ile çok sayıda Maori şefi arasında yapıldı."
+  },
+  {
+    "id": "q54865",
+    "categoryIndex": 2,
+    "question": "ABD’de köleliği kaldıran anayasa değişikliği hangisidir?",
+    "options": [
+      "1. Değişiklik",
+      "13. Değişiklik",
+      "10. Değişiklik",
+      "19. Değişiklik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1865’te onaylanan 13. Değişiklik köleliği ve zorla çalıştırmayı büyük ölçüde yasakladı."
+  },
+  {
+    "id": "q54866",
+    "categoryIndex": 2,
+    "question": "ABD’de kadınlara oy hakkı tanıyan anayasa değişikliği hangisidir?",
+    "options": [
+      "14. Değişiklik",
+      "18. Değişiklik",
+      "19. Değişiklik",
+      "21. Değişiklik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1920’de onaylanan 19. Değişiklik cinsiyet nedeniyle oy hakkının engellenmesini yasakladı."
+  },
+  {
+    "id": "q54867",
+    "categoryIndex": 2,
+    "question": "Kadınların oy hakkı hareketindeki “suffragette” sözcüğü en çok hangi ülkeyle ilişkilidir?",
+    "options": [
+      "Japonya",
+      "Brezilya",
+      "Mısır",
+      "Birleşik Krallık"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Suffragette adı özellikle Emmeline Pankhurst önderliğindeki militan Britanyalı kadınlar için kullanıldı."
+  },
+  {
+    "id": "q54868",
+    "categoryIndex": 2,
+    "question": "Gandhi’nin Tuz Yürüyüşü hangi ülkenin sömürge yönetimine karşıydı?",
+    "options": [
+      "Britanya",
+      "Fransa",
+      "Portekiz",
+      "Hollanda"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "1930 yürüyüşü Britanya’nın tuz vergisi ve tekelini şiddetsiz biçimde protesto etti."
+  },
+  {
+    "id": "q54869",
+    "categoryIndex": 2,
+    "question": "Çin’de 1949’da kurulan devlet hangisidir?",
+    "options": [
+      "Çin Cumhuriyeti",
+      "Çin Halk Cumhuriyeti",
+      "Mançukuo",
+      "Hong Kong Krallığı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mao Zedong 1 Ekim 1949’da Pekin’de Çin Halk Cumhuriyeti’ni ilan etti."
+  },
+  {
+    "id": "q54870",
+    "categoryIndex": 2,
+    "question": "Hindistan hangi yılda Britanya’dan bağımsız oldu?",
+    "options": [
+      "1939",
+      "1950",
+      "1947",
+      "1962"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Britanya Hindistanı 1947’de Hindistan ve Pakistan olarak bağımsız devletlere ayrıldı."
+  },
+  {
+    "id": "q54871",
+    "categoryIndex": 2,
+    "question": "Berlin Duvarı’nın açılmasından sonra Almanya hangi yıl birleşti?",
+    "options": [
+      "1989",
+      "1991",
+      "1993",
+      "1990"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Doğu ve Batı Almanya 3 Ekim 1990’da resmen birleşti."
+  },
+  {
+    "id": "q54872",
+    "categoryIndex": 3,
+    "question": "Bir romanın ana çatışmasını doruk noktasına taşıyan bölüme ne denir?",
+    "options": [
+      "Klimaks",
+      "Epilog",
+      "Dipnot",
+      "Önsöz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Klimaks hikâyedeki gerilimin en yüksek noktaya ulaştığı belirleyici andır."
+  },
+  {
+    "id": "q54873",
+    "categoryIndex": 3,
+    "question": "Olayların ve çatışmaların çözüme kavuştuğu bölüme ne denir?",
+    "options": [
+      "Serim",
+      "Çözülme",
+      "Düğüm",
+      "Epigraf"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Çözülme doruk noktasından sonra sonuçların ortaya çıktığı kapanış aşamasıdır."
+  },
+  {
+    "id": "q54874",
+    "categoryIndex": 3,
+    "question": "Hikâyenin karakter ve ortamını tanıtan başlangıç bölümüne ne denir?",
+    "options": [
+      "Klimaks",
+      "Çözülme",
+      "Serim",
+      "Epilog"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Serim bölümünde okura temel kişiler, zaman, mekân ve başlangıç durumu verilir."
+  },
+  {
+    "id": "q54875",
+    "categoryIndex": 3,
+    "question": "Olayların karmaşıklaştığı orta bölüme ne denir?",
+    "options": [
+      "Serim",
+      "Epilog",
+      "Önsöz",
+      "Düğüm"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Düğümde çatışmalar büyür ve karakterlerin çözmesi gereken sorunlar belirginleşir."
+  },
+  {
+    "id": "q54876",
+    "categoryIndex": 3,
+    "question": "Yazarın eser başında okuyucuya seslendiği bölüme ne denir?",
+    "options": [
+      "Önsöz",
+      "Sonsöz",
+      "İndeks",
+      "Bibliyografya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Önsöz eserin amacı, hazırlanışı veya bağlamı hakkında bilgi verir."
+  },
+  {
+    "id": "q54877",
+    "categoryIndex": 3,
+    "question": "Kitabın sonunda yer alan açıklayıcı kapanış yazısına ne denir?",
+    "options": [
+      "Önsöz",
+      "Sonsöz",
+      "Prolog",
+      "Başlık"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sonsöz ana metin sonrasında yazar veya başka bir uzman tarafından yazılabilir."
+  },
+  {
+    "id": "q54878",
+    "categoryIndex": 3,
+    "question": "Kitaptaki konuları alfabetik olarak sayfa numaralarıyla gösteren bölüme ne denir?",
+    "options": [
+      "Dipnot",
+      "Kaynakça",
+      "Dizin",
+      "Özet"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dizin okuyucunun belirli isim veya kavramı kitapta hızlıca bulmasını sağlar."
+  },
+  {
+    "id": "q54879",
+    "categoryIndex": 3,
+    "question": "Kullanılan kaynakların listesine ne denir?",
+    "options": [
+      "Dizin",
+      "Önsöz",
+      "İçindekiler",
+      "Kaynakça"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kaynakça araştırma veya eserde yararlanılan kitap, makale ve diğer kaynakları gösterir."
+  },
+  {
+    "id": "q54880",
+    "categoryIndex": 3,
+    "question": "Sayfa altında ek açıklama veren küçük numaralı metne ne denir?",
+    "options": [
+      "Dipnot",
+      "Başlık",
+      "Epigraf",
+      "Sonsöz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dipnot ana metni bölmeden kaynak veya ek bilgi sunar."
+  },
+  {
+    "id": "q54881",
+    "categoryIndex": 3,
+    "question": "Bir metinden kaynağı belirtilerek aynen alınan bölüme ne denir?",
+    "options": [
+      "Özet",
+      "Alıntı",
+      "Parodi",
+      "İmge"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Alıntı başka bir metnin sözlerini değiştirmeden kullanır ve kaynağını göstermelidir."
+  },
+  {
+    "id": "q54882",
+    "categoryIndex": 3,
+    "question": "Bir eserin kısa biçimde ana fikirlerini aktarmaya ne denir?",
+    "options": [
+      "Eleştiri",
+      "Uyarlama",
+      "Özet",
+      "Pastiş"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Özet ayrıntıları azaltarak metnin temel olay veya düşüncelerini korur."
+  },
+  {
+    "id": "q54883",
+    "categoryIndex": 3,
+    "question": "Bir eseri başka bir türe veya ortama dönüştürmeye ne denir?",
+    "options": [
+      "Dipnot",
+      "Hiciv",
+      "Dizin",
+      "Uyarlama"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Romanın filme, oyunun diziye veya hikâyenin çizgi romana dönüştürülmesi uyarlamadır."
+  },
+  {
+    "id": "q54884",
+    "categoryIndex": 3,
+    "question": "Başka bir eserin üslubunu mizah amacıyla taklit etmeye ne denir?",
+    "options": [
+      "Parodi",
+      "Biyografi",
+      "Elegy",
+      "Pastoral"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Parodi tanınan biçim veya anlatıyı abartarak komik ve eleştirel etki yaratır."
+  },
+  {
+    "id": "q54885",
+    "categoryIndex": 3,
+    "question": "Başka bir yazarın üslubunu saygı veya alıştırma amacıyla taklit etmeye ne denir?",
+    "options": [
+      "Parodi",
+      "Pastiş",
+      "Hiciv",
+      "Plagiarism"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Pastiş çoğunlukla alaydan çok belirli üsluba öykünme veya saygı amacı taşır."
+  },
+  {
+    "id": "q54886",
+    "categoryIndex": 3,
+    "question": "Bir eserin izinsiz kopyalanıp kendine ait gösterilmesine ne denir?",
+    "options": [
+      "Alıntı",
+      "Uyarlama",
+      "İntihal",
+      "Parodi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İntihal başkasının söz veya fikirlerini kaynak göstermeden sahiplenmektir."
+  },
+  {
+    "id": "q54887",
+    "categoryIndex": 3,
+    "question": "Bir anlatıda önceden gelecek olaya ipucu verilmesine ne denir?",
+    "options": [
+      "Geriye dönüş",
+      "İç monolog",
+      "Betimleme",
+      "Önseme"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Önseme küçük ayrıntılar veya sözlerle ileride yaşanacak gelişmeleri sezdirir."
+  },
+  {
+    "id": "q54888",
+    "categoryIndex": 3,
+    "question": "Okurun karakterden daha fazla bilgiye sahip olduğu duruma ne denir?",
+    "options": [
+      "Dramatik ironi",
+      "Aliterasyon",
+      "Klimaks",
+      "Asonans"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Dramatik ironide karakter gerçeği bilmezken seyirci yaklaşan sonucu fark eder."
+  },
+  {
+    "id": "q54889",
+    "categoryIndex": 4,
+    "question": "Bir cismin hareket durumunu koruma eğilimine ne denir?",
+    "options": [
+      "Sürtünme",
+      "Eylemsizlik",
+      "Kaldırma",
+      "İletkenlik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Newton’un birinci yasasına göre net kuvvet yoksa cisim hızını ve yönünü korur."
+  },
+  {
+    "id": "q54890",
+    "categoryIndex": 4,
+    "question": "Kuvvetin SI birimi nedir?",
+    "options": [
+      "Joule",
+      "Pascal",
+      "Newton",
+      "Watt"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bir newton, bir kilogramlık kütleye saniye kare başına bir metre ivme kazandıran kuvvettir."
+  },
+  {
+    "id": "q54891",
+    "categoryIndex": 4,
+    "question": "Enerjinin SI birimi nedir?",
+    "options": [
+      "Newton",
+      "Watt",
+      "Volt",
+      "Joule"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Joule iş, ısı ve enerji miktarını ölçmek için kullanılan SI birimidir."
+  },
+  {
+    "id": "q54892",
+    "categoryIndex": 4,
+    "question": "Gücün SI birimi nedir?",
+    "options": [
+      "Watt",
+      "Joule",
+      "Amper",
+      "Ohm"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Watt bir saniyede yapılan bir joule işe eşit güç birimidir."
+  },
+  {
+    "id": "q54893",
+    "categoryIndex": 4,
+    "question": "Basıncın SI birimi nedir?",
+    "options": [
+      "Tesla",
+      "Pascal",
+      "Kelvin",
+      "Coulomb"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bir pascal, bir metrekareye etki eden bir newtonluk basınca eşittir."
+  },
+  {
+    "id": "q54894",
+    "categoryIndex": 4,
+    "question": "Elektrik akımının SI birimi nedir?",
+    "options": [
+      "Volt",
+      "Ohm",
+      "Amper",
+      "Watt"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Amper bir iletkenden birim zamanda geçen elektrik yükü akışını ölçer."
+  },
+  {
+    "id": "q54895",
+    "categoryIndex": 4,
+    "question": "Elektrik geriliminin birimi nedir?",
+    "options": [
+      "Amper",
+      "Ohm",
+      "Tesla",
+      "Volt"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Volt iki nokta arasındaki elektrik potansiyel farkını ölçer."
+  },
+  {
+    "id": "q54896",
+    "categoryIndex": 4,
+    "question": "Elektrik direncinin birimi nedir?",
+    "options": [
+      "Ohm",
+      "Volt",
+      "Watt",
+      "Hertz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ohm bir iletkenin elektrik akımına karşı gösterdiği direncin birimidir."
+  },
+  {
+    "id": "q54897",
+    "categoryIndex": 4,
+    "question": "Frekansın birimi nedir?",
+    "options": [
+      "Desibel",
+      "Hertz",
+      "Newton",
+      "Lümen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bir hertz saniyede bir tam titreşim veya döngü demektir."
+  },
+  {
+    "id": "q54898",
+    "categoryIndex": 4,
+    "question": "Sıcaklığın SI temel birimi nedir?",
+    "options": [
+      "Celsius",
+      "Fahrenheit",
+      "Kelvin",
+      "Joule"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kelvin mutlak sıfırdan başlayan termodinamik sıcaklık ölçeğidir."
+  },
+  {
+    "id": "q54899",
+    "categoryIndex": 4,
+    "question": "Işık şiddetinin SI birimi nedir?",
+    "options": [
+      "Lümen",
+      "Lux",
+      "Watt",
+      "Kandela"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Kandela belirli yöndeki ışık şiddetinin SI temel birimidir."
+  },
+  {
+    "id": "q54900",
+    "categoryIndex": 4,
+    "question": "Ses şiddeti seviyesi yaygın olarak hangi birimle ifade edilir?",
+    "options": [
+      "Desibel",
+      "Hertz",
+      "Watt",
+      "Kelvin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Desibel logaritmik ölçekte ses basıncı seviyesini karşılaştırmak için kullanılır."
+  },
+  {
+    "id": "q54901",
+    "categoryIndex": 4,
+    "question": "Bir sesin ince veya kalın algılanmasını en çok ne belirler?",
+    "options": [
+      "Hızı",
+      "Frekansı",
+      "Rengi",
+      "Kaynağın ağırlığı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yüksek frekans tiz, düşük frekans pes ses olarak algılanır."
+  },
+  {
+    "id": "q54902",
+    "categoryIndex": 4,
+    "question": "Sesin yüksekliği veya gürlüğü en çok hangi dalga özelliğiyle ilişkilidir?",
+    "options": [
+      "Frekansı",
+      "Dalga boyu yalnızca",
+      "Genliği",
+      "Rengi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Daha büyük genlik genellikle daha yüksek ses basıncı ve daha gür algı oluşturur."
+  },
+  {
+    "id": "q54903",
+    "categoryIndex": 4,
+    "question": "Işık bir ortamdan başka ortama geçerken yön değiştirirse bu olaya ne denir?",
+    "options": [
+      "Yansıma",
+      "Girişim",
+      "İndüksiyon",
+      "Kırılma"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Işığın hızı ortam değişiminde değişir ve ışın normal doğrultusuna göre bükülür."
+  },
+  {
+    "id": "q54904",
+    "categoryIndex": 4,
+    "question": "Işığın bir yüzeyden geri dönmesine ne denir?",
+    "options": [
+      "Yansıma",
+      "Kırılma",
+      "Soğurma",
+      "İletim"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Aynalar düzgün yansıma ile gelen ışığı belirli açıyla geri gönderir."
+  },
+  {
+    "id": "q54905",
+    "categoryIndex": 5,
+    "question": "Olimpiyatlarda sekiz altın madalya kazanan Jamaikalı sprinter kimdir?",
+    "options": [
+      "Carl Lewis",
+      "Usain Bolt",
+      "Jesse Owens",
+      "Michael Johnson"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Usain Bolt 100, 200 ve 4x100 metre yarışlarında toplam sekiz resmî olimpiyat altını kazandı."
+  },
+  {
+    "id": "q54906",
+    "categoryIndex": 5,
+    "question": "1936 Berlin Olimpiyatları’nda dört altın madalya kazanan atlet kimdir?",
+    "options": [
+      "Emil Zátopek",
+      "Paavo Nurmi",
+      "Jesse Owens",
+      "Jim Thorpe"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Owens 100 m, 200 m, uzun atlama ve 4x100 bayrakta altın kazanarak Nazi propagandasına meydan okudu."
+  },
+  {
+    "id": "q54907",
+    "categoryIndex": 5,
+    "question": "“Uçan Fin” lakabıyla tanınan uzun mesafe koşucusu kimdir?",
+    "options": [
+      "Emil Zátopek",
+      "Haile Gebrselassie",
+      "Abebe Bikila",
+      "Paavo Nurmi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Paavo Nurmi 1920’lerde dokuz olimpiyat altını kazanarak orta ve uzun mesafeye damga vurdu."
+  },
+  {
+    "id": "q54908",
+    "categoryIndex": 5,
+    "question": "Maratonu çıplak ayakla kazanarak ünlenen Etiyopyalı atlet kimdir?",
+    "options": [
+      "Abebe Bikila",
+      "Kenenisa Bekele",
+      "Eliud Kipchoge",
+      "Haile Gebrselassie"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bikila 1960 Roma Olimpiyat maratonunu ayakkabısız koşarak kazandı."
+  },
+  {
+    "id": "q54909",
+    "categoryIndex": 5,
+    "question": "Çek koşucu Emil Zátopek 1952 Olimpiyatları’nda hangi üç yarışı kazandı?",
+    "options": [
+      "100 m, 200 m ve 400 m",
+      "5000 m, 10000 m ve maraton",
+      "800 m, 1500 m ve 3000 m",
+      "Maraton, yürüyüş ve kros"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Zátopek aynı Oyunlarda 5000, 10000 metre ve ilk maratonunu kazanarak eşsiz üçleme yaptı."
+  },
+  {
+    "id": "q54910",
+    "categoryIndex": 5,
+    "question": "“Flo-Jo” lakabıyla tanınan sprinter kimdir?",
+    "options": [
+      "Jackie Joyner-Kersee",
+      "Allyson Felix",
+      "Florence Griffith Joyner",
+      "Wilma Rudolph"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Florence Griffith Joyner 1988’de kadınlar 100 ve 200 metre dünya rekorlarını kırdı."
+  },
+  {
+    "id": "q54911",
+    "categoryIndex": 5,
+    "question": "Üç Olimpiyat altını kazanan ve çocuk felcini yenen sprinter kimdir?",
+    "options": [
+      "Fanny Blankers-Koen",
+      "Gail Devers",
+      "Merlene Ottey",
+      "Wilma Rudolph"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Rudolph çocuklukta yürüme güçlüğünü aşıp 1960 Roma’da üç sprint altını kazandı."
+  },
+  {
+    "id": "q54912",
+    "categoryIndex": 5,
+    "question": "Heptatlon ve uzun atlamada olimpiyat şampiyonu olan atlet kimdir?",
+    "options": [
+      "Jackie Joyner-Kersee",
+      "Florence Griffith Joyner",
+      "Jessica Ennis-Hill",
+      "Allyson Felix"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Joyner-Kersee heptatlon dünya rekoru ve uzun atlama başarılarıyla çok yönlü atletliğin simgesidir."
+  },
+  {
+    "id": "q54913",
+    "categoryIndex": 5,
+    "question": "1948 Londra Olimpiyatları’nda dört altın kazanan “Uçan Ev Hanımı” lakaplı atlet kimdir?",
+    "options": [
+      "Yelena Isinbayeva",
+      "Fanny Blankers-Koen",
+      "Nadia Comăneci",
+      "Sonja Henie"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Hollandalı Fanny Blankers-Koen 100 m, 200 m, 80 m engelli ve 4x100 bayrak yarışlarını kazandı."
+  },
+  {
+    "id": "q54914",
+    "categoryIndex": 5,
+    "question": "Olimpiyat tarihinde mükemmel 10 puanı alan ilk jimnastikçi kimdir?",
+    "options": [
+      "Olga Korbut",
+      "Simone Biles",
+      "Nadia Comăneci",
+      "Larisa Latynina"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Nadia Comăneci 1976 Montreal’de asimetrik paralelde ilk 10,00 puanı aldı."
+  },
+  {
+    "id": "q54915",
+    "categoryIndex": 5,
+    "question": "“Baltimore Kurşunu” lakabıyla tanınan yüzücü kimdir?",
+    "options": [
+      "Mark Spitz",
+      "Ian Thorpe",
+      "Ryan Lochte",
+      "Michael Phelps"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Michael Phelps Baltimore doğumludur ve olimpiyat tarihinin en çok madalya kazanan sporcusudur."
+  },
+  {
+    "id": "q54916",
+    "categoryIndex": 5,
+    "question": "1972 Münih Olimpiyatları’nda yedi altın kazanan yüzücü kimdir?",
+    "options": [
+      "Mark Spitz",
+      "Michael Phelps",
+      "Matt Biondi",
+      "Ian Thorpe"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Mark Spitz yedi yarışın tümünde dünya rekoru kırarak altın madalya kazandı."
+  },
+  {
+    "id": "q54917",
+    "categoryIndex": 5,
+    "question": "“Thorpedo” lakabıyla tanınan Avustralyalı yüzücü kimdir?",
+    "options": [
+      "Grant Hackett",
+      "Ian Thorpe",
+      "Kieren Perkins",
+      "Kyle Chalmers"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ian Thorpe büyük ayakları ve güçlü serbest stil yüzüşüyle Thorpedo lakabını aldı."
+  },
+  {
+    "id": "q54918",
+    "categoryIndex": 5,
+    "question": "“Buzlar Kraliçesi” olarak üç olimpiyat artistik paten altını kazanan sporcu kimdir?",
+    "options": [
+      "Katarina Witt",
+      "Peggy Fleming",
+      "Sonja Henie",
+      "Yuna Kim"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Norveçli Sonja Henie 1928, 1932 ve 1936’da kadınlar artistik paten şampiyonu oldu."
+  },
+  {
+    "id": "q54919",
+    "categoryIndex": 5,
+    "question": "Jim Thorpe hangi özelliğiyle tanınır?",
+    "options": [
+      "Yalnız satranç oynamasıyla",
+      "İlk kadın maratoncu olmasıyla",
+      "Yüzme rekoruyla",
+      "Çok yönlü sporcu ve olimpiyat şampiyonu olmasıyla"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Thorpe dekatlon, pentatlon, Amerikan futbolu, beyzbol ve basketbolda üst düzey yarıştı."
+  },
+  {
+    "id": "q54920",
+    "categoryIndex": 5,
+    "question": "“Büyük O” lakabıyla tanınan ve bir sezonda triple-double ortalaması yapan basketbolcu kimdir?",
+    "options": [
+      "Oscar Robertson",
+      "Bill Russell",
+      "Wilt Chamberlain",
+      "Jerry West"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Oscar Robertson 1961-62 NBA sezonunda sayı, ribaund ve asistte çift haneli ortalama yakaladı."
+  }
+]

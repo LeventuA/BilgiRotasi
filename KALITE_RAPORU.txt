@@ -1,0 +1,36 @@
+BİLGİ ROTASI – 3000 SORU BANKASI KALİTE RAPORU
+
+Toplam soru: 3000
+Benzersiz soru metni: 3000
+Yinelenen tam soru metni: 0
+Geçersiz kayıt: 0
+Dosya boyutu: 1,141,821 bayt
+SHA-256: 6c9316095c03a97dc23931e7a1e2aa207d5601b379ef8e90c51bc0d55535ae26
+
+KATEGORİ DAĞILIMI
+- Coğrafya: 500 soru (150 Kolay, 200 Orta, 150 Zor)
+- Eğlence: 500 soru (150 Kolay, 200 Orta, 150 Zor)
+- Tarih: 500 soru (150 Kolay, 200 Orta, 150 Zor)
+- Sanat & Edebiyat: 500 soru (150 Kolay, 200 Orta, 150 Zor)
+- Bilim & Doğa: 500 soru (150 Kolay, 200 Orta, 150 Zor)
+- Spor: 500 soru (150 Kolay, 200 Orta, 150 Zor)
+
+GENEL ZORLUK DAĞILIMI
+- Kolay: 900
+- Orta: 1200
+- Zor: 900
+
+DOĞRU ŞIK KONUMU
+- A: 750
+- B: 750
+- C: 750
+- D: 750
+
+OTOMATİK KONTROLLER
+- q001–q3000 kimlik sırası
+- Altı kategoride tam 500 soru
+- Her soruda dört farklı seçenek
+- Geçerli cevap indeksi
+- Boş soru, seçenek veya açıklama bulunmaması
+- Tam metin tekrar kontrolü
+- Zorluk ve doğru şık dağılımı

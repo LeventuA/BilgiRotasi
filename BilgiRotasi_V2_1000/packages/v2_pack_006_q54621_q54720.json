@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q54621",
+    "categoryIndex": 0,
+    "question": "Dünyanın en yüksek şehri olarak sıkça anılan La Rinconada hangi ülkededir?",
+    "options": [
+      "Bolivya",
+      "Peru",
+      "Şili",
+      "Ekvador"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "La Rinconada, Peru Andları’nda yaklaşık 5.100 metre rakımda bulunan altın madenciliği yerleşimidir."
+  },
+  {
+    "id": "q54622",
+    "categoryIndex": 0,
+    "question": "Dünyanın en kuzeydeki sürekli yerleşimlerinden Longyearbyen hangi takımadadadır?",
+    "options": [
+      "Faroe Adaları",
+      "Aleut Adaları",
+      "Svalbard",
+      "Kuril Adaları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Longyearbyen, Norveç’e bağlı Svalbard takımadalarının Spitsbergen adasındadır."
+  },
+  {
+    "id": "q54623",
+    "categoryIndex": 0,
+    "question": "Dünyanın en güneydeki şehirlerinden Ushuaia hangi ülkededir?",
+    "options": [
+      "Şili",
+      "Uruguay",
+      "Güney Afrika",
+      "Arjantin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ushuaia, Tierra del Fuego’da Beagle Kanalı kıyısında yer alır."
+  },
+  {
+    "id": "q54624",
+    "categoryIndex": 0,
+    "question": "Dünyanın en kurak yerleşimlerinden Arica hangi ülkededir?",
+    "options": [
+      "Şili",
+      "Peru",
+      "Bolivya",
+      "Meksika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Arica, Atacama kıyısında çok düşük yıllık yağış alan bir Şili şehridir."
+  },
+  {
+    "id": "q54625",
+    "categoryIndex": 0,
+    "question": "Dünyanın en yağışlı yerlerinden Mawsynram hangi ülkededir?",
+    "options": [
+      "Bangladeş",
+      "Hindistan",
+      "Nepal",
+      "Bhutan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mawsynram, Meghalaya eyaletinde muson rüzgârlarının dağ yamaçlarında yükselmesiyle çok yoğun yağış alır."
+  },
+  {
+    "id": "q54626",
+    "categoryIndex": 0,
+    "question": "Dünyanın en soğuk sürekli yerleşimlerinden Oymyakon hangi ülkededir?",
+    "options": [
+      "Kanada",
+      "Moğolistan",
+      "Rusya",
+      "Finlandiya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sibirya’daki Oymyakon’da kış sıcaklıkları eksi 50 derecenin altına sıkça düşer."
+  },
+  {
+    "id": "q54627",
+    "categoryIndex": 0,
+    "question": "Dünyanın en sıcak hava sıcaklığı rekoruyla tanınan Death Valley hangi ülkededir?",
+    "options": [
+      "Avustralya",
+      "Suudi Arabistan",
+      "Cezayir",
+      "ABD"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kaliforniya’daki Death Valley, 1913’te kaydedilen 56,7 dereceyle resmî sıcaklık rekorunu taşır."
+  },
+  {
+    "id": "q54628",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük kanyon sistemlerinden Fish River Canyon hangi ülkededir?",
+    "options": [
+      "Namibya",
+      "Güney Afrika",
+      "Botsvana",
+      "Zambiya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fish River Canyon Namibya’nın güneyinde kurak plato içine oyulmuş dev bir kanyondur."
+  },
+  {
+    "id": "q54629",
+    "categoryIndex": 0,
+    "question": "Verdon Kanyonu hangi ülkededir?",
+    "options": [
+      "İspanya",
+      "Fransa",
+      "İtalya",
+      "İsviçre"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Turkuaz Verdon Nehri’nin oyduğu kanyon Fransa’nın Provence bölgesindedir."
+  },
+  {
+    "id": "q54630",
+    "categoryIndex": 0,
+    "question": "Colca Kanyonu hangi ülkededir?",
+    "options": [
+      "Şili",
+      "Ekvador",
+      "Peru",
+      "Bolivya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Colca Kanyonu Peru Andları’nda kondor gözlemleri ve teraslı vadileriyle tanınır."
+  },
+  {
+    "id": "q54631",
+    "categoryIndex": 0,
+    "question": "Waimea Kanyonu hangi Hawaii adasındadır?",
+    "options": [
+      "Maui",
+      "Oahu",
+      "Molokai",
+      "Kauai"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Waimea Kanyonu kırmızı ve yeşil renkli derin vadileri nedeniyle “Pasifik’in Büyük Kanyonu” diye anılır."
+  },
+  {
+    "id": "q54632",
+    "categoryIndex": 0,
+    "question": "Saklıkent Kanyonu hangi iki ilimizin sınırına yakındır?",
+    "options": [
+      "Muğla ve Antalya",
+      "İzmir ve Aydın",
+      "Mersin ve Adana",
+      "Bolu ve Düzce"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Saklıkent Kanyonu Muğla’nın Seydikemer ilçesinde Antalya sınırına yakın konumdadır."
+  },
+  {
+    "id": "q54633",
+    "categoryIndex": 0,
+    "question": "Köprülü Kanyon hangi ilimizdedir?",
+    "options": [
+      "Muğla",
+      "Antalya",
+      "Mersin",
+      "Isparta"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Köprülü Kanyon Millî Parkı Antalya’nın Manavgat ve Serik çevresinde Köprüçay boyunca uzanır."
+  },
+  {
+    "id": "q54634",
+    "categoryIndex": 0,
+    "question": "Ihlara Vadisi hangi ilimizdedir?",
+    "options": [
+      "Nevşehir",
+      "Niğde",
+      "Aksaray",
+      "Kayseri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Melendiz Çayı’nın oluşturduğu Ihlara Vadisi Aksaray sınırları içindedir."
+  },
+  {
+    "id": "q54635",
+    "categoryIndex": 0,
+    "question": "Yazılıkaya-Midas Şehri hangi ilimizdedir?",
+    "options": [
+      "Kütahya",
+      "Afyonkarahisar",
+      "Ankara",
+      "Eskişehir"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Frig kaya anıtlarıyla ünlü Yazılıkaya, Eskişehir’in Han ilçesi yakınındadır."
+  },
+  {
+    "id": "q54636",
+    "categoryIndex": 0,
+    "question": "Ani Harabeleri hangi ilimizdedir?",
+    "options": [
+      "Kars",
+      "Erzurum",
+      "Ardahan",
+      "Iğdır"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Orta Çağ’ın önemli ticaret kentlerinden Ani, Kars’ın Ermenistan sınırı yakınındadır."
+  },
+  {
+    "id": "q54637",
+    "categoryIndex": 0,
+    "question": "Sümela Manastırı hangi dağın yamacındadır?",
+    "options": [
+      "Kaçkar Dağı",
+      "Karadağ",
+      "Ilgaz Dağı",
+      "Süphan Dağı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sümela Manastırı Trabzon Maçka’daki Altındere Vadisi’nde Karadağ’ın sarp yamacına kuruludur."
+  },
+  {
+    "id": "q54638",
+    "categoryIndex": 1,
+    "question": "Seinfeld dizisindeki ana karakterin mesleği nedir?",
+    "options": [
+      "Avukat",
+      "Doktor",
+      "Stand-up komedyeni",
+      "Mimar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Jerry Seinfeld dizide kendi adını taşıyan New Yorklu bir stand-up komedyenini canlandırır."
+  },
+  {
+    "id": "q54639",
+    "categoryIndex": 1,
+    "question": "Frasier dizisinin başkahramanı hangi mesleği yapar?",
+    "options": [
+      "Gazete editörü",
+      "Polis dedektifi",
+      "Üniversite dekanı",
+      "Radyo psikiyatristi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dr. Frasier Crane Seattle’da radyo programında dinleyicilere psikolojik tavsiye verir."
+  },
+  {
+    "id": "q54640",
+    "categoryIndex": 1,
+    "question": "Cheers dizisi ağırlıklı olarak nerede geçer?",
+    "options": [
+      "Bir barda",
+      "Bir hastanede",
+      "Bir otelde",
+      "Bir okulda"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cheers, Boston’daki aynı adlı barda çalışanlar ve müşteriler çevresinde geçer."
+  },
+  {
+    "id": "q54641",
+    "categoryIndex": 1,
+    "question": "Modern Family’de belgesel kameralarına konuşulan anlatım biçimine ne denir?",
+    "options": [
+      "Sitcom opera",
+      "Mockumentary",
+      "Reality drama",
+      "Noir anlatı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Karakterlerin kameraya röportaj verdiği sahte belgesel biçimi mockumentary olarak adlandırılır."
+  },
+  {
+    "id": "q54642",
+    "categoryIndex": 1,
+    "question": "The Fresh Prince of Bel-Air’da Will hangi şehirden Los Angeles’a gelir?",
+    "options": [
+      "Chicago",
+      "Miami",
+      "Philadelphia",
+      "New York"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Açılış şarkısında Will’in Batı Philadelphia’dan Bel-Air’deki akrabalarının yanına gönderildiği anlatılır."
+  },
+  {
+    "id": "q54643",
+    "categoryIndex": 1,
+    "question": "Malcolm in the Middle dizisinde Malcolm’un özel özelliği nedir?",
+    "options": [
+      "Süper gücü",
+      "Görünmezliği",
+      "Profesyonel sporculuğu",
+      "Çok yüksek zekâsı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Malcolm üstün zekâlılar sınıfına alınır ancak kaotik ailesiyle sıradan hayatını sürdürmeye çalışır."
+  },
+  {
+    "id": "q54644",
+    "categoryIndex": 1,
+    "question": "Scrubs dizisi ağırlıklı olarak hangi tür mekânda geçer?",
+    "options": [
+      "Hastanede",
+      "Adliyede",
+      "Uzay gemisinde",
+      "Gazete ofisinde"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dizi Sacred Heart Hastanesi’nde genç doktorların meslek ve arkadaşlık yaşamlarını anlatır."
+  },
+  {
+    "id": "q54645",
+    "categoryIndex": 1,
+    "question": "House M.D.’de House’un yakın arkadaşı olan onkolog kimdir?",
+    "options": [
+      "Eric Foreman",
+      "James Wilson",
+      "Robert Chase",
+      "Chris Taub"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dr. Wilson, House’un en yakın arkadaşı ve çoğu zaman vicdani denge unsurudur."
+  },
+  {
+    "id": "q54646",
+    "categoryIndex": 1,
+    "question": "Grey’s Anatomy dizisinin ilk ana anlatıcısı kimdir?",
+    "options": [
+      "Cristina Yang",
+      "Miranda Bailey",
+      "Meredith Grey",
+      "Addison Montgomery"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dizi Meredith’in Seattle’daki cerrahlık eğitimi ve özel hayatıyla başlar."
+  },
+  {
+    "id": "q54647",
+    "categoryIndex": 1,
+    "question": "Lost dizisinde gizemli yer altı istasyonlarına ne denir?",
+    "options": [
+      "Oceanic üsleri",
+      "Hydra kuleleri",
+      "Jacob odaları",
+      "Dharma istasyonları"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Dharma Initiative adada bilimsel deneyler için çeşitli sembollü istasyonlar kurmuştur."
+  },
+  {
+    "id": "q54648",
+    "categoryIndex": 1,
+    "question": "The X-Files dizisinde uzaylı olaylarına inanan ajan kimdir?",
+    "options": [
+      "Fox Mulder",
+      "Dana Scully",
+      "Walter Skinner",
+      "John Doggett"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mulder paranormal açıklamalara açıktır; ortağı Scully bilimsel şüpheciliği temsil eder."
+  },
+  {
+    "id": "q54649",
+    "categoryIndex": 1,
+    "question": "Twin Peaks dizisinde soruşturmayı yürüten FBI ajanı kimdir?",
+    "options": [
+      "Harry Truman",
+      "Dale Cooper",
+      "Albert Rosenfield",
+      "Gordon Cole"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ajan Cooper, Laura Palmer cinayetini sezgisel ve sıra dışı yöntemlerle araştırır."
+  },
+  {
+    "id": "q54650",
+    "categoryIndex": 1,
+    "question": "The Wire dizisinin ilk sezonu en çok hangi suç alanına odaklanır?",
+    "options": [
+      "Sanat hırsızlığı",
+      "Siber suç",
+      "Uyuşturucu ticareti",
+      "Banka soygunu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İlk sezon Baltimore polisi ile Barksdale uyuşturucu örgütü arasındaki takibi anlatır."
+  },
+  {
+    "id": "q54651",
+    "categoryIndex": 1,
+    "question": "Mad Men dizisinin reklamcı başkahramanı kimdir?",
+    "options": [
+      "Roger Sterling",
+      "Pete Campbell",
+      "Bert Cooper",
+      "Don Draper"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Don Draper 1960’ların Madison Avenue reklam dünyasında yaratıcı direktör olarak çalışır."
+  },
+  {
+    "id": "q54652",
+    "categoryIndex": 1,
+    "question": "Succession dizisindeki medya şirketinin adı nedir?",
+    "options": [
+      "Waystar Royco",
+      "Vought International",
+      "Sterling Cooper",
+      "Dunder Mifflin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Roy ailesi Waystar Royco imparatorluğunun kontrolü için birbirleriyle mücadele eder."
+  },
+  {
+    "id": "q54653",
+    "categoryIndex": 1,
+    "question": "The Bear dizisinin başkahramanı Carmy’nin mesleği nedir?",
+    "options": [
+      "Avukat",
+      "Şef",
+      "Müzisyen",
+      "Polis"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Carmen Berzatto seçkin restoran deneyimini ailesinin Chicago’daki sandviç dükkânına taşır."
+  },
+  {
+    "id": "q54654",
+    "categoryIndex": 1,
+    "question": "Ted Lasso hangi spor takımını çalıştırmak için İngiltere’ye gider?",
+    "options": [
+      "Ragbi takımı",
+      "Kriket takımı",
+      "Futbol takımı",
+      "Basketbol takımı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Amerikan futbolu koçu Ted, İngiliz futbol kulübü AFC Richmond’un teknik direktörü olur."
+  },
+  {
+    "id": "q54655",
+    "categoryIndex": 2,
+    "question": "İlk modern antibiyotik olarak kullanılan penisilinin seri üretimi hangi savaş sırasında hızlandı?",
+    "options": [
+      "I. Dünya Savaşı",
+      "Kırım Savaşı",
+      "Vietnam Savaşı",
+      "II. Dünya Savaşı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Müttefikler yaralı askerlerde enfeksiyonları tedavi etmek için penisilinin endüstriyel üretimini geliştirdi."
+  },
+  {
+    "id": "q54656",
+    "categoryIndex": 2,
+    "question": "Röntgen ışınlarını keşfeden bilim insanı kimdir?",
+    "options": [
+      "Wilhelm Röntgen",
+      "Max Planck",
+      "Niels Bohr",
+      "J. J. Thomson"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Röntgen 1895’te bilinmeyen ışınlarla kemiklerin görüntülenebildiğini gösterdi."
+  },
+  {
+    "id": "q54657",
+    "categoryIndex": 2,
+    "question": "Radyoaktivite terimini ortaya atan bilim insanı kimdir?",
+    "options": [
+      "Henri Becquerel",
+      "Marie Curie",
+      "Ernest Rutherford",
+      "Lise Meitner"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Marie Curie radyum ve polonyum araştırmaları sırasında “radyoaktivite” kavramını geliştirdi."
+  },
+  {
+    "id": "q54658",
+    "categoryIndex": 2,
+    "question": "Elektronu keşfeden bilim insanı kimdir?",
+    "options": [
+      "Ernest Rutherford",
+      "James Chadwick",
+      "J. J. Thomson",
+      "Niels Bohr"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Thomson katot ışınları deneyleriyle negatif yüklü parçacığın varlığını 1897’de gösterdi."
+  },
+  {
+    "id": "q54659",
+    "categoryIndex": 2,
+    "question": "Atom çekirdeğini keşfeden saçılma deneyini kim yönetti?",
+    "options": [
+      "J. J. Thomson",
+      "Maxwell",
+      "Fermi",
+      "Ernest Rutherford"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Rutherford’un altın folyo deneyi atomun küçük, yoğun ve pozitif çekirdeğe sahip olduğunu gösterdi."
+  },
+  {
+    "id": "q54660",
+    "categoryIndex": 2,
+    "question": "Nötronu keşfeden bilim insanı kimdir?",
+    "options": [
+      "James Chadwick",
+      "Paul Dirac",
+      "Enrico Fermi",
+      "Robert Millikan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Chadwick 1932’de elektrik yükü taşımayan nötronun varlığını deneysel olarak gösterdi."
+  },
+  {
+    "id": "q54661",
+    "categoryIndex": 2,
+    "question": "Kuantum kuramının öncüsü olarak kabul edilen bilim insanı kimdir?",
+    "options": [
+      "Gregor Mendel",
+      "Max Planck",
+      "Alfred Wegener",
+      "Edwin Hubble"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Planck enerjinin küçük paketler hâlinde yayıldığını öne sürerek kuantum fiziğinin temelini attı."
+  },
+  {
+    "id": "q54662",
+    "categoryIndex": 2,
+    "question": "Periyodik tabloda boşluk bırakıp keşfedilmemiş elementleri öngören kişi kimdir?",
+    "options": [
+      "John Dalton",
+      "Robert Boyle",
+      "Dmitri Mendeleyev",
+      "Amedeo Avogadro"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mendeleyev element özelliklerindeki düzeni kullanarak gallium ve germanium gibi elementleri önceden tahmin etti."
+  },
+  {
+    "id": "q54663",
+    "categoryIndex": 2,
+    "question": "Bezelye deneyleriyle genetiğin temellerini atan kişi kimdir?",
+    "options": [
+      "Charles Darwin",
+      "Louis Pasteur",
+      "Carl Linnaeus",
+      "Gregor Mendel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Mendel bezelyelerde özelliklerin ayrı kalıtım birimleriyle aktarıldığını gösterdi."
+  },
+  {
+    "id": "q54664",
+    "categoryIndex": 2,
+    "question": "Canlıları ikili adlandırma sistemiyle sınıflandıran bilim insanı kimdir?",
+    "options": [
+      "Carl Linnaeus",
+      "Gregor Mendel",
+      "Robert Hooke",
+      "Anton van Leeuwenhoek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Linnaeus cins ve türden oluşan Latince ikili adlandırma sistemini standartlaştırdı."
+  },
+  {
+    "id": "q54665",
+    "categoryIndex": 2,
+    "question": "Mikroskopta hücrelere ilk kez “cell” adını veren kişi kimdir?",
+    "options": [
+      "Leeuwenhoek",
+      "Robert Hooke",
+      "Pasteur",
+      "Harvey"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Hooke mantar dokusundaki küçük odacıkları manastır hücrelerine benzeterek cell adını kullandı."
+  },
+  {
+    "id": "q54666",
+    "categoryIndex": 2,
+    "question": "Mikroorganizmaları ayrıntılı gözlemleyen erken mikroskopçu kimdir?",
+    "options": [
+      "Robert Koch",
+      "Edward Jenner",
+      "Anton van Leeuwenhoek",
+      "Joseph Priestley"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Leeuwenhoek kendi yaptığı güçlü mikroskoplarla bakterileri ve tek hücrelileri gözledi."
+  },
+  {
+    "id": "q54667",
+    "categoryIndex": 2,
+    "question": "Kan dolaşımını bilimsel olarak açıklayan hekim kimdir?",
+    "options": [
+      "Galen",
+      "Vesalius",
+      "Paracelsus",
+      "William Harvey"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Harvey kalbin pompa gibi çalıştığını ve kanın kapalı bir sistemde dolaştığını gösterdi."
+  },
+  {
+    "id": "q54668",
+    "categoryIndex": 2,
+    "question": "Modern anatomiye katkı veren De humani corporis fabrica’nın yazarı kimdir?",
+    "options": [
+      "Andreas Vesalius",
+      "William Harvey",
+      "Hippokrates",
+      "Galen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Vesalius insan kadavralarına dayalı ayrıntılı anatomi kitabını 1543’te yayımladı."
+  },
+  {
+    "id": "q54669",
+    "categoryIndex": 2,
+    "question": "Mikrop kuramını güçlendiren ve pastörizasyonu geliştiren bilim insanı kimdir?",
+    "options": [
+      "Robert Koch",
+      "Louis Pasteur",
+      "Joseph Lister",
+      "Edward Jenner"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pasteur fermantasyon ve hastalıklarda mikroorganizmaların rolünü gösterdi."
+  },
+  {
+    "id": "q54670",
+    "categoryIndex": 2,
+    "question": "Cerrahide antiseptik yöntemleri yaygınlaştıran hekim kimdir?",
+    "options": [
+      "Alexander Fleming",
+      "Ignaz Semmelweis",
+      "Joseph Lister",
+      "Robert Koch"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Lister karbolik asit kullanarak ameliyat enfeksiyonlarını azaltmaya çalıştı."
+  },
+  {
+    "id": "q54671",
+    "categoryIndex": 2,
+    "question": "Doktorların el yıkamasının lohusa ölümlerini azalttığını gösteren hekim kimdir?",
+    "options": [
+      "Louis Pasteur",
+      "Joseph Lister",
+      "Edward Jenner",
+      "Ignaz Semmelweis"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Semmelweis klorlu suyla el temizliğinin doğum kliniğindeki ölüm oranlarını dramatik biçimde düşürdüğünü gözledi."
+  },
+  {
+    "id": "q54672",
+    "categoryIndex": 3,
+    "question": "Gotik mimaride sivri kemerlerin temel avantajı nedir?",
+    "options": [
+      "Yükü daha verimli aşağı aktarması",
+      "Camı renklendirmesi",
+      "Duvarı ahşaba çevirmesi",
+      "Ses üretmesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sivri kemer farklı açıklıklarda kullanılabilir ve yüksek yapıların yükünü kolonlara yönlendirir."
+  },
+  {
+    "id": "q54673",
+    "categoryIndex": 3,
+    "question": "Gotik katedrallerde duvarları dışarıdan destekleyen kemerlere ne denir?",
+    "options": [
+      "Korint sütunu",
+      "Uçan payanda",
+      "Kubbe kasnağı",
+      "Revak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Uçan payandalar çatı ve tonoz yükünü dış desteklere aktararak büyük vitray pencerelere alan açar."
+  },
+  {
+    "id": "q54674",
+    "categoryIndex": 3,
+    "question": "Roma mimarisinde yarım daire biçimli çatı örtüsüne ne denir?",
+    "options": [
+      "Kemerli payanda",
+      "Pandantif",
+      "Beşik tonoz",
+      "Atrium"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Beşik tonoz bir kemerin uzunlamasına uzatılmasıyla oluşan tünel benzeri örtüdür."
+  },
+  {
+    "id": "q54675",
+    "categoryIndex": 3,
+    "question": "Bir kubbenin kare mekâna oturmasını sağlayan üçgen geçiş elemanına ne denir?",
+    "options": [
+      "Arşitrav",
+      "Friz",
+      "Pilaster",
+      "Pandantif"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Pandantifler kare planın köşelerinden kubbenin dairesel tabanına yumuşak geçiş sağlar."
+  },
+  {
+    "id": "q54676",
+    "categoryIndex": 3,
+    "question": "Antik Yunan sütun düzenlerinden en sade olanı hangisidir?",
+    "options": [
+      "Dor",
+      "İyon",
+      "Korint",
+      "Kompozit"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dor düzeni kalın sütunları ve yalın başlığıyla en sade klasik düzendir."
+  },
+  {
+    "id": "q54677",
+    "categoryIndex": 3,
+    "question": "Antik Yunan sütun başlığında koç boynuzu biçimli kıvrımlar hangi düzene aittir?",
+    "options": [
+      "Dor",
+      "İyon",
+      "Korint",
+      "Toskana"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "İyon başlığındaki spiral kıvrımlara volüt adı verilir."
+  },
+  {
+    "id": "q54678",
+    "categoryIndex": 3,
+    "question": "Akanthus yapraklı süslü sütun başlığı hangi düzene aittir?",
+    "options": [
+      "Dor",
+      "İyon",
+      "Korint",
+      "Toskana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Korint düzeni ince sütunu ve yoğun bitkisel süslemeli başlığıyla tanınır."
+  },
+  {
+    "id": "q54679",
+    "categoryIndex": 3,
+    "question": "Osmanlı camilerindeki ince uzun kuleye ne denir?",
+    "options": [
+      "Çan kulesi",
+      "Pagoda",
+      "Obelisk",
+      "Minare"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Minare geleneksel olarak ezanın okunduğu yüksek kuledir."
+  },
+  {
+    "id": "q54680",
+    "categoryIndex": 3,
+    "question": "Caminin kıble yönünü gösteren duvar nişine ne denir?",
+    "options": [
+      "Mihrap",
+      "Minber",
+      "Şadırvan",
+      "Mahfil"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mihrap namaz sırasında Mekke yönünü gösterir ve imamın önünde bulunur."
+  },
+  {
+    "id": "q54681",
+    "categoryIndex": 3,
+    "question": "Cami içinde hutbe okunan merdivenli yapıya ne denir?",
+    "options": [
+      "Mihrap",
+      "Minber",
+      "Kürsü",
+      "Revak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İmam cuma ve bayram hutbelerini minbere çıkarak okur."
+  },
+  {
+    "id": "q54682",
+    "categoryIndex": 3,
+    "question": "Avlulu yapıların çevresindeki sütunlu geçide ne denir?",
+    "options": [
+      "Tonoz",
+      "Kubbe",
+      "Revak",
+      "Sarnıç"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Revak, üstü örtülü ve en az bir yanı sütunlarla açık geçiş alanıdır."
+  },
+  {
+    "id": "q54683",
+    "categoryIndex": 3,
+    "question": "Roma evlerinde ortadaki açık avluya ne denirdi?",
+    "options": [
+      "Forum",
+      "Basilica",
+      "Thermae",
+      "Atrium"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Atrium evin ışık, hava ve sosyal yaşam merkezi olan üstü kısmen açık avlusuydu."
+  },
+  {
+    "id": "q54684",
+    "categoryIndex": 3,
+    "question": "Katedral sözcüğü hangi nesneden türemiştir?",
+    "options": [
+      "Piskopos koltuğundan",
+      "Çan kulesinden",
+      "Vitraydan",
+      "Mezardan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Latince cathedra “koltuk” demektir; katedral piskoposun resmî koltuğunun bulunduğu kilisedir."
+  },
+  {
+    "id": "q54685",
+    "categoryIndex": 3,
+    "question": "Notre-Dame de Paris hangi mimari üslubun simgelerindendir?",
+    "options": [
+      "Barok",
+      "Gotik",
+      "Rokoko",
+      "Bauhaus"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sivri kemerler, uçan payandalar ve büyük gül pencereleri Notre-Dame’ın Gotik özellikleridir."
+  },
+  {
+    "id": "q54686",
+    "categoryIndex": 3,
+    "question": "Sagrada Família’nın mimarı kimdir?",
+    "options": [
+      "Santiago Calatrava",
+      "I. M. Pei",
+      "Antoni Gaudí",
+      "Oscar Niemeyer"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Gaudí Barselona’daki bazilikayı organik biçimler ve karmaşık simgecilikle tasarladı."
+  },
+  {
+    "id": "q54687",
+    "categoryIndex": 3,
+    "question": "Sydney Opera Binası’nı tasarlayan mimar kimdir?",
+    "options": [
+      "Frank Gehry",
+      "Norman Foster",
+      "Renzo Piano",
+      "Jørn Utzon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Danimarkalı Utzon’un kabuk biçimli çatıları Sydney Limanı’nın simgesi oldu."
+  },
+  {
+    "id": "q54688",
+    "categoryIndex": 3,
+    "question": "Louvre Piramidi’ni tasarlayan mimar kimdir?",
+    "options": [
+      "I. M. Pei",
+      "Le Corbusier",
+      "Zaha Hadid",
+      "Tadao Ando"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Cam ve metal piramit 1989’da Louvre’un ana girişi olarak açıldı."
+  },
+  {
+    "id": "q54689",
+    "categoryIndex": 4,
+    "question": "Hangi metal oda sıcaklığında sıvıdır?",
+    "options": [
+      "Demir",
+      "Cıva",
+      "Alüminyum",
+      "Bakır"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Cıvanın erime noktası yaklaşık eksi 39 derecedir ve oda sıcaklığında sıvı kalır."
+  },
+  {
+    "id": "q54690",
+    "categoryIndex": 4,
+    "question": "Oda sıcaklığında sıvı olan ametal element hangisidir?",
+    "options": [
+      "Klor",
+      "İyot",
+      "Brom",
+      "Kükürt"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Brom kırmızı-kahverengi ve uçucu bir sıvı ametaldir."
+  },
+  {
+    "id": "q54691",
+    "categoryIndex": 4,
+    "question": "Doğadaki en hafif element hangisidir?",
+    "options": [
+      "Helyum",
+      "Lityum",
+      "Karbon",
+      "Hidrojen"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hidrojenin çekirdeği çoğunlukla tek protondan oluşur ve atom numarası 1’dir."
+  },
+  {
+    "id": "q54692",
+    "categoryIndex": 4,
+    "question": "Evrenin en bol elementi hangisidir?",
+    "options": [
+      "Hidrojen",
+      "Oksijen",
+      "Karbon",
+      "Helyum"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yıldızların ve yıldızlararası gazın büyük bölümü hidrojen içerir."
+  },
+  {
+    "id": "q54693",
+    "categoryIndex": 4,
+    "question": "Dünya kabuğunda kütlece en bol element hangisidir?",
+    "options": [
+      "Silisyum",
+      "Oksijen",
+      "Demir",
+      "Karbon"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Oksijen kaya minerallerinde silisyum ve diğer elementlerle birleşmiş hâlde çok boldur."
+  },
+  {
+    "id": "q54694",
+    "categoryIndex": 4,
+    "question": "İnsan vücudunda kütlece en bol element hangisidir?",
+    "options": [
+      "Karbon",
+      "Hidrojen",
+      "Oksijen",
+      "Kalsiyum"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Vücuttaki su ve organik moleküller nedeniyle kütlenin yaklaşık üçte ikisi oksijendir."
+  },
+  {
+    "id": "q54695",
+    "categoryIndex": 4,
+    "question": "Altının kimyasal simgesi neden Au’dur?",
+    "options": [
+      "Avustralya’dan çıktığı için",
+      "Atomun üstü anlamına geldiği için",
+      "Altın uzmanı adından",
+      "Latince aurum adından"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Au simgesi altının Latince adı aurumdan gelir."
+  },
+  {
+    "id": "q54696",
+    "categoryIndex": 4,
+    "question": "Demirin kimyasal simgesi neden Fe’dir?",
+    "options": [
+      "Latince ferrum adından",
+      "Fransızca fer kelimesinden",
+      "Fermi’den",
+      "Elektron sayısından"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fe simgesi demirin Latince adı ferrumun ilk harflerinden gelir."
+  },
+  {
+    "id": "q54697",
+    "categoryIndex": 4,
+    "question": "Gümüşün kimyasal simgesi hangisidir?",
+    "options": [
+      "Au",
+      "Ag",
+      "Si",
+      "Gm"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ag simgesi gümüşün Latince adı argentumdan gelir."
+  },
+  {
+    "id": "q54698",
+    "categoryIndex": 4,
+    "question": "Potasyumun kimyasal simgesi neden K’dır?",
+    "options": [
+      "Kelvin’den",
+      "Kütlesinden",
+      "Latince kalium adından",
+      "Keşfedenin soyadından"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "K simgesi potasyumun Neo-Latince adı kaliumdan gelir."
+  },
+  {
+    "id": "q54699",
+    "categoryIndex": 4,
+    "question": "Sodyumun kimyasal simgesi neden Na’dır?",
+    "options": [
+      "Napoli’den",
+      "Nötron sayısından",
+      "NASA’dan",
+      "Latince natrium adından"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Na simgesi sodyumun Neo-Latince adı natriumdan gelir."
+  },
+  {
+    "id": "q54700",
+    "categoryIndex": 4,
+    "question": "Kurşunun kimyasal simgesi hangisidir?",
+    "options": [
+      "Pb",
+      "Kr",
+      "Ku",
+      "Ld"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Pb simgesi kurşunun Latince adı plumbumdan gelir."
+  },
+  {
+    "id": "q54701",
+    "categoryIndex": 4,
+    "question": "Kalemin “kurşun” ucu gerçekte hangi maddeden yapılır?",
+    "options": [
+      "Kurşun",
+      "Grafit",
+      "Kömür",
+      "Demir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kalem ucu grafit ile kil karışımından yapılır; metal kurşun içermez."
+  },
+  {
+    "id": "q54702",
+    "categoryIndex": 4,
+    "question": "Grafit, kurşun kalemde neden kâğıt üzerinde iz bırakır?",
+    "options": [
+      "Sıvı metal olduğu için",
+      "Kâğıdı yaktığı için",
+      "Katmanları kolayca kayıp ayrıldığı için",
+      "Mıknatıslanıp yapıştığı için"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Grafitte karbon atomları güçlü tabakalar oluşturur ancak tabakalar arasındaki bağlar zayıf olduğundan küçük parçalar kâğıda aktarılır."
+  },
+  {
+    "id": "q54703",
+    "categoryIndex": 4,
+    "question": "Pas oluşması için demirin başlıca hangi iki şeye maruz kalması gerekir?",
+    "options": [
+      "Azot ve tuza",
+      "Işık ve karbona",
+      "Helyum ve buhara",
+      "Oksijen ve suya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Demir oksijenle yükseltgenirken su elektrokimyasal süreci kolaylaştırır."
+  },
+  {
+    "id": "q54704",
+    "categoryIndex": 4,
+    "question": "Paslanmaz çeliğin korozyona direncini artıran temel element hangisidir?",
+    "options": [
+      "Krom",
+      "Altın",
+      "Kurşun",
+      "Cıva"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Krom yüzeyde ince ve koruyucu krom oksit tabakası oluşturarak paslanmayı yavaşlatır."
+  },
+  {
+    "id": "q54705",
+    "categoryIndex": 5,
+    "question": "Serbest stil yüzmede nefes alırken yüzü genellikle hangi yöne çevrilir?",
+    "options": [
+      "Tam yukarı",
+      "Yana",
+      "Havuz tabanına",
+      "Geriye"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kraul tekniğinde baş yalnızca yana döndürülerek ağız su dışına çıkarılır."
+  },
+  {
+    "id": "q54706",
+    "categoryIndex": 5,
+    "question": "Sırtüstü yüzmede sporcu hangi pozisyondadır?",
+    "options": [
+      "Yüzü suya dönük",
+      "Dik durur",
+      "Sırtı suya dönük",
+      "Yan yatar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sırtüstünde yüz ve göğüs yukarı bakar, kollar dönüşümlü çalışır."
+  },
+  {
+    "id": "q54707",
+    "categoryIndex": 5,
+    "question": "Kurbağalama yüzmede kollar ve bacaklar nasıl hareket eder?",
+    "options": [
+      "Tamamen dönüşümlü",
+      "Yalnız tek taraflı",
+      "Bacaklar hareketsiz",
+      "Simetrik olarak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kurbağalamada iki kol ve iki bacak aynı anda simetrik hareket eder."
+  },
+  {
+    "id": "q54708",
+    "categoryIndex": 5,
+    "question": "Kelebek yüzmede bacak hareketine ne denir?",
+    "options": [
+      "Yunus vuruşu",
+      "Makas vuruşu",
+      "Bisiklet vuruşu",
+      "Kurbağa vuruşu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İki bacak bitişik hâlde yukarı-aşağı dalga biçiminde hareket eder."
+  },
+  {
+    "id": "q54709",
+    "categoryIndex": 5,
+    "question": "Karışık yüzme yarışında kaç farklı stil kullanılır?",
+    "options": [
+      "İki",
+      "Dört",
+      "Üç",
+      "Beş"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kelebek, sırtüstü, kurbağalama ve serbest stil sırayla kullanılır."
+  },
+  {
+    "id": "q54710",
+    "categoryIndex": 5,
+    "question": "Bireysel karışık yüzmede ilk stil hangisidir?",
+    "options": [
+      "Sırtüstü",
+      "Kurbağalama",
+      "Kelebek",
+      "Serbest"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bireysel karışık sırası kelebek, sırtüstü, kurbağalama ve serbesttir."
+  },
+  {
+    "id": "q54711",
+    "categoryIndex": 5,
+    "question": "Bayrak karışık yüzmede ilk stil hangisidir?",
+    "options": [
+      "Kelebek",
+      "Kurbağalama",
+      "Serbest",
+      "Sırtüstü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bayrak karışığında ilk yüzücü su içinde başladığı için sırtüstüyle başlar."
+  },
+  {
+    "id": "q54712",
+    "categoryIndex": 5,
+    "question": "Yüzmede dönüş duvarından su altında güçlü çıkışa ne denir?",
+    "options": [
+      "Streamline",
+      "Dribbling",
+      "Glide kick",
+      "Dive roll"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yüzücü kollarını baş üzerinde birleştirerek direnci azaltan streamline pozisyonuna girer."
+  },
+  {
+    "id": "q54713",
+    "categoryIndex": 5,
+    "question": "Su topunda oyuncular topu genellikle kaç elle tutar?",
+    "options": [
+      "İki elle",
+      "Tek elle",
+      "Ayakla",
+      "Ellerini kullanamaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kaleci dışında oyuncular topu iki elle aynı anda tutamaz."
+  },
+  {
+    "id": "q54714",
+    "categoryIndex": 5,
+    "question": "Su topu kalecisi topa iki eliyle dokunabilir mi?",
+    "options": [
+      "Hayır",
+      "Yalnız penaltıda",
+      "Evet",
+      "Sadece mola sonrası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kaleci kendi alanında topu iki elle tutabilen tek oyuncudur."
+  },
+  {
+    "id": "q54715",
+    "categoryIndex": 5,
+    "question": "Kürek sporunda sporcu hareket yönüne nasıl oturur?",
+    "options": [
+      "Yüzü dönük",
+      "Yan oturur",
+      "Ayakta durur",
+      "Arkası dönük"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kürekçi çoğunlukla gittiği yönün tersine bakarak kürek çeker."
+  },
+  {
+    "id": "q54716",
+    "categoryIndex": 5,
+    "question": "Kano sprintte sporcu hangi tür kürek kullanır?",
+    "options": [
+      "Tek palalı kürek",
+      "Çift palalı kürek",
+      "Küreksiz",
+      "İki ayrı kürek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kano sporcusu tek diz üzerinde durup tek palalı küreği bir tarafta kullanır."
+  },
+  {
+    "id": "q54717",
+    "categoryIndex": 5,
+    "question": "Kayak sprintte sporcu hangi tür kürek kullanır?",
+    "options": [
+      "Tek palalı kürek",
+      "Çift palalı kürek",
+      "İki bağımsız kürek",
+      "Kürek kullanmaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kayak sporcusu oturarak iki uçlu kürekle dönüşümlü çekiş yapar."
+  },
+  {
+    "id": "q54718",
+    "categoryIndex": 5,
+    "question": "Yelken yarışında tekneyi ilerleten temel doğal güç nedir?",
+    "options": [
+      "Akıntı yalnızca",
+      "Motor",
+      "Rüzgâr",
+      "Yer çekimi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yelkenler rüzgârın enerjisini kaldırma ve itme kuvvetine dönüştürür."
+  },
+  {
+    "id": "q54719",
+    "categoryIndex": 5,
+    "question": "Sörfte sporcu dalga üzerinde ne kullanır?",
+    "options": [
+      "Kürek teknesi",
+      "Kayak",
+      "Trambolin",
+      "Tahta"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sörfçü dalganın eğimli yüzeyinde özel sörf tahtasıyla kayar."
+  },
+  {
+    "id": "q54720",
+    "categoryIndex": 5,
+    "question": "Dalgıçların su altında nefes almak için taşıdığı tüp sistemine genel olarak ne denir?",
+    "options": [
+      "Scuba",
+      "Sonar",
+      "Snorkel yalnızca",
+      "Hydrofoil"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "SCUBA, “self-contained underwater breathing apparatus” ifadesinin kısaltmasıdır."
+  }
+]

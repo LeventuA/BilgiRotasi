@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q55021",
+    "categoryIndex": 0,
+    "question": "Özgürlük Heykeli hangi adada bulunur?",
+    "options": [
+      "Ellis Island",
+      "Liberty Island",
+      "Manhattan Island",
+      "Roosevelt Island"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Özgürlük Heykeli New York Limanı’ndaki Liberty Island üzerinde yükselir."
+  },
+  {
+    "id": "q55022",
+    "categoryIndex": 0,
+    "question": "Golden Gate Köprüsü hangi şehirle özdeşleşir?",
+    "options": [
+      "Los Angeles",
+      "Seattle",
+      "San Francisco",
+      "San Diego"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Golden Gate Köprüsü San Francisco Körfezi’nin Pasifik’e açılan boğazını geçer."
+  },
+  {
+    "id": "q55023",
+    "categoryIndex": 0,
+    "question": "Christ the Redeemer heykeli hangi şehirde bulunur?",
+    "options": [
+      "São Paulo",
+      "Brasília",
+      "Salvador",
+      "Rio de Janeiro"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kurtarıcı İsa heykeli Rio de Janeiro’daki Corcovado Dağı’nın zirvesindedir."
+  },
+  {
+    "id": "q55024",
+    "categoryIndex": 0,
+    "question": "Burç Halife hangi şehirdedir?",
+    "options": [
+      "Dubai",
+      "Abu Dabi",
+      "Doha",
+      "Riyad"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Burç Halife, Birleşik Arap Emirlikleri’nin Dubai şehrinde yer alan dünyanın en yüksek binasıdır."
+  },
+  {
+    "id": "q55025",
+    "categoryIndex": 0,
+    "question": "Petronas İkiz Kuleleri hangi şehirdedir?",
+    "options": [
+      "Singapur",
+      "Kuala Lumpur",
+      "Bangkok",
+      "Cakarta"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Petronas Kuleleri Malezya’nın başkenti Kuala Lumpur’un simgesidir."
+  },
+  {
+    "id": "q55026",
+    "categoryIndex": 0,
+    "question": "Marina Bay Sands hangi şehir devletindedir?",
+    "options": [
+      "Monako",
+      "Hong Kong",
+      "Singapur",
+      "Makao"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Üç kuleyi bağlayan çatı terasıyla Marina Bay Sands Singapur’un kıyı siluetinde yer alır."
+  },
+  {
+    "id": "q55027",
+    "categoryIndex": 0,
+    "question": "Opera Binası ve Harbour Bridge hangi şehirde aynı limana bakar?",
+    "options": [
+      "Melbourne",
+      "Auckland",
+      "Cape Town",
+      "Sydney"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sydney Opera House ve Sydney Harbour Bridge kentin doğal limanındaki iki büyük simgedir."
+  },
+  {
+    "id": "q55028",
+    "categoryIndex": 0,
+    "question": "CN Tower hangi Kanada şehrindedir?",
+    "options": [
+      "Toronto",
+      "Vancouver",
+      "Montreal",
+      "Ottawa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "CN Tower Toronto şehir merkezinde yükselen iletişim ve gözlem kulesidir."
+  },
+  {
+    "id": "q55029",
+    "categoryIndex": 0,
+    "question": "Space Needle hangi ABD şehrindedir?",
+    "options": [
+      "Chicago",
+      "Seattle",
+      "Boston",
+      "Portland"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Space Needle 1962 Dünya Fuarı için Seattle’da inşa edildi."
+  },
+  {
+    "id": "q55030",
+    "categoryIndex": 0,
+    "question": "Gateway Arch hangi ABD şehrindedir?",
+    "options": [
+      "Denver",
+      "Dallas",
+      "St. Louis",
+      "Atlanta"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mississippi kıyısındaki Gateway Arch, ABD’nin batıya genişlemesini simgeler."
+  },
+  {
+    "id": "q55031",
+    "categoryIndex": 0,
+    "question": "Atomium hangi Avrupa başkentindedir?",
+    "options": [
+      "Amsterdam",
+      "Paris",
+      "Berlin",
+      "Brüksel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Atomium 1958 Dünya Fuarı için Brüksel’de büyütülmüş demir kristali biçiminde yapıldı."
+  },
+  {
+    "id": "q55032",
+    "categoryIndex": 0,
+    "question": "Brandenburg Kapısı hangi şehirdedir?",
+    "options": [
+      "Berlin",
+      "Münih",
+      "Viyana",
+      "Prag"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Brandenburg Kapısı Berlin’in bölünme ve birleşme tarihinin en tanınmış simgelerindendir."
+  },
+  {
+    "id": "q55033",
+    "categoryIndex": 0,
+    "question": "Charles Köprüsü hangi şehirde Vltava Nehri’ni geçer?",
+    "options": [
+      "Budapeşte",
+      "Prag",
+      "Viyana",
+      "Kraków"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Karl Köprüsü Prag’ın Eski Şehir ve Malá Strana bölgelerini birbirine bağlar."
+  },
+  {
+    "id": "q55034",
+    "categoryIndex": 0,
+    "question": "Zincir Köprü hangi iki yakayı birleştiren şehir simgesidir?",
+    "options": [
+      "Bratislava",
+      "Belgrad",
+      "Budapeşte",
+      "Zagreb"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Széchenyi Zincir Köprüsü Tuna üzerindeki Buda ve Peşte’yi birleştirir."
+  },
+  {
+    "id": "q55035",
+    "categoryIndex": 0,
+    "question": "Küçük Deniz Kızı heykeli hangi şehirdedir?",
+    "options": [
+      "Oslo",
+      "Stockholm",
+      "Helsinki",
+      "Kopenhag"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hans Christian Andersen masalından esinlenen heykel Kopenhag limanındadır."
+  },
+  {
+    "id": "q55036",
+    "categoryIndex": 0,
+    "question": "Manneken Pis heykeli hangi şehirdedir?",
+    "options": [
+      "Brüksel",
+      "Brugge",
+      "Gent",
+      "Antwerp"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Küçük işeyen çocuk heykeli Brüksel’in mizahi şehir simgesidir."
+  },
+  {
+    "id": "q55037",
+    "categoryIndex": 0,
+    "question": "Trevi Çeşmesi hangi şehirdedir?",
+    "options": [
+      "Floransa",
+      "Roma",
+      "Venedik",
+      "Napoli"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Barok Trevi Çeşmesi Roma’nın en ünlü çeşmelerinden biridir ve para atma geleneğiyle tanınır."
+  },
+  {
+    "id": "q55038",
+    "categoryIndex": 1,
+    "question": "The Dark Knight filminde Joker’i kim canlandırır?",
+    "options": [
+      "Joaquin Phoenix",
+      "Jack Nicholson",
+      "Heath Ledger",
+      "Jared Leto"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Heath Ledger Joker performansıyla ölümünden sonra En İyi Yardımcı Erkek Oyuncu Oscarını kazandı."
+  },
+  {
+    "id": "q55039",
+    "categoryIndex": 1,
+    "question": "Iron Man filminde Tony Stark’ı kim canlandırır?",
+    "options": [
+      "Chris Evans",
+      "Chris Hemsworth",
+      "Mark Ruffalo",
+      "Robert Downey Jr."
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Robert Downey Jr. 2008’den itibaren Marvel Sinematik Evreni’nin Tony Stark’ı oldu."
+  },
+  {
+    "id": "q55040",
+    "categoryIndex": 1,
+    "question": "Captain America’nın kalkanı hangi hayalî metalden yapılmıştır?",
+    "options": [
+      "Vibranyum",
+      "Adamantium",
+      "Mithril",
+      "Kryptonit"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Marvel evreninde Captain America’nın yuvarlak kalkanı büyük ölçüde vibranyumdan yapılmıştır."
+  },
+  {
+    "id": "q55041",
+    "categoryIndex": 1,
+    "question": "Wolverine’in iskeletine bağlanan hayalî metal hangisidir?",
+    "options": [
+      "Vibranyum",
+      "Adamantium",
+      "Beskar",
+      "Mithril"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Weapon X programı Wolverine’in kemiklerini adamantiumla kaplamıştır."
+  },
+  {
+    "id": "q55042",
+    "categoryIndex": 1,
+    "question": "Superman’i zayıflatan gezegen taşı hangisidir?",
+    "options": [
+      "Vibranyum",
+      "Adamantium",
+      "Kryptonit",
+      "Unobtainium"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Krypton gezegeninden gelen radyoaktif kryptonit Superman’in gücünü azaltır."
+  },
+  {
+    "id": "q55043",
+    "categoryIndex": 1,
+    "question": "Green Lantern’ın gücünü sağlayan temel nesne nedir?",
+    "options": [
+      "Sihirli çekiç",
+      "Kozmik küp",
+      "Altın kement",
+      "Güç yüzüğü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Green Lantern yüzüğü irade gücünü enerji yapıları oluşturmak için kullanır."
+  },
+  {
+    "id": "q55044",
+    "categoryIndex": 1,
+    "question": "Wonder Woman’ın gerçeği söyletmeye yarayan aracı hangisidir?",
+    "options": [
+      "Hakikat Kementi",
+      "Kaptan’ın kalkanı",
+      "Güç yüzüğü",
+      "Mızrak yayı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hakikat Kementiyle bağlanan kişi yalan söyleyemez."
+  },
+  {
+    "id": "q55045",
+    "categoryIndex": 1,
+    "question": "Doctor Who’daki başkarakterin türü nedir?",
+    "options": [
+      "Vulkan",
+      "Time Lord",
+      "Kree",
+      "Gallifreyan robot"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Doctor, Gallifrey gezegeninden gelen ve yenilenebilen bir Time Lord’dur."
+  },
+  {
+    "id": "q55046",
+    "categoryIndex": 1,
+    "question": "Star Trek’te “uzun yaşa ve başarılı ol” selamı hangi halkla ilişkilidir?",
+    "options": [
+      "Klingonlar",
+      "Romulanlar",
+      "Vulkanlar",
+      "Ferengiler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Spock’ın kullandığı el işareti ve söz Vulkan kültürünün barışçıl selamıdır."
+  },
+  {
+    "id": "q55047",
+    "categoryIndex": 1,
+    "question": "Battlestar Galactica’daki insan görünümlü makineler hangi adla bilinir?",
+    "options": [
+      "Replicant",
+      "Terminator",
+      "Droid",
+      "Cylon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Cylonlar insan kolonilerine saldıran ve bazı modelleri insanlardan ayırt edilemeyen yapay varlıklardır."
+  },
+  {
+    "id": "q55048",
+    "categoryIndex": 1,
+    "question": "The Expanse dizisinde asteroit kuşağında yaşayanlara ne denir?",
+    "options": [
+      "Belter",
+      "Spacer",
+      "Outer",
+      "Drifter"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Belterlar düşük yer çekiminde büyümüş, kendine özgü dil ve kültür geliştirmiş insanlardır."
+  },
+  {
+    "id": "q55049",
+    "categoryIndex": 1,
+    "question": "Westworld’de parkın insan benzeri robotlarına ne denir?",
+    "options": [
+      "Guest",
+      "Host",
+      "Replicant",
+      "Avatar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hostlar ziyaretçiler için hikâyeleri tekrar tekrar yaşayan biyomekanik yapay karakterlerdir."
+  },
+  {
+    "id": "q55050",
+    "categoryIndex": 1,
+    "question": "Black Mirror’daki “San Junipero” ne tür bir yerdir?",
+    "options": [
+      "Uzay istasyonu",
+      "Yer altı sığınağı",
+      "Sanal gerçeklik şehri",
+      "Robot fabrikası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "San Junipero insanların bilinçlerinin dijital ortamda yaşayabildiği nostaljik bir simülasyondur."
+  },
+  {
+    "id": "q55051",
+    "categoryIndex": 1,
+    "question": "The Handmaid’s Tale dizisindeki baskıcı devletin adı nedir?",
+    "options": [
+      "Panem",
+      "Oceania",
+      "Republic City",
+      "Gilead"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gilead kadınların haklarını ortadan kaldıran dinî totaliter rejimdir."
+  },
+  {
+    "id": "q55052",
+    "categoryIndex": 1,
+    "question": "The Queen’s Gambit dizisinin satranççı kahramanı kimdir?",
+    "options": [
+      "Beth Harmon",
+      "Alma Wheatley",
+      "Jolene",
+      "Cleo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Beth Harmon yetimhaneden dünya satranç sahnesine yükselen olağanüstü yetenekli oyuncudur."
+  },
+  {
+    "id": "q55053",
+    "categoryIndex": 1,
+    "question": "Chernobyl mini dizisindeki Sovyet bilim insanı kimdir?",
+    "options": [
+      "Boris Shcherbina",
+      "Valery Legasov",
+      "Anatoly Dyatlov",
+      "Viktor Bryukhanov"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Legasov kazanın nedenlerini araştıran ve tehlikenin boyutunu açıklamaya çalışan kimyagerdir."
+  },
+  {
+    "id": "q55054",
+    "categoryIndex": 1,
+    "question": "Band of Brothers hangi askerî birliği takip eder?",
+    "options": [
+      "Delta Force",
+      "SEAL Team Six",
+      "Easy Company",
+      "SAS Bravo"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Dizi 101. Hava İndirme Tümeni 506. Alay’ın Easy Company askerlerini izler."
+  },
+  {
+    "id": "q55055",
+    "categoryIndex": 2,
+    "question": "İlk yapay uydu Sputnik 1 hangi yılda uzaya gönderildi?",
+    "options": [
+      "1945",
+      "1961",
+      "1969",
+      "1957"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sovyetler Birliği’nin Sputnik 1’i 4 Ekim 1957’de yörüngeye girdi."
+  },
+  {
+    "id": "q55056",
+    "categoryIndex": 2,
+    "question": "Dünya yörüngesine gönderilen ilk köpeğin adı neydi?",
+    "options": [
+      "Laika",
+      "Belka",
+      "Strelka",
+      "Hachiko"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Laika 1957’de Sputnik 2 ile Dünya yörüngesine çıkan ilk köpek oldu."
+  },
+  {
+    "id": "q55057",
+    "categoryIndex": 2,
+    "question": "Uzaya çıkan ilk Amerikalı kimdir?",
+    "options": [
+      "John Glenn",
+      "Alan Shepard",
+      "Neil Armstrong",
+      "Buzz Aldrin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Alan Shepard 1961’de Freedom 7 ile kısa yörünge altı uçuş yaptı."
+  },
+  {
+    "id": "q55058",
+    "categoryIndex": 2,
+    "question": "Dünya yörüngesine giren ilk Amerikalı kimdir?",
+    "options": [
+      "Alan Shepard",
+      "Gus Grissom",
+      "John Glenn",
+      "Scott Carpenter"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "John Glenn 1962’de Friendship 7 ile Dünya çevresinde üç tur attı."
+  },
+  {
+    "id": "q55059",
+    "categoryIndex": 2,
+    "question": "Uzayda yürüyen ilk Amerikalı kimdir?",
+    "options": [
+      "John Glenn",
+      "Pete Conrad",
+      "Jim Lovell",
+      "Ed White"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Ed White 1965’te Gemini 4 görevi sırasında yaklaşık 23 dakika araç dışında kaldı."
+  },
+  {
+    "id": "q55060",
+    "categoryIndex": 2,
+    "question": "Ay’a insan taşıyan uzay programının adı neydi?",
+    "options": [
+      "Apollo",
+      "Gemini",
+      "Mercury",
+      "Voyager"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "NASA’nın Apollo programı 1969-1972 arasında altı insanlı Ay inişi gerçekleştirdi."
+  },
+  {
+    "id": "q55061",
+    "categoryIndex": 2,
+    "question": "Apollo 11 komuta modülünde Ay yörüngesinde kalan astronot kimdi?",
+    "options": [
+      "Buzz Aldrin",
+      "Michael Collins",
+      "Neil Armstrong",
+      "Jim Lovell"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Collins Columbia modülünü yönetirken Armstrong ve Aldrin Ay yüzeyine indi."
+  },
+  {
+    "id": "q55062",
+    "categoryIndex": 2,
+    "question": "Apollo 12’nin Ay’a inen komutanı kimdi?",
+    "options": [
+      "Alan Shepard",
+      "David Scott",
+      "Pete Conrad",
+      "Gene Cernan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Pete Conrad Kasım 1969’da Ay’a ayak basan üçüncü insan oldu."
+  },
+  {
+    "id": "q55063",
+    "categoryIndex": 2,
+    "question": "Ay’da golf topuna vuran astronot kimdi?",
+    "options": [
+      "Buzz Aldrin",
+      "John Young",
+      "Gene Cernan",
+      "Alan Shepard"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Apollo 14 komutanı Shepard gizlice getirdiği golf sopası başlığıyla iki topa vurdu."
+  },
+  {
+    "id": "q55064",
+    "categoryIndex": 2,
+    "question": "Ay’da otomobil benzeri araç ilk kez hangi Apollo görevinde kullanıldı?",
+    "options": [
+      "Apollo 15",
+      "Apollo 11",
+      "Apollo 13",
+      "Apollo 17"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Lunar Roving Vehicle ilk kez Apollo 15’te astronotların daha geniş alan keşfetmesini sağladı."
+  },
+  {
+    "id": "q55065",
+    "categoryIndex": 2,
+    "question": "Ay’da yürüyen son insan kimdir?",
+    "options": [
+      "Harrison Schmitt",
+      "Gene Cernan",
+      "David Scott",
+      "John Young"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Apollo 17 komutanı Gene Cernan Aralık 1972’de Ay yüzeyinden ayrılan son kişiydi."
+  },
+  {
+    "id": "q55066",
+    "categoryIndex": 2,
+    "question": "İlk uzay mekiğinin adı neydi?",
+    "options": [
+      "Challenger",
+      "Discovery",
+      "Columbia",
+      "Atlantis"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Columbia 1981’de STS-1 göreviyle uzaya çıkan ilk operasyonel uzay mekiği oldu."
+  },
+  {
+    "id": "q55067",
+    "categoryIndex": 2,
+    "question": "Hubble Uzay Teleskobu hangi yıl fırlatıldı?",
+    "options": [
+      "1977",
+      "1985",
+      "2001",
+      "1990"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hubble 24 Nisan 1990’da Discovery uzay mekiğiyle yörüngeye taşındı."
+  },
+  {
+    "id": "q55068",
+    "categoryIndex": 2,
+    "question": "İlk uzay istasyonu hangisidir?",
+    "options": [
+      "Salyut 1",
+      "Skylab",
+      "Mir",
+      "ISS"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sovyet Salyut 1 istasyonu 1971’de yörüngeye gönderildi."
+  },
+  {
+    "id": "q55069",
+    "categoryIndex": 2,
+    "question": "ABD’nin ilk uzay istasyonu hangisidir?",
+    "options": [
+      "Mir",
+      "Skylab",
+      "Salyut 1",
+      "Freedom"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Skylab 1973-1974 arasında üç astronot ekibini ağırladı."
+  },
+  {
+    "id": "q55070",
+    "categoryIndex": 2,
+    "question": "Mir uzay istasyonu hangi ülke tarafından kuruldu?",
+    "options": [
+      "ABD",
+      "Çin",
+      "Sovyetler Birliği",
+      "Japonya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mir 1986’da Sovyetler tarafından başlatıldı ve daha sonra Rusya tarafından işletildi."
+  },
+  {
+    "id": "q55071",
+    "categoryIndex": 2,
+    "question": "Uluslararası Uzay İstasyonu’nun ilk modülü hangi yıl fırlatıldı?",
+    "options": [
+      "1988",
+      "2005",
+      "2011",
+      "1998"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Rus Zarya modülü Kasım 1998’de ISS’nin yörüngedeki ilk parçası oldu."
+  },
+  {
+    "id": "q55072",
+    "categoryIndex": 3,
+    "question": "Yunan mitolojisinde Güneş’e çok yaklaşarak düşen genç kimdir?",
+    "options": [
+      "İkarus",
+      "Perseus",
+      "Orpheus",
+      "Theseus"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İkarus balmumu kanatlarla çok yükselince Güneş kanatlarını eritmiş ve denize düşmüştür."
+  },
+  {
+    "id": "q55073",
+    "categoryIndex": 3,
+    "question": "Minotor hangi labirentte yaşar?",
+    "options": [
+      "Hades Labirenti",
+      "Girit Labirenti",
+      "Delphi Mağarası",
+      "Olimpos Sarayı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kral Minos’un Girit’te yaptırdığı labirentte insan gövdeli boğa başlı Minotor tutulur."
+  },
+  {
+    "id": "q55074",
+    "categoryIndex": 3,
+    "question": "Minotor’u öldüren kahraman kimdir?",
+    "options": [
+      "Perseus",
+      "Herakles",
+      "Theseus",
+      "Jason"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Theseus Ariadne’nin ipi sayesinde labirentten çıkmayı başarır."
+  },
+  {
+    "id": "q55075",
+    "categoryIndex": 3,
+    "question": "Medusa’nın bakışına maruz kalanlara ne olur?",
+    "options": [
+      "Uykuya dalarlar",
+      "Görünmez olurlar",
+      "Kuşa dönüşürler",
+      "Taşa dönüşürler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gorgon Medusa’nın yüzüne doğrudan bakan canlılar taşa dönüşür."
+  },
+  {
+    "id": "q55076",
+    "categoryIndex": 3,
+    "question": "Medusa’yı öldüren kahraman kimdir?",
+    "options": [
+      "Perseus",
+      "Theseus",
+      "Achilles",
+      "Odysseus"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Perseus parlak kalkanını ayna gibi kullanarak Medusa’nın doğrudan bakışından kaçınır."
+  },
+  {
+    "id": "q55077",
+    "categoryIndex": 3,
+    "question": "Altın Post’u arayan kahraman kimdir?",
+    "options": [
+      "Orpheus",
+      "Jason",
+      "Paris",
+      "Hector"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Jason ve Argonautlar Kolhis’e giderek efsanevi Altın Post’u ele geçirmeye çalışır."
+  },
+  {
+    "id": "q55078",
+    "categoryIndex": 3,
+    "question": "Yeraltı dünyasından sevgilisini müzikle çıkarmaya çalışan kişi kimdir?",
+    "options": [
+      "Hermes",
+      "Apollo",
+      "Orpheus",
+      "Ares"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Orpheus’un müziği Hades’i etkiler ancak geriye bakma yasağını çiğnediği için Eurydike’yi kaybeder."
+  },
+  {
+    "id": "q55079",
+    "categoryIndex": 3,
+    "question": "Troya Savaşı’nı başlatan güzelliğiyle ünlü kadın kimdir?",
+    "options": [
+      "Penelope",
+      "Andromache",
+      "Cassandra",
+      "Helen"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sparta Kraliçesi Helen’in Paris’le Troya’ya gitmesi Yunan ordularının seferine bahane oldu."
+  },
+  {
+    "id": "q55080",
+    "categoryIndex": 3,
+    "question": "Achilles’in tek zayıf noktası neresidir?",
+    "options": [
+      "Topuğu",
+      "Omzu",
+      "Kalbi",
+      "Bileği"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Efsaneye göre annesi onu Styx Nehri’ne daldırırken tuttuğu topuğu korunmasız kalmıştır."
+  },
+  {
+    "id": "q55081",
+    "categoryIndex": 3,
+    "question": "Pandora’nın açtığı şey nedir?",
+    "options": [
+      "Altın kapı",
+      "Yasak kutu veya kavanoz",
+      "Yeraltı tüneli",
+      "Büyülü kitap"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pandora kabı açınca dünyadaki kötülükler yayılır; içeride yalnız umut kalır."
+  },
+  {
+    "id": "q55082",
+    "categoryIndex": 3,
+    "question": "Narkissos neye âşık olur?",
+    "options": [
+      "Ay’a",
+      "Bir heykele",
+      "Kendi yansımasına",
+      "Bir tanrıçaya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Narkissos sudaki kendi görüntüsünden ayrılamaz ve adı narsisizm kavramına kaynak olur."
+  },
+  {
+    "id": "q55083",
+    "categoryIndex": 3,
+    "question": "Sisyphos’un sonsuz cezası nedir?",
+    "options": [
+      "Denizi kovayla boşaltmak",
+      "Ateşte yürümek",
+      "Gökyüzünü taşımak",
+      "Kayayı tepeye yuvarlamak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kaya zirveye yaklaşınca geri yuvarlanır ve Sisyphos işe yeniden başlar."
+  },
+  {
+    "id": "q55084",
+    "categoryIndex": 3,
+    "question": "Atlas’ın cezası nedir?",
+    "options": [
+      "Gökyüzünü omuzlarında taşımak",
+      "Yeraltını korumak",
+      "Denizi dondurmak",
+      "Güneş arabasını sürmek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Titan Atlas dünyayı değil, gök kubbeyi taşımakla cezalandırılır."
+  },
+  {
+    "id": "q55085",
+    "categoryIndex": 3,
+    "question": "Prometheus insanlara ne getirdiği için cezalandırılır?",
+    "options": [
+      "Su",
+      "Ateş",
+      "Yazı",
+      "Altın"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Prometheus tanrılardan ateşi çalarak insanlara verir ve Zeus tarafından kayaya zincirlenir."
+  },
+  {
+    "id": "q55086",
+    "categoryIndex": 3,
+    "question": "Kral Midas dokunduğu şeyleri neye çevirir?",
+    "options": [
+      "Gümüşe",
+      "Taşa",
+      "Altına",
+      "Buz kristaline"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Midas’ın dileği yemek ve sevdikleri dâhil her şeyi altına dönüştürünce lanete dönüşür."
+  },
+  {
+    "id": "q55087",
+    "categoryIndex": 3,
+    "question": "Cassandra’nın laneti nedir?",
+    "options": [
+      "Geleceği görememesi",
+      "Her sözü yalan olması",
+      "Sonsuza kadar uyuması",
+      "Doğru kehanetlerine kimsenin inanmaması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Apollo Cassandra’ya kehanet yeteneği verir ancak reddedilince kimsenin ona inanmayacağı lanetini koyar."
+  },
+  {
+    "id": "q55088",
+    "categoryIndex": 3,
+    "question": "Penelope, Odysseus’u beklerken taliplerini nasıl oyalar?",
+    "options": [
+      "Dokuduğu kefeni gece sökerek",
+      "Her gün yarış düzenleyerek",
+      "Sarayı terk ederek",
+      "Gemi yaparak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Penelope dokuma bitince evleneceğini söyler, gündüz dokuduğunu gece gizlice söker."
+  },
+  {
+    "id": "q55089",
+    "categoryIndex": 4,
+    "question": "İnsan dilinin tat bölgeleri kesin biçimde ayrı mıdır?",
+    "options": [
+      "Evet",
+      "Hayır",
+      "Yalnız çocuklarda",
+      "Sadece acı tat ayrıdır"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dil haritası efsanedir; tat reseptörleri dilin farklı bölgelerine yayılmıştır."
+  },
+  {
+    "id": "q55090",
+    "categoryIndex": 4,
+    "question": "İnsanların beş temel tadına ek olarak kabul edilen umami neyi ifade eder?",
+    "options": [
+      "Aşırı acıyı",
+      "Metalik tadı",
+      "Etli ve glutamatlı tadı",
+      "Soğukluğu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Umami özellikle glutamat içeren et, peynir, mantar ve domates gibi besinlerde algılanır."
+  },
+  {
+    "id": "q55091",
+    "categoryIndex": 4,
+    "question": "Acı biberde yanma hissi oluşturan madde hangisidir?",
+    "options": [
+      "Kafein",
+      "Mentol",
+      "Limonen",
+      "Kapsaisin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kapsaisin ısı ve ağrı reseptörlerini etkinleştirerek gerçek sıcaklık artmadan yanma hissi yaratır."
+  },
+  {
+    "id": "q55092",
+    "categoryIndex": 4,
+    "question": "Nane neden ağızda serinlik hissi oluşturur?",
+    "options": [
+      "Mentol soğuk reseptörlerini etkinleştirir",
+      "Ağız sıcaklığını sıfıra indirir",
+      "Suyu dondurur",
+      "Oksijeni emer"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Mentol TRPM8 reseptörlerini uyararak fiziksel sıcaklık değişmeden serinlik algısı yaratır."
+  },
+  {
+    "id": "q55093",
+    "categoryIndex": 4,
+    "question": "Gazlı içeceklerdeki kabarcıkların temel gazı nedir?",
+    "options": [
+      "Oksijen",
+      "Karbondioksit",
+      "Hidrojen",
+      "Azot"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Basınç altında çözünen karbondioksit kapak açılınca gaz hâlinde kabarcıklar oluşturur."
+  },
+  {
+    "id": "q55094",
+    "categoryIndex": 4,
+    "question": "Ekmek hamurunu kabartan maya hangi gazı üretir?",
+    "options": [
+      "Oksijen",
+      "Helyum",
+      "Karbondioksit",
+      "Klor"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Maya şekeri fermente ederken karbondioksit üretir; gaz hamurdaki ağlarda tutulur."
+  },
+  {
+    "id": "q55095",
+    "categoryIndex": 4,
+    "question": "Yoğurt oluşurken bakteriler sütteki hangi şekeri parçalar?",
+    "options": [
+      "Glikojen",
+      "Nişasta",
+      "Selüloz",
+      "Laktoz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Laktik asit bakterileri laktozu aside dönüştürür ve süt proteinlerinin pıhtılaşmasını sağlar."
+  },
+  {
+    "id": "q55096",
+    "categoryIndex": 4,
+    "question": "Peynir yapımında sütü pıhtılaştıran geleneksel enzim karışımına ne denir?",
+    "options": [
+      "Peynir mayası",
+      "Ekmek mayası",
+      "Amilaz",
+      "Katalaz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Rennet olarak da bilinen peynir mayası kazein proteinlerini pıhtılaştırır."
+  },
+  {
+    "id": "q55097",
+    "categoryIndex": 4,
+    "question": "Elma kesildikten sonra neden kahverengileşir?",
+    "options": [
+      "Şeker yanması nedeniyle",
+      "Enzimatik oksidasyon nedeniyle",
+      "Su donduğu için",
+      "Bakteri anında çoğaldığı için"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hücreler kesilince enzimler oksijenle temas eder ve kahverengi pigmentler oluşur."
+  },
+  {
+    "id": "q55098",
+    "categoryIndex": 4,
+    "question": "Limon suyu kesilmiş elmanın kararmasını neden yavaşlatır?",
+    "options": [
+      "Elmayı ısıttığı için",
+      "Oksijeni ürettiği için",
+      "Asitlik ve antioksidan etkisiyle",
+      "Şekeri artırdığı için"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Düşük pH ve C vitamini kahverengileşme enzimlerinin etkisini azaltır."
+  },
+  {
+    "id": "q55099",
+    "categoryIndex": 4,
+    "question": "Yumurta pişince beyazının katılaşmasının nedeni nedir?",
+    "options": [
+      "Suyun kristalleşmesi",
+      "Kalsiyumun erimesi",
+      "Yağın donması",
+      "Proteinlerin yapısının değişmesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Isı proteinleri açar ve birbirine bağlayarak katı bir ağ oluşturur."
+  },
+  {
+    "id": "q55100",
+    "categoryIndex": 4,
+    "question": "Patates kızarırken oluşan kahverengi ve lezzetli yüzey hangi tepkimeyle ilişkilidir?",
+    "options": [
+      "Maillard tepkimesi",
+      "Fotosentez",
+      "Nötrleşme",
+      "Elektroliz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Amino asitlerle indirgen şekerler yüksek sıcaklıkta tepkimeye girerek aroma ve renk bileşikleri üretir."
+  },
+  {
+    "id": "q55101",
+    "categoryIndex": 4,
+    "question": "Karamelizasyon hangi besin bileşeninin ısıyla değişmesidir?",
+    "options": [
+      "Proteinin",
+      "Şekerin",
+      "Tuzun",
+      "Suyun"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Şeker yüksek sıcaklıkta parçalanıp kahverengi renk ve yeni aroma molekülleri oluşturur."
+  },
+  {
+    "id": "q55102",
+    "categoryIndex": 4,
+    "question": "Mayonez neden yağ ve suyun ayrılmadan durabildiği bir sostur?",
+    "options": [
+      "Yağ buharlaştığı için",
+      "Su donduğu için",
+      "Yumurta sarısı emülgatör olduğu için",
+      "Tuz mıknatıs olduğu için"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yumurta sarısındaki lesitin yağ damlacıklarını su içinde kararlı tutan emülsiyon oluşturur."
+  },
+  {
+    "id": "q55103",
+    "categoryIndex": 4,
+    "question": "Çikolatanın elde eriyip oda sıcaklığında katı kalmasını sağlayan yağ hangisidir?",
+    "options": [
+      "Zeytinyağı",
+      "Tereyağı",
+      "Hindistan cevizi suyu",
+      "Kakao yağı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kakao yağının erime aralığı insan vücut sıcaklığına yakın olduğu için çikolata ağızda hızla erir."
+  },
+  {
+    "id": "q55104",
+    "categoryIndex": 4,
+    "question": "Dondurmada büyük buz kristallerini azaltmak için üretim sırasında ne yapılır?",
+    "options": [
+      "Karışım dondurulurken çalkalanır",
+      "Yalnız güneşte tutulur",
+      "Tuz tamamen çıkarılır",
+      "Su eklenmez"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sürekli karıştırma havayı dağıtır ve buz kristallerinin büyümesini sınırlar."
+  },
+  {
+    "id": "q55105",
+    "categoryIndex": 5,
+    "question": "Bir futbol takımı Dünya Kupası kupasını kalıcı olarak saklayabilir mi?",
+    "options": [
+      "Evet, bir kez kazanırsa",
+      "Hayır",
+      "Yalnız üç kez kazanırsa",
+      "Sadece ev sahibi olursa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Güncel FIFA Dünya Kupası orijinali FIFA’da kalır; şampiyona altın kaplama bir kopya verilir."
+  },
+  {
+    "id": "q55106",
+    "categoryIndex": 5,
+    "question": "Eski Jules Rimet Kupası’nı üç kez kazanarak kalıcı alan ülke hangisidir?",
+    "options": [
+      "İtalya",
+      "Almanya",
+      "Brezilya",
+      "Uruguay"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Brezilya 1970’te üçüncü şampiyonluğa ulaşınca kurallar gereği Jules Rimet Kupası’nı aldı."
+  },
+  {
+    "id": "q55107",
+    "categoryIndex": 5,
+    "question": "Jules Rimet Kupası daha sonra ne oldu?",
+    "options": [
+      "Müzede eridi",
+      "Denize düştü",
+      "FIFA tarafından satıldı",
+      "Çalındı ve bulunamadı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kupa 1983’te Brezilya’da çalındı ve bir daha bulunamadı."
+  },
+  {
+    "id": "q55108",
+    "categoryIndex": 5,
+    "question": "Dünya Kupası maçlarında kullanılan ilk sarı ve kırmızı kartlar hangi turnuvada görüldü?",
+    "options": [
+      "1970 Dünya Kupası",
+      "1950 Dünya Kupası",
+      "1966 Dünya Kupası",
+      "1982 Dünya Kupası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kart sistemi İngiliz hakem Ken Aston’ın önerisiyle 1970 Meksika turnuvasında uygulandı."
+  },
+  {
+    "id": "q55109",
+    "categoryIndex": 5,
+    "question": "Sarı ve kırmızı kart fikri hangi günlük sistemden esinlenmiştir?",
+    "options": [
+      "Posta pullarından",
+      "Trafik ışıklarından",
+      "Oyun kartlarından",
+      "Tren biletlerinden"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ken Aston sarının uyarı, kırmızının dur anlamını trafik ışıklarından uyarladı."
+  },
+  {
+    "id": "q55110",
+    "categoryIndex": 5,
+    "question": "Futbol Dünya Kupası’nda final maçının beraber bitmesi hâlinde normalde ne yapılır?",
+    "options": [
+      "Kura çekilir",
+      "İki takım şampiyon olur",
+      "Uzatma ve gerekirse penaltılar",
+      "Ertesi yıl tekrar oynanır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Eleme finalinde 90 dakika eşitse iki 15 dakikalık uzatma ve ardından seri penaltılar oynanır."
+  },
+  {
+    "id": "q55111",
+    "categoryIndex": 5,
+    "question": "Basketbolda NBA şampiyonuna verilen kupanın adı nedir?",
+    "options": [
+      "Lombardi Kupası",
+      "Stanley Kupası",
+      "Commissioner’s Trophy",
+      "Larry O’Brien Kupası"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Larry O’Brien NBA Championship Trophy, final serisini kazanan takıma verilir."
+  },
+  {
+    "id": "q55112",
+    "categoryIndex": 5,
+    "question": "Amerikan futbolunda Super Bowl şampiyonuna verilen kupa hangisidir?",
+    "options": [
+      "Vince Lombardi Kupası",
+      "Larry O’Brien Kupası",
+      "Stanley Kupası",
+      "Claret Jug"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kupa Green Bay Packers’ın efsanevi koçu Vince Lombardi’nin adını taşır."
+  },
+  {
+    "id": "q55113",
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde NHL şampiyonuna verilen kupa hangisidir?",
+    "options": [
+      "Davis Kupası",
+      "Stanley Kupası",
+      "Ryder Kupası",
+      "Webb Ellis Kupası"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Stanley Cup profesyonel Kuzey Amerika sporlarındaki en eski şampiyonluk kupalarından biridir."
+  },
+  {
+    "id": "q55114",
+    "categoryIndex": 5,
+    "question": "Beyzbolda MLB şampiyonuna verilen kupa hangisidir?",
+    "options": [
+      "Stanley Kupası",
+      "Larry O’Brien Kupası",
+      "Commissioner’s Trophy",
+      "Ashes Urn"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "World Series kazanan takım Commissioner’s Trophy’yi alır."
+  },
+  {
+    "id": "q55115",
+    "categoryIndex": 5,
+    "question": "Ragbi Dünya Kupası kupasının adı nedir?",
+    "options": [
+      "Calcutta Kupası",
+      "Bledisloe Kupası",
+      "Six Nations Shield",
+      "Webb Ellis Kupası"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kupa ragbi oyununu başlattığı efsane edilen William Webb Ellis’in adını taşır."
+  },
+  {
+    "id": "q55116",
+    "categoryIndex": 5,
+    "question": "Teniste Davis Kupası hangi tür organizasyondur?",
+    "options": [
+      "Erkek millî takım turnuvası",
+      "Kadınlar tekler ligi",
+      "Kulüp şampiyonası",
+      "Gençler Grand Slam’i"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Davis Cup ülkelerin erkek tenis takımları arasında oynanan köklü bir turnuvadır."
+  },
+  {
+    "id": "q55117",
+    "categoryIndex": 5,
+    "question": "Kadın millî tenis takımlarının büyük turnuvasının güncel adı nedir?",
+    "options": [
+      "Davis Cup",
+      "Billie Jean King Cup",
+      "Laver Cup",
+      "Hopman Trophy"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Eski Fed Cup, tenis efsanesi Billie Jean King’in onuruna yeniden adlandırıldı."
+  },
+  {
+    "id": "q55118",
+    "categoryIndex": 5,
+    "question": "Golfte ABD ile Avrupa arasında oynanan takım kupası hangisidir?",
+    "options": [
+      "Davis Cup",
+      "America’s Cup",
+      "Ryder Cup",
+      "Ashes"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ryder Cup iki yılda bir ABD ve Avrupa’nın erkek golf takımlarını karşılaştırır."
+  },
+  {
+    "id": "q55119",
+    "categoryIndex": 5,
+    "question": "Yelkende dünyanın en eski uluslararası spor kupalarından biri hangisidir?",
+    "options": [
+      "Stanley Cup",
+      "Ryder Cup",
+      "Davis Cup",
+      "America’s Cup"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "America’s Cup ilk kez 1851’de düzenlenen prestijli yelken yarışmasıdır."
+  },
+  {
+    "id": "q55120",
+    "categoryIndex": 5,
+    "question": "Krikette İngiltere ile Avustralya arasındaki ünlü seri hangisidir?",
+    "options": [
+      "The Ashes",
+      "Six Nations",
+      "Bledisloe Cup",
+      "Calcutta Cup"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "The Ashes adı 1882’de İngiliz kriketinin sembolik “külleri” üzerine yazılan hiciv ilanından gelir."
+  }
+]

@@ -1,0 +1,19 @@
+BİLGİ ROTASI – SORU BANKASI İÇERİK NOTU
+
+Bu soru bankası Bilgi Rotası için özgün cümlelerle hazırlanmıştır.
+Televizyon yarışmalarından veya ücretli soru paketlerinden doğrudan
+kopyalanmış bir içerik kullanılmamıştır.
+
+İçerik yaklaşımı:
+- Güncelliği hızla değişen fiyatlar, görevdeki siyasetçiler ve anlık
+  rekorlar yerine daha kalıcı bilgiler tercih edilmiştir.
+- Her soruda dört farklı seçenek ve kısa bir açıklama bulunur.
+- Eski q001–q120 soruları kimlikleriyle birlikte korunmuştur.
+- 2880 yeni soru eklenmiştir.
+- Yapısal kalite kontrolleri otomatik olarak uygulanmıştır.
+
+Not:
+3000 soruluk büyük bir içerik havuzunda sonradan fark edilebilecek bir
+yazım veya bilgi hatası ihtimali tamamen sıfır değildir. Soru kimlikleri
+q001–q3000 biçiminde olduğu için ileride tek bir soruyu bulup düzeltmek
+kolaydır.

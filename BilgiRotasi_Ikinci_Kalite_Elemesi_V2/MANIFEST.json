@@ -1,0 +1,26 @@
+{
+  "project": "LeventuA/BilgiRotasi",
+  "bundle": "BilgiRotasi_Ikinci_Kalite_Elemesi_V2",
+  "version": "2.0",
+  "createdOn": "2026-07-23",
+  "newQuestionsGenerated": 0,
+  "fixedCategoryQuotaRemoved": true,
+  "preparedAgainstGitBlobSha": "0e79e826226a044356a65f5b5fdb43737f76036d",
+  "expectedCurrentQuestionCount": 1668,
+  "localTest": {
+    "status": "PASS",
+    "sourceCount": 999,
+    "keepCount": 453,
+    "rewriteCount": 277,
+    "rejectCount": 269,
+    "categoryAfter": {
+      "Spor": 54,
+      "Sanat & Edebiyat": 161,
+      "Eğlence": 69,
+      "Coğrafya": 29,
+      "Tarih": 54,
+      "Bilim & Doğa": 86
+    },
+    "applyBackupTest": "PASS"
+  }
+}

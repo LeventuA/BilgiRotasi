@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q53621",
+    "categoryIndex": 0,
+    "question": "Kayalara oyulmuş El-Hazne yapısıyla ünlü Petra hangi ülkededir?",
+    "options": [
+      "Mısır",
+      "Ürdün",
+      "Lübnan",
+      "Suriye"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Petra, Ürdün’ün güneyinde Nabatiler tarafından kumtaşı kayalıklara oyulmuş antik bir kenttir."
+  },
+  {
+    "id": "q53622",
+    "categoryIndex": 0,
+    "question": "Chichén Itzá antik kenti hangi ülkededir?",
+    "options": [
+      "Guatemala",
+      "Peru",
+      "Meksika",
+      "Belize"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Chichén Itzá, Meksika’nın Yucatán Yarımadası’nda yer alan önemli bir Maya kentidir."
+  },
+  {
+    "id": "q53623",
+    "categoryIndex": 0,
+    "question": "Angkor Wat tapınağı hangi ülkededir?",
+    "options": [
+      "Tayland",
+      "Laos",
+      "Myanmar",
+      "Kamboçya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Angkor Wat, Kamboçya’da 12. yüzyılda inşa edilmiş dev bir tapınak kompleksidir."
+  },
+  {
+    "id": "q53624",
+    "categoryIndex": 0,
+    "question": "Tac Mahal hangi şehirde bulunur?",
+    "options": [
+      "Agra",
+      "Delhi",
+      "Jaipur",
+      "Varanasi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tac Mahal, Hindistan’ın Agra şehrinde Babür hükümdarı Şah Cihan tarafından yaptırılmıştır."
+  },
+  {
+    "id": "q53625",
+    "categoryIndex": 0,
+    "question": "Gize Piramitleri hangi ülkenin başkentine yakın konumdadır?",
+    "options": [
+      "Sudan",
+      "Mısır",
+      "Ürdün",
+      "Libya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Gize Piramitleri, Mısır’ın başkenti Kahire’nin batı kenarında yer alır."
+  },
+  {
+    "id": "q53626",
+    "categoryIndex": 0,
+    "question": "Afrika’nın en büyük baobab ağaçları caddesi hangi ülkededir?",
+    "options": [
+      "Mozambik",
+      "Tanzanya",
+      "Madagaskar",
+      "Senegal"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Baobablar Caddesi, Madagaskar’ın batısında dev ağaçların iki yana sıralandığı ünlü bir manzaradır."
+  },
+  {
+    "id": "q53627",
+    "categoryIndex": 0,
+    "question": "Gökkuşağı renkli kaya katmanlarıyla tanınan Zhangye Danxia hangi ülkededir?",
+    "options": [
+      "Moğolistan",
+      "Kazakistan",
+      "Nepal",
+      "Çin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Zhangye Danxia, Çin’in Gansu bölgesinde farklı renklerde tortul kaya tabakalarıyla tanınır."
+  },
+  {
+    "id": "q53628",
+    "categoryIndex": 0,
+    "question": "Antelope Canyon hangi ABD eyaletindedir?",
+    "options": [
+      "Arizona",
+      "Utah",
+      "Nevada",
+      "New Mexico"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Antelope Canyon, Arizona’daki Navajo topraklarında su erozyonuyla oluşmuş dar bir yarık kanyondur."
+  },
+  {
+    "id": "q53629",
+    "categoryIndex": 0,
+    "question": "Gökkuşağı Dağı olarak bilinen Vinicunca hangi ülkededir?",
+    "options": [
+      "Bolivya",
+      "Peru",
+      "Ekvador",
+      "Şili"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Vinicunca, Peru Andları’nda mineral katmanlarının oluşturduğu renkli şeritlerle tanınır."
+  },
+  {
+    "id": "q53630",
+    "categoryIndex": 0,
+    "question": "Büyük Mavi Çukur hangi ülkenin açıklarındadır?",
+    "options": [
+      "Bahamalar",
+      "Küba",
+      "Belize",
+      "Jamaika"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Great Blue Hole, Belize Set Resifi içinde yer alan dairesel ve derin bir deniz çukurudur."
+  },
+  {
+    "id": "q53631",
+    "categoryIndex": 0,
+    "question": "Bora Bora hangi ada grubunun parçasıdır?",
+    "options": [
+      "Hawaii",
+      "Kanarya Adaları",
+      "Seyşeller",
+      "Fransız Polinezyası"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bora Bora, Güney Pasifik’te Fransa’ya bağlı Fransız Polinezyası içindeki Society Adaları’ndadır."
+  },
+  {
+    "id": "q53632",
+    "categoryIndex": 0,
+    "question": "Beyaz evleri ve mavi kubbeleriyle tanınan Santorini hangi ülkededir?",
+    "options": [
+      "Yunanistan",
+      "İtalya",
+      "Hırvatistan",
+      "Malta"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Santorini, Ege Denizi’ndeki Kiklad Adaları’na bağlı volkanik bir Yunan adasıdır."
+  },
+  {
+    "id": "q53633",
+    "categoryIndex": 0,
+    "question": "Milford Sound fiyordu hangi ülkededir?",
+    "options": [
+      "Avustralya",
+      "Yeni Zelanda",
+      "Norveç",
+      "Kanada"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Milford Sound, Yeni Zelanda’nın Güney Adası’ndaki Fiordland bölgesinde yer alır."
+  },
+  {
+    "id": "q53634",
+    "categoryIndex": 0,
+    "question": "Aoraki/Mount Cook hangi ülkenin en yüksek dağıdır?",
+    "options": [
+      "Avustralya",
+      "Papua Yeni Gine",
+      "Yeni Zelanda",
+      "Endonezya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Aoraki/Mount Cook, Yeni Zelanda’nın Güney Adası’ndaki Güney Alpleri’nde yükselir."
+  },
+  {
+    "id": "q53635",
+    "categoryIndex": 0,
+    "question": "Tekapo Gölü hangi ülkededir?",
+    "options": [
+      "İzlanda",
+      "Kanada",
+      "Şili",
+      "Yeni Zelanda"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tekapo Gölü, buzul ununun verdiği turkuaz rengiyle Yeni Zelanda’nın Güney Adası’nda bulunur."
+  },
+  {
+    "id": "q53636",
+    "categoryIndex": 0,
+    "question": "Pamukkale travertenleri hangi Türk ilindedir?",
+    "options": [
+      "Denizli",
+      "Nevşehir",
+      "Muğla",
+      "Antalya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Pamukkale, sıcak su kaynaklarının oluşturduğu beyaz traverten teraslarıyla Denizli ilindedir."
+  },
+  {
+    "id": "q53637",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük kum adası K’gari hangi ülkededir?",
+    "options": [
+      "Yeni Zelanda",
+      "Avustralya",
+      "Endonezya",
+      "Güney Afrika"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Eski adı Fraser Island olan K’gari, Avustralya’nın Queensland kıyısında yer alan dev bir kum adasıdır."
+  },
+  {
+    "id": "q53638",
+    "categoryIndex": 1,
+    "question": "The Walking Dead dizisinin ilk sezonunda grubun liderliğini üstlenen eski şerif kimdir?",
+    "options": [
+      "Daryl Dixon",
+      "Shane Walsh",
+      "Rick Grimes",
+      "Negan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Rick Grimes komadan uyandıktan sonra salgın dünyasında ailesini bulur ve hayatta kalanların liderine dönüşür."
+  },
+  {
+    "id": "q53639",
+    "categoryIndex": 1,
+    "question": "The Last of Us’ta Ellie’yi ülke boyunca götürmekle görevlendirilen kişi kimdir?",
+    "options": [
+      "Tommy",
+      "Bill",
+      "David",
+      "Joel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Joel başlangıçta Ellie’yi yalnızca bir görev olarak görür ancak yolculuk boyunca aralarında güçlü bir bağ oluşur."
+  },
+  {
+    "id": "q53640",
+    "categoryIndex": 1,
+    "question": "Game of Thrones’ta Jon Snow’un ulu kurdunun adı nedir?",
+    "options": [
+      "Ghost",
+      "Nymeria",
+      "Grey Wind",
+      "Summer"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ghost, albino görünümü ve sessizliğiyle Jon Snow’a eşlik eden beyaz ulu kurttur."
+  },
+  {
+    "id": "q53641",
+    "categoryIndex": 1,
+    "question": "House M.D. dizisinin teşhis uzmanının tam adı nedir?",
+    "options": [
+      "James Wilson",
+      "Gregory House",
+      "Eric Foreman",
+      "Robert Chase"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dr. Gregory House sıra dışı teşhis yeteneği, bastonu ve kurallara meydan okuyan tavrıyla tanınır."
+  },
+  {
+    "id": "q53642",
+    "categoryIndex": 1,
+    "question": "Dexter Morgan’ın polis departmanındaki uzmanlık alanı nedir?",
+    "options": [
+      "Bomba imhası",
+      "Adli psikoloji",
+      "Kan lekesi analizi",
+      "Parmak izi analizi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Dexter, Miami Metro’da kan sıçrama örüntülerini inceleyen adli uzman olarak çalışır."
+  },
+  {
+    "id": "q53643",
+    "categoryIndex": 1,
+    "question": "Mr. Robot dizisinin hacker ana karakteri kimdir?",
+    "options": [
+      "Tyrell Wellick",
+      "Darlene Alderson",
+      "Leon",
+      "Elliot Alderson"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Elliot gündüzleri siber güvenlik mühendisi, geceleri ise toplumsal sistemleri hedef alan bir hackerdır."
+  },
+  {
+    "id": "q53644",
+    "categoryIndex": 1,
+    "question": "Black Mirror bölümlerinin çoğu nasıl bir yapı taşır?",
+    "options": [
+      "Birbirinden bağımsız hikâyeler",
+      "Tek bir kesintisiz olay örgüsü",
+      "Canlı yarışma formatı",
+      "Belgesel bölümleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Black Mirror bir antoloji dizisidir; bölümler farklı karakterler ve teknolojik fikirler üzerinden ayrı hikâyeler anlatır."
+  },
+  {
+    "id": "q53645",
+    "categoryIndex": 1,
+    "question": "How I Met Your Mother’da çocuklarına hikâyeyi anlatan karakter kimdir?",
+    "options": [
+      "Barney Stinson",
+      "Ted Mosby",
+      "Marshall Eriksen",
+      "Robin Scherbatsky"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ted, gelecekte çocuklarına anneleriyle nasıl tanıştığını uzun bir geri dönüş hikâyesiyle anlatır."
+  },
+  {
+    "id": "q53646",
+    "categoryIndex": 1,
+    "question": "The Big Bang Theory’de Sheldon’ın ünlü ünlemi nedir?",
+    "options": [
+      "How you doin’?",
+      "D’oh!",
+      "Bazinga!",
+      "Winter is coming"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sheldon yaptığı şakanın ardından sık sık “Bazinga!” diyerek karşısındakini kandırdığını belirtir."
+  },
+  {
+    "id": "q53647",
+    "categoryIndex": 1,
+    "question": "Brooklyn Nine-Nine hangi karakol numarasında geçer?",
+    "options": [
+      "51",
+      "12",
+      "21",
+      "99"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Dizi New York Polis Departmanı’nın kurgusal 99. bölgesindeki dedektifleri izler."
+  },
+  {
+    "id": "q53648",
+    "categoryIndex": 1,
+    "question": "Community dizisindeki okulun adı nedir?",
+    "options": [
+      "Greendale Community College",
+      "Degrassi College",
+      "Hawthorne Academy",
+      "Hillman College"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Birbirinden farklı öğrenciler Greendale’de çalışma grubu kurar ve okulun tuhaf etkinliklerine karışır."
+  },
+  {
+    "id": "q53649",
+    "categoryIndex": 1,
+    "question": "Parks and Recreation dizisinin geçtiği kurgusal kasaba hangisidir?",
+    "options": [
+      "Scranton",
+      "Pawnee",
+      "Stars Hollow",
+      "Quahog"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Leslie Knope ve parklar departmanı Indiana’daki kurgusal Pawnee kasabasında çalışır."
+  },
+  {
+    "id": "q53650",
+    "categoryIndex": 1,
+    "question": "Fallout oyunlarının gülümseyen sarışın maskotunun adı nedir?",
+    "options": [
+      "Pip-Boy",
+      "Nuka Boy",
+      "Vault Boy",
+      "Mr. Handy"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Vault Boy, Vault-Tec reklamlarında ve oyuncunun yetenek ekranlarında görülen retro maskottur."
+  },
+  {
+    "id": "q53651",
+    "categoryIndex": 1,
+    "question": "Cyberpunk 2077 hangi kurgusal şehirde geçer?",
+    "options": [
+      "Liberty City",
+      "Rapture",
+      "Los Santos",
+      "Night City"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Night City şirketlerin, çetelerin ve siber teknolojinin hâkim olduğu distopik bir mega kenttir."
+  },
+  {
+    "id": "q53652",
+    "categoryIndex": 1,
+    "question": "Doom serisinin şeytanlarla savaşan kahramanı hangi adla bilinir?",
+    "options": [
+      "Doom Slayer",
+      "Master Chief",
+      "Marcus Fenix",
+      "Samus Aran"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Doom Slayer, Mars ve cehennem boyutlarında demon ordularına karşı savaşan sessiz ve acımasız savaşçıdır."
+  },
+  {
+    "id": "q53653",
+    "categoryIndex": 1,
+    "question": "Metal Gear Solid serisinin gizlilik uzmanı kahramanı kimdir?",
+    "options": [
+      "Raiden",
+      "Solid Snake",
+      "Big Boss",
+      "Revolver Ocelot"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Solid Snake nükleer silahlı Metal Gear araçlarını durdurmak için gizli operasyonlara gönderilen askerdir."
+  },
+  {
+    "id": "q53654",
+    "categoryIndex": 1,
+    "question": "Street Fighter serisinin beyaz giysili, kırmızı bantlı dövüşçüsü kimdir?",
+    "options": [
+      "Ken",
+      "Guile",
+      "Ryu",
+      "Akuma"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ryu sürekli gelişim peşindeki Japon dövüşçüdür ve Hadoken hareketiyle tanınır."
+  },
+  {
+    "id": "q53655",
+    "categoryIndex": 2,
+    "question": "Pers İmparatorluğu’nun kurucusu olarak bilinen hükümdar kimdir?",
+    "options": [
+      "Darius",
+      "Xerxes",
+      "Kambyses",
+      "Büyük Kiros"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Büyük Kiros, MÖ 6. yüzyılda Medleri ve çevre krallıkları birleştirerek Ahameniş Pers İmparatorluğu’nu kurdu."
+  },
+  {
+    "id": "q53656",
+    "categoryIndex": 2,
+    "question": "Maraton Savaşı’nda Atinalılar hangi imparatorluğa karşı savaştı?",
+    "options": [
+      "Pers İmparatorluğu",
+      "Roma İmparatorluğu",
+      "Makedonya",
+      "Kartaca"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "MÖ 490’daki Maraton Savaşı, Yunan-Pers savaşlarının en ünlü karşılaşmalarından biridir."
+  },
+  {
+    "id": "q53657",
+    "categoryIndex": 2,
+    "question": "Büyük İskender hangi şehirde öldü?",
+    "options": [
+      "Atina",
+      "Babil",
+      "İskenderiye",
+      "Persepolis"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Büyük İskender MÖ 323’te Babil’de hastalanarak 32 yaşında öldü."
+  },
+  {
+    "id": "q53658",
+    "categoryIndex": 2,
+    "question": "Roma İmparatorluğu’nun uzun barış dönemi hangi adla bilinir?",
+    "options": [
+      "Pax Britannica",
+      "Belle Époque",
+      "Pax Romana",
+      "Altın Orda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Pax Romana, Augustus’tan başlayarak yaklaşık iki yüzyıl süren görece istikrar ve refah dönemidir."
+  },
+  {
+    "id": "q53659",
+    "categoryIndex": 2,
+    "question": "Kolezyum’un özgün adı nedir?",
+    "options": [
+      "Augustus Forumu",
+      "Traianus Sirki",
+      "Palatin Arenası",
+      "Flavius Amfitiyatrosu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Kolezyum, yapımını üstlenen Flavius hanedanı nedeniyle Flavius Amfitiyatrosu olarak adlandırılmıştı."
+  },
+  {
+    "id": "q53660",
+    "categoryIndex": 2,
+    "question": "Hadrian Duvarı hangi ülkede inşa edildi?",
+    "options": [
+      "İngiltere",
+      "Fransa",
+      "İspanya",
+      "İtalya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Roma İmparatoru Hadrian döneminde yapılan duvar, Britanya adasının kuzeyindeki Roma sınırını koruyordu."
+  },
+  {
+    "id": "q53661",
+    "categoryIndex": 2,
+    "question": "Ayasofya’nın bugünkü büyük yapısını yaptıran Bizans imparatoru kimdir?",
+    "options": [
+      "Konstantin",
+      "I. Justinianus",
+      "Herakleios",
+      "Theodosius"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "I. Justinianus, 532 Nika İsyanı sonrası Ayasofya’yı yeniden yaptırdı; yapı 537’de açıldı."
+  },
+  {
+    "id": "q53662",
+    "categoryIndex": 2,
+    "question": "Malazgirt Savaşı hangi yılda gerçekleşti?",
+    "options": [
+      "1040",
+      "1096",
+      "1071",
+      "1176"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "1071’de Selçuklu Sultanı Alp Arslan, Bizans İmparatoru Romanos Diogenes’i Malazgirt’te yendi."
+  },
+  {
+    "id": "q53663",
+    "categoryIndex": 2,
+    "question": "Moğollar Bağdat’ı hangi yılda ele geçirdi?",
+    "options": [
+      "1204",
+      "1299",
+      "1453",
+      "1258"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hülagû Han’ın ordusu 1258’de Bağdat’ı alarak Abbasi halifeliğinin şehirdeki yönetimine son verdi."
+  },
+  {
+    "id": "q53664",
+    "categoryIndex": 2,
+    "question": "Kara Ölüm salgınının başlıca etkeni hangi bakteridir?",
+    "options": [
+      "Yersinia pestis",
+      "Vibrio cholerae",
+      "Bacillus anthracis",
+      "Salmonella typhi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Yersinia pestis bakterisi çoğunlukla pireler aracılığıyla yayılarak vebaya yol açar."
+  },
+  {
+    "id": "q53665",
+    "categoryIndex": 2,
+    "question": "Tordesillas Antlaşması dünyadaki yeni keşif alanlarını hangi iki ülke arasında paylaştırdı?",
+    "options": [
+      "Fransa ve İngiltere",
+      "İspanya ve Portekiz",
+      "Hollanda ve Belçika",
+      "İtalya ve Almanya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1494 antlaşması Avrupa dışındaki yeni toprakları hayalî bir çizgiyle İspanya ve Portekiz’in etki alanlarına böldü."
+  },
+  {
+    "id": "q53666",
+    "categoryIndex": 2,
+    "question": "Dünyanın ilk büyük anonim şirketlerinden VOC hangi ülkeye aitti?",
+    "options": [
+      "İngiltere",
+      "Portekiz",
+      "Hollanda",
+      "Fransa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hollanda Doğu Hindistan Şirketi 1602’de kuruldu ve küresel ticarette büyük askerî ve ekonomik güç kazandı."
+  },
+  {
+    "id": "q53667",
+    "categoryIndex": 2,
+    "question": "Napolyon ilk sürgününde hangi adaya gönderildi?",
+    "options": [
+      "Saint Helena",
+      "Korsika",
+      "Sicilya",
+      "Elba"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Napolyon 1814’te Elba’ya sürüldü, kısa süre sonra Fransa’ya dönerek Yüz Gün dönemini başlattı."
+  },
+  {
+    "id": "q53668",
+    "categoryIndex": 2,
+    "question": "Napolyon son yenilgisinden sonra hangi adaya sürüldü?",
+    "options": [
+      "Saint Helena",
+      "Elba",
+      "Malta",
+      "Kıbrıs"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Waterloo yenilgisi sonrası Napolyon Güney Atlantik’teki Saint Helena’ya gönderildi ve 1821’de orada öldü."
+  },
+  {
+    "id": "q53669",
+    "categoryIndex": 2,
+    "question": "Dünyanın ilk kamuya açık buharlı demiryollarından Stockton-Darlington hattı hangi ülkedeydi?",
+    "options": [
+      "Fransa",
+      "İngiltere",
+      "ABD",
+      "Belçika"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1825’te açılan Stockton-Darlington hattı buharlı lokomotifli demiryolu tarihinin önemli dönüm noktalarındandır."
+  },
+  {
+    "id": "q53670",
+    "categoryIndex": 2,
+    "question": "Amerikan İç Savaşı’nın dönüm noktalarından Gettysburg Savaşı hangi eyalette yapıldı?",
+    "options": [
+      "Virginia",
+      "Georgia",
+      "Pensilvanya",
+      "Tennessee"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1863 Gettysburg Savaşı, Konfederasyon ordusunun kuzeye ilerleyişini durduran büyük bir Birlik zaferiydi."
+  },
+  {
+    "id": "q53671",
+    "categoryIndex": 2,
+    "question": "I. Dünya Savaşı’nı tetikleyen suikast hangi şehirde gerçekleşti?",
+    "options": [
+      "Belgrad",
+      "Viyana",
+      "Prag",
+      "Saraybosna"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Avusturya-Macaristan veliahdı Franz Ferdinand 28 Haziran 1914’te Saraybosna’da öldürüldü."
+  },
+  {
+    "id": "q53672",
+    "categoryIndex": 3,
+    "question": "Fahrenheit 451 romanında kitap yakan itfaiyecinin adı nedir?",
+    "options": [
+      "Guy Montag",
+      "Winston Smith",
+      "Bernard Marx",
+      "Rick Deckard"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Guy Montag kitapları yok eden sistemde çalışırken okumanın ve özgür düşüncenin değerini sorgulamaya başlar."
+  },
+  {
+    "id": "q53673",
+    "categoryIndex": 3,
+    "question": "Cesur Yeni Dünya’da insanların ruh hâlini bastırmak için kullandığı ilaç nedir?",
+    "options": [
+      "Spice",
+      "Soma",
+      "Nectar",
+      "Panacea"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Soma, distopik toplumun mutsuzluk ve sorgulamayı engellemek için dağıttığı keyif verici ilaçtır."
+  },
+  {
+    "id": "q53674",
+    "categoryIndex": 3,
+    "question": "Madde 22 romanının savaş pilotu başkahramanı kimdir?",
+    "options": [
+      "Billy Pilgrim",
+      "Paul Bäumer",
+      "Yossarian",
+      "Captain Ahab"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Yossarian hayatta kalmak için görevlerden kaçmaya çalışır ancak bürokratik Madde 22 döngüsüne takılır."
+  },
+  {
+    "id": "q53675",
+    "categoryIndex": 3,
+    "question": "Damızlık Kızın Öyküsü’nün anlatıcısı hangi adla bilinir?",
+    "options": [
+      "Ofglen",
+      "Serena",
+      "Moira",
+      "Offred"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Offred adı “Fred’in” anlamına gelir ve Gilead rejiminin kadınların kimliğini sahiplerine bağladığını gösterir."
+  },
+  {
+    "id": "q53676",
+    "categoryIndex": 3,
+    "question": "Yol romanında kıyamet sonrası yolculuk eden ikili kimlerdir?",
+    "options": [
+      "Bir baba ve oğlu",
+      "İki kardeş",
+      "Bir anne ve kızı",
+      "İki eski asker"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cormac McCarthy’nin romanı, yıkılmış bir dünyada güneye ilerleyen isimsiz baba ve oğlun bağını anlatır."
+  },
+  {
+    "id": "q53677",
+    "categoryIndex": 3,
+    "question": "Pi’nin Yaşamı’nda filikadaki Bengal kaplanının adı nedir?",
+    "options": [
+      "Shere Khan",
+      "Richard Parker",
+      "Bagheera",
+      "Aslan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pi, Pasifik’te bir filikada Richard Parker adlı Bengal kaplanıyla birlikte hayatta kalmaya çalışır."
+  },
+  {
+    "id": "q53678",
+    "categoryIndex": 3,
+    "question": "Gülün Adı romanındaki soruşturmacı keşiş kimdir?",
+    "options": [
+      "Adso",
+      "Jorge",
+      "Baskerville’li William",
+      "Bernardo Gui"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "William mantık ve gözlem yöntemlerini kullanarak manastırdaki gizemli ölümleri araştırır."
+  },
+  {
+    "id": "q53679",
+    "categoryIndex": 3,
+    "question": "Körlük romanının yazarı kimdir?",
+    "options": [
+      "Jorge Luis Borges",
+      "Italo Calvino",
+      "Milan Kundera",
+      "José Saramago"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Saramago’nun romanında açıklanamayan beyaz körlük salgını toplumun düzenini hızla çözer."
+  },
+  {
+    "id": "q53680",
+    "categoryIndex": 3,
+    "question": "Yüzüklerin Efendisi romanlarının yazarı kimdir?",
+    "options": [
+      "J. R. R. Tolkien",
+      "C. S. Lewis",
+      "George R. R. Martin",
+      "Ursula K. Le Guin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tolkien Orta Dünya’yı, dillerini ve tarihini geliştirerek modern fantastik edebiyatın temel eserlerinden birini yarattı."
+  },
+  {
+    "id": "q53681",
+    "categoryIndex": 3,
+    "question": "Narnia Günlükleri’ni kim yazdı?",
+    "options": [
+      "J. M. Barrie",
+      "C. S. Lewis",
+      "J. R. R. Tolkien",
+      "Philip Pullman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "C. S. Lewis yedi kitaplık Narnia serisinde çocukları farklı dönemlerde büyülü ülkeye gönderir."
+  },
+  {
+    "id": "q53682",
+    "categoryIndex": 3,
+    "question": "Peter Pan karakterini yaratan yazar kimdir?",
+    "options": [
+      "Lewis Carroll",
+      "A. A. Milne",
+      "J. M. Barrie",
+      "Kenneth Grahame"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İskoç yazar Barrie, büyümeyi reddeden Peter Pan’ı önce oyunlarında, sonra romanında kullandı."
+  },
+  {
+    "id": "q53683",
+    "categoryIndex": 3,
+    "question": "Oz Büyücüsü’nü kim yazdı?",
+    "options": [
+      "Mark Twain",
+      "E. B. White",
+      "Dr. Seuss",
+      "L. Frank Baum"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Baum’un 1900 tarihli kitabında Dorothy kasırgayla Oz ülkesine taşınır."
+  },
+  {
+    "id": "q53684",
+    "categoryIndex": 3,
+    "question": "Define Adası romanının yazarı kimdir?",
+    "options": [
+      "Robert Louis Stevenson",
+      "Daniel Defoe",
+      "Herman Melville",
+      "Jules Verne"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Stevenson’un korsan romanı hazine haritası, ihanet ve deniz macerası kalıplarını popülerleştirdi."
+  },
+  {
+    "id": "q53685",
+    "categoryIndex": 3,
+    "question": "Dr. Jekyll ile Bay Hyde arasındaki gerçek ilişki nedir?",
+    "options": [
+      "Kardeştirler",
+      "Aynı kişinin iki kişiliğidir",
+      "Baba oğuldurlar",
+      "Birbirini arayan dedektiflerdir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dr. Jekyll geliştirdiği iksirle bastırdığı karanlık yönünü Bay Hyde olarak ortaya çıkarır."
+  },
+  {
+    "id": "q53686",
+    "categoryIndex": 3,
+    "question": "Venüs de Milo heykeli hangi müzede sergilenir?",
+    "options": [
+      "British Museum",
+      "Prado Müzesi",
+      "Louvre Müzesi",
+      "Uffizi Galerisi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Antik Yunan mermer heykeli Venüs de Milo, Paris’te Louvre’un en ünlü eserlerindendir."
+  },
+  {
+    "id": "q53687",
+    "categoryIndex": 3,
+    "question": "Semadirek Kanatlı Zaferi heykeli hangi tanrıçayı temsil eder?",
+    "options": [
+      "Athena",
+      "Afrodit",
+      "Artemis",
+      "Nike"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Heykel zafer tanrıçası Nike’yi gemi pruvasına konmuş kanatlı biçimde tasvir eder."
+  },
+  {
+    "id": "q53688",
+    "categoryIndex": 3,
+    "question": "Şelalenin üzerine inşa edilen Fallingwater evini hangi mimar tasarladı?",
+    "options": [
+      "Frank Lloyd Wright",
+      "Le Corbusier",
+      "Frank Gehry",
+      "Ludwig Mies van der Rohe"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fallingwater, Pennsylvania’da doğayla bütünleşen çıkmalı beton teraslarıyla organik mimarinin simgesidir."
+  },
+  {
+    "id": "q53689",
+    "categoryIndex": 4,
+    "question": "İnsanlarda kaç çift kromozom bulunur?",
+    "options": [
+      "22",
+      "23",
+      "24",
+      "46"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İnsan vücut hücrelerinde toplam 46 kromozom vardır; bunlar 23 çift hâlinde düzenlenir."
+  },
+  {
+    "id": "q53690",
+    "categoryIndex": 4,
+    "question": "Bilinen en büyük tek hücrelerden biri hangisidir?",
+    "options": [
+      "Balina alyuvarı",
+      "Meşe palamudu",
+      "Devekuşu yumurtası",
+      "Kurbağa gözü"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Döllenmemiş devekuşu yumurtasının sarısı tek bir üreme hücresidir ve çıplak gözle görülebilen dev bir hücre örneğidir."
+  },
+  {
+    "id": "q53691",
+    "categoryIndex": 4,
+    "question": "Dünyanın yaşayan en büyük kuşu hangisidir?",
+    "options": [
+      "Emu",
+      "Albatros",
+      "Kondor",
+      "Devekuşu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Devekuşu boy ve ağırlık bakımından yaşayan en büyük kuştur ancak uçamaz."
+  },
+  {
+    "id": "q53692",
+    "categoryIndex": 4,
+    "question": "Yaşayan en büyük sürüngen hangisidir?",
+    "options": [
+      "Tuzlu su timsahı",
+      "Komodo ejderi",
+      "Deri sırtlı kaplumbağa",
+      "Nil timsahı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Erkek tuzlu su timsahları altı metreyi aşabilir ve bir tondan fazla ağırlığa ulaşabilir."
+  },
+  {
+    "id": "q53693",
+    "categoryIndex": 4,
+    "question": "Yüzlerce yıl yaşayabilen en uzun ömürlü omurgalılardan biri hangisidir?",
+    "options": [
+      "Mavi balina",
+      "Grönland köpekbalığı",
+      "Galápagos kaplumbağası",
+      "Mersin balığı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Grönland köpekbalıklarının çok yavaş büyüdüğü ve bazı bireylerin birkaç yüzyıl yaşadığı tahmin edilir."
+  },
+  {
+    "id": "q53694",
+    "categoryIndex": 4,
+    "question": "Yetişkin hâline dönebilmesi nedeniyle “ölümsüz denizanası” diye anılan tür hangisidir?",
+    "options": [
+      "Aurelia aurita",
+      "Chironex fleckeri",
+      "Turritopsis dohrnii",
+      "Cyanea capillata"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Turritopsis dohrnii stres altında hücrelerini yeniden programlayarak polip evresine dönebilir."
+  },
+  {
+    "id": "q53695",
+    "categoryIndex": 4,
+    "question": "Bal arılarının kaç gözü vardır?",
+    "options": [
+      "2",
+      "4",
+      "8",
+      "5"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Arıların iki büyük bileşik gözüne ek olarak başlarının üstünde üç küçük basit gözü bulunur."
+  },
+  {
+    "id": "q53696",
+    "categoryIndex": 4,
+    "question": "Karıncalar nasıl nefes alır?",
+    "options": [
+      "Vücutlarındaki küçük deliklerden",
+      "Akciğerlerle",
+      "Solungaçlarla",
+      "Derilerini yutarak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Karıncalarda akciğer yoktur; spirakül denen açıklıklar havayı trake borularına taşır."
+  },
+  {
+    "id": "q53697",
+    "categoryIndex": 4,
+    "question": "Örümceklerin kaç bacağı vardır?",
+    "options": [
+      "6",
+      "8",
+      "10",
+      "12"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Örümcekler böcek değil, sekiz bacaklı eklembacaklılar olan örümceğimsiler sınıfındadır."
+  },
+  {
+    "id": "q53698",
+    "categoryIndex": 4,
+    "question": "Böceklerin kaç bacağı vardır?",
+    "options": [
+      "4",
+      "8",
+      "6",
+      "10"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Böceklerin göğüs bölümüne bağlı üç çift, toplam altı bacağı bulunur."
+  },
+  {
+    "id": "q53699",
+    "categoryIndex": 4,
+    "question": "Balinalar hangi hayvan sınıfına aittir?",
+    "options": [
+      "Balıklar",
+      "Sürüngenler",
+      "Amfibiler",
+      "Memeliler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Balinalar akciğerle nefes alır, sıcakkanlıdır ve yavrularını sütle besler."
+  },
+  {
+    "id": "q53700",
+    "categoryIndex": 4,
+    "question": "Penguenler hangi hayvan sınıfına aittir?",
+    "options": [
+      "Kuşlar",
+      "Memeliler",
+      "Balıklar",
+      "Sürüngenler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Penguenler uçamayan ancak yüzmeye uyum sağlamış tüylü ve yumurtlayan kuşlardır."
+  },
+  {
+    "id": "q53701",
+    "categoryIndex": 4,
+    "question": "Ay’daki yer çekimi Dünya’dakinin yaklaşık ne kadarıdır?",
+    "options": [
+      "Yarısı",
+      "Altıda biri",
+      "Üçte biri",
+      "Onda biri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ay’ın daha küçük kütlesi nedeniyle yüzey yer çekimi Dünya’nın yaklaşık yüzde 16,5’i kadardır."
+  },
+  {
+    "id": "q53702",
+    "categoryIndex": 4,
+    "question": "Dünya’nın çekirdeği ağırlıklı olarak hangi iki elementten oluşur?",
+    "options": [
+      "Karbon ve oksijen",
+      "Silisyum ve alüminyum",
+      "Demir ve nikel",
+      "Hidrojen ve helyum"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sismik veriler Dünya çekirdeğinin büyük ölçüde demirden, daha az oranda nikel ve hafif elementlerden oluştuğunu gösterir."
+  },
+  {
+    "id": "q53703",
+    "categoryIndex": 4,
+    "question": "Ozon tabakası bizi en çok hangi ışınlardan korur?",
+    "options": [
+      "Kızılötesi ışınlardan",
+      "Radyo dalgalarından",
+      "Ses dalgalarından",
+      "Morötesi ışınlardan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Stratosferik ozon Güneş’ten gelen zararlı UV-B ve UV-C ışınlarının büyük bölümünü soğurur."
+  },
+  {
+    "id": "q53704",
+    "categoryIndex": 4,
+    "question": "Depremlerin büyüklüğünü kaydeden cihaza ne denir?",
+    "options": [
+      "Sismograf",
+      "Barometre",
+      "Higrometre",
+      "Spektrometre"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sismograf yer hareketlerini algılar ve sismik dalgaları zaman içinde kaydeder."
+  },
+  {
+    "id": "q53705",
+    "categoryIndex": 5,
+    "question": "Futbolda kırmızı kart gören oyuncuya ne olur?",
+    "options": [
+      "Beş dakika bekler",
+      "Oyundan çıkarılır",
+      "Takım değiştirir",
+      "Yalnız uyarı alır"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kırmızı kart oyuncunun maçtan ihraç edilmesi anlamına gelir ve takım maçı eksik oyuncuyla sürdürür."
+  },
+  {
+    "id": "q53706",
+    "categoryIndex": 5,
+    "question": "Penaltı atışlarında başlangıçta her takım kaç vuruş kullanır?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Eleme maçındaki seri penaltılarda takımlar sırayla beşer vuruş yapar; eşitlik sürerse tek tek devam edilir."
+  },
+  {
+    "id": "q53707",
+    "categoryIndex": 5,
+    "question": "Basketbolda üç sayı çizgisinin dışından atılan basket kaç sayı değerindedir?",
+    "options": [
+      "1",
+      "2",
+      "4",
+      "3"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncunun atış anında iki ayağı da üç sayı yayının dışında olursa başarılı basket üç puan getirir."
+  },
+  {
+    "id": "q53708",
+    "categoryIndex": 5,
+    "question": "Basketbolda topu yukarıdan doğrudan çemberden geçirmeye ne denir?",
+    "options": [
+      "Smaç",
+      "Turnike",
+      "Fadeaway",
+      "Alley pass"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Smaçta oyuncu sıçrayarak topu bir veya iki eliyle doğrudan çemberden geçirir."
+  },
+  {
+    "id": "q53709",
+    "categoryIndex": 5,
+    "question": "Voleybolda rakibin dokunamadığı başarılı servise ne denir?",
+    "options": [
+      "Blok",
+      "Ace",
+      "Set",
+      "Dig"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Servis doğrudan sayı getirirse veya karşı takım topu oyunda tutamazsa ace olarak kaydedilir."
+  },
+  {
+    "id": "q53710",
+    "categoryIndex": 5,
+    "question": "Teniste rakibin dokunamadığı geçerli servise ne denir?",
+    "options": [
+      "Volley",
+      "Lob",
+      "Ace",
+      "Slice"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ace, servis kutusuna düşen ve karşılayan oyuncunun raketiyle temas edemediği servistir."
+  },
+  {
+    "id": "q53711",
+    "categoryIndex": 5,
+    "question": "Teniste servis karşılayan oyuncunun oyunu kazanabileceği sayıya ne denir?",
+    "options": [
+      "Set point",
+      "Love point",
+      "Match tie",
+      "Break point"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Break point, servis karşılayan oyuncunun sonraki sayıyı alarak rakibinin servis oyununu kırabileceği durumdur."
+  },
+  {
+    "id": "q53712",
+    "categoryIndex": 5,
+    "question": "Golfte bir çukur için beklenen vuruş sayısına ne denir?",
+    "options": [
+      "Par",
+      "Tee",
+      "Handicap",
+      "Lie"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Par, yetkin bir golfçünün çukuru veya sahayı tamamlaması beklenen standart vuruş sayısını ifade eder."
+  },
+  {
+    "id": "q53713",
+    "categoryIndex": 5,
+    "question": "Krikette üç dik çubuk ve üzerlerindeki küçük parçalardan oluşan hedefe ne denir?",
+    "options": [
+      "Crease",
+      "Wicket",
+      "Boundary",
+      "Pavilion"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Atıcı topu wicket’a vurup küçük bail parçalarını düşürerek vurucuyu oyun dışı bırakabilir."
+  },
+  {
+    "id": "q53714",
+    "categoryIndex": 5,
+    "question": "Beyzbolda kaleler doluyken vurulan home run’a ne denir?",
+    "options": [
+      "Perfect game",
+      "Triple play",
+      "Grand slam",
+      "Walk-off"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Grand slam, vurucu ve üç koşucunun birden sayı almasını sağlayarak dört run getirir."
+  },
+  {
+    "id": "q53715",
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde üç kez fileleri havalandıran oyuncunun başarısı nasıl adlandırılır?",
+    "options": [
+      "Power play",
+      "Shutout",
+      "Breakaway",
+      "Hat-trick"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hokeyde hat-trick yapan oyuncu üç gol kaydeder; bazı taraftarlar kutlama için şapkalarını buza atar."
+  },
+  {
+    "id": "q53716",
+    "categoryIndex": 5,
+    "question": "Formula 1’de DRS sistemi neyi azaltmaya yardım eder?",
+    "options": [
+      "Hava direncini",
+      "Yakıt miktarını",
+      "Lastik sıcaklığını",
+      "Motor hacmini"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "DRS arka kanadın bir bölümünü açarak sürüklenmeyi azaltır ve belirli bölgelerde geçiş hızını artırır."
+  },
+  {
+    "id": "q53717",
+    "categoryIndex": 5,
+    "question": "MotoGP yarışlarında araçların kaç tekerleği vardır?",
+    "options": [
+      "3",
+      "2",
+      "4",
+      "6"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "MotoGP, prototip yarış motosikletleriyle düzenlenen en üst düzey yol motosikleti şampiyonasıdır."
+  },
+  {
+    "id": "q53718",
+    "categoryIndex": 5,
+    "question": "Curling hedefindeki eş merkezli dairelere ne denir?",
+    "options": [
+      "Ring",
+      "Box",
+      "House",
+      "Zone"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Taşların puan alabilmesi için house adı verilen dairesel hedef alanına ulaşması gerekir."
+  },
+  {
+    "id": "q53719",
+    "categoryIndex": 5,
+    "question": "On pinli bowlingde tüm lobutları ilk atışta devirmeye ne denir?",
+    "options": [
+      "Spare",
+      "Split",
+      "Foul",
+      "Strike"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Strike tüm on lobutun ilk topla devrilmesidir ve sonraki iki atışın puanı bonus olarak eklenir."
+  },
+  {
+    "id": "q53720",
+    "categoryIndex": 5,
+    "question": "Bowlingde kalan tüm lobutları ikinci atışta devirmeye ne denir?",
+    "options": [
+      "Spare",
+      "Strike",
+      "Turkey",
+      "Gutter"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Spare, iki atışın toplamında on lobutun tamamının devrilmesidir ve sonraki ilk atış bonus olarak eklenir."
+  }
+]

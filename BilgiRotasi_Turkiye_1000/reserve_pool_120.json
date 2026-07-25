@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "reserve001",
+    "categoryIndex": 0,
+    "question": "Van Gölü'ndeki adaların yüzölçümü bakımından en büyüğü hangisidir?",
+    "options": [
+      "Adır Adası",
+      "Kuş Adası",
+      "Çarpanak Adası",
+      "Akdamar Adası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Adır ya da Lim Adası, Van Gölü'ndeki adaların yüzölçümü bakımından en büyüğüdür."
+  },
+  {
+    "id": "reserve002",
+    "categoryIndex": 0,
+    "question": "Kazdağları'nın en yüksek noktası hangi adla bilinir?",
+    "options": [
+      "Murat Dağı",
+      "Karataş Tepesi",
+      "Keltepe",
+      "Sarıçiçek Tepesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Karataş Tepesi, yaklaşık 1.774 metreyle Kazdağları'nın en yüksek noktasıdır."
+  },
+  {
+    "id": "reserve003",
+    "categoryIndex": 0,
+    "question": "Seyfe Gölü Kuş Cenneti hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Aksaray",
+      "Nevşehir",
+      "Kırşehir",
+      "Yozgat"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Seyfe Gölü, Kırşehir'in Mucur ilçesi yakınında göçmen kuşlar için önemli bir sulak alandır."
+  },
+  {
+    "id": "reserve004",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin yüzölçümü bakımından en büyük kapalı havzası hangisidir?",
+    "options": [
+      "Tuz Gölü Havzası",
+      "Burdur Göller Havzası",
+      "Van Gölü Havzası",
+      "Konya Kapalı Havzası"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Konya Kapalı Havzası, sularını denize ulaştıramayan geniş iç drenaj alanıyla Türkiye'nin en büyük kapalı havzasıdır."
+  },
+  {
+    "id": "reserve005",
+    "categoryIndex": 0,
+    "question": "Kızılırmak, kaynağını Sivas'taki hangi dağdan alır?",
+    "options": [
+      "Kızıldağ",
+      "Tecer Dağı",
+      "Yıldız Dağı",
+      "Köse Dağı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kızılırmak, Sivas'ın İmranlı ilçesi yakınındaki Kızıldağ'ın güney yamaçlarından doğar."
+  },
+  {
+    "id": "reserve006",
+    "categoryIndex": 0,
+    "question": "Harput yakınındaki doğal buz oluşumlarıyla tanınan Buzluk Mağarası hangi ilimizdedir?",
+    "options": [
+      "Erzincan",
+      "Elazığ",
+      "Malatya",
+      "Tunceli"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Buzluk Mağarası, Elazığ'ın tarihî Harput yerleşimi yakınında yazın da görülebilen buz oluşumlarıyla tanınır."
+  },
+  {
+    "id": "reserve007",
+    "categoryIndex": 1,
+    "question": "Gibi dizisindeki İlkkan karakterini kim canlandırır?",
+    "options": [
+      "Feyyaz Yiğit",
+      "Ahmet Kürşat Öçalan",
+      "Kıvanç Kılınç",
+      "Aziz Kedi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kıvanç Kılınç, Gibi dizisinde Yılmaz'ın yakın arkadaşı İlkkan karakterini canlandırır."
+  },
+  {
+    "id": "reserve008",
+    "categoryIndex": 1,
+    "question": "Şahsiyet dizisinde Agâh Beyoğlu karakterini canlandıran oyuncu kimdir?",
+    "options": [
+      "Şener Şen",
+      "Uğur Yücel",
+      "Çetin Tekindor",
+      "Haluk Bilginer"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Haluk Bilginer, Agâh Beyoğlu rolüyle Uluslararası Emmy'de En İyi Erkek Oyuncu ödülü kazandı."
+  },
+  {
+    "id": "reserve009",
+    "categoryIndex": 1,
+    "question": "Bir Başkadır dizisinin yazarı ve yönetmeni kimdir?",
+    "options": [
+      "Berkun Oya",
+      "Emin Alper",
+      "Onur Ünlü",
+      "Tolga Karaçelik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Berkun Oya, farklı toplumsal kesimlerin kesişen hikâyelerini anlatan Bir Başkadır'ı yazıp yönetti."
+  },
+  {
+    "id": "reserve010",
+    "categoryIndex": 1,
+    "question": "Masum dizisinin uyarlandığı Berkun Oya tiyatro oyununun adı nedir?",
+    "options": [
+      "Yangın Duası",
+      "Bayrak",
+      "Kreutzer Sonat",
+      "Sonat"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Masum dizisi, Berkun Oya'nın Bayrak adlı tiyatro oyunundan televizyona uyarlandı."
+  },
+  {
+    "id": "reserve011",
+    "categoryIndex": 1,
+    "question": "Düğün Dernek filminin yönetmeni kimdir?",
+    "options": [
+      "Yılmaz Erdoğan",
+      "Murat Şeker",
+      "Selçuk Aydemir",
+      "Hakan Algül"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Düğün Dernek, Selçuk Aydemir'in yönettiği ve Sivas'ta geçen bir komedi filmidir."
+  },
+  {
+    "id": "reserve012",
+    "categoryIndex": 1,
+    "question": "Vavien filmini birlikte yöneten kardeş sinemacılar kimlerdir?",
+    "options": [
+      "Durul ve Yağız Ataman",
+      "Caner ve Alper Özyurtlu",
+      "Ömer ve Lütfi Akad",
+      "Yağmur ve Durul Taylan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Vavien, Taylan Biraderler olarak bilinen Yağmur ve Durul Taylan tarafından yönetildi."
+  },
+  {
+    "id": "reserve013",
+    "categoryIndex": 2,
+    "question": "Osmanlı medeni kanunu niteliğindeki Mecelle'nin hazırlanmasına başkanlık eden devlet adamı kimdir?",
+    "options": [
+      "Ahmed Cevdet Paşa",
+      "Mustafa Reşid Paşa",
+      "Mithat Paşa",
+      "Ali Paşa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ahmed Cevdet Paşa başkanlığındaki heyet, İslam hukukuna dayanan Mecelle'yi 19. yüzyılda hazırladı."
+  },
+  {
+    "id": "reserve014",
+    "categoryIndex": 2,
+    "question": "Sened-i İttifak hangi Osmanlı padişahı döneminde imzalandı?",
+    "options": [
+      "Sultan Abdülmecid",
+      "II. Mahmud",
+      "II. Abdülhamid",
+      "III. Selim"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sened-i İttifak, 1808'de II. Mahmud döneminde merkezî yönetim ile ayanlar arasında imzalandı."
+  },
+  {
+    "id": "reserve015",
+    "categoryIndex": 2,
+    "question": "Misak-ı Millî kararlarını kabul eden son Osmanlı meclisi hangisidir?",
+    "options": [
+      "Meclis-i Ayan",
+      "Heyet-i Temsiliye",
+      "Meclis-i Mebusan",
+      "Divan-ı Hümayun"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Son Osmanlı Meclis-i Mebusanı, Misak-ı Millî kararlarını 28 Ocak 1920'de kabul etti."
+  },
+  {
+    "id": "reserve016",
+    "categoryIndex": 2,
+    "question": "Osmanlı'da 'kaime' adıyla çıkarılan ilk kâğıt para hangi padişah döneminde dolaşıma girdi?",
+    "options": [
+      "II. Mahmud",
+      "Sultan Abdülaziz",
+      "V. Murad",
+      "Sultan Abdülmecid"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Kaime-i Mutebere adı verilen ilk Osmanlı kâğıt paraları 1840'ta Abdülmecid döneminde çıkarıldı."
+  },
+  {
+    "id": "reserve017",
+    "categoryIndex": 2,
+    "question": "Osmanlı'daki ilk kapsamlı modern nüfus sayımı hangi padişah döneminde yapıldı?",
+    "options": [
+      "II. Mahmud",
+      "II. Abdülhamid",
+      "III. Ahmed",
+      "Sultan Abdülaziz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Askerlik ve vergi düzenlemelerine temel oluşturmak için 1831'de II. Mahmud döneminde nüfus sayımı yapıldı."
+  },
+  {
+    "id": "reserve018",
+    "categoryIndex": 2,
+    "question": "1827'de açılan ve modern tıp eğitiminin öncüsü olan Osmanlı okulunun kısa adı nedir?",
+    "options": [
+      "Mühendishane-i Berrî",
+      "Mekteb-i Tıbbiye",
+      "Darülmuallimin",
+      "Mekteb-i Mülkiye"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "II. Mahmud döneminde açılan Mekteb-i Tıbbiye, modern tıp eğitiminin temel kurumlarından oldu."
+  },
+  {
+    "id": "reserve019",
+    "categoryIndex": 3,
+    "question": "Gül Yetiştiren Adam romanının yazarı kimdir?",
+    "options": [
+      "Mustafa Kutlu",
+      "Nuri Pakdil",
+      "Rasim Özdenören",
+      "Tarık Buğra"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Rasim Özdenören romanında toplumsal değişim karşısında içine kapanan bir adamın dünyasını anlatır."
+  },
+  {
+    "id": "reserve020",
+    "categoryIndex": 3,
+    "question": "Bir Bilim Adamının Romanı adlı biyografik eseri kim yazdı?",
+    "options": [
+      "Orhan Pamuk",
+      "Adalet Ağaoğlu",
+      "Peyami Safa",
+      "Oğuz Atay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Oğuz Atay, hocası Mustafa İnan'ın yaşamını Bir Bilim Adamının Romanı'nda anlattı."
+  },
+  {
+    "id": "reserve021",
+    "categoryIndex": 3,
+    "question": "Aylak Adam romanının yalnız ve uyumsuz başkahramanı hangi adla anılır?",
+    "options": [
+      "Bay C.",
+      "Mümtaz",
+      "Raif Efendi",
+      "Zebercet"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yusuf Atılgan'ın romanındaki başkahraman adı verilmeden yalnızca C. olarak anılır."
+  },
+  {
+    "id": "reserve022",
+    "categoryIndex": 3,
+    "question": "Kara Kitap romanında kaybolan eşi Rüya'yı arayan avukatın adı nedir?",
+    "options": [
+      "Cevdet",
+      "Galip",
+      "Ka",
+      "Mümtaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Orhan Pamuk'un Kara Kitap romanında Galip, İstanbul boyunca eşi Rüya ile gazeteci Celâl'i arar."
+  },
+  {
+    "id": "reserve023",
+    "categoryIndex": 3,
+    "question": "Kuyruklu Yıldız Altında Bir İzdivaç romanının yazarı kimdir?",
+    "options": [
+      "Halit Ziya Uşaklıgil",
+      "Recaizade Mahmut Ekrem",
+      "Hüseyin Rahmi Gürpınar",
+      "Ahmet Mithat Efendi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hüseyin Rahmi, Halley kuyruklu yıldızı korkusu çevresinde gelişen olayları mizahi bir dille anlatır."
+  },
+  {
+    "id": "reserve024",
+    "categoryIndex": 3,
+    "question": "Ölmeye Yatmak, Bir Düğün Gecesi ve Hayır romanlarından oluşan üçlemenin adı nedir?",
+    "options": [
+      "Esir Şehir",
+      "Memleket Hikâyeleri",
+      "Nehir Romanlar",
+      "Dar Zamanlar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Adalet Ağaoğlu'nun Dar Zamanlar üçlemesi Cumhuriyet kuşaklarının toplumsal ve kişisel dönüşümünü izler."
+  },
+  {
+    "id": "reserve025",
+    "categoryIndex": 4,
+    "question": "Türkiye'de klonlanan ilk koyunun adı nedir?",
+    "options": [
+      "Oyalı",
+      "Boncuk",
+      "Kınalı",
+      "Nazlı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Oyalı, İstanbul Üniversitesi araştırmacıları tarafından klonlanan ve 2007'de doğan ilk Türk koyunudur."
+  },
+  {
+    "id": "reserve026",
+    "categoryIndex": 4,
+    "question": "Ankara keçisinin dünyaca tanınan ince ve parlak lifine ne ad verilir?",
+    "options": [
+      "Keçe",
+      "Tiftik",
+      "Kaşmir",
+      "Angora yünü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ankara keçisinden elde edilen tiftik, uluslararası ticarette mohair adıyla bilinen değerli bir liftir."
+  },
+  {
+    "id": "reserve027",
+    "categoryIndex": 4,
+    "question": "Van Gölü'ndeki dev mikrobiyalitlerin oluşumunda hangi canlı grubu önemli rol oynar?",
+    "options": [
+      "Mercanlar",
+      "Denizanası",
+      "Siyanobakteriler",
+      "Süngerler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Siyanobakterilerin etkinliği ve mineral çökelmesi Van Gölü'nde metrelerce yükselen mikrobiyalitleri oluşturur."
+  },
+  {
+    "id": "reserve028",
+    "categoryIndex": 4,
+    "question": "Fatih Sultan Mehmed'in davetiyle İstanbul'a gelip astronomi eğitimi veren bilgin kimdir?",
+    "options": [
+      "Matrakçı Nasuh",
+      "Kâtip Çelebi",
+      "Takiyüddin",
+      "Ali Kuşçu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ali Kuşçu, Semerkant bilim çevresinden İstanbul'a gelerek astronomi ve matematik dersleri verdi."
+  },
+  {
+    "id": "reserve029",
+    "categoryIndex": 4,
+    "question": "Dünyada bilim tarihi alanında doktora yapan ilk kişilerden olan Türk akademisyen kimdir?",
+    "options": [
+      "Aydın Sayılı",
+      "Ekrem Akurgal",
+      "Oktay Sinanoğlu",
+      "Fuat Sezgin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Aydın Sayılı, Harvard Üniversitesinde bilim tarihi alanında doktora yapan ilk isimlerden biri oldu."
+  },
+  {
+    "id": "reserve030",
+    "categoryIndex": 4,
+    "question": "Kerim Erim'in Türkiye'de gelişmesine öncülük ettiği temel bilim dalı hangisidir?",
+    "options": [
+      "Jeoloji",
+      "Matematik",
+      "Astronomi",
+      "Kimya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kerim Erim, matematik ve mühendislik eğitimine katkılarıyla Türkiye'nin ilk önemli matematikçilerindendir."
+  },
+  {
+    "id": "reserve031",
+    "categoryIndex": 5,
+    "question": "Hamit Altıntop'a 2010 FIFA Puskás Ödülü'nü getiren gol hangi ülkeye karşıydı?",
+    "options": [
+      "Avusturya",
+      "Almanya",
+      "Kazakistan",
+      "Belçika"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hamit Altıntop, Kazakistan'a karşı köşe vuruşundan gelen topa yaptığı voleyle Puskás Ödülü'nü kazandı."
+  },
+  {
+    "id": "reserve032",
+    "categoryIndex": 5,
+    "question": "Nuri Şahin 2010-11 sezonunda hangi Alman kulübüyle Bundesliga şampiyonu oldu?",
+    "options": [
+      "Werder Bremen",
+      "Schalke 04",
+      "Bayer Leverkusen",
+      "Borussia Dortmund"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Nuri Şahin, Borussia Dortmund'un 2010-11 Bundesliga şampiyonluğunda orta sahanın kilit oyuncusuydu."
+  },
+  {
+    "id": "reserve033",
+    "categoryIndex": 5,
+    "question": "Galatasaray kadın basketbol takımı 2009'da hangi Avrupa kupasını kazandı?",
+    "options": [
+      "EuroCup Women",
+      "FIBA Europe Cup",
+      "Ronchetti Kupası",
+      "EuroLeague Women"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Galatasaray, 2009 EuroCup Women finalinde İtalyan Cras Basket Taranto'yu geçerek kupayı kazandı."
+  },
+  {
+    "id": "reserve034",
+    "categoryIndex": 5,
+    "question": "Filenin Sultanları 2023 FIVB Milletler Ligi finalinde hangi takımı yendi?",
+    "options": [
+      "ABD",
+      "Çin",
+      "İtalya",
+      "Brezilya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye, Arlington'daki 2023 Milletler Ligi finalinde Çin'i 3-1 yenerek şampiyon oldu."
+  },
+  {
+    "id": "reserve035",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe kadın basketbol takımı 2023 EuroLeague Women finalinde hangi Türk takımını yendi?",
+    "options": [
+      "Galatasaray",
+      "Beşiktaş",
+      "ÇBK Mersin",
+      "BOTAŞ"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Fenerbahçe, Prag'daki 2023 finalinde ÇBK Mersin'i yenerek ilk EuroLeague Women şampiyonluğunu kazandı."
+  },
+  {
+    "id": "reserve036",
+    "categoryIndex": 5,
+    "question": "Eczacıbaşı kadın voleybol takımı üst üste iki Dünya Kulüpler Şampiyonluğunu hangi yıllarda kazandı?",
+    "options": [
+      "2022 ve 2023",
+      "2011 ve 2012",
+      "2017 ve 2018",
+      "2015 ve 2016"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Eczacıbaşı, 2015 ve 2016'da arka arkaya FIVB Dünya Kulüpler Şampiyonu oldu."
+  },
+  {
+    "id": "reserve037",
+    "categoryIndex": 0,
+    "question": "Meke Gölü olarak bilinen volkanik krater gölü hangi ilimizin Karapınar ilçesindedir?",
+    "options": [
+      "Konya",
+      "Nevşehir",
+      "Niğde",
+      "Aksaray"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Meke Gölü, Konya'nın Karapınar ilçesindeki volkanik oluşumlarıyla tanınan bir krater gölüdür."
+  },
+  {
+    "id": "reserve038",
+    "categoryIndex": 0,
+    "question": "Dupnisa Mağarası hangi ilimizin Demirköy ilçesi yakınlarındadır?",
+    "options": [
+      "Tekirdağ",
+      "Kırklareli",
+      "Çanakkale",
+      "Edirne"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dupnisa Mağarası, Kırklareli'nin Demirköy ilçesi yakınındaki önemli mağara sistemlerinden biridir."
+  },
+  {
+    "id": "reserve039",
+    "categoryIndex": 0,
+    "question": "Horma Kanyonu ve Ilıca Şelalesi hangi ilimizin Pınarbaşı ilçesindedir?",
+    "options": [
+      "Karabük",
+      "Sinop",
+      "Kastamonu",
+      "Çankırı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Horma Kanyonu ile Ilıca Şelalesi, Kastamonu'nun Pınarbaşı ilçesindeki başlıca doğal güzelliklerdendir."
+  },
+  {
+    "id": "reserve040",
+    "categoryIndex": 0,
+    "question": "Munzur Gözeleri hangi ilimizin Ovacık ilçesinde yer alır?",
+    "options": [
+      "Elazığ",
+      "Bingöl",
+      "Erzincan",
+      "Tunceli"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Munzur Gözeleri, Tunceli'nin Ovacık ilçesinde kayalardan doğan berrak kaynaklarıyla tanınır."
+  },
+  {
+    "id": "reserve041",
+    "categoryIndex": 0,
+    "question": "Kış aylarında yüzeyi büyük ölçüde donan Çıldır Gölü hangi iki ilimizin sınırları içinde kalır?",
+    "options": [
+      "Ardahan ve Kars",
+      "Erzurum ve Ağrı",
+      "Van ve Bitlis",
+      "Artvin ve Rize"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Çıldır Gölü, Ardahan ile Kars sınırlarında bulunur ve kışın buz üzerinde etkinlikleriyle bilinir."
+  },
+  {
+    "id": "reserve042",
+    "categoryIndex": 0,
+    "question": "Nallıhan Kuş Cenneti hangi büyükşehir ilimizin sınırlarındadır?",
+    "options": [
+      "Eskişehir",
+      "Ankara",
+      "Bolu",
+      "Konya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Renkli jeolojik katmanları ve kuş çeşitliliğiyle bilinen alan Ankara'nın Nallıhan ilçesindedir."
+  },
+  {
+    "id": "reserve043",
+    "categoryIndex": 0,
+    "question": "İğneada Longoz Ormanları Millî Parkı hangi ilimizin Karadeniz kıyısındadır?",
+    "options": [
+      "Düzce",
+      "Sakarya",
+      "Kırklareli",
+      "Zonguldak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İğneada Longoz Ormanları, Kırklareli'nin Karadeniz kıyısında su basar orman ekosistemi barındırır."
+  },
+  {
+    "id": "reserve044",
+    "categoryIndex": 0,
+    "question": "Karaca Mağarası hangi ilimizin Torul ilçesi yakınlarında bulunur?",
+    "options": [
+      "Trabzon",
+      "Bayburt",
+      "Giresun",
+      "Gümüşhane"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Karaca Mağarası, Gümüşhane'nin Torul ilçesi yakınlarında damlataş oluşumlarıyla tanınır."
+  },
+  {
+    "id": "reserve045",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin UNESCO Küresel Jeopark Ağı'na kabul edilen ilk alanı hangi ilimizdedir?",
+    "options": [
+      "Manisa",
+      "Denizli",
+      "Uşak",
+      "Kütahya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kula-Salihli UNESCO Küresel Jeoparkı Manisa'dadır ve genç volkanik oluşumlarıyla öne çıkar."
+  },
+  {
+    "id": "reserve046",
+    "categoryIndex": 0,
+    "question": "Suuçtu Şelalesi hangi ilimizin Mustafakemalpaşa ilçesindedir?",
+    "options": [
+      "Kocaeli",
+      "Bursa",
+      "Balıkesir",
+      "Bilecik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Suuçtu Şelalesi, Bursa'nın Mustafakemalpaşa ilçesinde ormanlık bir vadide yer alır."
+  },
+  {
+    "id": "reserve047",
+    "categoryIndex": 0,
+    "question": "Dünyanın en derin kanyonlarından biri sayılan Valla Kanyonu hangi ilimizdedir?",
+    "options": [
+      "Rize",
+      "Karabük",
+      "Kastamonu",
+      "Artvin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Valla Kanyonu, Kastamonu'nun Pınarbaşı ilçesi yakınlarında sarp duvarlarıyla dikkat çeker."
+  },
+  {
+    "id": "reserve048",
+    "categoryIndex": 0,
+    "question": "Yerköprü Şelalesi ile Göksu Nehri manzaralarıyla tanınan Hadim ilçesi hangi ilimize bağlıdır?",
+    "options": [
+      "Mersin",
+      "Karaman",
+      "Antalya",
+      "Konya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hadim, Konya'nın güneyinde yer alır; Yerköprü Şelalesi ilçenin en bilinen doğal alanlarındandır."
+  },
+  {
+    "id": "reserve049",
+    "categoryIndex": 0,
+    "question": "Frig Vadisi'nin geniş bir bölümünü paylaşan üç il hangileridir?",
+    "options": [
+      "Afyonkarahisar, Eskişehir ve Kütahya",
+      "Ankara, Çankırı ve Kastamonu",
+      "Konya, Aksaray ve Nevşehir",
+      "Bursa, Balıkesir ve Manisa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Frig Vadisi, ağırlıklı olarak Afyonkarahisar, Eskişehir ve Kütahya arasında uzanan kültürel bir coğrafyadır."
+  },
+  {
+    "id": "reserve050",
+    "categoryIndex": 0,
+    "question": "Türkiye'nin tek biyosfer rezervi olarak UNESCO ağına giren Camili bölgesi hangi ilimizdedir?",
+    "options": [
+      "Ardahan",
+      "Artvin",
+      "Trabzon",
+      "Rize"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Camili Biyosfer Rezervi, Artvin'in Borçka ilçesinde zengin orman ve yaban hayatı çeşitliliği barındırır."
+  },
+  {
+    "id": "reserve051",
+    "categoryIndex": 1,
+    "question": "Avrupa Yakası dizisindeki Burhan Altıntop karakterini kim canlandırdı?",
+    "options": [
+      "Bülent Polat",
+      "Levent Üzümcü",
+      "Engin Günaydın",
+      "Tolga Çevik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Engin Günaydın'ın canlandırdığı Burhan Altıntop, dizinin en unutulmaz komedi karakterlerinden biri oldu."
+  },
+  {
+    "id": "reserve052",
+    "categoryIndex": 1,
+    "question": "Behzat Ç. dizisindeki Harun Sinanoğlu karakterini hangi oyuncu canlandırdı?",
+    "options": [
+      "Erdal Beşikçioğlu",
+      "İnanç Konukçu",
+      "Berkan Şal",
+      "Fatih Artman"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Komiser yardımcısı Harun Sinanoğlu karakterini dizide Fatih Artman canlandırdı."
+  },
+  {
+    "id": "reserve053",
+    "categoryIndex": 1,
+    "question": "Gibi dizisindeki Yılmaz karakterini canlandıran ve dizinin senaryosunda da yer alan isim kimdir?",
+    "options": [
+      "Feyyaz Yiğit",
+      "Kıvanç Kılınç",
+      "Bartu Küçükçağlayan",
+      "Ahmet Kürşat Öçalan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Feyyaz Yiğit, Gibi'de Yılmaz'ı oynarken dizinin yaratıcı ve senarist ekibinde de bulunur."
+  },
+  {
+    "id": "reserve054",
+    "categoryIndex": 1,
+    "question": "Leyla ile Mecnun dizisindeki İsmail Abi karakterini kim canlandırdı?",
+    "options": [
+      "Ali Atay",
+      "Serkan Keskin",
+      "Cengiz Bozkurt",
+      "Osman Sonant"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Renkli kıyafetleri ve gemi bekleyişiyle tanınan İsmail Abi'yi Serkan Keskin canlandırdı."
+  },
+  {
+    "id": "reserve055",
+    "categoryIndex": 1,
+    "question": "Altın Palmiye kazanan Kış Uykusu filminin yönetmeni kimdir?",
+    "options": [
+      "Zeki Demirkubuz",
+      "Reha Erdem",
+      "Nuri Bilge Ceylan",
+      "Semih Kaplanoğlu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Nuri Bilge Ceylan'ın yönettiği Kış Uykusu, 2014 Cannes Film Festivali'nde Altın Palmiye kazandı."
+  },
+  {
+    "id": "reserve056",
+    "categoryIndex": 1,
+    "question": "Eşkıya filmindeki Baran karakterini hangi oyuncu canlandırdı?",
+    "options": [
+      "Cem Yılmaz",
+      "Uğur Yücel",
+      "Kenan İmirzalıoğlu",
+      "Şener Şen"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Yavuz Turgul'un Eşkıya filminde yıllar sonra cezaevinden çıkan Baran'ı Şener Şen canlandırdı."
+  },
+  {
+    "id": "reserve057",
+    "categoryIndex": 1,
+    "question": "Aile Arasında filmini yöneten isim kimdir?",
+    "options": [
+      "Ozan Açıktan",
+      "Kıvanç Baruönü",
+      "Yılmaz Erdoğan",
+      "Selçuk Aydemir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gülse Birsel'in senaryosunu yazdığı Aile Arasında filminin yönetmeni Ozan Açıktan'dır."
+  },
+  {
+    "id": "reserve058",
+    "categoryIndex": 1,
+    "question": "1997 Eurovision Şarkı Yarışması'nda Türkiye'ye üçüncülük getiren sanatçı kimdir?",
+    "options": [
+      "Sertab Erener",
+      "Şebnem Paker",
+      "Arzu Ece",
+      "Sibel Tüzün"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Şebnem Paker, Dinle adlı şarkıyla 1997 Eurovision'da Türkiye adına üçüncü oldu."
+  },
+  {
+    "id": "reserve059",
+    "categoryIndex": 1,
+    "question": "Athena, 2004 Eurovision Şarkı Yarışması'nda Türkiye'yi hangi şarkıyla temsil etti?",
+    "options": [
+      "Rimi Rimi Ley",
+      "Everyway That I Can",
+      "For Real",
+      "Super Star"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Athena, İstanbul'da düzenlenen 2004 Eurovision'da For Real ile dördüncü sırayı aldı."
+  },
+  {
+    "id": "reserve060",
+    "categoryIndex": 1,
+    "question": "Barış Manço'nun çocuklardan yaşlılara geniş bir kitleye seslenen televizyon programının adı nedir?",
+    "options": [
+      "İkinci Kahvaltı",
+      "Adam Olacak Çocuk",
+      "Pazar Eğlencesi",
+      "7'den 77'ye"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "7'den 77'ye, Barış Manço'nun gezi, kültür ve çocuk bölümlerini birleştiren uzun soluklu programıdır."
+  },
+  {
+    "id": "reserve061",
+    "categoryIndex": 1,
+    "question": "Moğollar grubunun gelişimine öncülük ettiği, yerel ezgileri rock ile birleştiren müzik akımı hangisidir?",
+    "options": [
+      "Anadolu rock",
+      "Özgün müzik",
+      "Türkçe rap",
+      "Arabesk"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Moğollar, geleneksel Anadolu motiflerini rock enstrümanlarıyla birleştiren Anadolu rock akımının öncülerindendir."
+  },
+  {
+    "id": "reserve062",
+    "categoryIndex": 1,
+    "question": "Resimdeki Gözyaşları şarkısını Cem Karaca hangi grubuyla kaydetti?",
+    "options": [
+      "Moğollar",
+      "Apaşlar",
+      "Dervişan",
+      "Kardaşlar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Cem Karaca, Resimdeki Gözyaşları'nı 1960'ların sonunda Apaşlar grubuyla kaydetti."
+  },
+  {
+    "id": "reserve063",
+    "categoryIndex": 1,
+    "question": "Masumlar Apartmanı dizisindeki Han Derenoğlu karakterini kim canlandırdı?",
+    "options": [
+      "İbrahim Çelikkol",
+      "Uraz Kaygılaroğlu",
+      "Birkan Sokullu",
+      "Mert Fırat"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Masumlar Apartmanı dizisinde ailenin erkek kardeşi Han Derenoğlu'nu Birkan Sokullu oynadı."
+  },
+  {
+    "id": "reserve064",
+    "categoryIndex": 1,
+    "question": "Kulüp dizisindeki Matilda Aseo karakterini hangi oyuncu canlandırdı?",
+    "options": [
+      "Fırat Tanış",
+      "Asude Kalebek",
+      "Salih Bademci",
+      "Gökçe Bahadır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "1950'ler İstanbul'unda geçen Kulüp dizisinin merkezindeki Matilda Aseo'yu Gökçe Bahadır canlandırdı."
+  },
+  {
+    "id": "reserve065",
+    "categoryIndex": 2,
+    "question": "Hatay Devleti'nin ilk ve tek cumhurbaşkanı kimdir?",
+    "options": [
+      "Tayfur Sökmen",
+      "Refik Saydam",
+      "Şükrü Kanatlı",
+      "Abdurrahman Melek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1938'de kurulan Hatay Devleti'nin cumhurbaşkanlığını Tayfur Sökmen yürüttü."
+  },
+  {
+    "id": "reserve066",
+    "categoryIndex": 2,
+    "question": "Lozan Barış Konferansı'nda Türk heyetinin başkanlığını kim yaptı?",
+    "options": [
+      "Ali Fuat Cebesoy",
+      "İsmet İnönü",
+      "Kazım Karabekir",
+      "Rauf Orbay"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İsmet İnönü, Lozan görüşmelerinde Türkiye Büyük Millet Meclisi Hükûmeti'nin başdelegesi olarak görev yaptı."
+  },
+  {
+    "id": "reserve067",
+    "categoryIndex": 2,
+    "question": "Doğu Trakya'nın savaşılmadan Türkiye'ye bırakılmasını sağlayan ateşkes hangisidir?",
+    "options": [
+      "Ankara Antlaşması",
+      "Mondros Ateşkes Antlaşması",
+      "Mudanya Ateşkes Antlaşması",
+      "Kars Antlaşması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1922 tarihli Mudanya Ateşkesi, Doğu Trakya'nın çatışma yaşanmadan Türkiye'ye devrinin yolunu açtı."
+  },
+  {
+    "id": "reserve068",
+    "categoryIndex": 2,
+    "question": "Türkiye'nin doğu sınırını Kafkas cumhuriyetleriyle belirleyen 1921 tarihli antlaşma hangisidir?",
+    "options": [
+      "Gümrü Antlaşması",
+      "Moskova Antlaşması",
+      "Ankara Antlaşması",
+      "Kars Antlaşması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kars Antlaşması, Türkiye ile Ermenistan, Azerbaycan ve Gürcistan temsilcileri arasında imzalandı."
+  },
+  {
+    "id": "reserve069",
+    "categoryIndex": 2,
+    "question": "Türkiye'de kabotaj hakkını Türk vatandaşlarına tanıyan kanun hangi yıl yürürlüğe girdi?",
+    "options": [
+      "1926",
+      "1923",
+      "1932",
+      "1928"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kabotaj Kanunu 1 Temmuz 1926'da yürürlüğe girdi; bu tarih Kabotaj Bayramı olarak kutlanır."
+  },
+  {
+    "id": "reserve070",
+    "categoryIndex": 2,
+    "question": "1930'da kurulan Serbest Cumhuriyet Fırkası'nın genel başkanı kimdi?",
+    "options": [
+      "Adnan Menderes",
+      "Ali Fethi Okyar",
+      "Celal Bayar",
+      "Kazım Karabekir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Serbest Cumhuriyet Fırkası, Mustafa Kemal'in teşvikiyle Ali Fethi Okyar başkanlığında kuruldu."
+  },
+  {
+    "id": "reserve071",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti'nin ilk sürekli elçisi olarak Londra'ya gönderilen diplomat kimdir?",
+    "options": [
+      "Sadık Rıfat Paşa",
+      "Keçecizade Fuat Paşa",
+      "Yusuf Agâh Efendi",
+      "Yirmisekiz Çelebi Mehmed"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Yusuf Agâh Efendi, III. Selim döneminde 1793'te Londra'ya ilk sürekli Osmanlı elçisi olarak atandı."
+  },
+  {
+    "id": "reserve072",
+    "categoryIndex": 2,
+    "question": "Osmanlı Devleti'nin ilk resmî Türkçe gazetesi hangisidir?",
+    "options": [
+      "Tercüman-ı Ahval",
+      "Tasvir-i Efkâr",
+      "Ceride-i Havadis",
+      "Takvim-i Vekayi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Takvim-i Vekayi, II. Mahmud döneminde 1831'de yayımlanmaya başlayan resmî gazetedir."
+  },
+  {
+    "id": "reserve073",
+    "categoryIndex": 2,
+    "question": "1876'da ilan edilen Osmanlı anayasasının adı nedir?",
+    "options": [
+      "Kanun-ı Esasi",
+      "Teşkilat-ı Esasiye",
+      "Sened-i İttifak",
+      "Mecelle"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kanun-ı Esasi 1876'da ilan edildi ve Osmanlı Devleti'nin ilk yazılı anayasası oldu."
+  },
+  {
+    "id": "reserve074",
+    "categoryIndex": 2,
+    "question": "1402 Ankara Savaşı'nda Yıldırım Bayezid'in karşısındaki hükümdar kimdi?",
+    "options": [
+      "Uzun Hasan",
+      "Timur",
+      "Şah İsmail",
+      "Cengiz Han"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ankara Savaşı, Osmanlı hükümdarı Yıldırım Bayezid ile Timur arasında 1402'de yapıldı."
+  },
+  {
+    "id": "reserve075",
+    "categoryIndex": 2,
+    "question": "Amasya Genelgesi'nde millî mücadelenin yöntemini özetleyen temel ifade hangisidir?",
+    "options": [
+      "Egemenlik kayıtsız şartsız milletindir",
+      "Yurtta sulh, cihanda sulh",
+      "Milletin istiklalini yine milletin azim ve kararı kurtaracaktır",
+      "Hattı müdafaa yoktur, sathı müdafaa vardır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Amasya Genelgesi, kurtuluşun milletin kendi iradesi ve kararıyla sağlanacağını ilan etti."
+  },
+  {
+    "id": "reserve076",
+    "categoryIndex": 2,
+    "question": "Sivas Kongresi'nde tüm millî cemiyetler hangi çatı altında birleştirildi?",
+    "options": [
+      "Reddi İlhak Cemiyeti",
+      "Millî Kongre Cemiyeti",
+      "Kilikyalılar Cemiyeti",
+      "Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sivas Kongresi'nde bölgesel direniş cemiyetleri Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti çatısında birleşti."
+  },
+  {
+    "id": "reserve077",
+    "categoryIndex": 2,
+    "question": "Millî Mücadele sırasında düzenli orduya katılmayı reddeden Çerkez Ethem kuvvetleri hangi adla biliniyordu?",
+    "options": [
+      "Kuvâ-yi Seyyâre",
+      "Kuvâ-yi İnzibâtiye",
+      "Teşkilat-ı Mahsusa",
+      "Müdafaa-i Milliye"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Çerkez Ethem'in hareketli birlikleri Kuvâ-yi Seyyâre adıyla anılıyor ve Batı Anadolu'da görev yapıyordu."
+  },
+  {
+    "id": "reserve078",
+    "categoryIndex": 2,
+    "question": "Çanakkale'de 18 Mart zaferinde mayınlarıyla etkili olan Osmanlı gemisinin adı nedir?",
+    "options": [
+      "Yavuz Zırhlısı",
+      "Nusret Mayın Gemisi",
+      "Hamidiye Kruvazörü",
+      "Midilli Kruvazörü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Nusret Mayın Gemisi'nin boğaza döktüğü mayınlar, 18 Mart 1915 deniz harekâtında belirleyici oldu."
+  },
+  {
+    "id": "reserve079",
+    "categoryIndex": 3,
+    "question": "Saatleri Ayarlama Enstitüsü romanının anlatıcısı ve başkahramanı kimdir?",
+    "options": [
+      "Selim Işık",
+      "Mümtaz",
+      "Hayri İrdal",
+      "Halit Ayarcı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ahmet Hamdi Tanpınar'ın romanı, Hayri İrdal'ın hayatını ve enstitü deneyimini onun ağzından anlatır."
+  },
+  {
+    "id": "reserve080",
+    "categoryIndex": 3,
+    "question": "Huzur romanının merkezindeki erkek kahramanın adı nedir?",
+    "options": [
+      "Hayri İrdal",
+      "İhsan",
+      "Suat",
+      "Mümtaz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ahmet Hamdi Tanpınar'ın Huzur romanı, Mümtaz'ın Nuran'la ilişkisi ve iç dünyası çevresinde gelişir."
+  },
+  {
+    "id": "reserve081",
+    "categoryIndex": 3,
+    "question": "Anayurt Oteli romanındaki otel kâtibinin adı nedir?",
+    "options": [
+      "Zebercet",
+      "Hikmet Benol",
+      "Bay C.",
+      "Turgut Özben"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yusuf Atılgan'ın Anayurt Oteli romanının yalnız ve takıntılı başkişisi Zebercet'tir."
+  },
+  {
+    "id": "reserve082",
+    "categoryIndex": 3,
+    "question": "Tuhaf Bir Kadın romanının yazarı kimdir?",
+    "options": [
+      "Füruzan",
+      "Leylâ Erbil",
+      "Sevgi Soysal",
+      "Adalet Ağaoğlu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Leylâ Erbil'in Tuhaf Bir Kadın romanı, kadınlık, aile ve siyasal çevreler üzerinden toplumsal baskıları işler."
+  },
+  {
+    "id": "reserve083",
+    "categoryIndex": 3,
+    "question": "Gece romanının yazarı kimdir?",
+    "options": [
+      "Ferit Edgü",
+      "Vüs'at O. Bener",
+      "Bilge Karasu",
+      "Nezihe Meriç"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bilge Karasu'nun Gece romanı, baskı ve şiddeti deneysel anlatım teknikleriyle ele alan önemli bir eserdir."
+  },
+  {
+    "id": "reserve084",
+    "categoryIndex": 3,
+    "question": "Göçmüş Kediler Bahçesi adlı öykü kitabının yazarı kimdir?",
+    "options": [
+      "Orhan Kemal",
+      "Sait Faik Abasıyanık",
+      "Tomris Uyar",
+      "Bilge Karasu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Göçmüş Kediler Bahçesi, Bilge Karasu'nun masal ve öykü sınırlarını zorlayan metinlerinden oluşur."
+  },
+  {
+    "id": "reserve085",
+    "categoryIndex": 3,
+    "question": "Bir Gün Tek Başına romanının yazarı kimdir?",
+    "options": [
+      "Vedat Türkali",
+      "Kemal Tahir",
+      "Tarık Buğra",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Vedat Türkali'nin Bir Gün Tek Başına romanı, 27 Mayıs öncesindeki siyasal ve toplumsal atmosferi işler."
+  },
+  {
+    "id": "reserve086",
+    "categoryIndex": 3,
+    "question": "Memleketimden İnsan Manzaraları adlı uzun şiirsel eseri kim yazdı?",
+    "options": [
+      "Fazıl Hüsnü Dağlarca",
+      "Nâzım Hikmet",
+      "Orhan Veli Kanık",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Nâzım Hikmet, Memleketimden İnsan Manzaraları'nda farklı toplumsal kesimlerden insanları geniş bir panorama içinde anlatır."
+  },
+  {
+    "id": "reserve087",
+    "categoryIndex": 3,
+    "question": "Han Duvarları şiirinin şairi kimdir?",
+    "options": [
+      "Ahmet Kutsi Tecer",
+      "Kemalettin Kamu",
+      "Faruk Nafiz Çamlıbel",
+      "Orhan Seyfi Orhon"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Faruk Nafiz Çamlıbel'in Han Duvarları şiiri, Anadolu yolculuğunu ve halk yaşamını güçlü gözlemlerle aktarır."
+  },
+  {
+    "id": "reserve088",
+    "categoryIndex": 3,
+    "question": "Dört Köşeli Üçgen romanının yazarı kimdir?",
+    "options": [
+      "Ferit Edgü",
+      "Melih Cevdet Anday",
+      "Oktay Rifat",
+      "Salah Birsel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Dört Köşeli Üçgen, Salah Birsel'in gözlem ve ironi üzerine kurulu sıra dışı romanıdır."
+  },
+  {
+    "id": "reserve089",
+    "categoryIndex": 3,
+    "question": "Karadut şiiri ve aynı adlı portre dizisiyle bilinen ressam-şair kimdir?",
+    "options": [
+      "Bedri Rahmi Eyüboğlu",
+      "Avni Arbaş",
+      "Orhan Peker",
+      "Abidin Dino"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bedri Rahmi Eyüboğlu, hem şiirlerinde hem resimlerinde Anadolu motiflerini özgün bir dille işledi."
+  },
+  {
+    "id": "reserve090",
+    "categoryIndex": 3,
+    "question": "Sait Faik Abasıyanık Müzesi İstanbul'un hangi adasındadır?",
+    "options": [
+      "Büyükada",
+      "Burgazada",
+      "Heybeliada",
+      "Kınalıada"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yazarın yaşadığı köşk, Burgazada'da Sait Faik Abasıyanık Müzesi olarak ziyaret edilebilir."
+  },
+  {
+    "id": "reserve091",
+    "categoryIndex": 3,
+    "question": "'İstanbul'un Gözü' lakabıyla anılan fotoğraf sanatçısı kimdir?",
+    "options": [
+      "Gültekin Çizgen",
+      "Ozan Sağdıç",
+      "Ara Güler",
+      "İzzet Keribar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ara Güler, özellikle İstanbul'un gündelik yaşamını belgeleyen fotoğrafları nedeniyle bu lakapla anılır."
+  },
+  {
+    "id": "reserve092",
+    "categoryIndex": 3,
+    "question": "Akdeniz adlı dalgalı metal heykelin sanatçısı kimdir?",
+    "options": [
+      "Kuzgun Acar",
+      "Ali Hadi Bara",
+      "Sadi Çalık",
+      "İlhan Koman"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "İlhan Koman'ın Akdeniz heykeli, ince metal şeritlerle oluşturduğu dalgalı kadın figürüyle tanınır."
+  },
+  {
+    "id": "reserve093",
+    "categoryIndex": 4,
+    "question": "Feza Gürsey hangi bilim alanındaki çalışmalarıyla tanınır?",
+    "options": [
+      "Kuramsal fizik",
+      "Jeoloji",
+      "Organik kimya",
+      "Moleküler biyoloji"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Feza Gürsey, parçacık fiziği ve simetri kuramlarına katkılarıyla tanınan önemli bir kuramsal fizikçidir."
+  },
+  {
+    "id": "reserve094",
+    "categoryIndex": 4,
+    "question": "Gazi Yaşargil dünya çapında hangi tıp alanının öncülerinden kabul edilir?",
+    "options": [
+      "Göz hastalıkları",
+      "Beyin cerrahisi",
+      "Ortopedi",
+      "Kalp cerrahisi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Gazi Yaşargil, mikrocerrahi tekniklerini beyin ve sinir cerrahisine uyarlayan öncü hekimlerdendir."
+  },
+  {
+    "id": "reserve095",
+    "categoryIndex": 4,
+    "question": "Remziye Hisar Türkiye'nin öncü kadın bilim insanlarından biri olarak hangi alanda çalıştı?",
+    "options": [
+      "Matematik",
+      "Botanik",
+      "Kimya",
+      "Astronomi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Remziye Hisar, Türkiye'nin ilk kadın kimyagerlerinden ve akademik kimya eğitiminin öncülerindendir."
+  },
+  {
+    "id": "reserve096",
+    "categoryIndex": 4,
+    "question": "Nüzhet Gökdoğan'ın Türkiye'de gelişmesine öncülük ettiği bilim dalı hangisidir?",
+    "options": [
+      "Meteoroloji",
+      "Biyokimya",
+      "Jeofizik",
+      "Astronomi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Nüzhet Gökdoğan, modern astronomi eğitimi ve gözlemevi çalışmalarının Türkiye'deki öncü isimlerindendir."
+  },
+  {
+    "id": "reserve097",
+    "categoryIndex": 4,
+    "question": "NASA'da yıldızların evrimi üzerine çalışan Türk astrofizikçi kimdir?",
+    "options": [
+      "Dilhan Eryurt",
+      "Remziye Hisar",
+      "Nüzhet Gökdoğan",
+      "Feryal Özel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Dilhan Eryurt, NASA'daki çalışmalarıyla yıldızların oluşumu ve evrimi konusunda önemli katkılar yaptı."
+  },
+  {
+    "id": "reserve098",
+    "categoryIndex": 4,
+    "question": "Kara delikler ve nötron yıldızları üzerine çalışan Türk astrofizikçi kimdir?",
+    "options": [
+      "Betül Kaçar",
+      "Feryal Özel",
+      "Canan Dağdeviren",
+      "Derya Unutmaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Feryal Özel, kara delikler, nötron yıldızları ve yüksek enerji astrofiziği alanlarında çalışır."
+  },
+  {
+    "id": "reserve099",
+    "categoryIndex": 4,
+    "question": "Giyilebilir kalp pili ve esnek tıbbi sensör çalışmalarıyla tanınan Türk bilim insanı kimdir?",
+    "options": [
+      "Özlem Türeci",
+      "Burçin Mutlu-Pakdil",
+      "Canan Dağdeviren",
+      "Sema Salur"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Canan Dağdeviren, insan vücuduyla uyumlu esnek elektronik ve giyilebilir tıbbi cihazlar geliştirir."
+  },
+  {
+    "id": "reserve100",
+    "categoryIndex": 4,
+    "question": "Bağışıklık sistemi ve T hücreleri üzerine çalışan Türk bilim insanı kimdir?",
+    "options": [
+      "Mete Atatüre",
+      "Erdal İnönü",
+      "Ural Akbulut",
+      "Derya Unutmaz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Derya Unutmaz, bağışıklık hücreleri ve insan bağışıklık sisteminin hastalıklardaki rolü üzerine çalışır."
+  },
+  {
+    "id": "reserve101",
+    "categoryIndex": 4,
+    "question": "Kuantum optiği alanındaki çalışmalarıyla tanınan Türk fizikçi kimdir?",
+    "options": [
+      "Mete Atatüre",
+      "Cahit Arf",
+      "Feza Gürsey",
+      "Erdal İnönü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Mete Atatüre, kuantum optiği ve katı hâl sistemlerindeki kuantum olayları üzerine araştırmalar yürütür."
+  },
+  {
+    "id": "reserve102",
+    "categoryIndex": 4,
+    "question": "Sümer ve Hitit uygarlıkları üzerine çalışmalarıyla tanınan Türk tarihçi ve Sümerolog kimdir?",
+    "options": [
+      "Halet Çambel",
+      "Muazzez İlmiye Çığ",
+      "Jale İnan",
+      "Afet İnan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Muazzez İlmiye Çığ, çivi yazılı tabletler ve Sümer-Hitit kültürleri üzerine uzun yıllar çalıştı."
+  },
+  {
+    "id": "reserve103",
+    "categoryIndex": 4,
+    "question": "Van kedilerinde sık görülen, iki gözün farklı renkte olması durumuna ne ad verilir?",
+    "options": [
+      "Miyopi",
+      "Melanizm",
+      "Heterokromi",
+      "Albinizm"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Heterokromi, gözlerin iris renklerinin birbirinden farklı olmasıdır ve bazı Van kedilerinde görülür."
+  },
+  {
+    "id": "reserve104",
+    "categoryIndex": 4,
+    "question": "Ankara keçisinden elde edilen parlak ve dayanıklı doğal lif hangisidir?",
+    "options": [
+      "Merinos",
+      "Kaşmir",
+      "Angora yünü",
+      "Tiftik"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ankara keçisinin uzun ve parlak kıllarından elde edilen lif tiftik olarak adlandırılır."
+  },
+  {
+    "id": "reserve105",
+    "categoryIndex": 4,
+    "question": "Denizli horozunu diğer birçok ırktan ayıran en bilinen özelliği nedir?",
+    "options": [
+      "Uzun ve ahenkli ötüşü",
+      "Tamamen beyaz tüyleri",
+      "Çok küçük yapısı",
+      "Uçamaması"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Denizli horozu, uzun süren ve kendine özgü ahenk taşıyan ötüşüyle tanınan yerli bir ırktır."
+  },
+  {
+    "id": "reserve106",
+    "categoryIndex": 4,
+    "question": "Dünyada yalnızca Türkiye'nin güneybatısında doğal yayılış gösteren sığla ağacından elde edilen ürün hangisidir?",
+    "options": [
+      "Defne yağı",
+      "Sığla yağı",
+      "Çam sakızı",
+      "Keçiboynuzu özü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Anadolu sığla ağacının gövdesinden elde edilen sığla yağı, geleneksel kullanım alanları bulunan kokulu bir reçinedir."
+  },
+  {
+    "id": "reserve107",
+    "categoryIndex": 5,
+    "question": "Galatasaray'ın 2000 UEFA Kupası finalindeki son penaltısını gole çeviren oyuncu kimdi?",
+    "options": [
+      "Hagi",
+      "Arif Erdem",
+      "Gheorghe Popescu",
+      "Ümit Davala"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Gheorghe Popescu'nun penaltısı Arsenal karşısındaki seri atışlarını bitirerek kupayı Galatasaray'a getirdi."
+  },
+  {
+    "id": "reserve108",
+    "categoryIndex": 5,
+    "question": "2002 Dünya Kupası tarihinin en hızlı gollerinden birini üçüncülük maçında atan millî futbolcu kimdi?",
+    "options": [
+      "İlhan Mansız",
+      "Yıldıray Baştürk",
+      "Hasan Şaş",
+      "Hakan Şükür"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hakan Şükür, Güney Kore karşısında maçın yaklaşık 11. saniyesinde ağları buldu."
+  },
+  {
+    "id": "reserve109",
+    "categoryIndex": 5,
+    "question": "EURO 2008 çeyrek finalinde Hırvatistan'a son saniyelerde eşitlik golünü atan futbolcu kimdi?",
+    "options": [
+      "Semih Şentürk",
+      "Nihat Kahveci",
+      "Arda Turan",
+      "Tuncay Şanlı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Semih Şentürk'ün 120+2. dakikadaki golü maçı penaltılara taşıdı ve Türkiye tur atladı."
+  },
+  {
+    "id": "reserve110",
+    "categoryIndex": 5,
+    "question": "EURO 2008'de Çekya karşısındaki geri dönüşte Türkiye'nin galibiyet golünü atan futbolcu kimdi?",
+    "options": [
+      "Tuncay Şanlı",
+      "Nihat Kahveci",
+      "Semih Şentürk",
+      "Arda Turan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Nihat Kahveci, Petr Čech'in hatasını değerlendirerek Türkiye'yi 3-2 öne geçiren golü attı."
+  },
+  {
+    "id": "reserve111",
+    "categoryIndex": 5,
+    "question": "Türkiye, 2010 FIBA Dünya Şampiyonası finalinde hangi ülkeyle karşılaştı?",
+    "options": [
+      "Arjantin",
+      "İspanya",
+      "Amerika Birleşik Devletleri",
+      "Sırbistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye, İstanbul'daki 2010 dünya şampiyonası finalinde ABD'ye yenilerek gümüş madalya kazandı."
+  },
+  {
+    "id": "reserve112",
+    "categoryIndex": 5,
+    "question": "Türkiye, 2001 Avrupa Basketbol Şampiyonası finalinde hangi ülkeye karşı oynadı?",
+    "options": [
+      "İtalya",
+      "Litvanya",
+      "İspanya",
+      "Yugoslavya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "12 Dev Adam, İstanbul'daki 2001 Avrupa Şampiyonası finalinde Yugoslavya ile karşılaştı ve ikinci oldu."
+  },
+  {
+    "id": "reserve113",
+    "categoryIndex": 5,
+    "question": "Anadolu Efes'in 2021 EuroLeague şampiyonluğunda Final Four MVP'si seçilen oyuncu kimdi?",
+    "options": [
+      "Vasilije Micić",
+      "Shane Larkin",
+      "Krunoslav Simon",
+      "Bryant Dunston"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Vasilije Micić, 2021 Köln Final Four'daki performansıyla organizasyonun en değerli oyuncusu seçildi."
+  },
+  {
+    "id": "reserve114",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe'nin 2017 EuroLeague şampiyonluğunda Final Four MVP'si seçilen oyuncu kimdi?",
+    "options": [
+      "Luigi Datome",
+      "Ekpe Udoh",
+      "Jan Veselý",
+      "Bogdan Bogdanović"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ekpe Udoh, İstanbul'daki 2017 Final Four'da savunma ve hücum performansıyla MVP ödülünü aldı."
+  },
+  {
+    "id": "reserve115",
+    "categoryIndex": 5,
+    "question": "Dünya şampiyonu olan ilk Türk kadın güreşçi kimdir?",
+    "options": [
+      "Buse Tosun Çavuşoğlu",
+      "Taha Akgül",
+      "Yasemin Adar",
+      "Evin Demirhan Yavuz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yasemin Adar, 2017'de dünya şampiyonu olarak Türk kadın güreşi adına bir ilki gerçekleştirdi."
+  },
+  {
+    "id": "reserve116",
+    "categoryIndex": 5,
+    "question": "2012 Londra Olimpiyatları'nda tekvandoda altın madalya kazanan Türk sporcu kimdir?",
+    "options": [
+      "Nur Tatar",
+      "Hakan Reçber",
+      "Bahri Tanrıkulu",
+      "Servet Tazegül"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Servet Tazegül, Londra 2012'de erkekler 68 kilo tekvando kategorisinde Olimpiyat şampiyonu oldu."
+  },
+  {
+    "id": "reserve117",
+    "categoryIndex": 5,
+    "question": "Türkiye adına üç farklı Olimpiyat Oyunları'nda üst üste halter altını kazanan sporcu kimdir?",
+    "options": [
+      "Halil Mutlu",
+      "Taner Sağır",
+      "Daniyar İsmayilov",
+      "Naim Süleymanoğlu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Halil Mutlu 1996, 2000 ve 2004 Olimpiyatlarında altın madalya kazanarak üçleme yaptı."
+  },
+  {
+    "id": "reserve118",
+    "categoryIndex": 5,
+    "question": "2019'da artistik cimnastikte halka aletinde dünya şampiyonu olan Türk sporcu kimdir?",
+    "options": [
+      "Adem Asil",
+      "İbrahim Çolak",
+      "Ferhat Arıcan",
+      "Ahmet Önder"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "İbrahim Çolak, 2019 Stuttgart Dünya Şampiyonası'nda halkada altın madalya kazandı."
+  },
+  {
+    "id": "reserve119",
+    "categoryIndex": 5,
+    "question": "Filenin Sultanları'nın kaptanı Eda Erdem'in sahadaki temel pozisyonu hangisidir?",
+    "options": [
+      "Smaçör",
+      "Libero",
+      "Orta oyuncu",
+      "Pasör"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Eda Erdem, blok ve hücum etkinliğiyle tanınan bir orta oyuncu olarak görev yapar."
+  },
+  {
+    "id": "reserve120",
+    "categoryIndex": 5,
+    "question": "2020 Tokyo Olimpiyatları'nda karatede gümüş madalya kazanan Türk sporcu kimdir?",
+    "options": [
+      "Uğur Aktaş",
+      "Ali Sofuoğlu",
+      "Burak Uygur",
+      "Eray Şamdan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Eray Şamdan, Tokyo 2020'de erkekler kumite 67 kilo kategorisinde gümüş madalya kazandı."
+  }
+]

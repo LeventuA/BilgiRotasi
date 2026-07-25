@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q53321",
+    "categoryIndex": 0,
+    "question": "Victoria Şelaleleri hangi iki ülkenin sınırında yer alır?",
+    "options": [
+      "Kenya ve Tanzanya",
+      "Zambiya ve Zimbabve",
+      "Namibya ve Botsvana",
+      "Angola ve Kongo"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Zambezi Nehri üzerindeki Victoria Şelaleleri, Zambiya ile Zimbabve arasındaki doğal sınırın bir bölümünü oluşturur."
+  },
+  {
+    "id": "q53322",
+    "categoryIndex": 0,
+    "question": "Ortadaki küçük kilise adasıyla ünlü Bled Gölü hangi ülkededir?",
+    "options": [
+      "Slovakya",
+      "Hırvatistan",
+      "Slovenya",
+      "Avusturya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bled Gölü, Slovenya’nın Julian Alpleri yakınındadır ve adasındaki kiliseyle ülkenin simgelerinden biridir."
+  },
+  {
+    "id": "q53323",
+    "categoryIndex": 0,
+    "question": "Kilimanjaro Dağı hangi ülkededir?",
+    "options": [
+      "Kenya",
+      "Etiyopya",
+      "Uganda",
+      "Tanzanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Afrika’nın en yüksek dağı Kilimanjaro, Kenya sınırına yakın olsa da tamamen Tanzanya topraklarındadır."
+  },
+  {
+    "id": "q53324",
+    "categoryIndex": 0,
+    "question": "Dünya üzerindeki açık kara alanlarının en alçak noktası hangi gölün kıyısındadır?",
+    "options": [
+      "Ölü Deniz",
+      "Hazar Denizi",
+      "Baykal Gölü",
+      "Tuz Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ölü Deniz kıyıları deniz seviyesinin 400 metreden fazla altındadır ve karadaki en alçak açık noktayı oluşturur."
+  },
+  {
+    "id": "q53325",
+    "categoryIndex": 0,
+    "question": "Panama Kanalı hangi iki okyanusu birbirine bağlayan deniz yolunu kısaltır?",
+    "options": [
+      "Hint ve Pasifik",
+      "Atlas ve Pasifik",
+      "Atlas ve Hint",
+      "Arktik ve Atlas"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Panama Kanalı gemilerin Güney Amerika’yı dolaşmadan Atlas Okyanusu ile Pasifik arasında geçmesini sağlar."
+  },
+  {
+    "id": "q53326",
+    "categoryIndex": 0,
+    "question": "Avrupa ile Asya arasında geleneksel sınır kabul edilen dağ sırası hangisidir?",
+    "options": [
+      "Kafkas Dağları",
+      "Alpler",
+      "Ural Dağları",
+      "Karpatlar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ural Dağları kuzeyden güneye uzanır ve Avrupa ile Asya arasındaki geleneksel coğrafi sınırlardan biridir."
+  },
+  {
+    "id": "q53327",
+    "categoryIndex": 0,
+    "question": "Gobi Çölü ağırlıklı olarak hangi iki ülkede uzanır?",
+    "options": [
+      "Çin ve Kazakistan",
+      "Hindistan ve Pakistan",
+      "İran ve Afganistan",
+      "Moğolistan ve Çin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Gobi, güney Moğolistan ile kuzey Çin’e yayılan soğuk ve taşlık bir çöldür."
+  },
+  {
+    "id": "q53328",
+    "categoryIndex": 0,
+    "question": "Cenevre Gölü hangi iki ülke arasında paylaşılır?",
+    "options": [
+      "İsviçre ve Fransa",
+      "İsviçre ve İtalya",
+      "Fransa ve Almanya",
+      "Avusturya ve İsviçre"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Alplerin kuzeyindeki Cenevre Gölü’nün büyük bölümü İsviçre’de, güney kıyısının bir kısmı Fransa’dadır."
+  },
+  {
+    "id": "q53329",
+    "categoryIndex": 0,
+    "question": "İtalya tarafından çevrelenen bağımsız ülkelerden biri hangisidir?",
+    "options": [
+      "Andorra",
+      "San Marino",
+      "Malta",
+      "Monako"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "San Marino, İtalya yarımadasında tamamen İtalya topraklarıyla çevrili küçük ve eski bir cumhuriyettir."
+  },
+  {
+    "id": "q53330",
+    "categoryIndex": 0,
+    "question": "Bering Boğazı hangi iki ülkeyi birbirinden ayırır?",
+    "options": [
+      "Kanada ve Grönland",
+      "Japonya ve Rusya",
+      "Rusya ve ABD",
+      "Norveç ve İzlanda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bering Boğazı’nın batısında Rusya’nın Çukotka bölgesi, doğusunda ABD’nin Alaska eyaleti bulunur."
+  },
+  {
+    "id": "q53331",
+    "categoryIndex": 0,
+    "question": "Bali Adası hangi ülkeye bağlıdır?",
+    "options": [
+      "Filipinler",
+      "Malezya",
+      "Tayland",
+      "Endonezya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bali, Endonezya takımadalarının bir parçasıdır ve Hindu kültürüyle ülkenin en tanınan turizm merkezlerindendir."
+  },
+  {
+    "id": "q53332",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük yarımadası hangisidir?",
+    "options": [
+      "Arap Yarımadası",
+      "İber Yarımadası",
+      "İskandinav Yarımadası",
+      "Hindistan Yarımadası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Arap Yarımadası yaklaşık 3,2 milyon kilometrekarelik alanıyla dünyanın en büyük yarımadasıdır."
+  },
+  {
+    "id": "q53333",
+    "categoryIndex": 0,
+    "question": "Torres Boğazı Avustralya’yı hangi ülkeden ayırır?",
+    "options": [
+      "Endonezya",
+      "Papua Yeni Gine",
+      "Yeni Zelanda",
+      "Doğu Timor"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Torres Boğazı, Avustralya’nın Cape York Yarımadası ile Papua Yeni Gine arasında uzanır."
+  },
+  {
+    "id": "q53334",
+    "categoryIndex": 0,
+    "question": "Nil Nehri Akdeniz’e hangi ülkede geniş bir delta oluşturarak dökülür?",
+    "options": [
+      "Sudan",
+      "Etiyopya",
+      "Mısır",
+      "Uganda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Nil Deltası, nehrin Kahire’nin kuzeyinde kollara ayrılıp Akdeniz’e ulaştığı verimli bölgedir."
+  },
+  {
+    "id": "q53335",
+    "categoryIndex": 0,
+    "question": "Geirangerfjord hangi ülkededir?",
+    "options": [
+      "İzlanda",
+      "İsveç",
+      "Kanada",
+      "Norveç"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Geirangerfjord, dik dağ yamaçları ve şelaleleriyle Norveç’in en tanınan fiyortlarından biridir."
+  },
+  {
+    "id": "q53336",
+    "categoryIndex": 0,
+    "question": "Everglades sulak alanları hangi ABD eyaletindedir?",
+    "options": [
+      "Florida",
+      "Kaliforniya",
+      "Louisiana",
+      "Teksas"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Everglades, Güney Florida’da yavaş akan geniş bir sulak alan ekosistemidir."
+  },
+  {
+    "id": "q53337",
+    "categoryIndex": 0,
+    "question": "Matterhorn Dağı hangi iki ülkenin sınırındadır?",
+    "options": [
+      "Fransa ve İspanya",
+      "İsviçre ve İtalya",
+      "Avusturya ve Almanya",
+      "İsviçre ve Fransa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Piramit biçimli Matterhorn, İsviçre’deki Zermatt ile İtalya’daki Breuil-Cervinia arasında yükselir."
+  },
+  {
+    "id": "q53338",
+    "categoryIndex": 1,
+    "question": "The Mandalorian dizisinde küçük yeşil karakterin gerçek adı nedir?",
+    "options": [
+      "Yaddle",
+      "Yoda",
+      "Grogu",
+      "Boba"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İlk başta yalnızca “Çocuk” diye anılan karakterin adının Grogu olduğu daha sonra açıklanır."
+  },
+  {
+    "id": "q53339",
+    "categoryIndex": 1,
+    "question": "Naruto’nun yaşadığı Gizli Yaprak Köyü’nün Japonca adı nedir?",
+    "options": [
+      "Suna",
+      "Kiri",
+      "Kumo",
+      "Konoha"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Konoha, Ateş Ülkesi’ndeki shinobi köyüdür ve Naruto’nun Hokage olma hedefinin merkezindedir."
+  },
+  {
+    "id": "q53340",
+    "categoryIndex": 1,
+    "question": "Dragon Ball’da Goku hangi savaşçı ırkına aittir?",
+    "options": [
+      "Saiyan",
+      "Namekian",
+      "Android",
+      "Majin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Goku, Vegeta gezegeninden gelen Saiyan ırkındandır ve Dünya’da büyümüştür."
+  },
+  {
+    "id": "q53341",
+    "categoryIndex": 1,
+    "question": "One Piece’te Hasır Şapka Korsanları’nın ikinci büyük gemisinin adı nedir?",
+    "options": [
+      "Going Merry",
+      "Thousand Sunny",
+      "Red Force",
+      "Oro Jackson"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Thousand Sunny, Franky tarafından Adam ağacının ahşabıyla inşa edilir ve Going Merry’nin yerini alır."
+  },
+  {
+    "id": "q53342",
+    "categoryIndex": 1,
+    "question": "Yüzüklerin Efendisi’nde Balrog’la savaşırken köprüde kalan büyücü kimdir?",
+    "options": [
+      "Saruman",
+      "Radagast",
+      "Gandalf",
+      "Elrond"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Gandalf, Moria’da Balrog’un geçişini engellerken “Buradan geçemezsin” sözüyle tanınan sahneyi yaşar."
+  },
+  {
+    "id": "q53343",
+    "categoryIndex": 1,
+    "question": "Harry Potter öğrencilerini Hogwarts evlerine ayıran nesne hangisidir?",
+    "options": [
+      "Mürver Asa",
+      "Düşünseli",
+      "Kelid Aynası",
+      "Seçmen Şapka"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Seçmen Şapka öğrencinin özelliklerini değerlendirerek onu Gryffindor, Hufflepuff, Ravenclaw veya Slytherin’e yerleştirir."
+  },
+  {
+    "id": "q53344",
+    "categoryIndex": 1,
+    "question": "Super Mario evrenindeki yeşil dinozorun adı nedir?",
+    "options": [
+      "Yoshi",
+      "Toad",
+      "Bowser Jr.",
+      "Koopa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Yoshi ilk kez Super Mario World’de Mario’ya binek ve yol arkadaşı olarak yardımcı oldu."
+  },
+  {
+    "id": "q53345",
+    "categoryIndex": 1,
+    "question": "Sonic the Hedgehog’un baş düşmanı kimdir?",
+    "options": [
+      "Metal Sonic",
+      "Dr. Eggman",
+      "Shadow",
+      "Knuckles"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dr. Eggman, hayvanları robotlara dönüştüren ve dünyayı ele geçirmeye çalışan dâhi bir kötü karakterdir."
+  },
+  {
+    "id": "q53346",
+    "categoryIndex": 1,
+    "question": "The Legend of Zelda serisinin başlıca krallığı hangisidir?",
+    "options": [
+      "Midgar",
+      "Tamriel",
+      "Hyrule",
+      "Albion"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Link ve Prenses Zelda’nın maceralarının çoğu Hyrule adlı fantastik krallıkta geçer."
+  },
+  {
+    "id": "q53347",
+    "categoryIndex": 1,
+    "question": "Halo oyunlarının zırhlı ana kahramanı hangi adla bilinir?",
+    "options": [
+      "Commander Shepard",
+      "Doom Slayer",
+      "Marcus Fenix",
+      "Master Chief"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Master Chief’in askerî kodu John-117’dir ve insanlığın Covenant’a karşı savaşındaki en önemli Spartanlardan biridir."
+  },
+  {
+    "id": "q53348",
+    "categoryIndex": 1,
+    "question": "God of War serisinin ana karakteri kimdir?",
+    "options": [
+      "Kratos",
+      "Atreus",
+      "Ares",
+      "Baldur"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kratos önce Yunan, daha sonra İskandinav mitolojisinin tanrılarıyla karşı karşıya gelen savaşçıdır."
+  },
+  {
+    "id": "q53349",
+    "categoryIndex": 1,
+    "question": "Resident Evil oyunlarındaki salgınların arkasında sıkça görülen şirket hangisidir?",
+    "options": [
+      "Abstergo Industries",
+      "Umbrella Corporation",
+      "Aperture Science",
+      "Shinra"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Umbrella, biyolojik silah araştırmaları ve T-virüsüyle Resident Evil evreninin başlıca kötü kuruluşudur."
+  },
+  {
+    "id": "q53350",
+    "categoryIndex": 1,
+    "question": "Among Us’ta ekibi gizlice sabote eden oyuncu rolü hangisidir?",
+    "options": [
+      "Engineer",
+      "Scientist",
+      "Impostor",
+      "Guardian Angel"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Impostor görev yapıyormuş gibi görünürken mürettebatı ortadan kaldırmaya ve gemiyi sabote etmeye çalışır."
+  },
+  {
+    "id": "q53351",
+    "categoryIndex": 1,
+    "question": "Arcane dizisindeki zengin üst şehir ile yeraltı şehri hangileridir?",
+    "options": [
+      "Demacia ve Noxus",
+      "Ionia ve Bilgewater",
+      "Freljord ve Shurima",
+      "Piltover ve Zaun"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Arcane’in çatışması teknolojik Piltover ile yoksul ve kirli Zaun arasındaki eşitsizlik üzerine kuruludur."
+  },
+  {
+    "id": "q53352",
+    "categoryIndex": 1,
+    "question": "Wednesday Addams’ın gittiği okulun adı nedir?",
+    "options": [
+      "Nevermore Academy",
+      "Hawkins High",
+      "Xavier’s School",
+      "Riverdale High"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nevermore Academy, dışlanmış ve doğaüstü yeteneklere sahip öğrencilerin eğitim gördüğü yatılı okuldur."
+  },
+  {
+    "id": "q53353",
+    "categoryIndex": 1,
+    "question": "Avatar filminde insanların kaynak çıkarmaya çalıştığı uydu hangisidir?",
+    "options": [
+      "Endor",
+      "Pandora",
+      "Arrakis",
+      "Krypton"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pandora, Na’vi halkının yaşadığı, biyolojik çeşitliliği yüksek kurgusal bir uydudur."
+  },
+  {
+    "id": "q53354",
+    "categoryIndex": 1,
+    "question": "Portal oyunlarında oyuncuyu test odalarında yönlendiren yapay zekâ hangisidir?",
+    "options": [
+      "Cortana",
+      "EDI",
+      "GLaDOS",
+      "SHODAN"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "GLaDOS, Aperture Science tesisini yöneten alaycı yapay zekâdır ve oyuncuya ölümcül testler uygular."
+  },
+  {
+    "id": "q53355",
+    "categoryIndex": 2,
+    "question": "Çivi yazısını ilk geliştiren uygarlık hangisidir?",
+    "options": [
+      "Fenikeliler",
+      "Hititler",
+      "Persler",
+      "Sümerler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sümerler, Mezopotamya’da kil tabletler üzerine kamış kalemle işaretler bastıkları çivi yazısını geliştirdi."
+  },
+  {
+    "id": "q53356",
+    "categoryIndex": 2,
+    "question": "Hammurabi Kanunları hangi antik uygarlığa aittir?",
+    "options": [
+      "Babil",
+      "Mısır",
+      "Roma",
+      "Fenike"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Babil Kralı Hammurabi’nin yasaları, taş bir stel üzerine yazılmış en tanınmış eski hukuk metinlerindendir."
+  },
+  {
+    "id": "q53357",
+    "categoryIndex": 2,
+    "question": "Kleopatra hangi hanedanın son güçlü hükümdarlarından biriydi?",
+    "options": [
+      "Julio-Claudian Hanedanı",
+      "Ptolemaios Hanedanı",
+      "Ahameniş Hanedanı",
+      "Seleukos Hanedanı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kleopatra VII, Büyük İskender’in komutanlarından Ptolemaios’un kurduğu Makedon kökenli hanedana mensuptu."
+  },
+  {
+    "id": "q53358",
+    "categoryIndex": 2,
+    "question": "Haçlı Seferlerinin başlıca hedeflerinden biri hangi şehri ele geçirmekti?",
+    "options": [
+      "İskenderiye",
+      "Atina",
+      "Kudüs",
+      "Kartaca"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Orta Çağ Haçlı seferlerinin önemli hedefi, kutsal kabul edilen Kudüs’ün kontrolünü ele geçirmekti."
+  },
+  {
+    "id": "q53359",
+    "categoryIndex": 2,
+    "question": "Marco Polo hangi İtalyan şehir devletinden gelen bir tüccardı?",
+    "options": [
+      "Floransa",
+      "Cenova",
+      "Napoli",
+      "Venedik"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Marco Polo, Venedikli bir tüccar ailesindendi ve Asya yolculuklarını anlattığı eserle tanındı."
+  },
+  {
+    "id": "q53360",
+    "categoryIndex": 2,
+    "question": "Kristof Kolomb’un 1492 yolculuğundaki en büyük geminin adı neydi?",
+    "options": [
+      "Santa María",
+      "Mayflower",
+      "Golden Hind",
+      "Beagle"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kolomb’un filosu Santa María, Niña ve Pinta’dan oluşuyordu; Santa María amiral gemisiydi."
+  },
+  {
+    "id": "q53361",
+    "categoryIndex": 2,
+    "question": "Reform hareketini 95 Tez ile başlatan din adamı kimdir?",
+    "options": [
+      "John Calvin",
+      "Martin Luther",
+      "Jan Hus",
+      "Thomas More"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Martin Luther 1517’de endüljans uygulamasını eleştiren tezlerini yayımlayarak Protestan Reformu’nun simgesi oldu."
+  },
+  {
+    "id": "q53362",
+    "categoryIndex": 2,
+    "question": "İspanyol Armadası İngiltere’ye saldırmak üzere hangi yılda yola çıktı?",
+    "options": [
+      "1492",
+      "1605",
+      "1588",
+      "1648"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İspanyol Armada’sı 1588’de İngiltere’yi işgal etmeye çalıştı ancak hava koşulları ve İngiliz donanması nedeniyle başarısız oldu."
+  },
+  {
+    "id": "q53363",
+    "categoryIndex": 2,
+    "question": "1605 Barut Komplosu’yla en çok ilişkilendirilen kişi kimdir?",
+    "options": [
+      "Oliver Cromwell",
+      "Francis Drake",
+      "Walter Raleigh",
+      "Guy Fawkes"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Guy Fawkes, İngiliz Parlamentosu’nu patlatmayı amaçlayan komplonun barutları başında yakalanan üyesiydi."
+  },
+  {
+    "id": "q53364",
+    "categoryIndex": 2,
+    "question": "Amerikan İç Savaşı sırasında ABD başkanı kimdi?",
+    "options": [
+      "Abraham Lincoln",
+      "Theodore Roosevelt",
+      "Ulysses S. Grant",
+      "Andrew Jackson"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Abraham Lincoln 1861-1865 arasında başkanlık yaptı ve Birliğin korunması ile köleliğin kaldırılmasında merkezi rol oynadı."
+  },
+  {
+    "id": "q53365",
+    "categoryIndex": 2,
+    "question": "Rus Devrimi hangi yılda çarlık yönetimini sona erdirdi?",
+    "options": [
+      "1905",
+      "1917",
+      "1922",
+      "1939"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "1917 Şubat Devrimi Çar II. Nikolay’ın tahttan çekilmesine, Ekim Devrimi ise Bolşeviklerin iktidarına yol açtı."
+  },
+  {
+    "id": "q53366",
+    "categoryIndex": 2,
+    "question": "Türkiye Cumhuriyeti’nin uluslararası tanınmasında temel olan Lozan Antlaşması hangi yılda imzalandı?",
+    "options": [
+      "1919",
+      "1920",
+      "1923",
+      "1925"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Lozan Barış Antlaşması 24 Temmuz 1923’te imzalandı ve yeni Türkiye devletinin sınırları ile statüsünü büyük ölçüde belirledi."
+  },
+  {
+    "id": "q53367",
+    "categoryIndex": 2,
+    "question": "Çanakkale Kara Savaşları hangi yıl başladı?",
+    "options": [
+      "1912",
+      "1914",
+      "1918",
+      "1915"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Müttefik kuvvetleri 25 Nisan 1915’te Gelibolu Yarımadası’na çıkarma yaptı."
+  },
+  {
+    "id": "q53368",
+    "categoryIndex": 2,
+    "question": "Uzaya çıkan ilk kadın kimdir?",
+    "options": [
+      "Valentina Tereşkova",
+      "Svetlana Savitskaya",
+      "Sally Ride",
+      "Mae Jemison"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sovyet kozmonot Valentina Tereşkova 1963’te Vostok 6 ile uzaya çıktı."
+  },
+  {
+    "id": "q53369",
+    "categoryIndex": 2,
+    "question": "1453’te İstanbul’un fethi hangi imparatorluğun sonunu getirdi?",
+    "options": [
+      "Kutsal Roma İmparatorluğu",
+      "Bizans İmparatorluğu",
+      "Selçuklu Devleti",
+      "Venedik Cumhuriyeti"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Konstantinopolis’in Osmanlılarca alınması, Doğu Roma olarak da bilinen Bizans İmparatorluğu’nu sona erdirdi."
+  },
+  {
+    "id": "q53370",
+    "categoryIndex": 2,
+    "question": "Nelson Mandela uzun yıllar hangi adadaki hapishanede tutuldu?",
+    "options": [
+      "Alcatraz Adası",
+      "Elba Adası",
+      "Robben Adası",
+      "Devil’s Island"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mandela apartheid karşıtı mücadelesi nedeniyle 18 yılını Cape Town açıklarındaki Robben Adası’nda geçirdi."
+  },
+  {
+    "id": "q53371",
+    "categoryIndex": 2,
+    "question": "Aztek İmparatorluğu’nun başkenti hangisiydi?",
+    "options": [
+      "Cusco",
+      "Tikal",
+      "Teotihuacan",
+      "Tenochtitlan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tenochtitlan, Texcoco Gölü üzerinde kurulmuştu ve bugünkü Meksiko şehrinin merkezinde yer alıyordu."
+  },
+  {
+    "id": "q53372",
+    "categoryIndex": 3,
+    "question": "Gurur ve Önyargı romanının başlıca kadın karakteri kimdir?",
+    "options": [
+      "Elizabeth Bennet",
+      "Emma Woodhouse",
+      "Jane Eyre",
+      "Catherine Earnshaw"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Elizabeth Bennet, ailesi ve Bay Darcy ile ilişkileri üzerinden toplumsal beklentileri sorgulayan zeki bir karakterdir."
+  },
+  {
+    "id": "q53373",
+    "categoryIndex": 3,
+    "question": "Frankenstein romanındaki yaratığın özel adı nedir?",
+    "options": [
+      "Adam",
+      "Özel bir adı yoktur",
+      "Victor",
+      "Prometheus"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mary Shelley’nin romanında yaratığa özel bir isim verilmez; Frankenstein aslında onu yaratan bilim insanının soyadıdır."
+  },
+  {
+    "id": "q53374",
+    "categoryIndex": 3,
+    "question": "Oz Büyücüsü’nde Dorothy’nin ulaşmaya çalıştığı şehir hangisidir?",
+    "options": [
+      "Altın Şehir",
+      "Kristal Şehir",
+      "Zümrüt Şehir",
+      "Gümüş Şehir"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dorothy sarı tuğlalı yolu izleyerek Oz Büyücüsü’nden yardım istemek için Zümrüt Şehir’e gider."
+  },
+  {
+    "id": "q53375",
+    "categoryIndex": 3,
+    "question": "Narnia Günlükleri’nde çocuklar Narnia’ya ilk kez hangi eşya üzerinden geçer?",
+    "options": [
+      "Ayna",
+      "Kitap",
+      "Şömine",
+      "Gardırop"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Aslan, Cadı ve Dolap’ta Lucy eski bir gardırobun arkasından Narnia’ya geçer."
+  },
+  {
+    "id": "q53376",
+    "categoryIndex": 3,
+    "question": "Peter Pan’ın yaşadığı hayalî ülkenin adı nedir?",
+    "options": [
+      "Neverland",
+      "Wonderland",
+      "Oz",
+      "Narnia"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Neverland çocukların büyümediği, korsanlar ve perilerin yaşadığı hayalî adadır."
+  },
+  {
+    "id": "q53377",
+    "categoryIndex": 3,
+    "question": "Pinokyo yalan söylediğinde ne olur?",
+    "options": [
+      "Saçları mavi olur",
+      "Burnu uzar",
+      "Taşa dönüşür",
+      "Sesi kaybolur"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pinokyo’nun uzayan burnu, yalanın görünür bir sonucu olarak hikâyenin en tanınan öğesidir."
+  },
+  {
+    "id": "q53378",
+    "categoryIndex": 3,
+    "question": "Amerikan Gotiği tablosunun ressamı kimdir?",
+    "options": [
+      "Edward Hopper",
+      "Norman Rockwell",
+      "Grant Wood",
+      "Andrew Wyeth"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Grant Wood’un 1930 tarihli tablosunda dirgen tutan bir adam ve yanında bir kadın, Iowa’daki Gotik pencereli ev önünde görülür."
+  },
+  {
+    "id": "q53379",
+    "categoryIndex": 3,
+    "question": "David Copperfield romanını kim yazdı?",
+    "options": [
+      "Thomas Hardy",
+      "George Eliot",
+      "William Thackeray",
+      "Charles Dickens"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Charles Dickens’ın yarı otobiyografik özellikler taşıyan romanı David’in çocukluktan yetişkinliğe uzanan hayatını anlatır."
+  },
+  {
+    "id": "q53380",
+    "categoryIndex": 3,
+    "question": "Suç ve Ceza romanının suç işleyen başkahramanı kimdir?",
+    "options": [
+      "Raskolnikov",
+      "Dmitri Karamazov",
+      "Prens Mişkin",
+      "Bazarov"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Rodion Raskolnikov işlediği cinayetin ardından suçluluk, korku ve ahlaki sorgulamalarla mücadele eder."
+  },
+  {
+    "id": "q53381",
+    "categoryIndex": 3,
+    "question": "Yabancı romanının başkahramanı kimdir?",
+    "options": [
+      "Roquentin",
+      "Meursault",
+      "Gregor Samsa",
+      "Jean Valjean"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Albert Camus’nün romanında Meursault’nun dünyaya karşı kayıtsız tavrı absürd düşüncenin temelini oluşturur."
+  },
+  {
+    "id": "q53382",
+    "categoryIndex": 3,
+    "question": "Otomatik Portakal romanının genç anlatıcısının adı nedir?",
+    "options": [
+      "Winston",
+      "Holden",
+      "Alex",
+      "Patrick"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Alex, şiddet tutkusu ve klasik müzik sevgisiyle romanın ahlak ve özgür irade tartışmasının merkezindedir."
+  },
+  {
+    "id": "q53383",
+    "categoryIndex": 3,
+    "question": "Vahşetin Çağrısı romanındaki köpeğin adı nedir?",
+    "options": [
+      "White Fang",
+      "Lassie",
+      "Toto",
+      "Buck"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Buck rahat ev yaşamından koparılarak Klondike’ın sert koşullarında kızak köpeğine dönüşür."
+  },
+  {
+    "id": "q53384",
+    "categoryIndex": 3,
+    "question": "Küçük Deniz Kızı masalının yazarı kimdir?",
+    "options": [
+      "Hans Christian Andersen",
+      "Grimm Kardeşler",
+      "Charles Perrault",
+      "Oscar Wilde"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Danimarkalı yazar Andersen, Küçük Deniz Kızı’nı 1837’de yayımladı."
+  },
+  {
+    "id": "q53385",
+    "categoryIndex": 3,
+    "question": "Guernica tablosunda baskın olarak hangi renkler kullanılmıştır?",
+    "options": [
+      "Kırmızı ve altın",
+      "Siyah, beyaz ve gri",
+      "Mavi ve yeşil",
+      "Mor ve turuncu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Picasso’nun savaş karşıtı Guernica’sı gazete fotoğrafı etkisi veren siyah-beyaz-gri bir paletle yapılmıştır."
+  },
+  {
+    "id": "q53386",
+    "categoryIndex": 3,
+    "question": "Sistine Şapeli’nin ünlü tavan fresklerini kim yaptı?",
+    "options": [
+      "Raphael",
+      "Leonardo da Vinci",
+      "Michelangelo",
+      "Donatello"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Michelangelo 1508-1512 arasında tavanı boyadı; Âdem’in Yaratılışı en tanınan sahnelerindendir."
+  },
+  {
+    "id": "q53387",
+    "categoryIndex": 3,
+    "question": "Jane Eyre romanını kim yazdı?",
+    "options": [
+      "Emily Brontë",
+      "Anne Brontë",
+      "George Eliot",
+      "Charlotte Brontë"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Charlotte Brontë’nin romanı, Jane’in bağımsızlık ve sevgi arayışını birinci kişi anlatımıyla izler."
+  },
+  {
+    "id": "q53388",
+    "categoryIndex": 3,
+    "question": "Dede Korkut Hikâyeleri en çok hangi Türk topluluğunun yaşamını anlatır?",
+    "options": [
+      "Oğuz Türkleri",
+      "Kıpçaklar",
+      "Uygurlar",
+      "Göktürkler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Dede Korkut anlatıları Oğuzların aile, savaş, yiğitlik ve gelenek dünyasını destansı hikâyelerle aktarır."
+  },
+  {
+    "id": "q53389",
+    "categoryIndex": 4,
+    "question": "İnsan kalbinin kaç odacığı vardır?",
+    "options": [
+      "2",
+      "4",
+      "3",
+      "5"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kalpte iki kulakçık ve iki karıncık bulunur; bu odacıklar oksijenli ve oksijensiz kanın dolaşımını düzenler."
+  },
+  {
+    "id": "q53390",
+    "categoryIndex": 4,
+    "question": "Geriye doğru uçabilen kuş hangisidir?",
+    "options": [
+      "Kartal",
+      "Serçe",
+      "Sinek kuşu",
+      "Kırlangıç"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sinek kuşlarının kanat eklemleri, havada asılı kalmalarına ve geriye doğru kontrollü uçmalarına izin verir."
+  },
+  {
+    "id": "q53391",
+    "categoryIndex": 4,
+    "question": "Aktif uçuş yapabilen tek memeli grubu hangisidir?",
+    "options": [
+      "Uçan sincaplar",
+      "Şeker planörleri",
+      "Kolugolar",
+      "Yarasalar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Uçan sincaplar süzülürken yarasalar kanatlarını çırparak gerçek ve sürekli uçuş yapabilir."
+  },
+  {
+    "id": "q53392",
+    "categoryIndex": 4,
+    "question": "Köpekbalıklarının iskeleti başlıca hangi maddeden oluşur?",
+    "options": [
+      "Kıkırdak",
+      "Kemik",
+      "Kitin",
+      "Keratin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Köpekbalıkları ve vatozlar kıkırdaklı balıklardır; daha hafif kıkırdak iskelet yüzmelerine yardımcı olur."
+  },
+  {
+    "id": "q53393",
+    "categoryIndex": 4,
+    "question": "Zürafanın boynunda kaç omur bulunur?",
+    "options": [
+      "12",
+      "7",
+      "14",
+      "21"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Zürafanın boynu çok uzun olsa da çoğu memeli gibi yedi boyun omuruna sahiptir; omurların her biri oldukça uzundur."
+  },
+  {
+    "id": "q53394",
+    "categoryIndex": 4,
+    "question": "Denizyıldızının merkezi bir beyni var mıdır?",
+    "options": [
+      "Evet",
+      "Yalnız gençken vardır",
+      "Hayır",
+      "Sadece beş kollularda vardır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Denizyıldızları merkezi beyin yerine ağız çevresinde sinir halkası ve kollara uzanan sinirler kullanır."
+  },
+  {
+    "id": "q53395",
+    "categoryIndex": 4,
+    "question": "Denizanalarının hangi organı yoktur?",
+    "options": [
+      "Mide",
+      "Ağız",
+      "Dokunaç",
+      "Kalp"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Denizanalarında kalp, beyin ve akciğer yoktur; ince vücutları oksijen ve besinleri doğrudan difüzyonla taşır."
+  },
+  {
+    "id": "q53396",
+    "categoryIndex": 4,
+    "question": "Dünya atmosferinde en fazla bulunan gaz hangisidir?",
+    "options": [
+      "Azot",
+      "Oksijen",
+      "Karbondioksit",
+      "Argon"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Atmosferin yaklaşık yüzde 78’i azot, yüzde 21’i oksijendir."
+  },
+  {
+    "id": "q53397",
+    "categoryIndex": 4,
+    "question": "Elmas hangi elementin kristal biçimidir?",
+    "options": [
+      "Silisyum",
+      "Karbon",
+      "Kalsiyum",
+      "Demir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Elmas, karbon atomlarının çok sağlam üç boyutlu bir kristal ağ oluşturmasıyla meydana gelir."
+  },
+  {
+    "id": "q53398",
+    "categoryIndex": 4,
+    "question": "Periyodik tabloyu geliştiren bilim insanı kimdir?",
+    "options": [
+      "Niels Bohr",
+      "Ernest Rutherford",
+      "Dmitri Mendeleyev",
+      "Antoine Lavoisier"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mendeleyev elementleri özelliklerine göre düzenledi ve henüz keşfedilmemiş elementlerin yerlerini öngördü."
+  },
+  {
+    "id": "q53399",
+    "categoryIndex": 4,
+    "question": "Işığın boşluktaki hızı yaklaşık kaç kilometre/saniyedir?",
+    "options": [
+      "30.000",
+      "3.000",
+      "3.000.000",
+      "300.000"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Işık boşlukta saniyede yaklaşık 299.792 kilometre yol alır ve bu değer doğadaki temel hız sınırıdır."
+  },
+  {
+    "id": "q53400",
+    "categoryIndex": 4,
+    "question": "Aynı kutuplara sahip iki mıknatıs birbirine yaklaştırılırsa ne olur?",
+    "options": [
+      "Birbirini iter",
+      "Birbirini çeker",
+      "Manyetiklik yok olur",
+      "İkisi de ısınır"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kuzey-kuzey veya güney-güney kutupları birbirini iter; zıt kutuplar ise çeker."
+  },
+  {
+    "id": "q53401",
+    "categoryIndex": 4,
+    "question": "Saf suyun oda sıcaklığındaki pH değeri yaklaşık kaçtır?",
+    "options": [
+      "1",
+      "7",
+      "5",
+      "14"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "pH 7 nötr kabul edilir; daha düşük değerler asidik, daha yüksek değerler baziktir."
+  },
+  {
+    "id": "q53402",
+    "categoryIndex": 4,
+    "question": "Hücrenin enerji üretim merkezleri olarak bilinen organeller hangileridir?",
+    "options": [
+      "Ribozomlar",
+      "Lizozomlar",
+      "Mitokondriler",
+      "Sentrozomlar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mitokondriler besinlerdeki enerjiyi hücrenin kullanabileceği ATP moleküllerine dönüştürür."
+  },
+  {
+    "id": "q53403",
+    "categoryIndex": 4,
+    "question": "Alyuvarların başlıca görevi nedir?",
+    "options": [
+      "Antikor üretmek",
+      "Kemik oluşturmak",
+      "Hormon salgılamak",
+      "Oksijen taşımak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Alyuvarlardaki hemoglobin akciğerlerden aldığı oksijeni dokulara taşır."
+  },
+  {
+    "id": "q53404",
+    "categoryIndex": 4,
+    "question": "Bitkilerin ışık enerjisini kimyasal enerjiye çevirdiği süreç hangisidir?",
+    "options": [
+      "Fotosentez",
+      "Fermantasyon",
+      "Solunum",
+      "Transpirasyon"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fotosentez sırasında bitkiler ışık, su ve karbondioksiti kullanarak şeker üretir ve oksijen açığa çıkarır."
+  },
+  {
+    "id": "q53405",
+    "categoryIndex": 5,
+    "question": "Basketbol potasının yerden yüksekliği yaklaşık kaç metredir?",
+    "options": [
+      "2,75 metre",
+      "3,05 metre",
+      "3,50 metre",
+      "4 metre"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Standart basketbol çemberinin üst kenarı yerden 10 feet, yani yaklaşık 3,05 metre yüksektedir."
+  },
+  {
+    "id": "q53406",
+    "categoryIndex": 5,
+    "question": "Bir tenis Grand Slam sezonunda kaç büyük turnuva vardır?",
+    "options": [
+      "3",
+      "5",
+      "4",
+      "6"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Avustralya Açık, Roland Garros, Wimbledon ve ABD Açık tenis sezonunun dört Grand Slam turnuvasıdır."
+  },
+  {
+    "id": "q53407",
+    "categoryIndex": 5,
+    "question": "Hentbol takımında sahada aynı anda kaç oyuncu bulunur?",
+    "options": [
+      "5",
+      "6",
+      "8",
+      "7"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bir hentbol takımı sahada altı saha oyuncusu ve bir kaleciyle yer alır."
+  },
+  {
+    "id": "q53408",
+    "categoryIndex": 5,
+    "question": "Su topunda bir takım havuzda aynı anda kaç oyuncuyla oynar?",
+    "options": [
+      "7",
+      "6",
+      "8",
+      "9"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Su topunda sahada altı oyuncu ve bir kaleci bulunur."
+  },
+  {
+    "id": "q53409",
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde bir takım normalde buz üzerinde kaç oyuncuyla yer alır?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Buz hokeyi takımında normal durumda beş saha oyuncusu ve bir kaleci bulunur."
+  },
+  {
+    "id": "q53410",
+    "categoryIndex": 5,
+    "question": "Ragbi birliği takımında sahada kaç oyuncu vardır?",
+    "options": [
+      "11",
+      "13",
+      "15",
+      "17"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Rugby union on beşer oyuncuyla oynanır; rugby league ise on üçer oyunculudur."
+  },
+  {
+    "id": "q53411",
+    "categoryIndex": 5,
+    "question": "Kriket takımında kaç oyuncu bulunur?",
+    "options": [
+      "9",
+      "10",
+      "12",
+      "11"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kriket iki takım arasında oynanır ve her takım on bir oyuncudan oluşur."
+  },
+  {
+    "id": "q53412",
+    "categoryIndex": 5,
+    "question": "Olimpiyat meşalesi geleneksel olarak nerede yakılır?",
+    "options": [
+      "Olympia",
+      "Atina Stadyumu",
+      "Lozan",
+      "Roma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Meşale, antik oyunların yapıldığı Yunanistan’daki Olympia’da güneş ışınlarıyla yakılır ve ev sahibi şehre taşınır."
+  },
+  {
+    "id": "q53413",
+    "categoryIndex": 5,
+    "question": "Tour de France’ta benekli mayo hangi klasmanın liderine verilir?",
+    "options": [
+      "Puan klasmanı",
+      "Dağlar klasmanı",
+      "Gençler klasmanı",
+      "Takım klasmanı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kırmızı benekli beyaz mayo, tırmanış noktalarında en çok puanı toplayan dağlar klasmanı liderine aittir."
+  },
+  {
+    "id": "q53414",
+    "categoryIndex": 5,
+    "question": "Formula 1’de pole pozisyon ne anlama gelir?",
+    "options": [
+      "En hızlı pit stopu yapmak",
+      "Şampiyonayı lider bitirmek",
+      "Yarışa ilk sıradan başlamak",
+      "Son turu en hızlı atmak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sıralama turlarının en hızlı pilotu yarış gridinin en önündeki pole pozisyonunu kazanır."
+  },
+  {
+    "id": "q53415",
+    "categoryIndex": 5,
+    "question": "Satrançta şahın kaçamayacağı bir tehdit altında olmasına ne denir?",
+    "options": [
+      "Pat",
+      "Açmaz",
+      "Çatal",
+      "Şah mat"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Şah tehdit altındaysa ve hiçbir yasal hamleyle kurtulamıyorsa oyun şah matla biter."
+  },
+  {
+    "id": "q53416",
+    "categoryIndex": 5,
+    "question": "Dartta üç okla yapılabilen en yüksek standart skor kaçtır?",
+    "options": [
+      "180",
+      "150",
+      "170",
+      "200"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Üç okun da üçlü 20 bölgesine isabet etmesi 60+60+60, toplam 180 puan getirir."
+  },
+  {
+    "id": "q53417",
+    "categoryIndex": 5,
+    "question": "Futbolda ofsayt değerlendirmesinde oyuncu hangi anda dikkate alınır?",
+    "options": [
+      "Topu kontrol ettiği anda",
+      "Takım arkadaşı topa vurduğu anda",
+      "Hakem düdük çaldığında",
+      "Kaleci topa dokunduğunda"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ofsayt konumu, takım arkadaşının topu oynadığı veya dokunduğu anda belirlenir; oyuncunun sonra topa koşması tek başına ölçüt değildir."
+  },
+  {
+    "id": "q53418",
+    "categoryIndex": 5,
+    "question": "Boksta ringin geometrik şekli nedir?",
+    "options": [
+      "Daire",
+      "Altıgen",
+      "Kare",
+      "Sekizgen"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Adında ring geçmesine rağmen boks alanı iplerle çevrili kare biçimindedir."
+  },
+  {
+    "id": "q53419",
+    "categoryIndex": 5,
+    "question": "Beyzbolda topu atan savunma oyuncusuna ne denir?",
+    "options": [
+      "Catcher",
+      "Shortstop",
+      "Umpire",
+      "Pitcher"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Pitcher, atıcı tepeciğinden topu vurucuya gönderir; catcher ise ana kalenin arkasında topu yakalar."
+  },
+  {
+    "id": "q53420",
+    "categoryIndex": 5,
+    "question": "Bir voleybol maçında karar seti normalde kaç sayıda biter?",
+    "options": [
+      "15",
+      "21",
+      "25",
+      "30"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Setler 2-2 olduğunda oynanan beşinci set 15 sayıya kadar sürer ve yine en az iki sayı fark gerekir."
+  }
+]

@@ -1,0 +1,112 @@
+{
+  "packageName": "Bilgi Rotası V5 — Güncel ve Zamansız 1.000 Soru",
+  "version": "V5",
+  "questionCount": 1000,
+  "idStart": "q57121",
+  "idEnd": "q58120",
+  "combinedFile": "v5_1000_q57121_q58120.json",
+  "installer": "install_v5_1000.py",
+  "packages": [
+    {
+      "package": 1,
+      "file": "packages/v5_pack_001_q57121_q57220.json",
+      "qa": "verification/QA_001_q57121_q57220.json",
+      "idStart": "q57121",
+      "idEnd": "q57220"
+    },
+    {
+      "package": 2,
+      "file": "packages/v5_pack_002_q57221_q57320.json",
+      "qa": "verification/QA_002_q57221_q57320.json",
+      "idStart": "q57221",
+      "idEnd": "q57320"
+    },
+    {
+      "package": 3,
+      "file": "packages/v5_pack_003_q57321_q57420.json",
+      "qa": "verification/QA_003_q57321_q57420.json",
+      "idStart": "q57321",
+      "idEnd": "q57420"
+    },
+    {
+      "package": 4,
+      "file": "packages/v5_pack_004_q57421_q57520.json",
+      "qa": "verification/QA_004_q57421_q57520.json",
+      "idStart": "q57421",
+      "idEnd": "q57520"
+    },
+    {
+      "package": 5,
+      "file": "packages/v5_pack_005_q57521_q57620.json",
+      "qa": "verification/QA_005_q57521_q57620.json",
+      "idStart": "q57521",
+      "idEnd": "q57620"
+    },
+    {
+      "package": 6,
+      "file": "packages/v5_pack_006_q57621_q57720.json",
+      "qa": "verification/QA_006_q57621_q57720.json",
+      "idStart": "q57621",
+      "idEnd": "q57720"
+    },
+    {
+      "package": 7,
+      "file": "packages/v5_pack_007_q57721_q57820.json",
+      "qa": "verification/QA_007_q57721_q57820.json",
+      "idStart": "q57721",
+      "idEnd": "q57820"
+    },
+    {
+      "package": 8,
+      "file": "packages/v5_pack_008_q57821_q57920.json",
+      "qa": "verification/QA_008_q57821_q57920.json",
+      "idStart": "q57821",
+      "idEnd": "q57920"
+    },
+    {
+      "package": 9,
+      "file": "packages/v5_pack_009_q57921_q58020.json",
+      "qa": "verification/QA_009_q57921_q58020.json",
+      "idStart": "q57921",
+      "idEnd": "q58020"
+    },
+    {
+      "package": 10,
+      "file": "packages/v5_pack_010_q58021_q58120.json",
+      "qa": "verification/QA_010_q58021_q58120.json",
+      "idStart": "q58021",
+      "idEnd": "q58120"
+    }
+  ],
+  "targetRepo": "LeventuA/BilgiRotasi",
+  "targetPath": "assets/questions.json",
+  "runtimeLiveBankDuplicateCheck": true,
+  "categoryCounts": {
+    "0": 160,
+    "1": 190,
+    "2": 150,
+    "3": 150,
+    "4": 180,
+    "5": 170
+  },
+  "difficultyCounts": {
+    "Kolay": 500,
+    "Orta": 491,
+    "Zor": 9
+  },
+  "recent2020_2026Count": 700,
+  "evergreenCount": 300,
+  "recentYearCounts": {
+    "2023": 136,
+    "2020": 101,
+    "2022": 135,
+    "2021": 144,
+    "2024": 149,
+    "2025": 32,
+    "2026": 3
+  },
+  "targetBlobObservedBeforeBuild": "c8cac8a0319e3aab57081b288905f856c088ea27",
+  "editorialRewriteCount": 144,
+  "currentFactsOfficialSpotCheck": true,
+  "currentFactSpotCheckFile": "sources/CURRENT_FACT_SPOT_CHECKS.json"
+}

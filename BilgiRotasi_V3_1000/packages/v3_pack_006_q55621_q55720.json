@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q55621",
+    "categoryIndex": 0,
+    "question": "Mermer Mağaraları olarak bilinen dalgalı kaya oluşumları hangi gölün kıyısındadır?",
+    "options": [
+      "General Carrera Gölü",
+      "Titicaca Gölü",
+      "Maracaibo Gölü",
+      "Nahuel Huapi Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Şili Patagonyası’ndaki Mermer Mağaraları, General Carrera Gölü’nün sularıyla aşınmış renkli mermer oluşumlarıdır."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "How to Train Your Dragon’da Toothless hangi ejderha türüdür?",
+    "options": [
+      "Gronckle",
+      "Night Fury",
+      "Monstrous Nightmare",
+      "Deadly Nadder"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Toothless, çok hızlı ve nadir bir tür olan Night Fury’dir.",
+    "id": "q55622"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Ice Age serisinde Scrat sürekli hangi yiyeceğin peşindedir?",
+    "options": [
+      "Elma",
+      "Ceviz",
+      "Palamut",
+      "Havuç"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Scrat’ın bir türlü güvenli yere koyamadığı palamut, serinin tekrar eden komedi unsurudur.",
+    "id": "q55623"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde ceza alan oyuncunun beklediği bölüme ne denir?",
+    "options": [
+      "Bench",
+      "End zone",
+      "Crease",
+      "Ceza kutusu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kural ihlali yapan oyuncu belirlenen süre boyunca penalty box, yani ceza kutusunda bekler.",
+    "id": "q55624"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Nighthawks tablosu hangi mekânı gösterir?",
+    "options": [
+      "Gece açık bir lokanta",
+      "Tiyatro sahnesi",
+      "Tren vagonu",
+      "Otel lobisi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Edward Hopper, cam cepheli bir şehir lokantasındaki gece müşterilerini resmetti.",
+    "id": "q55625"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Aconcagua Dağı hangi sıradağların en yüksek zirvesidir?",
+    "options": [
+      "Kafkaslar",
+      "And Dağları",
+      "Alpler",
+      "Kayalık Dağlar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Arjantin’deki Aconcagua, Andlar’ın ve Asya dışındaki dünyanın en yüksek zirvesidir.",
+    "id": "q55626"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Lion King’de Simba’nın doğduğu yer hangisidir?",
+    "options": [
+      "Baobab Hill",
+      "Hakuna Valley",
+      "Pride Rock",
+      "Elephant Graveyard"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Simba, krallığın merkezi olan Pride Rock’ta hayvanlara tanıtılır.",
+    "id": "q55627"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Basketbolda 'fadeaway' şutun özelliği nedir?",
+    "options": [
+      "İki oyuncunun aynı anda atması",
+      "Topun yere çarptırılması",
+      "Pota altından ters elle atılması",
+      "Şutörün geriye doğru uzaklaşarak atması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Fadeaway, savunmacıyla arayı açmak için geriye doğru sıçrayarak kullanılan şuttur.",
+    "id": "q55628"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Avrupa’da hareketli metal harfli matbaayı geliştiren kişi kimdir?",
+    "options": [
+      "Johannes Gutenberg",
+      "Galileo Galilei",
+      "Niccolò Machiavelli",
+      "Leonardo da Vinci"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gutenberg 15. yüzyılda hareketli metal harf ve baskı presini birleştirerek kitap üretimini hızlandırdı.",
+    "id": "q55629"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Elbruz Dağı hangi sıradağlardadır?",
+    "options": [
+      "Ural Dağları",
+      "Kafkaslar",
+      "Karpatlar",
+      "Alpler"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Elbruz, Rusya’nın güneyindeki Büyük Kafkas sıradağlarında yer alır.",
+    "id": "q55630"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Mont Blanc hangi sıradağlardadır?",
+    "options": [
+      "Pireneler",
+      "Apeninler",
+      "Alpler",
+      "Karpatlar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mont Blanc, Fransa-İtalya sınırı yakınında Alpler’in en yüksek zirvesidir.",
+    "id": "q55631"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Hentbolda kalecinin kale alanını belirleyen çizgi kaleden kaç metre uzaktadır?",
+    "options": [
+      "Dört metre",
+      "Beş metre",
+      "Yedi metre",
+      "Altı metre"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hentbolda yalnız kalecinin serbestçe bulunabildiği kale alanı altı metre çizgisiyle çevrilidir.",
+    "id": "q55632"
+  },
+  {
+    "id": "q55633",
+    "categoryIndex": 5,
+    "question": "Hentbolda takımın hücumu yeterince ilerletmediğini belirten hakem uyarısına ne denir?",
+    "options": [
+      "Pasif oyun",
+      "Alan savunması",
+      "Ayak ihlali",
+      "Çift sürme"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hakem pasif oyun işareti verdiğinde hücum eden takım kısa süre içinde şut üretmek zorundadır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Matbaanın Avrupa’da yaygınlaşmasını sağlayan 15. yüzyıl mucidi kimdir?",
+    "options": [
+      "Leonardo da Vinci",
+      "Johannes Gutenberg",
+      "Galileo Galilei",
+      "Nicolaus Copernicus"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Gutenberg’in hareketli metal harfli baskı sistemi kitap üretimini büyük ölçüde hızlandırdı.",
+    "id": "q55634"
+  },
+  {
+    "id": "q55635",
+    "categoryIndex": 4,
+    "question": "Ceset çiçeği böcekleri çekmek için hangi özelliği kullanır?",
+    "options": [
+      "Tatlı meyve suyunu",
+      "Elektrik alanını",
+      "Çürümüş et kokusunu",
+      "Ultrasonu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Amorphophallus titanum kötü kokusu ve ısınan çiçek yapısıyla leşçil böcekleri kendine çeker."
+  },
+  {
+    "id": "q55636",
+    "categoryIndex": 0,
+    "question": "Bafa Gölü hangi iki ilin sınırında yer alır?",
+    "options": [
+      "Burdur ve Isparta",
+      "Balıkesir ve Çanakkale",
+      "İzmir ve Manisa",
+      "Aydın ve Muğla"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bafa Gölü, Aydın’ın Söke ilçesi ile Muğla’nın Milas ilçesi arasında uzanır."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Ural Dağları geleneksel olarak hangi iki kıtanın sınırı kabul edilir?",
+    "options": [
+      "Avrupa ve Asya",
+      "Avrupa ve Afrika",
+      "Asya ve Afrika",
+      "Asya ve Kuzey Amerika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ural Dağları, Avrupa ile Asya arasındaki geleneksel coğrafi sınırlardan biridir.",
+    "id": "q55637"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Pireneler hangi iki ülke arasında doğal sınır oluşturur?",
+    "options": [
+      "İspanya ve Portekiz",
+      "Fransa ve İspanya",
+      "İtalya ve İsviçre",
+      "Fransa ve İtalya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pireneler, Fransa ile İspanya arasında doğu-batı yönünde uzanır.",
+    "id": "q55638"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Rönesans Floransası’nın güçlü bankacı ve sanat koruyucusu ailesi hangisiydi?",
+    "options": [
+      "Visconti",
+      "Sforza",
+      "Medici",
+      "Borgia"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Medici ailesi, bankacılık gücüyle sanatçıları destekledi ve Floransa siyasetini etkiledi.",
+    "id": "q55639"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Aladdin’de Cin nerede hapsolmuştur?",
+    "options": [
+      "Uçan halıda",
+      "Mağaranın kapısında",
+      "Bir yüzükte",
+      "Sihirli lambada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Lamba ovulduğunda Cin ortaya çıkar ve sahibine dilekler sunar.",
+    "id": "q55640"
+  },
+  {
+    "id": "q55641",
+    "categoryIndex": 3,
+    "question": "Damlatma tekniğiyle yaptığı büyük soyut tuvallerle tanınan sanatçı kimdir?",
+    "options": [
+      "Jackson Pollock",
+      "Andy Warhol",
+      "Edward Hopper",
+      "Jasper Johns"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Pollock, boyayı yere serili tuvallere döküp sıçratarak hareketli yüzeyler oluşturdu."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "İzlenim: Gün Doğumu tablosu hangi sanat akımına ad verdi?",
+    "options": [
+      "Fütürizm",
+      "Empresyonizm",
+      "Kübizm",
+      "Ekspresyonizm"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bir eleştirmenin tablonun adından türettiği 'empresyonist' sözü akımın adı oldu.",
+    "id": "q55642"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İber Yarımadası’ndaki Reconquista hangi şehrin 1492’de alınmasıyla tamamlandı?",
+    "options": [
+      "Toledo",
+      "Sevilla",
+      "Granada",
+      "Valensiya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Granada Emirliği’nin teslim olmasıyla Müslüman yönetimindeki son İber devleti sona erdi.",
+    "id": "q55643"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Jüpiter’deki Büyük Kırmızı Leke nedir?",
+    "options": [
+      "Krater",
+      "Buz denizi",
+      "Yanardağ",
+      "Dev bir fırtına"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Büyük Kırmızı Leke, yüzyıllardır gözlenen dev bir antisiklonik fırtınadır.",
+    "id": "q55644"
+  },
+  {
+    "id": "q55645",
+    "categoryIndex": 3,
+    "question": "Bu Bir Pipo Değildir sözüyle bilinen İmgelerin İhaneti tablosu kime aittir?",
+    "options": [
+      "René Magritte",
+      "Salvador Dalí",
+      "Max Ernst",
+      "Man Ray"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Magritte, pipo resmi ile gerçek nesne arasındaki farkı yazıyla vurgulayarak temsil kavramını sorguladı."
+  },
+  {
+    "id": "q55646",
+    "categoryIndex": 2,
+    "question": "Balfour Deklarasyonu hangi bölgede bir Yahudi yurdu kurulmasına destek ifade etti?",
+    "options": [
+      "Sina",
+      "Filistin",
+      "Mezopotamya",
+      "Kıbrıs"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Britanya’nın 1917 tarihli deklarasyonu, Filistin’de Yahudi halkı için bir ulusal yurt fikrine destek bildirdi."
+  },
+  {
+    "id": "q55647",
+    "categoryIndex": 4,
+    "question": "Bristlecone çamları neden bilimsel açıdan dikkat çekicidir?",
+    "options": [
+      "Deniz suyunda büyümeleriyle",
+      "Her yıl renk değiştirmeleriyle",
+      "Binlerce yıl yaşayabilmeleriyle",
+      "Etçil olmalarıyla"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bazı bristlecone çamları yaklaşık beş bin yıla yaklaşan yaşlarıyla en yaşlı tekil ağaçlar arasındadır."
+  },
+  {
+    "id": "q55648",
+    "categoryIndex": 3,
+    "question": "Sonsuzluk odaları ve benekli balkabaklarıyla tanınan Japon sanatçı kimdir?",
+    "options": [
+      "Chiharu Shiota",
+      "Yoko Ono",
+      "Marina Abramović",
+      "Yayoi Kusama"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kusama’nın aynalar, ışıklar ve puantiyelerle kurduğu mekânlar izleyicide sonsuzluk hissi yaratır."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Mulan orduda fark edilmemek için hangi kimliğe bürünür?",
+    "options": [
+      "Erkek asker",
+      "Saray hizmetçisi",
+      "Gezgin tüccar",
+      "Rahip"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mulan babasının yerine orduya katılmak için Ping adlı erkek asker kimliğini kullanır.",
+    "id": "q55649"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Frozen filmindeki krallığın adı nedir?",
+    "options": [
+      "Corona",
+      "Arendelle",
+      "Agrabah",
+      "DunBroch"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Elsa ve Anna, kurgusal Arendelle krallığının prensesleridir.",
+    "id": "q55650"
+  },
+  {
+    "id": "q55651",
+    "categoryIndex": 4,
+    "question": "Deniz çayırları biyolojik olarak hangi gruba aittir?",
+    "options": [
+      "Algler",
+      "Mantarlar",
+      "Çiçekli bitkiler",
+      "Mercanlar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Deniz çayırları su altında yaşayan, kök, yaprak, çiçek ve tohum oluşturabilen gerçek bitkilerdir."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Moana’ya yolculuğunda eşlik eden yarı tanrı kimdir?",
+    "options": [
+      "Triton",
+      "Hades",
+      "Hercules",
+      "Maui"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Maui, büyülü oltasıyla şekil değiştirebilen Polinezya yarı tanrısıdır.",
+    "id": "q55652"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Futbolda 'asist' neyi ifade eder?",
+    "options": [
+      "Golü hazırlayan son belirleyici pası",
+      "Kalecinin kurtarışını",
+      "Hakemin avantajını",
+      "Savunmacının uzaklaştırmasını"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İstatistikte asist, takım arkadaşının golüne doğrudan katkı sağlayan pas veya aksiyondur.",
+    "id": "q55653"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Halka Yol Gösteren Özgürlük hangi devrimi simgeler?",
+    "options": [
+      "Paris Komünü",
+      "1830 Temmuz Devrimi",
+      "1848 Devrimleri",
+      "1789 Bastille Baskını"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Delacroix, 1830’da Paris’te Bourbon yönetimine karşı ayaklanmayı alegorik bir kadın figürüyle anlattı.",
+    "id": "q55654"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İnka İmparatorluğu’nun başkenti hangi şehirdi?",
+    "options": [
+      "Quito",
+      "Lima",
+      "Cusco",
+      "La Paz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cusco, Andlar’daki İnka devletinin siyasi ve kutsal merkeziydi.",
+    "id": "q55655"
+  },
+  {
+    "id": "q55656",
+    "categoryIndex": 4,
+    "question": "Mantarlar evrimsel olarak hangi canlı grubuna bitkilerden daha yakındır?",
+    "options": [
+      "Bakterilere",
+      "Alglere",
+      "Arkelere",
+      "Hayvanlara"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mantarlar ve hayvanlar ortak ataları bakımından birbirine bitkilerden daha yakındır."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Karpat Dağları ağırlıklı olarak Avrupa’nın hangi bölümündedir?",
+    "options": [
+      "Orta ve Doğu Avrupa",
+      "Güneybatı Avrupa",
+      "Batı Avrupa",
+      "Kuzey Avrupa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Karpatlar Slovakya, Polonya, Ukrayna ve Romanya boyunca yay çizerek uzanır.",
+    "id": "q55657"
+  },
+  {
+    "id": "q55658",
+    "categoryIndex": 4,
+    "question": "Baklagil köklerindeki Rhizobium bakterileri hangi elementi bitkinin kullanabileceği biçime dönüştürür?",
+    "options": [
+      "Silikon",
+      "Azot",
+      "Altın",
+      "Klor"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Rhizobium bakterileri atmosferik azotu bağlayarak bitkinin yararlanabileceği bileşiklere dönüştürür."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Büyük Set Resifi hangi ülkenin açıklarındadır?",
+    "options": [
+      "Yeni Zelanda",
+      "Endonezya",
+      "Avustralya",
+      "Filipinler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Büyük Set Resifi, Avustralya’nın Queensland kıyıları boyunca Mercan Denizi’nde uzanır.",
+    "id": "q55659"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Encanto filmindeki büyülü ailenin soyadı nedir?",
+    "options": [
+      "Parr",
+      "Rivera",
+      "Andersen",
+      "Madrigal"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Madrigal ailesinin her üyesi, Mirabel dışında, özel bir armağan alır.",
+    "id": "q55660"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Olimpiyat bayrağında kaç halka vardır?",
+    "options": [
+      "Beş",
+      "Altı",
+      "Dört",
+      "Yedi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Birbirine geçmiş beş halka, Olimpiyat hareketinin evrenselliğini simgeler.",
+    "id": "q55661"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Zootopia’daki Judy Hopps hangi hayvandır?",
+    "options": [
+      "Tilki",
+      "Tavşan",
+      "Koyun",
+      "Su samuru"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Judy, Zootopia polis teşkilatına katılan idealist bir tavşandır.",
+    "id": "q55662"
+  },
+  {
+    "id": "q55663",
+    "categoryIndex": 5,
+    "question": "Amerikan futbolunda topu hücum oyununda yönlendiren temel oyuncu hangisidir?",
+    "options": [
+      "Linebacker",
+      "Cornerback",
+      "Quarterback",
+      "Kicker"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Quarterback topu alır, pas verir, koşar ya da koşu oyununu başlatmak üzere teslim eder."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Sargasso Denizi’nin diğer denizlerden belirgin farkı nedir?",
+    "options": [
+      "Bir krater içinde bulunması",
+      "Tamamen tatlı su olması",
+      "Buz tabakası altında kalması",
+      "Kara kıyısı yerine okyanus akıntılarıyla çevrili olması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Sargasso Denizi, Atlas Okyanusu’ndaki akıntıların oluşturduğu sınırlarla tanımlanır.",
+    "id": "q55664"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kristof Kolomb 1492’de ilk olarak hangi bölgeye ulaştı?",
+    "options": [
+      "Karayipler",
+      "Güney Afrika",
+      "Hindistan",
+      "Avustralya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kolomb’un filosu Bahamalar’daki bir adaya ulaştı; kendisi Asya kıyılarına vardığını sanıyordu.",
+    "id": "q55665"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Avrupa’dan deniz yoluyla Hindistan’a ulaşan Vasco da Gama hangi burnu dolaştı?",
+    "options": [
+      "Kuzey Burnu",
+      "Ümit Burnu",
+      "Horn Burnu",
+      "Leeuwin Burnu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Vasco da Gama Afrika’nın güneyindeki Ümit Burnu’nu geçerek 1498’de Hindistan’a ulaştı.",
+    "id": "q55666"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Macellan’ın başlattığı dünya çevresi seferini kim tamamladı?",
+    "options": [
+      "Amerigo Vespucci",
+      "Hernán Cortés",
+      "Juan Sebastián Elcano",
+      "Bartolomeu Dias"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Macellan Filipinler’de öldükten sonra Victoria gemisini Elcano İspanya’ya geri götürdü.",
+    "id": "q55667"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Ay’ın Dünya’ya hep aynı yüzünü göstermesinin nedeni nedir?",
+    "options": [
+      "Hiç dönmemesi",
+      "Dünya’nın gölgesinde kalması",
+      "Bir yüzünün daha ağır olması",
+      "Dönme ve dolanma sürelerinin eşit olması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ay, kendi ekseni etrafında döndüğü sürede Dünya çevresindeki bir turunu tamamlar.",
+    "id": "q55668"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Fiyortlar en çok hangi süreçle oluşur?",
+    "options": [
+      "Buzulların vadileri aşındırmasıyla",
+      "Mercanların yükselmesiyle",
+      "Lavların kıyıyı kaplamasıyla",
+      "Rüzgârın kumulları taşımasıyla"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fiyortlar, buzulların oyduğu derin vadilerin deniz suyu altında kalmasıyla oluşur.",
+    "id": "q55669"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Olimpiyat sloganındaki 'Citius, Altius, Fortius' ne anlama gelir?",
+    "options": [
+      "Onur, cesaret, dostluk",
+      "Daha hızlı, daha yüksek, daha güçlü",
+      "Barış, birlik, zafer",
+      "Koş, yüz, atla"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Latince ifade sporcuların hız, yükseklik ve güç sınırlarını aşma idealini anlatır.",
+    "id": "q55670"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Güneş tutulmasında hangi gök cismi Dünya ile Güneş arasına girer?",
+    "options": [
+      "Venüs",
+      "Jüpiter",
+      "Ay",
+      "Mars"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ay’ın gölgesi Dünya üzerine düştüğünde Güneş tutulması görülür.",
+    "id": "q55671"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Maraton yarışının resmî uzunluğu kaç kilometredir?",
+    "options": [
+      "40",
+      "45",
+      "41,5",
+      "42,195"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Modern maraton mesafesi 42 kilometre 195 metre olarak standartlaştırılmıştır.",
+    "id": "q55672"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Martin Luther’in 95 Tez’i hangi hareketi başlattı?",
+    "options": [
+      "Protestan Reformu",
+      "Rönesans",
+      "Karşı Reform",
+      "Aydınlanma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Luther’in 1517’deki itirazları Batı Hristiyanlığındaki Protestan Reformu’nun simgesi oldu.",
+    "id": "q55673"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Ay tutulmasında hangi gök cismi Güneş ile Ay arasındadır?",
+    "options": [
+      "Venüs",
+      "Dünya",
+      "Mars",
+      "Merkür"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dünya’nın gölgesi Ay’ın üzerine düştüğünde Ay tutulması gerçekleşir.",
+    "id": "q55674"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Madagascar filmindeki Alex hangi hayvandır?",
+    "options": [
+      "Zebra",
+      "Su aygırı",
+      "Aslan",
+      "Zürafa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Alex, Central Park Hayvanat Bahçesi’nin gösteri yıldızı olan bir aslandır.",
+    "id": "q55675"
+  },
+  {
+    "id": "q55676",
+    "categoryIndex": 3,
+    "question": "Maman adlı dev örümcek heykelinin sanatçısı kimdir?",
+    "options": [
+      "Barbara Hepworth",
+      "Niki de Saint Phalle",
+      "Camille Claudel",
+      "Louise Bourgeois"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bourgeois’nın Maman heykeli, annelik, koruma ve dokuma fikirlerini dev bir örümcekle birleştirir."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Dünya’daki gelgitlerin başlıca nedeni hangi gök cisminin çekimidir?",
+    "options": [
+      "Ay",
+      "Mars",
+      "Satürn",
+      "Venüs"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ay’ın farklı bölgelerde oluşturduğu çekim farkı okyanuslarda gelgit kabarmalarına yol açar.",
+    "id": "q55677"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Ana asteroit kuşağı hangi iki gezegen arasındadır?",
+    "options": [
+      "Jüpiter ve Satürn",
+      "Mars ve Jüpiter",
+      "Dünya ve Mars",
+      "Venüs ve Dünya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Asteroit kuşağındaki cisimlerin çoğu Mars ile Jüpiter yörüngeleri arasında dolanır.",
+    "id": "q55678"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "SpongeBob SquarePants hangi su altı kasabasında yaşar?",
+    "options": [
+      "Shell City",
+      "Rock Bottom",
+      "Bikini Bottom",
+      "Atlantis"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "SpongeBob, Büyük Okyanus’un altında kurgusal Bikini Bottom kasabasında yaşar.",
+    "id": "q55679"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Kuiper Kuşağı hangi gezegenin ötesinde başlar?",
+    "options": [
+      "Uranüs",
+      "Satürn",
+      "Jüpiter",
+      "Neptün"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Buzlu küçük cisimlerden oluşan Kuiper Kuşağı, Neptün yörüngesinin dışına yayılır.",
+    "id": "q55680"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Sörf tahtasının altında yön ve denge sağlayan küçük kanatçığa ne denir?",
+    "options": [
+      "Fin",
+      "Grip",
+      "Pedal",
+      "Raket"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tahtanın altındaki fin, dönüşlerde tutuş ve yön kararlılığı sağlar.",
+    "id": "q55681"
+  },
+  {
+    "id": "q55682",
+    "categoryIndex": 5,
+    "question": "3000 metre engelli koşuda atletler hangi iki tür engeli aşar?",
+    "options": [
+      "İp ve hendek",
+      "Bariyerler ve su havuzu",
+      "Kum çukuru ve duvar",
+      "Rampa ve tünel"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "3000 metre engelli yarışında sabit bariyerlerin yanı sıra her turda bir su engeli bulunur."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Triatlonda branşlar hangi sırayla yapılır?",
+    "options": [
+      "Koşu, yüzme, bisiklet",
+      "Yüzme, koşu, bisiklet",
+      "Yüzme, bisiklet, koşu",
+      "Bisiklet, koşu, yüzme"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Standart triatlon yüzmeyle başlar, bisikletle devam eder ve koşuyla biter.",
+    "id": "q55683"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "İnsanoğlu tablosunda adamın yüzünü hangi meyve örter?",
+    "options": [
+      "Portakal",
+      "Armut",
+      "Nar",
+      "Yeşil elma"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "René Magritte’in sürrealist tablosunda melon şapkalı adamın yüzü havada duran elmayla gizlenir.",
+    "id": "q55684"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Campbell’s Soup Cans serisini kim yaptı?",
+    "options": [
+      "Andy Warhol",
+      "Roy Lichtenstein",
+      "Jasper Johns",
+      "Keith Haring"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Warhol, seri üretim ve tüketim kültürünü çorba kutularını tekrar ederek sanatın konusu yaptı.",
+    "id": "q55685"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bir kuyruklu yıldızın kuyruğu genellikle hangi yöne uzanır?",
+    "options": [
+      "Hareket yönünün tam önüne",
+      "Güneş’ten uzağa",
+      "Güneş’e doğru",
+      "Dünya’ya doğru"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Güneş rüzgârı ve ışınım basıncı, gaz ve toz kuyruğunu Güneş’in ters yönüne iter.",
+    "id": "q55686"
+  },
+  {
+    "id": "q55687",
+    "categoryIndex": 2,
+    "question": "Gandhi’nin 1930’daki Tuz Yürüyüşü hangi yönetimin tuz tekeline karşıydı?",
+    "options": [
+      "Portekiz yönetimi",
+      "Babür yönetimi",
+      "Britanya sömürge yönetimi",
+      "Fransız sömürge yönetimi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Gandhi, Britanya’nın tuz vergisi ve tekeline karşı deniz kıyısına yürüyerek sivil itaatsizlik başlattı."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İspanyol Armadası 1588’de hangi ülkeyi işgal etmeye çalıştı?",
+    "options": [
+      "Portekiz",
+      "Fransa",
+      "Hollanda",
+      "İngiltere"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "II. Felipe’nin büyük filosu İngiltere’yi işgal etmek için yola çıktı ancak başarısız oldu.",
+    "id": "q55688"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Delta ovaları genellikle nerede oluşur?",
+    "options": [
+      "Nehirlerin denize veya göle döküldüğü yerde",
+      "Okyanus sırtlarında",
+      "Dağ zirvelerinde",
+      "Çöl ortasında"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nehirlerin taşıdığı alüvyonlar ağız bölümünde birikerek delta ovaları oluşturabilir.",
+    "id": "q55689"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Avatar: The Last Airbender’da Aang’ın doğuştan bağlı olduğu element hangisidir?",
+    "options": [
+      "Toprak",
+      "Hava",
+      "Ateş",
+      "Su"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Aang, Güney Hava Tapınağı’ndan gelen son Hava Bükücü’dür.",
+    "id": "q55690"
+  },
+  {
+    "id": "q55691",
+    "categoryIndex": 2,
+    "question": "Çin Komünistlerinin 1930’larda gerçekleştirdiği uzun geri çekilişe ne ad verilir?",
+    "options": [
+      "Kültür Devrimi",
+      "Yüz Çiçek Hareketi",
+      "Uzun Yürüyüş",
+      "Büyük Atılım"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Uzun Yürüyüş, Çin Komünist güçlerinin kuşatmadan kurtulmak için yaptığı binlerce kilometrelik geri çekilişti."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İngiliz İç Savaşı sonunda idam edilen kral kimdi?",
+    "options": [
+      "II. Charles",
+      "I. James",
+      "III. William",
+      "I. Charles"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Parlamento kuvvetlerine yenilen I. Charles, 1649’da vatana ihanet suçlamasıyla idam edildi.",
+    "id": "q55692"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "1688 Şanlı Devrim hangi ülkede gerçekleşti?",
+    "options": [
+      "İngiltere",
+      "Rusya",
+      "Fransa",
+      "İspanya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "II. James’in devrilmesi ve William ile Mary’nin tahta çıkması Şanlı Devrim diye anılır.",
+    "id": "q55693"
+  },
+  {
+    "id": "q55694",
+    "categoryIndex": 1,
+    "question": "Outer Wilds oyunundaki zaman döngüsü yaklaşık kaç dakika sürer?",
+    "options": [
+      "60 dakika",
+      "22 dakika",
+      "7 dakika",
+      "45 dakika"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Oyuncu, güneş sisteminin yok oluşuna kadar süren yaklaşık 22 dakikalık döngüyü tekrar tekrar yaşar."
+  },
+  {
+    "id": "q55695",
+    "categoryIndex": 3,
+    "question": "Ayçiçeği Çekirdekleri adlı yerleştirmeyi yapan Çinli sanatçı kimdir?",
+    "options": [
+      "Xu Bing",
+      "Zhang Huan",
+      "Ai Weiwei",
+      "Cai Guo-Qiang"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Eser, çok sayıda elde boyanmış porselen çekirdekle emek, seri üretim ve bireysellik üzerine düşünür."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Good Place dizisinde mahallenin mimarı olarak tanıtılan karakter kimdir?",
+    "options": [
+      "Chidi",
+      "Jason",
+      "Tahani",
+      "Michael"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Michael başlangıçta Eleanor ve diğerlerine mahallenin mimarı olarak tanıtılır.",
+    "id": "q55696"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Fountain adlı hazır nesne eseri hangi sanatçıyla ilişkilidir?",
+    "options": [
+      "Marcel Duchamp",
+      "Piet Mondrian",
+      "Kazimir Malevich",
+      "Man Ray"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Duchamp, imzalanmış bir pisuvarı sanat sergisine sunarak sanat nesnesi fikrini sorguladı.",
+    "id": "q55697"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Spiral Jetty adlı arazi sanatı eseri hangi göldedir?",
+    "options": [
+      "Cenevre Gölü",
+      "Büyük Tuz Gölü",
+      "Baykal Gölü",
+      "Superior Gölü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Robert Smithson’ın taş ve topraktan yaptığı spiral, Utah’taki Büyük Tuz Gölü kıyısındadır.",
+    "id": "q55698"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Cloud Gate heykeli hangi Amerikan şehrindedir?",
+    "options": [
+      "Seattle",
+      "Boston",
+      "Chicago",
+      "San Francisco"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Anish Kapoor’un fasulye biçimli yansıtıcı heykeli Chicago’daki Millennium Park’tadır.",
+    "id": "q55699"
+  },
+  {
+    "id": "q55700",
+    "categoryIndex": 0,
+    "question": "Kızılırmak Deltası Kuş Cenneti hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Trabzon",
+      "Sinop",
+      "Ordu",
+      "Samsun"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kızılırmak’ın Karadeniz’e ulaştığı delta, Samsun’un Bafra ilçesi çevresinde önemli bir sulak alan oluşturur."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Atmosferde yanarak ışık izi bırakan küçük gök taşına ne denir?",
+    "options": [
+      "Meteor",
+      "Meteorite",
+      "Kuyruklu yıldız",
+      "Asteroit"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Uzaydaki meteoroid atmosfere girip ışıldadığında meteor olarak görülür.",
+    "id": "q55701"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Kış biatlonu hangi iki sporu birleştirir?",
+    "options": [
+      "Luge ve eskrim",
+      "Kayaklı koşu ve tüfek atışı",
+      "Bobsled ve okçuluk",
+      "Kayakla atlama ve paten"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Biatloncular kayak parkurundaki fiziksel eforu hassas tüfek atışlarıyla birleştirir.",
+    "id": "q55702"
+  },
+  {
+    "id": "q55703",
+    "categoryIndex": 5,
+    "question": "Dart tahtasındaki dış bull bölgesi kaç puan değerindedir?",
+    "options": [
+      "15",
+      "20",
+      "25",
+      "50"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Merkezin dış halkası 25, iç bull ise 50 puan değerindedir."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Atmosferden geçip yeryüzüne ulaşan gök taşı parçasına ne denir?",
+    "options": [
+      "Meteor",
+      "Bulutsu",
+      "Kozmik ışın",
+      "Meteorit"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Tamamen yanmadan yere düşen parçalar meteorit adıyla incelenir.",
+    "id": "q55704"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "South Park kasabası hangi ABD eyaletindedir?",
+    "options": [
+      "Colorado",
+      "Utah",
+      "Montana",
+      "Wyoming"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Dizi, Colorado’daki kurgusal South Park kasabasında geçer.",
+    "id": "q55705"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Semadirek Kanatlı Zaferi hangi müzede sergilenir?",
+    "options": [
+      "Metropolitan Museum",
+      "Louvre Müzesi",
+      "Pergamon Müzesi",
+      "British Museum"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Helenistik heykel, Louvre’daki Daru merdivenlerinin başında sergilenir.",
+    "id": "q55706"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bir akarsuyun başka bir akarsuya katıldığı kola ne denir?",
+    "options": [
+      "Delta",
+      "Kaynak",
+      "Yan kol",
+      "Menderes"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ana akarsuya su taşıyan daha küçük akarsu, yan kol olarak adlandırılır.",
+    "id": "q55707"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Milo Venüsü heykelinin hangi tanrıçayı temsil ettiği kabul edilir?",
+    "options": [
+      "Hera",
+      "Artemis",
+      "Athena",
+      "Afrodit"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "MÖ 2. yüzyıl heykeli, aşk tanrıçası Afrodit’in Roma’daki karşılığı Venüs adıyla bilinir.",
+    "id": "q55708"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "St. Petersburg kentini kuran Rus çarı kimdir?",
+    "options": [
+      "Büyük Petro",
+      "II. Nikolay",
+      "Korkunç İvan",
+      "Büyük Katerina"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Büyük Petro, Baltık Denizi’ne açılan yeni başkent St. Petersburg’u 1703’te kurdu.",
+    "id": "q55709"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Samanyolu hangi tür galaksidir?",
+    "options": [
+      "Düzensiz",
+      "Çubuklu sarmal",
+      "Halka",
+      "Eliptik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Samanyolu’nun merkezinde çubuk benzeri yıldız yapısı ve dışa uzanan sarmal kollar bulunur.",
+    "id": "q55710"
+  },
+  {
+    "id": "q55711",
+    "categoryIndex": 5,
+    "question": "Amerikan futbolunda savunmanın rakibi kendi sayı bölgesinde düşürmesi kaç puanlık safety getirir?",
+    "options": [
+      "1",
+      "3",
+      "2",
+      "6"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Safety, topa sahip takım kendi end zone’unda durdurulduğunda savunmaya iki puan kazandırır."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bir nehrin geniş kıvrımlar çizmesine verilen coğrafi ad nedir?",
+    "options": [
+      "Falez",
+      "Obruk",
+      "Moren",
+      "Menderes"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Eğim azaldığında nehirler yatağında büyük kıvrımlar, yani menderesler oluşturabilir.",
+    "id": "q55712"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Naruto’nun bağlı olduğu ninja köyü hangisidir?",
+    "options": [
+      "Gizli Yaprak Köyü",
+      "Gizli Kum Köyü",
+      "Gizli Bulut Köyü",
+      "Gizli Sis Köyü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Naruto Uzumaki, Konohagakure olarak da bilinen Gizli Yaprak Köyü’nün ninjasıdır.",
+    "id": "q55713"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Lari hangi ülkenin para birimidir?",
+    "options": [
+      "Moldova",
+      "Gürcistan",
+      "Ermenistan",
+      "Azerbaycan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Gürcistan’ın ulusal para birimi lari, alt birimi ise tetridir.",
+    "id": "q55714"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "One Piece’te Luffy’nin korsan grubunun adı nedir?",
+    "options": [
+      "Kızıl Saç Korsanları",
+      "Kalp Korsanları",
+      "Hasır Şapka Korsanları",
+      "Beyazsakal Korsanları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Luffy’nin hasır şapkası, mürettebatının adına ve bayrağına ilham verir.",
+    "id": "q55715"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Büyük Dalga baskısıyla tanınan Japon sanatçı kimdir?",
+    "options": [
+      "Hiroshige",
+      "Utamaro",
+      "Yayoi Kusama",
+      "Hokusai"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Katsushika Hokusai’nin Kanagawa Açıklarında Büyük Dalga baskısı ukiyo-e sanatının simgelerindendir.",
+    "id": "q55716"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Yedi Yıl Savaşları neden bazen ilk küresel savaş olarak anılır?",
+    "options": [
+      "Birden fazla kıtada yapıldığı için",
+      "Tüm ülkeler katıldığı için",
+      "Yedi yıl tam sürdüğü için",
+      "İlk kez uçak kullanıldığı için"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1756-1763 çatışmaları Avrupa, Kuzey Amerika, Karayipler, Afrika ve Asya’ya yayıldı.",
+    "id": "q55717"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Işık ve gölge arasındaki sert karşıtlığa ne denir?",
+    "options": [
+      "Impasto",
+      "Chiaroscuro",
+      "Frottage",
+      "Sfumato"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Chiaroscuro, hacim ve drama yaratmak için açık-koyu karşıtlığını kullanır.",
+    "id": "q55718"
+  },
+  {
+    "id": "q55719",
+    "categoryIndex": 0,
+    "question": "Masai Mara koruma alanı hangi ülkededir?",
+    "options": [
+      "Tanzanya",
+      "Botsvana",
+      "Kenya",
+      "Uganda"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Masai Mara, Kenya’da Serengeti ekosisteminin devamı olan ve büyük göçle tanınan bir koruma alanıdır."
+  },
+  {
+    "id": "q55720",
+    "categoryIndex": 5,
+    "question": "Rugby union’da try sonrası yapılan başarılı conversion kaç puandır?",
+    "options": [
+      "1",
+      "3",
+      "5",
+      "2"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Try beş puandır; ardından yapılan başarılı conversion vuruşu iki puan daha getirir."
+  }
+]

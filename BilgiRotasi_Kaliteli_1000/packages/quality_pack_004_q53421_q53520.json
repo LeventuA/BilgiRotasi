@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q53421",
+    "categoryIndex": 0,
+    "question": "Iguazú Şelaleleri hangi iki ülkenin sınırında bulunur?",
+    "options": [
+      "Brezilya ve Paraguay",
+      "Arjantin ve Brezilya",
+      "Arjantin ve Şili",
+      "Peru ve Bolivya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Iguazú Nehri üzerindeki yüzlerce çağlayan, Arjantin ile Brezilya arasındaki sınırın bir bölümünü oluşturur."
+  },
+  {
+    "id": "q53422",
+    "categoryIndex": 0,
+    "question": "Niagara Şelaleleri hangi iki ülke arasındadır?",
+    "options": [
+      "Kanada ve Grönland",
+      "ABD ve Meksika",
+      "ABD ve Kanada",
+      "Kanada ve Fransa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Niagara Nehri üzerindeki şelaleler, ABD’nin New York eyaleti ile Kanada’nın Ontario eyaleti arasında yer alır."
+  },
+  {
+    "id": "q53423",
+    "categoryIndex": 0,
+    "question": "Gelgit yükseldiğinde adaya dönüşen Mont-Saint-Michel hangi ülkededir?",
+    "options": [
+      "Belçika",
+      "İspanya",
+      "İtalya",
+      "Fransa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Normandiya kıyısındaki Mont-Saint-Michel, manastırı ve güçlü gelgitleriyle tanınan tarihî bir yerleşimdir."
+  },
+  {
+    "id": "q53424",
+    "categoryIndex": 0,
+    "question": "Afrika’nın yüzölçümü bakımından en büyük gölü hangisidir?",
+    "options": [
+      "Victoria Gölü",
+      "Malavi Gölü",
+      "Tanganika Gölü",
+      "Çad Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Victoria Gölü Uganda, Kenya ve Tanzanya arasında paylaşılır ve Afrika’nın en büyük gölüdür."
+  },
+  {
+    "id": "q53425",
+    "categoryIndex": 0,
+    "question": "Grönland hangi krallığa bağlı özerk bir bölgedir?",
+    "options": [
+      "Norveç Krallığı",
+      "Danimarka Krallığı",
+      "Kanada",
+      "İzlanda"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Grönland kendi hükümetine sahip olsa da dış politika ve savunma gibi alanlarda Danimarka Krallığı içinde yer alır."
+  },
+  {
+    "id": "q53426",
+    "categoryIndex": 0,
+    "question": "Faroe Adaları hangi ülkenin özerk bölgesidir?",
+    "options": [
+      "İzlanda",
+      "Norveç",
+      "Danimarka",
+      "Birleşik Krallık"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kuzey Atlas Okyanusu’ndaki Faroe Adaları, Danimarka Krallığı içinde geniş özerkliğe sahiptir."
+  },
+  {
+    "id": "q53427",
+    "categoryIndex": 0,
+    "question": "Fuji Dağı Japonya’nın hangi ana adasındadır?",
+    "options": [
+      "Hokkaido",
+      "Kyushu",
+      "Shikoku",
+      "Honshu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Fuji Dağı Japonya’nın en büyük adası Honshu’da, Tokyo’nun güneybatısında yükselir."
+  },
+  {
+    "id": "q53428",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük kapalı iç su kütlesi hangisidir?",
+    "options": [
+      "Hazar Denizi",
+      "Aral Gölü",
+      "Superior Gölü",
+      "Victoria Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Adında deniz geçmesine rağmen Hazar’ın okyanusla doğal bağlantısı yoktur ve dev bir kapalı göl kabul edilir."
+  },
+  {
+    "id": "q53429",
+    "categoryIndex": 0,
+    "question": "İstanbul’un iki yakasını ayıran su yolu hangisidir?",
+    "options": [
+      "Çanakkale Boğazı",
+      "İstanbul Boğazı",
+      "Kerç Boğazı",
+      "Korint Kanalı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İstanbul Boğazı Avrupa ile Asya’yı ayırır, Karadeniz’i Marmara Denizi’ne bağlar."
+  },
+  {
+    "id": "q53430",
+    "categoryIndex": 0,
+    "question": "Sina Yarımadası hangi iki kıta arasında köprü oluşturur?",
+    "options": [
+      "Avrupa ve Asya",
+      "Afrika ve Avrupa",
+      "Afrika ve Asya",
+      "Asya ve Avustralya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mısır’a bağlı Sina Yarımadası coğrafi olarak Asya’da bulunur ve Afrika’ya Süveyş kıstağıyla bağlanır."
+  },
+  {
+    "id": "q53431",
+    "categoryIndex": 0,
+    "question": "Grand Canyon’ı büyük ölçüde şekillendiren nehir hangisidir?",
+    "options": [
+      "Mississippi Nehri",
+      "Rio Grande",
+      "Columbia Nehri",
+      "Colorado Nehri"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Colorado Nehri milyonlarca yıl boyunca kaya katmanlarını aşındırarak Grand Canyon’ın derin vadisini oluşturdu."
+  },
+  {
+    "id": "q53432",
+    "categoryIndex": 0,
+    "question": "Yellowstone Millî Parkı’nın büyük bölümü hangi ABD eyaletindedir?",
+    "options": [
+      "Wyoming",
+      "Montana",
+      "Idaho",
+      "Colorado"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yellowstone’un küçük bölümleri Montana ve Idaho’ya uzansa da parkın büyük kısmı Wyoming’dedir."
+  },
+  {
+    "id": "q53433",
+    "categoryIndex": 0,
+    "question": "Masa Dağı hangi şehrin üzerinde yükselir?",
+    "options": [
+      "Johannesburg",
+      "Cape Town",
+      "Durban",
+      "Pretoria"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Düz tepeli Masa Dağı, Güney Afrika’nın Cape Town şehrinin en tanınan doğal simgesidir."
+  },
+  {
+    "id": "q53434",
+    "categoryIndex": 0,
+    "question": "Kayalık sütunların üzerine kurulmuş manastırlarıyla ünlü Meteora hangi ülkededir?",
+    "options": [
+      "Bulgaristan",
+      "Gürcistan",
+      "Yunanistan",
+      "Romanya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Meteora manastırları, Orta Yunanistan’daki yüksek kumtaşı sütunlarının tepelerine inşa edilmiştir."
+  },
+  {
+    "id": "q53435",
+    "categoryIndex": 0,
+    "question": "Como Gölü hangi ülkededir?",
+    "options": [
+      "İsviçre",
+      "Slovenya",
+      "Fransa",
+      "İtalya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Como Gölü, İtalya’nın Lombardiya bölgesinde Alp dağlarının eteklerinde yer alan Y biçimli bir göldür."
+  },
+  {
+    "id": "q53436",
+    "categoryIndex": 0,
+    "question": "Trans-Sibirya Demiryolu Moskova’yı Pasifik kıyısındaki hangi şehre bağlar?",
+    "options": [
+      "Vladivostok",
+      "Murmansk",
+      "Soçi",
+      "Novosibirsk"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ana Trans-Sibirya hattı Moskova’dan başlayıp Rusya’nın Uzak Doğu limanı Vladivostok’a kadar uzanır."
+  },
+  {
+    "id": "q53437",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük deltalarından Ganj-Brahmaputra Deltası ağırlıklı olarak hangi ülkededir?",
+    "options": [
+      "Hindistan",
+      "Bangladeş",
+      "Myanmar",
+      "Pakistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ganj ve Brahmaputra nehirlerinin oluşturduğu geniş delta Bangladeş’in büyük bölümünü kaplar ve Bengal Körfezi’ne açılır."
+  },
+  {
+    "id": "q53438",
+    "categoryIndex": 1,
+    "question": "Yüzüklerin Efendisi’nde Tek Yüzük’ün yok edilmesi gereken dağın adı nedir?",
+    "options": [
+      "Yalnız Dağ",
+      "Dumanlı Dağ",
+      "Hüküm Dağı",
+      "Caradhras"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tek Yüzük yalnızca dövüldüğü Mordor’daki Hüküm Dağı’nın ateşlerinde yok edilebilir."
+  },
+  {
+    "id": "q53439",
+    "categoryIndex": 1,
+    "question": "Harry Potter’ın Hogwarts trenine bindiği peron hangisidir?",
+    "options": [
+      "7½",
+      "10¼",
+      "13",
+      "9¾"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Öğrenciler King’s Cross İstasyonu’nda dokuzuncu ve onuncu peronlar arasındaki gizli geçitten 9¾’e ulaşır."
+  },
+  {
+    "id": "q53440",
+    "categoryIndex": 1,
+    "question": "Star Wars’ta Millennium Falcon’un en tanınmış pilotu kimdir?",
+    "options": [
+      "Han Solo",
+      "Luke Skywalker",
+      "Lando Calrissian",
+      "Poe Dameron"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Han Solo, Chewbacca ile birlikte Millennium Falcon’u kullanır; gemi daha önce Lando Calrissian’a aitti."
+  },
+  {
+    "id": "q53441",
+    "categoryIndex": 1,
+    "question": "Iron Man zırhının arkasındaki milyarderin adı nedir?",
+    "options": [
+      "Bruce Wayne",
+      "Tony Stark",
+      "Reed Richards",
+      "Hank Pym"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tony Stark, kendi geliştirdiği yüksek teknolojili zırhla Iron Man kimliğine bürünür."
+  },
+  {
+    "id": "q53442",
+    "categoryIndex": 1,
+    "question": "Spider-Man’in fotoğraf sattığı gazetenin adı nedir?",
+    "options": [
+      "Daily Planet",
+      "Gotham Gazette",
+      "Daily Bugle",
+      "New York Bulletin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Peter Parker, Spider-Man fotoğraflarını J. Jonah Jameson’ın yönettiği Daily Bugle’a satar."
+  },
+  {
+    "id": "q53443",
+    "categoryIndex": 1,
+    "question": "Thor’un ünlü çekicinin adı nedir?",
+    "options": [
+      "Stormbreaker",
+      "Gungnir",
+      "Excalibur",
+      "Mjolnir"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Mjolnir, yalnızca layık görülen kişilerin kaldırabildiği büyülü Asgard çekicidir."
+  },
+  {
+    "id": "q53444",
+    "categoryIndex": 1,
+    "question": "Pokémon oyunlarında Kanto bölgesinin ilk profesörü kimdir?",
+    "options": [
+      "Profesör Oak",
+      "Profesör Elm",
+      "Profesör Birch",
+      "Profesör Rowan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Profesör Oak, oyuncuya ilk Pokémon’unu verir ve Pokédex araştırmasını başlatır."
+  },
+  {
+    "id": "q53445",
+    "categoryIndex": 1,
+    "question": "Minecraft’taki Creeper oyuncuya yaklaşınca genellikle ne yapar?",
+    "options": [
+      "Uçar",
+      "Patlar",
+      "Toprağa gömülür",
+      "Suya dönüşür"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Creeper sessizce yaklaşır, kısa bir tıslamanın ardından patlayarak çevreye ve oyuncuya zarar verir."
+  },
+  {
+    "id": "q53446",
+    "categoryIndex": 1,
+    "question": "The Legend of Zelda’da kötülüğe karşı kullanılan efsanevi kılıç hangisidir?",
+    "options": [
+      "Buster Sword",
+      "Keyblade",
+      "Master Sword",
+      "Energy Sword"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Master Sword, Ganon ve diğer karanlık güçlere karşı Link’in kullandığı kutsal silahtır."
+  },
+  {
+    "id": "q53447",
+    "categoryIndex": 1,
+    "question": "Final Fantasy VII’nin büyük kılıç taşıyan ana kahramanı kimdir?",
+    "options": [
+      "Squall Leonhart",
+      "Tidus",
+      "Noctis",
+      "Cloud Strife"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Cloud Strife, Midgar’da Avalanche grubuna katılan eski bir SOLDIER olduğunu düşünen paralı askerdir."
+  },
+  {
+    "id": "q53448",
+    "categoryIndex": 1,
+    "question": "Assassin’s Creed oyunlarında ataların anılarını deneyimleten cihaz hangisidir?",
+    "options": [
+      "Animus",
+      "Omnitrix",
+      "Portal Gun",
+      "Neuralyzer"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Animus genetik hafızayı okuyarak kullanıcının atalarının hayatını simülasyon içinde yaşamasını sağlar."
+  },
+  {
+    "id": "q53449",
+    "categoryIndex": 1,
+    "question": "Tomb Raider serisinin arkeolog kahramanı kimdir?",
+    "options": [
+      "Jill Valentine",
+      "Lara Croft",
+      "Aloy",
+      "Chloe Frazer"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Lara Croft antik mezarları, kayıp şehirleri ve tarihî sırları araştıran maceracı bir arkeologdur."
+  },
+  {
+    "id": "q53450",
+    "categoryIndex": 1,
+    "question": "Stranger Things’te Eleven’ın en belirgin gücü hangisidir?",
+    "options": [
+      "Görünmezlik",
+      "Zamanı durdurma",
+      "Telekinezi",
+      "Şekil değiştirme"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Eleven zihniyle nesneleri hareket ettirebilir ve güçlü konsantrasyonla boyutlar arası bağlantılar kurabilir."
+  },
+  {
+    "id": "q53451",
+    "categoryIndex": 1,
+    "question": "Squid Game’de Seong Gi-hun’un oyuncu numarası kaçtır?",
+    "options": [
+      "001",
+      "067",
+      "218",
+      "456"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gi-hun yarışmaya katılan son oyuncudur ve 456 numaralı yeşil eşofmanı giyer."
+  },
+  {
+    "id": "q53452",
+    "categoryIndex": 1,
+    "question": "La Casa de Papel’de soyguncular gerçek adları yerine ne tür adlar kullanır?",
+    "options": [
+      "Şehir adları",
+      "Hayvan adları",
+      "Gezegen adları",
+      "Renk adları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tokyo, Berlin, Nairobi ve Denver gibi şehir adları kimlikleri gizlemek için kod adı olarak seçilir."
+  },
+  {
+    "id": "q53453",
+    "categoryIndex": 1,
+    "question": "Friends dizisinde Ross Geller’ın mesleği nedir?",
+    "options": [
+      "Avukat",
+      "Paleontolog",
+      "Mimar",
+      "Psikolog"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ross dinozorlar üzerine çalışan bir paleontologdur ve daha sonra üniversitede ders verir."
+  },
+  {
+    "id": "q53454",
+    "categoryIndex": 1,
+    "question": "Simpsonlar’da Homer Simpson nerede çalışır?",
+    "options": [
+      "Polis merkezinde",
+      "Televizyon kanalında",
+      "Nükleer santralde",
+      "Otomobil fabrikasında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Homer, Springfield Nükleer Santrali’nin 7G bölümünde güvenlik müfettişi olarak çalışır."
+  },
+  {
+    "id": "q53455",
+    "categoryIndex": 2,
+    "question": "Jül Sezar’ın ordusuyla geçerek geri dönüşü olmayan bir karar aldığı nehir hangisidir?",
+    "options": [
+      "Tiber",
+      "Ren",
+      "Po",
+      "Rubicon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sezar’ın MÖ 49’da Rubicon’u ordusuyla geçmesi Roma Cumhuriyeti’nde iç savaşı başlatan meydan okuma oldu."
+  },
+  {
+    "id": "q53456",
+    "categoryIndex": 2,
+    "question": "Antik Mısırlılar yazı malzemesi olarak hangi bitkiden yararlanırdı?",
+    "options": [
+      "Papirüs",
+      "Bambu",
+      "Keten",
+      "Saz şekeri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nil kıyılarında yetişen papirüs bitkisinin gövdesi şeritler hâlinde işlenerek yazı yüzeyi yapılırdı."
+  },
+  {
+    "id": "q53457",
+    "categoryIndex": 2,
+    "question": "Antik dünyanın en ünlü kütüphanelerinden biri hangi şehirdeydi?",
+    "options": [
+      "Atina",
+      "İskenderiye",
+      "Kartaca",
+      "Babil"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İskenderiye Kütüphanesi Helenistik dönemin en büyük bilgi merkezlerinden biri olarak tasarlanmıştı."
+  },
+  {
+    "id": "q53458",
+    "categoryIndex": 2,
+    "question": "Vikinglerin uzun ve dar savaş gemilerine genel olarak ne denir?",
+    "options": [
+      "Kadırga",
+      "Karavel",
+      "Uzun gemi",
+      "Kalyon"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Viking uzun gemileri sığ sularda ilerleyebiliyor, hem yelken hem kürekle kullanılabiliyordu."
+  },
+  {
+    "id": "q53459",
+    "categoryIndex": 2,
+    "question": "Yüz Yıl Savaşları başlıca hangi iki ülke arasında yapıldı?",
+    "options": [
+      "İspanya ve Portekiz",
+      "Fransa ve Almanya",
+      "İngiltere ve İskoçya",
+      "İngiltere ve Fransa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1337-1453 arasındaki savaş dizisi, İngiliz ve Fransız hanedanlarının Fransa tahtı üzerindeki mücadelesiydi."
+  },
+  {
+    "id": "q53460",
+    "categoryIndex": 2,
+    "question": "Karasakal lakabıyla tanınan korsanın gerçek adı neydi?",
+    "options": [
+      "Edward Teach",
+      "Henry Morgan",
+      "Francis Drake",
+      "William Kidd"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Edward Teach, 18. yüzyıl başlarında Atlantik ve Karayipler’de faaliyet gösteren korkulan bir korsandı."
+  },
+  {
+    "id": "q53461",
+    "categoryIndex": 2,
+    "question": "Sanayi Devrimi ilk olarak hangi ülkede hız kazandı?",
+    "options": [
+      "Fransa",
+      "Britanya",
+      "Almanya",
+      "ABD"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kömür, sermaye, iş gücü ve teknolojik yeniliklerin birleşmesiyle sanayileşme 18. yüzyıl Britanya’sında başladı."
+  },
+  {
+    "id": "q53462",
+    "categoryIndex": 2,
+    "question": "Buhar makinesini verimli hâle getiren geliştirmeleriyle tanınan mucit kimdir?",
+    "options": [
+      "George Stephenson",
+      "Thomas Newcomen",
+      "James Watt",
+      "Michael Faraday"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "James Watt ayrı yoğunlaştırıcı gibi yeniliklerle buhar makinelerinin yakıt verimliliğini büyük ölçüde artırdı."
+  },
+  {
+    "id": "q53463",
+    "categoryIndex": 2,
+    "question": "Telefonun patentiyle en çok ilişkilendirilen mucit kimdir?",
+    "options": [
+      "Guglielmo Marconi",
+      "Samuel Morse",
+      "Nikola Tesla",
+      "Alexander Graham Bell"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bell 1876’da telefonla ilgili temel ABD patentini aldı; telefonun gelişiminde başka mucitlerin de katkıları vardı."
+  },
+  {
+    "id": "q53464",
+    "categoryIndex": 2,
+    "question": "İlk kontrollü motorlu uçuşu gerçekleştiren kardeşler kimlerdir?",
+    "options": [
+      "Wright Kardeşler",
+      "Montgolfier Kardeşler",
+      "Lumière Kardeşler",
+      "Grimm Kardeşler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Orville ve Wilbur Wright 1903’te Kitty Hawk yakınlarında Flyer ile kısa ama kontrollü bir uçuş yaptı."
+  },
+  {
+    "id": "q53465",
+    "categoryIndex": 2,
+    "question": "Titanic hangi şehirdeki tersanede inşa edildi?",
+    "options": [
+      "Liverpool",
+      "Belfast",
+      "Southampton",
+      "Glasgow"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Titanic, Kuzey İrlanda’nın Belfast şehrindeki Harland and Wolff tersanesinde inşa edildi."
+  },
+  {
+    "id": "q53466",
+    "categoryIndex": 2,
+    "question": "D-Day çıkarmaları hangi tarihte başladı?",
+    "options": [
+      "1 Eylül 1939",
+      "8 Mayıs 1945",
+      "6 Haziran 1944",
+      "7 Aralık 1941"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Müttefik birlikleri 6 Haziran 1944 sabahı Normandiya sahillerine çıkarma yaparak Batı Avrupa’daki büyük harekâtı başlattı."
+  },
+  {
+    "id": "q53467",
+    "categoryIndex": 2,
+    "question": "Birleşmiş Milletler hangi yılda kuruldu?",
+    "options": [
+      "1919",
+      "1939",
+      "1955",
+      "1945"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "BM Şartı 1945’te yürürlüğe girdi; örgüt II. Dünya Savaşı sonrası uluslararası iş birliğini güçlendirmek için kuruldu."
+  },
+  {
+    "id": "q53468",
+    "categoryIndex": 2,
+    "question": "Berlin Duvarı hangi yılda yıkıldı?",
+    "options": [
+      "1989",
+      "1979",
+      "1991",
+      "1993"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "9 Kasım 1989’da sınır geçişlerinin açılmasıyla Berlinliler duvarı parçalamaya başladı."
+  },
+  {
+    "id": "q53469",
+    "categoryIndex": 2,
+    "question": "Türkiye Büyük Millet Meclisi hangi şehirde açıldı?",
+    "options": [
+      "İstanbul",
+      "Ankara",
+      "Sivas",
+      "Erzurum"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "TBMM 23 Nisan 1920’de Ankara’da açılarak Millî Mücadele’nin siyasal merkezi oldu."
+  },
+  {
+    "id": "q53470",
+    "categoryIndex": 2,
+    "question": "Amerikan Bağımsızlık Savaşı’nı sona erdiren 1783 antlaşması hangisidir?",
+    "options": [
+      "Versay Antlaşması",
+      "Utrecht Antlaşması",
+      "Paris Antlaşması",
+      "Gent Antlaşması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1783 Paris Antlaşması’yla Britanya, Amerika Birleşik Devletleri’nin bağımsızlığını tanıdı."
+  },
+  {
+    "id": "q53471",
+    "categoryIndex": 2,
+    "question": "Mısır’daki Süveyş Kanalı hangi yılda ulaşıma açıldı?",
+    "options": [
+      "1830",
+      "1882",
+      "1914",
+      "1869"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "On yıllık inşaatın ardından Süveyş Kanalı 1869’da törenle açıldı ve küresel deniz ticaretini değiştirdi."
+  },
+  {
+    "id": "q53472",
+    "categoryIndex": 3,
+    "question": "Ulysses romanında Dublin’de bir gününü izlediğimiz başlıca karakter kimdir?",
+    "options": [
+      "Leopold Bloom",
+      "Stephen Dedalus",
+      "Buck Mulligan",
+      "Gabriel Conroy"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "James Joyce’un Ulysses’i, 16 Haziran 1904’te Leopold Bloom’un Dublin’deki gündelik yolculuğunu izler."
+  },
+  {
+    "id": "q53473",
+    "categoryIndex": 3,
+    "question": "Çavdar Tarlasında Çocuklar romanının anlatıcısı kimdir?",
+    "options": [
+      "Jay Gatsby",
+      "Holden Caulfield",
+      "Scout Finch",
+      "Tom Sawyer"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Holden Caulfield okuldan ayrıldıktan sonraki birkaç gününü alaycı ve huzursuz bir sesle anlatır."
+  },
+  {
+    "id": "q53474",
+    "categoryIndex": 3,
+    "question": "Yüzyıllık Yalnızlık hangi ailenin kuşaklarını anlatır?",
+    "options": [
+      "Corleone ailesi",
+      "Karamazov ailesi",
+      "Buendía ailesi",
+      "Bennet ailesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Roman, Macondo kasabasını kuran Buendía ailesinin yükselişini, tekrar eden kaderlerini ve çöküşünü izler."
+  },
+  {
+    "id": "q53475",
+    "categoryIndex": 3,
+    "question": "Yaşlı Adam ve Deniz’de balıkçı Santiago hangi dev balıkla mücadele eder?",
+    "options": [
+      "Kılıç balığı",
+      "Ton balığı",
+      "Köpekbalığı",
+      "Marlin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Santiago günler süren mücadelede dev bir marlin yakalar; dönüş yolunda köpekbalıkları avına saldırır."
+  },
+  {
+    "id": "q53476",
+    "categoryIndex": 3,
+    "question": "Savaş ve Barış’taki düşünceli ve miras sahibi karakter kimdir?",
+    "options": [
+      "Pierre Bezukhov",
+      "Raskolnikov",
+      "Aleksey Karenin",
+      "İvan Karamazov"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Pierre Bezukhov miras, evlilik, savaş ve maneviyat deneyimleriyle roman boyunca büyük bir dönüşüm geçirir."
+  },
+  {
+    "id": "q53477",
+    "categoryIndex": 3,
+    "question": "Alice Harikalar Diyarında’yı kim yazdı?",
+    "options": [
+      "J. M. Barrie",
+      "Lewis Carroll",
+      "L. Frank Baum",
+      "Kenneth Grahame"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Lewis Carroll takma adını kullanan Charles Dodgson, Alice’in maceralarını 1865’te kitaplaştırdı."
+  },
+  {
+    "id": "q53478",
+    "categoryIndex": 3,
+    "question": "Winnie-the-Pooh karakterini yaratan yazar kimdir?",
+    "options": [
+      "Beatrix Potter",
+      "Roald Dahl",
+      "A. A. Milne",
+      "E. B. White"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Milne, oğlu Christopher Robin’in oyuncaklarından esinlenerek Yüz Dönüm Ormanı karakterlerini yarattı."
+  },
+  {
+    "id": "q53479",
+    "categoryIndex": 3,
+    "question": "Küçük Kadınlar romanındaki dört kız kardeşin soyadı nedir?",
+    "options": [
+      "Bennet",
+      "Dashwood",
+      "Brontë",
+      "March"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Meg, Jo, Beth ve Amy March, Amerikan İç Savaşı döneminde büyürken farklı hayallerin peşinden gider."
+  },
+  {
+    "id": "q53480",
+    "categoryIndex": 3,
+    "question": "Dorian Gray’in Portresi romanını kim yazdı?",
+    "options": [
+      "Oscar Wilde",
+      "Bram Stoker",
+      "Robert Louis Stevenson",
+      "Thomas Hardy"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Oscar Wilde’ın tek romanı, güzellik tutkusu ve ahlaki çöküşü doğaüstü bir portre üzerinden anlatır."
+  },
+  {
+    "id": "q53481",
+    "categoryIndex": 3,
+    "question": "Las Meninas tablosunun ressamı kimdir?",
+    "options": [
+      "Francisco Goya",
+      "Diego Velázquez",
+      "El Greco",
+      "Bartolomé Murillo"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Velázquez’in karmaşık saray sahnesinde ressamın kendisi, prenses ve aynadaki kral ile kraliçe birlikte görülür."
+  },
+  {
+    "id": "q53482",
+    "categoryIndex": 3,
+    "question": "Atina Okulu freskini kim yaptı?",
+    "options": [
+      "Michelangelo",
+      "Botticelli",
+      "Raphael",
+      "Donatello"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Raphael, Vatikan’daki freskte Platon ve Aristoteles başta olmak üzere antik düşünürleri ideal bir mimaride topladı."
+  },
+  {
+    "id": "q53483",
+    "categoryIndex": 3,
+    "question": "Gece Devriyesi tablosunun ressamı kimdir?",
+    "options": [
+      "Vermeer",
+      "Rubens",
+      "Van Dyck",
+      "Rembrandt"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Rembrandt’ın büyük grup portresi, hareketli ışık kullanımıyla Amsterdamlı bir milis birliğini gösterir."
+  },
+  {
+    "id": "q53484",
+    "categoryIndex": 3,
+    "question": "Nilüferler dizisiyle tanınan izlenimci ressam kimdir?",
+    "options": [
+      "Claude Monet",
+      "Édouard Manet",
+      "Pierre-Auguste Renoir",
+      "Camille Pissarro"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Monet, Giverny’deki bahçesinin nilüfer havuzunu yıllar boyunca farklı ışık ve mevsimlerde resmetti."
+  },
+  {
+    "id": "q53485",
+    "categoryIndex": 3,
+    "question": "Yüzü elmayla kapalı adamı gösteren İnsanın Oğlu tablosu kime aittir?",
+    "options": [
+      "Salvador Dalí",
+      "René Magritte",
+      "Max Ernst",
+      "Paul Klee"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Magritte’in sürrealist eserinde melon şapkalı adamın yüzünü havada duran yeşil bir elma gizler."
+  },
+  {
+    "id": "q53486",
+    "categoryIndex": 3,
+    "question": "Michelangelo’nun Meryem’i ölü İsa’yı tutarken gösteren heykeli hangisidir?",
+    "options": [
+      "Musa",
+      "Davut",
+      "Pietà",
+      "Düşünen Adam"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Pietà, Michelangelo’nun gençlik döneminde mermerden yaptığı ve Aziz Petrus Bazilikası’nda sergilenen eseridir."
+  },
+  {
+    "id": "q53487",
+    "categoryIndex": 3,
+    "question": "Aşk-ı Memnu romanının yazarı kimdir?",
+    "options": [
+      "Mehmet Rauf",
+      "Recaizade Mahmut Ekrem",
+      "Yakup Kadri Karaosmanoğlu",
+      "Halit Ziya Uşaklıgil"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Halit Ziya’nın romanı, bir İstanbul yalısındaki yasak ilişki ve aile çatışmalarını anlatır."
+  },
+  {
+    "id": "q53488",
+    "categoryIndex": 3,
+    "question": "Karagöz ve Hacivat hangi geleneksel gösteri türünün karakterleridir?",
+    "options": [
+      "Gölge oyunu",
+      "Orta oyunu",
+      "Meddahlık",
+      "Kukla tiyatrosu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Karagöz ile Hacivat, ışık önündeki deri tasvirlerin perdeye yansıtıldığı geleneksel Türk gölge oyununun başlıca tipleridir."
+  },
+  {
+    "id": "q53489",
+    "categoryIndex": 4,
+    "question": "DNA molekülünün genel şekli nedir?",
+    "options": [
+      "Tek halka",
+      "Çift sarmal",
+      "Düz zincir",
+      "Üçgen ağ"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "DNA iki nükleotit zincirinin birbirine sarıldığı çift sarmal yapıdadır."
+  },
+  {
+    "id": "q53490",
+    "categoryIndex": 4,
+    "question": "Acil kan nakillerinde evrensel alyuvar vericisi olarak bilinen kan grubu hangisidir?",
+    "options": [
+      "AB Rh pozitif",
+      "A Rh pozitif",
+      "0 Rh negatif",
+      "B Rh negatif"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "0 Rh negatif alyuvarlarda A, B ve Rh D antijenleri bulunmadığı için acil durumlarda geniş uyumluluk gösterir."
+  },
+  {
+    "id": "q53491",
+    "categoryIndex": 4,
+    "question": "Evrensel alyuvar alıcısı olarak bilinen kan grubu hangisidir?",
+    "options": [
+      "0 Rh negatif",
+      "A Rh negatif",
+      "B Rh pozitif",
+      "AB Rh pozitif"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "AB Rh pozitif kişiler A, B ve Rh D antijenlerine karşı doğal antikor taşımadıkları için tüm temel alyuvar gruplarını alabilir."
+  },
+  {
+    "id": "q53492",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi’nin en büyük gezegeni hangisidir?",
+    "options": [
+      "Jüpiter",
+      "Satürn",
+      "Neptün",
+      "Dünya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jüpiter’in kütlesi diğer tüm gezegenlerin toplamından daha büyüktür."
+  },
+  {
+    "id": "q53493",
+    "categoryIndex": 4,
+    "question": "Güneş Sistemi’nin en sıcak gezegeni hangisidir?",
+    "options": [
+      "Merkür",
+      "Venüs",
+      "Mars",
+      "Jüpiter"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Venüs’ün kalın karbondioksit atmosferi güçlü sera etkisi yaratır ve yüzeyi Merkür’den daha sıcak olur."
+  },
+  {
+    "id": "q53494",
+    "categoryIndex": 4,
+    "question": "Belirgin halka sistemiyle tanınan gezegen hangisidir?",
+    "options": [
+      "Mars",
+      "Venüs",
+      "Satürn",
+      "Merkür"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Diğer dev gezegenlerin de halkaları vardır ancak Satürn’ün buz ve kaya parçalarından oluşan halkaları en görünür olanıdır."
+  },
+  {
+    "id": "q53495",
+    "categoryIndex": 4,
+    "question": "Dünya’nın doğal uydusunun adı nedir?",
+    "options": [
+      "Titan",
+      "Europa",
+      "Phobos",
+      "Ay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ay, Dünya’nın tek kalıcı doğal uydusudur ve gelgitler üzerinde önemli etkiye sahiptir."
+  },
+  {
+    "id": "q53496",
+    "categoryIndex": 4,
+    "question": "Ay neden gökyüzünde parlak görünür?",
+    "options": [
+      "Güneş ışığını yansıttığı için",
+      "Kendi ışığını ürettiği için",
+      "Atmosferi yandığı için",
+      "Dünya’dan elektrik aldığı için"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ay bir yıldız değildir; yüzeyine düşen Güneş ışığının bir bölümünü Dünya’ya yansıtır."
+  },
+  {
+    "id": "q53497",
+    "categoryIndex": 4,
+    "question": "Bitkilere yeşil rengini veren pigment hangisidir?",
+    "options": [
+      "Melanin",
+      "Klorofil",
+      "Hemoglobin",
+      "Keratin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Klorofil kırmızı ve mavi ışığı soğururken yeşil ışığın büyük bölümünü yansıtır."
+  },
+  {
+    "id": "q53498",
+    "categoryIndex": 4,
+    "question": "Bal arıları yiyecek kaynağının yönünü anlatmak için hangi davranışı kullanır?",
+    "options": [
+      "Dairesel uyku",
+      "Kanat kilitleme",
+      "Sallanma dansı",
+      "Kovan vurma"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sallanma dansının açısı Güneş’e göre yönü, süresi ise yiyecek kaynağının yaklaşık uzaklığını aktarır."
+  },
+  {
+    "id": "q53499",
+    "categoryIndex": 4,
+    "question": "Kutup ayılarının derisi hangi renktir?",
+    "options": [
+      "Beyaz",
+      "Pembe",
+      "Gri",
+      "Siyah"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kutup ayısının tüyleri şeffaf ve ışığı dağıtıcıdır; altındaki siyah deri güneş enerjisini emmeye yardım eder."
+  },
+  {
+    "id": "q53500",
+    "categoryIndex": 4,
+    "question": "Develerin hörgüçlerinde başlıca ne depolanır?",
+    "options": [
+      "Yağ",
+      "Su",
+      "Tuz",
+      "Hava"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hörgüçteki yağ gerektiğinde enerjiye çevrilir; develer suyu doğrudan hörgüçlerinde saklamaz."
+  },
+  {
+    "id": "q53501",
+    "categoryIndex": 4,
+    "question": "Baykuşlar gözlerini neden insanlar gibi rahatça çeviremez?",
+    "options": [
+      "Göz kapakları olmadığı için",
+      "Gözleri yuvalarında sabit olduğu için",
+      "Gözleri çok küçük olduğu için",
+      "Yalnız karanlıkta gördükleri için"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Baykuş gözleri tüp biçiminde ve büyük ölçüde sabittir; çevreyi görmek için başlarını geniş açıyla çevirirler."
+  },
+  {
+    "id": "q53502",
+    "categoryIndex": 4,
+    "question": "Bukalemunlar yalnızca kamuflaj için değil, başka hangi amaçlarla renk değiştirir?",
+    "options": [
+      "Uçmak ve yüzmek",
+      "Ses çıkarmak ve koku almak",
+      "İletişim ve vücut ısısı düzenleme",
+      "Uyumak ve beslenmek"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bukalemunların renkleri ruh hâli, eş bulma, rakibe meydan okuma ve ısı düzenleme gibi işlevler taşır."
+  },
+  {
+    "id": "q53503",
+    "categoryIndex": 4,
+    "question": "İnsan vücudundaki en büyük iç organ hangisidir?",
+    "options": [
+      "Beyin",
+      "Akciğer",
+      "Mide",
+      "Karaciğer"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Karaciğer metabolizma, toksinlerin işlenmesi, safra üretimi ve enerji depolama gibi yüzlerce görev üstlenir."
+  },
+  {
+    "id": "q53504",
+    "categoryIndex": 4,
+    "question": "Güneş enerjisinin kaynağı olan temel süreç hangisidir?",
+    "options": [
+      "Nükleer füzyon",
+      "Kimyasal yanma",
+      "Nükleer fisyon",
+      "Sürtünme"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Güneş’in çekirdeğinde hidrojen çekirdekleri birleşerek helyuma dönüşür ve çok büyük enerji açığa çıkarır."
+  },
+  {
+    "id": "q53505",
+    "categoryIndex": 5,
+    "question": "Futbolda penaltı noktası kale çizgisinden kaç metre uzaktadır?",
+    "options": [
+      "9 metre",
+      "11 metre",
+      "12 metre",
+      "16,5 metre"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Penaltı vuruşu kale çizgisinin ortasından 11 metre uzaklıktaki işaret üzerinden kullanılır."
+  },
+  {
+    "id": "q53506",
+    "categoryIndex": 5,
+    "question": "Voleybolda oyuncular servis hakkı kazandığında hangi yönde döner?",
+    "options": [
+      "Saat yönünün tersine",
+      "Çapraz olarak",
+      "Saat yönünde",
+      "Rastgele"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Servis karşılayan takım ralliyi kazanıp servis hakkını alınca oyuncular bir pozisyon saat yönünde döner."
+  },
+  {
+    "id": "q53507",
+    "categoryIndex": 5,
+    "question": "Teniste standart tie-break’i kazanmak için genellikle kaç sayıya ulaşmak gerekir?",
+    "options": [
+      "5",
+      "10",
+      "12",
+      "7"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Standart tie-break yedi sayıya oynanır ancak oyuncunun en az iki sayı farkla önde olması gerekir."
+  },
+  {
+    "id": "q53508",
+    "categoryIndex": 5,
+    "question": "Badmintonda bir set normalde kaç sayıda kazanılır?",
+    "options": [
+      "21",
+      "15",
+      "25",
+      "30"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Badminton seti 21 sayıya oynanır; 20-20’den sonra iki sayı fark gerekir, 29-29’da 30. sayı seti bitirir."
+  },
+  {
+    "id": "q53509",
+    "categoryIndex": 5,
+    "question": "Squash oyununda bir set normalde kaç sayıya oynanır?",
+    "options": [
+      "9",
+      "11",
+      "15",
+      "21"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Modern squash setleri 11 sayıya oynanır ve 10-10’dan sonra iki sayı fark gerekir."
+  },
+  {
+    "id": "q53510",
+    "categoryIndex": 5,
+    "question": "Snooker’da siyah top kaç puan değerindedir?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Siyah top snooker’daki en yüksek değerli renkli toptur ve yedi puan getirir."
+  },
+  {
+    "id": "q53511",
+    "categoryIndex": 5,
+    "question": "Sekiz top bilardosunda 8 numaralı top hangi renktir?",
+    "options": [
+      "Kırmızı",
+      "Mavi",
+      "Beyaz",
+      "Siyah"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sekiz top oyununda siyah 8 numaralı top, oyuncunun kendi grubunu bitirmesinden sonra doğru cebe sokulmalıdır."
+  },
+  {
+    "id": "q53512",
+    "categoryIndex": 5,
+    "question": "Beyzbolda bir vurucu kaç strike ile oyun dışı kalır?",
+    "options": [
+      "3",
+      "2",
+      "4",
+      "5"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Üçüncü strike genellikle strikeout anlamına gelir; bazı durumlarda yakalanmayan üçüncü strike kuralı uygulanabilir."
+  },
+  {
+    "id": "q53513",
+    "categoryIndex": 5,
+    "question": "Amerikan futbolunda touchdown kaç puan değerindedir?",
+    "options": [
+      "3",
+      "6",
+      "7",
+      "8"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Touchdown altı puan getirir; ardından ekstra sayı vuruşu veya iki sayılık deneme yapılabilir."
+  },
+  {
+    "id": "q53514",
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde kullanılan sert diskin adı nedir?",
+    "options": [
+      "Shuttlecock",
+      "Pelota",
+      "Puck",
+      "Bocce"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Puck, vulkanize kauçuktan yapılan yassı ve sert bir disktir."
+  },
+  {
+    "id": "q53515",
+    "categoryIndex": 5,
+    "question": "Golfte topun ilk vuruşta üzerine konduğu küçük desteğe ne denir?",
+    "options": [
+      "Pin",
+      "Grip",
+      "Marker",
+      "Tee"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Tee, başlangıç vuruşunda topu çimden hafifçe yükseltmek için kullanılan küçük bir destektir."
+  },
+  {
+    "id": "q53516",
+    "categoryIndex": 5,
+    "question": "Okçulukta hedefin tam merkezine ne denir?",
+    "options": [
+      "Bullseye",
+      "Birdie",
+      "Strike zone",
+      "Sweet spot"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bullseye hedefin en merkezi ve genellikle en yüksek puanlı bölümüdür."
+  },
+  {
+    "id": "q53517",
+    "categoryIndex": 5,
+    "question": "Judoda rakibe karşı tam puanlı ve maçı bitiren skora ne denir?",
+    "options": [
+      "Waza-ari",
+      "Ippon",
+      "Yuko",
+      "Koka"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Temiz bir atış, belirli süre tutuş veya teslim alma sonucu verilen ippon maçı anında bitirir."
+  },
+  {
+    "id": "q53518",
+    "categoryIndex": 5,
+    "question": "Tekvando hangi ülkede gelişmiştir?",
+    "options": [
+      "Japonya",
+      "Çin",
+      "Güney Kore",
+      "Tayland"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tekvando Kore kökenli bir dövüş sporudur ve özellikle yüksek, hızlı tekmeleriyle tanınır."
+  },
+  {
+    "id": "q53519",
+    "categoryIndex": 5,
+    "question": "Sumo güreşi hangi ülkenin geleneksel sporudur?",
+    "options": [
+      "Moğolistan",
+      "Çin",
+      "Güney Kore",
+      "Japonya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sumo Japonya’da Şinto ritüelleriyle bağlantılı gelişen ve profesyonel ligleri bulunan geleneksel güreştir."
+  },
+  {
+    "id": "q53520",
+    "categoryIndex": 5,
+    "question": "Serbest stil yüzmede yarışmacılar en sık hangi yüzme tekniğini kullanır?",
+    "options": [
+      "Kraul",
+      "Kurbağalama",
+      "Kelebek",
+      "Sırtüstü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Serbest stilde teknik seçimi serbesttir ancak kraul en hızlı yüzme biçimi olduğu için neredeyse herkes tarafından kullanılır."
+  }
+]

@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q54121",
+    "categoryIndex": 0,
+    "question": "Türkiye’nin yüzölçümü bakımından en büyük ili hangisidir?",
+    "options": [
+      "Sivas",
+      "Konya",
+      "Ankara",
+      "Erzurum"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Konya, yüzölçümü bakımından Türkiye’nin en geniş ilidir; büyük bölümü İç Anadolu platosunda yer alır."
+  },
+  {
+    "id": "q54122",
+    "categoryIndex": 0,
+    "question": "Türkiye’nin en batıdaki noktası hangi adadadır?",
+    "options": [
+      "Bozcaada",
+      "Marmara Adası",
+      "Gökçeada",
+      "Cunda Adası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Türkiye’nin en batı noktası Gökçeada’daki İnce Burun’dur."
+  },
+  {
+    "id": "q54123",
+    "categoryIndex": 0,
+    "question": "Nemrut Dağı’ndaki dev heykeller hangi il sınırları içindedir?",
+    "options": [
+      "Malatya",
+      "Şanlıurfa",
+      "Gaziantep",
+      "Adıyaman"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kommagene Kralı I. Antiohos’un anıt mezarı ve dev baş heykelleri Adıyaman’daki Nemrut Dağı’ndadır."
+  },
+  {
+    "id": "q54124",
+    "categoryIndex": 0,
+    "question": "Uzungöl hangi ilimizdedir?",
+    "options": [
+      "Trabzon",
+      "Rize",
+      "Artvin",
+      "Giresun"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Uzungöl, Trabzon’un Çaykara ilçesinde dağlar arasında bulunan heyelan set gölüdür."
+  },
+  {
+    "id": "q54125",
+    "categoryIndex": 0,
+    "question": "Salda Gölü hangi ilimizdedir?",
+    "options": [
+      "Isparta",
+      "Burdur",
+      "Denizli",
+      "Antalya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Beyaz kıyıları ve turkuaz suyuyla tanınan Salda Gölü Burdur’un Yeşilova ilçesindedir."
+  },
+  {
+    "id": "q54126",
+    "categoryIndex": 0,
+    "question": "Düden Şelalesi hangi şehrimizdedir?",
+    "options": [
+      "Mersin",
+      "Muğla",
+      "Antalya",
+      "Adana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Düden Çayı’nın oluşturduğu şelaleler Antalya kent merkezine yakın konumdadır."
+  },
+  {
+    "id": "q54127",
+    "categoryIndex": 0,
+    "question": "Safranbolu hangi ilimize bağlıdır?",
+    "options": [
+      "Kastamonu",
+      "Bolu",
+      "Çankırı",
+      "Karabük"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Osmanlı döneminden kalan evleriyle ünlü Safranbolu, Karabük ilinin ilçesidir."
+  },
+  {
+    "id": "q54128",
+    "categoryIndex": 0,
+    "question": "Türkiye’nin en büyük adası hangisidir?",
+    "options": [
+      "Gökçeada",
+      "Bozcaada",
+      "Marmara Adası",
+      "Avşa Adası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Gökçeada yaklaşık 290 kilometrekarelik alanıyla Türkiye’nin en büyük adasıdır."
+  },
+  {
+    "id": "q54129",
+    "categoryIndex": 0,
+    "question": "Dünyada iki kıta üzerinde kurulu en tanınmış şehir hangisidir?",
+    "options": [
+      "Kahire",
+      "İstanbul",
+      "Atina",
+      "Lizbon"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İstanbul Boğazı şehrin Avrupa ve Asya yakalarını birbirinden ayırır."
+  },
+  {
+    "id": "q54130",
+    "categoryIndex": 0,
+    "question": "Üzerinde ejderha resmi bulunan ulusal bayrak hangi ülkeye aittir?",
+    "options": [
+      "Nepal",
+      "Moğolistan",
+      "Bhutan",
+      "Sri Lanka"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bhutan bayrağındaki beyaz ejderha Druk, ülkenin geleneksel adı olan “Gök Gürültüsü Ejderhası Ülkesi”ni simgeler."
+  },
+  {
+    "id": "q54131",
+    "categoryIndex": 0,
+    "question": "Akçaağaç yaprağı hangi ülkenin bayrağında yer alır?",
+    "options": [
+      "Avusturya",
+      "Danimarka",
+      "Peru",
+      "Kanada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kanada bayrağının merkezinde kırmızı, on bir uçlu stilize bir akçaağaç yaprağı bulunur."
+  },
+  {
+    "id": "q54132",
+    "categoryIndex": 0,
+    "question": "Ulusal bayrağında sedir ağacı bulunan ülke hangisidir?",
+    "options": [
+      "Lübnan",
+      "Ürdün",
+      "Kıbrıs",
+      "Suriye"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Lübnan bayrağındaki yeşil sedir, ülkenin tarihî Lübnan sedirlerini temsil eder."
+  },
+  {
+    "id": "q54133",
+    "categoryIndex": 0,
+    "question": "Dünyanın en kalabalık kara ile çevrili ülkesi hangisidir?",
+    "options": [
+      "Moğolistan",
+      "Etiyopya",
+      "Nepal",
+      "Bolivya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Etiyopya denize kıyısı olmayan ülkeler arasında nüfusu en yüksek olanıdır."
+  },
+  {
+    "id": "q54134",
+    "categoryIndex": 0,
+    "question": "Dünyanın en uzun kıyı şeridine sahip ülkesi hangisidir?",
+    "options": [
+      "Rusya",
+      "Endonezya",
+      "Kanada",
+      "Avustralya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kanada’nın çok girintili çıkıntılı ana kara ve ada kıyıları toplamda dünyadaki en uzun kıyı şeridini oluşturur."
+  },
+  {
+    "id": "q54135",
+    "categoryIndex": 0,
+    "question": "“Gece yarısı güneşi” olayı en çok hangi kuşağın kuzeyinde görülür?",
+    "options": [
+      "Yengeç Dönencesi",
+      "Ekvator",
+      "Oğlak Dönencesi",
+      "Kuzey Kutup Dairesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kuzey Kutup Dairesi’nin kuzeyinde yazın belirli dönemlerde Güneş hiç batmaz."
+  },
+  {
+    "id": "q54136",
+    "categoryIndex": 0,
+    "question": "Dünyanın yüzölçümü bakımından en büyük takımada ülkesi hangisidir?",
+    "options": [
+      "Endonezya",
+      "Filipinler",
+      "Japonya",
+      "Yeni Zelanda"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Endonezya binlerce adadan oluşur ve toplam alanıyla dünyanın en büyük takımada devletidir."
+  },
+  {
+    "id": "q54137",
+    "categoryIndex": 0,
+    "question": "Dünyadaki en büyük tropikal sulak alan Pantanal ağırlıklı olarak hangi ülkededir?",
+    "options": [
+      "Kolombiya",
+      "Brezilya",
+      "Venezuela",
+      "Peru"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Pantanal’ın büyük bölümü Brezilya’dadır; daha küçük parçaları Bolivya ve Paraguay’a uzanır."
+  },
+  {
+    "id": "q54138",
+    "categoryIndex": 1,
+    "question": "Hababam Sınıfı filmlerinde okulun unutulmaz müdür yardımcısını kim canlandırır?",
+    "options": [
+      "Kemal Sunal",
+      "Şener Şen",
+      "Münir Özkul",
+      "Adile Naşit"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Münir Özkul, öğrencilerin “Kel Mahmut” dediği Mahmut Hoca karakterini canlandırır."
+  },
+  {
+    "id": "q54139",
+    "categoryIndex": 1,
+    "question": "Tosun Paşa filminde iki aile hangi vadi için çekişir?",
+    "options": [
+      "Kızıl Vadi",
+      "Güzel Vadi",
+      "Bereket Vadisi",
+      "Yeşil Vadi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Tellioğulları ve Seferoğulları Yeşil Vadi’yi ele geçirmek için Tosun Paşa oyununa başvurur."
+  },
+  {
+    "id": "q54140",
+    "categoryIndex": 1,
+    "question": "G.O.R.A. filmindeki uzaylı komutanın adı nedir?",
+    "options": [
+      "Logar",
+      "Arif",
+      "Garavel",
+      "Bob Marley Faruk"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Logar, G.O.R.A. gezegeninin kötü niyetli komutanı ve Arif’in başlıca rakibidir."
+  },
+  {
+    "id": "q54141",
+    "categoryIndex": 1,
+    "question": "A.R.O.G. filminde Arif hangi döneme gönderilir?",
+    "options": [
+      "Orta Çağ",
+      "Taş Devri",
+      "Buzul Çağı",
+      "Roma Dönemi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Logar, Arif’i zaman makinesiyle yaklaşık bir milyon yıl öncesine gönderir."
+  },
+  {
+    "id": "q54142",
+    "categoryIndex": 1,
+    "question": "Eşkıya filminde Baran’ı kim canlandırır?",
+    "options": [
+      "Uğur Yücel",
+      "Kemal Sunal",
+      "Şener Şen",
+      "Yılmaz Erdoğan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Şener Şen, yıllarca hapiste kaldıktan sonra İstanbul’a gelen eşkıya Baran rolündedir."
+  },
+  {
+    "id": "q54143",
+    "categoryIndex": 1,
+    "question": "Kış Uykusu filmi Altın Palmiye’yi hangi festivalde kazandı?",
+    "options": [
+      "Venedik Film Festivali",
+      "Berlin Film Festivali",
+      "Sundance Film Festivali",
+      "Cannes Film Festivali"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Nuri Bilge Ceylan’ın Kış Uykusu filmi 2014 Cannes Film Festivali’nde Altın Palmiye kazandı."
+  },
+  {
+    "id": "q54144",
+    "categoryIndex": 1,
+    "question": "Leyla ile Mecnun dizisinde İsmail Abi’nin sürekli beklediği şey nedir?",
+    "options": [
+      "Bir gemi",
+      "Bir tren",
+      "Bir mektup",
+      "Bir taksi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İsmail Abi sahilde, bir gün döneceğine inandığı gemiyi beklemesiyle tanınır."
+  },
+  {
+    "id": "q54145",
+    "categoryIndex": 1,
+    "question": "Avrupa Yakası dizisinde Sütçüoğlu ailesinin işlettiği dükkân ne satar?",
+    "options": [
+      "Kitap",
+      "Muhallebi",
+      "Ayakkabı",
+      "Çiçek"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ailenin “Sütçüoğlu Muhallebicisi” adlı geleneksel bir muhallebi dükkânı vardır."
+  },
+  {
+    "id": "q54146",
+    "categoryIndex": 1,
+    "question": "Kurtlar Vadisi dizisinin merkezindeki karakter kimdir?",
+    "options": [
+      "Memati Baş",
+      "Süleyman Çakır",
+      "Polat Alemdar",
+      "Abdülhey Çoban"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Polat Alemdar, devlet göreviyle mafyanın içine sızan dizinin başkahramanıdır."
+  },
+  {
+    "id": "q54147",
+    "categoryIndex": 1,
+    "question": "Behzat Ç. dizisi ağırlıklı olarak hangi şehirde geçer?",
+    "options": [
+      "İstanbul",
+      "İzmir",
+      "Eskişehir",
+      "Ankara"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Dizi, Ankara Cinayet Büro ekibinin vakalarını ve şehir yaşamını merkezine alır."
+  },
+  {
+    "id": "q54148",
+    "categoryIndex": 1,
+    "question": "The Godfather filmindeki ünlü “reddedemeyeceği bir teklif” sözü kime aittir?",
+    "options": [
+      "Vito Corleone",
+      "Michael Corleone",
+      "Sonny Corleone",
+      "Tom Hagen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Don Vito Corleone bu ifadeyi gücünü ve ikna yöntemini anlatırken kullanır."
+  },
+  {
+    "id": "q54149",
+    "categoryIndex": 1,
+    "question": "Jaws filmindeki dev köpekbalığını avlayan teknenin adı nedir?",
+    "options": [
+      "Nautilus",
+      "Orca",
+      "Pequod",
+      "Poseidon"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Brody, Hooper ve Quint köpekbalığını avlamak için Orca adlı tekneyle denize açılır."
+  },
+  {
+    "id": "q54150",
+    "categoryIndex": 1,
+    "question": "The Silence of the Lambs filmindeki hapisteki psikiyatrist kimdir?",
+    "options": [
+      "Norman Bates",
+      "John Doe",
+      "Hannibal Lecter",
+      "Patrick Bateman"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Hannibal Lecter, Clarice Starling’e seri katil soruşturmasında zekâ oyunlarıyla yardım eder."
+  },
+  {
+    "id": "q54151",
+    "categoryIndex": 1,
+    "question": "The Shining filmindeki otelin adı nedir?",
+    "options": [
+      "Bates Motel",
+      "Hotel Cortez",
+      "Grand Budapest Hotel",
+      "Overlook Hotel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Jack Torrance ailesiyle birlikte kış boyunca Overlook Hotel’in bakıcılığını üstlenir."
+  },
+  {
+    "id": "q54152",
+    "categoryIndex": 1,
+    "question": "Silent Hill oyunlarında kasabayı örten belirgin hava olayı nedir?",
+    "options": [
+      "Yoğun sis",
+      "Kum fırtınası",
+      "Kar yağışı",
+      "Asit yağmuru"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Silent Hill’in yoğun sisi hem korku atmosferi yaratır hem de görüşü sınırlar."
+  },
+  {
+    "id": "q54153",
+    "categoryIndex": 1,
+    "question": "Prince of Persia: The Sands of Time’da zamanı geri alan nesne hangisidir?",
+    "options": [
+      "Kader Kılıcı",
+      "Zaman Hançeri",
+      "Kum Tacı",
+      "Ay Asası"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Prens, hançerdeki kumları kullanarak kısa süreliğine zamanı geri sarabilir."
+  },
+  {
+    "id": "q54154",
+    "categoryIndex": 1,
+    "question": "Counter-Strike’ta bombanın kurulabildiği iki alan genellikle hangi harflerle gösterilir?",
+    "options": [
+      "X ve Y",
+      "C ve D",
+      "A ve B",
+      "1 ve 2"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bomba imha haritalarında teröristlerin hedef noktaları A ve B bölgeleridir."
+  },
+  {
+    "id": "q54155",
+    "categoryIndex": 2,
+    "question": "Göbeklitepe hangi ilimizdedir?",
+    "options": [
+      "Mardin",
+      "Gaziantep",
+      "Diyarbakır",
+      "Şanlıurfa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Neolitik döneme ait anıtsal yapılarıyla Göbeklitepe, Şanlıurfa yakınındadır."
+  },
+  {
+    "id": "q54156",
+    "categoryIndex": 2,
+    "question": "Troya Antik Kenti hangi ilimizdedir?",
+    "options": [
+      "Çanakkale",
+      "Balıkesir",
+      "İzmir",
+      "Manisa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Troya kalıntıları Çanakkale’nin Tevfikiye köyü yakınlarında bulunur."
+  },
+  {
+    "id": "q54157",
+    "categoryIndex": 2,
+    "question": "Çatalhöyük hangi ilimizdedir?",
+    "options": [
+      "Kayseri",
+      "Konya",
+      "Aksaray",
+      "Nevşehir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Çatalhöyük, Konya’nın Çumra ilçesi yakınında büyük bir Neolitik yerleşimdir."
+  },
+  {
+    "id": "q54158",
+    "categoryIndex": 2,
+    "question": "Efes Antik Kenti hangi ilimizdedir?",
+    "options": [
+      "Aydın",
+      "Muğla",
+      "İzmir",
+      "Manisa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Efes, İzmir’in Selçuk ilçesinde bulunan büyük bir Roma dönemi liman kentidir."
+  },
+  {
+    "id": "q54159",
+    "categoryIndex": 2,
+    "question": "Anadolu’da parayı ilk kullanan uygarlık hangisidir?",
+    "options": [
+      "Frigler",
+      "Urartular",
+      "Hititler",
+      "Lidyalılar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Lidyalılar MÖ 7. yüzyılda elektron adı verilen altın-gümüş alaşımından standart sikkeler bastı."
+  },
+  {
+    "id": "q54160",
+    "categoryIndex": 2,
+    "question": "Gordion antik kenti hangi uygarlığın başkentiydi?",
+    "options": [
+      "Frigler",
+      "Lidyalılar",
+      "Urartular",
+      "İyonlar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ankara yakınındaki Gordion, Kral Midas’la ilişkilendirilen Frig başkentidir."
+  },
+  {
+    "id": "q54161",
+    "categoryIndex": 2,
+    "question": "Kadeş Antlaşması hangi iki devlet arasında imzalandı?",
+    "options": [
+      "Roma ve Kartaca",
+      "Hititler ve Mısır",
+      "Persler ve Yunanlar",
+      "Asurlular ve Babilliler"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hitit Kralı III. Hattuşili ile Mısır Firavunu II. Ramses arasındaki antlaşma en eski barış metinlerindendir."
+  },
+  {
+    "id": "q54162",
+    "categoryIndex": 2,
+    "question": "Hattuşa hangi uygarlığın başkentiydi?",
+    "options": [
+      "Urartular",
+      "Frigler",
+      "Hititler",
+      "Sümerler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Çorum yakınındaki Hattuşa, Hitit İmparatorluğu’nun siyasi ve dinî merkeziydi."
+  },
+  {
+    "id": "q54163",
+    "categoryIndex": 2,
+    "question": "Osmanlı’da padişahın tuğrasını çeken görevliye ne denirdi?",
+    "options": [
+      "Defterdar",
+      "Kazasker",
+      "Kaptan-ı Derya",
+      "Nişancı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Nişancı, fermanlara padişah tuğrasını çeker ve devletin yazışma ile arazi kayıtlarını yönetirdi."
+  },
+  {
+    "id": "q54164",
+    "categoryIndex": 2,
+    "question": "Osmanlı donanmasının başındaki komutana ne denirdi?",
+    "options": [
+      "Kaptan-ı Derya",
+      "Yeniçeri Ağası",
+      "Beylerbeyi",
+      "Nişancı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kaptan-ı Derya, Osmanlı deniz kuvvetlerinin en yüksek komutanıydı."
+  },
+  {
+    "id": "q54165",
+    "categoryIndex": 2,
+    "question": "Osmanlı maliyesinin başındaki görevli kimdi?",
+    "options": [
+      "Kazasker",
+      "Defterdar",
+      "Reisülküttap",
+      "Şeyhülislam"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Defterdar devlet gelir ve giderlerinden sorumlu en yüksek maliye görevlisiydi."
+  },
+  {
+    "id": "q54166",
+    "categoryIndex": 2,
+    "question": "Piri Reis’in ünlü dünya haritası hangi yüzyılda çizildi?",
+    "options": [
+      "14. yüzyıl",
+      "17. yüzyıl",
+      "16. yüzyıl",
+      "19. yüzyıl"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Piri Reis’in günümüze ulaşan dünya haritası 1513 tarihini taşır."
+  },
+  {
+    "id": "q54167",
+    "categoryIndex": 2,
+    "question": "Mimar Sinan’ın “ustalık eserim” dediği cami hangisidir?",
+    "options": [
+      "Süleymaniye Camii",
+      "Şehzade Camii",
+      "Mihrimah Sultan Camii",
+      "Selimiye Camii"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Edirne’deki Selimiye Camii, Sinan’ın mimari ustalığının zirvesi kabul edilir."
+  },
+  {
+    "id": "q54168",
+    "categoryIndex": 2,
+    "question": "Türkiye’de kadınlara milletvekili seçme ve seçilme hakkı hangi yılda verildi?",
+    "options": [
+      "1934",
+      "1923",
+      "1928",
+      "1946"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "5 Aralık 1934 tarihli anayasa değişikliği kadınlara milletvekili seçme ve seçilme hakkı tanıdı."
+  },
+  {
+    "id": "q54169",
+    "categoryIndex": 2,
+    "question": "Cumhuriyet döneminin ilk nüfus sayımı hangi yılda yapıldı?",
+    "options": [
+      "1923",
+      "1927",
+      "1930",
+      "1935"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Türkiye Cumhuriyeti’nin ilk genel nüfus sayımı 28 Ekim 1927’de gerçekleştirildi."
+  },
+  {
+    "id": "q54170",
+    "categoryIndex": 2,
+    "question": "Apollo 13 görevinin ünlü kriz cümlesinde hangi şehir çağrılır?",
+    "options": [
+      "Washington",
+      "Cape Canaveral",
+      "Houston",
+      "New York"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "“Houston, we’ve had a problem” sözü, görev kontrol merkezinin Houston’da bulunmasından gelir."
+  },
+  {
+    "id": "q54171",
+    "categoryIndex": 2,
+    "question": "İlk başarılı çiçek aşısını geliştiren hekim kimdir?",
+    "options": [
+      "Louis Pasteur",
+      "Robert Koch",
+      "Alexander Fleming",
+      "Edward Jenner"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Jenner 1796’da inek çiçeğine maruz kalmanın çiçek hastalığına karşı koruma sağladığını gösterdi."
+  },
+  {
+    "id": "q54172",
+    "categoryIndex": 3,
+    "question": "Türk mitolojisinde gökyüzü tanrısı hangi adla bilinir?",
+    "options": [
+      "Tengri",
+      "Anubis",
+      "Odin",
+      "Zeus"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tengri, eski Türk ve Orta Asya inançlarında göğün ve yüce düzenin tanrısıdır."
+  },
+  {
+    "id": "q54173",
+    "categoryIndex": 3,
+    "question": "Yunan mitolojisinde denizlerin tanrısı kimdir?",
+    "options": [
+      "Ares",
+      "Poseidon",
+      "Apollo",
+      "Hermes"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Poseidon üç dişli yabasıyla denizleri, depremleri ve atları yönetir."
+  },
+  {
+    "id": "q54174",
+    "categoryIndex": 3,
+    "question": "Yunan mitolojisinde yeraltı dünyasının tanrısı kimdir?",
+    "options": [
+      "Zeus",
+      "Hephaistos",
+      "Hades",
+      "Dionysos"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Hades ölüler ülkesini yönetir ve aynı ad yeraltı dünyası için de kullanılır."
+  },
+  {
+    "id": "q54175",
+    "categoryIndex": 3,
+    "question": "Yunan mitolojisinde bilgeliğin tanrıçası kimdir?",
+    "options": [
+      "Hera",
+      "Aphrodite",
+      "Artemis",
+      "Athena"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Athena bilgelik, strateji ve zanaatla ilişkilendirilir; Atina şehrinin koruyucusudur."
+  },
+  {
+    "id": "q54176",
+    "categoryIndex": 3,
+    "question": "Mısır mitolojisinde çakal başlı ölüm ve mumyalama tanrısı kimdir?",
+    "options": [
+      "Anubis",
+      "Horus",
+      "Ra",
+      "Osiris"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Anubis mezarları korur ve ölünün kalbinin tartıldığı yargı sahnesinde görev alır."
+  },
+  {
+    "id": "q54177",
+    "categoryIndex": 3,
+    "question": "İskandinav mitolojisinde gök gürültüsü tanrısı kimdir?",
+    "options": [
+      "Loki",
+      "Thor",
+      "Odin",
+      "Tyr"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Thor, Mjolnir adlı çekiciyle devlere karşı savaşan gök gürültüsü tanrısıdır."
+  },
+  {
+    "id": "q54178",
+    "categoryIndex": 3,
+    "question": "İskandinav mitolojisinde tanrıların yaşadığı âlemin adı nedir?",
+    "options": [
+      "Midgard",
+      "Valhalla",
+      "Asgard",
+      "Jotunheim"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Asgard, Aesir tanrılarının yaşadığı ve Bifröst köprüsüyle Midgard’a bağlanan âlemdir."
+  },
+  {
+    "id": "q54179",
+    "categoryIndex": 3,
+    "question": "Japon sanatındaki ahşap baskı geleneğine ne denir?",
+    "options": [
+      "Origami",
+      "Ikebana",
+      "Kabuki",
+      "Ukiyo-e"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ukiyo-e, Edo döneminde oyuncular, manzaralar ve gündelik yaşamı gösteren renkli tahta baskıları kapsar."
+  },
+  {
+    "id": "q54180",
+    "categoryIndex": 3,
+    "question": "Origami sanatının temel malzemesi nedir?",
+    "options": [
+      "Kâğıt",
+      "Kil",
+      "Cam",
+      "İplik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Origamide kâğıt kesilmeden veya yapıştırılmadan katlanarak figürler oluşturulur."
+  },
+  {
+    "id": "q54181",
+    "categoryIndex": 3,
+    "question": "Japon çiçek düzenleme sanatına ne denir?",
+    "options": [
+      "Haiku",
+      "Ikebana",
+      "Bonsai",
+      "Noh"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ikebana, boşluk, çizgi ve mevsimsel bitkileri öne çıkaran geleneksel çiçek düzenleme sanatıdır."
+  },
+  {
+    "id": "q54182",
+    "categoryIndex": 3,
+    "question": "Don Kişot’un atının adı nedir?",
+    "options": [
+      "Bucephalus",
+      "Pegasus",
+      "Rocinante",
+      "Shadowfax"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Rocinante, Don Kişot’un zayıf ama sahibi tarafından soylu kabul edilen atıdır."
+  },
+  {
+    "id": "q54183",
+    "categoryIndex": 3,
+    "question": "Harry Potter kitaplarında konuşan ve seçim yapan şapkanın Türkçe adı nedir?",
+    "options": [
+      "Görünmezlik Şapkası",
+      "Bilge Şapka",
+      "Sihirli Fötr",
+      "Seçmen Şapka"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Seçmen Şapka Hogwarts öğrencilerini karakterlerine göre dört binadan birine yerleştirir."
+  },
+  {
+    "id": "q54184",
+    "categoryIndex": 3,
+    "question": "Küçük Prens’in gezegenindeki tek çiçek hangisidir?",
+    "options": [
+      "Gül",
+      "Lale",
+      "Papatya",
+      "Menekşe"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Küçük Prens’in gülüyle karmaşık ilişkisi sevgi, sorumluluk ve bağlılık temasını taşır."
+  },
+  {
+    "id": "q54185",
+    "categoryIndex": 3,
+    "question": "Moby-Dick romanındaki beyaz balinanın peşindeki kaptan kimdir?",
+    "options": [
+      "Kaptan Nemo",
+      "Kaptan Ahab",
+      "Kaptan Hook",
+      "Kaptan Flint"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ahab, bacağını kaybetmesine neden olan Moby Dick’e karşı saplantılı bir intikam arar."
+  },
+  {
+    "id": "q54186",
+    "categoryIndex": 3,
+    "question": "1984 romanındaki totaliter liderin adı nedir?",
+    "options": [
+      "Napoleon",
+      "Mustapha Mond",
+      "Büyük Birader",
+      "O’Brien"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Büyük Birader’in posterleri sürekli gözetim ve Parti otoritesini simgeler."
+  },
+  {
+    "id": "q54187",
+    "categoryIndex": 3,
+    "question": "Hayvan Çiftliği’ndeki iktidarı ele geçiren domuzun adı nedir?",
+    "options": [
+      "Boxer",
+      "Benjamin",
+      "Moses",
+      "Napoleon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Napoleon rakibi Snowball’u uzaklaştırıp çiftliği giderek baskıcı bir rejimle yönetir."
+  },
+  {
+    "id": "q54188",
+    "categoryIndex": 3,
+    "question": "Sherlock Holmes öykülerini çoğunlukla kim anlatır?",
+    "options": [
+      "Dr. Watson",
+      "Müfettiş Lestrade",
+      "Mycroft Holmes",
+      "Mrs. Hudson"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Watson, Holmes’un vakalarını gözlemci ve yakın arkadaş olarak birinci kişi ağzından aktarır."
+  },
+  {
+    "id": "q54189",
+    "categoryIndex": 4,
+    "question": "Hangi memelinin kalbi derin dalış sırasında dakikada yalnız birkaç atıma kadar yavaşlayabilir?",
+    "options": [
+      "Fil",
+      "Mavi balina",
+      "Yunus",
+      "Su aygırı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mavi balinanın kalp atışı derin dalış sırasında dakikada yaklaşık iki atıma kadar düşebilir."
+  },
+  {
+    "id": "q54190",
+    "categoryIndex": 4,
+    "question": "Hangi kuşun uçarken kısa süreli uyuduğu bilimsel olarak kaydedilmiştir?",
+    "options": [
+      "Albatros",
+      "Penguen",
+      "Büyük fregat kuşu",
+      "Devekuşu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Araştırmalar büyük fregat kuşlarının uzun deniz uçuşlarında beyninin bir yarısını veya kısa sürelerle iki yarısını dinlendirebildiğini gösterdi."
+  },
+  {
+    "id": "q54191",
+    "categoryIndex": 4,
+    "question": "Arıların petek gözleri neden çoğunlukla altıgendir?",
+    "options": [
+      "Balı soğutmak için",
+      "Kraliçeyi saklamak için",
+      "Rengi daha iyi göstermek için",
+      "Alanı verimli kullanmak için"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Altıgenler boşluk bırakmadan döşenir ve az balmumuyla geniş depolama alanı sağlar."
+  },
+  {
+    "id": "q54192",
+    "categoryIndex": 4,
+    "question": "Kedilerin köprücük kemikleri vücutlarına nasıl bağlıdır?",
+    "options": [
+      "Kaslarla serbestçe",
+      "Omurgaya kaynaşmış",
+      "Kaburgaya vidalanmış",
+      "Hiç köprücük kemiği yoktur"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kedinin köprücük kemiği diğer kemiklere eklemle bağlı değildir; bu yapı dar aralıklardan geçmesine yardım eder."
+  },
+  {
+    "id": "q54193",
+    "categoryIndex": 4,
+    "question": "Penguenlerin dizleri var mıdır?",
+    "options": [
+      "Hayır",
+      "Evet",
+      "Yalnız yavrularda",
+      "Sadece imparator penguende"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Penguenlerin dizleri vardır ancak üst bacakları ve diz eklemleri tüylerin içinde gizlidir."
+  },
+  {
+    "id": "q54194",
+    "categoryIndex": 4,
+    "question": "Zebraların derisi hangi renktir?",
+    "options": [
+      "Beyaz",
+      "Gri",
+      "Siyah",
+      "Çizgili deri pigmenti yoktur"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Zebraların derisi çoğunlukla siyahtır; beyaz bölgelerde tüyler pigment üretmez."
+  },
+  {
+    "id": "q54195",
+    "categoryIndex": 4,
+    "question": "Kunduzların ön dişlerinin turuncu görünmesinin nedeni nedir?",
+    "options": [
+      "Havuç yemeleri",
+      "Alg boyası",
+      "Güneşte oksitlenmesi",
+      "Demir içermesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kunduz diş minesindeki demir, dişleri sertleştirir ve turuncu ton verir."
+  },
+  {
+    "id": "q54196",
+    "categoryIndex": 4,
+    "question": "Bir bukalemunun dili yaklaşık olarak vücuduna göre nasıl olabilir?",
+    "options": [
+      "Vücudu kadar veya daha uzun",
+      "Yalnız başı kadar",
+      "Bacağından kısa",
+      "Sadece birkaç santimetre"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bukalemun dili türüne göre gövde uzunluğuna yaklaşabilir veya onu aşabilir ve çok hızlı fırlatılır."
+  },
+  {
+    "id": "q54197",
+    "categoryIndex": 4,
+    "question": "Dünyanın en büyük çiçeği olarak bilinen Rafflesia arnoldii hangi kokusuyla ünlenmiştir?",
+    "options": [
+      "Vanilya kokusu",
+      "Çürümüş et kokusu",
+      "Nane kokusu",
+      "Deniz kokusu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Rafflesia, tozlaştırıcı sinekleri çekmek için çürüyen et benzeri ağır bir koku yayar."
+  },
+  {
+    "id": "q54198",
+    "categoryIndex": 4,
+    "question": "Venüs’te Güneş hangi yönden doğuyormuş gibi görünür?",
+    "options": [
+      "Doğudan",
+      "Kuzeyden",
+      "Batıdan",
+      "Güneyden"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Venüs çoğu gezegenin ters yönünde döndüğü için yüzeyden Güneş batıdan doğuyormuş gibi görünür."
+  },
+  {
+    "id": "q54199",
+    "categoryIndex": 4,
+    "question": "Ay’da ses neden doğrudan yayılamaz?",
+    "options": [
+      "Yer çekimi az olduğu için",
+      "Ay soğuk olduğu için",
+      "Güneş çok parlak olduğu için",
+      "Atmosfer olmadığı için"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ses titreşimlerini taşıyacak gaz veya başka bir ortam bulunmadığından Ay’ın boşluğunda ses yayılmaz."
+  },
+  {
+    "id": "q54200",
+    "categoryIndex": 4,
+    "question": "Güneş’in ışığı Dünya’ya yaklaşık ne kadar sürede ulaşır?",
+    "options": [
+      "8 dakika 20 saniye",
+      "8 saniye",
+      "20 dakika",
+      "1 saat"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Işık yaklaşık 150 milyon kilometrelik Güneş-Dünya mesafesini ortalama 8 dakika 20 saniyede aşar."
+  },
+  {
+    "id": "q54201",
+    "categoryIndex": 4,
+    "question": "Bir ışık yılı neyin ölçüsüdür?",
+    "options": [
+      "Zamanın",
+      "Uzaklığın",
+      "Parlaklığın",
+      "Hızın"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Işık yılı, ışığın boşlukta bir yılda aldığı yaklaşık 9,46 trilyon kilometrelik mesafedir."
+  },
+  {
+    "id": "q54202",
+    "categoryIndex": 4,
+    "question": "Dünya’nın manyetik alanını büyük ölçüde hangi katman oluşturur?",
+    "options": [
+      "Yer kabuğu",
+      "Katı iç çekirdek",
+      "Sıvı dış çekirdek",
+      "Üst manto"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Dış çekirdekteki iletken sıvı demirin hareketi jeodinamo etkisiyle manyetik alan üretir."
+  },
+  {
+    "id": "q54203",
+    "categoryIndex": 4,
+    "question": "İnsan gözünde renkleri algılayan hücrelere ne denir?",
+    "options": [
+      "Çubuk hücreleri",
+      "Alyuvarlar",
+      "Nöron düğümleri",
+      "Koni hücreleri"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Retinadaki koni hücreleri farklı dalga boylarına duyarlıdır ve renkli görmeyi sağlar."
+  },
+  {
+    "id": "q54204",
+    "categoryIndex": 4,
+    "question": "Vücuttaki en sert madde hangisidir?",
+    "options": [
+      "Diş minesi",
+      "Kemik",
+      "Tırnak",
+      "Kıkırdak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Diş minesi yüksek mineral içeriği sayesinde insan vücudundaki en sert dokudur."
+  },
+  {
+    "id": "q54205",
+    "categoryIndex": 5,
+    "question": "Galatasaray’ın UEFA Kupası’nı kazandığı yıl hangisidir?",
+    "options": [
+      "1996",
+      "2000",
+      "2002",
+      "2005"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Galatasaray 17 Mayıs 2000’de Arsenal’i penaltılarla yenerek UEFA Kupası’nı kazandı."
+  },
+  {
+    "id": "q54206",
+    "categoryIndex": 5,
+    "question": "Galatasaray UEFA Kupası finalinde hangi takımı yendi?",
+    "options": [
+      "Chelsea",
+      "Liverpool",
+      "Arsenal",
+      "Leeds United"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kopenhag’daki final 0-0 bitti; Galatasaray penaltı atışlarında Arsenal’i geçti."
+  },
+  {
+    "id": "q54207",
+    "categoryIndex": 5,
+    "question": "Türkiye A Millî Futbol Takımı 2002 Dünya Kupası’nı kaçıncı tamamladı?",
+    "options": [
+      "İkinci",
+      "Dördüncü",
+      "Beşinci",
+      "Üçüncü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye, Güney Kore’yi 3-2 yenerek 2002 Dünya Kupası’nda üçüncülük elde etti."
+  },
+  {
+    "id": "q54208",
+    "categoryIndex": 5,
+    "question": "2002 Dünya Kupası’nın en hızlı golünü atan Türk futbolcu kimdir?",
+    "options": [
+      "Hakan Şükür",
+      "Hasan Şaş",
+      "İlhan Mansız",
+      "Emre Belözoğlu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Hakan Şükür üçüncülük maçında Güney Kore’ye karşı yaklaşık 11. saniyede gol attı."
+  },
+  {
+    "id": "q54209",
+    "categoryIndex": 5,
+    "question": "“Filenin Sultanları” lakabı hangi millî takıma aittir?",
+    "options": [
+      "Kadın basketbol takımı",
+      "Kadın voleybol takımı",
+      "Erkek hentbol takımı",
+      "Kadın futbol takımı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye Kadın Millî Voleybol Takımı kamuoyunda Filenin Sultanları adıyla tanınır."
+  },
+  {
+    "id": "q54210",
+    "categoryIndex": 5,
+    "question": "“12 Dev Adam” lakabı hangi millî takıma aittir?",
+    "options": [
+      "Erkek voleybol takımı",
+      "Kadın basketbol takımı",
+      "Erkek basketbol takımı",
+      "Erkek futbol takımı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye Erkek Millî Basketbol Takımı özellikle 2001 Avrupa Şampiyonası döneminde 12 Dev Adam adıyla özdeşleşti."
+  },
+  {
+    "id": "q54211",
+    "categoryIndex": 5,
+    "question": "Yağlı güreşin en ünlü tarihî organizasyonu hangisidir?",
+    "options": [
+      "Elmalı",
+      "Kumluca",
+      "Karakucak",
+      "Kırkpınar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Edirne’de düzenlenen Kırkpınar Yağlı Güreşleri dünyanın en eski sürekli spor geleneklerindendir."
+  },
+  {
+    "id": "q54212",
+    "categoryIndex": 5,
+    "question": "Yağlı güreşte sporcuların giydiği deri kıyafete ne denir?",
+    "options": [
+      "Kispet",
+      "Şalvar",
+      "Judogi",
+      "Mayo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kispet manda veya dana derisinden yapılan, belden diz altına uzanan özel güreş kıyafetidir."
+  },
+  {
+    "id": "q54213",
+    "categoryIndex": 5,
+    "question": "Kırkpınar şampiyonuna verilen unvan nedir?",
+    "options": [
+      "Başyiğit",
+      "Başpehlivan",
+      "Altın kemerci",
+      "Usta güreşçi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Baş kategorisini kazanan sporcu Türkiye Başpehlivanı unvanını alır."
+  },
+  {
+    "id": "q54214",
+    "categoryIndex": 5,
+    "question": "Basketbolda “alley-oop” nasıl tamamlanır?",
+    "options": [
+      "Yerden sektirilen pası üçlükle",
+      "Serbest atışı ribaundla",
+      "Havaya atılan pası smaç veya turnikeyle",
+      "Top çalmayı orta sahadan şutla"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bir oyuncu potaya yakın havaya pas verir, takım arkadaşı top yere değmeden sayı yapar."
+  },
+  {
+    "id": "q54215",
+    "categoryIndex": 5,
+    "question": "Futbolda “rabona” vuruşunda oyuncu ne yapar?",
+    "options": [
+      "Topa iki ayağıyla birden vurur",
+      "Topukla geriye pas verir",
+      "Topu başının üzerinden aşırır",
+      "Vuran ayağını diğer bacağının arkasından geçirir"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Rabona, vuruş ayağının destek bacağının arkasından geçirilmesiyle yapılan gösterişli tekniktir."
+  },
+  {
+    "id": "q54216",
+    "categoryIndex": 5,
+    "question": "Futbolda “Panenka” hangi vuruşla ilişkilidir?",
+    "options": [
+      "Penaltı",
+      "Korner",
+      "Taç",
+      "Serbest vuruş barajı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Panenka penaltısında top kalenin ortasına doğru yumuşak bir aşırtmayla gönderilir."
+  },
+  {
+    "id": "q54217",
+    "categoryIndex": 5,
+    "question": "Teniste “golden set” ne anlama gelir?",
+    "options": [
+      "Tüm servisleri ace ile atmak",
+      "Bir seti hiç puan kaybetmeden kazanmak",
+      "Seti 7-6 kazanmak",
+      "Final setini beş oyun farkla almak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Golden set için oyuncunun art arda 24 puanın tamamını kazanması gerekir."
+  },
+  {
+    "id": "q54218",
+    "categoryIndex": 5,
+    "question": "Basketbolda “buzzer beater” ne zaman atılır?",
+    "options": [
+      "Maç başlamadan",
+      "Mola sırasında",
+      "Süre dolarken",
+      "Devre arasında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Top süre bitmeden elden çıkıp çemberden geçerse son saniye basketi buzzer beater olarak adlandırılır."
+  },
+  {
+    "id": "q54219",
+    "categoryIndex": 5,
+    "question": "Voleybolda pasörü yanıltmak için yapılan kısa hücum vuruşuna ne denir?",
+    "options": [
+      "Ace",
+      "Manşet",
+      "Libero",
+      "Plase"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Plase sert smaç yerine topu blok arkasındaki boşluğa kontrollü bırakma vuruşudur."
+  },
+  {
+    "id": "q54220",
+    "categoryIndex": 5,
+    "question": "Satrançta “çatal” hamlesi ne yapar?",
+    "options": [
+      "Bir taşla aynı anda iki veya daha fazla taşa saldırır",
+      "Şahı kale arkasına saklar",
+      "Piyonu vezire çevirir",
+      "Oyunu beraberlikle bitirir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "At çatalları özellikle etkilidir çünkü at aynı anda şah ve değerli bir taşa saldırabilir."
+  }
+]

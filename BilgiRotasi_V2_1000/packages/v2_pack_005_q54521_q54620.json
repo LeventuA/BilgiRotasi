@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q54521",
+    "categoryIndex": 0,
+    "question": "Pasifik’e yayılmış 33 ada ve atolden oluşan ülke hangisidir?",
+    "options": [
+      "Maldivler",
+      "Kiribati",
+      "Seyşeller",
+      "Mauritius"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kiribati, Ekvator ve tarih değiştirme çizgisi çevresine yayılmış 33 ada ve atolden oluşur."
+  },
+  {
+    "id": "q54522",
+    "categoryIndex": 0,
+    "question": "Maldivler’in ortalama yüksekliği neden dikkat çekicidir?",
+    "options": [
+      "Himalayalar kadar yüksektir",
+      "Tamamı volkan zirvesidir",
+      "Deniz seviyesine çok yakındır",
+      "Büyük bölümü platodur"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Maldivler dünyanın en alçak ülkelerinden biridir ve doğal arazisinin çoğu birkaç metreyi aşmaz."
+  },
+  {
+    "id": "q54523",
+    "categoryIndex": 0,
+    "question": "Titicaca Gölü hangi dağ sisteminin yüksek platosundadır?",
+    "options": [
+      "Himalayalar",
+      "Alpler",
+      "Kayalık Dağlar",
+      "And Dağları"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Titicaca, Peru ile Bolivya arasında And Dağları’nın Altiplano platosunda bulunur."
+  },
+  {
+    "id": "q54524",
+    "categoryIndex": 0,
+    "question": "Dünyanın en büyük tuz gölü kabul edilen Hazar Denizi kaç ülkeyle çevrilidir?",
+    "options": [
+      "Beş",
+      "Üç",
+      "Dört",
+      "Altı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Rusya, Kazakistan, Türkmenistan, İran ve Azerbaycan Hazar Denizi’ne kıyıdır."
+  },
+  {
+    "id": "q54525",
+    "categoryIndex": 0,
+    "question": "Afrika’nın en doğu ucuna yakın “Afrika Boynuzu”nda hangi ülke bulunur?",
+    "options": [
+      "Gana",
+      "Somali",
+      "Angola",
+      "Gabon"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Somali, Afrika kıtasının doğuya uzanan boynuz biçimli bölgesinin büyük kısmını kaplar."
+  },
+  {
+    "id": "q54526",
+    "categoryIndex": 0,
+    "question": "Avrupa’nın çizme biçimine benzetilen ülkesi hangisidir?",
+    "options": [
+      "Yunanistan",
+      "Portekiz",
+      "İtalya",
+      "Hırvatistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İtalya yarımadası haritada yüksek topuklu bir çizmeyi andırır."
+  },
+  {
+    "id": "q54527",
+    "categoryIndex": 0,
+    "question": "Şili haritada en çok hangi özelliğiyle dikkat çeker?",
+    "options": [
+      "Tam daire biçimiyle",
+      "İki eşit adadan oluşmasıyla",
+      "Dörtgen yapısıyla",
+      "Çok uzun ve dar olmasıyla"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Şili, Pasifik kıyısı ile And Dağları arasında binlerce kilometre uzanan dar bir ülkedir."
+  },
+  {
+    "id": "q54528",
+    "categoryIndex": 0,
+    "question": "Hırvatistan’ın kıyıları hangi denize açılır?",
+    "options": [
+      "Adriyatik Denizi",
+      "Baltık Denizi",
+      "Karadeniz",
+      "Kuzey Denizi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hırvatistan’ın uzun ve adalı kıyısı Adriyatik Denizi boyunca uzanır."
+  },
+  {
+    "id": "q54529",
+    "categoryIndex": 0,
+    "question": "Portekiz’in Atlas Okyanusu’ndaki özerk ada gruplarından biri hangisidir?",
+    "options": [
+      "Balear Adaları",
+      "Azor Adaları",
+      "Kiklad Adaları",
+      "Shetland Adaları"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Azorlar, Portekiz ana karasının batısında dokuz volkanik adadan oluşur."
+  },
+  {
+    "id": "q54530",
+    "categoryIndex": 0,
+    "question": "İspanya’ya bağlı Kanarya Adaları hangi kıtanın kıyılarına daha yakındır?",
+    "options": [
+      "Avrupa",
+      "Güney Amerika",
+      "Afrika",
+      "Asya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kanarya Adaları Atlas Okyanusu’nda Fas ve Batı Sahra kıyılarına yakındır."
+  },
+  {
+    "id": "q54531",
+    "categoryIndex": 0,
+    "question": "Birleşik Krallık ile Fransa’yı ayıran su yolu hangisidir?",
+    "options": [
+      "Biskay Körfezi",
+      "Kuzey Denizi",
+      "İrlanda Denizi",
+      "Manş Denizi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İngilizcede English Channel denen Manş Denizi’nin en dar bölümü Dover Boğazı’dır."
+  },
+  {
+    "id": "q54532",
+    "categoryIndex": 0,
+    "question": "İngiltere ile Fransa arasındaki deniz altı tren tüneline ne denir?",
+    "options": [
+      "Manş Tüneli",
+      "Gotthard Tüneli",
+      "Seikan Tüneli",
+      "Marmaray"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Manş Tüneli Folkestone ile Calais yakınlarını deniz tabanının altından birleştirir."
+  },
+  {
+    "id": "q54533",
+    "categoryIndex": 0,
+    "question": "İskandinav Yarımadası’nı paylaşan iki ana ülke hangileridir?",
+    "options": [
+      "İsveç ve Finlandiya",
+      "Norveç ve İsveç",
+      "Norveç ve Danimarka",
+      "Finlandiya ve Rusya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İskandinav Yarımadası’nın büyük kısmını Norveç ile İsveç kaplar; kuzeydoğuda Finlandiya’nın küçük bölümü de yer alır."
+  },
+  {
+    "id": "q54534",
+    "categoryIndex": 0,
+    "question": "Jutland Yarımadası’nın büyük kısmı hangi ülkeye aittir?",
+    "options": [
+      "Hollanda",
+      "Belçika",
+      "Danimarka",
+      "Norveç"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Danimarka’nın ana kara bölümü Jutland’dadır; yarımadanın güney bölümü Almanya’ya uzanır."
+  },
+  {
+    "id": "q54535",
+    "categoryIndex": 0,
+    "question": "Anadolu Yarımadası’nın kuzeyinde hangi deniz bulunur?",
+    "options": [
+      "Kızıldeniz",
+      "Adriyatik Denizi",
+      "Hazar Denizi",
+      "Karadeniz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Anadolu kuzeyde Karadeniz, batıda Ege, güneyde Akdeniz’le çevrilidir."
+  },
+  {
+    "id": "q54536",
+    "categoryIndex": 0,
+    "question": "Arap Yarımadası’nın batısında hangi deniz bulunur?",
+    "options": [
+      "Kızıldeniz",
+      "Karadeniz",
+      "Hazar Denizi",
+      "Aral Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kızıldeniz Arap Yarımadası’nı Afrika’nın kuzeydoğusundan ayırır."
+  },
+  {
+    "id": "q54537",
+    "categoryIndex": 0,
+    "question": "Hindistan Yarımadası’nın doğusundaki büyük körfez hangisidir?",
+    "options": [
+      "Basra Körfezi",
+      "Bengal Körfezi",
+      "Gine Körfezi",
+      "Biskay Körfezi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bengal Körfezi Hindistan’ın doğusu, Bangladeş ve Myanmar kıyıları arasında uzanır."
+  },
+  {
+    "id": "q54538",
+    "categoryIndex": 1,
+    "question": "“Bohemian Rhapsody” şarkısını hangi grup seslendirdi?",
+    "options": [
+      "The Beatles",
+      "Pink Floyd",
+      "Queen",
+      "Led Zeppelin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Freddie Mercury’nin yazdığı Bohemian Rhapsody, Queen’in en tanınmış şarkılarından biridir."
+  },
+  {
+    "id": "q54539",
+    "categoryIndex": 1,
+    "question": "“Imagine” şarkısının sanatçısı kimdir?",
+    "options": [
+      "Paul McCartney",
+      "David Bowie",
+      "Elton John",
+      "John Lennon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "John Lennon’ın 1971 tarihli Imagine şarkısı barış ve sınırların olmadığı bir dünya hayal eder."
+  },
+  {
+    "id": "q54540",
+    "categoryIndex": 1,
+    "question": "“Billie Jean” şarkısı kime aittir?",
+    "options": [
+      "Michael Jackson",
+      "Prince",
+      "Stevie Wonder",
+      "George Michael"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Billie Jean, Michael Jackson’ın Thriller albümündeki en büyük hitlerden biridir."
+  },
+  {
+    "id": "q54541",
+    "categoryIndex": 1,
+    "question": "“Like a Prayer” şarkısını kim seslendirir?",
+    "options": [
+      "Cher",
+      "Madonna",
+      "Cyndi Lauper",
+      "Whitney Houston"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Madonna’nın 1989 tarihli Like a Prayer şarkısı gospel etkileri taşır."
+  },
+  {
+    "id": "q54542",
+    "categoryIndex": 1,
+    "question": "“Smells Like Teen Spirit” hangi gruba aittir?",
+    "options": [
+      "Pearl Jam",
+      "Metallica",
+      "Nirvana",
+      "Green Day"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Şarkı Nirvana’nın Nevermind albümünü ve grunge akımını dünya çapında popülerleştirdi."
+  },
+  {
+    "id": "q54543",
+    "categoryIndex": 1,
+    "question": "“Hotel California” hangi grubun şarkısıdır?",
+    "options": [
+      "Fleetwood Mac",
+      "Aerosmith",
+      "The Doors",
+      "Eagles"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hotel California, Eagles’ın 1976 tarihli aynı adlı albümünde yer alır."
+  },
+  {
+    "id": "q54544",
+    "categoryIndex": 1,
+    "question": "“Nothing Else Matters” hangi gruba aittir?",
+    "options": [
+      "Metallica",
+      "Megadeth",
+      "Iron Maiden",
+      "Black Sabbath"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nothing Else Matters, Metallica’nın 1991 tarihli siyah albümündeki güçlü baladdır."
+  },
+  {
+    "id": "q54545",
+    "categoryIndex": 1,
+    "question": "“Rolling in the Deep” şarkısını kim seslendirir?",
+    "options": [
+      "Amy Winehouse",
+      "Adele",
+      "Dua Lipa",
+      "Sia"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Rolling in the Deep, Adele’in 21 albümünden yayımlanan ve dünya çapında başarı kazanan şarkıdır."
+  },
+  {
+    "id": "q54546",
+    "categoryIndex": 1,
+    "question": "“Lose Yourself” şarkısını hangi rapçi seslendirir?",
+    "options": [
+      "Jay-Z",
+      "Kanye West",
+      "Eminem",
+      "Dr. Dre"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Lose Yourself, Eminem’in başrolünde olduğu 8 Mile filminin tema şarkısıdır."
+  },
+  {
+    "id": "q54547",
+    "categoryIndex": 1,
+    "question": "“Gangnam Style” şarkısıyla küresel ün kazanan sanatçı kimdir?",
+    "options": [
+      "Rain",
+      "G-Dragon",
+      "J-Hope",
+      "Psy"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Güney Koreli Psy’ın Gangnam Style klibi internetin ilk dev küresel viral müzik olaylarından biri oldu."
+  },
+  {
+    "id": "q54548",
+    "categoryIndex": 1,
+    "question": "“Shape of You” şarkısını kim seslendirir?",
+    "options": [
+      "Ed Sheeran",
+      "Sam Smith",
+      "Bruno Mars",
+      "Shawn Mendes"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Shape of You, Ed Sheeran’ın Divide albümünden çıkan ritmik pop şarkısıdır."
+  },
+  {
+    "id": "q54549",
+    "categoryIndex": 1,
+    "question": "Barış Manço’nun televizyon programının adı nedir?",
+    "options": [
+      "İkinci Bahar",
+      "7’den 77’ye",
+      "Televole",
+      "Turnike"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Barış Manço, 7’den 77’ye programında Türkiye’yi ve dünyayı çocuklardan yetişkinlere geniş kitlelere tanıttı."
+  },
+  {
+    "id": "q54550",
+    "categoryIndex": 1,
+    "question": "“Mavi Boncuk” şarkısıyla da tanınan sanatçı kimdir?",
+    "options": [
+      "Ajda Pekkan",
+      "Sezen Aksu",
+      "Emel Sayın",
+      "Nilüfer"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Mavi Boncuk, Emel Sayın’ın yorumuyla Yeşilçam ve Türk sanat müziği repertuvarında tanınır."
+  },
+  {
+    "id": "q54551",
+    "categoryIndex": 1,
+    "question": "“Gülpembe” şarkısı hangi sanatçıyla özdeşleşmiştir?",
+    "options": [
+      "Cem Karaca",
+      "Erkin Koray",
+      "Edip Akbayram",
+      "Barış Manço"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Barış Manço Gülpembe’yi babaannesinin anısına yazmıştır."
+  },
+  {
+    "id": "q54552",
+    "categoryIndex": 1,
+    "question": "“Resimdeki Gözyaşları” şarkısını hangi grup seslendirmiştir?",
+    "options": [
+      "Cem Karaca ve Apaşlar",
+      "Moğollar",
+      "MFÖ",
+      "Duman"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Resimdeki Gözyaşları, Cem Karaca’nın Apaşlar grubuyla kaydettiği klasik Anadolu rock eseridir."
+  },
+  {
+    "id": "q54553",
+    "categoryIndex": 1,
+    "question": "“Ele Güne Karşı” hangi grubun şarkısıdır?",
+    "options": [
+      "Yeni Türkü",
+      "MFÖ",
+      "Ezginin Günlüğü",
+      "Bulutsuzluk Özlemi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Mazhar Fuat Özkan’ın Ele Güne Karşı şarkısı grubun en bilinen eserlerindendir."
+  },
+  {
+    "id": "q54554",
+    "categoryIndex": 1,
+    "question": "“Bir Derdim Var” şarkısı hangi Türk rock grubuna aittir?",
+    "options": [
+      "Duman",
+      "Athena",
+      "Mor ve Ötesi",
+      "maNga"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bir Derdim Var, Mor ve Ötesi’nin Dünya Yalan Söylüyor albümünde yer alır."
+  },
+  {
+    "id": "q54555",
+    "categoryIndex": 2,
+    "question": "Gutenberg’in en ünlü erken baskısı hangi kitaptır?",
+    "options": [
+      "İlyada",
+      "Don Kişot",
+      "İlahi Komedya",
+      "İncil"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gutenberg İncili, hareketli metal harflerle Avrupa’da basılan en ünlü erken büyük kitaptır."
+  },
+  {
+    "id": "q54556",
+    "categoryIndex": 2,
+    "question": "Gutenberg’in matbaası hangi Alman şehrinde çalıştı?",
+    "options": [
+      "Mainz",
+      "Berlin",
+      "Hamburg",
+      "Münih"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Johannes Gutenberg 15. yüzyılda Mainz’da hareketli metal harf sistemiyle baskı yaptı."
+  },
+  {
+    "id": "q54557",
+    "categoryIndex": 2,
+    "question": "Rönesans’ın zengin sanat hamisi Medici ailesi hangi işle servet kazandı?",
+    "options": [
+      "Gemi yapımı",
+      "Bankacılık",
+      "Madencilik",
+      "Tarım"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Medici Bankası Avrupa’nın en güçlü finans kurumlarından biri olarak ailenin Floransa’daki etkisini artırdı."
+  },
+  {
+    "id": "q54558",
+    "categoryIndex": 2,
+    "question": "Leonardo da Vinci’nin Son Akşam Yemeği eseri hangi şehirde bulunur?",
+    "options": [
+      "Floransa",
+      "Roma",
+      "Milano",
+      "Venedik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Duvar resmi Milano’daki Santa Maria delle Grazie manastırının yemekhanesindedir."
+  },
+  {
+    "id": "q54559",
+    "categoryIndex": 2,
+    "question": "Michelangelo’nun Sistine Şapeli tavanını boyaması yaklaşık kaç yıl sürdü?",
+    "options": [
+      "Bir yıl",
+      "On yıl",
+      "Yirmi yıl",
+      "Dört yıl"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Michelangelo 1508’den 1512’ye kadar dev tavan programı üzerinde çalıştı."
+  },
+  {
+    "id": "q54560",
+    "categoryIndex": 2,
+    "question": "Reform döneminde İncil’i Almancaya çeviren kişi kimdir?",
+    "options": [
+      "Martin Luther",
+      "John Calvin",
+      "Erasmus",
+      "Thomas More"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Luther’in Almanca çevirisi hem dini yayılımı hem standart Almancanın gelişimini etkiledi."
+  },
+  {
+    "id": "q54561",
+    "categoryIndex": 2,
+    "question": "İngiltere Kilisesi’nin Roma’dan kopuşuyla en çok ilişkilendirilen kral kimdir?",
+    "options": [
+      "I. Richard",
+      "VIII. Henry",
+      "II. Charles",
+      "Kral John"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "VIII. Henry, papanın evlilik iptalini reddetmesi sonrası kraliyet üstünlüğünü ilan etti."
+  },
+  {
+    "id": "q54562",
+    "categoryIndex": 2,
+    "question": "İspanya’da Müslüman yönetimin son kalesi hangi şehirdi?",
+    "options": [
+      "Sevilla",
+      "Toledo",
+      "Granada",
+      "Cordoba"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Granada Emirliği 1492’de Katolik hükümdarlara teslim olarak Endülüs’teki son Müslüman devleti sona erdirdi."
+  },
+  {
+    "id": "q54563",
+    "categoryIndex": 2,
+    "question": "Endülüs’teki Elhamra Sarayı hangi şehirde bulunur?",
+    "options": [
+      "Madrid",
+      "Barselona",
+      "Valencia",
+      "Granada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Elhamra, Granada’daki Nasri hükümdarlarının saray ve kale kompleksidir."
+  },
+  {
+    "id": "q54564",
+    "categoryIndex": 2,
+    "question": "Osmanlı ile Safeviler arasındaki 1514 savaşı hangisidir?",
+    "options": [
+      "Çaldıran Savaşı",
+      "Otlukbeli Savaşı",
+      "Mercidabık Savaşı",
+      "Ridaniye Savaşı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Yavuz Sultan Selim’in ordusu Çaldıran’da Şah İsmail’in kuvvetlerini yendi."
+  },
+  {
+    "id": "q54565",
+    "categoryIndex": 2,
+    "question": "Mercidabık Savaşı Osmanlı ile hangi devlet arasında yapıldı?",
+    "options": [
+      "Safevi Devleti",
+      "Memlük Devleti",
+      "Venedik",
+      "Avusturya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1516 Mercidabık zaferi Osmanlıların Suriye’ye girmesini sağladı."
+  },
+  {
+    "id": "q54566",
+    "categoryIndex": 2,
+    "question": "Ridaniye Savaşı sonrası Osmanlı hangi önemli şehri aldı?",
+    "options": [
+      "Bağdat",
+      "Tebriz",
+      "Kahire",
+      "Şam"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1517 Ridaniye zaferiyle Osmanlılar Kahire’yi ve Memlük topraklarını ele geçirdi."
+  },
+  {
+    "id": "q54567",
+    "categoryIndex": 2,
+    "question": "Preveze Deniz Savaşı’nda Osmanlı donanmasını kim yönetti?",
+    "options": [
+      "Piri Reis",
+      "Turgut Reis",
+      "Kılıç Ali Paşa",
+      "Barbaros Hayreddin Paşa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Barbaros 1538’de Preveze’de Haçlı donanmasını yenerek Akdeniz’de Osmanlı üstünlüğünü güçlendirdi."
+  },
+  {
+    "id": "q54568",
+    "categoryIndex": 2,
+    "question": "İnebahtı Deniz Savaşı hangi yılda gerçekleşti?",
+    "options": [
+      "1571",
+      "1453",
+      "1538",
+      "1683"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1571 İnebahtı’nda Osmanlı donanması Kutsal İttifak karşısında ağır kayıp verdi."
+  },
+  {
+    "id": "q54569",
+    "categoryIndex": 2,
+    "question": "Osmanlı’nın ilk demiryolu hatlarından biri hangi iki yer arasında açıldı?",
+    "options": [
+      "İstanbul ve Ankara",
+      "İzmir ve Aydın",
+      "Bursa ve Edirne",
+      "Samsun ve Sivas"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "İzmir-Aydın demiryolu 19. yüzyılda İngiliz sermayesiyle kurulan erken Osmanlı hatlarındandır."
+  },
+  {
+    "id": "q54570",
+    "categoryIndex": 2,
+    "question": "Türkiye’de Latin harflerine dayalı yeni Türk alfabesi hangi yıl kabul edildi?",
+    "options": [
+      "1923",
+      "1934",
+      "1928",
+      "1938"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Harf Devrimi 1 Kasım 1928’de kabul edilen kanunla yürürlüğe girdi."
+  },
+  {
+    "id": "q54571",
+    "categoryIndex": 2,
+    "question": "Soyadı Kanunu hangi yıl çıkarıldı?",
+    "options": [
+      "1925",
+      "1928",
+      "1946",
+      "1934"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "1934 tarihli Soyadı Kanunu her Türk vatandaşının resmî bir soyadı kullanmasını zorunlu kıldı."
+  },
+  {
+    "id": "q54572",
+    "categoryIndex": 3,
+    "question": "Barok müziğin “Dört Mevsim” adlı eserini kim bestelemiştir?",
+    "options": [
+      "Antonio Vivaldi",
+      "Johann Sebastian Bach",
+      "Wolfgang Mozart",
+      "George Handel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Vivaldi’nin dört keman konçertosu ilkbahar, yaz, sonbahar ve kışı müzikle tasvir eder."
+  },
+  {
+    "id": "q54573",
+    "categoryIndex": 3,
+    "question": "“Ay Işığı Sonatı” hangi besteciye aittir?",
+    "options": [
+      "Frédéric Chopin",
+      "Ludwig van Beethoven",
+      "Franz Schubert",
+      "Joseph Haydn"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Beethoven’ın 14 numaralı piyano sonatı sonradan Ay Işığı Sonatı adıyla ün kazandı."
+  },
+  {
+    "id": "q54574",
+    "categoryIndex": 3,
+    "question": "“Türk Marşı” olarak bilinen piyano bölümü hangi besteciye aittir?",
+    "options": [
+      "Beethoven",
+      "Bach",
+      "Wolfgang Amadeus Mozart",
+      "Chopin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mozart’ın La Majör piyano sonatının son bölümü Rondo alla Turca adıyla bilinir."
+  },
+  {
+    "id": "q54575",
+    "categoryIndex": 3,
+    "question": "“Kuğu Gölü” balesinin bestecisi kimdir?",
+    "options": [
+      "Igor Stravinsky",
+      "Sergey Prokofyev",
+      "Nikolay Rimski-Korsakov",
+      "Pyotr Çaykovski"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Çaykovski’nin Kuğu Gölü balesi büyüyle kuğuya dönüşen Odette’in hikâyesini anlatır."
+  },
+  {
+    "id": "q54576",
+    "categoryIndex": 3,
+    "question": "“Fındıkkıran” balesini kim bestelemiştir?",
+    "options": [
+      "Pyotr Çaykovski",
+      "Claude Debussy",
+      "Maurice Ravel",
+      "Johannes Brahms"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fındıkkıran özellikle Noel döneminde sahnelenen ünlü bir Çaykovski balesidir."
+  },
+  {
+    "id": "q54577",
+    "categoryIndex": 3,
+    "question": "“Boléro” adlı orkestral eserin bestecisi kimdir?",
+    "options": [
+      "Claude Debussy",
+      "Maurice Ravel",
+      "Erik Satie",
+      "Gabriel Fauré"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ravel’in Boléro’su aynı ritim ve melodinin giderek büyüyen orkestrasyonla tekrarına dayanır."
+  },
+  {
+    "id": "q54578",
+    "categoryIndex": 3,
+    "question": "“Carmina Burana” eserindeki ünlü açılış bölümünün adı nedir?",
+    "options": [
+      "Dies Irae",
+      "Lacrimosa",
+      "O Fortuna",
+      "Ave Maria"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Carl Orff’un Carmina Burana kantatı güçlü koro bölümü O Fortuna ile açılıp kapanır."
+  },
+  {
+    "id": "q54579",
+    "categoryIndex": 3,
+    "question": "“Rhapsody in Blue” adlı eserin bestecisi kimdir?",
+    "options": [
+      "Leonard Bernstein",
+      "Aaron Copland",
+      "Duke Ellington",
+      "George Gershwin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Gershwin eserde klasik orkestra diliyle caz öğelerini birleştirmiştir."
+  },
+  {
+    "id": "q54580",
+    "categoryIndex": 3,
+    "question": "“Mavi Tuna” valsini kim bestelemiştir?",
+    "options": [
+      "Johann Strauss II",
+      "Franz Liszt",
+      "Johannes Brahms",
+      "Gustav Mahler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Johann Strauss II’nin Mavi Tuna valsi Viyana müziğinin simgelerindendir."
+  },
+  {
+    "id": "q54581",
+    "categoryIndex": 3,
+    "question": "“Carmen” operasının bestecisi kimdir?",
+    "options": [
+      "Giuseppe Verdi",
+      "Georges Bizet",
+      "Giacomo Puccini",
+      "Richard Wagner"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bizet’nin Carmen operası İspanya’da geçen tutku ve kıskançlık hikâyesini anlatır."
+  },
+  {
+    "id": "q54582",
+    "categoryIndex": 3,
+    "question": "“La Traviata” operasını kim bestelemiştir?",
+    "options": [
+      "Puccini",
+      "Rossini",
+      "Giuseppe Verdi",
+      "Bizet"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Verdi’nin La Traviata operası Violetta ile Alfredo’nun trajik aşkını anlatır."
+  },
+  {
+    "id": "q54583",
+    "categoryIndex": 3,
+    "question": "“Nessun dorma” aryası hangi operadadır?",
+    "options": [
+      "Tosca",
+      "Aida",
+      "Carmen",
+      "Turandot"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Puccini’nin Turandot operasındaki Nessun dorma tenor repertuvarının en ünlü aryalarındandır."
+  },
+  {
+    "id": "q54584",
+    "categoryIndex": 3,
+    "question": "“Figaro’nun Düğünü” operasının bestecisi kimdir?",
+    "options": [
+      "Mozart",
+      "Rossini",
+      "Wagner",
+      "Verdi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Mozart’ın komik operası hizmetkâr Figaro’nun düğün günü çevresindeki entrikaları anlatır."
+  },
+  {
+    "id": "q54585",
+    "categoryIndex": 3,
+    "question": "“Sevil Berberi” operasını kim bestelemiştir?",
+    "options": [
+      "Mozart",
+      "Gioachino Rossini",
+      "Verdi",
+      "Donizetti"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Rossini’nin komik operasında Figaro, Kont Almaviva’ya Rosina’ya ulaşması için yardım eder."
+  },
+  {
+    "id": "q54586",
+    "categoryIndex": 3,
+    "question": "“Kürk Mantolu Madonna” romanındaki kadın karakter kimdir?",
+    "options": [
+      "Raif Efendi",
+      "Feride",
+      "Maria Puder",
+      "Bihter"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Raif Efendi Berlin’de ressam Maria Puder’e âşık olur."
+  },
+  {
+    "id": "q54587",
+    "categoryIndex": 3,
+    "question": "“Saatleri Ayarlama Enstitüsü” romanının anlatıcısı kimdir?",
+    "options": [
+      "Halit Ayarcı",
+      "Mübarek",
+      "Ahmet Cemil",
+      "Hayri İrdal"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hayri İrdal hayatını ve hayalî enstitünün kuruluşunu güvenilmez, mizahi bir anlatımla aktarır."
+  },
+  {
+    "id": "q54588",
+    "categoryIndex": 3,
+    "question": "“Tutunamayanlar” romanının merkezindeki kayıp arkadaş kimdir?",
+    "options": [
+      "Selim Işık",
+      "Turgut Özben",
+      "Süleyman Kargı",
+      "Hayri İrdal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Turgut Özben, intihar eden arkadaşı Selim Işık’ın yaşamını ve iç dünyasını araştırır."
+  },
+  {
+    "id": "q54589",
+    "categoryIndex": 4,
+    "question": "Gökkuşağındaki renkler hangi olayla oluşur?",
+    "options": [
+      "Sesin yansıması",
+      "Işığın kırılması ve ayrışması",
+      "Manyetik alan",
+      "Isı iletimi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Güneş ışığı yağmur damlasına girerken kırılır, renklerine ayrılır ve iç yansımayla göze döner."
+  },
+  {
+    "id": "q54590",
+    "categoryIndex": 4,
+    "question": "Gökyüzünün mavi görünmesinin temel nedeni nedir?",
+    "options": [
+      "Denizlerin yansıması",
+      "Ozonun mavi olması",
+      "Mavi ışığın daha fazla saçılması",
+      "Bulutların filtrelemesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Atmosfer molekülleri kısa dalga boylu mavi ışığı kırmızıya göre daha güçlü saçar."
+  },
+  {
+    "id": "q54591",
+    "categoryIndex": 4,
+    "question": "Gün batımında gökyüzünün kırmızılaşmasının nedeni nedir?",
+    "options": [
+      "Güneşin soğuması",
+      "Ayın ışık vermesi",
+      "Bulutların yanması",
+      "Işığın atmosferde daha uzun yol alması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Uzun atmosfer yolu mavi ışığı dağıtır, kırmızı ve turuncu dalga boyları gözümüze daha çok ulaşır."
+  },
+  {
+    "id": "q54592",
+    "categoryIndex": 4,
+    "question": "Şimşek ile gök gürültüsünden hangisi önce oluşur?",
+    "options": [
+      "Aynı anda oluşurlar",
+      "Şimşek önce oluşur",
+      "Gök gürültüsü önce oluşur",
+      "Bölgeye göre değişir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Elektrik boşalması ve havanın ani genleşmesi aynı olayın parçalarıdır; ışık sesi geçtiği için şimşeği önce görürüz."
+  },
+  {
+    "id": "q54593",
+    "categoryIndex": 4,
+    "question": "Gök gürültüsü neden bazen uzun süre yuvarlanıyormuş gibi duyulur?",
+    "options": [
+      "Bulutlar konuşur",
+      "Ses farklı uzaklıklardan gelir",
+      "Yıldırım tekrar yanar",
+      "Kulak sesi depolar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Yıldırım kanalı uzundur; kanalın farklı bölümlerinden gelen sesler farklı zamanlarda kulağa ulaşır."
+  },
+  {
+    "id": "q54594",
+    "categoryIndex": 4,
+    "question": "Kar tanelerinin temel simetrisi kaç kolludur?",
+    "options": [
+      "Dört",
+      "Beş",
+      "Altı",
+      "Sekiz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Su moleküllerinin buz kristalindeki altıgen düzeni kar tanelerine altı kollu simetri verir."
+  },
+  {
+    "id": "q54595",
+    "categoryIndex": 4,
+    "question": "Hiçbir iki kar tanesinin tamamen aynı olmadığı sözü neden genellikle doğrudur?",
+    "options": [
+      "Her biri farklı elementten oluşur",
+      "Buz kristali yoktur",
+      "Renkleri değişir",
+      "Büyürken farklı koşullardan geçerler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sıcaklık ve nem yol boyunca sürekli değiştiği için kristal dalları benzersiz biçimde büyür."
+  },
+  {
+    "id": "q54596",
+    "categoryIndex": 4,
+    "question": "Buz neden suyun üzerinde yüzer?",
+    "options": [
+      "Yoğunluğu sudan düşük olduğu için",
+      "Daha sıcak olduğu için",
+      "İçinde hava olmadığı için",
+      "Tuz içerdiği için"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Donarken oluşan açık kristal yapı su moleküllerini uzaklaştırır ve buzun yoğunluğunu düşürür."
+  },
+  {
+    "id": "q54597",
+    "categoryIndex": 4,
+    "question": "Tuz yollardaki buzu neden eritir?",
+    "options": [
+      "Buzu ısıtır",
+      "Suyun donma noktasını düşürür",
+      "Güneşi çeker",
+      "Tuzu buza dönüştürür"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tuzlu su saf sudan daha düşük sıcaklıkta donar; bu nedenle buz çözülmeye başlar."
+  },
+  {
+    "id": "q54598",
+    "categoryIndex": 4,
+    "question": "Düdüklü tencerede yemek neden daha hızlı pişer?",
+    "options": [
+      "Buhar soğuktur",
+      "Kapak ışığı hapseder",
+      "Yüksek basınç suyun kaynama noktasını yükseltir",
+      "Metal yiyeceği mıknatıslar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Daha yüksek sıcaklıktaki buhar ve su gıdadaki kimyasal süreçleri hızlandırır."
+  },
+  {
+    "id": "q54599",
+    "categoryIndex": 4,
+    "question": "Mikrodalga fırın yiyeceği en çok hangi molekülleri hareketlendirerek ısıtır?",
+    "options": [
+      "Demir atomlarını",
+      "Oksijen gazını",
+      "Proteinleri yalnızca",
+      "Su moleküllerini"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Değişen elektromanyetik alan polar su moleküllerinin hareketini artırıp ısı üretir."
+  },
+  {
+    "id": "q54600",
+    "categoryIndex": 4,
+    "question": "Metal kaşık sıcak çorbada neden tahta kaşıktan daha çabuk ısınır?",
+    "options": [
+      "Metalin ısı iletkenliği daha yüksektir",
+      "Metal daha hafiftir",
+      "Tahta su emer",
+      "Metal ışık üretir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Metaldeki serbest elektronlar ısı enerjisini malzeme boyunca hızlı taşır."
+  },
+  {
+    "id": "q54601",
+    "categoryIndex": 4,
+    "question": "Termos sıcak içeceği nasıl sıcak tutar?",
+    "options": [
+      "İçeceği sürekli kaynatarak",
+      "Isı aktarımını azaltarak",
+      "Oksijen ekleyerek",
+      "Suyu ağırlaştırarak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Vakumlu çift duvar ile yansıtıcı yüzey iletim, taşınım ve ışınımla ısı kaybını azaltır."
+  },
+  {
+    "id": "q54602",
+    "categoryIndex": 4,
+    "question": "Sabun yağlı kiri nasıl uzaklaştırır?",
+    "options": [
+      "Yağı buharlaştırarak",
+      "Suyu dondurarak",
+      "Bir ucu yağa, bir ucu suya tutunan moleküllerle",
+      "Kiri mıknatıslayarak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sabun molekülleri yağı küçük damlacıklara sarar ve suyla durulanabilir miseller oluşturur."
+  },
+  {
+    "id": "q54603",
+    "categoryIndex": 4,
+    "question": "Soğan doğrarken gözlerin yaşarmasının nedeni nedir?",
+    "options": [
+      "Soğanın soğuk olması",
+      "Renginin göze yansıması",
+      "Oksijeni tüketmesi",
+      "Uçucu kükürtlü bileşikler"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kesilen hücrelerden çıkan enzimler gözü tahriş eden uçucu bir bileşik oluşturur."
+  },
+  {
+    "id": "q54604",
+    "categoryIndex": 4,
+    "question": "Patlamış mısır neden patlar?",
+    "options": [
+      "Tanedeki su buhara dönüşüp kabuğu kırar",
+      "Şeker yanar",
+      "Hava dışarı girer",
+      "Mısır yağ üretir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sert kabuk içinde basınç yükselir; kabuk kırılınca nişasta hızla genişleyip köpüksü yapıya dönüşür."
+  },
+  {
+    "id": "q54605",
+    "categoryIndex": 5,
+    "question": "Futbolda “treble” ne anlama gelir?",
+    "options": [
+      "Bir maçta üç gol atmak",
+      "Bir sezonda üç büyük kupa kazanmak",
+      "Üç oyuncu değiştirmek",
+      "Üç sezon üst üste şampiyon olmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Treble genellikle lig, ulusal kupa ve kıtasal kupanın aynı sezonda kazanılmasını ifade eder."
+  },
+  {
+    "id": "q54606",
+    "categoryIndex": 5,
+    "question": "Futbolda “double” ne anlama gelir?",
+    "options": [
+      "İki gol atmak",
+      "İki kırmızı kart görmek",
+      "Bir sezonda iki büyük kupa kazanmak",
+      "İki kaleci kullanmak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Double çoğunlukla lig şampiyonluğu ile ulusal kupanın aynı sezonda kazanılmasıdır."
+  },
+  {
+    "id": "q54607",
+    "categoryIndex": 5,
+    "question": "Şampiyonlar Ligi kupasının yaygın lakabı nedir?",
+    "options": [
+      "Altın Top",
+      "Gümüş Tabak",
+      "Kutsal Kase",
+      "Büyük Kulaklı Kupa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kupanın büyük ve kıvrık kulpları ona “büyük kulaklı” lakabını kazandırmıştır."
+  },
+  {
+    "id": "q54608",
+    "categoryIndex": 5,
+    "question": "Futbolda Altın Ayakkabı ödülü genellikle neye verilir?",
+    "options": [
+      "En çok gol atan oyuncuya",
+      "En iyi kaleciye",
+      "En çok asist yapan oyuncuya",
+      "En centilmen oyuncuya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Turnuva veya lig Altın Ayakkabı ödülü gol krallığına ulaşan futbolcuya verilir."
+  },
+  {
+    "id": "q54609",
+    "categoryIndex": 5,
+    "question": "Dünya Kupası’ndaki Altın Eldiven ödülü hangi mevkiye verilir?",
+    "options": [
+      "Forvete",
+      "Kaleciye",
+      "Hakeme",
+      "Teknik direktöre"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Altın Eldiven turnuvanın en iyi kalecisi seçilen oyuncuya verilir."
+  },
+  {
+    "id": "q54610",
+    "categoryIndex": 5,
+    "question": "Basketbolda “sixth man” kimdir?",
+    "options": [
+      "Sahadaki altıncı hakem",
+      "Takım kaptanı",
+      "Yedekten gelip büyük katkı veren oyuncu",
+      "En uzun oyuncu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Altıncı adam genellikle ilk beşte başlamaz ancak maçın önemli dakikalarını oynar."
+  },
+  {
+    "id": "q54611",
+    "categoryIndex": 5,
+    "question": "Basketbolda “and-one” ne demektir?",
+    "options": [
+      "Üç sayı çizgisinden smaç",
+      "Bir asist ve bir blok",
+      "Uzatmadaki ilk sayı",
+      "Faulle birlikte basket ve ek serbest atış"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Atış sırasında faul alan oyuncu basketi yaparsa sayı geçerli olur ve bir serbest atış daha kullanır."
+  },
+  {
+    "id": "q54612",
+    "categoryIndex": 5,
+    "question": "Basketbolda “double-double” ne demektir?",
+    "options": [
+      "İki istatistikte çift haneye ulaşmak",
+      "İki maç üst üste kazanmak",
+      "İki üçlük atmak",
+      "İki uzatma oynamak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Örneğin 15 sayı ve 12 ribaund yapan oyuncu double-double kaydeder."
+  },
+  {
+    "id": "q54613",
+    "categoryIndex": 5,
+    "question": "Teniste dört Grand Slam’i aynı takvim yılında kazanmaya ne denir?",
+    "options": [
+      "Golden set",
+      "Takvim Grand Slam’i",
+      "Career Slam",
+      "Masters Double"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Oyuncu aynı yıl Avustralya Açık, Roland Garros, Wimbledon ve ABD Açık’ı kazanmalıdır."
+  },
+  {
+    "id": "q54614",
+    "categoryIndex": 5,
+    "question": "Teniste dört Grand Slam’i kariyer boyunca kazanmış olmaya ne denir?",
+    "options": [
+      "Golden Slam",
+      "Calendar Slam",
+      "Kariyer Grand Slam’i",
+      "Sunshine Double"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Turnuvaların aynı yıl kazanılması gerekmez; dört kupanın da kariyerde bulunması yeterlidir."
+  },
+  {
+    "id": "q54615",
+    "categoryIndex": 5,
+    "question": "Teniste “Golden Slam” için Grand Slam’lere ek olarak ne kazanılır?",
+    "options": [
+      "Davis Kupası",
+      "ATP Finalleri",
+      "Laver Kupası",
+      "Olimpiyat altın madalyası"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Golden Slam dört büyük turnuva ile olimpiyat tekler altınının birleşimidir."
+  },
+  {
+    "id": "q54616",
+    "categoryIndex": 5,
+    "question": "Voleybolda “pipe” hücumu nereden yapılır?",
+    "options": [
+      "Arka ortadan",
+      "Servis çizgisinin dışından",
+      "File kenarından tek ayakla",
+      "Libero bölgesinden pasla"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Pipe hücumunda arka sıra oyuncusu orta bölgeden üç metre çizgisinin gerisinden sıçrar."
+  },
+  {
+    "id": "q54617",
+    "categoryIndex": 5,
+    "question": "Voleybolda “quick” hücumun özelliği nedir?",
+    "options": [
+      "Topun çok yükseğe atılması",
+      "Çok hızlı ve alçak pasla yapılması",
+      "Servisten önce yapılması",
+      "Yalnız libero tarafından vurulması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Orta oyuncu pasörle neredeyse aynı anda sıçrayarak blok kurulmadan topa vurur."
+  },
+  {
+    "id": "q54618",
+    "categoryIndex": 5,
+    "question": "Satrançta “en passant” hangi taşın özel hamlesidir?",
+    "options": [
+      "Atın",
+      "Kalenin",
+      "Piyonun",
+      "Şahın"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Geçerken alma, iki kare ilerleyen rakip piyonu hemen sonraki hamlede çaprazdan yakalama kuralıdır."
+  },
+  {
+    "id": "q54619",
+    "categoryIndex": 5,
+    "question": "Satrançta vezir hangi yönlerde hareket edebilir?",
+    "options": [
+      "Yalnız çapraz",
+      "Yalnız L biçiminde",
+      "Bir kare ileri",
+      "Yatay, dikey ve çapraz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Vezir kale ve filin hareketlerini birleştirir ve önü açık olduğu sürece istediği kadar ilerler."
+  },
+  {
+    "id": "q54620",
+    "categoryIndex": 5,
+    "question": "Satrançta atın hareketi hangi harfe benzetilir?",
+    "options": [
+      "L",
+      "T",
+      "S",
+      "X"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "At bir yönde iki, ona dik yönde bir kare giderek L biçiminde hareket eder."
+  }
+]

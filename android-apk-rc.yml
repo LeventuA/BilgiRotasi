@@ -1,0 +1,145 @@
+name: RC kalite kontrol ve Android paketleri
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bilgi-rotasi-android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-and-build:
+    name: Doğrula, test et ve paketle
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.7"
+          channel: stable
+          cache: true
+
+      - name: Soru bankasını doğrula
+        run: python3 scripts/validate_questions.py assets/questions.json
+
+      - name: Temiz Android projesi hazırla
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          rm -rf .flutter_build
+
+          flutter create \
+            --platforms=android \
+            --org com.levent \
+            --project-name bilgi_rotasi \
+            .flutter_build
+
+          rm -rf .flutter_build/lib
+          cp -R lib .flutter_build/lib
+
+          rm -rf .flutter_build/assets
+          cp -R assets .flutter_build/assets
+
+          if [ -d test ]; then
+            rm -rf .flutter_build/test
+            cp -R test .flutter_build/test
+          fi
+
+          cp pubspec.yaml .flutter_build/pubspec.yaml
+
+          if [ -f pubspec.lock ]; then
+            cp pubspec.lock .flutter_build/pubspec.lock
+          fi
+
+          if [ -f analysis_options.yaml ]; then
+            cp analysis_options.yaml \
+              .flutter_build/analysis_options.yaml
+          fi
+
+          test -f .flutter_build/lib/main.dart
+          test -f .flutter_build/lib/system_health.dart
+          test -f .flutter_build/lib/release_candidate.dart
+          test -f .flutter_build/assets/questions.json
+          test -f .flutter_build/test/release_smoke_test.dart
+
+      - name: Bağımlılıkları yükle
+        working-directory: .flutter_build
+        run: flutter pub get
+
+      - name: Kod biçimini kontrol et
+        working-directory: .flutter_build
+        run: |
+          dart format \
+            --output=none \
+            --set-exit-if-changed \
+            lib test
+
+      - name: Statik analiz
+        working-directory: .flutter_build
+        run: flutter analyze --no-fatal-infos
+
+      - name: Otomatik testler
+        working-directory: .flutter_build
+        run: flutter test --reporter expanded
+
+      - name: İkon ve açılış ekranını üret
+        working-directory: .flutter_build
+        run: |
+          dart run flutter_launcher_icons
+          dart run flutter_native_splash:create
+
+      - name: Android manifestini hazırla
+        working-directory: .flutter_build
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          sed -i \
+            's/android:label="bilgi_rotasi"/android:label="Bilgi Rotası"/' \
+            android/app/src/main/AndroidManifest.xml
+
+          if ! grep -q 'android.permission.INTERNET' \
+            android/app/src/main/AndroidManifest.xml; then
+            sed -i \
+              '/<application/i\    <uses-permission android:name="android.permission.INTERNET" />' \
+              android/app/src/main/AndroidManifest.xml
+          fi
+
+          grep -q 'android:label="Bilgi Rotası"' \
+            android/app/src/main/AndroidManifest.xml
+
+      - name: Release APK oluştur
+        working-directory: .flutter_build
+        run: flutter build apk --release
+
+      - name: Release AAB oluştur
+        working-directory: .flutter_build
+        run: flutter build appbundle --release
+
+      - name: APK dosyasını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-RC1-APK
+          path: .flutter_build/build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: AAB dosyasını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-RC1-AAB
+          path: .flutter_build/build/app/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
+          retention-days: 30

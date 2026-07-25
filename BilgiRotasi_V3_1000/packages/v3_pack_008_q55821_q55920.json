@@ -1,0 +1,1402 @@
+[
+  {
+    "categoryIndex": 3,
+    "question": "Bir Yaz Gecesi Rüyası’nda periler kralı kimdir?",
+    "options": [
+      "Oberon",
+      "Puck",
+      "Theseus",
+      "Lysander"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Oberon, Shakespeare’in oyunundaki periler kralıdır.",
+    "id": "q55821"
+  },
+  {
+    "id": "q55822",
+    "categoryIndex": 2,
+    "question": "Meiji Restorasyonu hangi ülkede imparatorluk yönetimini yeniden güçlendirdi?",
+    "options": [
+      "Tayland",
+      "Japonya",
+      "Kore",
+      "Çin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "1868’de başlayan Meiji dönemi Japonya’da şogunluğun sonu ve hızlı modernleşmeyle ilişkilidir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Eyfel Kulesi adını kimden alır?",
+    "options": [
+      "Georges Haussmann",
+      "Auguste Rodin",
+      "Gustave Eiffel",
+      "Le Corbusier"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kulenin mühendislik şirketini yöneten Gustave Eiffel, yapıya adını verdi.",
+    "id": "q55823"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Ses neden uzay boşluğunda yayılamaz?",
+    "options": [
+      "Sıcaklık düşük olduğu için",
+      "Yerçekimi olmadığı için",
+      "Işık çok hızlı olduğu için",
+      "Titreşimi taşıyacak madde olmadığı için"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ses mekanik bir dalgadır ve iletilmek için parçacıklardan oluşan bir ortama ihtiyaç duyar.",
+    "id": "q55824"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Akdamar Adası hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Van",
+      "Bitlis",
+      "Ağrı",
+      "Hakkâri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Akdamar Adası Van Gölü’nde, Van’ın Gevaş ilçesi açıklarında bulunur.",
+    "id": "q55825"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Kolezyum hangi tür Roma yapısıdır?",
+    "options": [
+      "Hamam",
+      "Amfitiyatro",
+      "Tapınak",
+      "Su kemeri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Flavius Amfitiyatrosu olarak da bilinen Kolezyum, gladyatör oyunları için kullanıldı.",
+    "id": "q55826"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Celeste oyunundaki dağa tırmanan karakterin adı nedir?",
+    "options": [
+      "Max",
+      "Amicia",
+      "Madeline",
+      "Mae"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Madeline, kaygılarıyla yüzleşirken Celeste Dağı’nın zirvesine ulaşmaya çalışır.",
+    "id": "q55827"
+  },
+  {
+    "id": "q55828",
+    "categoryIndex": 4,
+    "question": "Elektrikli yılan balığı güçlü elektrik darbelerini hangi yapılarla üretir?",
+    "options": [
+      "Kuyruğundaki pillerle",
+      "Dişlerindeki mıknatıslarla",
+      "Solungaç taşlarıyla",
+      "Özelleşmiş elektrik organlarıyla"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Elektrosit adı verilen özelleşmiş hücreler birlikte çalışarak yüksek voltajlı darbeler oluşturur."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Etki ve tepki kuvvetleri hangi Newton yasasıyla açıklanır?",
+    "options": [
+      "Üçüncü yasa",
+      "Birinci yasa",
+      "İkinci yasa",
+      "Kütleçekim yasası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Her etkiye eşit büyüklükte ve zıt yönde bir tepki kuvveti vardır.",
+    "id": "q55829"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Kütleçekim kuvveti hangi iki özellik arttıkça güçlenir?",
+    "options": [
+      "Hız azaldıkça ve hacim arttıkça",
+      "Kütleler arttıkça ve uzaklık azaldıkça",
+      "Yükler eşitlendikçe",
+      "Sıcaklık arttıkça ve renk koyulaştıkça"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Newton’un kütleçekim yasasında kuvvet kütlelerle doğru, uzaklığın karesiyle ters orantılıdır.",
+    "id": "q55830"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Davis Kupası hangi sporun erkek millî takım turnuvasıdır?",
+    "options": [
+      "Badminton",
+      "Squash",
+      "Tenis",
+      "Masa tenisi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Davis Kupası ülkelerin erkek tenis takımlarını karşı karşıya getirir.",
+    "id": "q55831"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Ellerimizi hızlıca ovuşturunca ısınmasının nedeni nedir?",
+    "options": [
+      "Kaldırma kuvveti",
+      "Kırılma",
+      "Manyetizma",
+      "Sürtünme"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sürtünme, mekanik enerjinin bir bölümünü iç enerjiye dönüştürür.",
+    "id": "q55832"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Basınç hangi iki büyüklüğün oranıdır?",
+    "options": [
+      "Kuvvet / alan",
+      "Enerji / süre",
+      "Yol / zaman",
+      "Kütle / hacim"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Aynı kuvvet daha küçük alana uygulandığında basınç artar.",
+    "id": "q55833"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "1884-1885 Berlin Konferansı en çok hangi süreçle ilişkilidir?",
+    "options": [
+      "Köleliğin ABD’de kaldırılması",
+      "Afrika’nın Avrupalı güçlerce paylaşılması",
+      "Balkan devletlerinin kurulması",
+      "Almanya’nın birleşmesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Konferans, Afrika’daki sömürge iddialarının kurallarını Avrupalı devletler arasında belirledi.",
+    "id": "q55834"
+  },
+  {
+    "id": "q55835",
+    "categoryIndex": 5,
+    "question": "Sepak takraw sporunda top file üzerinden ağırlıklı olarak nasıl geçirilir?",
+    "options": [
+      "Eldivenle fırlatılarak",
+      "Sopayla itilerek",
+      "Ayaklar ve baş kullanılarak",
+      "Raketle vurularak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Güneydoğu Asya kökenli sepak takraw, voleybola benzer ancak oyuncular topa elleri yerine ayak, diz ve başla vurur."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Roma’daki Pantheon kubbesinin ortasındaki açıklığa ne denir?",
+    "options": [
+      "Apsis",
+      "Narteks",
+      "Atrium",
+      "Oculus"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Oculus, kubbeye ışık veren ve yükü azaltan yaklaşık dokuz metrelik dairesel açıklıktır.",
+    "id": "q55836"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bayrağında kırmızı bir daire bulunan ülke hangisidir?",
+    "options": [
+      "Japonya",
+      "Bangladeş",
+      "Güney Kore",
+      "Palau"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Japonya bayrağındaki kırmızı daire doğan güneşi temsil eder.",
+    "id": "q55837"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Yoğunluk nasıl hesaplanır?",
+    "options": [
+      "Yol / zaman",
+      "Kütle / hacim",
+      "Kuvvet / alan",
+      "Hacim / kütle"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bir maddenin yoğunluğu, birim hacimdeki kütlesidir.",
+    "id": "q55838"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Sıvıya batırılan cisme etki eden kaldırma kuvvetini açıklayan ilke hangisidir?",
+    "options": [
+      "Ohm Yasası",
+      "Pascal İlkesi",
+      "Arşimet İlkesi",
+      "Hooke Yasası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kaldırma kuvveti, cismin yer değiştirdiği sıvının ağırlığına eşittir.",
+    "id": "q55839"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Laver Cup hangi iki takımı karşı karşıya getirir?",
+    "options": [
+      "Profesyoneller ve Amatörler",
+      "Kuzey ve Güney",
+      "Çim ve Toprak",
+      "Avrupa ve Dünya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Erkek tenisçiler Avrupa Takımı ve Avrupa dışından Dünya Takımı olarak yarışır.",
+    "id": "q55840"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "1904-1905 Rus-Japon Savaşı’nı hangi ülke kazandı?",
+    "options": [
+      "Japonya",
+      "Rusya",
+      "Çin",
+      "Kore"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Japonya’nın zaferi, modern dönemde bir Asya gücünün büyük Avrupa devletini yenmesi olarak dikkat çekti.",
+    "id": "q55841"
+  },
+  {
+    "id": "q55842",
+    "categoryIndex": 2,
+    "question": "Tokugawa dönemindeki Japon askerî yöneticilerine ne ad verilirdi?",
+    "options": [
+      "Ronin",
+      "Şogun",
+      "Daimyo",
+      "Samuray"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tokugawa hanedanının şogunları, imparator adına Japonya’nın fiilî askerî yönetimini yürüttü."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Undertale’da oyuncunun düştüğü yer neresidir?",
+    "options": [
+      "Uzay istasyonu",
+      "Kayıp ada",
+      "Yeraltı",
+      "Rüya şehri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İnsan karakter, canavarların sürgün edildiği Yeraltı dünyasına düşer.",
+    "id": "q55843"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Teniste kariyer Grand Slam ne demektir?",
+    "options": [
+      "Dört farklı raketi kullanmak",
+      "Aynı maçı dört sette kazanmak",
+      "Bir sezonda hiç set vermemek",
+      "Dört büyük turnuvayı kariyer boyunca kazanmak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sporcunun farklı yıllarda da olsa dört Grand Slam’in her birinde şampiyon olması gerekir.",
+    "id": "q55844"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bayrağında mavi renk bulunmayan Güney Amerika ülkesi hangisidir?",
+    "options": [
+      "Peru",
+      "Uruguay",
+      "Arjantin",
+      "Ekvador"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Peru bayrağı kırmızı ve beyaz dikey şeritlerden oluşur; mavi renk içermez.",
+    "id": "q55845"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Düz aynada gelme açısı ile yansıma açısı arasındaki ilişki nedir?",
+    "options": [
+      "Toplamları 180 derecedir",
+      "Birbirine eşittir",
+      "Yansıma açısı iki katıdır",
+      "Aralarında sabit ilişki yoktur"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yansıma yasasına göre açılar yüzeyin normaline göre ölçülür ve eşittir.",
+    "id": "q55846"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Cuphead’de Cuphead ve Mugman borçlarını kime ödemeye çalışır?",
+    "options": [
+      "Bir ejderhaya",
+      "Kral Dice’a",
+      "Şeytan’a",
+      "Cadıya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İkili kumarda ruhlarını kaybetmemek için Şeytan’ın borçlularından sözleşme toplar.",
+    "id": "q55847"
+  },
+  {
+    "id": "q55848",
+    "categoryIndex": 1,
+    "question": "It Takes Two oyununda Cody ve May neye dönüşür?",
+    "options": [
+      "Robotlara",
+      "Kuşlara",
+      "Hayaletlere",
+      "Oyuncak bebeklere"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Büyü sonucu küçük oyuncak bebeklere dönüşen çift, yeniden insan olmak için birlikte hareket eder."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Parthenon Tapınağı hangi tanrıçaya adanmıştır?",
+    "options": [
+      "Athena",
+      "Hera",
+      "Artemis",
+      "Demeter"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Atina Akropolisi’ndeki Parthenon, kentin koruyucu tanrıçası Athena Parthenos için yapıldı.",
+    "id": "q55849"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Schlieffen Planı Almanya’nın önce hangi ülkeyi hızla yenmesini öngörüyordu?",
+    "options": [
+      "Britanya",
+      "Fransa",
+      "İtalya",
+      "Rusya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Plan, Rusya seferber olmadan önce Belçika üzerinden Fransa’yı devre dışı bırakmayı amaçlıyordu.",
+    "id": "q55850"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "1917 Ekim Devrimi’nde iktidarı ele geçiren grup hangisidir?",
+    "options": [
+      "Menşevikler",
+      "Beyaz Ordu",
+      "Bolşevikler",
+      "Kadetler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Lenin liderliğindeki Bolşevikler, Petrograd’daki Geçici Hükûmeti devirdi.",
+    "id": "q55851"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Teniste Golden Slam neyi içerir?",
+    "options": [
+      "Dört Masters turnuvası",
+      "Üç Grand Slam ve Davis Kupası",
+      "Yalnız Wimbledon ve Olimpiyat",
+      "Dört Grand Slam ve Olimpiyat altını"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Golden Slam, dört büyük turnuva şampiyonluğuna Olimpiyat tekler altınını ekler.",
+    "id": "q55852"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Dishonored’ın maskeli başkahramanı kimdir?",
+    "options": [
+      "Corvo Attano",
+      "Booker DeWitt",
+      "Sam Fisher",
+      "Adam Jensen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İmparatoriçenin koruması Corvo, cinayetle suçlandıktan sonra maskeli bir suikastçıya dönüşür.",
+    "id": "q55853"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Tekerlekli sandalye tenisinde top kaç kez sekebilir?",
+    "options": [
+      "Sınırsız",
+      "İki",
+      "Bir",
+      "Üç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "İkinci sekme kort dışında olsa bile oyuncu topa iki sekmeye kadar vurabilir.",
+    "id": "q55854"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Birinci Dünya Savaşı sonrasında Almanya ile imzalanan antlaşma hangisidir?",
+    "options": [
+      "Saint-Germain Antlaşması",
+      "Sèvres Antlaşması",
+      "Versailles Antlaşması",
+      "Trianon Antlaşması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "1919 Versailles Antlaşması Almanya’ya toprak, silahlanma ve tazminat yükümlülükleri getirdi.",
+    "id": "q55855"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bayrağında ülkenin haritası bulunan ülke hangisidir?",
+    "options": [
+      "Malta",
+      "Yunanistan",
+      "Portekiz",
+      "Kıbrıs Cumhuriyeti"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kıbrıs Cumhuriyeti bayrağında adanın bakır rengindeki haritası yer alır.",
+    "id": "q55856"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Milletler Cemiyeti’nin merkezi hangi şehirdi?",
+    "options": [
+      "Cenevre",
+      "Brüksel",
+      "Paris",
+      "Lahey"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Birinci Dünya Savaşı sonrası kurulan Milletler Cemiyeti İsviçre’nin Cenevre kentinde çalıştı.",
+    "id": "q55857"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Ghost of Tsushima oyununun samuray başkahramanı kimdir?",
+    "options": [
+      "Kazuma Kiryu",
+      "Jin Sakai",
+      "Sekiro",
+      "Hanzo Hasashi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncu Moğol istilasına karşı savaşan samuray Jin Sakai’yi yönetir.",
+    "id": "q55858"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Halo serisinde Master Chief’e en çok eşlik eden yapay zekâ hangisidir?",
+    "options": [
+      "GLaDOS",
+      "EDI",
+      "Cortana",
+      "SAM"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cortana, Master Chief’in zırh sistemine bağlanabilen gelişmiş bir UNSC yapay zekâsıdır.",
+    "id": "q55859"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Lesotho’nun kara sınırlarının tamamı hangi ülkeyle çevrilidir?",
+    "options": [
+      "Esvatini",
+      "Botsvana",
+      "Namibya",
+      "Güney Afrika"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Lesotho, bütünüyle Güney Afrika topraklarıyla çevrili bağımsız bir ülkedir.",
+    "id": "q55860"
+  },
+  {
+    "id": "q55861",
+    "categoryIndex": 4,
+    "question": "Kasuar kuşunun başındaki sert çıkıntıya ne ad verilir?",
+    "options": [
+      "Kask",
+      "Gerdan",
+      "İbik teli",
+      "Mahmuz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kasuarın başındaki casque ya da kask adı verilen yapı, türün en ayırt edici özelliklerindendir."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Felemenkçe hangi ülkenin resmî dilidir?",
+    "options": [
+      "Macaristan",
+      "Hollanda",
+      "Danimarka",
+      "Finlandiya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Felemenkçe, Hollanda’nın ve Belçika’nın resmî dillerinden biridir.",
+    "id": "q55862"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Modern pentatlonda aşağıdakilerden hangisi yer alır?",
+    "options": [
+      "Buz pateni",
+      "Halter",
+      "Eskrim",
+      "Kürek"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Modern pentatlon eskrim, yüzme, engel parkuru ve birleşik koşu-atış disiplinlerini içerir.",
+    "id": "q55863"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Olimpik okçulukta hedefe olan mesafe kaç metredir?",
+    "options": [
+      "100 metre",
+      "90 metre",
+      "50 metre",
+      "70 metre"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Olimpik yay bireysel ve takım müsabakalarında hedef 70 metre uzaktadır.",
+    "id": "q55864"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Atletizm yarışlarında çıkışı bildiren araca ne denir?",
+    "options": [
+      "Start tabancası",
+      "Kronometre",
+      "Röle çubuğu",
+      "Disk"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kısa mesafe yarışlarında başlangıç komutu elektronik sisteme bağlı start tabancasıyla verilir.",
+    "id": "q55865"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "DOOM serisinde oyuncu ağırlıklı olarak hangi düşmanlarla savaşır?",
+    "options": [
+      "Uzay korsanları",
+      "Cehennem iblisleri",
+      "Vampirler",
+      "Robot hayvanlar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "DOOM Slayer, Mars tesisleri ve Cehennem’de iblis ordularıyla savaşır.",
+    "id": "q55866"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Resident Evil serisiyle özdeşleşen kurgusal şehir hangisidir?",
+    "options": [
+      "Silent Hill",
+      "Liberty City",
+      "Raccoon City",
+      "Midgar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Umbrella salgını, serinin ilk döneminde Raccoon City’yi felakete sürükler.",
+    "id": "q55867"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "1929 Büyük Buhranı’nın simgesel başlangıcı hangi olaydır?",
+    "options": [
+      "Petrol ambargosu",
+      "Süveyş Krizi",
+      "Sterlinin doğuşu",
+      "Wall Street borsa çöküşü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ekim 1929’daki New York borsa çöküşü, küresel ekonomik krizin simgesi oldu.",
+    "id": "q55868"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Macarca hangi dil ailesinin Ural koluna aittir?",
+    "options": [
+      "Ural dilleri",
+      "Roman dilleri",
+      "Slav dilleri",
+      "Cermen dilleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Macarca, Fince ve Estonca gibi Ural dil ailesinde sınıflandırılır.",
+    "id": "q55869"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Fince hangi ülkenin başlıca resmî dillerinden biridir?",
+    "options": [
+      "Litvanya",
+      "Finlandiya",
+      "İzlanda",
+      "Norveç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Finlandiya’nın iki ulusal dili Fince ve İsveççedir.",
+    "id": "q55870"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Motor sporlarında pole position ne demektir?",
+    "options": [
+      "Şampiyonluğu garantilemek",
+      "En hızlı turu atmak",
+      "Yarışa ilk sıradan başlamak",
+      "Pit yolundan başlamak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sıralama turlarının en hızlı sürücüsü gridin en ön pozisyonunu alır.",
+    "id": "q55871"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Stardew Valley’de oyuncunun büyükbabasından miras aldığı yer nedir?",
+    "options": [
+      "Otel",
+      "Uzay gemisi",
+      "Müze",
+      "Çiftlik"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncu Pelican Town yakınındaki eski bir çiftliği devralıp yeniden kurar.",
+    "id": "q55872"
+  },
+  {
+    "id": "q55873",
+    "categoryIndex": 3,
+    "question": "Balonlu Kız adlı sokak eseriyle tanınan anonim sanatçı kimdir?",
+    "options": [
+      "Banksy",
+      "JR",
+      "Shepard Fairey",
+      "Invader"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Banksy’nin kalp biçimli balona uzanan kız figürü sokak sanatının en bilinen imgelerindendir."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İspanya İç Savaşı’nın milliyetçi lideri kimdi?",
+    "options": [
+      "Juan Carlos",
+      "Francisco Franco",
+      "Manuel Azaña",
+      "Miguel Primo de Rivera"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "General Franco’nun milliyetçi kuvvetleri 1939’da savaşı kazanarak diktatörlük kurdu.",
+    "id": "q55874"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Tagalog temelli resmî dil hangi ülkede Filipince adıyla kullanılır?",
+    "options": [
+      "Malezya",
+      "Endonezya",
+      "Filipinler",
+      "Brunei"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Filipince, büyük ölçüde Tagalog temeline dayanan Filipinler’in resmî dillerinden biridir.",
+    "id": "q55875"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Köln Katedrali hangi ülkededir?",
+    "options": [
+      "Avusturya",
+      "Fransa",
+      "Belçika",
+      "Almanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gotik Köln Katedrali, Ren Nehri kıyısındaki Köln kentinin simgesidir.",
+    "id": "q55876"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Beyaz ışığın prizmadan geçerek renklere ayrılmasına ne denir?",
+    "options": [
+      "Dağılma",
+      "Girişim",
+      "Soğurma",
+      "İndüksiyon"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Farklı dalga boyları prizmada farklı açılarla kırılır ve görünür tayf oluşur.",
+    "id": "q55877"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Tomb Raider’ın başkahramanı Lara Croft’un mesleği nedir?",
+    "options": [
+      "Pilot",
+      "Arkeolog",
+      "Biyolog",
+      "Avukat"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Lara Croft, antik mezarları ve kayıp uygarlıkları araştıran maceracı bir arkeologdur.",
+    "id": "q55878"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İkinci Dünya Savaşı Avrupa’da hangi ülkenin işgaliyle başladı?",
+    "options": [
+      "Norveç",
+      "Belçika",
+      "Polonya",
+      "Fransa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Almanya 1 Eylül 1939’da Polonya’yı işgal etti; Britanya ve Fransa savaş ilan etti.",
+    "id": "q55879"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Svahili hangi Afrika ülkesinde İngilizceyle birlikte resmî dildir?",
+    "options": [
+      "Angola",
+      "Fas",
+      "Etiyopya",
+      "Kenya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kenya’da Svahili ve İngilizce resmî dil olarak kullanılır.",
+    "id": "q55880"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Chartres Katedrali özellikle hangi dekoratif unsurlarıyla ünlüdür?",
+    "options": [
+      "Vitray pencereleri",
+      "Altın kubbeleri",
+      "Mermer minareleri",
+      "Ahşap pagodaları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Katedral, büyük bölümü Orta Çağ’dan kalan yoğun renkli vitraylarıyla tanınır.",
+    "id": "q55881"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Formula 1’de pit stop sırasında en sık hangi işlem yapılır?",
+    "options": [
+      "Yakıt üretme",
+      "Lastik değiştirme",
+      "Sürücüyü değiştirme",
+      "Motoru tamamen sökme"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Pit ekibi birkaç saniye içinde dört lastiği değiştirerek aracı yarışa geri gönderir.",
+    "id": "q55882"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "İnce kenarlı mercek ışınları nasıl etkiler?",
+    "options": [
+      "Geri yansıtır",
+      "Her yöne rastgele saçar",
+      "Bir noktada toplar",
+      "Tamamen soğurur"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dışbükey mercek, eksene paralel ışınları odak noktasında yakınlaştırır.",
+    "id": "q55883"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Britanya Savaşı ağırlıklı olarak hangi ortamda yapıldı?",
+    "options": [
+      "Dağ geçitlerinde",
+      "Denizaltında",
+      "Çöllerde",
+      "Havada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "1940’taki Britanya Savaşı, Alman ve Britanya hava kuvvetlerinin hava üstünlüğü mücadelesiydi.",
+    "id": "q55884"
+  },
+  {
+    "id": "q55885",
+    "categoryIndex": 4,
+    "question": "Mercan beyazlamasının başlıca nedeni nedir?",
+    "options": [
+      "Mercanın ortak yaşadığı algleri kaybetmesi",
+      "Deniz suyunun tamamen donması",
+      "Mercanın taşa dönüşmesi",
+      "Balıkların pigmentleri yemesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Isı stresi gibi koşullarda mercanlar zooxanthellae alglerini dışarı atar ve beyaz iskelet görünür hâle gelir."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Quechua dili en çok hangi Güney Amerika ülkesiyle ilişkilidir?",
+    "options": [
+      "Uruguay",
+      "Peru",
+      "Brezilya",
+      "Venezuela"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Quechua, İnka mirasının güçlü olduğu Peru’da yaygın ve resmî statüye sahip yerli dillerden biridir.",
+    "id": "q55886"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Formula 1’de DRS’nin amacı nedir?",
+    "options": [
+      "Yakıt depolamak",
+      "Direksiyonu kilitlemek",
+      "Arka kanat direncini azaltıp hızı artırmak",
+      "Frenleri soğutmak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Belirli bölgelerde açılan arka kanat kanadı, hava direncini azaltarak geçişe yardım eder.",
+    "id": "q55887"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Pisa Kulesi aslında hangi yapının parçasıdır?",
+    "options": [
+      "Sarayın gözetleme kulesi",
+      "Deniz feneri",
+      "Şehir kapısı",
+      "Katedralin çan kulesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Eğik kule, Pisa Katedrali kompleksinin bağımsız çan kulesidir.",
+    "id": "q55888"
+  },
+  {
+    "id": "q55889",
+    "categoryIndex": 0,
+    "question": "Küre Dağları Millî Parkı ağırlıklı olarak hangi iki ilimizin sınırlarındadır?",
+    "options": [
+      "Kastamonu ve Bartın",
+      "Rize ve Artvin",
+      "Erzurum ve Kars",
+      "Bolu ve Düzce"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Küre Dağları Millî Parkı, Kastamonu ile Bartın arasında uzanan zengin orman ve kanyonlara sahiptir."
+  },
+  {
+    "id": "q55890",
+    "categoryIndex": 1,
+    "question": "The Last of Us oyununda Ellie’nin enfeksiyon açısından özel yanı nedir?",
+    "options": [
+      "Enfekte olmaması için ilaca ihtiyaç duyması",
+      "Bağışık görünmesi",
+      "Virüsü yayması",
+      "Enfekteleri kontrol etmesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ellie ısırılmış olmasına rağmen hastalığa dönüşmez; yolculuğun merkezindeki umut da budur."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Baskça başlıca hangi iki ülkenin sınır bölgesinde konuşulur?",
+    "options": [
+      "Fransa ve Belçika",
+      "İtalya ve İsviçre",
+      "İspanya ve Fransa",
+      "İspanya ve Portekiz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Baskça, Pirenelerin batısında İspanya ve Fransa’ya yayılan Bask bölgesinde konuşulur.",
+    "id": "q55891"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Big Ben adı teknik olarak neyi ifade eder?",
+    "options": [
+      "Saat kulesinin tamamını",
+      "Parlamento binasını",
+      "Saat mekanizmasını",
+      "Büyük çanı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kulenin resmî adı Elizabeth Tower’dır; Big Ben en büyük çanın lakabıdır.",
+    "id": "q55892"
+  },
+  {
+    "id": "q55893",
+    "categoryIndex": 1,
+    "question": "Inside oyununda oyuncu kimi kontrol eder?",
+    "options": [
+      "Kırmızı tişörtlü bir çocuğu",
+      "Maskeli bir dedektifi",
+      "Kayıp bir astronotu",
+      "Oyuncak bir robotu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Inside, baskıcı ve gizemli bir dünyada kaçmaya çalışan isimsiz bir çocuğu izler."
+  },
+  {
+    "id": "q55894",
+    "categoryIndex": 4,
+    "question": "Ahtapotların kollarındaki vantuzlar yalnızca tutunmak dışında hangi duyusal işleve sahiptir?",
+    "options": [
+      "Ultrason üretme",
+      "Tat ve kimyasal algılama",
+      "Işık saçma",
+      "Manyetik pusula oluşturma"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Ahtapot vantuzlarında dokunma ve kimyasal algılamaya yardımcı olan çok sayıda reseptör bulunur."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Afrikaans dili büyük ölçüde hangi Avrupa dilinden gelişmiştir?",
+    "options": [
+      "Portekizce",
+      "İngilizce",
+      "Felemenkçe",
+      "Almanca"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Afrikaans, Güney Afrika’daki Hollandalı yerleşimcilerin konuştuğu Felemenkçeden gelişmiştir.",
+    "id": "q55895"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Pearl Harbor saldırısını hangi ülke gerçekleştirdi?",
+    "options": [
+      "İtalya",
+      "Sovyetler Birliği",
+      "Almanya",
+      "Japonya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Japon uçakları 7 Aralık 1941’de Hawaii’deki ABD Pasifik Filosu üssüne saldırdı.",
+    "id": "q55896"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Assassin’s Creed suikastçılarıyla özdeşleşen bilek silahı hangisidir?",
+    "options": [
+      "Hidden Blade",
+      "Energy Sword",
+      "Buster Sword",
+      "Gunblade"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hidden Blade, kolun altına gizlenen ve yakın mesafede kullanılan sembolik suikastçı silahıdır.",
+    "id": "q55897"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Renkli soğan kubbeleriyle ünlü Aziz Vasil Katedrali hangi şehirdedir?",
+    "options": [
+      "St. Petersburg",
+      "Moskova",
+      "Kiev",
+      "Prag"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Katedral, Moskova’daki Kızıl Meydan’ın güney ucunda yer alır.",
+    "id": "q55898"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Civilization serisi hangi temel oyun türündedir?",
+    "options": [
+      "Ritim",
+      "Birinci şahıs nişancı",
+      "Sıra tabanlı strateji",
+      "Dövüş"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Oyuncular şehir ve imparatorluklarını tur tur geliştirir.",
+    "id": "q55899"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Formula 1’de tehlikeli durumda grubu yavaşlatan araç hangisidir?",
+    "options": [
+      "Pace motosikleti",
+      "Çekici",
+      "Tıbbi araç",
+      "Güvenlik aracı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Safety Car piste çıkarak araçları kontrollü hızda arkasında toplar.",
+    "id": "q55900"
+  },
+  {
+    "id": "q55901",
+    "categoryIndex": 4,
+    "question": "Su ayılarının bilimsel adı nedir?",
+    "options": [
+      "Tardigrada",
+      "Cnidaria",
+      "Echinodermata",
+      "Annelida"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tardigradlar, mikroskobik boyutları ve zorlu koşullarda dayanıklı hâle geçebilmeleriyle tanınır."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Monako Grand Prix’si hangi tür pistte yapılır?",
+    "options": [
+      "Buz gölü üzerinde",
+      "Şehir sokaklarında",
+      "Kalıcı oval pistte",
+      "Çöl rallisi parkurunda"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dar Monte Carlo sokakları yarış için kapatılarak geçici Formula 1 pistine dönüşür.",
+    "id": "q55902"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Amharca hangi ülkenin federal çalışma dilidir?",
+    "options": [
+      "Somali",
+      "Eritre",
+      "Etiyopya",
+      "Sudan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Amharca, Etiyopya federal yönetiminde kullanılan başlıca çalışma dilidir.",
+    "id": "q55903"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Sims oyunlarında kullanılan para biriminin adı nedir?",
+    "options": [
+      "Bell",
+      "Galleon",
+      "Gil",
+      "Simoleon"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sims karakterleri ev, eşya ve hizmetleri Simoleon ile satın alır.",
+    "id": "q55904"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "İzlandaca hangi dil ailesinin Cermen kolundadır?",
+    "options": [
+      "Hint-Avrupa",
+      "Afro-Asyatik",
+      "Ural",
+      "Sino-Tibet"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İzlandaca, Hint-Avrupa dil ailesinin Kuzey Cermen grubunda yer alır.",
+    "id": "q55905"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Yasak Şehir hangi başkenttedir?",
+    "options": [
+      "Seul",
+      "Pekin",
+      "Hanoi",
+      "Tokyo"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Çin imparatorlarının saray kompleksi Yasak Şehir, Pekin’in tarihî merkezindedir.",
+    "id": "q55906"
+  },
+  {
+    "id": "q55907",
+    "categoryIndex": 2,
+    "question": "Zulu Krallığı’nı 19. yüzyıl başında güçlendiren hükümdar kimdi?",
+    "options": [
+      "Mansa Musa",
+      "Cetshwayo",
+      "Shaka",
+      "Menelik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Shaka, askerî ve idarî düzenlemelerle Zulu Krallığı’nı bölgesel bir güce dönüştürdü."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Le Mans 24 Saat yarışının temel özelliği nedir?",
+    "options": [
+      "Yalnız gece yapılması",
+      "24 turdan oluşması",
+      "24 sürücünün tek araç kullanması",
+      "Bir gün boyunca kesintisiz sürmesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Takımlar sürücü değiştirerek aracı 24 saat boyunca mümkün olduğunca uzun mesafeye taşır.",
+    "id": "q55908"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Holokost’ta Nazi rejiminin başlıca hedef aldığı topluluk hangisiydi?",
+    "options": [
+      "Yahudiler",
+      "Maoriler",
+      "Samuraylar",
+      "Vikingler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nazi Almanyası ve işbirlikçileri altı milyon Yahudiyi sistematik olarak öldürdü.",
+    "id": "q55909"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Potala Sarayı hangi Tibet şehrinde bulunur?",
+    "options": [
+      "Thimphu",
+      "Lhasa",
+      "Katmandu",
+      "Leh"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dalai Lama’ların tarihî ikametgâhı Potala, Lhasa’ya hâkim Kızıl Tepe üzerindedir.",
+    "id": "q55910"
+  },
+  {
+    "id": "q55911",
+    "categoryIndex": 0,
+    "question": "II. Hasan Camii hangi şehrin Atlas Okyanusu kıyısındadır?",
+    "options": [
+      "Marakeş",
+      "Rabat",
+      "Kazablanka",
+      "Fes"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Fas’ın Kazablanka kentindeki II. Hasan Camii, okyanus kıyısına uzanan konumu ve yüksek minaresiyle tanınır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Birleşmiş Milletler Şartı 1945’te hangi şehirde imzalandı?",
+    "options": [
+      "Cenevre",
+      "New York",
+      "Londra",
+      "San Francisco"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "50 ülkenin temsilcileri BM Şartı’nı 26 Haziran 1945’te San Francisco’da imzaladı.",
+    "id": "q55912"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Ekvator çizgisi Dünya’yı hangi iki yarımküreye ayırır?",
+    "options": [
+      "Kuzey ve Güney",
+      "Doğu ve Batı",
+      "Kara ve Deniz",
+      "Sıcak ve Soğuk"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "0 derece enlemindeki Ekvator, Dünya’yı Kuzey ve Güney yarımkürelere ayırır.",
+    "id": "q55913"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "League of Legends’ın en bilinen beşe beş haritası hangisidir?",
+    "options": [
+      "Howling Abyss",
+      "Summoner’s Rift",
+      "Twisted Treeline",
+      "Crystal Scar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Standart rekabetçi karşılaşmalar üç koridorlu Summoner’s Rift’te oynanır.",
+    "id": "q55914"
+  },
+  {
+    "id": "q55915",
+    "categoryIndex": 3,
+    "question": "İki Frida adlı çift otoportre kimin eseridir?",
+    "options": [
+      "Remedios Varo",
+      "Leonora Carrington",
+      "Frida Kahlo",
+      "Georgia O’Keeffe"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Frida Kahlo, iki farklı kimliğini yan yana ve kalpleri görünür biçimde resmetmiştir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Guggenheim Bilbao Müzesi’ni hangi mimar tasarladı?",
+    "options": [
+      "I. M. Pei",
+      "Zaha Hadid",
+      "Santiago Calatrava",
+      "Frank Gehry"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Frank Gehry’nin titanyum kaplı kıvrımlı yapısı 1997’de Bilbao’da açıldı.",
+    "id": "q55916"
+  },
+  {
+    "id": "q55917",
+    "categoryIndex": 4,
+    "question": "Kaplumbağa kabuğu hayvanın iskelet sisteminin bir parçası mıdır?",
+    "options": [
+      "Evet, kaburga ve omurgayla bağlantılıdır",
+      "Hayır, sonradan oluşur",
+      "Yalnız yavrularda",
+      "Yalnız deniz kaplumbağalarında"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kaplumbağanın kabuğu kaburgaları ve omurgasıyla birleşmiş canlı bir iskelet yapısıdır."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Central Park’taki The Gates enstalasyonunu hangi sanatçı ikilisi gerçekleştirdi?",
+    "options": [
+      "Gilbert & George",
+      "Christo ve Jeanne-Claude",
+      "Marina Abramović ve Ulay",
+      "Jake ve Dinos Chapman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Christo ve Jeanne-Claude, 2005’te Central Park yollarına binlerce safran renkli kapı yerleştirdi.",
+    "id": "q55918"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Berlin Hava Köprüsü neden düzenlendi?",
+    "options": [
+      "Savaş esirlerini taşımak için",
+      "Berlin Duvarı’nı yıkmak için",
+      "Batı Berlin’e abluka sırasında ikmal sağlamak için",
+      "Doğu Almanya’yı işgal etmek için"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sovyet ablukası sırasında Batılı müttefikler 1948-1949’da Batı Berlin’e uçaklarla malzeme taşıdı.",
+    "id": "q55919"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Indianapolis 500 hangi tür pistte yapılır?",
+    "options": [
+      "Şehir içinde",
+      "Toprak motokros parkurunda",
+      "Dağ rallisinde",
+      "Oval pistte"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Indianapolis Motor Speedway’in yaklaşık 2,5 millik ovalinde 200 tur atılır.",
+    "id": "q55920"
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "package": 2,
+  "file": "v4_pack_002_q56221_q56320.json",
+  "questionCount": 100,
+  "idStart": "q56221",
+  "idEnd": "q56320",
+  "categoryCounts": {
+    "0": 17,
+    "1": 17,
+    "2": 16,
+    "3": 16,
+    "4": 17,
+    "5": 17
+  },
+  "difficultyCounts": {
+    "Orta": 32,
+    "Kolay": 63,
+    "Zor": 5
+  },
+  "answerIndexCounts": {
+    "0": 25,
+    "1": 25,
+    "2": 25,
+    "3": 25
+  },
+  "recentYearCounts": {
+    "2020": 17,
+    "2021": 18,
+    "2022": 17,
+    "2023": 17,
+    "2024": 18,
+    "2025": 10,
+    "2026": 3
+  },
+  "exactDuplicateCount": 0,
+  "strongNearDuplicateCount": 0
+}

@@ -1,0 +1,108 @@
+{
+  "oscars-film": {
+    "description": "2020–2026 Oscar dönemindeki film, oyuncu, yönetmen ve ödül bilgileri.",
+    "primaryDomains": [
+      "oscars.org"
+    ]
+  },
+  "oscars-2025": {
+    "description": "2025 Oscar sonuçları ve Flow animasyonu.",
+    "primaryDomains": [
+      "oscars.org"
+    ]
+  },
+  "film-release": {
+    "description": "Yakın dönem film gösterim yılı bilgisi.",
+    "primaryDomains": [
+      "oscars.org",
+      "official studio/distributor pages"
+    ]
+  },
+  "recent-series": {
+    "description": "2020–2024 döneminde başlayan dizilerin yaratıcı, oyuncu ve ilk platform bilgileri.",
+    "primaryDomains": [
+      "official network/streaming pages",
+      "television academy records"
+    ]
+  },
+  "recent-games": {
+    "description": "2020–2024 oyunlarının geliştirici, tür, platform ve karakter bilgileri.",
+    "primaryDomains": [
+      "official publisher/developer pages",
+      "thegameawards.com"
+    ]
+  },
+  "recent-sports": {
+    "description": "2020–2025 büyük spor organizasyonlarının şampiyon, finalist, yer ve final ayrıntıları.",
+    "primaryDomains": [
+      "fifa.com",
+      "uefa.com",
+      "nba.com",
+      "formula1.com",
+      "euroleaguebasketball.net",
+      "olympics.com"
+    ]
+  },
+  "space-missions": {
+    "description": "2020–2025 uzay görevlerinin kurum, hedef, araç ve amaç bilgileri.",
+    "primaryDomains": [
+      "nasa.gov",
+      "esa.int",
+      "isro.gov.in",
+      "global.jaxa.jp"
+    ]
+  },
+  "nobel-science": {
+    "description": "2020–2024 Nobel Fizik, Kimya ve Tıp ödülleri.",
+    "primaryDomains": [
+      "nobelprize.org"
+    ]
+  },
+  "science-milestones": {
+    "description": "2020–2024 bilim, sağlık ve teknoloji dönüm noktaları.",
+    "primaryDomains": [
+      "who.int",
+      "europa.eu",
+      "official research institutions"
+    ]
+  },
+  "recent-literature": {
+    "description": "2020–2025 Booker, International Booker ve Pulitzer kurgu sonuçları.",
+    "primaryDomains": [
+      "thebookerprizes.com",
+      "pulitzer.org"
+    ]
+  },
+  "nobel-literature": {
+    "description": "2024 Nobel Edebiyat Ödülü ve Han Kang.",
+    "primaryDomains": [
+      "nobelprize.org"
+    ]
+  },
+  "grammy-general-field": {
+    "description": "2022–2026 Grammy ana kategori sonuçları.",
+    "primaryDomains": [
+      "grammy.com"
+    ]
+  },
+  "recent-geography": {
+    "description": "2020–2026 spor, zirve, konferans, doğal olay ve UNESCO gelişmelerinin yer bilgileri.",
+    "primaryDomains": [
+      "olympics.com",
+      "unfccc.int",
+      "unesco.org",
+      "official organizers"
+    ]
+  },
+  "recent-history": {
+    "description": "2020–2025 dünya, Türkiye, bilim ve kültür gündemindeki tarihsel gelişmeler.",
+    "primaryDomains": [
+      "who.int",
+      "un.org",
+      "nato.int",
+      "europa.eu",
+      "vaticannews.va",
+      "official institutions"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "scope": "Selected spot checks only; not a source-by-source audit of all 1,000 questions.",
+  "checkedItems": [
+    {
+      "questionId": "q58902",
+      "topic": "Galatasaray 2000 UEFA Cup",
+      "source": "UEFA",
+      "url": "https://www.uefa.com/uefaeuropaleague/news/016e-0e6a3091ff2c-b6d02ad6a643-1000--1999-2000-galatasaray-the-pride-of-turkey/"
+    },
+    {
+      "questionId": "q58904",
+      "topic": "Galatasaray 2000 UEFA Super Cup",
+      "source": "UEFA",
+      "url": "https://www.uefa.com/uefasupercup/history/2000/"
+    },
+    {
+      "questionId": "q58775",
+      "topic": "Aziz Sancar Nobel Chemistry 2015",
+      "source": "NobelPrize.org",
+      "url": "https://www.nobelprize.org/prizes/chemistry/2015/summary/"
+    },
+    {
+      "questionId": "q58784",
+      "topic": "Alper Gezeravcı Axiom Mission 3",
+      "source": "TÜBİTAK",
+      "url": "https://tubitak.gov.tr/tr/haber/ilk-turk-astronot-uluslararasi-uzay-istasyonuna-ulasti"
+    },
+    {
+      "questionId": "q59106",
+      "topic": "Alper Gezeravcı 13 scientific experiments",
+      "source": "TÜBİTAK",
+      "url": "https://tubitak.gov.tr/tr/haber/turkiyenin-ilk-astronotu-gezeravcinin-donus-yolculugu-basladi"
+    },
+    {
+      "questionId": "q59105",
+      "topic": "Türksat 6A launched by Falcon 9",
+      "source": "TÜRKSAT",
+      "url": "https://www.turksat.com.tr/tr/haberler/turksat-6a-uzaya-firlatildi-ilk-sinyal-alindi"
+    },
+    {
+      "questionId": "q59001",
+      "topic": "Türkiye 2023 European volleyball championship",
+      "source": "CEV EuroVolley",
+      "url": "https://eurovolley.cev.eu/en/articles/2023-women/magnificent-tuerkiye-seal-maiden-european-trophy-with-dramatic-comeback/"
+    },
+    {
+      "questionId": "q59003",
+      "topic": "Melissa Vargas 2023 EuroVolley MVP",
+      "source": "CEV",
+      "url": "https://www.cev.eu/articles/volleyball/five-moments-to-remember-from-the-eurovolleyw-2023/"
+    }
+  ]
+}

@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q57521",
+    "categoryIndex": 4,
+    "question": "Elmas ve grafit hangi elementin farklı allotroplarıdır?",
+    "options": [
+      "Karbon",
+      "Demir",
+      "Kalsiyum",
+      "Silisyum"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Elmas ve grafit yalnızca karbon atomlarından oluşur; farklı kristal düzenleri çok farklı özellikler yaratır."
+  },
+  {
+    "id": "q57522",
+    "categoryIndex": 5,
+    "question": "1934 FIFA Dünya Kupası’nın ev sahibi hangisidir?",
+    "options": [
+      "Güney Kore ve Japonya",
+      "İtalya",
+      "İspanya",
+      "Şili"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "1934 FIFA Dünya Kupası İtalya ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q57523",
+    "categoryIndex": 0,
+    "question": "COP30 İklim Konferansı hangi yıl gerçekleşti?",
+    "options": [
+      "2021",
+      "2022",
+      "2025",
+      "2026"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "COP30 İklim Konferansı, 2025 yılında gerçekleşti."
+  },
+  {
+    "id": "q57524",
+    "categoryIndex": 1,
+    "question": "2021 tarihli “Returnal” oyununu hangi stüdyo geliştirdi?",
+    "options": [
+      "Playground Games",
+      "Ubisoft Montpellier",
+      "Remedy Entertainment",
+      "Housemarque"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Returnal”, Housemarque tarafından geliştirilen ve 2021 yılında yayımlanan bir oyundur."
+  },
+  {
+    "id": "q57525",
+    "categoryIndex": 2,
+    "question": "Finlandiya'nın NATO'ya katılım töreni 2023'te hangi şehirde yapıldı?",
+    "options": [
+      "Brüksel",
+      "Helsinki",
+      "Stockholm",
+      "Oslo"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Finlandiya, katılım belgelerinin teslim edildiği Brüksel'deki NATO karargâhında ittifakın 31. üyesi oldu."
+  },
+  {
+    "id": "q57526",
+    "categoryIndex": 3,
+    "question": "2022 Nobel Edebiyat Ödülü kime verildi?",
+    "options": [
+      "Damon Galgut",
+      "Annie Ernaux",
+      "R. F. Kuang",
+      "David Szalay"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2022 Nobel Edebiyat Ödülü, Annie Ernaux tarafından kazanıldı."
+  },
+  {
+    "id": "q57527",
+    "categoryIndex": 4,
+    "question": "Benzen bileşiğinin moleküler veya formül gösterimi hangisidir?",
+    "options": [
+      "NaCl",
+      "AgNO3",
+      "C6H6",
+      "C2H2"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Benzen için kullanılan kimyasal gösterim C6H6 biçimindedir."
+  },
+  {
+    "id": "q57528",
+    "categoryIndex": 5,
+    "question": "UEFA Euro 2024 finalini hangi takım kazandı?",
+    "options": [
+      "Villarreal",
+      "Manchester City",
+      "Fenerbahçe",
+      "İspanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "UEFA Euro 2024 finalinde kupayı İspanya kazandı."
+  },
+  {
+    "id": "q57529",
+    "categoryIndex": 0,
+    "question": "COP29 İklim Konferansı nerede düzenlendi?",
+    "options": [
+      "Bakü",
+      "Miami Gardens",
+      "Yüksek Atlas Dağları",
+      "La Palma"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "COP29 İklim Konferansı, Bakü bölgesinde veya kentinde düzenlendi."
+  },
+  {
+    "id": "q57530",
+    "categoryIndex": 1,
+    "question": "2023 yapımı “Oppenheimer” filmini kim yönetti?",
+    "options": [
+      "Justine Triet",
+      "Christopher Nolan",
+      "Coralie Fargeat",
+      "Darius Marder"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Oppenheimer”, Christopher Nolan tarafından yönetilen ve 2023 yılında gösterime giren bir filmdir."
+  },
+  {
+    "id": "q57531",
+    "categoryIndex": 2,
+    "question": "2022'de Birleşik Krallık'ın ilk Asya kökenli başbakanı olan siyasetçi kimdir?",
+    "options": [
+      "Sajid Javid",
+      "Sadiq Khan",
+      "Rishi Sunak",
+      "David Lammy"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Rishi Sunak, Ekim 2022'de göreve gelerek Birleşik Krallık'ın ilk Britanyalı Asya kökenli başbakanı oldu."
+  },
+  {
+    "id": "q57532",
+    "categoryIndex": 3,
+    "question": "2021 Nobel Edebiyat Ödülü sahibi Abdulrazak Gurnah’ın eserlerinde hangi temalar öne çıkar?",
+    "options": [
+      "Uzay yolculuğu",
+      "Polisiye bilmeceler",
+      "Spor rekabeti",
+      "Sömürgecilik ve mültecilik"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Abdulrazak Gurnah’ın romanlarında sömürgecilik, yerinden edilme ve mültecilik deneyimleri önemli yer tutar."
+  },
+  {
+    "id": "q57533",
+    "categoryIndex": 4,
+    "question": "NASA'nın 2024'te fırlatılan PACE uydusu öncelikle neyi inceler?",
+    "options": [
+      "Okyanus ekosistemleri ve atmosfer parçacıkları",
+      "Güneş lekeleri",
+      "Mars toprağı",
+      "Yer kabuğu hareketleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "PACE, okyanus rengi, fitoplankton ve atmosferdeki aerosol ile bulutları gözlemlemek için tasarlandı."
+  },
+  {
+    "id": "q57534",
+    "categoryIndex": 5,
+    "question": "Kano slalomda akıntıya karşı geçilmesi gereken kapılar hangi renklerle işaretlenir?",
+    "options": [
+      "Mavi ve sarı",
+      "Kırmızı ve beyaz",
+      "Siyah ve turuncu",
+      "Yeşil ve beyaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kano slalomda kırmızı-beyaz kapılar akıntıya karşı, yeşil-beyaz kapılar ise akıntı yönünde geçilir."
+  },
+  {
+    "id": "q57535",
+    "categoryIndex": 0,
+    "question": "Atacama Çölü aşağıdaki coğrafi oluşum türlerinden hangisidir?",
+    "options": [
+      "Mercan resifi",
+      "Ada milli parkı",
+      "Soğuk kıyı çölü",
+      "Kanyon sistemi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Atacama Çölü, coğrafi olarak soğuk kıyı çölü biçiminde sınıflandırılır."
+  },
+  {
+    "id": "q57536",
+    "categoryIndex": 1,
+    "question": "“Baldur's Gate 3” ilk kez hangi yıl yayımlandı?",
+    "options": [
+      "2025",
+      "2022",
+      "2021",
+      "2023"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Baldur's Gate 3”, ilk kez 2023 yılında yayımlandı."
+  },
+  {
+    "id": "q57537",
+    "categoryIndex": 2,
+    "question": "Şarlman 800 yılında hangi şehirde imparator ilan edildi?",
+    "options": [
+      "Roma",
+      "Paris",
+      "Aachen",
+      "Konstantinopolis"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Papa III. Leo, Şarlman'a 800 yılının Noel gününde Roma'daki Aziz Petrus Bazilikası'nda taç giydirdi."
+  },
+  {
+    "id": "q57538",
+    "categoryIndex": 3,
+    "question": "2019 yangınından sonra Aralık 2024'te yeniden açılan tarihî yapı hangisiydi?",
+    "options": [
+      "Köln Katedrali",
+      "Notre-Dame Katedrali",
+      "Sagrada Família",
+      "Westminster Abbey"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Paris'teki Notre-Dame Katedrali, kapsamlı restorasyonun ardından Aralık 2024'te yeniden ibadete ve ziyarete açıldı."
+  },
+  {
+    "id": "q57539",
+    "categoryIndex": 4,
+    "question": "Chang'e 6'nın örnek dönüşü hangi hedef veya konuyla bağlantılıydı?",
+    "options": [
+      "Lagrange L2 noktası",
+      "Mars atmosferi",
+      "Ay'ın uzak yüzü",
+      "İklim ve karmaşık fiziksel sistemler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Chang'e 6'nın örnek dönüşü, Ay'ın uzak yüzü hedefi ya da konusuyla bağlantılıydı."
+  },
+  {
+    "id": "q57540",
+    "categoryIndex": 5,
+    "question": "UEFA Euro 2024 şampiyonu hangi milli takımdı?",
+    "options": [
+      "Fransa",
+      "İngiltere",
+      "Almanya",
+      "İspanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İspanya, Berlin'deki finalde İngiltere'yi 2-1 yenerek Euro 2024 şampiyonu oldu."
+  },
+  {
+    "id": "q57541",
+    "categoryIndex": 0,
+    "question": "Uluslararası dil kodlarında “nl” kısaltması hangi dil için kullanılır?",
+    "options": [
+      "Felemenkçe",
+      "Faroe dili",
+      "Belarusça",
+      "Lehçe"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "ISO 639-1 dil kodları içinde “nl”, Felemenkçe dilini temsil eder."
+  },
+  {
+    "id": "q57542",
+    "categoryIndex": 1,
+    "question": "2022 yapımı “Tár” filmini kim yönetti?",
+    "options": [
+      "Jonathan Glazer",
+      "Todd Field",
+      "Edward Berger",
+      "Gints Zilbalodis"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Tár”, Todd Field tarafından yönetilen ve 2022 yılında gösterime giren bir filmdir."
+  },
+  {
+    "id": "q57543",
+    "categoryIndex": 2,
+    "question": "Rusya'nın 2022'de başlattığı geniş çaplı saldırının hedefi hangi ülkeydi?",
+    "options": [
+      "Gürcistan",
+      "Moldova",
+      "Ukrayna",
+      "Polonya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Rusya, 24 Şubat 2022'de Ukrayna'ya karşı geniş çaplı askerî saldırı başlattı."
+  },
+  {
+    "id": "q57544",
+    "categoryIndex": 3,
+    "question": "Son Akşam Yemeği hangi sanat biçimine örnektir?",
+    "options": [
+      "Hazır nesne",
+      "Anıt",
+      "Resim",
+      "Duvar resmi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Son Akşam Yemeği, duvar resmi biçiminde üretilmiş bir yapıttır."
+  },
+  {
+    "id": "q57545",
+    "categoryIndex": 4,
+    "question": "DNA'nın çift sarmalında adenin bazı hangi bazla eşleşir?",
+    "options": [
+      "Timin",
+      "Guanin",
+      "Urasil",
+      "Sitozin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "DNA'da adenin iki hidrojen bağıyla timine, guanin ise üç hidrojen bağıyla sitozine bağlanır."
+  },
+  {
+    "id": "q57546",
+    "categoryIndex": 5,
+    "question": "2020 Yaz Olimpiyat Oyunları’nın ana ev sahibi şehri hangisidir?",
+    "options": [
+      "Helsinki",
+      "Tokyo",
+      "Paris",
+      "Berlin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2020 Yaz Olimpiyat Oyunları Tokyo, Japonya merkezli düzenlendi. Resmî adı Tokyo 2020 olan oyunlar pandemi nedeniyle 2021’de yapıldı."
+  },
+  {
+    "id": "q57547",
+    "categoryIndex": 0,
+    "question": "Badain Jaran Çölü'nün UNESCO listesine alınması hangi yılda gerçekleşti?",
+    "options": [
+      "2023",
+      "2025",
+      "2024",
+      "2026"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Badain Jaran Çölü'nün UNESCO listesine alınması, 2024 yılında gerçekleşti."
+  },
+  {
+    "id": "q57548",
+    "categoryIndex": 1,
+    "question": "Alan Wake 2 temel olarak hangi oyun türünde sınıflandırılır?",
+    "options": [
+      "Sıra tabanlı strateji",
+      "Aksiyon rol yapma",
+      "Shoot ’em up",
+      "Hayatta kalma-korku"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Alan Wake 2 genel olarak hayatta kalma-korku türünde sınıflandırılır."
+  },
+  {
+    "id": "q57549",
+    "categoryIndex": 2,
+    "question": "2020 ABD seçiminde başkan yardımcılığına seçilen ilk kadın kimdi?",
+    "options": [
+      "Kamala Harris",
+      "Hillary Clinton",
+      "Stacey Abrams",
+      "Nancy Pelosi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kamala Harris, başkan yardımcılığına seçilen ilk kadın ve bu göreve gelen ilk Siyah ve Güney Asya kökenli kişi oldu."
+  },
+  {
+    "id": "q57550",
+    "categoryIndex": 3,
+    "question": "2021 Nobel Edebiyat Ödülü kime verildi?",
+    "options": [
+      "Percival Everett",
+      "Abdulrazak Gurnah",
+      "Paul Lynch",
+      "Jenny Erpenbeck"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2021 Nobel Edebiyat Ödülü, Abdulrazak Gurnah tarafından kazanıldı."
+  },
+  {
+    "id": "q57551",
+    "categoryIndex": 4,
+    "question": "Kelvin ölçeğinde 0 K neyi ifade eder?",
+    "options": [
+      "Suyun donma noktasını",
+      "Oda sıcaklığını",
+      "Mutlak sıfırı",
+      "Suyun kaynama noktasını"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "0 kelvin, termodinamik sıcaklığın teorik alt sınırı olan mutlak sıfırı ifade eder."
+  },
+  {
+    "id": "q57552",
+    "categoryIndex": 5,
+    "question": "Milano Cortina 2026 Kış Olimpiyatları adını hangi ortak ev sahipliğinden alır?",
+    "options": [
+      "Lillehammer",
+      "Salt Lake City",
+      "Nagano",
+      "Milano Cortina"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Oyunların adı, iki ana ev sahibi Milano ile Cortina d’Ampezzo’nun ortaklığından gelir."
+  },
+  {
+    "id": "q57553",
+    "categoryIndex": 0,
+    "question": "Masa Dağı hangi ülkede veya ülkelerde bulunur?",
+    "options": [
+      "Güney Afrika",
+      "Japonya",
+      "Rusya",
+      "Meksika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Masa Dağı, Güney Afrika sınırları içinde yer alan bir doğal oluşumdur."
+  },
+  {
+    "id": "q57554",
+    "categoryIndex": 1,
+    "question": "“The Last of Us” ilk olarak hangi platform veya kanalda yayımlandı?",
+    "options": [
+      "Hulu",
+      "HBO",
+      "Netflix",
+      "Larian Studios"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“The Last of Us”, ilk yayımlandığı dönemde HBO üzerinden izleyiciyle buluştu."
+  },
+  {
+    "id": "q57555",
+    "categoryIndex": 2,
+    "question": "7 Ekim 2023'te İsrail'e geniş çaplı saldırıyı gerçekleştiren örgüt hangisiydi?",
+    "options": [
+      "Hizbullah",
+      "Husiler",
+      "Hamas",
+      "El Fetih"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hamas öncülüğündeki silahlı gruplar 7 Ekim 2023'te Gazze çevresindeki İsrail yerleşimlerine saldırdı."
+  },
+  {
+    "id": "q57556",
+    "categoryIndex": 3,
+    "question": "“The Night Watchman” romanının başkahramanı kimdir?",
+    "options": [
+      "Archie Ferguson",
+      "Demon Copperhead",
+      "Ned Beauman",
+      "Thomas Wazhashk"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Louise Erdrich’in romanında gece bekçisi Thomas Wazhashk, yerli halkların haklarını sınırlayan tasarıya karşı mücadele eder."
+  },
+  {
+    "id": "q57557",
+    "categoryIndex": 4,
+    "question": "Perseverance'ın Mars'a inişi hangi kurum veya kurumlar tarafından yürütüldü?",
+    "options": [
+      "NASA",
+      "Pierre Agostini, Ferenc Krausz ve Anne L'Huillier",
+      "NASA ve SpaceX",
+      "David Julius ve Ardem Patapoutian"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Perseverance'ın Mars'a inişi, NASA tarafından yürütülen veya desteklenen bir çalışmadır."
+  },
+  {
+    "id": "q57558",
+    "categoryIndex": 5,
+    "question": "2022 UEFA Avrupa Ligi finali hangi şehirde oynandı?",
+    "options": [
+      "Münih",
+      "Sevilla",
+      "İstanbul",
+      "Köln"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2022 UEFA Avrupa Ligi finali, Sevilla şehrinde oynandı."
+  },
+  {
+    "id": "q57559",
+    "categoryIndex": 0,
+    "question": "UNESCO Dünya Mirası Listesi'ndeki Badain Jaran Çölü hangi ülkededir?",
+    "options": [
+      "Moğolistan",
+      "Kazakistan",
+      "Çin",
+      "Hindistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dev kumulları ve kumullar arasındaki gölleriyle bilinen Badain Jaran Çölü, Çin'in İç Moğolistan bölgesindedir."
+  },
+  {
+    "id": "q57560",
+    "categoryIndex": 1,
+    "question": "Delhi Crime ve Lupin dizilerinin ilk yayınlandığı ortak kanal veya platform hangisidir?",
+    "options": [
+      "Sky 1",
+      "Canal+",
+      "SVT1",
+      "Netflix"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Her iki yapım da ilk yayınında Netflix ile ilişkilidir."
+  },
+  {
+    "id": "q57561",
+    "categoryIndex": 2,
+    "question": "Avrupa Birliği'nin yapay zekâya yönelik kapsamlı düzenlemesi 2024'te hangi adla yürürlüğe girdi?",
+    "options": [
+      "Yapay Zekâ Yasası",
+      "Dijital Pazarlar Yasası",
+      "Veri Yönetişimi Yasası",
+      "Siber Dayanıklılık Yasası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "AB Yapay Zekâ Yasası, risk temelli kurallarıyla Ağustos 2024'te yürürlüğe girdi."
+  },
+  {
+    "id": "q57562",
+    "categoryIndex": 3,
+    "question": "Üç parçalı resim veya kabartma düzenine ne denir?",
+    "options": [
+      "Diptiş",
+      "Triptik",
+      "Poliptik",
+      "Friz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Triptik, çoğu zaman menteşeli biçimde düzenlenen üç panelden oluşan sanat eseridir."
+  },
+  {
+    "id": "q57563",
+    "categoryIndex": 4,
+    "question": "James Webb Uzay Teleskobu'nun fırlatılması hangi kurum veya kurumlar tarafından yürütüldü?",
+    "options": [
+      "ESA ve NASA",
+      "Alain Aspect, John Clauser ve Anton Zeilinger",
+      "NASA, ESA ve CSA",
+      "David Julius ve Ardem Patapoutian"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "James Webb Uzay Teleskobu'nun fırlatılması, NASA, ESA ve CSA tarafından yürütülen veya desteklenen bir çalışmadır."
+  },
+  {
+    "id": "q57564",
+    "categoryIndex": 5,
+    "question": "1938 FIFA Dünya Kupası’nın ev sahibi hangisidir?",
+    "options": [
+      "İspanya",
+      "Meksika",
+      "Şili",
+      "Fransa"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "1938 FIFA Dünya Kupası Fransa ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q57565",
+    "categoryIndex": 0,
+    "question": "2024 Copa América finali hangi ülkede düzenlendi?",
+    "options": [
+      "Amerika Birleşik Devletleri",
+      "Tonga",
+      "Brezilya",
+      "İspanya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "2024 Copa América finali, Amerika Birleşik Devletleri ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q57566",
+    "categoryIndex": 1,
+    "question": "2024 çıkışlı “Brat” albümü hangi sanatçıya aittir?",
+    "options": [
+      "Bad Bunny",
+      "Charli XCX",
+      "SZA",
+      "Taylor Swift"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Brat”, Charli XCX tarafından yayımlanan ve 2024 dönemine damga vuran albümlerden biridir."
+  },
+  {
+    "id": "q57567",
+    "categoryIndex": 2,
+    "question": "İmran Han'ın ardından 2022'de Pakistan başbakanı olan siyasetçi kimdi?",
+    "options": [
+      "Pervez Müşerref",
+      "Navaz Şerif",
+      "Şahbaz Şerif",
+      "Bilaval Butto Zerdari"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Pakistan parlamentosu, İmran Han'ın görevden alınmasının ardından Şahbaz Şerif'i başbakan seçti."
+  },
+  {
+    "id": "q57568",
+    "categoryIndex": 3,
+    "question": "“The Ministry of Time” romanı hangi iki unsuru bir araya getirir?",
+    "options": [
+      "Denizcilik ve mitoloji",
+      "Spor ve aile dramı",
+      "Müzik ve polisiye",
+      "Zaman yolculuğu ve devlet bürokrasisi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kaliane Bradley’nin romanı, geçmişten getirilen insanların yaşamını zaman yolculuğu ve devlet bürokrasisi üzerinden işler."
+  },
+  {
+    "id": "q57569",
+    "categoryIndex": 4,
+    "question": "OSIRIS-REx örnek kapsülünün dönüşü hangi hedef veya konuyla bağlantılıydı?",
+    "options": [
+      "Bennu asteroidi",
+      "Hepatit C virüsünün keşfi",
+      "mRNA aşılarına temel oluşturan keşifler",
+      "Güneş'in dış atmosferi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "OSIRIS-REx örnek kapsülünün dönüşü, Bennu asteroidi hedefi ya da konusuyla bağlantılıydı."
+  },
+  {
+    "id": "q57570",
+    "categoryIndex": 5,
+    "question": "Avustralya futbolu sporunda bir takım sahada kaç oyuncuyla yer alır?",
+    "options": [
+      "15",
+      "18",
+      "2",
+      "501"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Avustralya futbolunda bir takım sahada on sekiz oyuncuyla oynar."
+  },
+  {
+    "id": "q57571",
+    "categoryIndex": 0,
+    "question": "2022 Pakistan sel felaketi en çok hangi bölgeyi etkiledi?",
+    "options": [
+      "Miami Gardens",
+      "Osaka",
+      "Sind ve Belucistan",
+      "Maranhão"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2022 Pakistan sel felaketi, özellikle Sind ve Belucistan çevresinde etkili oldu."
+  },
+  {
+    "id": "q57572",
+    "categoryIndex": 1,
+    "question": "Anatomy of a Fall filminin yönetmeni kimdir?",
+    "options": [
+      "Wong Kar-wai",
+      "Orson Welles",
+      "Park Chan-wook",
+      "Justine Triet"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Anatomy of a Fall, Justine Triet tarafından yönetilen 2023 yapımı bir filmdir."
+  },
+  {
+    "id": "q57573",
+    "categoryIndex": 2,
+    "question": "2020 Dağlık Karabağ savaşını durduran ateşkesin arabuluculuğunu hangi ülke yaptı?",
+    "options": [
+      "Rusya",
+      "Fransa",
+      "İran",
+      "Türkiye"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kasım 2020'de yürürlüğe giren ateşkes anlaşmasına Rusya arabuluculuk etti."
+  },
+  {
+    "id": "q57574",
+    "categoryIndex": 3,
+    "question": "“Orbital” hangi edebiyat ödülünü kazandı?",
+    "options": [
+      "2020 Pulitzer Kurgu Ödülü",
+      "2024 Booker Ödülü",
+      "2021 Booker Ödülü",
+      "2021 Uluslararası Booker Ödülü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "“Orbital”, 2024 Booker Ödülü ile ödüllendirildi."
+  },
+  {
+    "id": "q57575",
+    "categoryIndex": 4,
+    "question": "Lucy uzay aracı hangi yıl fırlatıldı?",
+    "options": [
+      "2026",
+      "2025",
+      "2021",
+      "2023"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Lucy uzay aracının fırlatılması, 2021 yılında gerçekleşti."
+  },
+  {
+    "id": "q57576",
+    "categoryIndex": 5,
+    "question": "2022 ABD Açık'ı kazanarak ilk Grand Slam şampiyonluğunu alan erkek tenisçi kimdi?",
+    "options": [
+      "Casper Ruud",
+      "Daniil Medvedev",
+      "Jannik Sinner",
+      "Carlos Alcaraz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Carlos Alcaraz, 2022 ABD Açık finalinde Casper Ruud'u yenerek ilk büyük turnuva zaferini aldı."
+  },
+  {
+    "id": "q57577",
+    "categoryIndex": 0,
+    "question": "Masa Dağı aşağıdaki coğrafi oluşum türlerinden hangisidir?",
+    "options": [
+      "Yassı tepeli dağ",
+      "Kumtaşı monoliti",
+      "Traverten terasları",
+      "Tuz düzlüğü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Masa Dağı, coğrafi olarak yassı tepeli dağ biçiminde sınıflandırılır."
+  },
+  {
+    "id": "q57578",
+    "categoryIndex": 1,
+    "question": "“Wednesday” yapımında öne çıkan isim hangisidir?",
+    "options": [
+      "Hailee Steinfeld",
+      "Jenna Ortega",
+      "Anya Taylor-Joy",
+      "Steven Yeun ve Ali Wong"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "“Wednesday” yapımında öne çıkan oyuncu veya karakter Jenna Ortega olarak bilinir."
+  },
+  {
+    "id": "q57579",
+    "categoryIndex": 2,
+    "question": "Ever Given gemisi 2021'de Süveyş Kanalı'nı yaklaşık kaç gün boyunca kapalı tuttu?",
+    "options": [
+      "21 gün",
+      "2 gün",
+      "6 gün",
+      "12 gün"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ever Given 23 Mart 2021'de karaya oturdu ve altı günlük kurtarma çalışmasının ardından yeniden yüzdürüldü."
+  },
+  {
+    "id": "q57580",
+    "categoryIndex": 3,
+    "question": "Horatius Kardeşlerin Yemini adlı yapıtın yaratıcısı kimdir?",
+    "options": [
+      "Ai Weiwei",
+      "Johannes Vermeer",
+      "Pablo Picasso",
+      "Jacques-Louis David"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Horatius Kardeşlerin Yemini, Jacques-Louis David tarafından oluşturulmuştur."
+  },
+  {
+    "id": "q57581",
+    "categoryIndex": 4,
+    "question": "2024'te fırlatılan EarthCARE uydusu ESA ile hangi ülkenin uzay ajansının ortak projesidir?",
+    "options": [
+      "Japonya",
+      "Brezilya",
+      "Hindistan",
+      "Kanada"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "EarthCARE, ESA ile Japonya'nın JAXA ajansının bulut ve aerosol gözlem görevidir."
+  },
+  {
+    "id": "q57582",
+    "categoryIndex": 5,
+    "question": "2024 Roland Garros erkekler şampiyonu kimdi?",
+    "options": [
+      "Novak Djokovic",
+      "Carlos Alcaraz",
+      "Jannik Sinner",
+      "Alexander Zverev"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Carlos Alcaraz, 2024 Roland Garros finalinde Alexander Zverev'i yenerek ilk Fransa Açık kupasını aldı."
+  },
+  {
+    "id": "q57583",
+    "categoryIndex": 0,
+    "question": "2025 yılında gerçekleşen coğrafi gelişme hangisidir?",
+    "options": [
+      "2024 G20 Zirvesi",
+      "COP29 İklim Konferansı",
+      "2025 G7 Zirvesi",
+      "2024 Maui orman yangınlarının anma etkinlikleri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "2025 G7 Zirvesi, 2025 yılının öne çıkan coğrafi gelişmelerinden biridir."
+  },
+  {
+    "id": "q57584",
+    "categoryIndex": 1,
+    "question": "“Andor” dizisi ilk sezonu hangi platform veya kanalda yayımlandı?",
+    "options": [
+      "HBO",
+      "Apple TV+",
+      "Netflix",
+      "Disney+"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Andor”, 2022 yılında Disney+ üzerinden izleyiciyle buluşan öne çıkan dizilerden biridir."
+  },
+  {
+    "id": "q57585",
+    "categoryIndex": 2,
+    "question": "Rusya'nın Ukrayna'ya geniş çaplı saldırısı gelişmesinin ayırt edici sonucu hangisidir?",
+    "options": [
+      "Avrupa'da büyük bir savaşın başlaması",
+      "Afganistan yönetiminin değişmesi",
+      "NATO'nun 32. üyesi olması",
+      "Devlet başkanlığında monarşiden cumhuriyete geçiş"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bu gelişmenin ayırt edici sonucu Avrupa'da büyük bir savaşın başlaması oldu."
+  },
+  {
+    "id": "q57586",
+    "categoryIndex": 3,
+    "question": "The Fighting Temeraire adlı eserin sanatçısı kimdir?",
+    "options": [
+      "Edvard Munch",
+      "J. M. W. Turner",
+      "Francisco Goya",
+      "Salvador Dalí"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "The Fighting Temeraire, J. M. W. Turner tarafından 1839 yılında üretilmiştir."
+  },
+  {
+    "id": "q57587",
+    "categoryIndex": 4,
+    "question": "Solar Orbiter'ın fırlatılması hangi kurum veya kurumlar tarafından yürütüldü?",
+    "options": [
+      "John Hopfield ve Geoffrey Hinton",
+      "Svante Pääbo",
+      "ESA ve NASA",
+      "Benjamin List ve David MacMillan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Solar Orbiter'ın fırlatılması, ESA ve NASA tarafından yürütülen veya desteklenen bir çalışmadır."
+  },
+  {
+    "id": "q57588",
+    "categoryIndex": 5,
+    "question": "2023 FIFA Kadınlar Dünya Kupası finalini hangi takım kazandı?",
+    "options": [
+      "Tottenham Hotspur",
+      "Eintracht Frankfurt",
+      "Paris Saint-Germain",
+      "İspanya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "2023 FIFA Kadınlar Dünya Kupası finalinde kupayı İspanya kazandı."
+  },
+  {
+    "id": "q57589",
+    "categoryIndex": 0,
+    "question": "Arnavutluk ülkesinin başkenti hangisidir?",
+    "options": [
+      "Tiran",
+      "Honiara",
+      "South Tarawa",
+      "Juba"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tiran, Arnavutluk ülkesinin başkentidir."
+  },
+  {
+    "id": "q57590",
+    "categoryIndex": 1,
+    "question": "Tehran dizisinin yaratıcısı veya yaratıcıları kimdir?",
+    "options": [
+      "Alan Ball",
+      "Moshe Zonder",
+      "Terence Winter",
+      "David Milch"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tehran, Moshe Zonder tarafından geliştirilen ve 2020 yılında başlayan bir dizidir."
+  },
+  {
+    "id": "q57591",
+    "categoryIndex": 2,
+    "question": "II. Elizabeth öldüğünde Britanya tahtında yaklaşık kaç yıl geçirmişti?",
+    "options": [
+      "80 yıl",
+      "60 yıl",
+      "70 yıl",
+      "50 yıl"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "II. Elizabeth, 1952'den 2022'ye kadar yetmiş yılı aşkın süre hüküm sürerek Britanya tarihinin en uzun süre görev yapan hükümdarı oldu."
+  },
+  {
+    "id": "q57592",
+    "categoryIndex": 3,
+    "question": "Venüs’ün Doğuşu adlı yapıtın yaratıcısı kimdir?",
+    "options": [
+      "Zaha Hadid",
+      "David Hockney",
+      "Maya Lin",
+      "Sandro Botticelli"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Venüs’ün Doğuşu, Sandro Botticelli tarafından oluşturulmuştur."
+  },
+  {
+    "id": "q57593",
+    "categoryIndex": 4,
+    "question": "2022'de genetiği değiştirilmiş domuz kalbi nakledilen ilk yaşayan hastanın adı neydi?",
+    "options": [
+      "David Bennett",
+      "Louis Washkansky",
+      "Lawrence Faucette",
+      "Richard Slayman"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "David Bennett, 2022'de genetiği değiştirilmiş bir domuz kalbi nakliyle yaşayan ilk kişi oldu."
+  },
+  {
+    "id": "q57594",
+    "categoryIndex": 5,
+    "question": "Super Bowl LVIII'i uzatmada kazanan takım hangisiydi?",
+    "options": [
+      "Baltimore Ravens",
+      "Kansas City Chiefs",
+      "Detroit Lions",
+      "San Francisco 49ers"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kansas City Chiefs, Super Bowl LVIII'de San Francisco 49ers'ı uzatmada mağlup etti."
+  },
+  {
+    "id": "q57595",
+    "categoryIndex": 0,
+    "question": "Entre Ríos bölgesi hangi ülkenin sınırları içinde bulunur?",
+    "options": [
+      "Honduras",
+      "Guyana",
+      "Arjantin",
+      "Falkland Adaları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Entre Ríos, ISO 3166-2 kayıtlarında Arjantin ülkesine bağlı bir idari bölüm olarak gösterilir."
+  },
+  {
+    "id": "q57596",
+    "categoryIndex": 1,
+    "question": "Balatro oyununun ana geliştiricisi hangisidir?",
+    "options": [
+      "FromSoftware",
+      "Blizzard Entertainment",
+      "Thatgamecompany",
+      "LocalThunk"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Balatro oyununun geliştirme çalışması LocalThunk tarafından yürütüldü."
+  },
+  {
+    "id": "q57597",
+    "categoryIndex": 2,
+    "question": "Ağustos 2024'te kitlesel protestoların ardından istifa eden Bangladeş başbakanı kimdi?",
+    "options": [
+      "Şeyh Hasina",
+      "Halide Ziya",
+      "Sajeeb Wazed",
+      "Muhammed Yunus"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Şeyh Hasina, haftalar süren öğrenci öncülüğündeki protestoların ardından 5 Ağustos 2024'te istifa edip ülkeden ayrıldı."
+  },
+  {
+    "id": "q57598",
+    "categoryIndex": 3,
+    "question": "Bir Sergiden Tablolar adlı klasik müzik eserinin bestecisi kimdir?",
+    "options": [
+      "Sergey Prokofyev",
+      "Modest Mussorgsky",
+      "Samuel Barber",
+      "Hector Berlioz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bir Sergiden Tablolar, Modest Mussorgsky tarafından bestelenmiştir."
+  },
+  {
+    "id": "q57599",
+    "categoryIndex": 4,
+    "question": "Ozon molekülü kaç oksijen atomundan oluşur?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ozonun kimyasal formülü O₃'tür; atmosferde üç oksijen atomunun birleşmesiyle oluşur."
+  },
+  {
+    "id": "q57600",
+    "categoryIndex": 5,
+    "question": "2022 FIFA Dünya Kupası'nı hangi ülke kazandı?",
+    "options": [
+      "Fransa",
+      "Hırvatistan",
+      "Fas",
+      "Arjantin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Arjantin, Lusail'deki finalde Fransa'yı penaltılarla yenerek üçüncü dünya şampiyonluğunu aldı."
+  },
+  {
+    "id": "q57601",
+    "categoryIndex": 0,
+    "question": "Arjantin ülkesinde bulunan Salta için kullanılan idari birim türü hangisidir?",
+    "options": [
+      "İl/eyalet düzeyindeki bölge",
+      "İdari bölge",
+      "Kanton",
+      "Ada konseyi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "ISO 3166-2 kaydında Salta, Arjantin için “Province” türünde; Türkçe karşılığıyla i̇l/eyalet düzeyindeki bölge olarak sınıflandırılır."
+  },
+  {
+    "id": "q57602",
+    "categoryIndex": 1,
+    "question": "“Only Murders in the Building” ilk olarak hangi platform veya kanalda yayımlandı?",
+    "options": [
+      "Apple TV+",
+      "Hulu",
+      "ABC",
+      "FromSoftware"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "“Only Murders in the Building”, ilk yayımlandığı dönemde Hulu üzerinden izleyiciyle buluştu."
+  },
+  {
+    "id": "q57603",
+    "categoryIndex": 2,
+    "question": "2022'de ekonomik kriz sırasında ülkesinden ayrılıp istifa eden Sri Lanka devlet başkanı kimdi?",
+    "options": [
+      "Mahinda Rajapaksa",
+      "Maithripala Sirisena",
+      "Gotabaya Rajapaksa",
+      "Ranil Wickremesinghe"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Gotabaya Rajapaksa, 2022 protestolarının ardından Sri Lanka'dan ayrıldı ve devlet başkanlığından istifa etti."
+  },
+  {
+    "id": "q57604",
+    "categoryIndex": 3,
+    "question": "Tehlikeli Oyunlar eserinin yazarı kimdir?",
+    "options": [
+      "Şeyh Galip",
+      "Bilge Karasu",
+      "Daniel Defoe",
+      "Oğuz Atay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Tehlikeli Oyunlar, Oğuz Atay tarafından kaleme alınmıştır."
+  },
+  {
+    "id": "q57605",
+    "categoryIndex": 4,
+    "question": "İlk boşluksuz insan genom dizisinin yayımlanması çalışmasının ana bilimsel hedefi neydi?",
+    "options": [
+      "İnsan genomundaki kalan boşlukları tamamlamak",
+      "Tüm gökyüzünü kızılötesi tayflarla haritalamak",
+      "Attosaniyelik ışık darbeleri",
+      "Ay'ın uzak yüzü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İlk boşluksuz insan genom dizisinin yayımlanması, İnsan genomundaki kalan boşlukları tamamlamak konusuna odaklanan bir bilimsel gelişmedir."
+  },
+  {
+    "id": "q57606",
+    "categoryIndex": 5,
+    "question": "2021 Copa América şampiyonu hangi milli takımdı?",
+    "options": [
+      "Brezilya",
+      "Arjantin",
+      "Kolombiya",
+      "Uruguay"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Arjantin, Maracanã'daki finalde Brezilya'yı yenerek 2021 Copa América'yı kazandı."
+  },
+  {
+    "id": "q57607",
+    "categoryIndex": 0,
+    "question": "2024'te Reykjanes Yarımadası'ndaki volkanik hareketler nedeniyle sık sık tahliye edilen kasaba hangisiydi?",
+    "options": [
+      "Selfoss",
+      "Akureyri",
+      "Grindavík",
+      "Húsavík"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İzlanda'nın Grindavík kasabası, Reykjanes'teki çatlak patlamaları nedeniyle birçok kez tahliye edildi."
+  },
+  {
+    "id": "q57608",
+    "categoryIndex": 1,
+    "question": "2023 çıkışlı “Mañana Será Bonito” albümü hangi sanatçıya aittir?",
+    "options": [
+      "Olivia Rodrigo",
+      "Charli XCX",
+      "Bad Bunny",
+      "Karol G"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Mañana Será Bonito”, Karol G tarafından yayımlanan ve 2023 dönemine damga vuran albümlerden biridir."
+  },
+  {
+    "id": "q57609",
+    "categoryIndex": 2,
+    "question": "Ever Given gemisinin Süveyş Kanalı'nı kapatması gelişmesinin ayırt edici sonucu hangisidir?",
+    "options": [
+      "Küresel deniz ticaretinin aksaması",
+      "İsrail ile Birleşik Arap Emirlikleri ve Bahreyn",
+      "Afganistan yönetiminin değişmesi",
+      "Avrupa'da büyük bir savaşın başlaması"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bu gelişmenin ayırt edici sonucu Küresel deniz ticaretinin aksaması oldu."
+  },
+  {
+    "id": "q57610",
+    "categoryIndex": 3,
+    "question": "Anayurt Oteli eserinin yazarı kimdir?",
+    "options": [
+      "Yaşar Kemal",
+      "Yusuf Atılgan",
+      "Geoffrey Chaucer",
+      "Orhan Pamuk"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Anayurt Oteli, Yusuf Atılgan tarafından kaleme alınmıştır."
+  },
+  {
+    "id": "q57611",
+    "categoryIndex": 4,
+    "question": "Atom numarası 23 olan element hangisidir?",
+    "options": [
+      "Kurşun",
+      "Disprozyum",
+      "Vanadyum",
+      "Platin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Atom numarası 23 olan element Vanadyum, kimyasal simgesi ise V’dir."
+  },
+  {
+    "id": "q57612",
+    "categoryIndex": 5,
+    "question": "Güreşte rakibin iki omzunu mindere sabitleyerek maçı bitirmeye ne denir?",
+    "options": [
+      "Ace",
+      "İppon",
+      "Nakavt",
+      "Tuş"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Tuş, rakibin iki omzunun hakemin belirlediği süre boyunca minderde tutulmasıyla maçı bitirir."
+  },
+  {
+    "id": "q57613",
+    "categoryIndex": 0,
+    "question": "Paris 2024 Olimpiyatları'nın sörf yarışları hangi adada yapıldı?",
+    "options": [
+      "Tahiti",
+      "Martinique",
+      "Korsika",
+      "Réunion"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sörf yarışları, Tahiti adasındaki dünyaca ünlü Teahupo'o dalga bölgesinde düzenlendi."
+  },
+  {
+    "id": "q57614",
+    "categoryIndex": 1,
+    "question": "Seven Samurai filminin yönetmeni kimdir?",
+    "options": [
+      "Yasujirō Ozu",
+      "Akira Kurosawa",
+      "Andrei Tarkovsky",
+      "Jean-Luc Godard"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Seven Samurai, Akira Kurosawa tarafından yönetilen 1954 yapımı bir filmdir."
+  },
+  {
+    "id": "q57615",
+    "categoryIndex": 2,
+    "question": "Aralık 2021'de Angela Merkel'in ardından Almanya şansölyesi olan siyasetçi kimdir?",
+    "options": [
+      "Christian Lindner",
+      "Frank-Walter Steinmeier",
+      "Olaf Scholz",
+      "Armin Laschet"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Olaf Scholz, Sosyal Demokratlar öncülüğündeki koalisyonun kurulmasıyla Almanya şansölyesi oldu."
+  },
+  {
+    "id": "q57616",
+    "categoryIndex": 3,
+    "question": "Jenny Erpenbeck’in “Kairos” romanının özgün dili hangisidir?",
+    "options": [
+      "Hintçe",
+      "İtalyanca",
+      "İspanyolca",
+      "Almanca"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "“Kairos”, Alman yazar Jenny Erpenbeck tarafından Almanca yazılmıştır."
+  },
+  {
+    "id": "q57617",
+    "categoryIndex": 4,
+    "question": "Sc kimyasal simgesi hangi elemente aittir?",
+    "options": [
+      "Skandiyum",
+      "Radon",
+      "Samaryum",
+      "Flerovyum"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Skandiyum elementinin simgesi Sc, atom numarası ise 21’dir."
+  },
+  {
+    "id": "q57618",
+    "categoryIndex": 5,
+    "question": "2025 UEFA Avrupa Ligi finalini hangi takım kazandı?",
+    "options": [
+      "Fenerbahçe",
+      "Tottenham Hotspur",
+      "Chelsea",
+      "Villarreal"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "2025 UEFA Avrupa Ligi finalinde kupayı Tottenham Hotspur kazandı."
+  },
+  {
+    "id": "q57619",
+    "categoryIndex": 0,
+    "question": "2024 G7 Zirvesi hangi ülkede düzenlendi?",
+    "options": [
+      "Pakistan",
+      "Brezilya",
+      "İtalya",
+      "Birleşik Arap Emirlikleri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2024 G7 Zirvesi, İtalya ev sahipliğinde düzenlendi."
+  },
+  {
+    "id": "q57620",
+    "categoryIndex": 1,
+    "question": "2023 yapımı “Poor Things” filmini kim yönetti?",
+    "options": [
+      "Chloé Zhao",
+      "Celine Song",
+      "Sian Heder",
+      "Yorgos Lanthimos"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "“Poor Things”, Yorgos Lanthimos tarafından yönetilen ve 2023 yılında gösterime giren bir filmdir."
+  }
+]

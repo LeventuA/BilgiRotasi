@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q54021",
+    "categoryIndex": 0,
+    "question": "Japonya’nın başkenti hangisidir?",
+    "options": [
+      "Kyoto",
+      "Tokyo",
+      "Osaka",
+      "Nagoya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tokyo, Japonya’nın siyasi ve ekonomik merkezi olan dev bir metropoldür."
+  },
+  {
+    "id": "q54022",
+    "categoryIndex": 0,
+    "question": "Güney Kore’nin başkenti hangisidir?",
+    "options": [
+      "Busan",
+      "Incheon",
+      "Seul",
+      "Daegu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Seul, Han Nehri kıyısında bulunan Güney Kore’nin başkenti ve en büyük şehridir."
+  },
+  {
+    "id": "q54023",
+    "categoryIndex": 0,
+    "question": "Tayland’ın başkenti hangisidir?",
+    "options": [
+      "Chiang Mai",
+      "Phuket",
+      "Pattaya",
+      "Bangkok"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bangkok, Chao Phraya Nehri çevresinde gelişmiş Tayland başkentidir."
+  },
+  {
+    "id": "q54024",
+    "categoryIndex": 0,
+    "question": "Vietnam’ın başkenti hangisidir?",
+    "options": [
+      "Hanoi",
+      "Ho Chi Minh City",
+      "Da Nang",
+      "Hue"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hanoi, Vietnam’ın kuzeyinde bulunan tarihî ve siyasi başkenttir."
+  },
+  {
+    "id": "q54025",
+    "categoryIndex": 0,
+    "question": "Endonezya’nın en kalabalık şehri hangisidir?",
+    "options": [
+      "Bali",
+      "Cakarta",
+      "Surabaya",
+      "Bandung"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Cakarta, Cava Adası’nın kuzeybatı kıyısında ülkenin en büyük kentsel merkezidir."
+  },
+  {
+    "id": "q54026",
+    "categoryIndex": 0,
+    "question": "Hindistan’ın başkenti hangisidir?",
+    "options": [
+      "Mumbai",
+      "Kalküta",
+      "Yeni Delhi",
+      "Bangalore"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yeni Delhi, daha geniş Delhi metropolü içinde Hindistan hükümetinin merkezidir."
+  },
+  {
+    "id": "q54027",
+    "categoryIndex": 0,
+    "question": "Pakistan’ın başkenti hangisidir?",
+    "options": [
+      "Karaçi",
+      "Lahor",
+      "Peşaver",
+      "İslamabad"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İslamabad, 1960’larda planlanmış ve Karaçi’nin yerine başkent yapılmıştır."
+  },
+  {
+    "id": "q54028",
+    "categoryIndex": 0,
+    "question": "İran’ın başkenti hangisidir?",
+    "options": [
+      "Tahran",
+      "İsfahan",
+      "Şiraz",
+      "Tebriz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tahran, Elburz Dağları’nın güney eteklerinde bulunan İran başkentidir."
+  },
+  {
+    "id": "q54029",
+    "categoryIndex": 0,
+    "question": "Irak’ın başkenti hangisidir?",
+    "options": [
+      "Basra",
+      "Bağdat",
+      "Musul",
+      "Erbil"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bağdat, Dicle Nehri kıyısında bulunan Irak’ın başkenti ve tarihî bir kültür merkezidir."
+  },
+  {
+    "id": "q54030",
+    "categoryIndex": 0,
+    "question": "Suudi Arabistan’ın başkenti hangisidir?",
+    "options": [
+      "Cidde",
+      "Mekke",
+      "Riyad",
+      "Medine"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Riyad, Arap Yarımadası’nın iç kesimlerinde bulunan Suudi Arabistan başkentidir."
+  },
+  {
+    "id": "q54031",
+    "categoryIndex": 0,
+    "question": "Birleşik Arap Emirlikleri’nin başkenti hangisidir?",
+    "options": [
+      "Dubai",
+      "Şarika",
+      "Doha",
+      "Abu Dabi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Abu Dabi, aynı adlı emirlikte bulunan ülkenin federal başkentidir."
+  },
+  {
+    "id": "q54032",
+    "categoryIndex": 0,
+    "question": "Katar’ın başkenti hangisidir?",
+    "options": [
+      "Doha",
+      "Manama",
+      "Maskat",
+      "Kuveyt"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Doha, Basra Körfezi kıyısında bulunan Katar’ın başkenti ve en büyük şehridir."
+  },
+  {
+    "id": "q54033",
+    "categoryIndex": 0,
+    "question": "Umman’ın başkenti hangisidir?",
+    "options": [
+      "Salalah",
+      "Maskat",
+      "Sohar",
+      "Doha"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Maskat, Umman Körfezi kıyısında dağlar ile deniz arasına kurulmuş başkenttir."
+  },
+  {
+    "id": "q54034",
+    "categoryIndex": 0,
+    "question": "İsrail’in Akdeniz kıyısındaki en büyük metropolü hangisidir?",
+    "options": [
+      "Hayfa",
+      "Eilat",
+      "Tel Aviv",
+      "Nasıra"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tel Aviv, İsrail’in en büyük ekonomik ve kentsel merkezlerinden biridir."
+  },
+  {
+    "id": "q54035",
+    "categoryIndex": 0,
+    "question": "Lübnan’ın başkenti hangisidir?",
+    "options": [
+      "Trablus",
+      "Sayda",
+      "Şam",
+      "Beyrut"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Beyrut, Akdeniz kıyısında bulunan Lübnan’ın başkenti ve başlıca limanıdır."
+  },
+  {
+    "id": "q54036",
+    "categoryIndex": 0,
+    "question": "Ürdün’ün başkenti hangisidir?",
+    "options": [
+      "Amman",
+      "Akabe",
+      "Petra",
+      "Zerka"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Amman, tepeler üzerine kurulmuş Ürdün’ün başkenti ve en büyük şehridir."
+  },
+  {
+    "id": "q54037",
+    "categoryIndex": 0,
+    "question": "Suriye’nin başkenti hangisidir?",
+    "options": [
+      "Halep",
+      "Şam",
+      "Humus",
+      "Lazkiye"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Şam, dünyanın sürekli yerleşim görmüş en eski şehirlerinden biri olarak kabul edilir."
+  },
+  {
+    "id": "q54038",
+    "categoryIndex": 1,
+    "question": "Mortal Kombat serisinin buz güçlerine sahip dövüşçüsü kimdir?",
+    "options": [
+      "Scorpion",
+      "Raiden",
+      "Sub-Zero",
+      "Liu Kang"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sub-Zero, Lin Kuei klanına bağlı ve buzu kontrol edebilen ikonik bir dövüşçüdür."
+  },
+  {
+    "id": "q54039",
+    "categoryIndex": 1,
+    "question": "Mortal Kombat serisinin mızraklı “Get over here” sözüyle tanınan karakteri kimdir?",
+    "options": [
+      "Sub-Zero",
+      "Johnny Cage",
+      "Kano",
+      "Scorpion"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Scorpion rakibini kendine çekmek için zincirli mızrağını kullanır."
+  },
+  {
+    "id": "q54040",
+    "categoryIndex": 1,
+    "question": "Tekken serisinin şeytan geniyle bağlantılı ana ailesi hangisidir?",
+    "options": [
+      "Mishima ailesi",
+      "Kazama ailesi",
+      "Howard ailesi",
+      "Bogard ailesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Heihachi, Kazuya ve Jin arasındaki Mishima aile çatışması Tekken serisinin merkezindedir."
+  },
+  {
+    "id": "q54041",
+    "categoryIndex": 1,
+    "question": "League of Legends’ın geçtiği kurgusal dünya hangisidir?",
+    "options": [
+      "Azeroth",
+      "Runeterra",
+      "Tamriel",
+      "Sanctuary"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Runeterra; Demacia, Noxus, Ionia ve Piltover gibi çok sayıda bölgeyi barındırır."
+  },
+  {
+    "id": "q54042",
+    "categoryIndex": 1,
+    "question": "World of Warcraft’ın temel dünyası hangisidir?",
+    "options": [
+      "Runeterra",
+      "Nirn",
+      "Azeroth",
+      "Pandora"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Azeroth, Alliance ve Horde topluluklarının yaşadığı Warcraft evreninin ana dünyasıdır."
+  },
+  {
+    "id": "q54043",
+    "categoryIndex": 1,
+    "question": "Diablo oyunlarının dünyası hangi adla bilinir?",
+    "options": [
+      "Hyrule",
+      "Midgard",
+      "Thedas",
+      "Sanctuary"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sanctuary, melekler ve şeytanlar arasındaki çatışmanın insanlık üzerindeki etkilerini taşır."
+  },
+  {
+    "id": "q54044",
+    "categoryIndex": 1,
+    "question": "The Elder Scrolls V: Skyrim hangi kıtadaki bölgede geçer?",
+    "options": [
+      "Tamriel",
+      "Westeros",
+      "Azeroth",
+      "Runeterra"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Skyrim, The Elder Scrolls evrenindeki Tamriel kıtasının kuzey bölgesidir."
+  },
+  {
+    "id": "q54045",
+    "categoryIndex": 1,
+    "question": "Mass Effect serisinin insan ana kahramanının soyadı nedir?",
+    "options": [
+      "Ryder",
+      "Shepard",
+      "Vakarian",
+      "Williams"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Commander Shepard, Reaper tehdidine karşı galaksiyi bir araya getirmeye çalışan askerdir."
+  },
+  {
+    "id": "q54046",
+    "categoryIndex": 1,
+    "question": "Horizon serisinin kızıl saçlı avcısının adı nedir?",
+    "options": [
+      "Ellie",
+      "Lara",
+      "Aloy",
+      "Senua"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Aloy, makinelerin hâkim olduğu gelecekte geçmiş uygarlığın sırlarını araştırır."
+  },
+  {
+    "id": "q54047",
+    "categoryIndex": 1,
+    "question": "Uncharted serisinin hazine avcısı kahramanı kimdir?",
+    "options": [
+      "Joel Miller",
+      "Sam Fisher",
+      "Cole MacGrath",
+      "Nathan Drake"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Nathan Drake tarihî efsanelerin peşinde dünyanın farklı bölgelerinde maceralara atılır."
+  },
+  {
+    "id": "q54048",
+    "categoryIndex": 1,
+    "question": "Splinter Cell serisinin gizli ajanı kimdir?",
+    "options": [
+      "Sam Fisher",
+      "Solid Snake",
+      "Agent 47",
+      "Max Payne"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sam Fisher, yüksek teknoloji ekipmanlarla gizli operasyonlar yürüten Third Echelon ajanıdır."
+  },
+  {
+    "id": "q54049",
+    "categoryIndex": 1,
+    "question": "Hitman serisinin kel suikastçısının kod adı nedir?",
+    "options": [
+      "Agent 13",
+      "Agent 47",
+      "Agent Zero",
+      "Agent 99"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Agent 47 ensesindeki barkod ve kırmızı kravatlı takım elbisesiyle tanınır."
+  },
+  {
+    "id": "q54050",
+    "categoryIndex": 1,
+    "question": "Max Payne’in en ayırt edici oynanış özelliği hangisidir?",
+    "options": [
+      "Portal açma",
+      "Zaman yolculuğu",
+      "Bullet time",
+      "Görünmezlik"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bullet time çatışmaları ağır çekime alarak oyuncuya nişan alma ve kaçınma fırsatı verir."
+  },
+  {
+    "id": "q54051",
+    "categoryIndex": 1,
+    "question": "The Sims oyunlarında karakterlerin konuştuğu kurmaca dilin adı nedir?",
+    "options": [
+      "Hylian",
+      "Klingon",
+      "Dovahzul",
+      "Simlish"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Simlish anlamlı sözcüklerden çok duygu ve tonlamayla iletişim kuran eğlenceli bir kurmaca dildir."
+  },
+  {
+    "id": "q54052",
+    "categoryIndex": 1,
+    "question": "Animal Crossing’de oyuncuya ev kredisi veren rakun karakter kimdir?",
+    "options": [
+      "Tom Nook",
+      "K.K. Slider",
+      "Blathers",
+      "Resetti"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tom Nook ada ve kasaba projelerini yönetir, oyuncuya ev ve geliştirme kredileri sunar."
+  },
+  {
+    "id": "q54053",
+    "categoryIndex": 1,
+    "question": "Kirby’nin en bilinen gücü nedir?",
+    "options": [
+      "Zamanı dondurmak",
+      "Düşmanları içine çekmek",
+      "Duvarlardan geçmek",
+      "Işınlanmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kirby düşmanları içine çekip yutarak bazılarının özel yeteneklerini kopyalayabilir."
+  },
+  {
+    "id": "q54054",
+    "categoryIndex": 1,
+    "question": "Metroid serisinin zırhlı ödül avcısı kimdir?",
+    "options": [
+      "Bayonetta",
+      "Lara Croft",
+      "Samus Aran",
+      "Jill Valentine"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Samus Aran uzay korsanları ve Metroid canlılarıyla savaşan deneyimli bir ödül avcısıdır."
+  },
+  {
+    "id": "q54055",
+    "categoryIndex": 2,
+    "question": "Antik Mısır’ın piramitleri en çok hangi amaçla inşa edildi?",
+    "options": [
+      "Pazar yeri olarak",
+      "Askerî kale olarak",
+      "Gözlemevi olarak",
+      "Kraliyet mezarı olarak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Büyük piramitler firavunların mezar komplekslerinin merkezinde yer alıyordu."
+  },
+  {
+    "id": "q54056",
+    "categoryIndex": 2,
+    "question": "Mısır’daki Büyük Sfenks’in gövdesi hangi hayvana benzer?",
+    "options": [
+      "Aslan",
+      "Boğa",
+      "Kartal",
+      "At"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Büyük Sfenks insan başı ve aslan gövdesiyle kraliyet gücünü simgeler."
+  },
+  {
+    "id": "q54057",
+    "categoryIndex": 2,
+    "question": "Antik Yunan’da demokrasinin geliştiği şehir devleti hangisidir?",
+    "options": [
+      "Sparta",
+      "Atina",
+      "Korint",
+      "Makedonya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Atina’da yurttaşların doğrudan katıldığı meclis temelli yönetim sistemi gelişti."
+  },
+  {
+    "id": "q54058",
+    "categoryIndex": 2,
+    "question": "Sparta’nın askerî eğitim sistemine ne denirdi?",
+    "options": [
+      "Agora",
+      "Heliaia",
+      "Agoge",
+      "Ostrakismos"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Agoge, Spartalı erkek çocuklarını disiplinli asker ve yurttaş olarak yetiştiren devlet eğitim sistemiydi."
+  },
+  {
+    "id": "q54059",
+    "categoryIndex": 2,
+    "question": "Atina’daki merkezi pazar ve toplantı alanına ne denirdi?",
+    "options": [
+      "Akropolis",
+      "Stoa",
+      "Hipodrom",
+      "Agora"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Agora ticaret, siyaset, din ve gündelik yaşamın buluştuğu kamusal merkezdi."
+  },
+  {
+    "id": "q54060",
+    "categoryIndex": 2,
+    "question": "Roma’daki merkezi kamusal alana ne ad verilir?",
+    "options": [
+      "Forum",
+      "Agora",
+      "Akropolis",
+      "Amfitiyatro"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Roma Forumu tapınaklar, mahkemeler ve devlet yapılarıyla siyasi yaşamın kalbiydi."
+  },
+  {
+    "id": "q54061",
+    "categoryIndex": 2,
+    "question": "Roma ordusunun temel büyük birliğine ne denirdi?",
+    "options": [
+      "Falanks",
+      "Lejyon",
+      "Tümen",
+      "Centuria"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Roma lejyonu binlerce askerden oluşan, daha küçük birliklere ayrılmış düzenli bir askerî yapıydı."
+  },
+  {
+    "id": "q54062",
+    "categoryIndex": 2,
+    "question": "Roma yollarının merkezini simgeleyen ünlü söz hangisidir?",
+    "options": [
+      "Vakit nakittir",
+      "Bilgi güçtür",
+      "Bütün yollar Roma’ya çıkar",
+      "Tarih tekerrür eder"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Roma’nın geniş yol ağı başkenti eyaletlerle bağladığı için bu söz ortaya çıkmıştır."
+  },
+  {
+    "id": "q54063",
+    "categoryIndex": 2,
+    "question": "Orta Çağ Avrupa’sında toprağa bağlı köylüye ne denirdi?",
+    "options": [
+      "Senatör",
+      "Patrici",
+      "Konsül",
+      "Serf"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Serfler özgür köle değildi ancak yaşadıkları toprağa ve derebeyine bağlı yükümlülükler taşıyordu."
+  },
+  {
+    "id": "q54064",
+    "categoryIndex": 2,
+    "question": "Feodal düzende toprağı yöneten soyluya ne denirdi?",
+    "options": [
+      "Derebeyi",
+      "Lonca ustası",
+      "Konsül",
+      "Tribün"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Derebeyleri toprak karşılığında askerî ve ekonomik bağlılık ilişkileri kurardı."
+  },
+  {
+    "id": "q54065",
+    "categoryIndex": 2,
+    "question": "Orta Çağ şehirlerinde aynı meslekten zanaatkârların örgütüne ne denirdi?",
+    "options": [
+      "Lejyon",
+      "Lonca",
+      "Manastır",
+      "Senato"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Loncalar üretim kalitesini, fiyatları, çıraklık ve ustalık kurallarını düzenlerdi."
+  },
+  {
+    "id": "q54066",
+    "categoryIndex": 2,
+    "question": "Kara barut Avrupa savaşlarında hangi dönemde yaygınlaştı?",
+    "options": [
+      "Taş Devri’nde",
+      "Antik Mısır döneminde",
+      "Orta Çağ’ın sonlarında",
+      "Sanayi Devrimi sonrasında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Barut 13. ve 14. yüzyıllarda Avrupa’da top ve ateşli silahlarda giderek yaygınlaştı."
+  },
+  {
+    "id": "q54067",
+    "categoryIndex": 2,
+    "question": "Matbaanın yayılması Avrupa’da hangi hareketi hızlandırdı?",
+    "options": [
+      "Feodalizmin güçlenmesini",
+      "El yazmalarının yasaklanmasını",
+      "Deniz ticaretinin bitmesini",
+      "Bilginin kitlesel yayılmasını"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Basılı kitapların ucuzlaması okuryazarlık, bilim ve dinî tartışmaların daha geniş kitlelere ulaşmasını sağladı."
+  },
+  {
+    "id": "q54068",
+    "categoryIndex": 2,
+    "question": "Rönesans sözcüğü hangi anlamı taşır?",
+    "options": [
+      "Yeniden doğuş",
+      "Büyük savaş",
+      "Yeni kıta",
+      "Kutsal birlik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Rönesans, antik Yunan ve Roma kültürüne duyulan ilginin yeniden canlanmasını ifade eder."
+  },
+  {
+    "id": "q54069",
+    "categoryIndex": 2,
+    "question": "Aydınlanma Çağı’nda en çok hangi değer öne çıktı?",
+    "options": [
+      "Soylu doğum",
+      "Akıl ve eleştirel düşünce",
+      "Kapalı loncalar",
+      "Mutlak itaat"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Aydınlanma düşünürleri akıl, deney, özgürlük ve bireysel hakları vurguladı."
+  },
+  {
+    "id": "q54070",
+    "categoryIndex": 2,
+    "question": "Sanayi Devrimi’nde fabrikaların temel enerji kaynaklarından biri neydi?",
+    "options": [
+      "Odun kömürü",
+      "Güneş paneli",
+      "Kömür",
+      "Petrol"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kömür buhar makinelerini ve demir üretimini besleyerek sanayileşmenin ana yakıtlarından biri oldu."
+  },
+  {
+    "id": "q54071",
+    "categoryIndex": 2,
+    "question": "Demiryolları Sanayi Devrimi’nde en çok hangi alanı hızlandırdı?",
+    "options": [
+      "El yazması üretimini",
+      "Deniz seviyesini",
+      "Tarım toprağı oluşumunu",
+      "Mal ve insan taşımacılığını"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Demiryolları ham maddeleri, ürünleri ve insanları daha hızlı ve ucuz taşımayı sağladı."
+  },
+  {
+    "id": "q54072",
+    "categoryIndex": 3,
+    "question": "Sefiller romanındaki küçük kız Cosette’i kim büyütürken kötü davranır?",
+    "options": [
+      "Thénardier ailesi",
+      "Bennet ailesi",
+      "Buendía ailesi",
+      "March ailesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Cosette, annesi Fantine çalışırken Thénardier ailesinin yanında ağır koşullarda yaşar."
+  },
+  {
+    "id": "q54073",
+    "categoryIndex": 3,
+    "question": "Notre-Dame’ın Kamburu’ndaki genç Roman kızın adı nedir?",
+    "options": [
+      "Cosette",
+      "Esmeralda",
+      "Ophelia",
+      "Carmen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Esmeralda, Quasimodo ve Frollo’nun kaderlerini etkileyen merhametli bir dansçıdır."
+  },
+  {
+    "id": "q54074",
+    "categoryIndex": 3,
+    "question": "Madame Bovary romanının başkahramanı kimdir?",
+    "options": [
+      "Anna Karenina",
+      "Nora Helmer",
+      "Emma Bovary",
+      "Tess Durbeyfield"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Emma Bovary romantik hayalleri ile taşra yaşamının gerçekliği arasında mutsuzluk yaşar."
+  },
+  {
+    "id": "q54075",
+    "categoryIndex": 3,
+    "question": "Gurur ve Önyargı’daki erkek başkahraman kimdir?",
+    "options": [
+      "Mr. Rochester",
+      "Heathcliff",
+      "Edward Ferrars",
+      "Mr. Darcy"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Fitzwilliam Darcy ilk başta kibirli görünür ancak Elizabeth Bennet’le ilişkisi boyunca değişir."
+  },
+  {
+    "id": "q54076",
+    "categoryIndex": 3,
+    "question": "Jane Eyre’in âşık olduğu malikâne sahibi kimdir?",
+    "options": [
+      "Mr. Rochester",
+      "Mr. Darcy",
+      "Heathcliff",
+      "Mr. Knightley"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Jane, Thornfield Hall’da mürebbiye olarak çalışırken Edward Rochester’a âşık olur."
+  },
+  {
+    "id": "q54077",
+    "categoryIndex": 3,
+    "question": "Küçük Kadınlar’da yazar olmayı isteyen kız kardeş kimdir?",
+    "options": [
+      "Meg March",
+      "Jo March",
+      "Beth March",
+      "Amy March"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Jo bağımsız ruhu ve yazarlık hayaliyle romanın en güçlü merkez karakterlerinden biridir."
+  },
+  {
+    "id": "q54078",
+    "categoryIndex": 3,
+    "question": "Bülbülü Öldürmek romanındaki avukat babanın adı nedir?",
+    "options": [
+      "Tom Robinson",
+      "Boo Radley",
+      "Atticus Finch",
+      "Bob Ewell"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Atticus Finch, ırkçılıkla suçlanan Tom Robinson’ı savunur ve çocuklarına adalet duygusu aşılar."
+  },
+  {
+    "id": "q54079",
+    "categoryIndex": 3,
+    "question": "Gazap Üzümleri romanını kim yazdı?",
+    "options": [
+      "Ernest Hemingway",
+      "William Faulkner",
+      "F. Scott Fitzgerald",
+      "John Steinbeck"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Steinbeck, Büyük Buhran sırasında Joad ailesinin Oklahoma’dan Kaliforniya’ya göçünü anlatır."
+  },
+  {
+    "id": "q54080",
+    "categoryIndex": 3,
+    "question": "Fareler ve İnsanlar’daki iki gezgin işçinin adları nedir?",
+    "options": [
+      "George ve Lennie",
+      "Tom ve Huck",
+      "Nick ve Gatsby",
+      "Holmes ve Watson"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "George ile Lennie kendi çiftliklerini kurma hayaliyle Büyük Buhran döneminde iş arar."
+  },
+  {
+    "id": "q54081",
+    "categoryIndex": 3,
+    "question": "Silahlara Veda romanını kim yazdı?",
+    "options": [
+      "John Steinbeck",
+      "Ernest Hemingway",
+      "Joseph Heller",
+      "Kurt Vonnegut"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hemingway’in romanı I. Dünya Savaşı sırasında bir Amerikalı ambulans subayı ile hemşirenin ilişkisini anlatır."
+  },
+  {
+    "id": "q54082",
+    "categoryIndex": 3,
+    "question": "Çanlar Kimin İçin Çalıyor romanı hangi savaş sırasında geçer?",
+    "options": [
+      "I. Dünya Savaşı",
+      "Amerikan İç Savaşı",
+      "İspanya İç Savaşı",
+      "Kırım Savaşı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Roman Cumhuriyetçiler için köprü havaya uçurma görevi alan Robert Jordan’ın hikâyesini anlatır."
+  },
+  {
+    "id": "q54083",
+    "categoryIndex": 3,
+    "question": "Mezbaha No. 5 romanının yazarı kimdir?",
+    "options": [
+      "Joseph Heller",
+      "Ray Bradbury",
+      "Philip K. Dick",
+      "Kurt Vonnegut"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Vonnegut savaş, travma ve zaman algısını Billy Pilgrim’in sıra dışı hikâyesiyle işler."
+  },
+  {
+    "id": "q54084",
+    "categoryIndex": 3,
+    "question": "Androidler Elektrikli Koyun Düşler mi romanını kim yazdı?",
+    "options": [
+      "Philip K. Dick",
+      "Isaac Asimov",
+      "Arthur C. Clarke",
+      "Frank Herbert"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Roman insan ile yapay yaşam arasındaki sınırı sorgular ve Blade Runner filmine ilham vermiştir."
+  },
+  {
+    "id": "q54085",
+    "categoryIndex": 3,
+    "question": "Dune romanının yazarı kimdir?",
+    "options": [
+      "Ursula K. Le Guin",
+      "Frank Herbert",
+      "Robert Heinlein",
+      "Roger Zelazny"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Dune, Arrakis gezegeni ve baharat üzerindeki siyasi, ekolojik ve dinî mücadeleyi anlatır."
+  },
+  {
+    "id": "q54086",
+    "categoryIndex": 3,
+    "question": "Vakıf serisinin yazarı kimdir?",
+    "options": [
+      "Arthur C. Clarke",
+      "Ray Bradbury",
+      "Isaac Asimov",
+      "Stanislaw Lem"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Asimov’un Vakıf serisi, galaktik imparatorluğun çöküşünü matematiksel psik tarih bilimi üzerinden işler."
+  },
+  {
+    "id": "q54087",
+    "categoryIndex": 3,
+    "question": "2001: Bir Uzay Destanı romanını kim yazdı?",
+    "options": [
+      "Isaac Asimov",
+      "Frank Herbert",
+      "Douglas Adams",
+      "Arthur C. Clarke"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Clarke’ın romanı Stanley Kubrick filmiyle birlikte geliştirilmiş ve insan evrimi ile yapay zekâyı işlemiştir."
+  },
+  {
+    "id": "q54088",
+    "categoryIndex": 3,
+    "question": "Otostopçunun Galaksi Rehberi’nin yazarı kimdir?",
+    "options": [
+      "Douglas Adams",
+      "Terry Pratchett",
+      "Neil Gaiman",
+      "Kurt Vonnegut"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Douglas Adams’ın mizahi bilimkurgu serisi Dünya’nın yok edilmesinden sonra Arthur Dent’in maceralarını anlatır."
+  },
+  {
+    "id": "q54089",
+    "categoryIndex": 4,
+    "question": "Suyun kimyasal formülü nedir?",
+    "options": [
+      "CO₂",
+      "H₂O",
+      "O₂",
+      "NaCl"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bir su molekülü iki hidrojen ve bir oksijen atomundan oluşur."
+  },
+  {
+    "id": "q54090",
+    "categoryIndex": 4,
+    "question": "Karbondioksitin kimyasal formülü nedir?",
+    "options": [
+      "CO",
+      "O₂",
+      "CO₂",
+      "CH₄"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Karbondioksit bir karbon ve iki oksijen atomundan oluşur."
+  },
+  {
+    "id": "q54091",
+    "categoryIndex": 4,
+    "question": "Sofra tuzunun kimyasal adı nedir?",
+    "options": [
+      "Potasyum nitrat",
+      "Kalsiyum karbonat",
+      "Magnezyum sülfat",
+      "Sodyum klorür"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sofra tuzu sodyum ve klor iyonlarından oluşan NaCl bileşiğidir."
+  },
+  {
+    "id": "q54092",
+    "categoryIndex": 4,
+    "question": "Atmosferde sera etkisine katkı sağlayan başlıca gazlardan biri hangisidir?",
+    "options": [
+      "Karbondioksit",
+      "Azot",
+      "Neon",
+      "Helyum"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Karbondioksit ısı ışınımını soğurarak atmosferin ısınmasına katkıda bulunur."
+  },
+  {
+    "id": "q54093",
+    "categoryIndex": 4,
+    "question": "Metanın kimyasal formülü nedir?",
+    "options": [
+      "CO₂",
+      "CH₄",
+      "NH₃",
+      "H₂S"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Metan bir karbon ve dört hidrojen atomundan oluşan yanıcı bir gazdır."
+  },
+  {
+    "id": "q54094",
+    "categoryIndex": 4,
+    "question": "Amonyağın kimyasal formülü nedir?",
+    "options": [
+      "NO₂",
+      "CH₄",
+      "NH₃",
+      "HCl"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Amonyak bir azot ve üç hidrojen atomundan oluşan keskin kokulu bir bileşiktir."
+  },
+  {
+    "id": "q54095",
+    "categoryIndex": 4,
+    "question": "Oksijen gazı doğada çoğunlukla hangi molekül hâlinde bulunur?",
+    "options": [
+      "O",
+      "O₃",
+      "H₂O",
+      "O₂"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Soluduğumuz oksijen iki oksijen atomundan oluşan O₂ molekülüdür."
+  },
+  {
+    "id": "q54096",
+    "categoryIndex": 4,
+    "question": "Ozonun kimyasal formülü nedir?",
+    "options": [
+      "O₃",
+      "O₂",
+      "CO₃",
+      "H₃O"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ozon üç oksijen atomundan oluşur ve stratosferde zararlı morötesi ışınımı soğurur."
+  },
+  {
+    "id": "q54097",
+    "categoryIndex": 4,
+    "question": "Asitler mavi turnusol kâğıdını hangi renge çevirir?",
+    "options": [
+      "Yeşil",
+      "Kırmızı",
+      "Sarı",
+      "Beyaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Asidik çözeltiler mavi turnusolü kırmızıya dönüştürür."
+  },
+  {
+    "id": "q54098",
+    "categoryIndex": 4,
+    "question": "Bazlar kırmızı turnusol kâğıdını hangi renge çevirir?",
+    "options": [
+      "Kırmızı",
+      "Siyah",
+      "Mavi",
+      "Turuncu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bazik çözeltiler kırmızı turnusolü maviye dönüştürür."
+  },
+  {
+    "id": "q54099",
+    "categoryIndex": 4,
+    "question": "pH değeri 7’den düşük olan çözeltiler nasıl adlandırılır?",
+    "options": [
+      "Bazik",
+      "Nötr",
+      "Radyoaktif",
+      "Asidik"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sulu çözeltilerde 7’nin altındaki pH değerleri asidik ortamı gösterir."
+  },
+  {
+    "id": "q54100",
+    "categoryIndex": 4,
+    "question": "pH değeri 7’den yüksek olan çözeltiler nasıl adlandırılır?",
+    "options": [
+      "Bazik",
+      "Asidik",
+      "Nötr",
+      "Metallic"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sulu çözeltilerde 7’nin üzerindeki pH değerleri bazik ortamı gösterir."
+  },
+  {
+    "id": "q54101",
+    "categoryIndex": 4,
+    "question": "Bir atomun merkezindeki yapıya ne denir?",
+    "options": [
+      "Yörünge",
+      "Çekirdek",
+      "Molekül",
+      "Kristal"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Atom çekirdeği proton ve nötronları barındırır; elektronlar çevresindeki orbitallerde bulunur."
+  },
+  {
+    "id": "q54102",
+    "categoryIndex": 4,
+    "question": "Negatif elektrik yüküne sahip parçacık hangisidir?",
+    "options": [
+      "Proton",
+      "Nötron",
+      "Elektron",
+      "Foton"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Elektron atomun çevresinde bulunan negatif yüklü temel parçacıktır."
+  },
+  {
+    "id": "q54103",
+    "categoryIndex": 4,
+    "question": "Pozitif elektrik yüküne sahip atom altı parçacık hangisidir?",
+    "options": [
+      "Elektron",
+      "Nötron",
+      "Nötrino",
+      "Proton"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Proton atom çekirdeğinde bulunan pozitif yüklü parçacıktır."
+  },
+  {
+    "id": "q54104",
+    "categoryIndex": 4,
+    "question": "Elektrik yükü olmayan atom altı parçacık hangisidir?",
+    "options": [
+      "Nötron",
+      "Proton",
+      "Elektron",
+      "Pozitron"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Nötron atom çekirdeğinde bulunur ve net elektrik yükü taşımaz."
+  },
+  {
+    "id": "q54105",
+    "categoryIndex": 5,
+    "question": "Bir futbol hakemi maçta oyunu başlatmak için ne kullanır?",
+    "options": [
+      "Bayrak",
+      "Düdük",
+      "Kronometre",
+      "Kart"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hakem düdüğü oyunu başlatmak, durdurmak ve ihlalleri bildirmek için kullanır."
+  },
+  {
+    "id": "q54106",
+    "categoryIndex": 5,
+    "question": "Futbolda yardımcı hakemin temel araçlarından biri hangisidir?",
+    "options": [
+      "Raket",
+      "Sopa",
+      "Bayrak",
+      "Disk"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yardımcı hakem bayrakla ofsayt, taç ve diğer kararları orta hakeme bildirir."
+  },
+  {
+    "id": "q54107",
+    "categoryIndex": 5,
+    "question": "Basketbolda maçın başlangıcında top nasıl oyuna sokulur?",
+    "options": [
+      "Penaltıyla",
+      "Servisle",
+      "Kornerle",
+      "Hava atışıyla"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hakem orta yuvarlakta topu iki rakip oyuncu arasında havaya atarak maçı başlatır."
+  },
+  {
+    "id": "q54108",
+    "categoryIndex": 5,
+    "question": "Voleybolda oyun hangi vuruşla başlar?",
+    "options": [
+      "Servis",
+      "Smaç",
+      "Blok",
+      "Manşet"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Her ralli arka çizginin gerisinden kullanılan servisle başlar."
+  },
+  {
+    "id": "q54109",
+    "categoryIndex": 5,
+    "question": "Teniste oyun hangi vuruşla başlar?",
+    "options": [
+      "Vole",
+      "Servis",
+      "Lob",
+      "Smash"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Her puan, oyuncunun servis kutusuna çapraz gönderdiği servisle başlar."
+  },
+  {
+    "id": "q54110",
+    "categoryIndex": 5,
+    "question": "Badmintonda oyunu başlatan vuruşa ne denir?",
+    "options": [
+      "Drop",
+      "Clear",
+      "Servis",
+      "Smash"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Tüytop bel hizasının altında vurularak çapraz servis alanına gönderilir."
+  },
+  {
+    "id": "q54111",
+    "categoryIndex": 5,
+    "question": "Masa tenisinde top servis sırasında önce nereye değmelidir?",
+    "options": [
+      "Doğrudan rakip sahaya",
+      "File direğine",
+      "Zemine",
+      "Servis atan oyuncunun sahasına"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Serviste top önce servisçinin yarı sahasına, sonra fileyi geçerek rakip yarı sahaya seker."
+  },
+  {
+    "id": "q54112",
+    "categoryIndex": 5,
+    "question": "Beyzbolda sayı kazanmak için oyuncu son olarak hangi kaleye dönmelidir?",
+    "options": [
+      "Ana kale",
+      "Birinci kale",
+      "İkinci kale",
+      "Üçüncü kale"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Koşucu kaleleri sırayla dolaşıp home plate olarak bilinen ana kaleye ulaşınca run kazanır."
+  },
+  {
+    "id": "q54113",
+    "categoryIndex": 5,
+    "question": "Krikette koşu kazanmak için vurucular ne yapar?",
+    "options": [
+      "Topu potaya atar",
+      "İki wicket arasında yer değiştirir",
+      "Rakibe dokunur",
+      "Sahadan çıkar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Vurucular karşı uçlara koşup güvenli biçimde yer değiştirerek bir run kazanır."
+  },
+  {
+    "id": "q54114",
+    "categoryIndex": 5,
+    "question": "Golfte topu deliğe yuvarlamak için kullanılan sopa hangisidir?",
+    "options": [
+      "Driver",
+      "Wedge",
+      "Putter",
+      "Iron"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Putter, green üzerinde kısa ve kontrollü vuruşlar için tasarlanmıştır."
+  },
+  {
+    "id": "q54115",
+    "categoryIndex": 5,
+    "question": "Boksta rakibi yere düşürüp sayım sonunda kalkamamasına ne denir?",
+    "options": [
+      "Tuş",
+      "Ippon",
+      "Ace",
+      "Knockout"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Hakemin sayımı bitene kadar ayağa kalkamayan boksör nakavtla maçı kaybeder."
+  },
+  {
+    "id": "q54116",
+    "categoryIndex": 5,
+    "question": "Judoda sporcuların giydiği geleneksel kıyafete ne denir?",
+    "options": [
+      "Judogi",
+      "Kimono",
+      "Dobok",
+      "Keikogi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Judogi dayanıklı ceket, pantolon ve kemerden oluşan judo üniformasıdır."
+  },
+  {
+    "id": "q54117",
+    "categoryIndex": 5,
+    "question": "Karatede sporcuların giydiği kıyafete ne denir?",
+    "options": [
+      "Judogi",
+      "Karategi",
+      "Dobok",
+      "Hakama"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Karategi, karate antrenman ve müsabakalarında kullanılan hafif beyaz üniformadır."
+  },
+  {
+    "id": "q54118",
+    "categoryIndex": 5,
+    "question": "Tekvandoda sporcuların giydiği üniformaya ne denir?",
+    "options": [
+      "Gi",
+      "Hakama",
+      "Dobok",
+      "Yukata"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Dobok, tekvandonun beyaz ceket ve pantolondan oluşan geleneksel antrenman kıyafetidir."
+  },
+  {
+    "id": "q54119",
+    "categoryIndex": 5,
+    "question": "Eskrimde yüzü koruyan ekipman hangisidir?",
+    "options": [
+      "Kask vizörü",
+      "Gözlük",
+      "Baş bandı",
+      "Maske"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Eskrim maskesi yüzü ve başı metal ağ ve dolguyla korur."
+  },
+  {
+    "id": "q54120",
+    "categoryIndex": 5,
+    "question": "Okçulukta yayı geriye çeken parçaya ne denir?",
+    "options": [
+      "Kiriş",
+      "Kabza",
+      "Tüy",
+      "Hedef"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Okçu yayı germek için kirişi geriye çeker ve bıraktığında enerji oka aktarılır."
+  }
+]

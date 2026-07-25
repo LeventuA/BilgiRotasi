@@ -1,0 +1,1402 @@
+[
+  {
+    "categoryIndex": 5,
+    "question": "MotoGP’de kullanılan yarış araçları hangileridir?",
+    "options": [
+      "Prototip motosikletler",
+      "Elektrikli bisikletler",
+      "Karting araçları",
+      "Ralli otomobilleri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "MotoGP, yol için seri üretilmeyen özel prototip yarış motosikletlerinin en üst sınıfıdır.",
+    "id": "q55921"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Varşova Paktı hangi askerî ittifaka karşı kuruldu?",
+    "options": [
+      "Avrupa Birliği",
+      "NATO",
+      "Milletler Cemiyeti",
+      "Bağlantısızlar Hareketi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sovyetler Birliği ve Doğu Bloku ülkeleri 1955’te NATO’ya karşı Varşova Paktı’nı kurdu.",
+    "id": "q55922"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kore Savaşı’nı durduran ateşkes hangi yıl imzalandı?",
+    "options": [
+      "1950",
+      "1945",
+      "1953",
+      "1960"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Panmunjom Ateşkesi 27 Temmuz 1953’te çatışmaları durdurdu ancak barış antlaşması imzalanmadı.",
+    "id": "q55923"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Başlangıç meridyeni hangi İngiliz gözlemevinden geçer?",
+    "options": [
+      "Cambridge",
+      "Edinburgh",
+      "Oxford",
+      "Greenwich"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "0 derece boylamı olarak kabul edilen başlangıç meridyeni Greenwich Gözlemevi’nden geçer.",
+    "id": "q55924"
+  },
+  {
+    "id": "q55925",
+    "categoryIndex": 2,
+    "question": "Berlin Konferansı’nın temel konusu neydi?",
+    "options": [
+      "Afrika’nın Avrupalı güçlerce paylaşımı",
+      "Balkan sınırları",
+      "Kutsal Roma İmparatorluğu",
+      "Almanya’nın birleşmesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1884–1885 Berlin Konferansı, Afrika’daki sömürge rekabetinin kurallarını belirlemeye çalıştı."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Salk Enstitüsü’nün mimarı kimdir?",
+    "options": [
+      "Oscar Niemeyer",
+      "Louis Kahn",
+      "Alvar Aalto",
+      "Mies van der Rohe"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Louis Kahn, La Jolla’daki araştırma kompleksini simetrik laboratuvar blokları ve açık avluyla tasarladı.",
+    "id": "q55926"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Villa Savoye hangi mimarın eseridir?",
+    "options": [
+      "Antoni Gaudí",
+      "Frank Lloyd Wright",
+      "Le Corbusier",
+      "Walter Gropius"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Villa Savoye, Le Corbusier’nin modern mimarlık için belirlediği beş ilkeyi sergiler.",
+    "id": "q55927"
+  },
+  {
+    "id": "q55928",
+    "categoryIndex": 4,
+    "question": "Bombardıman böceği kendini savunurken ne püskürtür?",
+    "options": [
+      "Yapışkan örümcek ağı",
+      "Dondurucu gaz",
+      "Elektrik yüklü su",
+      "Sıcak ve tahriş edici kimyasal karışım"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Bombardıman böceği, karın kısmındaki iki maddenin tepkimesiyle oluşan sıcak ve tahriş edici spreyi saldırgana yöneltir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Bauhaus okulu hangi ülkede kuruldu?",
+    "options": [
+      "Almanya",
+      "İsviçre",
+      "Avusturya",
+      "Hollanda"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Walter Gropius, Bauhaus’u 1919’da Almanya’nın Weimar kentinde kurdu.",
+    "id": "q55929"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Park Güell’i tasarlayan Katalan mimar kimdir?",
+    "options": [
+      "Santiago Calatrava",
+      "Antoni Gaudí",
+      "Ricardo Bofill",
+      "Lluís Domènech i Montaner"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Gaudí’nin Barselona’daki parkı renkli seramik mozaikler ve organik biçimlerle doludur.",
+    "id": "q55930"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Elektronun elektrik yükü nedir?",
+    "options": [
+      "Pozitif",
+      "Değişken",
+      "Negatif",
+      "Nötr"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Elektron, temel negatif elektrik yükünü taşır.",
+    "id": "q55931"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Aynı boylam üzerindeki yerlerde en çok hangi zaman özelliği benzerdir?",
+    "options": [
+      "Güneşin doğuş saati",
+      "Yıllık yağış",
+      "Mevsim süresi",
+      "Yerel öğle vakti"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Aynı meridyen üzerindeki yerlerde Güneş gökyüzünün en yüksek noktasına yaklaşık aynı anda ulaşır.",
+    "id": "q55932"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Tetris’te dört karelik düz parçanın harf adı nedir?",
+    "options": [
+      "I tetrominosu",
+      "T tetrominosu",
+      "O tetrominosu",
+      "S tetrominosu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Dört bloktan oluşan düz parça, biçimi nedeniyle I tetrominosu diye adlandırılır.",
+    "id": "q55933"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Haritadaki yükseltiyi aynı değerdeki noktaları birleştirerek gösteren çizgilere ne denir?",
+    "options": [
+      "Meridyen",
+      "İzohips",
+      "İzoterm",
+      "İzobar"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İzohips ya da eş yükselti eğrileri, aynı yükseltiye sahip noktaları birleştirir.",
+    "id": "q55934"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Hava basıncı eşit noktaları birleştiren çizgilere ne denir?",
+    "options": [
+      "Paralel",
+      "İzoterm",
+      "İzobar",
+      "İzohips"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Meteoroloji haritalarındaki izobarlar, eşit hava basıncına sahip noktaları birleştirir.",
+    "id": "q55935"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Protonun elektrik yükü nedir?",
+    "options": [
+      "Nötr",
+      "Yüksüz ama manyetik",
+      "Negatif",
+      "Pozitif"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Protonun yük büyüklüğü elektronunkiyle eşit, işareti pozitiftir.",
+    "id": "q55936"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Among Us’ta sabotaj yapan gizli role ne denir?",
+    "options": [
+      "Impostor",
+      "Traitor King",
+      "Saboteur",
+      "Sheriff"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Impostor, mürettebatın arasına karışıp görevleri sabote eder ve oyuncuları eler.",
+    "id": "q55937"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İnsanlığın Ay’a ilk ayak bastığı görev hangisidir?",
+    "options": [
+      "Apollo 8",
+      "Apollo 11",
+      "Gemini 4",
+      "Vostok 1"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Neil Armstrong ve Buzz Aldrin, Temmuz 1969’da Apollo 11 göreviyle Ay yüzeyine indi.",
+    "id": "q55938"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Sıcaklığı eşit noktaları haritada birleştiren çizgilere ne denir?",
+    "options": [
+      "İzobar",
+      "Eşyükselti",
+      "İzoterm",
+      "İzohips"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İzotermler, belirli bir anda ya da dönemde sıcaklığı eşit olan noktaları gösterir.",
+    "id": "q55939"
+  },
+  {
+    "id": "q55940",
+    "categoryIndex": 2,
+    "question": "Mau Mau Ayaklanması hangi ülkede sömürge yönetimine karşı gerçekleşti?",
+    "options": [
+      "Gana",
+      "Cezayir",
+      "Nijerya",
+      "Kenya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Mau Mau hareketi 1950’lerde Kenya’da Britanya sömürge yönetimine karşı mücadele etti."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Sovyetler Birliği hangi yıl dağıldı?",
+    "options": [
+      "1991",
+      "1989",
+      "1985",
+      "1995"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sovyetler Birliği Aralık 1991’de resmen sona erdi ve 15 bağımsız devlet ortaya çıktı.",
+    "id": "q55941"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Tetris parçalarının genel adı nedir?",
+    "options": [
+      "Polyhedron",
+      "Tetromino",
+      "Domino",
+      "Sprite"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tetris parçalarının her biri dört kareden oluşan bir tetrominodur.",
+    "id": "q55942"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Modern hemşireliğin öncüsü olarak tanınan kişi kimdir?",
+    "options": [
+      "Clara Barton",
+      "Mary Seacole",
+      "Florence Nightingale",
+      "Elizabeth Blackwell"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Florence Nightingale, Kırım Savaşı’ndaki çalışmaları ve hemşirelik eğitimiyle modern mesleğin öncülerinden oldu.",
+    "id": "q55943"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bir haritada ölçek küçüldükçe genellikle ne olur?",
+    "options": [
+      "Yalnız renkler değişir",
+      "Alan ve ayrıntı birlikte artar",
+      "Alan küçülür, ayrıntı artar",
+      "Gösterilen alan büyür, ayrıntı azalır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Küçük ölçekli haritalar geniş bölgeleri gösterir ancak ayrıntıları daha azdır.",
+    "id": "q55944"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Portal oyunlarında oyuncuya eşlik eden kalpli küpün adı nedir?",
+    "options": [
+      "Companion Cube",
+      "Energy Cell",
+      "Power Brick",
+      "Gravity Box"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Weighted Companion Cube, Portal’ın en akılda kalan nesnelerinden biridir.",
+    "id": "q55945"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "İnaktif, enjeksiyonla uygulanan çocuk felci aşısını geliştiren bilim insanı kimdir?",
+    "options": [
+      "Albert Sabin",
+      "Jonas Salk",
+      "Edward Jenner",
+      "Robert Koch"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Jonas Salk inaktif poliovirüs içeren enjeksiyon aşısını geliştirdi; Sabin ise daha sonra ağızdan verilen canlı aşıyı geliştirdi.",
+    "id": "q55946"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Rallide yardımcı sürücünün temel görevi nedir?",
+    "options": [
+      "Rakiplerin turunu saymak",
+      "Yakıt ikmali yapmak",
+      "Yol notlarını okumak",
+      "Aracı pitte tamir etmek"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Co-driver, viraj ve tehlikeleri önceden tarif eden pace note’ları sürücüye zamanında okur.",
+    "id": "q55947"
+  },
+  {
+    "id": "q55948",
+    "categoryIndex": 3,
+    "question": "Meksika duvar resmi hareketinin önde gelen sanatçılarından biri kimdir?",
+    "options": [
+      "Roberto Matta",
+      "Fernando Botero",
+      "Wifredo Lam",
+      "Diego Rivera"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Rivera’nın büyük duvar resimleri Meksika tarihi, emek ve toplum temalarını kamusal alanlara taşıdı."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Bir oyuncunun sahnede tek başına yaptığı uzun konuşmaya ne denir?",
+    "options": [
+      "Monolog",
+      "Koro",
+      "Perde",
+      "Mizansen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tek bir karakterin uzun ve kesintisiz konuşmasına monolog denir.",
+    "id": "q55949"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kütlenin korunumu yasasını deneylerle sistemleştiren Fransız kimyager kimdir?",
+    "options": [
+      "Robert Boyle",
+      "Antoine Lavoisier",
+      "John Dalton",
+      "Joseph Priestley"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Lavoisier, modern kimyanın gelişmesinde ve kütlenin korunumu ilkesinin açıklanmasında önemli rol oynadı.",
+    "id": "q55950"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Beatles hangi İngiliz şehrinde kuruldu?",
+    "options": [
+      "Leeds",
+      "Birmingham",
+      "Liverpool",
+      "Manchester"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "John Lennon, Paul McCartney, George Harrison ve Ringo Starr’dan oluşan grup Liverpool’da doğdu.",
+    "id": "q55951"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Tour de France genel klasman lideri hangi renk mayoyu giyer?",
+    "options": [
+      "Yeşil",
+      "Pembe",
+      "Kırmızı",
+      "Sarı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sarı mayo, yarışın toplam süresi en düşük olan genel klasman liderine verilir.",
+    "id": "q55952"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Queen grubunun klasik dönem solisti kimdir?",
+    "options": [
+      "Freddie Mercury",
+      "David Bowie",
+      "George Michael",
+      "Robert Plant"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Freddie Mercury, güçlü sesi ve sahne performansıyla Queen’in simgesi oldu.",
+    "id": "q55953"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Kuzey Yarımküre’de yaz gündönümü yaklaşık hangi tarihte yaşanır?",
+    "options": [
+      "21 Aralık",
+      "21 Haziran",
+      "21 Mart",
+      "23 Eylül"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kuzey Yarımküre’de en uzun gündüz, yaklaşık 21 Haziran’daki yaz gündönümünde yaşanır.",
+    "id": "q55954"
+  },
+  {
+    "id": "q55955",
+    "categoryIndex": 2,
+    "question": "Dreyfus Olayı hangi ülkede büyük bir siyasî krize dönüştü?",
+    "options": [
+      "Belçika",
+      "İtalya",
+      "Fransa",
+      "Almanya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yahudi subay Alfred Dreyfus’un haksız mahkûmiyeti Fransa’da adalet ve antisemitizm tartışmalarını büyüttü."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Pink Floyd’un The Dark Side of the Moon albüm kapağında hangi optik nesne vardır?",
+    "options": [
+      "Mercek",
+      "Ayna küresi",
+      "Teleskop",
+      "Prizma"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kapakta beyaz ışığı gökkuşağına ayıran üçgen bir prizma görülür.",
+    "id": "q55956"
+  },
+  {
+    "id": "q55957",
+    "categoryIndex": 4,
+    "question": "Elektrondan daha ağır, kısa ömürlü temel parçacık hangisidir?",
+    "options": [
+      "Müon",
+      "Gluon",
+      "Nötrino",
+      "Foton"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Müon, elektronla aynı elektrik yüküne sahip ancak ondan yaklaşık iki yüz kat daha ağır bir leptondur."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Giro d’Italia genel klasman liderinin mayosu hangi renktir?",
+    "options": [
+      "Mavi",
+      "Pembe",
+      "Turuncu",
+      "Sarı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Pembe mayo, yarışın kuruluşunda etkili olan pembe sayfalı La Gazzetta dello Sport gazetesine gönderme yapar.",
+    "id": "q55958"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Nirvana’nın Smells Like Teen Spirit şarkısı hangi albümdedir?",
+    "options": [
+      "In Utero",
+      "Bleach",
+      "Nevermind",
+      "Incesticide"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "1991 tarihli Nevermind albümünün açılış parçası Smells Like Teen Spirit’tir.",
+    "id": "q55959"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bir elementin atom numarası neyi gösterir?",
+    "options": [
+      "Elektron kabuğu sayısını",
+      "Nötron sayısını",
+      "Atomun hacmini",
+      "Proton sayısını"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Çekirdekteki proton sayısı elementi tanımlar ve atom numarasına eşittir.",
+    "id": "q55960"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Vuelta a España genel klasman lideri hangi renk mayoyu giyer?",
+    "options": [
+      "Kırmızı",
+      "Sarı",
+      "Pembe",
+      "Siyah"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "İspanya Bisiklet Turu’nun genel klasman lideri kırmızı mayoyu taşır.",
+    "id": "q55961"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Aynı elementin izotopları hangi parçacık sayısında farklıdır?",
+    "options": [
+      "Proton",
+      "Nötron",
+      "Çekirdekteki toplam yük",
+      "Valans protonu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İzotopların proton sayısı aynı, nötron ve dolayısıyla kütle numarası farklıdır.",
+    "id": "q55962"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Operada bir karakterin tek başına söylediği belirgin bölüme ne denir?",
+    "options": [
+      "Uvertür",
+      "Resitatif topluluğu",
+      "Arya",
+      "Koro"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Arya, karakterin duygularını melodik ve gösterişli biçimde ifade ettiği solo bölümdür.",
+    "id": "q55963"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Bir anlatının geçmişteki bir olaya dönmesine ne denir?",
+    "options": [
+      "Önsezi",
+      "Epilog",
+      "Bilinç akışı",
+      "Geriye dönüş"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Geriye dönüş ya da flashback, anlatıyı kronolojik akıştan çıkarıp geçmiş bir olaya götürür.",
+    "id": "q55964"
+  },
+  {
+    "id": "q55965",
+    "categoryIndex": 4,
+    "question": "Bukalemun dilini avına fırlatırken hangi özellikten yararlanır?",
+    "options": [
+      "Elastik dokularda depolanan enerjiden",
+      "Elektrik yükünden",
+      "Manyetik çekimden",
+      "Suyun kaldırma kuvvetinden"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Bukalemun dili kas ve elastik dokuların hızla boşalttığı enerjiyle vücut uzunluğunu aşan mesafelere uzanabilir."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "ABBA grubu hangi ülkede kuruldu?",
+    "options": [
+      "Danimarka",
+      "İsveç",
+      "Finlandiya",
+      "Norveç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "ABBA, 1970’lerde Stockholm’de kurulan İsveçli pop grubudur.",
+    "id": "q55966"
+  },
+  {
+    "id": "q55967",
+    "categoryIndex": 4,
+    "question": "Şeker kristalleri kırıldığında karanlıkta kısa bir ışık parlaması görülmesine ne denir?",
+    "options": [
+      "Biyolüminesans",
+      "Fosforesans",
+      "Tribolüminesans",
+      "Floresans"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Tribolüminesans, bazı kristallerin kırılma veya sürtünme sırasında elektrik yükleri ayrışınca ışık üretmesidir."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Sulu çözeltide asitler hangi iyonun derişimini artırır?",
+    "options": [
+      "Sodyum iyonu",
+      "Kalsiyum iyonu",
+      "Klorür iyonu",
+      "Hidrojen iyonu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Asitler suda H⁺ ya da hidronyum iyonu oluşumunu artırır.",
+    "id": "q55968"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Triatlonda sporcular hangi üç branşı sırayla tamamlar?",
+    "options": [
+      "Yüzme, bisiklet ve koşu",
+      "Koşu, kürek ve yüzme",
+      "Bisiklet, kayak ve koşu",
+      "Yüzme, atış ve binicilik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Standart triatlon sırası yüzme, bisiklet ve koşudur.",
+    "id": "q55969"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Satrançta şahın tehdit altında olup hiçbir yasal kaçışı kalmamasına ne denir?",
+    "options": [
+      "Pat",
+      "Mat",
+      "Rok",
+      "Şah çekme"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Şah mat olduğunda oyun hemen biter ve saldıran taraf kazanır.",
+    "id": "q55970"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Daft Punk üyeleri sahnede en çok hangi aksesuarla tanınırdı?",
+    "options": [
+      "Maskeli balo gözlükleri",
+      "Taçlar",
+      "Robot kaskları",
+      "Kovboy şapkaları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Fransız ikili, kimliklerini fütüristik robot kasklarıyla sahne personasına dönüştürdü.",
+    "id": "q55971"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Bale dansçılarının parmak ucunda yükselmesini sağlayan ayakkabıya ne denir?",
+    "options": [
+      "Mokasen",
+      "Ghillie",
+      "Tap ayakkabısı",
+      "Pointe ayakkabısı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sert burun kutusu ve tabanı olan pointe ayakkabısı, ağırlığı parmak uçlarına dağıtır.",
+    "id": "q55972"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Komedi ve trajediyi simgeleyen tiyatro maskeleri hangi iki ifadeyi taşır?",
+    "options": [
+      "Gülen ve ağlayan yüz",
+      "Uyuyan ve uyanan yüz",
+      "Genç ve yaşlı yüz",
+      "Kızgın ve şaşkın yüz"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Antik tiyatrodan gelen iki maske, komedinin neşesi ile trajedinin kederini simgeler.",
+    "id": "q55973"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Mors alfabesi hangi iletişim aracıyla birlikte yaygınlaştı?",
+    "options": [
+      "Gramofon",
+      "Telgraf",
+      "Televizyon",
+      "Matbaa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Nokta ve çizgilerden oluşan kod, elektrikli telgraf üzerinden mesaj iletimini hızlandırdı.",
+    "id": "q55974"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Satrançta oyuncunun yasal hamlesi yokken şahı tehdit altında değilse sonuç nedir?",
+    "options": [
+      "Mat ve yenilgi",
+      "Taşların yeniden dizilmesi",
+      "Pat ve beraberlik",
+      "Ek süre"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Stalemate yani pat, oyunu beraberlikle sonuçlandırır.",
+    "id": "q55975"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Gece ve gündüzün yaklaşık eşit olduğu tarihlere ne denir?",
+    "options": [
+      "Muson",
+      "Gündönümü",
+      "Alize",
+      "Ekinoks"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Mart ve eylül ekinokslarında Güneş ışınları Ekvator’a dik gelir ve gece-gündüz süreleri yaklaşır.",
+    "id": "q55976"
+  },
+  {
+    "id": "q55977",
+    "categoryIndex": 2,
+    "question": "Bastille Hapishanesi hangi tarihte basıldı?",
+    "options": [
+      "14 Temmuz 1789",
+      "4 Temmuz 1776",
+      "18 Haziran 1815",
+      "1 Mayıs 1848"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "14 Temmuz 1789’daki Bastille Baskını Fransız Devrimi’nin simge olaylarından biridir."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Sulu çözeltide bazlar hangi iyonla ilişkilidir?",
+    "options": [
+      "Karbonat dışında proton",
+      "Hidroksit iyonu",
+      "Demir iyonu",
+      "Nitrat iyonu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Arrhenius tanımına göre bazlar suda OH⁻ derişimini artırır.",
+    "id": "q55978"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Moonwalk dans hareketiyle en çok özdeşleşen sanatçı kimdir?",
+    "options": [
+      "Prince",
+      "Bruno Mars",
+      "Michael Jackson",
+      "James Brown"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Michael Jackson, 1983’teki televizyon performansıyla moonwalk’u dünya çapında popülerleştirdi.",
+    "id": "q55979"
+  },
+  {
+    "id": "q55980",
+    "categoryIndex": 5,
+    "question": "Dünya Supersport Şampiyonası’nda birçok kez şampiyon olan Türk motosikletçi kimdir?",
+    "options": [
+      "Burak Yılmaz",
+      "Can Öncü",
+      "Toprak Razgatlıoğlu",
+      "Kenan Sofuoğlu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kenan Sofuoğlu, Dünya Supersport tarihinde birden fazla şampiyonluk kazanmış en başarılı isimlerdendir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Commedia dell’arte geleneğinde oyuncuların kullandığı karakterler genellikle nasıldır?",
+    "options": [
+      "Kalıplaşmış tipler",
+      "Tamamen sessiz figürler",
+      "Her oyunda aynı kral",
+      "Tarihî gerçek kişiler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Arlecchino ve Pantalone gibi tanınabilir tipler, doğaçlamaya dayalı İtalyan komedisinin temelidir.",
+    "id": "q55981"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Muson rüzgârlarının en belirgin özelliği nedir?",
+    "options": [
+      "Yalnız kutuplarda esmeleri",
+      "Mevsime göre yön değiştirmeleri",
+      "Sadece geceleri oluşmaları",
+      "Her zaman doğudan esmeleri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Musonlar, kara ve denizin farklı ısınması nedeniyle yaz ve kış arasında yön değiştirir.",
+    "id": "q55982"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Beyoncé solo kariyerinden önce hangi grubun üyesiydi?",
+    "options": [
+      "En Vogue",
+      "TLC",
+      "Destiny’s Child",
+      "Spice Girls"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Beyoncé, Kelly Rowland ve Michelle Williams ile Destiny’s Child’ın en bilinen kadrosunda yer aldı.",
+    "id": "q55983"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Periyodik tablonun en sağındaki grupta hangi elementler bulunur?",
+    "options": [
+      "Halojenler",
+      "Geçiş metalleri",
+      "Alkali metaller",
+      "Soy gazlar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Helyum, neon ve argon gibi soy gazların dış elektron kabukları büyük ölçüde doludur.",
+    "id": "q55984"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Buz hokeyinde kalenin önündeki yarım daire biçimli alana ne denir?",
+    "options": [
+      "Crease",
+      "Baseline",
+      "Bullpen",
+      "Paddock"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Goal crease, kalecinin hareket alanını ve bazı temas kurallarını belirleyen bölgedir.",
+    "id": "q55985"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Satrançta vezirin yaklaşık taş değeri kaç piyondur?",
+    "options": [
+      "Beş",
+      "Dokuz",
+      "On iki",
+      "Üç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Konuma göre değişse de klasik değerlendirmede vezir yaklaşık dokuz piyon değerindedir.",
+    "id": "q55986"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Adele’in yaşını taşıyan ve Rolling in the Deep’i içeren albümü hangisidir?",
+    "options": [
+      "19",
+      "25",
+      "21",
+      "30"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Adele’in ikinci stüdyo albümü 21, adını kaydedildiği dönemdeki yaşından alır.",
+    "id": "q55987"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "America’s Cup hangi sporun en eski uluslararası kupalarından biridir?",
+    "options": [
+      "Su topu",
+      "Sörf",
+      "Kürek",
+      "Yelkencilik"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "America’s Cup, yüksek teknolojili yelkenli tekneler arasında yapılan eşleşmeli yarış serisidir.",
+    "id": "q55988"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "EuroLeague şampiyonluğu kazanan ilk Türk basketbol takımı hangisidir?",
+    "options": [
+      "Fenerbahçe",
+      "Beşiktaş",
+      "Galatasaray",
+      "Anadolu Efes"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Fenerbahçe, 2017’de İstanbul’daki finalde Olympiakos’u yenerek kupayı kazandı.",
+    "id": "q55989"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Anadolu Efes ilk EuroLeague şampiyonluğunu hangi yıl kazandı?",
+    "options": [
+      "2017",
+      "2021",
+      "2023",
+      "2019"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Anadolu Efes, Köln’deki 2021 finalinde Barcelona’yı yenerek ilk kez Avrupa şampiyonu oldu.",
+    "id": "q55990"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Amy Winehouse’un en bilinen albümlerinden biri hangisidir?",
+    "options": [
+      "Blue",
+      "Rumours",
+      "Back to Black",
+      "Hounds of Love"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2006 tarihli Back to Black, Winehouse’un soul etkili ikinci albümüdür.",
+    "id": "q55991"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Dünya’nın ilk yapay uydusunun adı nedir?",
+    "options": [
+      "Explorer 1",
+      "Luna 2",
+      "Vostok 1",
+      "Sputnik 1"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sovyetler Birliği, Sputnik 1’i 4 Ekim 1957’de yörüngeye gönderdi.",
+    "id": "q55992"
+  },
+  {
+    "id": "q55993",
+    "categoryIndex": 4,
+    "question": "Bitkilerin ışık yönüne doğru büyüme tepkisine ne denir?",
+    "options": [
+      "Fototropizma",
+      "Kemotaksi",
+      "Osmoregülasyon",
+      "Termoregülasyon"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sürgünlerin ışığa yönelmesi, büyüme hormonlarının eşitsiz dağılımıyla oluşan pozitif fototropizmadır."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Kabuki tiyatrosu hangi ülkeye aittir?",
+    "options": [
+      "Çin",
+      "Japonya",
+      "Endonezya",
+      "Hindistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kabuki, stilize oyunculuk, gösterişli kostüm ve makyajıyla Japon sahne sanatıdır.",
+    "id": "q55994"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Bob Marley en çok hangi müzik türüyle özdeşleşir?",
+    "options": [
+      "Bluegrass",
+      "Flamenko",
+      "Reggae",
+      "Fado"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Jamaikalı Bob Marley, reggae müziğinin dünyaya yayılmasında başlıca isimlerden biridir.",
+    "id": "q55995"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Noh tiyatrosunda başrol oyuncusunun sık kullandığı aksesuar nedir?",
+    "options": [
+      "Baston şemsiye",
+      "Megafon",
+      "Kukla",
+      "Maske"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Noh maskeleri yaş, cinsiyet, ruh ve duyguyu küçük baş hareketleriyle farklı gösterir.",
+    "id": "q55996"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Alize rüzgârları genel olarak hangi yöne eser?",
+    "options": [
+      "Dönencelerden Ekvator’a",
+      "Batıdan doğuya yalnız kıyılarda",
+      "Ekvator’dan kutuplara",
+      "Kutuplardan dönencelere"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Alizeler, subtropikal yüksek basınç alanlarından Ekvator çevresindeki alçak basınca yönelir.",
+    "id": "q55997"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bir katalizör kimyasal tepkimeyi nasıl etkiler?",
+    "options": [
+      "Denge sabitini kalıcı değiştirir",
+      "Aktivasyon enerjisini düşürür",
+      "Kütleyi artırır",
+      "Ürünleri tamamen değiştirir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Katalizör alternatif bir tepkime yolu sağlar ve süreç sonunda büyük ölçüde tüketilmez.",
+    "id": "q55998"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "İkili sayı sistemi hangi iki rakamı kullanır?",
+    "options": [
+      "2 ve 8",
+      "0 ve 9",
+      "0 ve 1",
+      "1 ve 2"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dijital devreler iki kararlı durumu 0 ve 1 bitleriyle temsil eder.",
+    "id": "q55999"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "'Cep Herkülü' lakabı hangi halterciye aittir?",
+    "options": [
+      "Taner Sağır",
+      "Halil Mutlu",
+      "Nurcan Taylan",
+      "Naim Süleymanoğlu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kısa boyuna rağmen olağanüstü kaldırışlarıyla Naim Süleymanoğlu Cep Herkülü diye anıldı.",
+    "id": "q56000"
+  },
+  {
+    "id": "q56001",
+    "categoryIndex": 2,
+    "question": "Canossa Yürüyüşü sırasında af dilemek zorunda kalan hükümdar kimdi?",
+    "options": [
+      "IV. Heinrich",
+      "Şarlman",
+      "Otto von Bismarck",
+      "II. Friedrich"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kutsal Roma İmparatoru IV. Heinrich, papa ile anlaşmazlığının ardından 1077’de Canossa’ya gitti."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "El Niño olayı hangi okyanustaki yüzey sularının olağandışı ısınmasıyla ilişkilidir?",
+    "options": [
+      "Hint Okyanusu",
+      "Büyük Okyanus",
+      "Arktik Okyanusu",
+      "Atlas Okyanusu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "El Niño, ekvatoral Büyük Okyanus’un orta ve doğu kesimlerinde yüzey suyunun ısınmasıdır.",
+    "id": "q56002"
+  },
+  {
+    "id": "q56003",
+    "categoryIndex": 3,
+    "question": "Figürleri abartılı hacimlerle resmetmesiyle tanınan Kolombiyalı sanatçı kimdir?",
+    "options": [
+      "Joaquín Torres-García",
+      "Diego Rivera",
+      "Fernando Botero",
+      "Rufino Tamayo"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Botero’nun belirgin üslubu, insan ve nesneleri alışılmadık derecede hacimli biçimlerde gösterir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Geleneksel Türk tiyatrosunda tek kişinin hikâye anlattığı sanata ne denir?",
+    "options": [
+      "Tulûat",
+      "Orta oyunu",
+      "Kukla",
+      "Meddahlık"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Meddah, baston ve mendil gibi sınırlı aksesuarlarla farklı kişileri taklit ederek hikâye anlatır.",
+    "id": "q56004"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "CPU kısaltması neyi ifade eder?",
+    "options": [
+      "Merkezî işlem birimi",
+      "Kalıcı depolama birimi",
+      "Ağ bağlantı birimi",
+      "Görüntü işleme birimi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "CPU, program komutlarını yorumlayan ve hesaplamaları yürüten ana işlem birimidir.",
+    "id": "q56005"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Gulf Stream akıntısı Batı Avrupa’nın iklimini nasıl etkiler?",
+    "options": [
+      "Yazları tamamen kurutur",
+      "Kışları görece ılımanlaştırır",
+      "Her mevsim kar yağdırır",
+      "Gündüzleri kısaltır"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kuzey Atlantik’e sıcak su taşıyan akıntı sistemi, Batı Avrupa’nın iklimini yumuşatır.",
+    "id": "q56006"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "RAM’in verileri güç kesilince kaybetmesine ne denir?",
+    "options": [
+      "Salt okunur bellek",
+      "Kalıcı arşiv",
+      "Uçucu bellek",
+      "Optik bellek"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "RAM elektrik kesildiğinde içeriğini korumadığı için uçucu bellek olarak sınıflandırılır.",
+    "id": "q56007"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Metallica’nın kurucu davulcusu kimdir?",
+    "options": [
+      "Chad Smith",
+      "Dave Grohl",
+      "Nicko McBrain",
+      "Lars Ulrich"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Danimarka doğumlu Lars Ulrich, James Hetfield ile Metallica’yı kurdu.",
+    "id": "q56008"
+  },
+  {
+    "id": "q56009",
+    "categoryIndex": 2,
+    "question": "Nika Ayaklanması hangi Bizans imparatorunun döneminde çıktı?",
+    "options": [
+      "I. Justinianus",
+      "Herakleios",
+      "VIII. Mihail",
+      "I. Konstantin"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "532’de Konstantinopolis’te çıkan Nika Ayaklanması Justinianus yönetimini ciddi biçimde sarstı."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Akdeniz ikliminde yağışlar en çok hangi mevsimde görülür?",
+    "options": [
+      "İlkbahar",
+      "Kış",
+      "Sonbahar sonu dışında hiç",
+      "Yaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Akdeniz ikliminde yazlar sıcak-kurak, kışlar ılık ve yağışlıdır.",
+    "id": "q56010"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Üç farklı Olimpiyat Oyununda altın madalya kazanan Türk halterci kimdir?",
+    "options": [
+      "Sedat Artuç",
+      "Daniyar İsmayilov",
+      "Halil Mutlu",
+      "Taner Sağır"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Halil Mutlu 1996 Atlanta, 2000 Sidney ve 2004 Atina’da altın madalya kazandı.",
+    "id": "q56011"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Bilinen en eski kalıcı fotoğraflardan birini çeken kişi kimdir?",
+    "options": [
+      "Thomas Edison",
+      "Louis Daguerre",
+      "George Eastman",
+      "Nicéphore Niépce"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Niépce, 1820’lerde uzun pozlamayla bir pencere manzarasını kalıcı hâle getirdi.",
+    "id": "q56012"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "SSD’lerin klasik sabit disklerden temel farkı nedir?",
+    "options": [
+      "Hareketli parça içermemeleri",
+      "Yalnız internette çalışmaları",
+      "Veriyi kâğıda yazmaları",
+      "Elektrik kullanmamaları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "SSD’ler veriyi flash bellek hücrelerinde saklar; dönen disk ve hareketli kafa içermez.",
+    "id": "q56013"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Savan ikliminde yıl genellikle nasıl iki döneme ayrılır?",
+    "options": [
+      "Sisli ve karlı dönem",
+      "Yağışlı ve kurak dönem",
+      "Sıcak ve donmuş dönem",
+      "Rüzgârlı ve rüzgârsız dönem"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tropikal savanlarda sıcaklık yıl boyunca yüksek, yağış ise belirgin biçimde mevsimseldir.",
+    "id": "q56014"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Tundra ikliminde ağaçların gelişmesini en çok ne sınırlar?",
+    "options": [
+      "Sürekli volkanik kül",
+      "Fazla güneş ışığı",
+      "Kısa büyüme dönemi ve donmuş toprak",
+      "Aşırı tuzlu yağmur"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tundrada permafrost ve çok kısa yaz, ağaç köklerinin gelişmesini engeller.",
+    "id": "q56015"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Orta oyunundaki karşıt ikiliden bilgili ve düzen kurucu olan kimdir?",
+    "options": [
+      "Kavuklu",
+      "Zenne",
+      "Karagöz",
+      "Pişekâr"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Pişekâr oyunu başlatır, olayları düzenler; Kavuklu ise halk zekâsını ve yanlış anlamaları temsil eder.",
+    "id": "q56016"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Iron Maiden grubunun maskotunun adı nedir?",
+    "options": [
+      "Eddie",
+      "The Guy",
+      "Vic Rattlehead",
+      "Snaggletooth"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Eddie, albüm kapakları ve konser dekorlarında farklı biçimlerde görünen grubun maskotudur.",
+    "id": "q56017"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Permafrost ne demektir?",
+    "options": [
+      "Tuzla kaplı çöl tabanı",
+      "En az iki yıl donmuş kalan zemin",
+      "Her yaz eriyen kar örtüsü",
+      "Buzul üzerinde oluşan göl"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Permafrost, sıcaklığı uzun süre sıfırın altında kalan kalıcı donmuş topraktır.",
+    "id": "q56018"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Bir orkestrayı yöneten kişinin kullandığı ince çubuğa ne denir?",
+    "options": [
+      "Mızrap",
+      "Arşe",
+      "Baton",
+      "Baget"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Orkestra şefi batonla tempo, giriş ve ifade işaretlerini görünür hâle getirir.",
+    "id": "q56019"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Dinamiti icat eden kişi kimdir?",
+    "options": [
+      "Michael Faraday",
+      "James Watt",
+      "Rudolf Diesel",
+      "Alfred Nobel"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Alfred Nobel, nitrogliserini daha güvenli taşınabilir hâle getirerek 1867’de dinamiti patentledi.",
+    "id": "q56020"
+  }
+]

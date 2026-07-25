@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "candidateBankQuestionCount": 2000,
+  "candidateBankCheckReturnCode": 0,
+  "candidateBankAccepted": 1000,
+  "candidateBankConflicts": 0,
+  "checkSecondsApprox": 10.52,
+  "applyReturnCode": 0,
+  "installedTotal": 3000,
+  "backupCreated": true,
+  "applySecondsApprox": 10.85,
+  "artificialConflictReturnCode": 3,
+  "artificialConflictAccepted": 999,
+  "artificialConflictConflicts": 1,
+  "conflictAbortedWithoutChange": true
+}

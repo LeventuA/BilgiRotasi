@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "emptyBankApplyReturnCode": 0,
+  "installedCount": 1000,
+  "backupCreation": true,
+  "duplicateAbortReturnCode": 3,
+  "countAfterAbort": 1000
+}

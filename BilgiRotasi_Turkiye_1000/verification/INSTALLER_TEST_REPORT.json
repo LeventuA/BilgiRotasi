@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "testedAtUtc": "2026-07-24T22:23:17Z",
+  "standInExistingBankCount": 5000,
+  "tests": {
+    "standInBankCheck": {
+      "status": "PASS",
+      "returnCode": 0,
+      "fileUnchanged": true
+    },
+    "standInBankApply": {
+      "status": "PASS",
+      "returnCode": 0,
+      "installedTotal": 6000,
+      "uniqueIdCount": 6000
+    },
+    "backupCreation": {
+      "status": "PASS",
+      "backupCount": 1
+    },
+    "reserveSubstitution": {
+      "status": "PASS",
+      "returnCode": 0,
+      "substitutionCount": 1,
+      "acceptedCount": 1000
+    },
+    "unresolvedConflictSafeAbort": {
+      "status": "PASS",
+      "returnCode": 3,
+      "fileUnchanged": true,
+      "unresolvedConflictCount": 1
+    },
+    "overallStatus": "PASS"
+  },
+  "notes": [
+    "Stand-in bank includes the 5,000 V1–V5 candidate questions used during package comparison.",
+    "The installer repeats all checks against the actual assets/questions.json at runtime.",
+    "Reserve substitution preserves the original q-ID while replacing the conflicted question content."
+  ]
+}

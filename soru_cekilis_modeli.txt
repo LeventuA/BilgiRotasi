@@ -1,0 +1,10 @@
+class QuestionDraw {
+  const QuestionDraw({
+    required this.question,
+    required this.poolReset,
+  });
+
+  final QuizQuestion question;
+  final bool poolReset;
+}
+

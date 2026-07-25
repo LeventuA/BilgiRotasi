@@ -1,0 +1,489 @@
+{
+  "timestampUtc": "20260722T161111Z",
+  "mode": "apply",
+  "target": "/workspaces/BilgiRotasi/assets/questions.json",
+  "packages": [
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_002_q3121_q4120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_003_q4121_q5120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_004_q5121_q6120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_005_q6121_q7120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_006_q7121_q8120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_007_q8121_q9120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_008_q9121_q10120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_009_q10121_q11120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_010_q11121_q12120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_10Bin_Soru_Paketleri/packages/package_011_q12121_q13120.json",
+      "count": 1000
+    }
+  ],
+  "existingCount": 3116,
+  "incomingCount": 10000,
+  "acceptedCount": 9947,
+  "acceptedByPackage": {
+    "package_002_q3121_q4120.json": 968,
+    "package_003_q4121_q5120.json": 990,
+    "package_004_q5121_q6120.json": 989,
+    "package_005_q6121_q7120.json": 1000,
+    "package_006_q7121_q8120.json": 1000,
+    "package_007_q8121_q9120.json": 1000,
+    "package_008_q9121_q10120.json": 1000,
+    "package_009_q10121_q11120.json": 1000,
+    "package_010_q11121_q12120.json": 1000,
+    "package_011_q12121_q13120.json": 1000
+  },
+  "conflictCount": 53,
+  "conflicts": [
+    {
+      "id": "q3839",
+      "question": "Sb kimyasal simgesi hangi elemente aittir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q3082 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3907",
+      "question": "Atom numarası 1 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2043 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3908",
+      "question": "Atom numarası 2 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2047 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3909",
+      "question": "Atom numarası 3 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2051 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3910",
+      "question": "Atom numarası 4 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2054 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3911",
+      "question": "Atom numarası 5 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2058 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3912",
+      "question": "Atom numarası 6 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2062 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3913",
+      "question": "Atom numarası 7 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2066 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3914",
+      "question": "Atom numarası 8 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2070 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3915",
+      "question": "Atom numarası 9 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2074 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3916",
+      "question": "Atom numarası 10 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2077 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3917",
+      "question": "Atom numarası 11 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2081 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3918",
+      "question": "Atom numarası 12 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2085 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3919",
+      "question": "Atom numarası 13 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2089 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3920",
+      "question": "Atom numarası 14 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2093 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3921",
+      "question": "Atom numarası 15 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2097 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3923",
+      "question": "Atom numarası 17 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2104 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3924",
+      "question": "Atom numarası 18 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2108 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3925",
+      "question": "Atom numarası 19 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2112 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3926",
+      "question": "Atom numarası 20 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2116 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3928",
+      "question": "Atom numarası 22 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2120 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3930",
+      "question": "Atom numarası 24 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2124 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3931",
+      "question": "Atom numarası 25 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2127 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3932",
+      "question": "Atom numarası 26 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2131 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3933",
+      "question": "Atom numarası 27 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2135 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3934",
+      "question": "Atom numarası 28 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2139 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3935",
+      "question": "Atom numarası 29 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2143 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3936",
+      "question": "Atom numarası 30 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2147 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3941",
+      "question": "Atom numarası 35 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2150 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3942",
+      "question": "Atom numarası 36 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2154 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3953",
+      "question": "Atom numarası 47 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2158 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q3954",
+      "question": "Atom numarası 48 olan element hangisidir?",
+      "package": "package_002_q3121_q4120.json",
+      "reasons": [
+        "Soru metni mevcut q2162 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4909",
+      "question": "Kuvvet büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2253 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4910",
+      "question": "Enerji büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2256 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4911",
+      "question": "Güç büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2259 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4912",
+      "question": "Basınç büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2262 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4913",
+      "question": "Elektrik yükü büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2265 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4921",
+      "question": "Frekans büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2268 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4928",
+      "question": "Madde miktarı büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2247 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4929",
+      "question": "Elektrik akımı büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2242 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4930",
+      "question": "Işık şiddeti büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2250 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q4931",
+      "question": "Kütle büyüklüğünün SI birimi hangisidir?",
+      "package": "package_003_q4121_q5120.json",
+      "reasons": [
+        "Soru metni mevcut q2236 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5288",
+      "question": "The Sopranos dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q868 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5291",
+      "question": "Lost dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q877 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5292",
+      "question": "The Office (ABD) dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q912 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5312",
+      "question": "Game of Thrones dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q894 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5314",
+      "question": "Stranger Things dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q903 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5315",
+      "question": "The Crown dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q938 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5316",
+      "question": "Black Mirror dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q929 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5317",
+      "question": "Peaky Blinders dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q946 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5318",
+      "question": "Sherlock dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q920 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5323",
+      "question": "Dark dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q972 ile birebir aynı"
+      ]
+    },
+    {
+      "id": "q5325",
+      "question": "La Casa de Papel dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "package": "package_004_q5121_q6120.json",
+      "reasons": [
+        "Soru metni mevcut q955 ile birebir aynı"
+      ]
+    }
+  ]
+}

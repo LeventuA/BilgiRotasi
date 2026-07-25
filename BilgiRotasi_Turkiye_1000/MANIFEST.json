@@ -1,0 +1,43 @@
+{
+  "packageName": "BilgiRotasi_Turkiye_1000",
+  "displayName": "Bilgi Rotası — Türkiye Özel 1.000 Kaliteli Soru",
+  "version": "1.0.0",
+  "createdAtUtc": "2026-07-24T22:23:17Z",
+  "repository": "LeventuA/BilgiRotasi",
+  "preparedAgainst": {
+    "branch": "main",
+    "questionsBlobSha": "6a782e19e7d964dfc779517e7ac99ac715591391",
+    "previousCandidateCorpusCount": 5000
+  },
+  "mainQuestionFile": "turkiye_1000_q58121_q59120.json",
+  "installer": "install_turkiye_1000.py",
+  "questionCount": 1000,
+  "idStart": "q58121",
+  "idEnd": "q59120",
+  "reservePoolFile": "reserve_pool_120.json",
+  "reservePoolCount": 120,
+  "categories": {
+    "Coğrafya": 170,
+    "Eğlence": 200,
+    "Tarih": 150,
+    "Sanat & Edebiyat": 160,
+    "Bilim & Doğa": 140,
+    "Spor": 180
+  },
+  "difficulties": {
+    "Kolay": 479,
+    "Orta": 436,
+    "Zor": 85
+  },
+  "qualityReport": "verification/GLOBAL_QA_REPORT.json",
+  "installerTestReport": "verification/INSTALLER_TEST_REPORT.json",
+  "factCheckNotes": "sources/FACT_CHECK_NOTES.json",
+  "runtimeBehavior": {
+    "checksActualLiveBank": true,
+    "createsFullBackup": true,
+    "usesReserveSubstitution": true,
+    "abortsOnUnresolvedConflictByDefault": true,
+    "supportsSkipConflicts": true
+  },
+  "editorialStatement": "Model-authored and automatically/editorially checked; not independently human-verified source-by-source in full."
+}

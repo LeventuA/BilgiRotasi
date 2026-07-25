@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "package": 8,
+  "file": "v3_pack_008_q55821_q55920.json",
+  "questionCount": 100,
+  "idRange": "q55821-q55920",
+  "categoryCounts": {
+    "3": 16,
+    "2": 17,
+    "4": 16,
+    "0": 18,
+    "1": 17,
+    "5": 16
+  },
+  "difficultyCounts": {
+    "Kolay": 57,
+    "Orta": 42,
+    "Zor": 1
+  },
+  "answerIndexCounts": {
+    "0": 25,
+    "1": 25,
+    "2": 25,
+    "3": 25
+  },
+  "schemaErrors": 0,
+  "exactQuestionDuplicates": 0,
+  "strongNearDuplicates": 0
+}

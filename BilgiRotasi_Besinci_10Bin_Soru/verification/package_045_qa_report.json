@@ -1,0 +1,33 @@
+{
+  "package": "package_045_q46121_q47120.json",
+  "status": "PASS",
+  "questionCount": 1000,
+  "idRange": "q46121-q47120",
+  "categoryCounts": {
+    "Coğrafya": 167,
+    "Eğlence": 167,
+    "Tarih": 167,
+    "Sanat & Edebiyat": 167,
+    "Bilim & Doğa": 166,
+    "Spor": 166
+  },
+  "difficultyCounts": {
+    "Kolay": 1000
+  },
+  "answerIndexCounts": {
+    "0": 258,
+    "1": 268,
+    "2": 229,
+    "3": 245
+  },
+  "checks": {
+    "allQuestionsEasy": true,
+    "uniqueIds": true,
+    "uniqueQuestionTexts": true,
+    "fourUniqueOptions": true,
+    "validAnswerIndexes": true,
+    "explanationsPresent": true,
+    "sourceRecordForEveryQuestion": true
+  },
+  "sha256": "9d7938de920b26697ebd7ba643dac42715bf4ecb558e733435affbef02f32cc4"
+}

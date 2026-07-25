@@ -1,0 +1,64 @@
+{
+  "timestampUtc": "20260722T173857Z",
+  "mode": "check",
+  "target": "/workspaces/BilgiRotasi/assets/questions.json",
+  "packages": [
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_022_q23121_q24120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_023_q24121_q25120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_024_q25121_q26120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_025_q26121_q27120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_026_q27121_q28120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_027_q28121_q29120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_028_q29121_q30120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_029_q30121_q31120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_030_q31121_q32120.json",
+      "count": 1000
+    },
+    {
+      "file": "/workspaces/BilgiRotasi/BilgiRotasi_Ucuncu_10Bin_Soru/packages/package_031_q32121_q33120.json",
+      "count": 1000
+    }
+  ],
+  "existingCount": 23063,
+  "incomingCount": 10000,
+  "acceptedCount": 10000,
+  "acceptedByPackage": {
+    "package_022_q23121_q24120.json": 1000,
+    "package_023_q24121_q25120.json": 1000,
+    "package_024_q25121_q26120.json": 1000,
+    "package_025_q26121_q27120.json": 1000,
+    "package_026_q27121_q28120.json": 1000,
+    "package_027_q28121_q29120.json": 1000,
+    "package_028_q29121_q30120.json": 1000,
+    "package_029_q30121_q31120.json": 1000,
+    "package_030_q31121_q32120.json": 1000,
+    "package_031_q32121_q33120.json": 1000
+  },
+  "conflictCount": 0,
+  "conflicts": []
+}

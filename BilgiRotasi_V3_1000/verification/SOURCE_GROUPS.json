@@ -1,0 +1,26 @@
+{
+  "geo_reference": {
+    "sourceName": "Britannica / resmî coğrafya kurumları",
+    "scope": "Yerler, doğal oluşumlar ve ülkeler"
+  },
+  "ent_primary": {
+    "sourceName": "Resmî yapım, yayıncı ve oyun kayıtları",
+    "scope": "Film, dizi, oyun ve popüler kültür"
+  },
+  "hist_reference": {
+    "sourceName": "Britannica / müze ve resmî tarih arşivleri",
+    "scope": "Tarihsel olaylar ve kişiler"
+  },
+  "art_reference": {
+    "sourceName": "Müze, yayıncı ve edebiyat başvuru kaynakları",
+    "scope": "Sanat ve edebiyat"
+  },
+  "sci_reference": {
+    "sourceName": "NASA / NIH / bilimsel kurumlar",
+    "scope": "Bilim ve doğa"
+  },
+  "sport_reference": {
+    "sourceName": "IOC / uluslararası spor federasyonları",
+    "scope": "Spor kuralları ve tarih"
+  }
+}

@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q58221",
+    "categoryIndex": 0,
+    "question": "Frig Vadisi hangi üç il arasında yayılır?",
+    "options": [
+      "Afyonkarahisar, Eskişehir ve Kütahya",
+      "Manisa, Uşak ve Denizli",
+      "Sivas, Tokat ve Yozgat",
+      "Ankara, Çankırı ve Kırıkkale"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Frig Vadisi'nin kaya anıtları Afyonkarahisar, Eskişehir ve Kütahya arasında geniş bir alana yayılır."
+  },
+  {
+    "id": "q58222",
+    "categoryIndex": 0,
+    "question": "Safranbolu evleri hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Bolu",
+      "Karabük",
+      "Bartın",
+      "Kastamonu"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Safranbolu, Karabük'e bağlı ve geleneksel Osmanlı evleriyle UNESCO listesinde yer alan bir ilçedir."
+  },
+  {
+    "id": "q58223",
+    "categoryIndex": 0,
+    "question": "Amasra hangi denizin kıyısındadır?",
+    "options": [
+      "Marmara Denizi",
+      "Ege Denizi",
+      "Karadeniz",
+      "Akdeniz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Bartın'ın Amasra ilçesi Karadeniz kıyısında doğal limanlara sahiptir."
+  },
+  {
+    "id": "q58224",
+    "categoryIndex": 0,
+    "question": "Sinop'un tarihî cezaevi hangi doğal şeklin üzerinde yer alan kent merkezindedir?",
+    "options": [
+      "Delta",
+      "Plato",
+      "Ada",
+      "Yarımada"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sinop kent merkezi Karadeniz'e uzanan bir yarımada üzerindedir."
+  },
+  {
+    "id": "q58225",
+    "categoryIndex": 0,
+    "question": "Halfeti'nin bir bölümünün sular altında kalmasına yol açan baraj hangisidir?",
+    "options": [
+      "Birecik Barajı",
+      "Atatürk Barajı",
+      "Keban Barajı",
+      "Karakaya Barajı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Birecik Barajı'nın gölü, Şanlıurfa'nın Halfeti ilçesindeki eski yerleşimin bir kısmını sular altında bıraktı."
+  },
+  {
+    "id": "q58226",
+    "categoryIndex": 0,
+    "question": "Zeugma Antik Kenti hangi nehrin kıyısında kurulmuştur?",
+    "options": [
+      "Kızılırmak",
+      "Fırat Nehri",
+      "Seyhan Nehri",
+      "Dicle Nehri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Zeugma, Gaziantep'in Nizip ilçesi yakınında Fırat Nehri kıyısındadır."
+  },
+  {
+    "id": "q58227",
+    "categoryIndex": 0,
+    "question": "Ani Ören Yeri hangi ülke sınırına yakın konumdadır?",
+    "options": [
+      "Irak",
+      "İran",
+      "Ermenistan",
+      "Gürcistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kars'taki Ani, Arpaçay vadisi boyunca Türkiye-Ermenistan sınırına çok yakındır."
+  },
+  {
+    "id": "q58228",
+    "categoryIndex": 0,
+    "question": "İshak Paşa Sarayı hangi ilçemizin yakınındadır?",
+    "options": [
+      "Erciş",
+      "Kağızman",
+      "Tatvan",
+      "Doğubayazıt"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İshak Paşa Sarayı Ağrı'nın Doğubayazıt ilçesi yakınında yüksek bir tepede bulunur."
+  },
+  {
+    "id": "q58229",
+    "categoryIndex": 0,
+    "question": "Akdamar Adası hangi göldedir?",
+    "options": [
+      "Van Gölü",
+      "Beyşehir Gölü",
+      "Hazar Gölü",
+      "Çıldır Gölü"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Akdamar Adası, Van Gölü'nde Gevaş kıyılarının karşısındadır."
+  },
+  {
+    "id": "q58230",
+    "categoryIndex": 0,
+    "question": "Sumela Manastırı hangi vadinin sarp yamacına kurulmuştur?",
+    "options": [
+      "Fırtına Vadisi",
+      "Altındere Vadisi",
+      "Munzur Vadisi",
+      "Ihlara Vadisi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sümela Manastırı, Trabzon'un Maçka ilçesindeki Altındere Vadisi'nde kayalık yamaca kurulmuştur."
+  },
+  {
+    "id": "q58231",
+    "categoryIndex": 0,
+    "question": "Fırtına Deresi hangi ilimizin sınırlarında akar?",
+    "options": [
+      "Artvin",
+      "Giresun",
+      "Rize",
+      "Trabzon"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Fırtına Deresi Kaçkar Dağları'ndan doğup Rize'nin Ardeşen ilçesinde Karadeniz'e ulaşır."
+  },
+  {
+    "id": "q58232",
+    "categoryIndex": 0,
+    "question": "Çoruh Nehri Türkiye'den çıktıktan sonra hangi ülkeye geçer?",
+    "options": [
+      "Azerbaycan",
+      "Ermenistan",
+      "İran",
+      "Gürcistan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Çoruh, Artvin'den sonra Gürcistan'a geçerek Batum yakınında Karadeniz'e dökülür."
+  },
+  {
+    "id": "q58233",
+    "categoryIndex": 0,
+    "question": "Türkiye'de rafting denince Çoruh Nehri ile özdeşleşen il hangisidir?",
+    "options": [
+      "Artvin",
+      "Erzurum",
+      "Rize",
+      "Bayburt"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Çoruh Nehri'nin Artvin kesimi hızlı akışıyla rafting parkurlarıyla tanınır."
+  },
+  {
+    "id": "q58234",
+    "categoryIndex": 0,
+    "question": "Sakarya Nehri hangi denize dökülür?",
+    "options": [
+      "Akdeniz",
+      "Karadeniz",
+      "Ege Denizi",
+      "Marmara Denizi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Sakarya Nehri, Karasu ilçesi yakınında Karadeniz'e dökülür."
+  },
+  {
+    "id": "q58235",
+    "categoryIndex": 0,
+    "question": "Porsuk Çayı hangi büyük nehrin koludur?",
+    "options": [
+      "Kızılırmak",
+      "Büyük Menderes",
+      "Sakarya Nehri",
+      "Gediz Nehri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Porsuk Çayı Eskişehir'den geçtikten sonra Sakarya Nehri'ne katılır."
+  },
+  {
+    "id": "q58236",
+    "categoryIndex": 0,
+    "question": "Zamantı Irmağı hangi büyük nehrin önemli kollarındandır?",
+    "options": [
+      "Ceyhan Nehri",
+      "Göksu Nehri",
+      "Asi Nehri",
+      "Seyhan Nehri"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Zamantı ile Göksu kolları birleşerek Seyhan Nehri'ni oluşturur."
+  },
+  {
+    "id": "q58237",
+    "categoryIndex": 0,
+    "question": "Botan Çayı hangi büyük nehrin koludur?",
+    "options": [
+      "Dicle Nehri",
+      "Kura Nehri",
+      "Aras Nehri",
+      "Fırat Nehri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Botan Çayı, Siirt yakınlarında Dicle Nehri'ne katılır."
+  },
+  {
+    "id": "q58238",
+    "categoryIndex": 0,
+    "question": "Keban Barajı hangi nehir üzerindedir?",
+    "options": [
+      "Dicle Nehri",
+      "Fırat Nehri",
+      "Kızılırmak",
+      "Sakarya Nehri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Keban Barajı Elazığ'da Fırat Nehri üzerinde kurulmuştur."
+  },
+  {
+    "id": "q58239",
+    "categoryIndex": 0,
+    "question": "Atatürk Barajı hangi iki il arasında yer alır?",
+    "options": [
+      "Gaziantep ve Kilis",
+      "Elazığ ve Tunceli",
+      "Adıyaman ve Şanlıurfa",
+      "Diyarbakır ve Batman"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Atatürk Barajı Fırat Nehri üzerinde Adıyaman ile Şanlıurfa sınırında yer alır."
+  },
+  {
+    "id": "q58240",
+    "categoryIndex": 0,
+    "question": "Oymapınar Barajı hangi akarsu üzerindedir?",
+    "options": [
+      "Aksu Çayı",
+      "Dalaman Çayı",
+      "Köprüçay",
+      "Manavgat Çayı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Oymapınar Barajı Antalya'da Manavgat Çayı üzerinde bulunur."
+  },
+  {
+    "id": "q58241",
+    "categoryIndex": 0,
+    "question": "Deriner Barajı hangi nehir üzerine kurulmuştur?",
+    "options": [
+      "Çoruh Nehri",
+      "Aras Nehri",
+      "Yeşilırmak",
+      "Meriç Nehri"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Deriner Barajı Artvin'de Çoruh Nehri üzerindedir."
+  },
+  {
+    "id": "q58242",
+    "categoryIndex": 0,
+    "question": "Birecik Barajı hangi nehir üzerindedir?",
+    "options": [
+      "Asi Nehri",
+      "Fırat Nehri",
+      "Dicle Nehri",
+      "Ceyhan Nehri"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Birecik Barajı Gaziantep ile Şanlıurfa arasında Fırat üzerinde kurulmuştur."
+  },
+  {
+    "id": "q58243",
+    "categoryIndex": 0,
+    "question": "Hirfanlı Baraj Gölü hangi nehir üzerindedir?",
+    "options": [
+      "Sakarya Nehri",
+      "Yeşilırmak",
+      "Kızılırmak",
+      "Gediz Nehri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Hirfanlı Barajı Kırşehir-Ankara sınırında Kızılırmak üzerindedir."
+  },
+  {
+    "id": "q58244",
+    "categoryIndex": 0,
+    "question": "Altınbeşik Mağarası Millî Parkı hangi ilimizdedir?",
+    "options": [
+      "Isparta",
+      "Burdur",
+      "Mersin",
+      "Antalya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Altınbeşik Mağarası, Antalya'nın İbradı ilçesi sınırlarındadır."
+  },
+  {
+    "id": "q58245",
+    "categoryIndex": 0,
+    "question": "Dupnisa Mağarası hangi ilimizdedir?",
+    "options": [
+      "Kırklareli",
+      "Çanakkale",
+      "Tekirdağ",
+      "Edirne"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Dupnisa Mağarası Kırklareli'nin Demirköy ilçesindedir."
+  },
+  {
+    "id": "q58246",
+    "categoryIndex": 0,
+    "question": "Kaklık Mağarası travertenleriyle hangi ilimizde bulunur?",
+    "options": [
+      "Uşak",
+      "Denizli",
+      "Burdur",
+      "Isparta"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kaklık Mağarası Denizli'nin Honaz ilçesindedir ve yer altı travertenleriyle bilinir."
+  },
+  {
+    "id": "q58247",
+    "categoryIndex": 0,
+    "question": "Ağrı Dağı'nın eteklerinde yer alan meteor çukuru hangi ilçeye yakındır?",
+    "options": [
+      "Patnos",
+      "Kağızman",
+      "Doğubayazıt",
+      "Erciş"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Gürbulak yakınındaki meteor çukuru Ağrı'nın Doğubayazıt ilçesi sınırlarındadır."
+  },
+  {
+    "id": "q58248",
+    "categoryIndex": 0,
+    "question": "Nallıhan Kuş Cenneti hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Eskişehir",
+      "Çankırı",
+      "Bolu",
+      "Ankara"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Nallıhan Kuş Cenneti Ankara'nın Nallıhan ilçesindedir."
+  },
+  {
+    "id": "q58249",
+    "categoryIndex": 0,
+    "question": "Kızılırmak Deltası Kuş Cenneti hangi ilçeler arasında uzanır?",
+    "options": [
+      "Bafra ve Alaçam",
+      "Çarşamba ve Terme",
+      "Ünye ve Fatsa",
+      "Sinop ve Gerze"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kızılırmak Deltası ağırlıklı olarak Samsun'un Bafra ve Alaçam ilçeleri sınırlarındadır."
+  },
+  {
+    "id": "q58250",
+    "categoryIndex": 0,
+    "question": "Gediz Deltası'nın kuş cenneti olarak bilinen bölümü hangi ilimizdedir?",
+    "options": [
+      "Balıkesir",
+      "İzmir",
+      "Aydın",
+      "Manisa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Gediz Deltası İzmir'in Çiğli ve Menemen ilçeleri çevresinde geniş sulak alanlara sahiptir."
+  },
+  {
+    "id": "q58251",
+    "categoryIndex": 0,
+    "question": "Dalyan'daki Kaunos Antik Kenti hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Aydın",
+      "Denizli",
+      "Muğla",
+      "Antalya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kaunos, Muğla'nın Ortaca ilçesi yakınında Dalyan Kanalı'nın karşı kıyısındadır."
+  },
+  {
+    "id": "q58252",
+    "categoryIndex": 0,
+    "question": "Assos Antik Kenti hangi ilimizin Ayvacık ilçesindedir?",
+    "options": [
+      "Manisa",
+      "Balıkesir",
+      "İzmir",
+      "Çanakkale"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Assos, Çanakkale'nin Ayvacık ilçesinde Behramkale köyü yakınındadır."
+  },
+  {
+    "id": "q58253",
+    "categoryIndex": 0,
+    "question": "Sagalassos Antik Kenti hangi ilimizin Ağlasun ilçesindedir?",
+    "options": [
+      "Burdur",
+      "Denizli",
+      "Antalya",
+      "Isparta"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Sagalassos, Burdur'un Ağlasun ilçesinin kuzeyindeki dağlık alandadır."
+  },
+  {
+    "id": "q58254",
+    "categoryIndex": 0,
+    "question": "Hattuşa Antik Kenti hangi ilimizin Boğazkale ilçesindedir?",
+    "options": [
+      "Yozgat",
+      "Çorum",
+      "Tokat",
+      "Amasya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hitit başkenti Hattuşa, Çorum'un Boğazkale ilçesindedir."
+  },
+  {
+    "id": "q58255",
+    "categoryIndex": 0,
+    "question": "Alacahöyük hangi ilimizin sınırlarındadır?",
+    "options": [
+      "Amasya",
+      "Yozgat",
+      "Çorum",
+      "Kırıkkale"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Alacahöyük, Çorum'un Alaca ilçesi yakınında önemli bir arkeolojik alandır."
+  },
+  {
+    "id": "q58256",
+    "categoryIndex": 0,
+    "question": "Çatalhöyük Neolitik Kenti hangi ilimizdedir?",
+    "options": [
+      "Aksaray",
+      "Karaman",
+      "Niğde",
+      "Konya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Çatalhöyük, Konya'nın Çumra ilçesi yakınında yer alır."
+  },
+  {
+    "id": "q58257",
+    "categoryIndex": 0,
+    "question": "Gordion Antik Kenti hangi ilçemizin yakınındadır?",
+    "options": [
+      "Polatlı",
+      "Haymana",
+      "Beypazarı",
+      "Sivrihisar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Frig başkenti Gordion, Ankara'nın Polatlı ilçesi yakınındaki Yassıhöyük'tedir."
+  },
+  {
+    "id": "q58258",
+    "categoryIndex": 0,
+    "question": "Troya Antik Kenti hangi boğazın yakınındadır?",
+    "options": [
+      "İstanbul Boğazı",
+      "Çanakkale Boğazı",
+      "Kerç Boğazı",
+      "Korint Kanalı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Troya, Çanakkale Boğazı'nın Ege girişine yakın Hisarlık tepesindedir."
+  },
+  {
+    "id": "q58259",
+    "categoryIndex": 0,
+    "question": "Perge Antik Kenti hangi ilimizin Aksu ilçesindedir?",
+    "options": [
+      "Isparta",
+      "Burdur",
+      "Antalya",
+      "Mersin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Perge, Antalya kent merkezinin doğusunda Aksu ilçesindedir."
+  },
+  {
+    "id": "q58260",
+    "categoryIndex": 0,
+    "question": "Aspendos Antik Tiyatrosu hangi nehrin yakınındadır?",
+    "options": [
+      "Aksu Çayı",
+      "Göksu Nehri",
+      "Manavgat Çayı",
+      "Köprüçay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Aspendos, antik Eurymedon adıyla bilinen Köprüçay'ın yakınında kurulmuştur."
+  },
+  {
+    "id": "q58261",
+    "categoryIndex": 0,
+    "question": "Afrodisias Antik Kenti hangi ilimizin Karacasu ilçesindedir?",
+    "options": [
+      "Aydın",
+      "İzmir",
+      "Denizli",
+      "Muğla"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Afrodisias, Aydın'ın Karacasu ilçesindeki Geyre Mahallesi yakınındadır."
+  },
+  {
+    "id": "q58262",
+    "categoryIndex": 0,
+    "question": "Hierapolis Antik Kenti hangi doğal oluşumla iç içedir?",
+    "options": [
+      "Ihlara Vadisi",
+      "Pamukkale travertenleri",
+      "Salda Gölü",
+      "Düden Şelalesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hierapolis, Denizli'deki Pamukkale travertenlerinin hemen üzerinde kurulmuştur."
+  },
+  {
+    "id": "q58263",
+    "categoryIndex": 0,
+    "question": "Laodikeia Antik Kenti hangi ilimizin yakınındadır?",
+    "options": [
+      "Muğla",
+      "Uşak",
+      "Denizli",
+      "Aydın"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Laodikeia, Denizli kent merkezinin kuzeyinde Lykos Vadisi'ndedir."
+  },
+  {
+    "id": "q58264",
+    "categoryIndex": 0,
+    "question": "Stratonikeia Antik Kenti hangi ilimizin Yatağan ilçesindedir?",
+    "options": [
+      "Denizli",
+      "Antalya",
+      "Aydın",
+      "Muğla"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Stratonikeia, Muğla'nın Yatağan ilçesi sınırlarındadır."
+  },
+  {
+    "id": "q58265",
+    "categoryIndex": 0,
+    "question": "Xanthos Antik Kenti hangi iki il sınırına yakın konumdadır?",
+    "options": [
+      "Antalya ve Muğla",
+      "İzmir ve Aydın",
+      "Burdur ve Isparta",
+      "Mersin ve Adana"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Xanthos, Antalya'nın Kaş ilçesi ile Muğla'nın Seydikemer ilçesi sınırına yakın konumdadır."
+  },
+  {
+    "id": "q58266",
+    "categoryIndex": 0,
+    "question": "Ani'deki Arpaçay vadisi Türkiye ile hangi ülke arasında doğal sınır oluşturur?",
+    "options": [
+      "Azerbaycan",
+      "Ermenistan",
+      "İran",
+      "Gürcistan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Arpaçay'ın bir bölümü Türkiye-Ermenistan sınırını oluşturur."
+  },
+  {
+    "id": "q58267",
+    "categoryIndex": 0,
+    "question": "Kars platosunda kışların uzun ve sert geçmesinin başlıca nedeni nedir?",
+    "options": [
+      "Ekvatora yakınlık",
+      "Muson rüzgârları",
+      "Yükseltinin fazla olması",
+      "Denize yakınlık"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kars platosunun yüksekliği karasal iklimin sertleşmesine yol açar."
+  },
+  {
+    "id": "q58268",
+    "categoryIndex": 0,
+    "question": "Rize kıyılarında yıllık yağışın fazla olmasının temel nedeni nedir?",
+    "options": [
+      "Karasal hava kütleleri",
+      "Yükseltinin az olması",
+      "Çöl rüzgârları",
+      "Nemli havanın dağ yamaçlarında yükselmesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Denizden gelen nemli hava kıyıya paralel dağlarda yükselip yoğunlaşır."
+  },
+  {
+    "id": "q58269",
+    "categoryIndex": 0,
+    "question": "İç Anadolu'da bozkır bitki örtüsünün yaygın olmasının temel nedeni nedir?",
+    "options": [
+      "Yağışın sınırlı olması",
+      "Nem oranının çok yüksek olması",
+      "Toprakların tuzlu olması",
+      "Kışların ılık geçmesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İç Anadolu'nun yarı kurak iklimi kısa boylu otlardan oluşan bozkırı destekler."
+  },
+  {
+    "id": "q58270",
+    "categoryIndex": 0,
+    "question": "Akdeniz kıyılarındaki doğal bitki örtüsünün yaygın çalı formu hangisidir?",
+    "options": [
+      "Tayga",
+      "Maki",
+      "Savan",
+      "Tundra"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Maki, yaz kuraklığına dayanıklı her dem yeşil çalılardan oluşur."
+  },
+  {
+    "id": "q58271",
+    "categoryIndex": 0,
+    "question": "Karadeniz kıyılarında dağların denize paralel uzanması ulaşımı nasıl etkiler?",
+    "options": [
+      "Doğu-batı ulaşımını tamamen engeller",
+      "Deniz ulaşımını imkânsızlaştırır",
+      "Kıyı ile iç kesimler arasındaki ulaşımı zorlaştırır",
+      "Ovaların genişlemesini sağlar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kıyıya paralel dağ sıraları, iç kesimlere geçişi belirli vadiler ve geçitlerle sınırlar."
+  },
+  {
+    "id": "q58272",
+    "categoryIndex": 0,
+    "question": "Ege kıyılarında girinti ve çıkıntının fazla olmasının önemli nedeni nedir?",
+    "options": [
+      "Gelgit genliğinin yüksek olması",
+      "Kıyının buzullarla aşınması",
+      "Volkanik adaların birleşmesi",
+      "Dağların denize dik uzanması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ege'de doğu-batı yönlü dağlar ve grabenler denize dik uzanarak çok sayıda koy ve yarımada oluşturur."
+  },
+  {
+    "id": "q58273",
+    "categoryIndex": 0,
+    "question": "Çukurova hangi iki büyük nehrin taşıdığı alüvyonlarla oluşmuştur?",
+    "options": [
+      "Seyhan ve Ceyhan",
+      "Fırat ve Dicle",
+      "Gediz ve Bakırçay",
+      "Kızılırmak ve Yeşilırmak"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Seyhan ve Ceyhan nehirlerinin biriktirdiği alüvyonlar Çukurova'yı oluşturmuştur."
+  },
+  {
+    "id": "q58274",
+    "categoryIndex": 0,
+    "question": "Bafra Ovası'nı oluşturan akarsu hangisidir?",
+    "options": [
+      "Sakarya Nehri",
+      "Kızılırmak",
+      "Meriç Nehri",
+      "Yeşilırmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kızılırmak, Karadeniz'e döküldüğü yerde Bafra Deltası'nı oluşturur."
+  },
+  {
+    "id": "q58275",
+    "categoryIndex": 0,
+    "question": "Çarşamba Ovası'nı oluşturan akarsu hangisidir?",
+    "options": [
+      "Çoruh Nehri",
+      "Sakarya Nehri",
+      "Yeşilırmak",
+      "Kızılırmak"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Yeşilırmak'ın taşıdığı alüvyonlar Samsun'daki Çarşamba Ovası'nı oluşturmuştur."
+  },
+  {
+    "id": "q58276",
+    "categoryIndex": 0,
+    "question": "Amik Ovası hangi ilimizin önemli tarım alanıdır?",
+    "options": [
+      "Adana",
+      "Gaziantep",
+      "Kilis",
+      "Hatay"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Amik Ovası Hatay'da Asi Nehri havzasının verimli tarım alanlarından biridir."
+  },
+  {
+    "id": "q58277",
+    "categoryIndex": 0,
+    "question": "Harran Ovası hangi büyük sulama projesiyle önemli ölçüde sulanmaya başlamıştır?",
+    "options": [
+      "GAP",
+      "KOP",
+      "DAP",
+      "DOKAP"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Güneydoğu Anadolu Projesi kapsamında Fırat'tan getirilen su Harran Ovası'nda sulamayı genişletmiştir."
+  },
+  {
+    "id": "q58278",
+    "categoryIndex": 0,
+    "question": "Konya Ovası'nın su kaynaklarını geliştirmeyi amaçlayan bölgesel proje hangisidir?",
+    "options": [
+      "DOKAP",
+      "KOP",
+      "GAP",
+      "DAP"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Konya Ovası Projesi, bölgede sulama ve su yönetimini geliştirmeyi hedefler."
+  },
+  {
+    "id": "q58279",
+    "categoryIndex": 0,
+    "question": "Ovit Tüneli hangi iki il arasındaki ulaşımı kolaylaştırır?",
+    "options": [
+      "Trabzon ve Gümüşhane",
+      "Ordu ve Sivas",
+      "Rize ve Erzurum",
+      "Artvin ve Ardahan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ovit Tüneli İkizdere-İspir güzergâhında Rize ile Erzurum bağlantısını güçlendirir."
+  },
+  {
+    "id": "q58280",
+    "categoryIndex": 0,
+    "question": "Zigana Tüneli hangi iki il arasındaki ana güzergâhtadır?",
+    "options": [
+      "Rize ve Erzurum",
+      "Ordu ve Sivas",
+      "Artvin ve Ardahan",
+      "Trabzon ve Gümüşhane"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Zigana geçidi ve tünelleri Trabzon-Gümüşhane yolunun önemli bölümüdür."
+  },
+  {
+    "id": "q58281",
+    "categoryIndex": 0,
+    "question": "Bolu Dağı Tüneli hangi iki büyük kent arasındaki otoyol güzergâhındadır?",
+    "options": [
+      "İstanbul ve Ankara",
+      "Ankara ve Konya",
+      "İzmir ve Bursa",
+      "Samsun ve Ordu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Bolu Dağı Tüneli, İstanbul-Ankara Otoyolu üzerindedir."
+  },
+  {
+    "id": "q58282",
+    "categoryIndex": 0,
+    "question": "Marmaray demir yolu hattı İstanbul Boğazı'nı hangi yöntemle geçer?",
+    "options": [
+      "Yüzer köprüyle",
+      "Deniz tabanındaki batırma tüp tünelle",
+      "Asma köprüyle",
+      "Dağ içi viyadükle"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Marmaray'ın boğaz geçişi deniz tabanına yerleştirilen batırma tüp elemanlarından oluşur."
+  },
+  {
+    "id": "q58283",
+    "categoryIndex": 0,
+    "question": "Avrasya Tüneli İstanbul'da hangi iki yakayı karayoluyla bağlar?",
+    "options": [
+      "Karadeniz ile Marmara kıyısını",
+      "Haliç'in iki kıyısını",
+      "Avrupa ve Anadolu yakalarını",
+      "Adalar ile Anadolu yakasını"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Avrasya Tüneli, Kazlıçeşme ile Göztepe güzergâhında boğazın altından geçer."
+  },
+  {
+    "id": "q58284",
+    "categoryIndex": 1,
+    "question": "Kurtlar Vadisi dizisinde Polat Alemdar karakterini kim canlandırdı?",
+    "options": [
+      "Oktay Kaynarca",
+      "Murat Yıldırım",
+      "Kenan İmirzalıoğlu",
+      "Necati Şaşmaz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Necati Şaşmaz, dizinin merkezindeki Polat Alemdar karakteriyle geniş kitlelerce tanındı."
+  },
+  {
+    "id": "q58285",
+    "categoryIndex": 1,
+    "question": "Ezel dizisinin başrolündeki Ezel Bayraktar'ı kim oynadı?",
+    "options": [
+      "Kenan İmirzalıoğlu",
+      "Halit Ergenç",
+      "Kıvanç Tatlıtuğ",
+      "Nejat İşler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kenan İmirzalıoğlu dizide geçmişi Ömer olan Ezel Bayraktar karakterini canlandırdı."
+  },
+  {
+    "id": "q58286",
+    "categoryIndex": 1,
+    "question": "Ezel dizisinde Ramiz Karaeski karakteriyle özdeşleşen oyuncu kimdir?",
+    "options": [
+      "Çetin Tekindor",
+      "Tuncel Kurtiz",
+      "Haluk Bilginer",
+      "Şener Şen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tuncel Kurtiz'in Ramiz Dayı yorumu dizinin en unutulmaz performanslarından biri oldu."
+  },
+  {
+    "id": "q58287",
+    "categoryIndex": 1,
+    "question": "Aşk-ı Memnu dizisinde Bihter Ziyagil'i kim canlandırdı?",
+    "options": [
+      "Tuba Büyüküstün",
+      "Bergüzar Korel",
+      "Beren Saat",
+      "Cansu Dere"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Beren Saat, 2008 yapımı televizyon uyarlamasında Bihter karakterini oynadı."
+  },
+  {
+    "id": "q58288",
+    "categoryIndex": 1,
+    "question": "Aşk-ı Memnu dizisinde Behlül karakterini oynayan oyuncu kimdir?",
+    "options": [
+      "Kenan İmirzalıoğlu",
+      "Çağatay Ulusoy",
+      "Engin Akyürek",
+      "Kıvanç Tatlıtuğ"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kıvanç Tatlıtuğ dizide Behlül Haznedar karakterini canlandırdı."
+  },
+  {
+    "id": "q58289",
+    "categoryIndex": 1,
+    "question": "Muhteşem Yüzyıl dizisinde Kanuni Sultan Süleyman'ı kim oynadı?",
+    "options": [
+      "Halit Ergenç",
+      "Mehmet Günsür",
+      "Burak Özçivit",
+      "Okan Yalabık"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Halit Ergenç dizinin ilk dört sezonunda Kanuni Sultan Süleyman rolündeydi."
+  },
+  {
+    "id": "q58290",
+    "categoryIndex": 1,
+    "question": "Muhteşem Yüzyıl'da Hürrem Sultan karakterini ilk yıllarda kim canlandırdı?",
+    "options": [
+      "Nebahat Çehre",
+      "Meryem Uzerli",
+      "Vahide Perçin",
+      "Selma Ergeç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Meryem Uzerli, Hürrem Sultan rolüyle uluslararası çapta tanındı."
+  },
+  {
+    "id": "q58291",
+    "categoryIndex": 1,
+    "question": "Avrupa Yakası dizisinde Aslı Sütçüoğlu karakterini kim oynadı?",
+    "options": [
+      "Binnur Kaya",
+      "Şebnem Bozoklu",
+      "Gülse Birsel",
+      "Demet Evgar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dizinin senaristi Gülse Birsel aynı zamanda Aslı karakterini canlandırdı."
+  },
+  {
+    "id": "q58292",
+    "categoryIndex": 1,
+    "question": "Avrupa Yakası'ndaki Burhan Altıntop karakterini kim canlandırdı?",
+    "options": [
+      "Sarp Apak",
+      "Ata Demirer",
+      "Tolga Çevik",
+      "Engin Günaydın"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Engin Günaydın'ın Burhan Altıntop karakteri dizinin en sevilen komedi figürlerinden biri oldu."
+  },
+  {
+    "id": "q58293",
+    "categoryIndex": 1,
+    "question": "Yalan Dünya dizisinin senaristi ve Deniz karakterinin oyuncusu kimdir?",
+    "options": [
+      "Gülse Birsel",
+      "Yılmaz Erdoğan",
+      "İbrahim Büyükak",
+      "Binnur Kaya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gülse Birsel hem diziyi yazdı hem de Deniz Alsancak karakterini oynadı."
+  },
+  {
+    "id": "q58294",
+    "categoryIndex": 1,
+    "question": "Bir Demet Tiyatro'da Mükremin Çıtır karakterini kim canlandırdı?",
+    "options": [
+      "Bican Günalan",
+      "Yılmaz Erdoğan",
+      "Demet Akbağ",
+      "Olgun Şimşek"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Yılmaz Erdoğan, yazdığı programda Mükremin Çıtır karakteriyle de rol aldı."
+  },
+  {
+    "id": "q58295",
+    "categoryIndex": 1,
+    "question": "İkinci Bahar dizisinde kebapçı Ali Haydar'ı kim oynadı?",
+    "options": [
+      "Türkan Şoray",
+      "Uğur Yücel",
+      "Şener Şen",
+      "Çetin Tekindor"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Şener Şen dizide Samatya'da lokanta işleten Ali Haydar karakterini canlandırdı."
+  },
+  {
+    "id": "q58296",
+    "categoryIndex": 1,
+    "question": "İkinci Bahar dizisinde Hanım karakterini kim canlandırdı?",
+    "options": [
+      "Müjde Ar",
+      "Nebahat Çehre",
+      "Hülya Koçyiğit",
+      "Türkan Şoray"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Türkan Şoray, Ali Haydar'ın yanında çalışan Hanım rolündeydi."
+  },
+  {
+    "id": "q58297",
+    "categoryIndex": 1,
+    "question": "Süper Baba dizisinde Fikret Aksu karakterini kim oynadı?",
+    "options": [
+      "Şevket Altuğ",
+      "Rutkay Aziz",
+      "Sümer Tilmaç",
+      "Tarık Akan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Şevket Altuğ, Çengelköy'de yaşayan baba Fikret Aksu rolüyle hafızalara kazındı."
+  },
+  {
+    "id": "q58298",
+    "categoryIndex": 1,
+    "question": "Bizimkiler dizisinde apartman yöneticisi Sabri Bey'i kim canlandırdı?",
+    "options": [
+      "Ercan Yazgan",
+      "Mehmet Akan",
+      "Savaş Dinçel",
+      "Aykut Oray"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Mehmet Akan, sert mizacıyla bilinen yönetici Sabri Bey rolündeydi."
+  },
+  {
+    "id": "q58299",
+    "categoryIndex": 1,
+    "question": "Bizimkiler dizisindeki kapıcı Cafer karakterini kim oynadı?",
+    "options": [
+      "Aykut Oray",
+      "Erdoğan Sıcak",
+      "Ercan Yazgan",
+      "Ali Poyrazoğlu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Ercan Yazgan, apartmanın kapıcısı Cafer karakterini uzun yıllar canlandırdı."
+  },
+  {
+    "id": "q58300",
+    "categoryIndex": 1,
+    "question": "Perihan Abla dizisinde başrolü oynayan sanatçı kimdir?",
+    "options": [
+      "Nevra Serezli",
+      "Adile Naşit",
+      "Ayşen Gruda",
+      "Perran Kutman"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Perran Kutman, mahallenin sevilen ismi Perihan Abla karakterini canlandırdı."
+  },
+  {
+    "id": "q58301",
+    "categoryIndex": 1,
+    "question": "Tatlı Hayat dizisinde İhsan Yıldırım karakterini kim oynadı?",
+    "options": [
+      "Haluk Bilginer",
+      "Metin Akpınar",
+      "Şener Şen",
+      "Çetin Tekindor"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Haluk Bilginer, kuru temizlemeci İhsan Yıldırım karakteriyle başroldeydi."
+  },
+  {
+    "id": "q58302",
+    "categoryIndex": 1,
+    "question": "Tatlı Hayat dizisinde Sevinç Yıldırım karakterini kim canlandırdı?",
+    "options": [
+      "Hale Soygazi",
+      "Türkan Şoray",
+      "Nebahat Çehre",
+      "Perran Kutman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türkan Şoray dizide İhsan'ın eşi Sevinç'i oynadı."
+  },
+  {
+    "id": "q58303",
+    "categoryIndex": 1,
+    "question": "Yaprak Dökümü dizisinde Ali Rıza Tekin karakterini kim canlandırdı?",
+    "options": [
+      "Uğur Polat",
+      "Çetin Tekindor",
+      "Halil Ergün",
+      "Tuncel Kurtiz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Halil Ergün, ailenin babası Ali Rıza Tekin rolünü üstlendi."
+  },
+  {
+    "id": "q58304",
+    "categoryIndex": 1,
+    "question": "Yaprak Dökümü dizisinde Ferhunde karakterini kim oynadı?",
+    "options": [
+      "Gökçe Bahadır",
+      "Fahriye Evcen",
+      "Bennu Yıldırımlar",
+      "Deniz Çakır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Deniz Çakır, entrikalarıyla öne çıkan Ferhunde karakterini canlandırdı."
+  },
+  {
+    "id": "q58305",
+    "categoryIndex": 1,
+    "question": "Öyle Bir Geçer Zaman ki dizisinde Ali Kaptan'ı kim oynadı?",
+    "options": [
+      "Erkan Petekkaya",
+      "Aras Bulut İynemli",
+      "Mete Horozoğlu",
+      "Ayça Bingöl"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Erkan Petekkaya dizide Akarsu ailesinin babası Ali Kaptan rolündeydi."
+  },
+  {
+    "id": "q58306",
+    "categoryIndex": 1,
+    "question": "Öyle Bir Geçer Zaman ki dizisinde Cemile karakterini kim canlandırdı?",
+    "options": [
+      "Vahide Perçin",
+      "Ayça Bingöl",
+      "Özge Özberk",
+      "Bergüzar Korel"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Ayça Bingöl, ailenin annesi Cemile Akarsu rolüyle birçok ödül kazandı."
+  },
+  {
+    "id": "q58307",
+    "categoryIndex": 1,
+    "question": "Leyla ile Mecnun dizisinde Mecnun karakterini kim oynadı?",
+    "options": [
+      "Osman Sonant",
+      "Ahmet Mümtaz Taylan",
+      "Ali Atay",
+      "Serkan Keskin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ali Atay dizinin absürt kahramanı Mecnun Çınar'ı canlandırdı."
+  },
+  {
+    "id": "q58308",
+    "categoryIndex": 1,
+    "question": "Leyla ile Mecnun'daki İsmail Abi karakterini kim canlandırdı?",
+    "options": [
+      "Osman Sonant",
+      "Onur Ünlü",
+      "Cengiz Bozkurt",
+      "Serkan Keskin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Serkan Keskin, renkli kişiliğiyle sevilen İsmail Abi karakterini oynadı."
+  },
+  {
+    "id": "q58309",
+    "categoryIndex": 1,
+    "question": "Leyla ile Mecnun'un ilk dönem bölümlerinin yönetmenliğini hangi sinemacı üstlendi?",
+    "options": [
+      "Onur Ünlü",
+      "Çağan Irmak",
+      "Yüksel Aksu",
+      "Selçuk Aydemir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Onur Ünlü, dizinin ilk döneminde yönetmen koltuğunda oturdu; senaryoyu Burak Aksak yazdı."
+  },
+  {
+    "id": "q58310",
+    "categoryIndex": 1,
+    "question": "Kardeş Payı dizisinde Metin ve Ali'nin icat etmeye çalıştığı şey nedir?",
+    "options": [
+      "Güneş enerjili gemi",
+      "Borla çalışan motor",
+      "Uçan otomobil",
+      "Zaman makinesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dizinin iki tesisatçı kardeşi borla çalışan bir motor geliştirmeye çalışır."
+  },
+  {
+    "id": "q58311",
+    "categoryIndex": 1,
+    "question": "Kardeş Payı dizisinde Metin karakterini kim oynadı?",
+    "options": [
+      "Şinasi Yurtsever",
+      "Sadi Celil Cengiz",
+      "Ahmet Kural",
+      "Murat Cemcir"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ahmet Kural dizide kardeşlerden Metin Özdemir'i canlandırdı."
+  },
+  {
+    "id": "q58312",
+    "categoryIndex": 1,
+    "question": "İşler Güçler dizisinde üç oyuncu kendilerinin kurgusal versiyonlarını oynar; bunlardan biri kimdir?",
+    "options": [
+      "Kenan İmirzalıoğlu",
+      "Kıvanç Tatlıtuğ",
+      "Halit Ergenç",
+      "Ahmet Kural"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Ahmet Kural, Murat Cemcir ve Sadi Celil Cengiz dizide kendi adlarını taşıyan karakterleri oynadı."
+  },
+  {
+    "id": "q58313",
+    "categoryIndex": 1,
+    "question": "Behzat Ç. dizisinde başkomiser Behzat'ı kim canlandırdı?",
+    "options": [
+      "Erdal Beşikçioğlu",
+      "Yiğit Özşener",
+      "Nejat İşler",
+      "Haluk Bilginer"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Erdal Beşikçioğlu, Ankara Cinayet Büro'nun başındaki Behzat Ç. rolüyle özdeşleşti."
+  },
+  {
+    "id": "q58314",
+    "categoryIndex": 1,
+    "question": "Şahsiyet dizisinde Agâh Beyoğlu karakterini kim canlandırdı?",
+    "options": [
+      "Uğur Yücel",
+      "Haluk Bilginer",
+      "Çetin Tekindor",
+      "Şener Şen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Haluk Bilginer bu rolle Uluslararası Emmy'de En İyi Erkek Oyuncu ödülünü kazandı."
+  },
+  {
+    "id": "q58315",
+    "categoryIndex": 1,
+    "question": "Şahsiyet dizisinde polis Nevra Elmas'ı kim oynadı?",
+    "options": [
+      "Öykü Karayel",
+      "Tuba Büyüküstün",
+      "Cansu Dere",
+      "Beren Saat"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Cansu Dere dizide cinayet büro polisi Nevra Elmas karakterini canlandırdı."
+  },
+  {
+    "id": "q58316",
+    "categoryIndex": 1,
+    "question": "Masum dizisinde emekli komiser Cevdet'i kim canlandırdı?",
+    "options": [
+      "Okan Yalabık",
+      "Ali Atay",
+      "Serkan Keskin",
+      "Haluk Bilginer"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Haluk Bilginer, Berkun Oya'nın yazdığı dizide Cevdet karakterini oynadı."
+  },
+  {
+    "id": "q58317",
+    "categoryIndex": 1,
+    "question": "Bir Başkadır dizisinin senaristi ve yönetmeni kimdir?",
+    "options": [
+      "Berkun Oya",
+      "Onur Ünlü",
+      "Nuri Bilge Ceylan",
+      "Tolga Karaçelik"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Berkun Oya, farklı toplumsal kesimleri buluşturan diziyi yazıp yönetti."
+  },
+  {
+    "id": "q58318",
+    "categoryIndex": 1,
+    "question": "Bir Başkadır dizisinde Meryem karakterini kim canlandırdı?",
+    "options": [
+      "Funda Eryiğit",
+      "Öykü Karayel",
+      "Fatma Toptaş",
+      "Tülin Özen"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Öykü Karayel, gündelikçi olarak çalışan Meryem rolündeydi."
+  },
+  {
+    "id": "q58319",
+    "categoryIndex": 1,
+    "question": "Kulüp dizisi 1950'lerde hangi şehirde geçer?",
+    "options": [
+      "İzmir",
+      "Ankara",
+      "İstanbul",
+      "Bursa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kulüp, 1950'lerin İstanbul gece hayatı ve azınlık toplulukları çevresinde gelişir."
+  },
+  {
+    "id": "q58320",
+    "categoryIndex": 1,
+    "question": "Kulüp dizisinde Matilda Aseo karakterini kim canlandırdı?",
+    "options": [
+      "Farah Zeynep Abdullah",
+      "Aslı Enver",
+      "Beren Saat",
+      "Gökçe Bahadır"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Gökçe Bahadır, hapisten çıktıktan sonra kızıyla bağ kurmaya çalışan Matilda'yı oynadı."
+  }
+]

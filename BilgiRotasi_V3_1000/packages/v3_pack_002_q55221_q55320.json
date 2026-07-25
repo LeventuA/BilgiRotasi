@@ -1,0 +1,1402 @@
+[
+  {
+    "categoryIndex": 0,
+    "question": "Palandöken kayak merkezi hangi şehrimizin hemen güneyindedir?",
+    "options": [
+      "Erzurum",
+      "Kars",
+      "Sivas",
+      "Erzincan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Palandöken Dağı ve kayak merkezi, Erzurum şehir merkezinin hemen güneyinde yükselir.",
+    "id": "q55221"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Whiplash filminde Andrew hangi enstrümanı çalar?",
+    "options": [
+      "Saksafon",
+      "Bateri",
+      "Piyano",
+      "Kontrbas"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Andrew Neiman, caz bateristi olma hırsıyla yoğun bir eğitimden geçer.",
+    "id": "q55222"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Pinokyo’nun burnu hangi durumda uzar?",
+    "options": [
+      "Uyuduğunda",
+      "Korktuğunda",
+      "Yalan söylediğinde",
+      "Acıktığında"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Pinokyo yalan söylediğinde burnunun uzaması, öykünün en bilinen ayrıntısıdır.",
+    "id": "q55223"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Parasite filminin yönetmeni kimdir?",
+    "options": [
+      "Park Chan-wook",
+      "Hirokazu Kore-eda",
+      "Lee Chang-dong",
+      "Bong Joon-ho"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Güney Koreli yönetmen Bong Joon-ho’nun Parasite filmi En İyi Film Oscar’ını kazandı.",
+    "id": "q55224"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Dava romanında nedeni açıklanmadan tutuklanan karakter kimdir?",
+    "options": [
+      "Josef K.",
+      "Winston Smith",
+      "Gregor Samsa",
+      "Meursault"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Josef K., hangi suçla itham edildiğini bilmeden anlaşılmaz bir hukuk sistemiyle mücadele eder.",
+    "id": "q55225"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Teniste sıfır puan nasıl söylenir?",
+    "options": [
+      "Zero point",
+      "Love",
+      "Blank",
+      "Nil"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Tenis skorlamasında oyuncunun puanı yoksa love terimi kullanılır.",
+    "id": "q55226"
+  },
+  {
+    "id": "q55227",
+    "categoryIndex": 2,
+    "question": "1066’daki Hastings Savaşı’nın galibi kimdi?",
+    "options": [
+      "Aslan Yürekli Richard",
+      "Şarlman",
+      "Normandiya Dükü William",
+      "Kral Arthur"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Normandiya Dükü William’ın zaferi İngiltere’de Norman yönetimini başlattı."
+  },
+  {
+    "id": "q55228",
+    "categoryIndex": 0,
+    "question": "Devler Kaldırımı’nın bazalt sütunları Birleşik Krallık’ın hangi bölümündedir?",
+    "options": [
+      "İskoçya",
+      "Galler",
+      "İngiltere",
+      "Kuzey İrlanda"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Devler Kaldırımı, Kuzey İrlanda’nın Antrim kıyısındadır."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Amélie filmi ağırlıklı olarak hangi şehirde geçer?",
+    "options": [
+      "Paris",
+      "Prag",
+      "Lyon",
+      "Brüksel"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Amélie’nin hikâyesi özellikle Paris’in Montmartre semtinde geçer.",
+    "id": "q55229"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Cunda Adası hangi ilimizin Ayvalık ilçesine bağlıdır?",
+    "options": [
+      "Bursa",
+      "Balıkesir",
+      "Çanakkale",
+      "İzmir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Cunda, resmî adıyla Alibey Adası, Balıkesir’in Ayvalık ilçesine bağlıdır.",
+    "id": "q55230"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Mantarların hücre duvarında bulunan dayanıklı madde hangisidir?",
+    "options": [
+      "Selüloz",
+      "Lignin",
+      "Kitin",
+      "Nişasta"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Mantar hücre duvarlarının temel yapısal maddelerinden biri kitindir.",
+    "id": "q55231"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Midedeki başlıca güçlü asit hangisidir?",
+    "options": [
+      "Asetik asit",
+      "Karbonik asit",
+      "Sülfürik asit",
+      "Hidroklorik asit"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hidroklorik asit protein sindirimini başlatan pepsin için uygun ortam oluşturur.",
+    "id": "q55232"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Monty Python and the Holy Grail filminde şövalyelere saldıran beklenmedik hayvan hangisidir?",
+    "options": [
+      "Beyaz tavşan",
+      "Kara kedi",
+      "Yaban domuzu",
+      "Kuzgun"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Caerbannog Tavşanı görünüşte sevimli, fakat filmde son derece tehlikeli bir yaratıktır.",
+    "id": "q55233"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Kanın sıvı kısmına ne denir?",
+    "options": [
+      "Lenf",
+      "Plazma",
+      "Serum proteini",
+      "Hemoglobin"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Plazma; su, proteinler, tuzlar ve çözünmüş maddeleri taşıyan kanın sıvı bölümüdür.",
+    "id": "q55234"
+  },
+  {
+    "id": "q55235",
+    "categoryIndex": 2,
+    "question": "Domesday Book hangi ülkenin toprak ve mülk kayıtlarını derlemek için hazırlanmıştır?",
+    "options": [
+      "İspanya",
+      "Fransa",
+      "İngiltere",
+      "Almanya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "William’ın emriyle hazırlanan Domesday Book, 11. yüzyıl İngiltere’sinin kapsamlı bir mülk sayımıdır."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Bozcaada idari olarak hangi ilimize bağlıdır?",
+    "options": [
+      "Balıkesir",
+      "Tekirdağ",
+      "İzmir",
+      "Çanakkale"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bozcaada, Ege Denizi’nin kuzeyinde yer alan ve Çanakkale’ye bağlı bir ilçedir.",
+    "id": "q55236"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Moby Dick romanındaki beyaz balinanın adı nedir?",
+    "options": [
+      "Moby Dick",
+      "Nautilus",
+      "Leviathan",
+      "Pequod"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kaptan Ahab’ın peşine düştüğü beyaz balina Moby Dick’tir.",
+    "id": "q55237"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Oylat Kaplıcaları hangi ilimizdedir?",
+    "options": [
+      "Yalova",
+      "Bursa",
+      "Bilecik",
+      "Kocaeli"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Oylat Kaplıcaları, Bursa’nın İnegöl ilçesi yakınlarında bulunur.",
+    "id": "q55238"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Sakarya Meydan Muharebesi yaklaşık ne kadar sürdü?",
+    "options": [
+      "7 gün 7 gece",
+      "3 gün 3 gece",
+      "22 gün 22 gece",
+      "40 gün 40 gece"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "23 Ağustos-13 Eylül 1921 arasındaki savaş, 22 gün 22 gece sürdü.",
+    "id": "q55239"
+  },
+  {
+    "id": "q55240",
+    "categoryIndex": 5,
+    "question": "Voleybolda top yere değmek üzereyken elin düz biçimde altına sokulmasıyla yapılan kurtarışa ne denir?",
+    "options": [
+      "Blok aut",
+      "Tip",
+      "Side-out",
+      "Pancake"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Pancake savunmasında el zemine düz konur ve top elin üzerine çarparak oyunda tutulur."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Crouching Tiger, Hidden Dragon hangi sinema geleneğinin ünlü örneklerindendir?",
+    "options": [
+      "Wuxia",
+      "Neorealizm",
+      "Spagetti western",
+      "Film noir"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Wuxia, Çinli kılıç ustaları ve dövüş kahramanlarını konu alan bir türdür.",
+    "id": "q55241"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Kalın bağırsağın temel görevlerinden biri hangisidir?",
+    "options": [
+      "Oksijen üretmek",
+      "Su ve elektrolit emmek",
+      "Safra depolamak",
+      "İnsülin salgılamak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kalın bağırsak sindirim artıklarından su ve tuzları geri emerek dışkıyı yoğunlaştırır.",
+    "id": "q55242"
+  },
+  {
+    "id": "q55243",
+    "categoryIndex": 3,
+    "question": "Ulysses romanında olayların büyük bölümü hangi şehirde geçer?",
+    "options": [
+      "Londra",
+      "Paris",
+      "Dublin",
+      "Roma"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "James Joyce’un Ulysses’i, 16 Haziran 1904 günü Dublin’de geçer."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Fahrenheit 451 romanında itfaiyecilerin temel görevi nedir?",
+    "options": [
+      "Yangın söndürmek",
+      "İnsan kurtarmak",
+      "Binaları denetlemek",
+      "Kitap yakmak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Romanın dünyasında itfaiyeciler yangın söndürmek yerine yasaklanan kitapları yakar.",
+    "id": "q55244"
+  },
+  {
+    "id": "q55245",
+    "categoryIndex": 1,
+    "question": "Eternal Sunshine of the Spotless Mind filminde anıları silen şirketin adı nedir?",
+    "options": [
+      "Lacuna",
+      "Tyrell",
+      "InGen",
+      "Cyberdyne"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Lacuna adlı şirket, kişilerin belirli ilişkilerle ilgili anılarını sildiğini iddia eder."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Fahrenheit 451’de itfaiyecilerin görevi nedir?",
+    "options": [
+      "Gazete dağıtmak",
+      "Kitapları yakmak",
+      "Robot onarmak",
+      "Yangın söndürmek"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bradbury’nin distopyasında itfaiyeciler yasaklanmış kitapları ve saklandıkları evleri yakar.",
+    "id": "q55246"
+  },
+  {
+    "id": "q55247",
+    "categoryIndex": 3,
+    "question": "Mezbaha Beş romanının zaman içinde savrulan başkahramanı kimdir?",
+    "options": [
+      "Winston Smith",
+      "John Yossarian",
+      "Billy Pilgrim",
+      "Leopold Bloom"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Billy Pilgrim, Dresden bombardımanı ve farklı zaman dilimleri arasında doğrusal olmayan bir anlatıda ilerler."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Karagöl-Sahara Millî Parkı hangi ilimizdedir?",
+    "options": [
+      "Ardahan",
+      "Rize",
+      "Giresun",
+      "Artvin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Karagöl-Sahara Millî Parkı, Artvin’in Şavşat ilçesi çevresindedir.",
+    "id": "q55248"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Büyük Taarruz hangi tarihte başladı?",
+    "options": [
+      "26 Ağustos 1922",
+      "9 Eylül 1922",
+      "13 Eylül 1921",
+      "19 Mayıs 1919"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Türk ordusunun kesin sonuçlu taarruzu 26 Ağustos 1922 sabahı başladı.",
+    "id": "q55249"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Beyinciğin temel görevlerinden biri nedir?",
+    "options": [
+      "Görme sinyali üretmek",
+      "Denge ve hareket koordinasyonu",
+      "Kanı süzmek",
+      "Hormon depolamak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Beyincik hareketlerin zamanlanması, hassasiyeti ve dengenin korunmasında rol oynar.",
+    "id": "q55250"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Solunum ve kalp atımı gibi yaşamsal işlevleri düzenleyen beyin bölümü hangisidir?",
+    "options": [
+      "Parietal lob",
+      "Talamus",
+      "Omurilik soğanı",
+      "Hipokampus"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Medulla oblongata, solunum ve dolaşım gibi istemsiz işlevlerin merkezlerini içerir.",
+    "id": "q55251"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Planlama ve karar verme en çok beynin hangi lobuyla ilişkilidir?",
+    "options": [
+      "Oksipital lob",
+      "Parietal lob",
+      "Temporal lob",
+      "Frontal lob"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Frontal lobun ön bölgesi muhakeme, dürtü kontrolü ve planlamada önemli rol oynar.",
+    "id": "q55252"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Görsel bilginin ilk işlendiği beyin lobu hangisidir?",
+    "options": [
+      "Oksipital lob",
+      "Temporal lob",
+      "Parietal lob",
+      "Frontal lob"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Gözlerden gelen sinyaller beynin arka bölümündeki görme korteksine ulaşır.",
+    "id": "q55253"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Göksu Deltası hangi ilimizin Silifke ilçesi yakınındadır?",
+    "options": [
+      "Adana",
+      "Mersin",
+      "Hatay",
+      "Antalya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Göksu Nehri’nin oluşturduğu delta, Mersin’in Silifke ilçesi kıyısındadır.",
+    "id": "q55254"
+  },
+  {
+    "id": "q55255",
+    "categoryIndex": 3,
+    "question": "Usta ile Margarita romanında Moskova’ya gelen gizemli yabancının adı nedir?",
+    "options": [
+      "Berlioz",
+      "Azazello",
+      "Woland",
+      "Behemoth"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Woland ve sıra dışı maiyeti, romanda Sovyet Moskova’sını altüst eder."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Gilindire Mağarası hangi ilimizin Aydıncık ilçesindedir?",
+    "options": [
+      "Antalya",
+      "Adana",
+      "Hatay",
+      "Mersin"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Aynalıgöl adıyla da bilinen Gilindire Mağarası Mersin’in Aydıncık ilçesindedir.",
+    "id": "q55256"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kurtuluş Savaşı’nın silahlı çatışma dönemini fiilen bitiren ateşkes hangisidir?",
+    "options": [
+      "Mudanya Ateşkesi",
+      "Ankara Antlaşması",
+      "Sevr Antlaşması",
+      "Mondros Ateşkesi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "11 Ekim 1922 tarihli Mudanya Ateşkesi, Doğu Trakya’nın savaşılmadan geri alınmasını sağladı.",
+    "id": "q55257"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Petra Antik Kenti hangi ülkededir?",
+    "options": [
+      "Umman",
+      "Ürdün",
+      "Lübnan",
+      "Suriye"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kayalara oyulmuş Petra, Ürdün’ün güneyinde Nebatiler tarafından geliştirilmiştir.",
+    "id": "q55258"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Gözde ışığı algılayan çubuk ve koni hücreleri nerede bulunur?",
+    "options": [
+      "İris",
+      "Göz merceği",
+      "Retina",
+      "Kornea"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Retinadaki fotoreseptörler ışığı elektrik sinyallerine dönüştürür.",
+    "id": "q55259"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Teniste servis atan oyuncunun oyununu kaybetmesine ne denir?",
+    "options": [
+      "Set point",
+      "Let",
+      "Tie-break",
+      "Servis kırılması"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Karşılayan oyuncu rakibinin servis oyununu kazandığında break yapmış olur.",
+    "id": "q55260"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Sixth Sense filmindeki çocuk karakter Cole’u kim canlandırır?",
+    "options": [
+      "Haley Joel Osment",
+      "Macaulay Culkin",
+      "Elijah Wood",
+      "Freddie Highmore"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Haley Joel Osment, ölü insanları gördüğünü söyleyen Cole Sear rolündedir.",
+    "id": "q55261"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Türkiye’nin uluslararası sınırlarının büyük bölümünü tanıyan antlaşma hangisidir?",
+    "options": [
+      "Sevr Antlaşması",
+      "Lozan Antlaşması",
+      "Uşi Antlaşması",
+      "Brest-Litovsk Antlaşması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "24 Temmuz 1923’te imzalanan Lozan, yeni Türk devletinin uluslararası statüsünü belirledi.",
+    "id": "q55262"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Göze giren ışık miktarını hangi yapı ayarlar?",
+    "options": [
+      "Retina",
+      "Kornea",
+      "İris",
+      "Göz siniri"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İris, göz bebeğinin çapını değiştirerek içeri giren ışığı düzenler.",
+    "id": "q55263"
+  },
+  {
+    "id": "q55264",
+    "categoryIndex": 0,
+    "question": "Toba Gölü’nü oluşturan dev kaldera hangi ülkededir?",
+    "options": [
+      "Japonya",
+      "Filipinler",
+      "Yeni Zelanda",
+      "Endonezya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sumatra’daki Toba Gölü, çok büyük bir volkanik patlamanın bıraktığı kalderada oluşmuştur."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Moby Dick’te beyaz balinanın peşine takıntıyla düşen kaptan kimdir?",
+    "options": [
+      "Ahab",
+      "Flint",
+      "Nemo",
+      "Hook"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kaptan Ahab, bacağını kaybetmesine neden olan Moby Dick’ten intikam almak ister.",
+    "id": "q55265"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Teniste dört büyük turnuvanın tamamına verilen ortak ad nedir?",
+    "options": [
+      "Golden Tour",
+      "Grand Slam",
+      "World Series",
+      "Masters Cup"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Avustralya Açık, Roland Garros, Wimbledon ve ABD Açık Grand Slam turnuvalarıdır.",
+    "id": "q55266"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Rocky filmindeki ünlü merdivenler hangi şehirdedir?",
+    "options": [
+      "New York",
+      "Boston",
+      "Philadelphia",
+      "Chicago"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Rocky’nin koşarak çıktığı merdivenler Philadelphia Sanat Müzesi’nin önündedir.",
+    "id": "q55267"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Ankara hangi tarihte başkent ilan edildi?",
+    "options": [
+      "29 Ekim 1923",
+      "3 Mart 1924",
+      "23 Nisan 1920",
+      "13 Ekim 1923"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Cumhuriyetin ilanından kısa süre önce, 13 Ekim 1923’te Ankara başkent oldu.",
+    "id": "q55268"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "İç kulakta işitmeyle ilgili salyangoz biçimli yapı hangisidir?",
+    "options": [
+      "Koklea",
+      "Yarım daire kanalları",
+      "Kulak zarı",
+      "Östaki borusu"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kokleadaki tüylü hücreler ses titreşimlerini sinir sinyallerine dönüştürür.",
+    "id": "q55269"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "İhtiyar Balıkçı’da Santiago hangi balığı yakalamaya çalışır?",
+    "options": [
+      "Ton balığı",
+      "Dev bir kılıç balığı",
+      "Köpek balığı",
+      "Somon"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Santiago, Gulf Stream’de dev bir marlinle günler süren mücadeleye girer.",
+    "id": "q55270"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Machu Picchu hangi ülkede bulunur?",
+    "options": [
+      "Şili",
+      "Bolivya",
+      "Peru",
+      "Ekvador"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İnka kenti Machu Picchu, Peru Andları’nda Urubamba Vadisi’nin üzerindedir.",
+    "id": "q55271"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Beyzbolda vurucunun üç strike alarak elenmesine ne denir?",
+    "options": [
+      "Walk",
+      "Home run",
+      "Steal",
+      "Strikeout"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Üçüncü strike sonrasında vurucu çoğu durumda oyun dışı kalır.",
+    "id": "q55272"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "İç kulaktaki yarım daire kanalları hangi duyuyla ilgilidir?",
+    "options": [
+      "Denge",
+      "Koku",
+      "Dokunma",
+      "Tat"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kanallardaki sıvı hareketi başın dönme hareketlerini algılamaya yardım eder.",
+    "id": "q55273"
+  },
+  {
+    "id": "q55274",
+    "categoryIndex": 2,
+    "question": "Hansa Birliği’nin temel amacı neydi?",
+    "options": [
+      "Roma hukukunu yaymak",
+      "Kuzey Avrupa’daki ticareti korumak",
+      "Tarım vergilerini kaldırmak",
+      "Haçlı seferlerini yönetmek"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Hansa Birliği, Baltık ve Kuzey Denizi çevresindeki ticaret kentlerinin oluşturduğu ekonomik ağdı."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Good Will Hunting filminde Will, üniversitede hangi işi yapar?",
+    "options": [
+      "Laboratuvar teknisyeni",
+      "Kütüphaneci",
+      "Temizlik görevlisi",
+      "Güvenlik görevlisi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Will, MIT’de temizlik görevlisiyken ileri düzey bir matematik problemini çözer.",
+    "id": "q55275"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Moai heykelleriyle ünlü Paskalya Adası hangi ülkeye bağlıdır?",
+    "options": [
+      "Arjantin",
+      "Peru",
+      "Yeni Zelanda",
+      "Şili"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Paskalya Adası, Büyük Okyanus’ta yer alan Şili’ye bağlı özel bir bölgedir.",
+    "id": "q55276"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Beyzbol sahasında koşucunun dolaştığı kaç kale vardır?",
+    "options": [
+      "Dört",
+      "Üç",
+      "Altı",
+      "Beş"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Birinci, ikinci, üçüncü kale ve home plate koşu güzergâhını oluşturur.",
+    "id": "q55277"
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Borobudur tapınağı hangi ülkededir?",
+    "options": [
+      "Filipinler",
+      "Endonezya",
+      "Sri Lanka",
+      "Malezya"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dünyanın en büyük Budist anıtlarından Borobudur, Endonezya’nın Cava Adası’ndadır.",
+    "id": "q55278"
+  },
+  {
+    "id": "q55279",
+    "categoryIndex": 2,
+    "question": "Avignon Papalığı döneminde papalık merkezi hangi ülkeye taşınmıştı?",
+    "options": [
+      "Avusturya",
+      "İtalya",
+      "Fransa",
+      "İspanya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "14. yüzyılda papalar yaklaşık yetmiş yıl boyunca Fransa’daki Avignon’dan yönetim yürüttü."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Okavango Deltası hangi Afrika ülkesindedir?",
+    "options": [
+      "Namibya",
+      "Zambiya",
+      "Angola",
+      "Botsvana"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Okavango Nehri, Botsvana’daki Kalahari Havzası’nda büyük bir iç delta oluşturur.",
+    "id": "q55280"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Tekke, zaviye ve türbelerin kapatılmasına ilişkin kanun hangi yıl çıkarıldı?",
+    "options": [
+      "1925",
+      "1923",
+      "1928",
+      "1934"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tekke ve zaviyelerin kapatılmasına ilişkin kanun 30 Kasım 1925’te kabul edildi.",
+    "id": "q55281"
+  },
+  {
+    "id": "q55282",
+    "categoryIndex": 5,
+    "question": "Voleybolda topa dönmeden ve az falsoyla vurulan servis türü hangisidir?",
+    "options": [
+      "Skyhook servis",
+      "Float servis",
+      "Slice servis",
+      "Kick servis"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Float serviste top çok az döner; hava akımı topun yönünü tahmin etmeyi zorlaştırır."
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Arrival filmindeki uzaylılara verilen ad nedir?",
+    "options": [
+      "Klingonlar",
+      "Predatorlar",
+      "Heptapodlar",
+      "Na'viler"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Yedi uzuvlu uzaylılara bilim ekibi tarafından heptapod adı verilir.",
+    "id": "q55283"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Coco filminde Miguel’in hayran olduğu ünlü müzisyen kimdir?",
+    "options": [
+      "Héctor Rivera",
+      "Chicharrón",
+      "Julio Rivera",
+      "Ernesto de la Cruz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Miguel başlangıçta büyük idolü Ernesto de la Cruz’un izinden gitmek ister.",
+    "id": "q55284"
+  },
+  {
+    "id": "q55285",
+    "categoryIndex": 5,
+    "question": "Beyzbolda bir atıcının rakibe hiç vuruş yaptırmadan tamamladığı maça ne denir?",
+    "options": [
+      "No-hitter",
+      "Walk-off",
+      "Grand slam",
+      "Double play"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "No-hitter’da rakip takım maç boyunca kurallara uygun bir isabetli vuruş kaydedemez."
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Ses dalgalarının frekansı arttıkça algılanan ses nasıl değişir?",
+    "options": [
+      "Kalınlaşır",
+      "Tizleşir",
+      "Yavaşlar",
+      "Sessizleşir"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Frekans arttıkça sesin perdesi yükselir ve ses daha tiz algılanır.",
+    "id": "q55286"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Bocce oyununda oyuncuların toplarını yaklaştırmaya çalıştığı küçük hedef topun adı nedir?",
+    "options": [
+      "Jackpot",
+      "Boule",
+      "Pallino",
+      "Puck"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Boccede küçük hedef top İtalyanca “pallino” adıyla bilinir.",
+    "id": "q55287"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Grand Budapest Hotel hangi kurgusal ülkededir?",
+    "options": [
+      "Genovia",
+      "Latveria",
+      "Freedonia",
+      "Zubrowka"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Wes Anderson’ın filmindeki otel, Orta Avrupa’yı andıran kurgusal Zubrowka’dadır.",
+    "id": "q55288"
+  },
+  {
+    "id": "q55289",
+    "categoryIndex": 3,
+    "question": "Günden Kalanlar romanındaki İngiliz uşağın adı nedir?",
+    "options": [
+      "Stevens",
+      "Passepartout",
+      "Alfred",
+      "Jeeves"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kazuo Ishiguro’nun romanında Stevens, geçmişteki hizmet yaşamını ve kaçırdığı duygusal fırsatları sorgular."
+  },
+  {
+    "id": "q55290",
+    "categoryIndex": 2,
+    "question": "1555 Augsburg Barışı Kutsal Roma İmparatorluğu’nda hangi iki mezhep arasındaki çatışmayı düzenlemeye çalıştı?",
+    "options": [
+      "Ortodoksluk ve Katoliklik",
+      "Katoliklik ve Lutheranlık",
+      "Kalvinizm ve Anglikanlık",
+      "Şiilik ve Sünnilik"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Augsburg Barışı, prenslere topraklarında Katolikliği ya da Lutheranlığı seçme hakkı tanıdı."
+  },
+  {
+    "id": "q55291",
+    "categoryIndex": 0,
+    "question": "Torres del Paine Millî Parkı hangi ülkededir?",
+    "options": [
+      "Peru",
+      "Arjantin",
+      "Şili",
+      "Bolivya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Torres del Paine, Şili Patagonyası’nda granit kuleleri, buzulları ve gölleriyle ünlü bir millî parktır."
+  },
+  {
+    "id": "q55292",
+    "categoryIndex": 3,
+    "question": "Körlük romanında salgın nasıl bir görme kaybıyla başlar?",
+    "options": [
+      "Tünel görüşü",
+      "Renk körlüğü",
+      "Gece körlüğü",
+      "Beyaz körlük"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "José Saramago’nun romanındaki kişiler karanlık değil, süt beyazı bir boşluk gördüklerini söyler."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Jane Eyre’in mürebbiye olarak çalıştığı malikânenin adı nedir?",
+    "options": [
+      "Thornfield Hall",
+      "Wuthering Heights",
+      "Manderley",
+      "Pemberley"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Jane, Edward Rochester’ın vesayetindeki çocuğa Thornfield Hall’da ders verir.",
+    "id": "q55293"
+  },
+  {
+    "id": "q55294",
+    "categoryIndex": 3,
+    "question": "Simyacı romanındaki Santiago’nun mesleği nedir?",
+    "options": [
+      "Kâtip",
+      "Çoban",
+      "Demirci",
+      "Denizci"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Santiago, gördüğü rüyanın peşinden İspanya’dan Mısır piramitlerine uzanan genç bir çobandır."
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Hatay hangi yıl Türkiye’ye katıldı?",
+    "options": [
+      "1945",
+      "1936",
+      "1939",
+      "1923"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Hatay Devleti Meclisi’nin kararıyla bölge 1939’da Türkiye’ye katıldı.",
+    "id": "q55295"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Shawshank Redemption filminin büyük bölümü nerede geçer?",
+    "options": [
+      "San Quentin",
+      "Sing Sing",
+      "Alcatraz",
+      "Shawshank Hapishanesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Andy Dufresne’in yıllar süren hikâyesi kurgusal Shawshank Eyalet Hapishanesi’nde geçer.",
+    "id": "q55296"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Krikette vurucunun 100 koşuya ulaşmasına ne denir?",
+    "options": [
+      "Century",
+      "Hat-trick",
+      "Break",
+      "Duck"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Bir vurucunun tek innings içinde 100 veya daha fazla koşu yapması century olarak kutlanır.",
+    "id": "q55297"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "12 Angry Men filminde karakterler hangi görev için bir araya gelmiştir?",
+    "options": [
+      "Gazete toplantısı",
+      "Jüri üyeliği",
+      "Askerî mahkeme",
+      "Polis soruşturması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "On iki jüri üyesi, cinayetle suçlanan bir gencin suçlu olup olmadığını tartışır.",
+    "id": "q55298"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Krikette vurucunun hiç sayı yapmadan elenmesine ne denir?",
+    "options": [
+      "Blank inning",
+      "Love",
+      "Duck",
+      "Bogey"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Skorborddaki sıfırın ördek yumurtasına benzetilmesi duck teriminin kaynağıdır.",
+    "id": "q55299"
+  },
+  {
+    "id": "q55300",
+    "categoryIndex": 4,
+    "question": "İnsan gözündeki korneanın dikkat çekici özelliği hangisidir?",
+    "options": [
+      "Renk pigmenti üretmesi",
+      "Görüntüyü sinir sinyaline çevirmesi",
+      "Göz yaşını salgılaması",
+      "Kan damarı içermemesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kornea saydamlığını korumak için kan damarı içermez; oksijenin bir bölümünü havadan alır."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Tikal antik Maya kenti hangi ülkededir?",
+    "options": [
+      "Guatemala",
+      "El Salvador",
+      "Belize",
+      "Meksika"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tikal, Guatemala’nın kuzeyindeki yağmur ormanlarında yer alan önemli bir Maya kentidir.",
+    "id": "q55301"
+  },
+  {
+    "id": "q55302",
+    "categoryIndex": 3,
+    "question": "The Dinner Party adlı üçgen biçimli yerleştirmenin sanatçısı kimdir?",
+    "options": [
+      "Jenny Holzer",
+      "Judy Chicago",
+      "Tracey Emin",
+      "Cindy Sherman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Judy Chicago’nun The Dinner Party eseri, tarih ve mitolojiden kadınları simgeleyen otuz dokuz kişilik üçgen bir sofra düzenidir."
+  },
+  {
+    "categoryIndex": 0,
+    "question": "Cinque Terre kıyı köyleri hangi ülkenin Ligurya bölgesindedir?",
+    "options": [
+      "İspanya",
+      "Yunanistan",
+      "İtalya",
+      "Hırvatistan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Cinque Terre, İtalya’nın Ligurya kıyısındaki beş tarihî köyden oluşur.",
+    "id": "q55303"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "The Silence of the Lambs filminde Hannibal Lecter’ın mesleği nedir?",
+    "options": [
+      "Adli fotoğrafçı",
+      "Avukat",
+      "Cerrah",
+      "Psikiyatrist"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Hannibal Lecter, seri katil olmasının yanı sıra eğitimli bir psikiyatristtir.",
+    "id": "q55304"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Türkiye’de çok partili hayata geçişte 1946 seçimlerine katılan yeni parti hangisiydi?",
+    "options": [
+      "Demokrat Parti",
+      "Terakkiperver Cumhuriyet Fırkası",
+      "Millet Partisi",
+      "Serbest Cumhuriyet Fırkası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1946’da kurulan Demokrat Parti, aynı yıl yapılan seçimlerde CHP’nin karşısına çıktı.",
+    "id": "q55305"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Hentbolda topu tutan oyuncu, dripling yapmadan en fazla kaç adım atabilir?",
+    "options": [
+      "İki",
+      "Üç",
+      "Dört",
+      "Beş"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hentbolda oyuncu topu sektirmeden en fazla üç adım atabilir.",
+    "id": "q55306"
+  },
+  {
+    "categoryIndex": 4,
+    "question": "Bebeklerin yetişkinlerden daha fazla kemiğe sahip olmasının nedeni nedir?",
+    "options": [
+      "Kasların kemiğe dönüşmesi",
+      "Her yıl kemik kaybetmeleri",
+      "Bazı kemiklerin büyürken kaynaşması",
+      "Dişlerin kemik sayılması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kafatası ve omurga dâhil bazı kemik parçaları gelişim sırasında birleşir.",
+    "id": "q55307"
+  },
+  {
+    "id": "q55308",
+    "categoryIndex": 3,
+    "question": "Beloved romanının merkezindeki eski köle kadının adı nedir?",
+    "options": [
+      "Celie",
+      "Sula",
+      "Janie",
+      "Sethe"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Toni Morrison’ın romanı Sethe’nin kölelik geçmişi ve evine musallat olan anılar etrafında gelişir."
+  },
+  {
+    "id": "q55309",
+    "categoryIndex": 5,
+    "question": "Pist bisikleti yarışlarının yapıldığı eğimli oval piste ne denir?",
+    "options": [
+      "Velodrom",
+      "Skatepark",
+      "Paddock",
+      "Hipodrom"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Velodrom, dönüşleri eğimli olan kapalı ya da açık oval bisiklet yarış pistidir."
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Kolera Günlerinde Aşk’ın yıllarca bekleyen erkek karakteri kimdir?",
+    "options": [
+      "Santiago Nasar",
+      "Florentino Ariza",
+      "Esteban Trueba",
+      "Aureliano Buendía"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Florentino, Fermina Daza’ya duyduğu aşkı yarım yüzyıldan fazla sürdürür.",
+    "id": "q55310"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "1950 seçimlerinden sonra cumhurbaşkanı olan isim kimdir?",
+    "options": [
+      "Adnan Menderes",
+      "İsmet İnönü",
+      "Celâl Bayar",
+      "Refik Koraltan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Demokrat Parti’nin zaferinden sonra Celâl Bayar cumhurbaşkanı, Adnan Menderes başbakan oldu.",
+    "id": "q55311"
+  },
+  {
+    "id": "q55312",
+    "categoryIndex": 5,
+    "question": "Sırıkla atlamada sporcu çıtayı geçtikten sonra nereye düşer?",
+    "options": [
+      "Çim zemine",
+      "Kum havuzuna",
+      "Su havuzuna",
+      "Kalın bir iniş minderine"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sırıkla atlamada geniş ve kalın minderler sporcunun yüksekten güvenli biçimde inmesini sağlar."
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Golfçünün sopalarını taşıyıp saha konusunda yardımcı olan kişiye ne denir?",
+    "options": [
+      "Caddie",
+      "Spotter",
+      "Umpire",
+      "Starter"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Caddie sopa seçimi, mesafe ve green eğimi konusunda oyuncuya yardım edebilir.",
+    "id": "q55313"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Türkiye NATO’ya hangi yıl katıldı?",
+    "options": [
+      "1949",
+      "1952",
+      "1955",
+      "1960"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye ve Yunanistan, 18 Şubat 1952’de NATO üyeliğine kabul edildi.",
+    "id": "q55314"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Inception filminde Cobb’un gerçekliği sınamak için kullandığı nesne nedir?",
+    "options": [
+      "Cep saati",
+      "Zar",
+      "Topaç",
+      "Yüzük"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Cobb’un totemi, rüyada durmadan dönmesi gereken küçük bir topaçtır.",
+    "id": "q55315"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Kıbrıs Barış Harekâtı hangi yıl gerçekleştirildi?",
+    "options": [
+      "1980",
+      "1971",
+      "1964",
+      "1974"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye, adadaki darbenin ardından Temmuz ve Ağustos 1974’te iki aşamalı harekât düzenledi.",
+    "id": "q55316"
+  },
+  {
+    "categoryIndex": 1,
+    "question": "Memento filminde Leonard hafıza sorunuyla baş etmek için en çok ne kullanır?",
+    "options": [
+      "Fotoğraflar ve dövmeler",
+      "Haritalar ve pusula",
+      "Ses kasetleri",
+      "Günlük gazeteler"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Kısa süreli hafıza kaybı yaşayan Leonard, bilgileri Polaroid fotoğraflar ve dövmelerle kaydeder.",
+    "id": "q55317"
+  },
+  {
+    "categoryIndex": 3,
+    "question": "Gülün Adı romanındaki olaylar ağırlıklı olarak nerede geçer?",
+    "options": [
+      "Çöl kervanında",
+      "Orta Çağ manastırında",
+      "Rönesans sarayında",
+      "Viking gemisinde"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "William of Baskerville, 14. yüzyıldaki bir Benedikten manastırında esrarengiz ölümleri araştırır.",
+    "id": "q55318"
+  },
+  {
+    "categoryIndex": 5,
+    "question": "Masa tenisinde topa geriye dönüş veren savunma vuruşuna ne denir?",
+    "options": [
+      "Smaç",
+      "Blok",
+      "Kesme",
+      "Lob"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kesme vuruşu topa backspin, yani geriye dönüş kazandırır.",
+    "id": "q55319"
+  },
+  {
+    "categoryIndex": 2,
+    "question": "Osmanlı tarihindeki Lale Devri hangi padişah döneminde yaşandı?",
+    "options": [
+      "II. Mahmud",
+      "III. Selim",
+      "I. Abdülhamid",
+      "III. Ahmed"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Lale Devri, III. Ahmed döneminde Nevşehirli Damat İbrahim Paşa’nın sadrazamlığı sırasında yaşandı.",
+    "id": "q55320"
+  }
+]

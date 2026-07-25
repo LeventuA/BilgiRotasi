@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q58821",
+    "categoryIndex": 4,
+    "question": "Akdeniz fokunun Türkiye'deki yaşam alanları en çok hangi kıyılarda korunur?",
+    "options": [
+      "Ege ve Akdeniz kıyıları",
+      "İç Anadolu gölleri",
+      "Doğu Karadeniz deltaları",
+      "Marmara'nın sanayi kıyıları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Akdeniz fokları insan baskısının düşük olduğu mağaralı ve kayalık Ege-Akdeniz kıyılarını kullanır."
+  },
+  {
+    "id": "q58822",
+    "categoryIndex": 4,
+    "question": "Bozayı Türkiye'de en yaygın olarak hangi habitatlarda yaşar?",
+    "options": [
+      "Delta sazlıklarında",
+      "Ormanlık ve dağlık alanlarda",
+      "Tuzlu çöllerde",
+      "Açık denizde"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bozayılar özellikle Karadeniz ve Doğu Anadolu'nun ormanlı dağlarında yaşar."
+  },
+  {
+    "id": "q58823",
+    "categoryIndex": 4,
+    "question": "Anadolu parsının bilimsel olarak doğrulanan güncel varlığı hangi yöntemle sıkça belgelenir?",
+    "options": [
+      "Uydu radar altimetresi",
+      "Sonar",
+      "Fotokapan",
+      "Hava balonu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Nadir ve gececil büyük memeliler fotokapanlarla rahatsız edilmeden görüntülenebilir."
+  },
+  {
+    "id": "q58824",
+    "categoryIndex": 4,
+    "question": "Türkiye'deki en büyük yırtıcı kuşlardan biri olan sakallı akbaba neyle beslenmesiyle ünlüdür?",
+    "options": [
+      "Meyve",
+      "Sadece balık",
+      "Çiçek nektarı",
+      "Kemik iliği"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sakallı akbaba kemikleri yüksekten kayalara bırakarak kırar ve iliğini yer."
+  },
+  {
+    "id": "q58825",
+    "categoryIndex": 4,
+    "question": "Sultan sazlığında gözlenebilen flamingolar besinlerini çoğunlukla nasıl süzer?",
+    "options": [
+      "Özel biçimli gagalarıyla sudan",
+      "Havada yakalayarak",
+      "Pençeleriyle topraktan",
+      "Ağaç kabuklarından"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Flamingolar ters biçimli gagalarıyla sığ sudaki küçük canlıları ve algleri filtreler."
+  },
+  {
+    "id": "q58826",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin en geniş longoz ormanlarından İğneada hangi ilimizdedir?",
+    "options": [
+      "Edirne",
+      "Kırklareli",
+      "Tekirdağ",
+      "Düzce"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İğneada Longoz Ormanları Karadeniz kıyısında Kırklareli sınırlarındadır."
+  },
+  {
+    "id": "q58827",
+    "categoryIndex": 4,
+    "question": "Acarlar Longozu hangi ilimizdedir?",
+    "options": [
+      "Düzce",
+      "Kocaeli",
+      "Sakarya",
+      "Bolu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Acarlar Longozu Sakarya'nın Karasu ve Kaynarca ilçeleri arasında yer alır."
+  },
+  {
+    "id": "q58828",
+    "categoryIndex": 4,
+    "question": "Longoz ormanlarının oluşması için temel çevresel koşul nedir?",
+    "options": [
+      "Sürekli don",
+      "Yoğun volkanizma",
+      "Çölleşme",
+      "Mevsimsel su baskını"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Longozlar, akarsu ve deniz etkisiyle dönemsel olarak su altında kalan kıyı ormanlarıdır."
+  },
+  {
+    "id": "q58829",
+    "categoryIndex": 4,
+    "question": "Kasnak meşesi Türkiye'de özellikle hangi il çevresinde korunur?",
+    "options": [
+      "Isparta",
+      "Rize",
+      "Edirne",
+      "Şanlıurfa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Isparta'nın Eğirdir ilçesindeki Kasnak Meşesi Tabiatı Koruma Alanı türe adını verir."
+  },
+  {
+    "id": "q58830",
+    "categoryIndex": 4,
+    "question": "Sevgi çiçeği olarak bilinen endemik bitki hangi göl çevresinde yetişir?",
+    "options": [
+      "İznik Gölü",
+      "Mogan Gölü",
+      "Sapanca Gölü",
+      "Abant Gölü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Centaurea tchihatcheffii adlı sevgi çiçeği, Ankara'nın Gölbaşı çevresine özgü endemik bir bitkidir."
+  },
+  {
+    "id": "q58831",
+    "categoryIndex": 4,
+    "question": "Anadolu sığla ağacının doğal ormanları en çok hangi ilimizde görülür?",
+    "options": [
+      "Çanakkale",
+      "Artvin",
+      "Muğla",
+      "Bolu"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sığla ormanları özellikle Muğla'nın Köyceğiz ve Marmaris çevresinde yayılış gösterir."
+  },
+  {
+    "id": "q58832",
+    "categoryIndex": 4,
+    "question": "Sığla ağacından elde edilen kokulu reçineye ne ad verilir?",
+    "options": [
+      "Kitre zamkı",
+      "Kehribar",
+      "Çam sakızı",
+      "Sığla yağı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sığla yağı ağacın gövdesinden çıkarılan aromatik bir balsamdır."
+  },
+  {
+    "id": "q58833",
+    "categoryIndex": 4,
+    "question": "Türkiye'de doğal yayılış gösteren Lübnan sedirinin önemli alanlarından biri hangisidir?",
+    "options": [
+      "Toros Dağları",
+      "Yıldız Dağları",
+      "Küre Dağları",
+      "Canik Dağları"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Sedir ormanları Batı ve Orta Torosların yüksek kesimlerinde geniş alanlar kaplar."
+  },
+  {
+    "id": "q58834",
+    "categoryIndex": 4,
+    "question": "Datça hurması olarak bilinen endemik palmiye türünün bilimsel adı nedir?",
+    "options": [
+      "Chamaerops humilis",
+      "Phoenix theophrasti",
+      "Phoenix dactylifera",
+      "Washingtonia robusta"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Phoenix theophrasti, Datça ve Girit çevresinde doğal toplulukları bulunan nadir bir palmiye türüdür."
+  },
+  {
+    "id": "q58835",
+    "categoryIndex": 4,
+    "question": "Ters lale çiçeği Türkiye'de en çok hangi bölgelerin yüksek kesimleriyle ilişkilidir?",
+    "options": [
+      "Trakya ve Marmara",
+      "Ege kıyıları",
+      "Doğu ve Güneydoğu Anadolu",
+      "Çukurova"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ters lale, Hakkâri ve Van çevresi başta olmak üzere yüksek dağlık alanlarda yetişir."
+  },
+  {
+    "id": "q58836",
+    "categoryIndex": 4,
+    "question": "Safranbolu'da yetiştirilen safran baharatı çiçeğin hangi bölümünden elde edilir?",
+    "options": [
+      "Tohum zarından",
+      "Yaprak damarlarından",
+      "Kök kabuğundan",
+      "Dişicik tepelerinden"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Safran, Crocus sativus çiçeğinin elle toplanıp kurutulan kırmızı dişicik tepelerinden elde edilir."
+  },
+  {
+    "id": "q58837",
+    "categoryIndex": 4,
+    "question": "Rize'deki çay bitkisinin bilimsel türü ağırlıklı olarak hangisidir?",
+    "options": [
+      "Camellia sinensis",
+      "Olea europaea",
+      "Coffea arabica",
+      "Theobroma cacao"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Dünya genelindeki siyah ve yeşil çaylar Camellia sinensis yapraklarından üretilir."
+  },
+  {
+    "id": "q58838",
+    "categoryIndex": 4,
+    "question": "Türkiye'de fındığın bilimsel olarak ait olduğu bitki cinsi hangisidir?",
+    "options": [
+      "Quercus",
+      "Corylus",
+      "Prunus",
+      "Ficus"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Fındık türleri botanikte Corylus cinsi içinde sınıflandırılır."
+  },
+  {
+    "id": "q58839",
+    "categoryIndex": 4,
+    "question": "Antep fıstığı botanik olarak hangi ağaç türünün meyvesidir?",
+    "options": [
+      "Prunus dulcis",
+      "Juglans regia",
+      "Pistacia vera",
+      "Corylus avellana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Antep fıstığı, Pistacia vera adlı ağacın tohumudur."
+  },
+  {
+    "id": "q58840",
+    "categoryIndex": 4,
+    "question": "Türkiye'de zeytin üretiminin temel ürünü olan ağacın bilimsel adı nedir?",
+    "options": [
+      "Vitis vinifera",
+      "Prunus armeniaca",
+      "Ficus carica",
+      "Olea europaea"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Zeytin ağacı botanikte Olea europaea olarak adlandırılır."
+  },
+  {
+    "id": "q58841",
+    "categoryIndex": 4,
+    "question": "Malatya kayısısının ait olduğu temel bitki türü hangisidir?",
+    "options": [
+      "Prunus armeniaca",
+      "Malus domestica",
+      "Prunus persica",
+      "Pyrus communis"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Kayısı botanikte Prunus armeniaca türüdür."
+  },
+  {
+    "id": "q58842",
+    "categoryIndex": 4,
+    "question": "Aydın incirinin ait olduğu bitki türü hangisidir?",
+    "options": [
+      "Olea europaea",
+      "Ficus carica",
+      "Vitis vinifera",
+      "Punica granatum"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Yenilebilir incir ağacı Ficus carica olarak adlandırılır."
+  },
+  {
+    "id": "q58843",
+    "categoryIndex": 4,
+    "question": "Türkiye'deki üzüm bağlarının temel türü hangisidir?",
+    "options": [
+      "Camellia sinensis",
+      "Citrus sinensis",
+      "Vitis vinifera",
+      "Coffea arabica"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Şaraplık ve sofralık Avrupa üzümü Vitis vinifera türüne aittir."
+  },
+  {
+    "id": "q58844",
+    "categoryIndex": 4,
+    "question": "Toprağın dinlendirilmesi amacıyla ekim yapılmadan bırakılmasına ne ad verilir?",
+    "options": [
+      "Münavebe",
+      "Terbiye",
+      "Aşılama",
+      "Nadas"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kurak bölgelerde toprakta su biriktirmek için tarlanın bir dönem boş bırakılmasına nadas denir."
+  },
+  {
+    "id": "q58845",
+    "categoryIndex": 4,
+    "question": "Türkiye'de erozyonla mücadele ve ağaçlandırma çalışmalarıyla tanınan sivil kuruluş hangisidir?",
+    "options": [
+      "TEMA Vakfı",
+      "AKUT",
+      "TEGV",
+      "LÖSEV"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "TEMA, toprak kaybı ve çölleşmeye karşı farkındalık ve ağaçlandırma çalışmaları yürütür."
+  },
+  {
+    "id": "q58846",
+    "categoryIndex": 4,
+    "question": "TEMA Vakfı'nın kurucuları arasında yer alan 'Toprak Dede' lakaplı isim kimdir?",
+    "options": [
+      "Ali Nihat Gökyiğit",
+      "Hayrettin Karaca",
+      "Naim Süleymanoğlu",
+      "Hulusi Behçet"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Hayrettin Karaca çevre mücadelesi nedeniyle 'Toprak Dede' olarak anıldı."
+  },
+  {
+    "id": "q58847",
+    "categoryIndex": 4,
+    "question": "Orman yangınlarında alevlerin hızla yayılmasını en çok artıran hava olayı hangisidir?",
+    "options": [
+      "Yoğun sis",
+      "Sakin hava",
+      "Kuvvetli rüzgâr",
+      "Yüksek nem"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Rüzgâr alevleri ve kıvılcımları yeni alanlara taşıyarak yangını hızlandırır."
+  },
+  {
+    "id": "q58848",
+    "categoryIndex": 4,
+    "question": "Türkiye'de orman yangını riskinin yazın en yüksek olduğu kıyı kuşağı hangisidir?",
+    "options": [
+      "Marmara'nın kuzeyi",
+      "Doğu Karadeniz kıyıları",
+      "Van Gölü çevresi",
+      "Ege ve Akdeniz kıyıları"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Sıcak, kurak yazlar ve reçineli bitki örtüsü Ege-Akdeniz'de yangın riskini yükseltir."
+  },
+  {
+    "id": "q58849",
+    "categoryIndex": 4,
+    "question": "Kızılçam ormanları Türkiye'de en yaygın olarak hangi iklim kuşağında görülür?",
+    "options": [
+      "Akdeniz iklimi",
+      "Tundra iklimi",
+      "Sert karasal iklim",
+      "Muson iklimi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kızılçam sıcak ve kurak yazlara uyumlu bir Akdeniz ağacıdır."
+  },
+  {
+    "id": "q58850",
+    "categoryIndex": 4,
+    "question": "Sarıçam ormanları Türkiye'de daha çok hangi alanlarda yaygındır?",
+    "options": [
+      "Kurak çöl tabanlarında",
+      "Yüksek ve soğuk iç kesimlerde",
+      "Sıcak kıyı ovalarında",
+      "Tuzlu deltaların içinde"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Sarıçam özellikle Kuzeydoğu Anadolu ve yüksek dağlık alanların soğuk koşullarına uyumludur."
+  },
+  {
+    "id": "q58851",
+    "categoryIndex": 4,
+    "question": "Doğu ladini Türkiye'de doğal olarak hangi bölgede yaygındır?",
+    "options": [
+      "Güneydoğu Anadolu",
+      "İç Ege",
+      "Doğu Karadeniz",
+      "Trakya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Doğu ladini Ordu'nun doğusundan Gürcistan sınırına uzanan nemli dağ ormanlarında görülür."
+  },
+  {
+    "id": "q58852",
+    "categoryIndex": 4,
+    "question": "Toros sediri hangi iklim koşuluna dayanıklılığıyla bilinir?",
+    "options": [
+      "Tuzlu deniz suyuna",
+      "Kutup soğuğuna",
+      "Sürekli su baskınına",
+      "Yaz kuraklığına"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Toros sediri yüksek dağlarda yetişse de Akdeniz'in yaz kuraklığına uyum sağlamıştır."
+  },
+  {
+    "id": "q58853",
+    "categoryIndex": 4,
+    "question": "Türkiye'de çölleşme riski en çok hangi iklim özelliğiyle ilişkilidir?",
+    "options": [
+      "Kuraklık ve düzensiz yağış",
+      "Yüksek okyanus nemi",
+      "Sürekli kar örtüsü",
+      "Aşırı gelgit"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Azalan yağış, yüksek buharlaşma ve yanlış arazi kullanımı toprak kaybını hızlandırır."
+  },
+  {
+    "id": "q58854",
+    "categoryIndex": 4,
+    "question": "Konya Karapınar'daki tarihî erozyon mücadelesinin temel yöntemi neydi?",
+    "options": [
+      "Dağları tünelleme",
+      "Rüzgârı kesen bitkilendirme ve ağaçlandırma",
+      "Buzul oluşturma",
+      "Deniz suyu pompalama"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Kumulların ilerlemesi bitki örtüsü, rüzgâr perdeleri ve kontrollü otlatmayla durduruldu."
+  },
+  {
+    "id": "q58855",
+    "categoryIndex": 4,
+    "question": "Bir gölün dışarıya akışının olmamasına ne ad verilir?",
+    "options": [
+      "Buzul havzası",
+      "Delta sistemi",
+      "Kapalı havza",
+      "Açık deniz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Van ve Tuz gölleri gibi sularını denize ulaştıramayan alanlar kapalı havzadır."
+  },
+  {
+    "id": "q58856",
+    "categoryIndex": 4,
+    "question": "Tuz Gölü'nde yaz aylarında geniş beyaz yüzey oluşmasının nedeni nedir?",
+    "options": [
+      "Kar yağışı",
+      "Kireçtaşı tozu",
+      "Buz tabakası",
+      "Suyun buharlaşıp tuzun çökelmesi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Yüksek buharlaşma göl suyunu azaltır ve çözünmüş tuzlar yüzeyde kalır."
+  },
+  {
+    "id": "q58857",
+    "categoryIndex": 4,
+    "question": "Tuz Gölü çevresi hangi kuş türü için önemli üreme alanıdır?",
+    "options": [
+      "Flamingo",
+      "Tukan",
+      "Penguen",
+      "Albatros"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Tuz Gölü koloniler hâlinde üreyen flamingolar için Türkiye'nin önemli alanlarından biridir."
+  },
+  {
+    "id": "q58858",
+    "categoryIndex": 4,
+    "question": "Bir gölde aşırı besin tuzu birikmesiyle alglerin çoğalmasına ne ad verilir?",
+    "options": [
+      "Manyetizma",
+      "Ötrofikasyon",
+      "Erozyon",
+      "Süblimleşme"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tarım ve atık sularından gelen azot-fosfor göllerde alg patlamalarına yol açabilir."
+  },
+  {
+    "id": "q58859",
+    "categoryIndex": 4,
+    "question": "Marmara Denizi'nde görülen deniz salyası olayının bilimsel adı nedir?",
+    "options": [
+      "Upwelling",
+      "Tsunami",
+      "Müsilaj",
+      "Gelgit"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Müsilaj, mikroorganizmaların ürettiği yapışkan organik maddelerin yoğunlaşmasıdır."
+  },
+  {
+    "id": "q58860",
+    "categoryIndex": 4,
+    "question": "Marmara Denizi'nde müsilajı artıran etkenlerden biri hangisidir?",
+    "options": [
+      "Düşük nüfus yoğunluğu",
+      "Kuvvetli okyanus akıntısı",
+      "Sıfır atık su",
+      "Besin kirliliği"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Azot ve fosfor yükü plankton üretimini artırarak müsilaj riskini yükseltir."
+  },
+  {
+    "id": "q58861",
+    "categoryIndex": 4,
+    "question": "Karadeniz'in derin sularında yaşamı sınırlayan gaz hangisidir?",
+    "options": [
+      "Hidrojen sülfür",
+      "Azot",
+      "Helyum",
+      "Oksijen"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Karadeniz'in yaklaşık 150-200 metreden derin kesimlerinde oksijensiz ve hidrojen sülfürlü su bulunur."
+  },
+  {
+    "id": "q58862",
+    "categoryIndex": 4,
+    "question": "Karadeniz hamsisinin bilimsel adı hangisidir?",
+    "options": [
+      "Sardina pilchardus",
+      "Engraulis encrasicolus",
+      "Mullus barbatus",
+      "Scomber scombrus"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Avrupa hamsisi Engraulis encrasicolus türüdür."
+  },
+  {
+    "id": "q58863",
+    "categoryIndex": 4,
+    "question": "Lüfer balığının küçükten büyüğe adlandırılan boylarından biri hangisidir?",
+    "options": [
+      "Kalkan",
+      "Palamut",
+      "Çinekop",
+      "Mezgit"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Lüferin küçük boyları defneyaprağı ve çinekop gibi adlarla anılır."
+  },
+  {
+    "id": "q58864",
+    "categoryIndex": 4,
+    "question": "Palamut balığının daha büyük boyuna halk arasında ne ad verilir?",
+    "options": [
+      "Barbun",
+      "Çinekop",
+      "İstavrit",
+      "Torik"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Palamut büyüdükçe torik adıyla anılan boya ulaşır."
+  },
+  {
+    "id": "q58865",
+    "categoryIndex": 4,
+    "question": "Türkiye kıyılarında istilacı türlerin Akdeniz'e geçişinde hangi kanal önemli rol oynar?",
+    "options": [
+      "Süveyş Kanalı",
+      "Kiel Kanalı",
+      "Panama Kanalı",
+      "Korint Kanalı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Kızıldeniz kökenli pek çok tür Süveyş Kanalı üzerinden Akdeniz'e yayılır."
+  },
+  {
+    "id": "q58866",
+    "categoryIndex": 4,
+    "question": "Balon balığı Türkiye kıyılarında neden ekolojik sorun oluşturur?",
+    "options": [
+      "Sadece yosun yemesi",
+      "İstilacı ve zehirli olması",
+      "Kışın donması",
+      "Tatlı suda yaşaması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Bazı balon balığı türleri hızla yayılır, av baskısı oluşturur ve tetrodotoksin taşır."
+  },
+  {
+    "id": "q58867",
+    "categoryIndex": 4,
+    "question": "Balon balığındaki güçlü zehrin adı nedir?",
+    "options": [
+      "Nikotin",
+      "Risin",
+      "Tetrodotoksin",
+      "Botulinum toksini"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Tetrodotoksin özellikle iç organlarda birikir ve pişirmekle kolayca yok olmaz."
+  },
+  {
+    "id": "q58868",
+    "categoryIndex": 4,
+    "question": "Türkiye'de sıtmayı taşıyabilen sivrisinek cinsi hangisidir?",
+    "options": [
+      "Drosophila",
+      "Culex",
+      "Aedes",
+      "Anopheles"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Sıtma parazitleri insanlara dişi Anopheles sivrisinekleriyle bulaşır."
+  },
+  {
+    "id": "q58869",
+    "categoryIndex": 4,
+    "question": "Kırım Kongo Kanamalı Ateşi Türkiye'de en çok hangi canlıyla bulaşır?",
+    "options": [
+      "Kene",
+      "Sivrisinek",
+      "Salyangoz",
+      "Arı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Hyalomma cinsi keneler virüsün insanlara taşınmasında başlıca vektördür."
+  },
+  {
+    "id": "q58870",
+    "categoryIndex": 4,
+    "question": "Kırım Kongo Kanamalı Ateşi vakaları Türkiye'de özellikle hangi kuşakta yoğunlaşır?",
+    "options": [
+      "Ege adaları",
+      "İç ve Kuzey Anadolu'nun kırsal alanları",
+      "Akdeniz sahil kentleri",
+      "İstanbul Boğazı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tokat, Sivas, Çorum ve çevresindeki kırsal alanlar hastalığın önemli odaklarındandır."
+  },
+  {
+    "id": "q58871",
+    "categoryIndex": 4,
+    "question": "Akdeniz anemisi olarak bilinen kalıtsal hastalığın diğer adı nedir?",
+    "options": [
+      "Fenilketonüri",
+      "Hemofili",
+      "Talasemi",
+      "Lösemi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Talasemi, hemoglobin üretimini etkileyen kalıtsal bir kan hastalığıdır."
+  },
+  {
+    "id": "q58872",
+    "categoryIndex": 4,
+    "question": "Türkiye'de yenidoğan taramasında topuktan kan alınmasının temel amacı nedir?",
+    "options": [
+      "Boy uzamasını ölçmek",
+      "Kan grubunu değiştirmek",
+      "Aşı yapmak",
+      "Bazı kalıtsal hastalıkları erken saptamak"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Fenilketonüri ve doğuştan hipotiroidi gibi hastalıklar erken tanıyla önlenebilir hasarlara yol açmadan tedavi edilebilir."
+  },
+  {
+    "id": "q58873",
+    "categoryIndex": 4,
+    "question": "Fenilketonüri tedavisinde temel yaklaşım nedir?",
+    "options": [
+      "Fenilalanini sınırlayan beslenme",
+      "Güneş ışığından kaçınma",
+      "Sadece sıvı beslenme",
+      "Yüksek tuz tüketimi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fenilalanin birikimini önlemek için özel düşük proteinli diyet uygulanır."
+  },
+  {
+    "id": "q58874",
+    "categoryIndex": 4,
+    "question": "Türk Kızılay'ın temel sağlık görevlerinden biri hangisidir?",
+    "options": [
+      "Orman kesimi yapmak",
+      "Gönüllü kan bağışı organizasyonu",
+      "Üniversite sınavı düzenlemek",
+      "Hava tahmini yapmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kızılay, Türkiye'nin kan hizmetleri sisteminin önemli bölümünü yürütür."
+  },
+  {
+    "id": "q58875",
+    "categoryIndex": 4,
+    "question": "Kan bağışında alınan kanın bileşenlere ayrılmasının amacı nedir?",
+    "options": [
+      "Kanı renksiz yapmak",
+      "Kan grubunu değiştirmek",
+      "Bir bağışla farklı hastalara yardımcı olmak",
+      "Trombositleri yok etmek"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kan eritrosit, plazma ve trombosit bileşenlerine ayrılarak ihtiyaca göre kullanılır."
+  },
+  {
+    "id": "q58876",
+    "categoryIndex": 4,
+    "question": "AKUT hangi tür olaylarda gönüllü arama kurtarma çalışmalarıyla tanınır?",
+    "options": [
+      "Tarım hasadı",
+      "Seçim sayımı",
+      "Müze restorasyonu",
+      "Deprem ve doğa kazaları"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "AKUT, deprem, dağ ve doğa kazalarında arama kurtarma ekipleriyle görev yapar."
+  },
+  {
+    "id": "q58877",
+    "categoryIndex": 4,
+    "question": "AFAD'ın temel görev alanı nedir?",
+    "options": [
+      "Afet ve acil durum yönetimi",
+      "Spor federasyonu yönetimi",
+      "Dil araştırması",
+      "Para politikası"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "AFAD risk azaltma, müdahale, barınma ve iyileştirme çalışmalarını koordine eder."
+  },
+  {
+    "id": "q58878",
+    "categoryIndex": 4,
+    "question": "Deprem sırasında bina içindeyken önerilen temel hareket hangisidir?",
+    "options": [
+      "Balkondan atlamak",
+      "Çök-kapan-tutun",
+      "Asansöre binmek",
+      "Merdivene koşmak"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Çök-kapan-tutun baş ve boynu koruyarak sarsıntı bitene kadar güvenli yerde kalmayı amaçlar."
+  },
+  {
+    "id": "q58879",
+    "categoryIndex": 4,
+    "question": "Tsunami riski Türkiye'de özellikle hangi tür kıyı olayından sonra değerlendirilir?",
+    "options": [
+      "Kuraklık",
+      "Yoğun kar yağışı",
+      "Deniz tabanındaki güçlü deprem",
+      "Kum fırtınası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Deniz tabanının ani yer değiştirmesi kıyılara ulaşan uzun dalgalar oluşturabilir."
+  },
+  {
+    "id": "q58880",
+    "categoryIndex": 4,
+    "question": "Türkiye'de en aktif deprem bölgelerinden biri olan Marmara'nın kuzeyinden hangi fay geçer?",
+    "options": [
+      "Doğu Anadolu Fayı",
+      "Tuz Gölü Fayı",
+      "Ölü Deniz Fayı",
+      "Kuzey Anadolu Fayı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Kuzey Anadolu Fayı'nın kuzey kolu Marmara Denizi içinden geçer."
+  },
+  {
+    "id": "q58881",
+    "categoryIndex": 4,
+    "question": "1999 Gölcük Depremi hangi fay sistemi üzerinde gerçekleşti?",
+    "options": [
+      "Kuzey Anadolu Fayı",
+      "Doğu Anadolu Fayı",
+      "Ege grabenleri",
+      "Tuz Gölü Fayı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "17 Ağustos 1999 depremi Kuzey Anadolu Fayı'nın İzmit segmentinde oluştu."
+  },
+  {
+    "id": "q58882",
+    "categoryIndex": 4,
+    "question": "2023 Kahramanmaraş depremleri ağırlıklı olarak hangi fay sisteminde gerçekleşti?",
+    "options": [
+      "Kuzey Anadolu Fayı",
+      "Doğu Anadolu Fayı ve bağlantılı kolları",
+      "Ege grabenleri",
+      "Tuz Gölü Fayı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "6 Şubat 2023 depremleri Doğu Anadolu Fayı ile Çardak-Sürgü sistemi üzerinde meydana geldi."
+  },
+  {
+    "id": "q58883",
+    "categoryIndex": 4,
+    "question": "Türkiye'de jeotermal elektrik üretiminin yoğunlaştığı bölge hangisidir?",
+    "options": [
+      "Güneydoğu Toroslar",
+      "Trakya'nın kuzeyi",
+      "Batı Anadolu",
+      "Doğu Karadeniz"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Aydın, Denizli ve Manisa çevresindeki grabenler yüksek sıcaklıklı jeotermal kaynaklar barındırır."
+  },
+  {
+    "id": "q58884",
+    "categoryIndex": 4,
+    "question": "Rüzgâr enerjisi santrallerinin Türkiye'de yoğunlaştığı kıyı bölgesi hangisidir?",
+    "options": [
+      "Doğu Karadeniz kıyıları",
+      "İç Anadolu'nun doğusu",
+      "Güneydoğu sınırı",
+      "Ege kıyıları"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Çanakkale, Balıkesir, İzmir ve Manisa çevresi güçlü ve düzenli rüzgârlarıyla öne çıkar."
+  },
+  {
+    "id": "q58885",
+    "categoryIndex": 4,
+    "question": "Güneş enerjisi potansiyeli Türkiye'de genel olarak hangi bölgede daha yüksektir?",
+    "options": [
+      "Güney ve iç kesimlerde",
+      "Doğu Karadeniz kıyılarında",
+      "Kuzeybatı ormanlarında",
+      "Boğaz çevresinde"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Güneydoğu Anadolu, Akdeniz ve İç Anadolu yüksek güneşlenme süresine sahiptir."
+  },
+  {
+    "id": "q58886",
+    "categoryIndex": 4,
+    "question": "Karapınar Güneş Enerjisi Santrali hangi ilimizdedir?",
+    "options": [
+      "Kayseri",
+      "Konya",
+      "Antalya",
+      "Şanlıurfa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Karapınar GES Konya'nın Karapınar ilçesinde geniş bir alana kurulmuştur."
+  },
+  {
+    "id": "q58887",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ilk nükleer güç santrali projesi hangi ilimizdedir?",
+    "options": [
+      "Kırklareli",
+      "Samsun",
+      "Mersin",
+      "Sinop"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Akkuyu Nükleer Güç Santrali Mersin'in Gülnar ilçesinde inşa edilmektedir."
+  },
+  {
+    "id": "q58888",
+    "categoryIndex": 4,
+    "question": "Akkuyu Nükleer Güç Santrali hangi ilçenin yakınındadır?",
+    "options": [
+      "Erdemli",
+      "Silifke",
+      "Anamur",
+      "Gülnar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Santral sahası Mersin'in Gülnar ilçesindeki Büyükeceli çevresindedir."
+  },
+  {
+    "id": "q58889",
+    "categoryIndex": 4,
+    "question": "Boru hatlarıyla taşınan doğal gazın ana bileşeni nedir?",
+    "options": [
+      "Metan",
+      "Karbondioksit",
+      "Oksijen",
+      "Propan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Doğal gazın büyük bölümü CH₄ formüllü metandan oluşur."
+  },
+  {
+    "id": "q58890",
+    "categoryIndex": 4,
+    "question": "Türkiye'de taş kömürü çıkarımıyla özdeşleşen havza hangisidir?",
+    "options": [
+      "Çayırhan Havzası",
+      "Zonguldak Havzası",
+      "Elbistan Havzası",
+      "Soma Havzası"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Türkiye'nin başlıca taş kömürü yatakları Zonguldak ve çevresindedir."
+  },
+  {
+    "id": "q58891",
+    "categoryIndex": 4,
+    "question": "Linyit rezervleriyle tanınan Afşin-Elbistan havzası hangi ilimizdedir?",
+    "options": [
+      "Sivas",
+      "Malatya",
+      "Kahramanmaraş",
+      "Adana"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Afşin-Elbistan linyit havzası Kahramanmaraş'ın kuzeyindedir."
+  },
+  {
+    "id": "q58892",
+    "categoryIndex": 4,
+    "question": "Bor minerali rezervleriyle öne çıkan iki ilimiz hangileridir?",
+    "options": [
+      "Mardin ve Şırnak",
+      "Rize ve Trabzon",
+      "Edirne ve Kırklareli",
+      "Eskişehir ve Kütahya"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Kırka-Eskişehir ile Emet-Kütahya Türkiye'nin önemli bor sahalarıdır."
+  },
+  {
+    "id": "q58893",
+    "categoryIndex": 4,
+    "question": "Türkiye'de bor minerallerini işleten kamu kuruluşu hangisidir?",
+    "options": [
+      "Eti Maden",
+      "BOTAŞ",
+      "MTA",
+      "TPAO"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Eti Maden bor cevherlerinin çıkarılması, işlenmesi ve pazarlanmasında faaliyet gösterir."
+  },
+  {
+    "id": "q58894",
+    "categoryIndex": 4,
+    "question": "TPAO'nun açılımı nedir?",
+    "options": [
+      "Türkiye Pipeline Akaryakıt Organizasyonu",
+      "Türkiye Petrolleri Anonim Ortaklığı",
+      "Türkiye Petrol Arama Ofisi",
+      "Türk Petrokimya Araştırma Ortaklığı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "TPAO petrol ve doğal gaz arama-üretim faaliyetleri yürüten kamu şirketidir."
+  },
+  {
+    "id": "q58895",
+    "categoryIndex": 4,
+    "question": "Karadeniz'deki Sakarya Gaz Sahası'ndan çıkarılan temel enerji kaynağı nedir?",
+    "options": [
+      "Taş kömürü",
+      "Petrol şisti",
+      "Doğal gaz",
+      "Uranyum"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Sakarya Gaz Sahası, Türkiye'nin Karadeniz'deki büyük doğal gaz keşif alanıdır."
+  },
+  {
+    "id": "q58896",
+    "categoryIndex": 4,
+    "question": "Fatih, Yavuz ve Kanuni adları Türkiye'de hangi tür araştırma gemilerine verilmiştir?",
+    "options": [
+      "Balıkçı tekneleri",
+      "Buzkıranlar",
+      "Feribotlar",
+      "Sondaj gemileri"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Bu gemiler denizlerde petrol ve doğal gaz sondajı yapmak üzere kullanılır."
+  },
+  {
+    "id": "q58897",
+    "categoryIndex": 4,
+    "question": "Oruç Reis gemisinin temel görevi nedir?",
+    "options": [
+      "Sismik araştırma",
+      "Balık avcılığı",
+      "Yolcu taşımacılığı",
+      "Yangın söndürme"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Oruç Reis deniz tabanındaki jeolojik yapıları sismik yöntemlerle inceler."
+  },
+  {
+    "id": "q58898",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin otomobili Togg'un ilk seri üretim modeli hangi gövde tipindedir?",
+    "options": [
+      "Cabrio",
+      "SUV",
+      "Pick-up",
+      "Minibüs"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Togg T10X, elektrikli C-segment SUV olarak seri üretime girdi."
+  },
+  {
+    "id": "q58899",
+    "categoryIndex": 4,
+    "question": "Togg'un üretim tesisi hangi ilimizdedir?",
+    "options": [
+      "Manisa",
+      "Kocaeli",
+      "Bursa",
+      "Sakarya"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Togg Teknoloji Kampüsü Bursa'nın Gemlik ilçesindedir."
+  },
+  {
+    "id": "q58900",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ilk seri üretim yerli otomobili kabul edilen model hangisidir?",
+    "options": [
+      "Devrim",
+      "Togg T10X",
+      "Murat 124",
+      "Anadol"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Devrim prototip olarak kaldı; Anadol 1966'dan itibaren seri üretildi."
+  },
+  {
+    "id": "q58901",
+    "categoryIndex": 4,
+    "question": "1961'de üretilen Devrim otomobilleri hangi amaçla geliştirildi?",
+    "options": [
+      "Yerli otomobil prototipi oluşturmak",
+      "Elektrikli otobüs yapmak",
+      "Ralli şampiyonasına katılmak",
+      "Askerî tank üretmek"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Eskişehir Demiryolu Fabrikalarında kısa sürede dört Devrim prototipi üretildi."
+  },
+  {
+    "id": "q58902",
+    "categoryIndex": 5,
+    "question": "UEFA Kupası'nı kazanan ilk Türk takımı hangisidir?",
+    "options": [
+      "Beşiktaş",
+      "Galatasaray",
+      "Fenerbahçe",
+      "Trabzonspor"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Galatasaray, 17 Mayıs 2000'de Arsenal'i penaltılarla yenerek UEFA Kupası'nı kazandı."
+  },
+  {
+    "id": "q58903",
+    "categoryIndex": 5,
+    "question": "Galatasaray UEFA Kupası finalinde hangi takımı mağlup etti?",
+    "options": [
+      "Real Madrid",
+      "Leeds United",
+      "Arsenal",
+      "Borussia Dortmund"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "2000 finali Kopenhag'da 0-0 bitti; Galatasaray penaltı atışlarında Arsenal'i yendi."
+  },
+  {
+    "id": "q58904",
+    "categoryIndex": 5,
+    "question": "Galatasaray 2000 UEFA Süper Kupa maçında hangi takımı yendi?",
+    "options": [
+      "Bayern Münih",
+      "Manchester United",
+      "Barcelona",
+      "Real Madrid"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Galatasaray, Monaco'da Real Madrid'i uzatmada 2-1 mağlup etti."
+  },
+  {
+    "id": "q58905",
+    "categoryIndex": 5,
+    "question": "Galatasaray'a UEFA Süper Kupa'yı getiren altın golü kim attı?",
+    "options": [
+      "Mário Jardel",
+      "Gheorghe Hagi",
+      "Hakan Şükür",
+      "Arif Erdem"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Jardel, Real Madrid karşısında uzatmada ikinci golünü atarak kupayı getirdi."
+  },
+  {
+    "id": "q58906",
+    "categoryIndex": 5,
+    "question": "Galatasaray'ın UEFA Kupası'nı kazandığı sezon teknik direktörü kimdi?",
+    "options": [
+      "Şenol Güneş",
+      "Fatih Terim",
+      "Mircea Lucescu",
+      "Mustafa Denizli"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Fatih Terim, Galatasaray'ı 1999-2000 sezonunda UEFA Kupası şampiyonluğuna taşıdı."
+  },
+  {
+    "id": "q58907",
+    "categoryIndex": 5,
+    "question": "Bir Süper Lig sezonunu yenilgisiz şampiyon tamamlayan takım hangisidir?",
+    "options": [
+      "Trabzonspor",
+      "Fenerbahçe",
+      "Beşiktaş",
+      "Galatasaray"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Beşiktaş 1991-92 sezonunu 30 maçta yenilgi almadan şampiyon tamamladı."
+  },
+  {
+    "id": "q58908",
+    "categoryIndex": 5,
+    "question": "Beşiktaş'ın yenilgisiz şampiyon olduğu 1991-92 sezonundaki teknik direktörü kimdi?",
+    "options": [
+      "Mustafa Denizli",
+      "Christoph Daum",
+      "John Benjamin Toshack",
+      "Gordon Milne"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "İngiliz teknik direktör Gordon Milne, Beşiktaş'la üst üste üç lig şampiyonluğu kazandı."
+  },
+  {
+    "id": "q58909",
+    "categoryIndex": 5,
+    "question": "Türkiye'nin profesyonel lig dönemindeki ilk Süper Lig şampiyonu hangisidir?",
+    "options": [
+      "Fenerbahçe",
+      "Göztepe",
+      "Galatasaray",
+      "Beşiktaş"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fenerbahçe, 1959'da düzenlenen ilk Millî Lig sezonunu şampiyon tamamladı."
+  },
+  {
+    "id": "q58910",
+    "categoryIndex": 5,
+    "question": "Süper Lig'de şampiyon olan ilk Anadolu takımı hangisidir?",
+    "options": [
+      "Samsunspor",
+      "Trabzonspor",
+      "Bursaspor",
+      "Eskişehirspor"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Trabzonspor 1975-76 sezonunda İstanbul dışından çıkan ilk lig şampiyonu oldu."
+  },
+  {
+    "id": "q58911",
+    "categoryIndex": 5,
+    "question": "Bursaspor Süper Lig şampiyonluğunu hangi sezonda kazandı?",
+    "options": [
+      "2011-12",
+      "2007-08",
+      "2009-10",
+      "2013-14"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Bursaspor 2009-10 sezonunda ligi Fenerbahçe'nin bir puan önünde tamamladı."
+  },
+  {
+    "id": "q58912",
+    "categoryIndex": 5,
+    "question": "Bursaspor'u Süper Lig şampiyonluğuna taşıyan teknik direktör kimdi?",
+    "options": [
+      "Samet Aybaba",
+      "Hikmet Karaman",
+      "Şenol Güneş",
+      "Ertuğrul Sağlam"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ertuğrul Sağlam yönetimindeki Bursaspor 2010'da tarihî şampiyonluğu kazandı."
+  },
+  {
+    "id": "q58913",
+    "categoryIndex": 5,
+    "question": "Türkiye Kupası'nı kazanan ilk takım hangisidir?",
+    "options": [
+      "Galatasaray",
+      "Fenerbahçe",
+      "Beşiktaş",
+      "Altay"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Galatasaray, 1962-63 sezonundaki ilk Türkiye Kupası'nı kazandı."
+  },
+  {
+    "id": "q58914",
+    "categoryIndex": 5,
+    "question": "Avrupa kupalarında yarı finale yükselen ilk Türk futbol takımı hangisidir?",
+    "options": [
+      "Eskişehirspor",
+      "Göztepe",
+      "Fenerbahçe",
+      "Galatasaray"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Göztepe, 1968-69 Fuar Şehirleri Kupası'nda yarı finale çıktı."
+  },
+  {
+    "id": "q58915",
+    "categoryIndex": 5,
+    "question": "Galatasaray'ın 1962-63 Şampiyon Kulüpler Kupası çeyrek finalindeki rakibi hangi takımdı?",
+    "options": [
+      "Benfica",
+      "Inter",
+      "AC Milan",
+      "Real Madrid"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Galatasaray, Avrupa'daki ilk çeyrek finalinde turnuvanın sonraki şampiyonu AC Milan'la karşılaştı."
+  },
+  {
+    "id": "q58916",
+    "categoryIndex": 5,
+    "question": "Şampiyon Kulüpler Kupası'nda yarı finale çıkan ilk Türk takımı hangisidir?",
+    "options": [
+      "Beşiktaş",
+      "Fenerbahçe",
+      "Trabzonspor",
+      "Galatasaray"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Galatasaray 1988-89 sezonunda Avrupa Şampiyon Kulüpler Kupası yarı finaline ulaştı."
+  },
+  {
+    "id": "q58917",
+    "categoryIndex": 5,
+    "question": "Galatasaray 1988-89 Şampiyon Kulüpler Kupası çeyrek finalinde hangi takımı eledi?",
+    "options": [
+      "Monaco",
+      "Steaua Bükreş",
+      "PSV Eindhoven",
+      "Neuchâtel Xamax"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Galatasaray, Monaco'yu eleyerek yarı finale yükseldi."
+  },
+  {
+    "id": "q58918",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe Şampiyonlar Ligi'nde çeyrek finale hangi sezonda yükseldi?",
+    "options": [
+      "2005-06",
+      "2007-08",
+      "2011-12",
+      "2009-10"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Zico yönetimindeki Fenerbahçe 2007-08 sezonunda Sevilla'yı eleyerek çeyrek finale çıktı."
+  },
+  {
+    "id": "q58919",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe 2007-08 Şampiyonlar Ligi son 16 turunda hangi takımı eledi?",
+    "options": [
+      "Inter",
+      "PSV",
+      "Sevilla",
+      "Chelsea"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İki maç sonunda eşitlik bozulmayınca Fenerbahçe Sevilla'yı penaltılarla eledi."
+  },
+  {
+    "id": "q58920",
+    "categoryIndex": 5,
+    "question": "Fenerbahçe 2012-13 UEFA Avrupa Ligi'nde hangi aşamaya kadar yükseldi?",
+    "options": [
+      "Çeyrek final",
+      "Final",
+      "Son 16",
+      "Yarı final"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Fenerbahçe, Benfica'ya elenerek finalin kapısından döndü."
+  }
+]

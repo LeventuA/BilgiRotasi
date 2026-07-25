@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "questionCount": 10000,
+  "idRange": "q43121-q53120",
+  "packageCount": 10,
+  "allQuestionsEasy": true,
+  "categoryCounts": {
+    "Coğrafya": 1670,
+    "Eğlence": 1670,
+    "Tarih": 1670,
+    "Sanat & Edebiyat": 1670,
+    "Bilim & Doğa": 1660,
+    "Spor": 1660
+  },
+  "difficultyCounts": {
+    "Kolay": 10000
+  },
+  "answerIndexCounts": {
+    "0": 2502,
+    "1": 2528,
+    "2": 2451,
+    "3": 2519
+  },
+  "crosscheck": {
+    "accessibleReferenceQuestionCount": 33000,
+    "normalizedExactQuestionDuplicates": 0,
+    "normalizedQuestionAnswerDuplicates": 0,
+    "newUniqueFactKeys": 10000
+  },
+  "checks": {
+    "continuousIds": true,
+    "uniqueIds": true,
+    "uniqueQuestionTexts": true,
+    "allDifficultyValuesEasy": true,
+    "validOptions": true,
+    "validAnswerIndexes": true,
+    "allExplanationsPresent": true,
+    "allTenPackagesHave1000Questions": true
+  }
+}

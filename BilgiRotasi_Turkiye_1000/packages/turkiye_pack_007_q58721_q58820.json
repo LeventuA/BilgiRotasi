@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "q58721",
+    "categoryIndex": 3,
+    "question": "Üvercinka adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Cemal Süreya",
+      "Turgut Uyar",
+      "Ece Ayhan",
+      "Edip Cansever"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Üvercinka, Cemal Süreya'nın 1958'de yayımlanan ilk şiir kitabıdır."
+  },
+  {
+    "id": "q58722",
+    "categoryIndex": 3,
+    "question": "'Biliyorum sana giden yollar kapalı' dizesi hangi şaire aittir?",
+    "options": [
+      "Turgut Uyar",
+      "Cemal Süreya",
+      "Attilâ İlhan",
+      "Özdemir Asaf"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bu dize Cemal Süreya'nın aynı sözlerle anılan şiirinde yer alır."
+  },
+  {
+    "id": "q58723",
+    "categoryIndex": 3,
+    "question": "Dünyanın En Güzel Arabistanı adlı şiir kitabı kime aittir?",
+    "options": [
+      "Edip Cansever",
+      "Cemal Süreya",
+      "Turgut Uyar",
+      "Ece Ayhan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Turgut Uyar'ın 1959 tarihli kitabı İkinci Yeni'nin temel eserlerindendir."
+  },
+  {
+    "id": "q58724",
+    "categoryIndex": 3,
+    "question": "Göğe Bakma Durağı şiirinin şairi kimdir?",
+    "options": [
+      "Edip Cansever",
+      "Cemal Süreya",
+      "İlhan Berk",
+      "Turgut Uyar"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Göğe Bakma Durağı Turgut Uyar'ın en çok bilinen şiirlerinden biridir."
+  },
+  {
+    "id": "q58725",
+    "categoryIndex": 3,
+    "question": "Yerçekimli Karanfil adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Edip Cansever",
+      "Ece Ayhan",
+      "Turgut Uyar",
+      "Cemal Süreya"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Edip Cansever'in 1957 tarihli kitabı İkinci Yeni şiirinin önemli örneklerindendir."
+  },
+  {
+    "id": "q58726",
+    "categoryIndex": 3,
+    "question": "Masa da Masaymış Ha şiirinin şairi kimdir?",
+    "options": [
+      "Turgut Uyar",
+      "Edip Cansever",
+      "İlhan Berk",
+      "Behçet Necatigil"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Edip Cansever şiirde masayı insanın yaşam yüklerini taşıyan bir imgeye dönüştürür."
+  },
+  {
+    "id": "q58727",
+    "categoryIndex": 3,
+    "question": "Kınar Hanımın Denizleri adlı şiir kitabı kime aittir?",
+    "options": [
+      "Edip Cansever",
+      "Sezai Karakoç",
+      "Ece Ayhan",
+      "İlhan Berk"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Ece Ayhan'ın ilk kitabı İkinci Yeni'nin sıra dışı dilini yansıtır."
+  },
+  {
+    "id": "q58728",
+    "categoryIndex": 3,
+    "question": "Mona Roza şiirinin şairi kimdir?",
+    "options": [
+      "Cahit Zarifoğlu",
+      "Necip Fazıl Kısakürek",
+      "Erdem Bayazıt",
+      "Sezai Karakoç"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Mona Roza, Sezai Karakoç'un en çok bilinen şiirlerinden biridir."
+  },
+  {
+    "id": "q58729",
+    "categoryIndex": 3,
+    "question": "Çile adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Necip Fazıl Kısakürek",
+      "Mehmet Âkif Ersoy",
+      "Cahit Zarifoğlu",
+      "Sezai Karakoç"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Necip Fazıl şiirlerinin büyük bölümünü Çile kitabında topladı."
+  },
+  {
+    "id": "q58730",
+    "categoryIndex": 3,
+    "question": "835 Satır adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Orhan Veli Kanık",
+      "Nazım Hikmet",
+      "Fazıl Hüsnü Dağlarca",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Nazım Hikmet'in 1929'da yayımlanan kitabı serbest nazmın öncü örneklerindendir."
+  },
+  {
+    "id": "q58731",
+    "categoryIndex": 3,
+    "question": "'Yaşamak bir ağaç gibi tek ve hür' dizesi hangi şaire aittir?",
+    "options": [
+      "Orhan Veli Kanık",
+      "Ahmed Arif",
+      "Nazım Hikmet",
+      "Can Yücel"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Dize Nazım Hikmet'in 'Davet' şiirinde yer alır."
+  },
+  {
+    "id": "q58732",
+    "categoryIndex": 3,
+    "question": "Memleketimden İnsan Manzaraları adlı eserin yazarı kimdir?",
+    "options": [
+      "Fazıl Hüsnü Dağlarca",
+      "Attilâ İlhan",
+      "Orhan Veli Kanık",
+      "Nazım Hikmet"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Nazım Hikmet'in uzun soluklu eseri farklı toplumsal kesimlerden insanları anlatır."
+  },
+  {
+    "id": "q58733",
+    "categoryIndex": 3,
+    "question": "Garip adlı şiir kitabını Orhan Veli ile birlikte yayımlayan iki şair kimdir?",
+    "options": [
+      "Melih Cevdet Anday ve Oktay Rifat",
+      "Behçet Necatigil ve Ziya Osman Saba",
+      "Cemal Süreya ve Turgut Uyar",
+      "Nazım Hikmet ve Attilâ İlhan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "1941 tarihli Garip kitabı üç şairin ortak şiir anlayışını duyurdu."
+  },
+  {
+    "id": "q58734",
+    "categoryIndex": 3,
+    "question": "'İstanbul'u dinliyorum, gözlerim kapalı' dizesinin şairi kimdir?",
+    "options": [
+      "Yahya Kemal Beyatlı",
+      "Orhan Veli Kanık",
+      "Nazım Hikmet",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Orhan Veli'nin İstanbul'u Dinliyorum şiiri şehrin seslerini duyusal imgelerle anlatır."
+  },
+  {
+    "id": "q58735",
+    "categoryIndex": 3,
+    "question": "Perçemli Sokak adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Melih Cevdet Anday",
+      "İlhan Berk",
+      "Oktay Rifat",
+      "Orhan Veli Kanık"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Oktay Rifat'ın Perçemli Sokak kitabı şiirindeki imgeci dönüşümü gösterir."
+  },
+  {
+    "id": "q58736",
+    "categoryIndex": 3,
+    "question": "Rahatı Kaçan Ağaç adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Orhan Veli Kanık",
+      "Oktay Rifat",
+      "Behçet Necatigil",
+      "Melih Cevdet Anday"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Melih Cevdet Anday'ın ilk dönem şiirleri bu kitapta toplandı."
+  },
+  {
+    "id": "q58737",
+    "categoryIndex": 3,
+    "question": "Hasretinden Prangalar Eskittim adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Ahmed Arif",
+      "Nazım Hikmet",
+      "Cemal Süreya",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ahmed Arif'in tek şiir kitabı olan eser 1968'de yayımlandı."
+  },
+  {
+    "id": "q58738",
+    "categoryIndex": 3,
+    "question": "'Seni, anlatabilmek seni' dizesi hangi şaire aittir?",
+    "options": [
+      "Cemal Süreya",
+      "Ahmed Arif",
+      "Özdemir Asaf",
+      "Can Yücel"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dize Ahmed Arif'in 'Ay Karanlık' şiirinde yer alır."
+  },
+  {
+    "id": "q58739",
+    "categoryIndex": 3,
+    "question": "Ben Sana Mecburum şiirinin şairi kimdir?",
+    "options": [
+      "Cemal Süreya",
+      "Ahmed Arif",
+      "Attilâ İlhan",
+      "Nazım Hikmet"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Attilâ İlhan'ın en tanınmış aşk şiirlerinden biri Ben Sana Mecburum'dur."
+  },
+  {
+    "id": "q58740",
+    "categoryIndex": 3,
+    "question": "Sisler Bulvarı adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "İlhan Berk",
+      "Sezai Karakoç",
+      "Turgut Uyar",
+      "Attilâ İlhan"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Attilâ İlhan'ın 1954 tarihli kitabı şehir ve yalnızlık temalarıyla bilinir."
+  },
+  {
+    "id": "q58741",
+    "categoryIndex": 3,
+    "question": "Karlar İçinde adlı tablonun ressamı kimdir?",
+    "options": [
+      "Hoca Ali Rıza",
+      "Osman Hamdi Bey",
+      "İbrahim Çallı",
+      "Şeker Ahmet Paşa"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Hoca Ali Rıza özellikle İstanbul ve çevresini betimleyen peyzajlarıyla tanınır."
+  },
+  {
+    "id": "q58742",
+    "categoryIndex": 3,
+    "question": "Silah Taciri tablosunun ressamı kimdir?",
+    "options": [
+      "Halil Paşa",
+      "Osman Hamdi Bey",
+      "Namık İsmail",
+      "Şeker Ahmet Paşa"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Osman Hamdi Bey, oryantalist üsluptaki eserlerinde kendisini model olarak da kullandı."
+  },
+  {
+    "id": "q58743",
+    "categoryIndex": 3,
+    "question": "Osman Hamdi Bey'in kurduğu ve bugünkü Mimar Sinan Güzel Sanatlar Üniversitesinin temeli olan okul hangisidir?",
+    "options": [
+      "Galatasaray Sultanisi",
+      "Mekteb-i Mülkiye",
+      "Sanayi-i Nefise Mektebi",
+      "Darülfünun"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Sanayi-i Nefise Mektebi 1883'te açıldı."
+  },
+  {
+    "id": "q58744",
+    "categoryIndex": 3,
+    "question": "Türk resminde '1914 Kuşağı' denince akla gelen ressamlardan biri kimdir?",
+    "options": [
+      "Burhan Doğançay",
+      "Fikret Mualla",
+      "Bedri Rahmi Eyüboğlu",
+      "İbrahim Çallı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İbrahim Çallı, Çallı Kuşağı olarak da anılan 1914 Kuşağı'nın önde gelen ismidir."
+  },
+  {
+    "id": "q58745",
+    "categoryIndex": 3,
+    "question": "Mor Salkımlı Ev adlı anı kitabının yazarı kimdir?",
+    "options": [
+      "Halide Edip Adıvar",
+      "Fatma Aliye",
+      "Adalet Ağaoğlu",
+      "Mina Urgan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Halide Edip çocukluk ve gençlik yıllarını Mor Salkımlı Ev'de anlatır."
+  },
+  {
+    "id": "q58746",
+    "categoryIndex": 3,
+    "question": "Karadut şiirinin ve aynı adlı tablonun yaratıcısı kimdir?",
+    "options": [
+      "Fikret Mualla",
+      "Bedri Rahmi Eyüboğlu",
+      "İbrahim Çallı",
+      "Abidin Dino"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bedri Rahmi şiir, resim ve mozaik çalışmalarını birlikte sürdüren çok yönlü bir sanatçıydı."
+  },
+  {
+    "id": "q58747",
+    "categoryIndex": 3,
+    "question": "'Yaradana Mektuplar' adlı şiir kitabının yazarı kimdir?",
+    "options": [
+      "Sabri Esat Siyavuşgil",
+      "Cahit Sıtkı Tarancı",
+      "Bedri Rahmi Eyüboğlu",
+      "Ahmet Muhip Dıranas"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Bedri Rahmi'nin ilk şiir kitabı Yaradana Mektuplar 1941'de yayımlandı."
+  },
+  {
+    "id": "q58748",
+    "categoryIndex": 3,
+    "question": "Abidin Dino'nun adını taşıyan ve sıkça atıf yapılan çizim dizilerinden biri hangisidir?",
+    "options": [
+      "Gölgeler",
+      "Kapılar",
+      "Saatler",
+      "Eller"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Abidin Dino, elleri hareket ve emek duygusunu anlatan güçlü bir motif olarak sıkça çizdi."
+  },
+  {
+    "id": "q58749",
+    "categoryIndex": 3,
+    "question": "Fikret Mualla yaşamının önemli bölümünü hangi şehirde geçirdi?",
+    "options": [
+      "Paris",
+      "Roma",
+      "Madrid",
+      "Londra"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Fikret Mualla 1939'dan sonra Paris'te yaşadı ve kentin gündelik hayatını resmetti."
+  },
+  {
+    "id": "q58750",
+    "categoryIndex": 3,
+    "question": "Burhan Doğançay'ın dünya çapında tanınan resimlerinin temel konusu nedir?",
+    "options": [
+      "Anadolu kilimleri",
+      "Kent duvarları",
+      "Osmanlı sarayları",
+      "Deniz manzaraları"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Doğançay, afişler, yazılar ve yırtık katmanlarla kent duvarlarını belgeleyip yorumladı."
+  },
+  {
+    "id": "q58751",
+    "categoryIndex": 3,
+    "question": "Devrim Erbil'in resimlerinde sıkça işlediği şehir hangisidir?",
+    "options": [
+      "Konya",
+      "İzmir",
+      "İstanbul",
+      "Ankara"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Devrim Erbil kuşbakışı ve ritmik çizgilerle İstanbul görünümleriyle tanınır."
+  },
+  {
+    "id": "q58752",
+    "categoryIndex": 3,
+    "question": "İlhan Koman'ın kıvrımlı metal levhalardan oluşan ünlü heykelinin adı nedir?",
+    "options": [
+      "Güneş Kursu",
+      "Denge",
+      "Kuşlar",
+      "Akdeniz"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Akdeniz adlı heykel, dalgalanan bir insan figürünü çağrıştıran ince metal levhalardan oluşur."
+  },
+  {
+    "id": "q58753",
+    "categoryIndex": 3,
+    "question": "Ankara'daki Hitit Güneş Kursu Anıtı'nın heykeltıraşı kimdir?",
+    "options": [
+      "Nusret Suman",
+      "İlhan Koman",
+      "Zühtü Müridoğlu",
+      "Kuzgun Acar"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Sıhhiye Meydanı'ndaki anıt Nusret Suman tarafından tasarlandı."
+  },
+  {
+    "id": "q58754",
+    "categoryIndex": 3,
+    "question": "Kuşlar adlı metal heykeli İstanbul Manifaturacılar Çarşısı'nda bulunan sanatçı kimdir?",
+    "options": [
+      "İlhan Koman",
+      "Kuzgun Acar",
+      "Füreya Koral",
+      "Sadi Çalık"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Kuzgun Acar'ın soyut metal Kuşlar heykeli İMÇ cephesinin simge eserlerindendir."
+  },
+  {
+    "id": "q58755",
+    "categoryIndex": 3,
+    "question": "Ara Güler hangi sanat dalıyla dünya çapında tanındı?",
+    "options": [
+      "Heykel",
+      "Opera",
+      "Fotoğraf",
+      "Mimarlık"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Ara Güler, özellikle İstanbul'un gündelik hayatını belgeleyen siyah-beyaz fotoğraflarıyla tanındı."
+  },
+  {
+    "id": "q58756",
+    "categoryIndex": 3,
+    "question": "Ara Güler'in yaygın lakabı hangisidir?",
+    "options": [
+      "Işığın Ustası",
+      "Anadolu'nun Sesi",
+      "Boğazın Ressamı",
+      "İstanbul'un Gözü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ara Güler, şehri belgeleyen fotoğrafları nedeniyle 'İstanbul'un Gözü' diye anılır."
+  },
+  {
+    "id": "q58757",
+    "categoryIndex": 3,
+    "question": "Mimar Sinan'ın 'kalfalık eserim' dediği yapı hangisidir?",
+    "options": [
+      "Süleymaniye Camii",
+      "Rüstem Paşa Camii",
+      "Şehzade Camii",
+      "Selimiye Camii"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "İstanbul'daki Süleymaniye Camii, Sinan'ın kalfalık eseri olarak anılır."
+  },
+  {
+    "id": "q58758",
+    "categoryIndex": 3,
+    "question": "Mimar Sinan'ın 'çıraklık eserim' dediği cami hangisidir?",
+    "options": [
+      "Sokollu Mehmet Paşa Camii",
+      "Şehzade Camii",
+      "Süleymaniye Camii",
+      "Selimiye Camii"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Şehzade Camii, Mimar Sinan'ın anıtsal yapı kariyerindeki çıraklık eseri kabul edilir."
+  },
+  {
+    "id": "q58759",
+    "categoryIndex": 3,
+    "question": "Ankara'daki Kocatepe Camii'nin mimarlarından biri kimdir?",
+    "options": [
+      "Turgut Cansever",
+      "Vedat Dalokay",
+      "Hüsrev Tayla",
+      "Sedad Hakkı Eldem"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Kocatepe Camii'nin uygulanan projesi Hüsrev Tayla ve Fatin Uluengin'e aittir."
+  },
+  {
+    "id": "q58760",
+    "categoryIndex": 3,
+    "question": "Türk mimarlığında 'Ağa Han Mimarlık Ödülü'nü üç kez alan mimar kimdir?",
+    "options": [
+      "Doğan Tekeli",
+      "Behruz Çinici",
+      "Sedad Hakkı Eldem",
+      "Turgut Cansever"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Turgut Cansever, Ağa Han Mimarlık Ödülü'nü üç kez alan tek mimar olarak bilinir."
+  },
+  {
+    "id": "q58761",
+    "categoryIndex": 3,
+    "question": "Bodrum'daki Demir Tatil Köyü projesiyle tanınan mimar kimdir?",
+    "options": [
+      "Turgut Cansever",
+      "Han Tümertekin",
+      "Nevzat Sayın",
+      "Sedad Hakkı Eldem"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Demir Tatil Köyü, Cansever'in yerel dokuya duyarlı mimarlık yaklaşımının örneklerindendir."
+  },
+  {
+    "id": "q58762",
+    "categoryIndex": 3,
+    "question": "Keşanlı Ali Destanı adlı tiyatro eserinin yazarı kimdir?",
+    "options": [
+      "Güngör Dilmen",
+      "Haldun Taner",
+      "Aziz Nesin",
+      "Turgut Özakman"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Haldun Taner'in epik tiyatro eseri gecekondu çevresinde kahramanlık efsanesini sorgular."
+  },
+  {
+    "id": "q58763",
+    "categoryIndex": 3,
+    "question": "Gözlerimi Kaparım Vazifemi Yaparım adlı oyunun yazarı kimdir?",
+    "options": [
+      "Turgut Özakman",
+      "Aziz Nesin",
+      "Haldun Taner",
+      "Necati Cumalı"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Haldun Taner, Vicdani ve Efruz karakterleriyle yakın tarih ve toplumsal değişimi hicveder."
+  },
+  {
+    "id": "q58764",
+    "categoryIndex": 3,
+    "question": "Lüküs Hayat operetinin bestecisi kimdir?",
+    "options": [
+      "Adnan Saygun",
+      "Muammer Sun",
+      "Ulvi Cemal Erkin",
+      "Cemal Reşit Rey"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Lüküs Hayat'ın müziğini Cemal Reşit Rey, librettosunu Ekrem Reşit Rey yazdı."
+  },
+  {
+    "id": "q58765",
+    "categoryIndex": 3,
+    "question": "Bir Şehnaz Oyun adlı tiyatro eserinin yazarı kimdir?",
+    "options": [
+      "Turgut Özakman",
+      "Güngör Dilmen",
+      "Haldun Taner",
+      "Refik Erduran"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Zor",
+    "explanation": "Turgut Özakman'ın oyunu geleneksel tiyatro öğeleriyle modern sahne anlayışını birleştirir."
+  },
+  {
+    "id": "q58766",
+    "categoryIndex": 3,
+    "question": "Şu Çılgın Türkler adlı belgesel romanın yazarı kimdir?",
+    "options": [
+      "Sinan Meydan",
+      "Turgut Özakman",
+      "İlber Ortaylı",
+      "Yılmaz Özdil"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Turgut Özakman eserde Kurtuluş Savaşı'nın 1921-1922 dönemini anlatır."
+  },
+  {
+    "id": "q58767",
+    "categoryIndex": 3,
+    "question": "Canlı Maymun Lokantası adlı oyunun yazarı kimdir?",
+    "options": [
+      "Haldun Taner",
+      "Melih Cevdet Anday",
+      "Güngör Dilmen",
+      "Aziz Nesin"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Güngör Dilmen oyunda tüketim ve sömürü ilişkilerini absürt bir dille ele alır."
+  },
+  {
+    "id": "q58768",
+    "categoryIndex": 3,
+    "question": "Ferhangi Şeyler adlı tek kişilik gösteriyi yıllarca sahneleyen sanatçı kimdir?",
+    "options": [
+      "Levent Kırca",
+      "Genco Erkal",
+      "Müjdat Gezen",
+      "Ferhan Şensoy"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ferhan Şensoy, gündelik olayları ve siyaseti hicveden gösteriyi 1987'den itibaren sahneledi."
+  },
+  {
+    "id": "q58769",
+    "categoryIndex": 3,
+    "question": "Ortaoyuncular tiyatro topluluğunu kuran sanatçı kimdir?",
+    "options": [
+      "Ferhan Şensoy",
+      "Haldun Dormen",
+      "Yıldız Kenter",
+      "Genco Erkal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Ferhan Şensoy, 1980'de Ortaoyuncular'ı kurdu."
+  },
+  {
+    "id": "q58770",
+    "categoryIndex": 3,
+    "question": "Dostlar Tiyatrosu'nun kurucusu kimdir?",
+    "options": [
+      "Müjdat Gezen",
+      "Genco Erkal",
+      "Haldun Dormen",
+      "Müşfik Kenter"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Genco Erkal 1969'da Dostlar Tiyatrosu'nu kurdu."
+  },
+  {
+    "id": "q58771",
+    "categoryIndex": 3,
+    "question": "Keşanlı Ali Destanı'nın ilk sahnelenişinde Zilha karakterini canlandıran sanatçı kimdir?",
+    "options": [
+      "Ayten Gökçer",
+      "Nevra Serezli",
+      "Gülriz Sururi",
+      "Yıldız Kenter"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Zor",
+    "explanation": "Gülriz Sururi, 1964'teki ilk sahnelenişte Zilha rolüyle büyük başarı kazandı."
+  },
+  {
+    "id": "q58772",
+    "categoryIndex": 3,
+    "question": "Hisseli Harikalar Kumpanyası müzikalini yazıp sahneleyen tiyatro sanatçısı kimdir?",
+    "options": [
+      "Genco Erkal",
+      "Ferhan Şensoy",
+      "Haldun Taner",
+      "Haldun Dormen"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Haldun Dormen'in yazıp sahnelediği müzikalin unutulmaz müziklerini Melih Kibar besteledi."
+  },
+  {
+    "id": "q58773",
+    "categoryIndex": 3,
+    "question": "Devekuşu Kabare'nin kurucu kadrosunda yer alıp yıllarca birlikte sahne alan ünlü ikili kimdir?",
+    "options": [
+      "Zeki Alasya ve Metin Akpınar",
+      "Müjdat Gezen ve Ferhan Şensoy",
+      "Levent Kırca ve Oya Başar",
+      "Haldun Dormen ve Genco Erkal"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Zeki Alasya ve Metin Akpınar, Haldun Taner ve Ahmet Gülhan'la birlikte topluluğun kurucu kadrosundaydı."
+  },
+  {
+    "id": "q58774",
+    "categoryIndex": 3,
+    "question": "Olacak O Kadar adlı televizyon mizah programıyla özdeşleşen sanatçı kimdir?",
+    "options": [
+      "Ferhan Şensoy",
+      "Levent Kırca",
+      "Zeki Alasya",
+      "Cem Yılmaz"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Levent Kırca, skeç programında farklı toplumsal ve siyasi karakterleri canlandırdı."
+  },
+  {
+    "id": "q58775",
+    "categoryIndex": 4,
+    "question": "Nobel Kimya Ödülü kazanan ilk Türk bilim insanı kimdir?",
+    "options": [
+      "Hulusi Behçet",
+      "Cahit Arf",
+      "Aziz Sancar",
+      "Gazi Yaşargil"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Aziz Sancar 2015 Nobel Kimya Ödülü'nü DNA onarımı çalışmalarıyla paylaştı."
+  },
+  {
+    "id": "q58776",
+    "categoryIndex": 4,
+    "question": "Aziz Sancar Nobel Ödülü'nü hangi bilimsel konuya katkılarıyla kazandı?",
+    "options": [
+      "Levha tektoniği",
+      "Kuantum dolanıklığı",
+      "Kök hücre tedavisi",
+      "DNA onarımı"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Ödül, hücrelerin hasarlı DNA'yı nasıl onardığını açıklayan mekanizma çalışmalarına verildi."
+  },
+  {
+    "id": "q58777",
+    "categoryIndex": 4,
+    "question": "Cahit Arf'ın portresi hangi Türk lirası banknotunda yer alır?",
+    "options": [
+      "10 TL",
+      "5 TL",
+      "20 TL",
+      "50 TL"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Cahit Arf'ın portresi ve matematiksel motifler 10 Türk lirası banknotunun arka yüzünde yer alır."
+  },
+  {
+    "id": "q58778",
+    "categoryIndex": 4,
+    "question": "Cahit Arf doktorasını hangi Alman üniversitesinde tamamladı?",
+    "options": [
+      "Berlin Humboldt Üniversitesi",
+      "Göttingen Üniversitesi",
+      "Heidelberg Üniversitesi",
+      "Münih Teknik Üniversitesi"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Zor",
+    "explanation": "Cahit Arf, matematik doktorasını 1938'de Göttingen Üniversitesinde tamamladı."
+  },
+  {
+    "id": "q58779",
+    "categoryIndex": 4,
+    "question": "Hulusi Behçet'in tanımladığı hastalığın klasik belirtileri arasında hangi üçlü bulunur?",
+    "options": [
+      "Öksürük, işitme kaybı ve saç dökülmesi",
+      "Migren, kırık ve kas yırtığı",
+      "Ağız yaraları, genital yaralar ve göz iltihabı",
+      "Sarılık, böbrek taşı ve burun kanaması"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Behçet hastalığı tekrarlayan ağız-genital yaralar ve üveit adı verilen göz iltihabıyla tanınır."
+  },
+  {
+    "id": "q58780",
+    "categoryIndex": 4,
+    "question": "Gazi Yaşargil hangi tıp alanındaki öncü çalışmalarıyla tanınır?",
+    "options": [
+      "Dermatoloji",
+      "Göz hastalıkları",
+      "Kardiyoloji",
+      "Beyin cerrahisi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Gazi Yaşargil mikrocerrahi tekniklerini beyin damar ve tümör ameliyatlarına uyarlayan öncü isimlerdendir."
+  },
+  {
+    "id": "q58781",
+    "categoryIndex": 4,
+    "question": "Canan Dağdeviren'in geliştirdiği giyilebilir cihazların temel alanı nedir?",
+    "options": [
+      "Biyomedikal teknoloji",
+      "Uzay roketleri",
+      "Tarım makineleri",
+      "Denizaltı mühendisliği"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Canan Dağdeviren, vücuda uyum sağlayan esnek elektronik ve tıbbi sensörler geliştirir."
+  },
+  {
+    "id": "q58782",
+    "categoryIndex": 4,
+    "question": "Özlem Türeci ve Uğur Şahin hangi biyoteknoloji şirketinin kurucularındandır?",
+    "options": [
+      "Moderna",
+      "BioNTech",
+      "CureVac",
+      "Genentech"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "İki Türk-Alman bilim insanı, mRNA tabanlı tedaviler geliştiren BioNTech'in kurucuları arasındadır."
+  },
+  {
+    "id": "q58783",
+    "categoryIndex": 4,
+    "question": "Uğur Şahin ve Özlem Türeci'nin çalışmaları özellikle hangi teknolojiyle tanındı?",
+    "options": [
+      "Antibiyotik üretimi",
+      "Canlı zayıflatılmış aşılar",
+      "mRNA aşıları",
+      "Röntgen cihazları"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "BioNTech'in COVID-19 aşısı mRNA teknolojisini geniş kitlelere tanıttı."
+  },
+  {
+    "id": "q58784",
+    "categoryIndex": 4,
+    "question": "İlk Türk astronot Alper Gezeravcı uzaya hangi görevle gitti?",
+    "options": [
+      "Soyuz MS-24",
+      "Artemis I",
+      "Crew-5",
+      "Axiom Mission 3"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Alper Gezeravcı, Ocak 2024'te Axiom Mission 3 kapsamında Uluslararası Uzay İstasyonu'na gitti."
+  },
+  {
+    "id": "q58785",
+    "categoryIndex": 4,
+    "question": "Alper Gezeravcı'nın görev yaptığı uzay istasyonu hangisidir?",
+    "options": [
+      "Uluslararası Uzay İstasyonu",
+      "Mir Uzay İstasyonu",
+      "Tiangong Uzay İstasyonu",
+      "Skylab"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Axiom Mission 3 ekibi yaklaşık iki hafta Uluslararası Uzay İstasyonu'nda çalıştı."
+  },
+  {
+    "id": "q58786",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ikinci astronotu olarak yörünge altı uçuş yapan kişi kimdir?",
+    "options": [
+      "Selçuk Bayraktar",
+      "Tuva Cihangir Atasever",
+      "Canan Dağdeviren",
+      "Alper Gezeravcı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Tuva Cihangir Atasever Haziran 2024'te Virgin Galactic'in Galactic 07 uçuşuna katıldı."
+  },
+  {
+    "id": "q58787",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin metre altı çözünürlüklü ilk yer gözlem uydusu hangisidir?",
+    "options": [
+      "Türksat 5A",
+      "RASAT",
+      "İMECE",
+      "BİLSAT"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İMECE, TÜBİTAK UZAY tarafından geliştirilen yüksek çözünürlüklü yer gözlem uydusudur."
+  },
+  {
+    "id": "q58788",
+    "categoryIndex": 4,
+    "question": "İMECE uydusu hangi amaçla kullanılır?",
+    "options": [
+      "Gezegenler arası iletişim kurmak",
+      "İnsan taşımak",
+      "Televizyon yayını yapmak",
+      "Yeryüzünü yüksek çözünürlükle görüntülemek"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İMECE savunma, afet, çevre ve haritalama gibi alanlar için görüntü üretir."
+  },
+  {
+    "id": "q58789",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ilk yerli haberleşme uydusu hangisidir?",
+    "options": [
+      "Türksat 6A",
+      "Türksat 3A",
+      "İMECE",
+      "Göktürk-2"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Türksat 6A, ana alt sistemleri Türkiye'de geliştirilen ilk yerli haberleşme uydusudur."
+  },
+  {
+    "id": "q58790",
+    "categoryIndex": 4,
+    "question": "RASAT uydusunu geliştiren kurum hangisidir?",
+    "options": [
+      "MTA",
+      "TÜBİTAK UZAY",
+      "ASELSAN",
+      "TÜİK"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "RASAT, Türkiye'de tasarlanıp üretilen ilk yer gözlem uydularından biridir."
+  },
+  {
+    "id": "q58791",
+    "categoryIndex": 4,
+    "question": "Göktürk-2 uydusunun temel görevi nedir?",
+    "options": [
+      "Meteoroloji balonu yönetimi",
+      "Derin uzay araştırması",
+      "Yer gözlemi",
+      "Radyo yayını"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Göktürk-2 yüksek çözünürlüklü görüntüler sağlayan elektro-optik yer gözlem uydusudur."
+  },
+  {
+    "id": "q58792",
+    "categoryIndex": 4,
+    "question": "TÜBİTAK'ın açılımı nedir?",
+    "options": [
+      "Türkiye Bilgi ve Teknik Araştırma Kurumu",
+      "Türk Bilimler ve Teknoloji Akademisi",
+      "Türkiye Bilişim ve Telekomünikasyon Araştırma Kurulu",
+      "Türkiye Bilimsel ve Teknolojik Araştırma Kurumu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "TÜBİTAK bilimsel araştırmaları ve teknoloji geliştirmeyi destekleyen kamu kurumudur."
+  },
+  {
+    "id": "q58793",
+    "categoryIndex": 4,
+    "question": "TÜBA'nın açılımı nedir?",
+    "options": [
+      "Türkiye Bilimler Akademisi",
+      "Türk Biyoloji Araştırmaları",
+      "Teknoloji ve Uzay Bilimleri Akademisi",
+      "Türkiye Bilimsel Araştırma Ajansı"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Türkiye Bilimler Akademisi bilim insanlarını bir araya getiren ulusal akademidir."
+  },
+  {
+    "id": "q58794",
+    "categoryIndex": 4,
+    "question": "MTA'nın temel çalışma alanı nedir?",
+    "options": [
+      "Dil araştırmaları",
+      "Maden ve yer bilimleri",
+      "Meteoroloji",
+      "Halk sağlığı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Maden Tetkik ve Arama Genel Müdürlüğü jeoloji, maden ve doğal kaynak araştırmaları yapar."
+  },
+  {
+    "id": "q58795",
+    "categoryIndex": 4,
+    "question": "Kandilli Rasathanesi hangi üniversiteye bağlıdır?",
+    "options": [
+      "Ankara Üniversitesi",
+      "İstanbul Teknik Üniversitesi",
+      "Boğaziçi Üniversitesi",
+      "Marmara Üniversitesi"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kandilli Rasathanesi ve Deprem Araştırma Enstitüsü Boğaziçi Üniversitesine bağlıdır."
+  },
+  {
+    "id": "q58796",
+    "categoryIndex": 4,
+    "question": "Kandilli Rasathanesi hangi şehirde bulunur?",
+    "options": [
+      "İzmir",
+      "Ankara",
+      "Erzurum",
+      "İstanbul"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Rasathane İstanbul'un Üsküdar ilçesindeki Kandilli semtindedir."
+  },
+  {
+    "id": "q58797",
+    "categoryIndex": 4,
+    "question": "Doğu Anadolu Gözlemevi hangi ilimizdedir?",
+    "options": [
+      "Erzurum",
+      "Kars",
+      "Van",
+      "Erzincan"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "DAG, Erzurum'daki Konaklı Karakaya Tepeleri'nde kurulmuştur."
+  },
+  {
+    "id": "q58798",
+    "categoryIndex": 4,
+    "question": "TÜBİTAK Ulusal Gözlemevi hangi dağdadır?",
+    "options": [
+      "Palandöken",
+      "Bakırlıtepe",
+      "Erciyes",
+      "Uludağ"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "TUG, Antalya'nın Saklıkent bölgesindeki Bakırlıtepe'de yer alır."
+  },
+  {
+    "id": "q58799",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ulusal kutup bilim seferleri hangi kıtada araştırma yürütür?",
+    "options": [
+      "Avustralya",
+      "Afrika",
+      "Antarktika",
+      "Avrupa"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Türk bilim ekipleri Antarktika'da iklim, jeoloji, biyoloji ve deniz bilimleri araştırmaları yapar."
+  },
+  {
+    "id": "q58800",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin Antarktika'daki geçici bilim kampının bulunduğu ada hangisidir?",
+    "options": [
+      "Deception Adası",
+      "Ross Adası",
+      "King George Adası",
+      "Horseshoe Adası"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Zor",
+    "explanation": "Türk Bilimsel Araştırma Kampı Antarktika Yarımadası yakınındaki Horseshoe Adası'nda kurulmuştur."
+  },
+  {
+    "id": "q58801",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin ilk millî kutup bilim seferi hangi bölgeye düzenlendi?",
+    "options": [
+      "Antarktika",
+      "Alaska",
+      "Sibirya",
+      "Grönland"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Türkiye'nin ulusal Antarktika bilim seferleri 2017'den itibaren düzenli hâle geldi."
+  },
+  {
+    "id": "q58802",
+    "categoryIndex": 4,
+    "question": "Türkiye'de deprem üreten ana fay sistemlerinden biri hangisidir?",
+    "options": [
+      "San Andreas Fayı",
+      "Kuzey Anadolu Fayı",
+      "Alp Fayı",
+      "Atlas Fayı"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Kuzey Anadolu Fayı, Karlıova'dan Marmara Denizi'ne uzanan aktif sağ yanal bir faydır."
+  },
+  {
+    "id": "q58803",
+    "categoryIndex": 4,
+    "question": "Kuzey Anadolu Fayı ile Doğu Anadolu Fayı hangi ilçe çevresinde birleşir?",
+    "options": [
+      "Tosya",
+      "Niksar",
+      "Karlıova",
+      "Erciş"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "İki büyük fay sistemi Bingöl'ün Karlıova ilçesi çevresindeki üçlü birleşim alanında buluşur."
+  },
+  {
+    "id": "q58804",
+    "categoryIndex": 4,
+    "question": "Ege Bölgesi'nde depremlerin sık olmasında hangi jeolojik yapı etkilidir?",
+    "options": [
+      "Mercan resifleri",
+      "Buzul vadileri",
+      "Delta ovaları",
+      "Graben sistemi"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Batı Anadolu'da kabuk gerilmesiyle oluşan horst-graben yapısı çok sayıda aktif fay üretir."
+  },
+  {
+    "id": "q58805",
+    "categoryIndex": 4,
+    "question": "Türkiye'nin en genç volkanik arazilerinden biri hangi ilimizdeki Tendürek Dağı çevresindedir?",
+    "options": [
+      "Ağrı",
+      "Bolu",
+      "Balıkesir",
+      "Kırklareli"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Tendürek, Ağrı ile Van arasında genç volkanik şekiller barındırır."
+  },
+  {
+    "id": "q58806",
+    "categoryIndex": 4,
+    "question": "Nemrut Kalderası hangi gölün batısında yer alır?",
+    "options": [
+      "Beyşehir Gölü",
+      "Van Gölü",
+      "Tuz Gölü",
+      "Çıldır Gölü"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Bitlis'teki Nemrut volkanı Van Gölü'nün batısında geniş bir kalderaya sahiptir."
+  },
+  {
+    "id": "q58807",
+    "categoryIndex": 4,
+    "question": "Türkiye'deki volkanik maar göllerinden Meke hangi ilçededir?",
+    "options": [
+      "Ürgüp",
+      "Doğubayazıt",
+      "Karapınar",
+      "Tatvan"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Meke Maarı Konya'nın Karapınar ilçesinde yer alır."
+  },
+  {
+    "id": "q58808",
+    "categoryIndex": 4,
+    "question": "Pamukkale travertenlerindeki beyaz rengin kaynağı hangi bileşiktir?",
+    "options": [
+      "Sodyum sülfat",
+      "Potasyum klorür",
+      "Demir oksit",
+      "Kalsiyum karbonat"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Termal sudan çöken kalsiyum karbonat beyaz traverten tabakalarını oluşturur."
+  },
+  {
+    "id": "q58809",
+    "categoryIndex": 4,
+    "question": "Salda Gölü kıyısındaki beyaz oluşumlarda hangi mineral grubu öne çıkar?",
+    "options": [
+      "Magnezyumlu mineraller",
+      "Bakır sülfürleri",
+      "Kömür damarları",
+      "Demirli mineraller"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Salda'nın beyaz kıyıları magnezyum bakımından zengin hidromagnezit oluşumlarıyla ilişkilidir."
+  },
+  {
+    "id": "q58810",
+    "categoryIndex": 4,
+    "question": "Van Gölü'nün suyu neden tuzlu ve sodalıdır?",
+    "options": [
+      "Buzul erimesiyle beslenmesi",
+      "Kapalı havzada olması",
+      "Mercan resifleri içermesi",
+      "Okyanusla bağlantılı olması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Orta",
+    "explanation": "Dışarıya akışı olmayan gölde mineraller zamanla birikir ve su alkali hâle gelir."
+  },
+  {
+    "id": "q58811",
+    "categoryIndex": 4,
+    "question": "Van Gölü'ne özgü inci kefali üremek için ne yapar?",
+    "options": [
+      "Denizin derinliklerine iner",
+      "Kış uykusuna yatar",
+      "Akarsulara göç eder",
+      "Karaya çıkar"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "İnci kefali ilkbaharda sodalı gölden tatlı su akarsularına tersine göç eder."
+  },
+  {
+    "id": "q58812",
+    "categoryIndex": 4,
+    "question": "İnci kefali dünyada doğal olarak yalnızca hangi gölde yaşar?",
+    "options": [
+      "Beyşehir Gölü",
+      "Tuz Gölü",
+      "İznik Gölü",
+      "Van Gölü"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "İnci kefali Van Gölü havzasına endemik bir balık türüdür."
+  },
+  {
+    "id": "q58813",
+    "categoryIndex": 4,
+    "question": "Ankara kedisinin en ayırt edici özelliklerinden biri hangisidir?",
+    "options": [
+      "Uzun ve ipeksi tüyleri",
+      "Kısa kıvırcık tüyleri",
+      "Benekli kürkü",
+      "Tüysüz derisi"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Kolay",
+    "explanation": "Ankara kedisi uzun, ince ve ipeksi tüy yapısıyla tanınır."
+  },
+  {
+    "id": "q58814",
+    "categoryIndex": 4,
+    "question": "Van kedisinin sık görülen ayırt edici özelliği hangisidir?",
+    "options": [
+      "Kulaklarının kıvrık olması",
+      "Gözlerinin farklı renklerde olabilmesi",
+      "Tüylerinin tamamen siyah olması",
+      "Kuyruğunun olmaması"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Van kedilerinde bir gözün mavi, diğerinin kehribar olması sık rastlanan bir özelliktir."
+  },
+  {
+    "id": "q58815",
+    "categoryIndex": 4,
+    "question": "Kangal köpeği hangi amaçla geliştirilmiş yerli bir ırktır?",
+    "options": [
+      "Su kuşu avı",
+      "Yer altı avcılığı",
+      "Sürü koruma",
+      "Kızak çekme"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Kolay",
+    "explanation": "Kangal köpeği yırtıcılara karşı koyun sürülerini korumak üzere yetiştirilmiştir."
+  },
+  {
+    "id": "q58816",
+    "categoryIndex": 4,
+    "question": "Akbaş köpeği Türkiye'nin hangi tür yerli köpeklerindendir?",
+    "options": [
+      "Tazı",
+      "Süs köpeği",
+      "Kızak köpeği",
+      "Sürü koruma köpeği"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Orta",
+    "explanation": "Akbaş, beyaz tüyleriyle tanınan Anadolu kökenli bir sürü koruma köpeğidir."
+  },
+  {
+    "id": "q58817",
+    "categoryIndex": 4,
+    "question": "Anadolu yaban koyununun doğal yaşam alanlarından biri hangi ilimizdedir?",
+    "options": [
+      "Konya",
+      "Rize",
+      "Muğla",
+      "Edirne"
+    ],
+    "answerIndex": 0,
+    "difficulty": "Orta",
+    "explanation": "Konya Bozdağ Yaban Hayatı Geliştirme Sahası Anadolu yaban koyununun önemli koruma alanıdır."
+  },
+  {
+    "id": "q58818",
+    "categoryIndex": 4,
+    "question": "Kelaynak kuşlarının Türkiye'deki koruma merkezi hangi ilçededir?",
+    "options": [
+      "Halfeti",
+      "Birecik",
+      "Nizip",
+      "Suruç"
+    ],
+    "answerIndex": 1,
+    "difficulty": "Kolay",
+    "explanation": "Şanlıurfa'nın Birecik ilçesindeki üretme istasyonu kelaynakların korunmasında kritik rol oynar."
+  },
+  {
+    "id": "q58819",
+    "categoryIndex": 4,
+    "question": "Kelaynak kuşlarının en belirgin fiziksel özelliği hangisidir?",
+    "options": [
+      "Beyaz tepeliği",
+      "Çatallı kuyruğu",
+      "Tüysüz kırmızı başı",
+      "Mavi gagası"
+    ],
+    "answerIndex": 2,
+    "difficulty": "Orta",
+    "explanation": "Kelaynakların erişkinlerinde baş ve boyun derisi tüysüz, gaga uzun ve kıvrıktır."
+  },
+  {
+    "id": "q58820",
+    "categoryIndex": 4,
+    "question": "Caretta caretta kaplumbağalarının Türkiye'deki önemli yuvalama kumsallarından biri hangisidir?",
+    "options": [
+      "Kilyos",
+      "Caddebostan",
+      "Florya",
+      "İztuzu"
+    ],
+    "answerIndex": 3,
+    "difficulty": "Kolay",
+    "explanation": "Muğla'daki İztuzu Plajı caretta carettaların önemli Akdeniz yuvalama alanlarındandır."
+  }
+]

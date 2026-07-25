@@ -1,0 +1,62 @@
+enum SpecialCellEffect {
+  forwardTwo,
+  backTwo,
+  chooseCategory,
+  doubleChance,
+}
+
+extension SpecialCellEffectX on SpecialCellEffect {
+  String get title {
+    switch (this) {
+      case SpecialCellEffect.forwardTwo:
+        return 'İleri 2';
+      case SpecialCellEffect.backTwo:
+        return 'Geri 2';
+      case SpecialCellEffect.chooseCategory:
+        return 'Kategori Seç';
+      case SpecialCellEffect.doubleChance:
+        return 'Çifte Şans';
+    }
+  }
+
+  String get emoji {
+    switch (this) {
+      case SpecialCellEffect.forwardTwo:
+        return '⏩';
+      case SpecialCellEffect.backTwo:
+        return '⏪';
+      case SpecialCellEffect.chooseCategory:
+        return '🎯';
+      case SpecialCellEffect.doubleChance:
+        return '🍀';
+    }
+  }
+
+  String get description {
+    switch (this) {
+      case SpecialCellEffect.forwardTwo:
+        return 'Piyon aynı yönde iki kutu daha ilerler.';
+      case SpecialCellEffect.backTwo:
+        return 'Piyon geldiği yönün tersine iki kutu geri gider.';
+      case SpecialCellEffect.chooseCategory:
+        return 'Bu turda sorulacak kategoriyi sen seçersin.';
+      case SpecialCellEffect.doubleChance:
+        return 'Bir sonraki yanlış cevabında sıra sende kalır. '
+            'Hak kullanılana kadar korunur.';
+    }
+  }
+
+  Color get color {
+    switch (this) {
+      case SpecialCellEffect.forwardTwo:
+        return const Color(0xFF06B6D4);
+      case SpecialCellEffect.backTwo:
+        return const Color(0xFFEF4444);
+      case SpecialCellEffect.chooseCategory:
+        return const Color(0xFF8B5CF6);
+      case SpecialCellEffect.doubleChance:
+        return const Color(0xFF22C55E);
+    }
+  }
+}
+
