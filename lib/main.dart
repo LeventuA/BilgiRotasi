@@ -44,6 +44,7 @@ part 'board_target_presentation.dart';
 part 'about_privacy.dart';
 part 'app_build_info.dart';
 part 'account_cloud.dart';
+part 'live_duel_league.dart';
 
 class SoundFx {
   SoundFx._();
@@ -54,14 +55,18 @@ class SoundFx {
 
   static final Map<String, String> _soundPaths = <String, String>{};
 
-  static final AudioPlayer _dicePlayer =
-      AudioPlayer(playerId: 'bilgi_rotasi_dice');
-  static final AudioPlayer _stepPlayer =
-      AudioPlayer(playerId: 'bilgi_rotasi_step');
-  static final AudioPlayer _effectPlayer =
-      AudioPlayer(playerId: 'bilgi_rotasi_effect');
-  static final AudioPlayer _musicPlayer =
-      AudioPlayer(playerId: 'bilgi_rotasi_music');
+  static final AudioPlayer _dicePlayer = AudioPlayer(
+    playerId: 'bilgi_rotasi_dice',
+  );
+  static final AudioPlayer _stepPlayer = AudioPlayer(
+    playerId: 'bilgi_rotasi_step',
+  );
+  static final AudioPlayer _effectPlayer = AudioPlayer(
+    playerId: 'bilgi_rotasi_effect',
+  );
+  static final AudioPlayer _musicPlayer = AudioPlayer(
+    playerId: 'bilgi_rotasi_music',
+  );
 
   static Future<void> initialize() async {
     if (_initialized) return;
@@ -89,10 +94,7 @@ class SoundFx {
             !await file.exists() || await file.length() != bytes.length;
 
         if (needsWrite) {
-          await file.writeAsBytes(
-            bytes,
-            flush: true,
-          );
+          await file.writeAsBytes(bytes, flush: true);
         }
 
         _soundPaths[entry.key] = file.path;
@@ -149,16 +151,12 @@ class SoundFx {
 
       final path = _soundPaths[fileName];
       if (path == null || path.isEmpty) {
-        throw StateError(
-          'Gömülü ses hazırlanamadı: $fileName',
-        );
+        throw StateError('Gömülü ses hazırlanamadı: $fileName');
       }
 
       final file = File(path);
       if (!await file.exists()) {
-        throw StateError(
-          'Geçici ses dosyası bulunamadı: $fileName',
-        );
+        throw StateError('Geçici ses dosyası bulunamadı: $fileName');
       }
 
       await player.setPlaybackRate(
@@ -167,9 +165,9 @@ class SoundFx {
 
       await player.play(
         DeviceFileSource(path),
-        volume: (
-          volume * AppPreferencesService.soundMultiplier
-        ).clamp(0.0, 1.0).toDouble(),
+        volume: (volume * AppPreferencesService.soundMultiplier)
+            .clamp(0.0, 1.0)
+            .toDouble(),
       );
 
       lastError = null;
@@ -181,68 +179,43 @@ class SoundFx {
   }
 
   static Future<bool> dice() {
-    return _play(
-      _dicePlayer,
-      'dice_roll.mp3',
-      volume: 1.0,
-    );
+    return _play(_dicePlayer, 'dice_roll.mp3', volume: 1.0);
   }
 
   static Future<bool> step() {
     return pawnStep(0);
   }
 
-  static Future<bool> pawnStep(
-    int pawnType, {
-    int stepIndex = 0,
-  }) {
+  static Future<bool> pawnStep(int pawnType, {int stepIndex = 0}) {
     return _play(
       _stepPlayer,
       PawnStepSoundFactory.fileNameForPawn(pawnType),
       volume: PawnStepSoundFactory.volumeForPawn(pawnType),
-      playbackRateMultiplier:
-          PawnStepSoundFactory.rateForStep(pawnType, stepIndex),
+      playbackRateMultiplier: PawnStepSoundFactory.rateForStep(
+        pawnType,
+        stepIndex,
+      ),
     );
   }
 
   static Future<bool> landing() {
-    return _play(
-      _effectPlayer,
-      'landing.mp3',
-      volume: 1,
-    );
+    return _play(_effectPlayer, 'landing.mp3', volume: 1);
   }
 
   static Future<bool> correct() {
-    return _play(
-      _effectPlayer,
-      'correct.mp3',
-      volume: 1,
-    );
+    return _play(_effectPlayer, 'correct.mp3', volume: 1);
   }
 
   static Future<bool> wrong() {
-    return _play(
-      _effectPlayer,
-      'wrong.mp3',
-      volume: 1,
-    );
+    return _play(_effectPlayer, 'wrong.mp3', volume: 1);
   }
 
   static Future<bool> badge() {
-    return _play(
-      _effectPlayer,
-      'badge.mp3',
-      volume: 1,
-    );
+    return _play(_effectPlayer, 'badge.mp3', volume: 1);
   }
 
   static Future<bool> win() {
-    return _play(
-      _musicPlayer,
-      'win.mp3',
-      volume: 1,
-    );
+    return _play(_musicPlayer, 'win.mp3', volume: 1);
   }
 
   static Future<bool> test() {
@@ -280,8 +253,7 @@ class GameSaveService {
   GameSaveService._();
 
   static const String _saveKey = 'bilgi_rotasi_saved_game_v1';
-  static final SharedPreferencesAsync _preferences =
-      SharedPreferencesAsync();
+  static final SharedPreferencesAsync _preferences = SharedPreferencesAsync();
 
   static Future<void> save({
     required List<PlayerData> players,
@@ -299,9 +271,7 @@ class GameSaveService {
     };
 
     try {
-      await GameRecoveryService.saveWithBackup(
-        jsonEncode(payload),
-      );
+      await GameRecoveryService.saveWithBackup(jsonEncode(payload));
     } catch (_) {
       // Kayıt sorunu oyunun çalışmasını durdurmamalı.
     }
@@ -329,11 +299,7 @@ class GameSaveService {
         if (item is Map<String, dynamic>) {
           players.add(_playerFromJson(item));
         } else if (item is Map) {
-          players.add(
-            _playerFromJson(
-              Map<String, dynamic>.from(item),
-            ),
-          );
+          players.add(_playerFromJson(Map<String, dynamic>.from(item)));
         }
       }
 
@@ -343,15 +309,12 @@ class GameSaveService {
       }
 
       final rawIndex = (decoded['currentPlayerIndex'] as num?)?.toInt() ?? 0;
-      final currentPlayerIndex =
-          rawIndex.clamp(0, players.length - 1).toInt();
-      final savedAt = DateTime.tryParse(
-            decoded['savedAt']?.toString() ?? '',
-          ) ??
+      final currentPlayerIndex = rawIndex.clamp(0, players.length - 1).toInt();
+      final savedAt =
+          DateTime.tryParse(decoded['savedAt']?.toString() ?? '') ??
           DateTime.now();
 
-      final rawUsedQuestionIds =
-          decoded['usedQuestionIds'];
+      final rawUsedQuestionIds = decoded['usedQuestionIds'];
       final usedQuestionIds = <String>{};
 
       if (rawUsedQuestionIds is List) {
@@ -375,8 +338,7 @@ class GameSaveService {
         stack: stack,
       );
 
-      final recovered =
-          await GameRecoveryService.recover();
+      final recovered = await GameRecoveryService.recover();
 
       if (recovered != null) {
         return recovered;
@@ -419,25 +381,18 @@ class GameSaveService {
       name: json['name']?.toString().trim().isNotEmpty == true
           ? json['name'].toString()
           : 'Oyuncu',
-      color: Color(
-        (json['color'] as num?)?.toInt() ?? 0xFF2563EB,
-      ),
+      color: Color((json['color'] as num?)?.toInt() ?? 0xFF2563EB),
       pawnType: (json['pawnType'] as num?)?.toInt() ?? 0,
-      difficultyMode:
-          difficultyModeFromName(json['difficultyMode']),
+      difficultyMode: difficultyModeFromName(json['difficultyMode']),
       jokers: JokerWallet.fromJson(json['jokers']),
     );
 
     player.position = (json['position'] as num?)?.toInt() ?? 0;
     player.movePulse = (json['movePulse'] as num?)?.toInt() ?? 0;
-    player.correctAnswers =
-        (json['correctAnswers'] as num?)?.toInt() ?? 0;
-    player.wrongAnswers =
-        (json['wrongAnswers'] as num?)?.toInt() ?? 0;
-    player.correctStreak =
-        (json['correctStreak'] as num?)?.toInt() ?? 0;
-    player.wrongStreak =
-        (json['wrongStreak'] as num?)?.toInt() ?? 0;
+    player.correctAnswers = (json['correctAnswers'] as num?)?.toInt() ?? 0;
+    player.wrongAnswers = (json['wrongAnswers'] as num?)?.toInt() ?? 0;
+    player.correctStreak = (json['correctStreak'] as num?)?.toInt() ?? 0;
+    player.wrongStreak = (json['wrongStreak'] as num?)?.toInt() ?? 0;
     player.doubleChance = json['doubleChance'] == true;
 
     final rawBadges = json['badges'];
@@ -446,18 +401,13 @@ class GameSaveService {
         rawBadges
             .whereType<num>()
             .map((value) => value.toInt())
-            .where(
-              (value) =>
-                  value >= 0 &&
-                  value < GameCategory.values.length,
-            ),
+            .where((value) => value >= 0 && value < GameCategory.values.length),
       );
     }
 
     return player;
   }
 }
-
 
 class CareerStats {
   CareerStats({
@@ -473,10 +423,10 @@ class CareerStats {
     this.totalBadges = 0,
     List<int>? categoryAnswered,
     List<int>? categoryCorrect,
-  })  : categoryAnswered = categoryAnswered ??
-            List<int>.filled(GameCategory.values.length, 0),
-        categoryCorrect = categoryCorrect ??
-            List<int>.filled(GameCategory.values.length, 0);
+  }) : categoryAnswered =
+           categoryAnswered ?? List<int>.filled(GameCategory.values.length, 0),
+       categoryCorrect =
+           categoryCorrect ?? List<int>.filled(GameCategory.values.length, 0);
 
   int totalQuestions;
   int totalCorrect;
@@ -491,8 +441,7 @@ class CareerStats {
   final List<int> categoryAnswered;
   final List<int> categoryCorrect;
 
-  int get completedGames =>
-      soloWins + multiplayerWins + marathonRuns;
+  int get completedGames => soloWins + multiplayerWins + marathonRuns;
 
   int get accuracy {
     if (totalQuestions == 0) return 0;
@@ -506,10 +455,7 @@ class CareerStats {
       return 0;
     }
 
-    return (categoryCorrect[index] /
-            categoryAnswered[index] *
-            100)
-        .round();
+    return (categoryCorrect[index] / categoryAnswered[index] * 100).round();
   }
 
   Map<String, dynamic> toJson() {
@@ -529,17 +475,12 @@ class CareerStats {
     };
   }
 
-  factory CareerStats.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory CareerStats.fromJson(Map<String, dynamic> json) {
     List<int> readList(String key) {
       final raw = json[key];
 
       if (raw is! List) {
-        return List<int>.filled(
-          GameCategory.values.length,
-          0,
-        );
+        return List<int>.filled(GameCategory.values.length, 0);
       }
 
       final values = raw
@@ -555,25 +496,16 @@ class CareerStats {
     }
 
     return CareerStats(
-      totalQuestions:
-          (json['totalQuestions'] as num?)?.toInt() ?? 0,
-      totalCorrect:
-          (json['totalCorrect'] as num?)?.toInt() ?? 0,
-      totalWrong:
-          (json['totalWrong'] as num?)?.toInt() ?? 0,
-      gamesStarted:
-          (json['gamesStarted'] as num?)?.toInt() ?? 0,
+      totalQuestions: (json['totalQuestions'] as num?)?.toInt() ?? 0,
+      totalCorrect: (json['totalCorrect'] as num?)?.toInt() ?? 0,
+      totalWrong: (json['totalWrong'] as num?)?.toInt() ?? 0,
+      gamesStarted: (json['gamesStarted'] as num?)?.toInt() ?? 0,
       soloWins: (json['soloWins'] as num?)?.toInt() ?? 0,
-      multiplayerWins:
-          (json['multiplayerWins'] as num?)?.toInt() ?? 0,
-      marathonRuns:
-          (json['marathonRuns'] as num?)?.toInt() ?? 0,
-      perfectMarathons:
-          (json['perfectMarathons'] as num?)?.toInt() ?? 0,
-      bestStreak:
-          (json['bestStreak'] as num?)?.toInt() ?? 0,
-      totalBadges:
-          (json['totalBadges'] as num?)?.toInt() ?? 0,
+      multiplayerWins: (json['multiplayerWins'] as num?)?.toInt() ?? 0,
+      marathonRuns: (json['marathonRuns'] as num?)?.toInt() ?? 0,
+      perfectMarathons: (json['perfectMarathons'] as num?)?.toInt() ?? 0,
+      bestStreak: (json['bestStreak'] as num?)?.toInt() ?? 0,
+      totalBadges: (json['totalBadges'] as num?)?.toInt() ?? 0,
       categoryAnswered: readList('categoryAnswered'),
       categoryCorrect: readList('categoryCorrect'),
     );
@@ -583,10 +515,8 @@ class CareerStats {
 class CareerStatsService {
   CareerStatsService._();
 
-  static const String _key =
-      'bilgi_rotasi_career_stats_v1';
-  static final SharedPreferencesAsync _preferences =
-      SharedPreferencesAsync();
+  static const String _key = 'bilgi_rotasi_career_stats_v1';
+  static final SharedPreferencesAsync _preferences = SharedPreferencesAsync();
 
   static Future<CareerStats> load() async {
     try {
@@ -603,9 +533,7 @@ class CareerStatsService {
       }
 
       if (decoded is Map) {
-        return CareerStats.fromJson(
-          Map<String, dynamic>.from(decoded),
-        );
+        return CareerStats.fromJson(Map<String, dynamic>.from(decoded));
       }
     } catch (_) {
       // Bozuk istatistik kaydı oyunu etkilememeli.
@@ -616,10 +544,7 @@ class CareerStatsService {
 
   static Future<void> _save(CareerStats stats) async {
     try {
-      await _preferences.setString(
-        _key,
-        jsonEncode(stats.toJson()),
-      );
+      await _preferences.setString(_key, jsonEncode(stats.toJson()));
     } catch (_) {
       // İstatistik kaydı oyunu durdurmamalı.
     }
@@ -648,8 +573,7 @@ class CareerStatsService {
       stats.totalWrong++;
     }
 
-    if (categoryIndex >= 0 &&
-        categoryIndex < GameCategory.values.length) {
+    if (categoryIndex >= 0 && categoryIndex < GameCategory.values.length) {
       stats.categoryAnswered[categoryIndex]++;
 
       if (correct) {
@@ -662,9 +586,7 @@ class CareerStatsService {
     }
 
     await _save(stats);
-    await PassportProgressService.recordAnswer(
-      categoryIndex: categoryIndex,
-    );
+    await PassportProgressService.recordAnswer(categoryIndex: categoryIndex);
 
     final answerGain = await XpProgressService.recordAnswer(
       correct: correct,
@@ -673,8 +595,7 @@ class CareerStatsService {
       xpMultiplier: xpMultiplier,
     );
 
-    final retentionGain =
-        await RetentionProgressService.recordAnswer(
+    final retentionGain = await RetentionProgressService.recordAnswer(
       categoryIndex: categoryIndex,
       correct: correct,
       difficulty: difficulty,
@@ -685,14 +606,13 @@ class CareerStatsService {
 
     return XpGainResult.combine(
       <XpGainResult>[answerGain, retentionGain],
-      reason: '${answerGain.reason} + '
+      reason:
+          '${answerGain.reason} + '
           '${retentionGain.reason}',
     );
   }
 
-  static Future<XpGainResult> recordGameCompleted({
-    required bool solo,
-  }) async {
+  static Future<XpGainResult> recordGameCompleted({required bool solo}) async {
     final stats = await load();
 
     if (solo) {
@@ -702,9 +622,7 @@ class CareerStatsService {
     }
 
     await _save(stats);
-    return XpProgressService.recordGameCompleted(
-      solo: solo,
-    );
+    return XpProgressService.recordGameCompleted(solo: solo);
   }
 
   static Future<XpGainResult> recordMarathon({
@@ -720,27 +638,23 @@ class CareerStatsService {
       stats.perfectMarathons++;
     }
 
-    stats.bestStreak = max(
-      stats.bestStreak,
-      bestStreak,
-    );
+    stats.bestStreak = max(stats.bestStreak, bestStreak);
 
     await _save(stats);
 
-    final marathonGain =
-        await XpProgressService.recordMarathon(
+    final marathonGain = await XpProgressService.recordMarathon(
       questionCount: questionCount,
       perfect: correct == questionCount && questionCount > 0,
     );
 
-    final retentionGain =
-        await RetentionProgressService.recordMarathon();
+    final retentionGain = await RetentionProgressService.recordMarathon();
 
     if (retentionGain == null) return marathonGain;
 
     return XpGainResult.combine(
       <XpGainResult>[marathonGain, retentionGain],
-      reason: '${marathonGain.reason} + '
+      reason:
+          '${marathonGain.reason} + '
           '${retentionGain.reason}',
     );
   }
@@ -830,7 +744,6 @@ final List<CareerAchievement> careerAchievements = [
     isUnlocked: (stats) => stats.totalQuestions >= 100,
   ),
 ];
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -927,9 +840,7 @@ class _BilgiRotasiAppState extends State<BilgiRotasiApp> {
         ),
       ),
       builder: (context, child) {
-        return AccessibilityAppFrame(
-          child: child ?? const SizedBox.shrink(),
-        );
+        return AccessibilityAppFrame(child: child ?? const SizedBox.shrink());
       },
       home: FutureBuilder<QuestionBank>(
         future: _questionBankFuture,
@@ -1012,12 +923,10 @@ class CareerStatsScreen extends StatefulWidget {
   const CareerStatsScreen({super.key});
 
   @override
-  State<CareerStatsScreen> createState() =>
-      _CareerStatsScreenState();
+  State<CareerStatsScreen> createState() => _CareerStatsScreenState();
 }
 
-class _CareerStatsScreenState
-    extends State<CareerStatsScreen> {
+class _CareerStatsScreenState extends State<CareerStatsScreen> {
   late Future<CareerStats> _statsFuture;
 
   @override
@@ -1033,36 +942,27 @@ class _CareerStatsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('İstatistikler & Başarımlar'),
-      ),
+      appBar: AppBar(title: const Text('İstatistikler & Başarımlar')),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFFF8FAFC),
-              Color(0xFFE6F7F5),
-            ],
+            colors: [Color(0xFFF8FAFC), Color(0xFFE6F7F5)],
           ),
         ),
         child: SafeArea(
           child: FutureBuilder<CareerStats>(
             future: _statsFuture,
             builder: (context, snapshot) {
-              if (snapshot.connectionState !=
-                  ConnectionState.done) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+              if (snapshot.connectionState != ConnectionState.done) {
+                return const Center(child: CircularProgressIndicator());
               }
 
               final stats = snapshot.data ?? CareerStats();
 
               return ListView(
-                padding:
-                    const EdgeInsets.fromLTRB(18, 14, 18, 28),
+                padding: const EdgeInsets.fromLTRB(18, 14, 18, 28),
                 children: [
                   _buildHero(stats),
                   const SizedBox(height: 10),
@@ -1076,10 +976,7 @@ class _CareerStatsScreenState
 
                       return SocialShareButton(
                         title: 'Bilgi Rotası Kariyerim',
-                        text: SocialShareService.careerText(
-                          stats,
-                          xp,
-                        ),
+                        text: SocialShareService.careerText(stats, xp),
                       );
                     },
                   ),
@@ -1101,14 +998,10 @@ class _CareerStatsScreenState
                     style: TextButton.styleFrom(
                       foregroundColor: const Color(0xFFB91C1C),
                     ),
-                    icon: const Icon(
-                      Icons.restart_alt_rounded,
-                    ),
+                    icon: const Icon(Icons.restart_alt_rounded),
                     label: const Text(
                       'İstatistikleri Sıfırla',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.w800),
                     ),
                   ),
                 ],
@@ -1129,10 +1022,7 @@ class _CareerStatsScreenState
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [
-            Color(0xFF4A245D),
-            Color(0xFF155E75),
-          ],
+          colors: [Color(0xFF4A245D), Color(0xFF155E75)],
         ),
         borderRadius: BorderRadius.circular(28),
         boxShadow: const [
@@ -1145,10 +1035,7 @@ class _CareerStatsScreenState
       ),
       child: Column(
         children: [
-          const Text(
-            '📊',
-            style: TextStyle(fontSize: 48),
-          ),
+          const Text('📊', style: TextStyle(fontSize: 48)),
           const SizedBox(height: 8),
           const Text(
             'Bilgi kariyerin',
@@ -1217,24 +1104,16 @@ class _CareerStatsScreenState
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: const Color(0xFFD9E2EC),
-        ),
+        border: Border.all(color: const Color(0xFFD9E2EC)),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            emoji,
-            style: const TextStyle(fontSize: 27),
-          ),
+          Text(emoji, style: const TextStyle(fontSize: 27)),
           const SizedBox(height: 4),
           Text(
             value,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w900,
-            ),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
           ),
           Text(
             label,
@@ -1256,24 +1135,17 @@ class _CareerStatsScreenState
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: const Color(0xFFD9E2EC),
-        ),
+        border: Border.all(color: const Color(0xFFD9E2EC)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
             'Kategori başarıların',
-            style: TextStyle(
-              fontSize: 19,
-              fontWeight: FontWeight.w900,
-            ),
+            style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
           ),
           const SizedBox(height: 14),
-          for (var index = 0;
-              index < GameCategory.values.length;
-              index++)
+          for (var index = 0; index < GameCategory.values.length; index++)
             _categoryRow(
               category: GameCategory.values[index],
               answered: stats.categoryAnswered[index],
@@ -1297,23 +1169,16 @@ class _CareerStatsScreenState
         children: [
           Row(
             children: [
-              Text(
-                category.emoji,
-                style: const TextStyle(fontSize: 22),
-              ),
+              Text(category.emoji, style: const TextStyle(fontSize: 22)),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   category.label,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w800,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.w800),
                 ),
               ),
               Text(
-                answered == 0
-                    ? 'Henüz yok'
-                    : '$correct/$answered • %$accuracy',
+                answered == 0 ? 'Henüz yok' : '$correct/$answered • %$accuracy',
                 style: TextStyle(
                   color: category.darkColor,
                   fontSize: 12,
@@ -1328,8 +1193,7 @@ class _CareerStatsScreenState
             child: LinearProgressIndicator(
               value: answered == 0 ? 0 : accuracy / 100,
               minHeight: 8,
-              backgroundColor:
-                  category.color.withOpacity(0.13),
+              backgroundColor: category.color.withOpacity(0.13),
               color: category.color,
             ),
           ),
@@ -1348,9 +1212,7 @@ class _CareerStatsScreenState
       decoration: BoxDecoration(
         color: const Color(0xFF271631),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: const Color(0x55FFE082),
-        ),
+        border: Border.all(color: const Color(0x55FFE082)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1366,31 +1228,21 @@ class _CareerStatsScreenState
           ),
           const SizedBox(height: 13),
           for (final achievement in careerAchievements)
-            _achievementRow(
-              achievement,
-              achievement.isUnlocked(stats),
-            ),
+            _achievementRow(achievement, achievement.isUnlocked(stats)),
         ],
       ),
     );
   }
 
-  Widget _achievementRow(
-    CareerAchievement achievement,
-    bool unlocked,
-  ) {
+  Widget _achievementRow(CareerAchievement achievement, bool unlocked) {
     return Container(
       margin: const EdgeInsets.only(bottom: 9),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: unlocked
-            ? const Color(0x22FFE082)
-            : const Color(0x0FFFFFFF),
+        color: unlocked ? const Color(0x22FFE082) : const Color(0x0FFFFFFF),
         borderRadius: BorderRadius.circular(17),
         border: Border.all(
-          color: unlocked
-              ? const Color(0x88FFE082)
-              : const Color(0x22FFFFFF),
+          color: unlocked ? const Color(0x88FFE082) : const Color(0x22FFFFFF),
         ),
       ),
       child: Row(
@@ -1424,12 +1276,8 @@ class _CareerStatsScreenState
             ),
           ),
           Icon(
-            unlocked
-                ? Icons.check_circle_rounded
-                : Icons.lock_outline_rounded,
-            color: unlocked
-                ? const Color(0xFF4ADE80)
-                : const Color(0xFF766A80),
+            unlocked ? Icons.check_circle_rounded : Icons.lock_outline_rounded,
+            color: unlocked ? const Color(0xFF4ADE80) : const Color(0xFF766A80),
           ),
         ],
       ),
@@ -1437,13 +1285,12 @@ class _CareerStatsScreenState
   }
 
   Future<void> _resetStats() async {
-    final confirmed = await showDialog<bool>(
+    final confirmed =
+        await showDialog<bool>(
           context: context,
           builder: (dialogContext) {
             return AlertDialog(
-              title: const Text(
-                'İstatistikler sıfırlansın mı?',
-              ),
+              title: const Text('İstatistikler sıfırlansın mı?'),
               content: const Text(
                 'XP, seviye, bütün toplamlar, kategori '
                 'başarıları ve açılan başarımlar silinecek. '
@@ -1451,13 +1298,11 @@ class _CareerStatsScreenState
               ),
               actions: [
                 TextButton(
-                  onPressed: () =>
-                      Navigator.pop(dialogContext, false),
+                  onPressed: () => Navigator.pop(dialogContext, false),
                   child: const Text('Vazgeç'),
                 ),
                 FilledButton(
-                  onPressed: () =>
-                      Navigator.pop(dialogContext, true),
+                  onPressed: () => Navigator.pop(dialogContext, true),
                   child: const Text('Sıfırla'),
                 ),
               ],
@@ -1479,12 +1324,8 @@ class _CareerStatsScreenState
   }
 }
 
-
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    required this.questionBank,
-    super.key,
-  });
+  const HomeScreen({required this.questionBank, super.key});
 
   final QuestionBank questionBank;
 
@@ -1503,9 +1344,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        unawaited(
-          FirstRunTutorial.showIfNeeded(context),
-        );
+        unawaited(FirstRunTutorial.showIfNeeded(context));
       }
     });
   }
@@ -1522,11 +1361,7 @@ class _HomeScreenState extends State<HomeScreen> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF170C21),
-              Color(0xFF352044),
-              Color(0xFF0D5260),
-            ],
+            colors: [Color(0xFF170C21), Color(0xFF352044), Color(0xFF0D5260)],
           ),
         ),
         child: SafeArea(
@@ -1546,8 +1381,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context, snapshot) {
                     final savedGame = snapshot.data;
 
-                    if (snapshot.connectionState ==
-                        ConnectionState.waiting) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
                       return _buildLoadingCard();
                     }
 
@@ -1560,9 +1394,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 if (AccountCloudService.dailyVisible) ...[
                   const SizedBox(height: 12),
-                  DailyChallengeHomeCard(
-                    questionBank: widget.questionBank,
-                  ),
+                  DailyChallengeHomeCard(questionBank: widget.questionBank),
                 ],
                 const SizedBox(height: 12),
                 const Text(
@@ -1575,9 +1407,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                MainNavigationGrid(
-                  questionBank: widget.questionBank,
-                ),
+                MainNavigationGrid(questionBank: widget.questionBank),
                 const SizedBox(height: 16),
                 const Text(
                   AppBuildInfo.compactLabel,
@@ -1606,10 +1436,7 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: const Color(0x1AFFFFFF),
-            border: Border.all(
-              color: const Color(0xFFFFD978),
-              width: 2,
-            ),
+            border: Border.all(color: const Color(0xFFFFD978), width: 2),
             boxShadow: const [
               BoxShadow(
                 color: Color(0x6632E0D0),
@@ -1662,9 +1489,7 @@ class _HomeScreenState extends State<HomeScreen> {
       decoration: BoxDecoration(
         color: const Color(0x16FFFFFF),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: const Color(0x33FFFFFF),
-        ),
+        border: Border.all(color: const Color(0x33FFFFFF)),
       ),
       child: const Row(
         children: [
@@ -1693,15 +1518,10 @@ class _HomeScreenState extends State<HomeScreen> {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF165B6A),
-            Color(0xFF0F8278),
-          ],
+          colors: [Color(0xFF165B6A), Color(0xFF0F8278)],
         ),
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(
-          color: const Color(0x99FFE082),
-        ),
+        border: Border.all(color: const Color(0x99FFE082)),
         boxShadow: const [
           BoxShadow(
             color: Color(0x55000000),
@@ -1715,10 +1535,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const Row(
             children: [
-              Text(
-                '🎲',
-                style: TextStyle(fontSize: 29),
-              ),
+              Text('🎲', style: TextStyle(fontSize: 29)),
               SizedBox(width: 12),
               Expanded(
                 child: Text(
@@ -1753,10 +1570,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.add_circle_outline_rounded),
             label: const Text(
               'Standart Tahta Oyununu Başlat',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w900,
-              ),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
             ),
           ),
         ],
@@ -1778,9 +1592,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: _actionBusy
-                    ? null
-                    : () => _onModeCardTap(index),
+                onTap: _actionBusy ? null : () => _onModeCardTap(index),
                 borderRadius: BorderRadius.circular(18),
                 splashColor: const Color(0x33FFE082),
                 highlightColor: const Color(0x1FFFFFFF),
@@ -1792,9 +1604,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     color: const Color(0x16FFFFFF),
                     borderRadius: BorderRadius.circular(18),
-                    border: Border.all(
-                      color: const Color(0x55FFFFFF),
-                    ),
+                    border: Border.all(color: const Color(0x55FFFFFF)),
                   ),
                   child: Column(
                     children: [
@@ -1831,8 +1641,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          if (index < features.length - 1)
-            const SizedBox(width: 8),
+          if (index < features.length - 1) const SizedBox(width: 8),
         ],
       ],
     );
@@ -1845,9 +1654,8 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         await Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => SoloRouteSetupScreen(
-              questionBank: widget.questionBank,
-            ),
+            builder: (_) =>
+                SoloRouteSetupScreen(questionBank: widget.questionBank),
           ),
         );
         if (mounted) {
@@ -1858,9 +1666,8 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         await Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => MarathonSetupScreen(
-              questionBank: widget.questionBank,
-            ),
+            builder: (_) =>
+                MarathonSetupScreen(questionBank: widget.questionBank),
           ),
         );
         return;
@@ -1888,14 +1695,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     setState(() => _actionBusy = false);
 
-    final startNewGame = await showDialog<bool>(
+    final startNewGame =
+        await showDialog<bool>(
           context: context,
           builder: (dialogContext) {
             return AlertDialog(
-              icon: const Text(
-                '💾',
-                style: TextStyle(fontSize: 44),
-              ),
+              icon: const Text('💾', style: TextStyle(fontSize: 44)),
               title: const Text('Kayıtlı oyun yok'),
               content: const Text(
                 'Tahta oyunundan çıkarken “Kaydet ve Çık” '
@@ -1905,13 +1710,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               actions: [
                 TextButton(
-                  onPressed: () =>
-                      Navigator.pop(dialogContext, false),
+                  onPressed: () => Navigator.pop(dialogContext, false),
                   child: const Text('Kapat'),
                 ),
                 FilledButton(
-                  onPressed: () =>
-                      Navigator.pop(dialogContext, true),
+                  onPressed: () => Navigator.pop(dialogContext, true),
                   child: const Text('Yeni Oyun Kur'),
                 ),
               ],
@@ -1931,9 +1734,7 @@ class _HomeScreenState extends State<HomeScreen> {
       decoration: BoxDecoration(
         color: const Color(0x12FFFFFF),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: const Color(0x33FFFFFF),
-        ),
+        border: Border.all(color: const Color(0x33FFFFFF)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1950,41 +1751,36 @@ class _HomeScreenState extends State<HomeScreen> {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: List.generate(
-              GameCategory.values.length,
-              (index) {
-                final category = GameCategory.values[index];
+            children: List.generate(GameCategory.values.length, (index) {
+              final category = GameCategory.values[index];
 
-                return Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 11,
-                    vertical: 9,
-                  ),
-                  decoration: BoxDecoration(
-                    color: category.color.withOpacity(0.22),
-                    borderRadius: BorderRadius.circular(999),
-                    border: Border.all(
-                      color: category.color.withOpacity(0.72),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(category.emoji),
-                      const SizedBox(width: 6),
-                      Text(
-                        category.label,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w800,
-                        ),
+              return Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 11,
+                  vertical: 9,
+                ),
+                decoration: BoxDecoration(
+                  color: category.color.withOpacity(0.22),
+                  borderRadius: BorderRadius.circular(999),
+                  border: Border.all(color: category.color.withOpacity(0.72)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(category.emoji),
+                    const SizedBox(width: 6),
+                    Text(
+                      category.label,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w800,
                       ),
-                    ],
-                  ),
-                );
-              },
-            ),
+                    ),
+                  ],
+                ),
+              );
+            }),
           ),
         ],
       ),
@@ -2000,15 +1796,10 @@ class _HomeScreenState extends State<HomeScreen> {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF5A2C71),
-            Color(0xFF283E68),
-          ],
+          colors: [Color(0xFF5A2C71), Color(0xFF283E68)],
         ),
         borderRadius: BorderRadius.circular(26),
-        border: Border.all(
-          color: const Color(0x99FFE082),
-        ),
+        border: Border.all(color: const Color(0x99FFE082)),
         boxShadow: const [
           BoxShadow(
             color: Color(0x44000000),
@@ -2074,9 +1865,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 13),
           FilledButton.icon(
-            onPressed: _actionBusy
-                ? null
-                : () => _continueGame(savedGame),
+            onPressed: _actionBusy ? null : () => _continueGame(savedGame),
             icon: const Icon(Icons.play_arrow_rounded),
             label: const Text(
               'Oyuna Devam Et',
@@ -2084,8 +1873,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           TextButton.icon(
-            onPressed:
-                _actionBusy ? null : _deleteSavedGame,
+            onPressed: _actionBusy ? null : _deleteSavedGame,
             style: TextButton.styleFrom(
               foregroundColor: const Color(0xFFFFCDD2),
             ),
@@ -2131,9 +1919,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => PlayerSetupScreen(
-          questionBank: widget.questionBank,
-        ),
+        builder: (_) => PlayerSetupScreen(questionBank: widget.questionBank),
       ),
     );
 
@@ -2146,7 +1932,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _deleteSavedGame() async {
-    final confirmed = await showDialog<bool>(
+    final confirmed =
+        await showDialog<bool>(
           context: context,
           builder: (context) {
             return AlertDialog(
@@ -2230,7 +2017,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-
 class CategoryPill extends StatelessWidget {
   const CategoryPill({required this.category, super.key});
 
@@ -2267,13 +2053,9 @@ class MarathonScoreService {
   MarathonScoreService._();
 
   static const String _key = 'bilgi_rotasi_marathon_scores_v1';
-  static final SharedPreferencesAsync _preferences =
-      SharedPreferencesAsync();
+  static final SharedPreferencesAsync _preferences = SharedPreferencesAsync();
 
-  static String _scoreKey(
-    int? categoryIndex,
-    int questionCount,
-  ) {
+  static String _scoreKey(int? categoryIndex, int questionCount) {
     final category = categoryIndex == null
         ? 'mixed'
         : 'category_$categoryIndex';
@@ -2293,10 +2075,7 @@ class MarathonScoreService {
       }
 
       return decoded.map<String, int>(
-        (key, value) => MapEntry(
-          key.toString(),
-          (value as num?)?.toInt() ?? 0,
-        ),
+        (key, value) => MapEntry(key.toString(), (value as num?)?.toInt() ?? 0),
       );
     } catch (_) {
       return <String, int>{};
@@ -2324,10 +2103,7 @@ class MarathonScoreService {
       if (score <= oldScore) return;
 
       scores[key] = score;
-      await _preferences.setString(
-        _key,
-        jsonEncode(scores),
-      );
+      await _preferences.setString(_key, jsonEncode(scores));
     } catch (_) {
       // Rekor kaydı oyunu durdurmamalı.
     }
@@ -2335,20 +2111,15 @@ class MarathonScoreService {
 }
 
 class SoloRouteSetupScreen extends StatefulWidget {
-  const SoloRouteSetupScreen({
-    required this.questionBank,
-    super.key,
-  });
+  const SoloRouteSetupScreen({required this.questionBank, super.key});
 
   final QuestionBank questionBank;
 
   @override
-  State<SoloRouteSetupScreen> createState() =>
-      _SoloRouteSetupScreenState();
+  State<SoloRouteSetupScreen> createState() => _SoloRouteSetupScreenState();
 }
 
-class _SoloRouteSetupScreenState
-    extends State<SoloRouteSetupScreen> {
+class _SoloRouteSetupScreenState extends State<SoloRouteSetupScreen> {
   static const _colors = [
     Color(0xFFE11D48),
     Color(0xFF2563EB),
@@ -2358,15 +2129,12 @@ class _SoloRouteSetupScreenState
     Color(0xFF0891B2),
   ];
 
-  final TextEditingController _nameController =
-      TextEditingController(
-        text: AppPreferencesService
-            .current.defaultPlayerName,
-      );
+  final TextEditingController _nameController = TextEditingController(
+    text: AppPreferencesService.current.defaultPlayerName,
+  );
 
   int _pawnType = VisualCollectionService.current.favoritePawn;
-  int _colorIndex = AppPreferencesService
-      .current.defaultColorIndex;
+  int _colorIndex = AppPreferencesService.current.defaultColorIndex;
   bool _starting = false;
   DifficultyMode _difficultyMode = DifficultyMode.relaxed;
 
@@ -2381,18 +2149,13 @@ class _SoloRouteSetupScreenState
     final playerColor = _colors[_colorIndex];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Serbest Rota'),
-      ),
+      appBar: AppBar(title: const Text('Serbest Rota')),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFFF8FAFC),
-              Color(0xFFE7F7F5),
-            ],
+            colors: [Color(0xFFF8FAFC), Color(0xFFE7F7F5)],
           ),
         ),
         child: SafeArea(
@@ -2403,19 +2166,13 @@ class _SoloRouteSetupScreenState
                 padding: const EdgeInsets.all(19),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF3A2448),
-                      Color(0xFF155E75),
-                    ],
+                    colors: [Color(0xFF3A2448), Color(0xFF155E75)],
                   ),
                   borderRadius: BorderRadius.circular(26),
                 ),
                 child: const Column(
                   children: [
-                    Text(
-                      '🧭',
-                      style: TextStyle(fontSize: 48),
-                    ),
+                    Text('🧭', style: TextStyle(fontSize: 48)),
                     SizedBox(height: 8),
                     Text(
                       'Tek başına altı rozeti topla',
@@ -2432,10 +2189,7 @@ class _SoloRouteSetupScreenState
                       'rotasına devam eder; doğru ve yanlışların '
                       'şampiyon ekranında gösterilir.',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFFD7EDEB),
-                        height: 1.35,
-                      ),
+                      style: TextStyle(color: Color(0xFFD7EDEB), height: 1.35),
                     ),
                   ],
                 ),
@@ -2453,76 +2207,61 @@ class _SoloRouteSetupScreenState
               const SizedBox(height: 6),
               const Text(
                 'Oyuncu rengin',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w900,
-                ),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
               ),
               const SizedBox(height: 10),
               Wrap(
                 spacing: 10,
                 runSpacing: 10,
-                children: List.generate(
-                  _colors.length,
-                  (index) {
-                    final selected = index == _colorIndex;
-                    final color = _colors[index];
+                children: List.generate(_colors.length, (index) {
+                  final selected = index == _colorIndex;
+                  final color = _colors[index];
 
-                    return InkWell(
-                      onTap: () {
-                        GameHaptics.selectionClick();
-                        setState(() => _colorIndex = index);
-                      },
-                      customBorder: const CircleBorder(),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 170),
-                        width: 44,
-                        height: 44,
-                        decoration: BoxDecoration(
-                          color: color,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: selected
-                                ? Colors.black
-                                : Colors.white,
-                            width: selected ? 3 : 2,
-                          ),
-                          boxShadow: selected
-                              ? [
-                                  BoxShadow(
-                                    color: color.withOpacity(0.48),
-                                    blurRadius: 12,
-                                    spreadRadius: 2,
-                                  ),
-                                ]
-                              : null,
+                  return InkWell(
+                    onTap: () {
+                      GameHaptics.selectionClick();
+                      setState(() => _colorIndex = index);
+                    },
+                    customBorder: const CircleBorder(),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 170),
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: color,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: selected ? Colors.black : Colors.white,
+                          width: selected ? 3 : 2,
                         ),
-                        child: selected
-                            ? const Icon(
-                                Icons.check_rounded,
-                                color: Colors.white,
-                              )
+                        boxShadow: selected
+                            ? [
+                                BoxShadow(
+                                  color: color.withOpacity(0.48),
+                                  blurRadius: 12,
+                                  spreadRadius: 2,
+                                ),
+                              ]
                             : null,
                       ),
-                    );
-                  },
-                ),
+                      child: selected
+                          ? const Icon(Icons.check_rounded, color: Colors.white)
+                          : null,
+                    ),
+                  );
+                }),
               ),
               const SizedBox(height: 12),
               const Text(
                 'Piyonunu seç',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w900,
-                ),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
               ),
               const SizedBox(height: 10),
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: PawnCatalog.all.length,
-                gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: 9,
                   mainAxisSpacing: 9,
@@ -2593,12 +2332,8 @@ class _SoloRouteSetupScreenState
                 onPressed: _starting ? null : _startSoloRoute,
                 icon: const Icon(Icons.explore_rounded),
                 label: Text(
-                  _starting
-                      ? 'Hazırlanıyor…'
-                      : 'Serbest Rotaya Başla',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w900,
-                  ),
+                  _starting ? 'Hazırlanıyor…' : 'Serbest Rotaya Başla',
+                  style: const TextStyle(fontWeight: FontWeight.w900),
                 ),
               ),
             ],
@@ -2631,8 +2366,7 @@ class _SoloRouteSetupScreenState
         builder: (_) => GameScreen(
           questionBank: widget.questionBank,
           players: [player],
-          initialStatus:
-              'Serbest Rota başladı. Altı rozeti topla! 🧭',
+          initialStatus: 'Serbest Rota başladı. Altı rozeti topla! 🧭',
         ),
       ),
     );
@@ -2640,20 +2374,15 @@ class _SoloRouteSetupScreenState
 }
 
 class MarathonSetupScreen extends StatefulWidget {
-  const MarathonSetupScreen({
-    required this.questionBank,
-    super.key,
-  });
+  const MarathonSetupScreen({required this.questionBank, super.key});
 
   final QuestionBank questionBank;
 
   @override
-  State<MarathonSetupScreen> createState() =>
-      _MarathonSetupScreenState();
+  State<MarathonSetupScreen> createState() => _MarathonSetupScreenState();
 }
 
-class _MarathonSetupScreenState
-    extends State<MarathonSetupScreen> {
+class _MarathonSetupScreenState extends State<MarathonSetupScreen> {
   int? _categoryIndex;
   int _questionCount = 10;
   DifficultyMode _difficultyMode = DifficultyMode.relaxed;
@@ -2663,10 +2392,7 @@ class _MarathonSetupScreenState
       return widget.questionBank.totalCount;
     }
 
-    return widget.questionBank
-            .questionsByCategory[_categoryIndex]
-            ?.length ??
-        0;
+    return widget.questionBank.questionsByCategory[_categoryIndex]?.length ?? 0;
   }
 
   List<int> get _availableCounts {
@@ -2692,9 +2418,7 @@ class _MarathonSetupScreenState
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Soru Maratonu'),
-      ),
+      appBar: AppBar(title: const Text('Soru Maratonu')),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(18, 12, 18, 26),
@@ -2703,19 +2427,13 @@ class _MarathonSetupScreenState
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
-                  colors: [
-                    Color(0xFF4C1D95),
-                    Color(0xFF155E75),
-                  ],
+                  colors: [Color(0xFF4C1D95), Color(0xFF155E75)],
                 ),
                 borderRadius: BorderRadius.circular(27),
               ),
               child: const Column(
                 children: [
-                  Text(
-                    '🧠⚡',
-                    style: TextStyle(fontSize: 46),
-                  ),
+                  Text('🧠⚡', style: TextStyle(fontSize: 46)),
                   SizedBox(height: 8),
                   Text(
                     'Tahtasız hızlı bilgi turu',
@@ -2731,9 +2449,7 @@ class _MarathonSetupScreenState
                     'Soruları art arda çöz, doğru serini büyüt '
                     've kendi rekorunu geç.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFFE7E1F0),
-                    ),
+                    style: TextStyle(color: Color(0xFFE7E1F0)),
                   ),
                 ],
               ),
@@ -2741,10 +2457,7 @@ class _MarathonSetupScreenState
             const SizedBox(height: 12),
             const Text(
               'Kategori',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w900,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 10),
             _categoryTile(
@@ -2755,9 +2468,11 @@ class _MarathonSetupScreenState
               color: const Color(0xFF475569),
             ),
             const SizedBox(height: 8),
-            for (var index = 0;
-                index < GameCategory.values.length;
-                index++) ...[
+            for (
+              var index = 0;
+              index < GameCategory.values.length;
+              index++
+            ) ...[
               _categoryTile(
                 categoryIndex: index,
                 emoji: GameCategory.values[index].emoji,
@@ -2771,19 +2486,13 @@ class _MarathonSetupScreenState
             const SizedBox(height: 12),
             const Text(
               'Tur uzunluğu',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w900,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 10),
             SegmentedButton<int>(
               segments: [
                 for (final count in availableCounts)
-                  ButtonSegment<int>(
-                    value: count,
-                    label: Text('$count soru'),
-                  ),
+                  ButtonSegment<int>(value: count, label: Text('$count soru')),
               ],
               selected: {_questionCount},
               onSelectionChanged: (selection) {
@@ -2804,25 +2513,18 @@ class _MarathonSetupScreenState
                   decoration: BoxDecoration(
                     color: const Color(0xFFFFF7D6),
                     borderRadius: BorderRadius.circular(17),
-                    border: Border.all(
-                      color: const Color(0xFFEAB308),
-                    ),
+                    border: Border.all(color: const Color(0xFFEAB308)),
                   ),
                   child: Row(
                     children: [
-                      const Text(
-                        '🏆',
-                        style: TextStyle(fontSize: 27),
-                      ),
+                      const Text('🏆', style: TextStyle(fontSize: 27)),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
                           best == 0
                               ? 'Bu ayarda henüz rekor yok.'
                               : 'En yüksek skor: $best / $_questionCount',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w800,
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.w800),
                         ),
                       ),
                     ],
@@ -2839,14 +2541,11 @@ class _MarathonSetupScreenState
             ),
             const SizedBox(height: 12),
             FilledButton.icon(
-              onPressed:
-                  availableCounts.isEmpty ? null : _startMarathon,
+              onPressed: availableCounts.isEmpty ? null : _startMarathon,
               icon: const Icon(Icons.bolt_rounded),
               label: const Text(
                 'Maratonu Başlat',
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                ),
+                style: TextStyle(fontWeight: FontWeight.w900),
               ),
             ),
           ],
@@ -2872,8 +2571,7 @@ class _MarathonSetupScreenState
           _categoryIndex = categoryIndex;
           final counts = _availableCounts;
 
-          if (!counts.contains(_questionCount) &&
-              counts.isNotEmpty) {
+          if (!counts.contains(_questionCount) && counts.isNotEmpty) {
             _questionCount = counts.first;
           }
         });
@@ -2881,28 +2579,18 @@ class _MarathonSetupScreenState
       borderRadius: BorderRadius.circular(17),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 170),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 14,
-          vertical: 12,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
-          color: selected
-              ? color.withOpacity(0.14)
-              : Colors.white,
+          color: selected ? color.withOpacity(0.14) : Colors.white,
           borderRadius: BorderRadius.circular(17),
           border: Border.all(
-            color: selected
-                ? color
-                : const Color(0xFFD7DEE8),
+            color: selected ? color : const Color(0xFFD7DEE8),
             width: selected ? 2.2 : 1.1,
           ),
         ),
         child: Row(
           children: [
-            Text(
-              emoji,
-              style: const TextStyle(fontSize: 27),
-            ),
+            Text(emoji, style: const TextStyle(fontSize: 27)),
             const SizedBox(width: 11),
             Expanded(
               child: Column(
@@ -2925,11 +2613,7 @@ class _MarathonSetupScreenState
                 ],
               ),
             ),
-            if (selected)
-              Icon(
-                Icons.check_circle_rounded,
-                color: color,
-              ),
+            if (selected) Icon(Icons.check_circle_rounded, color: color),
           ],
         ),
       ),
@@ -2939,16 +2623,14 @@ class _MarathonSetupScreenState
   void _startMarathon() {
     final pool = _categoryIndex == null
         ? widget.questionBank.questionsByCategory.values
-            .expand((questions) => questions)
-            .toList()
+              .expand((questions) => questions)
+              .toList()
         : List<QuizQuestion>.from(
-            widget.questionBank
-                    .questionsByCategory[_categoryIndex] ??
+            widget.questionBank.questionsByCategory[_categoryIndex] ??
                 const <QuizQuestion>[],
           );
 
-    final questions =
-        DifficultyBalance.pickMarathonQuestions(
+    final questions = DifficultyBalance.pickMarathonQuestions(
       questionBank: widget.questionBank,
       pool: pool,
       count: min(_questionCount, pool.length),
@@ -2981,8 +2663,7 @@ class MarathonScreen extends StatefulWidget {
   final int? categoryIndex;
 
   @override
-  State<MarathonScreen> createState() =>
-      _MarathonScreenState();
+  State<MarathonScreen> createState() => _MarathonScreenState();
 }
 
 class _MarathonScreenState extends State<MarathonScreen> {
@@ -2998,8 +2679,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
   bool _busy = false;
   bool _exitDialogOpen = false;
 
-  QuizQuestion get _question =>
-      widget.questions[_questionIndex];
+  QuizQuestion get _question => widget.questions[_questionIndex];
 
   @override
   void initState() {
@@ -3009,8 +2689,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final category = GameCategory.values[
-        _question.categoryIndex];
+    final category = GameCategory.values[_question.categoryIndex];
     final progress = widget.questions.isEmpty
         ? 0.0
         : _questionIndex / widget.questions.length;
@@ -3035,42 +2714,20 @@ class _MarathonScreenState extends State<MarathonScreen> {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [
-                Color(0xFF1E1029),
-                Color(0xFF123B4A),
-              ],
+              colors: [Color(0xFF1E1029), Color(0xFF123B4A)],
             ),
           ),
           child: SafeArea(
             child: ListView(
-              padding:
-                  const EdgeInsets.fromLTRB(18, 16, 18, 26),
+              padding: const EdgeInsets.fromLTRB(18, 16, 18, 26),
               children: [
                 Row(
                   children: [
-                    Expanded(
-                      child: _scoreCard(
-                        '✅',
-                        '$_correct',
-                        'Doğru',
-                      ),
-                    ),
+                    Expanded(child: _scoreCard('✅', '$_correct', 'Doğru')),
                     const SizedBox(width: 8),
-                    Expanded(
-                      child: _scoreCard(
-                        '🔥',
-                        '$_streak',
-                        'Seri',
-                      ),
-                    ),
+                    Expanded(child: _scoreCard('🔥', '$_streak', 'Seri')),
                     const SizedBox(width: 8),
-                    Expanded(
-                      child: _scoreCard(
-                        '❌',
-                        '$_wrong',
-                        'Yanlış',
-                      ),
-                    ),
+                    Expanded(child: _scoreCard('❌', '$_wrong', 'Yanlış')),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -3127,9 +2784,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
                         widget.categoryIndex == null
                             ? 'Karışık maraton'
                             : 'Kategori maratonu',
-                        style: const TextStyle(
-                          color: Color(0xFF64748B),
-                        ),
+                        style: const TextStyle(color: Color(0xFF64748B)),
                       ),
                       const SizedBox(height: 22),
                       FilledButton.icon(
@@ -3137,16 +2792,10 @@ class _MarathonScreenState extends State<MarathonScreen> {
                         style: FilledButton.styleFrom(
                           backgroundColor: category.color,
                         ),
-                        icon: const Icon(
-                          Icons.quiz_rounded,
-                        ),
+                        icon: const Icon(Icons.quiz_rounded),
                         label: Text(
-                          _busy
-                              ? 'Bekle…'
-                              : 'Soruyu Aç',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w900,
-                          ),
+                          _busy ? 'Bekle…' : 'Soruyu Aç',
+                          style: const TextStyle(fontWeight: FontWeight.w900),
                         ),
                       ),
                     ],
@@ -3157,10 +2806,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
                   'Her doğru cevap serini bir artırır. '
                   'Yanlış cevap seriyi sıfırlar.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFFCBC1D6),
-                    fontSize: 12,
-                  ),
+                  style: TextStyle(color: Color(0xFFCBC1D6), fontSize: 12),
                 ),
               ],
             ),
@@ -3170,29 +2816,17 @@ class _MarathonScreenState extends State<MarathonScreen> {
     );
   }
 
-  Widget _scoreCard(
-    String emoji,
-    String value,
-    String label,
-  ) {
+  Widget _scoreCard(String emoji, String value, String label) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 5,
-        vertical: 12,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 12),
       decoration: BoxDecoration(
         color: const Color(0x16FFFFFF),
         borderRadius: BorderRadius.circular(17),
-        border: Border.all(
-          color: const Color(0x33FFFFFF),
-        ),
+        border: Border.all(color: const Color(0x33FFFFFF)),
       ),
       child: Column(
         children: [
-          Text(
-            emoji,
-            style: const TextStyle(fontSize: 22),
-          ),
+          Text(emoji, style: const TextStyle(fontSize: 22)),
           Text(
             value,
             style: const TextStyle(
@@ -3203,10 +2837,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
           ),
           Text(
             label,
-            style: const TextStyle(
-              color: Color(0xFFCBC1D6),
-              fontSize: 11,
-            ),
+            style: const TextStyle(color: Color(0xFFCBC1D6), fontSize: 11),
           ),
         ],
       ),
@@ -3218,8 +2849,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
 
     setState(() => _busy = true);
 
-    final plan =
-        await GameplayBoostDialogs.chooseQuestionPlan(
+    final plan = await GameplayBoostDialogs.chooseQuestionPlan(
       context,
       baseCategoryIndex: _question.categoryIndex,
       normalDifficulty: _question.difficulty,
@@ -3236,8 +2866,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
           GameplayBoostQuestionPicker.riskQuestion(
             questionBank: widget.questionBank,
             current: _question,
-            preferredDifficulty:
-                plan.preferredDifficulty,
+            preferredDifficulty: plan.preferredDifficulty,
             usedQuestionIds: _usedQuestionIds,
           ) ??
           _question;
@@ -3245,7 +2874,8 @@ class _MarathonScreenState extends State<MarathonScreen> {
 
     _usedQuestionIds.add(questionForPlay.id);
 
-    final correct = await Navigator.of(context).push<bool>(
+    final correct =
+        await Navigator.of(context).push<bool>(
           MaterialPageRoute(
             fullscreenDialog: true,
             builder: (_) => QuestionScreen(
@@ -3278,8 +2908,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
       unawaited(SoundFx.wrong());
     }
 
-    final answerGain =
-        await CareerStatsService.recordAnswer(
+    final answerGain = await CareerStatsService.recordAnswer(
       categoryIndex: questionForPlay.categoryIndex,
       difficulty: questionForPlay.difficulty,
       correct: correct,
@@ -3287,20 +2916,15 @@ class _MarathonScreenState extends State<MarathonScreen> {
     );
 
     if (mounted) {
-      await XpCelebration.show(
-        context,
-        answerGain,
-      );
+      await XpCelebration.show(context, answerGain);
     }
 
-    final finished =
-        _questionIndex + 1 >= widget.questions.length;
+    final finished = _questionIndex + 1 >= widget.questions.length;
 
     if (finished) {
       _stopwatch.stop();
 
-      final previousBest =
-          await MarathonScoreService.bestScore(
+      final previousBest = await MarathonScoreService.bestScore(
         categoryIndex: widget.categoryIndex,
         questionCount: widget.questions.length,
       );
@@ -3310,8 +2934,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
         questionCount: widget.questions.length,
         score: _correct,
       );
-      final marathonGain =
-          await CareerStatsService.recordMarathon(
+      final marathonGain = await CareerStatsService.recordMarathon(
         questionCount: widget.questions.length,
         correct: _correct,
         bestStreak: _maxStreak,
@@ -3319,10 +2942,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
 
       if (!mounted) return;
 
-      await XpCelebration.show(
-        context,
-        marathonGain,
-      );
+      await XpCelebration.show(context, marathonGain);
 
       if (!mounted) return;
 
@@ -3358,7 +2978,8 @@ class _MarathonScreenState extends State<MarathonScreen> {
 
     _exitDialogOpen = true;
 
-    final exit = await showDialog<bool>(
+    final exit =
+        await showDialog<bool>(
           context: context,
           builder: (dialogContext) {
             return AlertDialog(
@@ -3369,13 +2990,11 @@ class _MarathonScreenState extends State<MarathonScreen> {
               ),
               actions: [
                 TextButton(
-                  onPressed: () =>
-                      Navigator.pop(dialogContext, false),
+                  onPressed: () => Navigator.pop(dialogContext, false),
                   child: const Text('Devam Et'),
                 ),
                 FilledButton(
-                  onPressed: () =>
-                      Navigator.pop(dialogContext, true),
+                  onPressed: () => Navigator.pop(dialogContext, true),
                   child: const Text('Maratondan Çık'),
                 ),
               ],
@@ -3428,8 +3047,7 @@ class MarathonResultScreen extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
-          Navigator.of(context)
-              .popUntil((route) => route.isFirst);
+          Navigator.of(context).popUntil((route) => route.isFirst);
         }
       },
       child: Scaffold(
@@ -3438,17 +3056,12 @@ class MarathonResultScreen extends StatelessWidget {
             gradient: RadialGradient(
               center: Alignment(0, -0.5),
               radius: 1.2,
-              colors: [
-                Color(0xFF5B2C70),
-                Color(0xFF21132D),
-                Color(0xFF0B3440),
-              ],
+              colors: [Color(0xFF5B2C70), Color(0xFF21132D), Color(0xFF0B3440)],
             ),
           ),
           child: SafeArea(
             child: ListView(
-              padding:
-                  const EdgeInsets.fromLTRB(20, 26, 20, 28),
+              padding: const EdgeInsets.fromLTRB(20, 26, 20, 28),
               children: [
                 Text(
                   isNewRecord ? '🏆 YENİ REKOR!' : '🧠 MARATON BİTTİ',
@@ -3460,8 +3073,7 @@ class MarathonResultScreen extends StatelessWidget {
                   ),
                 ),
                 FamilyRecordCapture.single(
-                  name: AppPreferencesService
-                      .current.defaultPlayerName,
+                  name: AppPreferencesService.current.defaultPlayerName,
                   mode: 'Soru Maratonu',
                   score: correct,
                   total: questionCount,
@@ -3480,10 +3092,7 @@ class MarathonResultScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      const Text(
-                        '⚡',
-                        style: TextStyle(fontSize: 58),
-                      ),
+                      const Text('⚡', style: TextStyle(fontSize: 58)),
                       const SizedBox(height: 8),
                       Text(
                         '$correct / $questionCount',
@@ -3521,13 +3130,7 @@ class MarathonResultScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          Expanded(
-                            child: _resultStat(
-                              '❌',
-                              '$wrong',
-                              'Yanlış',
-                            ),
-                          ),
+                          Expanded(child: _resultStat('❌', '$wrong', 'Yanlış')),
                         ],
                       ),
                       if (!isNewRecord && previousBest > 0) ...[
@@ -3551,7 +3154,8 @@ class MarathonResultScreen extends StatelessWidget {
                   text: SocialShareService.resultText(
                     title: '⚡ Soru Maratonu',
                     score: '$correct / $questionCount',
-                    detail: '$modeLabel • Başarı %$percentage • '
+                    detail:
+                        '$modeLabel • Başarı %$percentage • '
                         'En iyi seri $maxStreak',
                   ),
                 ),
@@ -3560,9 +3164,8 @@ class MarathonResultScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (_) => MarathonSetupScreen(
-                          questionBank: questionBank,
-                        ),
+                        builder: (_) =>
+                            MarathonSetupScreen(questionBank: questionBank),
                       ),
                     );
                   },
@@ -3573,30 +3176,23 @@ class MarathonResultScreen extends StatelessWidget {
                   icon: const Icon(Icons.replay_rounded),
                   label: const Text(
                     'Yeni Maraton',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w900),
                   ),
                 ),
                 const SizedBox(height: 10),
                 OutlinedButton.icon(
                   onPressed: () {
-                    Navigator.of(context)
-                        .popUntil((route) => route.isFirst);
+                    Navigator.of(context).popUntil((route) => route.isFirst);
                   },
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    side: const BorderSide(
-                      color: Color(0x99FFE082),
-                    ),
+                    side: const BorderSide(color: Color(0x99FFE082)),
                     minimumSize: const Size.fromHeight(54),
                   ),
                   icon: const Icon(Icons.home_rounded),
                   label: const Text(
                     'Ana Menü',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w800),
                   ),
                 ),
               ],
@@ -3607,29 +3203,17 @@ class MarathonResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _resultStat(
-    String emoji,
-    String value,
-    String label,
-  ) {
+  Widget _resultStat(String emoji, String value, String label) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 4,
-        vertical: 12,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
       decoration: BoxDecoration(
         color: const Color(0x16FFFFFF),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: const Color(0x33FFFFFF),
-        ),
+        border: Border.all(color: const Color(0x33FFFFFF)),
       ),
       child: Column(
         children: [
-          Text(
-            emoji,
-            style: const TextStyle(fontSize: 20),
-          ),
+          Text(emoji, style: const TextStyle(fontSize: 20)),
           const SizedBox(height: 3),
           Text(
             value,
@@ -3643,10 +3227,7 @@ class MarathonResultScreen extends StatelessWidget {
           Text(
             label,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color(0xFFCBC1D6),
-              fontSize: 9,
-            ),
+            style: const TextStyle(color: Color(0xFFCBC1D6), fontSize: 9),
           ),
         ],
       ),
@@ -3661,7 +3242,6 @@ class MarathonResultScreen extends StatelessWidget {
   }
 }
 
-
 class PlayerSetupScreen extends StatefulWidget {
   const PlayerSetupScreen({required this.questionBank, super.key});
 
@@ -3674,31 +3254,23 @@ class PlayerSetupScreen extends StatefulWidget {
 class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
   int _playerCount = 2;
 
-  final List<TextEditingController> _controllers =
-      List.generate(
+  final List<TextEditingController> _controllers = List.generate(
     6,
     (index) => TextEditingController(
       text: index == 0
-          ? AppPreferencesService
-              .current.defaultPlayerName
+          ? AppPreferencesService.current.defaultPlayerName
           : 'Oyuncu ${index + 1}',
     ),
   );
 
-  final List<int> _selectedPawnTypes =
-      List<int>.generate(
+  final List<int> _selectedPawnTypes = List<int>.generate(
     6,
-    (index) => index == 0
-        ? VisualCollectionService
-            .current.favoritePawn
-        : index,
+    (index) =>
+        index == 0 ? VisualCollectionService.current.favoritePawn : index,
   );
 
   final List<DifficultyMode> _selectedDifficultyModes =
-      List<DifficultyMode>.filled(
-    6,
-    DifficultyMode.relaxed,
-  );
+      List<DifficultyMode>.filled(6, DifficultyMode.relaxed);
 
   static const List<Color> _playerColors = [
     Color(0xFFE11D48),
@@ -3778,7 +3350,9 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
                                   color: _playerColors[index].withOpacity(0.08),
                                   borderRadius: BorderRadius.circular(18),
                                   border: Border.all(
-                                    color: _playerColors[index].withOpacity(0.35),
+                                    color: _playerColors[index].withOpacity(
+                                      0.35,
+                                    ),
                                   ),
                                 ),
                                 child: Column(
@@ -3832,21 +3406,18 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
                                       filled: true,
                                       fillColor: Colors.white,
                                       border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(18),
+                                        borderRadius: BorderRadius.circular(18),
                                         borderSide: BorderSide.none,
                                       ),
                                     ),
                                   ),
                                   const SizedBox(height: 8),
                                   DifficultyModeDropdown(
-                                    value:
-                                        _selectedDifficultyModes[index],
+                                    value: _selectedDifficultyModes[index],
                                     label: 'Oyuncunun soru seviyesi',
                                     onChanged: (mode) {
                                       setState(() {
-                                        _selectedDifficultyModes[index] =
-                                            mode;
+                                        _selectedDifficultyModes[index] = mode;
                                       });
                                     },
                                   ),
@@ -3916,10 +3487,8 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) => GameScreen(
-          questionBank: widget.questionBank,
-          players: players,
-        ),
+        builder: (_) =>
+            GameScreen(questionBank: widget.questionBank, players: players),
       ),
     );
   }
@@ -3953,9 +3522,7 @@ class _WinnerScreenState extends State<WinnerScreen>
       duration: const Duration(milliseconds: 3600),
     );
 
-    if (AppPreferencesService
-            .current.animationMode ==
-        'minimal') {
+    if (AppPreferencesService.current.animationMode == 'minimal') {
       _confettiController.value = 0.35;
     } else {
       _confettiController.repeat();
@@ -3975,8 +3542,7 @@ class _WinnerScreenState extends State<WinnerScreen>
       final badgeCompare = b.badges.length.compareTo(a.badges.length);
       if (badgeCompare != 0) return badgeCompare;
 
-      final correctCompare =
-          b.correctAnswers.compareTo(a.correctAnswers);
+      final correctCompare = b.correctAnswers.compareTo(a.correctAnswers);
       if (correctCompare != 0) return correctCompare;
 
       return a.wrongAnswers.compareTo(b.wrongAnswers);
@@ -4081,30 +3647,25 @@ class _WinnerScreenState extends State<WinnerScreen>
                       icon: const Icon(Icons.replay_rounded),
                       label: const Text(
                         'Yeni Oyun',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.w900),
                       ),
                     ),
                     const SizedBox(height: 10),
                     OutlinedButton.icon(
                       onPressed: () {
-                        Navigator.of(context)
-                            .popUntil((route) => route.isFirst);
+                        Navigator.of(
+                          context,
+                        ).popUntil((route) => route.isFirst);
                       },
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        side: const BorderSide(
-                          color: Color(0x99FFE082),
-                        ),
+                        side: const BorderSide(color: Color(0x99FFE082)),
                         minimumSize: const Size.fromHeight(54),
                       ),
                       icon: const Icon(Icons.home_rounded),
                       label: const Text(
                         'Ana Menü',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.w800),
                       ),
                     ),
                   ],
@@ -4119,8 +3680,7 @@ class _WinnerScreenState extends State<WinnerScreen>
 
   Widget _buildWinnerCard() {
     final player = widget.winner;
-    final totalAnswers =
-        player.correctAnswers + player.wrongAnswers;
+    final totalAnswers = player.correctAnswers + player.wrongAnswers;
     final successRate = totalAnswers == 0
         ? 0
         : (player.correctAnswers / totalAnswers * 100).round();
@@ -4130,16 +3690,9 @@ class _WinnerScreenState extends State<WinnerScreen>
       decoration: BoxDecoration(
         color: const Color(0xE61D1027),
         borderRadius: BorderRadius.circular(32),
-        border: Border.all(
-          color: const Color(0xFFFFD978),
-          width: 2.2,
-        ),
+        border: Border.all(color: const Color(0xFFFFD978), width: 2.2),
         boxShadow: const [
-          BoxShadow(
-            color: Color(0x7732E0D0),
-            blurRadius: 30,
-            spreadRadius: 2,
-          ),
+          BoxShadow(color: Color(0x7732E0D0), blurRadius: 30, spreadRadius: 2),
           BoxShadow(
             color: Color(0x88000000),
             blurRadius: 18,
@@ -4174,10 +3727,7 @@ class _WinnerScreenState extends State<WinnerScreen>
               ),
               const Positioned(
                 top: 2,
-                child: Text(
-                  '👑',
-                  style: TextStyle(fontSize: 43),
-                ),
+                child: Text('👑', style: TextStyle(fontSize: 43)),
               ),
             ],
           ),
@@ -4204,29 +3754,13 @@ class _WinnerScreenState extends State<WinnerScreen>
           const SizedBox(height: 18),
           Row(
             children: [
-              Expanded(
-                child: _statBox(
-                  '6/6',
-                  'Rozet',
-                  '🏅',
-                ),
-              ),
+              Expanded(child: _statBox('6/6', 'Rozet', '🏅')),
               const SizedBox(width: 8),
               Expanded(
-                child: _statBox(
-                  '${player.correctAnswers}',
-                  'Doğru',
-                  '✅',
-                ),
+                child: _statBox('${player.correctAnswers}', 'Doğru', '✅'),
               ),
               const SizedBox(width: 8),
-              Expanded(
-                child: _statBox(
-                  '%$successRate',
-                  'Başarı',
-                  '🎯',
-                ),
-              ),
+              Expanded(child: _statBox('%$successRate', 'Başarı', '🎯')),
             ],
           ),
         ],
@@ -4234,29 +3768,17 @@ class _WinnerScreenState extends State<WinnerScreen>
     );
   }
 
-  Widget _statBox(
-    String value,
-    String label,
-    String emoji,
-  ) {
+  Widget _statBox(String value, String label, String emoji) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 5,
-        vertical: 12,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 12),
       decoration: BoxDecoration(
         color: const Color(0x16FFFFFF),
         borderRadius: BorderRadius.circular(17),
-        border: Border.all(
-          color: const Color(0x33FFFFFF),
-        ),
+        border: Border.all(color: const Color(0x33FFFFFF)),
       ),
       child: Column(
         children: [
-          Text(
-            emoji,
-            style: const TextStyle(fontSize: 21),
-          ),
+          Text(emoji, style: const TextStyle(fontSize: 21)),
           const SizedBox(height: 4),
           Text(
             value,
@@ -4287,9 +3809,7 @@ class _WinnerScreenState extends State<WinnerScreen>
       decoration: BoxDecoration(
         color: const Color(0xD9191422),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: const Color(0x33FFFFFF),
-        ),
+        border: Border.all(color: const Color(0x33FFFFFF)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -4304,30 +3824,19 @@ class _WinnerScreenState extends State<WinnerScreen>
           ),
           const SizedBox(height: 11),
           for (var index = 0; index < ranking.length; index++)
-            _rankingRow(
-              ranking[index],
-              index,
-            ),
+            _rankingRow(ranking[index], index),
         ],
       ),
     );
   }
 
-  Widget _rankingRow(
-    PlayerData player,
-    int index,
-  ) {
+  Widget _rankingRow(PlayerData player, int index) {
     final medals = ['🥇', '🥈', '🥉'];
-    final medal = index < medals.length
-        ? medals[index]
-        : '${index + 1}.';
+    final medal = index < medals.length ? medals[index] : '${index + 1}.';
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 9,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
       decoration: BoxDecoration(
         color: identical(player, widget.winner)
             ? const Color(0x22FFE082)
@@ -4343,10 +3852,7 @@ class _WinnerScreenState extends State<WinnerScreen>
         children: [
           SizedBox(
             width: 34,
-            child: Text(
-              medal,
-              style: const TextStyle(fontSize: 21),
-            ),
+            child: Text(medal, style: const TextStyle(fontSize: 21)),
           ),
           PawnToken(
             type: player.pawnType,
@@ -4382,9 +3888,7 @@ class _WinnerScreenState extends State<WinnerScreen>
 }
 
 class WinnerConfettiPainter extends CustomPainter {
-  const WinnerConfettiPainter({
-    required this.progress,
-  });
+  const WinnerConfettiPainter({required this.progress});
 
   final double progress;
 
@@ -4401,18 +3905,13 @@ class WinnerConfettiPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (var index = 0; index < 46; index++) {
       final seed = index * 71;
-      final xBase =
-          ((seed * 37) % 1000) / 1000 * size.width;
+      final xBase = ((seed * 37) % 1000) / 1000 * size.width;
       final speed = 0.55 + (seed % 8) * 0.08;
       final fall = (progress * speed + (index % 11) / 11) % 1;
-      final sway = sin(
-            progress * pi * 4 + index,
-          ) *
-          18;
+      final sway = sin(progress * pi * 4 + index) * 18;
       final y = fall * (size.height + 80) - 40;
       final x = xBase + sway;
-      final rotation =
-          progress * pi * 6 + index * 0.8;
+      final rotation = progress * pi * 6 + index * 0.8;
       final color = _colors[index % _colors.length];
 
       canvas.save();
@@ -4434,9 +3933,7 @@ class WinnerConfettiPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(
-    covariant WinnerConfettiPainter oldDelegate,
-  ) {
+  bool shouldRepaint(covariant WinnerConfettiPainter oldDelegate) {
     return oldDelegate.progress != progress;
   }
 }
@@ -4476,25 +3973,20 @@ class _GameScreenState extends State<GameScreen> {
   double _routeOpacity = 0;
   int? _landingNodeId;
   int _landingPulse = 0;
-  bool _soundEnabled =
-      AppPreferencesService.current.soundEnabled;
+  bool _soundEnabled = AppPreferencesService.current.soundEnabled;
   bool _allowRoutePop = false;
   bool _exitDialogOpen = false;
   final Set<String> _usedQuestionIds = <String>{};
 
-  PlayerData get _currentPlayer =>
-      widget.players[_currentPlayerIndex];
+  PlayerData get _currentPlayer => widget.players[_currentPlayerIndex];
 
-  String _chooseQuestionDifficulty({
-    bool finalQuestion = false,
-  }) {
+  String _chooseQuestionDifficulty({bool finalQuestion = false}) {
     return _currentPlayer.difficultyMode.chooseDifficulty(
       _random,
       correctStreak: _currentPlayer.correctStreak,
       wrongStreak: _currentPlayer.wrongStreak,
       finalQuestion: finalQuestion,
-      forceRelaxed:
-          AppPreferencesService.current.childMode,
+      forceRelaxed: AppPreferencesService.current.childMode,
     );
   }
 
@@ -4557,81 +4049,76 @@ class _GameScreenState extends State<GameScreen> {
           foregroundColor: Colors.white,
           surfaceTintColor: Colors.transparent,
           title: const Text('Bilgi Rotası'),
-        actions: [
-          IconButton(
-            tooltip: _soundEnabled ? 'Sesleri kapat' : 'Sesleri aç',
-            onPressed: () async {
-              final willEnable = !_soundEnabled;
+          actions: [
+            IconButton(
+              tooltip: _soundEnabled ? 'Sesleri kapat' : 'Sesleri aç',
+              onPressed: () async {
+                final willEnable = !_soundEnabled;
 
-              setState(() {
-                _soundEnabled = willEnable;
-              });
+                setState(() {
+                  _soundEnabled = willEnable;
+                });
 
-              await AppPreferencesService
-                  .setSoundEnabled(willEnable);
+                await AppPreferencesService.setSoundEnabled(willEnable);
 
-              if (willEnable) {
-                await SoundFx.test();
-              }
-            },
-            icon: Icon(
-              _soundEnabled
-                  ? Icons.volume_up_rounded
-                  : Icons.volume_off_rounded,
+                if (willEnable) {
+                  await SoundFx.test();
+                }
+              },
+              icon: Icon(
+                _soundEnabled
+                    ? Icons.volume_up_rounded
+                    : Icons.volume_off_rounded,
+              ),
             ),
-          ),
-          IconButton(
-            tooltip: 'Oyunu bitir',
-            onPressed: _confirmExit,
-            icon: const Icon(Icons.logout_rounded),
-          ),
-        ],
-      ),
-      bottomNavigationBar: compactLayout
-          ? GameMobileActionBar(
-              player: _currentPlayer,
-              busy: _isBusy,
-              hasWinner: _winner != null,
-              onPressed: _onMainAction,
-            )
-          : null,
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final isWide = constraints.maxWidth >= 760;
-            if (isWide) {
-              return Padding(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(child: _buildBoardCard()),
-                    const SizedBox(width: 18),
-                    SizedBox(
-                          width: 350,
-                          child: _buildControlPanel(
-                            showMainAction: true,
-                          ),
-                        ),
-                  ],
-                ),
-              );
-            }
-
-            return ListView(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 112),
-              clipBehavior: Clip.none,
-              children: [
-                _buildBoardCard(),
-                const SizedBox(height: 10),
-                _buildControlPanel(
-                  showMainAction: false,
-                ),
-              ],
-            );
-          },
+            IconButton(
+              tooltip: 'Oyunu bitir',
+              onPressed: _confirmExit,
+              icon: const Icon(Icons.logout_rounded),
+            ),
+          ],
         ),
-      ),
+        bottomNavigationBar: compactLayout
+            ? GameMobileActionBar(
+                player: _currentPlayer,
+                busy: _isBusy,
+                hasWinner: _winner != null,
+                onPressed: _onMainAction,
+              )
+            : null,
+        body: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final isWide = constraints.maxWidth >= 760;
+              if (isWide) {
+                return Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: _buildBoardCard()),
+                      const SizedBox(width: 18),
+                      SizedBox(
+                        width: 350,
+                        child: _buildControlPanel(showMainAction: true),
+                      ),
+                    ],
+                  ),
+                );
+              }
+
+              return ListView(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 112),
+                clipBehavior: Clip.none,
+                children: [
+                  _buildBoardCard(),
+                  const SizedBox(height: 10),
+                  _buildControlPanel(showMainAction: false),
+                ],
+              );
+            },
+          ),
+        ),
       ),
     );
   }
@@ -4656,9 +4143,7 @@ class _GameScreenState extends State<GameScreen> {
           children: [
             LayoutBuilder(
               builder: (context, constraints) {
-                final boardSize = GameUiMetrics.boardSize(
-                  constraints.maxWidth,
-                );
+                final boardSize = GameUiMetrics.boardSize(constraints.maxWidth);
 
                 return Center(
                   child: SizedBox.square(
@@ -4690,9 +4175,7 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  Widget _buildControlPanel({
-    required bool showMainAction,
-  }) {
+  Widget _buildControlPanel({required bool showMainAction}) {
     return Column(
       children: [
         Card(
@@ -4712,9 +4195,7 @@ class _GameScreenState extends State<GameScreen> {
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 10),
-                GameBadgeStrip(
-                  player: _currentPlayer,
-                ),
+                GameBadgeStrip(player: _currentPlayer),
                 if (showMainAction) ...[
                   const SizedBox(height: 18),
                   FilledButton.icon(
@@ -4724,19 +4205,15 @@ class _GameScreenState extends State<GameScreen> {
                     icon: Icon(
                       GameUiMetrics.actionIcon(
                         busy: _isBusy,
-                        hasAllBadges:
-                            _currentPlayer.hasAllBadges,
+                        hasAllBadges: _currentPlayer.hasAllBadges,
                       ),
                     ),
                     label: Text(
                       GameUiMetrics.actionLabel(
                         busy: _isBusy,
-                        hasAllBadges:
-                            _currentPlayer.hasAllBadges,
+                        hasAllBadges: _currentPlayer.hasAllBadges,
                       ),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w900,
-                      ),
+                      style: const TextStyle(fontWeight: FontWeight.w900),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -4759,10 +4236,7 @@ class _GameScreenState extends State<GameScreen> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          '🍀',
-                          style: TextStyle(fontSize: 20),
-                        ),
+                        Text('🍀', style: TextStyle(fontSize: 20)),
                         SizedBox(width: 7),
                         Text(
                           'Çifte Şans hazır',
@@ -4774,16 +4248,13 @@ class _GameScreenState extends State<GameScreen> {
                       ],
                     ),
                   ),
-                JokerWalletMiniBar(
-                  wallet: _currentPlayer.jokers,
-                ),
+                JokerWalletMiniBar(wallet: _currentPlayer.jokers),
                 const SizedBox(height: 9),
                 GameProgressSummary(
                   player: _currentPlayer,
                   difficultyText: _difficultyStatusText,
                   usedQuestionCount: _usedQuestionIds.length,
-                  totalQuestionCount:
-                      widget.questionBank.totalCount,
+                  totalQuestionCount: widget.questionBank.totalCount,
                 ),
               ],
             ),
@@ -4806,7 +4277,10 @@ class _GameScreenState extends State<GameScreen> {
                   final active = index == _currentPlayerIndex;
                   return Container(
                     margin: const EdgeInsets.only(bottom: 8),
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 10,
+                    ),
                     decoration: BoxDecoration(
                       color: active
                           ? player.color.withOpacity(0.12)
@@ -4833,7 +4307,9 @@ class _GameScreenState extends State<GameScreen> {
                             player.name,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontWeight: active ? FontWeight.w800 : FontWeight.w600,
+                              fontWeight: active
+                                  ? FontWeight.w800
+                                  : FontWeight.w600,
                             ),
                           ),
                         ),
@@ -4872,9 +4348,7 @@ class _GameScreenState extends State<GameScreen> {
     GameHaptics.mediumImpact();
 
     for (var i = 0; i < 12; i++) {
-      await Future<void>.delayed(
-        Duration(milliseconds: 65 + i * 8),
-      );
+      await Future<void>.delayed(Duration(milliseconds: 65 + i * 8));
 
       if (!mounted) return;
 
@@ -4897,21 +4371,15 @@ class _GameScreenState extends State<GameScreen> {
 
     GameHaptics.heavyImpact();
 
-    await Future<void>.delayed(
-      const Duration(milliseconds: 1000),
-    );
+    await Future<void>.delayed(const Duration(milliseconds: 1000));
 
     if (!mounted) return;
 
     setState(() {
-      _status =
-          '${_currentPlayer.name} $diceResult attı. Yolunu seç.';
+      _status = '${_currentPlayer.name} $diceResult attı. Yolunu seç.';
     });
 
-    final options = BoardMap.options(
-      _currentPlayer.position,
-      diceResult,
-    );
+    final options = BoardMap.options(_currentPlayer.position, diceResult);
 
     if (!mounted) return;
 
@@ -4953,9 +4421,7 @@ class _GameScreenState extends State<GameScreen> {
     final specialEffect = target.specialEffect;
 
     if (specialEffect != null) {
-      selectedCategory = await _resolveSpecialEffect(
-        specialEffect,
-      );
+      selectedCategory = await _resolveSpecialEffect(specialEffect);
 
       if (!mounted) return;
 
@@ -4968,20 +4434,19 @@ class _GameScreenState extends State<GameScreen> {
           _isBusy = false;
           _lastDice = null;
           _diceRolling = false;
-          _status =
-              '${_currentPlayer.name}, tekrar zar atma hakkı sende! 🎲';
+          _status = '${_currentPlayer.name}, tekrar zar atma hakkı sende! 🎲';
         });
         return;
       }
     }
 
-    final baseCategoryIndex = selectedCategory ??
+    final baseCategoryIndex =
+        selectedCategory ??
         (target.categoryIndex < 0
             ? _random.nextInt(GameCategory.values.length)
             : target.categoryIndex);
 
-    final plan =
-        await GameplayBoostDialogs.chooseQuestionPlan(
+    final plan = await GameplayBoostDialogs.chooseQuestionPlan(
       context,
       baseCategoryIndex: baseCategoryIndex,
       normalDifficulty: _chooseQuestionDifficulty(),
@@ -5012,7 +4477,8 @@ class _GameScreenState extends State<GameScreen> {
 
     if (!mounted) return;
 
-    final correct = await Navigator.of(context).push<bool>(
+    final correct =
+        await Navigator.of(context).push<bool>(
           MaterialPageRoute(
             fullscreenDialog: true,
             builder: (_) => QuestionScreen(
@@ -5022,8 +4488,7 @@ class _GameScreenState extends State<GameScreen> {
               riskMode: plan.risky,
               xpMultiplier: plan.xpMultiplier,
               onChangeQuestion: (current) async {
-                final replacement =
-                    GameplayBoostQuestionPicker.replacement(
+                final replacement = GameplayBoostQuestionPicker.replacement(
                   questionBank: widget.questionBank,
                   current: current,
                   usedQuestionIds: _usedQuestionIds,
@@ -5061,18 +4526,11 @@ class _GameScreenState extends State<GameScreen> {
         _currentPlayer.movePulse++;
       });
 
-      unawaited(
-        SoundFx.pawnStep(
-          pawnType,
-          stepIndex: stepIndex,
-        ),
-      );
+      unawaited(SoundFx.pawnStep(pawnType, stepIndex: stepIndex));
       stepIndex++;
       GameHaptics.selectionClick();
 
-      await Future<void>.delayed(
-        const Duration(milliseconds: 390),
-      );
+      await Future<void>.delayed(const Duration(milliseconds: 390));
 
       if (!mounted) return;
     }
@@ -5090,9 +4548,7 @@ class _GameScreenState extends State<GameScreen> {
     unawaited(SoundFx.landing());
     GameHaptics.heavyImpact();
 
-    await Future<void>.delayed(
-      const Duration(milliseconds: 520),
-    );
+    await Future<void>.delayed(const Duration(milliseconds: 520));
 
     if (!mounted) return;
 
@@ -5102,13 +4558,9 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-  Future<int?> _resolveSpecialEffect(
-    SpecialCellEffect effect,
-  ) async {
+  Future<int?> _resolveSpecialEffect(SpecialCellEffect effect) async {
     if (effect == SpecialCellEffect.randomJoker) {
-      final kind = JokerKind.values[
-        _random.nextInt(JokerKind.values.length)
-      ];
+      final kind = JokerKind.values[_random.nextInt(JokerKind.values.length)];
       _currentPlayer.jokers.grant(kind);
 
       setState(() {
@@ -5133,8 +4585,7 @@ class _GameScreenState extends State<GameScreen> {
       case SpecialCellEffect.rollAgain:
         setState(() {
           _bonusRollPending = true;
-          _status =
-              '${_currentPlayer.name} tekrar zar atma hakkı kazandı! 🎲';
+          _status = '${_currentPlayer.name} tekrar zar atma hakkı kazandı! 🎲';
         });
         return null;
 
@@ -5147,25 +4598,19 @@ class _GameScreenState extends State<GameScreen> {
       case SpecialCellEffect.doubleChance:
         setState(() {
           _currentPlayer.doubleChance = true;
-          _status =
-              '${_currentPlayer.name} Çifte Şans hakkı kazandı! 🍀';
+          _status = '${_currentPlayer.name} Çifte Şans hakkı kazandı! 🍀';
         });
         return null;
     }
   }
 
-  Future<void> _showJokerRewardDialog(
-    JokerKind kind,
-  ) {
+  Future<void> _showJokerRewardDialog(JokerKind kind) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (dialogContext) {
         return AlertDialog(
-          icon: Text(
-            kind.emoji,
-            style: const TextStyle(fontSize: 52),
-          ),
+          icon: Text(kind.emoji, style: const TextStyle(fontSize: 52)),
           title: const Text('Joker Kazandın!'),
           content: Text(
             '${kind.title} jokerine +1 eklendi.\n\n'
@@ -5184,24 +4629,19 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  Future<void> _showSpecialEffectDialog(
-    SpecialCellEffect effect,
-  ) {
+  Future<void> _showSpecialEffectDialog(SpecialCellEffect effect) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (dialogContext) {
         return AlertDialog(
-          icon: Text(
-            effect.emoji,
-            style: const TextStyle(fontSize: 48),
-          ),
+          icon: Text(effect.emoji, style: const TextStyle(fontSize: 48)),
           title: Text('Özel Kutu: ${effect.title}'),
           content: Text(
             effect == SpecialCellEffect.doubleChance &&
                     _currentPlayer.doubleChance
                 ? 'Çifte Şans hakkın zaten hazır. '
-                    'Mevcut hakkın korunacak.'
+                      'Mevcut hakkın korunacak.'
                 : effect.description,
             textAlign: TextAlign.center,
           ),
@@ -5224,51 +4664,42 @@ class _GameScreenState extends State<GameScreen> {
       builder: (dialogContext) {
         return AlertDialog(
           title: const Text('Soru kategorisini seç'),
-          contentPadding:
-              const EdgeInsets.fromLTRB(16, 12, 16, 8),
+          contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
           content: SizedBox(
             width: double.maxFinite,
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: List.generate(
-                GameCategory.values.length,
-                (index) {
-                  final category = GameCategory.values[index];
+              children: List.generate(GameCategory.values.length, (index) {
+                final category = GameCategory.values[index];
 
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 7),
-                    child: ListTile(
-                      tileColor: category.color.withOpacity(0.12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        side: BorderSide(
-                          color: category.color.withOpacity(0.45),
-                        ),
-                      ),
-                      leading: Text(
-                        category.emoji,
-                        style: const TextStyle(fontSize: 26),
-                      ),
-                      title: Text(
-                        category.label,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      onTap: () =>
-                          Navigator.pop(dialogContext, index),
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 7),
+                  child: ListTile(
+                    tileColor: category.color.withOpacity(0.12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      side: BorderSide(color: category.color.withOpacity(0.45)),
                     ),
-                  );
-                },
-              ),
+                    leading: Text(
+                      category.emoji,
+                      style: const TextStyle(fontSize: 26),
+                    ),
+                    title: Text(
+                      category.label,
+                      style: const TextStyle(fontWeight: FontWeight.w800),
+                    ),
+                    onTap: () => Navigator.pop(dialogContext, index),
+                  ),
+                );
+              }),
             ),
           ),
         );
       },
     );
 
-    final categoryIndex = selected ??
-        _random.nextInt(GameCategory.values.length);
+    final categoryIndex =
+        selected ?? _random.nextInt(GameCategory.values.length);
 
     if (mounted) {
       setState(() {
@@ -5280,16 +4711,13 @@ class _GameScreenState extends State<GameScreen> {
     return categoryIndex;
   }
 
-  Future<MoveOption?> _waitForBoardMove(
-    List<MoveOption> options,
-  ) async {
+  Future<MoveOption?> _waitForBoardMove(List<MoveOption> options) async {
     final completer = Completer<MoveOption>();
 
     setState(() {
       _moveOptions = List<MoveOption>.unmodifiable(options);
       _moveCompleter = completer;
-      _status =
-          '${_currentPlayer.name}, parlayan hedeflerden birine dokun.';
+      _status = '${_currentPlayer.name}, parlayan hedeflerden birine dokun.';
     });
 
     GameHaptics.mediumImpact();
@@ -5324,15 +4752,12 @@ class _GameScreenState extends State<GameScreen> {
       _status = '${_currentPlayer.name} final sorusunda!';
     });
 
-    final categoryIndex =
-        _random.nextInt(GameCategory.values.length);
+    final categoryIndex = _random.nextInt(GameCategory.values.length);
     final draw = widget.questionBank.nextQuestion(
       categoryIndex: categoryIndex,
       random: _random,
       usedQuestionIds: _usedQuestionIds,
-      preferredDifficulty: _chooseQuestionDifficulty(
-        finalQuestion: true,
-      ),
+      preferredDifficulty: _chooseQuestionDifficulty(finalQuestion: true),
     );
     final question = draw.question;
 
@@ -5340,13 +4765,12 @@ class _GameScreenState extends State<GameScreen> {
 
     if (!mounted) return;
 
-    final correct = await Navigator.of(context).push<bool>(
+    final correct =
+        await Navigator.of(context).push<bool>(
           MaterialPageRoute(
             fullscreenDialog: true,
-            builder: (_) => QuestionScreen(
-              question: question,
-              isFinalQuestion: true,
-            ),
+            builder: (_) =>
+                QuestionScreen(question: question, isFinalQuestion: true),
           ),
         ) ??
         false;
@@ -5360,35 +4784,26 @@ class _GameScreenState extends State<GameScreen> {
 
       setState(() {
         _winner = _currentPlayer;
-        _status =
-            '${_currentPlayer.name} Bilgi Rotası şampiyonu!';
+        _status = '${_currentPlayer.name} Bilgi Rotası şampiyonu!';
         _isBusy = false;
       });
 
-      final answerGain =
-          await CareerStatsService.recordAnswer(
+      final answerGain = await CareerStatsService.recordAnswer(
         categoryIndex: categoryIndex,
         difficulty: question.difficulty,
         correct: true,
       );
 
       if (mounted) {
-        await XpCelebration.show(
-          context,
-          answerGain,
-        );
+        await XpCelebration.show(context, answerGain);
       }
 
-      final completionGain =
-          await CareerStatsService.recordGameCompleted(
+      final completionGain = await CareerStatsService.recordGameCompleted(
         solo: widget.players.length == 1,
       );
 
       if (mounted) {
-        await XpCelebration.show(
-          context,
-          completionGain,
-        );
+        await XpCelebration.show(context, completionGain);
       }
       await GameSaveService.clear();
       unawaited(SoundFx.win());
@@ -5396,18 +4811,14 @@ class _GameScreenState extends State<GameScreen> {
       await _showWinnerDialog(_currentPlayer);
     } else {
       _currentPlayer.wrongAnswers++;
-      final answerGain =
-          await CareerStatsService.recordAnswer(
+      final answerGain = await CareerStatsService.recordAnswer(
         categoryIndex: categoryIndex,
         difficulty: question.difficulty,
         correct: false,
       );
 
       if (mounted) {
-        await XpCelebration.show(
-          context,
-          answerGain,
-        );
+        await XpCelebration.show(context, answerGain);
       }
 
       _advanceTurn();
@@ -5439,8 +4850,7 @@ class _GameScreenState extends State<GameScreen> {
       var badgeMessage = '';
       var badgeEarned = false;
 
-      if (wasBadgeCell &&
-          !answeredPlayer.badges.contains(categoryIndex)) {
+      if (wasBadgeCell && !answeredPlayer.badges.contains(categoryIndex)) {
         answeredPlayer.badges.add(categoryIndex);
         badgeEarned = true;
         badgeMessage =
@@ -5452,19 +4862,14 @@ class _GameScreenState extends State<GameScreen> {
         _status = answeredPlayer.hasAllBadges
             ? 'Altı rozet tamam! Final sorusu hazır. 🏆'
             : 'Doğru cevap!$badgeMessage '
-                'Aynı oyuncu devam ediyor.';
+                  'Aynı oyuncu devam ediyor.';
         _isBusy = false;
       });
 
-      unawaited(
-        badgeEarned
-            ? SoundFx.badge()
-            : SoundFx.correct(),
-      );
+      unawaited(badgeEarned ? SoundFx.badge() : SoundFx.correct());
       GameHaptics.selectionClick();
 
-      final xpGain =
-          await CareerStatsService.recordAnswer(
+      final xpGain = await CareerStatsService.recordAnswer(
         categoryIndex: categoryIndex,
         difficulty: difficulty,
         correct: true,
@@ -5501,8 +4906,7 @@ class _GameScreenState extends State<GameScreen> {
 
       unawaited(SoundFx.wrong());
 
-      final xpGain =
-          await CareerStatsService.recordAnswer(
+      final xpGain = await CareerStatsService.recordAnswer(
         categoryIndex: categoryIndex,
         difficulty: difficulty,
         correct: false,
@@ -5522,9 +4926,7 @@ class _GameScreenState extends State<GameScreen> {
     _lastDice = null;
   }
 
-  Future<void> _showWinnerDialog(
-    PlayerData player,
-  ) async {
+  Future<void> _showWinnerDialog(PlayerData player) async {
     await Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (_) => WinnerScreen(
@@ -5549,34 +4951,34 @@ class _GameScreenState extends State<GameScreen> {
 
     try {
       action = await showDialog<String>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Oyundan çıkılsın mı?'),
-          content: const Text(
-            'İlerlemeni kaydedip daha sonra devam '
-            'edebilir veya bu oyunu tamamen silebilirsin.',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'cancel'),
-              child: const Text('Devam Et'),
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Oyundan çıkılsın mı?'),
+            content: const Text(
+              'İlerlemeni kaydedip daha sonra devam '
+              'edebilir veya bu oyunu tamamen silebilirsin.',
             ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'delete'),
-              style: TextButton.styleFrom(
-                foregroundColor: const Color(0xFFDC2626),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'cancel'),
+                child: const Text('Devam Et'),
               ),
-              child: const Text('Oyunu Sil'),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, 'save'),
-              child: const Text('Kaydet ve Çık'),
-            ),
-          ],
-        );
-      },
-    );
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'delete'),
+                style: TextButton.styleFrom(
+                  foregroundColor: const Color(0xFFDC2626),
+                ),
+                child: const Text('Oyunu Sil'),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(context, 'save'),
+                child: const Text('Kaydet ve Çık'),
+              ),
+            ],
+          );
+        },
+      );
     } finally {
       _exitDialogOpen = false;
     }
@@ -5606,15 +5008,9 @@ class _GameScreenState extends State<GameScreen> {
 
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
-
 }
 
-enum SpecialCellEffect {
-  rollAgain,
-  randomJoker,
-  chooseCategory,
-  doubleChance,
-}
+enum SpecialCellEffect { rollAgain, randomJoker, chooseCategory, doubleChance }
 
 extension SpecialCellEffectX on SpecialCellEffect {
   String get title {
@@ -5730,7 +5126,6 @@ class BoardMap {
     36: SpecialCellEffect.doubleChance,
   };
 
-
   static const spokeMix = <List<int>>[
     [3, 1, 5, 2, 4],
     [4, 2, 0, 5, 3],
@@ -5774,9 +5169,7 @@ class BoardMap {
       return BoardNode(
         id: id,
         kind: BoardNodeKind.outer,
-        categoryIndex: badge
-            ? ring ~/ 6
-            : outerMix[ring ~/ 6][(ring % 6) - 1],
+        categoryIndex: badge ? ring ~/ 6 : outerMix[ring ~/ 6][(ring % 6) - 1],
         ring: ring,
         isBadge: badge,
         specialEffect: specialCells[id],
@@ -5805,18 +5198,11 @@ class BoardMap {
 
     switch (n.kind) {
       case BoardNodeKind.center:
-        return List.generate(
-          spokeCount,
-          (arm) => spokeId(arm, 0),
-        );
+        return List.generate(spokeCount, (arm) => spokeId(arm, 0));
 
       case BoardNodeKind.spoke:
         final result = <int>[];
-        result.add(
-          n.step == 0
-              ? centerId
-              : spokeId(n.arm!, n.step! - 1),
-        );
+        result.add(n.step == 0 ? centerId : spokeId(n.arm!, n.step! - 1));
         result.add(
           n.step == spokeLength - 1
               ? outerId(n.arm! * 6)
@@ -5825,15 +5211,10 @@ class BoardMap {
         return result;
 
       case BoardNodeKind.outer:
-        final result = <int>[
-          outerId(n.ring! - 1),
-          outerId(n.ring! + 1),
-        ];
+        final result = <int>[outerId(n.ring! - 1), outerId(n.ring! + 1)];
 
         if (n.ring! % 6 == 0) {
-          result.add(
-            spokeId(n.ring! ~/ 6, spokeLength - 1),
-          );
+          result.add(spokeId(n.ring! ~/ 6, spokeLength - 1));
         }
 
         return result;
@@ -5875,10 +5256,7 @@ class BoardMap {
     var cursor = current;
 
     for (var index = 0; index < steps; index++) {
-      final next = _nextInDirection(
-        previous: last,
-        current: cursor,
-      );
+      final next = _nextInDirection(previous: last, current: cursor);
 
       result.add(next);
       last = cursor;
@@ -5888,17 +5266,15 @@ class BoardMap {
     return result;
   }
 
-  static List<int> reversePath(
-    MoveOption option,
-    int steps,
-  ) {
+  static List<int> reversePath(MoveOption option, int steps) {
     final reversed = option.path.reversed.toList();
     final result = <int>[reversed.first];
 
-    for (var index = 1;
-        index < reversed.length &&
-            result.length < steps + 1;
-        index++) {
+    for (
+      var index = 1;
+      index < reversed.length && result.length < steps + 1;
+      index++
+    ) {
       result.add(reversed[index]);
     }
 
@@ -5919,74 +5295,52 @@ class BoardMap {
     return result;
   }
 
-  static int _nextInDirection({
-    required int previous,
-    required int current,
-  }) {
+  static int _nextInDirection({required int previous, required int current}) {
     final previousNode = node(previous);
     final currentNode = node(current);
 
     if (currentNode.kind == BoardNodeKind.outer &&
         previousNode.kind == BoardNodeKind.outer) {
       final clockwise =
-          (currentNode.ring! - previousNode.ring! + outerCount) %
-                  outerCount ==
-              1;
+          (currentNode.ring! - previousNode.ring! + outerCount) % outerCount ==
+          1;
 
-      return outerId(
-        currentNode.ring! + (clockwise ? 1 : -1),
-      );
+      return outerId(currentNode.ring! + (clockwise ? 1 : -1));
     }
 
     if (currentNode.kind == BoardNodeKind.spoke &&
         previousNode.kind == BoardNodeKind.spoke &&
         currentNode.arm == previousNode.arm) {
-      final movingOutward =
-          currentNode.step! > previousNode.step!;
+      final movingOutward = currentNode.step! > previousNode.step!;
 
       if (movingOutward) {
         return currentNode.step == spokeLength - 1
             ? outerId(currentNode.arm! * 6)
-            : spokeId(
-                currentNode.arm!,
-                currentNode.step! + 1,
-              );
+            : spokeId(currentNode.arm!, currentNode.step! + 1);
       }
 
       return currentNode.step == 0
           ? centerId
-          : spokeId(
-              currentNode.arm!,
-              currentNode.step! - 1,
-            );
+          : spokeId(currentNode.arm!, currentNode.step! - 1);
     }
 
     if (currentNode.kind == BoardNodeKind.spoke &&
         previousNode.kind == BoardNodeKind.center) {
       return currentNode.step == spokeLength - 1
           ? outerId(currentNode.arm! * 6)
-          : spokeId(
-              currentNode.arm!,
-              currentNode.step! + 1,
-            );
+          : spokeId(currentNode.arm!, currentNode.step! + 1);
     }
 
     if (currentNode.kind == BoardNodeKind.spoke &&
         previousNode.kind == BoardNodeKind.outer) {
       return currentNode.step == 0
           ? centerId
-          : spokeId(
-              currentNode.arm!,
-              currentNode.step! - 1,
-            );
+          : spokeId(currentNode.arm!, currentNode.step! - 1);
     }
 
     if (currentNode.kind == BoardNodeKind.center &&
         previousNode.kind == BoardNodeKind.spoke) {
-      return spokeId(
-        (previousNode.arm! + 3) % spokeCount,
-        0,
-      );
+      return spokeId((previousNode.arm! + 3) % spokeCount, 0);
     }
 
     if (currentNode.kind == BoardNodeKind.outer &&
@@ -5994,13 +5348,11 @@ class BoardMap {
       return outerId(currentNode.ring! + 1);
     }
 
-    final candidates = neighbors(current)
-        .where((candidate) => candidate != previous)
-        .toList();
+    final candidates = neighbors(
+      current,
+    ).where((candidate) => candidate != previous).toList();
 
-    return candidates.isEmpty
-        ? previous
-        : candidates.first;
+    return candidates.isEmpty ? previous : candidates.first;
   }
 
   static String routeTitle(MoveOption option) {
@@ -6015,9 +5367,7 @@ class BoardMap {
         first.kind == BoardNodeKind.outer) {
       final clockwise =
           (first.ring! - start.ring! + outerCount) % outerCount == 1;
-      return clockwise
-          ? 'Saat yönünde ilerle'
-          : 'Saat yönünün tersine ilerle';
+      return clockwise ? 'Saat yönünde ilerle' : 'Saat yönünün tersine ilerle';
     }
 
     if (first.kind == BoardNodeKind.center) {
@@ -6261,10 +5611,7 @@ class PawnToken extends StatelessWidget {
                             fontSize: width * 0.70,
                             height: 1,
                             shadows: const [
-                              Shadow(
-                                color: Colors.white,
-                                blurRadius: 5,
-                              ),
+                              Shadow(color: Colors.white, blurRadius: 5),
                             ],
                           ),
                         ),
@@ -6284,10 +5631,7 @@ class PawnToken extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: color,
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
+                    border: Border.all(color: Colors.white, width: 2),
                     boxShadow: [
                       BoxShadow(
                         color: color.withOpacity(0.95),
@@ -6311,10 +5655,7 @@ class PawnToken extends StatelessWidget {
         width: width,
         height: height,
         child: CustomPaint(
-          painter: RainbowRingPawnPainter(
-            playerColor: color,
-            active: active,
-          ),
+          painter: RainbowRingPawnPainter(playerColor: color, active: active),
         ),
       );
     }
@@ -6387,10 +5728,7 @@ class PawnToken extends StatelessWidget {
                             fontSize: width * 0.70,
                             height: 1,
                             shadows: const [
-                              Shadow(
-                                color: Colors.white,
-                                blurRadius: 5,
-                              ),
+                              Shadow(color: Colors.white, blurRadius: 5),
                             ],
                           ),
                         ),
@@ -6440,10 +5778,7 @@ class PawnToken extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: color,
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
+                    border: Border.all(color: Colors.white, width: 2),
                     boxShadow: [
                       BoxShadow(
                         color: color.withOpacity(0.95),
@@ -6510,11 +5845,7 @@ class RainbowRingPawnPainter extends CustomPainter {
         ..shader = const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFFFFF0A6),
-            Color(0xFFFFC83D),
-            Color(0xFF9A5A08),
-          ],
+          colors: [Color(0xFFFFF0A6), Color(0xFFFFC83D), Color(0xFF9A5A08)],
         ).createShader(baseRect),
     );
     canvas.drawOval(
@@ -6547,12 +5878,7 @@ class RainbowRingPawnPainter extends CustomPainter {
             Color(0xFF5F46F2),
             Color(0xFFFF3D8D),
           ],
-        ).createShader(
-          Rect.fromCircle(
-            center: center,
-            radius: radius,
-          ),
-        ),
+        ).createShader(Rect.fromCircle(center: center, radius: radius)),
     );
 
     canvas.drawCircle(
@@ -6646,11 +5972,7 @@ class RouteHighlightPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
       ..shader = const LinearGradient(
-        colors: [
-          Color(0xFFFFE082),
-          Color(0xFF67E8F9),
-          Color(0xFFFFFFFF),
-        ],
+        colors: [Color(0xFFFFE082), Color(0xFF67E8F9), Color(0xFFFFFFFF)],
       ).createShader(Offset.zero & size);
 
     for (final option in options) {
@@ -6707,12 +6029,10 @@ class _RouteTargetPulseState extends State<RouteTargetPulse>
       duration: const Duration(milliseconds: 720),
     )..repeat(reverse: true);
 
-    _scale = Tween<double>(begin: 0.88, end: 1.13).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOut,
-      ),
-    );
+    _scale = Tween<double>(
+      begin: 0.88,
+      end: 1.13,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -6742,10 +6062,7 @@ class _RouteTargetPulseState extends State<RouteTargetPulse>
               ],
               stops: const [0, 0.50, 1],
             ),
-            border: Border.all(
-              color: const Color(0xFFFFE082),
-              width: 3,
-            ),
+            border: Border.all(color: const Color(0xFFFFE082), width: 3),
             boxShadow: [
               BoxShadow(
                 color: widget.color.withOpacity(0.80),
@@ -6761,10 +6078,7 @@ class _RouteTargetPulseState extends State<RouteTargetPulse>
           ),
           child: Text(
             widget.emoji,
-            style: TextStyle(
-              fontSize: widget.size * 0.42,
-              height: 1,
-            ),
+            style: TextStyle(fontSize: widget.size * 0.42, height: 1),
           ),
         ),
       ),
@@ -6981,10 +6295,7 @@ class _LandingBurstState extends State<LandingBurst>
 }
 
 class LandingBurstPainter extends CustomPainter {
-  const LandingBurstPainter({
-    required this.progress,
-    required this.color,
-  });
+  const LandingBurstPainter({required this.progress, required this.color});
 
   final double progress;
   final Color color;
@@ -7017,10 +6328,8 @@ class LandingBurstPainter extends CustomPainter {
       final angle = index * (2 * pi / 10);
       final startDistance = size.width * 0.16;
       final endDistance = size.width * (0.20 + progress * 0.31);
-      final start = center +
-          Offset(cos(angle), sin(angle)) * startDistance;
-      final end = center +
-          Offset(cos(angle), sin(angle)) * endDistance;
+      final start = center + Offset(cos(angle), sin(angle)) * startDistance;
+      final end = center + Offset(cos(angle), sin(angle)) * endDistance;
 
       canvas.drawLine(
         start,
@@ -7069,10 +6378,7 @@ class GameBoard extends StatelessWidget {
       aspectRatio: 1,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final size = Size(
-            constraints.maxWidth,
-            constraints.maxHeight,
-          );
+          final size = Size(constraints.maxWidth, constraints.maxHeight);
           final base = BoardMap.base(size);
           final boardCenter = BoardMap.center(size);
           final landingPoint = landingNodeId == null
@@ -7083,8 +6389,8 @@ class GameBoard extends StatelessWidget {
               : BoardMap.node(landingNodeId!);
           final landingColor =
               landingNode == null || landingNode.categoryIndex < 0
-                  ? const Color(0xFF67E8F9)
-                  : GameCategory.values[landingNode.categoryIndex].color;
+              ? const Color(0xFF67E8F9)
+              : GameCategory.values[landingNode.categoryIndex].color;
           final landingSize = base * 0.17;
           final safeCurrentPlayerIndex = players.isEmpty
               ? 0
@@ -7099,16 +6405,12 @@ class GameBoard extends StatelessWidget {
           return Stack(
             clipBehavior: Clip.none,
             children: [
-              const Positioned.fill(
-                child: LiveBoardLayer(),
-              ),
+              const Positioned.fill(child: LiveBoardLayer()),
               if (moveOptions.isNotEmpty)
                 Positioned.fill(
                   child: IgnorePointer(
                     child: CustomPaint(
-                      painter: RouteHighlightPainter(
-                        options: moveOptions,
-                      ),
+                      painter: RouteHighlightPainter(options: moveOptions),
                     ),
                   ),
                 ),
@@ -7133,9 +6435,11 @@ class GameBoard extends StatelessWidget {
                 final active = index == currentPlayerIndex;
 
                 final sameCellIndexes = <int>[
-                  for (var otherIndex = 0;
-                      otherIndex < players.length;
-                      otherIndex++)
+                  for (
+                    var otherIndex = 0;
+                    otherIndex < players.length;
+                    otherIndex++
+                  )
                     if (players[otherIndex].position == player.position)
                       otherIndex,
                 ];
@@ -7143,19 +6447,16 @@ class GameBoard extends StatelessWidget {
 
                 if (player.position == BoardMap.centerId) {
                   final divisor = players.isEmpty ? 1 : players.length;
-                  final angle = -pi / 2 +
-                      index * (2 * pi / divisor.toDouble());
-                  point = boardCenter +
+                  final angle = -pi / 2 + index * (2 * pi / divisor.toDouble());
+                  point =
+                      boardCenter +
                       Offset(cos(angle), sin(angle)) * base * 0.084;
                 } else if (sameCellIndexes.length > 1) {
                   final radialAngle = atan2(
                     point.dy - boardCenter.dy,
                     point.dx - boardCenter.dx,
                   );
-                  final tangent = Offset(
-                    -sin(radialAngle),
-                    cos(radialAngle),
-                  );
+                  final tangent = Offset(-sin(radialAngle), cos(radialAngle));
                   final centeredSlot =
                       stackSlot - (sameCellIndexes.length - 1) / 2;
                   point += tangent * centeredSlot * base * 0.052;
@@ -7195,10 +6496,12 @@ class GameBoard extends StatelessWidget {
               ...moveOptions.map((option) {
                 final destination = BoardMap.node(option.destination);
                 final point = BoardMap.position(size, option.destination);
-                final targetColor =
-                    BoardTargetPresentation.colorFor(destination);
-                final targetEmoji =
-                    BoardTargetPresentation.emojiFor(destination);
+                final targetColor = BoardTargetPresentation.colorFor(
+                  destination,
+                );
+                final targetEmoji = BoardTargetPresentation.emojiFor(
+                  destination,
+                );
                 final targetSize = destination.isBadge
                     ? base * 0.088
                     : base * 0.074;
@@ -7208,8 +6511,7 @@ class GameBoard extends StatelessWidget {
                   top: point.dy - targetSize / 2,
                   child: Semantics(
                     button: true,
-                    label:
-                        BoardTargetPresentation.semanticsLabelFor(option),
+                    label: BoardTargetPresentation.semanticsLabelFor(option),
                     child: RouteTargetPulse(
                       key: ValueKey<int>(option.destination),
                       color: targetColor,
@@ -7229,10 +6531,7 @@ class GameBoard extends StatelessWidget {
 }
 
 class BoardPainter extends CustomPainter {
-  const BoardPainter({
-    this.pulse = 0,
-    this.themeOverride,
-  });
+  const BoardPainter({this.pulse = 0, this.themeOverride});
 
   final double pulse;
   final BoardThemeDefinition? themeOverride;
@@ -7242,8 +6541,7 @@ class BoardPainter extends CustomPainter {
 
   Color get _gold => _theme.gold;
   Color get _darkGold => _theme.darkGold;
-  Color get _deepPurple =>
-      _theme.backgroundColors.last;
+  Color get _deepPurple => _theme.backgroundColors.last;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -7273,13 +6571,8 @@ class BoardPainter extends CustomPainter {
         Paint()
           ..style = PaintingStyle.stroke
           ..strokeWidth = 2 + pulse * 2
-          ..color = _gold.withOpacity(
-            0.10 + pulse * 0.18,
-          )
-          ..maskFilter = const MaskFilter.blur(
-            BlurStyle.normal,
-            7,
-          ),
+          ..color = _gold.withOpacity(0.10 + pulse * 0.18)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 7),
       );
     }
 
@@ -7293,14 +6586,7 @@ class BoardPainter extends CustomPainter {
         ).createShader(boardRect),
     );
 
-    BoardThemeArt.paintSurface(
-      canvas,
-      size,
-      boardRect,
-      base,
-      _theme,
-      pulse,
-    );
+    BoardThemeArt.paintSurface(canvas, size, boardRect, base, _theme, pulse);
 
     canvas.drawRRect(
       boardShape.deflate(base * 0.012),
@@ -7478,24 +6764,18 @@ class BoardPainter extends CustomPainter {
     }
   }
 
-  void _drawSpecialCellOverlays(
-    Canvas canvas,
-    Size size,
-    double base,
-  ) {
+  void _drawSpecialCellOverlays(Canvas canvas, Size size, double base) {
     for (final entry in BoardMap.specialCells.entries) {
       final id = entry.key;
       final effect = entry.value;
       final node = BoardMap.node(id);
 
-      if (node.kind != BoardNodeKind.outer ||
-          node.ring == null) {
+      if (node.kind != BoardNodeKind.outer || node.ring == null) {
         continue;
       }
 
       final center = BoardMap.position(size, id);
-      final angle =
-          -pi / 2 + node.ring! * (2 * pi / BoardMap.outerCount);
+      final angle = -pi / 2 + node.ring! * (2 * pi / BoardMap.outerCount);
 
       canvas.save();
       canvas.translate(center.dx, center.dy);
@@ -7515,8 +6795,7 @@ class BoardPainter extends CustomPainter {
         shape.inflate(base * 0.009),
         Paint()
           ..color = effect.color.withOpacity(0.58)
-          ..maskFilter =
-              const MaskFilter.blur(BlurStyle.normal, 7),
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 7),
       );
 
       canvas.drawRRect(
@@ -7593,14 +6872,10 @@ class BoardPainter extends CustomPainter {
         );
         canvas.drawRRect(
           shape,
-          Paint()
-            ..color = Color.lerp(category.color, Colors.black, 0.52)!,
+          Paint()..color = Color.lerp(category.color, Colors.black, 0.52)!,
         );
       } else {
-        canvas.drawRRect(
-          shape.inflate(base * 0.003),
-          Paint()..color = _gold,
-        );
+        canvas.drawRRect(shape.inflate(base * 0.003), Paint()..color = _gold);
         canvas.drawRRect(
           shape,
           Paint()
@@ -7623,13 +6898,7 @@ class BoardPainter extends CustomPainter {
             ..strokeCap = StrokeCap.round
             ..color = const Color(0xAAFFFFFF),
         );
-        _drawText(
-          canvas,
-          category.emoji,
-          Offset.zero,
-          iconSize,
-          Colors.white,
-        );
+        _drawText(canvas, category.emoji, Offset.zero, iconSize, Colors.white);
       }
 
       canvas.restore();
@@ -7660,11 +6929,7 @@ class BoardPainter extends CustomPainter {
       radius * 1.07,
       Paint()..color = _darkGold,
     );
-    canvas.drawCircle(
-      center,
-      radius * 1.08,
-      Paint()..color = _gold,
-    );
+    canvas.drawCircle(center, radius * 1.08, Paint()..color = _gold);
     canvas.drawCircle(
       center,
       radius,
@@ -7686,13 +6951,7 @@ class BoardPainter extends CustomPainter {
         ..strokeWidth = 1.5
         ..color = const Color(0xCCFFFFFF),
     );
-    _drawText(
-      canvas,
-      category.emoji,
-      center,
-      base * 0.027,
-      Colors.white,
-    );
+    _drawText(canvas, category.emoji, center, base * 0.027, Colors.white);
   }
 
   void _drawCenterHex(Canvas canvas, Offset center, double base) {
@@ -7724,12 +6983,7 @@ class BoardPainter extends CustomPainter {
         ..shader = RadialGradient(
           center: const Alignment(-0.35, -0.38),
           colors: _theme.centerColors,
-        ).createShader(
-          Rect.fromCircle(
-            center: center,
-            radius: radius,
-          ),
-        ),
+        ).createShader(Rect.fromCircle(center: center, radius: radius)),
     );
     canvas.drawPath(
       upper,
@@ -7787,19 +7041,13 @@ class BoardPainter extends CustomPainter {
 
     painter.paint(
       canvas,
-      Offset(
-        center.dx - painter.width / 2,
-        center.dy - painter.height / 2,
-      ),
+      Offset(center.dx - painter.width / 2, center.dy - painter.height / 2),
     );
   }
 
   @override
-  bool shouldRepaint(
-    covariant BoardPainter oldDelegate,
-  ) {
-    return oldDelegate.pulse != pulse ||
-        oldDelegate._theme.id != _theme.id;
+  bool shouldRepaint(covariant BoardPainter oldDelegate) {
+    return oldDelegate.pulse != pulse || oldDelegate._theme.id != _theme.id;
   }
 }
 
@@ -7832,23 +7080,14 @@ class DiceFace extends StatelessWidget {
         duration: const Duration(milliseconds: 130),
         transitionBuilder: (child, animation) {
           return RotationTransition(
-            turns: Tween<double>(
-              begin: 0,
-              end: 0.25,
-            ).animate(animation),
-            child: ScaleTransition(
-              scale: animation,
-              child: child,
-            ),
+            turns: Tween<double>(begin: 0, end: 0.25).animate(animation),
+            child: ScaleTransition(scale: animation, child: child),
           );
         },
         child: Text(
           value == null ? '🎲' : _faces[value]!,
           key: ValueKey<int?>(value),
-          style: const TextStyle(
-            fontSize: 33,
-            height: 1,
-          ),
+          style: const TextStyle(fontSize: 33, height: 1),
         ),
       ),
     );
@@ -7871,15 +7110,12 @@ class QuestionScreen extends StatefulWidget {
   final bool isBadgeQuestion;
   final bool isFinalQuestion;
   final JokerWallet? jokers;
-  final Future<QuizQuestion?> Function(
-    QuizQuestion current,
-  )? onChangeQuestion;
+  final Future<QuizQuestion?> Function(QuizQuestion current)? onChangeQuestion;
   final bool riskMode;
   final int xpMultiplier;
 
   @override
-  State<QuestionScreen> createState() =>
-      _QuestionScreenState();
+  State<QuestionScreen> createState() => _QuestionScreenState();
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
@@ -7904,8 +7140,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   bool _jokerBusy = false;
 
   bool get _answered => _selectedIndex != null;
-  bool get _correct =>
-      _selectedIndex == _question.answerIndex;
+  bool get _correct => _selectedIndex == _question.answerIndex;
 
   String get _gameMode {
     if (widget.riskMode) return 'Riskli soru';
@@ -7923,14 +7158,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
   }
 
   Future<void> _loadFeedbackState() async {
-    final vote =
-        await QuestionFeedbackService.difficultyVoteFor(
-      _question.id,
-    );
-    final reported =
-        await QuestionFeedbackService.hasErrorReport(
-      _question.id,
-    );
+    final vote = await QuestionFeedbackService.difficultyVoteFor(_question.id);
+    final reported = await QuestionFeedbackService.hasErrorReport(_question.id);
 
     if (!mounted) return;
 
@@ -7942,8 +7171,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final category =
-        GameCategory.values[_question.categoryIndex];
+    final category = GameCategory.values[_question.categoryIndex];
 
     return PopScope(
       canPop: false,
@@ -7964,8 +7192,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
             widget.isFinalQuestion
                 ? '🏆 Final Sorusu'
                 : widget.isBadgeQuestion
-                    ? '⭐ ${category.label} Rozet Sorusu'
-                    : '${category.emoji} ${category.label}',
+                ? '⭐ ${category.label} Rozet Sorusu'
+                : '${category.emoji} ${category.label}',
           ),
         ),
         bottomNavigationBar: !_answered
@@ -7973,19 +7201,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
             : SafeArea(
                 top: false,
                 child: Container(
-                  padding: const EdgeInsets.fromLTRB(
-                    18,
-                    10,
-                    18,
-                    12,
-                  ),
+                  padding: const EdgeInsets.fromLTRB(18, 10, 18, 12),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border(
                       top: BorderSide(
-                        color: category.color.withValues(
-                          alpha: 0.24,
-                        ),
+                        color: category.color.withValues(alpha: 0.24),
                       ),
                     ),
                     boxShadow: const [
@@ -7997,8 +7218,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     ],
                   ),
                   child: FilledButton.icon(
-                    onPressed: () =>
-                        Navigator.pop(context, _correct),
+                    onPressed: () => Navigator.pop(context, _correct),
                     style: FilledButton.styleFrom(
                       backgroundColor: category.darkColor,
                       foregroundColor: Colors.white,
@@ -8007,9 +7227,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         borderRadius: BorderRadius.circular(17),
                       ),
                     ),
-                    icon: const Icon(
-                      Icons.arrow_forward_rounded,
-                    ),
+                    icon: const Icon(Icons.arrow_forward_rounded),
                     label: const Text(
                       'Devam Et',
                       style: TextStyle(
@@ -8022,56 +7240,44 @@ class _QuestionScreenState extends State<QuestionScreen> {
               ),
         body: SafeArea(
           child: SingleChildScrollView(
-            padding:
-                const EdgeInsets.fromLTRB(18, 8, 18, 20),
-            keyboardDismissBehavior:
-                ScrollViewKeyboardDismissBehavior.onDrag,
+            padding: const EdgeInsets.fromLTRB(18, 8, 18, 20),
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
                   padding: const EdgeInsets.all(22),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(26),
-                    border: Border.all(
-                      color:
-                          category.color.withOpacity(0.28),
-                    ),
+                    border: Border.all(color: category.color.withOpacity(0.28)),
                   ),
                   child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
                           Container(
-                            padding:
-                                const EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               horizontal: 10,
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: category.color
-                                  .withOpacity(0.14),
-                              borderRadius:
-                                  BorderRadius.circular(999),
+                              color: category.color.withOpacity(0.14),
+                              borderRadius: BorderRadius.circular(999),
                             ),
                             child: Text(
                               _question.difficulty,
                               style: TextStyle(
                                 color: category.darkColor,
-                                fontWeight:
-                                    FontWeight.w700,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),
                           const Spacer(),
                           Text(
                             category.emoji,
-                            style:
-                                const TextStyle(fontSize: 26),
+                            style: const TextStyle(fontSize: 26),
                           ),
                         ],
                       ),
@@ -8090,14 +7296,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 const LiveStreakPill(),
                 if (widget.riskMode) ...[
                   const SizedBox(height: 10),
-                  RiskQuestionBanner(
-                    multiplier: widget.xpMultiplier,
-                  ),
+                  RiskQuestionBanner(multiplier: widget.xpMultiplier),
                 ],
                 if (!_answered &&
                     !widget.isFinalQuestion &&
-                    GameplayBoostSettingsService
-                        .current.jokersEnabled &&
+                    GameplayBoostSettingsService.current.jokersEnabled &&
                     widget.jokers != null) ...[
                   const SizedBox(height: 10),
                   _buildJokerPanel(category),
@@ -8105,11 +7308,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 const SizedBox(height: 16),
                 ListView.separated(
                   shrinkWrap: true,
-                  physics:
-                      const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: _question.options.length,
-                  separatorBuilder: (_, __) =>
-                      const SizedBox(height: 10),
+                  separatorBuilder: (_, __) => const SizedBox(height: 10),
                   itemBuilder: (context, index) {
                     return _buildOption(index, category);
                   },
@@ -8121,18 +7322,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       color: _correct
                           ? const Color(0xFFDCFCE7)
                           : const Color(0xFFFEE2E2),
-                      borderRadius:
-                          BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Text(
                       _correct
                           ? 'Doğru! ${_question.explanation}'
                           : 'Yanlış. Doğru cevap: '
-                              '${_question.options[_question.answerIndex]}. '
-                              '${_question.explanation}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                      ),
+                                '${_question.options[_question.answerIndex]}. '
+                                '${_question.explanation}',
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -8147,9 +7345,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
     );
   }
 
-  Widget _buildJokerPanel(
-    GameCategory category,
-  ) {
+  Widget _buildJokerPanel(GameCategory category) {
     final wallet = widget.jokers!;
 
     return Container(
@@ -8157,9 +7353,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(17),
-        border: Border.all(
-          color: category.color.withOpacity(0.25),
-        ),
+        border: Border.all(color: category.color.withOpacity(0.25)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -8180,8 +7374,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 emoji: '✂️',
                 label: '50:50',
                 count: wallet.fiftyFifty,
-                onPressed: _jokerBusy ||
-                        wallet.fiftyFifty <= 0
+                onPressed: _jokerBusy || wallet.fiftyFifty <= 0
                     ? null
                     : _useFiftyFifty,
               ),
@@ -8190,7 +7383,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 emoji: '🔄',
                 label: 'Değiştir',
                 count: wallet.changeQuestion,
-                onPressed: _jokerBusy ||
+                onPressed:
+                    _jokerBusy ||
                         wallet.changeQuestion <= 0 ||
                         widget.onChangeQuestion == null
                     ? null
@@ -8202,7 +7396,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 label: '2. Şans',
                 count: wallet.secondChance,
                 active: _secondChanceArmed,
-                onPressed: _jokerBusy ||
+                onPressed:
+                    _jokerBusy ||
                         wallet.secondChance <= 0 ||
                         _secondChanceArmed ||
                         _secondChanceUsed
@@ -8218,23 +7413,17 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   void _useFiftyFifty() {
     final wallet = widget.jokers;
-    if (wallet == null ||
-        !wallet.consume(JokerKind.fiftyFifty)) {
+    if (wallet == null || !wallet.consume(JokerKind.fiftyFifty)) {
       return;
     }
 
     final wrongOptions = <int>[
-      for (var index = 0;
-          index < _question.options.length;
-          index++)
-        if (index != _question.answerIndex)
-          index,
+      for (var index = 0; index < _question.options.length; index++)
+        if (index != _question.answerIndex) index,
     ]..shuffle(Random());
 
     setState(() {
-      _hiddenOptions.addAll(
-        wrongOptions.take(2),
-      );
+      _hiddenOptions.addAll(wrongOptions.take(2));
     });
 
     GameHaptics.mediumImpact();
@@ -8243,8 +7432,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   void _armSecondChance() {
     final wallet = widget.jokers;
-    if (wallet == null ||
-        !wallet.consume(JokerKind.secondChance)) {
+    if (wallet == null || !wallet.consume(JokerKind.secondChance)) {
       return;
     }
 
@@ -8253,9 +7441,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
     });
 
     GameHaptics.mediumImpact();
-    _showMessage(
-      '🍀 İlk cevabın yanlış olursa bir kez daha deneyebilirsin.',
-    );
+    _showMessage('🍀 İlk cevabın yanlış olursa bir kez daha deneyebilirsin.');
   }
 
   Future<void> _changeQuestion() async {
@@ -8277,9 +7463,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
     if (replacement == null) {
       setState(() => _jokerBusy = false);
-      _showMessage(
-        'Bu kategoride kullanılabilir başka soru kalmadı.',
-      );
+      _showMessage('Bu kategoride kullanılabilir başka soru kalmadı.');
       return;
     }
 
@@ -8324,9 +7508,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       });
 
       GameHaptics.heavyImpact();
-      _showMessage(
-        '🍀 İlk cevap yanlış. İkinci şansını kullan!',
-      );
+      _showMessage('🍀 İlk cevap yanlış. İkinci şansını kullan!');
       return;
     }
 
@@ -8339,9 +7521,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(17),
-        border: Border.all(
-          color: const Color(0xFFE2E8F0),
-        ),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -8364,11 +7544,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   label: _difficultyVote == 'Kolay'
                       ? '✓ Kolaydı\nalındı'
                       : 'Kolaydı',
-                  selected:
-                      _difficultyVote == 'Kolay',
+                  selected: _difficultyVote == 'Kolay',
                   color: const Color(0xFF16A34A),
-                  onPressed: _feedbackLoading ||
-                          _difficultyVote != null
+                  onPressed: _feedbackLoading || _difficultyVote != null
                       ? null
                       : () => _voteDifficulty('Kolay'),
                 ),
@@ -8377,13 +7555,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
               Expanded(
                 child: _feedbackButton(
                   icon: Icons.local_fire_department_rounded,
-                  label: _difficultyVote == 'Zor'
-                      ? '✓ Zordu\nalındı'
-                      : 'Zordu',
+                  label: _difficultyVote == 'Zor' ? '✓ Zordu\nalındı' : 'Zordu',
                   selected: _difficultyVote == 'Zor',
                   color: const Color(0xFFEA580C),
-                  onPressed: _feedbackLoading ||
-                          _difficultyVote != null
+                  onPressed: _feedbackLoading || _difficultyVote != null
                       ? null
                       : () => _voteDifficulty('Zor'),
                 ),
@@ -8392,13 +7567,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
               Expanded(
                 child: _feedbackButton(
                   icon: Icons.report_problem_rounded,
-                  label: _errorReported
-                      ? '✓ Hata\nalındı'
-                      : 'Hatalı',
+                  label: _errorReported ? '✓ Hata\nalındı' : 'Hatalı',
                   selected: _errorReported,
                   color: const Color(0xFFDC2626),
-                  onPressed: _feedbackLoading ||
-                          _errorReported
+                  onPressed: _feedbackLoading || _errorReported
                       ? null
                       : _showErrorDialog,
                 ),
@@ -8421,18 +7593,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
         foregroundColor: color,
-        backgroundColor:
-            selected ? color.withOpacity(0.12) : null,
+        backgroundColor: selected ? color.withOpacity(0.12) : null,
         side: BorderSide(
-          color: selected
-              ? color
-              : const Color(0xFFCBD5E1),
+          color: selected ? color : const Color(0xFFCBD5E1),
           width: selected ? 2 : 1,
         ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 4,
-          vertical: 11,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 11),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -8460,8 +7626,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
     setState(() => _feedbackLoading = true);
 
-    final accepted =
-        await QuestionFeedbackService.submitDifficultyVote(
+    final accepted = await QuestionFeedbackService.submitDifficultyVote(
       question: _question,
       selectedIndex: selectedIndex,
       vote: vote,
@@ -8474,14 +7639,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
       _feedbackLoading = false;
       if (accepted) _difficultyVote = vote;
     });
-
   }
 
   Future<void> _showErrorDialog() async {
     var reason = _errorReasons.first;
     final controller = TextEditingController();
 
-    final submit = await showDialog<bool>(
+    final submit =
+        await showDialog<bool>(
           context: context,
           builder: (dialogContext) {
             return StatefulBuilder(
@@ -8500,8 +7665,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           ),
                           items: _errorReasons
                               .map(
-                                (item) =>
-                                    DropdownMenuItem<String>(
+                                (item) => DropdownMenuItem<String>(
                                   value: item,
                                   child: Text(item),
                                 ),
@@ -8509,9 +7673,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               .toList(),
                           onChanged: (value) {
                             if (value != null) {
-                              setDialogState(
-                                () => reason = value,
-                              );
+                              setDialogState(() => reason = value);
                             }
                           },
                         ),
@@ -8522,8 +7684,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           maxLines: 4,
                           maxLength: 500,
                           decoration: const InputDecoration(
-                            labelText:
-                                'Açıklama • İsteğe bağlı',
+                            labelText: 'Açıklama • İsteğe bağlı',
                             hintText:
                                 'Hatanın ne olduğunu kısaca yazabilirsin.',
                             border: OutlineInputBorder(),
@@ -8534,13 +7695,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   ),
                   actions: [
                     TextButton(
-                      onPressed: () =>
-                          Navigator.pop(dialogContext, false),
+                      onPressed: () => Navigator.pop(dialogContext, false),
                       child: const Text('Vazgeç'),
                     ),
                     FilledButton(
-                      onPressed: () =>
-                          Navigator.pop(dialogContext, true),
+                      onPressed: () => Navigator.pop(dialogContext, true),
                       child: const Text('Gönder'),
                     ),
                   ],
@@ -8561,8 +7720,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
     setState(() => _feedbackLoading = true);
 
-    final accepted =
-        await QuestionFeedbackService.submitErrorReport(
+    final accepted = await QuestionFeedbackService.submitErrorReport(
       question: _question,
       selectedIndex: selectedIndex,
       reason: reason,
@@ -8576,30 +7734,22 @@ class _QuestionScreenState extends State<QuestionScreen> {
       _feedbackLoading = false;
       if (accepted) _errorReported = true;
     });
-
   }
 
   void _showMessage(String message) {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(content: Text(message)),
-      );
+      ..showSnackBar(SnackBar(content: Text(message)));
   }
 
-  Widget _buildOption(
-    int index,
-    GameCategory category,
-  ) {
+  Widget _buildOption(int index, GameCategory category) {
     if (_hiddenOptions.contains(index)) {
       return const SizedBox.shrink();
     }
 
-    final isDisabled =
-        _disabledOptions.contains(index);
+    final isDisabled = _disabledOptions.contains(index);
     final isSelected = _selectedIndex == index;
-    final isCorrectOption =
-        _question.answerIndex == index;
+    final isCorrectOption = _question.answerIndex == index;
 
     Color background = Colors.white;
     Color border = const Color(0xFFCBD5E1);
@@ -8622,21 +7772,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
       borderRadius: BorderRadius.circular(18),
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
-        onTap: _answered || isDisabled
-            ? null
-            : () => _selectOption(index),
+        onTap: _answered || isDisabled ? null : () => _selectOption(index),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 16,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: isDisabled
-                  ? const Color(0xFFE2E8F0)
-                  : border,
+              color: isDisabled ? const Color(0xFFE2E8F0) : border,
               width: isSelected ? 2 : 1.2,
             ),
           ),
@@ -8647,8 +7790,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 height: 34,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color:
-                      category.color.withOpacity(0.13),
+                  color: category.color.withOpacity(0.13),
                   shape: BoxShape.circle,
                 ),
                 child: Text(
@@ -8669,8 +7811,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   ),
                 ),
               ),
-              if (trailingIcon != null)
-                Icon(trailingIcon),
+              if (trailingIcon != null) Icon(trailingIcon),
             ],
           ),
         ),
@@ -8686,9 +7827,8 @@ class PlayerData {
     required this.pawnType,
     DifficultyMode? difficultyMode,
     JokerWallet? jokers,
-  })  : difficultyMode =
-            difficultyMode ?? DifficultyMode.relaxed,
-        jokers = jokers ?? JokerWallet.starter();
+  }) : difficultyMode = difficultyMode ?? DifficultyMode.relaxed,
+       jokers = jokers ?? JokerWallet.starter();
 
   final String name;
   final Color color;
@@ -8704,15 +7844,11 @@ class PlayerData {
   bool doubleChance = false;
   final Set<int> badges = <int>{};
 
-  bool get hasAllBadges =>
-      badges.length == GameCategory.values.length;
+  bool get hasAllBadges => badges.length == GameCategory.values.length;
 }
 
 class QuestionDraw {
-  const QuestionDraw({
-    required this.question,
-    required this.poolReset,
-  });
+  const QuestionDraw({required this.question, required this.poolReset});
 
   final QuizQuestion question;
   final bool poolReset;
@@ -8803,7 +7939,8 @@ class QuestionBank {
     final numberCount = RegExp(
       r'(?<![a-z])\d+(?:[.,]\d+)?',
     ).allMatches(normalized).length;
-    final musicWords = normalized.contains('nota') &&
+    final musicWords =
+        normalized.contains('nota') &&
         const <String>[
           'vurus',
           'dortluk',
@@ -8824,35 +7961,27 @@ class QuestionBank {
       'kac tam olcu',
     ].any(normalized.contains);
 
-    if (numberCount >= 2 &&
-        musicWords &&
-        musicCalculation) {
+    if (numberCount >= 2 && musicWords && musicCalculation) {
       return 'topic:music_note_duration';
     }
 
     final administrativeTemplate =
         (normalized.contains('adli idari bolum') &&
-                const <String>[
-                  'hangi ulkeye baglidir',
-                  'hangi ulkeye aittir',
-                  'hangi ulkenin',
-                ].any(normalized.contains)) ||
-            normalized.contains(
-              'hangi ulkenin alt ulusal bolum',
-            ) ||
-            normalized.contains(
-              'alt ulusal bolumlerinden biri',
-            ) ||
-            (normalized.contains('idari bolum') &&
-                normalized.contains('hangi ulkeye'));
+            const <String>[
+              'hangi ulkeye baglidir',
+              'hangi ulkeye aittir',
+              'hangi ulkenin',
+            ].any(normalized.contains)) ||
+        normalized.contains('hangi ulkenin alt ulusal bolum') ||
+        normalized.contains('alt ulusal bolumlerinden biri') ||
+        (normalized.contains('idari bolum') &&
+            normalized.contains('hangi ulkeye'));
 
     if (administrativeTemplate) {
       return 'topic:administrative_division_country';
     }
 
-    return normalized
-        .replaceAll(RegExp(r'\d+(?:[.,/]\d+)*'), '#')
-        .trim();
+    return normalized.replaceAll(RegExp(r'\d+(?:[.,/]\d+)*'), '#').trim();
   }
 
   Set<String> _familyKeysForIds(Set<String> questionIds) {
@@ -8908,18 +8037,15 @@ class QuestionBank {
   }
 
   int get totalCount => questionsByCategory.values.fold<int>(
-        0,
-        (sum, questions) => sum + questions.length,
-      );
+    0,
+    (sum, questions) => sum + questions.length,
+  );
 
   static Future<QuestionBank> load() async {
     final raw = await rootBundle.loadString('assets/questions.json');
     final decoded = jsonDecode(raw) as List<dynamic>;
     final allQuestions = decoded
-        .map(
-          (item) =>
-              QuizQuestion.fromJson(item as Map<String, dynamic>),
-        )
+        .map((item) => QuizQuestion.fromJson(item as Map<String, dynamic>))
         .toList();
 
     QuestionQualityGuard.updateLastScan(allQuestions);
@@ -8940,7 +8066,9 @@ class QuestionBank {
 
     for (var index = 0; index < GameCategory.values.length; index++) {
       if (grouped[index] == null || grouped[index]!.isEmpty) {
-        throw StateError('${GameCategory.values[index].label} kategorisinde soru yok.');
+        throw StateError(
+          '${GameCategory.values[index].label} kategorisinde soru yok.',
+        );
       }
     }
 
@@ -8956,23 +8084,17 @@ class QuestionBank {
     final list = questionsByCategory[categoryIndex];
 
     if (list == null || list.isEmpty) {
-      throw StateError(
-        'Kategori için soru bulunamadı: $categoryIndex',
-      );
+      throw StateError('Kategori için soru bulunamadı: $categoryIndex');
     }
 
     var available = list
-        .where(
-          (question) => !usedQuestionIds.contains(question.id),
-        )
+        .where((question) => !usedQuestionIds.contains(question.id))
         .toList();
 
     var poolReset = false;
 
     if (available.isEmpty) {
-      final categoryIds = list
-          .map((question) => question.id)
-          .toSet();
+      final categoryIds = list.map((question) => question.id).toSet();
 
       usedQuestionIds.removeWhere(categoryIds.contains);
       available = List<QuizQuestion>.from(list);
@@ -8983,8 +8105,7 @@ class QuestionBank {
     final familyFresh = available
         .where(
           (question) => !usedFamilyKeys.contains(
-            _familyKeyById[question.id] ??
-                questionFamilyKey(question.text),
+            _familyKeyById[question.id] ?? questionFamilyKey(question.text),
           ),
         )
         .toList();
@@ -8997,10 +8118,7 @@ class QuestionBank {
 
     if (preferredDifficulty != null) {
       final preferred = available
-          .where(
-            (question) =>
-                question.difficulty == preferredDifficulty,
-          )
+          .where((question) => question.difficulty == preferredDifficulty)
           .toList();
 
       if (preferred.isNotEmpty) {
@@ -9008,33 +8126,23 @@ class QuestionBank {
       }
     }
 
-    final candidateFamilies =
-        <String, List<QuizQuestion>>{};
+    final candidateFamilies = <String, List<QuizQuestion>>{};
 
     for (final candidate in candidates) {
       final familyKey =
-          _familyKeyById[candidate.id] ??
-              questionFamilyKey(candidate.text);
+          _familyKeyById[candidate.id] ?? questionFamilyKey(candidate.text);
       candidateFamilies
-          .putIfAbsent(
-            familyKey,
-            () => <QuizQuestion>[],
-          )
+          .putIfAbsent(familyKey, () => <QuizQuestion>[])
           .add(candidate);
     }
 
     final families = candidateFamilies.values.toList();
-    final selectedFamily =
-        families[random.nextInt(families.length)];
-    final question =
-        selectedFamily[random.nextInt(selectedFamily.length)];
+    final selectedFamily = families[random.nextInt(families.length)];
+    final question = selectedFamily[random.nextInt(selectedFamily.length)];
 
     usedQuestionIds.add(question.id);
 
-    return QuestionDraw(
-      question: question,
-      poolReset: poolReset,
-    );
+    return QuestionDraw(question: question, poolReset: poolReset);
   }
 
   QuizQuestion randomQuestion(int categoryIndex, Random random) {
