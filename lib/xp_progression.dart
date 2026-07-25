@@ -85,7 +85,6 @@ class XpProgressService {
 
   static int requiredForLevel(int level) {
     final safeLevel = max(1, level);
-    if (safeLevel >= 100) return 0;
     final linear = 110 * safeLevel;
     final curve = 12 * safeLevel * safeLevel;
     return 40 + linear + curve;

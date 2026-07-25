@@ -31,13 +31,13 @@ void main() {
     });
 
     test('RC2 sürüm bilgisi tek merkezden gelir', () {
-      expect(AppBuildInfo.versionName, '1.48.4');
-      expect(AppBuildInfo.buildNumber, 68);
+      expect(AppBuildInfo.versionName, '1.48.5');
+      expect(AppBuildInfo.buildNumber, 69);
       expect(AppBuildInfo.channel, 'RC2');
-      expect(AppBuildInfo.version, '1.48.4+68');
+      expect(AppBuildInfo.version, '1.48.5+69');
       expect(
         AppBuildInfo.fullLabel,
-        'Sürüm 1.48.4+68 • RC2',
+        'Sürüm 1.48.5+69 • RC2',
       );
     });
 
