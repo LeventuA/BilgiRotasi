@@ -14,7 +14,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_VERSION = "1.48.4+68"
+EXPECTED_VERSION = "1.48.5+69"
 MIN_TOTAL_QUESTIONS = 5000
 MIN_QUESTIONS_PER_CATEGORY = 500
 CATEGORY_COUNT = 6
