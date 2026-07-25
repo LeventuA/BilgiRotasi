@@ -46,6 +46,7 @@ part 'app_build_info.dart';
 part 'account_cloud.dart';
 part 'live_duel_league.dart';
 part 'live_duel_matchmaking.dart';
+part 'live_duel_screen.dart';
 
 class SoundFx {
   SoundFx._();
