@@ -349,6 +349,7 @@ class LiveDuelProfileService {
           Map<String, dynamic>.from(rawProfile),
         );
         await saveLocal(remote);
+        await LiveDuelLeaderboardService.publish(remote);
         return remote;
       }
 
@@ -357,6 +358,7 @@ class LiveDuelProfileService {
         'liveDuelProfileUpdatedAt': FieldValue.serverTimestamp(),
         'appVersion': AppBuildInfo.version,
       }, SetOptions(merge: true));
+      await LiveDuelLeaderboardService.publish(local);
     } catch (_) {
       // Bulut profil erişimi yerel profili engellememeli.
     }
@@ -379,6 +381,7 @@ class LiveDuelProfileService {
             'liveDuelProfileUpdatedAt': FieldValue.serverTimestamp(),
             'appVersion': AppBuildInfo.version,
           }, SetOptions(merge: true));
+      await LiveDuelLeaderboardService.publish(profile);
     } catch (_) {
       // Yerel profil korunur; sonraki yüklemede bulut tekrar denenir.
     }

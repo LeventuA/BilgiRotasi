@@ -6,6 +6,49 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function userDuelProfile(userId) {
+      return get(
+        /databases/$(database)/documents/users/$(userId)
+      ).data.liveDuelProfile;
+    }
+
+    function validLeaderboardWrite(userId) {
+      let profile = userDuelProfile(userId);
+
+      return signedIn()
+             && request.auth.uid == userId
+             && profile is map
+             && request.resource.data.keys().hasOnly([
+               'uid',
+               'displayName',
+               'rating',
+               'matchesPlayed',
+               'wins',
+               'losses',
+               'draws',
+               'bestWinStreak',
+               'highestRating',
+               'updatedAt',
+               'appVersion'
+             ])
+             && request.resource.data.uid == userId
+             && request.resource.data.displayName is string
+             && request.resource.data.displayName.size() > 0
+             && request.resource.data.displayName.size() <= 40
+             && request.resource.data.rating == profile.rating
+             && request.resource.data.matchesPlayed ==
+                profile.matchesPlayed
+             && request.resource.data.wins == profile.wins
+             && request.resource.data.losses == profile.losses
+             && request.resource.data.draws == profile.draws
+             && request.resource.data.bestWinStreak ==
+                profile.bestWinStreak
+             && request.resource.data.highestRating ==
+                profile.highestRating
+             && request.resource.data.updatedAt == request.time
+             && request.resource.data.appVersion is string;
+    }
+
     function duelMatch(matchId) {
       return get(
         /databases/$(database)/documents/live_duel_matches/$(matchId)
@@ -212,6 +255,15 @@ service cloud.firestore {
     match /users/{userId}/{document=**} {
       allow read, write: if signedIn()
                          && request.auth.uid == userId;
+    }
+
+    match /live_duel_leaderboard/{userId} {
+      allow read: if signedIn();
+
+      allow create, update: if validLeaderboardWrite(userId);
+
+      allow delete: if signedIn()
+                    && request.auth.uid == userId;
     }
 
     match /live_duel_queue/{userId} {

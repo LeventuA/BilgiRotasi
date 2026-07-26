@@ -107,6 +107,17 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
     await _loadResumeMatch();
   }
 
+  Future<void> _openLeaderboard() async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (context) => const LiveDuelLeaderboardScreen(),
+      ),
+    );
+
+    if (!mounted) return;
+    await _loadProfile();
+  }
+
   Future<void> _startMatchmaking() async {
     if (_startingQueue) return;
 
@@ -211,6 +222,15 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
                                   ? '${_profile.matchesPlayed} dereceli maç'
                                   : 'Yerleştirme maçları: '
                                       '${_profile.placementMatchesRemaining} kaldı',
+                            ),
+                            const SizedBox(height: 14),
+                            SizedBox(
+                              width: double.infinity,
+                              child: FilledButton.tonalIcon(
+                                onPressed: _openLeaderboard,
+                                icon: const Icon(Icons.emoji_events_rounded),
+                                label: const Text('Lig ve Sıralama'),
+                              ),
                             ),
                           ],
                         ),

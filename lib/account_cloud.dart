@@ -611,6 +611,16 @@ class AccountCloudService with WidgetsBindingObserver {
 
       await _deleteLiveDuelResultClaims(user.uid);
 
+      try {
+        await _firestore!
+            .collection('live_duel_leaderboard')
+            .doc(user.uid)
+            .delete();
+      } catch (_) {
+        // Eski kurallar sıralama silme işlemini engellese bile
+        // hesap silme akışı devam etmelidir.
+      }
+
       await _firestore!.collection('users').doc(user.uid).delete();
 
       final preferences = await SharedPreferences.getInstance();

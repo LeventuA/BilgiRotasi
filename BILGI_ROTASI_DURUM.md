@@ -2,32 +2,32 @@
 
 ## Son Sürüm
 
-**1.59.0+80**
+**1.60.0+81**
 
 ## Son Tamamlanan İş
 
-Ana sayfa üst bölümündeki gereksiz kartlar kaldırıldı.
+Canlı Düello için Lig ve Sıralama merkezi eklendi.
 
-- **Oyuna Başla** kartı ana sayfadan kaldırıldı.
-- **Günlük Görev** kartı ana sayfadan kaldırıldı.
-- Kayıt kontrolü sırasında yükleme kartı gösterilmiyor.
-- Ana sayfada yalnızca gerçek bir kayıtlı oyun varsa
-  **Devam Eden Oyun** kartı gösteriliyor.
-- Kayıt yoksa hesap kartından sonra doğrudan **Bölümler** alanı geliyor.
-- Kayıtlı oyundaki **Oyuna Devam Et** ve **Kayıtlı Oyunu Sil**
-  işlemleri korunuyor.
-- Ana sayfa düzenini koruyan otomatik kaynak sözleşmesi testi eklendi.
-- Canlı Düello karışık kategori ve sabit zorluk dağılımı korunuyor.
-- Firestore kuralları `bilgi-rotasi-f255d` projesinde yayında.
+- Canlı Düello ekranına **Lig ve Sıralama** düğmesi eklendi.
+- Kullanıcının genel sırası ve güncel BR puanı gösteriliyor.
+- Sonraki lige kalan BR ve ilerleme çubuğu gösteriliyor.
+- Maç, galibiyet, mağlubiyet, beraberlik, kazanma oranı,
+  en iyi seri ve en yüksek BR istatistikleri gösteriliyor.
+- BR puanına göre ilk 100 oyuncu listeleniyor.
+- Kullanıcının kendi satırı sıralamada vurgulanıyor.
+- Son 10 dereceli maç ve BR değişimleri gösteriliyor.
+- Yalnızca güvenli rekabet istatistiklerini taşıyan
+  `live_duel_leaderboard` koleksiyonu eklendi.
+- Hesap silindiğinde sıralama kaydı da siliniyor.
+- Sıralama güvenlik kuralları eklendi.
 
 ## Sıradaki İş
 
-- Yeni 1.59.0+80 APK ile ana sayfayı doğrulama
-- Kayıtsız durumda üst kartların görünmediğini kontrol etme
-- Kayıt oluşturup yalnızca Devam Eden Oyun kartının çıktığını kontrol etme
-- Canlı Düello iki cihaz testlerine devam etme
-- 20 ve 30 soruluk maçları doğrulama
-- Hükmen sonuç ve yarım maça dönüş senaryolarını kontrol etme
+- Firestore kurallarını `bilgi-rotasi-f255d` projesine dağıtma
+- Yeni 1.60.0+81 APK'yı iki telefona kurma
+- İki hesabın ilk 100 listesinde görünmesini doğrulama
+- Maç sonrasında BR, sıra ve son maçların yenilendiğini doğrulama
+- 20 ve 30 soruluk Canlı Düello testlerine devam etme
 
 ## Dokunulmaması Gerekenler
 
@@ -40,5 +40,6 @@ Ana sayfa üst bölümündeki gereksiz kartlar kaldırıldı.
 ## Bilinen Durumlar
 
 - Toplam soru sayısı: **6710**
-- Gerçek iki telefonla uçtan uca test devam ediyor.
-- Ana sayfa kayıt kartı doğrudan `GameSaveService.load()` sonucuna bağlıdır.
+- Sıralama yalnızca Google hesabıyla giriş yapan oyuncuları kapsar.
+- Sıralama belgesi, oyuncu Canlı Düello ekranını açtığında veya
+  maç sonucu kaydedildiğinde otomatik güncellenir.
