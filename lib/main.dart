@@ -1383,28 +1383,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 10),
                 const AccountSummaryCard(),
                 const SizedBox(height: 12),
-                _buildNewGameCard(),
-                const SizedBox(height: 10),
                 FutureBuilder<SavedGame?>(
                   future: _savedGameFuture,
                   builder: (context, snapshot) {
                     final savedGame = snapshot.data;
 
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return _buildLoadingCard();
-                    }
-
-                    if (savedGame == null) {
+                    if (snapshot.connectionState == ConnectionState.waiting ||
+                        savedGame == null) {
                       return const SizedBox.shrink();
                     }
 
                     return _buildSavedGameCard(savedGame);
                   },
                 ),
-                if (AccountCloudService.dailyVisible) ...[
-                  const SizedBox(height: 12),
-                  DailyChallengeHomeCard(questionBank: widget.questionBank),
-                ],
                 const SizedBox(height: 12),
                 const Text(
                   'BÖLÜMLER',
@@ -1489,101 +1480,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildLoadingCard() {
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: const Color(0x16FFFFFF),
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0x33FFFFFF)),
-      ),
-      child: const Row(
-        children: [
-          SizedBox(
-            width: 22,
-            height: 22,
-            child: CircularProgressIndicator(
-              strokeWidth: 2.5,
-              color: Color(0xFFFFE082),
-            ),
-          ),
-          SizedBox(width: 12),
-          Text(
-            'Kayıtlı oyun kontrol ediliyor…',
-            style: TextStyle(color: Colors.white),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNewGameCard() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF165B6A), Color(0xFF0F8278)],
-        ),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0x99FFE082)),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x55000000),
-            offset: Offset(0, 10),
-            blurRadius: 18,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Row(
-            children: [
-              Text('🎲', style: TextStyle(fontSize: 29)),
-              SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  'OYUNA BAŞLA',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    height: 1.1,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Text(
-            '${widget.questionBank.totalCount} soru • '
-            '6 kategori • 2–6 oyuncu • İnternetsiz',
-            style: const TextStyle(
-              color: Color(0xFFD5F5F1),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(height: 12),
-          FilledButton.icon(
-            style: FilledButton.styleFrom(
-              backgroundColor: const Color(0xFFFFE082),
-              foregroundColor: const Color(0xFF3A2448),
-              minimumSize: const Size.fromHeight(50),
-            ),
-            onPressed: _actionBusy ? null : _openNewGame,
-            icon: const Icon(Icons.add_circle_outline_rounded),
-            label: const Text(
-              'Standart Tahta Oyununu Başlat',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
-            ),
-          ),
-        ],
-      ),
     );
   }
 
