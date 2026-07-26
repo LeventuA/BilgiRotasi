@@ -9,6 +9,8 @@ class LiveDuelResultException implements Exception {
   String toString() => message;
 }
 
+enum LiveDuelCompletionType { completed, forfeit }
+
 class LiveDuelCompletedMatch {
   const LiveDuelCompletedMatch({
     required this.matchId,
@@ -16,6 +18,8 @@ class LiveDuelCompletedMatch {
     required this.scores,
     required this.draw,
     required this.winnerUid,
+    this.completionType = LiveDuelCompletionType.completed,
+    this.forfeitLoserUid,
     this.completedAt,
   });
 
@@ -24,7 +28,11 @@ class LiveDuelCompletedMatch {
   final Map<String, int> scores;
   final bool draw;
   final String? winnerUid;
+  final LiveDuelCompletionType completionType;
+  final String? forfeitLoserUid;
   final DateTime? completedAt;
+
+  bool get forfeited => completionType == LiveDuelCompletionType.forfeit;
 
   factory LiveDuelCompletedMatch.fromMap({
     required String matchId,
@@ -61,17 +69,38 @@ class LiveDuelCompletedMatch {
       scores[uid] = rawScore.toInt();
     }
 
-    final expectedWinner = LiveDuelMatchResultResolver.winnerUid(
-      playerUids: playerUids,
-      scores: scores,
+    final completionType = LiveDuelCompletionType.values.firstWhere(
+      (item) => item.name == data['completionType']?.toString(),
+      orElse: () => LiveDuelCompletionType.completed,
     );
     final rawWinnerUid = data['winnerUid'];
     final winnerUid = rawWinnerUid == null ? null : rawWinnerUid.toString();
+    final rawForfeitLoserUid = data['forfeitLoserUid'];
+    final forfeitLoserUid =
+        rawForfeitLoserUid == null ? null : rawForfeitLoserUid.toString();
     final draw = data['draw'] == true;
 
-    if ((expectedWinner == null && (!draw || winnerUid != null)) ||
-        (expectedWinner != null && (draw || winnerUid != expectedWinner))) {
-      throw const LiveDuelResultException('Maç sonucu ile skorlar uyuşmuyor.');
+    if (completionType == LiveDuelCompletionType.forfeit) {
+      if (draw ||
+          forfeitLoserUid == null ||
+          !playerUids.contains(forfeitLoserUid) ||
+          winnerUid == null ||
+          !playerUids.contains(winnerUid) ||
+          winnerUid == forfeitLoserUid) {
+        throw const LiveDuelResultException('Hükmen maç sonucu geçersiz.');
+      }
+    } else {
+      final expectedWinner = LiveDuelMatchResultResolver.winnerUid(
+        playerUids: playerUids,
+        scores: scores,
+      );
+
+      if ((expectedWinner == null && (!draw || winnerUid != null)) ||
+          (expectedWinner != null && (draw || winnerUid != expectedWinner))) {
+        throw const LiveDuelResultException(
+          'Maç sonucu ile skorlar uyuşmuyor.',
+        );
+      }
     }
 
     final completedAt = data['completedAt'];
@@ -82,6 +111,8 @@ class LiveDuelCompletedMatch {
       scores: Map<String, int>.unmodifiable(scores),
       draw: draw,
       winnerUid: winnerUid,
+      completionType: completionType,
+      forfeitLoserUid: forfeitLoserUid,
       completedAt: completedAt is Timestamp ? completedAt.toDate() : null,
     );
   }
@@ -332,7 +363,9 @@ class LiveDuelResultService {
       transaction.update(matchReference, <String, dynamic>{
         'status': 'completed',
         'resultProcessed': true,
-        'resultVersion': 1,
+        'resultVersion': 2,
+        'completionType': LiveDuelCompletionType.completed.name,
+        'forfeitLoserUid': null,
         'scores': scores,
         'winnerUid': winnerUid,
         'draw': winnerUid == null,
@@ -347,6 +380,8 @@ class LiveDuelResultService {
         scores: Map<String, int>.unmodifiable(scores),
         draw: winnerUid == null,
         winnerUid: winnerUid,
+        completionType: LiveDuelCompletionType.completed,
+        forfeitLoserUid: null,
         completedAt: completedAt,
       );
     });

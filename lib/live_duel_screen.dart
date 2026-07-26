@@ -27,14 +27,18 @@ class LiveDuelScreen extends StatefulWidget {
 class _LiveDuelScreenState extends State<LiveDuelScreen> {
   int _selectedQuestionCount = 10;
   bool _loadingProfile = true;
+  bool _loadingResume = true;
   bool _startingQueue = false;
+  bool _openingResume = false;
   LiveDuelProfile _profile = const LiveDuelProfile();
+  LiveDuelResumeMatch? _resumeMatch;
   String? _errorMessage;
 
   @override
   void initState() {
     super.initState();
     _loadProfile();
+    _loadResumeMatch();
   }
 
   Future<void> _loadProfile() async {
@@ -48,8 +52,71 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
     });
   }
 
+  Future<void> _loadResumeMatch() async {
+    try {
+      final match = await LiveDuelConnectionService.findResumableMatch();
+
+      if (!mounted) return;
+
+      setState(() {
+        _resumeMatch = match;
+        _loadingResume = false;
+      });
+    } on LiveDuelConnectionException catch (error) {
+      if (!mounted) return;
+
+      setState(() {
+        _loadingResume = false;
+        _errorMessage = error.message;
+      });
+    } catch (_) {
+      if (!mounted) return;
+
+      setState(() {
+        _loadingResume = false;
+      });
+    }
+  }
+
+  Future<void> _resumeDuel() async {
+    final match = _resumeMatch;
+    if (match == null || _openingResume) return;
+
+    setState(() {
+      _openingResume = true;
+      _errorMessage = null;
+    });
+
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder:
+            (context) => LiveDuelPlayScreen(
+              matchId: match.matchId,
+              questionCount: match.questionCount,
+            ),
+      ),
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _openingResume = false;
+    });
+
+    await _loadProfile();
+    await _loadResumeMatch();
+  }
+
   Future<void> _startMatchmaking() async {
     if (_startingQueue) return;
+
+    if (_resumeMatch != null) {
+      setState(() {
+        _errorMessage =
+            'Yeni rakip aramadan önce yarım kalan düelloya dönmelisin.';
+      });
+      return;
+    }
 
     final user = FirebaseAuth.instance.currentUser;
 
@@ -82,6 +149,7 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
       );
 
       await _loadProfile();
+      await _loadResumeMatch();
     } on LiveDuelMatchmakingException catch (error) {
       if (!mounted) return;
 
@@ -148,6 +216,52 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
                         ),
               ),
             ),
+            if (_loadingResume) ...[
+              const SizedBox(height: 16),
+              const LinearProgressIndicator(),
+            ] else if (_resumeMatch != null) ...[
+              const SizedBox(height: 16),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.restore),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              'Yarım Kalan Düello',
+                              style: theme.textTheme.titleMedium,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        '${_resumeMatch!.questionCount} soruluk maçın devam ediyor.',
+                      ),
+                      const SizedBox(height: 14),
+                      FilledButton.icon(
+                        onPressed: _openingResume ? null : _resumeDuel,
+                        icon:
+                            _openingResume
+                                ? const SizedBox.square(
+                                  dimension: 18,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                                : const Icon(Icons.play_arrow),
+                        label: const Text('Maça Dön'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
             const SizedBox(height: 24),
             Text('Düello Uzunluğu', style: theme.textTheme.titleLarge),
             const SizedBox(height: 8),
@@ -167,7 +281,7 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
                       ),
                       selected: _selectedQuestionCount == questionCount,
                       onSelected:
-                          _startingQueue
+                          _startingQueue || _resumeMatch != null
                               ? null
                               : (selected) {
                                 if (!selected) return;
@@ -199,7 +313,10 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
             ],
             const SizedBox(height: 28),
             FilledButton.icon(
-              onPressed: _startingQueue ? null : _startMatchmaking,
+              onPressed:
+                  _startingQueue || _resumeMatch != null
+                      ? null
+                      : _startMatchmaking,
               icon:
                   _startingQueue
                       ? const SizedBox.square(
@@ -207,7 +324,13 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
                       : const Icon(Icons.sports_kabaddi),
-              label: Text(_startingQueue ? 'Sıraya Giriliyor...' : 'Rakip Bul'),
+              label: Text(
+                _startingQueue
+                    ? 'Sıraya Giriliyor...'
+                    : _resumeMatch != null
+                    ? 'Önce Yarım Maça Dön'
+                    : 'Rakip Bul',
+              ),
             ),
             const SizedBox(height: 12),
             const Text(

@@ -6,9 +6,27 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function duelMatch(matchId) {
+      return get(
+        /databases/$(database)/documents/live_duel_matches/$(matchId)
+      );
+    }
+
     function duelProgress(matchId, userId) {
       return get(
         /databases/$(database)/documents/live_duel_matches/$(matchId)/progress/$(userId)
+      );
+    }
+
+    function duelPresenceExists(matchId, userId) {
+      return exists(
+        /databases/$(database)/documents/live_duel_matches/$(matchId)/presence/$(userId)
+      );
+    }
+
+    function duelPresence(matchId, userId) {
+      return get(
+        /databases/$(database)/documents/live_duel_matches/$(matchId)/presence/$(userId)
       );
     }
 
@@ -22,7 +40,9 @@ service cloud.firestore {
 
       return resource.data.get('resultProcessed', false) != true
              && request.resource.data.resultProcessed == true
-             && request.resource.data.resultVersion == 1
+             && request.resource.data.resultVersion == 2
+             && request.resource.data.completionType == 'completed'
+             && request.resource.data.forfeitLoserUid == null
              && request.resource.data.status == 'completed'
              && request.resource.data.processedBy == request.auth.uid
              && request.resource.data.completedAt == request.time
@@ -34,6 +54,8 @@ service cloud.firestore {
                   'status',
                   'resultProcessed',
                   'resultVersion',
+                  'completionType',
+                  'forfeitLoserUid',
                   'scores',
                   'winnerUid',
                   'draw',
@@ -72,6 +94,112 @@ service cloud.firestore {
                  secondScore > firstScore
                  && request.resource.data.draw == false
                  && request.resource.data.winnerUid == secondUid
+               )
+             );
+    }
+
+    function validForfeitPresence(matchId, loserUid) {
+      return duelPresenceExists(matchId, loserUid)
+             && (
+               (
+                 duelPresence(matchId, loserUid).data.state == 'left'
+                 && duelPresence(matchId, loserUid).data.leaveRequested == true
+               )
+               ||
+               (
+                 duelPresence(matchId, loserUid).data.state == 'background'
+                 && duelPresence(matchId, loserUid).data.connected == false
+                 && duelPresence(matchId, loserUid).data.graceUntil <= request.time
+               )
+             );
+    }
+
+    function validDuelForfeit(matchId) {
+      let firstUid = resource.data.playerUids[0];
+      let secondUid = resource.data.playerUids[1];
+      let loserUid = request.resource.data.forfeitLoserUid;
+      let winnerUid = request.resource.data.winnerUid;
+      let firstProgress = duelProgress(matchId, firstUid).data;
+      let secondProgress = duelProgress(matchId, secondUid).data;
+
+      return resource.data.get('resultProcessed', false) != true
+             && request.resource.data.resultProcessed == true
+             && request.resource.data.resultVersion == 2
+             && request.resource.data.completionType == 'forfeit'
+             && loserUid in resource.data.playerUids
+             && winnerUid in resource.data.playerUids
+             && loserUid != winnerUid
+             && (
+               (loserUid == firstUid && winnerUid == secondUid)
+               ||
+               (loserUid == secondUid && winnerUid == firstUid)
+             )
+             && validForfeitPresence(matchId, loserUid)
+             && request.resource.data.draw == false
+             && request.resource.data.status == 'completed'
+             && request.resource.data.processedBy
+                in resource.data.playerUids
+             && request.resource.data.completedAt == request.time
+             && request.resource.data.updatedAt == request.time
+             && request.resource.data.scores is map
+             && request.resource.data.scores[firstUid] ==
+                firstProgress.correctCount
+             && request.resource.data.scores[secondUid] ==
+                secondProgress.correctCount
+             && request.resource.data.diff(resource.data)
+                .affectedKeys()
+                .hasOnly([
+                  'status',
+                  'resultProcessed',
+                  'resultVersion',
+                  'completionType',
+                  'forfeitLoserUid',
+                  'scores',
+                  'winnerUid',
+                  'draw',
+                  'processedBy',
+                  'completedAt',
+                  'updatedAt'
+                ]);
+    }
+
+    function validPresenceWrite(matchId, userId) {
+      let matchData = duelMatch(matchId).data;
+      let state = request.resource.data.state;
+
+      return request.auth.uid == userId
+             && request.auth.uid in matchData.playerUids
+             && matchData.get('resultProcessed', false) != true
+             && request.resource.data.uid == userId
+             && state in ['active', 'background', 'left']
+             && request.resource.data.updatedAt == request.time
+             && (
+               (
+                 state == 'active'
+                 && request.resource.data.connected == true
+                 && request.resource.data.leaveRequested == false
+                 && request.resource.data.disconnectedAt == null
+                 && request.resource.data.graceUntil == null
+               )
+               ||
+               (
+                 state == 'background'
+                 && request.resource.data.connected == false
+                 && request.resource.data.leaveRequested == false
+                 && request.resource.data.disconnectedAt == request.time
+                 && request.resource.data.graceUntil is timestamp
+                 && request.resource.data.graceUntil > request.time
+                 && request.resource.data.graceUntil <=
+                    request.time + duration.value(70, 's')
+               )
+               ||
+               (
+                 state == 'left'
+                 && request.resource.data.connected == false
+                 && request.resource.data.leaveRequested == true
+                 && request.resource.data.disconnectedAt == request.time
+                 && request.resource.data.graceUntil is timestamp
+                 && request.resource.data.graceUntil <= request.time
                )
              );
     }
@@ -136,16 +264,17 @@ service cloud.firestore {
       allow update: if signedIn()
                     && request.auth.uid
                        in resource.data.playerUids
-                    && validDuelCompletion(matchId);
+                    && (
+                      validDuelCompletion(matchId)
+                      || validDuelForfeit(matchId)
+                    );
 
       allow delete: if false;
 
       match /progress/{userId} {
         allow read: if signedIn()
                     && request.auth.uid
-                       in get(
-                         /databases/$(database)/documents/live_duel_matches/$(matchId)
-                       ).data.playerUids;
+                       in duelMatch(matchId).data.playerUids;
 
         allow create, update: if signedIn()
                               && request.auth.uid == userId
@@ -159,12 +288,20 @@ service cloud.firestore {
                               && request.resource.data.currentQuestionIndex ==
                                  request.resource.data.answeredCount
                               && request.resource.data.answeredCount <=
-                                 get(
-                                   /databases/$(database)/documents/live_duel_matches/$(matchId)
-                                 ).data.questionCount
-                              && get(
-                                   /databases/$(database)/documents/live_duel_matches/$(matchId)
-                                 ).data.get('resultProcessed', false) != true;
+                                 duelMatch(matchId).data.questionCount
+                              && duelMatch(matchId).data
+                                 .get('resultProcessed', false) != true;
+
+        allow delete: if false;
+      }
+
+      match /presence/{userId} {
+        allow read: if signedIn()
+                    && request.auth.uid
+                       in duelMatch(matchId).data.playerUids;
+
+        allow create, update: if signedIn()
+                              && validPresenceWrite(matchId, userId);
 
         allow delete: if false;
       }

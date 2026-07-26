@@ -145,28 +145,39 @@ class LiveDuelPlayScreen extends StatefulWidget {
   State<LiveDuelPlayScreen> createState() => _LiveDuelPlayScreenState();
 }
 
-class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
+class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
+    with WidgetsBindingObserver {
   StreamSubscription<List<LiveDuelPlayerProgress>>? _progressSubscription;
+  StreamSubscription<List<LiveDuelPresence>>? _presenceSubscription;
+  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>?
+  _matchSubscription;
+  Timer? _heartbeatTimer;
+  Timer? _resolutionTimer;
+  Timer? _countdownTimer;
 
   User? _user;
   LiveDuelMatchViewData? _match;
   LiveDuelQuestionSet? _questionSet;
   LiveDuelPlayerProgress? _ownProgress;
   LiveDuelPlayerProgress? _opponentProgress;
+  LiveDuelPresence? _opponentPresence;
   LiveDuelOwnResultAward? _ownAward;
 
   bool _loading = true;
   bool _submitting = false;
   bool _finalizingResult = false;
+  bool _leavingMatch = false;
   int _questionIndex = 0;
   int? _selectedOptionIndex;
   bool? _selectedAnswerCorrect;
   String? _errorMessage;
   String? _resultError;
+  String? _connectionMessage;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _initializeMatch();
   }
 
@@ -187,9 +198,8 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
         throw const LiveDuelPlayException('Canlı düello maçı bulunamadı.');
       }
 
-      final match = LiveDuelMatchViewData.fromMap(
-        matchSnapshot.data() ?? <String, dynamic>{},
-      );
+      final matchData = matchSnapshot.data() ?? <String, dynamic>{};
+      final match = LiveDuelMatchViewData.fromMap(matchData);
 
       if (match.questionCount != widget.questionCount) {
         throw const LiveDuelPlayException('Eşleşme soru sayısı uyuşmuyor.');
@@ -200,6 +210,7 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
       );
 
       await LiveDuelProgressService.initializeProgress(matchId: widget.matchId);
+      await LiveDuelConnectionService.markActive(matchId: widget.matchId);
 
       if (!mounted) return;
 
@@ -224,12 +235,41 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
           );
 
           if (!mounted) return;
-
           setState(() {
             _errorMessage = 'Canlı skor bağlantısı geçici olarak kesildi.';
           });
         },
       );
+
+      _presenceSubscription = LiveDuelConnectionService.watchPresence(
+        widget.matchId,
+      ).listen(
+        _handlePresence,
+        onError: (Object error, StackTrace stack) {
+          unawaited(
+            AppErrorLogService.record(
+              source: 'Canlı düello bağlantı takibi',
+              error: error,
+              stack: stack,
+            ),
+          );
+
+          if (!mounted) return;
+          setState(() {
+            _connectionMessage = 'Rakip bağlantısı kontrol ediliyor...';
+          });
+        },
+      );
+
+      _matchSubscription = LiveDuelMatchmakingService.watchMatch(
+        widget.matchId,
+      ).listen(_handleMatchSnapshot);
+
+      _startConnectionTimers();
+
+      if (matchData['resultProcessed'] == true) {
+        unawaited(_loadProcessedResult());
+      }
     } on LiveDuelPlayException catch (error) {
       _showFatalError(error.message);
     } on LiveDuelQuestionSetException catch (error) {
@@ -237,6 +277,8 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
     } on LiveDuelProgressException catch (error) {
       _showFatalError(error.message);
     } on LiveDuelMatchmakingException catch (error) {
+      _showFatalError(error.message);
+    } on LiveDuelConnectionException catch (error) {
       _showFatalError(error.message);
     } catch (error, stack) {
       await AppErrorLogService.record(
@@ -246,6 +288,82 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
       );
 
       _showFatalError('Canlı düello hazırlanamadı. Lütfen tekrar dene.');
+    }
+  }
+
+  void _startConnectionTimers() {
+    _heartbeatTimer?.cancel();
+    _resolutionTimer?.cancel();
+    _countdownTimer?.cancel();
+
+    _heartbeatTimer = Timer.periodic(
+      LiveDuelConnectionPolicy.heartbeatInterval,
+      (_) {
+        if (_ownAward != null ||
+            _leavingMatch ||
+            WidgetsBinding.instance.lifecycleState !=
+                AppLifecycleState.resumed) {
+          return;
+        }
+        unawaited(_markActiveQuietly());
+      },
+    );
+
+    _resolutionTimer = Timer.periodic(
+      LiveDuelConnectionPolicy.resolutionInterval,
+      (_) {
+        if (_ownAward == null && !_leavingMatch) {
+          unawaited(_tryResolveForfeit());
+        }
+      },
+    );
+
+    _countdownTimer = Timer.periodic(
+      LiveDuelConnectionPolicy.countdownInterval,
+      (_) {
+        if (mounted && _opponentPresence != null) {
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  Future<void> _markActiveQuietly() async {
+    try {
+      await LiveDuelConnectionService.markActive(matchId: widget.matchId);
+      if (!mounted) return;
+      setState(() {
+        _connectionMessage = null;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _connectionMessage = 'Bağlantın yeniden kurulmaya çalışılıyor...';
+      });
+    }
+  }
+
+  Future<void> _markBackgroundQuietly() async {
+    if (_ownAward != null || _leavingMatch) return;
+
+    try {
+      await LiveDuelConnectionService.markBackground(matchId: widget.matchId);
+    } catch (_) {
+      // Yaşam döngüsü değişimi ekranı kilitlememeli.
+    }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (_ownAward != null || _leavingMatch) return;
+
+    if (state == AppLifecycleState.resumed) {
+      unawaited(_markActiveQuietly());
+      unawaited(_tryResolveForfeit());
+    } else if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      unawaited(_markBackgroundQuietly());
     }
   }
 
@@ -265,7 +383,16 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
     for (final progress in progressList) {
       if (progress.uid == uid) return progress;
     }
+    return null;
+  }
 
+  LiveDuelPresence? _findPresence(
+    List<LiveDuelPresence> presences,
+    String uid,
+  ) {
+    for (final presence in presences) {
+      if (presence.uid == uid) return presence;
+    }
     return null;
   }
 
@@ -290,6 +417,93 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
 
     if (own?.finished == true && opponent?.finished == true) {
       unawaited(_finalizeResult());
+    }
+  }
+
+  void _handlePresence(List<LiveDuelPresence> presences) {
+    final user = _user;
+    final match = _match;
+    if (!mounted || user == null || match == null) return;
+
+    final opponentUid = match.opponentUidFor(user.uid);
+    final opponent = _findPresence(presences, opponentUid);
+
+    setState(() {
+      _opponentPresence = opponent;
+    });
+
+    if (opponent != null &&
+        LiveDuelConnectionPolicy.canForfeit(opponent, DateTime.now().toUtc())) {
+      unawaited(_tryResolveForfeit());
+    }
+  }
+
+  void _handleMatchSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    final data = snapshot.data();
+    if (!mounted || data == null) return;
+
+    if (data['resultProcessed'] == true && _ownAward == null) {
+      unawaited(_loadProcessedResult());
+    }
+  }
+
+  Future<void> _loadProcessedResult() async {
+    if (_finalizingResult || _ownAward != null) return;
+
+    setState(() {
+      _finalizingResult = true;
+      _resultError = null;
+    });
+
+    try {
+      final award = await LiveDuelResultService.applyOwnResult(
+        matchId: widget.matchId,
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        _ownAward = award;
+        _finalizingResult = false;
+      });
+    } on LiveDuelResultException catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _resultError = error.message;
+        _finalizingResult = false;
+      });
+    } catch (error, stack) {
+      await AppErrorLogService.record(
+        source: 'Canlı düello işlenmiş sonuç yükleme',
+        error: error,
+        stack: stack,
+      );
+
+      if (!mounted) return;
+      setState(() {
+        _resultError = 'Maç sonucu yüklenemedi. Tekrar dene.';
+        _finalizingResult = false;
+      });
+    }
+  }
+
+  Future<void> _tryResolveForfeit() async {
+    if (_finalizingResult || _ownAward != null || _leavingMatch) {
+      return;
+    }
+
+    try {
+      final completed = await LiveDuelConnectionService.resolveForfeit(
+        matchId: widget.matchId,
+      );
+
+      if (completed == null) return;
+
+      await _loadProcessedResult();
+    } on LiveDuelConnectionException {
+      // Hükmen sonuç şartı henüz oluşmamış olabilir.
+    } catch (_) {
+      // Periyodik kontrol ekranda gürültü oluşturmamalı.
     }
   }
 
@@ -415,9 +629,70 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
     }
   }
 
+  Future<void> _confirmLeave() async {
+    if (_leavingMatch || _ownAward != null) return;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder:
+          (dialogContext) => AlertDialog(
+            title: const Text('Düellodan Ayrıl?'),
+            content: const Text(
+              'Maçtan ayrılırsan hükmen yenilmiş sayılacak '
+              've BR puanın buna göre güncellenecek.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(false),
+                child: const Text('Maça Dön'),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.of(dialogContext).pop(true),
+                child: const Text('Ayrıl ve Yenilgiyi Kabul Et'),
+              ),
+            ],
+          ),
+    );
+
+    if (confirmed != true || !mounted) return;
+
+    setState(() {
+      _leavingMatch = true;
+      _errorMessage = null;
+    });
+
+    try {
+      await LiveDuelConnectionService.requestLeave(matchId: widget.matchId);
+      await LiveDuelConnectionService.resolveForfeit(matchId: widget.matchId);
+      await LiveDuelResultService.applyOwnResult(matchId: widget.matchId);
+
+      if (!mounted) return;
+      Navigator.of(context).pop();
+    } catch (error, stack) {
+      await AppErrorLogService.record(
+        source: 'Canlı düellodan ayrılma',
+        error: error,
+        stack: stack,
+      );
+
+      if (!mounted) return;
+      setState(() {
+        _leavingMatch = false;
+        _errorMessage =
+            'Maçtan ayrılma kaydedilemedi. İnternet bağlantını kontrol edip tekrar dene.';
+      });
+    }
+  }
+
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _heartbeatTimer?.cancel();
+    _resolutionTimer?.cancel();
+    _countdownTimer?.cancel();
     _progressSubscription?.cancel();
+    _presenceSubscription?.cancel();
+    _matchSubscription?.cancel();
     super.dispose();
   }
 
@@ -430,19 +705,27 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
       canPop: canLeave,
       onPopInvokedWithResult: (didPop, result) {
         if (didPop || !mounted) return;
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Dereceli düello tamamlanmadan maçtan ayrılamazsın.'),
-          ),
-        );
+        unawaited(_confirmLeave());
       },
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: canLeave,
+          automaticallyImplyLeading: true,
           title: const Text('Canlı Düello'),
         ),
-        body: SafeArea(child: _buildBody()),
+        body: SafeArea(
+          child: Stack(
+            children: [
+              _buildBody(),
+              if (_leavingMatch)
+                const Positioned.fill(
+                  child: ColoredBox(
+                    color: Color(0x66000000),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -472,9 +755,7 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
     }
 
     final opponentUid = match.opponentUidFor(user.uid);
-
     final own = _ownProgress ?? LiveDuelPlayerProgress.initial(user.uid);
-
     final opponent =
         _opponentProgress ?? LiveDuelPlayerProgress.initial(opponentUid);
 
@@ -502,6 +783,25 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
             ),
           ],
         ),
+        if (_buildConnectionBanner() case final banner?) ...[
+          const SizedBox(height: 12),
+          banner,
+        ],
+        if (_connectionMessage != null) ...[
+          const SizedBox(height: 12),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Row(
+                children: [
+                  const Icon(Icons.wifi_off),
+                  const SizedBox(width: 10),
+                  Expanded(child: Text(_connectionMessage!)),
+                ],
+              ),
+            ),
+          ),
+        ],
         if (_errorMessage != null) ...[
           const SizedBox(height: 12),
           Card(
@@ -522,15 +822,48 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
           ),
         ],
         const SizedBox(height: 18),
-        if (_bothFinished)
-          (_ownAward != null
-              ? _buildResultView(_ownAward!)
-              : _buildFinalizingView())
+        if (_ownAward != null)
+          _buildResultView(_ownAward!)
+        else if (_bothFinished)
+          _buildFinalizingView()
         else if (_ownFinished)
           _buildWaitingView(opponent, match.questionCount)
         else
           _buildQuestionView(questionSet),
       ],
+    );
+  }
+
+  Widget? _buildConnectionBanner() {
+    final presence = _opponentPresence;
+    if (presence == null || presence.state == LiveDuelPresenceState.active) {
+      return null;
+    }
+
+    final now = DateTime.now().toUtc();
+    final remaining = LiveDuelConnectionPolicy.remaining(presence, now);
+    final seconds = remaining.inSeconds + 1;
+
+    final text =
+        presence.state == LiveDuelPresenceState.left
+            ? 'Rakibin maçtan ayrıldı. Hükmen sonuç işleniyor.'
+            : remaining > Duration.zero
+            ? 'Rakibin bağlantısı kesildi. '
+                '$seconds saniye içinde dönebilir.'
+            : 'Rakibin geri dönüş süresi doldu. '
+                'Hükmen sonuç işleniyor.';
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Row(
+          children: [
+            const Icon(Icons.signal_wifi_connected_no_internet_4),
+            const SizedBox(width: 10),
+            Expanded(child: Text(text)),
+          ],
+        ),
+      ),
     );
   }
 
@@ -683,7 +1016,16 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
               Text(_resultError!, textAlign: TextAlign.center),
               const SizedBox(height: 18),
               FilledButton.icon(
-                onPressed: _finalizingResult ? null : _finalizeResult,
+                onPressed:
+                    _finalizingResult
+                        ? null
+                        : () {
+                          if (_bothFinished) {
+                            _finalizeResult();
+                          } else {
+                            _tryResolveForfeit();
+                          }
+                        },
                 icon: const Icon(Icons.refresh),
                 label: const Text('Sonucu Tekrar İşle'),
               ),
@@ -713,13 +1055,29 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
     final deltaLabel =
         change.delta > 0 ? '+${change.delta} BR' : '${change.delta} BR';
 
+    final title =
+        award.match.forfeited
+            ? award.result == LiveDuelResult.win
+                ? 'Hükmen Kazandın!'
+                : 'Hükmen Kaybettin'
+            : LiveDuelResultCalculator.title(outcome);
+
+    final description =
+        award.match.forfeited
+            ? award.result == LiveDuelResult.win
+                ? 'Rakibin geri dönmedi veya maçtan ayrıldı.'
+                : 'Maçtan ayrıldığın ya da süresinde dönmediğin için yenildin.'
+            : LiveDuelResultCalculator.description(outcome);
+
     String? leagueMessage;
     if (change.promoted) {
       leagueMessage =
-          '${change.newLeague.emoji} ${change.newLeague.title} ligine yükseldin!';
+          '${change.newLeague.emoji} '
+          '${change.newLeague.title} ligine yükseldin!';
     } else if (change.relegated) {
       leagueMessage =
-          '${change.newLeague.emoji} ${change.newLeague.title} ligine düştün.';
+          '${change.newLeague.emoji} '
+          '${change.newLeague.title} ligine düştün.';
     }
 
     return Card(
@@ -730,22 +1088,23 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
             Icon(icon, size: 72),
             const SizedBox(height: 16),
             Text(
-              LiveDuelResultCalculator.title(outcome),
+              title,
               style: Theme.of(context).textTheme.headlineSmall,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            Text(
-              LiveDuelResultCalculator.description(outcome),
-              textAlign: TextAlign.center,
-            ),
+            Text(description, textAlign: TextAlign.center),
             const SizedBox(height: 22),
             Text(
               '$ownScore - $opponentScore',
               style: Theme.of(context).textTheme.displaySmall,
             ),
             const SizedBox(height: 6),
-            const Text('Doğru cevap skoru'),
+            Text(
+              award.match.forfeited
+                  ? 'Ayrılma anındaki skor'
+                  : 'Doğru cevap skoru',
+            ),
             const SizedBox(height: 20),
             Chip(
               avatar: Icon(
@@ -758,7 +1117,8 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              '${change.oldRating} BR → ${change.newRating} BR',
+              '${change.oldRating} BR → '
+              '${change.newRating} BR',
               style: Theme.of(context).textTheme.titleMedium,
             ),
             if (leagueMessage != null) ...[

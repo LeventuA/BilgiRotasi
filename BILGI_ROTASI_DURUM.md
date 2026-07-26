@@ -2,34 +2,37 @@
 
 ## Son Sürüm
 
-**1.55.0+76**
+**1.56.0+77**
 
 ## Son Tamamlanan İş
 
-Canlı Düello atomik sonuç ve BR/lig işleme sistemi tamamlandı.
+Canlı Düello bağlantı kopması, yeniden bağlanma ve hükmen sonuç sistemi tamamlandı.
 
-- İki oyuncu da bitmeden maç sonucu kesinleştirilemiyor.
-- Skorlar, kazanan veya beraberlik sonucu maç belgesine tek transaction ile yazılıyor.
-- İki cihaz aynı anda sonuç yazmaya çalışsa bile maç yalnızca bir kez tamamlanıyor.
-- Her kullanıcının BR sonucu kendi bulut profilinde yalnızca bir kez uygulanıyor.
-- Kullanıcı başına maç kimliğiyle idempotent sonuç kaydı tutuluyor.
-- Galibiyet, yenilgi, beraberlik, seri, en yüksek BR ve son maçlar güncelleniyor.
-- Sonuç ekranında kazanılan veya kaybedilen BR ile lig değişimi gösteriliyor.
-- Canlı Düello profili yerel kayıtla birlikte Firestore kullanıcı belgesine de yazılıyor.
-- Hesap silinirken Canlı Düello sonuç alt koleksiyonu da temizleniyor.
-- Firestore kuralları tamamlanmış maç sonucunu ilerleme belgelerine göre doğruluyor.
+- Oyuncuların maç içindeki aktif, arka plan ve ayrıldı durumları Firestore'da tutuluyor.
+- Uygulama arka plana geçtiğinde 60 saniyelik yeniden bağlanma süresi başlıyor.
+- Oyuncu 60 saniye içinde dönerse maç kaldığı yerden devam ediyor.
+- Süre dolarsa rakip hükmen galip, bağlantısı kesilen oyuncu hükmen mağlup oluyor.
+- Maçtan bilinçli ayrılma için onay penceresi eklendi.
+- Bilinçli ayrılma anında hükmen yenilgi ve BR sonucu işleniyor.
+- Hükmen sonuç da normal sonuç gibi atomik ve yalnızca bir kez kaydediliyor.
+- Sonuç ekranında hükmen galibiyet veya yenilgi açıkça gösteriliyor.
+- Rakibin geri dönüş süresi maç ekranında saniye saniye gösteriliyor.
+- Canlı Düello ana ekranında yarım kalan maça dönme kartı eklendi.
+- Yarım maç varken yeni eşleştirme başlatılamıyor.
+- Firestore kuralları bağlantı durumunu ve hükmen sonucu doğruluyor.
 
 ## Sıradaki İş
 
-Canlı Düello bağlantı kopması ve hükmen sonuç sistemi:
+Canlı Düello gerçek cihaz ve sunucu doğrulaması:
 
-- Maçtan ayrılma isteği
-- Bağlantı kesilme zaman damgası
-- Yeniden bağlanma süresi
-- Süre dolunca hükmen galibiyet veya yenilgi
-- Yarım kalan maçların açılışta geri yüklenmesi
-- Gerçek iki telefonla canlı test
-- Firestore kurallarının Firebase projesine dağıtım doğrulaması
+- Firestore kurallarını Firebase projesine dağıtma
+- İki farklı telefon ve iki Google hesabıyla eşleştirme testi
+- Normal maç bitişi testi
+- Bir telefonu 30 saniye arka planda tutup geri dönme testi
+- Bir telefonu 60 saniyeden uzun kapalı tutup hükmen sonuç testi
+- Bilinçli maçtan ayrılma testi
+- Uygulamayı yeniden açıp yarım maça dönme testi
+- İstemci cevap doğruluğunu sunucu tarafında güçlendirme
 
 ## Dokunulmaması Gerekenler
 
@@ -52,9 +55,9 @@ Canlı Düello bağlantı kopması ve hükmen sonuç sistemi:
 ## Bilinen Durumlar
 
 - Toplam soru sayısı: **6710**
+- Firestore kuralları dosyada güncellendi; Firebase projesine dağıtılması gerekiyor.
 - İstemci cevap doğruluğunu gönderiyor; sunucu tarafı soru doğrulaması yayın öncesinde güçlendirilmeli.
-- Firestore kural dosyası güncellendi; Firebase projesindeki dağıtım ayrıca doğrulanmalı.
-- Maçtan ayrılma ve bağlantı kopması henüz eklenmedi.
+- Gerçek iki telefonla uçtan uca test henüz yapılmadı.
 
 ## Son Başarılı Canlı Düello Aşamaları
 
@@ -70,3 +73,6 @@ Canlı Düello bağlantı kopması ve hükmen sonuç sistemi:
 10. Atomik maç sonucu
 11. Tek seferlik BR ve lig güncellemesi
 12. Bulut profil ve idempotent sonuç kaydı
+13. Bağlantı durumu ve 60 saniyelik yeniden bağlanma
+14. Hükmen galibiyet ve yenilgi
+15. Yarım kalan maça geri dönme
