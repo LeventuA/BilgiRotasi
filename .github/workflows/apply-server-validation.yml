@@ -1,0 +1,74 @@
+name: Sunucu doğrulamasını otomatik uygula
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: contains(github.event.head_commit.message, 'Sunucu doğrulama otomasyonu')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.7"
+          channel: stable
+          cache: true
+
+      - name: Git kimliğini ayarla
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout main
+
+      - name: Paketi aç ve yolları GitHub Actions'a uyarla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f BilgiRotasi_Canli_Duello_Sunucu_Dogrulamasi_Paketi.zip
+          unzip -o BilgiRotasi_Canli_Duello_Sunucu_Dogrulamasi_Paketi.zip
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          path = Path('BILGI_ROTASI_CANLI_DUELLO_SUNUCU_DOGRULAMA_KUR.py')
+          text = path.read_text(encoding='utf-8')
+          workspace = os.environ['GITHUB_WORKSPACE']
+          text = text.replace(
+              'REPO = Path("/workspaces/BilgiRotasi")',
+              f'REPO = Path({workspace!r})',
+          )
+          text = text.replace(
+              '"/workspaces/flutter/bin/dart"',
+              '"dart"',
+          )
+          text = text.replace(
+              '"/workspaces/flutter/bin/flutter"',
+              '"flutter"',
+          )
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Sunucu doğrulamasını uygula
+        run: python3 BILGI_ROTASI_CANLI_DUELLO_SUNUCU_DOGRULAMA_KUR.py
+
+      - name: Geçici otomasyonu temizle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --ff-only origin main
+          git rm .github/workflows/apply-server-validation.yml
+          git commit -m "Gecici sunucu dogrulama otomasyonunu temizle"
+          git push origin main
