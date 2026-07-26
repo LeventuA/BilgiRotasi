@@ -22,23 +22,32 @@ void main() {
       expect(decoded, isA<List<dynamic>>());
 
       questions = (decoded as List<dynamic>)
-          .map(
-            (item) => Map<String, dynamic>.from(
-              item as Map,
-            ),
-          )
+          .map((item) => Map<String, dynamic>.from(item as Map))
           .toList(growable: false);
     });
 
     test('RC2 sürüm bilgisi tek merkezden gelir', () {
-      expect(AppBuildInfo.versionName, '1.48.5');
-      expect(AppBuildInfo.buildNumber, 69);
-      expect(AppBuildInfo.channel, 'RC2');
-      expect(AppBuildInfo.version, '1.48.5+69');
+      final pubspec = File('pubspec.yaml').readAsStringSync();
+      final versionMatch = RegExp(
+        r'^version:\s*([0-9]+\.[0-9]+\.[0-9]+)\+([0-9]+)\s*$',
+        multiLine: true,
+      ).firstMatch(pubspec);
+
       expect(
-        AppBuildInfo.fullLabel,
-        'Sürüm 1.48.5+69 • RC2',
+        versionMatch,
+        isNotNull,
+        reason: 'pubspec.yaml sürüm bilgisi okunamadı.',
       );
+
+      final versionName = versionMatch!.group(1)!;
+      final buildNumber = int.parse(versionMatch.group(2)!);
+      final version = '$versionName+$buildNumber';
+
+      expect(AppBuildInfo.versionName, versionName);
+      expect(AppBuildInfo.buildNumber, buildNumber);
+      expect(AppBuildInfo.channel, 'RC2');
+      expect(AppBuildInfo.version, version);
+      expect(AppBuildInfo.fullLabel, 'Sürüm $version • RC2');
     });
 
     test('Soru bankası kritik şema kontrollerini geçer', () {
@@ -49,55 +58,28 @@ void main() {
       );
 
       final ids = <String>{};
-      final categoryCounts = List<int>.filled(
-        GameCategory.values.length,
-        0,
-      );
+      final categoryCounts = List<int>.filled(GameCategory.values.length, 0);
 
       for (var index = 0; index < questions.length; index++) {
         final item = questions[index];
         final label = 'Soru ${index + 1}';
 
         final id = item['id']?.toString().trim() ?? '';
-        final text =
-            item['question']?.toString().trim() ?? '';
-        final explanation =
-            item['explanation']?.toString().trim() ?? '';
+        final text = item['question']?.toString().trim() ?? '';
+        final explanation = item['explanation']?.toString().trim() ?? '';
         final options = item['options'];
-        final category =
-            (item['categoryIndex'] as num?)?.toInt();
-        final answer =
-            (item['answerIndex'] as num?)?.toInt();
-        final difficulty =
-            item['difficulty']?.toString().trim() ?? '';
+        final category = (item['categoryIndex'] as num?)?.toInt();
+        final answer = (item['answerIndex'] as num?)?.toInt();
+        final difficulty = item['difficulty']?.toString().trim() ?? '';
 
         expect(id, isNotEmpty, reason: '$label: id boş.');
-        expect(
-          ids.add(id),
-          isTrue,
-          reason: '$label: yinelenen id: $id',
-        );
-        expect(
-          text,
-          isNotEmpty,
-          reason: '$label ($id): soru metni boş.',
-        );
-        expect(
-          explanation,
-          isNotEmpty,
-          reason: '$label ($id): açıklama boş.',
-        );
-        expect(
-          category,
-          isNotNull,
-          reason: '$label ($id): kategori yok.',
-        );
+        expect(ids.add(id), isTrue, reason: '$label: yinelenen id: $id');
+        expect(text, isNotEmpty, reason: '$label ($id): soru metni boş.');
+        expect(explanation, isNotEmpty, reason: '$label ($id): açıklama boş.');
+        expect(category, isNotNull, reason: '$label ($id): kategori yok.');
         expect(
           category!,
-          inInclusiveRange(
-            0,
-            GameCategory.values.length - 1,
-          ),
+          inInclusiveRange(0, GameCategory.values.length - 1),
           reason: '$label ($id): kategori geçersiz.',
         );
         categoryCounts[category]++;
@@ -110,22 +92,14 @@ void main() {
         final optionList = (options as List<dynamic>)
             .map((value) => value.toString().trim())
             .toList(growable: false);
-        expect(
-          optionList.length,
-          4,
-          reason: '$label ($id): dört seçenek yok.',
-        );
+        expect(optionList.length, 4, reason: '$label ($id): dört seçenek yok.');
         expect(
           optionList.every((value) => value.isNotEmpty),
           isTrue,
           reason: '$label ($id): boş seçenek var.',
         );
 
-        expect(
-          answer,
-          isNotNull,
-          reason: '$label ($id): cevap indeksi yok.',
-        );
+        expect(answer, isNotNull, reason: '$label ($id): cevap indeksi yok.');
         expect(
           answer!,
           inInclusiveRange(0, 3),
@@ -138,9 +112,7 @@ void main() {
         );
       }
 
-      for (var index = 0;
-          index < categoryCounts.length;
-          index++) {
+      for (var index = 0; index < categoryCounts.length; index++) {
         expect(
           categoryCounts[index],
           greaterThanOrEqualTo(500),
@@ -155,40 +127,23 @@ void main() {
       expect(xpRanks, isNotEmpty);
 
       for (var index = 1; index < xpRanks.length; index++) {
-        expect(
-          xpRanks[index].level,
-          greaterThan(xpRanks[index - 1].level),
-        );
+        expect(xpRanks[index].level, greaterThan(xpRanks[index - 1].level));
       }
 
       for (var level = 1; level < 100; level++) {
         expect(
           XpProgressService.requiredForLevel(level + 1),
-          greaterThan(
-            XpProgressService.requiredForLevel(level),
-          ),
+          greaterThan(XpProgressService.requiredForLevel(level)),
         );
       }
 
-      final firstRequirement =
-          XpProgressService.requiredForLevel(1);
+      final firstRequirement = XpProgressService.requiredForLevel(1);
       expect(XpProgressService.snapshot(0).level, 1);
-      expect(
-        XpProgressService.snapshot(
-          firstRequirement - 1,
-        ).level,
-        1,
-      );
-      expect(
-        XpProgressService.snapshot(firstRequirement).level,
-        2,
-      );
+      expect(XpProgressService.snapshot(firstRequirement - 1).level, 1);
+      expect(XpProgressService.snapshot(firstRequirement).level, 2);
 
       for (final rank in xpRanks) {
-        expect(
-          XpProgressService.rankFor(rank.level).title,
-          rank.title,
-        );
+        expect(XpProgressService.rankFor(rank.level).title, rank.title);
       }
     });
 
@@ -204,20 +159,17 @@ void main() {
 
       final empty = CareerStats();
       expect(
-        careerAchievements
-            .where((item) => item.isUnlocked(empty)),
+        careerAchievements.where((item) => item.isUnlocked(empty)),
         isEmpty,
       );
     });
 
     test('Tahta grafiğinde ulaşılamayan düğüm yoktur', () {
-      final lastId = BoardMap.spokeStart +
-          GameCategory.values.length *
-              BoardMap.spokeLength -
+      final lastId =
+          BoardMap.spokeStart +
+          GameCategory.values.length * BoardMap.spokeLength -
           1;
-      final allIds = <int>{
-        for (var id = 0; id <= lastId; id++) id,
-      };
+      final allIds = <int>{for (var id = 0; id <= lastId; id++) id};
 
       final visited = <int>{BoardMap.centerId};
       final queue = <int>[BoardMap.centerId];
@@ -225,8 +177,7 @@ void main() {
       while (queue.isNotEmpty) {
         final current = queue.removeAt(0);
         for (final neighbor in BoardMap.neighbors(current)) {
-          if (allIds.contains(neighbor) &&
-              visited.add(neighbor)) {
+          if (allIds.contains(neighbor) && visited.add(neighbor)) {
             queue.add(neighbor);
           }
         }
@@ -243,8 +194,7 @@ void main() {
           expect(
             BoardMap.neighbors(neighbor),
             contains(id),
-            reason:
-                '$id ile $neighbor komşuluğu tek yönlü.',
+            reason: '$id ile $neighbor komşuluğu tek yönlü.',
           );
         }
       }
@@ -257,33 +207,20 @@ void main() {
         boardThemes.length,
       );
 
-      for (var index = 1;
-          index < boardThemes.length;
-          index++) {
+      for (var index = 1; index < boardThemes.length; index++) {
         expect(
           boardThemes[index].unlockLevel,
-          greaterThan(
-            boardThemes[index - 1].unlockLevel,
-          ),
+          greaterThan(boardThemes[index - 1].unlockLevel),
         );
       }
 
       expect(PawnCatalog.all.length, 17);
       expect(
-        PawnCatalog.all
-            .map((pawn) => pawn.name)
-            .toSet()
-            .length,
+        PawnCatalog.all.map((pawn) => pawn.name).toSet().length,
         PawnCatalog.all.length,
       );
-      expect(
-        PawnVisualEffects.profiles.length,
-        PawnCatalog.all.length,
-      );
-      expect(
-        PawnStepSoundFactory.profileCount,
-        PawnCatalog.all.length,
-      );
+      expect(PawnVisualEffects.profiles.length, PawnCatalog.all.length);
+      expect(PawnStepSoundFactory.profileCount, PawnCatalog.all.length);
     });
 
     test('Kullanıcı arayüzünde kaldırılan metinler yoktur', () {
@@ -299,20 +236,9 @@ void main() {
           .join('\n');
 
       expect(source, isNot(contains('Ses Atmosferi')));
-      expect(
-        source,
-        isNot(contains('ses atmosferini seç')),
-      );
-      expect(
-        source,
-        isNot(contains('Sistem Sağlığını Aç')),
-      );
-      expect(
-        source,
-        isNot(
-          contains('Meydan Okuma artık Oyna bölümünde'),
-        ),
-      );
+      expect(source, isNot(contains('ses atmosferini seç')));
+      expect(source, isNot(contains('Sistem Sağlığını Aç')));
+      expect(source, isNot(contains('Meydan Okuma artık Oyna bölümünde')));
     });
   });
 }
