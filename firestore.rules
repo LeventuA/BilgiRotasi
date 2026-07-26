@@ -6,6 +6,76 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function duelProgress(matchId, userId) {
+      return get(
+        /databases/$(database)/documents/live_duel_matches/$(matchId)/progress/$(userId)
+      );
+    }
+
+    function validDuelCompletion(matchId) {
+      let firstUid = resource.data.playerUids[0];
+      let secondUid = resource.data.playerUids[1];
+      let firstProgress = duelProgress(matchId, firstUid).data;
+      let secondProgress = duelProgress(matchId, secondUid).data;
+      let firstScore = request.resource.data.scores[firstUid];
+      let secondScore = request.resource.data.scores[secondUid];
+
+      return resource.data.get('resultProcessed', false) != true
+             && request.resource.data.resultProcessed == true
+             && request.resource.data.resultVersion == 1
+             && request.resource.data.status == 'completed'
+             && request.resource.data.processedBy == request.auth.uid
+             && request.resource.data.completedAt == request.time
+             && request.resource.data.updatedAt == request.time
+             && request.resource.data.scores is map
+             && request.resource.data.diff(resource.data)
+                .affectedKeys()
+                .hasOnly([
+                  'status',
+                  'resultProcessed',
+                  'resultVersion',
+                  'scores',
+                  'winnerUid',
+                  'draw',
+                  'processedBy',
+                  'completedAt',
+                  'updatedAt'
+                ])
+             && firstProgress.finished == true
+             && secondProgress.finished == true
+             && firstProgress.answeredCount ==
+                resource.data.questionCount
+             && secondProgress.answeredCount ==
+                resource.data.questionCount
+             && firstProgress.correctCount +
+                firstProgress.wrongCount ==
+                resource.data.questionCount
+             && secondProgress.correctCount +
+                secondProgress.wrongCount ==
+                resource.data.questionCount
+             && firstScore == firstProgress.correctCount
+             && secondScore == secondProgress.correctCount
+             && (
+               (
+                 firstScore == secondScore
+                 && request.resource.data.draw == true
+                 && request.resource.data.winnerUid == null
+               )
+               ||
+               (
+                 firstScore > secondScore
+                 && request.resource.data.draw == false
+                 && request.resource.data.winnerUid == firstUid
+               )
+               ||
+               (
+                 secondScore > firstScore
+                 && request.resource.data.draw == false
+                 && request.resource.data.winnerUid == secondUid
+               )
+             );
+    }
+
     match /users/{userId} {
       allow read, write: if signedIn()
                          && request.auth.uid == userId;
@@ -66,10 +136,7 @@ service cloud.firestore {
       allow update: if signedIn()
                     && request.auth.uid
                        in resource.data.playerUids
-                    && request.resource.data.playerUids ==
-                       resource.data.playerUids
-                    && request.resource.data.questionCount ==
-                       resource.data.questionCount;
+                    && validDuelCompletion(matchId);
 
       allow delete: if false;
 
@@ -85,7 +152,19 @@ service cloud.firestore {
                               && request.resource.data.uid == userId
                               && request.resource.data.answeredCount >= 0
                               && request.resource.data.correctCount >= 0
-                              && request.resource.data.wrongCount >= 0;
+                              && request.resource.data.wrongCount >= 0
+                              && request.resource.data.answeredCount ==
+                                 request.resource.data.correctCount +
+                                 request.resource.data.wrongCount
+                              && request.resource.data.currentQuestionIndex ==
+                                 request.resource.data.answeredCount
+                              && request.resource.data.answeredCount <=
+                                 get(
+                                   /databases/$(database)/documents/live_duel_matches/$(matchId)
+                                 ).data.questionCount
+                              && get(
+                                   /databases/$(database)/documents/live_duel_matches/$(matchId)
+                                 ).data.get('resultProcessed', false) != true;
 
         allow delete: if false;
       }

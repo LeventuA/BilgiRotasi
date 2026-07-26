@@ -224,9 +224,8 @@ class LiveDuelProfile {
 
     final updatedRecentMatches = <LiveDuelRecentMatch>[
       LiveDuelRecentMatch(
-        opponentName: opponentName.trim().isEmpty
-            ? 'Rakip'
-            : opponentName.trim(),
+        opponentName:
+            opponentName.trim().isEmpty ? 'Rakip' : opponentName.trim(),
         result: result,
         ratingDelta: change.delta,
         playedAt: playedAt ?? DateTime.now(),
@@ -264,17 +263,18 @@ class LiveDuelProfile {
   factory LiveDuelProfile.fromJson(Map<String, dynamic> json) {
     final rawMatches = json['recentMatches'];
 
-    final matches = rawMatches is List
-        ? rawMatches
-              .whereType<Map>()
-              .map(
-                (item) => LiveDuelRecentMatch.fromJson(
-                  Map<String, dynamic>.from(item),
-                ),
-              )
-              .take(10)
-              .toList(growable: false)
-        : const <LiveDuelRecentMatch>[];
+    final matches =
+        rawMatches is List
+            ? rawMatches
+                .whereType<Map>()
+                .map(
+                  (item) => LiveDuelRecentMatch.fromJson(
+                    Map<String, dynamic>.from(item),
+                  ),
+                )
+                .take(10)
+                .toList(growable: false)
+            : const <LiveDuelRecentMatch>[];
 
     return LiveDuelProfile(
       rating: max(
@@ -307,7 +307,7 @@ class LiveDuelProfileService {
 
   static final SharedPreferencesAsync _preferences = SharedPreferencesAsync();
 
-  static Future<LiveDuelProfile> load() async {
+  static Future<LiveDuelProfile> _loadLocal() async {
     try {
       final raw = await _preferences.getString(_storageKey);
 
@@ -327,8 +327,61 @@ class LiveDuelProfileService {
     return const LiveDuelProfile();
   }
 
-  static Future<void> save(LiveDuelProfile profile) async {
+  static Future<void> saveLocal(LiveDuelProfile profile) async {
     await _preferences.setString(_storageKey, jsonEncode(profile.toJson()));
+  }
+
+  static Future<LiveDuelProfile> load() async {
+    final local = await _loadLocal();
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) return local;
+
+    try {
+      final reference = FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid);
+      final snapshot = await reference.get(GetOptions(source: Source.server));
+      final rawProfile = snapshot.data()?['liveDuelProfile'];
+
+      if (rawProfile is Map) {
+        final remote = LiveDuelProfile.fromJson(
+          Map<String, dynamic>.from(rawProfile),
+        );
+        await saveLocal(remote);
+        return remote;
+      }
+
+      await reference.set(<String, dynamic>{
+        'liveDuelProfile': local.toJson(),
+        'liveDuelProfileUpdatedAt': FieldValue.serverTimestamp(),
+        'appVersion': AppBuildInfo.version,
+      }, SetOptions(merge: true));
+    } catch (_) {
+      // Bulut profil erişimi yerel profili engellememeli.
+    }
+
+    return local;
+  }
+
+  static Future<void> save(LiveDuelProfile profile) async {
+    await saveLocal(profile);
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set(<String, dynamic>{
+            'liveDuelProfile': profile.toJson(),
+            'liveDuelProfileUpdatedAt': FieldValue.serverTimestamp(),
+            'appVersion': AppBuildInfo.version,
+          }, SetOptions(merge: true));
+    } catch (_) {
+      // Yerel profil korunur; sonraki yüklemede bulut tekrar denenir.
+    }
   }
 
   static Future<LiveDuelProfile> applyResult({

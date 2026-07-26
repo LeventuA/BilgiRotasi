@@ -1,10 +1,6 @@
 part of 'main.dart';
 
-enum AccountMode {
-  undecided,
-  guest,
-  google,
-}
+enum AccountMode { undecided, guest, google }
 
 class AccountAccessPolicy {
   AccountAccessPolicy._();
@@ -53,20 +49,14 @@ class AccountSnapshotCodec {
           'value': value,
         };
       } else if (value is int) {
-        encoded[entry.key] = <String, dynamic>{
-          'type': 'int',
-          'value': value,
-        };
+        encoded[entry.key] = <String, dynamic>{'type': 'int', 'value': value};
       } else if (value is double) {
         encoded[entry.key] = <String, dynamic>{
           'type': 'double',
           'value': value,
         };
       } else if (value is bool) {
-        encoded[entry.key] = <String, dynamic>{
-          'type': 'bool',
-          'value': value,
-        };
+        encoded[entry.key] = <String, dynamic>{'type': 'bool', 'value': value};
       } else if (value is List<String>) {
         encoded[entry.key] = <String, dynamic>{
           'type': 'stringList',
@@ -75,10 +65,7 @@ class AccountSnapshotCodec {
       }
     }
 
-    return jsonEncode(<String, dynamic>{
-      'schema': 1,
-      'values': encoded,
-    });
+    return jsonEncode(<String, dynamic>{'schema': 1, 'values': encoded});
   }
 
   static Map<String, Object?> decode(String raw) {
@@ -130,13 +117,11 @@ class AccountSnapshotCodec {
 class AccountLocalSnapshot {
   AccountLocalSnapshot._();
 
-  static const String controlPrefix =
-      'bilgi_rotasi_account_';
+  static const String controlPrefix = 'bilgi_rotasi_account_';
 
   // Oyun servisleri SharedPreferencesAsync kullanıyor.
   // Bulut yedeği de aynı Android DataStore alanını okumalıdır.
-  static final SharedPreferencesAsync _preferences =
-      SharedPreferencesAsync();
+  static final SharedPreferencesAsync _preferences = SharedPreferencesAsync();
 
   static bool shouldSyncKey(String key) {
     if (!key.startsWith('bilgi_rotasi_')) return false;
@@ -169,9 +154,7 @@ class AccountLocalSnapshot {
     final encoded = AccountSnapshotCodec.encode(values);
 
     if (utf8.encode(encoded).length > 700000) {
-      throw StateError(
-        'Bulut kaydı güvenli boyut sınırını aştı.',
-      );
+      throw StateError('Bulut kaydı güvenli boyut sınırını aştı.');
     }
 
     return encoded;
@@ -218,8 +201,7 @@ class AccountLocalSnapshot {
 class AccountCloudService with WidgetsBindingObserver {
   AccountCloudService._();
 
-  static final AccountCloudService _instance =
-      AccountCloudService._();
+  static final AccountCloudService _instance = AccountCloudService._();
 
   static const String _webClientId =
       '184174765052-cq19m113aum2jofrfj3np8adbulgmeon'
@@ -232,11 +214,11 @@ class AccountCloudService with WidgetsBindingObserver {
 
   static final ValueNotifier<AccountSessionState> state =
       ValueNotifier<AccountSessionState>(
-    const AccountSessionState(
-      mode: AccountMode.undecided,
-      firebaseReady: false,
-    ),
-  );
+        const AccountSessionState(
+          mode: AccountMode.undecided,
+          firebaseReady: false,
+        ),
+      );
 
   FirebaseAuth? _auth;
   FirebaseFirestore? _firestore;
@@ -279,8 +261,7 @@ class AccountCloudService with WidgetsBindingObserver {
     _initialized = true;
 
     final preferences = await SharedPreferences.getInstance();
-    final guestSelected =
-        preferences.getBool(_guestSelectedKey) == true;
+    final guestSelected = preferences.getBool(_guestSelectedKey) == true;
 
     try {
       await Firebase.initializeApp();
@@ -289,9 +270,7 @@ class AccountCloudService with WidgetsBindingObserver {
       _firestore = FirebaseFirestore.instance;
       _googleSignIn = GoogleSignIn.instance;
 
-      await _googleSignIn!.initialize(
-        serverClientId: _webClientId,
-      );
+      await _googleSignIn!.initialize(serverClientId: _webClientId);
 
       WidgetsBinding.instance.addObserver(this);
 
@@ -299,9 +278,7 @@ class AccountCloudService with WidgetsBindingObserver {
 
       if (currentUser == null) {
         state.value = AccountSessionState(
-          mode: guestSelected
-              ? AccountMode.guest
-              : AccountMode.undecided,
+          mode: guestSelected ? AccountMode.guest : AccountMode.undecided,
           firebaseReady: true,
         );
       } else {
@@ -315,19 +292,16 @@ class AccountCloudService with WidgetsBindingObserver {
         await _activateExistingUser(currentUser);
       }
 
-      _syncTimer = Timer.periodic(
-        const Duration(seconds: 45),
-        (_) {
-          if (state.value.signedIn) {
-            unawaited(_syncNow(manual: false));
-          }
-        },
-      );
+      _syncTimer?.cancel();
+
+      _syncTimer = Timer.periodic(const Duration(seconds: 45), (_) {
+        if (state.value.signedIn) {
+          unawaited(_syncNow(manual: false));
+        }
+      });
     } catch (error) {
       state.value = AccountSessionState(
-        mode: guestSelected
-            ? AccountMode.guest
-            : AccountMode.undecided,
+        mode: guestSelected ? AccountMode.guest : AccountMode.undecided,
         firebaseReady: false,
         message:
             'Google girişi şu an hazırlanamadı. '
@@ -341,10 +315,7 @@ class AccountCloudService with WidgetsBindingObserver {
     await preferences.setBool(_guestSelectedKey, true);
 
     final snapshot = await AccountLocalSnapshot.capture();
-    await preferences.setString(
-      _guestSnapshotKey,
-      snapshot,
-    );
+    await preferences.setString(_guestSnapshotKey, snapshot);
 
     state.value = AccountSessionState(
       mode: AccountMode.guest,
@@ -353,9 +324,7 @@ class AccountCloudService with WidgetsBindingObserver {
   }
 
   Future<void> _signInWithGoogle() async {
-    if (_auth == null ||
-        _firestore == null ||
-        _googleSignIn == null) {
+    if (_auth == null || _firestore == null || _googleSignIn == null) {
       state.value = AccountSessionState(
         mode: state.value.mode,
         firebaseReady: false,
@@ -370,10 +339,7 @@ class AccountCloudService with WidgetsBindingObserver {
     final preferences = await SharedPreferences.getInstance();
     final guestSnapshot = await AccountLocalSnapshot.capture();
 
-    await preferences.setString(
-      _guestSnapshotKey,
-      guestSnapshot,
-    );
+    await preferences.setString(_guestSnapshotKey, guestSnapshot);
     await preferences.setBool(_guestSelectedKey, true);
 
     state.value = AccountSessionState(
@@ -399,18 +365,12 @@ class AccountCloudService with WidgetsBindingObserver {
       final idToken = googleAuth.idToken;
 
       if (idToken == null || idToken.isEmpty) {
-        throw StateError(
-          'Google kimlik doğrulama anahtarı alınamadı.',
-        );
+        throw StateError('Google kimlik doğrulama anahtarı alınamadı.');
       }
 
-      final credential = GoogleAuthProvider.credential(
-        idToken: idToken,
-      );
+      final credential = GoogleAuthProvider.credential(idToken: idToken);
 
-      final result = await _auth!.signInWithCredential(
-        credential,
-      );
+      final result = await _auth!.signInWithCredential(credential);
       final user = result.user;
 
       if (user == null) {
@@ -418,25 +378,15 @@ class AccountCloudService with WidgetsBindingObserver {
       }
 
       final remote = await _loadRemoteSnapshot(user.uid);
-      final localCount =
-          AccountLocalSnapshot.valueCount(guestSnapshot);
-      final remoteCount = remote == null
-          ? 0
-          : AccountLocalSnapshot.valueCount(remote);
+      final localCount = AccountLocalSnapshot.valueCount(guestSnapshot);
+      final remoteCount =
+          remote == null ? 0 : AccountLocalSnapshot.valueCount(remote);
 
-      if (remote == null ||
-          (remoteCount == 0 && localCount > 0)) {
-        await _writeRemoteSnapshot(
-          user,
-          guestSnapshot,
-        );
+      if (remote == null || (remoteCount == 0 && localCount > 0)) {
+        await _writeRemoteSnapshot(user, guestSnapshot);
       } else {
         await AccountLocalSnapshot.restore(remote);
-        await _saveUserLocalSnapshot(
-          user.uid,
-          remote,
-          dirty: false,
-        );
+        await _saveUserLocalSnapshot(user.uid, remote, dirty: false);
       }
 
       await _refreshGameServices();
@@ -461,14 +411,10 @@ class AccountCloudService with WidgetsBindingObserver {
 
   Future<void> _activateExistingUser(User user) async {
     final preferences = await SharedPreferences.getInstance();
-    final localSnapshot = preferences.getString(
-      _userSnapshotKey(user.uid),
-    );
-    final dirty =
-        preferences.getBool(_userDirtyKey(user.uid)) == true;
+    final localSnapshot = preferences.getString(_userSnapshotKey(user.uid));
+    final dirty = preferences.getBool(_userDirtyKey(user.uid)) == true;
     final deviceSnapshot = await AccountLocalSnapshot.capture();
-    final deviceCount =
-        AccountLocalSnapshot.valueCount(deviceSnapshot);
+    final deviceCount = AccountLocalSnapshot.valueCount(deviceSnapshot);
 
     try {
       if (dirty &&
@@ -479,22 +425,17 @@ class AccountCloudService with WidgetsBindingObserver {
         await _writeRemoteSnapshot(user, localSnapshot);
       } else {
         final remote = await _loadRemoteSnapshot(user.uid);
-        final remoteCount = remote == null
-            ? 0
-            : AccountLocalSnapshot.valueCount(remote);
+        final remoteCount =
+            remote == null ? 0 : AccountLocalSnapshot.valueCount(remote);
 
         if (remote != null && remoteCount > 0) {
           await AccountLocalSnapshot.restore(remote);
-          await _saveUserLocalSnapshot(
-            user.uid,
-            remote,
-            dirty: false,
-          );
+          await _saveUserLocalSnapshot(user.uid, remote, dirty: false);
         } else {
-          final snapshot = deviceCount > 0
-              ? deviceSnapshot
-              : localSnapshot != null &&
-                      localSnapshot.isNotEmpty
+          final snapshot =
+              deviceCount > 0
+                  ? deviceSnapshot
+                  : localSnapshot != null && localSnapshot.isNotEmpty
                   ? localSnapshot
                   : deviceSnapshot;
 
@@ -541,54 +482,33 @@ class AccountCloudService with WidgetsBindingObserver {
     return raw;
   }
 
-  Future<void> _writeRemoteSnapshot(
-    User user,
-    String snapshot,
-  ) async {
+  Future<void> _writeRemoteSnapshot(User user, String snapshot) async {
     if (utf8.encode(snapshot).length > 700000) {
-      throw StateError(
-        'Bulut kaydı güvenli boyut sınırını aştı.',
-      );
+      throw StateError('Bulut kaydı güvenli boyut sınırını aştı.');
     }
 
-    final valueCount =
-        AccountLocalSnapshot.valueCount(snapshot);
-    final reference = _firestore!
-        .collection('users')
-        .doc(user.uid);
+    final valueCount = AccountLocalSnapshot.valueCount(snapshot);
+    final reference = _firestore!.collection('users').doc(user.uid);
 
-    await reference.set(
-      <String, dynamic>{
-        'schema': 2,
-        'snapshotJson': snapshot,
-        'snapshotValueCount': valueCount,
-        'displayName': user.displayName ?? '',
-        'email': user.email ?? '',
-        'appVersion': AppBuildInfo.version,
-        'clientUpdatedAt':
-            DateTime.now().toUtc().toIso8601String(),
-        'updatedAt': FieldValue.serverTimestamp(),
-      },
-      SetOptions(merge: true),
-    );
+    await reference.set(<String, dynamic>{
+      'schema': 2,
+      'snapshotJson': snapshot,
+      'snapshotValueCount': valueCount,
+      'displayName': user.displayName ?? '',
+      'email': user.email ?? '',
+      'appVersion': AppBuildInfo.version,
+      'clientUpdatedAt': DateTime.now().toUtc().toIso8601String(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
 
-    final verified = await reference.get(
-      GetOptions(source: Source.server),
-    );
-    final verifiedSnapshot =
-        verified.data()?['snapshotJson'];
+    final verified = await reference.get(GetOptions(source: Source.server));
+    final verifiedSnapshot = verified.data()?['snapshotJson'];
 
     if (verifiedSnapshot != snapshot) {
-      throw StateError(
-        'Bulut kaydı sunucuda doğrulanamadı.',
-      );
+      throw StateError('Bulut kaydı sunucuda doğrulanamadı.');
     }
 
-    await _saveUserLocalSnapshot(
-      user.uid,
-      snapshot,
-      dirty: false,
-    );
+    await _saveUserLocalSnapshot(user.uid, snapshot, dirty: false);
   }
 
   Future<void> _saveUserLocalSnapshot(
@@ -598,25 +518,14 @@ class AccountCloudService with WidgetsBindingObserver {
   }) async {
     final preferences = await SharedPreferences.getInstance();
 
-    await preferences.setString(
-      _userSnapshotKey(uid),
-      snapshot,
-    );
-    await preferences.setBool(
-      _userDirtyKey(uid),
-      dirty,
-    );
+    await preferences.setString(_userSnapshotKey(uid), snapshot);
+    await preferences.setBool(_userDirtyKey(uid), dirty);
   }
 
-  Future<void> _syncNow({
-    required bool manual,
-  }) async {
+  Future<void> _syncNow({required bool manual}) async {
     final user = _auth?.currentUser;
 
-    if (user == null ||
-        _firestore == null ||
-        _syncing ||
-        _deleting) {
+    if (user == null || _firestore == null || _syncing || _deleting) {
       return;
     }
 
@@ -634,14 +543,9 @@ class AccountCloudService with WidgetsBindingObserver {
 
     try {
       final snapshot = await AccountLocalSnapshot.capture();
-      final valueCount =
-          AccountLocalSnapshot.valueCount(snapshot);
+      final valueCount = AccountLocalSnapshot.valueCount(snapshot);
 
-      await _saveUserLocalSnapshot(
-        user.uid,
-        snapshot,
-        dirty: true,
-      );
+      await _saveUserLocalSnapshot(user.uid, snapshot, dirty: true);
 
       await _writeRemoteSnapshot(user, snapshot);
 
@@ -649,8 +553,7 @@ class AccountCloudService with WidgetsBindingObserver {
         mode: AccountMode.google,
         firebaseReady: true,
         user: user,
-        message:
-            'Buluta $valueCount kayıt yüklendi ve doğrulandı.',
+        message: 'Buluta $valueCount kayıt yüklendi ve doğrulandı.',
         lastSyncedAt: DateTime.now(),
       );
     } catch (_) {
@@ -693,44 +596,29 @@ class AccountCloudService with WidgetsBindingObserver {
           await _googleSignIn!.authenticate();
 
       if (googleUser == null) {
-        throw StateError(
-          'Hesap silme doğrulaması iptal edildi.',
-        );
+        throw StateError('Hesap silme doğrulaması iptal edildi.');
       }
 
       final idToken = googleUser.authentication.idToken;
 
       if (idToken == null || idToken.isEmpty) {
-        throw StateError(
-          'Google doğrulama anahtarı alınamadı.',
-        );
+        throw StateError('Google doğrulama anahtarı alınamadı.');
       }
 
-      final credential = GoogleAuthProvider.credential(
-        idToken: idToken,
-      );
+      final credential = GoogleAuthProvider.credential(idToken: idToken);
 
       await user.reauthenticateWithCredential(credential);
 
-      await _firestore!
-          .collection('users')
-          .doc(user.uid)
-          .delete();
+      await _deleteLiveDuelResultClaims(user.uid);
 
-      final preferences =
-          await SharedPreferences.getInstance();
+      await _firestore!.collection('users').doc(user.uid).delete();
 
-      await preferences.remove(
-        _userSnapshotKey(user.uid),
-      );
-      await preferences.remove(
-        _userDirtyKey(user.uid),
-      );
+      final preferences = await SharedPreferences.getInstance();
+
+      await preferences.remove(_userSnapshotKey(user.uid));
+      await preferences.remove(_userDirtyKey(user.uid));
       await preferences.remove(_guestSnapshotKey);
-      await preferences.setBool(
-        _guestSelectedKey,
-        true,
-      );
+      await preferences.setBool(_guestSelectedKey, true);
 
       await AccountLocalSnapshot.clearGameData();
       await user.delete();
@@ -777,27 +665,18 @@ class AccountCloudService with WidgetsBindingObserver {
       // Çıkış, eşitleme hatası yüzünden kilitlenmemeli.
     }
 
-    final accountSnapshot =
-        await AccountLocalSnapshot.capture();
+    final accountSnapshot = await AccountLocalSnapshot.capture();
 
-    await _saveUserLocalSnapshot(
-      user.uid,
-      accountSnapshot,
-      dirty: false,
-    );
+    await _saveUserLocalSnapshot(user.uid, accountSnapshot, dirty: false);
 
     await _auth?.signOut();
     await _googleSignIn?.signOut();
 
     final preferences = await SharedPreferences.getInstance();
-    final guestSnapshot =
-        preferences.getString(_guestSnapshotKey);
+    final guestSnapshot = preferences.getString(_guestSnapshotKey);
 
-    if (guestSnapshot != null &&
-        guestSnapshot.isNotEmpty) {
-      await AccountLocalSnapshot.restore(
-        guestSnapshot,
-      );
+    if (guestSnapshot != null && guestSnapshot.isNotEmpty) {
+      await AccountLocalSnapshot.restore(guestSnapshot);
     } else {
       await AccountLocalSnapshot.clearGameData();
     }
@@ -831,6 +710,26 @@ class AccountCloudService with WidgetsBindingObserver {
     try {
       await AppPreferencesService.initialize();
     } catch (_) {}
+  }
+
+  Future<void> _deleteLiveDuelResultClaims(String uid) async {
+    while (true) {
+      final snapshot =
+          await _firestore!
+              .collection('users')
+              .doc(uid)
+              .collection('live_duel_results')
+              .limit(100)
+              .get();
+
+      if (snapshot.docs.isEmpty) return;
+
+      final batch = _firestore!.batch();
+      for (final document in snapshot.docs) {
+        batch.delete(document.reference);
+      }
+      await batch.commit();
+    }
   }
 
   String _deletionFriendlyError(Object error) {
@@ -885,9 +784,7 @@ class AccountCloudService with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeAppLifecycleState(
-    AppLifecycleState lifecycleState,
-  ) {
+  void didChangeAppLifecycleState(AppLifecycleState lifecycleState) {
     if (lifecycleState == AppLifecycleState.inactive ||
         lifecycleState == AppLifecycleState.paused ||
         lifecycleState == AppLifecycleState.detached) {
@@ -897,10 +794,7 @@ class AccountCloudService with WidgetsBindingObserver {
 }
 
 class AccountGate extends StatelessWidget {
-  const AccountGate({
-    required this.questionBank,
-    super.key,
-  });
+  const AccountGate({required this.questionBank, super.key});
 
   final QuestionBank questionBank;
 
@@ -948,8 +842,7 @@ class AccountWelcomeScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(24),
                   child: ConstrainedBox(
-                    constraints:
-                        const BoxConstraints(maxWidth: 520),
+                    constraints: const BoxConstraints(maxWidth: 520),
                     child: Column(
                       children: [
                         Image.asset(
@@ -983,47 +876,34 @@ class AccountWelcomeScreen extends StatelessWidget {
                         const SizedBox(height: 26),
                         FilledButton.icon(
                           onPressed:
-                              session.busy ||
-                                      !session.firebaseReady
+                              session.busy || !session.firebaseReady
                                   ? null
-                                  : AccountCloudService
-                                      .signInWithGoogle,
-                          icon: session.busy
-                              ? const SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child:
-                                      CircularProgressIndicator(
-                                    strokeWidth: 2.2,
-                                  ),
-                                )
-                              : const Icon(
-                                  Icons.account_circle_rounded,
-                                ),
-                          label: const Text(
-                            'Google ile giriş yap',
-                          ),
+                                  : AccountCloudService.signInWithGoogle,
+                          icon:
+                              session.busy
+                                  ? const SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2.2,
+                                    ),
+                                  )
+                                  : const Icon(Icons.account_circle_rounded),
+                          label: const Text('Google ile giriş yap'),
                         ),
                         const SizedBox(height: 11),
                         OutlinedButton.icon(
-                          onPressed: session.busy
-                              ? null
-                              : AccountCloudService
-                                  .continueAsGuest,
+                          onPressed:
+                              session.busy
+                                  ? null
+                                  : AccountCloudService.continueAsGuest,
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.white,
-                            side: const BorderSide(
-                              color: Color(0x88FFFFFF),
-                            ),
-                            minimumSize:
-                                const Size.fromHeight(54),
+                            side: const BorderSide(color: Color(0x88FFFFFF)),
+                            minimumSize: const Size.fromHeight(54),
                           ),
-                          icon: const Icon(
-                            Icons.person_outline_rounded,
-                          ),
-                          label: const Text(
-                            'Misafir olarak devam et',
-                          ),
+                          icon: const Icon(Icons.person_outline_rounded),
+                          label: const Text('Misafir olarak devam et'),
                         ),
                         const SizedBox(height: 16),
                         const Text(
@@ -1071,27 +951,25 @@ class AccountSummaryCard extends StatelessWidget {
       builder: (context, session, _) {
         final signedIn = session.signedIn;
         final user = session.user;
-        final title = signedIn
-            ? (user?.displayName?.trim().isNotEmpty == true
-                ? user!.displayName!
-                : 'Google hesabı')
-            : 'Misafir';
-        final subtitle = signedIn
-            ? (user?.email ?? 'Bulut kaydı etkin')
-            : 'İlerleme yalnızca bu telefonda';
+        final title =
+            signedIn
+                ? (user?.displayName?.trim().isNotEmpty == true
+                    ? user!.displayName!
+                    : 'Google hesabı')
+                : 'Misafir';
+        final subtitle =
+            signedIn
+                ? (user?.email ?? 'Bulut kaydı etkin')
+                : 'İlerleme yalnızca bu telefonda';
 
         return Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14,
-            vertical: 12,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
             color: const Color(0x16FFFFFF),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: signedIn
-                  ? const Color(0x665EEAD4)
-                  : const Color(0x44FFFFFF),
+              color:
+                  signedIn ? const Color(0x665EEAD4) : const Color(0x44FFFFFF),
             ),
           ),
           child: Row(
@@ -1101,25 +979,23 @@ class AccountSummaryCard extends StatelessWidget {
                 height: 43,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: signedIn
-                      ? const Color(0x2232D5C5)
-                      : const Color(0x22FFFFFF),
+                  color:
+                      signedIn
+                          ? const Color(0x2232D5C5)
+                          : const Color(0x22FFFFFF),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   signedIn
                       ? Icons.cloud_done_rounded
                       : Icons.person_outline_rounded,
-                  color: signedIn
-                      ? const Color(0xFF67E8D8)
-                      : Colors.white,
+                  color: signedIn ? const Color(0xFF67E8D8) : Colors.white,
                 ),
               ),
               const SizedBox(width: 11),
               Expanded(
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       title,
@@ -1154,15 +1030,13 @@ class AccountSummaryCard extends StatelessWidget {
                 )
               else
                 TextButton(
-                  onPressed: signedIn
-                      ? AccountCloudService.syncNow
-                      : session.firebaseReady
-                          ? AccountCloudService
-                              .signInWithGoogle
+                  onPressed:
+                      signedIn
+                          ? AccountCloudService.syncNow
+                          : session.firebaseReady
+                          ? AccountCloudService.signInWithGoogle
                           : null,
-                  child: Text(
-                    signedIn ? 'Eşitle' : 'Giriş yap',
-                  ),
+                  child: Text(signedIn ? 'Eşitle' : 'Giriş yap'),
                 ),
             ],
           ),
@@ -1184,16 +1058,9 @@ class AccountSettingsScreen extends StatelessWidget {
         final user = session.user;
 
         return Scaffold(
-          appBar: AppBar(
-            title: const Text('Hesap & Bulut Kaydı'),
-          ),
+          appBar: AppBar(title: const Text('Hesap & Bulut Kaydı')),
           body: ListView(
-            padding: const EdgeInsets.fromLTRB(
-              16,
-              14,
-              16,
-              28,
-            ),
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 28),
             children: [
               Card(
                 child: Padding(
@@ -1210,8 +1077,7 @@ class AccountSettingsScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       Text(
                         signedIn
-                            ? (user?.displayName ??
-                                'Google hesabı')
+                            ? (user?.displayName ?? 'Google hesabı')
                             : 'Misafir kullanıcı',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
@@ -1224,9 +1090,7 @@ class AccountSettingsScreen extends StatelessWidget {
                         Text(
                           user!.email!,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Color(0xFF64748B),
-                          ),
+                          style: const TextStyle(color: Color(0xFF64748B)),
                         ),
                       ],
                       const SizedBox(height: 14),
@@ -1243,59 +1107,38 @@ class AccountSettingsScreen extends StatelessWidget {
                       const SizedBox(height: 18),
                       if (signedIn) ...[
                         FilledButton.icon(
-                          onPressed: session.busy
-                              ? null
-                              : AccountCloudService.syncNow,
-                          icon: const Icon(
-                            Icons.sync_rounded,
-                          ),
-                          label: const Text(
-                            'Şimdi eşitle',
-                          ),
+                          onPressed:
+                              session.busy ? null : AccountCloudService.syncNow,
+                          icon: const Icon(Icons.sync_rounded),
+                          label: const Text('Şimdi eşitle'),
                         ),
                         const SizedBox(height: 10),
                         OutlinedButton.icon(
-                          onPressed: session.busy
-                              ? null
-                              : AccountCloudService.signOut,
-                          icon: const Icon(
-                            Icons.logout_rounded,
-                          ),
-                          label: const Text(
-                            'Hesaptan çık',
-                          ),
+                          onPressed:
+                              session.busy ? null : AccountCloudService.signOut,
+                          icon: const Icon(Icons.logout_rounded),
+                          label: const Text('Hesaptan çık'),
                         ),
                         const SizedBox(height: 10),
                         TextButton.icon(
-                          onPressed: session.busy
-                              ? null
-                              : () => _confirmAccountDeletion(
-                                    context,
-                                  ),
+                          onPressed:
+                              session.busy
+                                  ? null
+                                  : () => _confirmAccountDeletion(context),
                           style: TextButton.styleFrom(
-                            foregroundColor:
-                                const Color(0xFFB91C1C),
+                            foregroundColor: const Color(0xFFB91C1C),
                           ),
-                          icon: const Icon(
-                            Icons.delete_forever_rounded,
-                          ),
-                          label: const Text(
-                            'Hesabı ve bulut verilerini sil',
-                          ),
+                          icon: const Icon(Icons.delete_forever_rounded),
+                          label: const Text('Hesabı ve bulut verilerini sil'),
                         ),
                       ] else
                         FilledButton.icon(
-                          onPressed: session.busy ||
-                                  !session.firebaseReady
-                              ? null
-                              : AccountCloudService
-                                  .signInWithGoogle,
-                          icon: const Icon(
-                            Icons.account_circle_rounded,
-                          ),
-                          label: const Text(
-                            'Google ile giriş yap',
-                          ),
+                          onPressed:
+                              session.busy || !session.firebaseReady
+                                  ? null
+                                  : AccountCloudService.signInWithGoogle,
+                          icon: const Icon(Icons.account_circle_rounded),
+                          label: const Text('Google ile giriş yap'),
                         ),
                       if (session.message != null) ...[
                         const SizedBox(height: 12),
@@ -1333,10 +1176,9 @@ class AccountSettingsScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _confirmAccountDeletion(
-    BuildContext context,
-  ) async {
-    final confirmed = await showDialog<bool>(
+  Future<void> _confirmAccountDeletion(BuildContext context) async {
+    final confirmed =
+        await showDialog<bool>(
           context: context,
           builder: (dialogContext) {
             return AlertDialog(
@@ -1345,9 +1187,7 @@ class AccountSettingsScreen extends StatelessWidget {
                 color: Color(0xFFB91C1C),
                 size: 42,
               ),
-              title: const Text(
-                'Hesap ve bulut verileri silinsin mi?',
-              ),
+              title: const Text('Hesap ve bulut verileri silinsin mi?'),
               content: const Text(
                 'Google hesabına bağlı Bilgi Rotası hesabın, '
                 'bulut kaydın, XP, başarımlar, kayıtlı oyun, '
@@ -1357,17 +1197,14 @@ class AccountSettingsScreen extends StatelessWidget {
               ),
               actions: [
                 TextButton(
-                  onPressed: () =>
-                      Navigator.pop(dialogContext, false),
+                  onPressed: () => Navigator.pop(dialogContext, false),
                   child: const Text('Vazgeç'),
                 ),
                 FilledButton(
                   style: FilledButton.styleFrom(
-                    backgroundColor:
-                        const Color(0xFFB91C1C),
+                    backgroundColor: const Color(0xFFB91C1C),
                   ),
-                  onPressed: () =>
-                      Navigator.pop(dialogContext, true),
+                  onPressed: () => Navigator.pop(dialogContext, true),
                   child: const Text('Kalıcı Olarak Sil'),
                 ),
               ],
@@ -1396,18 +1233,12 @@ class GuestDailyLockedScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
-                  '🔐',
-                  style: TextStyle(fontSize: 64),
-                ),
+                const Text('🔐', style: TextStyle(fontSize: 64)),
                 const SizedBox(height: 14),
                 const Text(
                   'Günlük Görev için hesap gerekli',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w900,
-                  ),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
                 ),
                 const SizedBox(height: 10),
                 const Text(
@@ -1417,14 +1248,9 @@ class GuestDailyLockedScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 FilledButton.icon(
-                  onPressed:
-                      AccountCloudService.signInWithGoogle,
-                  icon: const Icon(
-                    Icons.account_circle_rounded,
-                  ),
-                  label: const Text(
-                    'Google ile giriş yap',
-                  ),
+                  onPressed: AccountCloudService.signInWithGoogle,
+                  icon: const Icon(Icons.account_circle_rounded),
+                  label: const Text('Google ile giriş yap'),
                 ),
               ],
             ),

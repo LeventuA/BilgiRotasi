@@ -80,6 +80,8 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
               ),
         ),
       );
+
+      await _loadProfile();
     } on LiveDuelMatchmakingException catch (error) {
       if (!mounted) return;
 

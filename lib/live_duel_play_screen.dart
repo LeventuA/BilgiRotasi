@@ -153,13 +153,16 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
   LiveDuelQuestionSet? _questionSet;
   LiveDuelPlayerProgress? _ownProgress;
   LiveDuelPlayerProgress? _opponentProgress;
+  LiveDuelOwnResultAward? _ownAward;
 
   bool _loading = true;
   bool _submitting = false;
+  bool _finalizingResult = false;
   int _questionIndex = 0;
   int? _selectedOptionIndex;
   bool? _selectedAnswerCorrect;
   String? _errorMessage;
+  String? _resultError;
 
   @override
   void initState() {
@@ -284,6 +287,54 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
         _questionIndex = own.answeredCount;
       }
     });
+
+    if (own?.finished == true && opponent?.finished == true) {
+      unawaited(_finalizeResult());
+    }
+  }
+
+  Future<void> _finalizeResult() async {
+    if (_finalizingResult || _ownAward != null) return;
+
+    setState(() {
+      _finalizingResult = true;
+      _resultError = null;
+    });
+
+    try {
+      await LiveDuelResultService.finalizeMatch(matchId: widget.matchId);
+      final award = await LiveDuelResultService.applyOwnResult(
+        matchId: widget.matchId,
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        _ownAward = award;
+        _finalizingResult = false;
+      });
+    } on LiveDuelResultException catch (error) {
+      if (!mounted) return;
+
+      setState(() {
+        _resultError = error.message;
+        _finalizingResult = false;
+      });
+    } catch (error, stack) {
+      await AppErrorLogService.record(
+        source: 'Canlı düello sonuç işleme',
+        error: error,
+        stack: stack,
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        _resultError =
+            'Maç sonucu işlenemedi. Bağlantını kontrol edip tekrar dene.';
+        _finalizingResult = false;
+      });
+    }
   }
 
   bool get _ownFinished => _ownProgress?.finished == true;
@@ -373,7 +424,7 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
   @override
   Widget build(BuildContext context) {
     final fatal = !_loading && _questionSet == null && _errorMessage != null;
-    final canLeave = _bothFinished || fatal;
+    final canLeave = _ownAward != null || fatal;
 
     return PopScope(
       canPop: canLeave,
@@ -472,7 +523,9 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
         ],
         const SizedBox(height: 18),
         if (_bothFinished)
-          _buildResultView(own, opponent)
+          (_ownAward != null
+              ? _buildResultView(_ownAward!)
+              : _buildFinalizingView())
         else if (_ownFinished)
           _buildWaitingView(opponent, match.questionCount)
         else
@@ -598,20 +651,76 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
     );
   }
 
-  Widget _buildResultView(
-    LiveDuelPlayerProgress own,
-    LiveDuelPlayerProgress opponent,
-  ) {
-    final outcome = LiveDuelResultCalculator.outcome(
-      own: own,
-      opponent: opponent,
+  Widget _buildFinalizingView() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          children: [
+            if (_resultError == null) ...[
+              const SizedBox.square(
+                dimension: 58,
+                child: CircularProgressIndicator(strokeWidth: 6),
+              ),
+              const SizedBox(height: 22),
+              Text(
+                'Maç Sonucu Kesinleştiriliyor',
+                style: Theme.of(context).textTheme.headlineSmall,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Skorlar ve BR değişimi güvenli biçimde işleniyor.',
+                textAlign: TextAlign.center,
+              ),
+            ] else ...[
+              Icon(
+                Icons.cloud_off,
+                size: 62,
+                color: Theme.of(context).colorScheme.error,
+              ),
+              const SizedBox(height: 16),
+              Text(_resultError!, textAlign: TextAlign.center),
+              const SizedBox(height: 18),
+              FilledButton.icon(
+                onPressed: _finalizingResult ? null : _finalizeResult,
+                icon: const Icon(Icons.refresh),
+                label: const Text('Sonucu Tekrar İşle'),
+              ),
+            ],
+          ],
+        ),
+      ),
     );
+  }
 
+  Widget _buildResultView(LiveDuelOwnResultAward award) {
+    final user = _user!;
+    final opponentUid = award.match.opponentUidFor(user.uid);
+    final ownScore = award.match.scoreFor(user.uid);
+    final opponentScore = award.match.scoreFor(opponentUid);
+    final outcome = switch (award.result) {
+      LiveDuelResult.win => LiveDuelOutcome.victory,
+      LiveDuelResult.draw => LiveDuelOutcome.draw,
+      LiveDuelResult.loss => LiveDuelOutcome.defeat,
+    };
     final icon = switch (outcome) {
       LiveDuelOutcome.victory => Icons.emoji_events,
       LiveDuelOutcome.draw => Icons.handshake,
       LiveDuelOutcome.defeat => Icons.replay,
     };
+    final change = award.ratingChange;
+    final deltaLabel =
+        change.delta > 0 ? '+${change.delta} BR' : '${change.delta} BR';
+
+    String? leagueMessage;
+    if (change.promoted) {
+      leagueMessage =
+          '${change.newLeague.emoji} ${change.newLeague.title} ligine yükseldin!';
+    } else if (change.relegated) {
+      leagueMessage =
+          '${change.newLeague.emoji} ${change.newLeague.title} ligine düştün.';
+    }
 
     return Card(
       child: Padding(
@@ -632,11 +741,41 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen> {
             ),
             const SizedBox(height: 22),
             Text(
-              '${own.correctCount} - ${opponent.correctCount}',
+              '$ownScore - $opponentScore',
               style: Theme.of(context).textTheme.displaySmall,
             ),
             const SizedBox(height: 6),
             const Text('Doğru cevap skoru'),
+            const SizedBox(height: 20),
+            Chip(
+              avatar: Icon(
+                change.delta >= 0 ? Icons.trending_up : Icons.trending_down,
+              ),
+              label: Text(
+                deltaLabel,
+                style: const TextStyle(fontWeight: FontWeight.w900),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '${change.oldRating} BR → ${change.newRating} BR',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            if (leagueMessage != null) ...[
+              const SizedBox(height: 10),
+              Text(
+                leagueMessage,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontWeight: FontWeight.w800),
+              ),
+            ],
+            if (award.alreadyApplied) ...[
+              const SizedBox(height: 10),
+              const Text(
+                'Bu maçın BR sonucu daha önce işlendi; tekrar puan eklenmedi.',
+                textAlign: TextAlign.center,
+              ),
+            ],
             const SizedBox(height: 24),
             FilledButton.icon(
               onPressed: () => Navigator.of(context).pop(),
