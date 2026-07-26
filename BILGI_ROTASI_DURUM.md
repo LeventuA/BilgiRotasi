@@ -2,31 +2,29 @@
 
 ## Son Sürüm
 
-**1.60.0+81**
+**1.61.0+82**
 
 ## Son Tamamlanan İş
 
-Canlı Düello için Lig ve Sıralama merkezi eklendi.
+Canlı Düello arka plan geri dönüş süresi iyileştirildi.
 
-- Canlı Düello ekranına **Lig ve Sıralama** düğmesi eklendi.
-- Kullanıcının genel sırası ve güncel BR puanı gösteriliyor.
-- Sonraki lige kalan BR ve ilerleme çubuğu gösteriliyor.
-- Maç, galibiyet, mağlubiyet, beraberlik, kazanma oranı,
-  en iyi seri ve en yüksek BR istatistikleri gösteriliyor.
-- BR puanına göre ilk 100 oyuncu listeleniyor.
-- Kullanıcının kendi satırı sıralamada vurgulanıyor.
-- Son 10 dereceli maç ve BR değişimleri gösteriliyor.
-- Yalnızca güvenli rekabet istatistiklerini taşıyan
-  `live_duel_leaderboard` koleksiyonu eklendi.
-- Hesap silindiğinde sıralama kaydı da siliniyor.
-- Sıralama güvenlik kuralları eklendi.
+- Uygulama kısa süreliğine arka plana geçtiğinde verilen geri dönüş süresi
+  60 saniyeden **3 dakikaya** çıkarıldı.
+- Mesajlaşma, kısa telefon görüşmesi veya uygulamalar arası geçiş yüzünden
+  maçın gereksiz yere hükmen kaybedilmesi azaltıldı.
+- Rakip ekranda kalan süreyi saniye saniye görmeye devam ediyor.
+- **Ayrıl ve yenilgiyi kabul et** seçeneği hâlâ anında hükmen sonuç üretiyor.
+- Firestore güvenlik kuralındaki azami geri dönüş süresi 190 saniyeye
+  çıkarıldı.
+- 3 dakikalık tolerans için otomatik testler eklendi.
+- Lig ve Sıralama merkezi çalışır durumda.
 
 ## Sıradaki İş
 
-- Firestore kurallarını `bilgi-rotasi-f255d` projesine dağıtma
-- Yeni 1.60.0+81 APK'yı iki telefona kurma
-- İki hesabın ilk 100 listesinde görünmesini doğrulama
-- Maç sonrasında BR, sıra ve son maçların yenilendiğini doğrulama
+- Firestore kurallarını `bilgi-rotasi-f255d` projesine yeniden dağıtma
+- Yeni 1.61.0+82 APK'yı iki telefona kurma
+- Bir telefonu 2 dakika arka planda tutup geri dönme testi
+- Bir telefonu 3 dakika 10 saniye arka planda tutup hükmen sonuç testi
 - 20 ve 30 soruluk Canlı Düello testlerine devam etme
 
 ## Dokunulmaması Gerekenler
@@ -41,5 +39,4 @@ Canlı Düello için Lig ve Sıralama merkezi eklendi.
 
 - Toplam soru sayısı: **6710**
 - Sıralama yalnızca Google hesabıyla giriş yapan oyuncuları kapsar.
-- Sıralama belgesi, oyuncu Canlı Düello ekranını açtığında veya
-  maç sonucu kaydedildiğinde otomatik güncellenir.
+- Bilinçli ayrılma ile geçici arka plan durumu ayrı davranır.

@@ -233,7 +233,7 @@ service cloud.firestore {
                  && request.resource.data.graceUntil is timestamp
                  && request.resource.data.graceUntil > request.time
                  && request.resource.data.graceUntil <=
-                    request.time + duration.value(70, 's')
+                    request.time + duration.value(190, 's')
                )
                ||
                (

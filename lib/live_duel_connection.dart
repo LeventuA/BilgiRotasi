@@ -80,7 +80,7 @@ class LiveDuelResumeMatch {
 class LiveDuelConnectionPolicy {
   LiveDuelConnectionPolicy._();
 
-  static const Duration reconnectGrace = Duration(seconds: 60);
+  static const Duration reconnectGrace = Duration(minutes: 3);
   static const Duration heartbeatInterval = Duration(seconds: 20);
   static const Duration resolutionInterval = Duration(seconds: 5);
   static const Duration countdownInterval = Duration(seconds: 1);
