@@ -423,6 +423,7 @@ class LiveDuelMatchFoundScreen extends StatefulWidget {
 class _LiveDuelMatchFoundScreenState extends State<LiveDuelMatchFoundScreen> {
   int _countdown = 3;
   Timer? _timer;
+  bool _openingMatch = false;
 
   @override
   void initState() {
@@ -438,6 +439,7 @@ class _LiveDuelMatchFoundScreenState extends State<LiveDuelMatchFoundScreen> {
           _countdown = 0;
         });
 
+        Future<void>.delayed(const Duration(milliseconds: 450), _openMatch);
         return;
       }
 
@@ -445,6 +447,22 @@ class _LiveDuelMatchFoundScreenState extends State<LiveDuelMatchFoundScreen> {
         _countdown--;
       });
     });
+  }
+
+  Future<void> _openMatch() async {
+    if (!mounted || _openingMatch) return;
+
+    _openingMatch = true;
+
+    await Navigator.of(context).pushReplacement<void, void>(
+      MaterialPageRoute<void>(
+        builder:
+            (context) => LiveDuelPlayScreen(
+              matchId: widget.matchId,
+              questionCount: widget.questionCount,
+            ),
+      ),
+    );
   }
 
   @override
@@ -480,9 +498,7 @@ class _LiveDuelMatchFoundScreenState extends State<LiveDuelMatchFoundScreen> {
                 ),
                 const SizedBox(height: 26),
                 Text(
-                  _countdown > 0
-                      ? 'Maç hazırlanıyor...'
-                      : 'Ortak soru sistemi sonraki adımda bağlanacak.',
+                  _countdown > 0 ? 'Maç hazırlanıyor...' : 'Düello başlıyor!',
                   textAlign: TextAlign.center,
                 ),
               ],

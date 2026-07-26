@@ -14,7 +14,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_VERSION = "1.53.0+74"
+EXPECTED_VERSION = "1.54.0+75"
 MIN_TOTAL_QUESTIONS = 5000
 MIN_QUESTIONS_PER_CATEGORY = 500
 CATEGORY_COUNT = 6
@@ -93,6 +93,28 @@ def main() -> int:
             errors.append(
                 f"Sürüm uyuşmuyor: {version} "
                 f"(beklenen {EXPECTED_VERSION})"
+            )
+
+    build_info_path = ROOT / "lib/app_build_info.dart"
+    if build_info_path.is_file():
+        build_info = build_info_path.read_text(encoding="utf-8")
+        name_match = re.search(
+            r"versionName\s*=\s*'([^']+)'",
+            build_info,
+        )
+        number_match = re.search(
+            r"buildNumber\s*=\s*(\d+)",
+            build_info,
+        )
+        build_info_version = (
+            f"{name_match.group(1)}+{number_match.group(1)}"
+            if name_match and number_match
+            else "?"
+        )
+        if build_info_version != version:
+            errors.append(
+                "AppBuildInfo sürümü uyuşmuyor: "
+                f"{build_info_version} (pubspec {version})"
             )
 
     questions_path = ROOT / "assets/questions.json"

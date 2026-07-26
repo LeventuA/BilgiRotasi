@@ -49,6 +49,7 @@ part 'live_duel_matchmaking.dart';
 part 'live_duel_screen.dart';
 part 'live_duel_questions.dart';
 part 'live_duel_progress.dart';
+part 'live_duel_play_screen.dart';
 
 class SoundFx {
   SoundFx._();

@@ -181,11 +181,17 @@ class LiveDuelProgressService {
     final user = _requireUser();
     final reference = _progressReference(matchId: matchId, uid: user.uid);
 
-    await reference.set(<String, dynamic>{
-      ...LiveDuelPlayerProgress.initial(user.uid).toJson(),
-      'updatedAt': FieldValue.serverTimestamp(),
-      'finishedAt': null,
-    }, SetOptions(merge: true));
+    await _firestore.runTransaction<void>((transaction) async {
+      final snapshot = await transaction.get(reference);
+
+      if (snapshot.exists) return;
+
+      transaction.set(reference, <String, dynamic>{
+        ...LiveDuelPlayerProgress.initial(user.uid).toJson(),
+        'updatedAt': FieldValue.serverTimestamp(),
+        'finishedAt': null,
+      });
+    });
   }
 
   static Future<LiveDuelPlayerProgress> submitAnswer({

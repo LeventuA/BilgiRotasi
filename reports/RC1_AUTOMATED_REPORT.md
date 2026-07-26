@@ -1,7 +1,7 @@
 # Bilgi Rotası RC2 Otomatik Kalite Raporu
 
 - Durum: **BAŞARILI**
-- Sürüm: `1.48.5+69`
+- Sürüm: `1.54.0+75`
 - Toplam soru: **6710**
 - Soru dosyası SHA-256: `c1857ed189d935bbe2c1b8f444aa0fe41e3e69cf44f19c6df50c45701c4c8e30`
 
