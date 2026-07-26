@@ -3,8 +3,8 @@ part of 'main.dart';
 class AppBuildInfo {
   AppBuildInfo._();
 
-  static const String versionName = '1.56.0';
-  static const int buildNumber = 77;
+  static const String versionName = '1.57.0';
+  static const int buildNumber = 78;
   static const String channel = 'RC2';
 
   static const String version = '$versionName+$buildNumber';

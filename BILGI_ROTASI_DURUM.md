@@ -2,36 +2,32 @@
 
 ## Son Sürüm
 
-**1.56.0+77**
+**1.57.0+78**
 
 ## Son Tamamlanan İş
 
-Canlı Düello bağlantı kopması, yeniden bağlanma ve hükmen sonuç sistemi tamamlandı.
+Canlı Düello, Oyna menüsüne görünür ve doğrudan açılabilir bir oyun modu olarak bağlandı.
 
-- Oyuncuların maç içindeki aktif, arka plan ve ayrıldı durumları Firestore'da tutuluyor.
-- Uygulama arka plana geçtiğinde 60 saniyelik yeniden bağlanma süresi başlıyor.
-- Oyuncu 60 saniye içinde dönerse maç kaldığı yerden devam ediyor.
-- Süre dolarsa rakip hükmen galip, bağlantısı kesilen oyuncu hükmen mağlup oluyor.
-- Maçtan bilinçli ayrılma için onay penceresi eklendi.
-- Bilinçli ayrılma anında hükmen yenilgi ve BR sonucu işleniyor.
-- Hükmen sonuç da normal sonuç gibi atomik ve yalnızca bir kez kaydediliyor.
-- Sonuç ekranında hükmen galibiyet veya yenilgi açıkça gösteriliyor.
-- Rakibin geri dönüş süresi maç ekranında saniye saniye gösteriliyor.
-- Canlı Düello ana ekranında yarım kalan maça dönme kartı eklendi.
-- Yarım maç varken yeni eşleştirme başlatılamıyor.
-- Firestore kuralları bağlantı durumunu ve hükmen sonucu doğruluyor.
+- Oyna ekranına **Canlı Düello** kartı eklendi.
+- Kart, Meydan Okuma ile Diğer Oyun Modları arasına yerleştirildi.
+- Karttan Canlı Düello giriş ekranı doğrudan açılıyor.
+- Menü açıklamasında gerçek rakip, BR ve 10/20/30 soru seçenekleri belirtiliyor.
+- Menü bağlantısını koruyan otomatik regresyon testi eklendi.
+- Firestore bağlantı, yeniden bağlanma ve hükmen sonuç kuralları
+  `bilgi-rotasi-f255d` projesine dağıtıldı.
+- GitHub Actions APK ve AAB dosya adları güncel sürüme bağlandı.
 
 ## Sıradaki İş
 
-Canlı Düello gerçek cihaz ve sunucu doğrulaması:
+Canlı Düello gerçek iki cihaz testi:
 
-- Firestore kurallarını Firebase projesine dağıtma
-- İki farklı telefon ve iki Google hesabıyla eşleştirme testi
-- Normal maç bitişi testi
-- Bir telefonu 30 saniye arka planda tutup geri dönme testi
-- Bir telefonu 60 saniyeden uzun kapalı tutup hükmen sonuç testi
-- Bilinçli maçtan ayrılma testi
-- Uygulamayı yeniden açıp yarım maça dönme testi
+- Yeni `1.57.0+78` APK'yı iki telefona kurma
+- İki farklı Google hesabıyla 10 soruluk normal maç
+- Bir telefonu 30 saniye arka planda tutup geri dönme
+- Bir telefonu 60 saniyeden uzun arka planda tutup hükmen sonuç
+- Bilinçli maçtan ayrılma
+- Uygulamayı yeniden açıp yarım maça dönme
+- Sonuç, BR ve lig değişimini iki hesapta doğrulama
 - İstemci cevap doğruluğunu sunucu tarafında güçlendirme
 
 ## Dokunulmaması Gerekenler
@@ -55,9 +51,10 @@ Canlı Düello gerçek cihaz ve sunucu doğrulaması:
 ## Bilinen Durumlar
 
 - Toplam soru sayısı: **6710**
-- Firestore kuralları dosyada güncellendi; Firebase projesine dağıtılması gerekiyor.
-- İstemci cevap doğruluğunu gönderiyor; sunucu tarafı soru doğrulaması yayın öncesinde güçlendirilmeli.
+- Firestore kuralları Firebase projesine başarıyla dağıtıldı.
 - Gerçek iki telefonla uçtan uca test henüz yapılmadı.
+- İstemci cevap doğruluğunu gönderiyor; sunucu tarafı soru doğrulaması
+  yayın öncesinde güçlendirilmeli.
 
 ## Son Başarılı Canlı Düello Aşamaları
 
@@ -76,3 +73,5 @@ Canlı Düello gerçek cihaz ve sunucu doğrulaması:
 13. Bağlantı durumu ve 60 saniyelik yeniden bağlanma
 14. Hükmen galibiyet ve yenilgi
 15. Yarım kalan maça geri dönme
+16. Firestore kurallarının gerçek projeye dağıtılması
+17. Oyna menüsüne Canlı Düello girişi
