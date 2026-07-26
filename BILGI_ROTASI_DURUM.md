@@ -2,32 +2,37 @@
 
 ## Son Sürüm
 
-**1.57.0+78**
+**1.58.0+79**
 
 ## Son Tamamlanan İş
 
-Canlı Düello, Oyna menüsüne görünür ve doğrudan açılabilir bir oyun modu olarak bağlandı.
+Canlı Düello karışık kategori ve sabit zorluk dağılımı tamamlandı.
 
-- Oyna ekranına **Canlı Düello** kartı eklendi.
-- Kart, Meydan Okuma ile Diğer Oyun Modları arasına yerleştirildi.
-- Karttan Canlı Düello giriş ekranı doğrudan açılıyor.
-- Menü açıklamasında gerçek rakip, BR ve 10/20/30 soru seçenekleri belirtiliyor.
-- Menü bağlantısını koruyan otomatik regresyon testi eklendi.
-- Firestore bağlantı, yeniden bağlanma ve hükmen sonuç kuralları
-  `bilgi-rotasi-f255d` projesine dağıtıldı.
-- GitHub Actions APK ve AAB dosya adları güncel sürüme bağlandı.
+- 10 soruluk maçlar: 5 Kolay, 3 Orta, 2 Zor.
+- 20 soruluk maçlar: 10 Kolay, 6 Orta, 4 Zor.
+- 30 soruluk maçlar: 15 Kolay, 9 Orta, 6 Zor.
+- Altı kategori maç boyunca dengeli dağıtılıyor.
+- Aynı kategori art arda getirilmiyor.
+- Aynı maç tohumu iki cihazda aynı soru sırasını üretmeye devam ediyor.
+- Soru planı sürümü 2'ye çıkarıldı.
+- Eski soru planıyla oluşturulmuş yarım maçlar yeni sürümde
+  devam kartına alınmıyor.
+- Firestore kuralları `bilgi-rotasi-f255d` projesinde yayında.
+- Canlı Düello Oyna menüsünden erişilebilir durumda.
 
 ## Sıradaki İş
 
 Canlı Düello gerçek iki cihaz testi:
 
-- Yeni `1.57.0+78` APK'yı iki telefona kurma
-- İki farklı Google hesabıyla 10 soruluk normal maç
-- Bir telefonu 30 saniye arka planda tutup geri dönme
-- Bir telefonu 60 saniyeden uzun arka planda tutup hükmen sonuç
-- Bilinçli maçtan ayrılma
-- Uygulamayı yeniden açıp yarım maça dönme
-- Sonuç, BR ve lig değişimini iki hesapta doğrulama
+- Yeni 1.58.0+79 APK'yı iki telefona kurma
+- 10 soruda 5/3/2 zorluk dağılımını doğrulama
+- Altı kategorinin karışık geldiğini doğrulama
+- 20 ve 30 soruluk maçları doğrulama
+- 30 saniye arka plan ve geri dönüş testi
+- 60 saniye sonunda hükmen sonuç testi
+- Bilinçli ayrılma testi
+- Yarım maça dönüş testi
+- BR ve lig sonucunu iki hesapta doğrulama
 - İstemci cevap doğruluğunu sunucu tarafında güçlendirme
 
 ## Dokunulmaması Gerekenler
@@ -52,7 +57,7 @@ Canlı Düello gerçek iki cihaz testi:
 
 - Toplam soru sayısı: **6710**
 - Firestore kuralları Firebase projesine başarıyla dağıtıldı.
-- Gerçek iki telefonla uçtan uca test henüz yapılmadı.
+- Gerçek iki telefonla uçtan uca test devam ediyor.
 - İstemci cevap doğruluğunu gönderiyor; sunucu tarafı soru doğrulaması
   yayın öncesinde güçlendirilmeli.
 
@@ -75,3 +80,4 @@ Canlı Düello gerçek iki cihaz testi:
 15. Yarım kalan maça geri dönme
 16. Firestore kurallarının gerçek projeye dağıtılması
 17. Oyna menüsüne Canlı Düello girişi
+18. Karışık kategori ve sabit zorluk dağılımı

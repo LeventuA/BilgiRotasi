@@ -267,6 +267,12 @@ class LiveDuelConnectionService {
         continue;
       }
 
+      if (!LiveDuelQuestionSetService.supportsQuestionSetVersion(
+        data['questionSetVersion'],
+      )) {
+        continue;
+      }
+
       final questionCount = (data['questionCount'] as num?)?.toInt() ?? 0;
       if (!LiveDuelMatchmakingPolicy.supportsQuestionCount(questionCount)) {
         continue;

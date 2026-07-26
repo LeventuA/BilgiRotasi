@@ -254,7 +254,7 @@ class LiveDuelMatchmakingService {
         'status': 'preparing',
         'questionCount': own.questionCount,
         'questionIds': questionIds,
-        'questionSetVersion': 1,
+        'questionSetVersion': LiveDuelQuestionSetService.currentVersion,
         'playerUids': playerUids,
         'players': <Map<String, dynamic>>[
           <String, dynamic>{
