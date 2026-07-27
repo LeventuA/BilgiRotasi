@@ -1,1 +1,0 @@
-library bilgi_rotasi_admob_config;
