@@ -797,13 +797,17 @@ Future<void> main() async {
     // Erişilebilirlik ayarları açılamasa bile oyun devam eder.
   }
 
-  try {
-    await AccountCloudService.initialize();
-  } catch (_) {
-    // Firebase açılamasa bile misafir oyun devam eder.
-  }
-
   runApp(const BilgiRotasiApp());
+
+  unawaited(_initializeAccountCloudInBackground());
+}
+
+Future<void> _initializeAccountCloudInBackground() async {
+  try {
+    await AccountCloudService.initialize().timeout(const Duration(seconds: 8));
+  } catch (_) {
+    // İnternet olmasa bile yerel oyun açılmaya devam eder.
+  }
 }
 
 class BilgiRotasiApp extends StatefulWidget {

@@ -38,3 +38,12 @@ Canlı Düello puan yazımı Firestore tarafından doğrulanır hale getirildi.
 - Bu katman sahte doğru/yanlış yazımını engeller.
 - Cevaplar uygulama paketinde de bulunduğundan ileri düzey modifiye
   istemci saldırılarına karşı tam gizlilik sağlamaz.
+
+
+## Çevrimdışı Açılış Düzeltmesi
+
+- Uygulama bulut başlatmasını beklemeden ilk kareyi açar.
+- Mevcut Google hesabı yerel kayıtla anında açılır.
+- Bulut eşitlemesi arka planda denenir.
+- Sunucu okuması 6 saniyede zaman aşımına uğrar.
+- İnternet yokken native açılış logosunda kalma engellendi.

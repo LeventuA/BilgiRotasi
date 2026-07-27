@@ -286,10 +286,12 @@ class AccountCloudService with WidgetsBindingObserver {
           mode: AccountMode.google,
           firebaseReady: true,
           user: currentUser,
-          busy: true,
+          message:
+              'Telefondaki kayıtla açıldı. '
+              'Bulut eşitlemesi arka planda denenecek.',
         );
 
-        await _activateExistingUser(currentUser);
+        unawaited(_activateExistingUser(currentUser));
       }
 
       _syncTimer?.cancel();
@@ -469,7 +471,8 @@ class AccountCloudService with WidgetsBindingObserver {
     final document = await _firestore!
         .collection('users')
         .doc(uid)
-        .get(GetOptions(source: Source.server));
+        .get(GetOptions(source: Source.server))
+        .timeout(const Duration(seconds: 6));
 
     if (!document.exists) return null;
 
