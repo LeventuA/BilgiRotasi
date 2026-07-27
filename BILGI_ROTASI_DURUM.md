@@ -81,3 +81,14 @@ Canlı Düello puan yazımı Firestore tarafından doğrulanır hale getirildi.
 - Başka bir Google hesabı önceki hesabın oyununu göremez.
 - Eski ortak kayıt ilk giriş yapan mevcut hesaba güvenle taşınır.
 - Kayıt kurtarma yedeği de hesap bazında ayrılmıştır.
+
+
+## Kayıtlı Oyun İzolasyonu V4
+
+- Her kayıt payloadı ownerScope alanıyla sahibini taşır.
+- Misafir, Levent ve Emel kayıtları birbirine karışmaz.
+- Bulut yedeği yalnız aktif hesabın kayıt kasasını taşır.
+- Yabancı hesap anahtarları yedekten geri yüklenmez.
+- Sahipsiz eski kayıt misafir ekranında gösterilmez.
+- Sahipsiz eski kayıt Google hesabına girildiğinde kurtarılır.
+- Çıkıştan sonra bozuk misafir kayıtları otomatik temizlenir.

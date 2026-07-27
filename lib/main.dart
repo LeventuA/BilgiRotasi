@@ -283,11 +283,85 @@ class GameSaveService {
     return '$_scopedBackupPrefix${storageScopeForUid(uid)}';
   }
 
-  static String get _currentUid => FirebaseAuth.instance.currentUser?.uid ?? '';
+  static String get _currentUid {
+    try {
+      return FirebaseAuth.instance.currentUser?.uid ?? '';
+    } catch (_) {
+      return '';
+    }
+  }
+
+  static String get _currentScope => storageScopeForUid(_currentUid);
 
   static String get _saveKey => saveKeyForUid(_currentUid);
 
   static String get _backupKey => backupKeyForUid(_currentUid);
+
+  static bool isScopedStorageKey(String key) {
+    return key.startsWith(_scopedSavePrefix) ||
+        key.startsWith(_scopedBackupPrefix);
+  }
+
+  static bool belongsToScope(String key, String scope) {
+    return key == '$_scopedSavePrefix$scope' ||
+        key == '$_scopedBackupPrefix$scope';
+  }
+
+  static bool belongsToActiveScope(String key) {
+    return belongsToScope(key, _currentScope);
+  }
+
+  static String? _ownerScopeFromRaw(String raw) {
+    try {
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map) return null;
+
+      final owner = decoded['ownerScope']?.toString().trim();
+      return owner == null || owner.isEmpty ? null : owner;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  static String _attachOwnerScope(String raw, String scope) {
+    final decoded = jsonDecode(raw);
+    if (decoded is! Map) {
+      throw const FormatException('Kayıtlı oyun biçimi geçersiz.');
+    }
+
+    final payload = Map<String, dynamic>.from(decoded);
+    payload['schema'] = 4;
+    payload['ownerScope'] = scope;
+    return jsonEncode(payload);
+  }
+
+  static Future<void> _claimRawForCurrentUser(String raw) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final claimed = _attachOwnerScope(raw, storageScopeForUid(user.uid));
+
+    await _preferences.setString(_saveKey, claimed);
+    await _preferences.setString(_backupKey, claimed);
+  }
+
+  static Future<void> sanitizeGuestScope() async {
+    final guestSaveKey = saveKeyForUid(null);
+    final guestBackupKey = backupKeyForUid(null);
+    final raw = await _preferences.getString(guestSaveKey);
+
+    if (raw == null || raw.trim().isEmpty) {
+      await _preferences.remove(guestBackupKey);
+      return;
+    }
+
+    final owner = _ownerScopeFromRaw(raw);
+
+    if (owner != null && owner != 'guest') {
+      await _preferences.remove(guestSaveKey);
+      await _preferences.remove(guestBackupKey);
+    }
+  }
 
   static Future<void> _migrateLegacyForSignedInUser() async {
     final user = FirebaseAuth.instance.currentUser;
@@ -297,20 +371,29 @@ class GameSaveService {
     if (current != null && current.trim().isNotEmpty) return;
 
     final legacy = await _preferences.getString(_legacySaveKey);
-    if (legacy == null || legacy.trim().isEmpty) return;
 
-    await _preferences.setString(_saveKey, legacy);
+    if (legacy != null && legacy.trim().isNotEmpty) {
+      await _claimRawForCurrentUser(legacy);
+      await _preferences.remove(_legacySaveKey);
+      await _preferences.remove(_legacyBackupKey);
+      return;
+    }
 
-    final legacyBackup = await _preferences.getString(_legacyBackupKey);
-    await _preferences.setString(
-      _backupKey,
-      legacyBackup != null && legacyBackup.trim().isNotEmpty
-          ? legacyBackup
-          : legacy,
-    );
+    final guestSaveKey = saveKeyForUid(null);
+    final guestBackupKey = backupKeyForUid(null);
+    final guestRaw = await _preferences.getString(guestSaveKey);
 
-    await _preferences.remove(_legacySaveKey);
-    await _preferences.remove(_legacyBackupKey);
+    if (guestRaw == null || guestRaw.trim().isEmpty) return;
+
+    final guestOwner = _ownerScopeFromRaw(guestRaw);
+
+    // 1.65.0 öncesi yanlışlıkla misafir kasasına yazılan
+    // sahipsiz kayıt, mevcut Google hesabına güvenle taşınır.
+    if (guestOwner == null) {
+      await _claimRawForCurrentUser(guestRaw);
+      await _preferences.remove(guestSaveKey);
+      await _preferences.remove(guestBackupKey);
+    }
   }
 
   static Future<void> save({
@@ -321,7 +404,8 @@ class GameSaveService {
     if (players.isEmpty) return;
 
     final payload = <String, dynamic>{
-      'schema': 3,
+      'schema': 4,
+      'ownerScope': _currentScope,
       'savedAt': DateTime.now().toIso8601String(),
       'currentPlayerIndex': currentPlayerIndex,
       'players': players.map(_playerToJson).toList(),
@@ -345,6 +429,24 @@ class GameSaveService {
       final decoded = jsonDecode(raw);
       if (decoded is! Map<String, dynamic>) {
         await clear();
+        return null;
+      }
+
+      final ownerScope = decoded['ownerScope']?.toString().trim();
+
+      if (ownerScope == null || ownerScope.isEmpty) {
+        if (_currentUid.isEmpty) {
+          // Sahibi belli olmayan eski kayıt misafir ekranında
+          // gösterilmez. Google hesabına girildiğinde kurtarılır.
+          return null;
+        }
+
+        final claimed = _attachOwnerScope(raw, _currentScope);
+        await _preferences.setString(_saveKey, claimed);
+        await _preferences.setString(_backupKey, claimed);
+        decoded['schema'] = 4;
+        decoded['ownerScope'] = _currentScope;
+      } else if (ownerScope != _currentScope) {
         return null;
       }
 

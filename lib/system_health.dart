@@ -282,6 +282,14 @@ class GameRecoveryService {
     }
 
     final map = Map<String, dynamic>.from(decoded);
+    final ownerScope = map['ownerScope']?.toString().trim();
+
+    if (ownerScope == null ||
+        ownerScope.isEmpty ||
+        ownerScope != GameSaveService._currentScope) {
+      return null;
+    }
+
     final rawPlayers = map['players'];
 
     if (rawPlayers is! List || rawPlayers.isEmpty) {

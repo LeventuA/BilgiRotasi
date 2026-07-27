@@ -129,6 +129,15 @@ class AccountLocalSnapshot {
 
     final lower = key.toLowerCase();
 
+    if (GameSaveService.isScopedStorageKey(key)) {
+      return GameSaveService.belongsToActiveScope(key);
+    }
+
+    if (key == GameSaveService._legacySaveKey ||
+        key == GameSaveService._legacyBackupKey) {
+      return false;
+    }
+
     if (lower.contains('player_username')) return false;
 
     if (lower.contains('error_log') ||
@@ -173,6 +182,8 @@ class AccountLocalSnapshot {
     }
 
     for (final entry in values.entries) {
+      if (!shouldSyncKey(entry.key)) continue;
+
       final value = entry.value;
 
       if (value is String) {
@@ -330,6 +341,7 @@ class AccountCloudService with WidgetsBindingObserver {
   Future<void> _continueAsGuest() async {
     final preferences = await SharedPreferences.getInstance();
     await preferences.setBool(_guestSelectedKey, true);
+    await GameSaveService.sanitizeGuestScope();
 
     final snapshot = await AccountLocalSnapshot.capture();
     await preferences.setString(_guestSnapshotKey, snapshot);
@@ -354,6 +366,7 @@ class AccountCloudService with WidgetsBindingObserver {
 
     final previousMode = state.value.mode;
     final preferences = await SharedPreferences.getInstance();
+    await GameSaveService.sanitizeGuestScope();
     final guestSnapshot = await AccountLocalSnapshot.capture();
 
     await preferences.setString(_guestSnapshotKey, guestSnapshot);
@@ -709,6 +722,7 @@ class AccountCloudService with WidgetsBindingObserver {
       await AccountLocalSnapshot.clearGameData();
     }
 
+    await GameSaveService.sanitizeGuestScope();
     await preferences.setBool(_guestSelectedKey, true);
     await _refreshGameServices();
 
