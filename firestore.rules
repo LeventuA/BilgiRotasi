@@ -6,6 +6,82 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function validUsername(username) {
+      return username is string
+             && username.size() >= 3
+             && username.size() <= 16
+             && username.matches(
+               '^[a-z0-9][a-z0-9_]{2,15}$'
+             )
+             && !(username in [
+               'admin',
+               'administrator',
+               'moderator',
+               'mod',
+               'sistem',
+               'system',
+               'destek',
+               'support',
+               'bilgirotasi',
+               'bilgi_rotasi',
+               'google',
+               'firebase',
+               'null',
+               'undefined'
+             ]);
+    }
+
+    function userUsername(userId) {
+      return get(
+        /databases/$(database)/documents/users/$(userId)
+      ).data.username;
+    }
+
+    function validUsernameBinding(userId) {
+      let username = request.resource.data.username;
+
+      return validUsername(username)
+             && request.resource.data.usernameChangedAt ==
+                request.time
+             && getAfter(
+               /databases/$(database)/documents/usernames/$(username)
+             ).data.uid == userId
+             && getAfter(
+               /databases/$(database)/documents/usernames/$(username)
+             ).data.username == username;
+    }
+
+    function validUserCreate(userId) {
+      return !request.resource.data.keys().hasAny([
+               'username',
+               'usernameChangedAt'
+             ])
+             || validUsernameBinding(userId);
+    }
+
+    function validUserUpdate(userId) {
+      let affected = request.resource.data
+        .diff(resource.data)
+        .affectedKeys();
+      let changesUsername = affected.hasAny([
+        'username',
+        'usernameChangedAt'
+      ]);
+
+      return !changesUsername
+             || (
+               validUsernameBinding(userId)
+               && (
+                 !resource.data.keys().hasAll([
+                   'usernameChangedAt'
+                 ])
+                 || request.time >=
+                    resource.data.usernameChangedAt +
+                    duration.value(30, 'd')
+               )
+             );
+    }
+
     function userDuelProfile(userId) {
       return get(
         /databases/$(database)/documents/users/$(userId)
@@ -34,7 +110,9 @@ service cloud.firestore {
              && request.resource.data.uid == userId
              && request.resource.data.displayName is string
              && request.resource.data.displayName.size() > 0
-             && request.resource.data.displayName.size() <= 40
+             && request.resource.data.displayName.size() <= 16
+             && request.resource.data.displayName ==
+                userUsername(userId)
              && request.resource.data.rating == profile.rating
              && request.resource.data.matchesPlayed ==
                 profile.matchesPlayed
@@ -362,8 +440,58 @@ service cloud.firestore {
     }
 
     match /users/{userId} {
-      allow read, write: if signedIn()
-                         && request.auth.uid == userId;
+      allow read: if signedIn()
+                  && request.auth.uid == userId;
+
+      allow create: if signedIn()
+                    && request.auth.uid == userId
+                    && validUserCreate(userId);
+
+      allow update: if signedIn()
+                    && request.auth.uid == userId
+                    && validUserUpdate(userId);
+
+      allow delete: if signedIn()
+                    && request.auth.uid == userId;
+    }
+
+    match /usernames/{username} {
+      allow get: if signedIn();
+      allow list: if false;
+
+      allow create: if signedIn()
+                    && validUsername(username)
+                    && request.resource.data.keys().hasOnly([
+                      'uid',
+                      'username',
+                      'createdAt'
+                    ])
+                    && request.resource.data.uid ==
+                       request.auth.uid
+                    && request.resource.data.username ==
+                       username
+                    && request.resource.data.createdAt ==
+                       request.time
+                    && getAfter(
+                      /databases/$(database)/documents/users/$(request.auth.uid)
+                    ).data.username == username
+                    && getAfter(
+                      /databases/$(database)/documents/users/$(request.auth.uid)
+                    ).data.usernameChangedAt == request.time;
+
+      allow update: if false;
+
+      allow delete: if signedIn()
+                    && resource.data.uid ==
+                       request.auth.uid
+                    && (
+                      !existsAfter(
+                        /databases/$(database)/documents/users/$(request.auth.uid)
+                      )
+                      || getAfter(
+                        /databases/$(database)/documents/users/$(request.auth.uid)
+                      ).data.username != username
+                    );
     }
 
     match /users/{userId}/{document=**} {
@@ -386,6 +514,8 @@ service cloud.firestore {
       allow create: if signedIn()
                     && request.auth.uid == userId
                     && request.resource.data.uid == userId
+                    && request.resource.data.displayName ==
+                       userUsername(userId)
                     && request.resource.data.status == 'waiting'
                     && request.resource.data.questionCount
                        in [10, 20, 30];
@@ -424,6 +554,19 @@ service cloud.firestore {
                     && request.auth.uid
                        in request.resource.data.playerUids
                     && request.resource.data.playerUids.size() == 2
+                    && request.resource.data.players.size() == 2
+                    && request.resource.data.players[0].uid ==
+                       request.resource.data.playerUids[0]
+                    && request.resource.data.players[1].uid ==
+                       request.resource.data.playerUids[1]
+                    && request.resource.data.players[0].displayName ==
+                       userUsername(
+                         request.resource.data.playerUids[0]
+                       )
+                    && request.resource.data.players[1].displayName ==
+                       userUsername(
+                         request.resource.data.playerUids[1]
+                       )
                     && request.resource.data.questionCount
                        in [10, 20, 30];
 

@@ -256,6 +256,19 @@ class AccountCloudService with WidgetsBindingObserver {
     return _instance._deleteAccountAndCloudData();
   }
 
+  static void refreshPresentation() {
+    final current = state.value;
+
+    state.value = AccountSessionState(
+      mode: current.mode,
+      firebaseReady: current.firebaseReady,
+      user: current.user,
+      busy: current.busy,
+      message: current.message,
+      lastSyncedAt: current.lastSyncedAt,
+    );
+  }
+
   Future<void> _initialize() async {
     if (_initialized) return;
     _initialized = true;
@@ -620,11 +633,10 @@ class AccountCloudService with WidgetsBindingObserver {
             .doc(user.uid)
             .delete();
       } catch (_) {
-        // Eski kurallar sıralama silme işlemini engellese bile
-        // hesap silme akışı devam etmelidir.
+        // Sıralama silme işlemi hesap silmeyi engellememeli.
       }
 
-      await _firestore!.collection('users').doc(user.uid).delete();
+      await PlayerUsernameService.deleteAccountIdentity(user.uid);
 
       final preferences = await SharedPreferences.getInstance();
 
@@ -684,6 +696,7 @@ class AccountCloudService with WidgetsBindingObserver {
 
     await _auth?.signOut();
     await _googleSignIn?.signOut();
+    PlayerUsernameService.resetSession();
 
     final preferences = await SharedPreferences.getInstance();
     final guestSnapshot = preferences.getString(_guestSnapshotKey);
@@ -818,6 +831,13 @@ class AccountGate extends StatelessWidget {
       builder: (context, session, _) {
         if (session.mode == AccountMode.undecided) {
           return const AccountWelcomeScreen();
+        }
+
+        if (session.signedIn) {
+          return PlayerUsernameGate(
+            key: ValueKey<String>('username:${session.sessionKey}'),
+            questionBank: questionBank,
+          );
         }
 
         return HomeScreen(
@@ -964,11 +984,12 @@ class AccountSummaryCard extends StatelessWidget {
       builder: (context, session, _) {
         final signedIn = session.signedIn;
         final user = session.user;
+        final username = PlayerUsernameService.currentUsername;
         final title =
             signedIn
-                ? (user?.displayName?.trim().isNotEmpty == true
-                    ? user!.displayName!
-                    : 'Google hesabı')
+                ? username != null
+                    ? '@$username'
+                    : 'Kullanıcı adı hazırlanıyor'
                 : 'Misafir';
         final subtitle =
             signedIn
@@ -1090,7 +1111,9 @@ class AccountSettingsScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       Text(
                         signedIn
-                            ? (user?.displayName ?? 'Google hesabı')
+                            ? PlayerUsernameService.currentUsername != null
+                                ? '@${PlayerUsernameService.currentUsername}'
+                                : 'Kullanıcı adı belirlenmedi'
                             : 'Misafir kullanıcı',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
@@ -1098,12 +1121,36 @@ class AccountSettingsScreen extends StatelessWidget {
                           fontWeight: FontWeight.w900,
                         ),
                       ),
-                      if (signedIn && user?.email != null) ...[
+                      if (signedIn &&
+                          user?.displayName?.trim().isNotEmpty == true) ...[
                         const SizedBox(height: 4),
+                        Text(
+                          'Google hesabı: ${user!.displayName}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Color(0xFF64748B),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                      if (signedIn && user?.email != null) ...[
+                        const SizedBox(height: 3),
                         Text(
                           user!.email!,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(color: Color(0xFF64748B)),
+                          style: const TextStyle(
+                            color: Color(0xFF64748B),
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(height: 3),
+                        const Text(
+                          'Bu bilgiler yalnızca sana görünür.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFF94A3B8),
+                            fontSize: 11,
+                          ),
                         ),
                       ],
                       const SizedBox(height: 14),
@@ -1119,6 +1166,25 @@ class AccountSettingsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 18),
                       if (signedIn) ...[
+                        OutlinedButton.icon(
+                          onPressed:
+                              session.busy
+                                  ? null
+                                  : () async {
+                                    await Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder:
+                                            (_) =>
+                                                const PlayerUsernameSetupScreen(
+                                                  allowBack: true,
+                                                ),
+                                      ),
+                                    );
+                                  },
+                          icon: const Icon(Icons.alternate_email_rounded),
+                          label: const Text('Kullanıcı adını değiştir'),
+                        ),
+                        const SizedBox(height: 10),
                         FilledButton.icon(
                           onPressed:
                               session.busy ? null : AccountCloudService.syncNow,

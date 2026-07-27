@@ -119,34 +119,16 @@ class LiveDuelLeaderboardService {
   static CollectionReference<Map<String, dynamic>> get _leaderboard =>
       _firestore.collection('live_duel_leaderboard');
 
-  static String _displayName(User user) {
-    final firebaseName = user.displayName?.trim();
-    final localName = AppPreferencesService.current.defaultPlayerName.trim();
-
-    var name =
-        firebaseName != null && firebaseName.isNotEmpty
-            ? firebaseName
-            : localName.isNotEmpty
-            ? localName
-            : 'Bilgi Yolcusu';
-
-    name = name.replaceAll(RegExp(r'\s+'), ' ').trim();
-
-    if (name.length > 40) {
-      name = name.substring(0, 40);
-    }
-
-    return name;
-  }
-
   static Future<void> publish(LiveDuelProfile profile) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
     try {
+      final username = await PlayerUsernameService.requireUsername();
+
       await _leaderboard.doc(user.uid).set(<String, dynamic>{
         'uid': user.uid,
-        'displayName': _displayName(user),
+        'displayName': username,
         'rating': profile.rating,
         'matchesPlayed': profile.matchesPlayed,
         'wins': profile.wins,

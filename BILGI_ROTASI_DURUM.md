@@ -47,3 +47,15 @@ Canlı Düello puan yazımı Firestore tarafından doğrulanır hale getirildi.
 - Bulut eşitlemesi arka planda denenir.
 - Sunucu okuması 6 saniyede zaman aşımına uğrar.
 - İnternet yokken native açılış logosunda kalma engellendi.
+
+
+## Oyuncu Kullanıcı Adı Sistemi
+
+- Google ile giriş yapan herkes benzersiz kullanıcı adı belirler.
+- Kullanıcı adları 3–16 karakter ve küçük harftir.
+- Canlı Düello, lig sıralaması ve maç geçmişinde yalnızca
+  kullanıcı adı görünür.
+- Google adı ve e-posta yalnızca hesap sahibine gösterilir.
+- Kullanıcı adı 30 günde bir değiştirilebilir.
+- Hesap silindiğinde kullanıcı adı yeniden boşa çıkar.
+- Mevcut oyuncular yeni sürümde bir kez kullanıcı adı seçer.

@@ -123,20 +123,6 @@ class LiveDuelMatchmakingService {
     return user;
   }
 
-  static String _displayName(User user) {
-    final firebaseName = user.displayName?.trim();
-
-    if (firebaseName != null && firebaseName.isNotEmpty) {
-      return firebaseName;
-    }
-
-    final localName = AppPreferencesService.current.defaultPlayerName.trim();
-
-    if (localName.isNotEmpty) return localName;
-
-    return 'Bilgi Yolcusu';
-  }
-
   static Future<void> enterQueue({required int questionCount}) async {
     if (!LiveDuelMatchmakingPolicy.supportsQuestionCount(questionCount)) {
       throw const LiveDuelMatchmakingException(
@@ -146,11 +132,12 @@ class LiveDuelMatchmakingService {
 
     final user = _requireUser();
     final profile = await LiveDuelProfileService.load();
+    final username = await PlayerUsernameService.requireUsername();
     final now = DateTime.now().toUtc();
 
     await _queue.doc(user.uid).set(<String, dynamic>{
       'uid': user.uid,
-      'displayName': _displayName(user),
+      'displayName': username,
       'rating': profile.rating,
       'ratingBucket': LiveDuelMatchmakingPolicy.ratingBucket(profile.rating),
       'questionCount': questionCount,
