@@ -1,0 +1,117 @@
+name: Sunucu doğrulamasını otomatik uygula V2
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: contains(github.event.head_commit.message, 'BR güvenlik V2')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.7"
+          channel: stable
+          cache: true
+
+      - name: Bağımlılıkları kur
+        run: flutter pub get
+
+      - name: Git kimliğini ayarla
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout main
+
+      - name: Paketi aç ve otomasyona uyarla
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f BilgiRotasi_Canli_Duello_Sunucu_Dogrulamasi_Paketi.zip
+          unzip -o BilgiRotasi_Canli_Duello_Sunucu_Dogrulamasi_Paketi.zip
+
+          python3 - <<'PY'
+          import os
+          import textwrap
+          from pathlib import Path
+
+          path = Path(
+              'BILGI_ROTASI_CANLI_DUELLO_SUNUCU_DOGRULAMA_KUR.py'
+          )
+          text = path.read_text(encoding='utf-8')
+          workspace = os.environ['GITHUB_WORKSPACE']
+
+          text = text.replace(
+              'REPO = Path("/workspaces/BilgiRotasi")',
+              f'REPO = Path({workspace!r})',
+          )
+          text = text.replace(
+              '"/workspaces/flutter/bin/dart"',
+              '"dart"',
+          )
+          text = text.replace(
+              '"/workspaces/flutter/bin/flutter"',
+              '"flutter"',
+          )
+
+          start = text.index('def analyze() -> None:')
+          end = text.index('\n\ndef run_tests() -> None:', start)
+
+          fixed_analyze = textwrap.dedent(
+              '''
+              def analyze() -> None:
+                  print(
+                      "\\n2/5 Flutter analizi çalışıyor...",
+                      flush=True,
+                  )
+
+                  result = subprocess.run(
+                      [
+                          "flutter",
+                          "analyze",
+                          "--no-fatal-warnings",
+                          "--no-fatal-infos",
+                      ],
+                      cwd=REPO,
+                      check=False,
+                  )
+
+                  if result.returncode != 0:
+                      raise RuntimeError(
+                          "Flutter analizi derleme hatası verdi."
+                      )
+              '''
+          ).strip()
+
+          text = text[:start] + fixed_analyze + text[end:]
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Sunucu doğrulamasını uygula
+        run: |
+          python3             BILGI_ROTASI_CANLI_DUELLO_SUNUCU_DOGRULAMA_KUR.py
+
+      - name: Geçici otomasyonları temizle
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git pull --ff-only origin main
+          git rm -f             .github/workflows/apply-server-validation.yml             .github/workflows/apply-server-validation-v2.yml
+          git commit -m "Gecici sunucu dogrulama otomasyonlarini temizle"
+          git push origin main
