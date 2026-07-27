@@ -164,6 +164,18 @@ class PlayerUsernameService {
     );
   }
 
+  static Future<bool> _remoteUsernameMatches(User user, String username) async {
+    final snapshot = await _userReference(user.uid)
+        .get(GetOptions(source: Source.server))
+        .timeout(const Duration(seconds: 6));
+
+    final remoteUsername = PlayerUsernamePolicy.normalize(
+      snapshot.data()?['username']?.toString() ?? '',
+    );
+
+    return snapshot.exists && remoteUsername == username;
+  }
+
   static Future<PlayerUsernameProfile?> load() async {
     final user = FirebaseAuth.instance.currentUser;
 
@@ -229,7 +241,21 @@ class PlayerUsernameService {
     if (current != null &&
         current.uid == user.uid &&
         PlayerUsernamePolicy.validate(current.username) == null) {
-      return current.username;
+      try {
+        if (await _remoteUsernameMatches(user, current.username)) {
+          return current.username;
+        }
+
+        final repaired = await claim(current.username);
+        return repaired.username;
+      } on PlayerUsernameException {
+        rethrow;
+      } catch (_) {
+        throw const PlayerUsernameException(
+          'Kullanıcı adı sunucuda doğrulanamadı. '
+          'İnternet bağlantını kontrol edip tekrar dene.',
+        );
+      }
     }
 
     final loaded = await load();
@@ -260,10 +286,17 @@ class PlayerUsernameService {
     final current = await load();
 
     if (current?.username == username) {
-      return current!;
+      try {
+        if (await _remoteUsernameMatches(user, username)) {
+          return current!;
+        }
+      } catch (_) {
+        // Aynı adın sunucu kaydı eksikse işlem aşağıdaki
+        // transaction ile yeniden kurulacaktır.
+      }
     }
 
-    if (current != null && !current.canChange) {
+    if (current != null && current.username != username && !current.canChange) {
       throw PlayerUsernameException(
         'Kullanıcı adını ${current.cooldownLabel.toLowerCase()}.',
       );

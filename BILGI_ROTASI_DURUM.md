@@ -59,3 +59,15 @@ Canlı Düello puan yazımı Firestore tarafından doğrulanır hale getirildi.
 - Kullanıcı adı 30 günde bir değiştirilebilir.
 - Hesap silindiğinde kullanıcı adı yeniden boşa çıkar.
 - Mevcut oyuncular yeni sürümde bir kez kullanıcı adı seçer.
+
+
+## Canlı Düello Kullanıcı Adı ve BR Düzeltmesi
+
+- Yerel kullanıcı adı ile Firestore kullanıcı adı bağı doğrulanır.
+- Eksik sunucu kullanıcı adı kaydı aynı adla otomatik onarılır.
+- Kullanıcı adı genel oyun yedeğinden ayrılmıştır.
+- Eşit rakipte +18 / -7 BR uygulanır.
+- Güçlü rakipte +22 / -5 BR uygulanır.
+- Zayıf rakipte +14 / -8 BR uygulanır.
+- İlk 5 maçta +20 / -4 BR uygulanır.
+- Eski -8'den ağır mağlubiyetlerin farkı bir kez iade edilir.

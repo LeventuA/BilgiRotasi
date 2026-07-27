@@ -129,6 +129,8 @@ class AccountLocalSnapshot {
 
     final lower = key.toLowerCase();
 
+    if (lower.contains('player_username')) return false;
+
     if (lower.contains('error_log') ||
         lower.contains('system_health') ||
         lower.contains('question_feedback')) {

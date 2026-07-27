@@ -92,6 +92,8 @@ class LiveDuelRatingEngine {
 
   static const int initialRating = 1000;
   static const int placementMatchCount = 5;
+  static const int ratingPolicyVersion = 2;
+  static const int opponentStrengthGap = 150;
 
   static LiveDuelRatingChange calculate({
     required int playerRating,
@@ -101,26 +103,28 @@ class LiveDuelRatingEngine {
   }) {
     final safePlayer = max(0, playerRating);
     final safeOpponent = max(0, opponentRating);
+    final placement = matchesPlayed < placementMatchCount;
+    final opponentGap = safeOpponent - safePlayer;
 
-    final expectedScore =
-        1.0 / (1.0 + pow(10.0, (safeOpponent - safePlayer) / 400.0));
-
-    final actualScore = switch (result) {
-      LiveDuelResult.win => 1.0,
-      LiveDuelResult.draw => 0.5,
-      LiveDuelResult.loss => 0.0,
+    final delta = switch (result) {
+      LiveDuelResult.draw => 0,
+      LiveDuelResult.win =>
+        placement
+            ? 20
+            : opponentGap >= opponentStrengthGap
+            ? 22
+            : opponentGap <= -opponentStrengthGap
+            ? 14
+            : 18,
+      LiveDuelResult.loss =>
+        placement
+            ? -4
+            : opponentGap >= opponentStrengthGap
+            ? -5
+            : opponentGap <= -opponentStrengthGap
+            ? -8
+            : -7,
     };
-
-    final placement = matchesPlayed < LiveDuelRatingEngine.placementMatchCount;
-    final kFactor = placement ? 48.0 : 28.0;
-
-    var delta = (kFactor * (actualScore - expectedScore)).round();
-
-    if (result == LiveDuelResult.win) {
-      delta = max(delta, placement ? 12 : 8);
-    } else if (result == LiveDuelResult.loss) {
-      delta = min(delta, placement ? -12 : -8);
-    }
 
     final newRating = max(0, safePlayer + delta);
 
@@ -179,6 +183,7 @@ class LiveDuelProfile {
     this.currentWinStreak = 0,
     this.bestWinStreak = 0,
     this.highestRating = LiveDuelRatingEngine.initialRating,
+    this.ratingPolicyVersion = LiveDuelRatingEngine.ratingPolicyVersion,
     this.recentMatches = const <LiveDuelRecentMatch>[],
   });
 
@@ -190,6 +195,7 @@ class LiveDuelProfile {
   final int currentWinStreak;
   final int bestWinStreak;
   final int highestRating;
+  final int ratingPolicyVersion;
   final List<LiveDuelRecentMatch> recentMatches;
 
   BrLeague get league => BrLeagueResolver.fromRating(rating);
@@ -242,6 +248,7 @@ class LiveDuelProfile {
       currentWinStreak: nextStreak,
       bestWinStreak: max(bestWinStreak, nextStreak),
       highestRating: max(highestRating, change.newRating),
+      ratingPolicyVersion: ratingPolicyVersion,
       recentMatches: updatedRecentMatches,
     );
   }
@@ -255,6 +262,7 @@ class LiveDuelProfile {
     'currentWinStreak': currentWinStreak,
     'bestWinStreak': bestWinStreak,
     'highestRating': highestRating,
+    'ratingPolicyVersion': ratingPolicyVersion,
     'recentMatches': recentMatches
         .map((match) => match.toJson())
         .toList(growable: false),
@@ -276,11 +284,49 @@ class LiveDuelProfile {
                 .toList(growable: false)
             : const <LiveDuelRecentMatch>[];
 
+    final storedPolicyVersion =
+        (json['ratingPolicyVersion'] as num?)?.toInt() ?? 1;
+    final storedRating = max(
+      0,
+      (json['rating'] as num?)?.toInt() ?? LiveDuelRatingEngine.initialRating,
+    );
+    final storedHighestRating = max(
+      0,
+      (json['highestRating'] as num?)?.toInt() ??
+          LiveDuelRatingEngine.initialRating,
+    );
+
+    var migratedRating = storedRating;
+    var migratedHighestRating = storedHighestRating;
+    var migratedMatches = matches;
+
+    if (storedPolicyVersion < LiveDuelRatingEngine.ratingPolicyVersion) {
+      var refund = 0;
+
+      migratedMatches = matches
+          .map((match) {
+            if (match.result != LiveDuelResult.loss ||
+                match.ratingDelta >= -8) {
+              return match;
+            }
+
+            refund += -8 - match.ratingDelta;
+
+            return LiveDuelRecentMatch(
+              opponentName: match.opponentName,
+              result: match.result,
+              ratingDelta: -8,
+              playedAt: match.playedAt,
+            );
+          })
+          .toList(growable: false);
+
+      migratedRating += refund;
+      migratedHighestRating = max(migratedHighestRating, migratedRating);
+    }
+
     return LiveDuelProfile(
-      rating: max(
-        0,
-        (json['rating'] as num?)?.toInt() ?? LiveDuelRatingEngine.initialRating,
-      ),
+      rating: migratedRating,
       matchesPlayed: max(0, (json['matchesPlayed'] as num?)?.toInt() ?? 0),
       wins: max(0, (json['wins'] as num?)?.toInt() ?? 0),
       losses: max(0, (json['losses'] as num?)?.toInt() ?? 0),
@@ -290,12 +336,9 @@ class LiveDuelProfile {
         (json['currentWinStreak'] as num?)?.toInt() ?? 0,
       ),
       bestWinStreak: max(0, (json['bestWinStreak'] as num?)?.toInt() ?? 0),
-      highestRating: max(
-        0,
-        (json['highestRating'] as num?)?.toInt() ??
-            LiveDuelRatingEngine.initialRating,
-      ),
-      recentMatches: matches,
+      highestRating: migratedHighestRating,
+      ratingPolicyVersion: LiveDuelRatingEngine.ratingPolicyVersion,
+      recentMatches: migratedMatches,
     );
   }
 }
@@ -345,9 +388,19 @@ class LiveDuelProfileService {
       final rawProfile = snapshot.data()?['liveDuelProfile'];
 
       if (rawProfile is Map) {
-        final remote = LiveDuelProfile.fromJson(
-          Map<String, dynamic>.from(rawProfile),
-        );
+        final rawMap = Map<String, dynamic>.from(rawProfile);
+        final oldPolicyVersion =
+            (rawMap['ratingPolicyVersion'] as num?)?.toInt() ?? 1;
+        final remote = LiveDuelProfile.fromJson(rawMap);
+
+        if (oldPolicyVersion < LiveDuelRatingEngine.ratingPolicyVersion) {
+          await reference.set(<String, dynamic>{
+            'liveDuelProfile': remote.toJson(),
+            'liveDuelProfileUpdatedAt': FieldValue.serverTimestamp(),
+            'appVersion': AppBuildInfo.version,
+          }, SetOptions(merge: true));
+        }
+
         await saveLocal(remote);
         await LiveDuelLeaderboardService.publish(remote);
         return remote;
