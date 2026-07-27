@@ -1,0 +1,582 @@
+name: Canlı Düello BR puan dengesi
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: contains(github.event.head_commit.message, 'BR puan dengesi')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.7"
+          channel: stable
+          cache: true
+
+      - name: Bağımlılıkları kur
+        run: flutter pub get
+
+      - name: Git kimliğini ayarla
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout main
+
+      - name: BR puan politikasını uygula
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY'
+          from pathlib import Path
+
+          league_path = Path("lib/live_duel_league.dart")
+          text = league_path.read_text(encoding="utf-8")
+
+          def replace_once(old: str, new: str, label: str) -> None:
+              global text
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(
+                      f"{label}: beklenen bölüm {count} kez bulundu."
+                  )
+              text = text.replace(old, new, 1)
+
+          old_engine = """class LiveDuelRatingEngine {
+            LiveDuelRatingEngine._();
+
+            static const int initialRating = 1000;
+            static const int placementMatchCount = 5;
+
+            static LiveDuelRatingChange calculate({
+              required int playerRating,
+              required int opponentRating,
+              required LiveDuelResult result,
+              required int matchesPlayed,
+            }) {
+              final safePlayer = max(0, playerRating);
+              final safeOpponent = max(0, opponentRating);
+
+              final expectedScore =
+                  1.0 / (1.0 + pow(10.0, (safeOpponent - safePlayer) / 400.0));
+
+              final actualScore = switch (result) {
+                LiveDuelResult.win => 1.0,
+                LiveDuelResult.draw => 0.5,
+                LiveDuelResult.loss => 0.0,
+              };
+
+              final placement = matchesPlayed < LiveDuelRatingEngine.placementMatchCount;
+              final kFactor = placement ? 48.0 : 28.0;
+
+              var delta = (kFactor * (actualScore - expectedScore)).round();
+
+              if (result == LiveDuelResult.win) {
+                delta = max(delta, placement ? 12 : 8);
+              } else if (result == LiveDuelResult.loss) {
+                delta = min(delta, placement ? -12 : -8);
+              }
+
+              final newRating = max(0, safePlayer + delta);
+
+              return LiveDuelRatingChange(
+                oldRating: safePlayer,
+                newRating: newRating,
+                delta: newRating - safePlayer,
+                oldLeague: BrLeagueResolver.fromRating(safePlayer),
+                newLeague: BrLeagueResolver.fromRating(newRating),
+              );
+            }
+          }
+          """
+
+          new_engine = """class LiveDuelRatingEngine {
+            LiveDuelRatingEngine._();
+
+            static const int initialRating = 1000;
+            static const int placementMatchCount = 5;
+            static const int ratingPolicyVersion = 2;
+            static const int opponentStrengthGap = 150;
+
+            static LiveDuelRatingChange calculate({
+              required int playerRating,
+              required int opponentRating,
+              required LiveDuelResult result,
+              required int matchesPlayed,
+            }) {
+              final safePlayer = max(0, playerRating);
+              final safeOpponent = max(0, opponentRating);
+              final placement = matchesPlayed < placementMatchCount;
+              final opponentGap = safeOpponent - safePlayer;
+
+              final delta = switch (result) {
+                LiveDuelResult.draw => 0,
+                LiveDuelResult.win =>
+                  placement
+                      ? 20
+                      : opponentGap >= opponentStrengthGap
+                      ? 22
+                      : opponentGap <= -opponentStrengthGap
+                      ? 14
+                      : 18,
+                LiveDuelResult.loss =>
+                  placement
+                      ? -4
+                      : opponentGap >= opponentStrengthGap
+                      ? -5
+                      : opponentGap <= -opponentStrengthGap
+                      ? -8
+                      : -7,
+              };
+
+              final newRating = max(0, safePlayer + delta);
+
+              return LiveDuelRatingChange(
+                oldRating: safePlayer,
+                newRating: newRating,
+                delta: newRating - safePlayer,
+                oldLeague: BrLeagueResolver.fromRating(safePlayer),
+                newLeague: BrLeagueResolver.fromRating(newRating),
+              );
+            }
+          }
+          """
+
+          replace_once(old_engine, new_engine, "Eski BR motoru")
+
+          replace_once(
+              """    this.highestRating = LiveDuelRatingEngine.initialRating,
+              this.recentMatches = const <LiveDuelRecentMatch>[],
+            });""",
+              """    this.highestRating = LiveDuelRatingEngine.initialRating,
+              this.ratingPolicyVersion =
+                  LiveDuelRatingEngine.ratingPolicyVersion,
+              this.recentMatches = const <LiveDuelRecentMatch>[],
+            });""",
+              "Profil kurucusu",
+          )
+
+          replace_once(
+              """  final int highestRating;
+            final List<LiveDuelRecentMatch> recentMatches;""",
+              """  final int highestRating;
+            final int ratingPolicyVersion;
+            final List<LiveDuelRecentMatch> recentMatches;""",
+              "Profil politika alanı",
+          )
+
+          replace_once(
+              """    'highestRating': highestRating,
+              'recentMatches': recentMatches""",
+              """    'highestRating': highestRating,
+              'ratingPolicyVersion': ratingPolicyVersion,
+              'recentMatches': recentMatches""",
+              "Profil JSON politika alanı",
+          )
+
+          old_from_json = """  factory LiveDuelProfile.fromJson(Map<String, dynamic> json) {
+            final rawMatches = json['recentMatches'];
+
+            final matches =
+                rawMatches is List
+                    ? rawMatches
+                        .whereType<Map>()
+                        .map(
+                          (item) => LiveDuelRecentMatch.fromJson(
+                            Map<String, dynamic>.from(item),
+                          ),
+                        )
+                        .take(10)
+                        .toList(growable: false)
+                    : const <LiveDuelRecentMatch>[];
+
+            return LiveDuelProfile(
+              rating: max(
+                0,
+                (json['rating'] as num?)?.toInt() ?? LiveDuelRatingEngine.initialRating,
+              ),
+              matchesPlayed: max(0, (json['matchesPlayed'] as num?)?.toInt() ?? 0),
+              wins: max(0, (json['wins'] as num?)?.toInt() ?? 0),
+              losses: max(0, (json['losses'] as num?)?.toInt() ?? 0),
+              draws: max(0, (json['draws'] as num?)?.toInt() ?? 0),
+              currentWinStreak: max(
+                0,
+                (json['currentWinStreak'] as num?)?.toInt() ?? 0,
+              ),
+              bestWinStreak: max(0, (json['bestWinStreak'] as num?)?.toInt() ?? 0),
+              highestRating: max(
+                0,
+                (json['highestRating'] as num?)?.toInt() ??
+                    LiveDuelRatingEngine.initialRating,
+              ),
+              recentMatches: matches,
+            );
+          }"""
+
+          new_from_json = """  factory LiveDuelProfile.fromJson(Map<String, dynamic> json) {
+            final rawMatches = json['recentMatches'];
+
+            final matches =
+                rawMatches is List
+                    ? rawMatches
+                        .whereType<Map>()
+                        .map(
+                          (item) => LiveDuelRecentMatch.fromJson(
+                            Map<String, dynamic>.from(item),
+                          ),
+                        )
+                        .take(10)
+                        .toList(growable: false)
+                    : const <LiveDuelRecentMatch>[];
+
+            final storedPolicyVersion =
+                (json['ratingPolicyVersion'] as num?)?.toInt() ?? 1;
+            final storedRating = max(
+              0,
+              (json['rating'] as num?)?.toInt() ??
+                  LiveDuelRatingEngine.initialRating,
+            );
+            final storedHighestRating = max(
+              0,
+              (json['highestRating'] as num?)?.toInt() ??
+                  LiveDuelRatingEngine.initialRating,
+            );
+
+            var migratedRating = storedRating;
+            var migratedHighestRating = storedHighestRating;
+            var migratedMatches = matches;
+
+            if (storedPolicyVersion <
+                LiveDuelRatingEngine.ratingPolicyVersion) {
+              var refund = 0;
+
+              migratedMatches =
+                  matches.map((match) {
+                    if (match.result != LiveDuelResult.loss ||
+                        match.ratingDelta >= -8) {
+                      return match;
+                    }
+
+                    refund += -8 - match.ratingDelta;
+
+                    return LiveDuelRecentMatch(
+                      opponentName: match.opponentName,
+                      result: match.result,
+                      ratingDelta: -8,
+                      playedAt: match.playedAt,
+                    );
+                  }).toList(growable: false);
+
+              migratedRating += refund;
+              migratedHighestRating = max(
+                migratedHighestRating,
+                migratedRating,
+              );
+            }
+
+            return LiveDuelProfile(
+              rating: migratedRating,
+              matchesPlayed: max(
+                0,
+                (json['matchesPlayed'] as num?)?.toInt() ?? 0,
+              ),
+              wins: max(0, (json['wins'] as num?)?.toInt() ?? 0),
+              losses: max(0, (json['losses'] as num?)?.toInt() ?? 0),
+              draws: max(0, (json['draws'] as num?)?.toInt() ?? 0),
+              currentWinStreak: max(
+                0,
+                (json['currentWinStreak'] as num?)?.toInt() ?? 0,
+              ),
+              bestWinStreak: max(
+                0,
+                (json['bestWinStreak'] as num?)?.toInt() ?? 0,
+              ),
+              highestRating: migratedHighestRating,
+              ratingPolicyVersion:
+                  LiveDuelRatingEngine.ratingPolicyVersion,
+              recentMatches: migratedMatches,
+            );
+          }"""
+
+          replace_once(
+              old_from_json,
+              new_from_json,
+              "Profil yükleme ve eski puan iadesi",
+          )
+
+          league_path.write_text(text, encoding="utf-8")
+
+          test_path = Path("test/live_duel_league_test.dart")
+          test_path.write_text(
+              """import 'package:bilgi_rotasi/main.dart';
+          import 'package:flutter_test/flutter_test.dart';
+
+          void main() {
+            group('Canlı düello BR lig sistemi', () {
+              test('lig eşikleri doğru çalışır', () {
+                expect(BrLeagueResolver.fromRating(0), BrLeague.bronze);
+                expect(BrLeagueResolver.fromRating(999), BrLeague.bronze);
+                expect(BrLeagueResolver.fromRating(1000), BrLeague.silver);
+                expect(BrLeagueResolver.fromRating(1400), BrLeague.gold);
+                expect(BrLeagueResolver.fromRating(1800), BrLeague.platinum);
+                expect(BrLeagueResolver.fromRating(2200), BrLeague.diamond);
+                expect(BrLeagueResolver.fromRating(2600), BrLeague.master);
+                expect(BrLeagueResolver.fromRating(3000), BrLeague.legend);
+              });
+
+              test('eşit rakipte normal maç artı 18 eksi 7 verir', () {
+                final win = LiveDuelRatingEngine.calculate(
+                  playerRating: 1200,
+                  opponentRating: 1200,
+                  result: LiveDuelResult.win,
+                  matchesPlayed: 10,
+                );
+                final loss = LiveDuelRatingEngine.calculate(
+                  playerRating: 1200,
+                  opponentRating: 1200,
+                  result: LiveDuelResult.loss,
+                  matchesPlayed: 10,
+                );
+
+                expect(win.delta, 18);
+                expect(loss.delta, -7);
+              });
+
+              test('güçlü rakip daha çok kazandırır daha az düşürür', () {
+                final win = LiveDuelRatingEngine.calculate(
+                  playerRating: 1000,
+                  opponentRating: 1200,
+                  result: LiveDuelResult.win,
+                  matchesPlayed: 10,
+                );
+                final loss = LiveDuelRatingEngine.calculate(
+                  playerRating: 1000,
+                  opponentRating: 1200,
+                  result: LiveDuelResult.loss,
+                  matchesPlayed: 10,
+                );
+
+                expect(win.delta, 22);
+                expect(loss.delta, -5);
+              });
+
+              test('zayıf rakip daha az kazandırır kayıp en fazla 8 olur', () {
+                final win = LiveDuelRatingEngine.calculate(
+                  playerRating: 1200,
+                  opponentRating: 1000,
+                  result: LiveDuelResult.win,
+                  matchesPlayed: 10,
+                );
+                final loss = LiveDuelRatingEngine.calculate(
+                  playerRating: 1200,
+                  opponentRating: 1000,
+                  result: LiveDuelResult.loss,
+                  matchesPlayed: 10,
+                );
+
+                expect(win.delta, 14);
+                expect(loss.delta, -8);
+              });
+
+              test('ilk 5 yerleştirme maçı artı 20 eksi 4 verir', () {
+                final win = LiveDuelRatingEngine.calculate(
+                  playerRating: 1000,
+                  opponentRating: 1000,
+                  result: LiveDuelResult.win,
+                  matchesPlayed: 3,
+                );
+                final loss = LiveDuelRatingEngine.calculate(
+                  playerRating: 1000,
+                  opponentRating: 1000,
+                  result: LiveDuelResult.loss,
+                  matchesPlayed: 3,
+                );
+
+                expect(win.delta, 20);
+                expect(loss.delta, -4);
+              });
+
+              test('beraberlik BR değiştirmez', () {
+                final change = LiveDuelRatingEngine.calculate(
+                  playerRating: 1000,
+                  opponentRating: 1400,
+                  result: LiveDuelResult.draw,
+                  matchesPlayed: 10,
+                );
+
+                expect(change.delta, 0);
+              });
+
+              test('eski ağır mağlubiyetleri eksi 8 yapıp puanı iade eder', () {
+                final profile = LiveDuelProfile.fromJson(
+                  <String, dynamic>{
+                    'rating': 994,
+                    'matchesPlayed': 4,
+                    'wins': 2,
+                    'losses': 2,
+                    'draws': 0,
+                    'currentWinStreak': 0,
+                    'bestWinStreak': 1,
+                    'highestRating': 1024,
+                    'recentMatches': <Map<String, dynamic>>[
+                      <String, dynamic>{
+                        'opponentName': 'Emel',
+                        'result': 'loss',
+                        'ratingDelta': -27,
+                        'playedAt': '2026-07-26T12:00:00.000',
+                      },
+                      <String, dynamic>{
+                        'opponentName': 'Emel',
+                        'result': 'win',
+                        'ratingDelta': 24,
+                        'playedAt': '2026-07-26T11:00:00.000',
+                      },
+                      <String, dynamic>{
+                        'opponentName': 'Işıl',
+                        'result': 'loss',
+                        'ratingDelta': -27,
+                        'playedAt': '2026-07-26T10:00:00.000',
+                      },
+                      <String, dynamic>{
+                        'opponentName': 'Işıl',
+                        'result': 'win',
+                        'ratingDelta': 24,
+                        'playedAt': '2026-07-26T09:00:00.000',
+                      },
+                    ],
+                  },
+                );
+
+                expect(profile.rating, 1032);
+                expect(profile.ratingPolicyVersion, 2);
+                expect(
+                  profile.recentMatches
+                      .where((match) => match.result == LiveDuelResult.loss)
+                      .every((match) => match.ratingDelta == -8),
+                  isTrue,
+                );
+
+                final restored = LiveDuelProfile.fromJson(profile.toJson());
+                expect(restored.rating, 1032);
+              });
+
+              test('profil galibiyeti ve seriyi kaydeder', () {
+                final profile = const LiveDuelProfile().applyResult(
+                  opponentName: 'Test Rakibi',
+                  opponentRating: 1000,
+                  result: LiveDuelResult.win,
+                  playedAt: DateTime(2026, 7, 25),
+                );
+
+                expect(profile.matchesPlayed, 1);
+                expect(profile.wins, 1);
+                expect(profile.losses, 0);
+                expect(profile.currentWinStreak, 1);
+                expect(profile.bestWinStreak, 1);
+                expect(profile.recentMatches.single.ratingDelta, 20);
+              });
+
+              test('son maç geçmişi en fazla 10 kayıt tutar', () {
+                var profile = const LiveDuelProfile();
+
+                for (var index = 0; index < 15; index++) {
+                  profile = profile.applyResult(
+                    opponentName: 'Rakip $index',
+                    opponentRating: 1000,
+                    result: LiveDuelResult.win,
+                    playedAt: DateTime(2026, 7, index + 1),
+                  );
+                }
+
+                expect(profile.recentMatches.length, 10);
+              });
+
+              test('profil JSON dönüşümünde korunur', () {
+                final original = const LiveDuelProfile().applyResult(
+                  opponentName: 'Rakip',
+                  opponentRating: 1200,
+                  result: LiveDuelResult.draw,
+                  playedAt: DateTime(2026, 7, 25),
+                );
+
+                final restored =
+                    LiveDuelProfile.fromJson(original.toJson());
+
+                expect(restored.rating, original.rating);
+                expect(restored.matchesPlayed, original.matchesPlayed);
+                expect(restored.draws, 1);
+                expect(restored.ratingPolicyVersion, 2);
+                expect(restored.recentMatches.single.opponentName, 'Rakip');
+              });
+            });
+          }
+          """,
+              encoding="utf-8",
+          )
+
+          status_path = Path("BILGI_ROTASI_DURUM.md")
+          status = status_path.read_text(encoding="utf-8")
+          marker = "## Canlı Düello BR Puan Dengesi"
+          if marker not in status:
+              status += """
+
+          ## Canlı Düello BR Puan Dengesi
+
+          - Eşit rakip: galibiyet +18, mağlubiyet -7.
+          - Güçlü rakip: galibiyet +22, mağlubiyet -5.
+          - Zayıf rakip: galibiyet +14, mağlubiyet -8.
+          - İlk 5 yerleştirme maçı: galibiyet +20, mağlubiyet -4.
+          - Beraberlik: 0 BR.
+          - Eski -8'den ağır mağlubiyetler bir kez -8'e çekilir ve
+            aradaki BR oyuncuya iade edilir.
+          """
+              status_path.write_text(status, encoding="utf-8")
+          PY
+
+      - name: Biçimlendir, analiz et ve test et
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          dart format \
+            lib/live_duel_league.dart \
+            test/live_duel_league_test.dart
+
+          flutter analyze \
+            --no-fatal-warnings \
+            --no-fatal-infos
+
+          flutter test \
+            test/live_duel_league_test.dart \
+            --concurrency=1 \
+            --reporter expanded
+
+          python3 tools/rc1_quality_gate.py
+          git diff --check
+
+      - name: Değişiklikleri kaydet
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git add \
+            lib/live_duel_league.dart \
+            test/live_duel_league_test.dart \
+            BILGI_ROTASI_DURUM.md
+
+          git commit -m "Canli duello BR puan kaybini dengele"
+          git push origin main
