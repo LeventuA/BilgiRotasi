@@ -14,20 +14,15 @@ class AppErrorEntry {
   final String stack;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'time': time.toIso8601String(),
-        'source': source,
-        'message': message,
-        'stack': stack,
-      };
+    'time': time.toIso8601String(),
+    'source': source,
+    'message': message,
+    'stack': stack,
+  };
 
-  factory AppErrorEntry.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory AppErrorEntry.fromJson(Map<String, dynamic> json) {
     return AppErrorEntry(
-      time: DateTime.tryParse(
-            json['time']?.toString() ?? '',
-          ) ??
-          DateTime.now(),
+      time: DateTime.tryParse(json['time']?.toString() ?? '') ?? DateTime.now(),
       source: json['source']?.toString() ?? 'Bilinmeyen',
       message: json['message']?.toString() ?? 'Bilinmeyen hata',
       stack: json['stack']?.toString() ?? '',
@@ -38,14 +33,11 @@ class AppErrorEntry {
 class AppErrorLogService {
   AppErrorLogService._();
 
-  static const String _key =
-      'bilgi_rotasi_error_log_v1';
+  static const String _key = 'bilgi_rotasi_error_log_v1';
 
-  static final SharedPreferencesAsync _prefs =
-      SharedPreferencesAsync();
+  static final SharedPreferencesAsync _prefs = SharedPreferencesAsync();
 
-  static final ValueNotifier<int> revision =
-      ValueNotifier<int>(0);
+  static final ValueNotifier<int> revision = ValueNotifier<int>(0);
 
   static bool _initialized = false;
 
@@ -65,15 +57,8 @@ class AppErrorLogService {
       );
     };
 
-    ui.PlatformDispatcher.instance.onError =
-        (error, stack) {
-      unawaited(
-        record(
-          source: 'Platform',
-          error: error,
-          stack: stack,
-        ),
-      );
+    ui.PlatformDispatcher.instance.onError = (error, stack) {
+      unawaited(record(source: 'Platform', error: error, stack: stack));
 
       return false;
     };
@@ -115,9 +100,7 @@ class AppErrorLogService {
 
       await _prefs.setString(
         _key,
-        jsonEncode(
-          entries.map((entry) => entry.toJson()).toList(),
-        ),
+        jsonEncode(entries.map((entry) => entry.toJson()).toList()),
       );
 
       revision.value++;
@@ -143,9 +126,7 @@ class AppErrorLogService {
       return decoded
           .whereType<Map>()
           .map(
-            (item) => AppErrorEntry.fromJson(
-              Map<String, dynamic>.from(item),
-            ),
+            (item) => AppErrorEntry.fromJson(Map<String, dynamic>.from(item)),
           )
           .toList();
     } catch (_) {
@@ -169,10 +150,7 @@ class AppErrorLogService {
 }
 
 class SystemErrorFallback extends StatelessWidget {
-  const SystemErrorFallback({
-    required this.details,
-    super.key,
-  });
+  const SystemErrorFallback({required this.details, super.key});
 
   final FlutterErrorDetails details;
 
@@ -184,42 +162,29 @@ class SystemErrorFallback extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(22),
           child: Container(
-            constraints: const BoxConstraints(
-              maxWidth: 430,
-            ),
+            constraints: const BoxConstraints(maxWidth: 430),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(
-                color: const Color(0xFFFCA5A5),
-              ),
+              border: Border.all(color: const Color(0xFFFCA5A5)),
             ),
             child: const Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  '🛠️',
-                  style: TextStyle(fontSize: 54),
-                ),
+                Text('🛠️', style: TextStyle(fontSize: 54)),
                 SizedBox(height: 10),
                 Text(
                   'Bu bölüm görüntülenemedi',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.w900,
-                  ),
+                  style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900),
                 ),
                 SizedBox(height: 7),
                 Text(
                   'Hata teknik günlüğe kaydedildi. '
                   'Geri dönüp oyuna devam edebilirsin.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFF64748B),
-                    height: 1.4,
-                  ),
+                  style: TextStyle(color: Color(0xFF64748B), height: 1.4),
                 ),
               ],
             ),
@@ -233,22 +198,17 @@ class SystemErrorFallback extends StatelessWidget {
 class GameRecoveryService {
   GameRecoveryService._();
 
-  static const String backupKey =
-      'bilgi_rotasi_saved_game_backup_v1';
+  static String get backupKey => GameSaveService._backupKey;
 
-  static Future<void> saveWithBackup(
-    String encoded,
-  ) async {
-    final previous =
-        await GameSaveService._preferences.getString(
+  static Future<void> saveWithBackup(String encoded) async {
+    await GameSaveService._migrateLegacyForSignedInUser();
+
+    final previous = await GameSaveService._preferences.getString(
       GameSaveService._saveKey,
     );
 
     if (previous != null && previous.trim().isNotEmpty) {
-      await GameSaveService._preferences.setString(
-        backupKey,
-        previous,
-      );
+      await GameSaveService._preferences.setString(backupKey, previous);
     }
 
     await GameSaveService._preferences.setString(
@@ -257,19 +217,13 @@ class GameRecoveryService {
     );
 
     if (previous == null || previous.trim().isEmpty) {
-      await GameSaveService._preferences.setString(
-        backupKey,
-        encoded,
-      );
+      await GameSaveService._preferences.setString(backupKey, encoded);
     }
   }
 
   static Future<bool> hasBackup() async {
     try {
-      final raw =
-          await GameSaveService._preferences.getString(
-        backupKey,
-      );
+      final raw = await GameSaveService._preferences.getString(backupKey);
 
       return raw != null && raw.trim().isNotEmpty;
     } catch (_) {
@@ -279,10 +233,7 @@ class GameRecoveryService {
 
   static Future<SavedGame?> recover() async {
     try {
-      final raw =
-          await GameSaveService._preferences.getString(
-        backupKey,
-      );
+      final raw = await GameSaveService._preferences.getString(backupKey);
 
       if (raw == null || raw.trim().isEmpty) {
         return null;
@@ -317,9 +268,7 @@ class GameRecoveryService {
 
   static Future<void> clearBackup() async {
     try {
-      await GameSaveService._preferences.remove(
-        backupKey,
-      );
+      await GameSaveService._preferences.remove(backupKey);
     } catch (_) {
       // Yedek temizleme sorunu oyunu kilitlememeli.
     }
@@ -344,26 +293,19 @@ class GameRecoveryService {
     for (final item in rawPlayers) {
       if (item is Map) {
         players.add(
-          GameSaveService._playerFromJson(
-            Map<String, dynamic>.from(item),
-          ),
+          GameSaveService._playerFromJson(Map<String, dynamic>.from(item)),
         );
       }
     }
 
     if (players.isEmpty) return null;
 
-    final rawIndex =
-        (map['currentPlayerIndex'] as num?)?.toInt() ?? 0;
+    final rawIndex = (map['currentPlayerIndex'] as num?)?.toInt() ?? 0;
 
-    final currentPlayerIndex = rawIndex
-        .clamp(0, players.length - 1)
-        .toInt();
+    final currentPlayerIndex = rawIndex.clamp(0, players.length - 1).toInt();
 
-    final savedAt = DateTime.tryParse(
-          map['savedAt']?.toString() ?? '',
-        ) ??
-        DateTime.now();
+    final savedAt =
+        DateTime.tryParse(map['savedAt']?.toString() ?? '') ?? DateTime.now();
 
     final usedQuestionIds = <String>{};
     final rawUsed = map['usedQuestionIds'];
@@ -406,23 +348,16 @@ class QuestionHealthReport {
   final int emptyExplanations;
   final String fingerprint;
 
-  bool get healthy =>
-      total > 0 && duplicateIds == 0 && invalidItems == 0;
+  bool get healthy => total > 0 && duplicateIds == 0 && invalidItems == 0;
 
-  int get warningCount =>
-      duplicateTexts + emptyExplanations;
+  int get warningCount => duplicateTexts + emptyExplanations;
 
-  factory QuestionHealthReport.fromBank(
-    QuestionBank bank,
-  ) {
+  factory QuestionHealthReport.fromBank(QuestionBank bank) {
     final questions = bank.questionsByCategory.values
         .expand((items) => items)
         .toList(growable: false);
 
-    final categoryCounts = List<int>.filled(
-      GameCategory.values.length,
-      0,
-    );
+    final categoryCounts = List<int>.filled(GameCategory.values.length, 0);
 
     final difficulties = <String, int>{
       'Kolay': 0,
@@ -443,23 +378,19 @@ class QuestionHealthReport {
     for (final question in questions) {
       final id = question.id.trim();
       final text = question.text.trim();
-      final normalizedText = text
-          .toLowerCase()
-          .replaceAll(RegExp(r'\s+'), ' ');
+      final normalizedText = text.toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 
       if (id.isEmpty || !ids.add(id)) {
         duplicateIds++;
       }
 
-      if (normalizedText.isNotEmpty &&
-          !texts.add(normalizedText)) {
+      if (normalizedText.isNotEmpty && !texts.add(normalizedText)) {
         duplicateTexts++;
       }
 
       final categoryValid =
           question.categoryIndex >= 0 &&
-              question.categoryIndex <
-                  GameCategory.values.length;
+          question.categoryIndex < GameCategory.values.length;
 
       if (categoryValid) {
         categoryCounts[question.categoryIndex]++;
@@ -467,24 +398,18 @@ class QuestionHealthReport {
 
       final optionsValid =
           question.options.length == 4 &&
-              question.options.every(
-                (option) => option.trim().isNotEmpty,
-              );
+          question.options.every((option) => option.trim().isNotEmpty);
 
       final answerValid =
           question.answerIndex >= 0 &&
-              question.answerIndex <
-                  question.options.length;
+          question.answerIndex < question.options.length;
 
-      final difficulty =
-          question.difficulty.trim();
+      final difficulty = question.difficulty.trim();
 
       if (difficulties.containsKey(difficulty)) {
-        difficulties[difficulty] =
-            difficulties[difficulty]! + 1;
+        difficulties[difficulty] = difficulties[difficulty]! + 1;
       } else {
-        difficulties['Diğer'] =
-            difficulties['Diğer']! + 1;
+        difficulties['Diğer'] = difficulties['Diğer']! + 1;
       }
 
       if (question.explanation.trim().isEmpty) {
@@ -496,11 +421,7 @@ class QuestionHealthReport {
           !categoryValid ||
           !optionsValid ||
           !answerValid ||
-          !<String>{
-            'Kolay',
-            'Orta',
-            'Zor',
-          }.contains(difficulty)) {
+          !<String>{'Kolay', 'Orta', 'Zor'}.contains(difficulty)) {
         invalidItems++;
       }
 
@@ -518,8 +439,7 @@ class QuestionHealthReport {
       duplicateTexts: duplicateTexts,
       invalidItems: invalidItems,
       emptyExplanations: emptyExplanations,
-      fingerprint:
-          hash.toRadixString(16).padLeft(8, '0').toUpperCase(),
+      fingerprint: hash.toRadixString(16).padLeft(8, '0').toUpperCase(),
     );
   }
 
@@ -562,10 +482,7 @@ class SystemHealthSnapshot {
 }
 
 class SystemHealthHomeButton extends StatelessWidget {
-  const SystemHealthHomeButton({
-    required this.questionBank,
-    super.key,
-  });
+  const SystemHealthHomeButton({required this.questionBank, super.key});
 
   final QuestionBank questionBank;
 
@@ -575,50 +492,35 @@ class SystemHealthHomeButton extends StatelessWidget {
       onPressed: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => SystemHealthScreen(
-              questionBank: questionBank,
-            ),
+            builder: (_) => SystemHealthScreen(questionBank: questionBank),
           ),
         );
       },
       style: OutlinedButton.styleFrom(
         foregroundColor: Colors.white,
-        side: const BorderSide(
-          color: Color(0x997DE3FC),
-        ),
+        side: const BorderSide(color: Color(0x997DE3FC)),
         minimumSize: const Size.fromHeight(50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       ),
-      icon: const Icon(
-        Icons.health_and_safety_rounded,
-      ),
+      icon: const Icon(Icons.health_and_safety_rounded),
       label: const Text(
         'Sistem Sağlığı & Teknik Kontrol',
-        style: TextStyle(
-          fontWeight: FontWeight.w900,
-        ),
+        style: TextStyle(fontWeight: FontWeight.w900),
       ),
     );
   }
 }
 
 class SystemHealthScreen extends StatefulWidget {
-  const SystemHealthScreen({
-    required this.questionBank,
-    super.key,
-  });
+  const SystemHealthScreen({required this.questionBank, super.key});
 
   final QuestionBank questionBank;
 
   @override
-  State<SystemHealthScreen> createState() =>
-      _SystemHealthScreenState();
+  State<SystemHealthScreen> createState() => _SystemHealthScreenState();
 }
 
-class _SystemHealthScreenState
-    extends State<SystemHealthScreen> {
+class _SystemHealthScreenState extends State<SystemHealthScreen> {
   late Future<SystemHealthSnapshot> _future;
 
   @override
@@ -632,13 +534,10 @@ class _SystemHealthScreenState
   }
 
   Future<SystemHealthSnapshot> _load() async {
-    final report = QuestionHealthReport.fromBank(
-      widget.questionBank,
-    );
+    final report = QuestionHealthReport.fromBank(widget.questionBank);
 
     final savedGame = await GameSaveService.load();
-    final hasBackup =
-        await GameRecoveryService.hasBackup();
+    final hasBackup = await GameRecoveryService.hasBackup();
     final errors = await AppErrorLogService.load();
 
     return SystemHealthSnapshot(
@@ -652,29 +551,18 @@ class _SystemHealthScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Sistem Sağlığı',
-        ),
-      ),
+      appBar: AppBar(title: const Text('Sistem Sağlığı')),
       body: FutureBuilder<SystemHealthSnapshot>(
         future: _future,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
 
           final data = snapshot.data!;
 
           return ListView(
-            padding: const EdgeInsets.fromLTRB(
-              18,
-              16,
-              18,
-              28,
-            ),
+            padding: const EdgeInsets.fromLTRB(18, 16, 18, 28),
             children: [
               _hero(data.report),
               const SizedBox(height: 15),
@@ -699,14 +587,10 @@ class _SystemHealthScreenState
                 onPressed: () {
                   setState(_reload);
                 },
-                icon: const Icon(
-                  Icons.refresh_rounded,
-                ),
+                icon: const Icon(Icons.refresh_rounded),
                 label: const Text(
                   'Kontrolleri Yenile',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.w900),
                 ),
               ),
             ],
@@ -723,15 +607,10 @@ class _SystemHealthScreenState
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: healthy
-              ? const <Color>[
-                  Color(0xFF047857),
-                  Color(0xFF155E75),
-                ]
-              : const <Color>[
-                  Color(0xFFB91C1C),
-                  Color(0xFF7C2D12),
-                ],
+          colors:
+              healthy
+                  ? const <Color>[Color(0xFF047857), Color(0xFF155E75)]
+                  : const <Color>[Color(0xFFB91C1C), Color(0xFF7C2D12)],
         ),
         borderRadius: BorderRadius.circular(28),
       ),
@@ -743,9 +622,7 @@ class _SystemHealthScreenState
           ),
           const SizedBox(height: 8),
           Text(
-            healthy
-                ? 'Sistem sağlıklı görünüyor'
-                : 'Teknik kontrol gerekli',
+            healthy ? 'Sistem sağlıklı görünüyor' : 'Teknik kontrol gerekli',
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
@@ -768,29 +645,19 @@ class _SystemHealthScreenState
     );
   }
 
-  Widget _questionCard(
-    QuestionHealthReport report,
-  ) {
+  Widget _questionCard(QuestionHealthReport report) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(17),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
               '📝 Soru bankası doğrulaması',
-              style: TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w900,
-              ),
+              style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 12),
-            _statusRow(
-              'Toplam soru',
-              '${report.total}',
-              report.total > 0,
-            ),
+            _statusRow('Toplam soru', '${report.total}', report.total > 0),
             _statusRow(
               'Geçersiz kayıt',
               '${report.invalidItems}',
@@ -805,43 +672,31 @@ class _SystemHealthScreenState
               'Benzer soru metni uyarısı',
               '${report.duplicateTexts}',
               true,
-              warning:
-                  report.duplicateTexts > 0,
+              warning: report.duplicateTexts > 0,
             ),
             _statusRow(
               'Boş açıklama uyarısı',
               '${report.emptyExplanations}',
               true,
-              warning:
-                  report.emptyExplanations > 0,
+              warning: report.emptyExplanations > 0,
             ),
             const Divider(height: 24),
-            for (var index = 0;
-                index < GameCategory.values.length;
-                index++)
+            for (var index = 0; index < GameCategory.values.length; index++)
               Padding(
-                padding:
-                    const EdgeInsets.only(bottom: 6),
+                padding: const EdgeInsets.only(bottom: 6),
                 child: Row(
                   children: [
-                    Text(
-                      GameCategory.values[index].emoji,
-                    ),
+                    Text(GameCategory.values[index].emoji),
                     const SizedBox(width: 7),
                     Expanded(
                       child: Text(
-                        GameCategory
-                            .values[index].label,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                        ),
+                        GameCategory.values[index].label,
+                        style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
                     ),
                     Text(
                       '${report.categoryCounts[index]}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w900,
-                      ),
+                      style: const TextStyle(fontWeight: FontWeight.w900),
                     ),
                   ],
                 ),
@@ -857,15 +712,11 @@ class _SystemHealthScreenState
       child: Padding(
         padding: const EdgeInsets.all(17),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
               '💾 Kayıt ve kurtarma',
-              style: TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w900,
-              ),
+              style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 11),
             _statusRow(
@@ -883,14 +734,10 @@ class _SystemHealthScreenState
               const SizedBox(height: 11),
               FilledButton.icon(
                 onPressed: _restoreBackup,
-                icon: const Icon(
-                  Icons.restore_rounded,
-                ),
+                icon: const Icon(Icons.restore_rounded),
                 label: const Text(
                   'Kurtarma Yedeğini Geri Yükle',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.w900),
                 ),
               ),
             ],
@@ -901,23 +748,17 @@ class _SystemHealthScreenState
   }
 
   Widget _performanceCard() {
-    final minimal =
-        AppPreferencesService.current.animationMode ==
-            'minimal';
+    final minimal = AppPreferencesService.current.animationMode == 'minimal';
 
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(17),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
               '⚡ Performans araçları',
-              style: TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w900,
-              ),
+              style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 8),
             Text(
@@ -926,39 +767,24 @@ class _SystemHealthScreenState
                       'animasyonlar ve canlı tahta kapalı.'
                   : 'Normal görünüm açık. Takılma yaşanırsa '
                       'performans modunu etkinleştir.',
-              style: const TextStyle(
-                color: Color(0xFF64748B),
-                height: 1.35,
-              ),
+              style: const TextStyle(color: Color(0xFF64748B), height: 1.35),
             ),
             const SizedBox(height: 11),
             FilledButton.icon(
-              onPressed: () => _setPerformance(
-                minimal ? 'full' : 'minimal',
-              ),
+              onPressed: () => _setPerformance(minimal ? 'full' : 'minimal'),
               icon: Icon(
-                minimal
-                    ? Icons.auto_awesome_rounded
-                    : Icons.bolt_rounded,
+                minimal ? Icons.auto_awesome_rounded : Icons.bolt_rounded,
               ),
               label: Text(
-                minimal
-                    ? 'Normal Görünüme Dön'
-                    : 'Performans Modunu Aç',
-                style: const TextStyle(
-                  fontWeight: FontWeight.w900,
-                ),
+                minimal ? 'Normal Görünüme Dön' : 'Performans Modunu Aç',
+                style: const TextStyle(fontWeight: FontWeight.w900),
               ),
             ),
             const SizedBox(height: 8),
             OutlinedButton.icon(
               onPressed: _clearImageCache,
-              icon: const Icon(
-                Icons.cleaning_services_rounded,
-              ),
-              label: const Text(
-                'Görüntü Önbelleğini Temizle',
-              ),
+              icon: const Icon(Icons.cleaning_services_rounded),
+              label: const Text('Görüntü Önbelleğini Temizle'),
             ),
           ],
         ),
@@ -966,25 +792,19 @@ class _SystemHealthScreenState
     );
   }
 
-  Widget _errorCard(
-    List<AppErrorEntry> errors,
-  ) {
+  Widget _errorCard(List<AppErrorEntry> errors) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(17),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
               children: [
                 const Expanded(
                   child: Text(
                     '🐞 Teknik hata günlüğü',
-                    style: TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
                   ),
                 ),
                 Text(
@@ -1009,33 +829,20 @@ class _SystemHealthScreenState
               for (final error in errors.take(5))
                 ExpansionTile(
                   tilePadding: EdgeInsets.zero,
-                  childrenPadding:
-                      const EdgeInsets.fromLTRB(
-                    8,
-                    0,
-                    8,
-                    12,
-                  ),
+                  childrenPadding: const EdgeInsets.fromLTRB(8, 0, 8, 12),
                   leading: const Text('⚠️'),
                   title: Text(
                     error.source,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: const TextStyle(fontWeight: FontWeight.w900),
                   ),
                   subtitle: Text(
                     _dateLabel(error.time),
-                    style: const TextStyle(
-                      fontSize: 11,
-                    ),
+                    style: const TextStyle(fontSize: 11),
                   ),
                   children: [
                     SelectableText(
                       error.message,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        height: 1.35,
-                      ),
+                      style: const TextStyle(fontSize: 12, height: 1.35),
                     ),
                     if (error.stack.isNotEmpty) ...[
                       const SizedBox(height: 8),
@@ -1054,15 +861,10 @@ class _SystemHealthScreenState
               TextButton.icon(
                 onPressed: _clearErrors,
                 style: TextButton.styleFrom(
-                  foregroundColor:
-                      const Color(0xFFB91C1C),
+                  foregroundColor: const Color(0xFFB91C1C),
                 ),
-                icon: const Icon(
-                  Icons.delete_outline_rounded,
-                ),
-                label: const Text(
-                  'Hata Günlüğünü Temizle',
-                ),
+                icon: const Icon(Icons.delete_outline_rounded),
+                label: const Text('Hata Günlüğünü Temizle'),
               ),
             ],
           ],
@@ -1077,9 +879,10 @@ class _SystemHealthScreenState
     bool okay, {
     bool warning = false,
   }) {
-    final icon = warning
-        ? '⚠️'
-        : okay
+    final icon =
+        warning
+            ? '⚠️'
+            : okay
             ? '✅'
             : '❌';
 
@@ -1089,15 +892,14 @@ class _SystemHealthScreenState
         children: [
           Text(icon),
           const SizedBox(width: 8),
-          Expanded(
-            child: Text(label),
-          ),
+          Expanded(child: Text(label)),
           Text(
             value,
             style: TextStyle(
-              color: warning
-                  ? const Color(0xFFB45309)
-                  : okay
+              color:
+                  warning
+                      ? const Color(0xFFB45309)
+                      : okay
                       ? const Color(0xFF15803D)
                       : const Color(0xFFB91C1C),
               fontWeight: FontWeight.w900,
@@ -1109,8 +911,7 @@ class _SystemHealthScreenState
   }
 
   Future<void> _restoreBackup() async {
-    final restored =
-        await GameRecoveryService.restoreBackup();
+    final restored = await GameRecoveryService.restoreBackup();
 
     if (!mounted) return;
 
@@ -1129,9 +930,7 @@ class _SystemHealthScreenState
     setState(_reload);
   }
 
-  Future<void> _setPerformance(
-    String mode,
-  ) async {
+  Future<void> _setPerformance(String mode) async {
     await AppPreferencesService.setAnimationMode(mode);
 
     if (!mounted) return;
@@ -1153,11 +952,7 @@ class _SystemHealthScreenState
     PaintingBinding.instance.imageCache.clearLiveImages();
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'Görüntü önbelleği temizlendi.',
-        ),
-      ),
+      const SnackBar(content: Text('Görüntü önbelleği temizlendi.')),
     );
   }
 
@@ -1170,8 +965,7 @@ class _SystemHealthScreenState
   }
 
   String _dateLabel(DateTime value) {
-    String two(int number) =>
-        number.toString().padLeft(2, '0');
+    String two(int number) => number.toString().padLeft(2, '0');
 
     return '${two(value.day)}.${two(value.month)}.'
         '${value.year} ${two(value.hour)}:${two(value.minute)}';

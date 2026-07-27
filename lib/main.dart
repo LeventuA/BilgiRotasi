@@ -262,8 +262,56 @@ class SavedGame {
 class GameSaveService {
   GameSaveService._();
 
-  static const String _saveKey = 'bilgi_rotasi_saved_game_v1';
+  static const String _legacySaveKey = 'bilgi_rotasi_saved_game_v1';
+  static const String _legacyBackupKey = 'bilgi_rotasi_saved_game_backup_v1';
+  static const String _scopedSavePrefix = 'bilgi_rotasi_saved_game_v2_';
+  static const String _scopedBackupPrefix =
+      'bilgi_rotasi_saved_game_backup_v2_';
+
   static final SharedPreferencesAsync _preferences = SharedPreferencesAsync();
+
+  static String storageScopeForUid(String? uid) {
+    final normalized = uid?.trim() ?? '';
+    return normalized.isEmpty ? 'guest' : 'user_$normalized';
+  }
+
+  static String saveKeyForUid(String? uid) {
+    return '$_scopedSavePrefix${storageScopeForUid(uid)}';
+  }
+
+  static String backupKeyForUid(String? uid) {
+    return '$_scopedBackupPrefix${storageScopeForUid(uid)}';
+  }
+
+  static String get _currentUid => FirebaseAuth.instance.currentUser?.uid ?? '';
+
+  static String get _saveKey => saveKeyForUid(_currentUid);
+
+  static String get _backupKey => backupKeyForUid(_currentUid);
+
+  static Future<void> _migrateLegacyForSignedInUser() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final current = await _preferences.getString(_saveKey);
+    if (current != null && current.trim().isNotEmpty) return;
+
+    final legacy = await _preferences.getString(_legacySaveKey);
+    if (legacy == null || legacy.trim().isEmpty) return;
+
+    await _preferences.setString(_saveKey, legacy);
+
+    final legacyBackup = await _preferences.getString(_legacyBackupKey);
+    await _preferences.setString(
+      _backupKey,
+      legacyBackup != null && legacyBackup.trim().isNotEmpty
+          ? legacyBackup
+          : legacy,
+    );
+
+    await _preferences.remove(_legacySaveKey);
+    await _preferences.remove(_legacyBackupKey);
+  }
 
   static Future<void> save({
     required List<PlayerData> players,
@@ -289,6 +337,8 @@ class GameSaveService {
 
   static Future<SavedGame?> load() async {
     try {
+      await _migrateLegacyForSignedInUser();
+
       final raw = await _preferences.getString(_saveKey);
       if (raw == null || raw.trim().isEmpty) return null;
 
@@ -362,7 +412,7 @@ class GameSaveService {
   static Future<void> clear() async {
     try {
       await _preferences.remove(_saveKey);
-      await GameRecoveryService.clearBackup();
+      await _preferences.remove(_backupKey);
     } catch (_) {
       // Kayıt silme sorunu arayüzü kilitlememeli.
     }

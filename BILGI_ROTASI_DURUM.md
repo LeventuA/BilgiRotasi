@@ -71,3 +71,13 @@ Canlı Düello puan yazımı Firestore tarafından doğrulanır hale getirildi.
 - Zayıf rakipte +14 / -8 BR uygulanır.
 - İlk 5 maçta +20 / -4 BR uygulanır.
 - Eski -8'den ağır mağlubiyetlerin farkı bir kez iade edilir.
+
+
+## Kayıtlı Oyun Hesap İzolasyonu
+
+- Misafir ve Google hesapları farklı kayıt kasaları kullanır.
+- Bir hesaptan çıkınca o hesaba ait devam eden oyun gizlenir.
+- Aynı Google hesabıyla tekrar girildiğinde oyun yeniden görünür.
+- Başka bir Google hesabı önceki hesabın oyununu göremez.
+- Eski ortak kayıt ilk giriş yapan mevcut hesaba güvenle taşınır.
+- Kayıt kurtarma yedeği de hesap bazında ayrılmıştır.
