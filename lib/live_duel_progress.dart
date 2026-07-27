@@ -19,6 +19,7 @@ class LiveDuelPlayerProgress {
     required this.finished,
     this.lastAnswerCorrect,
     this.lastQuestionId,
+    this.lastSelectedOptionIndex,
     this.updatedAt,
     this.finishedAt,
   });
@@ -31,6 +32,7 @@ class LiveDuelPlayerProgress {
   final bool finished;
   final bool? lastAnswerCorrect;
   final String? lastQuestionId;
+  final int? lastSelectedOptionIndex;
   final DateTime? updatedAt;
   final DateTime? finishedAt;
 
@@ -49,6 +51,7 @@ class LiveDuelPlayerProgress {
     'finished': finished,
     'lastAnswerCorrect': lastAnswerCorrect,
     'lastQuestionId': lastQuestionId,
+    'lastSelectedOptionIndex': lastSelectedOptionIndex,
   };
 
   factory LiveDuelPlayerProgress.initial(String uid) {
@@ -81,6 +84,8 @@ class LiveDuelPlayerProgress {
       finished: data['finished'] == true,
       lastAnswerCorrect: data['lastAnswerCorrect'] as bool?,
       lastQuestionId: data['lastQuestionId']?.toString(),
+      lastSelectedOptionIndex:
+          (data['lastSelectedOptionIndex'] as num?)?.toInt(),
       updatedAt: updatedAt is Timestamp ? updatedAt.toDate() : null,
       finishedAt: finishedAt is Timestamp ? finishedAt.toDate() : null,
     );
@@ -93,9 +98,14 @@ class LiveDuelProgressCalculator {
   static LiveDuelPlayerProgress applyAnswer({
     required LiveDuelPlayerProgress current,
     required String questionId,
+    required int selectedOptionIndex,
     required bool correct,
     required int questionCount,
   }) {
+    if (selectedOptionIndex < 0) {
+      throw const LiveDuelProgressException('Seçilen şık geçersiz.');
+    }
+
     if (questionCount <= 0) {
       throw const LiveDuelProgressException(
         'Canlı düello soru sayısı geçersiz.',
@@ -124,6 +134,7 @@ class LiveDuelProgressCalculator {
       finished: finished,
       lastAnswerCorrect: correct,
       lastQuestionId: questionId,
+      lastSelectedOptionIndex: selectedOptionIndex,
     );
   }
 
@@ -197,6 +208,7 @@ class LiveDuelProgressService {
   static Future<LiveDuelPlayerProgress> submitAnswer({
     required String matchId,
     required String questionId,
+    required int selectedOptionIndex,
     required bool correct,
   }) async {
     final user = _requireUser();
@@ -255,6 +267,7 @@ class LiveDuelProgressService {
       final next = LiveDuelProgressCalculator.applyAnswer(
         current: current,
         questionId: questionId,
+        selectedOptionIndex: selectedOptionIndex,
         correct: correct,
         questionCount: questionCount,
       );

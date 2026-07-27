@@ -582,6 +582,7 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
       final next = await LiveDuelProgressService.submitAnswer(
         matchId: widget.matchId,
         questionId: question.id,
+        selectedOptionIndex: optionIndex,
         correct: correct,
       );
 

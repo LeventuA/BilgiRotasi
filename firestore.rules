@@ -61,6 +61,120 @@ service cloud.firestore {
       );
     }
 
+    function duelQuestionKey(questionId) {
+      return get(
+        /databases/$(database)/documents/live_duel_question_keys/$(questionId)
+      );
+    }
+
+    function validInitialDuelProgress(matchId, userId) {
+      let matchData = duelMatch(matchId).data;
+      let next = request.resource.data;
+
+      return request.auth.uid == userId
+             && request.auth.uid in matchData.playerUids
+             && matchData.get('resultProcessed', false) != true
+             && next.keys().hasOnly([
+               'uid',
+               'currentQuestionIndex',
+               'answeredCount',
+               'correctCount',
+               'wrongCount',
+               'finished',
+               'lastAnswerCorrect',
+               'lastQuestionId',
+               'lastSelectedOptionIndex',
+               'updatedAt',
+               'finishedAt'
+             ])
+             && next.uid == userId
+             && next.currentQuestionIndex == 0
+             && next.answeredCount == 0
+             && next.correctCount == 0
+             && next.wrongCount == 0
+             && next.finished == false
+             && next.lastAnswerCorrect == null
+             && next.lastQuestionId == null
+             && next.lastSelectedOptionIndex == null
+             && next.updatedAt == request.time
+             && next.finishedAt == null;
+    }
+
+    function validDuelProgressUpdate(matchId, userId) {
+      let matchData = duelMatch(matchId).data;
+      let previous = resource.data;
+      let next = request.resource.data;
+      let expectedQuestionId =
+        matchData.questionIds[previous.answeredCount];
+      let key = duelQuestionKey(expectedQuestionId).data;
+      let answerCorrect =
+        next.lastSelectedOptionIndex == key.answerIndex;
+
+      return request.auth.uid == userId
+             && request.auth.uid in matchData.playerUids
+             && matchData.get('resultProcessed', false) != true
+             && previous.finished == false
+             && previous.answeredCount < matchData.questionCount
+             && next.keys().hasOnly([
+               'uid',
+               'currentQuestionIndex',
+               'answeredCount',
+               'correctCount',
+               'wrongCount',
+               'finished',
+               'lastAnswerCorrect',
+               'lastQuestionId',
+               'lastSelectedOptionIndex',
+               'updatedAt',
+               'finishedAt'
+             ])
+             && next.uid == userId
+             && next.answeredCount == previous.answeredCount + 1
+             && next.currentQuestionIndex == next.answeredCount
+             && next.lastQuestionId == expectedQuestionId
+             && key.answerIndex is int
+             && key.optionCount is int
+             && key.optionCount >= 2
+             && next.lastSelectedOptionIndex is int
+             && next.lastSelectedOptionIndex >= 0
+             && next.lastSelectedOptionIndex < key.optionCount
+             && next.lastAnswerCorrect == answerCorrect
+             && next.correctCount ==
+                previous.correctCount +
+                (answerCorrect ? 1 : 0)
+             && next.wrongCount ==
+                previous.wrongCount +
+                (answerCorrect ? 0 : 1)
+             && next.correctCount + next.wrongCount ==
+                next.answeredCount
+             && next.finished ==
+                (next.answeredCount == matchData.questionCount)
+             && next.updatedAt == request.time
+             && (
+               (
+                 next.finished == true
+                 && next.finishedAt == request.time
+               )
+               ||
+               (
+                 next.finished == false
+                 && next.finishedAt == null
+               )
+             )
+             && next.diff(previous).affectedKeys().hasOnly([
+               'currentQuestionIndex',
+               'answeredCount',
+               'correctCount',
+               'wrongCount',
+               'finished',
+               'lastAnswerCorrect',
+               'lastQuestionId',
+               'lastSelectedOptionIndex',
+               'updatedAt',
+               'finishedAt'
+             ]);
+    }
+
     function duelPresenceExists(matchId, userId) {
       return exists(
         /databases/$(database)/documents/live_duel_matches/$(matchId)/presence/$(userId)
@@ -301,6 +415,10 @@ service cloud.firestore {
                     );
     }
 
+    match /live_duel_question_keys/{questionId} {
+      allow read, write: if false;
+    }
+
     match /live_duel_matches/{matchId} {
       allow create: if signedIn()
                     && request.auth.uid
@@ -328,21 +446,11 @@ service cloud.firestore {
                     && request.auth.uid
                        in duelMatch(matchId).data.playerUids;
 
-        allow create, update: if signedIn()
-                              && request.auth.uid == userId
-                              && request.resource.data.uid == userId
-                              && request.resource.data.answeredCount >= 0
-                              && request.resource.data.correctCount >= 0
-                              && request.resource.data.wrongCount >= 0
-                              && request.resource.data.answeredCount ==
-                                 request.resource.data.correctCount +
-                                 request.resource.data.wrongCount
-                              && request.resource.data.currentQuestionIndex ==
-                                 request.resource.data.answeredCount
-                              && request.resource.data.answeredCount <=
-                                 duelMatch(matchId).data.questionCount
-                              && duelMatch(matchId).data
-                                 .get('resultProcessed', false) != true;
+        allow create: if signedIn()
+                      && validInitialDuelProgress(matchId, userId);
+
+        allow update: if signedIn()
+                      && validDuelProgressUpdate(matchId, userId);
 
         allow delete: if false;
       }

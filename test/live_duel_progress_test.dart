@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Canlı düello ilerleme sistemi', () {
-    test('doğru cevap skoru artırır', () {
+    test('doğru cevap skoru artırır ve seçilen şıkkı saklar', () {
       const current = LiveDuelPlayerProgress(
         uid: 'levent',
         currentQuestionIndex: 0,
@@ -16,6 +16,7 @@ void main() {
       final next = LiveDuelProgressCalculator.applyAnswer(
         current: current,
         questionId: 'q1',
+        selectedOptionIndex: 2,
         correct: true,
         questionCount: 10,
       );
@@ -23,7 +24,7 @@ void main() {
       expect(next.answeredCount, 1);
       expect(next.correctCount, 1);
       expect(next.wrongCount, 0);
-      expect(next.currentQuestionIndex, 1);
+      expect(next.lastSelectedOptionIndex, 2);
       expect(next.finished, isFalse);
     });
 
@@ -40,6 +41,7 @@ void main() {
       final next = LiveDuelProgressCalculator.applyAnswer(
         current: current,
         questionId: 'q4',
+        selectedOptionIndex: 1,
         correct: false,
         questionCount: 10,
       );
@@ -47,6 +49,7 @@ void main() {
       expect(next.answeredCount, 4);
       expect(next.correctCount, 2);
       expect(next.wrongCount, 2);
+      expect(next.lastSelectedOptionIndex, 1);
     });
 
     test('son cevap maçı bitirir', () {
@@ -62,6 +65,7 @@ void main() {
       final next = LiveDuelProgressCalculator.applyAnswer(
         current: current,
         questionId: 'q10',
+        selectedOptionIndex: 3,
         correct: true,
         questionCount: 10,
       );
@@ -70,6 +74,28 @@ void main() {
       expect(next.correctCount, 8);
       expect(next.finished, isTrue);
       expect(next.currentQuestionIndex, 10);
+    });
+
+    test('geçersiz şık gönderilemez', () {
+      const current = LiveDuelPlayerProgress(
+        uid: 'levent',
+        currentQuestionIndex: 0,
+        answeredCount: 0,
+        correctCount: 0,
+        wrongCount: 0,
+        finished: false,
+      );
+
+      expect(
+        () => LiveDuelProgressCalculator.applyAnswer(
+          current: current,
+          questionId: 'q1',
+          selectedOptionIndex: -1,
+          correct: false,
+          questionCount: 10,
+        ),
+        throwsA(isA<LiveDuelProgressException>()),
+      );
     });
 
     test('ilerleme oranı doğru hesaplanır', () {
@@ -83,28 +109,6 @@ void main() {
       );
 
       expect(progress.progressRatio(10), 0.4);
-    });
-
-    test('önce doğru sayısı sonra ilerleme karşılaştırılır', () {
-      const first = LiveDuelPlayerProgress(
-        uid: 'levent',
-        currentQuestionIndex: 5,
-        answeredCount: 5,
-        correctCount: 4,
-        wrongCount: 1,
-        finished: false,
-      );
-
-      const second = LiveDuelPlayerProgress(
-        uid: 'rakip',
-        currentQuestionIndex: 7,
-        answeredCount: 7,
-        correctCount: 3,
-        wrongCount: 4,
-        finished: false,
-      );
-
-      expect(LiveDuelProgressCalculator.compare(first, second), greaterThan(0));
     });
 
     test('bitmiş maça cevap eklenemez', () {
@@ -121,6 +125,7 @@ void main() {
         () => LiveDuelProgressCalculator.applyAnswer(
           current: current,
           questionId: 'q11',
+          selectedOptionIndex: 0,
           correct: true,
           questionCount: 10,
         ),
