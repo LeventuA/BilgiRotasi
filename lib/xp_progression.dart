@@ -18,7 +18,12 @@ const List<XpRank> xpRanks = <XpRank>[
   XpRank(50, 'Altın Bilge', '🥇', 'Geniş bilgi birikimiyle öne çıkıyor.'),
   XpRank(70, 'Kristal Bilge', '💎', 'Bilgi Rotası’nın seçkin yolcularından.'),
   XpRank(90, 'Usta Bilge', '🦉', 'Zirveye çok yakın bir bilgi ustası.'),
-  XpRank(100, 'Efsane Bilge', '👑', 'Bilgi Rotası’nın en yüksek seviyesine ulaştı.'),
+  XpRank(
+    100,
+    'Efsane Bilge',
+    '👑',
+    'Bilgi Rotası’nın en yüksek seviyesine ulaştı.',
+  ),
 ];
 
 class XpSnapshot {
@@ -28,9 +33,8 @@ class XpSnapshot {
   final int currentXp;
   final int requiredXp;
 
-  double get progress => requiredXp <= 0
-      ? 1
-      : (currentXp / requiredXp).clamp(0.0, 1.0).toDouble();
+  double get progress =>
+      requiredXp <= 0 ? 1 : (currentXp / requiredXp).clamp(0.0, 1.0).toDouble();
 }
 
 class XpProgress {
@@ -53,18 +57,17 @@ class XpProgress {
   XpRank get rank => XpProgressService.rankFor(level);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'totalXp': totalXp,
-        'currentStreak': currentStreak,
-        'bestStreak': bestStreak,
-        'lastGain': lastGain,
-        'lastReason': lastReason,
-      };
+    'totalXp': totalXp,
+    'currentStreak': currentStreak,
+    'bestStreak': bestStreak,
+    'lastGain': lastGain,
+    'lastReason': lastReason,
+  };
 
   factory XpProgress.fromJson(Map<String, dynamic> json) {
     return XpProgress(
       totalXp: max(0, (json['totalXp'] as num?)?.toInt() ?? 0),
-      currentStreak:
-          max(0, (json['currentStreak'] as num?)?.toInt() ?? 0),
+      currentStreak: max(0, (json['currentStreak'] as num?)?.toInt() ?? 0),
       bestStreak: max(0, (json['bestStreak'] as num?)?.toInt() ?? 0),
       lastGain: (json['lastGain'] as num?)?.toInt() ?? 0,
       lastReason: json['lastReason']?.toString() ?? '',
@@ -174,8 +177,7 @@ class XpProgressService {
     final oldLevel = progress.level;
     final oldRank = progress.rank;
     final previousStreak = progress.currentStreak;
-    final safeRiskMultiplier =
-        xpMultiplier.clamp(1, 3).toInt();
+    final safeRiskMultiplier = xpMultiplier.clamp(1, 3).toInt();
 
     var amount = 0;
     var reason = 'Yanlış cevap • XP kaybı yok';
@@ -183,9 +185,7 @@ class XpProgressService {
     if (correct) {
       progress.currentStreak++;
 
-      final base = switch (
-        difficulty.trim().toLowerCase()
-      ) {
+      final base = switch (difficulty.trim().toLowerCase()) {
         'kolay' => 10,
         'zor' => 25,
         _ => 15,
@@ -196,27 +196,18 @@ class XpProgressService {
       final streakBonus = progress.currentStreak >= 5 ? 3 : 0;
       final badgeBonus = badgeEarned ? 15 : 0;
 
-      amount = (
-        base * streakMultiplier +
-        streakBonus +
-        badgeBonus
-      ) * safeRiskMultiplier;
+      amount =
+          (base * streakMultiplier + streakBonus + badgeBonus) *
+          safeRiskMultiplier;
 
-      progress.bestStreak = max(
-        progress.bestStreak,
-        progress.currentStreak,
-      );
+      progress.bestStreak = max(progress.bestStreak, progress.currentStreak);
 
       final parts = <String>[
         'Doğru cevap',
-        if (streakMultiplier > 1)
-          '${streakMultiplier}x seri',
-        if (streakBonus > 0)
-          'seri bonusu',
-        if (badgeEarned)
-          'rozet bonusu',
-        if (safeRiskMultiplier > 1)
-          '${safeRiskMultiplier}x risk',
+        if (streakMultiplier > 1) '${streakMultiplier}x seri',
+        if (streakBonus > 0) 'seri bonusu',
+        if (badgeEarned) 'rozet bonusu',
+        if (safeRiskMultiplier > 1) '${safeRiskMultiplier}x risk',
       ];
 
       reason = parts.join(' + ');
@@ -244,6 +235,10 @@ class XpProgressService {
     );
   }
 
+  static Future<XpGainResult> awardSupportAd() {
+    return _award(10, 'Bilgi Rotası destek reklamı');
+  }
+
   static Future<XpGainResult> recordGameCompleted({required bool solo}) async {
     return _award(
       solo ? 45 : 65,
@@ -261,17 +256,16 @@ class XpProgressService {
     );
   }
 
-  static Future<XpGainResult> recordDailyChallenge({required bool perfect}) async {
+  static Future<XpGainResult> recordDailyChallenge({
+    required bool perfect,
+  }) async {
     return _award(
       perfect ? 60 : 35,
       perfect ? 'Kusursuz günlük görev' : 'Günlük görev tamamlandı',
     );
   }
 
-  static Future<XpGainResult> _award(
-    int amount,
-    String reason,
-  ) async {
+  static Future<XpGainResult> _award(int amount, String reason) async {
     final progress = await load();
     final oldLevel = progress.level;
     final oldRank = progress.rank;
@@ -347,9 +341,10 @@ class _XpFutureCard extends StatelessWidget {
             return XpProgressCard(
               progress: snapshot.data!,
               compact: compact,
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const XpProgressScreen()),
-              ),
+              onTap:
+                  () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const XpProgressScreen()),
+                  ),
             );
           },
         );
@@ -500,28 +495,60 @@ class XpProgressScreen extends StatelessWidget {
                     onTap: () {},
                   ),
                   const SizedBox(height: 16),
-                  _info('🔥', 'Mevcut seri', '${progress.currentStreak} doğru',
-                      'En iyi seri: ${progress.bestStreak}'),
+                  _info(
+                    '🔥',
+                    'Mevcut seri',
+                    '${progress.currentStreak} doğru',
+                    'En iyi seri: ${progress.bestStreak}',
+                  ),
                   if (next != null) ...[
                     const SizedBox(height: 10),
-                    _info('🚀', 'Sıradaki rütbe', '${next.emoji} ${next.title}',
-                        'Seviye ${next.level} olduğunda açılır.'),
+                    _info(
+                      '🚀',
+                      'Sıradaki rütbe',
+                      '${next.emoji} ${next.title}',
+                      'Seviye ${next.level} olduğunda açılır.',
+                    ),
                   ],
                   const SizedBox(height: 18),
-                  const Text('XP nasıl kazanılır?',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
+                  const Text(
+                    'XP nasıl kazanılır?',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+                  ),
                   const SizedBox(height: 9),
-                  _line('✅', 'Doğru cevap', 'Kolay +10 • Orta +15 • Zor +25 XP'),
-                  _line('🔥', 'Seri bonusu', '3. doğrudan sonra artar, en fazla +20 XP'),
+                  _line(
+                    '✅',
+                    'Doğru cevap',
+                    'Kolay +10 • Orta +15 • Zor +25 XP',
+                  ),
+                  _line(
+                    '🔥',
+                    'Seri bonusu',
+                    '3. doğrudan sonra artar, en fazla +20 XP',
+                  ),
                   _line('🏅', 'Rozet', 'Doğru cevaba ek +40 XP'),
                   _line('🧭', 'Serbest Rota', 'Tamamlama +120 XP'),
                   _line('👑', 'Çok oyunculu zafer', 'Kazanma +180 XP'),
-                  _line('⚡', 'Soru Maratonu', 'Tamamlama ve kusursuz tur bonusu'),
-                  _line('📅', 'Günlük görev', '+75 XP • Kusursuz görev +150 XP'),
-                  _line('❌', 'Yanlış cevap', 'XP düşürmez; doğru serisini sıfırlar'),
+                  _line(
+                    '⚡',
+                    'Soru Maratonu',
+                    'Tamamlama ve kusursuz tur bonusu',
+                  ),
+                  _line(
+                    '📅',
+                    'Günlük görev',
+                    '+75 XP • Kusursuz görev +150 XP',
+                  ),
+                  _line(
+                    '❌',
+                    'Yanlış cevap',
+                    'XP düşürmez; doğru serisini sıfırlar',
+                  ),
                   const SizedBox(height: 18),
-                  const Text('Rütbe yolu',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
+                  const Text(
+                    'Rütbe yolu',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+                  ),
                   const SizedBox(height: 9),
                   for (final rank in xpRanks)
                     _rank(rank, progress.level >= rank.level),
@@ -535,55 +562,125 @@ class XpProgressScreen extends StatelessWidget {
   }
 
   static Widget _info(String emoji, String title, String value, String detail) {
-    return _box(Row(children: [
-      Text(emoji, style: const TextStyle(fontSize: 32)),
-      const SizedBox(width: 11),
-      Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(title, style: const TextStyle(color: Color(0xFF64748B), fontSize: 12)),
-        Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
-        Text(detail, style: const TextStyle(color: Color(0xFF64748B), fontSize: 12)),
-      ])),
-    ]));
+    return _box(
+      Row(
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 32)),
+          const SizedBox(width: 11),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: Color(0xFF64748B),
+                    fontSize: 12,
+                  ),
+                ),
+                Text(
+                  value,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                Text(
+                  detail,
+                  style: const TextStyle(
+                    color: Color(0xFF64748B),
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   static Widget _line(String emoji, String title, String detail) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: _box(Row(children: [
-        Text(emoji, style: const TextStyle(fontSize: 26)),
-        const SizedBox(width: 10),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(title, style: const TextStyle(fontWeight: FontWeight.w900)),
-          Text(detail, style: const TextStyle(color: Color(0xFF64748B), fontSize: 12)),
-        ])),
-      ])),
+      child: _box(
+        Row(
+          children: [
+            Text(emoji, style: const TextStyle(fontSize: 26)),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(fontWeight: FontWeight.w900),
+                  ),
+                  Text(
+                    detail,
+                    style: const TextStyle(
+                      color: Color(0xFF64748B),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   static Widget _rank(XpRank rank, bool unlocked) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: _box(Row(children: [
-        Text(unlocked ? rank.emoji : '🔒', style: const TextStyle(fontSize: 27)),
-        const SizedBox(width: 10),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(rank.title, style: const TextStyle(fontWeight: FontWeight.w900)),
-          Text('Seviye ${rank.level} • ${rank.description}',
-              style: const TextStyle(color: Color(0xFF64748B), fontSize: 12)),
-        ])),
-        Icon(unlocked ? Icons.check_circle_rounded : Icons.lock_outline_rounded,
-            color: unlocked ? const Color(0xFF16A34A) : const Color(0xFF94A3B8)),
-      ])),
+      child: _box(
+        Row(
+          children: [
+            Text(
+              unlocked ? rank.emoji : '🔒',
+              style: const TextStyle(fontSize: 27),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    rank.title,
+                    style: const TextStyle(fontWeight: FontWeight.w900),
+                  ),
+                  Text(
+                    'Seviye ${rank.level} • ${rank.description}',
+                    style: const TextStyle(
+                      color: Color(0xFF64748B),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              unlocked
+                  ? Icons.check_circle_rounded
+                  : Icons.lock_outline_rounded,
+              color:
+                  unlocked ? const Color(0xFF16A34A) : const Color(0xFF94A3B8),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   static Widget _box(Widget child) => Container(
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFFE2E8F0)),
-        ),
-        child: child,
-      );
+    padding: const EdgeInsets.all(15),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(18),
+      border: Border.all(color: const Color(0xFFE2E8F0)),
+    ),
+    child: child,
+  );
 }

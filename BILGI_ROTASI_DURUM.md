@@ -92,3 +92,17 @@ Canlı Düello puan yazımı Firestore tarafından doğrulanır hale getirildi.
 - Sahipsiz eski kayıt misafir ekranında gösterilmez.
 - Sahipsiz eski kayıt Google hesabına girildiğinde kurtarılır.
 - Çıkıştan sonra bozuk misafir kayıtları otomatik temizlenir.
+
+
+## AdMob Gelir Paketi
+
+- Ana menü, oyuncu hazırlama, kariyer, Canlı Düello menüsü,
+  lig ve standart oyun sonuç ekranında alt uyarlanabilir banner bulunur.
+- Tahta ve soru ekranlarında banner gösterilmez.
+- Joker kutusunda reklam izlemek isteğe bağlıdır.
+- Reklam tamamlanırsa rastgele bir jokere +1 eklenir.
+- Reklam izlenmez veya yüklenmezse oyun normal devam eder.
+- Standart oyun ve Canlı Düello sonucunda isteğe bağlı destek reklamı vardır.
+- Her tamamlanan sonuç için destek ödülü yalnız bir kez alınabilir.
+- Destek reklamının ödülü +10 XP'dir ve günlük sınır yoktur.
+- İlk entegrasyon yalnız Google test reklam kimliklerini kullanır.

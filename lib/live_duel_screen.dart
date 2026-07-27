@@ -193,6 +193,7 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      bottomNavigationBar: const AdBannerSlot(),
       appBar: AppBar(title: const Text('Canlı Düello')),
       body: SafeArea(
         child: ListView(

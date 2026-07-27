@@ -1,0 +1,19 @@
+name: bilgi_rotasi_admob_config
+description: Bilgi Rotası için yerel AdMob manifest yapılandırması.
+version: 1.0.0
+publish_to: "none"
+
+environment:
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.32.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.leventua.bilgirotasi.admobconfig
+        pluginClass: BilgiRotasiAdMobConfigPlugin
