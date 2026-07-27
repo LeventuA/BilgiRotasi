@@ -1,0 +1,111 @@
+name: Acil uygulama kurtarma V2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/emergency-recover-app-v2.yml"
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  recover:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.7"
+          channel: stable
+          cache: true
+
+      - name: Git kimliğini ayarla
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout main
+
+      - name: Bozuk reklam sürümünü geri al
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git revert --no-commit 97bd29226c4d8eaa822f486a5913a43cd487890d
+
+          python3 - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              "pubspec.yaml": [
+                  ("version: 1.66.0+87", "version: 1.67.1+89"),
+              ],
+              "lib/app_build_info.dart": [
+                  (
+                      "static const String versionName = '1.66.0';",
+                      "static const String versionName = '1.67.1';",
+                  ),
+                  (
+                      "static const int buildNumber = 87;",
+                      "static const int buildNumber = 89;",
+                  ),
+              ],
+              "tools/rc1_quality_gate.py": [
+                  (
+                      'EXPECTED_VERSION = "1.66.0+87"',
+                      'EXPECTED_VERSION = "1.67.1+89"',
+                  ),
+              ],
+          }
+
+          for filename, pairs in replacements.items():
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8")
+              for old, new in pairs:
+                  count = text.count(old)
+                  if count != 1:
+                      raise SystemExit(
+                          f"{filename}: {old!r} {count} kez bulundu."
+                      )
+                  text = text.replace(old, new, 1)
+              path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Bağımlılıkları ve kaliteyi doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          flutter pub get
+          dart format lib/app_build_info.dart
+          flutter analyze --no-fatal-warnings --no-fatal-infos
+          flutter test --concurrency=1 --reporter expanded
+          python3 tools/rc1_quality_gate.py
+          git diff --check
+
+          test ! -f lib/ad_monetization.dart
+          ! grep -q "google_mobile_ads" pubspec.yaml
+
+      - name: Kurtarma sürümünü kaydet
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git commit -m "Acil reklam geri alma ve uygulama kurtarma V2"
+          git push origin main
+
+      - name: Yeni APK derlemesini başlat
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run android-apk.yml --ref main
