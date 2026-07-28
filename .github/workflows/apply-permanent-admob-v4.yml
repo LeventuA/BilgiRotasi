@@ -1,0 +1,493 @@
+name: Kalıcı AdMob entegrasyonu V4
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/apply-permanent-admob-v4.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrate-build-test:
+    name: Reklamları ekle, APK ve AAB doğrula
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.7"
+          channel: stable
+          cache: true
+
+      - name: Çalışan tabanı ve kalıcı Android projesini doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq "version: 1.67.1+89" pubspec.yaml
+          test -f android/app/build.gradle.kts
+          test -f android/app/src/main/AndroidManifest.xml
+          test -f android/app/google-services.json
+          grep -Fq 'applicationId = "com.leventua.bilgirotasi"' android/app/build.gradle.kts
+          grep -Fq 'namespace = "com.leventua.bilgirotasi"' android/app/build.gradle.kts
+          ! grep -Fq "google_mobile_ads" pubspec.yaml
+          test ! -f lib/ad_monetization.dart
+
+      - name: Reklam özelliklerini temiz tabana uygula
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ADS_COMMIT="97bd29226c4d8eaa822f486a5913a43cd487890d"
+          git cat-file -e "$ADS_COMMIT^{commit}"
+
+          git checkout "$ADS_COMMIT" -- \
+            lib/main.dart \
+            lib/ad_monetization.dart \
+            lib/app_build_info.dart \
+            lib/xp_progression.dart \
+            lib/gameplay_boost.dart \
+            lib/live_duel_screen.dart \
+            lib/live_duel_leaderboard.dart \
+            lib/live_duel_play_screen.dart \
+            test/ad_monetization_test.dart \
+            tools/rc1_quality_gate.py \
+            reports/RC1_AUTOMATED_REPORT.md
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          def replace_once(path_str, old, new, label):
+              path = Path(path_str)
+              text = path.read_text(encoding="utf-8")
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(
+                      f"{label}: beklenen bölüm {count} kez bulundu."
+                  )
+              path.write_text(text.replace(old, new, 1), encoding="utf-8")
+
+          pubspec_path = Path("pubspec.yaml")
+          pubspec = pubspec_path.read_text(encoding="utf-8")
+          dependency_anchor = "  google_sign_in: ^7.2.0\n"
+          if pubspec.count(dependency_anchor) != 1:
+              raise SystemExit("pubspec bağımlılık ekleme noktası bulunamadı.")
+          pubspec = pubspec.replace(
+              dependency_anchor,
+              dependency_anchor + "  google_mobile_ads: 7.0.0\n",
+              1,
+          )
+          if "dependency_overrides:" in pubspec:
+              raise SystemExit("Beklenmeyen dependency_overrides bölümü var.")
+
+          # google_mobile_ads 7.0.0, eski 5.2.0 paketindeki
+          # AGP 9 ile uyumsuz Gradle yapılandırmasını kullanmaz.
+          # Bu sürüm Android tarafında minSdk 24 gerektirir.
+          #
+          # path_provider_android 2.3.x JNI tabanlıdır ve bu
+          # projedeki AGP 9 derlemesinde daha önce sorun çıkardı.
+          # 2.2.23, JNI geçişinden önceki son kararlı sürümdür.
+          pubspec = pubspec.rstrip() + """
+
+          dependency_overrides:
+            path_provider_android: 2.2.23
+          """
+          pubspec = pubspec.replace(
+              "version: 1.67.1+89",
+              "version: 1.68.0+90",
+              1,
+          )
+          pubspec_path.write_text(pubspec.strip() + "\n", encoding="utf-8")
+
+          replace_once(
+              "lib/app_build_info.dart",
+              "static const String versionName = '1.67.0';",
+              "static const String versionName = '1.68.0';",
+              "Uygulama sürüm adı",
+          )
+          replace_once(
+              "lib/app_build_info.dart",
+              "static const int buildNumber = 88;",
+              "static const int buildNumber = 90;",
+              "Uygulama build numarası",
+          )
+          replace_once(
+              "tools/rc1_quality_gate.py",
+              'EXPECTED_VERSION = "1.67.0+88"',
+              'EXPECTED_VERSION = "1.68.0+90"',
+              "Kalite kapısı sürümü",
+          )
+
+          main_path = Path("lib/main.dart")
+          main = main_path.read_text(encoding="utf-8")
+          eager_init = "\n  unawaited(AdMonetizationService.initialize());\n"
+          if main.count(eager_init) != 1:
+              raise SystemExit("Erken reklam başlatma satırı bulunamadı.")
+          main_path.write_text(main.replace(eager_init, "\n", 1), encoding="utf-8")
+
+          ads_path = Path("lib/ad_monetization.dart")
+          ads = ads_path.read_text(encoding="utf-8")
+          adaptive = """    final width = MediaQuery.sizeOf(context).width.truncate();
+              final size = await AdSize.getLargeAnchoredAdaptiveBannerAdSize(width);
+
+              if (!mounted || size == null) return;
+
+              final ad = BannerAd(
+                adUnitId: AdMonetizationService.androidBannerTestUnitId,
+                request: const AdRequest(),
+                size: size,
+          """
+          fixed = """    final ad = BannerAd(
+                adUnitId: AdMonetizationService.androidBannerTestUnitId,
+                request: const AdRequest(),
+                size: AdSize.banner,
+          """
+          if ads.count(adaptive) != 1:
+              raise SystemExit("Banner boyutu bölümü bulunamadı.")
+          ads_path.write_text(ads.replace(adaptive, fixed, 1), encoding="utf-8")
+
+          duel_path = Path("lib/live_duel_screen.dart")
+          duel = duel_path.read_text(encoding="utf-8")
+          duel_banner = "      bottomNavigationBar: const AdBannerSlot(),\n"
+          if duel.count(duel_banner) != 1:
+              raise SystemExit("Canlı Düello banner satırı bulunamadı.")
+          duel_path.write_text(duel.replace(duel_banner, "", 1), encoding="utf-8")
+
+          manifest_path = Path("android/app/src/main/AndroidManifest.xml")
+          manifest = manifest_path.read_text(encoding="utf-8")
+          if "com.google.android.gms.ads.APPLICATION_ID" in manifest:
+              raise SystemExit("Manifestte zaten AdMob kimliği var.")
+          match = re.search(r"<application\b[^>]*>", manifest, flags=re.DOTALL)
+          if match is None:
+              raise SystemExit("Android application etiketi bulunamadı.")
+          metadata = (
+              "\n        <meta-data\n"
+              '            android:name="com.google.android.gms.ads.APPLICATION_ID"\n'
+              '            android:value="ca-app-pub-3940256099942544~3347511713" />'
+          )
+          manifest = manifest[:match.end()] + metadata + manifest[match.end():]
+          manifest_path.write_text(manifest, encoding="utf-8")
+
+          gradle_path = Path("android/app/build.gradle.kts")
+          gradle = gradle_path.read_text(encoding="utf-8")
+          gradle, count = re.subn(
+              r"minSdk\s*=\s*(?:flutter\.minSdkVersion|\d+)",
+              "minSdk = 24",
+              gradle,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit("minSdk satırı bulunamadı.")
+          gradle_path.write_text(gradle, encoding="utf-8")
+
+          test_path = Path("test/ad_monetization_test.dart")
+          test_text = test_path.read_text(encoding="utf-8")
+          old_duel = "      expect(duelSource, contains('bottomNavigationBar: const AdBannerSlot()'));\n"
+          new_duel = """      expect(
+                duelSource,
+                isNot(contains('bottomNavigationBar: const AdBannerSlot()')),
+              );
+          """
+          if test_text.count(old_duel) != 1:
+              raise SystemExit("Canlı Düello banner testi bulunamadı.")
+          test_text = test_text.replace(old_duel, new_duel, 1)
+
+          start = test_text.find("    test('yerel Android eklentisi test uygulama kimliğini taşır'")
+          if start < 0:
+              raise SystemExit("Eski manifest testi bulunamadı.")
+          end = test_text.find("    });\n", start)
+          if end < 0:
+              raise SystemExit("Eski manifest testinin sonu bulunamadı.")
+          end += len("    });\n")
+          replacement = """    test('kalıcı Android manifesti AdMob test kimliğini taşır', () {
+              final manifest =
+                  File(
+                    'android/app/src/main/AndroidManifest.xml',
+                  ).readAsStringSync();
+              final pubspec = File('pubspec.yaml').readAsStringSync();
+              final mainSource = File('lib/main.dart').readAsStringSync();
+
+              expect(
+                manifest,
+                contains('ca-app-pub-3940256099942544~3347511713'),
+              );
+              expect(
+                manifest,
+                contains('com.google.android.gms.ads.APPLICATION_ID'),
+              );
+              expect(pubspec, contains('google_mobile_ads: 7.0.0'));
+              expect(
+                mainSource,
+                isNot(
+                  contains(
+                    'unawaited(AdMonetizationService.initialize());',
+                  ),
+                ),
+              );
+            });
+          """
+          test_path.write_text(test_text[:start] + replacement + test_text[end:], encoding="utf-8")
+          PY
+
+      - name: Bağımlılık ağacını ve kaynakları doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f pubspec.lock
+          flutter pub get
+          mkdir -p reports
+          flutter pub deps --style=compact | tee reports/ADMOB_DEPENDENCIES.txt
+          grep -Fq             "google_mobile_ads 7.0.0"             reports/ADMOB_DEPENDENCIES.txt
+
+          if grep -Fq             "google_mobile_ads 5.2.0"             reports/ADMOB_DEPENDENCIES.txt; then
+            echo "Eski ve AGP 9 ile uyumsuz AdMob 5.2.0 hâlâ çözüm ağacında."
+            exit 1
+          fi
+
+          grep -Fq             "path_provider_android 2.2.23"             reports/ADMOB_DEPENDENCIES.txt
+
+          if grep -Eq             '(^|[[:space:]])jni(_flutter)?([[:space:]]|$)'             reports/ADMOB_DEPENDENCIES.txt; then
+            echo "JNI zinciri hâlâ çözüm ağacında kaldı."
+            grep -E               '(^|[[:space:]])jni(_flutter)?([[:space:]]|$)'               reports/ADMOB_DEPENDENCIES.txt || true
+            exit 1
+          fi
+          test -f lib/ad_monetization.dart
+          grep -Fq "com.google.android.gms.ads.APPLICATION_ID" android/app/src/main/AndroidManifest.xml
+          grep -Fq "minSdk = 24" android/app/build.gradle.kts
+          grep -Fq "android.builtInKotlin=false" android/gradle.properties
+
+      - name: Biçimlendir, analiz et ve tüm testleri çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          dart format \
+            lib/main.dart \
+            lib/ad_monetization.dart \
+            lib/app_build_info.dart \
+            lib/xp_progression.dart \
+            lib/gameplay_boost.dart \
+            lib/live_duel_screen.dart \
+            lib/live_duel_leaderboard.dart \
+            lib/live_duel_play_screen.dart \
+            test/ad_monetization_test.dart
+          python3 tools/rc1_quality_gate.py --report reports/RC1_AUTOMATED_REPORT.md
+          flutter analyze --no-fatal-warnings --no-fatal-infos
+          flutter test --concurrency=1 --reporter expanded
+          git diff --check
+
+      - name: Kalıcı Android imzasını geçici olarak yükle
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$ANDROID_KEYSTORE_BASE64"
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android/app/bilgi_rotasi_upload.jks
+          cat > android/key.properties <<EOF
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyPassword=$ANDROID_KEY_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          storeFile=bilgi_rotasi_upload.jks
+          EOF
+          chmod 600 android/app/bilgi_rotasi_upload.jks android/key.properties
+
+      - name: Reklamlı APK ve Google Play AAB üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --release
+          flutter build appbundle --release
+          mkdir -p dist
+          cp build/app/outputs/flutter-apk/app-release.apk dist/BilgiRotasi-AdMob-1.68.0-90.apk
+          cp build/app/outputs/bundle/release/app-release.aab dist/BilgiRotasi-AdMob-1.68.0-90.aab
+
+      - name: Paket, manifest ve kalıcı imzayı doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="dist/BilgiRotasi-AdMob-1.68.0-90.apk"
+          AAB="dist/BilgiRotasi-AdMob-1.68.0-90.aab"
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          APKSIGNER="$(find "$SDK_ROOT/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 | sort -V | tail -n 1)"
+          test -x "$APKSIGNER"
+          test -x "$AAPT2"
+          CERT_OUTPUT="$("$APKSIGNER" verify --print-certs "$APK")"
+          ACTUAL_SHA1="$(printf '%s\n' "$CERT_OUTPUT" | awk -F': ' '/certificate SHA-1 digest/ {print $NF; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          EXPECTED_SHA1="000EE43F410ABC6B4F634C4F716D76EB19084115"
+          test "$ACTUAL_SHA1" = "$EXPECTED_SHA1"
+          jarsigner -verify "$AAB"
+          AAB_CERT_OUTPUT="$(keytool -printcert -jarfile "$AAB")"
+          ACTUAL_AAB_SHA1="$(printf '%s\n' "$AAB_CERT_OUTPUT" | awk -F': ' '/SHA1:/ {print $2; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          test "$ACTUAL_AAB_SHA1" = "$EXPECTED_SHA1"
+          "$AAPT2" dump packagename "$APK" > reports/ADMOB_PACKAGE.txt
+          grep -Fxq "com.leventua.bilgirotasi" reports/ADMOB_PACKAGE.txt
+          "$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" > reports/ADMOB_MANIFEST.txt
+          grep -Fq "com.google.android.gms.ads.APPLICATION_ID" reports/ADMOB_MANIFEST.txt
+          grep -Fq "ca-app-pub-3940256099942544~3347511713" reports/ADMOB_MANIFEST.txt
+          sha256sum "$APK" | tee reports/ADMOB_APK_SHA256.txt
+          sha256sum "$AAB" | tee reports/ADMOB_AAB_SHA256.txt
+
+      - name: Emülatör açılış betiğini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > reports/admob_smoke_test.sh <<'BASH'
+          #!/usr/bin/env bash
+          set -uo pipefail
+
+          APK="$GITHUB_WORKSPACE/dist/BilgiRotasi-AdMob-1.68.0-90.apk"
+          PACKAGE="com.leventua.bilgirotasi"
+          ACTIVITY="$PACKAGE/.MainActivity"
+          LOG_FILE="$GITHUB_WORKSPACE/reports/ADMOB_LAUNCH_LOG.txt"
+          STATE_FILE="$GITHUB_WORKSPACE/reports/ADMOB_ACTIVITY_STATE.txt"
+          START_FILE="$GITHUB_WORKSPACE/reports/ADMOB_START_RESULT.txt"
+          INSTALL_FILE="$GITHUB_WORKSPACE/reports/ADMOB_INSTALL_RESULT.txt"
+          PID_FILE="$GITHUB_WORKSPACE/reports/ADMOB_PID.txt"
+
+          : > "$LOG_FILE"
+          : > "$STATE_FILE"
+          : > "$START_FILE"
+          : > "$INSTALL_FILE"
+          : > "$PID_FILE"
+
+          set +e
+          adb install -r "$APK" 2>&1 | tee "$INSTALL_FILE"
+          INSTALL_STATUS="${PIPESTATUS[0]}"
+
+          adb logcat -c
+          adb shell am force-stop "$PACKAGE" >/dev/null 2>&1
+
+          adb shell am start -W -n "$ACTIVITY" 2>&1 | tee "$START_FILE"
+          START_STATUS="${PIPESTATUS[0]}"
+
+          sleep 35
+
+          PID="$(adb shell pidof "$PACKAGE" 2>/dev/null | tr -d '\r' || true)"
+          printf '%s\n' "$PID" > "$PID_FILE"
+
+          adb shell dumpsys activity activities > "$STATE_FILE" 2>&1 || true
+          adb logcat -d -v threadtime > "$LOG_FILE" 2>&1 || true
+          set -e
+
+          FAILED=0
+
+          if [ "$INSTALL_STATUS" -ne 0 ]; then
+            echo "APK emülatöre kurulamadı."
+            FAILED=1
+          fi
+
+          if [ "$START_STATUS" -ne 0 ]; then
+            echo "MainActivity başlatma komutu başarısız oldu."
+            FAILED=1
+          fi
+
+          if [ -z "$PID" ]; then
+            echo "Bilgi Rotası işlemi 35 saniye sonunda çalışmıyor."
+            FAILED=1
+          fi
+
+          if grep -Eqi             'FATAL EXCEPTION|AndroidRuntime.*FATAL|Process: com\.leventua\.bilgirotasi|Missing application ID|MobileAdsInitProvider.*IllegalStateException|UnsatisfiedLinkError|NoClassDefFoundError|ClassNotFoundException'             "$LOG_FILE"; then
+            echo "Android açılış kaydında kritik hata bulundu."
+            FAILED=1
+          fi
+
+          if [ "$FAILED" -ne 0 ]; then
+            echo "===== INSTALL ====="
+            cat "$INSTALL_FILE" || true
+            echo "===== START ====="
+            cat "$START_FILE" || true
+            echo "===== PID ====="
+            cat "$PID_FILE" || true
+            echo "===== ACTIVITY STATE ====="
+            cat "$STATE_FILE" || true
+            echo "===== RELEVANT LOGCAT ====="
+            grep -E -i               'bilgirotasi|AndroidRuntime|FATAL EXCEPTION|MobileAds|GoogleMobileAds|flutter|UnsatisfiedLinkError|NoClassDefFoundError|ClassNotFoundException'               "$LOG_FILE" || cat "$LOG_FILE"
+            exit 1
+          fi
+
+          adb shell am force-stop "$PACKAGE"
+          BASH
+          chmod +x reports/admob_smoke_test.sh
+
+      - name: APK'yı emülatörde açılış testinden geçir
+        id: emulator_smoke
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          script: bash "$GITHUB_WORKSPACE/reports/admob_smoke_test.sh"
+
+      - name: Gizli imza dosyalarını temizle
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f android/key.properties android/app/bilgi_rotasi_upload.jks
+          test ! -f android/key.properties
+          test ! -f android/app/bilgi_rotasi_upload.jks
+          git diff --check
+
+      - name: APK, AAB ve tanı raporlarını yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-AdMob-V4-1.68.0-90
+          path: |
+            dist/BilgiRotasi-AdMob-1.68.0-90.apk
+            dist/BilgiRotasi-AdMob-1.68.0-90.aab
+            reports/ADMOB_DEPENDENCIES.txt
+            reports/ADMOB_PACKAGE.txt
+            reports/ADMOB_MANIFEST.txt
+            reports/ADMOB_APK_SHA256.txt
+            reports/ADMOB_AAB_SHA256.txt
+            reports/ADMOB_INSTALL_RESULT.txt
+            reports/ADMOB_START_RESULT.txt
+            reports/ADMOB_PID.txt
+            reports/ADMOB_ACTIVITY_STATE.txt
+            reports/ADMOB_LAUNCH_LOG.txt
+            reports/RC1_AUTOMATED_REPORT.md
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Emülatör sonucunu kesin kalite kapısına bağla
+        if: always() && steps.emulator_smoke.outcome != 'success'
+        shell: bash
+        run: |
+          echo "Emülatör açılış testi başarısız oldu."
+          echo "Tanı raporları artifact içine eksiksiz yüklendi."
+          exit 1
+
+      - name: Reklam entegrasyonunu ana dala kaydet
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git restore --source=HEAD -- .github/workflows
+          git add pubspec.yaml pubspec.lock android lib test tools/rc1_quality_gate.py reports/RC1_AUTOMATED_REPORT.md
+          git diff --cached --check
+          git commit -m "Kalici AdMob gelir sistemini ekle V4"
+          git push origin main
