@@ -1,0 +1,532 @@
+name: Kalıcı AdMob Android 16 açılış düzeltmesi V7
+
+"on":
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/apply-permanent-admob-v7.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix-build-upgrade-test:
+    name: AdMob'u düzelt, hızlandırılmış Android 16 güncellemesini doğrula
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.7"
+          channel: stable
+          cache: true
+
+      - name: Mevcut sağlam durumu doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq "version: 1.68.0+90" pubspec.yaml
+          grep -Fq "google_mobile_ads: 7.0.0" pubspec.yaml
+          grep -Fq "path_provider_android: 2.2.23" pubspec.yaml
+          test -f lib/ad_monetization.dart
+          test -f android/app/src/main/AndroidManifest.xml
+          test -f android/app/build.gradle.kts
+          test -f android/app/google-services.json
+          grep -Fq 'applicationId = "com.leventua.bilgirotasi"' android/app/build.gradle.kts
+          grep -Fq 'com.google.android.gms.ads.APPLICATION_ID' android/app/src/main/AndroidManifest.xml
+
+      - name: Android 16 güvenli AdMob düzeltmesini uygula
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path_str: str, old: str, new: str, label: str) -> None:
+              path = Path(path_str)
+              text = path.read_text(encoding="utf-8")
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(
+                      f"{label}: beklenen bölüm {count} kez bulundu."
+                  )
+              path.write_text(
+                  text.replace(old, new, 1),
+                  encoding="utf-8",
+              )
+
+          pubspec_path = Path("pubspec.yaml")
+          pubspec = pubspec_path.read_text(encoding="utf-8")
+
+          if pubspec.count("  google_mobile_ads: 7.0.0\n") != 1:
+              raise SystemExit("AdMob 7.0.0 bağımlılığı bulunamadı.")
+          pubspec = pubspec.replace(
+              "  google_mobile_ads: 7.0.0\n",
+              "  google_mobile_ads: 9.0.0\n",
+              1,
+          )
+
+          if pubspec.count("version: 1.68.0+90") != 1:
+              raise SystemExit("1.68.0+90 sürüm satırı bulunamadı.")
+          pubspec = pubspec.replace(
+              "version: 1.68.0+90",
+              "version: 1.68.1+91",
+              1,
+          )
+
+          if pubspec.count(
+              "dependency_overrides:\n  path_provider_android: 2.2.23"
+          ) != 1:
+              raise SystemExit(
+                  "path_provider_android güvenli sabitlemesi bulunamadı."
+              )
+
+          pubspec_path.write_text(
+              pubspec.strip() + "\n",
+              encoding="utf-8",
+          )
+
+          replace_once(
+              "lib/app_build_info.dart",
+              "static const String versionName = '1.68.0';",
+              "static const String versionName = '1.68.1';",
+              "Uygulama sürüm adı",
+          )
+          replace_once(
+              "lib/app_build_info.dart",
+              "static const int buildNumber = 90;",
+              "static const int buildNumber = 91;",
+              "Uygulama build numarası",
+          )
+          replace_once(
+              "tools/rc1_quality_gate.py",
+              'EXPECTED_VERSION = "1.68.0+90"',
+              'EXPECTED_VERSION = "1.68.1+91"',
+              "Kalite kapısı sürümü",
+          )
+
+          test_path = Path("test/ad_monetization_test.dart")
+          test_text = test_path.read_text(encoding="utf-8")
+          dependency_count = test_text.count("google_mobile_ads: 7.0.0")
+          if dependency_count < 1:
+              raise SystemExit("AdMob bağımlılık testi bulunamadı.")
+          test_path.write_text(
+              test_text.replace(
+                  "google_mobile_ads: 7.0.0",
+                  "google_mobile_ads: 9.0.0",
+              ),
+              encoding="utf-8",
+          )
+
+          manifest_path = Path("android/app/src/main/AndroidManifest.xml")
+          manifest = manifest_path.read_text(encoding="utf-8")
+
+          manifest_open = (
+              '<manifest xmlns:android="http://schemas.android.com/apk/res/android">'
+          )
+          manifest_open_tools = (
+              '<manifest xmlns:android="http://schemas.android.com/apk/res/android"\n'
+              '    xmlns:tools="http://schemas.android.com/tools">'
+          )
+          if 'xmlns:tools="http://schemas.android.com/tools"' not in manifest:
+              if manifest.count(manifest_open) != 1:
+                  raise SystemExit("Android manifest açılış etiketi bulunamadı.")
+              manifest = manifest.replace(
+                  manifest_open,
+                  manifest_open_tools,
+                  1,
+              )
+
+          provider_name = "com.google.android.gms.ads.MobileAdsInitProvider"
+          if provider_name not in manifest:
+              app_id_metadata = """        <meta-data
+                      android:name="com.google.android.gms.ads.APPLICATION_ID"
+                      android:value="ca-app-pub-3940256099942544~3347511713" />"""
+              if manifest.count(app_id_metadata) != 1:
+                  raise SystemExit("AdMob uygulama kimliği bölümü bulunamadı.")
+              delayed_provider = app_id_metadata + """
+                  <!-- Reklam SDK'sının Flutter'dan önce açılışı çökertmesini
+                       engeller. SDK banner/ödüllü reklam gerektiğinde
+                       AdMonetizationService tarafından başlatılır. -->
+                  <provider
+                      android:name="com.google.android.gms.ads.MobileAdsInitProvider"
+                      tools:node="remove" />"""
+              manifest = manifest.replace(
+                  app_id_metadata,
+                  delayed_provider,
+                  1,
+              )
+
+          manifest_path.write_text(manifest, encoding="utf-8")
+          PY
+
+      - name: Bağımlılıkları çöz ve kaynakları doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f pubspec.lock
+          flutter pub get
+          mkdir -p reports dist
+          flutter pub deps --style=compact | tee reports/ADMOB_V7_DEPENDENCIES.txt
+          grep -Fq "google_mobile_ads 9.0.0" reports/ADMOB_V7_DEPENDENCIES.txt
+          ! grep -Fq "google_mobile_ads 7.0.0" reports/ADMOB_V7_DEPENDENCIES.txt
+          grep -Fq "path_provider_android 2.2.23" reports/ADMOB_V7_DEPENDENCIES.txt
+          if grep -Eq '(^|[[:space:]])jni(_flutter)?([[:space:]]|$)' reports/ADMOB_V7_DEPENDENCIES.txt; then
+            echo "Beklenmeyen JNI zinciri bulundu."
+            grep -E '(^|[[:space:]])jni(_flutter)?([[:space:]]|$)' reports/ADMOB_V7_DEPENDENCIES.txt || true
+            exit 1
+          fi
+          grep -Fq 'tools:node="remove"' android/app/src/main/AndroidManifest.xml
+          grep -Fq "com.google.android.gms.ads.MobileAdsInitProvider" android/app/src/main/AndroidManifest.xml
+          grep -Fq "version: 1.68.1+91" pubspec.yaml
+
+      - name: Biçimlendir, analiz et ve tüm testleri çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          dart format \
+            lib/main.dart \
+            lib/ad_monetization.dart \
+            lib/app_build_info.dart \
+            lib/xp_progression.dart \
+            lib/gameplay_boost.dart \
+            lib/live_duel_screen.dart \
+            lib/live_duel_leaderboard.dart \
+            lib/live_duel_play_screen.dart \
+            test/ad_monetization_test.dart
+          python3 tools/rc1_quality_gate.py --report reports/RC1_AUTOMATED_REPORT.md
+          flutter analyze --no-fatal-warnings --no-fatal-infos
+          flutter test --concurrency=1 --reporter expanded
+          git diff --check
+
+      - name: Kalıcı Android imzasını geçici yükle
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$ANDROID_KEYSTORE_BASE64"
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android/app/bilgi_rotasi_upload.jks
+          cat > android/key.properties <<EOF
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyPassword=$ANDROID_KEY_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          storeFile=bilgi_rotasi_upload.jks
+          EOF
+          chmod 600 android/app/bilgi_rotasi_upload.jks android/key.properties
+
+      - name: Düzeltilmiş APK ve Google Play AAB üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --release
+          flutter build appbundle --release
+          cp build/app/outputs/flutter-apk/app-release.apk \
+            dist/BilgiRotasi-AdMob-V7-1.68.1-91.apk
+          cp build/app/outputs/bundle/release/app-release.aab \
+            dist/BilgiRotasi-AdMob-V7-1.68.1-91.aab
+
+      - name: Önceki çalışan APK'yı güncelleme testi için üret
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          OLD_DIR="/tmp/bilgi_rotasi_previous"
+          rm -rf "$OLD_DIR"
+          git worktree add --detach "$OLD_DIR" \
+            a13713024e5847b7ba5817650ca1e39bdf08039b
+
+          cp android/app/bilgi_rotasi_upload.jks \
+            "$OLD_DIR/android/app/bilgi_rotasi_upload.jks"
+          cat > "$OLD_DIR/android/key.properties" <<EOF
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyPassword=$ANDROID_KEY_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          storeFile=bilgi_rotasi_upload.jks
+          EOF
+          chmod 600 \
+            "$OLD_DIR/android/app/bilgi_rotasi_upload.jks" \
+            "$OLD_DIR/android/key.properties"
+
+          (
+            cd "$OLD_DIR"
+            flutter pub get
+            flutter build apk --release
+          )
+          cp "$OLD_DIR/build/app/outputs/flutter-apk/app-release.apk" \
+            dist/BilgiRotasi-Previous-1.67.1-89.apk
+
+      - name: KVM hızlandırmasını kesin olarak etkinleştir
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! -e /dev/kvm ]]; then
+            echo "/dev/kvm bulunamadı; yazılım emülasyonuna düşmeyeceğiz."
+            exit 1
+          fi
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+          ls -l /dev/kvm
+
+      - name: Android 16 güncelleme test betiğini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > tools/verify_android16_upgrade_v7.sh <<'BASH'
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          PACKAGE="com.leventua.bilgirotasi"
+          ACTIVITY="com.leventua.bilgirotasi/.MainActivity"
+          OLD_APK="$GITHUB_WORKSPACE/dist/BilgiRotasi-Previous-1.67.1-89.apk"
+          NEW_APK="$GITHUB_WORKSPACE/dist/BilgiRotasi-AdMob-V7-1.68.1-91.apk"
+          LOG_FILE="$GITHUB_WORKSPACE/reports/ANDROID_16_V7_UPGRADE_LOG.txt"
+          READY_FILE="$GITHUB_WORKSPACE/reports/ANDROID_16_V7_READY_STATE.txt"
+          VERSION_FILE="$GITHUB_WORKSPACE/reports/ANDROID_16_V7_INSTALLED_VERSION.txt"
+
+          test -f "$OLD_APK"
+          test -f "$NEW_APK"
+
+          wait_for_android_services() {
+            adb wait-for-device
+            for attempt in $(seq 1 120); do
+              BOOT="$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r' || true)"
+              if [[ "$BOOT" == "1" ]] && adb shell cmd package list packages >/dev/null 2>&1; then
+                {
+                  echo "sys.boot_completed=$BOOT"
+                  adb shell getprop ro.build.version.release
+                  adb shell getprop ro.build.version.sdk
+                  adb shell getprop ro.product.cpu.abi
+                } > "$READY_FILE"
+                return 0
+              fi
+              sleep 3
+            done
+
+            {
+              echo "Android servisleri zamanında hazır olmadı."
+              adb devices -l || true
+              adb shell getprop || true
+            } > "$READY_FILE"
+            return 1
+          }
+
+          install_with_retry() {
+            local apk="$1"
+            shift
+            for attempt in 1 2 3 4; do
+              echo "APK kurulum denemesi $attempt: $apk"
+              if adb install --no-streaming "$@" "$apk"; then
+                return 0
+              fi
+              adb kill-server || true
+              adb start-server
+              wait_for_android_services
+              sleep $((attempt * 3))
+            done
+            return 1
+          }
+
+          wait_for_android_services
+          adb shell input keyevent 82 || true
+          adb shell svc power stayon true || true
+          adb shell settings put global window_animation_scale 0 || true
+          adb shell settings put global transition_animation_scale 0 || true
+          adb shell settings put global animator_duration_scale 0 || true
+          sleep 8
+
+          adb uninstall "$PACKAGE" >/dev/null 2>&1 || true
+          install_with_retry "$OLD_APK"
+
+          adb logcat -c
+          adb shell am start -W -n "$ACTIVITY"
+          sleep 20
+
+          OLD_PID="$(adb shell pidof "$PACKAGE" | tr -d '\r' || true)"
+          if [[ -z "$OLD_PID" ]]; then
+            adb logcat -d > "$LOG_FILE"
+            echo "Önceki çalışan APK emülatörde açık kalmadı."
+            cat "$LOG_FILE"
+            exit 1
+          fi
+
+          adb shell am force-stop "$PACKAGE"
+          install_with_retry "$NEW_APK" -r
+
+          adb logcat -c
+          adb shell am start -W -n "$ACTIVITY"
+          sleep 35
+
+          NEW_PID="$(adb shell pidof "$PACKAGE" | tr -d '\r' || true)"
+          adb logcat -d > "$LOG_FILE"
+
+          if [[ -z "$NEW_PID" ]]; then
+            echo "V7 güncellemeden sonra açık kalmadı."
+            cat "$LOG_FILE"
+            exit 1
+          fi
+
+          if grep -E \
+            "FATAL EXCEPTION|Process: com\.leventua\.bilgirotasi.*AndroidRuntime|Force finishing activity.*bilgirotasi" \
+            "$LOG_FILE"; then
+            echo "Android 16 logunda ölümcül açılış hatası bulundu."
+            exit 1
+          fi
+
+          adb shell dumpsys package "$PACKAGE" > "$VERSION_FILE"
+          grep -Fq "versionName=1.68.1" "$VERSION_FILE"
+          grep -Fq "versionCode=91" "$VERSION_FILE"
+
+          echo "Android 16 güncelleme açılış testi başarılı."
+          BASH
+          chmod +x tools/verify_android16_upgrade_v7.sh
+
+      - name: APK'yı hızlandırılmış Android 16'da eski sürümün üstüne kur ve aç
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          arch: x86_64
+          target: google_apis
+          profile: pixel_7
+          cores: 2
+          disable-animations: true
+          emulator-boot-timeout: 600
+          emulator-options: >-
+            -no-window
+            -gpu swiftshader_indirect
+            -no-snapshot
+            -noaudio
+            -no-boot-anim
+            -camera-back none
+            -camera-front none
+          script: bash tools/verify_android16_upgrade_v7.sh
+
+      - name: Paket, manifest ve kalıcı imzayı doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="dist/BilgiRotasi-AdMob-V7-1.68.1-91.apk"
+          AAB="dist/BilgiRotasi-AdMob-V7-1.68.1-91.aab"
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          APKSIGNER="$(find "$SDK_ROOT/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 | sort -V | tail -n 1)"
+          test -x "$APKSIGNER"
+          test -x "$AAPT2"
+
+          CERT_OUTPUT="$("$APKSIGNER" verify --print-certs "$APK")"
+          ACTUAL_SHA1="$(printf '%s\n' "$CERT_OUTPUT" | awk -F': ' '/certificate SHA-1 digest/ {print $NF; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          EXPECTED_SHA1="000EE43F410ABC6B4F634C4F716D76EB19084115"
+          test "$ACTUAL_SHA1" = "$EXPECTED_SHA1"
+
+          jarsigner -verify "$AAB"
+          AAB_CERT_OUTPUT="$(keytool -printcert -jarfile "$AAB")"
+          ACTUAL_AAB_SHA1="$(printf '%s\n' "$AAB_CERT_OUTPUT" | awk -F': ' '/SHA1:/ {print $2; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          test "$ACTUAL_AAB_SHA1" = "$EXPECTED_SHA1"
+
+          "$AAPT2" dump packagename "$APK" > reports/ADMOB_V7_PACKAGE.txt
+          grep -Fxq "com.leventua.bilgirotasi" reports/ADMOB_V7_PACKAGE.txt
+          "$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" > reports/ADMOB_V7_MANIFEST.txt
+          grep -Fq "com.leventua.bilgirotasi.MainActivity" reports/ADMOB_V7_MANIFEST.txt
+          grep -Fq "com.google.android.gms.ads.APPLICATION_ID" reports/ADMOB_V7_MANIFEST.txt
+          grep -Fq "ca-app-pub-3940256099942544~3347511713" reports/ADMOB_V7_MANIFEST.txt
+          ! grep -Fq "com.google.android.gms.ads.MobileAdsInitProvider" reports/ADMOB_V7_MANIFEST.txt
+
+          unzip -l "$APK" > reports/ADMOB_V7_APK_CONTENTS.txt
+          grep -Fq "lib/arm64-v8a/libapp.so" reports/ADMOB_V7_APK_CONTENTS.txt
+          grep -Fq "lib/armeabi-v7a/libapp.so" reports/ADMOB_V7_APK_CONTENTS.txt
+          grep -Fq "lib/x86_64/libapp.so" reports/ADMOB_V7_APK_CONTENTS.txt
+
+          sha256sum "$APK" | tee reports/ADMOB_V7_APK_SHA256.txt
+          sha256sum "$AAB" | tee reports/ADMOB_V7_AAB_SHA256.txt
+
+      - name: Gizli dosyaları ve geçici çalışma ağacını temizle
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f android/key.properties android/app/bilgi_rotasi_upload.jks
+          rm -f /tmp/bilgi_rotasi_previous/android/key.properties
+          rm -f /tmp/bilgi_rotasi_previous/android/app/bilgi_rotasi_upload.jks
+          git worktree remove --force /tmp/bilgi_rotasi_previous >/dev/null 2>&1 || true
+          rm -rf /tmp/bilgi_rotasi_previous
+          test ! -f android/key.properties
+          test ! -f android/app/bilgi_rotasi_upload.jks
+          git diff --check
+
+      - name: Başarısızlık tanı raporlarını yükle
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-AdMob-V7-BASARISIZLIK-TANI
+          path: |
+            reports/
+            dist/BilgiRotasi-AdMob-V7-1.68.1-91.apk
+            dist/BilgiRotasi-AdMob-V7-1.68.1-91.aab
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: V7 düzeltmesini ana dala kaydet
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git restore --source=HEAD -- .github/workflows
+          git add \
+            pubspec.yaml \
+            pubspec.lock \
+            android/app/src/main/AndroidManifest.xml \
+            lib/app_build_info.dart \
+            test/ad_monetization_test.dart \
+            tools/rc1_quality_gate.py \
+            reports/RC1_AUTOMATED_REPORT.md
+          git diff --cached --check
+          git commit -m "Kalici AdMob Android 16 acilisini duzelt V7"
+          git push origin main
+
+      - name: Final APK, AAB ve doğrulama raporlarını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-AdMob-V7-Android16-1.68.1-91
+          path: |
+            dist/BilgiRotasi-AdMob-V7-1.68.1-91.apk
+            dist/BilgiRotasi-AdMob-V7-1.68.1-91.aab
+            reports/ADMOB_V7_DEPENDENCIES.txt
+            reports/ADMOB_V7_PACKAGE.txt
+            reports/ADMOB_V7_MANIFEST.txt
+            reports/ADMOB_V7_APK_CONTENTS.txt
+            reports/ADMOB_V7_APK_SHA256.txt
+            reports/ADMOB_V7_AAB_SHA256.txt
+            reports/ANDROID_16_V7_UPGRADE_LOG.txt
+            reports/ANDROID_16_V7_READY_STATE.txt
+            reports/ANDROID_16_V7_INSTALLED_VERSION.txt
+            reports/RC1_AUTOMATED_REPORT.md
+          if-no-files-found: error
+          retention-days: 30
