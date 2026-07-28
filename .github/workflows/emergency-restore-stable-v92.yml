@@ -1,0 +1,254 @@
+name: Acil çalışan sürüme dönüş 1.68.2+92
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/emergency-restore-stable-v92.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore-build-test:
+    name: Son çalışan kodu geri getir, doğrula ve paketle
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.7"
+          channel: stable
+          cache: true
+
+      - name: Son çalışan uygulama kodunu birebir geri getir
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          STABLE_COMMIT="a13713024e5847b7ba5817650ca1e39bdf08039b"
+          git cat-file -e "$STABLE_COMMIT^{commit}"
+
+          git checkout "$STABLE_COMMIT" -- \
+            android/app/build.gradle.kts \
+            android/app/src/main/AndroidManifest.xml \
+            lib/main.dart \
+            lib/app_build_info.dart \
+            lib/gameplay_boost.dart \
+            lib/live_duel_leaderboard.dart \
+            lib/live_duel_play_screen.dart \
+            lib/xp_progression.dart \
+            pubspec.yaml \
+            pubspec.lock \
+            tools/rc1_quality_gate.py \
+            reports/RC1_AUTOMATED_REPORT.md
+
+          rm -f \
+            lib/ad_monetization.dart \
+            test/ad_monetization_test.dart
+
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path_str: str, old: str, new: str, label: str) -> None:
+              path = Path(path_str)
+              text = path.read_text(encoding="utf-8")
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(
+                      f"{label}: beklenen bölüm {count} kez bulundu."
+                  )
+              path.write_text(
+                  text.replace(old, new, 1),
+                  encoding="utf-8",
+              )
+
+          replace_once(
+              "pubspec.yaml",
+              "version: 1.67.1+89",
+              "version: 1.68.2+92",
+              "pubspec sürümü",
+          )
+          replace_once(
+              "lib/app_build_info.dart",
+              "static const String versionName = '1.67.1';",
+              "static const String versionName = '1.68.2';",
+              "uygulama sürüm adı",
+          )
+          replace_once(
+              "lib/app_build_info.dart",
+              "static const int buildNumber = 89;",
+              "static const int buildNumber = 92;",
+              "uygulama build numarası",
+          )
+          replace_once(
+              "tools/rc1_quality_gate.py",
+              'EXPECTED_VERSION = "1.67.1+89"',
+              'EXPECTED_VERSION = "1.68.2+92"',
+              "kalite kapısı sürümü",
+          )
+          PY
+
+          grep -Fq "version: 1.68.2+92" pubspec.yaml
+          ! grep -Fq "google_mobile_ads" pubspec.yaml
+          test ! -f lib/ad_monetization.dart
+          test ! -f test/ad_monetization_test.dart
+          ! grep -Fq "com.google.android.gms.ads.APPLICATION_ID" \
+            android/app/src/main/AndroidManifest.xml
+
+      - name: Bağımlılıkları çöz, analiz et ve tüm testleri çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          mkdir -p reports dist
+          dart format \
+            lib/main.dart \
+            lib/app_build_info.dart \
+            lib/gameplay_boost.dart \
+            lib/live_duel_leaderboard.dart \
+            lib/live_duel_play_screen.dart \
+            lib/xp_progression.dart
+          python3 tools/rc1_quality_gate.py \
+            --report reports/RC1_AUTOMATED_REPORT.md
+          flutter analyze --no-fatal-warnings --no-fatal-infos
+          flutter test --concurrency=1 --reporter expanded
+          git diff --check
+
+      - name: Kalıcı Android imzasını geçici yükle
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$ANDROID_KEYSTORE_BASE64"
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" \
+            | base64 --decode \
+            > android/app/bilgi_rotasi_upload.jks
+          cat > android/key.properties <<EOF
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyPassword=$ANDROID_KEY_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          storeFile=bilgi_rotasi_upload.jks
+          EOF
+          chmod 600 \
+            android/app/bilgi_rotasi_upload.jks \
+            android/key.properties
+
+      - name: Kurtarma APK ve AAB üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --release
+          flutter build appbundle --release
+          cp build/app/outputs/flutter-apk/app-release.apk \
+            dist/BilgiRotasi-Kurtarma-1.68.2-92.apk
+          cp build/app/outputs/bundle/release/app-release.aab \
+            dist/BilgiRotasi-Kurtarma-1.68.2-92.aab
+
+      - name: Paket ve kalıcı imzayı doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="dist/BilgiRotasi-Kurtarma-1.68.2-92.apk"
+          AAB="dist/BilgiRotasi-Kurtarma-1.68.2-92.aab"
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          APKSIGNER="$(find "$SDK_ROOT/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 | sort -V | tail -n 1)"
+          test -x "$APKSIGNER"
+          test -x "$AAPT2"
+
+          CERT_OUTPUT="$("$APKSIGNER" verify --print-certs "$APK")"
+          ACTUAL_SHA1="$(printf '%s\n' "$CERT_OUTPUT" | awk -F': ' '/certificate SHA-1 digest/ {print $NF; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          EXPECTED_SHA1="000EE43F410ABC6B4F634C4F716D76EB19084115"
+          test "$ACTUAL_SHA1" = "$EXPECTED_SHA1"
+
+          jarsigner -verify "$AAB"
+          AAB_CERT_OUTPUT="$(keytool -printcert -jarfile "$AAB")"
+          ACTUAL_AAB_SHA1="$(printf '%s\n' "$AAB_CERT_OUTPUT" | awk -F': ' '/SHA1:/ {print $2; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          test "$ACTUAL_AAB_SHA1" = "$EXPECTED_SHA1"
+
+          "$AAPT2" dump packagename "$APK" \
+            > reports/RECOVERY_PACKAGE.txt
+          grep -Fxq "com.leventua.bilgirotasi" \
+            reports/RECOVERY_PACKAGE.txt
+          sha256sum "$APK" | tee reports/RECOVERY_APK_SHA256.txt
+          sha256sum "$AAB" | tee reports/RECOVERY_AAB_SHA256.txt
+
+      - name: Gizli imza dosyalarını temizle
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f \
+            android/key.properties \
+            android/app/bilgi_rotasi_upload.jks
+          test ! -f android/key.properties
+          test ! -f android/app/bilgi_rotasi_upload.jks
+          git diff --check
+
+      - name: Kurtarma kodunu ana dala kaydet
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git restore --source=HEAD -- .github/workflows
+          git add \
+            android/app/build.gradle.kts \
+            android/app/src/main/AndroidManifest.xml \
+            lib/main.dart \
+            lib/app_build_info.dart \
+            lib/gameplay_boost.dart \
+            lib/live_duel_leaderboard.dart \
+            lib/live_duel_play_screen.dart \
+            lib/xp_progression.dart \
+            pubspec.yaml \
+            pubspec.lock \
+            tools/rc1_quality_gate.py \
+            reports/RC1_AUTOMATED_REPORT.md
+          git add -u \
+            lib/ad_monetization.dart \
+            test/ad_monetization_test.dart
+          git diff --cached --check
+          git commit -m "Acil calisan surume don 1.68.2+92"
+          git push origin main
+
+      - name: Kurtarma APK, AAB ve raporları yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-Kurtarma-1.68.2-92
+          path: |
+            dist/BilgiRotasi-Kurtarma-1.68.2-92.apk
+            dist/BilgiRotasi-Kurtarma-1.68.2-92.aab
+            reports/RECOVERY_PACKAGE.txt
+            reports/RECOVERY_APK_SHA256.txt
+            reports/RECOVERY_AAB_SHA256.txt
+            reports/RC1_AUTOMATED_REPORT.md
+          if-no-files-found: error
+          retention-days: 30
