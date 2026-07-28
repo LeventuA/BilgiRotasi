@@ -228,7 +228,6 @@ class _LiveDuelLeaderboardScreenState extends State<LiveDuelLeaderboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AdBannerSlot(),
       appBar: AppBar(title: const Text('Lig ve Sıralama')),
       body: FutureBuilder<LiveDuelLeaderboardSnapshot>(
         future: _future,

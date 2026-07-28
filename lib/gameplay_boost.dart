@@ -251,8 +251,8 @@ class _GameplayBoostSettingsScreenState
             child: const Text(
               'Jokerler her yeni oyun veya maratonda '
               'yenilenir. Her oyuncu dört jokerin her birinden '
-              'bir adetle başlar. Tahtadaki hediye kutusunda reklam izlemeyi seçersen '
-              'rastgele bir jokere +1 eklenir. Yanlış cevap '
+              'bir adetle başlar. Tahtadaki hediye kutusu '
+              'rastgele bir jokere +1 ekler. Yanlış cevap '
               'XP düşürmez; yalnızca doğru cevap serisini '
               'sıfırlar.',
               style: TextStyle(height: 1.4, fontWeight: FontWeight.w700),

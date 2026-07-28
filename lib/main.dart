@@ -11,7 +11,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
@@ -43,7 +42,6 @@ part 'premium_dice.dart';
 part 'short_challenge_mode.dart';
 part 'board_target_presentation.dart';
 part 'about_privacy.dart';
-part 'ad_monetization.dart';
 part 'app_build_info.dart';
 part 'account_cloud.dart';
 part 'player_username.dart';
@@ -1112,7 +1110,6 @@ class _CareerStatsScreenState extends State<CareerStatsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AdBannerSlot(),
       appBar: AppBar(title: const Text('İstatistikler & Başarımlar')),
       body: Container(
         decoration: const BoxDecoration(
@@ -1526,7 +1523,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AdBannerSlot(),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -3372,7 +3368,6 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AdBannerSlot(),
       appBar: AppBar(title: const Text('Oyuncuları Hazırla')),
       body: SafeArea(
         child: Column(
@@ -3595,12 +3590,10 @@ class WinnerScreen extends StatefulWidget {
 class _WinnerScreenState extends State<WinnerScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _confettiController;
-  late final String _supportResultId;
 
   @override
   void initState() {
     super.initState();
-    _supportResultId = 'board_${DateTime.now().microsecondsSinceEpoch}';
     _confettiController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 3600),
@@ -3645,7 +3638,6 @@ class _WinnerScreenState extends State<WinnerScreen>
         }
       },
       child: Scaffold(
-        bottomNavigationBar: const AdBannerSlot(),
         body: Stack(
           children: [
             const Positioned.fill(
@@ -3697,9 +3689,6 @@ class _WinnerScreenState extends State<WinnerScreen>
                     _buildWinnerCard(),
                     const SizedBox(height: 16),
                     _buildRankingCard(),
-                    const SizedBox(height: 16),
-                    SupportRewardCard(resultId: _supportResultId, dark: true),
-                    const SizedBox(height: 16),
                     FamilyRecordCapture.board(
                       players: widget.players,
                       winner: widget.winner,
@@ -4654,43 +4643,6 @@ class _GameScreenState extends State<GameScreen> {
 
   Future<int?> _resolveSpecialEffect(SpecialCellEffect effect) async {
     if (effect == SpecialCellEffect.randomJoker) {
-      final accepted = await AdMonetizationDialogs.askForJokerReward(context);
-
-      if (!mounted) return null;
-
-      if (!accepted) {
-        setState(() {
-          _status = '${_currentPlayer.name} jokersiz devam etmeyi seçti.';
-        });
-        return null;
-      }
-
-      setState(() {
-        _status = 'Ödüllü reklam hazırlanıyor…';
-      });
-
-      final earned = await AdMonetizationService.showRewarded();
-
-      if (!mounted) return null;
-
-      if (!earned) {
-        setState(() {
-          _status = 'Reklam tamamlanmadı; joker verilmeden oyun devam ediyor.';
-        });
-
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            const SnackBar(
-              content: Text(
-                'Reklam hazır değildi veya tamamlanmadı. '
-                'Joker verilmeden devam ediliyor.',
-              ),
-            ),
-          );
-        return null;
-      }
-
       final kind = JokerKind.values[_random.nextInt(JokerKind.values.length)];
       _currentPlayer.jokers.grant(kind);
 
@@ -5178,7 +5130,7 @@ extension SpecialCellEffectX on SpecialCellEffect {
       case SpecialCellEffect.rollAgain:
         return 'Bu kutuda soru açılmaz. Aynı oyuncu zarı yeniden atar.';
       case SpecialCellEffect.randomJoker:
-        return 'Kısa reklamı tamamlamayı seçersen dört aktif jokerden biri rastgele seçilir ve +1 eklenir.';
+        return 'Dört aktif jokerden biri rastgele seçilir ve +1 eklenir.';
       case SpecialCellEffect.chooseCategory:
         return 'Bu turda sorulacak kategoriyi sen seçersin.';
       case SpecialCellEffect.doubleChance:

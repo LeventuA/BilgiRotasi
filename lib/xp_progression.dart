@@ -235,10 +235,6 @@ class XpProgressService {
     );
   }
 
-  static Future<XpGainResult> awardSupportAd() {
-    return _award(10, 'Bilgi Rotası destek reklamı');
-  }
-
   static Future<XpGainResult> recordGameCompleted({required bool solo}) async {
     return _award(
       solo ? 45 : 65,
