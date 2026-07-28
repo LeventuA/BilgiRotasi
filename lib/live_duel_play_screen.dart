@@ -1137,6 +1137,8 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
                 textAlign: TextAlign.center,
               ),
             ],
+            const SizedBox(height: 20),
+            SupportRewardCard(resultId: 'live_duel_${widget.matchId}'),
             const SizedBox(height: 24),
             FilledButton.icon(
               onPressed: () => Navigator.of(context).pop(),
