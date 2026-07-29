@@ -15,7 +15,7 @@ jobs:
   test-build-launch:
     name: Test, release APK ve Android 16 cold-start
     runs-on: ubuntu-22.04
-    timeout-minutes: 50
+    timeout-minutes: 60
 
     steps:
       - name: Depoyu indir
@@ -88,13 +88,23 @@ jobs:
             reports/ADMOB_APK_MANIFEST.txt
           sha256sum "$APK" | tee reports/ADMOB_APK_SHA256.txt
 
+      - name: Emulator için derleme kaynaklarını bırak
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd android && ./gradlew --stop)
+
       - name: Android 16 emulator cold-start
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 36
           target: google_apis
           arch: x86_64
-          profile: pixel_6
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
           disable-animations: true
           script: |
             set -euo pipefail
