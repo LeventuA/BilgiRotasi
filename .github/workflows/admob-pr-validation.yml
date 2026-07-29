@@ -98,7 +98,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 36
-          target: google_apis
+          target: aosp_atd
           arch: x86_64
           profile: pixel_2
           cores: 2
@@ -110,7 +110,7 @@ jobs:
             adb install -r build/app/outputs/flutter-apk/app-release.apk
             adb logcat -c
             adb shell am force-stop com.leventua.bilgirotasi
-            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1
+            adb shell am start -W -n com.leventua.bilgirotasi/.MainActivity
             sleep 25
             adb logcat -d > reports/ADMOB_ANDROID16_COLD_START_LOG.txt
             test -n "$(adb shell pidof com.leventua.bilgirotasi | tr -d '\r')"
