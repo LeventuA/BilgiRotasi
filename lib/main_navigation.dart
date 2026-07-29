@@ -296,6 +296,7 @@ class PlayCenterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _NavigationHubScaffold(
+      placement: AdPlacement.play,
       title: 'Oyna',
       emoji: '🎮',
       headline: 'Oyun modunu seç',
@@ -411,6 +412,7 @@ class CareerCenterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _NavigationHubScaffold(
+      placement: AdPlacement.career,
       title: 'Kariyer',
       emoji: '🏆',
       headline: 'Bilgi yolculuğunu takip et',
@@ -488,6 +490,7 @@ class SettingsCenterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _NavigationHubScaffold(
+      placement: AdPlacement.settings,
       title: 'Ayarlar',
       emoji: '⚙️',
       headline: 'Oyunu kendine göre düzenle',
@@ -569,6 +572,7 @@ class SettingsCenterScreen extends StatelessWidget {
 
 class _NavigationHubScaffold extends StatelessWidget {
   const _NavigationHubScaffold({
+    this.placement,
     required this.title,
     required this.emoji,
     required this.headline,
@@ -577,6 +581,7 @@ class _NavigationHubScaffold extends StatelessWidget {
     required this.children,
   });
 
+  final AdPlacement? placement;
   final String title;
   final String emoji;
   final String headline;
@@ -586,7 +591,8 @@ class _NavigationHubScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AdBannerScaffold(
+      placement: placement,
       appBar: AppBar(title: Text(title)),
       body: Container(
         decoration: const BoxDecoration(

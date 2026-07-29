@@ -1525,7 +1525,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AdBannerSlot(placement: AdPlacement.menu),
+      bottomNavigationBar: const AdBannerSlot(placement: AdPlacement.homeMenu),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -3128,6 +3128,9 @@ class MarathonResultScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
+        bottomNavigationBar: const AdBannerSlot(
+          placement: AdPlacement.marathonResult,
+        ),
         body: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(
@@ -3644,7 +3647,7 @@ class _WinnerScreenState extends State<WinnerScreen>
       },
       child: Scaffold(
         bottomNavigationBar: const AdBannerSlot(
-          placement: AdPlacement.result,
+          placement: AdPlacement.boardResult,
         ),
         body: Stack(
           children: [
@@ -3698,10 +3701,7 @@ class _WinnerScreenState extends State<WinnerScreen>
                     const SizedBox(height: 16),
                     _buildRankingCard(),
                     const SizedBox(height: 16),
-                    SupportRewardCard(
-                      gameId: widget.gameId,
-                      dark: true,
-                    ),
+                    SupportRewardCard(gameId: widget.gameId, dark: true),
                     FamilyRecordCapture.board(
                       players: widget.players,
                       winner: widget.winner,
@@ -4666,8 +4666,7 @@ class _GameScreenState extends State<GameScreen> {
 
       if (!earned) {
         setState(() {
-          _status =
-              'Reklam tamamlanmadı; oyun joker verilmeden devam ediyor.';
+          _status = 'Reklam tamamlanmadı; oyun joker verilmeden devam ediyor.';
         });
         return null;
       }

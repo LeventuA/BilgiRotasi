@@ -154,7 +154,8 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AdBannerScaffold(
+      placement: AdPlacement.otherModes,
       appBar: AppBar(title: const Text('Yeni Oyun Modları')),
       body: Container(
         decoration: const BoxDecoration(
@@ -437,6 +438,9 @@ class QuickModeResultScreen extends StatelessWidget {
         if (!didPop) Navigator.of(context).popUntil((route) => route.isFirst);
       },
       child: Scaffold(
+        bottomNavigationBar: const AdBannerSlot(
+          placement: AdPlacement.otherModeResult,
+        ),
         body: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(
@@ -586,7 +590,8 @@ class _SurvivalModeScreenState extends State<SurvivalModeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AdBannerScaffold(
+      placement: AdPlacement.survival,
       appBar: AppBar(title: const Text('Hayatta Kalma')),
       body: Container(
         decoration: const BoxDecoration(
@@ -838,7 +843,8 @@ class _SpeedModeScreenState extends State<SpeedModeScreen> {
   @override
   Widget build(BuildContext context) {
     final category = GameCategory.values[_question.categoryIndex];
-    return Scaffold(
+    return AdBannerScaffold(
+      placement: AdPlacement.speed,
       appBar: AppBar(title: const Text('60 Saniye')),
       body: Container(
         decoration: const BoxDecoration(

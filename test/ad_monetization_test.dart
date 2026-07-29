@@ -32,18 +32,40 @@ void main() {
       );
     });
 
-    test('banner yalnız menü ve sonuç yerleşimlerinde görünür', () {
-      expect(AdVisibilityPolicy.showsBanner(AdPlacement.menu), isTrue);
-      expect(AdVisibilityPolicy.showsBanner(AdPlacement.result), isTrue);
-      expect(AdVisibilityPolicy.showsBanner(AdPlacement.boardGame), isFalse);
-      expect(AdVisibilityPolicy.showsBanner(AdPlacement.activeGame), isFalse);
-      expect(AdVisibilityPolicy.showsBanner(AdPlacement.liveDuel), isFalse);
+    test('banner izin listesi açık ve varsayılan olarak kapalıdır', () {
+      const allowed = <AdPlacement>{
+        AdPlacement.homeMenu,
+        AdPlacement.settings,
+        AdPlacement.socialRecords,
+        AdPlacement.familyRecords,
+        AdPlacement.career,
+        AdPlacement.play,
+        AdPlacement.otherModes,
+        AdPlacement.boardResult,
+        AdPlacement.marathonResult,
+        AdPlacement.challengeResult,
+        AdPlacement.dailyResult,
+        AdPlacement.survival,
+        AdPlacement.speed,
+        AdPlacement.otherModeResult,
+      };
+
+      for (final placement in AdPlacement.values) {
+        expect(
+          AdVisibilityPolicy.showsBanner(placement),
+          allowed.contains(placement),
+          reason: placement.name,
+        );
+      }
 
       final main = File('lib/main.dart').readAsStringSync();
       final gameStart = main.indexOf('class GameScreen');
       final gameEnd = main.indexOf('class BoardNode');
       final gameSource = main.substring(gameStart, gameEnd);
       expect(gameSource, isNot(contains('AdBannerSlot')));
+      final questionStart = main.indexOf('class QuestionScreen');
+      final questionSource = main.substring(questionStart);
+      expect(questionSource, isNot(contains('AdBannerSlot')));
       expect(
         File('lib/live_duel_play_screen.dart').readAsStringSync(),
         isNot(contains('AdBannerSlot')),

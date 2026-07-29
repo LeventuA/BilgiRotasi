@@ -2,6 +2,15 @@
 
 ## Kanıtlanan bulgular
 
+- Android 16 fiziksel cihazda uygulama açılmış ve açık kalmıştır. Misafir
+  girişinden sonra ana menüde resmî Google test banner'ı görünmüştür.
+- Aynı fiziksel testte Google giriş denemesi "Google girişi iptal edildi"
+  mesajıyla sonuçlanmıştır. PR artifact'i debug sertifikasına düştüğü için
+  önce kalıcı upload sertifikalı APK üretilmesi kararlaştırılmış; Google giriş
+  kodu bu aşamada değiştirilmemiştir.
+- Fiziksel testte Maraton sonuç ekranında banner görünmemiştir. Ortak banner
+  yerleşim politikası Maraton ve diğer izin verilen bölüm/sonuç ekranlarını
+  kapsayacak şekilde genişletilmiştir.
 - Fiziksel cihazlarda açılan reklamsız `1.68.4+94` tabanının kilit dosyası
   zaten `path_provider_android 2.3.1`, `jni 1.0.0` ve `jni_flutter 1.0.1`
   bağımlılıklarını içerir. Bu zincir tek başına önceki açılış çökmesinin kök
@@ -44,6 +53,26 @@ kaldırmadan eski Room/WorkManager zincirini günceller.
   eder.
 - Resmî `MobileAdsInitProvider` kaldırılmaz. Birleşik release APK manifesti ve
   Android 16 cold-start sonucu PR doğrulama workflow'unda denetlenir.
+
+## Banner yerleşim politikası
+
+- Banner; ana menü, ayarlar, sosyal/rekorlar, aile rekorları, kariyer, oyna,
+  diğer oyun modları, tahta/maraton/meydan okuma/günlük görev sonuçları,
+  Hayatta Kalma, 60 Saniye ve diğer mod sonuçlarında ortak güvenli alt çubuk
+  üzerinden gösterilir.
+- Google/misafir girişinde, aktif tahta oyununda, normal soru ekranlarında ve
+  Canlı Düello giriş/eşleştirme/maç ekranlarında gösterilmez.
+- Reklam yüklenene kadar ve yüklenemezse alt çubuk sıfır yüksekliktedir; boş
+  beyaz alan bırakmaz. Hayatta Kalma ve 60 Saniye içerikleri banner'ın üstünde
+  kalan `Scaffold.bottomNavigationBar` alanında düzenlenir.
+
+## Kalıcı APK imzası
+
+- AdMob doğrulama workflow'u dört Android signing secret'ının tamamını zorunlu
+  tutar ve build öncesi `key.properties` ile upload keystore'u hazırlar.
+- Release Gradle yapılandırması key.properties yokken debug anahtarına düşmez.
+- Üretilen APK `apksigner` ile doğrulanır; beklenen SHA-1:
+  `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
 
 ## Yerel doğrulama
 

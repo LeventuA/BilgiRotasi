@@ -1,12 +1,54 @@
 part of 'main.dart';
 
-enum AdPlacement { menu, result, boardGame, activeGame, liveDuel }
+enum AdPlacement {
+  homeMenu,
+  settings,
+  socialRecords,
+  familyRecords,
+  career,
+  play,
+  otherModes,
+  boardResult,
+  marathonResult,
+  challengeResult,
+  dailyResult,
+  survival,
+  speed,
+  otherModeResult,
+  auth,
+  boardGame,
+  question,
+  liveDuelEntry,
+  liveDuelMatchmaking,
+  liveDuelMatch,
+}
 
 class AdVisibilityPolicy {
   const AdVisibilityPolicy._();
 
   static bool showsBanner(AdPlacement placement) {
-    return placement == AdPlacement.menu || placement == AdPlacement.result;
+    return switch (placement) {
+      AdPlacement.homeMenu ||
+      AdPlacement.settings ||
+      AdPlacement.socialRecords ||
+      AdPlacement.familyRecords ||
+      AdPlacement.career ||
+      AdPlacement.play ||
+      AdPlacement.otherModes ||
+      AdPlacement.boardResult ||
+      AdPlacement.marathonResult ||
+      AdPlacement.challengeResult ||
+      AdPlacement.dailyResult ||
+      AdPlacement.survival ||
+      AdPlacement.speed ||
+      AdPlacement.otherModeResult => true,
+      AdPlacement.auth ||
+      AdPlacement.boardGame ||
+      AdPlacement.question ||
+      AdPlacement.liveDuelEntry ||
+      AdPlacement.liveDuelMatchmaking ||
+      AdPlacement.liveDuelMatch => false,
+    };
   }
 }
 
@@ -261,10 +303,11 @@ class SupportRewardLimiter {
   Future<bool> claim(String gameId) async {
     if (!await canClaim(gameId)) return false;
     final count = await claimsToday();
-    final existing = (await store.read(_gamesKey) ?? '')
-        .split('\n')
-        .where((value) => value.isNotEmpty)
-        .toList();
+    final existing =
+        (await store.read(_gamesKey) ?? '')
+            .split('\n')
+            .where((value) => value.isNotEmpty)
+            .toList();
     existing.add(gameId);
     if (existing.length > 200) {
       existing.removeRange(0, existing.length - 200);
@@ -281,35 +324,84 @@ class AdMonetizationDialogs {
   static Future<bool> askForJokerReward(BuildContext context) async {
     return await showDialog<bool>(
           context: context,
-          builder: (dialogContext) => AlertDialog(
-            icon: const Text('🎁📺', style: TextStyle(fontSize: 46)),
-            title: const Text('Joker ödülü'),
-            content: const Text(
-              'İstersen kısa bir reklamı tamamlayarak rastgele bir joker +1 '
-              'kazanabilirsin. Reklamı reddedersen oyun normal devam eder.',
-              textAlign: TextAlign.center,
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(dialogContext, false),
-                child: const Text('Hayır, devam et'),
+          builder:
+              (dialogContext) => AlertDialog(
+                icon: const Text('🎁📺', style: TextStyle(fontSize: 46)),
+                title: const Text('Joker ödülü'),
+                content: const Text(
+                  'İstersen kısa bir reklamı tamamlayarak rastgele bir joker +1 '
+                  'kazanabilirsin. Reklamı reddedersen oyun normal devam eder.',
+                  textAlign: TextAlign.center,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(dialogContext, false),
+                    child: const Text('Hayır, devam et'),
+                  ),
+                  FilledButton.icon(
+                    onPressed: () => Navigator.pop(dialogContext, true),
+                    icon: const Icon(Icons.play_circle_fill_rounded),
+                    label: const Text('Reklamı izle'),
+                  ),
+                ],
               ),
-              FilledButton.icon(
-                onPressed: () => Navigator.pop(dialogContext, true),
-                icon: const Icon(Icons.play_circle_fill_rounded),
-                label: const Text('Reklamı izle'),
-              ),
-            ],
-          ),
         ) ??
         false;
   }
 }
 
+class AdBannerScaffold extends StatelessWidget {
+  const AdBannerScaffold({
+    this.placement,
+    this.appBar,
+    this.body,
+    this.backgroundColor,
+    this.floatingActionButton,
+    this.floatingActionButtonLocation,
+    this.drawer,
+    this.endDrawer,
+    this.bannerLoader,
+    super.key,
+  });
+
+  final AdPlacement? placement;
+  final PreferredSizeWidget? appBar;
+  final Widget? body;
+  final Color? backgroundColor;
+  final Widget? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final Widget? drawer;
+  final Widget? endDrawer;
+  final Future<BannerAd?> Function()? bannerLoader;
+
+  @override
+  Widget build(BuildContext context) {
+    final adPlacement = placement;
+    return Scaffold(
+      appBar: appBar,
+      body: body,
+      backgroundColor: backgroundColor,
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
+      drawer: drawer,
+      endDrawer: endDrawer,
+      bottomNavigationBar:
+          adPlacement != null && AdVisibilityPolicy.showsBanner(adPlacement)
+              ? AdBannerSlot(
+                key: ValueKey<String>('ad-banner-${adPlacement.name}'),
+                placement: adPlacement,
+                loadBanner: bannerLoader,
+              )
+              : null,
+    );
+  }
+}
+
 class AdBannerSlot extends StatefulWidget {
-  const AdBannerSlot({required this.placement, super.key});
+  const AdBannerSlot({required this.placement, this.loadBanner, super.key});
 
   final AdPlacement placement;
+  final Future<BannerAd?> Function()? loadBanner;
 
   @override
   State<AdBannerSlot> createState() => _AdBannerSlotState();
@@ -327,7 +419,9 @@ class _AdBannerSlotState extends State<AdBannerSlot> {
   }
 
   Future<void> _load() async {
-    final ad = await AdMonetizationService.instance.loadBanner();
+    final ad =
+        await (widget.loadBanner ??
+            AdMonetizationService.instance.loadBanner)();
     if (!mounted) {
       ad?.dispose();
       return;
@@ -434,9 +528,8 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
   @override
   Widget build(BuildContext context) {
     final foreground = widget.dark ? Colors.white : const Color(0xFF281538);
-    final secondary = widget.dark
-        ? const Color(0xFFD8CCEA)
-        : const Color(0xFF64748B);
+    final secondary =
+        widget.dark ? const Color(0xFFD8CCEA) : const Color(0xFF64748B);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(

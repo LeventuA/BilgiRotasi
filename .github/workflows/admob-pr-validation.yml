@@ -57,6 +57,39 @@ jobs:
           flutter test --concurrency=1 --reporter expanded
           git diff --check
 
+      - name: Kalıcı Android imzasını hazırla
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          test -n "$ANDROID_KEYSTORE_BASE64"
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" \
+            | base64 --decode \
+            > android/app/bilgi_rotasi_upload.jks
+
+          cat > android/key.properties <<EOF
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyPassword=$ANDROID_KEY_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          storeFile=bilgi_rotasi_upload.jks
+          EOF
+
+          chmod 600 \
+            android/app/bilgi_rotasi_upload.jks \
+            android/key.properties
+
+          test -s android/app/bilgi_rotasi_upload.jks
+          test -s android/key.properties
+
       - name: Release APK üret
         run: flutter build apk --release
 
@@ -68,9 +101,12 @@ jobs:
           SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
           AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 \
             | sort -V | tail -n 1)"
+          APKSIGNER="$(find "$SDK_ROOT/build-tools" -type f -name apksigner \
+            | sort -V | tail -n 1)"
 
           test -f "$APK"
           test -x "$AAPT2"
+          test -x "$APKSIGNER"
           "$AAPT2" dump badging "$APK" \
             | tee reports/ADMOB_APK_BADGING.txt
           "$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" \
@@ -87,6 +123,19 @@ jobs:
           grep -Fq "com.google.android.gms.ads.MobileAdsInitProvider" \
             reports/ADMOB_APK_MANIFEST.txt
           sha256sum "$APK" | tee reports/ADMOB_APK_SHA256.txt
+
+          CERT_OUTPUT="$("$APKSIGNER" verify --print-certs "$APK")"
+          printf '%s\n' "$CERT_OUTPUT" \
+            | tee reports/ADMOB_APK_CERTIFICATE.txt
+          ACTUAL_SHA1="$(
+            printf '%s\n' "$CERT_OUTPUT" \
+              | awk -F': ' \
+                '/certificate SHA-1 digest/ {print $NF; exit}' \
+              | tr '[:lower:]' '[:upper:]' \
+              | tr -d '[:space:]:'
+          )"
+          EXPECTED_SHA1="000EE43F410ABC6B4F634C4F716D76EB19084115"
+          test "$ACTUAL_SHA1" = "$EXPECTED_SHA1"
 
           (cd android && ./gradlew app:dependencies \
             --configuration releaseRuntimeClasspath) \
@@ -137,6 +186,7 @@ jobs:
             reports/ADMOB_APK_BADGING.txt
             reports/ADMOB_APK_MANIFEST.txt
             reports/ADMOB_APK_SHA256.txt
+            reports/ADMOB_APK_CERTIFICATE.txt
             reports/ADMOB_ANDROID16_COLD_START_LOG.txt
           if-no-files-found: warn
           retention-days: 30

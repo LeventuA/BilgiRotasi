@@ -455,7 +455,8 @@ class _AccessibilitySettingsScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AdBannerScaffold(
+      placement: AdPlacement.settings,
       appBar: AppBar(
         title: const Text(
           'Ayarlar & Erişilebilirlik',
