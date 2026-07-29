@@ -113,6 +113,8 @@ jobs:
             adb shell am start -W -n com.leventua.bilgirotasi/.MainActivity
             sleep 25
             adb logcat -d > reports/ADMOB_ANDROID16_COLD_START_LOG.txt
+            grep -Ei 'com\.leventua\.bilgirotasi|AndroidRuntime|FATAL EXCEPTION|MobileAdsInitProvider|Missing application ID' reports/ADMOB_ANDROID16_COLD_START_LOG.txt | tail -n 400 || true
+            adb shell dumpsys activity activities | grep -F com.leventua.bilgirotasi || true
             test -n "$(adb shell pidof com.leventua.bilgirotasi | tr -d '\r')"
             ! grep -Eqi 'FATAL EXCEPTION|AndroidRuntime.*FATAL|Missing application ID|MobileAdsInitProvider.*IllegalStateException' reports/ADMOB_ANDROID16_COLD_START_LOG.txt
             adb shell dumpsys activity activities | grep -F com.leventua.bilgirotasi
