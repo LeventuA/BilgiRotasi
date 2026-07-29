@@ -107,7 +107,7 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: true
           script: |
-            set -euo pipefail
+            set -eu
             APK="build/app/outputs/flutter-apk/app-release.apk"
             PACKAGE="com.leventua.bilgirotasi"
             LOG="reports/ADMOB_ANDROID16_COLD_START_LOG.txt"
