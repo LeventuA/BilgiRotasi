@@ -76,3 +76,11 @@ kotlin {
 flutter {
     source = "../.."
 }
+
+dependencies {
+    // Google Mobile Ads 25.3.0 still declares WorkManager 2.7.0, which pulls
+    // Room 2.2.5 and crashes while creating WorkDatabase on Android 16.
+    // Keep the transitive API, but resolve it to the Android 16-compatible
+    // stable WorkManager line.
+    implementation("androidx.work:work-runtime:2.11.2")
+}

@@ -11,6 +11,12 @@
   Dolayısıyla başarılı build sonucu fiziksel açılış kanıtı değildir.
 - Önceki `path_provider_android 2.2.23` override denemesi gerçek bir crash
   stack trace ile doğrulanmamıştır. Bu entegrasyonda override kullanılmaz.
+- Android 16 cold-start logcat'i gerçek açılış çökmesini
+  `androidx.startup.InitializationProvider` tarafından başlatılan
+  `androidx.work.WorkManagerInitializer` içinde, `WorkDatabase` oluşturulurken
+  doğrulamıştır. Google Mobile Ads 25.3.0 transitif olarak WorkManager 2.7.0 ve
+  Room 2.2.5 getiriyordu. Uygulamanın 2026 AndroidX bileşenleriyle birlikte bu
+  eski zincir açılışta uyumsuzdu.
 
 ## Bağımlılık farkı
 
@@ -23,6 +29,10 @@ transitif paketler:
 - `webview_flutter_wkwebview 3.26.0`
 
 Mevcut `path_provider_android`, `jni` ve `jni_flutter` sürümleri değişmemiştir.
+Android release bağımlılık çözümlemesi, Mobile Ads'in istediği
+`androidx.work:work-runtime:2.7.0` sürümünü Android 16 uyumluluğu bulunan kararlı
+`2.11.2` sürümüne yükseltir. Bu, reklam SDK'sının WorkManager kullanımını
+kaldırmadan eski Room/WorkManager zincirini günceller.
 
 ## Güvenli açılış yaklaşımı
 
