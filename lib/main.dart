@@ -10,6 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +20,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'sound_data.dart';
 
 part 'daily_challenge.dart';
+part 'ad_monetization.dart';
 part 'question_feedback.dart';
 part 'xp_progression.dart';
 part 'career_collection_update.dart';
@@ -1523,6 +1525,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const AdBannerSlot(placement: AdPlacement.homeMenu),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -3125,6 +3128,9 @@ class MarathonResultScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
+        bottomNavigationBar: const AdBannerSlot(
+          placement: AdPlacement.marathonResult,
+        ),
         body: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(
@@ -3576,12 +3582,14 @@ class WinnerScreen extends StatefulWidget {
     required this.questionBank,
     required this.winner,
     required this.players,
+    required this.gameId,
     super.key,
   });
 
   final QuestionBank questionBank;
   final PlayerData winner;
   final List<PlayerData> players;
+  final String gameId;
 
   @override
   State<WinnerScreen> createState() => _WinnerScreenState();
@@ -3638,6 +3646,9 @@ class _WinnerScreenState extends State<WinnerScreen>
         }
       },
       child: Scaffold(
+        bottomNavigationBar: const AdBannerSlot(
+          placement: AdPlacement.boardResult,
+        ),
         body: Stack(
           children: [
             const Positioned.fill(
@@ -3689,6 +3700,8 @@ class _WinnerScreenState extends State<WinnerScreen>
                     _buildWinnerCard(),
                     const SizedBox(height: 16),
                     _buildRankingCard(),
+                    const SizedBox(height: 16),
+                    SupportRewardCard(gameId: widget.gameId, dark: true),
                     FamilyRecordCapture.board(
                       players: widget.players,
                       winner: widget.winner,
@@ -4041,6 +4054,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   final Random _random = Random();
+  late final String _gameId;
   int _currentPlayerIndex = 0;
   int? _lastDice;
   bool _diceRolling = false;
@@ -4084,6 +4098,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
+    _gameId = 'board_${DateTime.now().microsecondsSinceEpoch}';
 
     if (widget.players.isNotEmpty) {
       _currentPlayerIndex =
@@ -4643,6 +4658,19 @@ class _GameScreenState extends State<GameScreen> {
 
   Future<int?> _resolveSpecialEffect(SpecialCellEffect effect) async {
     if (effect == SpecialCellEffect.randomJoker) {
+      final accepted = await AdMonetizationDialogs.askForJokerReward(context);
+      if (!accepted || !mounted) return null;
+
+      final earned = await AdMonetizationService.instance.showRewarded();
+      if (!mounted) return null;
+
+      if (!earned) {
+        setState(() {
+          _status = 'Reklam tamamlanmadı; oyun joker verilmeden devam ediyor.';
+        });
+        return null;
+      }
+
       final kind = JokerKind.values[_random.nextInt(JokerKind.values.length)];
       _currentPlayer.jokers.grant(kind);
 
@@ -5019,6 +5047,7 @@ class _GameScreenState extends State<GameScreen> {
               questionBank: widget.questionBank,
               winner: player,
               players: widget.players,
+              gameId: _gameId,
             ),
       ),
     );

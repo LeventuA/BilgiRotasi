@@ -48,17 +48,18 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["admobAppId"] =
+            (project.findProperty("ADMOB_APP_ID") as String?)
+                ?: "ca-app-pub-3940256099942544~3347511713"
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig =
                 if (hasReleaseKeystore) {
                     signingConfigs.getByName("release")
                 } else {
-                    signingConfigs.getByName("debug")
+                    null
                 }
         }
     }
@@ -72,4 +73,12 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Google Mobile Ads 25.3.0 still declares WorkManager 2.7.0, which pulls
+    // Room 2.2.5 and crashes while creating WorkDatabase on Android 16.
+    // Keep the transitive API, but resolve it to the Android 16-compatible
+    // stable WorkManager line.
+    implementation("androidx.work:work-runtime:2.11.2")
 }

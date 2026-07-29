@@ -499,7 +499,8 @@ class SocialHubScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AdBannerScaffold(
+      placement: AdPlacement.socialRecords,
       appBar: AppBar(
         title: const Text('Sosyal & Rekorlar'),
       ),
@@ -704,7 +705,8 @@ class _FamilyRecordsScreenState
     extends State<FamilyRecordsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AdBannerScaffold(
+      placement: AdPlacement.familyRecords,
       appBar: AppBar(
         title: const Text('Aile Rekorları'),
       ),
@@ -1995,6 +1997,9 @@ class ChallengeResultScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
+        bottomNavigationBar: const AdBannerSlot(
+          placement: AdPlacement.challengeResult,
+        ),
         body: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(

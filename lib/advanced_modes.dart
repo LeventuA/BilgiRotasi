@@ -45,6 +45,9 @@ class AdvancedLeaderboardResultScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
+        bottomNavigationBar: const AdBannerSlot(
+          placement: AdPlacement.otherModeResult,
+        ),
         body: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(

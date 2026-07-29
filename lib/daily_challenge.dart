@@ -1399,6 +1399,9 @@ class DailyChallengeResultScreen
         }
       },
       child: Scaffold(
+        bottomNavigationBar: const AdBannerSlot(
+          placement: AdPlacement.dailyResult,
+        ),
         body: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(
