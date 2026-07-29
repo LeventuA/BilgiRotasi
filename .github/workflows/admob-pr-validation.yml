@@ -107,28 +107,15 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: true
           script: |
-            set -eu
-            APK="build/app/outputs/flutter-apk/app-release.apk"
-            PACKAGE="com.leventua.bilgirotasi"
-            LOG="reports/ADMOB_ANDROID16_COLD_START_LOG.txt"
-
-            adb install -r "$APK"
+            adb install -r build/app/outputs/flutter-apk/app-release.apk
             adb logcat -c
-            adb shell am force-stop "$PACKAGE"
-            adb shell monkey \
-              -p "$PACKAGE" \
-              -c android.intent.category.LAUNCHER \
-              1
+            adb shell am force-stop com.leventua.bilgirotasi
+            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1
             sleep 25
-
-            PID="$(adb shell pidof "$PACKAGE" | tr -d '\r')"
-            adb logcat -d > "$LOG"
-            test -n "$PID"
-            ! grep -Eqi \
-              'FATAL EXCEPTION|AndroidRuntime.*FATAL|Missing application ID|MobileAdsInitProvider.*IllegalStateException' \
-              "$LOG"
-            adb shell dumpsys activity activities \
-              | grep -F "$PACKAGE"
+            adb logcat -d > reports/ADMOB_ANDROID16_COLD_START_LOG.txt
+            test -n "$(adb shell pidof com.leventua.bilgirotasi | tr -d '\r')"
+            ! grep -Eqi 'FATAL EXCEPTION|AndroidRuntime.*FATAL|Missing application ID|MobileAdsInitProvider.*IllegalStateException' reports/ADMOB_ANDROID16_COLD_START_LOG.txt
+            adb shell dumpsys activity activities | grep -F com.leventua.bilgirotasi
 
       - name: APK ve kanıt raporlarını yükle
         if: always()
