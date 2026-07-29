@@ -1,0 +1,133 @@
+name: AdMob PR doğrulaması
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-build-launch:
+    name: Test, release APK ve Android 16 cold-start
+    runs-on: ubuntu-22.04
+    timeout-minutes: 50
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.6"
+          channel: stable
+          cache: true
+
+      - name: Bağımlılık grafiğini kaydet
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports
+          flutter pub get
+          flutter pub deps --style=compact \
+            | tee reports/ADMOB_DEPENDENCIES.txt
+          grep -Fq "google_mobile_ads 9.0.0" \
+            reports/ADMOB_DEPENDENCIES.txt
+          grep -Fq "path_provider_android 2.3.1" \
+            reports/ADMOB_DEPENDENCIES.txt
+          grep -Fq "jni_flutter 1.0.1" \
+            reports/ADMOB_DEPENDENCIES.txt
+
+      - name: Analiz ve tüm testler
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-warnings --no-fatal-infos
+          flutter test --concurrency=1 --reporter expanded
+          git diff --check
+
+      - name: Release APK üret
+        run: flutter build apk --release
+
+      - name: Paket ve birleşik manifesti doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="build/app/outputs/flutter-apk/app-release.apk"
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 \
+            | sort -V | tail -n 1)"
+
+          test -f "$APK"
+          test -x "$AAPT2"
+          "$AAPT2" dump badging "$APK" \
+            | tee reports/ADMOB_APK_BADGING.txt
+          "$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" \
+            | tee reports/ADMOB_APK_MANIFEST.txt
+
+          grep -Fq "package: name='com.leventua.bilgirotasi'" \
+            reports/ADMOB_APK_BADGING.txt
+          grep -Fq "versionCode='95'" reports/ADMOB_APK_BADGING.txt
+          grep -Fq "versionName='1.68.5'" reports/ADMOB_APK_BADGING.txt
+          grep -Fq "com.google.android.gms.ads.APPLICATION_ID" \
+            reports/ADMOB_APK_MANIFEST.txt
+          grep -Fq "ca-app-pub-3940256099942544~3347511713" \
+            reports/ADMOB_APK_MANIFEST.txt
+          grep -Fq "com.google.android.gms.ads.MobileAdsInitProvider" \
+            reports/ADMOB_APK_MANIFEST.txt
+          sha256sum "$APK" | tee reports/ADMOB_APK_SHA256.txt
+
+      - name: Android 16 emulator cold-start
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          script: |
+            set -euo pipefail
+            APK="build/app/outputs/flutter-apk/app-release.apk"
+            PACKAGE="com.leventua.bilgirotasi"
+            LOG="reports/ADMOB_ANDROID16_COLD_START_LOG.txt"
+
+            adb install -r "$APK"
+            adb logcat -c
+            adb shell am force-stop "$PACKAGE"
+            adb shell monkey \
+              -p "$PACKAGE" \
+              -c android.intent.category.LAUNCHER \
+              1
+            sleep 25
+
+            PID="$(adb shell pidof "$PACKAGE" | tr -d '\r')"
+            adb logcat -d > "$LOG"
+            test -n "$PID"
+            ! grep -Eqi \
+              'FATAL EXCEPTION|AndroidRuntime.*FATAL|Missing application ID|MobileAdsInitProvider.*IllegalStateException' \
+              "$LOG"
+            adb shell dumpsys activity activities \
+              | grep -F "$PACKAGE"
+
+      - name: APK ve kanıt raporlarını yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-AdMob-1.68.5-95-kanitlari
+          path: |
+            build/app/outputs/flutter-apk/app-release.apk
+            reports/ADMOB_DEPENDENCIES.txt
+            reports/ADMOB_APK_BADGING.txt
+            reports/ADMOB_APK_MANIFEST.txt
+            reports/ADMOB_APK_SHA256.txt
+            reports/ADMOB_ANDROID16_COLD_START_LOG.txt
+          if-no-files-found: warn
+          retention-days: 30

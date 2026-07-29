@@ -261,6 +261,10 @@ class XpProgressService {
     );
   }
 
+  static Future<XpGainResult> awardSupportAd() {
+    return _award(10, 'Bilgi Rotası destek reklamı');
+  }
+
   static Future<XpGainResult> _award(int amount, String reason) async {
     final progress = await load();
     final oldLevel = progress.level;
