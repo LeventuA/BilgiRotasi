@@ -1,6 +1,9 @@
 name: AdMob PR doğrulaması
 
 on:
+  push:
+    branches:
+      - codex/admob-safe-integration
   pull_request:
     branches: [main]
   workflow_dispatch:
