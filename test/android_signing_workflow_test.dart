@@ -8,11 +8,12 @@ void main() {
     late String gradle;
 
     setUpAll(() {
-      workflow =
-          File(
-            '.github/workflows/admob-pr-validation.yml',
-          ).readAsStringSync();
-      gradle = File('android/app/build.gradle.kts').readAsStringSync();
+      workflow = File(
+        '.github/workflows/admob-pr-validation.yml',
+      ).readAsStringSync().replaceAll('\r\n', '\n');
+      gradle = File(
+        'android/app/build.gradle.kts',
+      ).readAsStringSync().replaceAll('\r\n', '\n');
     });
 
     test('dört signing secret zorunludur', () {
@@ -40,10 +41,7 @@ void main() {
 
     test('APK sertifikası beklenen SHA-1 ile doğrulanır', () {
       expect(workflow, contains('apksigner'));
-      expect(
-        workflow,
-        contains('000EE43F410ABC6B4F634C4F716D76EB19084115'),
-      );
+      expect(workflow, contains('000EE43F410ABC6B4F634C4F716D76EB19084115'));
       expect(workflow, contains('ADMOB_APK_CERTIFICATE.txt'));
     });
   });

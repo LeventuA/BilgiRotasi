@@ -9,11 +9,15 @@ void main() {
     late String productionBuildScript;
 
     setUpAll(() {
-      gradle = File('android/app/build.gradle.kts').readAsStringSync();
-      workflow =
-          File('.github/workflows/admob-pr-validation.yml').readAsStringSync();
-      productionBuildScript =
-          File('tools/build_admob_production.ps1').readAsStringSync();
+      gradle = File(
+        'android/app/build.gradle.kts',
+      ).readAsStringSync().replaceAll('\r\n', '\n');
+      workflow = File(
+        '.github/workflows/admob-pr-validation.yml',
+      ).readAsStringSync().replaceAll('\r\n', '\n');
+      productionBuildScript = File(
+        'tools/build_admob_production.ps1',
+      ).readAsStringSync().replaceAll('\r\n', '\n');
     });
 
     test('debug ve varsayılan release profili test App ID kullanır', () {
