@@ -1,4 +1,6 @@
 import java.io.FileInputStream
+import java.security.KeyStore
+import java.security.MessageDigest
 import java.util.Properties
 
 plugins {
@@ -17,6 +19,51 @@ val hasReleaseKeystore =
     keystorePropertiesFile.exists() &&
     listOf("keyAlias", "keyPassword", "storeFile", "storePassword")
         .all(keystoreProperties::containsKey)
+
+val adMobEnvironment =
+    providers.gradleProperty("ADMOB_ENVIRONMENT").orNull ?: "test"
+val adMobTestAppId = "ca-app-pub-3940256099942544~3347511713"
+val adMobProductionAppId = "ca-app-pub-7452194004008791~7046504043"
+val expectedProductionSigningSha1 =
+    "000EE43F410ABC6B4F634C4F716D76EB19084115"
+
+if (adMobEnvironment !in setOf("test", "production")) {
+    throw GradleException(
+        "ADMOB_ENVIRONMENT must be either 'test' or 'production'.",
+    )
+}
+
+fun releaseSigningSha1(): String? {
+    if (!hasReleaseKeystore) return null
+    val storeFileName = keystoreProperties["storeFile"] as String
+    val storePassword = keystoreProperties["storePassword"] as String
+    val keyAlias = keystoreProperties["keyAlias"] as String
+    val keyStore =
+        KeyStore.getInstance(
+            file(storeFileName),
+            storePassword.toCharArray(),
+        )
+    val certificate = keyStore.getCertificate(keyAlias) ?: return null
+    return MessageDigest.getInstance("SHA-1")
+        .digest(certificate.encoded)
+        .joinToString("") { byte -> "%02X".format(byte) }
+}
+
+val useProductionAds = adMobEnvironment == "production"
+if (useProductionAds) {
+    if (!hasReleaseKeystore) {
+        throw GradleException(
+            "Production AdMob requires the permanent release keystore.",
+        )
+    }
+    val signingSha1 = releaseSigningSha1()
+    if (signingSha1 != expectedProductionSigningSha1) {
+        throw GradleException(
+            "Production AdMob requires signing certificate SHA-1 " +
+                expectedProductionSigningSha1,
+        )
+    }
+}
 
 android {
     namespace = "com.leventua.bilgirotasi"
@@ -48,13 +95,20 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        manifestPlaceholders["admobAppId"] =
-            (project.findProperty("ADMOB_APP_ID") as String?)
-                ?: "ca-app-pub-3940256099942544~3347511713"
+        manifestPlaceholders["admobAppId"] = adMobTestAppId
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders["admobAppId"] = adMobTestAppId
+        }
         release {
+            manifestPlaceholders["admobAppId"] =
+                if (useProductionAds) {
+                    adMobProductionAppId
+                } else {
+                    adMobTestAppId
+                }
             signingConfig =
                 if (hasReleaseKeystore) {
                     signingConfigs.getByName("release")

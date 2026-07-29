@@ -4,8 +4,11 @@ on:
   push:
     branches:
       - codex/admob-safe-integration
+      - codex/admob-production-ids
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - codex/admob-safe-integration
   workflow_dispatch:
 
 permissions:
@@ -55,6 +58,9 @@ jobs:
           set -euo pipefail
           flutter analyze --no-fatal-warnings --no-fatal-infos
           flutter test --concurrency=1 --reporter expanded
+          flutter test \
+            --dart-define=ADMOB_ENVIRONMENT=production \
+            test/admob_id_profile_test.dart
           git diff --check
 
       - name: Kalıcı Android imzasını hazırla
@@ -90,8 +96,12 @@ jobs:
           test -s android/app/bilgi_rotasi_upload.jks
           test -s android/key.properties
 
-      - name: Release APK üret
-        run: flutter build apk --release
+      - name: Test reklam kimlikli release APK üret
+        env:
+          ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT: test
+        run: >-
+          flutter build apk --release
+          --dart-define=ADMOB_ENVIRONMENT=test
 
       - name: Paket ve birleşik manifesti doğrula
         shell: bash
@@ -119,6 +129,8 @@ jobs:
           grep -Fq "com.google.android.gms.ads.APPLICATION_ID" \
             reports/ADMOB_APK_MANIFEST.txt
           grep -Fq "ca-app-pub-3940256099942544~3347511713" \
+            reports/ADMOB_APK_MANIFEST.txt
+          ! grep -Fq "ca-app-pub-7452194004008791~7046504043" \
             reports/ADMOB_APK_MANIFEST.txt
           grep -Fq "com.google.android.gms.ads.MobileAdsInitProvider" \
             reports/ADMOB_APK_MANIFEST.txt

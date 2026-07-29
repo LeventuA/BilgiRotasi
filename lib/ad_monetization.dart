@@ -55,18 +55,34 @@ class AdVisibilityPolicy {
 class AdMobConfig {
   const AdMobConfig._();
 
-  static const String androidAppId = String.fromEnvironment(
-    'ADMOB_ANDROID_APP_ID',
-    defaultValue: 'ca-app-pub-3940256099942544~3347511713',
+  static const String environment = String.fromEnvironment(
+    'ADMOB_ENVIRONMENT',
+    defaultValue: 'test',
   );
-  static const String androidBannerUnitId = String.fromEnvironment(
-    'ADMOB_ANDROID_BANNER_ID',
-    defaultValue: 'ca-app-pub-3940256099942544/6300978111',
-  );
-  static const String androidRewardedUnitId = String.fromEnvironment(
-    'ADMOB_ANDROID_REWARDED_ID',
-    defaultValue: 'ca-app-pub-3940256099942544/5224354917',
-  );
+  static const bool isProduction = environment == 'production';
+
+  static const String testAndroidAppId =
+      'ca-app-pub-3940256099942544~3347511713';
+  static const String testAndroidBannerUnitId =
+      'ca-app-pub-3940256099942544/6300978111';
+  static const String testAndroidRewardedUnitId =
+      'ca-app-pub-3940256099942544/5224354917';
+
+  static const String productionAndroidAppId =
+      'ca-app-pub-7452194004008791~7046504043';
+  static const String productionAndroidBannerUnitId =
+      'ca-app-pub-7452194004008791/4228769011';
+  static const String productionAndroidRewardedUnitId =
+      'ca-app-pub-7452194004008791/4974874471';
+
+  static const String androidAppId =
+      isProduction ? productionAndroidAppId : testAndroidAppId;
+  static const String androidBannerUnitId =
+      isProduction ? productionAndroidBannerUnitId : testAndroidBannerUnitId;
+  static const String androidRewardedUnitId =
+      isProduction
+          ? productionAndroidRewardedUnitId
+          : testAndroidRewardedUnitId;
 }
 
 class AdMonetizationService {
