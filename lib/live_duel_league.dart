@@ -140,18 +140,21 @@ class LiveDuelRatingEngine {
 
 class LiveDuelRecentMatch {
   const LiveDuelRecentMatch({
+    this.opponentUid = '',
     required this.opponentName,
     required this.result,
     required this.ratingDelta,
     required this.playedAt,
   });
 
+  final String opponentUid;
   final String opponentName;
   final LiveDuelResult result;
   final int ratingDelta;
   final DateTime playedAt;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
+    'opponentUid': opponentUid,
     'opponentName': opponentName,
     'result': result.name,
     'ratingDelta': ratingDelta,
@@ -160,6 +163,7 @@ class LiveDuelRecentMatch {
 
   factory LiveDuelRecentMatch.fromJson(Map<String, dynamic> json) {
     return LiveDuelRecentMatch(
+      opponentUid: json['opponentUid']?.toString() ?? '',
       opponentName: json['opponentName']?.toString() ?? 'Rakip',
       result: LiveDuelResult.values.firstWhere(
         (item) => item.name == json['result']?.toString(),
@@ -214,6 +218,7 @@ class LiveDuelProfile {
   }
 
   LiveDuelProfile applyResult({
+    String opponentUid = '',
     required String opponentName,
     required int opponentRating,
     required LiveDuelResult result,
@@ -230,6 +235,7 @@ class LiveDuelProfile {
 
     final updatedRecentMatches = <LiveDuelRecentMatch>[
       LiveDuelRecentMatch(
+        opponentUid: opponentUid,
         opponentName:
             opponentName.trim().isEmpty ? 'Rakip' : opponentName.trim(),
         result: result,
@@ -313,6 +319,7 @@ class LiveDuelProfile {
             refund += -8 - match.ratingDelta;
 
             return LiveDuelRecentMatch(
+              opponentUid: match.opponentUid,
               opponentName: match.opponentName,
               result: match.result,
               ratingDelta: -8,
@@ -441,6 +448,7 @@ class LiveDuelProfileService {
   }
 
   static Future<LiveDuelProfile> applyResult({
+    String opponentUid = '',
     required String opponentName,
     required int opponentRating,
     required LiveDuelResult result,
@@ -449,6 +457,7 @@ class LiveDuelProfileService {
     final current = await load();
 
     final updated = current.applyResult(
+      opponentUid: opponentUid,
       opponentName: opponentName,
       opponentRating: opponentRating,
       result: result,

@@ -176,6 +176,11 @@ class LiveDuelMatchmakingService {
 
       for (final candidateSnapshot in candidates.docs) {
         if (candidateSnapshot.id == user.uid) continue;
+        if (await PlayerSafetyService.isBlockedEitherDirection(
+          candidateSnapshot.id,
+        )) {
+          continue;
+        }
 
         final matchId = await _claimCandidate(
           ownReference: ownReference,

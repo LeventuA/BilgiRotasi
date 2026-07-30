@@ -4,3 +4,7 @@ BILGI_ROTASI_IMZA_YEDEGI.zip
 .dart_tool/
 .flutter-plugins-dependencies
 build/
+functions/node_modules/
+firebase-debug.log
+firestore-debug.log
+.codex-temp/

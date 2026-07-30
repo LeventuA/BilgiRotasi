@@ -14,6 +14,7 @@ service cloud.firestore {
                '^[a-z0-9][a-z0-9_]{2,15}$'
              )
              && !(username in [
+               'aq',
                'admin',
                'administrator',
                'moderator',
@@ -24,11 +25,25 @@ service cloud.firestore {
                'support',
                'bilgirotasi',
                'bilgi_rotasi',
+               'zmilastudio',
+               'zmila_studio',
                'google',
                'firebase',
+               'nazi',
                'null',
+               'pic',
+               'sex',
                'undefined'
-             ]);
+             ])
+             && !username.matches(
+               '.*(amk|orospu|siktir|sikik|yarrak|ibne|'
+               + 'gerizekali|salak|aptal|fuck|bitch|nigger|porn).*'
+             )
+             && !username.matches(
+               '.*(adm(i|1)n|m(o|0)derat(o|0)r|destek|supp(o|0)rt|'
+               + 'zm(i|1)lastud(i|1)(o|0)|b(i|1)lg(i|1)r(o|0)tas(i|1)).*'
+             )
+             && !username.matches('.*[0-9]{7,}.*');
     }
 
     function userUsername(userId) {
@@ -54,9 +69,17 @@ service cloud.firestore {
     function validUserCreate(userId) {
       return !request.resource.data.keys().hasAny([
                'username',
-               'usernameChangedAt'
+               'usernameChangedAt',
+               'usernameFirstSetAt',
+               'usernameCorrectionUsed',
+               'usernamePolicyVersion'
              ])
-             || validUsernameBinding(userId);
+             || (
+               validUsernameBinding(userId)
+               && request.resource.data.usernameFirstSetAt == request.time
+               && request.resource.data.usernameCorrectionUsed == false
+               && request.resource.data.usernamePolicyVersion == 2
+             );
     }
 
     function validUserUpdate(userId) {
@@ -65,19 +88,44 @@ service cloud.firestore {
         .affectedKeys();
       let changesUsername = affected.hasAny([
         'username',
-        'usernameChangedAt'
+        'usernameChangedAt',
+        'usernameFirstSetAt',
+        'usernameCorrectionUsed',
+        'usernamePolicyVersion'
       ]);
+      let initialUsername =
+        !resource.data.keys().hasAll(['username'])
+        && request.resource.data.usernameFirstSetAt == request.time
+        && request.resource.data.usernameCorrectionUsed == false;
+      let migrationCorrection =
+        resource.data.keys().hasAll(['username'])
+        && resource.data.get('usernamePolicyVersion', 1) < 2
+        && resource.data.get('usernameCorrectionUsed', false) == false
+        && request.resource.data.usernameCorrectionUsed == true;
+      let firstDayCorrection =
+        resource.data.get('usernamePolicyVersion', 1) == 2
+        && resource.data.usernameCorrectionUsed == false
+        && resource.data.usernameFirstSetAt is timestamp
+        && request.time <=
+           resource.data.usernameFirstSetAt + duration.value(24, 'h')
+        && request.resource.data.usernameFirstSetAt ==
+           resource.data.usernameFirstSetAt
+        && request.resource.data.usernameCorrectionUsed == true;
+      let normalChange =
+        resource.data.usernameChangedAt is timestamp
+        && request.time >=
+           resource.data.usernameChangedAt + duration.value(30, 'd')
+        && request.resource.data.get('usernameCorrectionUsed', true) == true;
 
       return !changesUsername
              || (
                validUsernameBinding(userId)
+               && request.resource.data.usernamePolicyVersion == 2
                && (
-                 !resource.data.keys().hasAll([
-                   'usernameChangedAt'
-                 ])
-                 || request.time >=
-                    resource.data.usernameChangedAt +
-                    duration.value(30, 'd')
+                 initialUsername
+                 || migrationCorrection
+                 || firstDayCorrection
+                 || normalChange
                )
              );
     }
@@ -494,7 +542,89 @@ service cloud.firestore {
                     );
     }
 
-    match /users/{userId}/{document=**} {
+    match /player_reports/{reportId} {
+      allow create: if signedIn()
+                    && request.resource.data.keys().hasOnly([
+                      'reporterUid',
+                      'targetUid',
+                      'targetUsername',
+                      'reason',
+                      'note',
+                      'source',
+                      'status',
+                      'createdAt',
+                      'appVersion'
+                    ])
+                    && request.resource.data.reporterUid == request.auth.uid
+                    && request.resource.data.targetUid is string
+                    && request.resource.data.targetUid.size() > 0
+                    && request.resource.data.targetUid != request.auth.uid
+                    && validUsername(
+                      request.resource.data.targetUsername
+                    )
+                    && request.resource.data.reason in [
+                      'inappropriateUsername',
+                      'impersonation',
+                      'harassment',
+                      'cheating',
+                      'other'
+                    ]
+                    && request.resource.data.note is string
+                    && request.resource.data.note.size() <= 300
+                    && request.resource.data.source in [
+                      'leaderboard',
+                      'live_duel_result'
+                    ]
+                    && request.resource.data.status == 'pending'
+                    && request.resource.data.createdAt == request.time
+                    && request.resource.data.appVersion is string
+                    && reportId ==
+                       request.auth.uid + '_' +
+                       request.resource.data.targetUid + '_' +
+                       request.resource.data.reason;
+
+      // Raporlar yalnızca güvenilir sunucu/moderasyon araçlarıyla okunur
+      // ve güncellenir. İstemci ikinci kez aynı belgeyi yazamaz.
+      allow read, update, delete: if false;
+    }
+
+    match /player_blocks/{ownerUid}/blocked/{targetUid} {
+      allow get: if signedIn()
+                 && (
+                   request.auth.uid == ownerUid
+                   || request.auth.uid == targetUid
+                 );
+
+      allow list: if signedIn()
+                  && request.auth.uid == ownerUid;
+
+      allow create: if signedIn()
+                    && request.auth.uid == ownerUid
+                    && ownerUid != targetUid
+                    && request.resource.data.keys().hasOnly([
+                      'ownerUid',
+                      'targetUid',
+                      'targetUsername',
+                      'createdAt',
+                      'appVersion'
+                    ])
+                    && request.resource.data.ownerUid == ownerUid
+                    && request.resource.data.targetUid == targetUid
+                    && validUsername(
+                      request.resource.data.targetUsername
+                    )
+                    && request.resource.data.createdAt == request.time
+                    && request.resource.data.appVersion is string;
+
+      allow update: if false;
+
+      allow delete: if signedIn()
+                    && request.auth.uid == ownerUid;
+    }
+
+    // Ayrı bir path segmenti, bu kuralın /users/{userId} kök belgesini
+    // yakalayıp yukarıdaki kullanıcı adı doğrulamasını atlamasını önler.
+    match /users/{userId}/{subcollection}/{document=**} {
       allow read, write: if signedIn()
                          && request.auth.uid == userId;
     }

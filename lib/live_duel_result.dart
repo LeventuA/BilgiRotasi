@@ -187,6 +187,7 @@ class LiveDuelOwnResultPlanner {
 
   static LiveDuelOwnResultPlan plan({
     required LiveDuelProfile current,
+    String opponentUid = '',
     required String opponentName,
     required int opponentRating,
     required LiveDuelResult result,
@@ -200,6 +201,7 @@ class LiveDuelOwnResultPlanner {
     );
 
     final profile = current.applyResult(
+      opponentUid: opponentUid,
       opponentName: opponentName,
       opponentRating: opponentRating,
       result: result,
@@ -507,6 +509,7 @@ class LiveDuelResultService {
       final result = completed.resultFor(user.uid);
       final plan = LiveDuelOwnResultPlanner.plan(
         current: currentProfile,
+        opponentUid: opponentUid,
         opponentName:
             opponentName == null || opponentName.isEmpty
                 ? 'Bilgi Yolcusu'

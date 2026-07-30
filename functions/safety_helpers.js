@@ -1,0 +1,95 @@
+'use strict';
+
+const { createHash } = require('node:crypto');
+
+const usernamePattern = /^[a-z0-9][a-z0-9_]{2,15}$/;
+const reservedPattern =
+  /(admin|moderator|destek|support|zmilastudio|bilgirotasi)/;
+const exactBlockedTerms = new Set(['aq', 'pic', 'nazi', 'sex']);
+const blockedPattern =
+  /(amk|orospu|siktir|sikik|yarrak|ibne|gerizekali|salak|aptal|fuck|bitch|nigger|porn)/;
+
+function normalizeUsername(value) {
+  return String(value ?? '')
+    .trim()
+    .replaceAll('İ', 'i')
+    .toLocaleLowerCase('tr-TR')
+    .replaceAll('\u0307', '')
+    .replaceAll('ı', 'i')
+    .replaceAll('ş', 's')
+    .replaceAll('ğ', 'g')
+    .replaceAll('ü', 'u')
+    .replaceAll('ö', 'o')
+    .replaceAll('ç', 'c');
+}
+
+function moderationKey(value) {
+  return normalizeUsername(value)
+    .replaceAll('0', 'o')
+    .replaceAll('1', 'i')
+    .replaceAll('3', 'e')
+    .replaceAll('4', 'a')
+    .replaceAll('5', 's')
+    .replaceAll('7', 't')
+    .replace(/[^a-z0-9]/g, '');
+}
+
+function isValidUsername(value) {
+  const normalized = normalizeUsername(value);
+  const key = moderationKey(normalized);
+  return (
+    usernamePattern.test(normalized) &&
+    !reservedPattern.test(key) &&
+    !exactBlockedTerms.has(key) &&
+    !blockedPattern.test(key)
+  );
+}
+
+function deletionOperationId(uid) {
+  return `account-delete-${uid}`;
+}
+
+function anonymousPlayerId(uid) {
+  const digest = createHash('sha256')
+    .update(`bilgi-rotasi-deleted:${uid}`)
+    .digest('hex')
+    .slice(0, 24);
+  return `deleted_${digest}`;
+}
+
+function anonymizePlayers(players, uid) {
+  const anonymousId = anonymousPlayerId(uid);
+  if (!Array.isArray(players)) return [];
+  return players.map((player) => {
+    if (!player || player.uid !== uid) return player;
+    return {
+      ...player,
+      uid: anonymousId,
+      displayName: 'Silinmiş Oyuncu',
+      deleted: true,
+    };
+  });
+}
+
+function anonymizeUidMap(values, uid) {
+  if (!values || typeof values !== 'object' || Array.isArray(values)) {
+    return values;
+  }
+  const anonymousId = anonymousPlayerId(uid);
+  return Object.fromEntries(
+    Object.entries(values).map(([key, value]) => [
+      key === uid ? anonymousId : key,
+      value,
+    ]),
+  );
+}
+
+module.exports = {
+  anonymousPlayerId,
+  anonymizePlayers,
+  anonymizeUidMap,
+  deletionOperationId,
+  isValidUsername,
+  moderationKey,
+  normalizeUsername,
+};

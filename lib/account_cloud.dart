@@ -661,6 +661,7 @@ class AccountCloudService with WidgetsBindingObserver {
       await preferences.setBool(_guestSelectedKey, true);
 
       await AccountLocalSnapshot.clearGameData();
+      await QuestionFeedbackService.clearLocalDataForAccountDeletion();
       await user.delete();
       await _googleSignIn?.signOut();
       await _refreshGameServices();
@@ -1199,6 +1200,34 @@ class AccountSettingsScreen extends StatelessWidget {
                                   },
                           icon: const Icon(Icons.alternate_email_rounded),
                           label: const Text('Kullanıcı adını değiştir'),
+                        ),
+                        const SizedBox(height: 10),
+                        OutlinedButton.icon(
+                          onPressed:
+                              session.busy
+                                  ? null
+                                  : () => Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder:
+                                          (_) => const AccountDataViewScreen(),
+                                    ),
+                                  ),
+                          icon: const Icon(Icons.data_object_rounded),
+                          label: const Text('Verilerimi görüntüle'),
+                        ),
+                        const SizedBox(height: 10),
+                        OutlinedButton.icon(
+                          onPressed:
+                              session.busy
+                                  ? null
+                                  : () => Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder:
+                                          (_) => const BlockedPlayersScreen(),
+                                    ),
+                                  ),
+                          icon: const Icon(Icons.person_off_outlined),
+                          label: const Text('Engellenen oyuncular'),
                         ),
                         const SizedBox(height: 10),
                         FilledButton.icon(

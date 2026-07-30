@@ -313,6 +313,18 @@ class QuestionFeedbackService {
     await _saveQueue(remaining);
   }
 
+  static Future<void> clearLocalDataForAccountDeletion() async {
+    for (final key in <String>[
+      _queueKey,
+      _difficultyVotesKey,
+      _errorReportsKey,
+      _deviceIdKey,
+      _rateLimitKey,
+    ]) {
+      await _preferences.remove(key);
+    }
+  }
+
   static Future<void> _sendOrQueue(QuestionFeedbackPayload payload) async {
     final sent = await _send(payload);
     if (sent) return;
