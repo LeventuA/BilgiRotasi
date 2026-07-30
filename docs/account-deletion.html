@@ -6,117 +6,75 @@
   <title>Bilgi Rotası Hesap ve Veri Silme</title>
   <meta name="description" content="Bilgi Rotası hesap ve bulut verisi silme talimatları.">
   <style>
-    :root {
-      color-scheme: light;
-      --ink: #24122f;
-      --red: #a51d2d;
-      --paper: #f7f4fb;
-      --card: #ffffff;
-      --muted: #58616d;
-      --line: #ddd6e5;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--paper);
-      color: #17202a;
-    }
-    main {
-      width: min(820px, calc(100% - 28px));
-      margin: 0 auto;
-      padding: 28px 0 48px;
-    }
-    article {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: clamp(20px, 4vw, 38px);
-      box-shadow: 0 16px 44px rgba(36,18,47,.08);
-    }
-    h1, h2 { color: var(--ink); }
-    h1 { margin-top: 0; }
-    p, li { line-height: 1.7; }
-    .box {
-      background: #fff4f4;
-      border: 1px solid #efb7bd;
-      border-left: 5px solid var(--red);
-      border-radius: 14px;
-      padding: 16px;
-    }
-    .muted { color: var(--muted); }
-    a { color: #0f607a; }
-    nav { margin-bottom: 14px; }
-    code {
-      background: #f0edf3;
-      border-radius: 6px;
-      padding: 2px 5px;
-    }
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f7f4fb;color:#17202a}
+    main{width:min(820px,calc(100% - 28px));margin:auto;padding:28px 0 48px}
+    article{background:#fff;border:1px solid #ddd6e5;border-radius:24px;padding:clamp(20px,4vw,38px)}
+    h1,h2{color:#24122f}p,li{line-height:1.7}a{color:#0f607a}.box{background:#fff4f4;border-left:5px solid #a51d2d;border-radius:14px;padding:16px}.muted{color:#58616d}
   </style>
 </head>
-<body>
-  <main>
-    <nav><a href="index.html">← Destek ana sayfası</a></nav>
-    <article>
-      <h1>Bilgi Rotası Hesap ve Veri Silme</h1>
-      <p class="muted"><strong>Son güncelleme:</strong> 24 Temmuz 2026</p>
+<body><main>
+  <nav><a href="index.html">← Destek ana sayfası</a></nav>
+  <article>
+    <h1>Bilgi Rotası Hesap ve Veri Silme</h1>
+    <p class="muted"><strong>Son güncelleme:</strong> 30 Temmuz 2026</p>
+    <p>Yayıncı: <strong>ZMila Studio</strong></p>
 
-      <p>
-        Google hesabına bağlı Bilgi Rotası hesabınızı ve bulut verilerinizi
-        silmek için aşağıdaki yöntemi kullanabilirsiniz.
-      </p>
+    <div class="box">
+      <h2>Önerilen uygulama içi yol</h2>
+      <ol>
+        <li>Bilgi Rotası’nı açın ve Google hesabınızla giriş yapın.</li>
+        <li><strong>Ayarlar → Hesap &amp; Bulut Kaydı</strong> ekranını açın.</li>
+        <li><strong>Hesabı ve bulut verilerini sil</strong> seçeneğine dokunun.</li>
+        <li>Google hesabınızla yeniden doğrulayın ve onaylayın.</li>
+      </ol>
+    </div>
 
-      <div class="box">
-        <h2>Silme talebi gönderme</h2>
-        <ol>
-          <li>
-            Bilgi Rotası'nda kullandığınız Google hesabının e-posta adresinden
-            <a href="mailto:BilgiRotasi10@gmail.com?subject=Bilgi%20Rotas%C4%B1%20Hesap%20Silme">
-              BilgiRotasi10@gmail.com
-            </a>
-            adresine e-posta gönderin.
-          </li>
-          <li>
-            Konu kısmına <code>Bilgi Rotası Hesap Silme</code> yazın.
-          </li>
-          <li>
-            Mesajda hesabın ve bulut oyun verilerinin silinmesini istediğinizi
-            belirtin. Parola, kimlik belgesi veya ödeme bilgisi göndermeyin.
-          </li>
-        </ol>
-      </div>
+    <h2>Uygulamaya erişemiyorsanız</h2>
+    <p>
+      Bilgi Rotası’nda kullandığınız Google e-posta adresinden
+      <a href="mailto:BilgiRotasi10@gmail.com?subject=Bilgi%20Rotas%C4%B1%20Hesap%20Silme">BilgiRotasi10@gmail.com</a>
+      adresine “Bilgi Rotası Hesap Silme” konusuyla yazın. Parola, kimlik
+      belgesi veya ödeme bilgisi göndermeyin. Hesabın size ait olduğunu güvenli
+      biçimde eşleştirmek için ek doğrulama istenebilir.
+    </p>
 
-      <h2>Silinecek veriler</h2>
-      <ul>
-        <li>Bilgi Rotası Firebase kullanıcı hesabı,</li>
-        <li>Google hesabından alınan görünen ad ve e-posta bilgisi,</li>
-        <li>bulutta tutulan XP, seviye, başarımlar ve istatistikler,</li>
-        <li>tema, piyon ve uygulama tercihleri,</li>
-        <li>kayıtlı oyun ve diğer bulut ilerleme verileri.</li>
-      </ul>
+    <h2>Silinen veriler</h2>
+    <ul>
+      <li>Firebase Authentication içindeki Bilgi Rotası hesabı,</li>
+      <li>kullanıcı profili, Google görünen adı/e-posta kopyası ve bulut oyun kaydı,</li>
+      <li>kullanıcı adı rezervasyonu ve genel sıralama kaydı,</li>
+      <li>hesaba ait canlı düello sonuç işleme kayıtları,</li>
+      <li>cihazdaki kullanıcıya bağlı oyun kayıtları ve bekleyen geri bildirim verileri.</li>
+    </ul>
 
-      <h2>İşlem süresi</h2>
-      <p>
-        Talebin hesap sahibiyle eşleştirilmesinden sonra silme işlemi en geç
-        30 gün içinde tamamlanır. Yasal zorunluluk bulunmadıkça silinen veriler
-        yeniden kullanılamaz.
-      </p>
+    <h2>Ortak maçlar ve geçici saklama</h2>
+    <p>
+      Canlı Düello maçı iki oyuncunun skor bütünlüğünü etkiler. Rakibin geçmiş
+      sonucunu bozmamak için ortak maçın gerekli skor/sonuç kısmı tutulabilir;
+      silinen hesabın UID ve kullanıcı adı bağlantısı “Silinmiş Oyuncu” benzeri
+      anonim bir değerle değiştirilir. Bu sunucu tarafı anonimleştirme
+      dağıtılmamışsa talep destek ekibi tarafından takip edilir ve işlem
+      tamamlanmış sayılmaz. Güvenlik, sahtekârlık önleme veya yasal zorunluluk
+      için gerekli en az kayıt sınırlı süreyle saklanabilir.
+    </p>
 
-      <h2>Yalnızca cihazdaki verileri silme</h2>
-      <p>
-        Misafir olarak kullanılan veya yalnızca cihazda tutulan veriler,
-        Android uygulama bilgileri ekranındaki “Depolama ve önbellek” bölümünden
-        uygulama verileri temizlenerek silinebilir. Bu işlem Google hesabındaki
-        bulut verilerini tek başına silmez.
-      </p>
+    <h2>Süre ve sonuç</h2>
+    <p>
+      Uygulama içi işlem bağlantı ve yeniden doğrulama başarılıysa hemen
+      başlar. Sunucu tarafı veya destek gerektiren talepler, hesap sahibiyle
+      eşleştirildikten sonra en geç 30 gün içinde tamamlanır. Uygulama yalnız
+      doğrulayabildiği adımlar tamamlanınca başarı mesajı gösterir; kısmi hata
+      durumunda yeniden deneme veya destek gerekir.
+    </p>
 
-      <h2>Destek</h2>
-      <p>
-        Sorularınız için
-        <a href="mailto:BilgiRotasi10@gmail.com">BilgiRotasi10@gmail.com</a>
-        adresine ulaşabilirsiniz.
-      </p>
-    </article>
-  </main>
-</body>
+    <h2>Yalnız cihazdaki veriler</h2>
+    <p>
+      Android uygulama bilgileri ekranından uygulama verilerini temizlemek
+      cihazdaki misafir ve yerel kayıtları siler; tek başına Firebase hesabını
+      veya bulut verilerini silmez.
+    </p>
+
+    <p><strong>Destek:</strong> <a href="mailto:BilgiRotasi10@gmail.com">BilgiRotasi10@gmail.com</a></p>
+  </article>
+</main></body>
 </html>

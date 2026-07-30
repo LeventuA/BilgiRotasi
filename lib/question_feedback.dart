@@ -3,6 +3,25 @@ part of 'main.dart';
 const String _questionFeedbackEndpoint =
     'https://script.google.com/macros/s/AKfycbxIeKxzdekJ01LPWrIwD-jM-vwsXg0kMDXZkn-RXz8PRXWbc8CNHgiT0jb5odN1YYzH6w/exec';
 
+class QuestionFeedbackInputPolicy {
+  const QuestionFeedbackInputPolicy._();
+
+  static const int maxNoteLength = 500;
+  static const int maxReasonLength = 80;
+  static const int maxQuestionLength = 600;
+  static const int maxOptionLength = 250;
+  static const int maxQueueLength = 50;
+
+  static String plainText(String value, int maxLength) {
+    final normalized =
+        value
+            .replaceAll(RegExp(r'[\u0000-\u0008\u000B\u000C\u000E-\u001F]'), '')
+            .trim();
+    if (normalized.length <= maxLength) return normalized;
+    return normalized.substring(0, maxLength);
+  }
+}
+
 class QuestionFeedbackPayload {
   const QuestionFeedbackPayload({
     required this.eventId,
@@ -67,28 +86,21 @@ class QuestionFeedbackPayload {
     };
   }
 
-  factory QuestionFeedbackPayload.fromJson(
-    Map<String, dynamic> json,
-  ) {
+  factory QuestionFeedbackPayload.fromJson(Map<String, dynamic> json) {
     return QuestionFeedbackPayload(
       eventId: json['eventId']?.toString() ?? '',
       questionId: json['questionId']?.toString() ?? '',
       category: json['category']?.toString() ?? '',
-      systemDifficulty:
-          json['systemDifficulty']?.toString() ?? '',
-      userDifficultyVote:
-          json['userDifficultyVote']?.toString() ?? '',
-      feedbackType:
-          json['feedbackType']?.toString() ?? '',
+      systemDifficulty: json['systemDifficulty']?.toString() ?? '',
+      userDifficultyVote: json['userDifficultyVote']?.toString() ?? '',
+      feedbackType: json['feedbackType']?.toString() ?? '',
       errorReason: json['errorReason']?.toString() ?? '',
       userNote: json['userNote']?.toString() ?? '',
       questionText: json['questionText']?.toString() ?? '',
-      options: (json['options'] as List?)
-              ?.map((item) => item.toString())
-              .toList() ??
+      options:
+          (json['options'] as List?)?.map((item) => item.toString()).toList() ??
           const <String>[],
-      correctAnswer:
-          json['correctAnswer']?.toString() ?? '',
+      correctAnswer: json['correctAnswer']?.toString() ?? '',
       userAnswer: json['userAnswer']?.toString() ?? '',
       wasCorrect: json['wasCorrect'] == true,
       gameMode: json['gameMode']?.toString() ?? '',
@@ -126,21 +138,20 @@ class QuestionFeedbackPayload {
 class QuestionFeedbackService {
   QuestionFeedbackService._();
 
-  static const String _queueKey =
-      'bilgi_rotasi_question_feedback_queue_v1';
+  static const String _queueKey = 'bilgi_rotasi_question_feedback_queue_v1';
   static const String _difficultyVotesKey =
       'bilgi_rotasi_question_difficulty_votes_v1';
   static const String _errorReportsKey =
       'bilgi_rotasi_question_error_reports_v1';
-  static const String _deviceIdKey =
-      'bilgi_rotasi_feedback_device_id_v1';
+  static const String _deviceIdKey = 'bilgi_rotasi_feedback_device_id_v1';
+  static const String _rateLimitKey = 'bilgi_rotasi_question_feedback_rate_v1';
+  static const int _maxEventsPerWindow = 5;
+  static const Duration _rateLimitWindow = Duration(minutes: 10);
 
-  static final SharedPreferencesAsync _preferences =
-      SharedPreferencesAsync();
+  static final SharedPreferencesAsync _preferences = SharedPreferencesAsync();
 
   static Future<String> deviceId() async {
-    final existing =
-        await _preferences.getString(_deviceIdKey);
+    final existing = await _preferences.getString(_deviceIdKey);
 
     if (existing != null && existing.isNotEmpty) {
       return existing;
@@ -155,16 +166,12 @@ class QuestionFeedbackService {
     return value;
   }
 
-  static Future<String?> difficultyVoteFor(
-    String questionId,
-  ) async {
+  static Future<String?> difficultyVoteFor(String questionId) async {
     final map = await _loadStringMap(_difficultyVotesKey);
     return map[questionId];
   }
 
-  static Future<bool> hasErrorReport(
-    String questionId,
-  ) async {
+  static Future<bool> hasErrorReport(String questionId) async {
     final values = await _loadStringSet(_errorReportsKey);
     return values.contains(questionId);
   }
@@ -175,13 +182,13 @@ class QuestionFeedbackService {
     required String vote,
     required String gameMode,
   }) async {
-    final existing =
-        await difficultyVoteFor(question.id);
+    if (!await _allowSubmission()) return false;
+
+    final existing = await difficultyVoteFor(question.id);
 
     if (existing != null) return false;
 
-    final votes =
-        await _loadStringMap(_difficultyVotesKey);
+    final votes = await _loadStringMap(_difficultyVotesKey);
     votes[question.id] = vote;
     await _saveStringMap(_difficultyVotesKey, votes);
 
@@ -206,13 +213,13 @@ class QuestionFeedbackService {
     required String note,
     required String gameMode,
   }) async {
-    final reported =
-        await hasErrorReport(question.id);
+    if (!await _allowSubmission()) return false;
+
+    final reported = await hasErrorReport(question.id);
 
     if (reported) return false;
 
-    final reports =
-        await _loadStringSet(_errorReportsKey);
+    final reports = await _loadStringSet(_errorReportsKey);
     reports.add(question.id);
     await _saveStringSet(_errorReportsKey, reports);
 
@@ -246,27 +253,48 @@ class QuestionFeedbackService {
       eventId:
           '${question.id}-${feedbackType.hashCode}-'
           '${now.microsecondsSinceEpoch}-$id',
-      questionId: question.id,
-      category:
-          GameCategory.values[question.categoryIndex].label,
-      systemDifficulty: question.difficulty,
-      userDifficultyVote: userDifficultyVote,
-      feedbackType: feedbackType,
-      errorReason: errorReason,
-      userNote: userNote.trim(),
-      questionText: question.text,
-      options: question.options,
-      correctAnswer:
-          question.options[question.answerIndex],
-      userAnswer: selectedIndex >= 0 &&
-              selectedIndex < question.options.length
-          ? question.options[selectedIndex]
-          : '',
+      questionId: QuestionFeedbackInputPolicy.plainText(question.id, 120),
+      category: GameCategory.values[question.categoryIndex].label,
+      systemDifficulty: QuestionFeedbackInputPolicy.plainText(
+        question.difficulty,
+        20,
+      ),
+      userDifficultyVote: QuestionFeedbackInputPolicy.plainText(
+        userDifficultyVote,
+        20,
+      ),
+      feedbackType: QuestionFeedbackInputPolicy.plainText(feedbackType, 40),
+      errorReason: QuestionFeedbackInputPolicy.plainText(
+        errorReason,
+        QuestionFeedbackInputPolicy.maxReasonLength,
+      ),
+      userNote: QuestionFeedbackInputPolicy.plainText(
+        userNote,
+        QuestionFeedbackInputPolicy.maxNoteLength,
+      ),
+      questionText: QuestionFeedbackInputPolicy.plainText(
+        question.text,
+        QuestionFeedbackInputPolicy.maxQuestionLength,
+      ),
+      options: question.options
+          .take(6)
+          .map(
+            (option) => QuestionFeedbackInputPolicy.plainText(
+              option,
+              QuestionFeedbackInputPolicy.maxOptionLength,
+            ),
+          )
+          .toList(growable: false),
+      correctAnswer: question.options[question.answerIndex],
+      userAnswer:
+          selectedIndex >= 0 && selectedIndex < question.options.length
+              ? question.options[selectedIndex]
+              : '',
       wasCorrect: selectedIndex == question.answerIndex,
-      gameMode: gameMode,
+      gameMode: QuestionFeedbackInputPolicy.plainText(gameMode, 60),
       playerName: '',
       deviceId: id,
-      appVersion: '1.22',
+      appVersion: AppBuildInfo.version,
       sentFromQueue: false,
     );
   }
@@ -285,51 +313,51 @@ class QuestionFeedbackService {
     await _saveQueue(remaining);
   }
 
-  static Future<void> _sendOrQueue(
-    QuestionFeedbackPayload payload,
-  ) async {
+  static Future<void> _sendOrQueue(QuestionFeedbackPayload payload) async {
     final sent = await _send(payload);
     if (sent) return;
 
     final queue = await _loadQueue();
 
-    if (!queue.any(
-      (item) => item.eventId == payload.eventId,
-    )) {
+    if (!queue.any((item) => item.eventId == payload.eventId)) {
       queue.add(payload);
+      if (queue.length > QuestionFeedbackInputPolicy.maxQueueLength) {
+        queue.removeRange(
+          0,
+          queue.length - QuestionFeedbackInputPolicy.maxQueueLength,
+        );
+      }
     }
 
     await _saveQueue(queue);
   }
 
-  static Future<bool> _send(
-    QuestionFeedbackPayload payload,
-  ) async {
+  static Future<bool> _send(QuestionFeedbackPayload payload) async {
     if (_questionFeedbackEndpoint.isEmpty ||
         !_questionFeedbackEndpoint.startsWith('https://')) {
       return false;
     }
 
-    final client = HttpClient()
-      ..connectionTimeout = const Duration(seconds: 7);
+    final client = HttpClient()..connectionTimeout = const Duration(seconds: 7);
 
     try {
       final request = await client.postUrl(
         Uri.parse(_questionFeedbackEndpoint),
       );
 
-      request.headers.contentType =
-          ContentType('text', 'plain', charset: 'utf-8');
+      request.headers.contentType = ContentType(
+        'text',
+        'plain',
+        charset: 'utf-8',
+      );
       request.write(jsonEncode(payload.toJson()));
 
       final response = await request.close().timeout(
         const Duration(seconds: 10),
       );
-      final body =
-          await utf8.decoder.bind(response).join();
+      final body = await utf8.decoder.bind(response).join();
 
-      if (response.statusCode < 200 ||
-          response.statusCode >= 300) {
+      if (response.statusCode < 200 || response.statusCode >= 300) {
         return false;
       }
 
@@ -343,11 +371,9 @@ class QuestionFeedbackService {
     }
   }
 
-  static Future<List<QuestionFeedbackPayload>>
-      _loadQueue() async {
+  static Future<List<QuestionFeedbackPayload>> _loadQueue() async {
     try {
-      final raw =
-          await _preferences.getString(_queueKey);
+      final raw = await _preferences.getString(_queueKey);
 
       if (raw == null || raw.isEmpty) {
         return <QuestionFeedbackPayload>[];
@@ -372,20 +398,14 @@ class QuestionFeedbackService {
     }
   }
 
-  static Future<void> _saveQueue(
-    List<QuestionFeedbackPayload> queue,
-  ) async {
+  static Future<void> _saveQueue(List<QuestionFeedbackPayload> queue) async {
     await _preferences.setString(
       _queueKey,
-      jsonEncode(
-        queue.map((item) => item.toJson()).toList(),
-      ),
+      jsonEncode(queue.map((item) => item.toJson()).toList()),
     );
   }
 
-  static Future<Map<String, String>> _loadStringMap(
-    String key,
-  ) async {
+  static Future<Map<String, String>> _loadStringMap(String key) async {
     try {
       final raw = await _preferences.getString(key);
       if (raw == null || raw.isEmpty) {
@@ -398,8 +418,7 @@ class QuestionFeedbackService {
       }
 
       return decoded.map(
-        (key, value) =>
-            MapEntry(key.toString(), value.toString()),
+        (key, value) => MapEntry(key.toString(), value.toString()),
       );
     } catch (_) {
       return <String, String>{};
@@ -413,9 +432,7 @@ class QuestionFeedbackService {
     await _preferences.setString(key, jsonEncode(value));
   }
 
-  static Future<Set<String>> _loadStringSet(
-    String key,
-  ) async {
+  static Future<Set<String>> _loadStringSet(String key) async {
     try {
       final raw = await _preferences.getString(key);
       if (raw == null || raw.isEmpty) return <String>{};
@@ -423,21 +440,44 @@ class QuestionFeedbackService {
       final decoded = jsonDecode(raw);
       if (decoded is! List) return <String>{};
 
-      return decoded
-          .map((item) => item.toString())
-          .toSet();
+      return decoded.map((item) => item.toString()).toSet();
     } catch (_) {
       return <String>{};
     }
   }
 
-  static Future<void> _saveStringSet(
-    String key,
-    Set<String> value,
-  ) async {
+  static Future<void> _saveStringSet(String key, Set<String> value) async {
+    await _preferences.setString(key, jsonEncode(value.toList()..sort()));
+  }
+
+  static Future<bool> _allowSubmission() async {
+    final now = DateTime.now().toUtc();
+    final cutoff = now.subtract(_rateLimitWindow);
+    final raw = await _preferences.getString(_rateLimitKey);
+    final recent = <DateTime>[];
+
+    if (raw != null && raw.isNotEmpty) {
+      try {
+        final decoded = jsonDecode(raw);
+        if (decoded is List) {
+          for (final value in decoded) {
+            final parsed = DateTime.tryParse(value.toString())?.toUtc();
+            if (parsed != null && parsed.isAfter(cutoff)) {
+              recent.add(parsed);
+            }
+          }
+        }
+      } catch (_) {
+        // Bozuk hız sınırı kaydı güvenli ve boş bir pencereyle yenilenir.
+      }
+    }
+
+    if (recent.length >= _maxEventsPerWindow) return false;
+    recent.add(now);
     await _preferences.setString(
-      key,
-      jsonEncode(value.toList()..sort()),
+      _rateLimitKey,
+      jsonEncode(recent.map((value) => value.toIso8601String()).toList()),
     );
+    return true;
   }
 }

@@ -85,6 +85,154 @@ class AdMobConfig {
           : testAndroidRewardedUnitId;
 }
 
+abstract interface class AdConsentGateway {
+  Future<void> requestConsentInfoUpdate();
+  Future<void> loadAndShowConsentFormIfRequired();
+  Future<bool> canRequestAds();
+  Future<bool> isPrivacyOptionsRequired();
+  Future<void> showPrivacyOptionsForm();
+}
+
+class GoogleUmpConsentGateway implements AdConsentGateway {
+  const GoogleUmpConsentGateway();
+
+  @override
+  Future<void> requestConsentInfoUpdate() {
+    final completer = Completer<void>();
+    ConsentInformation.instance.requestConsentInfoUpdate(
+      ConsentRequestParameters(tagForUnderAgeOfConsent: false),
+      () => completer.complete(),
+      (error) => completer.completeError(error),
+    );
+    return completer.future;
+  }
+
+  @override
+  Future<void> loadAndShowConsentFormIfRequired() {
+    final completer = Completer<void>();
+    ConsentForm.loadAndShowConsentFormIfRequired((error) {
+      if (error == null) {
+        completer.complete();
+      } else {
+        completer.completeError(error);
+      }
+    });
+    return completer.future;
+  }
+
+  @override
+  Future<bool> canRequestAds() {
+    return ConsentInformation.instance.canRequestAds();
+  }
+
+  @override
+  Future<bool> isPrivacyOptionsRequired() async {
+    return await ConsentInformation.instance
+            .getPrivacyOptionsRequirementStatus() ==
+        PrivacyOptionsRequirementStatus.required;
+  }
+
+  @override
+  Future<void> showPrivacyOptionsForm() {
+    final completer = Completer<void>();
+    ConsentForm.showPrivacyOptionsForm((error) {
+      if (error == null) {
+        completer.complete();
+      } else {
+        completer.completeError(error);
+      }
+    });
+    return completer.future;
+  }
+}
+
+abstract interface class MobileAdsGateway {
+  Future<void> configureForTeenAudience();
+  Future<void> initialize();
+}
+
+class GoogleMobileAdsGateway implements MobileAdsGateway {
+  const GoogleMobileAdsGateway();
+
+  @override
+  Future<void> configureForTeenAudience() {
+    return MobileAds.instance.updateRequestConfiguration(
+      RequestConfiguration(
+        maxAdContentRating: MaxAdContentRating.t,
+        tagForChildDirectedTreatment: TagForChildDirectedTreatment.no,
+        tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.no,
+      ),
+    );
+  }
+
+  @override
+  Future<void> initialize() async {
+    await MobileAds.instance.initialize();
+  }
+}
+
+class AdPrivacyService {
+  AdPrivacyService({
+    required this.consentGateway,
+    required this.mobileAdsGateway,
+  });
+
+  static final AdPrivacyService instance = AdPrivacyService(
+    consentGateway: const GoogleUmpConsentGateway(),
+    mobileAdsGateway: const GoogleMobileAdsGateway(),
+  );
+
+  final AdConsentGateway consentGateway;
+  final MobileAdsGateway mobileAdsGateway;
+  final ValueNotifier<bool> privacyOptionsRequired = ValueNotifier<bool>(false);
+
+  Future<bool>? _initializing;
+  bool _adsReady = false;
+
+  Future<bool> initialize() {
+    if (_adsReady) return Future<bool>.value(true);
+    final active = _initializing;
+    if (active != null) return active;
+
+    final future = _initialize();
+    _initializing = future;
+    return future;
+  }
+
+  Future<bool> _initialize() async {
+    try {
+      await consentGateway.requestConsentInfoUpdate();
+      await consentGateway.loadAndShowConsentFormIfRequired();
+      privacyOptionsRequired.value =
+          await consentGateway.isPrivacyOptionsRequired();
+
+      if (!await consentGateway.canRequestAds()) return false;
+
+      await mobileAdsGateway.configureForTeenAudience();
+      await mobileAdsGateway.initialize();
+      _adsReady = true;
+      return true;
+    } catch (_) {
+      _adsReady = false;
+      return false;
+    } finally {
+      _initializing = null;
+    }
+  }
+
+  Future<bool> showPrivacyOptions() async {
+    if (!privacyOptionsRequired.value) return false;
+    try {
+      await consentGateway.showPrivacyOptionsForm();
+      privacyOptionsRequired.value =
+          await consentGateway.isPrivacyOptionsRequired();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+}
+
 class AdMonetizationService {
   AdMonetizationService._();
 
@@ -104,9 +252,8 @@ class AdMonetizationService {
 
     final future = () async {
       try {
-        await MobileAds.instance.initialize();
-        _initialized = true;
-        return true;
+        _initialized = await AdPrivacyService.instance.initialize();
+        return _initialized;
       } catch (_) {
         _initialized = false;
         return false;

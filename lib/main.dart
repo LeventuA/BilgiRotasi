@@ -955,6 +955,7 @@ Future<void> main() async {
   runApp(const BilgiRotasiApp());
 
   unawaited(_initializeAccountCloudInBackground());
+  unawaited(AdPrivacyService.instance.initialize());
 }
 
 Future<void> _initializeAccountCloudInBackground() async {

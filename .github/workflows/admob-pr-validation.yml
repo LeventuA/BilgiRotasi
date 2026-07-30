@@ -124,8 +124,8 @@ jobs:
 
           grep -Fq "package: name='com.leventua.bilgirotasi'" \
             reports/ADMOB_APK_BADGING.txt
-          grep -Fq "versionCode='95'" reports/ADMOB_APK_BADGING.txt
-          grep -Fq "versionName='1.68.5'" reports/ADMOB_APK_BADGING.txt
+          grep -Fq "versionCode='96'" reports/ADMOB_APK_BADGING.txt
+          grep -Fq "versionName='1.68.6'" reports/ADMOB_APK_BADGING.txt
           grep -Fq "com.google.android.gms.ads.APPLICATION_ID" \
             reports/ADMOB_APK_MANIFEST.txt
           grep -Fq "ca-app-pub-3940256099942544~3347511713" \
@@ -190,7 +190,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-AdMob-1.68.5-95-kanitlari
+          name: BilgiRotasi-AdMob-1.68.6-96-kanitlari
           path: |
             build/app/outputs/flutter-apk/app-release.apk
             reports/ADMOB_DEPENDENCIES.txt

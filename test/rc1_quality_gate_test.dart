@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('Bilgi Rotası RC2 kalite kapısı', () {
+  group('Bilgi Rotası production kalite kapısı', () {
     late List<Map<String, dynamic>> questions;
 
     setUpAll(() {
@@ -26,7 +26,7 @@ void main() {
           .toList(growable: false);
     });
 
-    test('RC2 sürüm bilgisi tek merkezden gelir', () {
+    test('production sürüm bilgisi tek merkezden gelir', () {
       final pubspec = File('pubspec.yaml').readAsStringSync();
       final versionMatch = RegExp(
         r'^version:\s*([0-9]+\.[0-9]+\.[0-9]+)\+([0-9]+)\s*$',
@@ -45,9 +45,9 @@ void main() {
 
       expect(AppBuildInfo.versionName, versionName);
       expect(AppBuildInfo.buildNumber, buildNumber);
-      expect(AppBuildInfo.channel, 'RC2');
+      expect(AppBuildInfo.channel, 'Production');
       expect(AppBuildInfo.version, version);
-      expect(AppBuildInfo.fullLabel, 'Sürüm $version • RC2');
+      expect(AppBuildInfo.fullLabel, 'Sürüm $version • Production');
     });
 
     test('Soru bankası kritik şema kontrollerini geçer', () {

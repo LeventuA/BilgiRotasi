@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Bilgi Rotası RC2 hızlı kalite kapısı.
+# Bilgi Rotası production hızlı kalite kapısı.
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_VERSION = "1.68.5+95"
+EXPECTED_VERSION = "1.68.6+96"
 MIN_TOTAL_QUESTIONS = 5000
 MIN_QUESTIONS_PER_CATEGORY = 500
 CATEGORY_COUNT = 6
@@ -254,7 +254,7 @@ def main() -> int:
 
     status = "BAŞARILI" if not errors else "BAŞARISIZ"
     report_lines = [
-        "# Bilgi Rotası RC2 Otomatik Kalite Raporu",
+        "# Bilgi Rotası Production Otomatik Kalite Raporu",
         "",
         f"- Durum: **{status}**",
         f"- Sürüm: `{version}`",
@@ -299,7 +299,7 @@ def main() -> int:
     )
 
     print("=" * 64)
-    print(f"Bilgi Rotası RC2 kalite kapısı: {status}")
+    print(f"Bilgi Rotası Production kalite kapısı: {status}")
     print(f"Sürüm: {version}")
     print(f"Toplam soru: {len(questions)}")
     print(
