@@ -9,17 +9,14 @@ void main() {
 
     expect(source, contains('deleteAccountAndCloudData'));
     expect(source, contains('reauthenticateWithCredential'));
-    expect(source, contains('PlayerUsernameService.deleteAccountIdentity'));
+    expect(source, contains("'requestAccountDeletion'"));
+    expect(source, contains('clearLocalDataForAccountDeletion'));
 
-    final usernameSource = File('lib/player_username.dart').readAsStringSync();
-    final compactUsernameSource = usernameSource.replaceAll(RegExp(r'\s+'), '');
-
-    expect(compactUsernameSource, contains("collection('users').doc(uid)"));
-    expect(
-      compactUsernameSource,
-      contains('transaction.delete(userReference);'),
-    );
-    expect(compactSource, contains('awaituser.delete();'));
+    final backend = File('functions/index.js').readAsStringSync();
+    expect(backend, contains('operationId'));
+    expect(backend, contains("stage: 'authentication'"));
+    expect(backend, contains('deleteUser(uid)'));
+    expect(compactSource, isNot(contains('awaituser.delete();')));
   });
 
   test('gizlilik ekranı güncel veri kullanımını açıklar', () {

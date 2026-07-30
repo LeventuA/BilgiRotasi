@@ -76,21 +76,16 @@ class PlayerSafetyService {
     );
 
     try {
-      await FirebaseFirestore.instance
-          .collection('player_reports')
-          .doc(id)
-          .set(<String, dynamic>{
-            'reporterUid': user.uid,
-            'targetUid': targetUid,
-            'targetUsername': PlayerUsernamePolicy.normalize(targetUsername),
-            'reason': reason.name,
-            'note': safeNote,
-            'source': source,
-            'status': 'pending',
-            'createdAt': FieldValue.serverTimestamp(),
-            'appVersion': AppBuildInfo.version,
-          });
-    } on FirebaseException catch (error) {
+      await SecureCallableService.call('reportPlayer', <String, dynamic>{
+        'reportId': id,
+        'targetUid': targetUid,
+        'targetUsername': PlayerUsernamePolicy.normalize(targetUsername),
+        'reason': reason.name,
+        'note': safeNote,
+        'source': source,
+        'appVersion': AppBuildInfo.version,
+      });
+    } on FirebaseFunctionsException catch (error) {
       if (error.code == 'permission-denied' || error.code == 'already-exists') {
         throw StateError('Bu bildirim daha önce gönderilmiş.');
       }
@@ -118,18 +113,21 @@ class PlayerSafetyService {
       throw StateError('Bu oyuncu engellenemez.');
     }
 
-    await _blockReference(user.uid, targetUid).set(<String, dynamic>{
-      'ownerUid': user.uid,
+    await SecureCallableService.call('setPlayerBlock', <String, dynamic>{
       'targetUid': targetUid,
       'targetUsername': PlayerUsernamePolicy.normalize(targetUsername),
-      'createdAt': FieldValue.serverTimestamp(),
+      'blocked': true,
       'appVersion': AppBuildInfo.version,
     });
   }
 
   static Future<void> unblock(String targetUid) async {
-    final user = _requireUser();
-    await _blockReference(user.uid, targetUid).delete();
+    _requireUser();
+    await SecureCallableService.call('setPlayerBlock', <String, dynamic>{
+      'targetUid': targetUid,
+      'blocked': false,
+      'appVersion': AppBuildInfo.version,
+    });
   }
 
   static Future<List<BlockedPlayer>> loadBlocked() async {

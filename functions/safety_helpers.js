@@ -4,9 +4,10 @@ const { createHash } = require('node:crypto');
 
 const usernamePattern = /^[a-z0-9][a-z0-9_]{2,15}$/;
 const reservedPattern =
-  /(admin|moderator|destek|support|zmilastudio|bilgirotasi)/;
+  /(admin|administrator|moderator|sistem|destek|support|zmilastudio|bilgirotasi|google|firebase)/;
 const blockedPattern =
-  /(amk|orospu|siktir|sikik|yarrak|pic|ibne|gerizekali|salak|aptal|fuck|bitch|nazi|porn|sex)/;
+  /(amk|aq|orospu|siktir|sikik|yarrak|pic|ibne|gerizekali|salak|aptal|fuck|bitch|nigger|nazi|porn|sex)/;
+const phonePattern = /(?:\d_*){7,}/;
 
 function normalizeUsername(value) {
   return String(value ?? '')
@@ -36,6 +37,7 @@ function isValidUsername(value) {
   const key = moderationKey(normalized);
   return (
     usernamePattern.test(normalized) &&
+    !phonePattern.test(normalized) &&
     !reservedPattern.test(key) &&
     !blockedPattern.test(key)
   );
@@ -58,8 +60,10 @@ function anonymizePlayers(players, uid) {
   if (!Array.isArray(players)) return [];
   return players.map((player) => {
     if (!player || player.uid !== uid) return player;
+    const { publicPlayerId: _removedPublicPlayerId, ...anonymousPlayer } =
+      player;
     return {
-      ...player,
+      ...anonymousPlayer,
       uid: anonymousId,
       displayName: 'Silinmiş Oyuncu',
       deleted: true,

@@ -49,7 +49,7 @@ void main() {
       expect(mainSource, contains("part 'live_duel_leaderboard.dart';"));
       expect(duelSource, contains('LiveDuelLeaderboardScreen'));
       expect(duelSource, contains('Lig ve Sıralama'));
-      expect(rules, contains('match /live_duel_leaderboard/{userId}'));
+      expect(rules, contains('match /live_duel_leaderboard/{publicPlayerId}'));
     });
   });
 }

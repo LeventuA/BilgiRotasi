@@ -396,29 +396,11 @@ class LiveDuelProfileService {
 
       if (rawProfile is Map) {
         final rawMap = Map<String, dynamic>.from(rawProfile);
-        final oldPolicyVersion =
-            (rawMap['ratingPolicyVersion'] as num?)?.toInt() ?? 1;
         final remote = LiveDuelProfile.fromJson(rawMap);
 
-        if (oldPolicyVersion < LiveDuelRatingEngine.ratingPolicyVersion) {
-          await reference.set(<String, dynamic>{
-            'liveDuelProfile': remote.toJson(),
-            'liveDuelProfileUpdatedAt': FieldValue.serverTimestamp(),
-            'appVersion': AppBuildInfo.version,
-          }, SetOptions(merge: true));
-        }
-
         await saveLocal(remote);
-        await LiveDuelLeaderboardService.publish(remote);
         return remote;
       }
-
-      await reference.set(<String, dynamic>{
-        'liveDuelProfile': local.toJson(),
-        'liveDuelProfileUpdatedAt': FieldValue.serverTimestamp(),
-        'appVersion': AppBuildInfo.version,
-      }, SetOptions(merge: true));
-      await LiveDuelLeaderboardService.publish(local);
     } catch (_) {
       // Bulut profil erişimi yerel profili engellememeli.
     }
@@ -428,23 +410,6 @@ class LiveDuelProfileService {
 
   static Future<void> save(LiveDuelProfile profile) async {
     await saveLocal(profile);
-
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
-
-    try {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .set(<String, dynamic>{
-            'liveDuelProfile': profile.toJson(),
-            'liveDuelProfileUpdatedAt': FieldValue.serverTimestamp(),
-            'appVersion': AppBuildInfo.version,
-          }, SetOptions(merge: true));
-      await LiveDuelLeaderboardService.publish(profile);
-    } catch (_) {
-      // Yerel profil korunur; sonraki yüklemede bulut tekrar denenir.
-    }
   }
 
   static Future<LiveDuelProfile> applyResult({

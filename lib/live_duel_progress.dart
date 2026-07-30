@@ -189,20 +189,9 @@ class LiveDuelProgressService {
   }
 
   static Future<void> initializeProgress({required String matchId}) async {
-    final user = _requireUser();
-    final reference = _progressReference(matchId: matchId, uid: user.uid);
-
-    await _firestore.runTransaction<void>((transaction) async {
-      final snapshot = await transaction.get(reference);
-
-      if (snapshot.exists) return;
-
-      transaction.set(reference, <String, dynamic>{
-        ...LiveDuelPlayerProgress.initial(user.uid).toJson(),
-        'updatedAt': FieldValue.serverTimestamp(),
-        'finishedAt': null,
-      });
-    });
+    _requireUser();
+    _matchReference(matchId);
+    // İlk ilerleme belgesini ilk doğrulanmış cevapta sunucu oluşturur.
   }
 
   static Future<LiveDuelPlayerProgress> submitAnswer({
@@ -212,74 +201,23 @@ class LiveDuelProgressService {
     required bool correct,
   }) async {
     final user = _requireUser();
-    final matchReference = _matchReference(matchId);
+    _matchReference(matchId);
     final progressReference = _progressReference(
       matchId: matchId,
       uid: user.uid,
     );
-
-    return _firestore.runTransaction<LiveDuelPlayerProgress>((
-      transaction,
-    ) async {
-      final matchSnapshot = await transaction.get(matchReference);
-
-      if (!matchSnapshot.exists) {
-        throw const LiveDuelProgressException('Canlı düello maçı bulunamadı.');
-      }
-
-      final matchData = matchSnapshot.data() ?? <String, dynamic>{};
-
-      final rawPlayerUids = matchData['playerUids'];
-      final playerUids =
-          rawPlayerUids is List
-              ? rawPlayerUids.map((item) => item.toString()).toList()
-              : const <String>[];
-
-      if (!playerUids.contains(user.uid)) {
-        throw const LiveDuelProgressException('Bu maçın oyuncusu değilsin.');
-      }
-
-      final questionCount = (matchData['questionCount'] as num?)?.toInt() ?? 0;
-
-      final questionIds = LiveDuelQuestionSetService.questionIdsFromMatchData(
-        matchData,
+    await LiveDuelServerGateway.submitAnswer(
+      matchId: matchId,
+      questionId: questionId,
+      selectedIndex: selectedOptionIndex,
+    );
+    final progressSnapshot = await progressReference.get();
+    if (!progressSnapshot.exists) {
+      throw const LiveDuelProgressException(
+        'Doğrulanmış cevap ilerlemesi bulunamadı.',
       );
-
-      final progressSnapshot = await transaction.get(progressReference);
-
-      final current =
-          progressSnapshot.exists
-              ? LiveDuelPlayerProgress.fromSnapshot(progressSnapshot)
-              : LiveDuelPlayerProgress.initial(user.uid);
-
-      if (current.answeredCount >= questionIds.length) {
-        throw const LiveDuelProgressException('Tüm sorular zaten cevaplandı.');
-      }
-
-      final expectedQuestionId = questionIds[current.answeredCount];
-
-      if (questionId != expectedQuestionId) {
-        throw const LiveDuelProgressException(
-          'Sorular doğru sırada cevaplanmalı.',
-        );
-      }
-
-      final next = LiveDuelProgressCalculator.applyAnswer(
-        current: current,
-        questionId: questionId,
-        selectedOptionIndex: selectedOptionIndex,
-        correct: correct,
-        questionCount: questionCount,
-      );
-
-      transaction.set(progressReference, <String, dynamic>{
-        ...next.toJson(),
-        'updatedAt': FieldValue.serverTimestamp(),
-        'finishedAt': next.finished ? FieldValue.serverTimestamp() : null,
-      });
-
-      return next;
-    });
+    }
+    return LiveDuelPlayerProgress.fromSnapshot(progressSnapshot);
   }
 
   static Stream<List<LiveDuelPlayerProgress>> watchMatchProgress(

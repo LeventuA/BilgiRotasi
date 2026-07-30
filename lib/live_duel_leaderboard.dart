@@ -119,31 +119,6 @@ class LiveDuelLeaderboardService {
   static CollectionReference<Map<String, dynamic>> get _leaderboard =>
       _firestore.collection('live_duel_leaderboard');
 
-  static Future<void> publish(LiveDuelProfile profile) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
-
-    try {
-      final username = await PlayerUsernameService.requireUsername();
-
-      await _leaderboard.doc(user.uid).set(<String, dynamic>{
-        'uid': user.uid,
-        'displayName': username,
-        'rating': profile.rating,
-        'matchesPlayed': profile.matchesPlayed,
-        'wins': profile.wins,
-        'losses': profile.losses,
-        'draws': profile.draws,
-        'bestWinStreak': profile.bestWinStreak,
-        'highestRating': profile.highestRating,
-        'updatedAt': FieldValue.serverTimestamp(),
-        'appVersion': AppBuildInfo.version,
-      }, SetOptions(merge: false));
-    } catch (_) {
-      // Sıralama yayını kişisel BR profilini engellememeli.
-    }
-  }
-
   static Future<LiveDuelLeaderboardSnapshot> load() async {
     final profile = await LiveDuelProfileService.load();
     final user = FirebaseAuth.instance.currentUser;
@@ -155,8 +130,6 @@ class LiveDuelLeaderboardService {
         errorMessage: 'Lig sıralaması için Google hesabıyla giriş yapmalısın.',
       );
     }
-
-    await publish(profile);
 
     try {
       final results = await Future.wait<Object>([

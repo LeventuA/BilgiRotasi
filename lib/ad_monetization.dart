@@ -647,7 +647,9 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
   }
 
   Future<void> _refresh() async {
-    final available = await _limiter.canClaim(widget.gameId);
+    final available =
+        !FirebaseRuntimePolicy.productionEnabled &&
+        await _limiter.canClaim(widget.gameId);
     if (!mounted) return;
     setState(() {
       _available = available;
@@ -656,7 +658,9 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
   }
 
   Future<void> _watch() async {
-    if (_busy || !_available) return;
+    if (_busy || !_available || FirebaseRuntimePolicy.productionEnabled) {
+      return;
+    }
     setState(() => _busy = true);
 
     XpGainResult? gain;
@@ -715,6 +719,8 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
           Text(
             _available
                 ? 'İsteğe bağlı reklamı tamamlayarak +10 XP kazan.'
+                : FirebaseRuntimePolicy.productionEnabled
+                ? 'Sunucu doğrulaması tamamlanana kadar +10 XP ödülü kapalı.'
                 : 'Bu oyun için ödül alındı veya günlük 3 reklam limiti doldu.',
             textAlign: TextAlign.center,
             style: TextStyle(color: secondary),

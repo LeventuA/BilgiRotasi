@@ -42,7 +42,7 @@ test.beforeEach(async () => {
   await environment.clearFirestore();
 });
 
-test('reports are create-only and invisible to players', async () => {
+test('reports are server-only and invisible to players', async () => {
   const db = environment.authenticatedContext('reporter').firestore();
   const report = doc(
     db,
@@ -60,9 +60,77 @@ test('reports are create-only and invisible to players', async () => {
     appVersion: '1.68.6',
   };
 
-  await assertSucceeds(setDoc(report, payload));
+  await assertFails(setDoc(report, payload));
+  await environment.withSecurityRulesDisabled(async (context) => {
+    await setDoc(doc(context.firestore(), report.path), payload);
+  });
   await assertFails(getDoc(report));
   await assertFails(updateDoc(report, { note: 'ikinci rapor' }));
+});
+
+test('BR, leaderboard, queue and match writes are server-only', async () => {
+  const db = environment.authenticatedContext('player').firestore();
+  await environment.withSecurityRulesDisabled(async (context) => {
+    await setDoc(doc(context.firestore(), 'users/player'), {
+      username: 'oyuncu_23',
+      liveDuelProfile: { rating: 1000, wins: 0 },
+    });
+  });
+
+  await assertFails(
+    updateDoc(doc(db, 'users/player'), {
+      liveDuelProfile: { rating: 9999, wins: 100 },
+    }),
+  );
+  await assertFails(
+    setDoc(doc(db, 'live_duel_leaderboard/player'), {
+      rating: 9999,
+    }),
+  );
+  await assertFails(
+    setDoc(doc(db, 'live_duel_queue/player'), {
+      ownerUid: 'player',
+      status: 'waiting',
+      questionCount: 10,
+    }),
+  );
+  await assertFails(
+    setDoc(doc(db, 'live_duel_matches/fake'), {
+      playerUids: ['player', 'target'],
+    }),
+  );
+});
+
+test('cloud snapshot revision must advance exactly once', async () => {
+  await environment.withSecurityRulesDisabled(async (context) => {
+    await setDoc(doc(context.firestore(), 'users/player'), {
+      snapshotJson: '{"schema":2,"values":{}}',
+      snapshotValueCount: 0,
+      revision: 1,
+      deviceInstallationId: 'device-a',
+      updatedAt: serverTimestamp(),
+    });
+  });
+  const db = environment.authenticatedContext('player').firestore();
+  const reference = doc(db, 'users/player');
+  await assertSucceeds(
+    updateDoc(reference, {
+      snapshotJson: '{"schema":2,"values":{"a":{"type":"int","value":1}}}',
+      snapshotValueCount: 1,
+      revision: 2,
+      deviceInstallationId: 'device-b',
+      updatedAt: serverTimestamp(),
+    }),
+  );
+  await assertFails(
+    updateDoc(reference, {
+      snapshotJson: '{"schema":2,"values":{}}',
+      snapshotValueCount: 0,
+      revision: 2,
+      deviceInstallationId: 'stale-device',
+      updatedAt: serverTimestamp(),
+    }),
+  );
 });
 
 test('only owner lists blocks; target may check the exact reverse block', async () => {
@@ -104,6 +172,13 @@ test('username correction metadata cannot be forged alone', async () => {
     updateDoc(doc(db, 'users/player'), {
       usernameCorrectionUsed: false,
       usernamePolicyVersion: 1,
+    }),
+  );
+  await assertFails(
+    setDoc(doc(db, 'usernames/yeni_oyuncu'), {
+      uid: 'player',
+      username: 'yeni_oyuncu',
+      createdAt: serverTimestamp(),
     }),
   );
 });

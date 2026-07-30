@@ -33,7 +33,7 @@ void main() {
       final compact = rules.replaceAll(RegExp(r'\s+'), '');
 
       expect(rules, contains('match /player_reports/{reportId}'));
-      expect(compact, contains('allowread,update,delete:iffalse'));
+      expect(compact, contains('allowread,write:iffalse'));
       expect(
         rules,
         contains('match /player_blocks/{ownerUid}/blocked/{targetUid}'),
@@ -49,7 +49,11 @@ void main() {
           File('lib/live_duel_matchmaking.dart').readAsStringSync();
 
       expect(leaderboard, contains('PlayerSafetyDialogs.showActions'));
-      expect(matchmaking, contains('isBlockedEitherDirection'));
+      expect(matchmaking, contains('LiveDuelServerGateway.findMatch'));
+      expect(
+        File('functions/live_duel.js').readAsStringSync(),
+        contains('blocked(uid, candidate.id)'),
+      );
       expect(
         File('lib/account_cloud.dart').readAsStringSync(),
         contains('BlockedPlayersScreen'),

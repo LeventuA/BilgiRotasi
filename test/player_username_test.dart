@@ -87,9 +87,15 @@ void main() {
           File('lib/live_duel_leaderboard.dart').readAsStringSync();
       final matchmaking =
           File('lib/live_duel_matchmaking.dart').readAsStringSync();
+      final server = File('functions/live_duel.js').readAsStringSync();
 
-      expect(leaderboard, contains('PlayerUsernameService.requireUsername()'));
-      expect(matchmaking, contains('PlayerUsernameService.requireUsername()'));
+      expect(leaderboard, isNot(contains("collection('users')")));
+      expect(matchmaking, contains('LiveDuelServerGateway.joinQueue'));
+      expect(server, contains('identity.username'));
+      expect(
+        File('functions/index.js').readAsStringSync(),
+        contains('syncUsernameToLeaderboard'),
+      );
       expect(matchmaking, isNot(contains('user.displayName')));
     });
 
@@ -106,17 +112,15 @@ void main() {
 
       expect(rules, contains('match /usernames/{username}'));
       expect(compactRules, contains('allowlist:iffalse'));
-      expect(compactRules, contains("duration.value(30,'d')"));
-      expect(compactRules, contains("duration.value(24,'h')"));
+      expect(compactRules, contains('allowcreate,update,delete:iffalse'));
+      expect(compactRules, contains('&&!changesUsername'));
       expect(rules, contains('usernameCorrectionUsed'));
       expect(rules, contains('usernamePolicyVersion'));
-      expect(
-        compactRules,
-        contains(
-          'request.resource.data.displayName=='
-          'userUsername(userId)',
-        ),
-      );
+      final server = File('functions/index.js').readAsStringSync();
+      expect(server, contains("'username-attempt'"));
+      expect(server, contains("'username-change'"));
+      expect(server, contains('30 * 24 * 60 * 60 * 1000'));
+      expect(server, contains('24 * 60 * 60 * 1000'));
     });
   });
 }

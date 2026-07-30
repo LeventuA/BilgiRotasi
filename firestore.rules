@@ -64,6 +64,33 @@ service cloud.firestore {
 
     function validUserCreate(userId) {
       return !request.resource.data.keys().hasAny([
+               'publicPlayerId',
+               'liveDuelProfile',
+               'liveDuelProfileUpdatedAt',
+               'br',
+               'wins',
+               'losses',
+               'draws',
+               'matchesPlayed',
+               'bestWinStreak',
+               'highestRating'
+             ])
+             && (
+               !request.resource.data.keys().hasAny(['snapshotJson'])
+               || (
+                 request.resource.data.snapshotJson is string
+                 && request.resource.data.snapshotJson.size() <= 700000
+                 && request.resource.data.snapshotValueCount is int
+                 && request.resource.data.snapshotValueCount >= 0
+                 && request.resource.data.snapshotValueCount <= 500
+                 && request.resource.data.revision == 1
+                 && request.resource.data.deviceInstallationId is string
+                 && request.resource.data.deviceInstallationId.size() <= 120
+                 && request.resource.data.updatedAt == request.time
+               )
+             )
+             && (
+             !request.resource.data.keys().hasAny([
                'username',
                'usernameChangedAt',
                'usernameFirstSetAt',
@@ -75,6 +102,7 @@ service cloud.firestore {
                && request.resource.data.usernameFirstSetAt == request.time
                && request.resource.data.usernameCorrectionUsed == false
                && request.resource.data.usernamePolicyVersion == 2
+             )
              );
     }
 
@@ -89,41 +117,44 @@ service cloud.firestore {
         'usernameCorrectionUsed',
         'usernamePolicyVersion'
       ]);
-      let initialUsername =
-        !resource.data.keys().hasAll(['username'])
-        && request.resource.data.usernameFirstSetAt == request.time
-        && request.resource.data.usernameCorrectionUsed == false;
-      let migrationCorrection =
-        resource.data.keys().hasAll(['username'])
-        && resource.data.get('usernamePolicyVersion', 1) < 2
-        && resource.data.get('usernameCorrectionUsed', false) == false
-        && request.resource.data.usernameCorrectionUsed == true;
-      let firstDayCorrection =
-        resource.data.get('usernamePolicyVersion', 1) == 2
-        && resource.data.usernameCorrectionUsed == false
-        && resource.data.usernameFirstSetAt is timestamp
-        && request.time <=
-           resource.data.usernameFirstSetAt + duration.value(24, 'h')
-        && request.resource.data.usernameFirstSetAt ==
-           resource.data.usernameFirstSetAt
-        && request.resource.data.usernameCorrectionUsed == true;
-      let normalChange =
-        resource.data.usernameChangedAt is timestamp
-        && request.time >=
-           resource.data.usernameChangedAt + duration.value(30, 'd')
-        && request.resource.data.get('usernameCorrectionUsed', true) == true;
-
-      return !changesUsername
-             || (
-               validUsernameBinding(userId)
-               && request.resource.data.usernamePolicyVersion == 2
-               && (
-                 initialUsername
-                 || migrationCorrection
-                 || firstDayCorrection
-                 || normalChange
-               )
-             );
+      let changesServerManaged = affected.hasAny([
+        'publicPlayerId',
+        'liveDuelProfile',
+        'liveDuelProfileUpdatedAt',
+        'br',
+        'wins',
+        'losses',
+        'draws',
+        'matchesPlayed',
+        'bestWinStreak',
+        'highestRating'
+      ]);
+      let changesCloudSnapshot = affected.hasAny([
+        'schema',
+        'snapshotJson',
+        'snapshotValueCount',
+        'revision',
+        'deviceInstallationId',
+        'clientUpdatedAt',
+        'updatedAt'
+      ]);
+      let validCloudSnapshot =
+        !changesCloudSnapshot
+        || (
+          request.resource.data.snapshotJson is string
+          && request.resource.data.snapshotJson.size() <= 700000
+          && request.resource.data.snapshotValueCount is int
+          && request.resource.data.snapshotValueCount >= 0
+          && request.resource.data.snapshotValueCount <= 500
+          && request.resource.data.revision ==
+             resource.data.get('revision', 0) + 1
+          && request.resource.data.deviceInstallationId is string
+          && request.resource.data.deviceInstallationId.size() <= 120
+          && request.resource.data.updatedAt == request.time
+        );
+      return !changesServerManaged
+             && validCloudSnapshot
+             && !changesUsername;
     }
 
     function userDuelProfile(userId) {
@@ -495,93 +526,20 @@ service cloud.firestore {
                     && request.auth.uid == userId
                     && validUserUpdate(userId);
 
-      allow delete: if signedIn()
-                    && request.auth.uid == userId;
+      // Kimlik kaydı yalnız idempotent Admin SDK silme işlemiyle kaldırılır.
+      allow delete: if false;
     }
 
     match /usernames/{username} {
       allow get: if signedIn();
       allow list: if false;
 
-      allow create: if signedIn()
-                    && validUsername(username)
-                    && request.resource.data.keys().hasOnly([
-                      'uid',
-                      'username',
-                      'createdAt'
-                    ])
-                    && request.resource.data.uid ==
-                       request.auth.uid
-                    && request.resource.data.username ==
-                       username
-                    && request.resource.data.createdAt ==
-                       request.time
-                    && getAfter(
-                      /databases/$(database)/documents/users/$(request.auth.uid)
-                    ).data.username == username
-                    && getAfter(
-                      /databases/$(database)/documents/users/$(request.auth.uid)
-                    ).data.usernameChangedAt == request.time;
-
-      allow update: if false;
-
-      allow delete: if signedIn()
-                    && resource.data.uid ==
-                       request.auth.uid
-                    && (
-                      !existsAfter(
-                        /databases/$(database)/documents/users/$(request.auth.uid)
-                      )
-                      || getAfter(
-                        /databases/$(database)/documents/users/$(request.auth.uid)
-                      ).data.username != username
-                    );
+      // Rezervasyon değişiklikleri hız sınırlı claimUsername/Admin SDK yolundadır.
+      allow create, update, delete: if false;
     }
 
     match /player_reports/{reportId} {
-      allow create: if signedIn()
-                    && request.resource.data.keys().hasOnly([
-                      'reporterUid',
-                      'targetUid',
-                      'targetUsername',
-                      'reason',
-                      'note',
-                      'source',
-                      'status',
-                      'createdAt',
-                      'appVersion'
-                    ])
-                    && request.resource.data.reporterUid == request.auth.uid
-                    && request.resource.data.targetUid is string
-                    && request.resource.data.targetUid.size() > 0
-                    && request.resource.data.targetUid != request.auth.uid
-                    && validUsername(
-                      request.resource.data.targetUsername
-                    )
-                    && request.resource.data.reason in [
-                      'inappropriateUsername',
-                      'impersonation',
-                      'harassment',
-                      'cheating',
-                      'other'
-                    ]
-                    && request.resource.data.note is string
-                    && request.resource.data.note.size() <= 300
-                    && request.resource.data.source in [
-                      'leaderboard',
-                      'live_duel_result'
-                    ]
-                    && request.resource.data.status == 'pending'
-                    && request.resource.data.createdAt == request.time
-                    && request.resource.data.appVersion is string
-                    && reportId ==
-                       request.auth.uid + '_' +
-                       request.resource.data.targetUid + '_' +
-                       request.resource.data.reason;
-
-      // Raporlar yalnızca güvenilir sunucu/moderasyon araçlarıyla okunur
-      // ve güncellenir. İstemci ikinci kez aynı belgeyi yazamaz.
-      allow read, update, delete: if false;
+      allow read, write: if false;
     }
 
     match /player_blocks/{ownerUid}/blocked/{targetUid} {
@@ -594,134 +552,68 @@ service cloud.firestore {
       allow list: if signedIn()
                   && request.auth.uid == ownerUid;
 
-      allow create: if signedIn()
-                    && request.auth.uid == ownerUid
-                    && ownerUid != targetUid
-                    && request.resource.data.keys().hasOnly([
-                      'ownerUid',
-                      'targetUid',
-                      'targetUsername',
-                      'createdAt',
-                      'appVersion'
-                    ])
-                    && request.resource.data.ownerUid == ownerUid
-                    && request.resource.data.targetUid == targetUid
-                    && validUsername(
-                      request.resource.data.targetUsername
-                    )
-                    && request.resource.data.createdAt == request.time
-                    && request.resource.data.appVersion is string;
-
-      allow update: if false;
-
-      allow delete: if signedIn()
-                    && request.auth.uid == ownerUid;
+      allow write: if false;
     }
 
-    // Ayrı bir path segmenti, bu kuralın /users/{userId} kök belgesini
-    // yakalayıp yukarıdaki kullanıcı adı doğrulamasını atlamasını önler.
-    match /users/{userId}/{subcollection}/{document=**} {
-      allow read, write: if signedIn()
-                         && request.auth.uid == userId;
-    }
-
-    match /live_duel_leaderboard/{userId} {
-      allow read: if signedIn();
-
-      allow create, update: if validLeaderboardWrite(userId);
-
-      allow delete: if signedIn()
-                    && request.auth.uid == userId;
-    }
-
-    match /live_duel_queue/{userId} {
-      allow read: if signedIn();
-
+    match /users/{userId}/agreements/{agreementId} {
+      allow read: if signedIn() && request.auth.uid == userId;
       allow create: if signedIn()
                     && request.auth.uid == userId
                     && request.resource.data.uid == userId
-                    && request.resource.data.displayName ==
-                       userUsername(userId)
-                    && request.resource.data.status == 'waiting'
-                    && request.resource.data.questionCount
-                       in [10, 20, 30];
+                    && request.resource.data.acceptedAt == request.time
+                    && request.resource.data.textVersion is string
+                    && request.resource.data.appVersion is string;
+      allow update, delete: if false;
+    }
 
-      allow delete: if signedIn()
-                    && request.auth.uid == userId;
+    match /users/{userId}/live_duel_results/{resultId} {
+      allow read: if signedIn() && request.auth.uid == userId;
+      allow write: if false;
+    }
 
-      allow update: if signedIn()
-                    && (
-                      request.auth.uid == userId
-                      ||
-                      (
-                        resource.data.status == 'waiting'
-                        && request.resource.data.status == 'matched'
-                        && request.resource.data.uid ==
-                           resource.data.uid
-                        && request.resource.data.rating ==
-                           resource.data.rating
-                        && request.resource.data.ratingBucket ==
-                           resource.data.ratingBucket
-                        && request.resource.data.questionCount ==
-                           resource.data.questionCount
-                        && request.resource.data.matchId is string
-                        && request.resource.data.claimedBy ==
-                           request.auth.uid
-                      )
-                    );
+    match /users/{userId}/{subcollection}/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /live_duel_leaderboard/{publicPlayerId} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    match /live_duel_queue/{userId} {
+      allow get: if signedIn() && request.auth.uid == userId;
+      allow list, write: if false;
     }
 
     match /live_duel_question_keys/{questionId} {
       allow read, write: if false;
     }
 
-    match /live_duel_matches/{matchId} {
-      allow create: if signedIn()
-                    && request.auth.uid
-                       in request.resource.data.playerUids
-                    && request.resource.data.playerUids.size() == 2
-                    && request.resource.data.players.size() == 2
-                    && request.resource.data.players[0].uid ==
-                       request.resource.data.playerUids[0]
-                    && request.resource.data.players[1].uid ==
-                       request.resource.data.playerUids[1]
-                    && request.resource.data.players[0].displayName ==
-                       userUsername(
-                         request.resource.data.playerUids[0]
-                       )
-                    && request.resource.data.players[1].displayName ==
-                       userUsername(
-                         request.resource.data.playerUids[1]
-                       )
-                    && request.resource.data.questionCount
-                       in [10, 20, 30];
+    match /live_duel_answer_keys/{questionId} {
+      allow read, write: if false;
+    }
 
+    match /live_duel_config/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /public_player_directory/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /live_duel_matches/{matchId} {
       allow read: if signedIn()
                   && request.auth.uid
                      in resource.data.playerUids;
 
-      allow update: if signedIn()
-                    && request.auth.uid
-                       in resource.data.playerUids
-                    && (
-                      validDuelCompletion(matchId)
-                      || validDuelForfeit(matchId)
-                    );
-
-      allow delete: if false;
+      allow write: if false;
 
       match /progress/{userId} {
         allow read: if signedIn()
                     && request.auth.uid
                        in duelMatch(matchId).data.playerUids;
 
-        allow create: if signedIn()
-                      && validInitialDuelProgress(matchId, userId);
-
-        allow update: if signedIn()
-                      && validDuelProgressUpdate(matchId, userId);
-
-        allow delete: if false;
+        allow write: if false;
       }
 
       match /presence/{userId} {

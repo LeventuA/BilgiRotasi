@@ -39,7 +39,12 @@ void main() {
         contains('ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT: production'),
       );
       expect(workflow, contains('--dart-define=ADMOB_ENVIRONMENT=production'));
+      expect(
+        workflow,
+        contains('--dart-define=FIREBASE_ENVIRONMENT=production'),
+      );
       expect(workflow, contains('test/admob_id_profile_test.dart'));
+      expect(workflow, contains('test/firebase_production_profile_test.dart'));
     });
 
     test('production APK ve AAB üretip ayrı artifact yükler', () {

@@ -2,6 +2,46 @@ part of 'main.dart';
 
 enum AccountMode { undecided, guest, google }
 
+class AccountCloudConflict {
+  const AccountCloudConflict({
+    required this.localSnapshot,
+    required this.remoteSnapshot,
+    required this.localRevision,
+    required this.remoteRevision,
+    required this.localValueCount,
+    required this.remoteValueCount,
+    required this.localCapturedAt,
+    this.remoteUpdatedAt,
+  });
+
+  final String localSnapshot;
+  final String remoteSnapshot;
+  final int localRevision;
+  final int remoteRevision;
+  final int localValueCount;
+  final int remoteValueCount;
+  final DateTime localCapturedAt;
+  final DateTime? remoteUpdatedAt;
+}
+
+class CloudSnapshotRecord {
+  const CloudSnapshotRecord({
+    required this.snapshot,
+    required this.revision,
+    this.updatedAt,
+    this.deviceInstallationId,
+  });
+
+  final String snapshot;
+  final int revision;
+  final DateTime? updatedAt;
+  final String? deviceInstallationId;
+}
+
+class AccountCloudConflictException implements Exception {
+  const AccountCloudConflictException();
+}
+
 class AccountAccessPolicy {
   AccountAccessPolicy._();
 
@@ -18,6 +58,7 @@ class AccountSessionState {
     this.busy = false,
     this.message,
     this.lastSyncedAt,
+    this.conflict,
   });
 
   final AccountMode mode;
@@ -26,6 +67,7 @@ class AccountSessionState {
   final bool busy;
   final String? message;
   final DateTime? lastSyncedAt;
+  final AccountCloudConflict? conflict;
 
   bool get signedIn => mode == AccountMode.google && user != null;
 
@@ -65,19 +107,30 @@ class AccountSnapshotCodec {
       }
     }
 
-    return jsonEncode(<String, dynamic>{'schema': 1, 'values': encoded});
+    return jsonEncode(<String, dynamic>{'schema': 2, 'values': encoded});
   }
 
   static Map<String, Object?> decode(String raw) {
+    if (utf8.encode(raw).length > 700000) {
+      throw const FormatException('Bulut kayıt boyutu güvenli sınırı aşıyor.');
+    }
     final decoded = jsonDecode(raw);
     if (decoded is! Map) {
       throw const FormatException('Bulut kayıt biçimi geçersiz.');
     }
 
     final root = Map<String, dynamic>.from(decoded);
+    final schema = (root['schema'] as num?)?.toInt() ?? 1;
+    if (schema < 1 || schema > 2) {
+      throw const FormatException('Bulut kayıt şeması desteklenmiyor.');
+    }
     final rawValues = root['values'];
     if (rawValues is! Map) {
       throw const FormatException('Bulut kayıt değerleri bulunamadı.');
+    }
+
+    if (rawValues.length > 500) {
+      throw const FormatException('Bulut kayıt alanı güvenli sınırı aşıyor.');
     }
 
     final result = <String, Object?>{};
@@ -118,6 +171,8 @@ class AccountLocalSnapshot {
   AccountLocalSnapshot._();
 
   static const String controlPrefix = 'bilgi_rotasi_account_';
+  static const String _restoreJournalKey =
+      'bilgi_rotasi_account_restore_journal_v1';
 
   // Oyun servisleri SharedPreferencesAsync kullanıyor.
   // Bulut yedeği de aynı Android DataStore alanını okumalıdır.
@@ -173,6 +228,39 @@ class AccountLocalSnapshot {
 
   static Future<void> restore(String raw) async {
     final values = AccountSnapshotCodec.decode(raw);
+    final backup = await capture();
+    await _preferences.setString(
+      _restoreJournalKey,
+      jsonEncode(<String, String>{'backup': backup, 'target': raw}),
+    );
+
+    try {
+      await _applyDecoded(values);
+      await _preferences.remove(_restoreJournalKey);
+    } catch (_) {
+      await _applyDecoded(AccountSnapshotCodec.decode(backup));
+      await _preferences.remove(_restoreJournalKey);
+      rethrow;
+    }
+  }
+
+  static Future<void> recoverInterruptedRestore() async {
+    final journal = await _preferences.getString(_restoreJournalKey);
+    if (journal == null || journal.isEmpty) return;
+
+    try {
+      final decoded = jsonDecode(journal);
+      if (decoded is! Map || decoded['backup'] is! String) {
+        throw const FormatException('Geri yükleme günlüğü bozuk.');
+      }
+      final backup = decoded['backup'] as String;
+      await _applyDecoded(AccountSnapshotCodec.decode(backup));
+    } finally {
+      await _preferences.remove(_restoreJournalKey);
+    }
+  }
+
+  static Future<void> _applyDecoded(Map<String, Object?> values) async {
     final currentKeys = (await _preferences.getKeys())
         .where(shouldSyncKey)
         .toList(growable: false);
@@ -224,6 +312,8 @@ class AccountCloudService with WidgetsBindingObserver {
       'bilgi_rotasi_account_guest_selected_v1';
   static const String _guestSnapshotKey =
       'bilgi_rotasi_account_guest_snapshot_v1';
+  static const String _installationIdKey =
+      'bilgi_rotasi_account_installation_id_v1';
 
   static final ValueNotifier<AccountSessionState> state =
       ValueNotifier<AccountSessionState>(
@@ -269,6 +359,10 @@ class AccountCloudService with WidgetsBindingObserver {
     return _instance._deleteAccountAndCloudData();
   }
 
+  static Future<void> resolveConflict({required bool useCloud}) {
+    return _instance._resolveConflict(useCloud: useCloud);
+  }
+
   static void refreshPresentation() {
     final current = state.value;
 
@@ -279,6 +373,7 @@ class AccountCloudService with WidgetsBindingObserver {
       busy: current.busy,
       message: current.message,
       lastSyncedAt: current.lastSyncedAt,
+      conflict: current.conflict,
     );
   }
 
@@ -290,7 +385,19 @@ class AccountCloudService with WidgetsBindingObserver {
     final guestSelected = preferences.getBool(_guestSelectedKey) == true;
 
     try {
+      await AccountLocalSnapshot.recoverInterruptedRestore();
+
+      if (!FirebaseRuntimePolicy.remoteFirebaseEnabled) {
+        state.value = AccountSessionState(
+          mode: AccountMode.guest,
+          firebaseReady: false,
+          message: 'Test derlemesinde production Firebase bağlantısı kapalı.',
+        );
+        return;
+      }
+
       await Firebase.initializeApp();
+      await FirebaseRuntimePolicy.activateAppCheck();
 
       _auth = FirebaseAuth.instance;
       _firestore = FirebaseFirestore.instance;
@@ -407,16 +514,36 @@ class AccountCloudService with WidgetsBindingObserver {
         throw StateError('Google hesabı açılamadı.');
       }
 
-      final remote = await _loadRemoteSnapshot(user.uid);
+      final remoteRecord = await _loadRemoteRecord(user.uid);
+      final remote = remoteRecord?.snapshot;
       final localCount = AccountLocalSnapshot.valueCount(guestSnapshot);
       final remoteCount =
           remote == null ? 0 : AccountLocalSnapshot.valueCount(remote);
 
       if (remote == null || (remoteCount == 0 && localCount > 0)) {
         await _writeRemoteSnapshot(user, guestSnapshot);
+      } else if (localCount > 0 && remote != guestSnapshot) {
+        await _saveUserLocalSnapshot(
+          user.uid,
+          guestSnapshot,
+          dirty: true,
+          revision: 0,
+        );
+        await _publishConflict(
+          user: user,
+          localSnapshot: guestSnapshot,
+          localRevision: 0,
+          remote: remoteRecord!,
+        );
+        return;
       } else {
         await AccountLocalSnapshot.restore(remote);
-        await _saveUserLocalSnapshot(user.uid, remote, dirty: false);
+        await _saveUserLocalSnapshot(
+          user.uid,
+          remote,
+          dirty: false,
+          revision: remoteRecord!.revision,
+        );
       }
 
       await _refreshGameServices();
@@ -443,24 +570,50 @@ class AccountCloudService with WidgetsBindingObserver {
     final preferences = await SharedPreferences.getInstance();
     final localSnapshot = preferences.getString(_userSnapshotKey(user.uid));
     final dirty = preferences.getBool(_userDirtyKey(user.uid)) == true;
+    final localRevision = preferences.getInt(_userRevisionKey(user.uid)) ?? 0;
     final deviceSnapshot = await AccountLocalSnapshot.capture();
     final deviceCount = AccountLocalSnapshot.valueCount(deviceSnapshot);
 
     try {
+      final remoteRecord = await _loadRemoteRecord(user.uid);
+      if (dirty &&
+          localSnapshot != null &&
+          localSnapshot.isNotEmpty &&
+          remoteRecord != null &&
+          remoteRecord.revision != localRevision &&
+          remoteRecord.snapshot != localSnapshot) {
+        await _publishConflict(
+          user: user,
+          localSnapshot: localSnapshot,
+          localRevision: localRevision,
+          remote: remoteRecord,
+        );
+        return;
+      }
+
       if (dirty &&
           localSnapshot != null &&
           localSnapshot.isNotEmpty &&
           AccountLocalSnapshot.valueCount(localSnapshot) > 0) {
         await AccountLocalSnapshot.restore(localSnapshot);
-        await _writeRemoteSnapshot(user, localSnapshot);
+        await _writeRemoteSnapshot(
+          user,
+          localSnapshot,
+          expectedRevision: remoteRecord?.revision ?? 0,
+        );
       } else {
-        final remote = await _loadRemoteSnapshot(user.uid);
+        final remote = remoteRecord?.snapshot;
         final remoteCount =
             remote == null ? 0 : AccountLocalSnapshot.valueCount(remote);
 
         if (remote != null && remoteCount > 0) {
           await AccountLocalSnapshot.restore(remote);
-          await _saveUserLocalSnapshot(user.uid, remote, dirty: false);
+          await _saveUserLocalSnapshot(
+            user.uid,
+            remote,
+            dirty: false,
+            revision: remoteRecord!.revision,
+          );
         } else {
           final snapshot =
               deviceCount > 0
@@ -495,7 +648,7 @@ class AccountCloudService with WidgetsBindingObserver {
     }
   }
 
-  Future<String?> _loadRemoteSnapshot(String uid) async {
+  Future<CloudSnapshotRecord?> _loadRemoteRecord(String uid) async {
     final document = await _firestore!
         .collection('users')
         .doc(uid)
@@ -510,27 +663,52 @@ class AccountCloudService with WidgetsBindingObserver {
     if (raw is! String || raw.isEmpty) return null;
 
     AccountSnapshotCodec.decode(raw);
-    return raw;
+    final rawUpdatedAt = data?['updatedAt'];
+    return CloudSnapshotRecord(
+      snapshot: raw,
+      revision: max(0, (data?['revision'] as num?)?.toInt() ?? 0),
+      updatedAt: rawUpdatedAt is Timestamp ? rawUpdatedAt.toDate() : null,
+      deviceInstallationId: data?['deviceInstallationId']?.toString(),
+    );
   }
 
-  Future<void> _writeRemoteSnapshot(User user, String snapshot) async {
+  Future<int> _writeRemoteSnapshot(
+    User user,
+    String snapshot, {
+    int? expectedRevision,
+  }) async {
     if (utf8.encode(snapshot).length > 700000) {
       throw StateError('Bulut kaydı güvenli boyut sınırını aştı.');
     }
 
     final valueCount = AccountLocalSnapshot.valueCount(snapshot);
     final reference = _firestore!.collection('users').doc(user.uid);
+    final installationId = await _installationId();
 
-    await reference.set(<String, dynamic>{
-      'schema': 2,
-      'snapshotJson': snapshot,
-      'snapshotValueCount': valueCount,
-      'displayName': user.displayName ?? '',
-      'email': user.email ?? '',
-      'appVersion': AppBuildInfo.version,
-      'clientUpdatedAt': DateTime.now().toUtc().toIso8601String(),
-      'updatedAt': FieldValue.serverTimestamp(),
-    }, SetOptions(merge: true));
+    final revision = await _firestore!.runTransaction<int>((transaction) async {
+      final current = await transaction.get(reference);
+      final currentRevision = max(
+        0,
+        (current.data()?['revision'] as num?)?.toInt() ?? 0,
+      );
+      if (expectedRevision != null && currentRevision != expectedRevision) {
+        throw const AccountCloudConflictException();
+      }
+      final nextRevision = currentRevision + 1;
+      transaction.set(reference, <String, dynamic>{
+        'schema': 2,
+        'snapshotJson': snapshot,
+        'snapshotValueCount': valueCount,
+        'revision': nextRevision,
+        'deviceInstallationId': installationId,
+        'displayName': user.displayName ?? '',
+        'email': user.email ?? '',
+        'appVersion': AppBuildInfo.version,
+        'clientUpdatedAt': DateTime.now().toUtc().toIso8601String(),
+        'updatedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+      return nextRevision;
+    });
 
     final verified = await reference.get(GetOptions(source: Source.server));
     final verifiedSnapshot = verified.data()?['snapshotJson'];
@@ -539,18 +717,28 @@ class AccountCloudService with WidgetsBindingObserver {
       throw StateError('Bulut kaydı sunucuda doğrulanamadı.');
     }
 
-    await _saveUserLocalSnapshot(user.uid, snapshot, dirty: false);
+    await _saveUserLocalSnapshot(
+      user.uid,
+      snapshot,
+      dirty: false,
+      revision: revision,
+    );
+    return revision;
   }
 
   Future<void> _saveUserLocalSnapshot(
     String uid,
     String snapshot, {
     required bool dirty,
+    int? revision,
   }) async {
     final preferences = await SharedPreferences.getInstance();
 
     await preferences.setString(_userSnapshotKey(uid), snapshot);
     await preferences.setBool(_userDirtyKey(uid), dirty);
+    if (revision != null) {
+      await preferences.setInt(_userRevisionKey(uid), revision);
+    }
   }
 
   Future<void> _syncNow({required bool manual}) async {
@@ -575,10 +763,17 @@ class AccountCloudService with WidgetsBindingObserver {
     try {
       final snapshot = await AccountLocalSnapshot.capture();
       final valueCount = AccountLocalSnapshot.valueCount(snapshot);
+      final preferences = await SharedPreferences.getInstance();
+      final expectedRevision =
+          preferences.getInt(_userRevisionKey(user.uid)) ?? 0;
 
       await _saveUserLocalSnapshot(user.uid, snapshot, dirty: true);
 
-      await _writeRemoteSnapshot(user, snapshot);
+      await _writeRemoteSnapshot(
+        user,
+        snapshot,
+        expectedRevision: expectedRevision,
+      );
 
       state.value = AccountSessionState(
         mode: AccountMode.google,
@@ -587,6 +782,21 @@ class AccountCloudService with WidgetsBindingObserver {
         message: 'Buluta $valueCount kayıt yüklendi ve doğrulandı.',
         lastSyncedAt: DateTime.now(),
       );
+    } on AccountCloudConflictException {
+      final remote = await _loadRemoteRecord(user.uid);
+      final local = await AccountLocalSnapshot.capture();
+      if (remote != null) {
+        await _publishConflict(
+          user: user,
+          localSnapshot: local,
+          localRevision:
+              (await SharedPreferences.getInstance()).getInt(
+                _userRevisionKey(user.uid),
+              ) ??
+              0,
+          remote: remote,
+        );
+      }
     } catch (_) {
       state.value = AccountSessionState(
         mode: AccountMode.google,
@@ -599,6 +809,82 @@ class AccountCloudService with WidgetsBindingObserver {
       );
     } finally {
       _syncing = false;
+    }
+  }
+
+  Future<void> _publishConflict({
+    required User user,
+    required String localSnapshot,
+    required int localRevision,
+    required CloudSnapshotRecord remote,
+  }) async {
+    state.value = AccountSessionState(
+      mode: AccountMode.google,
+      firebaseReady: true,
+      user: user,
+      message: 'İki cihazda farklı kayıt bulundu. Seçim yapmalısın.',
+      lastSyncedAt: state.value.lastSyncedAt,
+      conflict: AccountCloudConflict(
+        localSnapshot: localSnapshot,
+        remoteSnapshot: remote.snapshot,
+        localRevision: localRevision,
+        remoteRevision: remote.revision,
+        localValueCount: AccountLocalSnapshot.valueCount(localSnapshot),
+        remoteValueCount: AccountLocalSnapshot.valueCount(remote.snapshot),
+        localCapturedAt: DateTime.now(),
+        remoteUpdatedAt: remote.updatedAt,
+      ),
+    );
+  }
+
+  Future<void> _resolveConflict({required bool useCloud}) async {
+    final user = _auth?.currentUser;
+    final conflict = state.value.conflict;
+    if (user == null || conflict == null) return;
+
+    state.value = AccountSessionState(
+      mode: AccountMode.google,
+      firebaseReady: true,
+      user: user,
+      busy: true,
+      conflict: conflict,
+    );
+
+    try {
+      if (useCloud) {
+        await AccountLocalSnapshot.restore(conflict.remoteSnapshot);
+        await _saveUserLocalSnapshot(
+          user.uid,
+          conflict.remoteSnapshot,
+          dirty: false,
+          revision: conflict.remoteRevision,
+        );
+      } else {
+        await AccountLocalSnapshot.restore(conflict.localSnapshot);
+        await _writeRemoteSnapshot(
+          user,
+          conflict.localSnapshot,
+          expectedRevision: conflict.remoteRevision,
+        );
+      }
+      await _refreshGameServices();
+      state.value = AccountSessionState(
+        mode: AccountMode.google,
+        firebaseReady: true,
+        user: user,
+        message:
+            useCloud ? 'Bulut kaydı seçildi.' : 'Bu telefonun kaydı seçildi.',
+        lastSyncedAt: DateTime.now(),
+      );
+    } catch (_) {
+      state.value = AccountSessionState(
+        mode: AccountMode.google,
+        firebaseReady: true,
+        user: user,
+        conflict: conflict,
+        message:
+            'Kayıt seçimi tamamlanamadı. Veriler korunuyor; tekrar deneyebilirsin.',
+      );
     }
   }
 
@@ -639,19 +925,12 @@ class AccountCloudService with WidgetsBindingObserver {
       final credential = GoogleAuthProvider.credential(idToken: idToken);
 
       await user.reauthenticateWithCredential(credential);
-
-      await _deleteLiveDuelResultClaims(user.uid);
-
-      try {
-        await _firestore!
-            .collection('live_duel_leaderboard')
-            .doc(user.uid)
-            .delete();
-      } catch (_) {
-        // Sıralama silme işlemi hesap silmeyi engellememeli.
+      final deletion = await SecureCallableService.call(
+        'requestAccountDeletion',
+      );
+      if (deletion['status'] != 'complete') {
+        throw StateError('Sunucu hesap silme işlemini tamamlamadı.');
       }
-
-      await PlayerUsernameService.deleteAccountIdentity(user.uid);
 
       final preferences = await SharedPreferences.getInstance();
 
@@ -662,8 +941,8 @@ class AccountCloudService with WidgetsBindingObserver {
 
       await AccountLocalSnapshot.clearGameData();
       await QuestionFeedbackService.clearLocalDataForAccountDeletion();
-      await user.delete();
       await _googleSignIn?.signOut();
+      PlayerUsernameService.resetSession();
       await _refreshGameServices();
 
       state.value = const AccountSessionState(
@@ -755,26 +1034,6 @@ class AccountCloudService with WidgetsBindingObserver {
     } catch (_) {}
   }
 
-  Future<void> _deleteLiveDuelResultClaims(String uid) async {
-    while (true) {
-      final snapshot =
-          await _firestore!
-              .collection('users')
-              .doc(uid)
-              .collection('live_duel_results')
-              .limit(100)
-              .get();
-
-      if (snapshot.docs.isEmpty) return;
-
-      final batch = _firestore!.batch();
-      for (final document in snapshot.docs) {
-        batch.delete(document.reference);
-      }
-      await batch.commit();
-    }
-  }
-
   String _deletionFriendlyError(Object error) {
     final text = error.toString().toLowerCase();
 
@@ -826,6 +1085,22 @@ class AccountCloudService with WidgetsBindingObserver {
     return 'bilgi_rotasi_account_user_dirty_$uid';
   }
 
+  String _userRevisionKey(String uid) {
+    return 'bilgi_rotasi_account_user_revision_$uid';
+  }
+
+  Future<String> _installationId() async {
+    final preferences = await SharedPreferences.getInstance();
+    final existing = preferences.getString(_installationIdKey);
+    if (existing != null && existing.isNotEmpty) return existing;
+    final random = Random.secure();
+    final value =
+        'device-${DateTime.now().microsecondsSinceEpoch}-'
+        '${random.nextInt(1 << 32)}';
+    await preferences.setString(_installationIdKey, value);
+    return value;
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState lifecycleState) {
     if (lifecycleState == AppLifecycleState.inactive ||
@@ -833,6 +1108,126 @@ class AccountCloudService with WidgetsBindingObserver {
         lifecycleState == AppLifecycleState.detached) {
       unawaited(_syncNow(manual: false));
     }
+  }
+}
+
+class AccountConflictSummary {
+  const AccountConflictSummary({
+    required this.valueCount,
+    required this.totalXp,
+    required this.level,
+    required this.saveCount,
+  });
+
+  final int valueCount;
+  final int totalXp;
+  final int level;
+  final int saveCount;
+
+  factory AccountConflictSummary.fromSnapshot(String snapshot) {
+    final values = AccountSnapshotCodec.decode(snapshot);
+    var totalXp = 0;
+    final rawXp = values['bilgi_rotasi_xp_progress_v1'];
+    if (rawXp is String) {
+      try {
+        final decoded = jsonDecode(rawXp);
+        if (decoded is Map) {
+          totalXp = max(0, (decoded['totalXp'] as num?)?.toInt() ?? 0);
+        }
+      } catch (_) {}
+    }
+    return AccountConflictSummary(
+      valueCount: values.length,
+      totalXp: totalXp,
+      level: XpProgressService.snapshot(totalXp).level,
+      saveCount:
+          values.keys
+              .where(
+                (key) =>
+                    key.contains('saved_game') || key.contains('game_save'),
+              )
+              .length,
+    );
+  }
+}
+
+class AccountCloudConflictScreen extends StatelessWidget {
+  const AccountCloudConflictScreen({required this.conflict, super.key});
+
+  final AccountCloudConflict conflict;
+
+  @override
+  Widget build(BuildContext context) {
+    final local = AccountConflictSummary.fromSnapshot(conflict.localSnapshot);
+    final remote = AccountConflictSummary.fromSnapshot(conflict.remoteSnapshot);
+    return Scaffold(
+      appBar: AppBar(title: const Text('Bulut kaydı çakışması')),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: <Widget>[
+          const Text(
+            'İki cihazda farklı ilerleme bulundu. Eski kayıt otomatik olarak '
+            'yenisinin üzerine yazılmadı. Devam etmek istediğin kaydı seç.',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 18),
+          _summaryCard(
+            title: 'Bu telefonun kaydı',
+            summary: local,
+            revision: conflict.localRevision,
+            updatedAt: conflict.localCapturedAt,
+          ),
+          const SizedBox(height: 12),
+          _summaryCard(
+            title: 'Bulut kaydı',
+            summary: remote,
+            revision: conflict.remoteRevision,
+            updatedAt: conflict.remoteUpdatedAt,
+          ),
+          const SizedBox(height: 18),
+          FilledButton(
+            onPressed:
+                () => AccountCloudService.resolveConflict(useCloud: false),
+            child: const Text('Bu telefonun kaydını kullan'),
+          ),
+          const SizedBox(height: 10),
+          OutlinedButton(
+            onPressed:
+                () => AccountCloudService.resolveConflict(useCloud: true),
+            child: const Text('Bulut kaydını kullan'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _summaryCard({
+    required String title,
+    required AccountConflictSummary summary,
+    required int revision,
+    DateTime? updatedAt,
+  }) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '${summary.totalXp} XP • Seviye ${summary.level}\n'
+              '${summary.saveCount} kayıt • ${summary.valueCount} veri alanı\n'
+              'Revision $revision'
+              '${updatedAt == null ? '' : '\nSon oynama/eşitleme: ${updatedAt.toLocal()}'}',
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -848,6 +1243,10 @@ class AccountGate extends StatelessWidget {
       builder: (context, session, _) {
         if (session.mode == AccountMode.undecided) {
           return const AccountWelcomeScreen();
+        }
+
+        if (session.conflict != null) {
+          return AccountCloudConflictScreen(conflict: session.conflict!);
         }
 
         if (session.signedIn) {
