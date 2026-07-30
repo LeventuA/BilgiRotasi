@@ -345,6 +345,18 @@ class QuestionFeedbackService {
   }
 
   static Future<bool> _send(QuestionFeedbackPayload payload) async {
+    if (FirebaseRuntimePolicy.remoteFirebaseEnabled) {
+      try {
+        final result = await SecureCallableService.call(
+          'submitQuestionFeedback',
+          <String, dynamic>{'payload': payload.toJson()},
+        );
+        return result['ok'] == true;
+      } catch (_) {
+        return false;
+      }
+    }
+
     if (_questionFeedbackEndpoint.isEmpty ||
         !_questionFeedbackEndpoint.startsWith('https://')) {
       return false;

@@ -55,7 +55,15 @@ jobs:
         run: >-
           flutter test
           --dart-define=ADMOB_ENVIRONMENT=production
+          --dart-define=FIREBASE_ENVIRONMENT=production
           test/admob_id_profile_test.dart
+
+      - name: Dart production Firebase profilini doğrula
+        run: >-
+          flutter test
+          --dart-define=FIREBASE_ENVIRONMENT=production
+          --dart-define=EXPECT_FIREBASE_PRODUCTION=true
+          test/firebase_production_profile_test.dart
 
       - name: Kalıcı Android imzasını hazırla
         shell: bash
@@ -93,11 +101,13 @@ jobs:
         run: >-
           flutter build apk --release
           --dart-define=ADMOB_ENVIRONMENT=production
+          --dart-define=FIREBASE_ENVIRONMENT=production
 
       - name: Google Play production AAB üret
         run: >-
           flutter build appbundle --release
           --dart-define=ADMOB_ENVIRONMENT=production
+          --dart-define=FIREBASE_ENVIRONMENT=production
 
       - name: Bundletool kur
         shell: bash

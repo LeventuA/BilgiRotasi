@@ -441,113 +441,40 @@ class PlayerUsernameService {
       await _ensureNoActiveDuel(user.uid);
     }
 
-    final userReference = _userReference(user.uid);
-    final targetReference = _claims.doc(username);
-    final now = DateTime.now().toUtc();
-
-    await FirebaseFirestore.instance.runTransaction<void>((transaction) async {
-      final userSnapshot = await transaction.get(userReference);
-      final targetSnapshot = await transaction.get(targetReference);
-      final userData = userSnapshot.data() ?? <String, dynamic>{};
-
-      final oldUsername = PlayerUsernamePolicy.normalize(
-        userData['username']?.toString() ?? '',
+    late final Map<String, dynamic> result;
+    try {
+      result = await PlayerUsernameServerGateway.claim(username);
+    } on FirebaseFunctionsException catch (error) {
+      throw PlayerUsernameException(
+        error.message ?? 'Kullanıcı adı sunucuda doğrulanamadı.',
       );
-      final rawChangedAt = userData['usernameChangedAt'];
-      final remoteChangedAt =
-          rawChangedAt is Timestamp ? rawChangedAt.toDate() : null;
-      final rawFirstSetAt = userData['usernameFirstSetAt'];
-      final remoteFirstSetAt =
-          rawFirstSetAt is Timestamp ? rawFirstSetAt.toDate() : null;
-      final remoteCorrectionUsed = userData['usernameCorrectionUsed'] == true;
-      final remotePolicyVersion =
-          (userData['usernamePolicyVersion'] as num?)?.toInt() ?? 1;
-
-      DocumentSnapshot<Map<String, dynamic>>? oldClaimSnapshot;
-      DocumentReference<Map<String, dynamic>>? oldClaimReference;
-
-      if (oldUsername.isNotEmpty && oldUsername != username) {
-        oldClaimReference = _claims.doc(oldUsername);
-        oldClaimSnapshot = await transaction.get(oldClaimReference);
-      }
-
-      final ownerUid = targetSnapshot.data()?['uid']?.toString();
-
-      if (targetSnapshot.exists && ownerUid != user.uid) {
-        throw const PlayerUsernameException(
-          'Bu kullanıcı adı başkası tarafından alınmış.',
-        );
-      }
-
-      final remaining = PlayerUsernamePolicy.remainingCooldown(
-        changedAt: remoteChangedAt,
-        now: now,
-      );
-      final isInitial = oldUsername.isEmpty;
-      final migrationCorrection =
-          !isInitial &&
-          !remoteCorrectionUsed &&
-          remotePolicyVersion < PlayerUsernamePolicy.currentPolicyVersion;
-      final newAccountCorrection =
-          !isInitial &&
-          !remoteCorrectionUsed &&
-          remoteFirstSetAt != null &&
-          now.isBefore(
-            remoteFirstSetAt.add(PlayerUsernamePolicy.firstCorrectionWindow),
-          );
-      final hasFreeCorrection = migrationCorrection || newAccountCorrection;
-
-      if (oldUsername.isNotEmpty &&
-          oldUsername != username &&
-          !hasFreeCorrection &&
-          remaining > Duration.zero) {
-        throw PlayerUsernameException(
-          'Kullanıcı adını '
-          '${PlayerUsernamePolicy.cooldownLabel(remaining).toLowerCase()}.',
-        );
-      }
-
-      if (!targetSnapshot.exists) {
-        transaction.set(targetReference, <String, dynamic>{
-          'uid': user.uid,
-          'username': username,
-          'createdAt': FieldValue.serverTimestamp(),
-        });
-      }
-
-      transaction.set(userReference, <String, dynamic>{
-        'username': username,
-        'usernameChangedAt': FieldValue.serverTimestamp(),
-        if (isInitial) 'usernameFirstSetAt': FieldValue.serverTimestamp(),
-        'usernameCorrectionUsed': isInitial ? false : true,
-        'usernamePolicyVersion': PlayerUsernamePolicy.currentPolicyVersion,
-      }, SetOptions(merge: true));
-
-      if (oldClaimReference != null &&
-          oldClaimSnapshot?.data()?['uid']?.toString() == user.uid) {
-        transaction.delete(oldClaimReference);
-      }
-    });
+    }
+    final changedAt = DateTime.fromMillisecondsSinceEpoch(
+      (result['changedAtMillis'] as num?)?.toInt() ??
+          DateTime.now().millisecondsSinceEpoch,
+      isUtc: true,
+    );
+    final firstSetAt = DateTime.fromMillisecondsSinceEpoch(
+      (result['firstSetAtMillis'] as num?)?.toInt() ??
+          current?.firstSetAt?.millisecondsSinceEpoch ??
+          changedAt.millisecondsSinceEpoch,
+      isUtc: true,
+    );
 
     final profile = PlayerUsernameProfile(
       uid: user.uid,
       username: username,
-      changedAt: now,
-      firstSetAt: current?.firstSetAt ?? now,
-      correctionUsed: current == null ? false : true,
-      policyVersion: PlayerUsernamePolicy.currentPolicyVersion,
+      changedAt: changedAt,
+      firstSetAt: firstSetAt,
+      correctionUsed: result['correctionUsed'] == true,
+      policyVersion:
+          (result['policyVersion'] as num?)?.toInt() ??
+          PlayerUsernamePolicy.currentPolicyVersion,
     );
 
     await _writeLocal(profile);
     state.value = profile;
     AccountCloudService.refreshPresentation();
-
-    try {
-      final duelProfile = await LiveDuelProfileService.load();
-      await LiveDuelLeaderboardService.publish(duelProfile);
-    } catch (_) {
-      // Kullanıcı adı kaydı sıralama yayını yüzünden geri alınmamalı.
-    }
 
     return profile;
   }

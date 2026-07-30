@@ -4,10 +4,11 @@ const { createHash } = require('node:crypto');
 
 const usernamePattern = /^[a-z0-9][a-z0-9_]{2,15}$/;
 const reservedPattern =
-  /(admin|moderator|destek|support|zmilastudio|bilgirotasi)/;
+  /(admin|administrator|moderator|sistem|destek|support|zmilastudio|bilgirotasi|google|firebase)/;
 const exactBlockedTerms = new Set(['aq', 'pic', 'nazi', 'sex']);
 const blockedPattern =
   /(amk|orospu|siktir|sikik|yarrak|ibne|gerizekali|salak|aptal|fuck|bitch|nigger|porn)/;
+const phonePattern = /(?:\d_*){7,}/;
 
 function normalizeUsername(value) {
   return String(value ?? '')
@@ -39,10 +40,41 @@ function isValidUsername(value) {
   const key = moderationKey(normalized);
   return (
     usernamePattern.test(normalized) &&
+    !phonePattern.test(normalized) &&
     !reservedPattern.test(key) &&
     !exactBlockedTerms.has(key) &&
     !blockedPattern.test(key)
   );
+}
+
+function sanitizeModerationUsername(value) {
+  const sanitized = String(value ?? '')
+    .replace(/[\u0000-\u001f\u007f]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 32);
+  return sanitized || 'Bilinmeyen oyuncu';
+}
+
+async function resolvePlayerTarget(identifier, lookups) {
+  const playerId = String(identifier ?? '').trim();
+  if (!playerId) return null;
+
+  const uid = playerId.startsWith('p_')
+    ? await lookups.lookupPublicUid(playerId)
+    : playerId;
+  if (typeof uid !== 'string' || !uid) return null;
+
+  const user = await lookups.lookupUser(uid);
+  if (!user) return null;
+  return {
+    uid,
+    username: sanitizeModerationUsername(user.username),
+  };
+}
+
+function playerBlockPath(ownerUid, targetUid) {
+  return `player_blocks/${ownerUid}/blocked/${targetUid}`;
 }
 
 function deletionOperationId(uid) {
@@ -62,8 +94,10 @@ function anonymizePlayers(players, uid) {
   if (!Array.isArray(players)) return [];
   return players.map((player) => {
     if (!player || player.uid !== uid) return player;
+    const { publicPlayerId: _removedPublicPlayerId, ...anonymousPlayer } =
+      player;
     return {
-      ...player,
+      ...anonymousPlayer,
       uid: anonymousId,
       displayName: 'Silinmiş Oyuncu',
       deleted: true,
@@ -92,4 +126,7 @@ module.exports = {
   isValidUsername,
   moderationKey,
   normalizeUsername,
+  playerBlockPath,
+  resolvePlayerTarget,
+  sanitizeModerationUsername,
 };

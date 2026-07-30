@@ -301,132 +301,17 @@ class LiveDuelConnectionService {
   static Future<LiveDuelCompletedMatch?> resolveForfeit({
     required String matchId,
   }) async {
-    final user = _requireUser();
+    _requireUser();
     final matchReference = _matchReference(matchId);
-
-    return _firestore.runTransaction<LiveDuelCompletedMatch?>((
-      transaction,
-    ) async {
-      final matchSnapshot = await transaction.get(matchReference);
-
-      if (!matchSnapshot.exists) {
-        throw const LiveDuelConnectionException(
-          'Canlı düello maçı bulunamadı.',
-        );
-      }
-
-      final matchData = matchSnapshot.data() ?? <String, dynamic>{};
-
-      if (matchData['resultProcessed'] == true) {
-        return LiveDuelCompletedMatch.fromMap(
-          matchId: matchId,
-          data: matchData,
-        );
-      }
-
-      final rawPlayerUids = matchData['playerUids'];
-      final playerUids =
-          rawPlayerUids is List
-              ? rawPlayerUids
-                  .map((item) => item.toString())
-                  .toList(growable: false)
-              : const <String>[];
-
-      if (playerUids.length != 2 ||
-          playerUids.toSet().length != 2 ||
-          !playerUids.contains(user.uid)) {
-        throw const LiveDuelConnectionException(
-          'Maç oyuncu bilgileri geçersiz.',
-        );
-      }
-
-      final firstUid = playerUids[0];
-      final secondUid = playerUids[1];
-
-      final firstPresenceReference = _presenceReference(
-        matchId: matchId,
-        uid: firstUid,
-      );
-      final secondPresenceReference = _presenceReference(
-        matchId: matchId,
-        uid: secondUid,
-      );
-      final firstProgressReference = matchReference
-          .collection('progress')
-          .doc(firstUid);
-      final secondProgressReference = matchReference
-          .collection('progress')
-          .doc(secondUid);
-
-      final firstPresenceSnapshot = await transaction.get(
-        firstPresenceReference,
-      );
-      final secondPresenceSnapshot = await transaction.get(
-        secondPresenceReference,
-      );
-      final firstProgressSnapshot = await transaction.get(
-        firstProgressReference,
-      );
-      final secondProgressSnapshot = await transaction.get(
-        secondProgressReference,
-      );
-
-      if (!firstPresenceSnapshot.exists ||
-          !secondPresenceSnapshot.exists ||
-          !firstProgressSnapshot.exists ||
-          !secondProgressSnapshot.exists) {
-        return null;
-      }
-
-      final presences = <LiveDuelPresence>[
-        LiveDuelPresence.fromSnapshot(firstPresenceSnapshot),
-        LiveDuelPresence.fromSnapshot(secondPresenceSnapshot),
-      ];
-      final now = DateTime.now().toUtc();
-      final loserUid = LiveDuelConnectionPolicy.forfeitLoser(
-        playerUids: playerUids,
-        presences: presences,
-        now: now,
-      );
-
-      if (loserUid == null) return null;
-
-      final winnerUid = playerUids.firstWhere((uid) => uid != loserUid);
-      final firstProgress = LiveDuelPlayerProgress.fromSnapshot(
-        firstProgressSnapshot,
-      );
-      final secondProgress = LiveDuelPlayerProgress.fromSnapshot(
-        secondProgressSnapshot,
-      );
-      final scores = <String, int>{
-        firstUid: firstProgress.correctCount,
-        secondUid: secondProgress.correctCount,
-      };
-
-      transaction.update(matchReference, <String, dynamic>{
-        'status': 'completed',
-        'resultProcessed': true,
-        'resultVersion': 2,
-        'completionType': LiveDuelCompletionType.forfeit.name,
-        'forfeitLoserUid': loserUid,
-        'scores': scores,
-        'winnerUid': winnerUid,
-        'draw': false,
-        'processedBy': user.uid,
-        'completedAt': FieldValue.serverTimestamp(),
-        'updatedAt': FieldValue.serverTimestamp(),
-      });
-
-      return LiveDuelCompletedMatch(
-        matchId: matchId,
-        playerUids: List<String>.unmodifiable(playerUids),
-        scores: Map<String, int>.unmodifiable(scores),
-        draw: false,
-        winnerUid: winnerUid,
-        completionType: LiveDuelCompletionType.forfeit,
-        forfeitLoserUid: loserUid,
-        completedAt: now,
-      );
-    });
+    final complete = await LiveDuelServerGateway.resolveForfeit(matchId);
+    if (!complete) return null;
+    final matchSnapshot = await matchReference.get();
+    if (!matchSnapshot.exists) {
+      throw const LiveDuelConnectionException('Canlı düello maçı bulunamadı.');
+    }
+    return LiveDuelCompletedMatch.fromMap(
+      matchId: matchId,
+      data: matchSnapshot.data() ?? <String, dynamic>{},
+    );
   }
 }

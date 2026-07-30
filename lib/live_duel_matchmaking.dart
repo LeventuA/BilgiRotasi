@@ -130,159 +130,15 @@ class LiveDuelMatchmakingService {
       );
     }
 
-    final user = _requireUser();
-    final profile = await LiveDuelProfileService.load();
-    final username = await PlayerUsernameService.requireUsername();
-    final now = DateTime.now().toUtc();
-
-    await _queue.doc(user.uid).set(<String, dynamic>{
-      'uid': user.uid,
-      'displayName': username,
-      'rating': profile.rating,
-      'ratingBucket': LiveDuelMatchmakingPolicy.ratingBucket(profile.rating),
-      'questionCount': questionCount,
-      'status': LiveDuelQueueStatus.waiting.name,
-      'matchId': null,
-      'claimedBy': null,
-      'joinedAt': FieldValue.serverTimestamp(),
-      'expiresAt': Timestamp.fromDate(
-        now.add(LiveDuelMatchmakingPolicy.queueLifetime),
-      ),
-      'updatedAt': FieldValue.serverTimestamp(),
-    });
+    _requireUser();
+    await LiveDuelServerGateway.joinQueue(questionCount);
 
     await tryMatch();
   }
 
   static Future<String?> tryMatch() async {
-    final user = _requireUser();
-    final ownReference = _queue.doc(user.uid);
-    final ownSnapshot = await ownReference.get();
-
-    if (!ownSnapshot.exists) return null;
-
-    final own = LiveDuelQueueEntry.fromSnapshot(ownSnapshot);
-
-    if (!own.waiting) return own.matchId;
-
-    for (final bucket in LiveDuelMatchmakingPolicy.searchBuckets(own.rating)) {
-      final candidates =
-          await _queue
-              .where('questionCount', isEqualTo: own.questionCount)
-              .where('ratingBucket', isEqualTo: bucket)
-              .where('status', isEqualTo: LiveDuelQueueStatus.waiting.name)
-              .limit(10)
-              .get();
-
-      for (final candidateSnapshot in candidates.docs) {
-        if (candidateSnapshot.id == user.uid) continue;
-        if (await PlayerSafetyService.isBlockedEitherDirection(
-          candidateSnapshot.id,
-        )) {
-          continue;
-        }
-
-        final matchId = await _claimCandidate(
-          ownReference: ownReference,
-          candidateReference: candidateSnapshot.reference,
-          questionCount: own.questionCount,
-          opponentUid: candidateSnapshot.id,
-        );
-
-        if (matchId != null) return matchId;
-      }
-    }
-
-    return null;
-  }
-
-  static Future<String?> _claimCandidate({
-    required DocumentReference<Map<String, dynamic>> ownReference,
-    required DocumentReference<Map<String, dynamic>> candidateReference,
-    required int questionCount,
-    required String opponentUid,
-  }) async {
-    final user = _requireUser();
-    final matchReference = _matches.doc();
-
-    final seed = LiveDuelQuestionSetService.seedForMatch(
-      matchId: matchReference.id,
-      firstPlayerUid: user.uid,
-      secondPlayerUid: opponentUid,
-    );
-
-    final questionIds = await LiveDuelQuestionSetService.createQuestionIds(
-      questionCount: questionCount,
-      seed: seed,
-    );
-
-    return _firestore.runTransaction<String?>((transaction) async {
-      final ownSnapshot = await transaction.get(ownReference);
-      final candidateSnapshot = await transaction.get(candidateReference);
-
-      if (!ownSnapshot.exists || !candidateSnapshot.exists) {
-        return null;
-      }
-
-      final own = LiveDuelQueueEntry.fromSnapshot(ownSnapshot);
-      final candidate = LiveDuelQueueEntry.fromSnapshot(candidateSnapshot);
-
-      if (!own.waiting ||
-          !candidate.waiting ||
-          own.uid == candidate.uid ||
-          own.questionCount != candidate.questionCount) {
-        return null;
-      }
-
-      final now = DateTime.now();
-
-      if (candidate.expiresAt != null && candidate.expiresAt!.isBefore(now)) {
-        return null;
-      }
-
-      final playerUids = <String>[own.uid, candidate.uid];
-
-      transaction.set(matchReference, <String, dynamic>{
-        'status': 'preparing',
-        'questionCount': own.questionCount,
-        'questionIds': questionIds,
-        'questionSetVersion': LiveDuelQuestionSetService.currentVersion,
-        'playerUids': playerUids,
-        'players': <Map<String, dynamic>>[
-          <String, dynamic>{
-            'uid': own.uid,
-            'displayName': own.displayName,
-            'rating': own.rating,
-            'ready': false,
-          },
-          <String, dynamic>{
-            'uid': candidate.uid,
-            'displayName': candidate.displayName,
-            'rating': candidate.rating,
-            'ready': false,
-          },
-        ],
-        'createdBy': user.uid,
-        'createdAt': FieldValue.serverTimestamp(),
-        'updatedAt': FieldValue.serverTimestamp(),
-      });
-
-      transaction.update(ownReference, <String, dynamic>{
-        'status': LiveDuelQueueStatus.matched.name,
-        'matchId': matchReference.id,
-        'claimedBy': user.uid,
-        'updatedAt': FieldValue.serverTimestamp(),
-      });
-
-      transaction.update(candidateReference, <String, dynamic>{
-        'status': LiveDuelQueueStatus.matched.name,
-        'matchId': matchReference.id,
-        'claimedBy': user.uid,
-        'updatedAt': FieldValue.serverTimestamp(),
-      });
-
-      return matchReference.id;
-    });
+    _requireUser();
+    return LiveDuelServerGateway.findMatch();
   }
 
   static Stream<LiveDuelQueueEntry?> watchOwnQueue() {
@@ -327,20 +183,7 @@ class LiveDuelMatchmakingService {
   }
 
   static Future<void> cancelQueue() async {
-    final user = _requireUser();
-    final reference = _queue.doc(user.uid);
-    final snapshot = await reference.get();
-
-    if (!snapshot.exists) return;
-
-    final entry = LiveDuelQueueEntry.fromSnapshot(snapshot);
-
-    if (entry.matched) {
-      throw const LiveDuelMatchmakingException(
-        'Rakip bulunduğu için eşleştirme artık iptal edilemez.',
-      );
-    }
-
-    await reference.delete();
+    _requireUser();
+    await LiveDuelServerGateway.cancelQueue();
   }
 }

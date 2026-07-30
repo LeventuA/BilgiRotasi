@@ -262,154 +262,20 @@ class LiveDuelResultService {
     return _firestore.collection('live_duel_matches').doc(matchId);
   }
 
-  static void _validateFinishedProgress({
-    required LiveDuelPlayerProgress progress,
-    required int questionCount,
-  }) {
-    if (!progress.finished ||
-        progress.answeredCount != questionCount ||
-        progress.currentQuestionIndex != questionCount ||
-        progress.correctCount + progress.wrongCount != questionCount) {
-      throw const LiveDuelResultException(
-        'İki oyuncu da maçı tamamlamadan sonuç kesinleştirilemez.',
-      );
-    }
-  }
-
   static Future<LiveDuelCompletedMatch> finalizeMatch({
     required String matchId,
   }) async {
-    final user = _requireUser();
+    _requireUser();
     final matchReference = _matchReference(matchId);
-
-    return _firestore.runTransaction<LiveDuelCompletedMatch>((
-      transaction,
-    ) async {
-      final matchSnapshot = await transaction.get(matchReference);
-
-      if (!matchSnapshot.exists) {
-        throw const LiveDuelResultException('Canlı düello maçı bulunamadı.');
-      }
-
-      final matchData = matchSnapshot.data() ?? <String, dynamic>{};
-
-      if (matchData['resultProcessed'] == true) {
-        return LiveDuelCompletedMatch.fromMap(
-          matchId: matchId,
-          data: matchData,
-        );
-      }
-
-      final rawPlayerUids = matchData['playerUids'];
-      final playerUids =
-          rawPlayerUids is List
-              ? rawPlayerUids
-                  .map((item) => item.toString())
-                  .toList(growable: false)
-              : const <String>[];
-
-      if (playerUids.length != 2 ||
-          playerUids.toSet().length != 2 ||
-          !playerUids.contains(user.uid)) {
-        throw const LiveDuelResultException('Maç oyuncu bilgileri geçersiz.');
-      }
-
-      final questionCount = (matchData['questionCount'] as num?)?.toInt() ?? 0;
-
-      if (!LiveDuelMatchmakingPolicy.supportsQuestionCount(questionCount)) {
-        throw const LiveDuelResultException('Maç soru sayısı geçersiz.');
-      }
-
-      final firstUid = playerUids[0];
-      final secondUid = playerUids[1];
-      final firstReference = matchReference
-          .collection('progress')
-          .doc(firstUid);
-      final secondReference = matchReference
-          .collection('progress')
-          .doc(secondUid);
-
-      final firstSnapshot = await transaction.get(firstReference);
-      final secondSnapshot = await transaction.get(secondReference);
-
-      if (!firstSnapshot.exists || !secondSnapshot.exists) {
-        throw const LiveDuelResultException(
-          'Maç ilerleme kayıtları tamamlanmadı.',
-        );
-      }
-
-      final firstProgress = LiveDuelPlayerProgress.fromSnapshot(firstSnapshot);
-      final secondProgress = LiveDuelPlayerProgress.fromSnapshot(
-        secondSnapshot,
-      );
-
-      _validateFinishedProgress(
-        progress: firstProgress,
-        questionCount: questionCount,
-      );
-      _validateFinishedProgress(
-        progress: secondProgress,
-        questionCount: questionCount,
-      );
-
-      final scores = <String, int>{
-        firstUid: firstProgress.correctCount,
-        secondUid: secondProgress.correctCount,
-      };
-      final winnerUid = LiveDuelMatchResultResolver.winnerUid(
-        playerUids: playerUids,
-        scores: scores,
-      );
-      final completedAt = DateTime.now().toUtc();
-
-      transaction.update(matchReference, <String, dynamic>{
-        'status': 'completed',
-        'resultProcessed': true,
-        'resultVersion': 2,
-        'completionType': LiveDuelCompletionType.completed.name,
-        'forfeitLoserUid': null,
-        'scores': scores,
-        'winnerUid': winnerUid,
-        'draw': winnerUid == null,
-        'processedBy': user.uid,
-        'completedAt': FieldValue.serverTimestamp(),
-        'updatedAt': FieldValue.serverTimestamp(),
-      });
-
-      return LiveDuelCompletedMatch(
-        matchId: matchId,
-        playerUids: List<String>.unmodifiable(playerUids),
-        scores: Map<String, int>.unmodifiable(scores),
-        draw: winnerUid == null,
-        winnerUid: winnerUid,
-        completionType: LiveDuelCompletionType.completed,
-        forfeitLoserUid: null,
-        completedAt: completedAt,
-      );
-    });
-  }
-
-  static Map<String, dynamic> _playerData(
-    Map<String, dynamic> matchData,
-    String uid,
-  ) {
-    final rawPlayers = matchData['players'];
-
-    if (rawPlayers is List) {
-      for (final item in rawPlayers) {
-        if (item is! Map) continue;
-        final player = Map<String, dynamic>.from(item);
-        if (player['uid']?.toString() == uid) {
-          return player;
-        }
-      }
+    await LiveDuelServerGateway.finalize(matchId);
+    final matchSnapshot = await matchReference.get();
+    if (!matchSnapshot.exists) {
+      throw const LiveDuelResultException('Canlı düello maçı bulunamadı.');
     }
-
-    return <String, dynamic>{
-      'uid': uid,
-      'displayName': 'Bilgi Yolcusu',
-      'rating': LiveDuelRatingEngine.initialRating,
-    };
+    return LiveDuelCompletedMatch.fromMap(
+      matchId: matchId,
+      data: matchSnapshot.data() ?? <String, dynamic>{},
+    );
   }
 
   static LiveDuelProfile _profileFromUserData(
@@ -456,97 +322,36 @@ class LiveDuelResultService {
         .collection('live_duel_results')
         .doc(matchId);
 
-    final award = await _firestore.runTransaction<LiveDuelOwnResultAward>((
-      transaction,
-    ) async {
-      final matchSnapshot = await transaction.get(matchReference);
-      final claimSnapshot = await transaction.get(claimReference);
-      final userSnapshot = await transaction.get(userReference);
-
-      if (!matchSnapshot.exists) {
-        throw const LiveDuelResultException('Canlı düello maçı bulunamadı.');
-      }
-
-      final matchData = matchSnapshot.data() ?? <String, dynamic>{};
-      final completed = LiveDuelCompletedMatch.fromMap(
-        matchId: matchId,
-        data: matchData,
+    final snapshots = await Future.wait<DocumentSnapshot<Map<String, dynamic>>>(
+      [matchReference.get(), claimReference.get(), userReference.get()],
+    );
+    final matchSnapshot = snapshots[0];
+    final claimSnapshot = snapshots[1];
+    final userSnapshot = snapshots[2];
+    if (!matchSnapshot.exists || !claimSnapshot.exists) {
+      throw const LiveDuelResultException(
+        'Sunucu tarafından kesinleştirilmiş maç sonucu bulunamadı.',
       );
-
-      if (!completed.playerUids.contains(user.uid)) {
-        throw const LiveDuelResultException('Bu maçın oyuncusu değilsin.');
-      }
-
-      final currentProfile = _profileFromUserData(
-        userSnapshot.data(),
-        fallbackProfile,
-      );
-
-      if (claimSnapshot.exists) {
-        final claimData = claimSnapshot.data() ?? <String, dynamic>{};
-        final result = LiveDuelResult.values.firstWhere(
-          (item) => item.name == claimData['result']?.toString(),
-          orElse: () => completed.resultFor(user.uid),
-        );
-
-        return LiveDuelOwnResultAward(
-          match: completed,
-          profile: currentProfile,
-          ratingChange: _ratingChangeFromClaim(claimData),
-          result: result,
-          alreadyApplied: true,
-        );
-      }
-
-      final opponentUid = completed.opponentUidFor(user.uid);
-      final opponentData = _playerData(matchData, opponentUid);
-      final opponentName = opponentData['displayName']?.toString().trim();
-      final opponentRating = max(
-        0,
-        (opponentData['rating'] as num?)?.toInt() ??
-            LiveDuelRatingEngine.initialRating,
-      );
-      final result = completed.resultFor(user.uid);
-      final plan = LiveDuelOwnResultPlanner.plan(
-        current: currentProfile,
-        opponentUid: opponentUid,
-        opponentName:
-            opponentName == null || opponentName.isEmpty
-                ? 'Bilgi Yolcusu'
-                : opponentName,
-        opponentRating: opponentRating,
-        result: result,
-        playedAt: completed.completedAt ?? DateTime.now().toUtc(),
-      );
-
-      transaction.set(userReference, <String, dynamic>{
-        'liveDuelProfile': plan.profile.toJson(),
-        'liveDuelProfileUpdatedAt': FieldValue.serverTimestamp(),
-        'appVersion': AppBuildInfo.version,
-      }, SetOptions(merge: true));
-
-      transaction.set(claimReference, <String, dynamic>{
-        'matchId': matchId,
-        'uid': user.uid,
-        'opponentUid': opponentUid,
-        'result': result.name,
-        'oldRating': plan.ratingChange.oldRating,
-        'newRating': plan.ratingChange.newRating,
-        'ratingDelta': plan.ratingChange.delta,
-        'oldLeague': plan.ratingChange.oldLeague.name,
-        'newLeague': plan.ratingChange.newLeague.name,
-        'processedAt': FieldValue.serverTimestamp(),
-        'appVersion': AppBuildInfo.version,
-      });
-
-      return LiveDuelOwnResultAward(
-        match: completed,
-        profile: plan.profile,
-        ratingChange: plan.ratingChange,
-        result: result,
-        alreadyApplied: false,
-      );
-    });
+    }
+    final completed = LiveDuelCompletedMatch.fromMap(
+      matchId: matchId,
+      data: matchSnapshot.data() ?? <String, dynamic>{},
+    );
+    if (!completed.playerUids.contains(user.uid)) {
+      throw const LiveDuelResultException('Bu maçın oyuncusu değilsin.');
+    }
+    final claimData = claimSnapshot.data() ?? <String, dynamic>{};
+    final result = LiveDuelResult.values.firstWhere(
+      (item) => item.name == claimData['result']?.toString(),
+      orElse: () => completed.resultFor(user.uid),
+    );
+    final award = LiveDuelOwnResultAward(
+      match: completed,
+      profile: _profileFromUserData(userSnapshot.data(), fallbackProfile),
+      ratingChange: _ratingChangeFromClaim(claimData),
+      result: result,
+      alreadyApplied: true,
+    );
 
     await LiveDuelProfileService.saveLocal(award.profile);
     return award;
