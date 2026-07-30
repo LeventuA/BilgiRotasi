@@ -7,7 +7,10 @@ void main() {
   group('Oyuncu kullanıcı adı sistemi', () {
     test('kullanıcı adı küçük harfe çevrilir', () {
       expect(PlayerUsernamePolicy.normalize(' LeventuA '), 'leventua');
-      expect(PlayerUsernamePolicy.normalize('IŞIL GÜÇ'), 'isil guc');
+      expect(PlayerUsernamePolicy.normalize('İPEK'), 'ipek');
+      expect(PlayerUsernamePolicy.normalize('İrem'), 'irem');
+      expect(PlayerUsernamePolicy.normalize('IŞIL'), 'isil');
+      expect(PlayerUsernamePolicy.normalize('Şule'), 'sule');
       expect(
         PlayerUsernamePolicy.suggestionFromDisplayName('Şule Yılmaz'),
         'sule',
@@ -18,6 +21,9 @@ void main() {
       expect(PlayerUsernamePolicy.validate('leventua'), isNull);
       expect(PlayerUsernamePolicy.validate('mila_23'), isNull);
       expect(PlayerUsernamePolicy.validate('oyuncu7'), isNull);
+      expect(PlayerUsernamePolicy.validate('aquaman'), isNull);
+      expect(PlayerUsernamePolicy.validate('epicoyuncu'), isNull);
+      expect(PlayerUsernamePolicy.validate('nazim'), isNull);
     });
 
     test('geçersiz kullanıcı adlarını reddeder', () {
@@ -30,6 +36,10 @@ void main() {
       expect(PlayerUsernamePolicy.validate('05321234567'), isNotNull);
       expect(PlayerUsernamePolicy.validate('ad@example.com'), isNotNull);
       expect(PlayerUsernamePolicy.validate('oyuncu.com'), isNotNull);
+      expect(PlayerUsernamePolicy.validate('pic'), isNotNull);
+      expect(PlayerUsernamePolicy.validate('nazi'), isNotNull);
+      expect(PlayerUsernamePolicy.validate('or0spu'), isNotNull);
+      expect(PlayerUsernamePolicy.validate('s1ktir'), isNotNull);
     });
 
     test('migration ve ilk gün düzeltme hakları bir defalıktır', () {

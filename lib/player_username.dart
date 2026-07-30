@@ -41,15 +41,19 @@ class PlayerUsernamePolicy {
     'undefined',
   };
 
+  static const Set<String> _exactBlockedTerms = <String>{
+    'aq',
+    'pic',
+    'nazi',
+    'sex',
+  };
+
   static const Set<String> _blockedTerms = <String>{
     'amk',
-    'aq',
     'orospu',
     'siktir',
     'sikik',
     'yarrak',
-    'piç',
-    'pic',
     'ibne',
     'gerizekali',
     'salak',
@@ -57,17 +61,16 @@ class PlayerUsernamePolicy {
     'fuck',
     'bitch',
     'nigger',
-    'nazi',
     'porn',
-    'sex',
   };
 
   static String normalize(String raw) {
     return raw
         .trim()
-        .toLowerCase()
-        .replaceAll('ı', 'i')
         .replaceAll('İ', 'i')
+        .toLowerCase()
+        .replaceAll('\u0307', '')
+        .replaceAll('ı', 'i')
         .replaceAll('ş', 's')
         .replaceAll('ğ', 'g')
         .replaceAll('ü', 'u')
@@ -126,7 +129,9 @@ class PlayerUsernamePolicy {
       (term) => moderationKey.contains(_moderationKey(term)),
     );
 
-    if (impersonates || inappropriate) {
+    if (impersonates ||
+        _exactBlockedTerms.contains(moderationKey) ||
+        inappropriate) {
       return 'Bu kullanıcı adı kullanılamaz.';
     }
 

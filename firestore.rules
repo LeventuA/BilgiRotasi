@@ -14,6 +14,7 @@ service cloud.firestore {
                '^[a-z0-9][a-z0-9_]{2,15}$'
              )
              && !(username in [
+               'aq',
                'admin',
                'administrator',
                'moderator',
@@ -28,12 +29,15 @@ service cloud.firestore {
                'zmila_studio',
                'google',
                'firebase',
+               'nazi',
                'null',
+               'pic',
+               'sex',
                'undefined'
              ])
              && !username.matches(
-               '.*(amk|orospu|siktir|sikik|yarrak|pic|ibne|'
-               + 'gerizekali|salak|aptal|fuck|bitch|nazi|porn|sex).*'
+               '.*(amk|orospu|siktir|sikik|yarrak|ibne|'
+               + 'gerizekali|salak|aptal|fuck|bitch|nigger|porn).*'
              )
              && !username.matches(
                '.*(adm(i|1)n|m(o|0)derat(o|0)r|destek|supp(o|0)rt|'
