@@ -16,6 +16,8 @@ const {
   deletionOperationId,
   isValidUsername,
   normalizeUsername,
+  playerBlockPath,
+  resolvePlayerTarget,
 } = require('./safety_helpers');
 
 initializeApp();
@@ -46,16 +48,40 @@ async function enforceRateLimit(uid, action, limit, windowSeconds) {
 }
 
 async function resolveTargetUid(identifier) {
-  if (!identifier.startsWith('p_')) return identifier;
+  const playerId = String(identifier ?? '').trim();
+  if (!playerId) {
+    throw new HttpsError('not-found', 'Oyuncu bulunamadı.');
+  }
+  if (!playerId.startsWith('p_')) return playerId;
   const directory = await db
     .collection('public_player_directory')
-    .doc(identifier)
+    .doc(playerId)
     .get();
   const uid = directory.data()?.uid;
   if (typeof uid !== 'string' || !uid) {
     throw new HttpsError('not-found', 'Oyuncu bulunamadı.');
   }
   return uid;
+}
+
+async function resolveTargetPlayer(identifier) {
+  const target = await resolvePlayerTarget(identifier, {
+    lookupPublicUid: async (publicPlayerId) => {
+      const directory = await db
+        .collection('public_player_directory')
+        .doc(publicPlayerId)
+        .get();
+      return directory.data()?.uid;
+    },
+    lookupUser: async (uid) => {
+      const user = await db.collection('users').doc(uid).get();
+      return user.exists ? user.data() : null;
+    },
+  });
+  if (!target) {
+    throw new HttpsError('not-found', 'Oyuncu bulunamadı.');
+  }
+  return target;
 }
 
 function requireUser(request) {
@@ -447,8 +473,9 @@ exports.reportPlayer = onCall(
     const reporterUid = requireUser(request);
     await enforceRateLimit(reporterUid, 'player-report', 5, 60 * 60);
     const targetPlayerId = String(request.data?.targetUid ?? '');
-    const targetUid = await resolveTargetUid(targetPlayerId);
-    const targetUsername = normalizeUsername(request.data?.targetUsername);
+    const target = await resolveTargetPlayer(targetPlayerId);
+    const targetUid = target.uid;
+    const targetUsername = target.username;
     const reason = String(request.data?.reason ?? '');
     const note = String(request.data?.note ?? '')
       .replace(/[\u0000-\u001f]/g, '')
@@ -463,9 +490,7 @@ exports.reportPlayer = onCall(
       'other',
     ];
     if (
-      !targetUid ||
       targetUid === reporterUid ||
-      !isValidUsername(targetUsername) ||
       !reasons.includes(reason) ||
       !['leaderboard', 'live_duel_result'].includes(source)
     ) {
@@ -499,22 +524,19 @@ exports.setPlayerBlock = onCall(
   async (request) => {
     const ownerUid = requireUser(request);
     await enforceRateLimit(ownerUid, 'player-block', 20, 60 * 60);
-    const targetUid = String(request.data?.targetUid ?? '');
-    const targetUsername = normalizeUsername(request.data?.targetUsername);
+    const targetPlayerId = String(request.data?.targetUid ?? '');
     const blocked = request.data?.blocked === true;
-    if (!targetUid || targetUid === ownerUid) {
+    const targetUid = await resolveTargetUid(targetPlayerId);
+    if (targetUid === ownerUid) {
       throw new HttpsError('invalid-argument', 'Engel isteği geçersiz.');
     }
-    const reference = db.doc(
-      `player_blocks/${ownerUid}/blocked/${targetUid}`,
-    );
+    const reference = db.doc(playerBlockPath(ownerUid, targetUid));
     if (!blocked) {
       await reference.delete();
       return { blocked: false };
     }
-    if (!isValidUsername(targetUsername)) {
-      throw new HttpsError('invalid-argument', 'Oyuncu adı geçersiz.');
-    }
+    const target = await resolveTargetPlayer(targetPlayerId);
+    const targetUsername = target.username;
     await reference.set({
       ownerUid,
       targetUid,

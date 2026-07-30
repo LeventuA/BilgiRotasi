@@ -99,7 +99,8 @@ void main() {
           File('lib/live_duel_matchmaking.dart').readAsStringSync();
       final server = File('functions/live_duel.js').readAsStringSync();
 
-      expect(leaderboard, isNot(contains("collection('users')")));
+      expect(leaderboard, contains("collection('users').doc(user.uid).get()"));
+      expect(leaderboard, isNot(contains('user.displayName')));
       expect(matchmaking, contains('LiveDuelServerGateway.joinQueue'));
       expect(server, contains('identity.username'));
       expect(

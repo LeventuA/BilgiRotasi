@@ -50,6 +50,43 @@ class AccountAccessPolicy {
   }
 }
 
+class AccountDeletionFinalizationResult {
+  const AccountDeletionFinalizationResult({required this.failureCount});
+
+  final int failureCount;
+  bool get isPartial => failureCount > 0;
+}
+
+class AccountDeletionSessionFinalizer {
+  AccountDeletionSessionFinalizer._();
+
+  static Future<AccountDeletionFinalizationResult> run({
+    required List<Future<void> Function()> localCleanupTasks,
+    required Future<void> Function() firebaseSignOut,
+    required Future<void> Function() googleSignOut,
+  }) async {
+    var failures = 0;
+    for (final task in localCleanupTasks) {
+      try {
+        await task();
+      } catch (_) {
+        failures++;
+      }
+    }
+    for (final signOut in <Future<void> Function()>[
+      firebaseSignOut,
+      googleSignOut,
+    ]) {
+      try {
+        await signOut();
+      } catch (_) {
+        failures++;
+      }
+    }
+    return AccountDeletionFinalizationResult(failureCount: failures);
+  }
+}
+
 class AccountSessionState {
   const AccountSessionState({
     required this.mode,
@@ -932,23 +969,33 @@ class AccountCloudService with WidgetsBindingObserver {
         throw StateError('Sunucu hesap silme işlemini tamamlamadı.');
       }
 
-      final preferences = await SharedPreferences.getInstance();
+      final finalization = await AccountDeletionSessionFinalizer.run(
+        localCleanupTasks: <Future<void> Function()>[
+          () async {
+            final preferences = await SharedPreferences.getInstance();
+            await preferences.remove(_userSnapshotKey(user.uid));
+            await preferences.remove(_userDirtyKey(user.uid));
+            await preferences.remove(_guestSnapshotKey);
+            await preferences.setBool(_guestSelectedKey, true);
+          },
+          AccountLocalSnapshot.clearGameData,
+          QuestionFeedbackService.clearLocalDataForAccountDeletion,
+          () async => PlayerUsernameService.resetSession(),
+          _refreshGameServices,
+        ],
+        firebaseSignOut: () async => _auth?.signOut(),
+        googleSignOut: () async => _googleSignIn?.signOut(),
+      );
 
-      await preferences.remove(_userSnapshotKey(user.uid));
-      await preferences.remove(_userDirtyKey(user.uid));
-      await preferences.remove(_guestSnapshotKey);
-      await preferences.setBool(_guestSelectedKey, true);
-
-      await AccountLocalSnapshot.clearGameData();
-      await QuestionFeedbackService.clearLocalDataForAccountDeletion();
-      await _googleSignIn?.signOut();
-      PlayerUsernameService.resetSession();
-      await _refreshGameServices();
-
-      state.value = const AccountSessionState(
+      state.value = AccountSessionState(
         mode: AccountMode.guest,
         firebaseReady: true,
-        message: 'Hesap ve bulut verileri kalıcı olarak silindi.',
+        message:
+            finalization.isPartial
+                ? 'Hesap ve bulut verileri silindi. Bazı yerel veriler '
+                    'temizlenemedi; bunları Android uygulama ayarlarından '
+                    'temizleyebilirsin. Misafir modunda devam ediliyor.'
+                : 'Hesap ve bulut verileri kalıcı olarak silindi.',
       );
     } catch (error) {
       state.value = AccountSessionState(

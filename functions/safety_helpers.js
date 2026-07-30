@@ -47,6 +47,36 @@ function isValidUsername(value) {
   );
 }
 
+function sanitizeModerationUsername(value) {
+  const sanitized = String(value ?? '')
+    .replace(/[\u0000-\u001f\u007f]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 32);
+  return sanitized || 'Bilinmeyen oyuncu';
+}
+
+async function resolvePlayerTarget(identifier, lookups) {
+  const playerId = String(identifier ?? '').trim();
+  if (!playerId) return null;
+
+  const uid = playerId.startsWith('p_')
+    ? await lookups.lookupPublicUid(playerId)
+    : playerId;
+  if (typeof uid !== 'string' || !uid) return null;
+
+  const user = await lookups.lookupUser(uid);
+  if (!user) return null;
+  return {
+    uid,
+    username: sanitizeModerationUsername(user.username),
+  };
+}
+
+function playerBlockPath(ownerUid, targetUid) {
+  return `player_blocks/${ownerUid}/blocked/${targetUid}`;
+}
+
 function deletionOperationId(uid) {
   return `account-delete-${uid}`;
 }
@@ -96,4 +126,7 @@ module.exports = {
   isValidUsername,
   moderationKey,
   normalizeUsername,
+  playerBlockPath,
+  resolvePlayerTarget,
+  sanitizeModerationUsername,
 };

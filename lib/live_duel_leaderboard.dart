@@ -2,7 +2,7 @@ part of 'main.dart';
 
 class LiveDuelLeaderboardEntry {
   const LiveDuelLeaderboardEntry({
-    required this.uid,
+    required this.publicPlayerId,
     required this.displayName,
     required this.rating,
     required this.matchesPlayed,
@@ -14,7 +14,7 @@ class LiveDuelLeaderboardEntry {
     this.updatedAt,
   });
 
-  final String uid;
+  final String publicPlayerId;
   final String displayName;
   final int rating;
   final int matchesPlayed;
@@ -39,7 +39,10 @@ class LiveDuelLeaderboardEntry {
     final rawUpdatedAt = data['updatedAt'];
 
     return LiveDuelLeaderboardEntry(
-      uid: data['uid']?.toString() ?? snapshot.id,
+      publicPlayerId:
+          data['publicPlayerId']?.toString().trim().isNotEmpty == true
+              ? data['publicPlayerId'].toString().trim()
+              : snapshot.id,
       displayName:
           data['displayName']?.toString().trim().isNotEmpty == true
               ? data['displayName'].toString().trim()
@@ -60,12 +63,14 @@ class LiveDuelLeaderboardSnapshot {
   const LiveDuelLeaderboardSnapshot({
     required this.profile,
     required this.leaders,
+    this.ownPublicPlayerId,
     this.ownRank,
     this.errorMessage,
   });
 
   final LiveDuelProfile profile;
   final List<LiveDuelLeaderboardEntry> leaders;
+  final String? ownPublicPlayerId;
   final int? ownRank;
   final String? errorMessage;
 }
@@ -109,6 +114,15 @@ class LiveDuelLeaderboardPresentation {
     if (rank == null || rank <= 0) return '—';
     return '#$rank';
   }
+
+  static bool isOwnEntry({
+    required String entryPublicPlayerId,
+    required String? ownPublicPlayerId,
+  }) {
+    return ownPublicPlayerId != null &&
+        ownPublicPlayerId.isNotEmpty &&
+        entryPublicPlayerId == ownPublicPlayerId;
+  }
 }
 
 class LiveDuelLeaderboardService {
@@ -138,10 +152,14 @@ class LiveDuelLeaderboardService {
             .where('rating', isGreaterThan: profile.rating)
             .count()
             .get(),
+        _firestore.collection('users').doc(user.uid).get(),
       ]);
 
       final leadersSnapshot = results[0] as QuerySnapshot<Map<String, dynamic>>;
       final rankSnapshot = results[1] as AggregateQuerySnapshot;
+      final userSnapshot = results[2] as DocumentSnapshot<Map<String, dynamic>>;
+      final ownPublicPlayerId =
+          userSnapshot.data()?['publicPlayerId']?.toString().trim();
 
       final leaders = leadersSnapshot.docs
           .map(LiveDuelLeaderboardEntry.fromSnapshot)
@@ -150,6 +168,7 @@ class LiveDuelLeaderboardService {
       return LiveDuelLeaderboardSnapshot(
         profile: profile,
         leaders: leaders,
+        ownPublicPlayerId: ownPublicPlayerId,
         ownRank: (rankSnapshot.count ?? 0) + 1,
       );
     } on FirebaseException catch (error) {
@@ -235,7 +254,10 @@ class _LiveDuelLeaderboardScreenState extends State<LiveDuelLeaderboardScreen> {
                 else if (data.leaders.isEmpty)
                   _messageCard('Henüz sıralamaya giren oyuncu yok.')
                 else
-                  _leaderboardCard(data.leaders),
+                  _leaderboardCard(
+                    data.leaders,
+                    ownPublicPlayerId: data.ownPublicPlayerId,
+                  ),
                 const SizedBox(height: 20),
                 _sectionTitle(
                   emoji: '🕘',
@@ -496,9 +518,10 @@ class _LiveDuelLeaderboardScreenState extends State<LiveDuelLeaderboardScreen> {
     );
   }
 
-  Widget _leaderboardCard(List<LiveDuelLeaderboardEntry> leaders) {
-    final ownUid = FirebaseAuth.instance.currentUser?.uid;
-
+  Widget _leaderboardCard(
+    List<LiveDuelLeaderboardEntry> leaders, {
+    required String? ownPublicPlayerId,
+  }) {
     return Card(
       clipBehavior: Clip.antiAlias,
       child: Column(
@@ -507,7 +530,10 @@ class _LiveDuelLeaderboardScreenState extends State<LiveDuelLeaderboardScreen> {
             _leaderRow(
               rank: index + 1,
               entry: leaders[index],
-              isOwn: leaders[index].uid == ownUid,
+              isOwn: LiveDuelLeaderboardPresentation.isOwnEntry(
+                entryPublicPlayerId: leaders[index].publicPlayerId,
+                ownPublicPlayerId: ownPublicPlayerId,
+              ),
               showDivider: index < leaders.length - 1,
             ),
         ],
@@ -588,7 +614,7 @@ class _LiveDuelLeaderboardScreenState extends State<LiveDuelLeaderboardScreen> {
               onPressed:
                   () => PlayerSafetyDialogs.showActions(
                     context,
-                    targetUid: entry.uid,
+                    targetUid: entry.publicPlayerId,
                     targetUsername: entry.displayName,
                     source: 'leaderboard',
                   ),

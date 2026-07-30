@@ -48,3 +48,22 @@ test('account deletion removes private public-id mapping', () => {
   assert.match(account, /live_duel_leaderboard'\)\.doc\(publicPlayerId\)/);
   assert.match(account, /collectionGroup\('live_duel_results'\)/);
 });
+
+test('reports and blocks resolve public ids to authoritative users', () => {
+  assert.match(account, /resolveTargetPlayer\(targetPlayerId\)/);
+  assert.match(account, /const targetUsername = target\.username/);
+  assert.match(account, /playerBlockPath\(ownerUid, targetUid\)/);
+  assert.match(account, /if \(!blocked\)[\s\S]*?reference\.delete\(\)/);
+  const reportSource =
+    account.match(/exports\.reportPlayer[\s\S]*?exports\.setPlayerBlock/)?.[0] ??
+    '';
+  assert.doesNotMatch(reportSource, /isValidUsername\(targetUsername\)/);
+});
+
+test('matchmaking checks real uid block document paths', () => {
+  assert.match(
+    duel,
+    /player_blocks\/\$\{firstUid\}\/blocked\/\$\{secondUid\}/,
+  );
+  assert.match(duel, /blocked\(uid, candidate\.id\)/);
+});

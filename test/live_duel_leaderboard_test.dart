@@ -41,6 +41,29 @@ void main() {
       );
     });
 
+    test('kendi satırı publicPlayerId ile bulunur ve menü göstermez', () {
+      expect(
+        LiveDuelLeaderboardPresentation.isOwnEntry(
+          entryPublicPlayerId: 'p_me',
+          ownPublicPlayerId: 'p_me',
+        ),
+        isTrue,
+      );
+      expect(
+        LiveDuelLeaderboardPresentation.isOwnEntry(
+          entryPublicPlayerId: 'p_other',
+          ownPublicPlayerId: 'p_me',
+        ),
+        isFalse,
+      );
+
+      final source = File('lib/live_duel_leaderboard.dart').readAsStringSync();
+      expect(source, contains("data['publicPlayerId']"));
+      expect(source, contains("collection('users').doc(user.uid).get()"));
+      expect(source, contains('if (!isOwn)'));
+      expect(source, contains('targetUid: entry.publicPlayerId'));
+    });
+
     test('sıralama ekranı uygulamaya bağlıdır', () {
       final mainSource = File('lib/main.dart').readAsStringSync();
       final duelSource = File('lib/live_duel_screen.dart').readAsStringSync();

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bilgi_rotasi/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -37,5 +38,42 @@ void main() {
     expect(source, contains('Tarayıcıda aç'));
     expect(source, contains('E-posta gönder'));
     expect(source, contains('Silme ekranını aç'));
+  });
+
+  test('sunucu silmesinden sonra iki oturum da kapatılır', () async {
+    var localCleanup = 0;
+    var firebaseSignedOut = false;
+    var googleSignedOut = false;
+
+    final result = await AccountDeletionSessionFinalizer.run(
+      localCleanupTasks: <Future<void> Function()>[() async => localCleanup++],
+      firebaseSignOut: () async => firebaseSignedOut = true,
+      googleSignOut: () async => googleSignedOut = true,
+    );
+
+    expect(result.isPartial, isFalse);
+    expect(localCleanup, 1);
+    expect(firebaseSignedOut, isTrue);
+    expect(googleSignedOut, isTrue);
+  });
+
+  test('yerel temizlik kısmi başarısız olsa da oturumlar kapatılır', () async {
+    var laterCleanupRan = false;
+    var firebaseSignedOut = false;
+    var googleSignedOut = false;
+
+    final result = await AccountDeletionSessionFinalizer.run(
+      localCleanupTasks: <Future<void> Function()>[
+        () async => throw StateError('yerel hata'),
+        () async => laterCleanupRan = true,
+      ],
+      firebaseSignOut: () async => firebaseSignedOut = true,
+      googleSignOut: () async => googleSignedOut = true,
+    );
+
+    expect(result.isPartial, isTrue);
+    expect(laterCleanupRan, isTrue);
+    expect(firebaseSignedOut, isTrue);
+    expect(googleSignedOut, isTrue);
   });
 }
