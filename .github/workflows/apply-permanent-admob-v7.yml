@@ -117,8 +117,8 @@ jobs:
           mkdir -p dist reports
           SOURCE_APK="build/app/outputs/flutter-apk/app-release.apk"
           SOURCE_AAB="build/app/outputs/bundle/release/app-release.aab"
-          APK="dist/BilgiRotasi-1.68.5-95-production.apk"
-          AAB="dist/BilgiRotasi-1.68.5-95-production.aab"
+          APK="dist/BilgiRotasi-1.68.6-96-production.apk"
+          AAB="dist/BilgiRotasi-1.68.6-96-production.aab"
           SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
 
           test -f "$SOURCE_APK"
@@ -143,16 +143,16 @@ jobs:
 
           grep -Fq "package: name='com.leventua.bilgirotasi'" \
             reports/ADMOB_PRODUCTION_APK_BADGING.txt
-          grep -Fq "versionCode='95'" \
+          grep -Fq "versionCode='96'" \
             reports/ADMOB_PRODUCTION_APK_BADGING.txt
-          grep -Fq "versionName='1.68.5'" \
+          grep -Fq "versionName='1.68.6'" \
             reports/ADMOB_PRODUCTION_APK_BADGING.txt
 
           grep -Fq 'package="com.leventua.bilgirotasi"' \
             reports/ADMOB_PRODUCTION_AAB_MANIFEST.xml
-          grep -Fq 'android:versionCode="95"' \
+          grep -Fq 'android:versionCode="96"' \
             reports/ADMOB_PRODUCTION_AAB_MANIFEST.xml
-          grep -Fq 'android:versionName="1.68.5"' \
+          grep -Fq 'android:versionName="1.68.6"' \
             reports/ADMOB_PRODUCTION_AAB_MANIFEST.xml
 
           grep -Fq "com.google.android.gms.ads.APPLICATION_ID" \
@@ -200,9 +200,9 @@ jobs:
       - name: Production APK artifact yükle
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-Production-APK-1.68.5-95
+          name: BilgiRotasi-Production-APK-1.68.6-96
           path: |
-            dist/BilgiRotasi-1.68.5-95-production.apk
+            dist/BilgiRotasi-1.68.6-96-production.apk
             reports/ADMOB_PRODUCTION_APK_BADGING.txt
             reports/ADMOB_PRODUCTION_APK_MANIFEST.txt
             reports/ADMOB_PRODUCTION_APK_CERTIFICATE.txt
@@ -213,9 +213,9 @@ jobs:
       - name: Production AAB artifact yükle
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-Production-AAB-1.68.5-95
+          name: BilgiRotasi-Production-AAB-1.68.6-96
           path: |
-            dist/BilgiRotasi-1.68.5-95-production.aab
+            dist/BilgiRotasi-1.68.6-96-production.aab
             reports/ADMOB_PRODUCTION_AAB_MANIFEST.xml
             reports/ADMOB_PRODUCTION_AAB_CERTIFICATE.txt
             reports/ADMOB_PRODUCTION_AAB_SHA256.txt

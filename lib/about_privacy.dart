@@ -1,27 +1,30 @@
 part of 'main.dart';
 
 class AboutPrivacyScreen extends StatelessWidget {
-  const AboutPrivacyScreen({
-    required this.questionBank,
-    super.key,
-  });
+  const AboutPrivacyScreen({required this.questionBank, super.key});
 
   final QuestionBank questionBank;
 
   static const String _privacyUrl =
       'https://leventua.github.io/BilgiRotasi/'
       'privacy-policy.html';
-  static const String _supportEmail =
-      'BilgiRotasi10@gmail.com';
+  static const String _deletionUrl =
+      'https://leventua.github.io/BilgiRotasi/'
+      'account-deletion.html';
+  static const String _termsUrl =
+      'https://leventua.github.io/BilgiRotasi/'
+      'terms-of-use.html';
+  static const String _communityUrl =
+      'https://leventua.github.io/BilgiRotasi/'
+      'community-guidelines.html';
+  static const String _supportEmail = 'BilgiRotasi10@gmail.com';
 
   @override
   Widget build(BuildContext context) {
     final report = QuestionHealthReport.fromBank(questionBank);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hakkında & Gizlilik'),
-      ),
+      appBar: AppBar(title: const Text('Hakkında & Gizlilik')),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(14, 10, 14, 22),
         children: [
@@ -29,10 +32,7 @@ class AboutPrivacyScreen extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [
-                  Color(0xFF4A245D),
-                  Color(0xFF155E75),
-                ],
+                colors: [Color(0xFF4A245D), Color(0xFF155E75)],
               ),
               borderRadius: BorderRadius.circular(21),
             ),
@@ -65,14 +65,14 @@ class AboutPrivacyScreen extends StatelessWidget {
                   '${report.total} soruluk, temel bölümleri '
                   'çevrimdışı oynanabilen Türkçe bilgi yarışması.',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Color(0xFFD8F1EE),
-                  ),
+                  style: const TextStyle(color: Color(0xFFD8F1EE)),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 11),
+          _section(emoji: '🏢', title: 'Yayıncı', text: 'ZMila Studio'),
+          const SizedBox(height: 8),
           _section(
             emoji: '🔐',
             title: 'Misafir kullanımı',
@@ -100,8 +100,53 @@ class AboutPrivacyScreen extends StatelessWidget {
             title: 'İnternet kullanımı',
             text:
                 'Ana oyun ve soru bankası çevrimdışı çalışabilir. '
-                'Google girişi, bulut eşitlemesi ve sistem paylaşım '
-                'özellikleri internet bağlantısı kullanabilir.',
+                'Google girişi, bulut eşitlemesi, reklamlar, Canlı '
+                'Düello, soru geri bildirimi ve sistem paylaşım '
+                'özellikleri internet bağlantısı kullanır.',
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '📺',
+            title: 'Reklamlar ve izin',
+            text:
+                'Google AdMob banner ve isteğe bağlı ödüllü reklamlar '
+                'kullanılır. Ödüllü reklamı reddedersen veya reklam '
+                'yüklenmezse normal oyun devam eder. Gerekli bölgelerde '
+                'reklam izni Google UMP formuyla yönetilir.',
+          ),
+          const SizedBox(height: 8),
+          ValueListenableBuilder<bool>(
+            valueListenable: AdPrivacyService.instance.privacyOptionsRequired,
+            builder: (context, required, _) {
+              if (!required) return const SizedBox.shrink();
+              return _section(
+                emoji: '⚙️',
+                title: 'Gizlilik tercihleri',
+                text:
+                    'Google reklam gizlilik tercihlerini yeniden '
+                    'görüntüleyebilir ve güncelleyebilirsin.',
+                actionLabel: 'Tercihleri aç',
+                onTap: () => _openPrivacyOptions(context),
+              );
+            },
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '💬',
+            title: 'Soru geri bildirimi',
+            text:
+                'Zorluk oyları ve hatalı soru bildirimleri; soru '
+                'bilgileri, oyun modu, uygulama sürümü, rastgele cihaz '
+                'kimliği ve yazdığın kısa notla birlikte gönderilebilir.',
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '⚔️',
+            title: 'Canlı Düello ve sıralama',
+            text:
+                'Kullanıcı adın genel sıralamada görünür. Canlı Düello '
+                'BR puanı, maç istatistikleri, eşleştirme ve bağlantı '
+                'kayıtları çevrimiçi oyunu sağlamak için işlenir.',
           ),
           const SizedBox(height: 8),
           _section(
@@ -139,10 +184,31 @@ class AboutPrivacyScreen extends StatelessWidget {
             title: 'Gizlilik politikası',
             text: _privacyUrl,
             actionLabel: 'Tarayıcıda aç',
-            onTap: () => _openExternal(
-              context,
-              Uri.parse(_privacyUrl),
-            ),
+            onTap: () => _openExternal(context, Uri.parse(_privacyUrl)),
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '🗑️',
+            title: 'Hesap ve veri silme sayfası',
+            text: _deletionUrl,
+            actionLabel: 'Tarayıcıda aç',
+            onTap: () => _openExternal(context, Uri.parse(_deletionUrl)),
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '📜',
+            title: 'Kullanım koşulları',
+            text: _termsUrl,
+            actionLabel: 'Tarayıcıda aç',
+            onTap: () => _openExternal(context, Uri.parse(_termsUrl)),
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '🤝',
+            title: 'Topluluk kuralları',
+            text: _communityUrl,
+            actionLabel: 'Tarayıcıda aç',
+            onTap: () => _openExternal(context, Uri.parse(_communityUrl)),
           ),
           const SizedBox(height: 8),
           _section(
@@ -150,39 +216,44 @@ class AboutPrivacyScreen extends StatelessWidget {
             title: 'Destek',
             text: _supportEmail,
             actionLabel: 'E-posta gönder',
-            onTap: () => _openExternal(
-              context,
-              Uri(
-                scheme: 'mailto',
-                path: _supportEmail,
-                queryParameters: const {
-                  'subject': 'Bilgi Rotası Destek',
-                },
-              ),
-            ),
+            onTap:
+                () => _openExternal(
+                  context,
+                  Uri(
+                    scheme: 'mailto',
+                    path: _supportEmail,
+                    queryParameters: const {'subject': 'Bilgi Rotası Destek'},
+                  ),
+                ),
           ),
         ],
       ),
     );
   }
 
+  Future<void> _openPrivacyOptions(BuildContext context) async {
+    final opened = await AdPrivacyService.instance.showPrivacyOptions();
+    if (!opened && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Gizlilik tercihleri şu anda açılamadı. Oyun reklamsız '
+            'devam edecek.',
+          ),
+        ),
+      );
+    }
+  }
+
   void _openAccountSettings(BuildContext context) {
     Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => const AccountSettingsScreen(),
-      ),
+      MaterialPageRoute<void>(builder: (_) => const AccountSettingsScreen()),
     );
   }
 
-  Future<void> _openExternal(
-    BuildContext context,
-    Uri uri,
-  ) async {
+  Future<void> _openExternal(BuildContext context, Uri uri) async {
     try {
-      final opened = await launchUrl(
-        uri,
-        mode: LaunchMode.externalApplication,
-      );
+      final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
 
       if (!opened && context.mounted) {
         _showOpenError(context);
@@ -218,25 +289,17 @@ class AboutPrivacyScreen extends StatelessWidget {
       color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: radius,
-        side: const BorderSide(
-          color: Color(0xFFD9E2EC),
-        ),
+        side: const BorderSide(color: Color(0xFFD9E2EC)),
       ),
       child: InkWell(
         onTap: onTap,
         borderRadius: radius,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 13,
-            vertical: 11,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 11),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                emoji,
-                style: const TextStyle(fontSize: 24),
-              ),
+              Text(emoji, style: const TextStyle(fontSize: 24)),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -284,10 +347,7 @@ class AboutPrivacyScreen extends StatelessWidget {
               ),
               if (onTap != null)
                 const Padding(
-                  padding: EdgeInsets.only(
-                    left: 8,
-                    top: 2,
-                  ),
+                  padding: EdgeInsets.only(left: 8, top: 2),
                   child: Icon(
                     Icons.chevron_right_rounded,
                     color: Color(0xFF64748B),

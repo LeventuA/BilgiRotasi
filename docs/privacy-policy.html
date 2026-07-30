@@ -6,152 +6,173 @@
   <title>Bilgi Rotası Gizlilik Politikası</title>
   <meta name="description" content="Bilgi Rotası uygulamasının gizlilik politikası.">
   <style>
-    :root {
-      color-scheme: light;
-      --ink: #24122f;
-      --teal: #155e75;
-      --paper: #f7f4fb;
-      --card: #ffffff;
-      --muted: #58616d;
-      --line: #ddd6e5;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--paper);
-      color: #17202a;
-    }
-    main {
-      width: min(820px, calc(100% - 28px));
-      margin: 0 auto;
-      padding: 28px 0 48px;
-    }
-    article {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: clamp(20px, 4vw, 38px);
-      box-shadow: 0 16px 44px rgba(36,18,47,.08);
-    }
-    h1, h2 { color: var(--ink); }
-    h1 { margin-top: 0; }
-    h2 { margin-top: 30px; }
-    p, li { line-height: 1.7; }
-    .muted { color: var(--muted); }
-    .notice {
-      padding: 14px 16px;
-      border-left: 4px solid var(--teal);
-      background: #edf8fa;
-      border-radius: 12px;
-    }
-    a { color: #0f607a; }
-    nav { margin-bottom: 14px; }
+    :root { color-scheme: light; --ink:#24122f; --teal:#155e75; --paper:#f7f4fb; --line:#ddd6e5; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--paper); color:#17202a; }
+    main { width:min(900px,calc(100% - 28px)); margin:auto; padding:28px 0 48px; }
+    article { background:#fff; border:1px solid var(--line); border-radius:24px; padding:clamp(20px,4vw,38px); box-shadow:0 16px 44px rgba(36,18,47,.08); }
+    h1,h2 { color:var(--ink); } h1 { margin-top:0; } h2 { margin-top:30px; }
+    p,li { line-height:1.7; } a { color:#0f607a; } nav { margin-bottom:14px; }
+    .muted { color:#58616d; } .notice { padding:14px 16px; border-left:4px solid var(--teal); background:#edf8fa; border-radius:12px; }
+    table { width:100%; border-collapse:collapse; } th,td { border:1px solid var(--line); padding:10px; text-align:left; vertical-align:top; }
   </style>
 </head>
 <body>
-  <main>
-    <nav><a href="index.html">← Destek ana sayfası</a></nav>
-    <article>
-      <h1>Bilgi Rotası Gizlilik Politikası</h1>
-      <p class="muted"><strong>Son güncelleme:</strong> 24 Temmuz 2026</p>
+<main>
+  <nav><a href="index.html">← Destek ana sayfası</a></nav>
+  <article>
+    <h1>Bilgi Rotası Gizlilik Politikası</h1>
+    <p class="muted"><strong>Son güncelleme:</strong> 30 Temmuz 2026 · <strong>Sürüm:</strong> 1.68.6</p>
+    <p>
+      Bu politika, ZMila Studio tarafından yayımlanan Bilgi Rotası Android
+      uygulamasındaki gerçek veri akışlarını açıklar. Uygulama 13 yaş ve üzeri
+      kullanıcılar içindir; 13 yaş altındaki çocuklar hedeflenmez. Sorular için
+      <a href="mailto:BilgiRotasi10@gmail.com">BilgiRotasi10@gmail.com</a>
+      adresine ulaşabilirsiniz.
+    </p>
 
-      <p>
-        Bu gizlilik politikası, Bilgi Rotası mobil uygulamasında verilerin
-        nasıl işlendiğini açıklar. Sorularınız için
-        <a href="mailto:BilgiRotasi10@gmail.com">BilgiRotasi10@gmail.com</a>
-        adresine ulaşabilirsiniz.
-      </p>
+    <h2>1. Cihazda tutulan yerel veriler</h2>
+    <p>
+      Misafir ilerlemesi, kayıtlı ve yedek oyun, XP, seviye, başarımlar,
+      koleksiyonlar, günlük/haftalık ilerleme, ayarlar, erişilebilirlik ve ses
+      tercihleri, yerel hata günlüğü, soru oyları, bekleyen soru bildirimleri ve
+      rastgele geri bildirim cihaz kimliği cihazdaki uygulama alanında tutulur.
+      Yerel hata günlüğü bulut oyun yedeğine dahil edilmez. Android Auto Backup
+      bu yerel alanı başka cihaza taşımaz; hesaplı bulut kayıtları Firestore
+      eşitlemesiyle yönetilir. Uygulama verilerini temizlemek bu yerel verileri
+      siler.
+    </p>
 
-      <h2>1. Hesap kullanmadan oynama</h2>
-      <p>
-        Bilgi Rotası misafir olarak kullanılabilir. Misafir kullanımında oyun
-        ilerlemesi, tercihler, başarımlar ve kayıtlı oyun yalnızca cihazda
-        saklanır. Uygulama verileri Android ayarlarından temizlendiğinde veya
-        uygulama kaldırıldığında bu yerel veriler silinebilir.
-      </p>
+    <h2>2. Google hesabı, Firebase ve bulut kayıt</h2>
+    <p>
+      Google ile giriş isteğe bağlıdır. Seçildiğinde Firebase Authentication,
+      Google Sign-In ve Cloud Firestore kullanılır. Firebase kullanıcı kimliği
+      (UID), Google görünen adı ve e-posta adresi, kullanıcı adı, uygulama
+      sürümü, eşitleme zamanı ve bulut oyun kaydı işlenebilir. Bulut kaydında XP,
+      seviye, başarımlar, istatistikler, ayarlar, tercihler, koleksiyon ve oyun
+      ilerlemesi bulunabilir. Bu veriler kimlik doğrulama, hesabı ayırma,
+      yedekleme, geri yükleme ve eşitleme için kullanılır. Misafir çevrimdışı
+      oyun için Google hesabı zorunlu değildir.
+    </p>
 
-      <h2>2. İsteğe bağlı Google girişi ve bulut kaydı</h2>
-      <p>
-        Kullanıcı Google ile giriş yapmayı seçerse aşağıdaki bilgiler
-        işlenebilir:
-      </p>
-      <ul>
-        <li>Firebase kullanıcı kimliği,</li>
-        <li>Google hesabındaki görünen ad ve e-posta adresi,</li>
-        <li>XP, seviye, başarımlar, tercihler, tema ve piyon seçimleri,</li>
-        <li>kayıtlı oyun ve oyun ilerlemesi,</li>
-        <li>uygulama sürümü ve son eşitleme zamanı.</li>
-      </ul>
-      <p>
-        Bu bilgiler yalnızca hesap doğrulama, ilerlemeyi buluta yedekleme,
-        cihaz değişiminde geri yükleme ve eşitleme hizmeti sağlama amacıyla
-        kullanılır.
-      </p>
+    <h2>3. Kullanıcı adı, sıralama ve Canlı Düello</h2>
+    <p>
+      Seçilen kullanıcı adı diğer oyunculara genel sıralamada ve Canlı Düello
+      sırasında görünür. Firestore; kullanıcı adı rezervasyonu, BR puanı,
+      galibiyet/mağlubiyet/beraberlik, maç sayısı, seri ve yüksek puan gibi
+      düello istatistiklerini işler. Eşleştirme kuyruğu, maç katılımcıları,
+      soru kimlikleri, cevap ilerlemesi, skor, sonuç, bağlantı/presence ve
+      hükmen sonuç kayıtları çevrimiçi maçı yürütmek ve bütünlüğünü korumak için
+      kullanılır. Tamamlanmış ortak maçlar iki oyuncunun sonucunu korumak
+      amacıyla hesap silinirken anonimleştirilebilir; bu sunucu tarafı
+      anonimleştirme dağıtılana kadar destek ekibiyle takip edilir.
+    </p>
 
-      <h2>3. Kullanılan hizmet sağlayıcılar</h2>
-      <p>
-        Google ile giriş ve bulut kaydı için Google Firebase Authentication,
-        Google Sign-In ve Cloud Firestore hizmetleri kullanılır. Bu hizmetler
-        kendi gizlilik ve güvenlik koşullarına tabidir.
-      </p>
+    <h2>4. Google AdMob ve Google Mobile Ads SDK</h2>
+    <p>
+      Uygulama Google Mobile Ads SDK üzerinden banner reklamlar ve yalnız
+      kullanıcının seçmesiyle açılan ödüllü reklamlar kullanır. Ödüllü reklam
+      izlenmez, tamamlanmaz veya yüklenmezse normal oyun devam eder. Reklamlar
+      için Google User Messaging Platform (UMP) gerekli bölgelerde izin veya
+      gizlilik tercihleri formunu gösterebilir; reklamlar yalnız SDK
+      <code>canRequestAds</code> sonucunu verdiğinde istenir.
+    </p>
+    <p>
+      Google, reklam sunumu, ölçüm, tanılama, güvenlik ve sahtekârlığı önleme
+      kapsamında reklam tanımlayıcıları, IP adresi ve bundan çıkarılabilecek
+      yaklaşık konum, cihaz/işletim sistemi/uygulama bilgileri, reklam isteği ve
+      etkileşim bilgileri ile tanılama verilerini işleyebilir. Bilgi Rotası,
+      13 yaş altındaki çocukları hedeflemediği için çocuklara yönelik olarak
+      etiketlenmez ve reklam içeriği en fazla T/Teen düzeyiyle sınırlandırılır.
+      Uygulama güvenilir bir yaş doğrulaması toplamaz; bu nedenle kullanıcı
+      yaşının bilinmediği durumda kişinin bölgesel dijital rıza yaşının üzerinde
+      veya altında olduğunu belirten sabit bir reklam/UMP sinyali göndermez.
+      Google’ın veri işlemesi kendi politikalarına tabidir.
+    </p>
 
-      <h2>4. Teknik veriler</h2>
-      <p>
-        Uygulama, cihazda yerel olarak hata günlüğü ve kayıt kurtarma bilgileri
-        tutabilir. Bu yerel teknik kayıtlar Bilgi Rotası bulut yedeğine
-        gönderilmez.
-      </p>
+    <h2>5. Soru zorluğu ve hata geri bildirimi</h2>
+    <p>
+      Zorluk oyu veya hatalı soru bildirimi seçildiğinde rastgele oluşturulan
+      geri bildirim cihaz kimliği; soru kimliği, soru metni, seçenekler, doğru
+      cevap, kullanıcının cevabı, kategori, zorluk, oyun modu, uygulama sürümü,
+      bildirim nedeni ve kullanıcının yazdığı kısa not Google Apps Script
+      uç noktasına gönderilebilir. Alanlar ve yerel kuyruk sınırlıdır; içerik
+      düz metin/veri olarak iletilir ve HTML ya da script olarak çalıştırılmaz.
+      Başarısız gönderimler cihazda kuyrukta tutulup daha sonra denenebilir.
+      Mevcut Apps Script adresinin kimlik doğrulamalı bir ara katmana
+      taşınmasına ilişkin plan proje belgelerinde açıklanır.
+    </p>
 
-      <h2>5. Paylaşım özelliği</h2>
-      <p>
-        Kullanıcı paylaş düğmesine bastığında Android sistem paylaşım ekranı
-        açılır. İçeriğin hangi uygulamayla paylaşılacağına kullanıcı karar
-        verir.
-      </p>
+    <h2>6. Paylaşım ve teknik hata bilgileri</h2>
+    <p>
+      Paylaş düğmesi Android sistem paylaşım ekranını açar; hedef uygulamayı
+      kullanıcı seçer. Uygulama içi hata günlüğü cihazda tutulur ve kullanıcı
+      açıkça paylaşmadıkça sunucuya gönderilmez. Uygulama sürümü kayıt
+      doğrulama, geri bildirim ve eşitleme verilerinde bulunabilir.
+    </p>
 
-      <h2>6. Reklamlar</h2>
-      <p>
-        Bu politika tarihindeki uygulama sürümünde reklam SDK'sı
-        kullanılmamaktadır. Gelecekte reklam hizmeti eklenirse bu politika ve
-        uygulama içi açıklamalar yayımdan önce güncellenecektir.
-      </p>
+    <h2>7. Verilerin amaçları ve paylaşım</h2>
+    <table>
+      <thead><tr><th>Veri grubu</th><th>Amaç</th><th>Hizmet</th></tr></thead>
+      <tbody>
+        <tr><td>Hesap ve UID</td><td>Kimlik doğrulama, hesap güvenliği</td><td>Google Sign-In, Firebase Authentication</td></tr>
+        <tr><td>Bulut kayıt ve oyun etkinliği</td><td>Yedekleme, eşitleme, çevrimiçi oyun</td><td>Cloud Firestore</td></tr>
+        <tr><td>Reklam ve cihaz teknik verileri</td><td>Reklam sunumu, ölçüm, güvenlik</td><td>Google AdMob</td></tr>
+        <tr><td>Soru geri bildirimi</td><td>Soru kalitesini düzeltme</td><td>Google Apps Script</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Veriler satılmaz. Yukarıdaki hizmet sağlayıcılarla yalnız ilgili hizmeti
+      sağlamak amacıyla aktarım/paylaşım gerçekleşebilir.
+    </p>
 
-      <h2>7. Verilerin saklanması ve silinmesi</h2>
-      <p>
-        Google hesabına bağlı bulut verileri, kullanıcı hesabı aktif olduğu
-        sürece veya silme talebi sonuçlanıncaya kadar saklanabilir. Hesap ve
-        bulut verisi silme adımları için
-        <a href="account-deletion.html">Hesap ve Veri Silme</a> sayfasını
-        kullanabilirsiniz.
-      </p>
+    <h2>8. Saklama süreleri</h2>
+    <ul>
+      <li>Yerel veriler uygulama verileri temizlenene veya hesap silme akışı tamamlanana kadar cihazda kalır.</li>
+      <li>Bulut hesap ve oyun kayıtları hesap aktifken veya silme talebi sonuçlanana kadar tutulur.</li>
+      <li>Bekleyen soru bildirim kuyruğu gönderilene, sınır nedeniyle eski kayıt düşene veya uygulama verileri temizlenene kadar tutulur.</li>
+      <li>Eşleştirme ve ortak düello kayıtlarında henüz otomatik TTL/anonimleştirme dağıtılmamıştır; sunucu saklama ve temizleme işi yayın öncesi backend sertleştirmesinin parçasıdır.</li>
+      <li>Google hizmetlerinin kendi güvenlik, dolandırıcılık önleme ve yasal saklama süreleri Google politikalarına göre değişebilir.</li>
+    </ul>
 
-      <h2>8. Veri güvenliği</h2>
-      <p>
-        Verilerin yetkisiz erişim, kayıp veya kötüye kullanıma karşı korunması
-        için makul teknik önlemler uygulanır. İnternet üzerinden yapılan hiçbir
-        aktarım veya elektronik saklama yönteminin mutlak güvenlik
-        sağlayamayacağı unutulmamalıdır.
-      </p>
+    <h2>9. Hesap ve veri silme</h2>
+    <p>
+      Uygulama içinde <strong>Ayarlar → Hesap &amp; Bulut Kaydı → Hesabı ve
+      bulut verilerini sil</strong> yolu kullanılabilir. Uygulamaya erişemeyen
+      kullanıcılar destek adresine yazabilir. Ayrıntılar
+      <a href="account-deletion.html">Hesap ve Veri Silme</a> sayfasındadır.
+      Ortak maçın rakibe ait sonucunu bozmamak için gerekli skor kaydı kişisel
+      bağlantıları kaldırılarak anonimleştirilebilir.
+    </p>
 
-      <h2>9. Çocukların gizliliği</h2>
-      <p>
-        Bilgi Rotası genel kitleye yönelik bir bilgi oyunudur. Çocukların
-        Google hesabıyla giriş yapması, ilgili Google hesabı kuralları ve
-        ebeveyn veya yasal temsilci gözetimi doğrultusunda gerçekleştirilmelidir.
-      </p>
+    <h2>10. Güvenlik</h2>
+    <p>
+      Aktarımda HTTPS/TLS, Firebase kimlik doğrulaması, Firestore güvenlik
+      kuralları, kalıcı Android release imzası, üretim/test ortam kapıları,
+      sınırlı yerel kuyruklar ve yeniden doğrulamalı hesap silme gibi önlemler
+      kullanılır. Hiçbir elektronik sistem mutlak güvenlik sağlayamaz.
+    </p>
 
-      <h2>10. Değişiklikler</h2>
-      <p>
-        Uygulamanın özellikleri veya veri işleme yöntemleri değişirse bu
-        politika güncellenebilir. Güncel tarih sayfanın üst kısmında gösterilir.
-      </p>
+    <h2>11. 13 yaş ve üzeri hedef kitle</h2>
+    <p>
+      Bilgi Rotası 13 yaş ve üzeri kullanıcılar içindir ve 13 yaş altındaki
+      çocukları hedeflemez. 13–15 yaş aralığındaki bir kullanıcı, bulunduğu
+      bölgenin dijital rıza yaşının altında olabilir. Uygulama yaşı
+      doğrulamadığından tüm kullanıcıların rıza yaşının üzerinde veya altında
+      olduğunu varsaymaz. 13 yaşından küçük bir kişiye ait veri işlendiğini
+      düşünüyorsanız destek adresine bildirin.
+    </p>
 
-      <div class="notice">
-        <strong>İletişim:</strong>
-        <a href="mailto:BilgiRotasi10@gmail.com">BilgiRotasi10@gmail.com</a>
-      </div>
-    </article>
-  </main>
+    <h2>12. Değişiklikler ve iletişim</h2>
+    <p>
+      Özellikler veya veri akışları değişirse politika güncellenir. Yayıncı:
+      <strong>ZMila Studio</strong>.
+    </p>
+    <div class="notice">
+      <strong>Destek:</strong>
+      <a href="mailto:BilgiRotasi10@gmail.com">BilgiRotasi10@gmail.com</a>
+    </div>
+  </article>
+</main>
 </body>
 </html>
