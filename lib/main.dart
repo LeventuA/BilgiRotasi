@@ -47,6 +47,7 @@ part 'about_privacy.dart';
 part 'app_build_info.dart';
 part 'account_cloud.dart';
 part 'player_username.dart';
+part 'player_safety.dart';
 part 'live_duel_league.dart';
 part 'live_duel_leaderboard.dart';
 part 'live_duel_matchmaking.dart';

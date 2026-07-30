@@ -6,8 +6,19 @@ class PlayerUsernamePolicy {
   static const int minLength = 3;
   static const int maxLength = 16;
   static const Duration changeCooldown = Duration(days: 30);
+  static const Duration firstCorrectionWindow = Duration(hours: 24);
+  static const int currentPolicyVersion = 2;
 
   static final RegExp _allowedPattern = RegExp(r'^[a-z0-9][a-z0-9_]{2,15}$');
+  static final RegExp _emailPattern = RegExp(
+    r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
+    caseSensitive: false,
+  );
+  static final RegExp _urlPattern = RegExp(
+    r'(https?://|www\.|[a-z0-9-]+\.(com|net|org|io|gg|tr)\b)',
+    caseSensitive: false,
+  );
+  static final RegExp _phonePattern = RegExp(r'(?:\d[\s_.-]*){7,}');
 
   static const Set<String> _reserved = <String>{
     'admin',
@@ -22,16 +33,81 @@ class PlayerUsernamePolicy {
     'bilgi_rotasi',
     'google',
     'firebase',
+    'zmilastudio',
+    'zmila_studio',
+    'bilgirotasiadmin',
+    'bilgirotasidestek',
     'null',
     'undefined',
   };
 
+  static const Set<String> _blockedTerms = <String>{
+    'amk',
+    'aq',
+    'orospu',
+    'siktir',
+    'sikik',
+    'yarrak',
+    'piç',
+    'pic',
+    'ibne',
+    'gerizekali',
+    'salak',
+    'aptal',
+    'fuck',
+    'bitch',
+    'nigger',
+    'nazi',
+    'porn',
+    'sex',
+  };
+
   static String normalize(String raw) {
-    return raw.trim().toLowerCase();
+    return raw
+        .trim()
+        .toLowerCase()
+        .replaceAll('ı', 'i')
+        .replaceAll('İ', 'i')
+        .replaceAll('ş', 's')
+        .replaceAll('ğ', 'g')
+        .replaceAll('ü', 'u')
+        .replaceAll('ö', 'o')
+        .replaceAll('ç', 'c');
+  }
+
+  static String suggestionFromDisplayName(String displayName) {
+    final parts = displayName
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((part) => part.isNotEmpty)
+        .toList(growable: false);
+    if (parts.isEmpty) return '';
+    final first = parts.first;
+    final suggestion = normalize(first).replaceAll(RegExp(r'[^a-z0-9_]'), '');
+    if (suggestion.length < minLength) return '';
+    return suggestion.substring(0, min(suggestion.length, maxLength));
+  }
+
+  static String _moderationKey(String value) {
+    return normalize(value)
+        .replaceAll('0', 'o')
+        .replaceAll('1', 'i')
+        .replaceAll('3', 'e')
+        .replaceAll('4', 'a')
+        .replaceAll('5', 's')
+        .replaceAll('7', 't')
+        .replaceAll(RegExp(r'[_\W]+'), '');
   }
 
   static String? validate(String raw) {
     final username = normalize(raw);
+
+    if (_emailPattern.hasMatch(raw.trim()) ||
+        _urlPattern.hasMatch(raw.trim()) ||
+        _phonePattern.hasMatch(raw.trim()) ||
+        raw.contains('@')) {
+      return 'Kullanıcı adı kişisel iletişim bilgisi içeremez.';
+    }
 
     if (username.length < minLength || username.length > maxLength) {
       return 'Kullanıcı adı 3–16 karakter olmalı.';
@@ -42,7 +118,15 @@ class PlayerUsernamePolicy {
           'İlk karakter harf veya rakam olmalı.';
     }
 
-    if (_reserved.contains(username)) {
+    final moderationKey = _moderationKey(username);
+    final impersonates = _reserved.any(
+      (term) => moderationKey.contains(_moderationKey(term)),
+    );
+    final inappropriate = _blockedTerms.any(
+      (term) => moderationKey.contains(_moderationKey(term)),
+    );
+
+    if (impersonates || inappropriate) {
       return 'Bu kullanıcı adı kullanılamaz.';
     }
 
@@ -65,8 +149,10 @@ class PlayerUsernamePolicy {
   static String cooldownLabel(Duration remaining) {
     if (remaining <= Duration.zero) return 'Şimdi değiştirebilirsin';
 
-    final days = (remaining.inHours / 24).ceil();
-    return '$days gün sonra değiştirebilirsin';
+    final days = remaining.inHours ~/ 24;
+    final hours = remaining.inHours.remainder(24);
+    if (days == 0) return '$hours saat sonra değiştirebilirsin';
+    return '$days gün $hours saat sonra değiştirebilirsin';
   }
 }
 
@@ -75,15 +161,40 @@ class PlayerUsernameProfile {
     required this.uid,
     required this.username,
     this.changedAt,
+    this.firstSetAt,
+    this.correctionUsed = true,
+    this.policyVersion = 1,
   });
 
   final String uid;
   final String username;
   final DateTime? changedAt;
+  final DateTime? firstSetAt;
+  final bool correctionUsed;
+  final int policyVersion;
+
+  bool get hasMigrationCorrection =>
+      !correctionUsed &&
+      username.isNotEmpty &&
+      policyVersion < PlayerUsernamePolicy.currentPolicyVersion;
+
+  bool get hasNewAccountCorrection {
+    if (correctionUsed || firstSetAt == null) return false;
+    return DateTime.now().toUtc().isBefore(
+      firstSetAt!.toUtc().add(PlayerUsernamePolicy.firstCorrectionWindow),
+    );
+  }
+
+  bool get hasFreeCorrection =>
+      hasMigrationCorrection || hasNewAccountCorrection;
 
   bool get canChange =>
+      hasFreeCorrection ||
       PlayerUsernamePolicy.remainingCooldown(changedAt: changedAt) <=
-      Duration.zero;
+          Duration.zero;
+
+  DateTime? get nextChangeAt =>
+      changedAt?.toUtc().add(PlayerUsernamePolicy.changeCooldown);
 
   String get cooldownLabel => PlayerUsernamePolicy.cooldownLabel(
     PlayerUsernamePolicy.remainingCooldown(changedAt: changedAt),
@@ -93,6 +204,9 @@ class PlayerUsernameProfile {
     'uid': uid,
     'username': username,
     'changedAt': changedAt?.toIso8601String(),
+    'firstSetAt': firstSetAt?.toIso8601String(),
+    'correctionUsed': correctionUsed,
+    'policyVersion': policyVersion,
   };
 
   factory PlayerUsernameProfile.fromJson(Map<String, dynamic> json) {
@@ -100,6 +214,12 @@ class PlayerUsernameProfile {
       uid: json['uid']?.toString() ?? '',
       username: json['username']?.toString() ?? '',
       changedAt: DateTime.tryParse(json['changedAt']?.toString() ?? ''),
+      firstSetAt: DateTime.tryParse(json['firstSetAt']?.toString() ?? ''),
+      correctionUsed:
+          json.containsKey('correctionUsed')
+              ? json['correctionUsed'] == true
+              : false,
+      policyVersion: (json['policyVersion'] as num?)?.toInt() ?? 1,
     );
   }
 }
@@ -209,6 +329,7 @@ class PlayerUsernameService {
         data?['username']?.toString() ?? '',
       );
       final changedAt = data?['usernameChangedAt'];
+      final firstSetAt = data?['usernameFirstSetAt'];
 
       if (PlayerUsernamePolicy.validate(username) != null) {
         return fallback;
@@ -219,6 +340,15 @@ class PlayerUsernameService {
         username: username,
         changedAt:
             changedAt is Timestamp ? changedAt.toDate() : fallback?.changedAt,
+        firstSetAt:
+            firstSetAt is Timestamp
+                ? firstSetAt.toDate()
+                : fallback?.firstSetAt,
+        correctionUsed: data?['usernameCorrectionUsed'] == true,
+        policyVersion:
+            (data?['usernamePolicyVersion'] as num?)?.toInt() ??
+            fallback?.policyVersion ??
+            1,
       );
 
       await _writeLocal(profile);
@@ -302,6 +432,10 @@ class PlayerUsernameService {
       );
     }
 
+    if (current != null && current.username != username) {
+      await _ensureNoActiveDuel(user.uid);
+    }
+
     final userReference = _userReference(user.uid);
     final targetReference = _claims.doc(username);
     final now = DateTime.now().toUtc();
@@ -317,6 +451,12 @@ class PlayerUsernameService {
       final rawChangedAt = userData['usernameChangedAt'];
       final remoteChangedAt =
           rawChangedAt is Timestamp ? rawChangedAt.toDate() : null;
+      final rawFirstSetAt = userData['usernameFirstSetAt'];
+      final remoteFirstSetAt =
+          rawFirstSetAt is Timestamp ? rawFirstSetAt.toDate() : null;
+      final remoteCorrectionUsed = userData['usernameCorrectionUsed'] == true;
+      final remotePolicyVersion =
+          (userData['usernamePolicyVersion'] as num?)?.toInt() ?? 1;
 
       DocumentSnapshot<Map<String, dynamic>>? oldClaimSnapshot;
       DocumentReference<Map<String, dynamic>>? oldClaimReference;
@@ -338,9 +478,23 @@ class PlayerUsernameService {
         changedAt: remoteChangedAt,
         now: now,
       );
+      final isInitial = oldUsername.isEmpty;
+      final migrationCorrection =
+          !isInitial &&
+          !remoteCorrectionUsed &&
+          remotePolicyVersion < PlayerUsernamePolicy.currentPolicyVersion;
+      final newAccountCorrection =
+          !isInitial &&
+          !remoteCorrectionUsed &&
+          remoteFirstSetAt != null &&
+          now.isBefore(
+            remoteFirstSetAt.add(PlayerUsernamePolicy.firstCorrectionWindow),
+          );
+      final hasFreeCorrection = migrationCorrection || newAccountCorrection;
 
       if (oldUsername.isNotEmpty &&
           oldUsername != username &&
+          !hasFreeCorrection &&
           remaining > Duration.zero) {
         throw PlayerUsernameException(
           'Kullanıcı adını '
@@ -359,6 +513,9 @@ class PlayerUsernameService {
       transaction.set(userReference, <String, dynamic>{
         'username': username,
         'usernameChangedAt': FieldValue.serverTimestamp(),
+        if (isInitial) 'usernameFirstSetAt': FieldValue.serverTimestamp(),
+        'usernameCorrectionUsed': isInitial ? false : true,
+        'usernamePolicyVersion': PlayerUsernamePolicy.currentPolicyVersion,
       }, SetOptions(merge: true));
 
       if (oldClaimReference != null &&
@@ -371,6 +528,9 @@ class PlayerUsernameService {
       uid: user.uid,
       username: username,
       changedAt: now,
+      firstSetAt: current?.firstSetAt ?? now,
+      correctionUsed: current == null ? false : true,
+      policyVersion: PlayerUsernamePolicy.currentPolicyVersion,
     );
 
     await _writeLocal(profile);
@@ -424,6 +584,59 @@ class PlayerUsernameService {
 
   static void resetSession() {
     state.value = null;
+  }
+
+  static Future<void> _ensureNoActiveDuel(String uid) async {
+    final queue = await FirebaseFirestore.instance
+        .collection('live_duel_queue')
+        .doc(uid)
+        .get(const GetOptions(source: Source.server))
+        .timeout(const Duration(seconds: 6));
+    if (queue.exists) {
+      throw const PlayerUsernameException(
+        'Eşleştirme kuyruğundayken kullanıcı adı değiştirilemez.',
+      );
+    }
+
+    final matches = await FirebaseFirestore.instance
+        .collection('live_duel_matches')
+        .where('playerUids', arrayContains: uid)
+        .limit(10)
+        .get(const GetOptions(source: Source.server))
+        .timeout(const Duration(seconds: 6));
+    final active = matches.docs.any((document) {
+      final data = document.data();
+      return data['resultProcessed'] != true && data['status'] != 'completed';
+    });
+    if (active) {
+      throw const PlayerUsernameException(
+        'Devam eden düello tamamlanmadan kullanıcı adı değiştirilemez.',
+      );
+    }
+  }
+}
+
+class PlayerCommunityAgreementService {
+  const PlayerCommunityAgreementService._();
+
+  static const String textVersion = '2026-07-30-v1';
+
+  static Future<void> accept() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      throw const PlayerUsernameException('Google hesabı gerekli.');
+    }
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .collection('agreements')
+        .doc('community')
+        .set(<String, dynamic>{
+          'uid': user.uid,
+          'textVersion': textVersion,
+          'acceptedAt': FieldValue.serverTimestamp(),
+          'appVersion': AppBuildInfo.version,
+        });
   }
 }
 
@@ -494,6 +707,7 @@ class _PlayerUsernameSetupScreenState extends State<PlayerUsernameSetupScreen> {
   late final TextEditingController _controller;
   bool _busy = false;
   String? _error;
+  bool _accepted = false;
 
   @override
   void initState() {
@@ -501,23 +715,11 @@ class _PlayerUsernameSetupScreenState extends State<PlayerUsernameSetupScreen> {
 
     final current = PlayerUsernameService.currentUsername;
     final googleName = FirebaseAuth.instance.currentUser?.displayName ?? '';
-    final parts = googleName
-        .split(RegExp(r'\s+'))
-        .where((part) => part.trim().isNotEmpty)
-        .toList(growable: false);
-    final first = parts.isEmpty ? '' : parts.first;
-    final suggestion = first.toLowerCase().replaceAll(
-      RegExp(r'[^a-z0-9_]'),
-      '',
+    final suggestion = PlayerUsernamePolicy.suggestionFromDisplayName(
+      googleName,
     );
 
-    _controller = TextEditingController(
-      text:
-          current ??
-          (suggestion.length >= 3
-              ? suggestion.substring(0, min(suggestion.length, 16))
-              : ''),
-    );
+    _controller = TextEditingController(text: current ?? suggestion);
   }
 
   @override
@@ -536,12 +738,55 @@ class _PlayerUsernameSetupScreenState extends State<PlayerUsernameSetupScreen> {
       return;
     }
 
+    final current = PlayerUsernameService.state.value;
+    if (current == null && !_accepted) {
+      setState(() {
+        _error =
+            'Çevrimiçi kullanıcı adı için koşulları ve topluluk '
+            'kurallarını kabul etmelisin.';
+      });
+      return;
+    }
+
+    final username = PlayerUsernamePolicy.normalize(_controller.text);
+    final confirmed =
+        await showDialog<bool>(
+          context: context,
+          builder:
+              (dialogContext) => AlertDialog(
+                title: const Text('Yazımını kontrol et'),
+                content: Text(
+                  'Kullanıcı adın @$username olarak görünecek. '
+                  'Yazımını kontrol ettin mi?',
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(dialogContext, false),
+                    child: const Text('Düzenlemeye dön'),
+                  ),
+                  FilledButton(
+                    onPressed: () => Navigator.pop(dialogContext, true),
+                    child: Text(
+                      current == null
+                          ? 'Evet, kullanıcı adımı oluştur'
+                          : 'Evet, kullanıcı adımı değiştir',
+                    ),
+                  ),
+                ],
+              ),
+        ) ??
+        false;
+    if (!confirmed || !mounted) return;
+
     setState(() {
       _busy = true;
       _error = null;
     });
 
     try {
+      if (current == null) {
+        await PlayerCommunityAgreementService.accept();
+      }
       final profile = await PlayerUsernameService.claim(_controller.text);
 
       if (!mounted) return;
@@ -568,7 +813,9 @@ class _PlayerUsernameSetupScreenState extends State<PlayerUsernameSetupScreen> {
     final remaining = PlayerUsernamePolicy.remainingCooldown(
       changedAt: current?.changedAt,
     );
-    final blocked = changing && remaining > Duration.zero;
+    final freeCorrection = current?.hasFreeCorrection == true;
+    final blocked = changing && !freeCorrection && remaining > Duration.zero;
+    final nextChangeAt = current?.nextChangeAt?.toLocal();
 
     return Scaffold(
       appBar:
@@ -621,6 +868,26 @@ class _PlayerUsernameSetupScreenState extends State<PlayerUsernameSetupScreen> {
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 18),
+                        if (current != null) ...<Widget>[
+                          Text(
+                            'Mevcut ad: @${current.username}',
+                            style: const TextStyle(fontWeight: FontWeight.w800),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Son değişiklik: '
+                            '${_dateTimeLabel(current.changedAt?.toLocal())}',
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            freeCorrection
+                                ? 'Bir defalık ücretsiz düzeltme hakkın hazır.'
+                                : 'Normal değişiklik: 30 günde bir. '
+                                    'Sonraki tarih: '
+                                    '${_dateTimeLabel(nextChangeAt)}',
+                          ),
+                          const SizedBox(height: 12),
+                        ],
                         TextField(
                           controller: _controller,
                           enabled: !_busy && !blocked,
@@ -638,7 +905,9 @@ class _PlayerUsernameSetupScreenState extends State<PlayerUsernameSetupScreen> {
                             hintText: 'leventua',
                             errorText: _error,
                             helperText:
-                                blocked
+                                freeCorrection
+                                    ? 'Ücretsiz düzeltme hakkı • bekleme yok'
+                                    : blocked
                                     ? PlayerUsernamePolicy.cooldownLabel(
                                       remaining,
                                     )
@@ -647,6 +916,43 @@ class _PlayerUsernameSetupScreenState extends State<PlayerUsernameSetupScreen> {
                           ),
                           onSubmitted: (_) => _save(),
                         ),
+                        if (!changing) ...<Widget>[
+                          CheckboxListTile(
+                            contentPadding: EdgeInsets.zero,
+                            value: _accepted,
+                            onChanged:
+                                _busy
+                                    ? null
+                                    : (value) => setState(
+                                      () => _accepted = value == true,
+                                    ),
+                            title: const Text(
+                              'Kullanım Koşulları, Topluluk Kuralları ve '
+                              'Gizlilik Politikası’nı okudum.',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ),
+                          Wrap(
+                            alignment: WrapAlignment.center,
+                            children: <Widget>[
+                              _policyLink(
+                                'Koşullar',
+                                'https://leventua.github.io/BilgiRotasi/'
+                                    'terms-of-use.html',
+                              ),
+                              _policyLink(
+                                'Topluluk',
+                                'https://leventua.github.io/BilgiRotasi/'
+                                    'community-guidelines.html',
+                              ),
+                              _policyLink(
+                                'Gizlilik',
+                                'https://leventua.github.io/BilgiRotasi/'
+                                    'privacy-policy.html',
+                              ),
+                            ],
+                          ),
+                        ],
                         const SizedBox(height: 12),
                         FilledButton.icon(
                           onPressed: _busy || blocked ? null : _save,
@@ -688,5 +994,20 @@ class _PlayerUsernameSetupScreenState extends State<PlayerUsernameSetupScreen> {
         ),
       ),
     );
+  }
+
+  Widget _policyLink(String label, String url) {
+    return TextButton(
+      onPressed:
+          () => launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication),
+      child: Text(label),
+    );
+  }
+
+  String _dateTimeLabel(DateTime? value) {
+    if (value == null) return 'Bilinmiyor';
+    String two(int number) => number.toString().padLeft(2, '0');
+    return '${two(value.day)}.${two(value.month)}.${value.year} '
+        '${two(value.hour)}:${two(value.minute)}';
   }
 }

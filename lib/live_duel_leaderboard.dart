@@ -609,6 +609,18 @@ class _LiveDuelLeaderboardScreenState extends State<LiveDuelLeaderboardScreen> {
               Text(entry.league.title, style: const TextStyle(fontSize: 10)),
             ],
           ),
+          if (!isOwn)
+            IconButton(
+              tooltip: 'Oyuncu işlemleri',
+              onPressed:
+                  () => PlayerSafetyDialogs.showActions(
+                    context,
+                    targetUid: entry.uid,
+                    targetUsername: entry.displayName,
+                    source: 'leaderboard',
+                  ),
+              icon: const Icon(Icons.more_vert_rounded),
+            ),
         ],
       ),
     );
@@ -691,6 +703,18 @@ class _LiveDuelLeaderboardScreenState extends State<LiveDuelLeaderboardScreen> {
                       : const Color(0xFFB91C1C),
             ),
           ),
+          if (match.opponentUid.isNotEmpty)
+            IconButton(
+              tooltip: 'Rakibi bildir veya engelle',
+              onPressed:
+                  () => PlayerSafetyDialogs.showActions(
+                    context,
+                    targetUid: match.opponentUid,
+                    targetUsername: match.opponentName,
+                    source: 'live_duel_result',
+                  ),
+              icon: const Icon(Icons.more_vert_rounded),
+            ),
         ],
       ),
     );
