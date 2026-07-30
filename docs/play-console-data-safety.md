@@ -24,5 +24,9 @@ politikaları ve üretim yapılandırmasıyla karşılaştırarak manuel beyan v
 - Veriler satılmaz; hizmet sağlayıcı aktarımının Play tanımında “paylaşım”
   istisnasına girip girmediği güncel form açıklamalarına göre manuel seçilmelidir.
 - Uygulama 13+ hedeflidir; çocuklara yönelik değildir.
+- 13–15 yaş kullanıcılar bazı bölgelerde dijital rıza yaşının altında olabilir.
+  Güvenilir yaş doğrulaması bulunmadığından reklam ve UMP istekleri bütün
+  kullanıcıların rıza yaşının üzerinde veya altında olduğunu varsayan sabit
+  under-age sinyali göndermez.
 - Hesap silme backend anonimleştirmesi ve saklama temizliği deploy edilmeden
   beyan “tam otomatik silme” olarak işaretlenmemelidir.

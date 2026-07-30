@@ -103,9 +103,14 @@ void main() {
       expect(ads.initializations, 0);
     });
 
-    test('13+ ayarı T, çocuk değil ve under-age değil olarak sabittir', () {
+    test('reklam içeriği T/Teen sınırında kalır', () {
       final source = File('lib/ad_monetization.dart').readAsStringSync();
       expect(source, contains('maxAdContentRating: MaxAdContentRating.t'));
+      expect(source, isNot(contains('MaxAdContentRating.ma')));
+    });
+
+    test('13 yaş altını hedeflemeyen uygulama child-directed no kullanır', () {
+      final source = File('lib/ad_monetization.dart').readAsStringSync();
       expect(
         source,
         contains(
@@ -113,11 +118,30 @@ void main() {
           'TagForChildDirectedTreatment.no',
         ),
       );
+    });
+
+    test('bilinmeyen rıza yaşı için under-age no sinyali gönderilmez', () {
+      final source = File('lib/ad_monetization.dart').readAsStringSync();
       expect(
         source,
-        contains('tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.no'),
+        isNot(
+          contains('tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.no'),
+        ),
       );
-      expect(source, isNot(contains('MaxAdContentRating.ma')));
+      expect(source, isNot(contains('tagForUnderAgeOfConsent: false')));
+    });
+
+    test('UMP isteği yaş bilinmiyorken varsayılan sinyali kullanır', () {
+      final source = File('lib/ad_monetization.dart').readAsStringSync();
+      expect(source, contains('ConsentRequestParameters()'));
+      expect(
+        source,
+        isNot(
+          contains(
+            'ConsentRequestParameters(tagForUnderAgeOfConsent: false)',
+          ),
+        ),
+      );
       expect(source, isNot(contains('ConsentDebugSettings(')));
     });
   });

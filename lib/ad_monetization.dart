@@ -100,7 +100,7 @@ class GoogleUmpConsentGateway implements AdConsentGateway {
   Future<void> requestConsentInfoUpdate() {
     final completer = Completer<void>();
     ConsentInformation.instance.requestConsentInfoUpdate(
-      ConsentRequestParameters(tagForUnderAgeOfConsent: false),
+      ConsentRequestParameters(),
       () => completer.complete(),
       (error) => completer.completeError(error),
     );
@@ -160,7 +160,6 @@ class GoogleMobileAdsGateway implements MobileAdsGateway {
       RequestConfiguration(
         maxAdContentRating: MaxAdContentRating.t,
         tagForChildDirectedTreatment: TagForChildDirectedTreatment.no,
-        tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.no,
       ),
     );
   }
