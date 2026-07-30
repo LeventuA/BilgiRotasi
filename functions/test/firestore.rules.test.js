@@ -16,6 +16,7 @@ const {
   serverTimestamp,
   setDoc,
   updateDoc,
+  writeBatch,
 } = require('firebase/firestore');
 
 let environment;
@@ -181,4 +182,32 @@ test('username correction metadata cannot be forged alone', async () => {
       createdAt: serverTimestamp(),
     }),
   );
+});
+
+async function claimUsername(uid, username) {
+  const db = environment.authenticatedContext(uid).firestore();
+  const batch = writeBatch(db);
+  batch.set(doc(db, 'users', uid), {
+    username,
+    usernameChangedAt: serverTimestamp(),
+    usernameFirstSetAt: serverTimestamp(),
+    usernameCorrectionUsed: false,
+    usernamePolicyVersion: 2,
+  });
+  batch.set(doc(db, 'usernames', username), {
+    uid,
+    username,
+    createdAt: serverTimestamp(),
+  });
+  return batch.commit();
+}
+
+test('ambiguous short terms are exact-only in username rules', async () => {
+  await assertSucceeds(claimUsername('aquaman-user', 'aquaman'));
+  await assertSucceeds(claimUsername('epic-user', 'epicoyuncu'));
+  await assertSucceeds(claimUsername('nazim-user', 'nazim'));
+
+  await assertFails(claimUsername('pic-user', 'pic'));
+  await assertFails(claimUsername('nazi-user', 'nazi'));
+  await assertFails(claimUsername('explicit-user', 'orospu_oyuncu'));
 });

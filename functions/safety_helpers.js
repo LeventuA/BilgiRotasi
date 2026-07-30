@@ -5,14 +5,17 @@ const { createHash } = require('node:crypto');
 const usernamePattern = /^[a-z0-9][a-z0-9_]{2,15}$/;
 const reservedPattern =
   /(admin|administrator|moderator|sistem|destek|support|zmilastudio|bilgirotasi|google|firebase)/;
+const exactBlockedTerms = new Set(['aq', 'pic', 'nazi', 'sex']);
 const blockedPattern =
-  /(amk|aq|orospu|siktir|sikik|yarrak|pic|ibne|gerizekali|salak|aptal|fuck|bitch|nigger|nazi|porn|sex)/;
+  /(amk|orospu|siktir|sikik|yarrak|ibne|gerizekali|salak|aptal|fuck|bitch|nigger|porn)/;
 const phonePattern = /(?:\d_*){7,}/;
 
 function normalizeUsername(value) {
   return String(value ?? '')
     .trim()
+    .replaceAll('İ', 'i')
     .toLocaleLowerCase('tr-TR')
+    .replaceAll('\u0307', '')
     .replaceAll('ı', 'i')
     .replaceAll('ş', 's')
     .replaceAll('ğ', 'g')
@@ -39,6 +42,7 @@ function isValidUsername(value) {
     usernamePattern.test(normalized) &&
     !phonePattern.test(normalized) &&
     !reservedPattern.test(key) &&
+    !exactBlockedTerms.has(key) &&
     !blockedPattern.test(key)
   );
 }
