@@ -111,6 +111,9 @@ void main() {
     });
 
     test('AAB türevi Android 16 kritik akış doğrulaması yapar', () {
+      expect(workflow, isNot(contains('flutter build apk --release')));
+      expect(workflow, contains('flutter build appbundle --release'));
+      expect(workflow, contains('universal.apk'));
       expect(workflow, contains('api-level: 36'));
       expect(workflow, contains(r'install-apks --apks="$APKS"'));
       expect(workflow, contains("wait_for_text 'Google ile giriş yap'"));

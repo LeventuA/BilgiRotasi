@@ -178,13 +178,10 @@ jobs:
           test -s android/key.properties
           test -s android/app/bilgi_rotasi_upload.jks
 
-      - name: Production Firebase ve kapalı-test reklam profilli paketleri üret
+      - name: Production Firebase ve kapalı-test reklam profilli AAB üret
         shell: bash
         run: |
           set -euo pipefail
-          flutter build apk --release \
-            --dart-define=ADMOB_ENVIRONMENT=closed_test \
-            --dart-define=FIREBASE_ENVIRONMENT=production
           flutter build appbundle --release \
             --dart-define=ADMOB_ENVIRONMENT=closed_test \
             --dart-define=FIREBASE_ENVIRONMENT=production
@@ -217,12 +214,16 @@ jobs:
             --ks-key-alias="$ANDROID_KEY_ALIAS" \
             --ks-pass="file:$KS_PASS_FILE" \
             --key-pass="file:$KEY_PASS_FILE"
+          unzip -p "dist/BilgiRotasi-${VERSION_LABEL}-closed-test.apks" \
+            universal.apk \
+            > "dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"
+          test -s "dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"
 
       - name: AAB metadata, Firebase, reklam ve imzayı doğrula
         shell: bash
         run: |
           set -euo pipefail
-          APK="build/app/outputs/flutter-apk/app-release.apk"
+          APK="dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"
           AAB="dist/$AAB_FILE"
           SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
           AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 | sort -V | tail -n 1)"
