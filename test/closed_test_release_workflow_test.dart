@@ -5,21 +5,51 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('Nihai kapalı test release workflow', () {
     late String workflow;
+    late String manualWorkflow;
 
     setUpAll(() {
-      workflow =
+      manualWorkflow =
           File('.github/workflows/closed-test-release.yml').readAsStringSync();
+      final coreWorkflow =
+          File(
+            '.github/workflows/closed-test-release-core.yml',
+          ).readAsStringSync();
+      workflow = '$manualWorkflow\n$coreWorkflow';
     });
 
     test('yalnız elle ve açık onayla çalışır', () {
-      expect(workflow, contains('workflow_dispatch:'));
+      expect(manualWorkflow, contains('workflow_dispatch:'));
       expect(
         workflow,
         contains(r'test "$CLOSED_TEST_CONFIRMATION" = "CLOSED_TEST"'),
       );
-      expect(workflow, isNot(contains('\n  push:')));
-      expect(workflow, isNot(contains('\n  pull_request:')));
-      expect(workflow, isNot(contains('\n  schedule:')));
+      expect(manualWorkflow, isNot(contains('workflow_call:')));
+      expect(manualWorkflow, isNot(contains('\n  push:')));
+      expect(manualWorkflow, isNot(contains('\n  pull_request:')));
+      expect(manualWorkflow, isNot(contains('\n  schedule:')));
+      expect(
+        manualWorkflow,
+        contains('uses: ./.github/workflows/closed-test-release-core.yml'),
+      );
+    });
+
+    test('kayıtlı manuel workflow kapalı-test çekirdeğini çağırabilir', () {
+      final registeredWorkflow =
+          File(
+            '.github/workflows/apply-permanent-admob-v7.yml',
+          ).readAsStringSync();
+      expect(
+        registeredWorkflow,
+        contains("if: inputs.confirmation == 'CLOSED_TEST'"),
+      );
+      expect(
+        registeredWorkflow,
+        contains('uses: ./.github/workflows/closed-test-release-core.yml'),
+      );
+      expect(
+        registeredWorkflow,
+        contains("if: inputs.confirmation == 'PRODUCTION'"),
+      );
     });
 
     test('sürüm pubspec dosyasından dinamik okunur', () {

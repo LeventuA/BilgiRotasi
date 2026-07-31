@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       confirmation:
-        description: Production build için PRODUCTION yazın
+        description: Production için PRODUCTION, kapalı test için CLOSED_TEST yazın
         required: true
         type: string
 
@@ -17,6 +17,7 @@ concurrency:
 
 jobs:
   production-release:
+    if: inputs.confirmation == 'PRODUCTION'
     name: Production APK ve AAB doğrulaması
     runs-on: ubuntu-22.04
     timeout-minutes: 60
@@ -252,3 +253,10 @@ jobs:
           rm -f \
             android/key.properties \
             android/app/bilgi_rotasi_upload.jks
+
+  closed-test-release:
+    if: inputs.confirmation == 'CLOSED_TEST'
+    uses: ./.github/workflows/closed-test-release-core.yml
+    with:
+      confirmation: ${{ inputs.confirmation }}
+    secrets: inherit
