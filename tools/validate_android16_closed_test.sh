@@ -22,6 +22,22 @@ for attempt in $(seq 1 30); do
   sleep 2
 done
 
+for attempt in $(seq 1 60); do
+  package_service="$(timeout 10 adb shell service check package 2>/dev/null | tr -d '\r' || true)"
+  activity_service="$(timeout 10 adb shell service check activity 2>/dev/null | tr -d '\r' || true)"
+  if printf '%s' "$package_service" | grep -Fq 'found' \
+      && printf '%s' "$activity_service" | grep -Fq 'found' \
+      && timeout 10 adb shell pm path android >/dev/null 2>&1; then
+    break
+  fi
+  if [ "$attempt" = "60" ]; then
+    echo "Android 16 package and activity services did not become stable." >&2
+    exit 1
+  fi
+  adb wait-for-device
+  sleep 3
+done
+
 APK="dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"
 test -s "$APK"
 for attempt in $(seq 1 5); do

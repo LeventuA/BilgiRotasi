@@ -130,6 +130,9 @@ void main() {
         startsWith('#!/usr/bin/env bash\nset -euo pipefail'),
       );
       expect(workflow, contains(r'adb shell getprop ro.build.version.sdk'));
+      expect(workflow, contains(r'adb shell service check package'));
+      expect(workflow, contains(r'adb shell service check activity'));
+      expect(workflow, contains(r'adb shell pm path android'));
       expect(
         workflow,
         contains(
