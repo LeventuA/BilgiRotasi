@@ -1,17 +1,32 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+mkdir -p reports
+
+capture_diagnostics() {
+  adb logcat -d > reports/COLD_START_LOGCAT.txt 2>&1 || true
+  adb shell dumpsys activity activities > reports/ACTIVITY_STATE.txt 2>&1 || true
+  adb shell pidof com.leventua.bilgirotasi > reports/APP_PID.txt 2>&1 || true
+}
+
+trap capture_diagnostics EXIT
+
 APKS="dist/BilgiRotasi-${VERSION_LABEL}-closed-test.apks"
 java -jar "$RUNNER_TEMP/bundletool.jar" install-apks --apks="$APKS"
+adb wait-for-device
 adb logcat -c
 adb shell pm clear com.leventua.bilgirotasi
 adb shell am force-stop com.leventua.bilgirotasi
-adb shell am start -W -n com.leventua.bilgirotasi/.MainActivity
+adb shell am start -n com.leventua.bilgirotasi/.MainActivity
+sleep 20
 
 wait_for_text() {
   local expected="$1"
-  for _ in $(seq 1 30); do
-    adb shell uiautomator dump /sdcard/window.xml >/dev/null 2>&1 || true
+  for attempt in $(seq 1 20); do
+    rm -f reports/window.xml
+    adb shell rm -f /sdcard/window.xml || true
+    timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml \
+      > "reports/uiautomator-${attempt}.log" 2>&1 || true
     adb pull /sdcard/window.xml reports/window.xml >/dev/null 2>&1 || true
     if grep -Fq "$expected" reports/window.xml; then return 0; fi
     sleep 2
@@ -21,7 +36,7 @@ wait_for_text() {
 
 tap_text() {
   local expected="$1"
-  adb shell uiautomator dump /sdcard/window.xml >/dev/null
+  timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml >/dev/null
   adb pull /sdcard/window.xml reports/window.xml >/dev/null
   local point
   point="$(python3 - "$expected" <<'PY'
@@ -50,7 +65,7 @@ cp reports/window.xml reports/UI_HOME.xml
 grep -Fq 'Oyna' reports/UI_HOME.xml
 
 for _ in $(seq 1 5); do
-  adb shell uiautomator dump /sdcard/window.xml >/dev/null
+  timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml >/dev/null
   adb pull /sdcard/window.xml reports/window.xml >/dev/null
   grep -Fq 'Ayarlar' reports/window.xml && break
   adb shell input swipe 540 1600 540 450 500
@@ -59,7 +74,7 @@ tap_text 'Ayarlar'
 wait_for_text 'Ayarlar'
 
 for _ in $(seq 1 6); do
-  adb shell uiautomator dump /sdcard/window.xml >/dev/null
+  timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml >/dev/null
   adb pull /sdcard/window.xml reports/window.xml >/dev/null
   grep -Fq 'Eğitimi Yeniden Göster' reports/window.xml && break
   adb shell input swipe 540 1650 540 400 500
@@ -70,11 +85,11 @@ cp reports/window.xml reports/UI_TUTORIAL_DIALOG.xml
 grep -Fq 'Anladım' reports/UI_TUTORIAL_DIALOG.xml
 tap_text 'Anladım'
 sleep 2
-adb shell uiautomator dump /sdcard/window.xml >/dev/null
+timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml >/dev/null
 adb pull /sdcard/window.xml reports/UI_TUTORIAL_CLOSED.xml >/dev/null
 ! grep -Fq 'Bilgi Rotası Nasıl Oynanır?' reports/UI_TUTORIAL_CLOSED.xml
 
-adb logcat -d > reports/COLD_START_LOGCAT.txt
+capture_diagnostics
 test -n "$(adb shell pidof com.leventua.bilgirotasi | tr -d '\r')"
 ! grep -Eqi 'FATAL EXCEPTION|AndroidRuntime.*FATAL|Missing application ID|MobileAdsInitProvider.*IllegalStateException' reports/COLD_START_LOGCAT.txt
 adb shell dumpsys activity activities | grep -Fq com.leventua.bilgirotasi

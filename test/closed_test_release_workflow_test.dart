@@ -119,6 +119,7 @@ void main() {
       expect(workflow, contains('flutter build appbundle --release'));
       expect(workflow, contains('universal.apk'));
       expect(workflow, contains('api-level: 36'));
+      expect(coreWorkflow, contains('ram-size: 3072M'));
       expect(
         coreWorkflow,
         contains('bash tools/validate_android16_closed_test.sh'),
@@ -132,6 +133,8 @@ void main() {
       expect(workflow, contains("tap_text 'Misafir olarak devam et'"));
       expect(workflow, contains("tap_text 'Eğitimi Yeniden Göster'"));
       expect(workflow, contains('reports/COLD_START_LOGCAT.txt'));
+      expect(android16Script, contains('trap capture_diagnostics EXIT'));
+      expect(android16Script, contains('timeout 12 adb shell uiautomator dump'));
       expect(workflow, contains('FATAL EXCEPTION'));
     });
 
