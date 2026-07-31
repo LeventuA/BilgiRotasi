@@ -138,7 +138,24 @@ void main() {
           contains('ConsentRequestParameters(tagForUnderAgeOfConsent: false)'),
         ),
       );
-      expect(source, isNot(contains('ConsentDebugSettings(')));
+      expect(source, isNot(contains('tagForUnderAgeOfConsent:')));
+    });
+
+    test('yalnız Android emülatörü UMP test coğrafyası kullanır', () {
+      final source = File('lib/ad_monetization.dart').readAsStringSync();
+      final androidSource =
+          File(
+            'android/app/src/main/kotlin/com/leventua/bilgirotasi/MainActivity.kt',
+          ).readAsStringSync();
+
+      expect(source, contains(': ConsentRequestParameters();'));
+      expect(source, contains("invokeMethod<bool>('isEmulator')"));
+      expect(source, contains('DebugGeography.debugGeographyOther'));
+      expect(
+        androidSource,
+        contains('Build.FINGERPRINT.startsWith("generic")'),
+      );
+      expect(androidSource, contains('Build.PRODUCT.contains("sdk_gphone")'));
     });
   });
 

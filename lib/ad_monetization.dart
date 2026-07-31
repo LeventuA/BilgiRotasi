@@ -95,18 +95,50 @@ abstract interface class AdConsentGateway {
   Future<void> showPrivacyOptionsForm();
 }
 
+class AndroidEmulatorGateway {
+  const AndroidEmulatorGateway();
+
+  static const MethodChannel _channel = MethodChannel(
+    'com.leventua.bilgirotasi/runtime_environment',
+  );
+
+  Future<bool> isEmulator() async {
+    if (!Platform.isAndroid) return false;
+    try {
+      return await _channel.invokeMethod<bool>('isEmulator') ?? false;
+    } on PlatformException {
+      return false;
+    } on MissingPluginException {
+      return false;
+    }
+  }
+}
+
 class GoogleUmpConsentGateway implements AdConsentGateway {
-  const GoogleUmpConsentGateway();
+  const GoogleUmpConsentGateway({
+    this.emulatorGateway = const AndroidEmulatorGateway(),
+  });
+
+  final AndroidEmulatorGateway emulatorGateway;
 
   @override
-  Future<void> requestConsentInfoUpdate() {
+  Future<void> requestConsentInfoUpdate() async {
     final completer = Completer<void>();
+    final isEmulator = await emulatorGateway.isEmulator();
+    final parameters =
+        isEmulator
+            ? ConsentRequestParameters(
+              consentDebugSettings: ConsentDebugSettings(
+                debugGeography: DebugGeography.debugGeographyOther,
+              ),
+            )
+            : ConsentRequestParameters();
     ConsentInformation.instance.requestConsentInfoUpdate(
-      ConsentRequestParameters(),
+      parameters,
       () => completer.complete(),
       (error) => completer.completeError(error),
     );
-    return completer.future;
+    await completer.future;
   }
 
   @override
