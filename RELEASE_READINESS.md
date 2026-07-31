@@ -51,6 +51,7 @@ Manuel `Closed test release doğrulaması` workflow'u şu kontrolleri geçmeden 
 - `git diff --check`: PASS.
 - Üç profil testinin ilk paralel yerel çağrısı Flutter araç kilidi nedeniyle zaman aşımına uğradı; testler ardışık tekrarlandığında üçü de geçti.
 - İlk GitHub Actions denemesinde APK ve AAB üretildi, ancak Bundletool 1.18.3 `env:` parola önekini kabul etmediği için APK seti kapısında durdu. Parolalar süreç argümanına konmadan, izinleri sınırlandırılmış geçici dosyalarla `file:` biçimine geçirildi; sonraki başarılı run kabul kanıtıdır.
+- İkinci GitHub Actions denemesinde Bundletool geçti ve sertifika doğru SHA-1'i gösterdi; karşılaştırma için AAB SHA-1 değerindeki iki nokta ayraçları kaldırılmadığından metadata adımı yanlış negatif verdi. Normalizasyon APK ile aynı hale getirildi; sonraki başarılı run kabul kanıtıdır.
 
 Yerelde 8 GB RAM sınırı nedeniyle release AAB üretilmedi. İmzalı AAB, metadata ve Android 16 doğrulamasının yetkili sonucu yalnız GitHub Actions workflow sonucudur.
 

@@ -99,6 +99,8 @@ void main() {
         'bundletool.jar',
         '--ks-pass="file:\$KS_PASS_FILE"',
         '--key-pass="file:\$KEY_PASS_FILE"',
+        "AAB_SHA1=\"\$(awk -F': '",
+        "tr -d '[:space:]:'",
         "! grep -Fq 'android:debuggable=\"true\"'",
         "BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY",
       ]) {

@@ -267,7 +267,7 @@ jobs:
           APK_SHA1="$(printf '%s\n' "$APK_CERT" | awk -F': ' '/certificate SHA-1 digest/ {print $NF; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
           jarsigner -verify "$AAB"
           keytool -printcert -jarfile "$AAB" | tee reports/AAB_CERTIFICATE.txt
-          AAB_SHA1="$(awk -F': ' '/SHA1:/ {print $2; exit}' reports/AAB_CERTIFICATE.txt | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]')"
+          AAB_SHA1="$(awk -F': ' '/SHA1:/ {print $2; exit}' reports/AAB_CERTIFICATE.txt | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
           test "$APK_SHA1" = "$EXPECTED_SHA1"
           test "$AAB_SHA1" = "$EXPECTED_SHA1"
 
