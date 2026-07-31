@@ -6,11 +6,12 @@ void main() {
   group('Nihai kapalı test release workflow', () {
     late String workflow;
     late String manualWorkflow;
+    late String coreWorkflow;
 
     setUpAll(() {
       manualWorkflow =
           File('.github/workflows/closed-test-release.yml').readAsStringSync();
-      final coreWorkflow =
+      coreWorkflow =
           File(
             '.github/workflows/closed-test-release-core.yml',
           ).readAsStringSync();
