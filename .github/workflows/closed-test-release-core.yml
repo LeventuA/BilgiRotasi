@@ -303,7 +303,7 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: true
           script: |
-            set -euo pipefail
+            set -eu
             APKS="dist/BilgiRotasi-${VERSION_LABEL}-closed-test.apks"
             java -jar "$RUNNER_TEMP/bundletool.jar" install-apks --apks="$APKS"
             adb logcat -c

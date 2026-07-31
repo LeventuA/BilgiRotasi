@@ -115,6 +115,7 @@ void main() {
       expect(workflow, contains('flutter build appbundle --release'));
       expect(workflow, contains('universal.apk'));
       expect(workflow, contains('api-level: 36'));
+      expect(coreWorkflow, contains('script: |\n            set -eu'));
       expect(workflow, contains(r'install-apks --apks="$APKS"'));
       expect(workflow, contains("wait_for_text 'Google ile giriş yap'"));
       expect(workflow, contains("tap_text 'Misafir olarak devam et'"));

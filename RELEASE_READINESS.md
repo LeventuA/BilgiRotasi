@@ -53,6 +53,8 @@ Manuel `Closed test release doğrulaması` workflow'u şu kontrolleri geçmeden 
 - İlk GitHub Actions denemesinde APK ve AAB üretildi, ancak Bundletool 1.18.3 `env:` parola önekini kabul etmediği için APK seti kapısında durdu. Parolalar süreç argümanına konmadan, izinleri sınırlandırılmış geçici dosyalarla `file:` biçimine geçirildi; sonraki başarılı run kabul kanıtıdır.
 - İkinci GitHub Actions denemesinde Bundletool geçti ve sertifika doğru SHA-1'i gösterdi; karşılaştırma için AAB SHA-1 değerindeki iki nokta ayraçları kaldırılmadığından metadata adımı yanlış negatif verdi. Normalizasyon APK ile aynı hale getirildi; sonraki başarılı run kabul kanıtıdır.
 - Üçüncü GitHub Actions denemesinde ayrı APK derlemesi GitHub runner'da olağandışı uzun sürdü. Yayın ürünü AAB olduğundan yinelenen standalone APK derlemesi kaldırıldı; paket/badging/imza ve Android 16 kontrolleri artık zorunlu olarak AAB'den Bundletool ile türetilen universal APK üzerinde yapılır.
+- Dördüncü GitHub Actions denemesinde Android 16 emülatörü açıldıktan sonra runner'ın kendi animasyon ayarı ADB `Broken pipe` hatası verdi; uygulama test betiği başlamadan altyapı adımı durdu.
+- Aynı run'ın yeniden denemesinde emülatör açıldı, ancak `android-emulator-runner` betiği `/bin/sh` ile başlattığı için Bash'e özgü `set -o pipefail` kabul edilmedi. Betik taşınabilir `set -eu` kullanacak şekilde düzeltildi; sonraki başarılı run kabul kanıtıdır.
 
 Yerelde 8 GB RAM sınırı nedeniyle release AAB üretilmedi. İmzalı AAB, metadata ve Android 16 doğrulamasının yetkili sonucu yalnız GitHub Actions workflow sonucudur.
 
