@@ -124,9 +124,7 @@ void main() {
       final source = File('lib/ad_monetization.dart').readAsStringSync();
       expect(
         source,
-        isNot(
-          contains('tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.no'),
-        ),
+        isNot(contains('tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.no')),
       );
       expect(source, isNot(contains('tagForUnderAgeOfConsent: false')));
     });
@@ -137,9 +135,7 @@ void main() {
       expect(
         source,
         isNot(
-          contains(
-            'ConsentRequestParameters(tagForUnderAgeOfConsent: false)',
-          ),
+          contains('ConsentRequestParameters(tagForUnderAgeOfConsent: false)'),
         ),
       );
       expect(source, isNot(contains('ConsentDebugSettings(')));
@@ -169,7 +165,7 @@ void main() {
 
   group('yayın gizlilik sözleşmesi', () {
     test('sürüm ve production etiketi günceldir', () {
-      expect(AppBuildInfo.version, '1.68.6+96');
+      expect(AppBuildInfo.version, '1.68.7+97');
       expect(AppBuildInfo.channel, 'Production');
     });
 

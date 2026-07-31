@@ -1518,11 +1518,8 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _reloadSavedGame();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        unawaited(FirstRunTutorial.showIfNeeded(context));
-      }
-    });
+    // Bozuk eğitim katmanı ilk açılışta otomatik gösterilmez.
+    // Eğitim, Ayarlar ekranındaki güvenli pencereden açılabilir.
   }
 
   void _reloadSavedGame() {

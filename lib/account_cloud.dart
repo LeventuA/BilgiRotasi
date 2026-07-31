@@ -341,10 +341,6 @@ class AccountCloudService with WidgetsBindingObserver {
 
   static final AccountCloudService _instance = AccountCloudService._();
 
-  static const String _webClientId =
-      '184174765052-cq19m113aum2jofrfj3np8adbulgmeon'
-      '.apps.googleusercontent.com';
-
   static const String _guestSelectedKey =
       'bilgi_rotasi_account_guest_selected_v1';
   static const String _guestSnapshotKey =
@@ -440,7 +436,7 @@ class AccountCloudService with WidgetsBindingObserver {
       _firestore = FirebaseFirestore.instance;
       _googleSignIn = GoogleSignIn.instance;
 
-      await _googleSignIn!.initialize(serverClientId: _webClientId);
+      await _googleSignIn!.initialize();
 
       WidgetsBinding.instance.addObserver(this);
 

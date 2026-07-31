@@ -562,7 +562,32 @@ class SettingsCenterScreen extends StatelessWidget {
               'kısa eğitimi tekrar aç.',
           accent: const Color(0xFF2563EB),
           onTap: () {
-            unawaited(FirstRunTutorial.show(context, force: true));
+            unawaited(
+              showDialog<void>(
+                context: context,
+                builder: (dialogContext) {
+                  return AlertDialog(
+                    title: const Text('Bilgi Rotası Nasıl Oynanır?'),
+                    content: const SingleChildScrollView(
+                      child: Text(
+                        '🎲 Zarı at ve rotada ilerle.\n\n'
+                        '🧭 Yol ayrımında gitmek istediğin yönü seç.\n\n'
+                        '🏅 Altı kategorinin rozetini topla.\n\n'
+                        '⭐ Özel alanlarda avantajlar ve riskler bulunur.\n\n'
+                        '🏆 Altı rozeti tamamlayıp final sorusunu bilirsen '
+                        'oyunu kazanırsın.',
+                      ),
+                    ),
+                    actions: [
+                      FilledButton(
+                        onPressed: () => Navigator.of(dialogContext).pop(),
+                        child: const Text('Anladım'),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            );
           },
         ),
       ],
