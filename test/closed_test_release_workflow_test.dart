@@ -7,6 +7,7 @@ void main() {
     late String workflow;
     late String manualWorkflow;
     late String coreWorkflow;
+    late String android16Script;
 
     setUpAll(() {
       manualWorkflow =
@@ -15,7 +16,9 @@ void main() {
           File(
             '.github/workflows/closed-test-release-core.yml',
           ).readAsStringSync();
-      workflow = '$manualWorkflow\n$coreWorkflow';
+      android16Script =
+          File('tools/validate_android16_closed_test.sh').readAsStringSync();
+      workflow = '$manualWorkflow\n$coreWorkflow\n$android16Script';
     });
 
     test('yalnız elle ve açık onayla çalışır', () {
@@ -116,7 +119,14 @@ void main() {
       expect(workflow, contains('flutter build appbundle --release'));
       expect(workflow, contains('universal.apk'));
       expect(workflow, contains('api-level: 36'));
-      expect(coreWorkflow, contains('script: |\n            set -eu'));
+      expect(
+        coreWorkflow,
+        contains('bash tools/validate_android16_closed_test.sh'),
+      );
+      expect(
+        android16Script,
+        startsWith('#!/usr/bin/env bash\nset -euo pipefail'),
+      );
       expect(workflow, contains(r'install-apks --apks="$APKS"'));
       expect(workflow, contains("wait_for_text 'Google ile giriş yap'"));
       expect(workflow, contains("tap_text 'Misafir olarak devam et'"));
