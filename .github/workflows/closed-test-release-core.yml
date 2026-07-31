@@ -199,6 +199,12 @@ jobs:
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           set -euo pipefail
+          KS_PASS_FILE="$RUNNER_TEMP/bundletool-keystore.pass"
+          KEY_PASS_FILE="$RUNNER_TEMP/bundletool-key.pass"
+          trap 'rm -f "$KS_PASS_FILE" "$KEY_PASS_FILE"' EXIT
+          printf '%s' "$ANDROID_KEYSTORE_PASSWORD" > "$KS_PASS_FILE"
+          printf '%s' "$ANDROID_KEY_PASSWORD" > "$KEY_PASS_FILE"
+          chmod 600 "$KS_PASS_FILE" "$KEY_PASS_FILE"
           curl --fail --location --silent --show-error \
             --output "$RUNNER_TEMP/bundletool.jar" \
             "https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar"
@@ -209,8 +215,8 @@ jobs:
             --mode=universal \
             --ks=android/app/bilgi_rotasi_upload.jks \
             --ks-key-alias="$ANDROID_KEY_ALIAS" \
-            --ks-pass=env:ANDROID_KEYSTORE_PASSWORD \
-            --key-pass=env:ANDROID_KEY_PASSWORD
+            --ks-pass="file:$KS_PASS_FILE" \
+            --key-pass="file:$KEY_PASS_FILE"
 
       - name: AAB metadata, Firebase, reklam ve imzayı doğrula
         shell: bash

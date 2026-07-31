@@ -97,11 +97,15 @@ void main() {
         'jarsigner -verify',
         'keytool -printcert -jarfile',
         'bundletool.jar',
+        '--ks-pass="file:\$KS_PASS_FILE"',
+        '--key-pass="file:\$KEY_PASS_FILE"',
         "! grep -Fq 'android:debuggable=\"true\"'",
         "BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY",
       ]) {
         expect(workflow, contains(expected), reason: expected);
       }
+      expect(workflow, isNot(contains('--ks-pass=env:')));
+      expect(workflow, isNot(contains('--key-pass=env:')));
     });
 
     test('AAB türevi Android 16 kritik akış doğrulaması yapar', () {

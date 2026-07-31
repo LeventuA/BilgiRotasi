@@ -50,6 +50,7 @@ Manuel `Closed test release doğrulaması` workflow'u şu kontrolleri geçmeden 
 - RC1 soru/asset kalite kapısı: PASS; 6710 soru. Kapıdaki eski `1.68.6+96` sabitlemesi dinamik sürüm biçimi ve `AppBuildInfo` eşleşmesi kontrolüyle değiştirildi.
 - `git diff --check`: PASS.
 - Üç profil testinin ilk paralel yerel çağrısı Flutter araç kilidi nedeniyle zaman aşımına uğradı; testler ardışık tekrarlandığında üçü de geçti.
+- İlk GitHub Actions denemesinde APK ve AAB üretildi, ancak Bundletool 1.18.3 `env:` parola önekini kabul etmediği için APK seti kapısında durdu. Parolalar süreç argümanına konmadan, izinleri sınırlandırılmış geçici dosyalarla `file:` biçimine geçirildi; sonraki başarılı run kabul kanıtıdır.
 
 Yerelde 8 GB RAM sınırı nedeniyle release AAB üretilmedi. İmzalı AAB, metadata ve Android 16 doğrulamasının yetkili sonucu yalnız GitHub Actions workflow sonucudur.
 
