@@ -43,10 +43,10 @@ wait_for_text() {
   local expected="$1"
   for attempt in $(seq 1 20); do
     rm -f reports/window.xml
-    adb shell rm -f /sdcard/window.xml || true
-    timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml \
+    adb shell rm -f /data/local/tmp/window.xml || true
+    timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml \
       > "reports/uiautomator-${attempt}.log" 2>&1 || true
-    adb pull /sdcard/window.xml reports/window.xml >/dev/null 2>&1 || true
+    adb pull /data/local/tmp/window.xml reports/window.xml >/dev/null 2>&1 || true
     if grep -Fq "$expected" reports/window.xml; then return 0; fi
     sleep 2
   done
@@ -55,8 +55,8 @@ wait_for_text() {
 
 tap_text() {
   local expected="$1"
-  timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml >/dev/null
-  adb pull /sdcard/window.xml reports/window.xml >/dev/null
+  timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml >/dev/null
+  adb pull /data/local/tmp/window.xml reports/window.xml >/dev/null
   local point
   point="$(python3 - "$expected" <<'PY'
 import re, sys, xml.etree.ElementTree as ET
@@ -84,8 +84,8 @@ cp reports/window.xml reports/UI_HOME.xml
 grep -Fq 'Oyna' reports/UI_HOME.xml
 
 for _ in $(seq 1 5); do
-  timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml >/dev/null
-  adb pull /sdcard/window.xml reports/window.xml >/dev/null
+  timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml >/dev/null
+  adb pull /data/local/tmp/window.xml reports/window.xml >/dev/null
   grep -Fq 'Ayarlar' reports/window.xml && break
   adb shell input swipe 540 1600 540 450 500
 done
@@ -93,8 +93,8 @@ tap_text 'Ayarlar'
 wait_for_text 'Ayarlar'
 
 for _ in $(seq 1 6); do
-  timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml >/dev/null
-  adb pull /sdcard/window.xml reports/window.xml >/dev/null
+  timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml >/dev/null
+  adb pull /data/local/tmp/window.xml reports/window.xml >/dev/null
   grep -Fq 'Eğitimi Yeniden Göster' reports/window.xml && break
   adb shell input swipe 540 1650 540 400 500
 done
@@ -104,8 +104,8 @@ cp reports/window.xml reports/UI_TUTORIAL_DIALOG.xml
 grep -Fq 'Anladım' reports/UI_TUTORIAL_DIALOG.xml
 tap_text 'Anladım'
 sleep 2
-timeout 12 adb shell uiautomator dump --compressed /sdcard/window.xml >/dev/null
-adb pull /sdcard/window.xml reports/UI_TUTORIAL_CLOSED.xml >/dev/null
+timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml >/dev/null
+adb pull /data/local/tmp/window.xml reports/UI_TUTORIAL_CLOSED.xml >/dev/null
 ! grep -Fq 'Bilgi Rotası Nasıl Oynanır?' reports/UI_TUTORIAL_CLOSED.xml
 
 capture_diagnostics

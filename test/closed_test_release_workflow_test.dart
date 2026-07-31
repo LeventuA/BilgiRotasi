@@ -137,6 +137,13 @@ void main() {
         ),
       );
       expect(workflow, contains(r'adb install -r "$APK"'));
+      expect(
+        workflow,
+        contains(
+          'uiautomator dump --compressed /data/local/tmp/window.xml',
+        ),
+      );
+      expect(workflow, isNot(contains('/sdcard/window.xml')));
       expect(workflow, contains("wait_for_text 'Google ile giriş yap'"));
       expect(workflow, contains("tap_text 'Misafir olarak devam et'"));
       expect(workflow, contains("tap_text 'Eğitimi Yeniden Göster'"));
