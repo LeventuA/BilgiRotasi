@@ -129,7 +129,14 @@ void main() {
         android16Script,
         startsWith('#!/usr/bin/env bash\nset -euo pipefail'),
       );
-      expect(workflow, contains(r'install-apks --apks="$APKS"'));
+      expect(workflow, contains(r'adb shell getprop ro.build.version.sdk'));
+      expect(
+        workflow,
+        contains(
+          r'APK="dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"',
+        ),
+      );
+      expect(workflow, contains(r'adb install -r "$APK"'));
       expect(workflow, contains("wait_for_text 'Google ile giriş yap'"));
       expect(workflow, contains("tap_text 'Misafir olarak devam et'"));
       expect(workflow, contains("tap_text 'Eğitimi Yeniden Göster'"));

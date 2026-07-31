@@ -11,9 +11,28 @@ capture_diagnostics() {
 
 trap capture_diagnostics EXIT
 
-APKS="dist/BilgiRotasi-${VERSION_LABEL}-closed-test.apks"
-java -jar "$RUNNER_TEMP/bundletool.jar" install-apks --apks="$APKS"
 adb wait-for-device
+for attempt in $(seq 1 30); do
+  sdk_version="$(adb shell getprop ro.build.version.sdk 2>/dev/null | tr -d '\r')"
+  if [ "$sdk_version" = "36" ]; then break; fi
+  if [ "$attempt" = "30" ]; then
+    echo "Android 16 emulator did not return a stable SDK version." >&2
+    exit 1
+  fi
+  sleep 2
+done
+
+APK="dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"
+test -s "$APK"
+for attempt in $(seq 1 5); do
+  if adb install -r "$APK"; then break; fi
+  if [ "$attempt" = "5" ]; then
+    echo "AAB-derived universal APK could not be installed." >&2
+    exit 1
+  fi
+  adb wait-for-device
+  sleep 3
+done
 adb logcat -c
 adb shell pm clear com.leventua.bilgirotasi
 adb shell am force-stop com.leventua.bilgirotasi
