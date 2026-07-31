@@ -37,6 +37,19 @@ jobs:
           channel: stable
           cache: true
 
+      - name: Sürümü pubspec.yaml dosyasından oku
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(sed -nE 's/^version:[[:space:]]*([^[:space:]]+).*$/\1/p' pubspec.yaml)"
+          test -n "$VERSION"
+          VERSION_NAME="${VERSION%%+*}"
+          VERSION_CODE="${VERSION##*+}"
+          test "$VERSION_NAME" != "$VERSION"
+          echo "VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
+          echo "VERSION_CODE=$VERSION_CODE" >> "$GITHUB_ENV"
+          echo "VERSION_LABEL=${VERSION_NAME}-${VERSION_CODE}" >> "$GITHUB_ENV"
+
       - name: Bağımlılık grafiğini kaydet
         shell: bash
         run: |
@@ -124,8 +137,8 @@ jobs:
 
           grep -Fq "package: name='com.leventua.bilgirotasi'" \
             reports/ADMOB_APK_BADGING.txt
-          grep -Fq "versionCode='96'" reports/ADMOB_APK_BADGING.txt
-          grep -Fq "versionName='1.68.6'" reports/ADMOB_APK_BADGING.txt
+          grep -Fq "versionCode='$VERSION_CODE'" reports/ADMOB_APK_BADGING.txt
+          grep -Fq "versionName='$VERSION_NAME'" reports/ADMOB_APK_BADGING.txt
           grep -Fq "com.google.android.gms.ads.APPLICATION_ID" \
             reports/ADMOB_APK_MANIFEST.txt
           grep -Fq "ca-app-pub-3940256099942544~3347511713" \
@@ -190,7 +203,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-AdMob-1.68.6-96-kanitlari
+          name: BilgiRotasi-AdMob-${{ env.VERSION_LABEL }}-kanitlari
           path: |
             build/app/outputs/flutter-apk/app-release.apk
             reports/ADMOB_DEPENDENCIES.txt

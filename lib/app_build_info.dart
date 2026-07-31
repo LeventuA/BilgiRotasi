@@ -3,8 +3,8 @@ part of 'main.dart';
 class AppBuildInfo {
   AppBuildInfo._();
 
-  static const String versionName = '1.68.7';
-  static const int buildNumber = 97;
+  static const String versionName = '1.68.8';
+  static const int buildNumber = 98;
 
   static const String firebaseEnvironment = String.fromEnvironment(
     'FIREBASE_ENVIRONMENT',

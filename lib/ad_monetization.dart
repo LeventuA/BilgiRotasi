@@ -60,6 +60,8 @@ class AdMobConfig {
     defaultValue: 'test',
   );
   static const bool isProduction = environment == 'production';
+  static const bool isClosedTest = environment == 'closed_test';
+  static const bool usesGoogleTestAds = !isProduction;
 
   static const String testAndroidAppId =
       'ca-app-pub-3940256099942544~3347511713';

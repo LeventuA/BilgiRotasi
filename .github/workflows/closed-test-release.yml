@@ -1,0 +1,415 @@
+name: Closed test release doğrulaması
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Kapalı test build'i için CLOSED_TEST yazın
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: closed-test-release
+  cancel-in-progress: false
+
+jobs:
+  closed-test-release:
+    name: İmzalı AAB ve Android 16 doğrulaması
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    env:
+      ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT: closed_test
+      EXPECTED_SHA1: 000EE43F410ABC6B4F634C4F716D76EB19084115
+
+    steps:
+      - name: Kapalı test onayını doğrula
+        shell: bash
+        env:
+          CLOSED_TEST_CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          set -euo pipefail
+          test "$CLOSED_TEST_CONFIRMATION" = "CLOSED_TEST"
+
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.6"
+          channel: stable
+          cache: true
+
+      - name: Sürümü pubspec.yaml dosyasından oku
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(sed -nE 's/^version:[[:space:]]*([^[:space:]]+).*$/\1/p' pubspec.yaml)"
+          test -n "$VERSION"
+          VERSION_NAME="${VERSION%%+*}"
+          VERSION_CODE="${VERSION##*+}"
+          test "$VERSION_NAME" != "$VERSION"
+          [[ "$VERSION_NAME" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$VERSION_CODE" =~ ^[0-9]+$ ]]
+          echo "VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
+          echo "VERSION_CODE=$VERSION_CODE" >> "$GITHUB_ENV"
+          echo "VERSION_LABEL=${VERSION_NAME}-${VERSION_CODE}" >> "$GITHUB_ENV"
+          echo "AAB_FILE=BilgiRotasi-${VERSION_NAME}-${VERSION_CODE}-closed-test.aab" >> "$GITHUB_ENV"
+
+      - name: Production Firebase ve OAuth yapılandırmasını doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          config = json.loads(Path('android/app/google-services.json').read_text())
+          assert config['project_info']['project_id'] == 'bilgi-rotasi-f255d'
+          clients = config['client']
+          assert any(
+              item['client_info']['android_client_info']['package_name']
+              == 'com.leventua.bilgirotasi'
+              for item in clients
+          )
+          oauth = [entry for item in clients for entry in item.get('oauth_client', [])]
+          assert any(
+              entry.get('client_type') == 1
+              and entry.get('android_info', {}).get('package_name')
+              == 'com.leventua.bilgirotasi'
+              and entry.get('android_info', {}).get('certificate_hash', '').lower()
+              == '000ee43f410abc6b4f634c4f716d76eb19084115'
+              for entry in oauth
+          )
+          assert any(entry.get('client_type') == 3 for entry in oauth)
+          PY
+          ! grep -R -Fq 'bilgirotasi-dev' android/app/google-services.json
+          ! grep -R -Fq '_webClientId' lib
+          ! grep -R -Fq 'serverClientId:' lib
+
+      - name: Bağımlılıkları ve kalite kapılarını çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports dist
+          flutter pub get
+          flutter pub deps --style=compact \
+            | tee reports/DEPENDENCY_GRAPH.txt
+          flutter analyze --no-fatal-warnings --no-fatal-infos \
+            | tee reports/ANALYZE_RESULTS.txt
+          flutter test --concurrency=1 --reporter expanded \
+            | tee reports/FLUTTER_TEST_RESULTS.txt
+          flutter test \
+            --dart-define=ADMOB_ENVIRONMENT=closed_test \
+            test/admob_id_profile_test.dart \
+            | tee reports/CLOSED_TEST_AD_PROFILE.txt
+          flutter test \
+            --dart-define=ADMOB_ENVIRONMENT=production \
+            test/admob_id_profile_test.dart \
+            | tee reports/PRODUCTION_AD_PROFILE.txt
+          flutter test \
+            --dart-define=FIREBASE_ENVIRONMENT=production \
+            --dart-define=EXPECT_FIREBASE_PRODUCTION=true \
+            test/firebase_production_profile_test.dart \
+            | tee reports/PRODUCTION_FIREBASE_PROFILE.txt
+          python3 tools/rc1_quality_gate.py \
+            --report reports/RC1_QUALITY_GATE.md
+          git diff --check
+
+          (
+            cd functions
+            npm ci
+            npm test
+            npm run test:rules
+          ) | tee reports/FIREBASE_TEST_RESULTS.txt
+
+          {
+            echo "Flutter analyze: PASS"
+            echo "Flutter tests: PASS"
+            echo "Question bank and asset gates: PASS"
+            echo "Cloud Functions tests: PASS"
+            echo "Firestore Rules emulator tests: PASS"
+            echo "Closed-test AdMob profile: PASS (Google demo IDs)"
+            echo "Production AdMob profile preserved: PASS"
+            echo "Production Firebase profile: PASS"
+            echo "git diff --check: PASS"
+          } > reports/TEST_RESULTS.txt
+
+      - name: Kalıcı Android imzasını hazırla
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$ANDROID_KEYSTORE_BASE64"
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" \
+            | base64 --decode \
+            > android/app/bilgi_rotasi_upload.jks
+          cat > android/key.properties <<EOF
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyPassword=$ANDROID_KEY_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          storeFile=bilgi_rotasi_upload.jks
+          EOF
+          chmod 600 android/key.properties android/app/bilgi_rotasi_upload.jks
+          test -s android/key.properties
+          test -s android/app/bilgi_rotasi_upload.jks
+
+      - name: Production Firebase ve kapalı-test reklam profilli paketleri üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --release \
+            --dart-define=ADMOB_ENVIRONMENT=closed_test \
+            --dart-define=FIREBASE_ENVIRONMENT=production
+          flutter build appbundle --release \
+            --dart-define=ADMOB_ENVIRONMENT=closed_test \
+            --dart-define=FIREBASE_ENVIRONMENT=production
+          cp build/app/outputs/bundle/release/app-release.aab \
+            "dist/$AAB_FILE"
+
+      - name: Bundletool kur ve AAB'den APK seti üret
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error \
+            --output "$RUNNER_TEMP/bundletool.jar" \
+            "https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar"
+          java -jar "$RUNNER_TEMP/bundletool.jar" version
+          java -jar "$RUNNER_TEMP/bundletool.jar" build-apks \
+            --bundle="dist/$AAB_FILE" \
+            --output="dist/BilgiRotasi-${VERSION_LABEL}-closed-test.apks" \
+            --mode=universal \
+            --ks=android/app/bilgi_rotasi_upload.jks \
+            --ks-key-alias="$ANDROID_KEY_ALIAS" \
+            --ks-pass=env:ANDROID_KEYSTORE_PASSWORD \
+            --key-pass=env:ANDROID_KEY_PASSWORD
+
+      - name: AAB metadata, Firebase, reklam ve imzayı doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="build/app/outputs/flutter-apk/app-release.apk"
+          AAB="dist/$AAB_FILE"
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 | sort -V | tail -n 1)"
+          APKSIGNER="$(find "$SDK_ROOT/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          test -x "$AAPT2"
+          test -x "$APKSIGNER"
+
+          "$AAPT2" dump badging "$APK" \
+            | tee reports/APK_BADGING.txt
+          java -jar "$RUNNER_TEMP/bundletool.jar" dump manifest --bundle="$AAB" \
+            | tee reports/AAB_MANIFEST.xml
+          {
+            echo "AAB file: $AAB_FILE"
+            echo "Derived APK badging:"
+            cat reports/APK_BADGING.txt
+            echo "AAB manifest:"
+            cat reports/AAB_MANIFEST.xml
+          } > reports/AAB_BADGING.txt
+
+          grep -Fq "package: name='com.leventua.bilgirotasi'" reports/APK_BADGING.txt
+          grep -Fq "versionCode='$VERSION_CODE'" reports/APK_BADGING.txt
+          grep -Fq "versionName='$VERSION_NAME'" reports/APK_BADGING.txt
+          grep -Fq 'package="com.leventua.bilgirotasi"' reports/AAB_MANIFEST.xml
+          grep -Fq "android:versionCode=\"$VERSION_CODE\"" reports/AAB_MANIFEST.xml
+          grep -Fq "android:versionName=\"$VERSION_NAME\"" reports/AAB_MANIFEST.xml
+          ! grep -Fq 'android:debuggable="true"' reports/AAB_MANIFEST.xml
+
+          "$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" \
+            | tee reports/APK_MANIFEST.txt
+          grep -Fq 'ca-app-pub-3940256099942544~3347511713' reports/APK_MANIFEST.txt
+          ! grep -Fq 'ca-app-pub-7452194004008791~7046504043' reports/APK_MANIFEST.txt
+          grep -Fq 'ca-app-pub-3940256099942544~3347511713' reports/AAB_MANIFEST.xml
+          ! grep -Fq 'ca-app-pub-7452194004008791~7046504043' reports/AAB_MANIFEST.xml
+          ! grep -Eq 'android:debuggable.*0xffffffff' reports/APK_MANIFEST.txt
+
+          "$AAPT2" dump resources "$APK" | tee reports/APK_RESOURCES.txt
+          grep -Fq 'bilgi-rotasi-f255d' reports/APK_RESOURCES.txt
+          ! grep -Fq 'bilgirotasi-dev' reports/APK_RESOURCES.txt
+
+          APK_CERT="$($APKSIGNER verify --print-certs "$APK")"
+          printf '%s\n' "$APK_CERT" > reports/APK_CERTIFICATE.txt
+          APK_SHA1="$(printf '%s\n' "$APK_CERT" | awk -F': ' '/certificate SHA-1 digest/ {print $NF; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          jarsigner -verify "$AAB"
+          keytool -printcert -jarfile "$AAB" | tee reports/AAB_CERTIFICATE.txt
+          AAB_SHA1="$(awk -F': ' '/SHA1:/ {print $2; exit}' reports/AAB_CERTIFICATE.txt | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]')"
+          test "$APK_SHA1" = "$EXPECTED_SHA1"
+          test "$AAB_SHA1" = "$EXPECTED_SHA1"
+
+          unzip -l "$AAB" | tee reports/AAB_CONTENTS.txt
+          ! grep -Eqi '\.(jks|keystore)|key\.properties|service.?account|google-services\.json|private.?key' reports/AAB_CONTENTS.txt
+          ! unzip -p "$AAB" | strings | grep -Eqi 'BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|"private_key"[[:space:]]*:'
+
+          sha256sum "$AAB" | tee reports/AAB_SHA256.txt
+          {
+            echo "AdMob profile: closed_test"
+            echo "Manifest App ID: ca-app-pub-3940256099942544~3347511713"
+            echo "Banner ID: ca-app-pub-3940256099942544/6300978111"
+            echo "Rewarded ID: ca-app-pub-3940256099942544/5224354917"
+            echo "Firebase profile: production"
+            echo "Firebase project: bilgi-rotasi-f255d"
+            echo "Production AdMob IDs remain available only under ADMOB_ENVIRONMENT=production."
+          } > reports/CLOSED_TEST_CONFIGURATION.txt
+
+          (cd android && ./gradlew app:dependencies --configuration releaseRuntimeClasspath) \
+            | tee -a reports/DEPENDENCY_GRAPH.txt
+
+      - name: Android 16 AAB-derived cold-start ve kritik akışlar
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: true
+          script: |
+            set -euo pipefail
+            APKS="dist/BilgiRotasi-${VERSION_LABEL}-closed-test.apks"
+            java -jar "$RUNNER_TEMP/bundletool.jar" install-apks --apks="$APKS"
+            adb logcat -c
+            adb shell pm clear com.leventua.bilgirotasi
+            adb shell am force-stop com.leventua.bilgirotasi
+            adb shell am start -W -n com.leventua.bilgirotasi/.MainActivity
+
+            wait_for_text() {
+              local expected="$1"
+              for _ in $(seq 1 30); do
+                adb shell uiautomator dump /sdcard/window.xml >/dev/null 2>&1 || true
+                adb pull /sdcard/window.xml reports/window.xml >/dev/null 2>&1 || true
+                if grep -Fq "$expected" reports/window.xml; then return 0; fi
+                sleep 2
+              done
+              return 1
+            }
+
+            tap_text() {
+              local expected="$1"
+              adb shell uiautomator dump /sdcard/window.xml >/dev/null
+              adb pull /sdcard/window.xml reports/window.xml >/dev/null
+              local point
+              point="$(python3 - "$expected" <<'PY'
+            import re, sys, xml.etree.ElementTree as ET
+            target = sys.argv[1]
+            root = ET.parse('reports/window.xml').getroot()
+            for node in root.iter('node'):
+                if node.attrib.get('text') == target or node.attrib.get('content-desc') == target:
+                    values = [int(value) for value in re.findall(r'\d+', node.attrib['bounds'])]
+                    print((values[0] + values[2]) // 2, (values[1] + values[3]) // 2)
+                    raise SystemExit(0)
+            raise SystemExit(1)
+            PY
+              )"
+              adb shell input tap $point
+            }
+
+            wait_for_text 'Google ile giriş yap'
+            cp reports/window.xml reports/UI_GOOGLE_SIGN_IN.xml
+            grep -Fq 'Misafir olarak devam et' reports/UI_GOOGLE_SIGN_IN.xml
+            ! grep -Fq 'Bilgi Rotası Nasıl Oynanır?' reports/UI_GOOGLE_SIGN_IN.xml
+
+            tap_text 'Misafir olarak devam et'
+            wait_for_text 'BİLGİ ROTASI'
+            cp reports/window.xml reports/UI_HOME.xml
+            grep -Fq 'Oyna' reports/UI_HOME.xml
+
+            for _ in $(seq 1 5); do
+              adb shell uiautomator dump /sdcard/window.xml >/dev/null
+              adb pull /sdcard/window.xml reports/window.xml >/dev/null
+              grep -Fq 'Ayarlar' reports/window.xml && break
+              adb shell input swipe 540 1600 540 450 500
+            done
+            tap_text 'Ayarlar'
+            wait_for_text 'Ayarlar'
+
+            for _ in $(seq 1 6); do
+              adb shell uiautomator dump /sdcard/window.xml >/dev/null
+              adb pull /sdcard/window.xml reports/window.xml >/dev/null
+              grep -Fq 'Eğitimi Yeniden Göster' reports/window.xml && break
+              adb shell input swipe 540 1650 540 400 500
+            done
+            tap_text 'Eğitimi Yeniden Göster'
+            wait_for_text 'Bilgi Rotası Nasıl Oynanır?'
+            cp reports/window.xml reports/UI_TUTORIAL_DIALOG.xml
+            grep -Fq 'Anladım' reports/UI_TUTORIAL_DIALOG.xml
+            tap_text 'Anladım'
+            sleep 2
+            adb shell uiautomator dump /sdcard/window.xml >/dev/null
+            adb pull /sdcard/window.xml reports/UI_TUTORIAL_CLOSED.xml >/dev/null
+            ! grep -Fq 'Bilgi Rotası Nasıl Oynanır?' reports/UI_TUTORIAL_CLOSED.xml
+
+            adb logcat -d > reports/COLD_START_LOGCAT.txt
+            test -n "$(adb shell pidof com.leventua.bilgirotasi | tr -d '\r')"
+            ! grep -Eqi 'FATAL EXCEPTION|AndroidRuntime.*FATAL|Missing application ID|MobileAdsInitProvider.*IllegalStateException' reports/COLD_START_LOGCAT.txt
+            adb shell dumpsys activity activities | grep -Fq com.leventua.bilgirotasi
+
+      - name: Yayın hazırlık raporunu tamamla
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp RELEASE_READINESS.md reports/RELEASE_READINESS.md
+          {
+            echo
+            echo "## GitHub Actions build sonucu"
+            echo
+            echo "- Workflow run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo "- AAB: $AAB_FILE"
+            echo "- Package: com.leventua.bilgirotasi"
+            echo "- Version: $VERSION_NAME+$VERSION_CODE"
+            echo "- Certificate SHA-1: 00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15"
+            echo "- Firebase: production / bilgi-rotasi-f255d"
+            echo "- AdMob: closed_test / Google demo ad units"
+          } >> reports/RELEASE_READINESS.md
+
+      - name: AAB ve doğrulama kanıtlarını yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-${{ env.VERSION_LABEL }}-closed-test-release
+          path: |
+            dist/${{ env.AAB_FILE }}
+            reports/AAB_CERTIFICATE.txt
+            reports/AAB_BADGING.txt
+            reports/TEST_RESULTS.txt
+            reports/COLD_START_LOGCAT.txt
+            reports/RELEASE_READINESS.md
+            reports/DEPENDENCY_GRAPH.txt
+            reports/CLOSED_TEST_CONFIGURATION.txt
+            reports/RC1_QUALITY_GATE.md
+            reports/AAB_SHA256.txt
+            reports/AAB_MANIFEST.xml
+            reports/AAB_CONTENTS.txt
+            reports/UI_*.xml
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Geçici imza dosyalarını temizle
+        if: always()
+        shell: bash
+        run: |
+          rm -f android/key.properties android/app/bilgi_rotasi_upload.jks

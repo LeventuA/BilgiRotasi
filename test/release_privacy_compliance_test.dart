@@ -165,7 +165,7 @@ void main() {
 
   group('yayın gizlilik sözleşmesi', () {
     test('sürüm ve production etiketi günceldir', () {
-      expect(AppBuildInfo.version, '1.68.7+97');
+      expect(AppBuildInfo.version, '1.68.8+98');
       expect(AppBuildInfo.channel, 'Production');
     });
 

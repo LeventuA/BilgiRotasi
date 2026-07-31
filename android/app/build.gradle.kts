@@ -27,9 +27,9 @@ val adMobProductionAppId = "ca-app-pub-7452194004008791~7046504043"
 val expectedProductionSigningSha1 =
     "000EE43F410ABC6B4F634C4F716D76EB19084115"
 
-if (adMobEnvironment !in setOf("test", "production")) {
+if (adMobEnvironment !in setOf("test", "closed_test", "production")) {
     throw GradleException(
-        "ADMOB_ENVIRONMENT must be either 'test' or 'production'.",
+        "ADMOB_ENVIRONMENT must be 'test', 'closed_test', or 'production'.",
     )
 }
 

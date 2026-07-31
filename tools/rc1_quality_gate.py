@@ -14,7 +14,6 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_VERSION = "1.68.6+96"
 MIN_TOTAL_QUESTIONS = 5000
 MIN_QUESTIONS_PER_CATEGORY = 500
 CATEGORY_COUNT = 6
@@ -89,10 +88,10 @@ def main() -> int:
             pubspec,
         )
         version = match.group(1) if match else "?"
-        if version != EXPECTED_VERSION:
+        if not re.fullmatch(r"\d+\.\d+\.\d+\+\d+", version):
             errors.append(
-                f"Sürüm uyuşmuyor: {version} "
-                f"(beklenen {EXPECTED_VERSION})"
+                f"Sürüm biçimi geçersiz: {version} "
+                "(beklenen major.minor.patch+build)"
             )
 
     build_info_path = ROOT / "lib/app_build_info.dart"
