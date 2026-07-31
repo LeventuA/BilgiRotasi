@@ -58,6 +58,7 @@ Manuel `Closed test release doğrulaması` workflow'u şu kontrolleri geçmeden 
 - Sonraki denemede yeni kabuk koruma testinin `coreWorkflow` değişkeni test kurulum bloğunda yerel bırakıldığı için analyze kapısı hatayı yakaladı ve build başlamadan durdu. Değişken grup kapsamına taşındı; sonraki başarılı run kabul kanıtıdır.
 - Sonraki denemede emülatör açıldı, fakat `android-emulator-runner` her `script:` satırını ayrı süreçte çalıştırdığı için `APKS` değişkeni kurulum satırına taşınmadı. Android 16 doğrulaması tek Bash sürecinde çalışan `tools/validate_android16_closed_test.sh` dosyasına taşındı; sonraki başarılı run kabul kanıtıdır.
 - Sonraki denemede AAB-derived APK seti Android 16'ya kuruldu; düşük kaynaklı emülatörde bloklayan cold-start ve UI Automator hiyerarşi üretimi zaman aşımına uğradı. Emülatör belleği artırıldı, başlatma bloklamayan moda alındı, UI dump süreleri sınırlandı ve logcat/activity/process tanıları çıkışta zorunlu artifact dosyalarına bağlandı; sonraki başarılı run kabul kanıtıdır.
+- Tanılama artifact'i uygulamanın Firebase'i başlattığını, ardından `aosp_atd` slim imajındaki WebView'in `libwebviewchromium.so` içinde native `SIGTRAP` ile öldüğünü ve aynı imajın accessibility servisinin UI Automator'ı null referansla çökerttiğini gösterdi. Android 16 kapısı tam `google_apis` sistem imajına geçirildi; sonraki başarılı run kabul kanıtıdır.
 
 Yerelde 8 GB RAM sınırı nedeniyle release AAB üretilmedi. İmzalı AAB, metadata ve Android 16 doğrulamasının yetkili sonucu yalnız GitHub Actions workflow sonucudur.
 
