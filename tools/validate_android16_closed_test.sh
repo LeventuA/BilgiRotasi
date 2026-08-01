@@ -107,7 +107,23 @@ grep -Eqi 'Misafir' reports/UI_AUTH.tsv
 ! grep -Eqi 'Nas.*Oynan' reports/UI_AUTH.tsv
 
 tap_word AUTH 'Misafir'
-wait_for_word HOME 'Oyna'
+for attempt in $(seq 1 40); do
+  capture_screen "HOME_${attempt}"
+  if test -n "$(find_word "HOME_${attempt}" 'Oyna')"; then
+    cp "reports/UI_HOME_${attempt}.png" reports/UI_HOME.png
+    cp "reports/UI_HOME_${attempt}.tsv" reports/UI_HOME.tsv
+    break
+  fi
+  guest_point="$(find_word "HOME_${attempt}" 'Misafir')"
+  if test -n "$guest_point"; then
+    adb shell input tap $guest_point
+  fi
+  if [ "$attempt" = "40" ]; then
+    echo "Guest button did not reach the home screen." >&2
+    exit 1
+  fi
+  sleep 3
+done
 grep -Eqi 'Oyna' reports/UI_HOME.tsv
 ! cmp -s reports/UI_AUTH.png reports/UI_HOME.png
 
