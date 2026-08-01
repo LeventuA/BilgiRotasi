@@ -11,10 +11,11 @@ class AppBuildInfo {
     defaultValue: 'production',
   );
 
-  static const String channel =
-      firebaseEnvironment == 'development' ? 'Development' : 'Production';
+  static const String channel = firebaseEnvironment == 'development'
+      ? 'Development'
+      : 'Production';
 
-  static const String version = '$versionName+$buildNumber';
+  static const String version = '1.68.11+101';
   static const String fullLabel = 'Sürüm $version • $channel';
   static const String compactLabel = 'Bilgi Rotası • $versionName • $channel';
 }
