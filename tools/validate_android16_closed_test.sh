@@ -32,9 +32,9 @@ find_word() {
 dismiss_system_anr() {
   local label="$1"
   local wait_point
-  if ! grep -Eqi 'Process' "reports/UI_${label}.tsv" \
-      || ! grep -Eqi 'system' "reports/UI_${label}.tsv" \
-      || ! grep -Eqi 'responding' "reports/UI_${label}.tsv"; then
+  if ! grep -Eqi 'system' "reports/UI_${label}.tsv" \
+      || ! grep -Eqi 'responding' "reports/UI_${label}.tsv" \
+      || ! grep -Eqi 'Process|System[[:space:]]+UI' "reports/UI_${label}.tsv"; then
     return 1
   fi
   wait_point="$(find_word "$label" 'Wait')"

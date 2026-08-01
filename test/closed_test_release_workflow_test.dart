@@ -151,6 +151,7 @@ void main() {
       expect(workflow, contains(r'tesseract "reports/UI_${label}.png"'));
       expect(workflow, contains("wait_for_word AUTH 'Google|Misafir'"));
       expect(workflow, contains('dismiss_system_anr'));
+      expect(workflow, contains("'Process|System[[:space:]]+UI'"));
       expect(workflow, contains('SYSTEM_ANR_DISMISSED.txt'));
       expect(workflow, contains("tap_word AUTH 'Misafir'"));
       expect(workflow, contains('Guest button did not reach the home screen.'));
