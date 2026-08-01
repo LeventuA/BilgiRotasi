@@ -113,6 +113,119 @@ class AccountSessionState {
   }
 }
 
+enum GoogleAccountSignInStage {
+  googleAuthenticate,
+  firebaseCredential,
+  cloudSync,
+}
+
+class GoogleAccountSignInOutcome<T> {
+  const GoogleAccountSignInOutcome({
+    required this.mode,
+    required this.cloudSynced,
+    this.user,
+    this.message,
+    this.failedStage,
+  });
+
+  final AccountMode mode;
+  final T? user;
+  final bool cloudSynced;
+  final String? message;
+  final GoogleAccountSignInStage? failedStage;
+}
+
+class GoogleAccountSignInMessages {
+  GoogleAccountSignInMessages._();
+
+  static const String cloudSyncFailed =
+      'Google girişi başarılı. Bulut kaydı şu an eşitlenemedi; '
+      'telefondaki kayıt korunuyor.';
+
+  static String forAuthenticationError(Object error) {
+    if (error is GoogleSignInException) {
+      switch (error.code) {
+        case GoogleSignInExceptionCode.canceled:
+          return 'Google girişi iptal edildi.';
+        case GoogleSignInExceptionCode.clientConfigurationError:
+          return 'Google giriş yapılandırması doğrulanamadı.';
+        case GoogleSignInExceptionCode.uiUnavailable:
+          return 'Google hesap seçme ekranı açılamadı.';
+        case GoogleSignInExceptionCode.interrupted:
+          return 'Google giriş işlemi kesildi.';
+        case GoogleSignInExceptionCode.unknownError:
+          return 'Google hesabı doğrulanamadı.';
+        case GoogleSignInExceptionCode.providerConfigurationError:
+          return 'Google giriş hizmeti kullanılamıyor.';
+        case GoogleSignInExceptionCode.userMismatch:
+          return 'Seçilen Google hesabı doğrulanamadı.';
+      }
+    }
+
+    if (error is FirebaseAuthException) {
+      switch (error.code) {
+        case 'invalid-credential':
+          return 'Google oturumu doğrulanamadı. Tekrar deneyebilirsin.';
+        case 'account-exists-with-different-credential':
+          return 'Bu e-posta başka bir giriş yöntemiyle kayıtlı.';
+        case 'network-request-failed':
+          return 'İnternet bağlantısı kurulamadı.';
+        case 'user-disabled':
+          return 'Bu kullanıcı hesabı devre dışı bırakılmış.';
+        case 'operation-not-allowed':
+          return 'Google ile giriş şu anda kullanılamıyor.';
+      }
+    }
+
+    return 'Google hesabı doğrulanamadı.';
+  }
+}
+
+class GoogleAccountSignInFlow {
+  GoogleAccountSignInFlow._();
+
+  static Future<GoogleAccountSignInOutcome<T>> run<T>({
+    required AccountMode previousMode,
+    required Future<T> Function() authenticate,
+    required void Function(T user) onAuthenticated,
+    required Future<void> Function(T user) synchronizeCloud,
+  }) async {
+    late final T user;
+    try {
+      user = await authenticate();
+    } catch (error) {
+      return GoogleAccountSignInOutcome<T>(
+        mode: previousMode,
+        cloudSynced: false,
+        message: GoogleAccountSignInMessages.forAuthenticationError(error),
+        failedStage:
+            error is FirebaseAuthException
+                ? GoogleAccountSignInStage.firebaseCredential
+                : GoogleAccountSignInStage.googleAuthenticate,
+      );
+    }
+
+    onAuthenticated(user);
+
+    try {
+      await synchronizeCloud(user);
+      return GoogleAccountSignInOutcome<T>(
+        mode: AccountMode.google,
+        user: user,
+        cloudSynced: true,
+      );
+    } catch (_) {
+      return GoogleAccountSignInOutcome<T>(
+        mode: AccountMode.google,
+        user: user,
+        cloudSynced: false,
+        message: GoogleAccountSignInMessages.cloudSyncFailed,
+        failedStage: GoogleAccountSignInStage.cloudSync,
+      );
+    }
+  }
+}
+
 class AccountSnapshotCodec {
   AccountSnapshotCodec._();
 
@@ -347,6 +460,9 @@ class AccountCloudService with WidgetsBindingObserver {
       'bilgi_rotasi_account_guest_snapshot_v1';
   static const String _installationIdKey =
       'bilgi_rotasi_account_installation_id_v1';
+  static const String _googleServerClientId =
+      '184174765052-cq19m113aum2jofrfj3np8adbulgmeon'
+      '.apps.googleusercontent.com';
 
   static final ValueNotifier<AccountSessionState> state =
       ValueNotifier<AccountSessionState>(
@@ -436,7 +552,7 @@ class AccountCloudService with WidgetsBindingObserver {
       _firestore = FirebaseFirestore.instance;
       _googleSignIn = GoogleSignIn.instance;
 
-      await _googleSignIn!.initialize();
+      await _googleSignIn!.initialize(serverClientId: _googleServerClientId);
 
       WidgetsBinding.instance.addObserver(this);
 
@@ -504,7 +620,8 @@ class AccountCloudService with WidgetsBindingObserver {
       return;
     }
 
-    final previousMode = state.value.mode;
+    final previousState = state.value;
+    final previousMode = previousState.mode;
     final preferences = await SharedPreferences.getInstance();
     await GameSaveService.sanitizeGuestScope();
     final guestSnapshot = await AccountLocalSnapshot.capture();
@@ -518,85 +635,124 @@ class AccountCloudService with WidgetsBindingObserver {
       busy: true,
     );
 
-    try {
-      final GoogleSignInAccount? googleUser =
-          await _googleSignIn!.authenticate();
-
-      if (googleUser == null) {
+    final outcome = await GoogleAccountSignInFlow.run<User>(
+      previousMode: previousMode,
+      authenticate: _authenticateGoogleUser,
+      onAuthenticated: (user) {
         state.value = AccountSessionState(
-          mode: previousMode,
+          mode: AccountMode.google,
           firebaseReady: true,
-          message: 'Google girişi iptal edildi.',
-        );
-        return;
-      }
-
-      final googleAuth = googleUser.authentication;
-      final idToken = googleAuth.idToken;
-
-      if (idToken == null || idToken.isEmpty) {
-        throw StateError('Google kimlik doğrulama anahtarı alınamadı.');
-      }
-
-      final credential = GoogleAuthProvider.credential(idToken: idToken);
-
-      final result = await _auth!.signInWithCredential(credential);
-      final user = result.user;
-
-      if (user == null) {
-        throw StateError('Google hesabı açılamadı.');
-      }
-
-      final remoteRecord = await _loadRemoteRecord(user.uid);
-      final remote = remoteRecord?.snapshot;
-      final localCount = AccountLocalSnapshot.valueCount(guestSnapshot);
-      final remoteCount =
-          remote == null ? 0 : AccountLocalSnapshot.valueCount(remote);
-
-      if (remote == null || (remoteCount == 0 && localCount > 0)) {
-        await _writeRemoteSnapshot(user, guestSnapshot);
-      } else if (localCount > 0 && remote != guestSnapshot) {
-        await _saveUserLocalSnapshot(
-          user.uid,
-          guestSnapshot,
-          dirty: true,
-          revision: 0,
-        );
-        await _publishConflict(
           user: user,
-          localSnapshot: guestSnapshot,
-          localRevision: 0,
-          remote: remoteRecord!,
+          busy: true,
+          message: 'Google hesabı bağlandı. Bulut kaydı hazırlanıyor.',
         );
-        return;
-      } else {
-        await AccountLocalSnapshot.restore(remote);
-        await _saveUserLocalSnapshot(
-          user.uid,
-          remote,
-          dirty: false,
-          revision: remoteRecord!.revision,
-        );
-      }
+      },
+      synchronizeCloud: (user) {
+        return _synchronizeAfterGoogleSignIn(user, guestSnapshot);
+      },
+    );
 
-      await _refreshGameServices();
-
-      state.value = AccountSessionState(
-        mode: AccountMode.google,
-        firebaseReady: true,
-        user: user,
-        message:
-            'Bulut kaydı doğrulandı • '
-            '${max(localCount, remoteCount)} kayıt',
-        lastSyncedAt: DateTime.now(),
-      );
-    } catch (error) {
+    if (outcome.user == null) {
       state.value = AccountSessionState(
         mode: previousMode,
         firebaseReady: true,
-        message: _friendlyError(error),
+        user: previousState.user,
+        message: outcome.message,
+        lastSyncedAt: previousState.lastSyncedAt,
+        conflict: previousState.conflict,
+      );
+      return;
+    }
+
+    if (!outcome.cloudSynced) {
+      state.value = AccountSessionState(
+        mode: AccountMode.google,
+        firebaseReady: true,
+        user: outcome.user,
+        message: outcome.message,
+        lastSyncedAt: state.value.lastSyncedAt,
+        conflict: state.value.conflict,
       );
     }
+  }
+
+  Future<User> _authenticateGoogleUser() async {
+    final GoogleSignInAccount? googleUser = await _googleSignIn!.authenticate();
+
+    if (googleUser == null) {
+      throw const GoogleSignInException(
+        code: GoogleSignInExceptionCode.canceled,
+      );
+    }
+
+    final idToken = googleUser.authentication.idToken;
+    if (idToken == null || idToken.isEmpty) {
+      throw const GoogleSignInException(
+        code: GoogleSignInExceptionCode.unknownError,
+        description: 'Google ID token was unavailable.',
+      );
+    }
+
+    final credential = GoogleAuthProvider.credential(idToken: idToken);
+    final result = await _auth!.signInWithCredential(credential);
+    final user = result.user;
+
+    if (user == null) {
+      throw FirebaseAuthException(
+        code: 'invalid-credential',
+        message: 'Firebase credential did not return a user.',
+      );
+    }
+    return user;
+  }
+
+  Future<void> _synchronizeAfterGoogleSignIn(
+    User user,
+    String guestSnapshot,
+  ) async {
+    final remoteRecord = await _loadRemoteRecord(user.uid);
+    final remote = remoteRecord?.snapshot;
+    final localCount = AccountLocalSnapshot.valueCount(guestSnapshot);
+    final remoteCount =
+        remote == null ? 0 : AccountLocalSnapshot.valueCount(remote);
+
+    if (remote == null || (remoteCount == 0 && localCount > 0)) {
+      await _writeRemoteSnapshot(user, guestSnapshot);
+    } else if (localCount > 0 && remote != guestSnapshot) {
+      await _saveUserLocalSnapshot(
+        user.uid,
+        guestSnapshot,
+        dirty: true,
+        revision: 0,
+      );
+      await _publishConflict(
+        user: user,
+        localSnapshot: guestSnapshot,
+        localRevision: 0,
+        remote: remoteRecord!,
+      );
+      return;
+    } else {
+      await AccountLocalSnapshot.restore(remote);
+      await _saveUserLocalSnapshot(
+        user.uid,
+        remote,
+        dirty: false,
+        revision: remoteRecord!.revision,
+      );
+    }
+
+    await _refreshGameServices();
+
+    state.value = AccountSessionState(
+      mode: AccountMode.google,
+      firebaseReady: true,
+      user: user,
+      message:
+          'Bulut kaydı doğrulandı • '
+          '${max(localCount, remoteCount)} kayıt',
+      lastSyncedAt: DateTime.now(),
+    );
   }
 
   Future<void> _activateExistingUser(User user) async {
@@ -1099,25 +1255,6 @@ class AccountCloudService with WidgetsBindingObserver {
 
     return 'Hesap silme tamamlanamadı. '
         'BilgiRotasi10@gmail.com adresinden destek alabilirsin.';
-  }
-
-  String _friendlyError(Object error) {
-    final text = error.toString().toLowerCase();
-
-    if (text.contains('canceled') ||
-        text.contains('cancelled') ||
-        text.contains('iptal')) {
-      return 'Google girişi iptal edildi.';
-    }
-
-    if (text.contains('network') ||
-        text.contains('socket') ||
-        text.contains('timeout')) {
-      return 'İnternet bağlantısı kurulamadı.';
-    }
-
-    return 'Google hesabı bağlanamadı. '
-        'Biraz sonra yeniden deneyebilirsin.';
   }
 
   String _userSnapshotKey(String uid) {

@@ -79,6 +79,7 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           import json
+          import re
           from pathlib import Path
 
           android_config = json.loads(Path('android/app/google-services.json').read_text())
@@ -93,6 +94,14 @@ jobs:
               for item in clients
           )
           oauth = [entry for item in clients for entry in item.get('oauth_client', [])]
+          expected_web_client_id = (
+              '184174765052-cq19m113aum2jofrfj3np8adbulgmeon'
+              '.apps.googleusercontent.com'
+          )
+          expected_android_client_ids = {
+              '184174765052-tug3r8maeh0bvvvjibjtiogifrmummiq.apps.googleusercontent.com',
+              '184174765052-8vma0frp2jqlf3iqui7hm7qlilluklgo.apps.googleusercontent.com',
+          }
           for expected_hash in (
               '000ee43f410abc6b4f634c4f716d76eb19084115',
               '263c46c6ae9f27c3b33810fa898cd7eb9373ccf4',
@@ -107,11 +116,39 @@ jobs:
                   ).lower() == expected_hash
                   for entry in oauth
               ), f'Missing Android OAuth client for certificate {expected_hash}'
-          assert any(entry.get('client_type') == 3 for entry in oauth)
+          android_client_ids = {
+              entry['client_id']
+              for entry in oauth
+              if entry.get('client_type') == 1
+          }
+          assert expected_android_client_ids <= android_client_ids
+          web_client_ids = [
+              entry['client_id']
+              for entry in oauth
+              if entry.get('client_type') == 3
+          ]
+          assert web_client_ids == [expected_web_client_id]
+
+          account_source = Path('lib/account_cloud.dart').read_text()
+          constant_match = re.search(
+              r"static const String _googleServerClientId\s*=\s*((?:'[^']*'\s*)+);",
+              account_source,
+          )
+          assert constant_match, 'Google server client ID constant is missing'
+          dart_server_client_id = ''.join(
+              re.findall(r"'([^']*)'", constant_match.group(1))
+          )
+          assert dart_server_client_id == expected_web_client_id
+          assert re.search(
+              r'initialize\(\s*serverClientId:\s*_googleServerClientId,?\s*\)',
+              account_source,
+          ), 'GoogleSignIn.initialize must use the server client ID'
+          assert dart_server_client_id not in android_client_ids
+          for android_client_id in expected_android_client_ids:
+              assert f"serverClientId: '{android_client_id}'" not in account_source
+              assert f'serverClientId: "{android_client_id}"' not in account_source
           PY
           ! grep -Fq 'bilgirotasi-dev' android/app/google-services.json firebase/google-services.json
-          ! grep -R -Fq '_webClientId' lib
-          ! grep -R -Fq 'serverClientId:' lib
 
       - name: Bağımlılıkları ve kalite kapılarını çalıştır
         shell: bash

@@ -100,6 +100,7 @@ void main() {
     });
 
     test('production Firebase ile Google demo reklam profili seçilir', () {
+      final accountCloud = File('lib/account_cloud.dart').readAsStringSync();
       expect(
         workflow,
         contains('ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT: closed_test'),
@@ -118,6 +119,35 @@ void main() {
         workflow,
         contains("! grep -Fq 'ca-app-pub-7452194004008791~7046504043'"),
       );
+      expect(
+        accountCloud,
+        contains('184174765052-cq19m113aum2jofrfj3np8adbulgmeon'),
+      );
+      expect(accountCloud, contains('.apps.googleusercontent.com'));
+      expect(accountCloud, contains('serverClientId: _googleServerClientId'));
+      expect(
+        workflow,
+        contains('dart_server_client_id == expected_web_client_id'),
+      );
+      expect(
+        workflow,
+        contains('dart_server_client_id not in android_client_ids'),
+      );
+      expect(
+        workflow,
+        contains(
+          '184174765052-tug3r8maeh0bvvvjibjtiogifrmummiq'
+          '.apps.googleusercontent.com',
+        ),
+      );
+      expect(
+        workflow,
+        contains(
+          '184174765052-8vma0frp2jqlf3iqui7hm7qlilluklgo'
+          '.apps.googleusercontent.com',
+        ),
+      );
+      expect(workflow, isNot(contains("! grep -R -Fq 'serverClientId:' lib")));
     });
 
     test('imza, paket, AAB metadata ve gizli bilgi kapıları bulunur', () {
