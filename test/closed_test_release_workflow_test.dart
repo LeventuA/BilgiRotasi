@@ -179,6 +179,18 @@ void main() {
       expect(android16Script, contains('RESULT=INFRASTRUCTURE_INCONCLUSIVE'));
       expect(android16Script, contains('RELEASE_GATE=PASS'));
       expect(android16Script, contains('has_infrastructure_failure'));
+      expect(
+        android16Script,
+        contains(
+          'if has_infrastructure_failure; then\n'
+          '  {\n'
+          "    echo 'RESULT=INFRASTRUCTURE_INCONCLUSIVE'",
+        ),
+      );
+      expect(
+        android16Script,
+        contains('elif [ "\$settings_tutorial_result" -eq 0 ]; then'),
+      );
       expect(android16Script, contains('POST_GATE_LOGCAT_BOUNDARY'));
       expect(android16Script, contains('reports/APP_GATE_LOGCAT.txt'));
       expect(

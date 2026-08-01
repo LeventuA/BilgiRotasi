@@ -356,14 +356,7 @@ capture_diagnostics
 test -n "$(tr -d '\r\n' < reports/APP_PID.txt)"
 assert_no_app_failure
 
-if [ "$settings_tutorial_result" -eq 0 ]; then
-  {
-    echo 'RESULT=PASS'
-    echo 'RELEASE_GATE=PASS'
-    echo 'APP_GATE=PASS'
-    echo 'SETTINGS_TUTORIAL_DIAGNOSTIC=PASS'
-  } > reports/ANDROID16_VALIDATION_RESULT.txt
-elif has_infrastructure_failure; then
+if has_infrastructure_failure; then
   {
     echo 'RESULT=INFRASTRUCTURE_INCONCLUSIVE'
     echo 'RELEASE_GATE=PASS'
@@ -376,6 +369,13 @@ elif has_infrastructure_failure; then
     grep -Ei 'ANR in |Input dispatching timed out|Gesture Monitor.*not responding|system_server: Long monitor contention|Failure calling service package|Broken pipe' reports/COLD_START_LOGCAT.txt || true
   } > reports/INFRASTRUCTURE_DIAGNOSTICS.txt
   echo 'Android 16 application gate passed; settings/tutorial is infrastructure-inconclusive.'
+elif [ "$settings_tutorial_result" -eq 0 ]; then
+  {
+    echo 'RESULT=PASS'
+    echo 'RELEASE_GATE=PASS'
+    echo 'APP_GATE=PASS'
+    echo 'SETTINGS_TUTORIAL_DIAGNOSTIC=PASS'
+  } > reports/ANDROID16_VALIDATION_RESULT.txt
 else
   {
     echo 'RESULT=FAIL'
