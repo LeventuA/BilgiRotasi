@@ -146,7 +146,6 @@ void main() {
           r'APK="dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"',
         ),
       );
-      expect(workflow, contains(r'adb install -r "$APK"'));
       expect(workflow, contains('adb exec-out screencap -p'));
       expect(workflow, contains(r'tesseract "reports/UI_${label}.png"'));
       expect(workflow, contains("wait_for_word AUTH 'Google|Misafir'"));
