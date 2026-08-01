@@ -119,7 +119,7 @@ void main() {
       expect(workflow, contains('flutter build appbundle --release'));
       expect(workflow, contains('universal.apk'));
       expect(workflow, contains('api-level: 36'));
-      expect(coreWorkflow, contains('target: google_atd'));
+      expect(coreWorkflow, contains('target: google_apis'));
       expect(coreWorkflow, contains('ram-size: 2048M'));
       expect(
         coreWorkflow,
