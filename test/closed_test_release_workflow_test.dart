@@ -154,6 +154,10 @@ void main() {
       expect(android16Script, contains('reports/APP_PID.txt'));
       expect(android16Script, contains('ResumedActivity'));
       expect(android16Script, contains('UserMessagingPlatform'));
+      expect(
+        android16Script,
+        contains('Android 16 logcat contains an app crash or ANR.'),
+      );
       expect(workflow, contains('FATAL EXCEPTION'));
     });
 

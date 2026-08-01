@@ -8014,6 +8014,33 @@ class QuizQuestion {
   }
 }
 
+Map<String, dynamic> _prepareQuestionData(String raw) {
+  final decoded = jsonDecode(raw) as List<dynamic>;
+  final playable = <Map<String, dynamic>>[];
+  final reasonCounts = <String, int>{};
+
+  for (final item in decoded) {
+    final json = item as Map<String, dynamic>;
+    final question = QuizQuestion.fromJson(json);
+    final reasons = QuestionQualityGuard.reasons(question);
+
+    if (reasons.isEmpty) {
+      playable.add(json);
+    } else {
+      for (final reason in reasons) {
+        reasonCounts.update(reason, (count) => count + 1, ifAbsent: () => 1);
+      }
+    }
+  }
+
+  return <String, dynamic>{
+    'questions': playable,
+    'scanned': decoded.length,
+    'excluded': decoded.length - playable.length,
+    'reasons': reasonCounts,
+  };
+}
+
 class QuestionBank {
   QuestionBank(this.questionsByCategory) {
     for (final question in questionsByCategory.values.expand(
@@ -8171,17 +8198,19 @@ class QuestionBank {
 
   static Future<QuestionBank> load() async {
     final raw = await rootBundle.loadString('assets/questions.json');
-    final decoded = jsonDecode(raw) as List<dynamic>;
-    final allQuestions =
-        decoded
-            .map((item) => QuizQuestion.fromJson(item as Map<String, dynamic>))
-            .toList();
-
-    QuestionQualityGuard.updateLastScan(allQuestions);
-
-    final questions = allQuestions
-        .where(QuestionQualityGuard.isPlayable)
+    final prepared = await compute<String, Map<String, dynamic>>(
+      _prepareQuestionData,
+      raw,
+    );
+    final questions = (prepared['questions'] as List<dynamic>)
+        .map((item) => QuizQuestion.fromJson(item as Map<String, dynamic>))
         .toList(growable: false);
+
+    QuestionQualityGuard.lastScannedCount = prepared['scanned'] as int;
+    QuestionQualityGuard.lastExcludedCount = prepared['excluded'] as int;
+    QuestionQualityGuard.lastReasonCounts = Map<String, int>.unmodifiable(
+      Map<String, int>.from(prepared['reasons'] as Map<dynamic, dynamic>),
+    );
 
     debugPrint(
       'Soru kalite taraması: '

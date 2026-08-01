@@ -163,5 +163,11 @@ capture_diagnostics
 test -n "$(tr -d '\r\n' < reports/APP_PID.txt)"
 grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/ACTIVITY_STATE.txt
 grep -Fq 'ResumedActivity' reports/ACTIVITY_STATE.txt
-! grep -Eqi 'FATAL EXCEPTION.*com\.leventua\.bilgirotasi|ANR in com\.leventua\.bilgirotasi|Process com\.leventua\.bilgirotasi .*has died|Cmdline: com\.leventua\.bilgirotasi|MobileAdsInitProvider.*IllegalStateException' reports/COLD_START_LOGCAT.txt
-! grep -Fq 'UserMessagingPlatform' reports/COLD_START_LOGCAT.txt
+if grep -Eqi 'FATAL EXCEPTION.*com\.leventua\.bilgirotasi|ANR in com\.leventua\.bilgirotasi|Process com\.leventua\.bilgirotasi .*has died|Cmdline: com\.leventua\.bilgirotasi|MobileAdsInitProvider.*IllegalStateException' reports/COLD_START_LOGCAT.txt; then
+  echo "Android 16 logcat contains an app crash or ANR." >&2
+  exit 1
+fi
+if grep -Fq 'UserMessagingPlatform' reports/COLD_START_LOGCAT.txt; then
+  echo "Android emulator unexpectedly started UMP." >&2
+  exit 1
+fi

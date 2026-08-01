@@ -213,6 +213,12 @@ void main() {
       expect(AppBuildInfo.channel, 'Production');
     });
 
+    test('soru kalite taraması cold-start ana isolate akışını bloklamaz', () {
+      final source = File('lib/main.dart').readAsStringSync();
+      expect(source, contains('compute<String, Map<String, dynamic>>'));
+      expect(source, contains('_prepareQuestionData'));
+    });
+
     test('Android hassas yerel verileri otomatik yedekten dışlar', () {
       final manifest =
           File('android/app/src/main/AndroidManifest.xml').readAsStringSync();
