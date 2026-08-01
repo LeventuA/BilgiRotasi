@@ -55,6 +55,13 @@ class FakeMobileAdsGateway implements MobileAdsGateway {
   }
 }
 
+class FakeAndroidEmulatorGateway extends AndroidEmulatorGateway {
+  const FakeAndroidEmulatorGateway();
+
+  @override
+  Future<bool> isEmulator() async => true;
+}
+
 void main() {
   group('UMP ve 13+ reklam kapısı', () {
     test('aynı açılışta tek izin ve reklam başlatma akışı çalışır', () async {
@@ -103,6 +110,25 @@ void main() {
       expect(ads.initializations, 0);
     });
 
+    test(
+      'Android emülatörü UMP ve Mobile Ads başlatmadan devam eder',
+      () async {
+        final consent = FakeConsentGateway();
+        final ads = FakeMobileAdsGateway();
+        final service = AdPrivacyService(
+          consentGateway: consent,
+          mobileAdsGateway: ads,
+          emulatorGateway: const FakeAndroidEmulatorGateway(),
+        );
+
+        expect(await service.initialize(), isFalse);
+        expect(consent.updates, 0);
+        expect(consent.forms, 0);
+        expect(ads.configurations, 0);
+        expect(ads.initializations, 0);
+      },
+    );
+
     test('reklam içeriği T/Teen sınırında kalır', () {
       final source = File('lib/ad_monetization.dart').readAsStringSync();
       expect(source, contains('maxAdContentRating: MaxAdContentRating.t'));
@@ -141,16 +167,17 @@ void main() {
       expect(source, isNot(contains('tagForUnderAgeOfConsent:')));
     });
 
-    test('yalnız Android emülatörü UMP test coğrafyası kullanır', () {
+    test('yalnız Android emülatörü reklam başlatmayı atlar', () {
       final source = File('lib/ad_monetization.dart').readAsStringSync();
       final androidSource =
           File(
             'android/app/src/main/kotlin/com/leventua/bilgirotasi/MainActivity.kt',
           ).readAsStringSync();
 
-      expect(source, contains(': ConsentRequestParameters();'));
+      expect(source, contains('ConsentRequestParameters()'));
       expect(source, contains("invokeMethod<bool>('isEmulator')"));
-      expect(source, contains('DebugGeography.debugGeographyOther'));
+      expect(source, contains('if (await emulatorGateway.isEmulator())'));
+      expect(source, isNot(contains('ConsentDebugSettings(')));
       expect(
         androidSource,
         contains('Build.FINGERPRINT.startsWith("generic")'),

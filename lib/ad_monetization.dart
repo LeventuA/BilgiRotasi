@@ -115,26 +115,13 @@ class AndroidEmulatorGateway {
 }
 
 class GoogleUmpConsentGateway implements AdConsentGateway {
-  const GoogleUmpConsentGateway({
-    this.emulatorGateway = const AndroidEmulatorGateway(),
-  });
-
-  final AndroidEmulatorGateway emulatorGateway;
+  const GoogleUmpConsentGateway();
 
   @override
   Future<void> requestConsentInfoUpdate() async {
     final completer = Completer<void>();
-    final isEmulator = await emulatorGateway.isEmulator();
-    final parameters =
-        isEmulator
-            ? ConsentRequestParameters(
-              consentDebugSettings: ConsentDebugSettings(
-                debugGeography: DebugGeography.debugGeographyOther,
-              ),
-            )
-            : ConsentRequestParameters();
     ConsentInformation.instance.requestConsentInfoUpdate(
-      parameters,
+      ConsentRequestParameters(),
       () => completer.complete(),
       (error) => completer.completeError(error),
     );
@@ -208,6 +195,7 @@ class AdPrivacyService {
   AdPrivacyService({
     required this.consentGateway,
     required this.mobileAdsGateway,
+    this.emulatorGateway = const AndroidEmulatorGateway(),
   });
 
   static final AdPrivacyService instance = AdPrivacyService(
@@ -217,6 +205,7 @@ class AdPrivacyService {
 
   final AdConsentGateway consentGateway;
   final MobileAdsGateway mobileAdsGateway;
+  final AndroidEmulatorGateway emulatorGateway;
   final ValueNotifier<bool> privacyOptionsRequired = ValueNotifier<bool>(false);
 
   Future<bool>? _initializing;
@@ -234,6 +223,12 @@ class AdPrivacyService {
 
   Future<bool> _initialize() async {
     try {
+      // Android x86_64 API 36 system images can crash inside their bundled
+      // WebView while UMP or Mobile Ads is starting. CI/emulator validation
+      // therefore stays ad-free; physical closed-test builds still use the
+      // normal UMP flow and Google's official demo ad units.
+      if (await emulatorGateway.isEmulator()) return false;
+
       await consentGateway.requestConsentInfoUpdate();
       await consentGateway.loadAndShowConsentFormIfRequired();
       privacyOptionsRequired.value =
