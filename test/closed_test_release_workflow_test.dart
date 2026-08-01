@@ -135,7 +135,11 @@ void main() {
       expect(workflow, contains(r'adb shell pm path android'));
       expect(workflow, contains('stable_service_checks'));
       expect(workflow, contains(r'$(seq 1 120)'));
-      expect(workflow, contains(r'timeout 90 adb install -r "$APK"'));
+      expect(workflow, contains(r'timeout 300 adb push "$APK" "$REMOTE_APK"'));
+      expect(
+        workflow,
+        contains(r'timeout 300 adb shell pm install -r "$REMOTE_APK"'),
+      );
       expect(
         workflow,
         contains(

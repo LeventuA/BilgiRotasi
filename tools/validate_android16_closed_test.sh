@@ -91,15 +91,33 @@ done
 
 APK="dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"
 test -s "$APK"
-for attempt in $(seq 1 10); do
-  if timeout 90 adb install -r "$APK"; then break; fi
-  if [ "$attempt" = "10" ]; then
-    echo "AAB-derived universal APK could not be installed." >&2
+REMOTE_APK="/data/local/tmp/bilgirotasi-closed-test.apk"
+for attempt in $(seq 1 3); do
+  if timeout 300 adb push "$APK" "$REMOTE_APK"; then break; fi
+  if [ "$attempt" = "3" ]; then
+    echo "AAB-derived universal APK could not be transferred." >&2
     exit 1
   fi
   timeout 20 adb wait-for-device || true
   sleep 6
 done
+
+installed=false
+for attempt in $(seq 1 3); do
+  install_output="$(timeout 300 adb shell pm install -r "$REMOTE_APK" 2>&1 || true)"
+  printf '%s\n' "$install_output"
+  if printf '%s' "$install_output" | grep -Fq 'Success'; then
+    installed=true
+    break
+  fi
+  timeout 20 adb wait-for-device || true
+  sleep 10
+done
+timeout 30 adb shell rm -f "$REMOTE_APK" || true
+if [ "$installed" != true ]; then
+  echo "AAB-derived universal APK could not be installed." >&2
+  exit 1
+fi
 
 timeout 30 adb logcat -c
 timeout 30 adb shell pm clear com.leventua.bilgirotasi
