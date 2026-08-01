@@ -6,12 +6,15 @@ void main() {
   group('Nihai kapalı test release workflow', () {
     late String workflow;
     late String manualWorkflow;
+    late String androidApkLauncher;
     late String coreWorkflow;
     late String android16Script;
 
     setUpAll(() {
       manualWorkflow =
           File('.github/workflows/closed-test-release.yml').readAsStringSync();
+      androidApkLauncher =
+          File('.github/workflows/android-apk.yml').readAsStringSync();
       coreWorkflow =
           File(
             '.github/workflows/closed-test-release-core.yml',
@@ -21,6 +24,31 @@ void main() {
       ).readAsStringSync().replaceAll('\r\n', '\n');
       workflow = '$manualWorkflow\n$coreWorkflow\n$android16Script';
     });
+
+    test(
+      'android-apk yalnız güvenli manuel kapalı-test çekirdeğini çağırır',
+      () {
+        expect(androidApkLauncher, contains('workflow_dispatch:'));
+        expect(androidApkLauncher, contains('confirmation:'));
+        expect(
+          androidApkLauncher,
+          contains("Kapalı test build'i için CLOSED_TEST yazın"),
+        );
+        expect(
+          androidApkLauncher,
+          contains('uses: ./.github/workflows/closed-test-release-core.yml'),
+        );
+        expect(androidApkLauncher, contains('secrets: inherit'));
+        expect(androidApkLauncher, isNot(contains('\n  push:')));
+        expect(androidApkLauncher, isNot(contains('\n  pull_request:')));
+        expect(androidApkLauncher, isNot(contains('\n  schedule:')));
+        expect(
+          androidApkLauncher,
+          isNot(RegExp(r'flutter\s+build\s+(apk|appbundle)')),
+        );
+        expect(androidApkLauncher, isNot(contains('1.61.0+82')));
+      },
+    );
 
     test('yalnız elle ve açık onayla çalışır', () {
       expect(manualWorkflow, contains('workflow_dispatch:'));
