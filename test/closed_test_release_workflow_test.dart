@@ -123,7 +123,7 @@ void main() {
       expect(coreWorkflow, contains('ram-size: 2048M'));
       expect(
         coreWorkflow,
-        contains('bash tools/validate_android16_closed_test.sh'),
+        contains('timeout 1200 bash tools/validate_android16_closed_test.sh'),
       );
       expect(
         android16Script,
@@ -135,6 +135,7 @@ void main() {
       expect(workflow, contains(r'adb shell pm path android'));
       expect(workflow, contains('stable_service_checks'));
       expect(workflow, contains(r'$(seq 1 120)'));
+      expect(workflow, contains(r'timeout 90 adb install -r "$APK"'));
       expect(
         workflow,
         contains(

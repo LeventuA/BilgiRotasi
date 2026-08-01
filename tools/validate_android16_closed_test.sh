@@ -4,14 +4,14 @@ set -euo pipefail
 mkdir -p reports
 
 capture_diagnostics() {
-  adb logcat -d > reports/COLD_START_LOGCAT.txt 2>&1 || true
-  adb shell dumpsys activity activities > reports/ACTIVITY_STATE.txt 2>&1 || true
-  adb shell pidof com.leventua.bilgirotasi > reports/APP_PID.txt 2>&1 || true
+  timeout 30 adb logcat -d > reports/COLD_START_LOGCAT.txt 2>&1 || true
+  timeout 30 adb shell dumpsys activity activities > reports/ACTIVITY_STATE.txt 2>&1 || true
+  timeout 15 adb shell pidof com.leventua.bilgirotasi > reports/APP_PID.txt 2>&1 || true
 }
 
 capture_screen() {
   local label="$1"
-  adb exec-out screencap -p > "reports/UI_${label}.png"
+  timeout 30 adb exec-out screencap -p > "reports/UI_${label}.png"
   test -s "reports/UI_${label}.png"
   tesseract "reports/UI_${label}.png" "reports/UI_${label}" \
     --psm 11 -l eng tsv >/dev/null 2>&1
@@ -51,15 +51,15 @@ tap_word() {
   local point
   point="$(find_word "$label" "$pattern")"
   test -n "$point"
-  adb shell input tap $point
+  timeout 15 adb shell input tap $point
 }
 
 trap capture_diagnostics EXIT
 command -v tesseract >/dev/null
 
-adb wait-for-device
+timeout 120 adb wait-for-device
 for attempt in $(seq 1 30); do
-  sdk_version="$(adb shell getprop ro.build.version.sdk 2>/dev/null | tr -d '\r')"
+  sdk_version="$(timeout 10 adb shell getprop ro.build.version.sdk 2>/dev/null | tr -d '\r' || true)"
   if [ "$sdk_version" = "36" ]; then break; fi
   if [ "$attempt" = "30" ]; then
     echo "Android 16 emulator did not return a stable SDK version." >&2
@@ -85,26 +85,26 @@ for attempt in $(seq 1 120); do
     echo "Android 16 package and activity services did not become stable." >&2
     exit 1
   fi
-  adb wait-for-device
+  timeout 20 adb wait-for-device || true
   sleep 3
 done
 
 APK="dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"
 test -s "$APK"
 for attempt in $(seq 1 10); do
-  if adb install -r "$APK"; then break; fi
+  if timeout 90 adb install -r "$APK"; then break; fi
   if [ "$attempt" = "10" ]; then
     echo "AAB-derived universal APK could not be installed." >&2
     exit 1
   fi
-  adb wait-for-device
+  timeout 20 adb wait-for-device || true
   sleep 6
 done
 
-adb logcat -c
-adb shell pm clear com.leventua.bilgirotasi
-adb shell am force-stop com.leventua.bilgirotasi
-adb shell am start -n com.leventua.bilgirotasi/.MainActivity
+timeout 30 adb logcat -c
+timeout 30 adb shell pm clear com.leventua.bilgirotasi
+timeout 15 adb shell am force-stop com.leventua.bilgirotasi
+timeout 30 adb shell am start -n com.leventua.bilgirotasi/.MainActivity
 
 wait_for_word AUTH 'Google|Misafir'
 grep -Eqi 'Google' reports/UI_AUTH.tsv
@@ -121,7 +121,7 @@ for attempt in $(seq 1 40); do
   fi
   guest_point="$(find_word "HOME_${attempt}" 'Misafir')"
   if test -n "$guest_point"; then
-    adb shell input tap $guest_point
+    timeout 15 adb shell input tap $guest_point
   fi
   if [ "$attempt" = "40" ]; then
     echo "Guest button did not reach the home screen." >&2
@@ -135,11 +135,11 @@ grep -Eqi 'Oyna' reports/UI_HOME.tsv
 capture_screen HOME_SETTINGS
 settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"
 if test -n "$settings_point"; then
-  adb shell input tap $settings_point
+  timeout 15 adb shell input tap $settings_point
 else
   # Pixel 2 API 36 profile is fixed at 1080x1920. Tesseract can misread the
   # stylized Ayarlar title even though the card is fully visible.
-  adb shell input tap 540 1530
+  timeout 15 adb shell input tap 540 1530
 fi
 wait_for_word SETTINGS 'Ayarlar'
 
@@ -150,7 +150,7 @@ for attempt in $(seq 1 8); do
     tutorial_label="SETTINGS_TUTORIAL_${attempt}"
     break
   fi
-  adb shell input swipe 540 1650 540 350 650
+  timeout 15 adb shell input swipe 540 1650 540 350 650
   sleep 2
 done
 test -n "$tutorial_label"

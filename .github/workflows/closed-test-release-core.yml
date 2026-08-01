@@ -313,7 +313,7 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: true
           script: |
-            bash tools/validate_android16_closed_test.sh
+            timeout 1200 bash tools/validate_android16_closed_test.sh
 
       - name: Yayın hazırlık raporunu tamamla
         if: always()
