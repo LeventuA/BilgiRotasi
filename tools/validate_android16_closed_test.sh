@@ -111,18 +111,15 @@ wait_for_word HOME 'Oyna'
 grep -Eqi 'Oyna' reports/UI_HOME.tsv
 ! cmp -s reports/UI_AUTH.png reports/UI_HOME.png
 
-settings_label=''
-for attempt in $(seq 1 8); do
-  capture_screen "HOME_SETTINGS_${attempt}"
-  if test -n "$(find_word "HOME_SETTINGS_${attempt}" 'Ayarlar')"; then
-    settings_label="HOME_SETTINGS_${attempt}"
-    break
-  fi
-  adb shell input swipe 540 1650 540 350 650
-  sleep 2
-done
-test -n "$settings_label"
-tap_word "$settings_label" 'Ayarlar'
+capture_screen HOME_SETTINGS
+settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"
+if test -n "$settings_point"; then
+  adb shell input tap $settings_point
+else
+  # Pixel 2 API 36 profile is fixed at 1080x1920. Tesseract can misread the
+  # stylized Ayarlar title even though the card is fully visible.
+  adb shell input tap 540 1530
+fi
 wait_for_word SETTINGS 'Ayarlar'
 
 tutorial_label=''

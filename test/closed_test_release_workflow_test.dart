@@ -144,6 +144,7 @@ void main() {
       expect(workflow, contains(r'tesseract "reports/UI_${label}.png"'));
       expect(workflow, contains("wait_for_word AUTH 'Google|Misafir'"));
       expect(workflow, contains("tap_word AUTH 'Misafir'"));
+      expect(workflow, contains('adb shell input tap 540 1530'));
       expect(workflow, contains("wait_for_word TUTORIAL_DIALOG 'Anlad'"));
       expect(workflow, contains('reports/UI_*'));
       expect(workflow, contains('reports/COLD_START_LOGCAT.txt'));
