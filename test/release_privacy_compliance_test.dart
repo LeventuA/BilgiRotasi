@@ -209,7 +209,22 @@ void main() {
 
   group('yayın gizlilik sözleşmesi', () {
     test('sürüm ve production etiketi günceldir', () {
-      expect(AppBuildInfo.version, '1.68.8+98');
+      final pubspec = File('pubspec.yaml').readAsStringSync();
+      final versionMatch = RegExp(
+        r'^version:\s*(\S+)\s*$',
+        multiLine: true,
+      ).firstMatch(pubspec);
+
+      expect(
+        versionMatch,
+        isNotNull,
+        reason: 'pubspec.yaml version satırı bulunamadı.',
+      );
+      expect(
+        AppBuildInfo.version,
+        versionMatch!.group(1),
+        reason: 'AppBuildInfo ve pubspec.yaml sürümleri uyuşmuyor.',
+      );
       expect(AppBuildInfo.channel, 'Production');
     });
 
