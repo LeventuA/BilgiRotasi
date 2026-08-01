@@ -120,7 +120,8 @@ void main() {
       expect(workflow, contains('universal.apk'));
       expect(workflow, contains('api-level: 36'));
       expect(coreWorkflow, contains('target: google_apis'));
-      expect(coreWorkflow, contains('ram-size: 2048M'));
+      expect(coreWorkflow, contains('cores: 4'));
+      expect(coreWorkflow, contains('ram-size: 4096M'));
       expect(
         coreWorkflow,
         contains('timeout 1200 bash tools/validate_android16_closed_test.sh'),
@@ -149,6 +150,8 @@ void main() {
       expect(workflow, contains('adb exec-out screencap -p'));
       expect(workflow, contains(r'tesseract "reports/UI_${label}.png"'));
       expect(workflow, contains("wait_for_word AUTH 'Google|Misafir'"));
+      expect(workflow, contains('dismiss_system_anr'));
+      expect(workflow, contains('SYSTEM_ANR_DISMISSED.txt'));
       expect(workflow, contains("tap_word AUTH 'Misafir'"));
       expect(workflow, contains('Guest button did not reach the home screen.'));
       expect(workflow, contains('adb shell input tap 540 1530'));

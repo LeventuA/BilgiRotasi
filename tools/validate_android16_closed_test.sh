@@ -29,12 +29,35 @@ find_word() {
   ' "reports/UI_${label}.tsv"
 }
 
+dismiss_system_anr() {
+  local label="$1"
+  local wait_point
+  if ! grep -Eqi 'Process' "reports/UI_${label}.tsv" \
+      || ! grep -Eqi 'system' "reports/UI_${label}.tsv" \
+      || ! grep -Eqi 'responding' "reports/UI_${label}.tsv"; then
+    return 1
+  fi
+  wait_point="$(find_word "$label" 'Wait')"
+  if test -z "$wait_point"; then
+    return 1
+  fi
+  cp "reports/UI_${label}.png" reports/UI_SYSTEM_ANR.png
+  cp "reports/UI_${label}.tsv" reports/UI_SYSTEM_ANR.tsv
+  printf '%s: Android system ANR dialog dismissed with Wait.\n' "$label" \
+    >> reports/SYSTEM_ANR_DISMISSED.txt
+  timeout 15 adb shell input tap $wait_point
+  sleep 5
+}
+
 wait_for_word() {
   local label="$1"
   local pattern="$2"
   local attempts="${3:-40}"
   for attempt in $(seq 1 "$attempts"); do
     capture_screen "${label}_${attempt}"
+    if dismiss_system_anr "${label}_${attempt}"; then
+      continue
+    fi
     if test -n "$(find_word "${label}_${attempt}" "$pattern")"; then
       cp "reports/UI_${label}_${attempt}.png" "reports/UI_${label}.png"
       cp "reports/UI_${label}_${attempt}.tsv" "reports/UI_${label}.tsv"

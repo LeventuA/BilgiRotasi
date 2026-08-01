@@ -307,9 +307,9 @@ jobs:
           target: google_apis
           arch: x86_64
           profile: pixel_2
-          cores: 2
-          ram-size: 2048M
-          heap-size: 512M
+          cores: 4
+          ram-size: 4096M
+          heap-size: 768M
           emulator-boot-timeout: 1200
           disable-animations: true
           script: |
@@ -355,6 +355,7 @@ jobs:
             reports/UI_*
             reports/ACTIVITY_STATE.txt
             reports/APP_PID.txt
+            reports/SYSTEM_ANR_DISMISSED.txt
           if-no-files-found: warn
           retention-days: 30
 
