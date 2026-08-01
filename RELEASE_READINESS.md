@@ -77,7 +77,20 @@ Bu branch ve workflow backend dağıtımı yapmaz. Yetkili operatör kapalı tes
 5. Uyumlu istemci doğrulandıktan sonra sıkı kuralları `firebase deploy --project bilgi-rotasi-f255d --only firestore:rules` ile dağıt.
 6. App Check/Play Integrity zorlamasını yalnız gözlem metrikleri temiz ve kapalı-test istemcisi uyumlu olduktan sonra etkinleştir.
 
-## Manuel kapalı-test kontrol listesi
+## Fiziksel Google Play Internal Testing kontrol listesi
+
+> Ayarlar ve öğretici: ZORUNLU. Emülatör sonucu
+> `INFRASTRUCTURE_INCONCLUSIVE` olsa bile fiziksel Play Internal Testing
+> kapsamında Ayarlar ekranı ve öğreticinin açılıp kapanması onaylanmadan
+> kapalı test yayını onaylanmaz.
+
+Android 16 otomasyonu önce AAB-derived APK kurulumu, uygulama açılışı, Misafir
+girişi, ana menüde “Oyna”, canlı uygulama PID'si ve uygulama paketine ait temiz
+logcat koşullarını sert release kapısı olarak doğrular. Bu kapı geçtikten sonra
+yalnız başka sistem paketlerindeki ANR veya global input kilitlenmesi Ayarlar /
+öğretici sonucunu `INFRASTRUCTURE_INCONCLUSIVE` yapar; release kapısını bozmaz.
+`com.leventua.bilgirotasi` için crash, ANR, fatal exception veya process death
+her aşamada release kapısını başarısız yapar.
 
 - Google hesabıyla giriş ve uygulamayı yeniden açınca oturumun korunması.
 - Misafir → Google geçişinde kayıtların doğru hesaba bağlanması; başka hesaba veri sızmaması.

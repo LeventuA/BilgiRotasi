@@ -166,7 +166,28 @@ void main() {
       expect(android16Script, contains('UserMessagingPlatform'));
       expect(
         android16Script,
-        contains('Android 16 logcat contains an app crash or ANR.'),
+        contains('APPLICATION_CRASH_ANR_FATAL_OR_PROCESS_DEATH'),
+      );
+      expect(android16Script, contains('APK_INSTALL=PASS'));
+      expect(android16Script, contains('APP_LAUNCH=PASS'));
+      expect(android16Script, contains('GUEST_LOGIN=PASS'));
+      expect(android16Script, contains('HOME_OYNA=PASS'));
+      expect(android16Script, contains('APP_PID=PASS'));
+      expect(android16Script, contains('APP_LOGCAT=PASS'));
+      expect(android16Script, contains('APP_GATE=PASS'));
+      expect(android16Script, contains('RESULT=INFRASTRUCTURE_INCONCLUSIVE'));
+      expect(android16Script, contains('RELEASE_GATE=PASS'));
+      expect(android16Script, contains('has_infrastructure_failure'));
+      expect(android16Script, contains('POST_GATE_LOGCAT_BOUNDARY'));
+      expect(android16Script, contains('reports/APP_GATE_LOGCAT.txt'));
+      expect(
+        android16Script,
+        contains("grep -Eiv 'ANR in com\\.leventua\\.bilgirotasi'"),
+      );
+      expect(android16Script, contains('run_settings_tutorial_diagnostic'));
+      expect(
+        android16Script,
+        contains('PHYSICAL_PLAY_INTERNAL_TESTING_SETTINGS_TUTORIAL=REQUIRED'),
       );
       expect(workflow, contains('FATAL EXCEPTION'));
     });
@@ -178,8 +199,12 @@ void main() {
         'AAB_BADGING.txt',
         'TEST_RESULTS.txt',
         'COLD_START_LOGCAT.txt',
+        'APP_GATE_LOGCAT.txt',
         'RELEASE_READINESS.md',
         'DEPENDENCY_GRAPH.txt',
+        'ANDROID16_APP_GATE.txt',
+        'ANDROID16_VALIDATION_RESULT.txt',
+        'INFRASTRUCTURE_DIAGNOSTICS.txt',
       ]) {
         expect(workflow, contains(expected), reason: expected);
       }
@@ -189,6 +214,23 @@ void main() {
       expect(qualityGate, isNot(contains('EXPECTED_VERSION')));
       expect(qualityGate, contains('AppBuildInfo sürümü uyuşmuyor'));
     });
+
+    test(
+      'Ayarlar ve öğretici fiziksel Internal Testing listesinde zorunludur',
+      () {
+        final readiness = File('RELEASE_READINESS.md').readAsStringSync();
+        final phoneChecklist =
+            File('reports/RC1_MANUAL_TEST_CHECKLIST.md').readAsStringSync();
+        expect(
+          readiness,
+          contains('Fiziksel Google Play Internal Testing kontrol listesi'),
+        );
+        expect(readiness, contains('Ayarlar ve öğretici: ZORUNLU'));
+        expect(phoneChecklist, contains('Google Play Internal Testing'));
+        expect(phoneChecklist, contains('Ayarlar ekranı fiziksel Android'));
+        expect(phoneChecklist, contains('Öğretici görüntülendi'));
+      },
+    );
 
     test('workflow backend dağıtımı veya gerçek reklam isteği yapmaz', () {
       expect(workflow, isNot(contains('firebase deploy')));

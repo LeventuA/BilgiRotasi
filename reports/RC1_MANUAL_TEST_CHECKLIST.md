@@ -87,3 +87,12 @@ Sürüm: **1.48.4+68 • RC2**
 - [ ] Google hesabıyla giriş yapılınca Günlük kartı otomatik geri geldi.
 - [ ] Google hesabından çıkınca Günlük kartı tekrar gizlendi.
 - [ ] Misafir kullanıcı diğer oyun modlarına erişebildi.
+
+## 10. Google Play Internal Testing — Ayarlar ve öğretici (zorunlu)
+
+- [ ] Ayarlar ekranı fiziksel Android cihazda açıldı.
+- [ ] Ayarlar içindeki “Öğreticiyi Yeniden Göster” eylemi çalıştı.
+- [ ] Öğretici görüntülendi ve “Anladım” ile kapandı.
+- [ ] Öğretici kapandıktan sonra uygulama kullanılabilir ve PID canlı kaldı.
+- [ ] Emülatör sonucu `INFRASTRUCTURE_INCONCLUSIVE` ise bu fiziksel kontrol
+      tamamlanmadan yayın onaylanmadı.

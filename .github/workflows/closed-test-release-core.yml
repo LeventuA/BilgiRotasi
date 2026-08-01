@@ -333,6 +333,14 @@ jobs:
             echo "- Firebase: production / bilgi-rotasi-f255d"
             echo "- AdMob: closed_test / Google demo ad units"
           } >> reports/RELEASE_READINESS.md
+          if test -s reports/ANDROID16_VALIDATION_RESULT.txt; then
+            {
+              echo
+              echo "### Android 16 uygulama kapısı ve altyapı tanısı"
+              echo
+              cat reports/ANDROID16_VALIDATION_RESULT.txt
+            } >> reports/RELEASE_READINESS.md
+          fi
 
       - name: AAB ve doğrulama kanıtlarını yükle
         if: always()
@@ -345,6 +353,7 @@ jobs:
             reports/AAB_BADGING.txt
             reports/TEST_RESULTS.txt
             reports/COLD_START_LOGCAT.txt
+            reports/APP_GATE_LOGCAT.txt
             reports/RELEASE_READINESS.md
             reports/DEPENDENCY_GRAPH.txt
             reports/CLOSED_TEST_CONFIGURATION.txt
@@ -355,7 +364,10 @@ jobs:
             reports/UI_*
             reports/ACTIVITY_STATE.txt
             reports/APP_PID.txt
-            reports/SYSTEM_ANR_DISMISSED.txt
+            reports/*ANR_DISMISSED.txt
+            reports/ANDROID16_APP_GATE.txt
+            reports/ANDROID16_VALIDATION_RESULT.txt
+            reports/INFRASTRUCTURE_DIAGNOSTICS.txt
           if-no-files-found: warn
           retention-days: 30
 
