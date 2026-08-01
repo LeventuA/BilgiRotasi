@@ -16,8 +16,9 @@ void main() {
           File(
             '.github/workflows/closed-test-release-core.yml',
           ).readAsStringSync();
-      android16Script =
-          File('tools/validate_android16_closed_test.sh').readAsStringSync();
+      android16Script = File(
+        'tools/validate_android16_closed_test.sh',
+      ).readAsStringSync().replaceAll('\r\n', '\n');
       workflow = '$manualWorkflow\n$coreWorkflow\n$android16Script';
     });
 
@@ -81,6 +82,7 @@ void main() {
         contains('--dart-define=FIREBASE_ENVIRONMENT=production'),
       );
       expect(workflow, contains('bilgi-rotasi-f255d'));
+      expect(workflow, contains('263c46c6ae9f27c3b33810fa898cd7eb9373ccf4'));
       expect(workflow, contains('ca-app-pub-3940256099942544~3347511713'));
       expect(workflow, contains('ca-app-pub-3940256099942544/6300978111'));
       expect(workflow, contains('ca-app-pub-3940256099942544/5224354917'));

@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "184174765052-8vma0frp2jqlf3iqui7hm7qlilluklgo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.leventua.bilgirotasi",
+            "certificate_hash": "263c46c6ae9f27c3b33810fa898cd7eb9373ccf4"
+          }
+        },
+        {
           "client_id": "184174765052-cq19m113aum2jofrfj3np8adbulgmeon.apps.googleusercontent.com",
           "client_type": 3
         }
