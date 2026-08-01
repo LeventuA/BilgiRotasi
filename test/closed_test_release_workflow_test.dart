@@ -133,6 +133,8 @@ void main() {
       expect(workflow, contains(r'adb shell service check package'));
       expect(workflow, contains(r'adb shell service check activity'));
       expect(workflow, contains(r'adb shell pm path android'));
+      expect(workflow, contains('stable_service_checks'));
+      expect(workflow, contains(r'$(seq 1 120)'));
       expect(
         workflow,
         contains(

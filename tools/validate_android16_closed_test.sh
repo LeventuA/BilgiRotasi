@@ -68,15 +68,20 @@ for attempt in $(seq 1 30); do
   sleep 2
 done
 
-for attempt in $(seq 1 60); do
+stable_service_checks=0
+sleep 15
+for attempt in $(seq 1 120); do
   package_service="$(timeout 10 adb shell service check package 2>/dev/null | tr -d '\r' || true)"
   activity_service="$(timeout 10 adb shell service check activity 2>/dev/null | tr -d '\r' || true)"
   if printf '%s' "$package_service" | grep -Fq 'found' \
       && printf '%s' "$activity_service" | grep -Fq 'found' \
       && timeout 10 adb shell pm path android >/dev/null 2>&1; then
-    break
+    stable_service_checks=$((stable_service_checks + 1))
+    if [ "$stable_service_checks" -ge 3 ]; then break; fi
+  else
+    stable_service_checks=0
   fi
-  if [ "$attempt" = "60" ]; then
+  if [ "$attempt" = "120" ]; then
     echo "Android 16 package and activity services did not become stable." >&2
     exit 1
   fi
@@ -86,14 +91,14 @@ done
 
 APK="dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"
 test -s "$APK"
-for attempt in $(seq 1 5); do
+for attempt in $(seq 1 10); do
   if adb install -r "$APK"; then break; fi
-  if [ "$attempt" = "5" ]; then
+  if [ "$attempt" = "10" ]; then
     echo "AAB-derived universal APK could not be installed." >&2
     exit 1
   fi
   adb wait-for-device
-  sleep 3
+  sleep 6
 done
 
 adb logcat -c
