@@ -141,7 +141,7 @@ void main() {
       );
       expect(workflow, contains(r'adb install -r "$APK"'));
       expect(workflow, contains('adb exec-out screencap -p'));
-      expect(workflow, contains('tesseract "reports/UI_${label}.png"'));
+      expect(workflow, contains(r'tesseract "reports/UI_${label}.png"'));
       expect(workflow, contains("wait_for_word AUTH 'Google|Misafir'"));
       expect(workflow, contains("tap_word AUTH 'Misafir'"));
       expect(workflow, contains("wait_for_word TUTORIAL_DIALOG 'Anlad'"));
