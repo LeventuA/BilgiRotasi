@@ -159,7 +159,8 @@ void main() {
       expect(workflow, contains("wait_for_word TUTORIAL_DIALOG 'Anlad'"));
       expect(workflow, contains('reports/UI_*'));
       expect(workflow, contains('reports/COLD_START_LOGCAT.txt'));
-      expect(android16Script, contains('trap capture_diagnostics EXIT'));
+      expect(android16Script, contains('trap finalize_validation EXIT'));
+      expect(android16Script, contains('capture_diagnostics'));
       expect(android16Script, isNot(contains('uiautomator dump')));
       expect(android16Script, contains('reports/APP_PID.txt'));
       expect(android16Script, contains('ResumedActivity'));
@@ -185,6 +186,14 @@ void main() {
         contains("grep -Eiv 'ANR in com\\.leventua\\.bilgirotasi'"),
       );
       expect(android16Script, contains('run_settings_tutorial_diagnostic'));
+      expect(android16Script, contains('SCREEN_CAPTURE_FAILURES.txt'));
+      expect(android16Script, contains('OCR_FAILED_OR_TIMED_OUT'));
+      expect(android16Script, contains('retry_capture_screen'));
+      expect(android16Script, contains('MANDATORY_APP_GATE_INCOMPLETE'));
+      expect(
+        android16Script,
+        contains(r'if ! capture_screen "${label}_${attempt}"; then'),
+      );
       expect(
         android16Script,
         contains('PHYSICAL_PLAY_INTERNAL_TESTING_SETTINGS_TUTORIAL=REQUIRED'),
@@ -205,6 +214,7 @@ void main() {
         'ANDROID16_APP_GATE.txt',
         'ANDROID16_VALIDATION_RESULT.txt',
         'INFRASTRUCTURE_DIAGNOSTICS.txt',
+        'SCREEN_CAPTURE_FAILURES.txt',
       ]) {
         expect(workflow, contains(expected), reason: expected);
       }

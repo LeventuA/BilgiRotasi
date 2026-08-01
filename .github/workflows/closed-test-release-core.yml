@@ -368,6 +368,7 @@ jobs:
             reports/ANDROID16_APP_GATE.txt
             reports/ANDROID16_VALIDATION_RESULT.txt
             reports/INFRASTRUCTURE_DIAGNOSTICS.txt
+            reports/SCREEN_CAPTURE_FAILURES.txt
           if-no-files-found: warn
           retention-days: 30
 

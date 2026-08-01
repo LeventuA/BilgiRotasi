@@ -4,7 +4,8 @@ set -euo pipefail
 mkdir -p reports
 rm -f reports/ANDROID16_APP_GATE.txt \
   reports/ANDROID16_VALIDATION_RESULT.txt \
-  reports/INFRASTRUCTURE_DIAGNOSTICS.txt
+  reports/INFRASTRUCTURE_DIAGNOSTICS.txt \
+  reports/SCREEN_CAPTURE_FAILURES.txt
 
 capture_diagnostics() {
   timeout 30 adb logcat -d > reports/COLD_START_LOGCAT.txt 2>&1 || true
@@ -14,10 +15,36 @@ capture_diagnostics() {
 
 capture_screen() {
   local label="$1"
-  timeout 20 adb exec-out screencap -p > "reports/UI_${label}.png"
-  test -s "reports/UI_${label}.png"
-  timeout 20 tesseract "reports/UI_${label}.png" "reports/UI_${label}" \
-    --psm 11 -l eng tsv >/dev/null 2>&1
+  rm -f "reports/UI_${label}.tsv"
+  if ! timeout 30 adb exec-out screencap -p > "reports/UI_${label}.png" \
+      || ! test -s "reports/UI_${label}.png"; then
+    printf '%s: SCREENSHOT_FAILED_OR_TIMED_OUT\n' "$label" \
+      >> reports/SCREEN_CAPTURE_FAILURES.txt
+    return 1
+  fi
+  if ! timeout 45 tesseract "reports/UI_${label}.png" "reports/UI_${label}" \
+      --psm 11 -l eng tsv >/dev/null 2>&1 \
+      || ! test -s "reports/UI_${label}.tsv"; then
+    printf '%s: OCR_FAILED_OR_TIMED_OUT\n' "$label" \
+      >> reports/SCREEN_CAPTURE_FAILURES.txt
+    return 1
+  fi
+}
+
+retry_capture_screen() {
+  local label="$1"
+  local attempts="${2:-3}"
+  for attempt in $(seq 1 "$attempts"); do
+    if test -n "${DIAGNOSTIC_DEADLINE:-}" \
+        && [ "$SECONDS" -ge "$DIAGNOSTIC_DEADLINE" ]; then
+      return 1
+    fi
+    if capture_screen "$label"; then
+      return 0
+    fi
+    sleep 3
+  done
+  return 1
 }
 
 find_word() {
@@ -62,7 +89,8 @@ wait_for_word() {
       return 1
     fi
     if ! capture_screen "${label}_${attempt}"; then
-      return 1
+      sleep 3
+      continue
     fi
     if dismiss_system_anr "${label}_${attempt}"; then
       continue
@@ -121,7 +149,7 @@ run_settings_tutorial_diagnostic() {
   local settings_point
   local tutorial_label=''
 
-  capture_screen HOME_SETTINGS || return 1
+  retry_capture_screen HOME_SETTINGS || return 1
   settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"
   if test -n "$settings_point"; then
     timeout 15 adb shell input tap $settings_point || return 1
@@ -136,7 +164,7 @@ run_settings_tutorial_diagnostic() {
     if [ "$SECONDS" -ge "$DIAGNOSTIC_DEADLINE" ]; then
       return 1
     fi
-    capture_screen "SETTINGS_TUTORIAL_${attempt}" || return 1
+    retry_capture_screen "SETTINGS_TUTORIAL_${attempt}" || return 1
     if test -n "$(find_word "SETTINGS_TUTORIAL_${attempt}" 'Yeniden')"; then
       tutorial_label="SETTINGS_TUTORIAL_${attempt}"
       break
@@ -151,7 +179,7 @@ run_settings_tutorial_diagnostic() {
 
   tap_word TUTORIAL_DIALOG 'Anlad' || return 1
   sleep 3
-  capture_screen TUTORIAL_CLOSED || return 1
+  retry_capture_screen TUTORIAL_CLOSED || return 1
   ! grep -Eqi 'Anlad' reports/UI_TUTORIAL_CLOSED.tsv || return 1
   ! cmp -s reports/UI_TUTORIAL_DIALOG.png reports/UI_TUTORIAL_CLOSED.png
 }
@@ -165,7 +193,27 @@ tap_word() {
   timeout 15 adb shell input tap $point
 }
 
-trap capture_diagnostics EXIT
+finalize_validation() {
+  local status="$?"
+  trap - EXIT
+  capture_diagnostics
+  if [ "$status" -ne 0 ] \
+      && ! test -s reports/ANDROID16_VALIDATION_RESULT.txt; then
+    if has_app_failure; then
+      reason='APPLICATION_CRASH_ANR_FATAL_OR_PROCESS_DEATH'
+    else
+      reason='MANDATORY_APP_GATE_INCOMPLETE'
+    fi
+    {
+      echo 'RESULT=FAIL'
+      echo 'RELEASE_GATE=FAIL'
+      printf 'REASON=%s\n' "$reason"
+    } > reports/ANDROID16_VALIDATION_RESULT.txt
+  fi
+  exit "$status"
+}
+
+trap finalize_validation EXIT
 command -v tesseract >/dev/null
 
 timeout 120 adb wait-for-device
@@ -244,7 +292,14 @@ grep -Eqi 'Misafir' reports/UI_AUTH.tsv
 
 tap_word AUTH 'Misafir'
 for attempt in $(seq 1 40); do
-  capture_screen "HOME_${attempt}"
+  if ! capture_screen "HOME_${attempt}"; then
+    if [ "$attempt" = "40" ]; then
+      echo "Guest login could not be verified because screen capture/OCR repeatedly failed." >&2
+      exit 1
+    fi
+    sleep 3
+    continue
+  fi
   if test -n "$(find_word "HOME_${attempt}" 'Oyna')"; then
     cp "reports/UI_HOME_${attempt}.png" reports/UI_HOME.png
     cp "reports/UI_HOME_${attempt}.tsv" reports/UI_HOME.tsv
