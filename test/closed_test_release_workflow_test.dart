@@ -140,19 +140,18 @@ void main() {
         ),
       );
       expect(workflow, contains(r'adb install -r "$APK"'));
-      expect(
-        workflow,
-        contains(
-          'uiautomator dump --compressed /data/local/tmp/window.xml',
-        ),
-      );
-      expect(workflow, isNot(contains('/sdcard/window.xml')));
-      expect(workflow, contains("wait_for_text 'Google ile giriş yap'"));
-      expect(workflow, contains("tap_text 'Misafir olarak devam et'"));
-      expect(workflow, contains("tap_text 'Eğitimi Yeniden Göster'"));
+      expect(workflow, contains('adb exec-out screencap -p'));
+      expect(workflow, contains('tesseract "reports/UI_${label}.png"'));
+      expect(workflow, contains("wait_for_word AUTH 'Google|Misafir'"));
+      expect(workflow, contains("tap_word AUTH 'Misafir'"));
+      expect(workflow, contains("wait_for_word TUTORIAL_DIALOG 'Anlad'"));
+      expect(workflow, contains('reports/UI_*'));
       expect(workflow, contains('reports/COLD_START_LOGCAT.txt'));
       expect(android16Script, contains('trap capture_diagnostics EXIT'));
-      expect(android16Script, contains('timeout 12 adb shell uiautomator dump'));
+      expect(android16Script, isNot(contains('uiautomator dump')));
+      expect(android16Script, contains('reports/APP_PID.txt'));
+      expect(android16Script, contains('ResumedActivity'));
+      expect(android16Script, contains('UserMessagingPlatform'));
       expect(workflow, contains('FATAL EXCEPTION'));
     });
 

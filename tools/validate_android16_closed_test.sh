@@ -9,7 +9,53 @@ capture_diagnostics() {
   adb shell pidof com.leventua.bilgirotasi > reports/APP_PID.txt 2>&1 || true
 }
 
+capture_screen() {
+  local label="$1"
+  adb exec-out screencap -p > "reports/UI_${label}.png"
+  test -s "reports/UI_${label}.png"
+  tesseract "reports/UI_${label}.png" "reports/UI_${label}" \
+    --psm 11 -l eng tsv >/dev/null 2>&1
+}
+
+find_word() {
+  local label="$1"
+  local pattern="$2"
+  awk -F '\t' -v pattern="$pattern" '
+    BEGIN { IGNORECASE = 1 }
+    NR > 1 && $12 ~ pattern {
+      print int($7 + ($9 / 2)), int($8 + ($10 / 2))
+      exit
+    }
+  ' "reports/UI_${label}.tsv"
+}
+
+wait_for_word() {
+  local label="$1"
+  local pattern="$2"
+  local attempts="${3:-40}"
+  for attempt in $(seq 1 "$attempts"); do
+    capture_screen "${label}_${attempt}"
+    if test -n "$(find_word "${label}_${attempt}" "$pattern")"; then
+      cp "reports/UI_${label}_${attempt}.png" "reports/UI_${label}.png"
+      cp "reports/UI_${label}_${attempt}.tsv" "reports/UI_${label}.tsv"
+      return 0
+    fi
+    sleep 3
+  done
+  return 1
+}
+
+tap_word() {
+  local label="$1"
+  local pattern="$2"
+  local point
+  point="$(find_word "$label" "$pattern")"
+  test -n "$point"
+  adb shell input tap $point
+}
+
 trap capture_diagnostics EXIT
+command -v tesseract >/dev/null
 
 adb wait-for-device
 for attempt in $(seq 1 30); do
@@ -49,82 +95,60 @@ for attempt in $(seq 1 5); do
   adb wait-for-device
   sleep 3
 done
+
 adb logcat -c
 adb shell pm clear com.leventua.bilgirotasi
 adb shell am force-stop com.leventua.bilgirotasi
 adb shell am start -n com.leventua.bilgirotasi/.MainActivity
-sleep 20
 
-wait_for_text() {
-  local expected="$1"
-  for attempt in $(seq 1 20); do
-    rm -f reports/window.xml
-    adb shell rm -f /data/local/tmp/window.xml || true
-    timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml \
-      > "reports/uiautomator-${attempt}.log" 2>&1 || true
-    adb pull /data/local/tmp/window.xml reports/window.xml >/dev/null 2>&1 || true
-    if grep -Fq "$expected" reports/window.xml; then return 0; fi
-    sleep 2
-  done
-  return 1
-}
+wait_for_word AUTH 'Google|Misafir'
+grep -Eqi 'Google' reports/UI_AUTH.tsv
+grep -Eqi 'Misafir' reports/UI_AUTH.tsv
+! grep -Eqi 'Nas.*Oynan' reports/UI_AUTH.tsv
 
-tap_text() {
-  local expected="$1"
-  timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml >/dev/null
-  adb pull /data/local/tmp/window.xml reports/window.xml >/dev/null
-  local point
-  point="$(python3 - "$expected" <<'PY'
-import re, sys, xml.etree.ElementTree as ET
-target = sys.argv[1]
-root = ET.parse('reports/window.xml').getroot()
-for node in root.iter('node'):
-    if node.attrib.get('text') == target or node.attrib.get('content-desc') == target:
-        values = [int(value) for value in re.findall(r'\d+', node.attrib['bounds'])]
-        print((values[0] + values[2]) // 2, (values[1] + values[3]) // 2)
-        raise SystemExit(0)
-raise SystemExit(1)
-PY
-  )"
-  adb shell input tap $point
-}
+tap_word AUTH 'Misafir'
+wait_for_word HOME 'Oyna'
+grep -Eqi 'Oyna' reports/UI_HOME.tsv
+! cmp -s reports/UI_AUTH.png reports/UI_HOME.png
 
-wait_for_text 'Google ile giriş yap'
-cp reports/window.xml reports/UI_GOOGLE_SIGN_IN.xml
-grep -Fq 'Misafir olarak devam et' reports/UI_GOOGLE_SIGN_IN.xml
-! grep -Fq 'Bilgi Rotası Nasıl Oynanır?' reports/UI_GOOGLE_SIGN_IN.xml
-
-tap_text 'Misafir olarak devam et'
-wait_for_text 'BİLGİ ROTASI'
-cp reports/window.xml reports/UI_HOME.xml
-grep -Fq 'Oyna' reports/UI_HOME.xml
-
-for _ in $(seq 1 5); do
-  timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml >/dev/null
-  adb pull /data/local/tmp/window.xml reports/window.xml >/dev/null
-  grep -Fq 'Ayarlar' reports/window.xml && break
-  adb shell input swipe 540 1600 540 450 500
+settings_label=''
+for attempt in $(seq 1 8); do
+  capture_screen "HOME_SETTINGS_${attempt}"
+  if test -n "$(find_word "HOME_SETTINGS_${attempt}" 'Ayarlar')"; then
+    settings_label="HOME_SETTINGS_${attempt}"
+    break
+  fi
+  adb shell input swipe 540 1650 540 350 650
+  sleep 2
 done
-tap_text 'Ayarlar'
-wait_for_text 'Ayarlar'
+test -n "$settings_label"
+tap_word "$settings_label" 'Ayarlar'
+wait_for_word SETTINGS 'Ayarlar'
 
-for _ in $(seq 1 6); do
-  timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml >/dev/null
-  adb pull /data/local/tmp/window.xml reports/window.xml >/dev/null
-  grep -Fq 'Eğitimi Yeniden Göster' reports/window.xml && break
-  adb shell input swipe 540 1650 540 400 500
+tutorial_label=''
+for attempt in $(seq 1 8); do
+  capture_screen "SETTINGS_TUTORIAL_${attempt}"
+  if test -n "$(find_word "SETTINGS_TUTORIAL_${attempt}" 'Yeniden')"; then
+    tutorial_label="SETTINGS_TUTORIAL_${attempt}"
+    break
+  fi
+  adb shell input swipe 540 1650 540 350 650
+  sleep 2
 done
-tap_text 'Eğitimi Yeniden Göster'
-wait_for_text 'Bilgi Rotası Nasıl Oynanır?'
-cp reports/window.xml reports/UI_TUTORIAL_DIALOG.xml
-grep -Fq 'Anladım' reports/UI_TUTORIAL_DIALOG.xml
-tap_text 'Anladım'
-sleep 2
-timeout 12 adb shell uiautomator dump --compressed /data/local/tmp/window.xml >/dev/null
-adb pull /data/local/tmp/window.xml reports/UI_TUTORIAL_CLOSED.xml >/dev/null
-! grep -Fq 'Bilgi Rotası Nasıl Oynanır?' reports/UI_TUTORIAL_CLOSED.xml
+test -n "$tutorial_label"
+tap_word "$tutorial_label" 'Yeniden'
+wait_for_word TUTORIAL_DIALOG 'Anlad'
+! cmp -s reports/UI_SETTINGS.png reports/UI_TUTORIAL_DIALOG.png
+
+tap_word TUTORIAL_DIALOG 'Anlad'
+sleep 3
+capture_screen TUTORIAL_CLOSED
+! grep -Eqi 'Anlad' reports/UI_TUTORIAL_CLOSED.tsv
+! cmp -s reports/UI_TUTORIAL_DIALOG.png reports/UI_TUTORIAL_CLOSED.png
 
 capture_diagnostics
-test -n "$(adb shell pidof com.leventua.bilgirotasi | tr -d '\r')"
-! grep -Eqi 'FATAL EXCEPTION|AndroidRuntime.*FATAL|Missing application ID|MobileAdsInitProvider.*IllegalStateException' reports/COLD_START_LOGCAT.txt
-adb shell dumpsys activity activities | grep -Fq com.leventua.bilgirotasi
+test -n "$(tr -d '\r\n' < reports/APP_PID.txt)"
+grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/ACTIVITY_STATE.txt
+grep -Fq 'ResumedActivity' reports/ACTIVITY_STATE.txt
+! grep -Eqi 'FATAL EXCEPTION.*com\.leventua\.bilgirotasi|ANR in com\.leventua\.bilgirotasi|Process com\.leventua\.bilgirotasi .*has died|Cmdline: com\.leventua\.bilgirotasi|MobileAdsInitProvider.*IllegalStateException' reports/COLD_START_LOGCAT.txt
+! grep -Fq 'UserMessagingPlatform' reports/COLD_START_LOGCAT.txt

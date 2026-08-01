@@ -290,6 +290,16 @@ jobs:
           (cd android && ./gradlew app:dependencies --configuration releaseRuntimeClasspath) \
             | tee -a reports/DEPENDENCY_GRAPH.txt
 
+      - name: Ekran OCR doğrulama aracını hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v tesseract >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends tesseract-ocr
+          fi
+          tesseract --version
+
       - name: Android 16 AAB-derived cold-start ve kritik akışlar
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -342,10 +352,9 @@ jobs:
             reports/AAB_SHA256.txt
             reports/AAB_MANIFEST.xml
             reports/AAB_CONTENTS.txt
-            reports/UI_*.xml
+            reports/UI_*
             reports/ACTIVITY_STATE.txt
             reports/APP_PID.txt
-            reports/uiautomator-*.log
           if-no-files-found: warn
           retention-days: 30
 
