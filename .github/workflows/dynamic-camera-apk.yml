@@ -1,0 +1,167 @@
+name: Dinamik Kamera APK
+
+on:
+  push:
+    branches:
+      - experiment/dynamic-board-camera
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Kaynak kodu al
+        uses: actions/checkout@v4
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Kamera test uygulamasını hazırla
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import copy
+          import json
+
+          gradle = Path("android/app/build.gradle.kts")
+          text = gradle.read_text(encoding="utf-8")
+
+          old = '''        debug {
+              manifestPlaceholders["admobAppId"] = adMobTestAppId
+          }'''
+
+          new = '''        debug {
+              applicationIdSuffix = ".camera"
+              versionNameSuffix = "-camera"
+              manifestPlaceholders["admobAppId"] = adMobTestAppId
+          }'''
+
+          if old not in text:
+              raise SystemExit("Debug yapılandırması bulunamadı.")
+
+          gradle.write_text(
+              text.replace(old, new, 1),
+              encoding="utf-8",
+          )
+
+          manifest = Path(
+              "android/app/src/main/AndroidManifest.xml"
+          )
+          manifest_text = manifest.read_text(encoding="utf-8")
+          manifest.write_text(
+              manifest_text.replace(
+                  'android:label="Bilgi Rotası"',
+                  'android:label="Bilgi Rotası Kamera Testi"',
+                  1,
+              ),
+              encoding="utf-8",
+          )
+
+          services = Path("android/app/google-services.json")
+          data = json.loads(
+              services.read_text(encoding="utf-8")
+          )
+
+          original = next(
+              client
+              for client in data["client"]
+              if client["client_info"]["android_client_info"][
+                  "package_name"
+              ] == "com.leventua.bilgirotasi"
+          )
+
+          camera_client = copy.deepcopy(original)
+          camera_client["client_info"]["android_client_info"][
+              "package_name"
+          ] = "com.leventua.bilgirotasi.camera"
+
+          camera_client["oauth_client"] = [
+              item
+              for item in camera_client.get("oauth_client", [])
+              if item.get("client_type") == 3
+          ]
+
+          data["client"].append(camera_client)
+
+          services.write_text(
+              json.dumps(
+                  data,
+                  ensure_ascii=False,
+                  indent=2,
+              ),
+              encoding="utf-8",
+          )
+
+          properties = Path("android/gradle.properties")
+          existing = (
+              properties.read_text(encoding="utf-8")
+              if properties.exists()
+              else ""
+          )
+
+          blocked = (
+              "org.gradle.jvmargs=",
+              "org.gradle.daemon=",
+              "org.gradle.parallel=",
+              "org.gradle.workers.max=",
+              "kotlin.compiler.execution.strategy=",
+          )
+
+          lines = [
+              line
+              for line in existing.splitlines()
+              if not line.strip().startswith(blocked)
+          ]
+
+          lines.extend([
+              "org.gradle.jvmargs=-Xmx3g -XX:MaxMetaspaceSize=768m -Dfile.encoding=UTF-8",
+              "org.gradle.daemon=false",
+              "org.gradle.parallel=false",
+              "org.gradle.workers.max=1",
+              "kotlin.compiler.execution.strategy=in-process",
+          ])
+
+          properties.write_text(
+              "\n".join(lines) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Bağımlılıkları yükle
+        run: flutter pub get
+
+      - name: Kamera testlerini çalıştır
+        run: flutter test test/dynamic_board_camera_test.dart
+
+      - name: ARM64 test APK oluştur
+        run: |
+          flutter build apk \
+            --debug \
+            --no-pub \
+            --target-platform android-arm64
+
+          cp build/app/outputs/flutter-apk/app-debug.apk \
+            BilgiRotasi-Kamera-Testi.apk
+
+      - name: APK dosyasını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-Kamera-Testi
+          path: BilgiRotasi-Kamera-Testi.apk
+          retention-days: 7
