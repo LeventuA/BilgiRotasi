@@ -1,0 +1,31 @@
+BİLGİ ROTASI – KAPALI TEST GERİ BİLDİRİM GÜNCELLEMESİ
+==============================================================================
+
+Taban dal: release/final-closed-test-aab-1.68.8
+Çalışma dalı: fix/closed-test-feedback-1.68.12
+Yeni sürüm: 1.68.12+102
+
+SORU DEĞİŞİKLİKLERİ
+------------------------------------------------------------------------------
+q57805: Orta → Zor
+q56784: Kolay → Zor
+q56189: Kolay → Zor
+q56304: Kolay → Zor
+q54045: Kolay → Orta
+q53752: Kolay → Orta
+q54807: Kolay → Orta
+q56602: Kolay → Orta
+q55227: Kolay → Orta
+q57860: soru ve şıklar yalnız TV kanallarından oluşturuldu
+
+ZATEN GÜNCEL OLANLAR
+------------------------------------------------------------------------------
+Yok
+
+MERKEZİ SÜRÜM DOSYALARI
+------------------------------------------------------------------------------
+lib/app_build_info.dart
+
+NOT
+------------------------------------------------------------------------------
+Apps Script koruma kaynağı repoya eklendi fakat otomatik deploy edilmedi.
