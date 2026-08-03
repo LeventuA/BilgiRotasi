@@ -42,23 +42,37 @@ jobs:
           gradle = Path("android/app/build.gradle.kts")
           text = gradle.read_text(encoding="utf-8")
 
-          old = '''        debug {
-              manifestPlaceholders["admobAppId"] = adMobTestAppId
-          }'''
+          import re
 
-          new = '''        debug {
-              applicationIdSuffix = ".camera"
-              versionNameSuffix = "-camera"
-              manifestPlaceholders["admobAppId"] = adMobTestAppId
-          }'''
+          pattern = re.compile(
+              r'(?m)^(?P<indent>[ \t]*)debug[ \t]*\{[ \t]*\n'
+              r'(?P<body>[ \t]*)manifestPlaceholders\["admobAppId"\]'
+              r'[ \t]*=[ \t]*adMobTestAppId[ \t]*\n'
+              r'(?P=indent)\}'
+          )
 
-          if old not in text:
+          match = pattern.search(text)
+          if match is None:
               raise SystemExit("Debug yapılandırması bulunamadı.")
 
-          gradle.write_text(
-              text.replace(old, new, 1),
-              encoding="utf-8",
+          indent = match.group("indent")
+          body = match.group("body")
+
+          new_block = (
+              f'{indent}debug {{\n'
+              f'{body}applicationIdSuffix = ".camera"\n'
+              f'{body}versionNameSuffix = "-camera"\n'
+              f'{body}manifestPlaceholders["admobAppId"] = adMobTestAppId\n'
+              f'{indent}}}'
           )
+
+          text = (
+              text[:match.start()]
+              + new_block
+              + text[match.end():]
+          )
+
+          gradle.write_text(text, encoding="utf-8")
 
           manifest = Path(
               "android/app/src/main/AndroidManifest.xml"
