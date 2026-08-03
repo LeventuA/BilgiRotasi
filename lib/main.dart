@@ -33,6 +33,7 @@ part 'advanced_modes.dart';
 part 'retention_system.dart';
 part 'visual_collection.dart';
 part 'board_theme_art.dart';
+part 'perspective_board.dart';
 part 'accessibility_settings.dart';
 part 'social_features.dart';
 part 'system_health.dart';
@@ -6500,11 +6501,11 @@ class GameBoard extends StatelessWidget {
         builder: (context, constraints) {
           final size = Size(constraints.maxWidth, constraints.maxHeight);
           final base = BoardMap.base(size);
-          final boardCenter = BoardMap.center(size);
+          final boardCenter = PerspectiveBoardProjection.center(size);
           final landingPoint =
               landingNodeId == null
                   ? null
-                  : BoardMap.position(size, landingNodeId!);
+                  : PerspectiveBoardProjection.position(size, landingNodeId!);
           final landingNode =
               landingNodeId == null ? null : BoardMap.node(landingNodeId!);
           final landingColor =
@@ -6526,12 +6527,14 @@ class GameBoard extends StatelessWidget {
           return Stack(
             clipBehavior: Clip.none,
             children: [
-              const Positioned.fill(child: LiveBoardLayer()),
+              const Positioned.fill(child: PerspectiveBoardLayer()),
               if (moveOptions.isNotEmpty)
                 Positioned.fill(
                   child: IgnorePointer(
                     child: CustomPaint(
-                      painter: RouteHighlightPainter(options: moveOptions),
+                      painter: PerspectiveRouteHighlightPainter(
+                        options: moveOptions,
+                      ),
                     ),
                   ),
                 ),
@@ -6543,7 +6546,7 @@ class GameBoard extends StatelessWidget {
                       curve: Curves.easeOut,
                       opacity: routeOpacity,
                       child: CustomPaint(
-                        painter: RouteHighlightPainter(
+                        painter: PerspectiveRouteHighlightPainter(
                           options: <MoveOption>[activeMove!],
                         ),
                       ),
@@ -6552,7 +6555,10 @@ class GameBoard extends StatelessWidget {
                 ),
               ...List.generate(players.length, (index) {
                 final player = players[index];
-                var point = BoardMap.position(size, player.position);
+                var point = PerspectiveBoardProjection.position(
+                  size,
+                  player.position,
+                );
                 final active = index == currentPlayerIndex;
 
                 final sameCellIndexes = <int>[
@@ -6583,8 +6589,15 @@ class GameBoard extends StatelessWidget {
                   point += tangent * centeredSlot * base * 0.052;
                 }
 
-                final pawnWidth = active ? base * 0.082 : base * 0.072;
-                final pawnHeight = active ? base * 0.112 : base * 0.098;
+                final perspectiveScale =
+                    PerspectiveBoardProjection.scaleForNode(
+                      size,
+                      player.position,
+                    );
+                final pawnWidth =
+                    (active ? base * 0.082 : base * 0.072) * perspectiveScale;
+                final pawnHeight =
+                    (active ? base * 0.112 : base * 0.098) * perspectiveScale;
 
                 return AnimatedPositioned(
                   duration: const Duration(milliseconds: 430),
@@ -6616,15 +6629,24 @@ class GameBoard extends StatelessWidget {
                 ),
               ...moveOptions.map((option) {
                 final destination = BoardMap.node(option.destination);
-                final point = BoardMap.position(size, option.destination);
+                final point = PerspectiveBoardProjection.position(
+                  size,
+                  option.destination,
+                );
                 final targetColor = BoardTargetPresentation.colorFor(
                   destination,
                 );
                 final targetEmoji = BoardTargetPresentation.emojiFor(
                   destination,
                 );
+                final targetPerspectiveScale =
+                    PerspectiveBoardProjection.scaleForNode(
+                      size,
+                      option.destination,
+                    );
                 final targetSize =
-                    destination.isBadge ? base * 0.088 : base * 0.074;
+                    (destination.isBadge ? base * 0.088 : base * 0.074) *
+                    targetPerspectiveScale;
 
                 return Positioned(
                   left: point.dx - targetSize / 2,
