@@ -11,6 +11,7 @@ class AppPreferences {
     this.masterVolume = 1.0,
     this.animationMode = 'full',
     this.hapticsEnabled = true,
+    this.dynamicBoardCamera = true,
     this.tutorialSeen = false,
   });
 
@@ -23,10 +24,10 @@ class AppPreferences {
   final double masterVolume;
   final String animationMode;
   final bool hapticsEnabled;
+  final bool dynamicBoardCamera;
   final bool tutorialSeen;
 
-  double get effectiveTextScale =>
-      childMode ? max(1.15, textScale) : textScale;
+  double get effectiveTextScale => childMode ? max(1.15, textScale) : textScale;
 
   AppPreferences copyWith({
     String? defaultPlayerName,
@@ -38,77 +39,65 @@ class AppPreferences {
     double? masterVolume,
     String? animationMode,
     bool? hapticsEnabled,
+    bool? dynamicBoardCamera,
     bool? tutorialSeen,
   }) {
     return AppPreferences(
-      defaultPlayerName:
-          defaultPlayerName ?? this.defaultPlayerName,
-      defaultColorIndex:
-          defaultColorIndex ?? this.defaultColorIndex,
+      defaultPlayerName: defaultPlayerName ?? this.defaultPlayerName,
+      defaultColorIndex: defaultColorIndex ?? this.defaultColorIndex,
       textScale: textScale ?? this.textScale,
       childMode: childMode ?? this.childMode,
-      categoryAssist:
-          categoryAssist ?? this.categoryAssist,
+      categoryAssist: categoryAssist ?? this.categoryAssist,
       soundEnabled: soundEnabled ?? this.soundEnabled,
       masterVolume: masterVolume ?? this.masterVolume,
       animationMode: animationMode ?? this.animationMode,
-      hapticsEnabled:
-          hapticsEnabled ?? this.hapticsEnabled,
+      hapticsEnabled: hapticsEnabled ?? this.hapticsEnabled,
+      dynamicBoardCamera: dynamicBoardCamera ?? this.dynamicBoardCamera,
       tutorialSeen: tutorialSeen ?? this.tutorialSeen,
     );
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'defaultPlayerName': defaultPlayerName,
-        'defaultColorIndex': defaultColorIndex,
-        'textScale': textScale,
-        'childMode': childMode,
-        'categoryAssist': categoryAssist,
-        'soundEnabled': soundEnabled,
-        'masterVolume': masterVolume,
-        'animationMode': animationMode,
-        'hapticsEnabled': hapticsEnabled,
-        'tutorialSeen': tutorialSeen,
-      };
+    'defaultPlayerName': defaultPlayerName,
+    'defaultColorIndex': defaultColorIndex,
+    'textScale': textScale,
+    'childMode': childMode,
+    'categoryAssist': categoryAssist,
+    'soundEnabled': soundEnabled,
+    'masterVolume': masterVolume,
+    'animationMode': animationMode,
+    'hapticsEnabled': hapticsEnabled,
+    'dynamicBoardCamera': dynamicBoardCamera,
+    'tutorialSeen': tutorialSeen,
+  };
 
-  factory AppPreferences.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final rawName =
-        json['defaultPlayerName']?.toString().trim() ?? '';
-    final rawAnimation =
-        json['animationMode']?.toString() ?? 'full';
+  factory AppPreferences.fromJson(Map<String, dynamic> json) {
+    final rawName = json['defaultPlayerName']?.toString().trim() ?? '';
+    final rawAnimation = json['animationMode']?.toString() ?? 'full';
 
     return AppPreferences(
-      defaultPlayerName:
-          rawName.isEmpty ? 'Oyuncu' : rawName,
-      defaultColorIndex: ((json['defaultColorIndex']
-                  as num?)
-              ?.toInt() ??
-          1)
-          .clamp(0, 5)
-          .toInt(),
-      textScale: ((json['textScale'] as num?)
-                  ?.toDouble() ??
-              1.0)
-          .clamp(1.0, 1.30)
-          .toDouble(),
+      defaultPlayerName: rawName.isEmpty ? 'Oyuncu' : rawName,
+      defaultColorIndex:
+          ((json['defaultColorIndex'] as num?)?.toInt() ?? 1)
+              .clamp(0, 5)
+              .toInt(),
+      textScale:
+          ((json['textScale'] as num?)?.toDouble() ?? 1.0)
+              .clamp(1.0, 1.30)
+              .toDouble(),
       childMode: json['childMode'] == true,
       categoryAssist: json['categoryAssist'] == true,
       soundEnabled: json['soundEnabled'] != false,
-      masterVolume: ((json['masterVolume'] as num?)
-                  ?.toDouble() ??
-              1.0)
-          .clamp(0.0, 1.0)
-          .toDouble(),
-      animationMode: <String>{
-        'full',
-        'reduced',
-        'minimal',
-      }.contains(rawAnimation)
-          ? rawAnimation
-          : 'full',
+      masterVolume:
+          ((json['masterVolume'] as num?)?.toDouble() ?? 1.0)
+              .clamp(0.0, 1.0)
+              .toDouble(),
+      animationMode:
+          <String>{'full', 'reduced', 'minimal'}.contains(rawAnimation)
+              ? rawAnimation
+              : 'full',
       hapticsEnabled: json['hapticsEnabled'] != false,
+      dynamicBoardCamera: json['dynamicBoardCamera'] != false,
       tutorialSeen: json['tutorialSeen'] == true,
     );
   }
@@ -117,8 +106,7 @@ class AppPreferences {
 class AppPreferencesService {
   AppPreferencesService._();
 
-  static const String _key =
-      'bilgi_rotasi_app_preferences_v1';
+  static const String _key = 'bilgi_rotasi_app_preferences_v1';
 
   static const List<Color> playerColors = <Color>[
     Color(0xFFE11D48),
@@ -129,14 +117,11 @@ class AppPreferencesService {
     Color(0xFF0891B2),
   ];
 
-  static final SharedPreferencesAsync _prefs =
-      SharedPreferencesAsync();
+  static final SharedPreferencesAsync _prefs = SharedPreferencesAsync();
 
-  static final ValueNotifier<int> revision =
-      ValueNotifier<int>(0);
+  static final ValueNotifier<int> revision = ValueNotifier<int>(0);
 
-  static AppPreferences current =
-      const AppPreferences();
+  static AppPreferences current = const AppPreferences();
 
   static Future<void> initialize() async {
     try {
@@ -146,9 +131,7 @@ class AppPreferencesService {
         final decoded = jsonDecode(raw);
 
         if (decoded is Map) {
-          current = AppPreferences.fromJson(
-            Map<String, dynamic>.from(decoded),
-          );
+          current = AppPreferences.fromJson(Map<String, dynamic>.from(decoded));
         }
       }
     } catch (_) {
@@ -158,16 +141,11 @@ class AppPreferencesService {
     SoundFx.setEnabled(current.soundEnabled);
   }
 
-  static Future<void> save(
-    AppPreferences settings,
-  ) async {
+  static Future<void> save(AppPreferences settings) async {
     current = settings;
 
     try {
-      await _prefs.setString(
-        _key,
-        jsonEncode(settings.toJson()),
-      );
+      await _prefs.setString(_key, jsonEncode(settings.toJson()));
     } catch (_) {
       // Ayar kaydı oyunun açılmasını engellememeli.
     }
@@ -176,57 +154,35 @@ class AppPreferencesService {
     revision.value++;
   }
 
-  static Future<void> setSoundEnabled(
-    bool enabled,
-  ) {
-    return save(
-      current.copyWith(soundEnabled: enabled),
-    );
+  static Future<void> setSoundEnabled(bool enabled) {
+    return save(current.copyWith(soundEnabled: enabled));
   }
 
-  static Future<void> setChildMode(
-    bool enabled,
-  ) async {
+  static Future<void> setChildMode(bool enabled) async {
     final next = current.copyWith(
       childMode: enabled,
-      categoryAssist:
-          enabled ? true : current.categoryAssist,
-      textScale:
-          enabled ? max(1.15, current.textScale) : null,
+      categoryAssist: enabled ? true : current.categoryAssist,
+      textScale: enabled ? max(1.15, current.textScale) : null,
     );
 
     await save(next);
 
     if (enabled) {
-      final boost =
-          GameplayBoostSettingsService.current;
+      final boost = GameplayBoostSettingsService.current;
 
       await GameplayBoostSettingsService.save(
-        boost.copyWith(
-          riskQuestionsEnabled: false,
-          jokersEnabled: true,
-        ),
+        boost.copyWith(riskQuestionsEnabled: false, jokersEnabled: true),
       );
     }
   }
 
-  static Future<void> setAnimationMode(
-    String mode,
-  ) async {
-    final safeMode = <String>{
-      'full',
-      'reduced',
-      'minimal',
-    }.contains(mode)
-        ? mode
-        : 'full';
+  static Future<void> setAnimationMode(String mode) async {
+    final safeMode =
+        <String>{'full', 'reduced', 'minimal'}.contains(mode) ? mode : 'full';
 
-    await save(
-      current.copyWith(animationMode: safeMode),
-    );
+    await save(current.copyWith(animationMode: safeMode));
 
-    final boost =
-        GameplayBoostSettingsService.current;
+    final boost = GameplayBoostSettingsService.current;
 
     switch (safeMode) {
       case 'minimal':
@@ -263,16 +219,11 @@ class AppPreferencesService {
     }
   }
 
-  static Future<void> markTutorialSeen(
-    bool value,
-  ) {
-    return save(
-      current.copyWith(tutorialSeen: value),
-    );
+  static Future<void> markTutorialSeen(bool value) {
+    return save(current.copyWith(tutorialSeen: value));
   }
 
-  static double get soundMultiplier =>
-      current.masterVolume.clamp(0.0, 1.0);
+  static double get soundMultiplier => current.masterVolume.clamp(0.0, 1.0);
 
   static Future<void> clear() async {
     try {
@@ -288,10 +239,7 @@ class AppPreferencesService {
 }
 
 class AccessibilityAppFrame extends StatelessWidget {
-  const AccessibilityAppFrame({
-    required this.child,
-    super.key,
-  });
+  const AccessibilityAppFrame({required this.child, super.key});
 
   final Widget child;
 
@@ -305,9 +253,7 @@ class AccessibilityAppFrame extends StatelessWidget {
 
         Widget result = MediaQuery(
           data: media.copyWith(
-            textScaler: TextScaler.linear(
-              settings.effectiveTextScale,
-            ),
+            textScaler: TextScaler.linear(settings.effectiveTextScale),
           ),
           child: child,
         );
@@ -319,8 +265,7 @@ class AccessibilityAppFrame extends StatelessWidget {
             data: theme.copyWith(
               colorScheme: theme.colorScheme.copyWith(
                 outline: const Color(0xFF0F172A),
-                outlineVariant:
-                    const Color(0xFF475569),
+                outlineVariant: const Color(0xFF475569),
                 onSurface: const Color(0xFF0F172A),
               ),
               dividerColor: const Color(0xFF475569),
@@ -339,48 +284,42 @@ class GameHaptics {
   GameHaptics._();
 
   static Future<void> selectionClick() async {
-    if (!AppPreferencesService
-        .current.hapticsEnabled) {
+    if (!AppPreferencesService.current.hapticsEnabled) {
       return;
     }
     await HapticFeedback.selectionClick();
   }
 
   static Future<void> lightImpact() async {
-    if (!AppPreferencesService
-        .current.hapticsEnabled) {
+    if (!AppPreferencesService.current.hapticsEnabled) {
       return;
     }
     await HapticFeedback.lightImpact();
   }
 
   static Future<void> mediumImpact() async {
-    if (!AppPreferencesService
-        .current.hapticsEnabled) {
+    if (!AppPreferencesService.current.hapticsEnabled) {
       return;
     }
     await HapticFeedback.mediumImpact();
   }
 
   static Future<void> heavyImpact() async {
-    if (!AppPreferencesService
-        .current.hapticsEnabled) {
+    if (!AppPreferencesService.current.hapticsEnabled) {
       return;
     }
     await HapticFeedback.heavyImpact();
   }
 
   static Future<void> vibrate() async {
-    if (!AppPreferencesService
-        .current.hapticsEnabled) {
+    if (!AppPreferencesService.current.hapticsEnabled) {
       return;
     }
     await HapticFeedback.vibrate();
   }
 }
 
-class AccessibilitySettingsButton
-    extends StatelessWidget {
+class AccessibilitySettingsButton extends StatelessWidget {
   const AccessibilitySettingsButton({super.key});
 
   @override
@@ -389,36 +328,26 @@ class AccessibilitySettingsButton
       onPressed: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) =>
-                const AccessibilitySettingsScreen(),
+            builder: (_) => const AccessibilitySettingsScreen(),
           ),
         );
       },
       style: OutlinedButton.styleFrom(
         foregroundColor: Colors.white,
-        side: const BorderSide(
-          color: Color(0x99FFE082),
-        ),
+        side: const BorderSide(color: Color(0x99FFE082)),
         minimumSize: const Size.fromHeight(50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       ),
-      icon: const Icon(
-        Icons.accessibility_new_rounded,
-      ),
+      icon: const Icon(Icons.accessibility_new_rounded),
       label: const Text(
         'Ayarlar & Erişilebilirlik',
-        style: TextStyle(
-          fontWeight: FontWeight.w900,
-        ),
+        style: TextStyle(fontWeight: FontWeight.w900),
       ),
     );
   }
 }
 
-class AccessibilitySettingsScreen
-    extends StatefulWidget {
+class AccessibilitySettingsScreen extends StatefulWidget {
   const AccessibilitySettingsScreen({super.key});
 
   @override
@@ -435,9 +364,7 @@ class _AccessibilitySettingsScreenState
   void initState() {
     super.initState();
     _settings = AppPreferencesService.current;
-    _nameController = TextEditingController(
-      text: _settings.defaultPlayerName,
-    );
+    _nameController = TextEditingController(text: _settings.defaultPlayerName);
   }
 
   @override
@@ -446,9 +373,7 @@ class _AccessibilitySettingsScreenState
     super.dispose();
   }
 
-  Future<void> _save(
-    AppPreferences settings,
-  ) async {
+  Future<void> _save(AppPreferences settings) async {
     setState(() => _settings = settings);
     await AppPreferencesService.save(settings);
   }
@@ -457,18 +382,9 @@ class _AccessibilitySettingsScreenState
   Widget build(BuildContext context) {
     return AdBannerScaffold(
       placement: AdPlacement.settings,
-      appBar: AppBar(
-        title: const Text(
-          'Ayarlar & Erişilebilirlik',
-        ),
-      ),
+      appBar: AppBar(title: const Text('Ayarlar & Erişilebilirlik')),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(
-          14,
-          10,
-          14,
-          22,
-        ),
+        padding: const EdgeInsets.fromLTRB(14, 10, 14, 22),
         children: [
           _hero(),
           const SizedBox(height: 12),
@@ -487,13 +403,10 @@ class _AccessibilitySettingsScreenState
                 'yazılar, kategori açıklamaları ve kapalı risk.',
             value: _settings.childMode,
             onChanged: (value) async {
-              await AppPreferencesService.setChildMode(
-                value,
-              );
+              await AppPreferencesService.setChildMode(value);
               if (!mounted) return;
               setState(() {
-                _settings =
-                    AppPreferencesService.current;
+                _settings = AppPreferencesService.current;
               });
             },
           ),
@@ -504,39 +417,29 @@ class _AccessibilitySettingsScreenState
                 'Tahtada renklerin yanında kategori '
                 'emoji ve adlarını gösterir; kontrastı artırır.',
             value: _settings.categoryAssist,
-            onChanged: (value) => _save(
-              _settings.copyWith(
-                categoryAssist: value,
-              ),
-            ),
+            onChanged:
+                (value) => _save(_settings.copyWith(categoryAssist: value)),
           ),
           _switchCard(
             emoji: '📳',
             title: 'Titreşim geri bildirimi',
-            subtitle:
-                'Zar, seçim ve hareketlerdeki titreşimleri açar.',
+            subtitle: 'Zar, seçim ve hareketlerdeki titreşimleri açar.',
             value: _settings.hapticsEnabled,
-            onChanged: (value) => _save(
-              _settings.copyWith(
-                hapticsEnabled: value,
-              ),
-            ),
+            onChanged:
+                (value) => _save(_settings.copyWith(hapticsEnabled: value)),
           ),
           const SizedBox(height: 12),
           _title('Ses'),
           _switchCard(
             emoji: '🔊',
             title: 'Oyun sesleri',
-            subtitle:
-                'Zar, doğru, yanlış ve kutlama sesleri.',
+            subtitle: 'Zar, doğru, yanlış ve kutlama sesleri.',
             value: _settings.soundEnabled,
             onChanged: (value) async {
-              await AppPreferencesService
-                  .setSoundEnabled(value);
+              await AppPreferencesService.setSoundEnabled(value);
               if (!mounted) return;
               setState(() {
-                _settings =
-                    AppPreferencesService.current;
+                _settings = AppPreferencesService.current;
               });
 
               if (value) {
@@ -548,6 +451,16 @@ class _AccessibilitySettingsScreenState
           const SizedBox(height: 12),
           _title('Animasyon yoğunluğu'),
           _animationCard(),
+          _switchCard(
+            emoji: '🎥',
+            title: 'Dinamik tahta kamerası',
+            subtitle:
+                'Piyon hareketi bittikten sonra tahta aktif '
+                'oyuncuyu yumuşakça ön tarafa getirir.',
+            value: _settings.dynamicBoardCamera,
+            onChanged:
+                (value) => _save(_settings.copyWith(dynamicBoardCamera: value)),
+          ),
           const SizedBox(height: 12),
           _title('Oynanış ve yardım'),
           Card(
@@ -555,56 +468,38 @@ class _AccessibilitySettingsScreenState
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) =>
-                        const GameplayBoostSettingsScreen(),
+                    builder: (_) => const GameplayBoostSettingsScreen(),
                   ),
                 );
               },
-              leading: const Text(
-                '🎁',
-                style: TextStyle(fontSize: 30),
-              ),
+              leading: const Text('🎁', style: TextStyle(fontSize: 30)),
               title: const Text(
                 'Joker, risk ve XP ayarları',
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                ),
+                style: TextStyle(fontWeight: FontWeight.w900),
               ),
               subtitle: const Text(
                 'Jokerleri, riskli soruları ve '
                 'kutlama efektlerini ayrı ayrı yönet.',
               ),
-              trailing: const Icon(
-                Icons.chevron_right_rounded,
-              ),
+              trailing: const Icon(Icons.chevron_right_rounded),
             ),
           ),
           const SizedBox(height: 9),
           Card(
             child: ListTile(
               onTap: () {
-                FirstRunTutorial.show(
-                  context,
-                  force: true,
-                );
+                FirstRunTutorial.show(context, force: true);
               },
-              leading: const Text(
-                '📘',
-                style: TextStyle(fontSize: 30),
-              ),
+              leading: const Text('📘', style: TextStyle(fontSize: 30)),
               title: const Text(
                 'Oyunun eğitimini tekrar göster',
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                ),
+                style: TextStyle(fontWeight: FontWeight.w900),
               ),
               subtitle: const Text(
                 'Zar, rota, rozet ve özel alanları '
                 'dört kısa ekranda anlatır.',
               ),
-              trailing: const Icon(
-                Icons.play_circle_outline_rounded,
-              ),
+              trailing: const Icon(Icons.play_circle_outline_rounded),
             ),
           ),
         ],
@@ -617,19 +512,13 @@ class _AccessibilitySettingsScreenState
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [
-            Color(0xFF155E75),
-            Color(0xFF6D28D9),
-          ],
+          colors: [Color(0xFF155E75), Color(0xFF6D28D9)],
         ),
         borderRadius: BorderRadius.circular(20),
       ),
       child: const Column(
         children: [
-          Text(
-            '⚙️👁️🔊',
-            style: TextStyle(fontSize: 32),
-          ),
+          Text('⚙️👁️🔊', style: TextStyle(fontSize: 32)),
           SizedBox(height: 8),
           Text(
             'Bilgi Rotası sana uysun',
@@ -645,9 +534,7 @@ class _AccessibilitySettingsScreenState
             'Yazı, ses, titreşim, animasyon ve '
             'oyuncu varsayılanlarını tek ekrandan yönet.',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFFE7E1F0),
-            ),
+            style: TextStyle(color: Color(0xFFE7E1F0)),
           ),
         ],
       ),
@@ -659,10 +546,7 @@ class _AccessibilitySettingsScreenState
       padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w900,
-        ),
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
       ),
     );
   }
@@ -676,37 +560,29 @@ class _AccessibilitySettingsScreenState
             TextField(
               controller: _nameController,
               maxLength: 18,
-              textCapitalization:
-                  TextCapitalization.words,
+              textCapitalization: TextCapitalization.words,
               decoration: const InputDecoration(
                 counterText: '',
                 labelText: 'Varsayılan oyuncu adı',
-                prefixIcon: Icon(
-                  Icons.person_rounded,
-                ),
+                prefixIcon: Icon(Icons.person_rounded),
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 9),
             FilledButton.icon(
               onPressed: () {
-                final value =
-                    _nameController.text.trim();
+                final value = _nameController.text.trim();
 
                 _save(
                   _settings.copyWith(
-                    defaultPlayerName: value.isEmpty
-                        ? 'Oyuncu'
-                        : value,
+                    defaultPlayerName: value.isEmpty ? 'Oyuncu' : value,
                   ),
                 );
               },
               icon: const Icon(Icons.save_rounded),
               label: const Text(
                 'Oyuncu Adını Kaydet',
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                ),
+                style: TextStyle(fontWeight: FontWeight.w900),
               ),
             ),
           ],
@@ -720,59 +596,47 @@ class _AccessibilitySettingsScreenState
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               'Serbest Rota varsayılan rengi',
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-              ),
+              style: TextStyle(fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 12),
             Wrap(
               spacing: 11,
               runSpacing: 11,
               children: [
-                for (var index = 0;
-                    index <
-                        AppPreferencesService
-                            .playerColors.length;
-                    index++)
+                for (
+                  var index = 0;
+                  index < AppPreferencesService.playerColors.length;
+                  index++
+                )
                   InkWell(
-                    onTap: () => _save(
-                      _settings.copyWith(
-                        defaultColorIndex: index,
-                      ),
-                    ),
+                    onTap:
+                        () =>
+                            _save(_settings.copyWith(defaultColorIndex: index)),
                     customBorder: const CircleBorder(),
                     child: Container(
                       width: 38,
                       height: 38,
                       decoration: BoxDecoration(
-                        color: AppPreferencesService
-                            .playerColors[index],
+                        color: AppPreferencesService.playerColors[index],
                         shape: BoxShape.circle,
                         border: Border.all(
                           color:
-                              _settings.defaultColorIndex ==
-                                      index
+                              _settings.defaultColorIndex == index
                                   ? Colors.black
                                   : Colors.white,
-                          width:
-                              _settings.defaultColorIndex ==
-                                      index
-                                  ? 3.5
-                                  : 2,
+                          width: _settings.defaultColorIndex == index ? 3.5 : 2,
                         ),
                       ),
                       child:
-                          _settings.defaultColorIndex ==
-                                  index
+                          _settings.defaultColorIndex == index
                               ? const Icon(
-                                  Icons.check_rounded,
-                                  color: Colors.white,
-                                )
+                                Icons.check_rounded,
+                                color: Colors.white,
+                              )
                               : null,
                     ),
                   ),
@@ -790,40 +654,22 @@ class _AccessibilitySettingsScreenState
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
               'Yazı boyutu',
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-              ),
+              style: TextStyle(fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 11),
             SegmentedButton<double>(
               segments: const [
-                ButtonSegment<double>(
-                  value: 1.0,
-                  label: Text('Normal'),
-                ),
-                ButtonSegment<double>(
-                  value: 1.15,
-                  label: Text('Büyük'),
-                ),
-                ButtonSegment<double>(
-                  value: 1.30,
-                  label: Text('Çok büyük'),
-                ),
+                ButtonSegment<double>(value: 1.0, label: Text('Normal')),
+                ButtonSegment<double>(value: 1.15, label: Text('Büyük')),
+                ButtonSegment<double>(value: 1.30, label: Text('Çok büyük')),
               ],
-              selected: <double>{
-                _settings.textScale,
-              },
+              selected: <double>{_settings.textScale},
               onSelectionChanged: (selection) {
-                _save(
-                  _settings.copyWith(
-                    textScale: selection.first,
-                  ),
-                );
+                _save(_settings.copyWith(textScale: selection.first));
               },
             ),
           ],
@@ -841,24 +687,17 @@ class _AccessibilitySettingsScreenState
           children: [
             Row(
               children: [
-                const Text(
-                  '🎚️',
-                  style: TextStyle(fontSize: 24),
-                ),
+                const Text('🎚️', style: TextStyle(fontSize: 24)),
                 const SizedBox(width: 11),
                 const Expanded(
                   child: Text(
                     'Ana ses seviyesi',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.w900),
                   ),
                 ),
                 Text(
                   '%${(_settings.masterVolume * 100).round()}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w900,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.w900),
                 ),
               ],
             ),
@@ -867,15 +706,12 @@ class _AccessibilitySettingsScreenState
               min: 0,
               max: 1,
               divisions: 10,
-              onChanged: _settings.soundEnabled
-                  ? (value) {
-                      _save(
-                        _settings.copyWith(
-                          masterVolume: value,
-                        ),
-                      );
-                    }
-                  : null,
+              onChanged:
+                  _settings.soundEnabled
+                      ? (value) {
+                        _save(_settings.copyWith(masterVolume: value));
+                      }
+                      : null,
               onChangeEnd: (_) {
                 if (_settings.soundEnabled) {
                   unawaited(SoundFx.test());
@@ -893,46 +729,33 @@ class _AccessibilitySettingsScreenState
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SegmentedButton<String>(
               segments: const [
                 ButtonSegment<String>(
                   value: 'full',
                   label: Text('Tam'),
-                  icon: Icon(
-                    Icons.auto_awesome_rounded,
-                  ),
+                  icon: Icon(Icons.auto_awesome_rounded),
                 ),
                 ButtonSegment<String>(
                   value: 'reduced',
                   label: Text('Azaltılmış'),
-                  icon: Icon(
-                    Icons.motion_photos_paused_rounded,
-                  ),
+                  icon: Icon(Icons.motion_photos_paused_rounded),
                 ),
                 ButtonSegment<String>(
                   value: 'minimal',
                   label: Text('Minimum'),
-                  icon: Icon(
-                    Icons.block_rounded,
-                  ),
+                  icon: Icon(Icons.block_rounded),
                 ),
               ],
-              selected: <String>{
-                _settings.animationMode,
-              },
+              selected: <String>{_settings.animationMode},
               onSelectionChanged: (selection) async {
-                await AppPreferencesService
-                    .setAnimationMode(
-                  selection.first,
-                );
+                await AppPreferencesService.setAnimationMode(selection.first);
 
                 if (!mounted) return;
                 setState(() {
-                  _settings =
-                      AppPreferencesService.current;
+                  _settings = AppPreferencesService.current;
                 });
               },
             ),
@@ -945,14 +768,10 @@ class _AccessibilitySettingsScreenState
                 'reduced' =>
                   'XP uçuşları, seri efektleri ve canlı '
                       'tahta kapalı; seviye ekranı açık.',
-                _ =>
-                  'Bütün kutlamalar ve canlı tahta açık.',
+                _ => 'Bütün kutlamalar ve canlı tahta açık.',
               },
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFF64748B),
-                fontSize: 12,
-              ),
+              style: const TextStyle(color: Color(0xFF64748B), fontSize: 12),
             ),
           ],
         ),
@@ -974,24 +793,15 @@ class _AccessibilitySettingsScreenState
         dense: true,
         visualDensity: VisualDensity.compact,
         onChanged: onChanged,
-        secondary: Text(
-          emoji,
-          style: const TextStyle(fontSize: 24),
-        ),
-        title: Text(
-          title,
-          style: const TextStyle(
-            fontWeight: FontWeight.w900,
-          ),
-        ),
+        secondary: Text(emoji, style: const TextStyle(fontSize: 24)),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w900)),
         subtitle: Text(subtitle),
       ),
     );
   }
 }
 
-class AccessibilityCategoryLegend
-    extends StatelessWidget {
+class AccessibilityCategoryLegend extends StatelessWidget {
   const AccessibilityCategoryLegend({super.key});
 
   @override
@@ -999,34 +809,24 @@ class AccessibilityCategoryLegend
     return ValueListenableBuilder<int>(
       valueListenable: AppPreferencesService.revision,
       builder: (context, _, __) {
-        if (!AppPreferencesService
-            .current.categoryAssist) {
+        if (!AppPreferencesService.current.categoryAssist) {
           return const SizedBox.shrink();
         }
 
         return Container(
-          margin: const EdgeInsets.fromLTRB(
-            12,
-            2,
-            12,
-            8,
-          ),
+          margin: const EdgeInsets.fromLTRB(12, 2, 12, 8),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: const Color(0xFFF8FAFC),
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(
-              color: const Color(0xFF334155),
-              width: 1.5,
-            ),
+            border: Border.all(color: const Color(0xFF334155), width: 1.5),
           ),
           child: Wrap(
             alignment: WrapAlignment.center,
             spacing: 9,
             runSpacing: 7,
             children: [
-              for (final category
-                  in GameCategory.values)
+              for (final category in GameCategory.values)
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -1052,8 +852,7 @@ class AccessibilityCategoryLegend
 class FirstRunTutorial {
   FirstRunTutorial._();
 
-  static const List<_TutorialPage> _pages =
-      <_TutorialPage>[
+  static const List<_TutorialPage> _pages = <_TutorialPage>[
     _TutorialPage(
       emoji: '🎲',
       title: 'Zarı at',
@@ -1084,9 +883,7 @@ class FirstRunTutorial {
     ),
   ];
 
-  static Future<void> showIfNeeded(
-    BuildContext context,
-  ) async {
+  static Future<void> showIfNeeded(BuildContext context) async {
     if (AppPreferencesService.current.tutorialSeen) {
       return;
     }
@@ -1094,12 +891,8 @@ class FirstRunTutorial {
     await show(context);
   }
 
-  static Future<void> show(
-    BuildContext context, {
-    bool force = false,
-  }) async {
-    if (!force &&
-        AppPreferencesService.current.tutorialSeen) {
+  static Future<void> show(BuildContext context, {bool force = false}) async {
+    if (!force && AppPreferencesService.current.tutorialSeen) {
       return;
     }
 
@@ -1120,19 +913,11 @@ class FirstRunTutorial {
             return SafeArea(
               child: Container(
                 margin: const EdgeInsets.all(14),
-                padding: const EdgeInsets.fromLTRB(
-                  20,
-                  21,
-                  20,
-                  18,
-                ),
+                padding: const EdgeInsets.fromLTRB(20, 21, 20, 18),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
-                  border: Border.all(
-                    color: const Color(0xFFFFD978),
-                    width: 2,
-                  ),
+                  border: Border.all(color: const Color(0xFFFFD978), width: 2),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -1149,14 +934,11 @@ class FirstRunTutorial {
                           final current = _pages[index];
 
                           return Column(
-                            mainAxisAlignment:
-                                MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 current.emoji,
-                                style: const TextStyle(
-                                  fontSize: 76,
-                                ),
+                                style: const TextStyle(fontSize: 76),
                               ),
                               const SizedBox(height: 13),
                               Text(
@@ -1164,8 +946,7 @@ class FirstRunTutorial {
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontSize: 27,
-                                  fontWeight:
-                                      FontWeight.w900,
+                                  fontWeight: FontWeight.w900,
                                 ),
                               ),
                               const SizedBox(height: 9),
@@ -1173,11 +954,9 @@ class FirstRunTutorial {
                                 current.text,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  color:
-                                      Color(0xFF475569),
+                                  color: Color(0xFF475569),
                                   height: 1.4,
-                                  fontWeight:
-                                      FontWeight.w600,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ],
@@ -1186,28 +965,20 @@ class FirstRunTutorial {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment:
-                          MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        for (var index = 0;
-                            index < _pages.length;
-                            index++)
+                        for (var index = 0; index < _pages.length; index++)
                           AnimatedContainer(
-                            duration: const Duration(
-                              milliseconds: 180,
-                            ),
+                            duration: const Duration(milliseconds: 180),
                             width: index == page ? 24 : 8,
                             height: 8,
-                            margin:
-                                const EdgeInsets.symmetric(
-                              horizontal: 3,
-                            ),
+                            margin: const EdgeInsets.symmetric(horizontal: 3),
                             decoration: BoxDecoration(
-                              color: index == page
-                                  ? const Color(0xFF7C3AED)
-                                  : const Color(0xFFCBD5E1),
-                              borderRadius:
-                                  BorderRadius.circular(99),
+                              color:
+                                  index == page
+                                      ? const Color(0xFF7C3AED)
+                                      : const Color(0xFFCBD5E1),
+                              borderRadius: BorderRadius.circular(99),
                             ),
                           ),
                       ],
@@ -1218,8 +989,9 @@ class FirstRunTutorial {
                         if (page == 0)
                           TextButton(
                             onPressed: () async {
-                              await AppPreferencesService
-                                  .markTutorialSeen(true);
+                              await AppPreferencesService.markTutorialSeen(
+                                true,
+                              );
                               if (sheetContext.mounted) {
                                 Navigator.pop(sheetContext);
                               }
@@ -1230,9 +1002,7 @@ class FirstRunTutorial {
                           TextButton(
                             onPressed: () {
                               controller.previousPage(
-                                duration: const Duration(
-                                  milliseconds: 260,
-                                ),
+                                duration: const Duration(milliseconds: 260),
                                 curve: Curves.easeOut,
                               );
                             },
@@ -1241,28 +1011,22 @@ class FirstRunTutorial {
                         const Spacer(),
                         FilledButton(
                           onPressed: () async {
-                            if (page <
-                                _pages.length - 1) {
+                            if (page < _pages.length - 1) {
                               await controller.nextPage(
-                                duration: const Duration(
-                                  milliseconds: 260,
-                                ),
+                                duration: const Duration(milliseconds: 260),
                                 curve: Curves.easeOut,
                               );
                               return;
                             }
 
-                            await AppPreferencesService
-                                .markTutorialSeen(true);
+                            await AppPreferencesService.markTutorialSeen(true);
 
                             if (sheetContext.mounted) {
                               Navigator.pop(sheetContext);
                             }
                           },
                           child: Text(
-                            page == _pages.length - 1
-                                ? 'Oyuna Başla'
-                                : 'Devam',
+                            page == _pages.length - 1 ? 'Oyuna Başla' : 'Devam',
                           ),
                         ),
                       ],

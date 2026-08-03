@@ -46,6 +46,7 @@ part 'pawn_visual_effects.dart';
 part 'premium_dice.dart';
 part 'short_challenge_mode.dart';
 part 'board_target_presentation.dart';
+part 'dynamic_board_camera.dart';
 part 'about_privacy.dart';
 part 'app_build_info.dart';
 part 'account_cloud.dart';
@@ -4249,9 +4250,10 @@ class _GameScreenState extends State<GameScreen> {
                 return Center(
                   child: SizedBox.square(
                     dimension: boardSize,
-                    child: GameBoard(
+                    child: DynamicBoardCameraViewport(
                       players: widget.players,
                       currentPlayerIndex: _currentPlayerIndex,
+                      enabled: AppPreferencesService.current.dynamicBoardCamera,
                       moveOptions: _moveOptions,
                       onMoveSelected: _selectMoveFromBoard,
                       activeMove: _activeMove,
@@ -6550,7 +6552,11 @@ class GameBoard extends StatelessWidget {
                     ),
                   ),
                 ),
-              ...List.generate(players.length, (index) {
+              ...<int>[
+                for (var index = 0; index < players.length; index++)
+                  if (index != safeCurrentPlayerIndex) index,
+                if (players.isNotEmpty) safeCurrentPlayerIndex,
+              ].map((index) {
                 final player = players[index];
                 var point = BoardMap.position(size, player.position);
                 final active = index == currentPlayerIndex;
@@ -6566,25 +6572,23 @@ class GameBoard extends StatelessWidget {
                 ];
                 final stackSlot = sameCellIndexes.indexOf(index);
 
-                if (player.position == BoardMap.centerId) {
-                  final divisor = players.isEmpty ? 1 : players.length;
-                  final angle = -pi / 2 + index * (2 * pi / divisor.toDouble());
-                  point =
-                      boardCenter +
-                      Offset(cos(angle), sin(angle)) * base * 0.084;
-                } else if (sameCellIndexes.length > 1) {
-                  final radialAngle = atan2(
-                    point.dy - boardCenter.dy,
-                    point.dx - boardCenter.dx,
+                if (sameCellIndexes.length > 1) {
+                  point += DynamicPawnClusterLayout.offsetFor(
+                    point: point,
+                    boardCenter: boardCenter,
+                    playerIndexInCell: stackSlot,
+                    playerCountInCell: sameCellIndexes.length,
+                    active: active,
+                    base: base,
+                    isCenter: player.position == BoardMap.centerId,
                   );
-                  final tangent = Offset(-sin(radialAngle), cos(radialAngle));
-                  final centeredSlot =
-                      stackSlot - (sameCellIndexes.length - 1) / 2;
-                  point += tangent * centeredSlot * base * 0.052;
                 }
 
-                final pawnWidth = active ? base * 0.082 : base * 0.072;
-                final pawnHeight = active ? base * 0.112 : base * 0.098;
+                final crowded = sameCellIndexes.length >= 4;
+                final pawnWidth =
+                    active ? base * 0.086 : base * (crowded ? 0.058 : 0.069);
+                final pawnHeight =
+                    active ? base * 0.118 : base * (crowded ? 0.082 : 0.095);
 
                 return AnimatedPositioned(
                   duration: const Duration(milliseconds: 430),
