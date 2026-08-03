@@ -19624,7 +19624,7 @@
       "TARS"
     ],
     "answerIndex": 0,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Murph büyüdüğünde insanlığın kurtuluşunda belirleyici olacak yerçekimi denklemi üzerinde çalışır."
   },
   {
@@ -23614,7 +23614,7 @@
       "Williams"
     ],
     "answerIndex": 1,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Commander Shepard, Reaper tehdidine karşı galaksiyi bir araya getirmeye çalışan askerdir."
   },
   {
@@ -34282,7 +34282,7 @@
       "İniş"
     ],
     "answerIndex": 3,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Downhill uzun pist, az kapı ve çok yüksek hızlarla yapılır."
   },
   {
@@ -40120,7 +40120,7 @@
       "Kral Arthur"
     ],
     "answerIndex": 2,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Normandiya Dükü William’ın zaferi İngiltere’de Norman yönetimini başlattı."
   },
   {
@@ -53504,7 +53504,7 @@
       "2020"
     ],
     "answerIndex": 0,
-    "difficulty": "Kolay",
+    "difficulty": "Zor",
     "explanation": "ANC, 2024 seçiminde apartheid sonrasındaki ilk kez tek başına çoğunluğu kaybetti."
   },
   {
@@ -55114,7 +55114,7 @@
       "Damon Galgut"
     ],
     "answerIndex": 3,
-    "difficulty": "Kolay",
+    "difficulty": "Zor",
     "explanation": "Damon Galgut tarafından yazılan “The Promise”, 2021 yılında önemli bir edebiyat ödülüyle gündeme geldi."
   },
   {
@@ -59272,7 +59272,7 @@
       "Hazelight Studios"
     ],
     "answerIndex": 1,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "BlueTwelve Studio, 2022 yapımı “Stray” oyununun geliştiricisidir."
   },
   {
@@ -61820,7 +61820,7 @@
       "Tomb of Sand"
     ],
     "answerIndex": 3,
-    "difficulty": "Kolay",
+    "difficulty": "Zor",
     "explanation": "Geetanjali Shree, “Tomb of Sand” eseriyle 2022 yılında öne çıktı."
   },
   {
@@ -75736,7 +75736,7 @@
       "Tacikistan"
     ],
     "answerIndex": 0,
-    "difficulty": "Orta",
+    "difficulty": "Zor",
     "explanation": "Pirkanmaa, ISO 3166-2 kayıtlarında Finlandiya ülkesine bağlı bir idari bölüm olarak gösterilir."
   },
   {
@@ -76456,16 +76456,16 @@
   {
     "id": "q57860",
     "categoryIndex": 1,
-    "question": "“Abbott Elementary” ilk olarak hangi platform veya kanalda yayımlandı?",
+    "question": "Abbott Elementary dizisi ABD’de ilk olarak hangi televizyon kanalında yayımlandı?",
     "options": [
-      "Hazelight Studios",
-      "Prime Video",
-      "FromSoftware",
+      "NBC",
+      "CBS",
+      "FOX",
       "ABC"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "“Abbott Elementary”, ilk yayımlandığı dönemde ABC üzerinden izleyiciyle buluştu."
+    "explanation": "Abbott Elementary, ABD’de ilk olarak ABC kanalında yayımlandı."
   },
   {
     "id": "q57861",
