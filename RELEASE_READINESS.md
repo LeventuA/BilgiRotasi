@@ -105,3 +105,30 @@ her aşamada release kapısını başarısız yapar.
 - Production Firestore içeriği otomatik workflow tarafından okunmaz; leaderboard veri varlığı manuel doğrulanır.
 - Başarısızlıkta Play kapalı test kanalında önceki AAB aktif bırakılır, backend/rules dağıtımı durdurulur ve ilgili Functions/Rules sürümü Firebase release geçmişinden geri alınır.
 - Bu branch main'e otomatik yazmaz, PR Draft kalır ve hiçbir workflow deployment yapmaz.
+
+## Android 16 emülatör altyapı engeli — Run 30696824232
+
+Son manuel release koşusu, head
+`2f8dbd0b2a88fb677c606a2674fb36b78ae25656` için imzalı
+`BilgiRotasi-1.68.8-98-closed-test.aab` artifact'ını başarıyla üretti.
+AAB paket adı `com.leventua.bilgirotasi`, sürümü `1.68.8`, version code'u
+`98` ve sertifika SHA-1 değeri
+`00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`
+olarak doğrulandı. Production Firebase, kapalı-test Google demo AdMob profili,
+paket, sürüm ve kalıcı imza kontrollerinin tamamı PASS oldu.
+
+Android 16 kanıtında AAB-derived APK kurulumu (`APK_INSTALL=PASS`), uygulama
+başlatma (`APP_LAUNCH=PASS`) ve canlı uygulama PID'si (`4634`) doğrulandı.
+`com.leventua.bilgirotasi` paketinde crash, ANR, ilişkili `FATAL EXCEPTION`
+veya process death bulunmadı. Buna karşılık emülatörde
+`com.google.android.gms` ve diğer sistem paketlerinin ANR'ları, global input
+kilitlenmesi ve `AUTH_1: SCREENSHOT_FAILED_OR_TIMED_OUT` oluştu. Bu nedenle
+Misafir girişi ve ana menüde “Oyna” gibi zorunlu UI checkpoint'leri
+tamamlanamadı; dış Android doğrulama süresi `exit code 124` ile sona erdi.
+
+Bu sonuç uygulama kodu hatası değil, kesin emülatör altyapı engeli olarak
+`INFRASTRUCTURE_INCONCLUSIVE` kaydedilir. Release artifact'ının fiziksel
+kabulü için sonraki zorunlu adım Google Play Internal Testing kanalındaki
+fiziksel Android 16 cihaz testidir. Fiziksel testte Misafir girişi, ana menüde
+“Oyna”, canlı PID, temiz uygulama logcat'i, Ayarlar ve öğretici akışı
+eksiksiz doğrulanmadan yayın onaylanmaz.
