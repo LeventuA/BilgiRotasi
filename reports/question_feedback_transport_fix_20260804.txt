@@ -1,0 +1,23 @@
+BİLGİ ROTASI – SORU GERİ BİLDİRİMİ GÖNDERİM DÜZELTMESİ
+========================================================================
+
+Taban dal: release/final-closed-test-aab-1.68.8
+Çalışma dalı: fix/question-feedback-transport-1.68.13
+Önceki sürüm: 1.68.12+102
+Yeni sürüm: 1.68.13+103
+
+KÖK NEDEN
+------------------------------------------------------------------------
+Production derlemesinde QuestionFeedbackService önce
+submitQuestionFeedback adlı Firebase callable fonksiyonunu çağırıyordu.
+Fonksiyon canlı olmadığı/yanıt vermediği için kayıtlar Apps Script'e
+ulaşmadan cihaz kuyruğunda kalıyordu.
+
+DÜZELTME
+------------------------------------------------------------------------
+submitQuestionFeedback işlemi production ortamında doğrulanmış
+Apps Script web uygulamasına yönlendirildi.
+Diğer Firebase callable işlemleri değişmeden bırakıldı.
+Apps Script'in Olay ID tekilleştirmesi ve eski sürüm filtresi korunur.
+Yeni sürüm açıldığında mevcut cihaz kuyruğu normal flush akışıyla
+yeniden gönderilir.

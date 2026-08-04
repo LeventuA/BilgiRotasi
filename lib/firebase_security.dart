@@ -56,6 +56,14 @@ class SecureCallableService {
         'Çevrimiçi Firebase işlemleri bu test derlemesinde kapalı.',
       );
     }
+
+    // Soru geri bildirimi için production Cloud Function henüz canlı değil.
+    // Bu işlem doğrulanmış Apps Script web uygulamasına yönlendirilir.
+    // Diğer Firebase callable işlemlerinin davranışı değişmez.
+    if (name == 'submitQuestionFeedback') {
+      return _sendQuestionFeedbackWithAppsScript(data);
+    }
+
     final result = await _functions
         .httpsCallable(
           name,
@@ -66,5 +74,76 @@ class SecureCallableService {
         )
         .call<Map<String, dynamic>>(data);
     return result.data;
+  }
+
+  static Future<Map<String, dynamic>> _sendQuestionFeedbackWithAppsScript(
+    Map<String, dynamic> data,
+  ) async {
+    final rawPayload = data['payload'];
+
+    if (rawPayload is! Map) {
+      return <String, dynamic>{
+        'ok': false,
+        'accepted': false,
+        'reason': 'invalid_payload',
+      };
+    }
+
+    if (_questionFeedbackEndpoint.isEmpty ||
+        !_questionFeedbackEndpoint.startsWith('https://')) {
+      return <String, dynamic>{
+        'ok': false,
+        'accepted': false,
+        'reason': 'invalid_endpoint',
+      };
+    }
+
+    final payload = Map<String, dynamic>.from(rawPayload);
+    final client = HttpClient()..connectionTimeout = const Duration(seconds: 7);
+
+    try {
+      final request = await client.postUrl(
+        Uri.parse(_questionFeedbackEndpoint),
+      );
+
+      request.headers.contentType = ContentType(
+        'text',
+        'plain',
+        charset: 'utf-8',
+      );
+      request.write(jsonEncode(payload));
+
+      final response = await request.close().timeout(
+        const Duration(seconds: 10),
+      );
+      final body = await utf8.decoder.bind(response).join();
+
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        return <String, dynamic>{
+          'ok': false,
+          'accepted': false,
+          'reason': 'http_${response.statusCode}',
+        };
+      }
+
+      final decoded = jsonDecode(body);
+      if (decoded is Map) {
+        return Map<String, dynamic>.from(decoded);
+      }
+
+      return <String, dynamic>{
+        'ok': false,
+        'accepted': false,
+        'reason': 'invalid_response',
+      };
+    } catch (_) {
+      return <String, dynamic>{
+        'ok': false,
+        'accepted': false,
+        'reason': 'network_error',
+      };
+    } finally {
+      client.close(force: true);
+    }
   }
 }
