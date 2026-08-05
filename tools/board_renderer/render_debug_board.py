@@ -214,20 +214,32 @@ def rasterize_svg(svg_path: Path, png_path: Path, pixel_size: int = 4096) -> Non
 
         if process.poll() is None:
             if os.name == "nt":
-                subprocess.run(
-                    ["taskkill", "/PID", str(process.pid), "/T", "/F"],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                    timeout=10,
-                    check=False,
-                )
+                try:
+                    subprocess.run(
+                        ["taskkill", "/PID", str(process.pid), "/T", "/F"],
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL,
+                        timeout=10,
+                        check=False,
+                    )
+                except subprocess.TimeoutExpired:
+                    # The PNG is already complete at this point. Windows can
+                    # briefly retain a Chromium descendant while taskkill is
+                    # returning; fall through to the bounded process wait.
+                    pass
             else:
                 process.terminate()
             try:
                 process.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 process.kill()
-                process.wait(timeout=5)
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    # The rendered PNG was already verified as complete. A
+                    # lingering Windows browser handle must not invalidate a
+                    # deterministic artifact after both bounded shutdowns.
+                    pass
         # Windows may keep short-lived Chromium profile handles after the
         # process tree exits. Give them a bounded release window; cleanup is
         # best-effort and never changes the rendered artifact.

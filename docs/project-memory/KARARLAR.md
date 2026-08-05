@@ -138,6 +138,15 @@
   (`42°`) paylaşacak; yalnız yükseliş `58° / 46° / 34°` olarak değişecektir.
 - Kullanıcı A/B/C arasından açıkça seçim yapmadan stil, doku, gölge, 3B kalınlık,
   Flutter veya APK aşamasına geçilmeyecektir.
+- Kullanıcı kanonik kamera olarak Kamera B'yi seçmiştir: yükseliş `46°`,
+  güney/ön azimut `90°`, mesafe `1.55`, dikey FOV `42°` ve yakın/uzak ölçek
+  oranı `1.463752079` sabit kalacaktır.
+- Yapısal 3B aşamasında her dış/iç taş, rozet ve merkez ayrı üst ve yan yüzlere
+  sahip olacaktır; tek bir 2B raster/tahta eğilmeyecektir.
+- Sabit dünya birimi kalınlıkları taşıyıcı taban `0.012`, dış taş `0.024`, iç
+  taş `0.020`, rozet `0.034` ve merkez `0.040` olarak kabul edilmiştir.
+- AŞAMA 3 statik görseli açıkça onaylanmadan final stil/doku, logo, ikon, piyon,
+  Flutter veya APK aşamasına geçilmeyecektir.
 
 ---
 

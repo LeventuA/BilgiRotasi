@@ -108,8 +108,9 @@ beklenmemektedir.
 10. En son ayrı APK üret.
 
 **Güncel karar:** Düzeltilmiş AŞAMA 1 kullanıcı tarafından onaylandı. AŞAMA 2
-numaralı perspektif kamera A/B/C çıktıları hazır; kullanıcı bir kamera açısını
-açıkça seçmeden stil, 3B kalınlık, Flutter veya APK çalışmasına geçilmeyecek.
+sonunda kullanıcı Kamera B'yi kanonik kamera olarak seçti. AŞAMA 3 yapısal 3B
+önizlemesi Kamera B ile hazırdır; statik görsel açıkça onaylanmadan final stil,
+doku, logo, piyon, Flutter veya APK çalışmasına geçilmeyecek.
 
 ---
 
@@ -158,3 +159,27 @@ açıkça seçmeden stil, 3B kalınlık, Flutter veya APK çalışmasına geçil
   karşılaştırma `board_perspective_camera_comparison.png` dosyasındadır.
 - Bu aşamada stil, doku, ışık, gölge, logo, piyon, extrusion/kalınlık, Flutter,
   APK veya AAB eklenmedi.
+
+---
+
+## AŞAMA 3 sonucu - Kamera B yapısal 3B geometri (2026-08-06)
+
+- Kullanıcı kanonik kamera olarak Kamera B'yi seçti: yükseliş `46°`, güney/ön
+  azimut `90°`, mesafe `1.55`, dikey FOV `42°`, yakın/uzak ölçek oranı
+  `1.463752079`.
+- BoardMap merkezleri, kimlikleri, yönleri ve bağlantıları değiştirilmedi.
+- 30 dış taş, 30 iç taş, 6 rozet ve merkez ayrı ayrı üst yüzey, yan yüzler ve
+  pozitif kalınlık içeren 67 fiziksel parça olarak üretildi.
+- Sabit dünya birimi kalınlıkları: taşıyıcı taban `0.012`, dış taş `0.024`, iç
+  taş `0.020`, rozet `0.034`, merkez `0.040`.
+- Gerçek parça boşlukları korundu; yüzler ortalama kamera derinliğine göre
+  uzaktan yakına çizildi ve kimlik etiketleri hiçbir fiziksel yüz tarafından
+  kapatılmadı.
+- BoardMap paritesi `67/67`; altı dış aralık ve altı iç yol ayrı ayrı
+  `5/5/5/5/5/5` PASS'tir. Güney `52-56` ve Spor `62-66` yolları görünürdür.
+- Merkez en yakın iç taşı, rozetler komşu dış taşları kapatmaz.
+- Ana ve güney yakın plan çıktıları 4096x4096'dır:
+  - `tools/board_renderer/output/board_structural_3d_camera_B_4096.png`
+  - `tools/board_renderer/output/board_structural_3d_camera_B_closeup_4096.png`
+- Bu aşamada final renk/stil, doku, logo, kategori ikonu, piyon, parıltı, ağır
+  gölge, Flutter, APK veya AAB eklenmedi.

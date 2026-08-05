@@ -106,9 +106,18 @@ Son canlı kontrollerde:
   BoardMap paritesi 67/67 ve tüm iç/dış yollar 5/5/5/5/5/5 PASS'tir.
 - AŞAMA 2 yalnız perspektif geometrisidir; stil, doku, gölge, 3B kalınlık,
   Flutter veya APK eklenmedi.
+- Kullanıcı kanonik açı olarak Kamera B'yi seçti: 46° yükseliş, 90° azimut,
+  1.55 mesafe, 42° dikey FOV ve 1.463752079 yakın/uzak ölçek oranı.
+- AŞAMA 3'te 67 node ayrı üst ve yan yüzleri olan fiziksel parçalar halinde
+  yapısal olarak extrude edildi. Sabit kalınlıklar dünya biriminde taşıyıcı
+  taban 0.012, dış 0.024, iç 0.020, rozet 0.034 ve merkez 0.040'tır.
+- Ana ve güney yakın plan 4096x4096 çıktılarında tüm 67 kimlik, güney `52-56`,
+  Spor `62-66` ve altı iç/dış 5'li yol otomatik doğrulamadan geçti.
+- AŞAMA 3 yalnız yapısal 3B geometridir; final stil/doku, logo, ikon, piyon,
+  Flutter veya APK eklenmedi.
 
-**Durum:** AŞAMA 2 kamera A/B/C önizlemeleri hazır; kullanıcı kamera seçimi
-bekleniyor. Çalışan oyuna etkisi yoktur.
+**Durum:** Kamera B seçildi ve AŞAMA 3 yapısal 3B önizlemesi hazır; statik
+görsel onayı bekleniyor. Çalışan oyuna etkisi yoktur.
 
 ---
 
@@ -182,5 +191,5 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`
 4. Soru düzeltmelerini test et, PR aç, incele ve merge et.
 5. Yeni AAB'yi mevcut Kapalı Test kanalına güncelleme olarak yükle.
 6. Ödüllü reklamın oyun başına hak kararını canlı kodda doğrula ve gerekiyorsa uygula.
-7. 3B tahta çalışmasına, BoardMap paritesi düzeltilmiş geometri yeniden görsel
-   onay almadan dönme.
+7. Kamera B AŞAMA 3 yapısal 3B önizlemesini görsel olarak onayla; onay olmadan
+   final stil, Flutter veya APK aşamasına geçme.

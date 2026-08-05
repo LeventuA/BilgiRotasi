@@ -1,0 +1,67 @@
+{
+  "camera": {
+    "azimuth_degrees": 90.0,
+    "board_front": "south",
+    "description": "balanced premium angle",
+    "distance": 1.55,
+    "elevation_degrees": 46.0,
+    "id": "B",
+    "target": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "vertical_fov_degrees": 42.0
+  },
+  "errors": [],
+  "inner_path_counts": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5
+  ],
+  "labels_drawn_after_all_faces": true,
+  "model": "individually extruded deterministic board parts",
+  "near_far_scale_ratio": 1.463752079,
+  "occlusion_order": "far-to-near by average camera depth",
+  "outer_segment_counts": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5
+  ],
+  "schema_version": 1,
+  "south_inner_node_ids": [
+    52,
+    53,
+    54,
+    55,
+    56
+  ],
+  "sport_inner_node_ids": [
+    62,
+    63,
+    64,
+    65,
+    66
+  ],
+  "status": "PASS",
+  "thickness_world_units": {
+    "badge": 0.034,
+    "center": 0.04,
+    "inner_tile": 0.02,
+    "outer_tile": 0.024,
+    "ring_base": 0.012
+  },
+  "visible_node_count": 67,
+  "visible_type_counts": {
+    "badge": 6,
+    "center": 1,
+    "inner_tile": 30,
+    "outer_tile": 30
+  }
+}
