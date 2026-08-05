@@ -15,22 +15,32 @@ SPOKE_START = 37
 SPOKE_COUNT = 6
 SPOKE_LENGTH = 5
 SPORT_SECTOR = 5
+SOUTH_SECTOR = 3
 
-# The debug board is deliberately rotated so the live Sport arm (index 5)
-# is vertical and below the center. Increasing angles run clockwise in SVG.
-START_ANGLE_DEGREES = 150.0
+# BoardMap.armAngle(0) is -pi / 2: node 1 is north and angles advance
+# clockwise in SVG coordinates. The preview must never rotate this mapping.
+START_ANGLE_DEGREES = -90.0
 CENTER_X = 0.5
 CENTER_Y = 0.5
 OUTER_RADIUS = 0.42
-INNER_RADII = (0.105, 0.16, 0.215, 0.27, 0.325)
+INNER_RADII = tuple(0.155 + step * 0.049 for step in range(SPOKE_LENGTH))
 
 CATEGORY_NAMES = (
-    "GEOGRAPHY",
-    "ENTERTAINMENT",
-    "HISTORY",
-    "ART & LITERATURE",
-    "SCIENCE & NATURE",
-    "SPORT",
+    "COĞRAFYA",
+    "EĞLENCE",
+    "TARİH",
+    "SANAT & EDEBİYAT",
+    "BİLİM & DOĞA",
+    "SPOR",
+)
+
+DIRECTIONS = (
+    "Kuzey",
+    "Kuzeydoğu",
+    "Güneydoğu",
+    "Güney",
+    "Güneybatı",
+    "Kuzeybatı",
 )
 
 # Copied exactly from BoardMap in lib/main.dart. The values are category
@@ -102,6 +112,12 @@ def generate_geometry() -> dict[str, Any]:
         {
             "id": CENTER_ID,
             "type": "center",
+            "category_index": -1,
+            "category_name": None,
+            "is_badge": False,
+            "ring": None,
+            "arm": None,
+            "step": None,
             "sector": None,
             "position_in_segment": 0,
             "x_normalized": CENTER_X,
@@ -131,6 +147,12 @@ def generate_geometry() -> dict[str, Any]:
             {
                 "id": node_id,
                 "type": node_type,
+                "category_index": category_index,
+                "category_name": CATEGORY_NAMES[category_index],
+                "is_badge": is_badge,
+                "ring": ring,
+                "arm": None,
+                "step": None,
                 "sector": sector,
                 "position_in_segment": segment_position,
                 "x_normalized": x,
@@ -153,13 +175,19 @@ def generate_geometry() -> dict[str, Any]:
                 {
                     "id": node_id,
                     "type": "inner_tile",
+                    "category_index": category_index,
+                    "category_name": CATEGORY_NAMES[category_index],
+                    "is_badge": False,
+                    "ring": None,
+                    "arm": sector,
+                    "step": step,
                     "sector": sector,
                     "position_in_segment": step + 1,
                     "x_normalized": x,
                     "y_normalized": y,
                     "angle_degrees": _normalized_angle(angle),
-                    "width_normalized": 0.05,
-                    "height_normalized": 0.026,
+                    "width_normalized": 0.042,
+                    "height_normalized": 0.022,
                     "connected_node_ids": _spoke_connections(sector, step),
                     "label": (
                         f"INNER {step + 1}/5 | {CATEGORY_NAMES[category_index]}"
@@ -168,17 +196,23 @@ def generate_geometry() -> dict[str, Any]:
             )
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "source": {
             "board_map": "lib/main.dart::BoardMap",
-            "source_commit": "548e8d3046469688a8dcb050552956cf786e525c",
+            "position_formula": "BoardMap.position(Size(1, 1), nodeId)",
         },
         "canvas": {"width_normalized": 1.0, "height_normalized": 1.0},
         "orientation": {
             "start_angle_degrees": START_ANGLE_DEGREES,
             "clockwise": True,
+            "directions": list(DIRECTIONS),
+            "south_sector": SOUTH_SECTOR,
+            "south_inner_node_ids": [
+                spoke_id(SOUTH_SECTOR, step) for step in range(SPOKE_LENGTH)
+            ],
             "sport_sector": SPORT_SECTOR,
-            "sport_inner_direction": "bottom",
+            "sport_badge_node_id": outer_id(SPORT_SECTOR * 6),
+            "sport_direction": DIRECTIONS[SPORT_SECTOR],
         },
         "nodes": nodes,
     }

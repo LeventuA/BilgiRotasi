@@ -66,7 +66,7 @@
 - GitHub'daki BoardMap / 67 node düzeni
 - `galaktik_bilgi_rotası_oyun_tekerleği.png` geometri referansı
 - `63397.png` alçak açılı stil referansı
-- Premium kategori rozeti konsept seti
+- Oyunun mevcut 6 kategori adı ve canlı `BoardMap` rozet eşlemesi
 
 ## Reddedilenler
 
@@ -107,8 +107,9 @@ beklenmemektedir.
 9. Flutter önizlemesi yap.
 10. En son ayrı APK üret.
 
-**Güncel karar:** AŞAMA 1 numaralı geometri üretildi; kullanıcı görsel onayı
-alınmadan AŞAMA 2 perspektif/3B, Flutter veya APK çalışmasına geçilmeyecek.
+**Güncel karar:** AŞAMA 1 numaralı geometri canlı `BoardMap.position` yönüne
+yeniden hizalandı; kullanıcı yeni düz önizlemeyi onaylamadan AŞAMA 2
+perspektif/3B, Flutter veya APK çalışmasına geçilmeyecek.
 
 ---
 
@@ -123,8 +124,13 @@ alınmadan AŞAMA 2 perspektif/3B, Flutter veya APK çalışmasına geçilmeyece
   = 67 düğüm.
 - Altı rozet aralığının her birinde tam 5 dış düğüm, merkezden rozete giden altı
   kolun her birinde tam 5 iç düğüm vardır.
-- Spor kolu debug yöneliminde alt merkeze sabitlendi; `SPORT INNER 1-5` ve
-  `62-66` kimlikleri açıkça görünürdür.
+- İlk debug yöneliminin tahtayı keyfî döndürdüğü otomatik parite kapısında
+  bulundu. Canlı `BoardMap` yönü geri yüklendi: node `1` kuzey, node `19` güney,
+  node `31` kuzeybatıdır.
+- Ekranın altındaki gerçek iç yol `52-56` ve güneydeki rozet node `19`dur.
+  Gerçek Spor rozeti node `31`, Spor iç yolu `62-66` ve kuzeybatıdadır.
+- `board_map_parity_report.json/.md` raporlarında 67/67 kimlik, tür, kategori
+  indeksi, rozet durumu, bağlantı, sıra ve normalize koordinat eşleşmesi PASS'tir.
 - Sınır, görünürlük, kimlik benzersizliği, bağlantı geçerliliği ve çakışma
   kontrolleri geçti; art arda iki SVG/PNG üretimi birebir aynıdır.
 - İnceleme çıktıları:

@@ -11,8 +11,10 @@ rendering, production assets, or release builds.
 - Badges: nodes `1, 7, 13, 19, 25, 31`
 - Inner paths: nodes `37-66`, five nodes on each of six paths
 - Each interval after a badge contains outer positions `1-5`
-- The Sport path (sector 5, nodes `62-66`) is fixed below the center and marked
-  `SPORT INNER 1-5` in the debug output.
+- The live south path is sector 3, nodes `52-56`, and is marked
+  `SOUTH INNER 1-5` in the debug output.
+- The live Sport badge is node `31` in the northwest; its inner path is
+  nodes `62-66`.
 
 The category mixes and reciprocal connections are copied from the live
 `BoardMap`; this tool is a preview/validator and is not a second game map.
@@ -24,6 +26,7 @@ Run with Python 3 from the repository root:
 ```text
 python3 tools/board_renderer/board_geometry.py
 python3 tools/board_renderer/render_debug_board.py
+python3 tools/board_renderer/board_map_parity.py
 python3 tools/board_renderer/validate_board_geometry.py
 python3 -m unittest discover tools/board_renderer/tests
 ```
@@ -37,6 +40,8 @@ Generated review artifacts:
 
 - `output/board_debug_numbered.svg`
 - `output/board_debug_numbered_4096.png`
+- `output/board_map_parity_report.json`
+- `output/board_map_parity_report.md`
 
 No perspective, 3D styling, production icons, Flutter integration, APK, or AAB
 work belongs to this stage.

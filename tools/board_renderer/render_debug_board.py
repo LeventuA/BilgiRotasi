@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import os
 from pathlib import Path
 import shutil
@@ -114,15 +115,16 @@ def render_svg(geometry: dict[str, Any] | None = None) -> str:
                 f'  <text x="{_n(x)}" y="{_n(y + 11)}" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" font-weight="700" fill="{text_color}">{marker}</text>'
             )
         elif node_type == "badge":
+            category = html.escape(node["category_name"])
             lines.append(
-                f'  <text x="{_n(x)}" y="{_n(y + 16)}" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="700" fill="{text_color}">BADGE</text>'
+                f'  <text x="{_n(x)}" y="{_n(y + 16)}" text-anchor="middle" font-family="Arial, sans-serif" font-size="5.2" font-weight="700" fill="{text_color}">{category}</text>'
             )
 
     lines.extend(
         [
-            '  <rect x="754" y="18" width="218" height="50" rx="8" fill="#431407" stroke="#FDBA74" stroke-width="2"/>',
-            '  <text x="863" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#FFEDD5">SPORT INNER 1-5</text>',
-            '  <text x="863" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FED7AA">SECTOR 5 | NODES 62-66 | BOTTOM</text>',
+            '  <rect x="718" y="18" width="254" height="50" rx="8" fill="#172554" stroke="#93C5FD" stroke-width="2"/>',
+            '  <text x="845" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#DBEAFE">SOUTH INNER 1-5</text>',
+            '  <text x="845" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#BFDBFE">ARM 3 | NODES 52-56 | BADGE 19</text>',
             '  <text x="28" y="38" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#E2E8F0">67-NODE DETERMINISTIC GEOMETRY</text>',
             '  <text x="28" y="62" font-family="Arial, sans-serif" font-size="13" fill="#94A3B8">0 center | 6 badges | 30 outer tiles | 30 inner tiles</text>',
             "</svg>",

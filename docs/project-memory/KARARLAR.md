@@ -123,8 +123,10 @@
   Coğrafya, Eğlence, Tarih, Sanat & Edebiyat, Bilim & Doğa ve Spor.
 - İlk yeniden başlatma adımı, canlı `BoardMap` verisinden üretilen düz ve numaralı
   deterministik geometri olacaktır; bu veri oyun kodunun alternatifi değildir.
-- Debug yönelimi Spor iç yolunu alt merkezde gösterecek şekilde sabitlenecek;
-  aynı kaynak iki kez işlendiğinde SVG ve PNG çıktıları birebir aynı olacaktır.
+- Debug yönelimi canlı `BoardMap.armAngle/position` değerlerini aynen koruyacak;
+  tahta Spor yolunu alta getirmek için döndürülmeyecektir. Kuzey node `1`, güney
+  node `19`, Spor rozeti kuzeybatıda node `31`dir.
+- Aynı kaynak iki kez işlendiğinde SVG ve PNG çıktıları birebir aynı olacaktır.
 - 67 kimlik, altı dış `1-5` aralığı, altı iç `1-5` yol, sınırlar, bağlantılar ve
   çakışmasızlık otomatik testlerle geçmeden görsel onaya sunulmayacaktır.
 - Numaralı geometri onaylanmadan stil, perspektif/3B, Flutter veya APK aşamasına

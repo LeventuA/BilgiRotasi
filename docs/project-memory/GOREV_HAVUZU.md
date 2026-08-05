@@ -103,12 +103,13 @@ Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
 yapılmayacak; tahtada yalnız Coğrafya, Eğlence, Tarih, Sanat & Edebiyat,
 Bilim & Doğa ve Spor kategorileri kullanılacak.
 
-### BR-P2-002 - Numaralı geometri önizlemesi — TEKNİK ÜRETİM TAMAMLANDI
+### BR-P2-002 - Numaralı geometri önizlemesi — PARİTE DÜZELTİLDİ / YENİDEN ONAY BEKLİYOR
 
-67 node canlı `BoardMap` bağlantılarıyla görsel debug katmanında doğrulandı.
-Deterministik SVG ve 4096x4096 PNG üretildi; altı dış aralık, altı iç yol ve alt
-Spor yolu `1-5` işaretleriyle görünür. Sonraki kapı kullanıcı görsel onayıdır;
-onay alınmadan süsleme, perspektif/3B, Flutter veya APK yok.
+İlk debug önizlemesindeki keyfî dönüş kaldırıldı. 67 node canlı `BoardMap` tür,
+kategori, rozet, bağlantı, sıra ve normalize koordinatlarıyla 67/67 doğrulandı.
+Deterministik SVG ve 4096x4096 PNG yenilendi; gerçek alt yol `52-56`, Spor rozeti
+kuzeybatıda node `31`dir. Sonraki kapı yeni düz görsel için kullanıcı onayıdır;
+onay alınmadan perspektif/3B, Flutter veya APK yok.
 
 ### BR-P2-003 - Profesyonel tanıtım videosu
 

@@ -80,20 +80,25 @@ Son canlı kontrollerde:
 - `experiment/true-3d-board-renderer-v2` açıldı; konuşma kesiminde gerçek renderer commit'i yoktu.
 - Hiçbir 3B çalışma release dalına merge edilmedi.
 - Son görsel kabul edilmedi ve çalışma durduruldu.
-- 8 adet kategori rozeti konsepti üretildi; tahtadaki 6 fiziksel rozet noktasına eşleme çözülmedi.
+- Hazırlanan 8 alternatif rozet konsepti iptal edildi; tahtada yalnız mevcut
+  Coğrafya, Eğlence, Tarih, Sanat & Edebiyat, Bilim & Doğa ve Spor kategorileri
+  kullanılacak.
 - `experiment/deterministic-board-geometry-v1` dalında canlı `BoardMap` kaynak alınarak
   düz ve numaralı AŞAMA 1 geometri önizlemesi üretildi.
 - Önizleme 67 düğümü eksiksiz içerir: merkez `0`, dış halka `1-36`, rozetler
   `1/7/13/19/25/31` ve iç yollar `37-66`.
-- Altı dış aralığın ve altı iç yolun her biri `1-5` olarak doğrulandı; Spor iç
-  yolu alt merkezde `62-66` olarak görünür tutuldu.
+- İlk önizlemenin canlı `BoardMap.position` yönünü keyfî döndürdüğü parite
+  kontrolünde bulundu ve AŞAMA 1 geometrisi canlı kaynağa hizalandı.
+- Canlı yön eşlemesinde kuzey rozeti node `1`, güney rozeti node `19`, alt iç
+  yol `52-56`; Spor rozeti node `31` ve kuzeybatıdadır.
+- Altı dış aralığın ve altı iç yolun her biri `1-5` olarak doğrulandı.
 - Otomatik doğrulama düğüm çakışması, kırpılma veya geçersiz/tek yönlü bağlantı
   bulmadı. SVG ve 4096x4096 PNG çıktıları deterministiktir.
 - Bu çalışma yalnız geometri/debug katmanıdır; stil, perspektif/3B, Flutter ve
   APK aşamalarına geçilmedi.
 
-**Durum:** AŞAMA 1 teknik önizlemesi hazır, görsel onay bekliyor; çalışan oyuna
-etkisi yok ve 3B çalışma hâlâ başlamadı.
+**Durum:** BoardMap paritesi düzeltilmiş AŞAMA 1 önizlemesi yeniden görsel onay
+bekliyor; çalışan oyuna etkisi yok ve AŞAMA 2 perspektif çalışması başlamadı.
 
 ---
 
@@ -167,4 +172,5 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`
 4. Soru düzeltmelerini test et, PR aç, incele ve merge et.
 5. Yeni AAB'yi mevcut Kapalı Test kanalına güncelleme olarak yükle.
 6. Ödüllü reklamın oyun başına hak kararını canlı kodda doğrula ve gerekiyorsa uygula.
-7. 3B tahta çalışmasına, geometri ve 6-rozet eşlemesi çözülmeden dönme.
+7. 3B tahta çalışmasına, BoardMap paritesi düzeltilmiş geometri yeniden görsel
+   onay almadan dönme.

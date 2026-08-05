@@ -11,11 +11,13 @@ from board_geometry import (
     OUTER_COUNT,
     SPOKE_COUNT,
     SPOKE_LENGTH,
+    SOUTH_SECTOR,
     SPORT_SECTOR,
     canonical_json,
     generate_geometry,
 )
 from render_debug_board import DEFAULT_OUTPUT, PNG_NAME, SVG_NAME, render_svg
+from board_map_parity import build_parity_report, write_parity_reports
 
 
 ROOT = Path(__file__).resolve().parent
@@ -93,15 +95,23 @@ def validate_geometry(geometry: dict[str, Any]) -> list[str]:
         if inner != list(range(1, 6)):
             errors.append(f"Sector {sector} inner path differs: {inner}.")
 
-    sport_inner = [
+    south_inner = [
         node
         for node in nodes
-        if node.get("type") == "inner_tile" and node.get("sector") == SPORT_SECTOR
+        if node.get("type") == "inner_tile" and node.get("sector") == SOUTH_SECTOR
     ]
-    if len(sport_inner) != SPOKE_LENGTH:
-        errors.append(f"Sport inner path expected 5 nodes, found {len(sport_inner)}.")
-    if sport_inner and not all(node["y_normalized"] > 0.5 for node in sport_inner):
-        errors.append("Sport inner path is not fully below the center.")
+    if len(south_inner) != SPOKE_LENGTH:
+        errors.append(f"South inner path expected 5 nodes, found {len(south_inner)}.")
+    if south_inner and not all(node["y_normalized"] > 0.5 for node in south_inner):
+        errors.append("South inner path is not fully below the center.")
+
+    sport_badges = [
+        node
+        for node in nodes
+        if node.get("type") == "badge" and node.get("sector") == SPORT_SECTOR
+    ]
+    if len(sport_badges) != 1 or sport_badges[0].get("id") != 31:
+        errors.append("Live Sport badge must be node 31 in the northwest sector.")
 
     for node in nodes:
         left, top, right, bottom = _rect(node)
@@ -146,6 +156,14 @@ def validate_files() -> list[str]:
     if raw != canonical_json(expected):
         errors.append("board_geometry.json is not in canonical deterministic form.")
 
+    parity_report = build_parity_report()
+    write_parity_reports(parity_report)
+    if parity_report["status"] != "PASS":
+        errors.append(
+            "Live BoardMap parity failed: "
+            f"{parity_report['matched_nodes']}/{parity_report['total_nodes']} nodes."
+        )
+
     svg_path = DEFAULT_OUTPUT / SVG_NAME
     png_path = DEFAULT_OUTPUT / PNG_NAME
     if not svg_path.is_file():
@@ -179,7 +197,9 @@ def main() -> None:
         raise SystemExit(1)
     print("PASS: 67 nodes (1 center, 6 badges, 30 outer, 30 inner).")
     print("PASS: six outer intervals and six inner paths each contain positions 1-5.")
-    print("PASS: SPORT INNER 1-5 is below center and fully visible.")
+    print("PASS: SOUTH INNER 1-5 (nodes 52-56) is below center and fully visible.")
+    print("PASS: live Sport badge is node 31 in the northwest sector.")
+    print("PASS: live BoardMap parity is 67/67 within coordinate epsilon.")
     print("PASS: all connections are valid/reciprocal; no node overlap or clipping.")
     print("PASS: committed JSON/SVG are deterministic and PNG is 4096x4096.")
 
