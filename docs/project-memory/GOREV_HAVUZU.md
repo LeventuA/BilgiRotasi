@@ -111,6 +111,14 @@ Deterministik SVG ve 4096x4096 PNG yenilendi; gerçek alt yol `52-56`, Spor roze
 kuzeybatıda node `31`dir. Sonraki kapı yeni düz görsel için kullanıcı onayıdır;
 onay alınmadan perspektif/3B, Flutter veya APK yok.
 
+### BR-P2-002A - Deterministik perspektif kamera önizlemeleri — TAMAMLANDI / SEÇİM BEKLİYOR
+
+Canlı BoardMap yönünü koruyan ayrı parça projeksiyonuyla Kamera A (`58°`),
+Kamera B (`46°`) ve Kamera C (`34°`) üretildi. Üçünde de 67 node, altı dış
+`1-5` aralığı, altı iç `1-5` yolu ve güneydeki `52-56` yolu görünürlük/
+çakışmasızlık testlerinden geçti. Sonraki kapı kullanıcının A/B/C seçimidir;
+seçim olmadan stil, kalınlık, Flutter veya APK yok.
+
 ### BR-P2-003 - Profesyonel tanıtım videosu
 
 Eski setleri yeniden kullanma. Gerçek kurgu, efekt, ses ve güçlü açılış üret.

@@ -10,6 +10,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import time
 from typing import Any
 
 from board_geometry import generate_geometry
@@ -135,7 +136,7 @@ def render_svg(geometry: dict[str, Any] | None = None) -> str:
 
 def _browser_candidates() -> list[Path]:
     candidates: list[Path] = []
-    for name in ("msedge", "chrome", "chromium", "chromium-browser"):
+    for name in ("chrome", "chromium", "chromium-browser", "msedge"):
         found = shutil.which(name)
         if found:
             candidates.append(Path(found))
@@ -143,10 +144,10 @@ def _browser_candidates() -> list[Path]:
         candidates.extend(
             Path(path)
             for path in (
-                r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-                r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
                 r"C:\Program Files\Google\Chrome\Application\chrome.exe",
                 r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+                r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+                r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
             )
         )
     return [candidate for candidate in candidates if candidate.is_file()]
@@ -159,25 +160,80 @@ def rasterize_svg(svg_path: Path, png_path: Path, pixel_size: int = 4096) -> Non
             "SVG rasterization requires Chrome, Chromium, or Microsoft Edge."
         )
     png_path.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix="board-render-") as profile:
+    png_path.unlink(missing_ok=True)
+    with tempfile.TemporaryDirectory(
+        prefix="board-render-", ignore_cleanup_errors=True
+    ) as profile:
         command = [
             str(browsers[0]),
             "--headless=new",
             "--disable-gpu",
+            "--disable-background-networking",
+            "--disable-extensions",
             "--hide-scrollbars",
             "--no-first-run",
+            "--run-all-compositor-stages-before-draw",
+            "--virtual-time-budget=1000",
             "--force-device-scale-factor=1",
             f"--user-data-dir={profile}",
             f"--window-size={pixel_size},{pixel_size}",
             f"--screenshot={png_path.resolve()}",
             svg_path.resolve().as_uri(),
         ]
-        result = subprocess.run(command, capture_output=True, text=True, timeout=90)
-    if result.returncode != 0 or not png_path.is_file():
-        raise RuntimeError(
-            "Browser SVG rasterization failed: "
-            + (result.stderr.strip() or result.stdout.strip() or "no PNG produced")
+        process = subprocess.Popen(
+            command,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
         )
+        deadline = time.monotonic() + 90
+        previous_size = -1
+        stable_reads = 0
+        completed = False
+        while time.monotonic() < deadline:
+            if png_path.is_file():
+                try:
+                    raw = png_path.read_bytes()
+                    valid_png = (
+                        raw[:8] == b"\x89PNG\r\n\x1a\n"
+                        and raw[12:16] == b"IHDR"
+                        and raw[-12:] == b"\x00\x00\x00\x00IEND\xaeB`\x82"
+                    )
+                    if valid_png and len(raw) == previous_size:
+                        stable_reads += 1
+                    else:
+                        stable_reads = 0
+                    previous_size = len(raw)
+                    if valid_png and stable_reads >= 2:
+                        completed = True
+                        break
+                except OSError:
+                    stable_reads = 0
+            if process.poll() is not None and not png_path.is_file():
+                break
+            time.sleep(0.1)
+
+        if process.poll() is None:
+            if os.name == "nt":
+                subprocess.run(
+                    ["taskkill", "/PID", str(process.pid), "/T", "/F"],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    timeout=10,
+                    check=False,
+                )
+            else:
+                process.terminate()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=5)
+        # Windows may keep short-lived Chromium profile handles after the
+        # process tree exits. Give them a bounded release window; cleanup is
+        # best-effort and never changes the rendered artifact.
+        time.sleep(0.75)
+        if not completed:
+            raise RuntimeError("Browser SVG rasterization did not produce a complete PNG.")
 
 
 def render_outputs(output_dir: Path = DEFAULT_OUTPUT, pixel_size: int = 4096) -> tuple[Path, Path]:

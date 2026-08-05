@@ -107,9 +107,9 @@ beklenmemektedir.
 9. Flutter önizlemesi yap.
 10. En son ayrı APK üret.
 
-**Güncel karar:** AŞAMA 1 numaralı geometri canlı `BoardMap.position` yönüne
-yeniden hizalandı; kullanıcı yeni düz önizlemeyi onaylamadan AŞAMA 2
-perspektif/3B, Flutter veya APK çalışmasına geçilmeyecek.
+**Güncel karar:** Düzeltilmiş AŞAMA 1 kullanıcı tarafından onaylandı. AŞAMA 2
+numaralı perspektif kamera A/B/C çıktıları hazır; kullanıcı bir kamera açısını
+açıkça seçmeden stil, 3B kalınlık, Flutter veya APK çalışmasına geçilmeyecek.
 
 ---
 
@@ -138,3 +138,23 @@ perspektif/3B, Flutter veya APK çalışmasına geçilmeyecek.
   - `tools/board_renderer/output/board_debug_numbered_4096.png`
 - Bu sonuçta hiçbir oyun/BoardMap, 3B stil, Flutter veya release build değişikliği
   yoktur.
+
+---
+
+## AŞAMA 2 sonucu - deterministik perspektif geometri (2026-08-06)
+
+- Tamamlanmış 2B görsel warp edilmedi; merkez, rozet ve kategori taşlarının her
+  biri kendi köşeleriyle ayrı düzlem olarak pinhole kameradan geçirildi.
+- Node merkezi, poligon köşeleri, etiket merkezi ve bağlantı çizgileri aynı
+  projeksiyon fonksiyonunu kullanır.
+- Ortak kamera değerleri: güney/ön azimut `90°`, mesafe `1.55`, dikey FOV `42°`.
+- Kamera A: yükseliş `58°`, yakın/uzak ölçek oranı `1.335332839`.
+- Kamera B: yükseliş `46°`, yakın/uzak ölçek oranı `1.463752079`.
+- Kamera C: yükseliş `34°`, yakın/uzak ölçek oranı `1.579455081`.
+- Her kamerada 67 node tuval içinde ve pozitif derinliktedir; poligon/etiket
+  çakışması yoktur. Altı dış aralık ve altı iç yol ayrı ayrı 5 taş içerir.
+- Güney/ön iç yol `52-56` üç kamerada da tamamen görünürdür.
+- Çıktılar `tools/board_renderer/output/board_perspective_*` altında, birleşik
+  karşılaştırma `board_perspective_camera_comparison.png` dosyasındadır.
+- Bu aşamada stil, doku, ışık, gölge, logo, piyon, extrusion/kalınlık, Flutter,
+  APK veya AAB eklenmedi.

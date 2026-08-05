@@ -1,0 +1,161 @@
+{
+  "board_map_orientation_preserved": true,
+  "cameras": [
+    {
+      "camera_position": [
+        0.0,
+        0.82137486,
+        1.314474549
+      ],
+      "errors": [],
+      "id": "A",
+      "inner_path_counts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "maximum_node_depth": 1.772566091,
+      "minimum_node_depth": 1.327433909,
+      "near_far_scale_ratio": 1.335332839,
+      "outer_segment_counts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "parameters": {
+        "azimuth_degrees": 90.0,
+        "board_front": "south",
+        "description": "high angle / readable",
+        "distance": 1.55,
+        "elevation_degrees": 58.0,
+        "id": "A",
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "vertical_fov_degrees": 42.0
+      },
+      "projected_node_count": 67,
+      "south_inner_node_ids": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "status": "PASS"
+    },
+    {
+      "camera_position": [
+        0.0,
+        1.076720474,
+        1.114976691
+      ],
+      "errors": [],
+      "id": "B",
+      "inner_path_counts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "maximum_node_depth": 1.841756516,
+      "minimum_node_depth": 1.258243484,
+      "near_far_scale_ratio": 1.463752079,
+      "outer_segment_counts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "parameters": {
+        "azimuth_degrees": 90.0,
+        "board_front": "south",
+        "description": "balanced premium angle",
+        "distance": 1.55,
+        "elevation_degrees": 46.0,
+        "id": "B",
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "vertical_fov_degrees": 42.0
+      },
+      "projected_node_count": 67,
+      "south_inner_node_ids": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "status": "PASS"
+    },
+    {
+      "camera_position": [
+        0.0,
+        1.285008237,
+        0.866749
+      ],
+      "errors": [],
+      "id": "C",
+      "inner_path_counts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "maximum_node_depth": 1.89819578,
+      "minimum_node_depth": 1.20180422,
+      "near_far_scale_ratio": 1.579455081,
+      "outer_segment_counts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "parameters": {
+        "azimuth_degrees": 90.0,
+        "board_front": "south",
+        "description": "low and strong perspective",
+        "distance": 1.55,
+        "elevation_degrees": 34.0,
+        "id": "C",
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "vertical_fov_degrees": 42.0
+      },
+      "projected_node_count": 67,
+      "south_inner_node_ids": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "status": "PASS"
+    }
+  ],
+  "projection_model": "per-piece pinhole camera projection",
+  "schema_version": 1,
+  "status": "PASS"
+}

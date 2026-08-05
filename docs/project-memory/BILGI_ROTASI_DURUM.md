@@ -94,11 +94,21 @@ Son canlı kontrollerde:
 - Altı dış aralığın ve altı iç yolun her biri `1-5` olarak doğrulandı.
 - Otomatik doğrulama düğüm çakışması, kırpılma veya geçersiz/tek yönlü bağlantı
   bulmadı. SVG ve 4096x4096 PNG çıktıları deterministiktir.
-- Bu çalışma yalnız geometri/debug katmanıdır; stil, perspektif/3B, Flutter ve
-  APK aşamalarına geçilmedi.
+- AŞAMA 1 çalışması yalnız düz geometri/debug katmanıydı; o adımda stil,
+  perspektif/3B, Flutter ve APK aşamalarına geçilmedi.
+- Düzeltilmiş AŞAMA 1 geometrisi kullanıcı tarafından görsel olarak onaylandı.
+- AŞAMA 2'de canlı yönleri koruyan, her node düzlemini ayrı pinhole kamera
+  fonksiyonuyla işleyen üç numaralı perspektif önizlemesi üretildi:
+  - Kamera A: 58° yükseliş,
+  - Kamera B: 46° yükseliş,
+  - Kamera C: 34° yükseliş.
+- Üç kamerada da azimut 90°, kamera mesafesi 1.55 ve dikey görüş açısı 42°'dir;
+  BoardMap paritesi 67/67 ve tüm iç/dış yollar 5/5/5/5/5/5 PASS'tir.
+- AŞAMA 2 yalnız perspektif geometrisidir; stil, doku, gölge, 3B kalınlık,
+  Flutter veya APK eklenmedi.
 
-**Durum:** BoardMap paritesi düzeltilmiş AŞAMA 1 önizlemesi yeniden görsel onay
-bekliyor; çalışan oyuna etkisi yok ve AŞAMA 2 perspektif çalışması başlamadı.
+**Durum:** AŞAMA 2 kamera A/B/C önizlemeleri hazır; kullanıcı kamera seçimi
+bekleniyor. Çalışan oyuna etkisi yoktur.
 
 ---
 

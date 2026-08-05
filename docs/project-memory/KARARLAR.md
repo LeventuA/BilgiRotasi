@@ -131,6 +131,13 @@
   çakışmasızlık otomatik testlerle geçmeden görsel onaya sunulmayacaktır.
 - Numaralı geometri onaylanmadan stil, perspektif/3B, Flutter veya APK aşamasına
   geçilmeyecektir.
+- Perspektif önizlemede tamamlanmış 2B tahta veya raster tek parça warp
+  edilmeyecek; her node düzlemi ve bağlantı aynı pinhole kamera fonksiyonuyla
+  ayrı ayrı projekte edilecektir.
+- Kamera A/B/C aynı güney/ön azimutu (`90°`), mesafe (`1.55`) ve dikey FOV'u
+  (`42°`) paylaşacak; yalnız yükseliş `58° / 46° / 34°` olarak değişecektir.
+- Kullanıcı A/B/C arasından açıkça seçim yapmadan stil, doku, gölge, 3B kalınlık,
+  Flutter veya APK aşamasına geçilmeyecektir.
 
 ---
 

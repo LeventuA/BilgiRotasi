@@ -14,6 +14,7 @@
 12. `experiment/true-3d-board-renderer-v2` hâlâ açık mı?
 13. Telefon/tablet/Chromebook/PC/XR varlıklarının hangileri Play Console'a gerçekten yüklendi?
 14. Onaylanmış bir final tanıtım videosu daha sonra üretildi mi?
+15. AŞAMA 2 perspektif önizlemelerinden Kamera A, B veya C hangisi seçilecek?
 
 ## Kapatılan konular
 

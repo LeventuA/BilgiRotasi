@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "shared": {
+    "azimuth_degrees": 90.0,
+    "board_front": "south",
+    "distance": 1.55,
+    "target": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "vertical_fov_degrees": 42.0
+  },
+  "presets": [
+    {
+      "description": "high angle / readable",
+      "elevation_degrees": 58.0,
+      "id": "A"
+    },
+    {
+      "description": "balanced premium angle",
+      "elevation_degrees": 46.0,
+      "id": "B"
+    },
+    {
+      "description": "low and strong perspective",
+      "elevation_degrees": 34.0,
+      "id": "C"
+    }
+  ]
+}
