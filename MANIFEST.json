@@ -1,0 +1,82 @@
+{
+  "package": "Bilgi_Rotasi_Proje_Hafizasi_V2_2026-08-05",
+  "prepared_at": "2026-08-05",
+  "source_cutoff": "2026-08-04 end of day",
+  "method": "Direct conversation messages and user confirmations prioritized; formal handoff/devir summaries excluded as authoritative sources.",
+  "source_count": 11,
+  "generated_files": {
+    "3B_TAHTA_DURUMU.md": {
+      "bytes": 3126,
+      "sha256": "3699093049e8ff81d8b1bf0d0cbff32b5b3d3c20ee38dfd98d10c4fc564793f4"
+    },
+    "ACIK_SORULAR_VE_DOGRULAMALAR.md": {
+      "bytes": 1099,
+      "sha256": "8d58fa14c867a32354bf186fdcaf6db5271fa08d87ab07c5654a376518c44f92"
+    },
+    "BILGI_ROTASI_DURUM.md": {
+      "bytes": 5744,
+      "sha256": "7bf452a61175bd9812ca2ad7ef204126f717c990585aead0fef947a15aabbe57"
+    },
+    "BILGI_ROTASI_PROJE_HAFIZASI_V2_TEK_DOSYA.md": {
+      "bytes": 1563,
+      "sha256": "0f5eb3ec91be6dd75fc1e578aaa554b79b883175ca9967a221aff934a156e6d1"
+    },
+    "CHATGPT_PROJE_TALIMATI.txt": {
+      "bytes": 1969,
+      "sha256": "5c6740874517d788294f1e687064231d538d4fe1f4009dea46e5ec3ba0594a75"
+    },
+    "GOREV_HAVUZU.md": {
+      "bytes": 2660,
+      "sha256": "30971533e1a64b424c8d8448081e3e8aa551fb450b58c90ef49c78762b75fcbf"
+    },
+    "GUNCELLEME_SABLONU.md": {
+      "bytes": 576,
+      "sha256": "f90c8fdf197f1e684bfaa01b18b99c6d6ad8b746cf6c5411aebbbf02aad433fb"
+    },
+    "KARARLAR.md": {
+      "bytes": 5125,
+      "sha256": "2569ce1ced77acc309d0559cc25f6755d24ca9deee9bb130e79b73985337d4f5"
+    },
+    "KAYNAK_DEFTERI.md": {
+      "bytes": 3143,
+      "sha256": "420886f4c3f3a78045a1e8af64c2a548d83a624fe0f51b3e96b107b984c564ce"
+    },
+    "MAGAZA_VE_TANITIM_VARLIKLARI.md": {
+      "bytes": 3044,
+      "sha256": "bd540e9ea4f33434764edec96c86e6aec58c58a25cc934bc4575a1e1b5dda711"
+    },
+    "README.md": {
+      "bytes": 2292,
+      "sha256": "a952505233ab1eaaef929d3a0a680c4c7b519de5933bd873886902dc10be9c5b"
+    },
+    "SORU_GERI_BILDIRIM_HAVUZU.md": {
+      "bytes": 3760,
+      "sha256": "d700f5cfe227700f63934fbce588772dd948b4cd4b6d5a35e9f6b79b75c33769"
+    },
+    "TEKNIK_GENEL_BAKIS.md": {
+      "bytes": 2999,
+      "sha256": "d4057ba829cc4521ba379f434b25428196989690a9df2a475f6cf60ce2932d87"
+    },
+    "V1_DUZELTME_NOTU.md": {
+      "bytes": 678,
+      "sha256": "29ad03b42d43ffb13d37044c9cd963804f90d311f26ce39da2697a3f488b39b4"
+    }
+  },
+  "important_snapshot": {
+    "reported_version": "1.68.13+103",
+    "reported_release_branch": "release/final-closed-test-aab-1.68.8",
+    "reported_question_count": 8710,
+    "question_feedback_events": 41,
+    "question_feedback_unique_questions": 40,
+    "clearly_broken_questions": 14,
+    "board_nodes": 67,
+    "closed_test_published": true,
+    "approved_final_promo_video": false
+  },
+  "limitations": [
+    "The package is a conversation snapshot, not a replacement for live GitHub, Play Console, Firebase or Sheet verification.",
+    "Some uploaded PDFs explicitly state that messages were skipped or summarized.",
+    "The 3D board PDF is an edited detailed record, not a byte-for-byte raw transcript.",
+    "Information after 4 August 2026 is not included."
+  ]
+}
