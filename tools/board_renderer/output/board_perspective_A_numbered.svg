@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="4096" height="4096" viewBox="0 0 1000 1000">
+  <title>Bilgi Rotasi perspective camera A</title>
+  <desc>Per-piece pinhole projection; numbered geometry only.</desc>
+  <rect width="1000" height="1000" fill="#0F172A"/>
+  <polyline points="500,238.2661 516.1553,238.5798 532.2829,239.5208 548.3553,241.0883 564.3445,243.2813 580.2228,246.0982 595.9619,249.5371 611.5336,253.5954 626.9091,258.2702 642.0596,263.5576 656.9558,269.4536 671.5679,275.953 685.8658,283.0504 699.819,290.7391 713.3967,299.0117 726.5673,307.86 739.299,317.2746 751.5596,327.245 763.3165,337.7594 774.5365,348.8048 785.1864,360.3668 795.2327,372.4294 804.6414,384.9749 813.3789,397.9841 821.4114,411.4359 828.7051,425.3071 835.2269,439.5726 840.9437,454.2053 845.8235,469.1756 849.8348,484.4518 852.9476,500 855.1327,515.7836 856.3628,531.7638 856.6126,547.8994 855.8587,564.1464 854.0802,580.459 851.2592,596.7886 847.3806,613.0846 842.433,629.2943 836.4087,645.3629 829.3041,661.2341 821.12,676.8501 811.8619,692.1515 801.5404,707.0786 790.1711,721.5706 777.7753,735.5668 764.3797,749.0068 750.0168,761.8306 734.7248,773.9797 718.5478,785.397 701.5354,796.0278 683.743,805.8197 665.2312,814.7237 646.0658,822.6944 626.317,829.6905 606.0599,835.6751 585.3728,840.6164 564.3377,844.4878 543.0393,847.2683 521.564,848.9427 500,849.5018 478.436,848.9427 456.9607,847.2683 435.6623,844.4878 414.6272,840.6164 393.9401,835.6751 373.683,829.6905 353.9342,822.6944 334.7688,814.7237 316.257,805.8197 298.4646,796.0278 281.4522,785.397 265.2752,773.9797 249.9832,761.8306 235.6203,749.0068 222.2247,735.5668 209.8289,721.5706 198.4596,707.0786 188.1381,692.1515 178.88,676.8501 170.6959,661.2341 163.5913,645.3629 157.567,629.2943 152.6194,613.0846 148.7408,596.7886 145.9198,580.459 144.1413,564.1464 143.3874,547.8994 143.6372,531.7638 144.8673,515.7836 147.0524,500 150.1652,484.4518 154.1765,469.1756 159.0563,454.2053 164.7731,439.5726 171.2949,425.3071 178.5886,411.4359 186.6211,397.9841 195.3586,384.9749 204.7673,372.4294 214.8136,360.3668 225.4635,348.8048 236.6835,337.7594 248.4404,327.245 260.701,317.2746 273.4327,307.86 286.6033,299.0117 300.181,290.7391 314.1342,283.0504 328.4321,275.953 343.0442,269.4536 357.9404,263.5576 373.0909,258.2702 388.4664,253.5954 404.0381,249.5371 419.7772,246.0982 435.6555,243.2813 451.6447,241.0883 467.7171,239.5208 483.8447,238.5798" fill="#111827" stroke="#475569" stroke-width="2"/>
+  <line x1="500" y1="500" x2="500" y2="395.097" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="500" x2="609.892" y2="446.1946" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="500" x2="615.8739" y2="556.7342" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="500" x2="500" y2="616.6432" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="500" x2="384.1261" y2="556.7342" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="500" x2="390.108" y2="446.1946" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="238.2661" x2="553.6955" y2="241.75" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="238.2661" x2="446.3045" y2="241.75" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="238.2661" x2="500" y2="276.6582" stroke="#64748B" stroke-width="2"/>
+  <line x1="553.6955" y1="241.75" x2="606.3631" y2="252.174" stroke="#64748B" stroke-width="2"/>
+  <line x1="606.3631" y1="252.174" x2="656.9558" y2="269.4534" stroke="#64748B" stroke-width="2"/>
+  <line x1="656.9558" y1="269.4534" x2="704.3883" y2="293.4319" stroke="#64748B" stroke-width="2"/>
+  <line x1="704.3883" y1="293.4319" x2="747.5274" y2="323.8604" stroke="#64748B" stroke-width="2"/>
+  <line x1="747.5274" y1="323.8604" x2="785.1867" y2="360.3668" stroke="#64748B" stroke-width="2"/>
+  <line x1="785.1867" y1="360.3668" x2="816.1366" y2="402.4203" stroke="#64748B" stroke-width="2"/>
+  <line x1="785.1867" y1="360.3668" x2="740.9865" y2="382.008" stroke="#64748B" stroke-width="2"/>
+  <line x1="816.1366" y1="402.4203" x2="839.1293" y2="449.2888" stroke="#64748B" stroke-width="2"/>
+  <line x1="839.1293" y1="449.2888" x2="852.9476" y2="500" stroke="#64748B" stroke-width="2"/>
+  <line x1="852.9476" y1="500" x2="856.4737" y2="553.3047" stroke="#64748B" stroke-width="2"/>
+  <line x1="856.4737" y1="553.3047" x2="848.7918" y2="607.6592" stroke="#64748B" stroke-width="2"/>
+  <line x1="848.7918" y1="607.6592" x2="829.3044" y2="661.2341" stroke="#64748B" stroke-width="2"/>
+  <line x1="829.3044" y1="661.2341" x2="797.8664" y2="711.9608" stroke="#64748B" stroke-width="2"/>
+  <line x1="829.3044" y1="661.2341" x2="771.751" y2="633.0549" stroke="#64748B" stroke-width="2"/>
+  <line x1="797.8664" y1="711.9608" x2="754.9099" y2="757.6284" stroke="#64748B" stroke-width="2"/>
+  <line x1="754.9099" y1="757.6284" x2="701.5354" y2="796.0281" stroke="#64748B" stroke-width="2"/>
+  <line x1="701.5354" y1="796.0281" x2="639.5436" y2="825.1368" stroke="#64748B" stroke-width="2"/>
+  <line x1="639.5436" y1="825.1368" x2="571.3827" y2="843.3173" stroke="#64748B" stroke-width="2"/>
+  <line x1="571.3827" y1="843.3173" x2="500" y2="849.5018" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="849.5018" x2="428.6173" y2="843.3173" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="849.5018" x2="500" y2="784.2538" stroke="#64748B" stroke-width="2"/>
+  <line x1="428.6173" y1="843.3173" x2="360.4564" y2="825.1368" stroke="#64748B" stroke-width="2"/>
+  <line x1="360.4564" y1="825.1368" x2="298.4646" y2="796.0281" stroke="#64748B" stroke-width="2"/>
+  <line x1="298.4646" y1="796.0281" x2="245.0901" y2="757.6284" stroke="#64748B" stroke-width="2"/>
+  <line x1="245.0901" y1="757.6284" x2="202.1336" y2="711.9608" stroke="#64748B" stroke-width="2"/>
+  <line x1="202.1336" y1="711.9608" x2="170.6956" y2="661.2341" stroke="#64748B" stroke-width="2"/>
+  <line x1="170.6956" y1="661.2341" x2="151.2082" y2="607.6592" stroke="#64748B" stroke-width="2"/>
+  <line x1="170.6956" y1="661.2341" x2="228.249" y2="633.0549" stroke="#64748B" stroke-width="2"/>
+  <line x1="151.2082" y1="607.6592" x2="143.5263" y2="553.3047" stroke="#64748B" stroke-width="2"/>
+  <line x1="143.5263" y1="553.3047" x2="147.0524" y2="500" stroke="#64748B" stroke-width="2"/>
+  <line x1="147.0524" y1="500" x2="160.8707" y2="449.2888" stroke="#64748B" stroke-width="2"/>
+  <line x1="160.8707" y1="449.2888" x2="183.8634" y2="402.4203" stroke="#64748B" stroke-width="2"/>
+  <line x1="183.8634" y1="402.4203" x2="214.8133" y2="360.3668" stroke="#64748B" stroke-width="2"/>
+  <line x1="214.8133" y1="360.3668" x2="252.4726" y2="323.8604" stroke="#64748B" stroke-width="2"/>
+  <line x1="214.8133" y1="360.3668" x2="259.0135" y2="382.008" stroke="#64748B" stroke-width="2"/>
+  <line x1="252.4726" y1="323.8604" x2="295.6117" y2="293.4319" stroke="#64748B" stroke-width="2"/>
+  <line x1="295.6117" y1="293.4319" x2="343.0442" y2="269.4534" stroke="#64748B" stroke-width="2"/>
+  <line x1="343.0442" y1="269.4534" x2="393.6369" y2="252.174" stroke="#64748B" stroke-width="2"/>
+  <line x1="393.6369" y1="252.174" x2="446.3045" y2="241.75" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="395.097" x2="500" y2="364.0962" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="364.0962" x2="500" y2="334.0514" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="334.0514" x2="500" y2="304.9191" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="304.9191" x2="500" y2="276.6582" stroke="#64748B" stroke-width="2"/>
+  <line x1="609.892" y1="446.1946" x2="643.4612" y2="429.7583" stroke="#64748B" stroke-width="2"/>
+  <line x1="643.4612" y1="429.7583" x2="676.4914" y2="413.586" stroke="#64748B" stroke-width="2"/>
+  <line x1="676.4914" y1="413.586" x2="708.9962" y2="397.6713" stroke="#64748B" stroke-width="2"/>
+  <line x1="708.9962" y1="397.6713" x2="740.9865" y2="382.008" stroke="#64748B" stroke-width="2"/>
+  <line x1="615.8739" y1="556.7342" x2="653.8283" y2="575.3176" stroke="#64748B" stroke-width="2"/>
+  <line x1="653.8283" y1="575.3176" x2="692.4473" y2="594.2264" stroke="#64748B" stroke-width="2"/>
+  <line x1="692.4473" y1="594.2264" x2="731.7494" y2="613.4692" stroke="#64748B" stroke-width="2"/>
+  <line x1="731.7494" y1="613.4692" x2="771.751" y2="633.0549" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="616.6432" x2="500" y2="656.2821" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="656.2821" x2="500" y2="697.3748" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="697.3748" x2="500" y2="740.0028" stroke="#64748B" stroke-width="2"/>
+  <line x1="500" y1="740.0028" x2="500" y2="784.2538" stroke="#64748B" stroke-width="2"/>
+  <line x1="384.1261" y1="556.7342" x2="346.1717" y2="575.3176" stroke="#64748B" stroke-width="2"/>
+  <line x1="346.1717" y1="575.3176" x2="307.5527" y2="594.2264" stroke="#64748B" stroke-width="2"/>
+  <line x1="307.5527" y1="594.2264" x2="268.2506" y2="613.4692" stroke="#64748B" stroke-width="2"/>
+  <line x1="268.2506" y1="613.4692" x2="228.249" y2="633.0549" stroke="#64748B" stroke-width="2"/>
+  <line x1="390.108" y1="446.1946" x2="356.5388" y2="429.7583" stroke="#64748B" stroke-width="2"/>
+  <line x1="356.5388" y1="429.7583" x2="323.5086" y2="413.586" stroke="#64748B" stroke-width="2"/>
+  <line x1="323.5086" y1="413.586" x2="291.0038" y2="397.6713" stroke="#64748B" stroke-width="2"/>
+  <line x1="291.0038" y1="397.6713" x2="259.0135" y2="382.008" stroke="#64748B" stroke-width="2"/>
+  <polygon points="500,222.0636 519.0064,230.1287 519.1776,246.4769 500,254.762 480.8224,246.4769 480.9936,230.1287" fill="#FBBF24" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="232.6053" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.9656" font-weight="700" fill="#111827">1</text>
+  <text x="500" y="238.2661" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.9656" font-weight="600" fill="#111827">BADGE</text>
+  <text x="500" y="243.9269" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.9656" font-weight="600" fill="#111827">COĞRAFYA</text>
+  <polygon points="535.1107,232.4978 571.7362,232.4978 572.4705,251.0968 535.4701,251.0968" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="553.6955" y="239.3321" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2419" font-weight="700" fill="#FFFFFF">2</text>
+  <text x="553.6955" y="244.1678" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2419" font-weight="600" fill="#FFFFFF">OUTER O1</text>
+  <polygon points="428.2638,232.4978 464.8893,232.4978 464.5299,251.0968 427.5295,251.0968" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="446.3045" y="239.3321" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2419" font-weight="700" fill="#FFFFFF">36</text>
+  <text x="446.3045" y="244.1678" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2419" font-weight="600" fill="#FFFFFF">OUTER O5</text>
+  <polygon points="587.4044,242.8162 624.2379,242.8162 625.5169,261.6281 588.3042,261.6281" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="606.3631" y="249.7284" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2904" font-weight="700" fill="#FFFFFF">3</text>
+  <text x="606.3631" y="254.6195" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2904" font-weight="600" fill="#FFFFFF">OUTER O2</text>
+  <polygon points="375.7621,242.8162 412.5956,242.8162 411.6958,261.6281 374.4831,261.6281" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="393.6369" y="249.7284" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2904" font-weight="700" fill="#FFFFFF">35</text>
+  <text x="393.6369" y="254.6195" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2904" font-weight="600" fill="#FFFFFF">OUTER O4</text>
+  <polygon points="637.5595,259.9192 674.7377,259.9192 676.5536,279.0867 638.989,279.0867" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="656.9558" y="266.9616" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.3715" font-weight="700" fill="#FFFFFF">4</text>
+  <text x="656.9558" y="271.9452" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.3715" font-weight="600" fill="#FFFFFF">OUTER O3</text>
+  <polygon points="325.2623,259.9192 362.4405,259.9192 361.011,279.0867 323.4464,279.0867" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="343.0442" y="266.9616" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.3715" font-weight="700" fill="#FFFFFF">34</text>
+  <text x="343.0442" y="271.9452" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.3715" font-weight="600" fill="#FFFFFF">OUTER O3</text>
+  <polygon points="484.2962,270.4297 515.7038,270.4297 515.8097,282.9286 484.1903,282.9286" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="275.0333" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="2.8506" font-weight="700" fill="#FFFFFF">41</text>
+  <text x="500" y="278.283" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="2.8506" font-weight="600" fill="#FFFFFF">INNER I5</text>
+  <polygon points="684.4954,283.6501 722.152,283.6501 724.4907,303.3167 686.4377,303.3167" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="704.3883" y="290.8753" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.4854" font-weight="700" fill="#FFFFFF">5</text>
+  <text x="704.3883" y="295.9886" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.4854" font-weight="600" fill="#FFFFFF">OUTER O4</text>
+  <polygon points="277.848,283.6501 315.5046,283.6501 313.5623,303.3167 275.5093,303.3167" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="295.6117" y="290.8753" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.4854" font-weight="700" fill="#FFFFFF">33</text>
+  <text x="295.6117" y="295.9886" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.4854" font-weight="600" fill="#FFFFFF">OUTER O2</text>
+  <polygon points="484.0585,298.5003 515.9415,298.5003 516.0505,311.3817 483.9495,311.3817" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="303.2445" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="2.9379" font-weight="700" fill="#FFFFFF">40</text>
+  <text x="500" y="306.5936" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="2.9379" font-weight="600" fill="#FFFFFF">INNER I4</text>
+  <polygon points="727.0855,313.7599 765.349,313.7599 768.1879,334.0689 729.515,334.0689" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="747.5274" y="321.2202" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.6319" font-weight="700" fill="#FFFFFF">6</text>
+  <text x="747.5274" y="326.5005" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.6319" font-weight="600" fill="#FFFFFF">OUTER O5</text>
+  <polygon points="234.651,313.7599 272.9145,313.7599 270.485,334.0689 231.8121,334.0689" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="252.4726" y="321.2202" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.6319" font-weight="700" fill="#FFFFFF">32</text>
+  <text x="252.4726" y="326.5005" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.6319" font-weight="600" fill="#FFFFFF">OUTER O1</text>
+  <polygon points="483.8136,327.4336 516.1864,327.4336 516.2989,340.7152 483.7011,340.7152" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="332.3248" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.0292" font-weight="700" fill="#FFFFFF">39</text>
+  <text x="500" y="335.778" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.0292" font-weight="600" fill="#FFFFFF">INNER I3</text>
+  <polygon points="782.4835,341.9318 804.1021,351.1054 807.0262,369.7172 787.9421,379.158 766.0894,369.7172 763.5552,351.1054" fill="#FBBF24" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="785.1867" y="353.9143" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6601" font-weight="700" fill="#111827">7</text>
+  <text x="785.1867" y="360.3668" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6601" font-weight="600" fill="#111827">BADGE</text>
+  <text x="785.1867" y="366.8193" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6601" font-weight="600" fill="#111827">EĞLENCE</text>
+  <polygon points="217.5165,341.9318 236.4448,351.1054 233.9106,369.7172 212.0579,379.158 192.9738,369.7172 195.8979,351.1054" fill="#FBBF24" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="214.8133" y="353.9143" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6601" font-weight="700" fill="#111827">31</text>
+  <text x="214.8133" y="360.3668" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6601" font-weight="600" fill="#111827">BADGE</text>
+  <text x="214.8133" y="366.8193" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6601" font-weight="600" fill="#111827">SPOR</text>
+  <polygon points="483.561,357.2698 516.439,357.2698 516.555,370.9707 483.445,370.9707" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="362.3151" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.1248" font-weight="700" fill="#FFFFFF">38</text>
+  <text x="500" y="365.8773" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.1248" font-weight="600" fill="#FFFFFF">INNER I2</text>
+  <polygon points="723.5449,375.0558 756.7241,375.0558 758.5522,389.0098 725.1368,389.0098" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="740.9865" y="380.194" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.1825" font-weight="700" fill="#FFFFFF">46</text>
+  <text x="740.9865" y="383.8221" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.1825" font-weight="600" fill="#FFFFFF">INNER I5</text>
+  <polygon points="243.2759,375.0558 276.4551,375.0558 274.8632,389.0098 241.4478,389.0098" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="259.0135" y="380.194" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.1825" font-weight="700" fill="#FFFFFF">66</text>
+  <text x="259.0135" y="383.8221" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.1825" font-weight="600" fill="#FFFFFF">INNER I5</text>
+  <polygon points="483.3004,388.0521 516.6996,388.0521 516.8193,402.1924 483.1807,402.1924" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="393.2587" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.225" font-weight="700" fill="#FFFFFF">37</text>
+  <text x="500" y="396.9352" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.225" font-weight="600" fill="#FFFFFF">INNER I1</text>
+  <polygon points="691.5302,390.608 724.9727,390.608 726.5875,404.7852 692.905,404.7852" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="708.9962" y="395.8282" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.2334" font-weight="700" fill="#FFFFFF">45</text>
+  <text x="708.9962" y="399.5143" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.2334" font-weight="600" fill="#FFFFFF">INNER I4</text>
+  <polygon points="275.0273,390.608 308.4698,390.608 307.095,404.7852 273.4125,404.7852" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="291.0038" y="395.8282" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.2334" font-weight="700" fill="#FFFFFF">65</text>
+  <text x="291.0038" y="399.5143" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.2334" font-weight="600" fill="#FFFFFF">INNER I4</text>
+  <polygon points="794.4798,391.4735 834.3098,391.4735 838.0346,413.4891 797.7608,413.4891" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="816.1366" y="399.5583" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.0211" font-weight="700" fill="#FFFFFF">8</text>
+  <text x="816.1366" y="405.2823" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.0211" font-weight="600" fill="#FFFFFF">OUTER O1</text>
+  <polygon points="165.6902,391.4735 205.5202,391.4735 202.2392,413.4891 161.9654,413.4891" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="183.8634" y="399.5583" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.0211" font-weight="700" fill="#FFFFFF">30</text>
+  <text x="183.8634" y="405.2823" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.0211" font-weight="600" fill="#FFFFFF">OUTER O5</text>
+  <polygon points="659.0024,406.4091 692.7125,406.4091 694.1069,420.8148 660.1529,420.8148" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="676.4914" y="411.7132" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.2855" font-weight="700" fill="#FFFFFF">44</text>
+  <text x="676.4914" y="415.4587" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.2855" font-weight="600" fill="#FFFFFF">INNER I3</text>
+  <polygon points="307.2875,406.4091 340.9976,406.4091 339.8471,420.8148 305.8931,420.8148" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="323.5086" y="411.7132" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.2855" font-weight="700" fill="#FFFFFF">64</text>
+  <text x="323.5086" y="415.4587" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.2855" font-weight="600" fill="#FFFFFF">INNER I3</text>
+  <polygon points="625.9508,422.465 659.9327,422.465 661.0994,437.1048 626.8696,437.1048" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="643.4612" y="427.8551" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.3389" font-weight="700" fill="#FFFFFF">43</text>
+  <text x="643.4612" y="431.6615" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.3389" font-weight="600" fill="#FFFFFF">INNER I2</text>
+  <polygon points="340.0673,422.465 374.0492,422.465 373.1304,437.1048 338.9006,437.1048" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="356.5388" y="427.8551" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.3389" font-weight="700" fill="#FFFFFF">63</text>
+  <text x="356.5388" y="431.6615" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.3389" font-weight="600" fill="#FFFFFF">INNER I2</text>
+  <polygon points="592.3618,438.782 626.62,438.782 627.5512,453.6617 593.041,453.6617" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="609.892" y="444.2602" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.3936" font-weight="700" fill="#FFFFFF">42</text>
+  <text x="609.892" y="448.129" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.3936" font-weight="600" fill="#FFFFFF">INNER I1</text>
+  <polygon points="373.38,438.782 407.6382,438.782 406.959,453.6617 372.4488,453.6617" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="390.108" y="444.2602" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.3936" font-weight="700" fill="#FFFFFF">62</text>
+  <text x="390.108" y="448.129" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.3936" font-weight="600" fill="#FFFFFF">INNER I1</text>
+  <polygon points="816.835,437.821 857.5992,437.821 861.678,460.8875 820.4488,460.8875" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="839.1293" y="446.2902" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.2608" font-weight="700" fill="#FFFFFF">9</text>
+  <text x="839.1293" y="452.2875" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.2608" font-weight="600" fill="#FFFFFF">OUTER O2</text>
+  <polygon points="142.4008,437.821 183.165,437.821 179.5512,460.8875 138.322,460.8875" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="160.8707" y="446.2902" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.2608" font-weight="700" fill="#FFFFFF">29</text>
+  <text x="160.8707" y="452.2875" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.2608" font-weight="600" fill="#FFFFFF">OUTER O4</text>
+  <polygon points="533.6141,500 532.584,507.4042 529.311,514.3513 524.0008,520.3538 517.0085,524.9831 508.8164,527.9036 500,528.9016 491.1836,527.9036 482.9915,524.9831 475.9992,520.3538 470.689,514.3513 467.416,507.4042 466.3859,500 467.6458,492.648 471.0871,485.8436 476.4589,480.036 483.3897,475.6017 491.4135,472.824 500,471.8782 508.5865,472.824 516.6103,475.6017 523.5411,480.036 528.9129,485.8436 532.3542,492.648" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="493.3852" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="11.6049" font-weight="700" fill="#111827">0</text>
+  <text x="500" y="506.6148" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="11.6049" font-weight="600" fill="#111827">CENTER</text>
+  <polygon points="830.0207,487.9548 871.7955,487.9548 876.1425,512.186 833.8793,512.186" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="852.9476" y="496.8499" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.5264" font-weight="700" fill="#FFFFFF">10</text>
+  <text x="852.9476" y="503.1501" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.5264" font-weight="600" fill="#FFFFFF">OUTER O3</text>
+  <polygon points="128.2045,487.9548 169.9793,487.9548 166.1207,512.186 123.8575,512.186" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="147.0524" y="496.8499" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.5264" font-weight="700" fill="#FFFFFF">28</text>
+  <text x="147.0524" y="503.1501" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.5264" font-weight="600" fill="#FFFFFF">OUTER O3</text>
+  <polygon points="832.9431,540.6375 875.7798,540.6375 880.2864,566.1238 836.936,566.1238" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="856.4737" y="549.9915" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.8127" font-weight="700" fill="#FFFFFF">11</text>
+  <text x="856.4737" y="556.6179" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.8127" font-weight="600" fill="#FFFFFF">OUTER O4</text>
+  <polygon points="124.2202,540.6375 167.0569,540.6375 163.064,566.1238 119.7136,566.1238" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="143.5263" y="549.9915" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.8127" font-weight="700" fill="#FFFFFF">27</text>
+  <text x="143.5263" y="556.6179" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.8127" font-weight="600" fill="#FFFFFF">OUTER O2</text>
+  <polygon points="597.3701,548.4943 633.4859,548.4943 634.5213,565.0381 598.1253,565.0381" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="615.8739" y="554.5836" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.7731" font-weight="700" fill="#FFFFFF">47</text>
+  <text x="615.8739" y="558.8849" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.7731" font-weight="600" fill="#FFFFFF">INNER I1</text>
+  <polygon points="366.5141,548.4943 402.6299,548.4943 401.8747,565.0381 365.4787,565.0381" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="384.1261" y="554.5836" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.7731" font-weight="700" fill="#FFFFFF">57</text>
+  <text x="384.1261" y="558.8849" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.7731" font-weight="600" fill="#FFFFFF">INNER I1</text>
+  <polygon points="635.0172,566.9343 671.4453,566.9343 672.7866,583.7665 636.0736,583.7665" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="653.8283" y="573.1294" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.8389" font-weight="700" fill="#FFFFFF">48</text>
+  <text x="653.8283" y="577.5058" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.8389" font-weight="600" fill="#FFFFFF">INNER I2</text>
+  <polygon points="328.5547,566.9343 364.9828,566.9343 363.9264,583.7665 327.2134,583.7665" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="346.1717" y="573.1294" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.8389" font-weight="700" fill="#FFFFFF">58</text>
+  <text x="346.1717" y="577.5058" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.8389" font-weight="600" fill="#FFFFFF">INNER I2</text>
+  <polygon points="673.321,585.696 710.0667,585.696 711.7247,602.8242 674.6889,602.8242" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="692.4473" y="591.9997" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9064" font-weight="700" fill="#FFFFFF">49</text>
+  <text x="692.4473" y="596.4531" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9064" font-weight="600" fill="#FFFFFF">INNER I3</text>
+  <polygon points="289.9333,585.696 326.679,585.696 325.3111,602.8242 288.2753,602.8242" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="307.5527" y="591.9997" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9064" font-weight="700" fill="#FFFFFF">59</text>
+  <text x="307.5527" y="596.4531" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9064" font-weight="600" fill="#FFFFFF">INNER I3</text>
+  <polygon points="824.7132,594.3416 868.6324,594.3416 873.1665,621.1405 828.707,621.1405" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="848.7918" y="604.1753" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.112" font-weight="700" fill="#FFFFFF">12</text>
+  <text x="848.7918" y="611.143" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.112" font-weight="600" fill="#FFFFFF">OUTER O5</text>
+  <polygon points="131.3676,594.3416 175.2868,594.3416 171.293,621.1405 126.8335,621.1405" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="151.2082" y="604.1753" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.112" font-weight="700" fill="#FFFFFF">26</text>
+  <text x="151.2082" y="611.143" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.112" font-weight="600" fill="#FFFFFF">OUTER O1</text>
+  <polygon points="712.2995,604.7877 749.3686,604.7877 751.3541,622.2198 713.99,622.2198" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="731.7494" y="611.203" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9757" font-weight="700" fill="#FFFFFF">50</text>
+  <text x="731.7494" y="615.7354" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9757" font-weight="600" fill="#FFFFFF">INNER I4</text>
+  <polygon points="250.6314,604.7877 287.7005,604.7877 286.01,622.2198 248.6459,622.2198" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="268.2506" y="611.203" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9757" font-weight="700" fill="#FFFFFF">60</text>
+  <text x="268.2506" y="615.7354" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9757" font-weight="600" fill="#FFFFFF">INNER I4</text>
+  <polygon points="481.4388,607.9367 518.5612,607.9367 518.7092,625.4192 481.2908,625.4192" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="614.3705" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9872" font-weight="700" fill="#FFFFFF">52</text>
+  <text x="500" y="618.9159" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="3.9872" font-weight="600" fill="#FFFFFF">INNER I1</text>
+  <polygon points="751.9691,624.2183 789.3671,624.2183 791.6918,641.9625 753.9933,641.9625" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="771.751" y="630.7482" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.0469" font-weight="700" fill="#FFFFFF">51</text>
+  <text x="771.751" y="635.3616" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.0469" font-weight="600" fill="#FFFFFF">INNER I5</text>
+  <polygon points="210.6329,624.2183 248.0309,624.2183 246.0067,641.9625 208.3082,641.9625" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="228.249" y="630.7482" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.0469" font-weight="700" fill="#FFFFFF">61</text>
+  <text x="228.249" y="635.3616" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.0469" font-weight="600" fill="#FFFFFF">INNER I5</text>
+  <polygon points="481.1059,647.2598 518.8941,647.2598 519.0475,665.3776 480.9525,665.3776" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="653.9267" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.1321" font-weight="700" fill="#FFFFFF">53</text>
+  <text x="500" y="658.6374" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.1321" font-weight="600" fill="#FFFFFF">INNER I2</text>
+  <polygon points="825.7054,636.6903 850.8875,648.8948 854.7863,673.7106 832.9838,686.3265 807.4815,673.7106 804.1025,648.8948" fill="#FBBF24" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="829.3044" y="652.6305" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="7.547" font-weight="700" fill="#111827">13</text>
+  <text x="829.3044" y="661.2341" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="7.547" font-weight="600" fill="#111827">BADGE</text>
+  <text x="829.3044" y="669.8377" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="7.547" font-weight="600" fill="#111827">TARİH</text>
+  <polygon points="174.2946,636.6903 195.8975,648.8948 192.5185,673.7106 167.0162,686.3265 145.2137,673.7106 149.1125,648.8948" fill="#FBBF24" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="170.6956" y="651.5551" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6603" font-weight="700" fill="#111827">25</text>
+  <text x="170.6956" y="658.0078" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6603" font-weight="600" fill="#111827">BADGE</text>
+  <text x="170.6956" y="664.4605" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6603" font-weight="600" fill="#111827">BİLİM &amp;</text>
+  <text x="170.6956" y="670.9132" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="5.6603" font-weight="600" fill="#111827">DOĞA</text>
+  <polygon points="480.7609,688.0192 519.2391,688.0192 519.3982,706.8077 480.6018,706.8077" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="694.9323" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2851" font-weight="700" fill="#FFFFFF">54</text>
+  <text x="500" y="699.8173" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.2851" font-weight="600" fill="#FFFFFF">INNER I3</text>
+  <polygon points="772.9736,697.35 818.9691,697.35 823.0802,726.7598 776.4918,726.7598" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="797.8664" y="708.2632" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.487" font-weight="700" fill="#FFFFFF">14</text>
+  <text x="797.8664" y="715.6584" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.487" font-weight="600" fill="#FFFFFF">OUTER O1</text>
+  <polygon points="181.0309,697.35 227.0264,697.35 223.5082,726.7598 176.9198,726.7598" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="202.1336" y="708.2632" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.487" font-weight="700" fill="#FFFFFF">24</text>
+  <text x="202.1336" y="715.6584" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.487" font-weight="600" fill="#FFFFFF">OUTER O5</text>
+  <polygon points="480.4029,730.2952 519.597,730.2952 519.7621,749.7922 480.2379,749.7922" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="737.4682" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.4467" font-weight="700" fill="#FFFFFF">55</text>
+  <text x="500" y="742.5374" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.4467" font-weight="600" fill="#FFFFFF">INNER I4</text>
+  <polygon points="729.8039,742.4327 776.7082,742.4327 780.3459,773.0239 732.825,773.0239" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="754.9099" y="753.8987" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5434" font-weight="700" fill="#FFFFFF">15</text>
+  <text x="754.9099" y="761.3581" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5434" font-weight="600" fill="#FFFFFF">OUTER O2</text>
+  <polygon points="223.2918,742.4327 270.1961,742.4327 267.175,773.0239 219.6541,773.0239" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="245.0901" y="753.8987" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5434" font-weight="700" fill="#FFFFFF">23</text>
+  <text x="245.0901" y="761.3581" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5434" font-weight="600" fill="#FFFFFF">OUTER O4</text>
+  <polygon points="480.0315,774.1739 519.9685,774.1739 520.1399,794.4203 479.8601,794.4203" fill="#7C3AED" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="781.6218" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.6176" font-weight="700" fill="#FFFFFF">56</text>
+  <text x="500" y="786.8859" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="4.6176" font-weight="600" fill="#FFFFFF">INNER I5</text>
+  <polygon points="676.3725,780.3317 724.0407,780.3317 727.0347,811.9342 678.7294,811.9342" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="701.5354" y="792.2895" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5589" font-weight="700" fill="#FFFFFF">16</text>
+  <text x="701.5354" y="799.7667" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5589" font-weight="600" fill="#FFFFFF">OUTER O3</text>
+  <polygon points="275.9593,780.3317 323.6275,780.3317 321.2706,811.9342 272.9653,811.9342" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="298.4646" y="792.2895" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5589" font-weight="700" fill="#FFFFFF">22</text>
+  <text x="298.4646" y="799.7667" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5589" font-weight="600" fill="#FFFFFF">OUTER O3</text>
+  <polygon points="614.4887,809.0555 662.7359,809.0555 664.9374,841.4356 616.0375,841.4356" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="639.5436" y="821.4139" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5313" font-weight="700" fill="#FFFFFF">17</text>
+  <text x="639.5436" y="828.8596" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5313" font-weight="600" fill="#FFFFFF">OUTER O4</text>
+  <polygon points="337.2641,809.0555 385.5113,809.0555 383.9625,841.4356 335.0626,841.4356" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="360.4564" y="821.4139" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5313" font-weight="700" fill="#FFFFFF">21</text>
+  <text x="360.4564" y="828.8596" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.5313" font-weight="600" fill="#FFFFFF">OUTER O2</text>
+  <polygon points="546.5983,826.9933 595.2071,826.9933 596.5049,859.8639 547.2335,859.8639" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="571.3827" y="839.6345" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.4611" font-weight="700" fill="#FFFFFF">18</text>
+  <text x="571.3827" y="847.0002" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.4611" font-weight="600" fill="#FFFFFF">OUTER O5</text>
+  <polygon points="404.7929,826.9933 453.4017,826.9933 452.7665,859.8639 403.4951,859.8639" fill="#2563EB" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="428.6173" y="839.6345" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.4611" font-weight="700" fill="#FFFFFF">20</text>
+  <text x="428.6173" y="847.0002" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.4611" font-weight="600" fill="#FFFFFF">OUTER O1</text>
+  <polygon points="500,820.6967 525.3419,835.0135 525.6472,864.1647 500,879.0053 474.3528,864.1647 474.6581,835.0135" fill="#FBBF24" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="500" y="838.1461" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.6408" font-weight="700" fill="#111827">19</text>
+  <text x="500" y="845.7166" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.6408" font-weight="600" fill="#111827">BADGE</text>
+  <text x="500" y="853.2871" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.6408" font-weight="600" fill="#111827">SANAT &amp;</text>
+  <text x="500" y="860.8576" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="6.6408" font-weight="600" fill="#111827">EDEBİYAT</text>
+  <text x="28" y="38" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#E2E8F0">CAMERA A — NUMBERED PERSPECTIVE GEOMETRY</text>
+  <text x="28" y="62" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8">elevation 58.0° | azimuth 90.0° | distance 1.55 | vertical FOV 42.0° | near/far 1.335332839</text>
+  <text x="972" y="38" text-anchor="end" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#BFDBFE">FRONT / NEAR: SOUTH — NODES 52-56</text>
+  <text x="972" y="58" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#94A3B8">NORTH 1 | NE 7 | SE 13 | SOUTH 19 | SW 25 | NW 31</text>
+</svg>

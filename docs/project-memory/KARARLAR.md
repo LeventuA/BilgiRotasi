@@ -117,7 +117,36 @@
 - Görsel onay alınmadan APK üretimine geçilmeyecek.
 - Yapay görsel modelinin kare sayımına güvenilmeyecek.
 - Son başarısız görseller kullanılmayacak.
-- 8 kategori rozeti ile 6 fiziksel rozet noktası eşleştirilmeden çalışma ilerlemeyecek.
+- Hazırlanan 8 alternatif rozet konsepti tamamen iptal edilmiştir; 8'den 6'ya
+  seçim/eşleme yapılmayacaktır.
+- Tahtadaki 6 rozet yalnız mevcut oyun kategorilerini temsil edecektir:
+  Coğrafya, Eğlence, Tarih, Sanat & Edebiyat, Bilim & Doğa ve Spor.
+- İlk yeniden başlatma adımı, canlı `BoardMap` verisinden üretilen düz ve numaralı
+  deterministik geometri olacaktır; bu veri oyun kodunun alternatifi değildir.
+- Debug yönelimi canlı `BoardMap.armAngle/position` değerlerini aynen koruyacak;
+  tahta Spor yolunu alta getirmek için döndürülmeyecektir. Kuzey node `1`, güney
+  node `19`, Spor rozeti kuzeybatıda node `31`dir.
+- Aynı kaynak iki kez işlendiğinde SVG ve PNG çıktıları birebir aynı olacaktır.
+- 67 kimlik, altı dış `1-5` aralığı, altı iç `1-5` yol, sınırlar, bağlantılar ve
+  çakışmasızlık otomatik testlerle geçmeden görsel onaya sunulmayacaktır.
+- Numaralı geometri onaylanmadan stil, perspektif/3B, Flutter veya APK aşamasına
+  geçilmeyecektir.
+- Perspektif önizlemede tamamlanmış 2B tahta veya raster tek parça warp
+  edilmeyecek; her node düzlemi ve bağlantı aynı pinhole kamera fonksiyonuyla
+  ayrı ayrı projekte edilecektir.
+- Kamera A/B/C aynı güney/ön azimutu (`90°`), mesafe (`1.55`) ve dikey FOV'u
+  (`42°`) paylaşacak; yalnız yükseliş `58° / 46° / 34°` olarak değişecektir.
+- Kullanıcı A/B/C arasından açıkça seçim yapmadan stil, doku, gölge, 3B kalınlık,
+  Flutter veya APK aşamasına geçilmeyecektir.
+- Kullanıcı kanonik kamera olarak Kamera B'yi seçmiştir: yükseliş `46°`,
+  güney/ön azimut `90°`, mesafe `1.55`, dikey FOV `42°` ve yakın/uzak ölçek
+  oranı `1.463752079` sabit kalacaktır.
+- Yapısal 3B aşamasında her dış/iç taş, rozet ve merkez ayrı üst ve yan yüzlere
+  sahip olacaktır; tek bir 2B raster/tahta eğilmeyecektir.
+- Sabit dünya birimi kalınlıkları taşıyıcı taban `0.012`, dış taş `0.024`, iç
+  taş `0.020`, rozet `0.034` ve merkez `0.040` olarak kabul edilmiştir.
+- AŞAMA 3 statik görseli açıkça onaylanmadan final stil/doku, logo, ikon, piyon,
+  Flutter veya APK aşamasına geçilmeyecektir.
 
 ---
 

@@ -97,13 +97,35 @@ Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
 
 ## P2 - Görsel ve pazarlama
 
-### BR-P2-001 - 3B tahta için 6 rozet eşlemesini çöz
+### BR-P2-001 - 3B tahta için 6 rozet eşlemesini çöz — İPTAL/KAPATILDI
 
-Çalışmaya yeniden başlamadan önce gerçek 6 kategori ve 8 konsept arasındaki seçim netleşmeli.
+8 alternatif rozet konsepti kullanıcı kararıyla tamamen iptal edildi. Eşleme
+yapılmayacak; tahtada yalnız Coğrafya, Eğlence, Tarih, Sanat & Edebiyat,
+Bilim & Doğa ve Spor kategorileri kullanılacak.
 
-### BR-P2-002 - Numaralı geometri önizlemesi
+### BR-P2-002 - Numaralı geometri önizlemesi — TAMAMLANDI / ONAYLANDI
 
-67 node'u görsel debug katmanında doğrula. Onay alınmadan süsleme veya APK yok.
+İlk debug önizlemesindeki keyfî dönüş kaldırıldı. 67 node canlı `BoardMap` tür,
+kategori, rozet, bağlantı, sıra ve normalize koordinatlarıyla 67/67 doğrulandı.
+Deterministik SVG ve 4096x4096 PNG yenilendi; gerçek alt yol `52-56`, Spor rozeti
+kuzeybatıda node `31`dir. Düzeltilmiş düz geometri kullanıcı tarafından
+onaylandı.
+
+### BR-P2-002A - Deterministik perspektif kamera önizlemeleri — TAMAMLANDI / KAMERA B SEÇİLDİ
+
+Canlı BoardMap yönünü koruyan ayrı parça projeksiyonuyla Kamera A (`58°`),
+Kamera B (`46°`) ve Kamera C (`34°`) üretildi. Üçünde de 67 node, altı dış
+`1-5` aralığı, altı iç `1-5` yolu ve güneydeki `52-56` yolu görünürlük/
+çakışmasızlık testlerinden geçti. Kullanıcı kanonik açı olarak Kamera B'yi
+seçti.
+
+### BR-P2-002B - Kamera B yapısal 3B önizlemesi — TAMAMLANDI / GÖRSEL ONAY BEKLİYOR
+
+Kamera B sabitleriyle 30 dış, 30 iç, 6 rozet ve merkez ayrı üst/yan yüzlere
+sahip 67 parça olarak üretildi. BoardMap paritesi 67/67, altı dış ve altı iç yol
+5/5/5/5/5/5, güney `52-56`, Spor `62-66`, etiket/merkez/rozet boşlukları ve
+uzaktan yakına örtüşme sırası PASS'tir. Ana ve güney yakın plan 4096x4096
+çıktıları hazırdır. Statik görsel onayı olmadan final stil, Flutter veya APK yok.
 
 ### BR-P2-003 - Profesyonel tanıtım videosu
 

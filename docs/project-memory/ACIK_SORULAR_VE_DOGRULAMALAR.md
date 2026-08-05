@@ -12,6 +12,12 @@
 10. UMP onay akışı EEA testinde çalışıyor mu?
 11. Canlı Düello iki güncel kapalı test cihazında uçtan uca sorunsuz mu?
 12. `experiment/true-3d-board-renderer-v2` hâlâ açık mı?
-13. 8 rozet konseptinden hangi 6'sı tahtada kullanılacak?
-14. Telefon/tablet/Chromebook/PC/XR varlıklarının hangileri Play Console'a gerçekten yüklendi?
-15. Onaylanmış bir final tanıtım videosu daha sonra üretildi mi?
+13. Telefon/tablet/Chromebook/PC/XR varlıklarının hangileri Play Console'a gerçekten yüklendi?
+14. Onaylanmış bir final tanıtım videosu daha sonra üretildi mi?
+15. AŞAMA 2 perspektif önizlemelerinden Kamera A, B veya C hangisi seçilecek?
+
+## Kapatılan konular
+
+- 2026-08-05 — 8 rozet konseptinden 6'sını seçme/eşleme sorusu kapatıldı.
+  Kullanıcı 8 alternatif konsepti tamamen iptal etti; yalnız oyunun mevcut 6
+  kategorisi kullanılacak.

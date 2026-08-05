@@ -80,9 +80,44 @@ Son canlı kontrollerde:
 - `experiment/true-3d-board-renderer-v2` açıldı; konuşma kesiminde gerçek renderer commit'i yoktu.
 - Hiçbir 3B çalışma release dalına merge edilmedi.
 - Son görsel kabul edilmedi ve çalışma durduruldu.
-- 8 adet kategori rozeti konsepti üretildi; tahtadaki 6 fiziksel rozet noktasına eşleme çözülmedi.
+- Hazırlanan 8 alternatif rozet konsepti iptal edildi; tahtada yalnız mevcut
+  Coğrafya, Eğlence, Tarih, Sanat & Edebiyat, Bilim & Doğa ve Spor kategorileri
+  kullanılacak.
+- `experiment/deterministic-board-geometry-v1` dalında canlı `BoardMap` kaynak alınarak
+  düz ve numaralı AŞAMA 1 geometri önizlemesi üretildi.
+- Önizleme 67 düğümü eksiksiz içerir: merkez `0`, dış halka `1-36`, rozetler
+  `1/7/13/19/25/31` ve iç yollar `37-66`.
+- İlk önizlemenin canlı `BoardMap.position` yönünü keyfî döndürdüğü parite
+  kontrolünde bulundu ve AŞAMA 1 geometrisi canlı kaynağa hizalandı.
+- Canlı yön eşlemesinde kuzey rozeti node `1`, güney rozeti node `19`, alt iç
+  yol `52-56`; Spor rozeti node `31` ve kuzeybatıdadır.
+- Altı dış aralığın ve altı iç yolun her biri `1-5` olarak doğrulandı.
+- Otomatik doğrulama düğüm çakışması, kırpılma veya geçersiz/tek yönlü bağlantı
+  bulmadı. SVG ve 4096x4096 PNG çıktıları deterministiktir.
+- AŞAMA 1 çalışması yalnız düz geometri/debug katmanıydı; o adımda stil,
+  perspektif/3B, Flutter ve APK aşamalarına geçilmedi.
+- Düzeltilmiş AŞAMA 1 geometrisi kullanıcı tarafından görsel olarak onaylandı.
+- AŞAMA 2'de canlı yönleri koruyan, her node düzlemini ayrı pinhole kamera
+  fonksiyonuyla işleyen üç numaralı perspektif önizlemesi üretildi:
+  - Kamera A: 58° yükseliş,
+  - Kamera B: 46° yükseliş,
+  - Kamera C: 34° yükseliş.
+- Üç kamerada da azimut 90°, kamera mesafesi 1.55 ve dikey görüş açısı 42°'dir;
+  BoardMap paritesi 67/67 ve tüm iç/dış yollar 5/5/5/5/5/5 PASS'tir.
+- AŞAMA 2 yalnız perspektif geometrisidir; stil, doku, gölge, 3B kalınlık,
+  Flutter veya APK eklenmedi.
+- Kullanıcı kanonik açı olarak Kamera B'yi seçti: 46° yükseliş, 90° azimut,
+  1.55 mesafe, 42° dikey FOV ve 1.463752079 yakın/uzak ölçek oranı.
+- AŞAMA 3'te 67 node ayrı üst ve yan yüzleri olan fiziksel parçalar halinde
+  yapısal olarak extrude edildi. Sabit kalınlıklar dünya biriminde taşıyıcı
+  taban 0.012, dış 0.024, iç 0.020, rozet 0.034 ve merkez 0.040'tır.
+- Ana ve güney yakın plan 4096x4096 çıktılarında tüm 67 kimlik, güney `52-56`,
+  Spor `62-66` ve altı iç/dış 5'li yol otomatik doğrulamadan geçti.
+- AŞAMA 3 yalnız yapısal 3B geometridir; final stil/doku, logo, ikon, piyon,
+  Flutter veya APK eklenmedi.
 
-**Durum:** `DURDURULDU`; çalışan oyuna etkisi yok.
+**Durum:** Kamera B seçildi ve AŞAMA 3 yapısal 3B önizlemesi hazır; statik
+görsel onayı bekleniyor. Çalışan oyuna etkisi yoktur.
 
 ---
 
@@ -156,4 +191,5 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`
 4. Soru düzeltmelerini test et, PR aç, incele ve merge et.
 5. Yeni AAB'yi mevcut Kapalı Test kanalına güncelleme olarak yükle.
 6. Ödüllü reklamın oyun başına hak kararını canlı kodda doğrula ve gerekiyorsa uygula.
-7. 3B tahta çalışmasına, geometri ve 6-rozet eşlemesi çözülmeden dönme.
+7. Kamera B AŞAMA 3 yapısal 3B önizlemesini görsel olarak onayla; onay olmadan
+   final stil, Flutter veya APK aşamasına geçme.
