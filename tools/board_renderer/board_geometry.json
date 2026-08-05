@@ -1,0 +1,1101 @@
+{
+  "canvas": {
+    "height_normalized": 1.0,
+    "width_normalized": 1.0
+  },
+  "nodes": [
+    {
+      "angle_degrees": 0.0,
+      "connected_node_ids": [
+        37,
+        42,
+        47,
+        52,
+        57,
+        62
+      ],
+      "height_normalized": 0.08,
+      "id": 0,
+      "label": "CENTER 0",
+      "position_in_segment": 0,
+      "sector": null,
+      "type": "center",
+      "width_normalized": 0.08,
+      "x_normalized": 0.5,
+      "y_normalized": 0.5
+    },
+    {
+      "angle_degrees": 150.0,
+      "connected_node_ids": [
+        2,
+        36,
+        41
+      ],
+      "height_normalized": 0.06,
+      "id": 1,
+      "label": "BADGE | GEOGRAPHY",
+      "position_in_segment": 0,
+      "sector": 0,
+      "type": "badge",
+      "width_normalized": 0.06,
+      "x_normalized": 0.136269,
+      "y_normalized": 0.71
+    },
+    {
+      "angle_degrees": 160.0,
+      "connected_node_ids": [
+        1,
+        3
+      ],
+      "height_normalized": 0.034,
+      "id": 2,
+      "label": "OUTER 1/5 | HISTORY",
+      "position_in_segment": 1,
+      "sector": 0,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.105329,
+      "y_normalized": 0.643648
+    },
+    {
+      "angle_degrees": 170.0,
+      "connected_node_ids": [
+        2,
+        4
+      ],
+      "height_normalized": 0.034,
+      "id": 3,
+      "label": "OUTER 2/5 | SPORT",
+      "position_in_segment": 2,
+      "sector": 0,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.086381,
+      "y_normalized": 0.572932
+    },
+    {
+      "angle_degrees": 180.0,
+      "connected_node_ids": [
+        3,
+        5
+      ],
+      "height_normalized": 0.034,
+      "id": 4,
+      "label": "OUTER 3/5 | ENTERTAINMENT",
+      "position_in_segment": 3,
+      "sector": 0,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.08,
+      "y_normalized": 0.5
+    },
+    {
+      "angle_degrees": 190.0,
+      "connected_node_ids": [
+        4,
+        6
+      ],
+      "height_normalized": 0.034,
+      "id": 5,
+      "label": "OUTER 4/5 | SCIENCE & NATURE",
+      "position_in_segment": 4,
+      "sector": 0,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.086381,
+      "y_normalized": 0.427068
+    },
+    {
+      "angle_degrees": 200.0,
+      "connected_node_ids": [
+        5,
+        7
+      ],
+      "height_normalized": 0.034,
+      "id": 6,
+      "label": "OUTER 5/5 | ART & LITERATURE",
+      "position_in_segment": 5,
+      "sector": 0,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.105329,
+      "y_normalized": 0.356352
+    },
+    {
+      "angle_degrees": 210.0,
+      "connected_node_ids": [
+        6,
+        8,
+        46
+      ],
+      "height_normalized": 0.06,
+      "id": 7,
+      "label": "BADGE | ENTERTAINMENT",
+      "position_in_segment": 0,
+      "sector": 1,
+      "type": "badge",
+      "width_normalized": 0.06,
+      "x_normalized": 0.136269,
+      "y_normalized": 0.29
+    },
+    {
+      "angle_degrees": 220.0,
+      "connected_node_ids": [
+        7,
+        9
+      ],
+      "height_normalized": 0.034,
+      "id": 8,
+      "label": "OUTER 1/5 | ART & LITERATURE",
+      "position_in_segment": 1,
+      "sector": 1,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.178261,
+      "y_normalized": 0.230029
+    },
+    {
+      "angle_degrees": 230.0,
+      "connected_node_ids": [
+        8,
+        10
+      ],
+      "height_normalized": 0.034,
+      "id": 9,
+      "label": "OUTER 2/5 | GEOGRAPHY",
+      "position_in_segment": 2,
+      "sector": 1,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.230029,
+      "y_normalized": 0.178261
+    },
+    {
+      "angle_degrees": 240.0,
+      "connected_node_ids": [
+        9,
+        11
+      ],
+      "height_normalized": 0.034,
+      "id": 10,
+      "label": "OUTER 3/5 | SCIENCE & NATURE",
+      "position_in_segment": 3,
+      "sector": 1,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.29,
+      "y_normalized": 0.136269
+    },
+    {
+      "angle_degrees": 250.0,
+      "connected_node_ids": [
+        10,
+        12
+      ],
+      "height_normalized": 0.034,
+      "id": 11,
+      "label": "OUTER 4/5 | HISTORY",
+      "position_in_segment": 4,
+      "sector": 1,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.356352,
+      "y_normalized": 0.105329
+    },
+    {
+      "angle_degrees": 260.0,
+      "connected_node_ids": [
+        11,
+        13
+      ],
+      "height_normalized": 0.034,
+      "id": 12,
+      "label": "OUTER 5/5 | SPORT",
+      "position_in_segment": 5,
+      "sector": 1,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.427068,
+      "y_normalized": 0.086381
+    },
+    {
+      "angle_degrees": 270.0,
+      "connected_node_ids": [
+        12,
+        14,
+        51
+      ],
+      "height_normalized": 0.06,
+      "id": 13,
+      "label": "BADGE | HISTORY",
+      "position_in_segment": 0,
+      "sector": 2,
+      "type": "badge",
+      "width_normalized": 0.06,
+      "x_normalized": 0.5,
+      "y_normalized": 0.08
+    },
+    {
+      "angle_degrees": 280.0,
+      "connected_node_ids": [
+        13,
+        15
+      ],
+      "height_normalized": 0.034,
+      "id": 14,
+      "label": "OUTER 1/5 | SCIENCE & NATURE",
+      "position_in_segment": 1,
+      "sector": 2,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.572932,
+      "y_normalized": 0.086381
+    },
+    {
+      "angle_degrees": 290.0,
+      "connected_node_ids": [
+        14,
+        16
+      ],
+      "height_normalized": 0.034,
+      "id": 15,
+      "label": "OUTER 2/5 | ENTERTAINMENT",
+      "position_in_segment": 2,
+      "sector": 2,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.643648,
+      "y_normalized": 0.105329
+    },
+    {
+      "angle_degrees": 300.0,
+      "connected_node_ids": [
+        15,
+        17
+      ],
+      "height_normalized": 0.034,
+      "id": 16,
+      "label": "OUTER 3/5 | SPORT",
+      "position_in_segment": 3,
+      "sector": 2,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.71,
+      "y_normalized": 0.136269
+    },
+    {
+      "angle_degrees": 310.0,
+      "connected_node_ids": [
+        16,
+        18
+      ],
+      "height_normalized": 0.034,
+      "id": 17,
+      "label": "OUTER 4/5 | ART & LITERATURE",
+      "position_in_segment": 4,
+      "sector": 2,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.769971,
+      "y_normalized": 0.178261
+    },
+    {
+      "angle_degrees": 320.0,
+      "connected_node_ids": [
+        17,
+        19
+      ],
+      "height_normalized": 0.034,
+      "id": 18,
+      "label": "OUTER 5/5 | GEOGRAPHY",
+      "position_in_segment": 5,
+      "sector": 2,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.821739,
+      "y_normalized": 0.230029
+    },
+    {
+      "angle_degrees": 330.0,
+      "connected_node_ids": [
+        18,
+        20,
+        56
+      ],
+      "height_normalized": 0.06,
+      "id": 19,
+      "label": "BADGE | ART & LITERATURE",
+      "position_in_segment": 0,
+      "sector": 3,
+      "type": "badge",
+      "width_normalized": 0.06,
+      "x_normalized": 0.863731,
+      "y_normalized": 0.29
+    },
+    {
+      "angle_degrees": 340.0,
+      "connected_node_ids": [
+        19,
+        21
+      ],
+      "height_normalized": 0.034,
+      "id": 20,
+      "label": "OUTER 1/5 | SPORT",
+      "position_in_segment": 1,
+      "sector": 3,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.894671,
+      "y_normalized": 0.356352
+    },
+    {
+      "angle_degrees": 350.0,
+      "connected_node_ids": [
+        20,
+        22
+      ],
+      "height_normalized": 0.034,
+      "id": 21,
+      "label": "OUTER 2/5 | HISTORY",
+      "position_in_segment": 2,
+      "sector": 3,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.913619,
+      "y_normalized": 0.427068
+    },
+    {
+      "angle_degrees": 0.0,
+      "connected_node_ids": [
+        21,
+        23
+      ],
+      "height_normalized": 0.034,
+      "id": 22,
+      "label": "OUTER 3/5 | GEOGRAPHY",
+      "position_in_segment": 3,
+      "sector": 3,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.92,
+      "y_normalized": 0.5
+    },
+    {
+      "angle_degrees": 10.0,
+      "connected_node_ids": [
+        22,
+        24
+      ],
+      "height_normalized": 0.034,
+      "id": 23,
+      "label": "OUTER 4/5 | SCIENCE & NATURE",
+      "position_in_segment": 4,
+      "sector": 3,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.913619,
+      "y_normalized": 0.572932
+    },
+    {
+      "angle_degrees": 20.0,
+      "connected_node_ids": [
+        23,
+        25
+      ],
+      "height_normalized": 0.034,
+      "id": 24,
+      "label": "OUTER 5/5 | ENTERTAINMENT",
+      "position_in_segment": 5,
+      "sector": 3,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.894671,
+      "y_normalized": 0.643648
+    },
+    {
+      "angle_degrees": 30.0,
+      "connected_node_ids": [
+        24,
+        26,
+        61
+      ],
+      "height_normalized": 0.06,
+      "id": 25,
+      "label": "BADGE | SCIENCE & NATURE",
+      "position_in_segment": 0,
+      "sector": 4,
+      "type": "badge",
+      "width_normalized": 0.06,
+      "x_normalized": 0.863731,
+      "y_normalized": 0.71
+    },
+    {
+      "angle_degrees": 40.0,
+      "connected_node_ids": [
+        25,
+        27
+      ],
+      "height_normalized": 0.034,
+      "id": 26,
+      "label": "OUTER 1/5 | GEOGRAPHY",
+      "position_in_segment": 1,
+      "sector": 4,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.821739,
+      "y_normalized": 0.769971
+    },
+    {
+      "angle_degrees": 50.0,
+      "connected_node_ids": [
+        26,
+        28
+      ],
+      "height_normalized": 0.034,
+      "id": 27,
+      "label": "OUTER 2/5 | ART & LITERATURE",
+      "position_in_segment": 2,
+      "sector": 4,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.769971,
+      "y_normalized": 0.821739
+    },
+    {
+      "angle_degrees": 60.0,
+      "connected_node_ids": [
+        27,
+        29
+      ],
+      "height_normalized": 0.034,
+      "id": 28,
+      "label": "OUTER 3/5 | ENTERTAINMENT",
+      "position_in_segment": 3,
+      "sector": 4,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.71,
+      "y_normalized": 0.863731
+    },
+    {
+      "angle_degrees": 70.0,
+      "connected_node_ids": [
+        28,
+        30
+      ],
+      "height_normalized": 0.034,
+      "id": 29,
+      "label": "OUTER 4/5 | SPORT",
+      "position_in_segment": 4,
+      "sector": 4,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.643648,
+      "y_normalized": 0.894671
+    },
+    {
+      "angle_degrees": 80.0,
+      "connected_node_ids": [
+        29,
+        31
+      ],
+      "height_normalized": 0.034,
+      "id": 30,
+      "label": "OUTER 5/5 | HISTORY",
+      "position_in_segment": 5,
+      "sector": 4,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.572932,
+      "y_normalized": 0.913619
+    },
+    {
+      "angle_degrees": 90.0,
+      "connected_node_ids": [
+        30,
+        32,
+        66
+      ],
+      "height_normalized": 0.06,
+      "id": 31,
+      "label": "BADGE | SPORT",
+      "position_in_segment": 0,
+      "sector": 5,
+      "type": "badge",
+      "width_normalized": 0.06,
+      "x_normalized": 0.5,
+      "y_normalized": 0.92
+    },
+    {
+      "angle_degrees": 100.0,
+      "connected_node_ids": [
+        31,
+        33
+      ],
+      "height_normalized": 0.034,
+      "id": 32,
+      "label": "OUTER 1/5 | ENTERTAINMENT",
+      "position_in_segment": 1,
+      "sector": 5,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.427068,
+      "y_normalized": 0.913619
+    },
+    {
+      "angle_degrees": 110.0,
+      "connected_node_ids": [
+        32,
+        34
+      ],
+      "height_normalized": 0.034,
+      "id": 33,
+      "label": "OUTER 2/5 | SCIENCE & NATURE",
+      "position_in_segment": 2,
+      "sector": 5,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.356352,
+      "y_normalized": 0.894671
+    },
+    {
+      "angle_degrees": 120.0,
+      "connected_node_ids": [
+        33,
+        35
+      ],
+      "height_normalized": 0.034,
+      "id": 34,
+      "label": "OUTER 3/5 | HISTORY",
+      "position_in_segment": 3,
+      "sector": 5,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.29,
+      "y_normalized": 0.863731
+    },
+    {
+      "angle_degrees": 130.0,
+      "connected_node_ids": [
+        34,
+        36
+      ],
+      "height_normalized": 0.034,
+      "id": 35,
+      "label": "OUTER 4/5 | GEOGRAPHY",
+      "position_in_segment": 4,
+      "sector": 5,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.230029,
+      "y_normalized": 0.821739
+    },
+    {
+      "angle_degrees": 140.0,
+      "connected_node_ids": [
+        1,
+        35
+      ],
+      "height_normalized": 0.034,
+      "id": 36,
+      "label": "OUTER 5/5 | ART & LITERATURE",
+      "position_in_segment": 5,
+      "sector": 5,
+      "type": "outer_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.178261,
+      "y_normalized": 0.769971
+    },
+    {
+      "angle_degrees": 150.0,
+      "connected_node_ids": [
+        0,
+        38
+      ],
+      "height_normalized": 0.026,
+      "id": 37,
+      "label": "INNER 1/5 | ART & LITERATURE",
+      "position_in_segment": 1,
+      "sector": 0,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.409067,
+      "y_normalized": 0.5525
+    },
+    {
+      "angle_degrees": 150.0,
+      "connected_node_ids": [
+        37,
+        39
+      ],
+      "height_normalized": 0.026,
+      "id": 38,
+      "label": "INNER 2/5 | ENTERTAINMENT",
+      "position_in_segment": 2,
+      "sector": 0,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.361436,
+      "y_normalized": 0.58
+    },
+    {
+      "angle_degrees": 150.0,
+      "connected_node_ids": [
+        38,
+        40
+      ],
+      "height_normalized": 0.026,
+      "id": 39,
+      "label": "INNER 3/5 | SPORT",
+      "position_in_segment": 3,
+      "sector": 0,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.313805,
+      "y_normalized": 0.6075
+    },
+    {
+      "angle_degrees": 150.0,
+      "connected_node_ids": [
+        39,
+        41
+      ],
+      "height_normalized": 0.026,
+      "id": 40,
+      "label": "INNER 4/5 | HISTORY",
+      "position_in_segment": 4,
+      "sector": 0,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.266173,
+      "y_normalized": 0.635
+    },
+    {
+      "angle_degrees": 150.0,
+      "connected_node_ids": [
+        1,
+        40
+      ],
+      "height_normalized": 0.026,
+      "id": 41,
+      "label": "INNER 5/5 | SCIENCE & NATURE",
+      "position_in_segment": 5,
+      "sector": 0,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.218542,
+      "y_normalized": 0.6625
+    },
+    {
+      "angle_degrees": 210.0,
+      "connected_node_ids": [
+        0,
+        43
+      ],
+      "height_normalized": 0.026,
+      "id": 42,
+      "label": "INNER 1/5 | SCIENCE & NATURE",
+      "position_in_segment": 1,
+      "sector": 1,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.409067,
+      "y_normalized": 0.4475
+    },
+    {
+      "angle_degrees": 210.0,
+      "connected_node_ids": [
+        42,
+        44
+      ],
+      "height_normalized": 0.026,
+      "id": 43,
+      "label": "INNER 2/5 | HISTORY",
+      "position_in_segment": 2,
+      "sector": 1,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.361436,
+      "y_normalized": 0.42
+    },
+    {
+      "angle_degrees": 210.0,
+      "connected_node_ids": [
+        43,
+        45
+      ],
+      "height_normalized": 0.026,
+      "id": 44,
+      "label": "INNER 3/5 | GEOGRAPHY",
+      "position_in_segment": 3,
+      "sector": 1,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.313805,
+      "y_normalized": 0.3925
+    },
+    {
+      "angle_degrees": 210.0,
+      "connected_node_ids": [
+        44,
+        46
+      ],
+      "height_normalized": 0.026,
+      "id": 45,
+      "label": "INNER 4/5 | SPORT",
+      "position_in_segment": 4,
+      "sector": 1,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.266173,
+      "y_normalized": 0.365
+    },
+    {
+      "angle_degrees": 210.0,
+      "connected_node_ids": [
+        7,
+        45
+      ],
+      "height_normalized": 0.026,
+      "id": 46,
+      "label": "INNER 5/5 | ART & LITERATURE",
+      "position_in_segment": 5,
+      "sector": 1,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.218542,
+      "y_normalized": 0.3375
+    },
+    {
+      "angle_degrees": 270.0,
+      "connected_node_ids": [
+        0,
+        48
+      ],
+      "height_normalized": 0.026,
+      "id": 47,
+      "label": "INNER 1/5 | SPORT",
+      "position_in_segment": 1,
+      "sector": 2,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.395
+    },
+    {
+      "angle_degrees": 270.0,
+      "connected_node_ids": [
+        47,
+        49
+      ],
+      "height_normalized": 0.026,
+      "id": 48,
+      "label": "INNER 2/5 | ART & LITERATURE",
+      "position_in_segment": 2,
+      "sector": 2,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.34
+    },
+    {
+      "angle_degrees": 270.0,
+      "connected_node_ids": [
+        48,
+        50
+      ],
+      "height_normalized": 0.026,
+      "id": 49,
+      "label": "INNER 3/5 | ENTERTAINMENT",
+      "position_in_segment": 3,
+      "sector": 2,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.285
+    },
+    {
+      "angle_degrees": 270.0,
+      "connected_node_ids": [
+        49,
+        51
+      ],
+      "height_normalized": 0.026,
+      "id": 50,
+      "label": "INNER 4/5 | GEOGRAPHY",
+      "position_in_segment": 4,
+      "sector": 2,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.23
+    },
+    {
+      "angle_degrees": 270.0,
+      "connected_node_ids": [
+        13,
+        50
+      ],
+      "height_normalized": 0.026,
+      "id": 51,
+      "label": "INNER 5/5 | SCIENCE & NATURE",
+      "position_in_segment": 5,
+      "sector": 2,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.175
+    },
+    {
+      "angle_degrees": 330.0,
+      "connected_node_ids": [
+        0,
+        53
+      ],
+      "height_normalized": 0.026,
+      "id": 52,
+      "label": "INNER 1/5 | GEOGRAPHY",
+      "position_in_segment": 1,
+      "sector": 3,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.590933,
+      "y_normalized": 0.4475
+    },
+    {
+      "angle_degrees": 330.0,
+      "connected_node_ids": [
+        52,
+        54
+      ],
+      "height_normalized": 0.026,
+      "id": 53,
+      "label": "INNER 2/5 | SCIENCE & NATURE",
+      "position_in_segment": 2,
+      "sector": 3,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.638564,
+      "y_normalized": 0.42
+    },
+    {
+      "angle_degrees": 330.0,
+      "connected_node_ids": [
+        53,
+        55
+      ],
+      "height_normalized": 0.026,
+      "id": 54,
+      "label": "INNER 3/5 | HISTORY",
+      "position_in_segment": 3,
+      "sector": 3,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.686195,
+      "y_normalized": 0.3925
+    },
+    {
+      "angle_degrees": 330.0,
+      "connected_node_ids": [
+        54,
+        56
+      ],
+      "height_normalized": 0.026,
+      "id": 55,
+      "label": "INNER 4/5 | ENTERTAINMENT",
+      "position_in_segment": 4,
+      "sector": 3,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.733827,
+      "y_normalized": 0.365
+    },
+    {
+      "angle_degrees": 330.0,
+      "connected_node_ids": [
+        19,
+        55
+      ],
+      "height_normalized": 0.026,
+      "id": 56,
+      "label": "INNER 5/5 | SPORT",
+      "position_in_segment": 5,
+      "sector": 3,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.781458,
+      "y_normalized": 0.3375
+    },
+    {
+      "angle_degrees": 30.0,
+      "connected_node_ids": [
+        0,
+        58
+      ],
+      "height_normalized": 0.026,
+      "id": 57,
+      "label": "INNER 1/5 | ENTERTAINMENT",
+      "position_in_segment": 1,
+      "sector": 4,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.590933,
+      "y_normalized": 0.5525
+    },
+    {
+      "angle_degrees": 30.0,
+      "connected_node_ids": [
+        57,
+        59
+      ],
+      "height_normalized": 0.026,
+      "id": 58,
+      "label": "INNER 2/5 | SPORT",
+      "position_in_segment": 2,
+      "sector": 4,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.638564,
+      "y_normalized": 0.58
+    },
+    {
+      "angle_degrees": 30.0,
+      "connected_node_ids": [
+        58,
+        60
+      ],
+      "height_normalized": 0.026,
+      "id": 59,
+      "label": "INNER 3/5 | ART & LITERATURE",
+      "position_in_segment": 3,
+      "sector": 4,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.686195,
+      "y_normalized": 0.6075
+    },
+    {
+      "angle_degrees": 30.0,
+      "connected_node_ids": [
+        59,
+        61
+      ],
+      "height_normalized": 0.026,
+      "id": 60,
+      "label": "INNER 4/5 | HISTORY",
+      "position_in_segment": 4,
+      "sector": 4,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.733827,
+      "y_normalized": 0.635
+    },
+    {
+      "angle_degrees": 30.0,
+      "connected_node_ids": [
+        25,
+        60
+      ],
+      "height_normalized": 0.026,
+      "id": 61,
+      "label": "INNER 5/5 | GEOGRAPHY",
+      "position_in_segment": 5,
+      "sector": 4,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.781458,
+      "y_normalized": 0.6625
+    },
+    {
+      "angle_degrees": 90.0,
+      "connected_node_ids": [
+        0,
+        63
+      ],
+      "height_normalized": 0.026,
+      "id": 62,
+      "label": "INNER 1/5 | HISTORY",
+      "position_in_segment": 1,
+      "sector": 5,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.605
+    },
+    {
+      "angle_degrees": 90.0,
+      "connected_node_ids": [
+        62,
+        64
+      ],
+      "height_normalized": 0.026,
+      "id": 63,
+      "label": "INNER 2/5 | GEOGRAPHY",
+      "position_in_segment": 2,
+      "sector": 5,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.66
+    },
+    {
+      "angle_degrees": 90.0,
+      "connected_node_ids": [
+        63,
+        65
+      ],
+      "height_normalized": 0.026,
+      "id": 64,
+      "label": "INNER 3/5 | SCIENCE & NATURE",
+      "position_in_segment": 3,
+      "sector": 5,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.715
+    },
+    {
+      "angle_degrees": 90.0,
+      "connected_node_ids": [
+        64,
+        66
+      ],
+      "height_normalized": 0.026,
+      "id": 65,
+      "label": "INNER 4/5 | ART & LITERATURE",
+      "position_in_segment": 4,
+      "sector": 5,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.77
+    },
+    {
+      "angle_degrees": 90.0,
+      "connected_node_ids": [
+        31,
+        65
+      ],
+      "height_normalized": 0.026,
+      "id": 66,
+      "label": "INNER 5/5 | ENTERTAINMENT",
+      "position_in_segment": 5,
+      "sector": 5,
+      "type": "inner_tile",
+      "width_normalized": 0.05,
+      "x_normalized": 0.5,
+      "y_normalized": 0.825
+    }
+  ],
+  "orientation": {
+    "clockwise": true,
+    "sport_inner_direction": "bottom",
+    "sport_sector": 5,
+    "start_angle_degrees": 150.0
+  },
+  "schema_version": 1,
+  "source": {
+    "board_map": "lib/main.dart::BoardMap",
+    "source_commit": "548e8d3046469688a8dcb050552956cf786e525c"
+  }
+}

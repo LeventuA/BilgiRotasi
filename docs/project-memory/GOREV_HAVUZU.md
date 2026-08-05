@@ -101,9 +101,12 @@ Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
 
 Çalışmaya yeniden başlamadan önce gerçek 6 kategori ve 8 konsept arasındaki seçim netleşmeli.
 
-### BR-P2-002 - Numaralı geometri önizlemesi
+### BR-P2-002 - Numaralı geometri önizlemesi — TEKNİK ÜRETİM TAMAMLANDI
 
-67 node'u görsel debug katmanında doğrula. Onay alınmadan süsleme veya APK yok.
+67 node canlı `BoardMap` bağlantılarıyla görsel debug katmanında doğrulandı.
+Deterministik SVG ve 4096x4096 PNG üretildi; altı dış aralık, altı iç yol ve alt
+Spor yolu `1-5` işaretleriyle görünür. Sonraki kapı kullanıcı görsel onayıdır;
+onay alınmadan süsleme, perspektif/3B, Flutter veya APK yok.
 
 ### BR-P2-003 - Profesyonel tanıtım videosu
 

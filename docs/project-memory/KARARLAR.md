@@ -118,6 +118,14 @@
 - Yapay görsel modelinin kare sayımına güvenilmeyecek.
 - Son başarısız görseller kullanılmayacak.
 - 8 kategori rozeti ile 6 fiziksel rozet noktası eşleştirilmeden çalışma ilerlemeyecek.
+- İlk yeniden başlatma adımı, canlı `BoardMap` verisinden üretilen düz ve numaralı
+  deterministik geometri olacaktır; bu veri oyun kodunun alternatifi değildir.
+- Debug yönelimi Spor iç yolunu alt merkezde gösterecek şekilde sabitlenecek;
+  aynı kaynak iki kez işlendiğinde SVG ve PNG çıktıları birebir aynı olacaktır.
+- 67 kimlik, altı dış `1-5` aralığı, altı iç `1-5` yol, sınırlar, bağlantılar ve
+  çakışmasızlık otomatik testlerle geçmeden görsel onaya sunulmayacaktır.
+- Numaralı geometri onaylanmadan stil, perspektif/3B, Flutter veya APK aşamasına
+  geçilmeyecektir.
 
 ---
 

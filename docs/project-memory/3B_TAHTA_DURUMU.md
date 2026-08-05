@@ -107,4 +107,28 @@ Tahtada yalnız 6 rozet noktası vardır. Gerçek oyunun 6 kategori sistemi GitH
 9. Flutter önizlemesi yap.
 10. En son ayrı APK üret.
 
-**Güncel karar:** Şimdilik çalışma durduruldu.
+**Güncel karar:** AŞAMA 1 numaralı geometri üretildi; kullanıcı görsel onayı
+alınmadan AŞAMA 2 perspektif/3B, Flutter veya APK çalışmasına geçilmeyecek.
+
+---
+
+## AŞAMA 1 sonucu - deterministik numaralı geometri (2026-08-05)
+
+- Kaynak dal/commit: `release/final-closed-test-aab-1.68.8` /
+  `548e8d3046469688a8dcb050552956cf786e525c`
+- Çalışma dalı: `experiment/deterministic-board-geometry-v1`
+- Canlı `lib/main.dart::BoardMap` kimlikleri, kategori sırası ve karşılıklı rota
+  bağlantıları değiştirilmeden veri olarak çıkarıldı.
+- Tam dağılım doğrulandı: 1 merkez + 6 rozet + 30 dış kategori + 30 iç kategori
+  = 67 düğüm.
+- Altı rozet aralığının her birinde tam 5 dış düğüm, merkezden rozete giden altı
+  kolun her birinde tam 5 iç düğüm vardır.
+- Spor kolu debug yöneliminde alt merkeze sabitlendi; `SPORT INNER 1-5` ve
+  `62-66` kimlikleri açıkça görünürdür.
+- Sınır, görünürlük, kimlik benzersizliği, bağlantı geçerliliği ve çakışma
+  kontrolleri geçti; art arda iki SVG/PNG üretimi birebir aynıdır.
+- İnceleme çıktıları:
+  - `tools/board_renderer/output/board_debug_numbered.svg`
+  - `tools/board_renderer/output/board_debug_numbered_4096.png`
+- Bu sonuçta hiçbir oyun/BoardMap, 3B stil, Flutter veya release build değişikliği
+  yoktur.

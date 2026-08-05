@@ -81,8 +81,19 @@ Son canlı kontrollerde:
 - Hiçbir 3B çalışma release dalına merge edilmedi.
 - Son görsel kabul edilmedi ve çalışma durduruldu.
 - 8 adet kategori rozeti konsepti üretildi; tahtadaki 6 fiziksel rozet noktasına eşleme çözülmedi.
+- `experiment/deterministic-board-geometry-v1` dalında canlı `BoardMap` kaynak alınarak
+  düz ve numaralı AŞAMA 1 geometri önizlemesi üretildi.
+- Önizleme 67 düğümü eksiksiz içerir: merkez `0`, dış halka `1-36`, rozetler
+  `1/7/13/19/25/31` ve iç yollar `37-66`.
+- Altı dış aralığın ve altı iç yolun her biri `1-5` olarak doğrulandı; Spor iç
+  yolu alt merkezde `62-66` olarak görünür tutuldu.
+- Otomatik doğrulama düğüm çakışması, kırpılma veya geçersiz/tek yönlü bağlantı
+  bulmadı. SVG ve 4096x4096 PNG çıktıları deterministiktir.
+- Bu çalışma yalnız geometri/debug katmanıdır; stil, perspektif/3B, Flutter ve
+  APK aşamalarına geçilmedi.
 
-**Durum:** `DURDURULDU`; çalışan oyuna etkisi yok.
+**Durum:** AŞAMA 1 teknik önizlemesi hazır, görsel onay bekliyor; çalışan oyuna
+etkisi yok ve 3B çalışma hâlâ başlamadı.
 
 ---
 
