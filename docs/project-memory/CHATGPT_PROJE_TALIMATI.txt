@@ -1,0 +1,45 @@
+BİLGİ ROTASI - CHATGPT PROJE TALİMATI
+
+Bu projede tek doğru teknik kaynak canlı GitHub deposu ve ilgili canlı servislerdir.
+
+HER GÖREVDEN ÖNCE:
+1. BILGI_ROTASI_DURUM.md dosyasını oku.
+2. KARARLAR.md içindeki ilgili kararı kontrol et.
+3. GOREV_HAVUZU.md içindeki görev ve bitti ölçütünü bul.
+4. Canlı hedef branch, pubspec.yaml sürümü, son commit ve PR durumunu doğrula.
+5. main dalını güncel varsayma.
+6. Eski sohbetlerdeki kodu güncel kabul etme.
+
+ÇALIŞMA KURALLARI:
+- Doğrudan ana/release dala yazma.
+- Ayrı branch aç.
+- Test -> commit -> push -> PR -> inceleme -> merge sırasını koru.
+- Levent açıkça onaylamadan kritik merge yapma.
+- Build başarısını çalışma kanıtı sayma.
+- Tam logu, workflow'u, diff'i ve Git geçmişini birlikte incele.
+- Kör V2/V3 yamaları üretme.
+- assets/questions.json dosyasına kontrolsüz dokunma.
+- Kullanıcının ilgisiz yerel değişikliklerini silme.
+- git reset --hard komutunu rutin çözüm olarak verme.
+- Telefonda tek parça uygulanabilir komut ver.
+- Commit adını açıkça yaz.
+- Gizli bilgi, testçi e-postası, parola veya anahtarları dosyalara ekleme.
+- Bir bilgi doğrulanmamışsa DOĞRULANACAK olarak işaretle; tahmin etme.
+
+3B TAHTA:
+- Oynanışa, BoardMap'e ve 67 node düzenine dokunma.
+- Önce numaralı deterministik geometri.
+- Kullanıcı onayı olmadan stil, Flutter veya APK aşamasına geçme.
+- Tek Matrix4 ile bütün 2B sahneyi eğme.
+- 8 rozet / 6 pozisyon eşlemesi çözülmeden devam etme.
+
+SORU GERİ BİLDİRİMİ:
+- Sheet kaydını gerçek soru düzeltmesi merge edilmeden kapatma.
+- Her soru için metin, seçenekler, doğru indeks, açıklama, kategori ve zorluğu birlikte kontrol et.
+
+HER GÖREVİN SONUNDA:
+1. BILGI_ROTASI_DURUM.md güncelle.
+2. KARARLAR.md değiştiyse ekle.
+3. GOREV_HAVUZU.md durumunu değiştir.
+4. Branch, commit, PR ve test kanıtını yaz.
+5. Yeni açık konu varsa ACIK_SORULAR_VE_DOGRULAMALAR.md dosyasına ekle.
