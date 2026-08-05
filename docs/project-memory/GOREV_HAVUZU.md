@@ -97,9 +97,11 @@ Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
 
 ## P2 - Görsel ve pazarlama
 
-### BR-P2-001 - 3B tahta için 6 rozet eşlemesini çöz
+### BR-P2-001 - 3B tahta için 6 rozet eşlemesini çöz — İPTAL/KAPATILDI
 
-Çalışmaya yeniden başlamadan önce gerçek 6 kategori ve 8 konsept arasındaki seçim netleşmeli.
+8 alternatif rozet konsepti kullanıcı kararıyla tamamen iptal edildi. Eşleme
+yapılmayacak; tahtada yalnız Coğrafya, Eğlence, Tarih, Sanat & Edebiyat,
+Bilim & Doğa ve Spor kategorileri kullanılacak.
 
 ### BR-P2-002 - Numaralı geometri önizlemesi — TEKNİK ÜRETİM TAMAMLANDI
 

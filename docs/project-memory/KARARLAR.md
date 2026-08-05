@@ -117,7 +117,10 @@
 - Görsel onay alınmadan APK üretimine geçilmeyecek.
 - Yapay görsel modelinin kare sayımına güvenilmeyecek.
 - Son başarısız görseller kullanılmayacak.
-- 8 kategori rozeti ile 6 fiziksel rozet noktası eşleştirilmeden çalışma ilerlemeyecek.
+- Hazırlanan 8 alternatif rozet konsepti tamamen iptal edilmiştir; 8'den 6'ya
+  seçim/eşleme yapılmayacaktır.
+- Tahtadaki 6 rozet yalnız mevcut oyun kategorilerini temsil edecektir:
+  Coğrafya, Eğlence, Tarih, Sanat & Edebiyat, Bilim & Doğa ve Spor.
 - İlk yeniden başlatma adımı, canlı `BoardMap` verisinden üretilen düz ve numaralı
   deterministik geometri olacaktır; bu veri oyun kodunun alternatifi değildir.
 - Debug yönelimi Spor iç yolunu alt merkezde gösterecek şekilde sabitlenecek;

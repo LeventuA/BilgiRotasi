@@ -77,20 +77,20 @@
 
 ---
 
-## Açık tasarım kararı
+## Kapatılan rozet konsepti kararı
 
-8 konsept rozet hazırlanmıştır:
+Hazırlanan 8 alternatif rozet konsepti kullanıcı kararıyla tamamen iptal edildi.
+Tahtada yalnız oyunun mevcut 6 kategorisi kullanılacaktır:
 
-1. Bilim ve Teknoloji
-2. Tarih ve Medeniyet
-3. Coğrafya ve Dünya
-4. Sanat ve Edebiyat
-5. Doğa ve Yaşam
-6. Spor ve Eğlence
-7. Müzik
-8. Genel Kültür / Eğitim
+1. Coğrafya
+2. Eğlence
+3. Tarih
+4. Sanat & Edebiyat
+5. Bilim & Doğa
+6. Spor
 
-Tahtada yalnız 6 rozet noktası vardır. Gerçek oyunun 6 kategori sistemi GitHub'dan doğrulanmalı ve hangi 6 rozetin kullanılacağı Levent tarafından onaylanmalıdır.
+8 konseptten 6 rozet seçme veya eşleme konusu kapatılmıştır; yeni bir seçim
+beklenmemektedir.
 
 ---
 
