@@ -9,6 +9,7 @@ on:
     branches:
       - main
       - codex/admob-safe-integration
+      - release/final-closed-test-aab-1.68.8
   workflow_dispatch:
 
 permissions:
