@@ -458,34 +458,46 @@ class SupportRewardLimiter {
   final AdLimitStore store;
 
   static const String _gamesKey = 'admob_support_games_v1';
+  static final Set<String> _claimsInProgress = <String>{};
 
   Future<bool> wasClaimedForGame(String gameId) async {
+    final normalizedGameId = gameId.trim();
+    if (normalizedGameId.isEmpty) return false;
     final values = (await store.read(_gamesKey) ?? '')
         .split('\n')
         .where((value) => value.isNotEmpty);
-    return values.contains(gameId);
+    return values.contains(normalizedGameId);
   }
 
   Future<bool> canClaim(String gameId) async {
     final normalizedGameId = gameId.trim();
-    if (normalizedGameId.isEmpty) return false;
+    if (normalizedGameId.isEmpty ||
+        _claimsInProgress.contains(normalizedGameId)) {
+      return false;
+    }
     return !await wasClaimedForGame(normalizedGameId);
   }
 
   Future<bool> claim(String gameId) async {
     final normalizedGameId = gameId.trim();
-    if (!await canClaim(normalizedGameId)) return false;
-    final existing =
-        (await store.read(_gamesKey) ?? '')
-            .split('\n')
-            .where((value) => value.isNotEmpty)
-            .toList();
-    existing.add(normalizedGameId);
-    if (existing.length > 200) {
-      existing.removeRange(0, existing.length - 200);
+    if (normalizedGameId.isEmpty ||
+        !_claimsInProgress.add(normalizedGameId)) {
+      return false;
     }
-    await store.write(_gamesKey, existing.join('\n'));
-    return true;
+
+    try {
+      if (await wasClaimedForGame(normalizedGameId)) return false;
+      final existing =
+          (await store.read(_gamesKey) ?? '')
+              .split('\n')
+              .where((value) => value.isNotEmpty)
+              .toList();
+      existing.add(normalizedGameId);
+      await store.write(_gamesKey, existing.join('\n'));
+      return true;
+    } finally {
+      _claimsInProgress.remove(normalizedGameId);
+    }
   }
 }
 
