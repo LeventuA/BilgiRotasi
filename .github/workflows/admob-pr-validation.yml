@@ -5,6 +5,7 @@ on:
     branches:
       - codex/admob-safe-integration
       - codex/admob-production-ids
+      - update/closed-test-next-release
   pull_request:
     branches:
       - main
