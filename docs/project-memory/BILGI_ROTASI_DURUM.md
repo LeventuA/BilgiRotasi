@@ -17,12 +17,16 @@
 | Release son commit | `docs: Bilgi Rotası proje hafızası V2` | DOĞRULANDI |
 | Gerçek paket sürümü | `1.68.13+103` | DOĞRULANDI (`pubspec.yaml`) |
 | Birleşik güncelleme dalı | `update/closed-test-next-release` | DOĞRULANDI |
+| Birleşik güncelleme PR'ı | PR #13 | AÇIK / DRAFT / MERGE EDİLMEDİ |
+| PR #13 tabanı | `release/final-closed-test-aab-1.68.8` | DOĞRULANDI |
+| PR #13 merge durumu | Çatışmasız / `mergeable: true` | DOĞRULANDI |
+| Kod ve CI yapılandırması kesim commit'i | `7cbe4f1727051a8ea3336fbcbcac7369949287be` | DOĞRULANDI |
 | `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR |
 | PR #7 | Açık, Draft, merge edilmemiş | DOĞRULANDI |
 | PR #6 | Açık, Draft; eski hotfix hattı | DOĞRULANDI / güncel taban değil |
 | PR #12 | Açık, Draft; deterministik 67-node geometri | DOĞRULANDI / birleşik güncellemeden ayrı |
 
-`update/closed-test-next-release` dalı 6 Ağustos 2026'da release ile aynı `548e8d3...` commitinden başlamıştır. Doğrudan `main` veya release dalına yazılmamıştır.
+`update/closed-test-next-release` dalı release ile aynı `548e8d3...` commitinden başlamıştır. Doğrudan `main` veya release dalına yazılmamıştır.
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Sürüm hedef dalın `pubspec.yaml` dosyasından okunmalıdır.
 
@@ -121,20 +125,59 @@ Kesin ürün kararı:
 - Günlük veya oturumluk toplam sınır yoktur.
 - Ödül `+10 XP`'dir.
 
-Canlı kodda eski günlük üç reklam sınırı `SupportRewardLimiter` içinde doğrulandı. `update/closed-test-next-release` dalında:
+Canlı kodda eski günlük üç reklam sınırı `SupportRewardLimiter` içinde doğrulandı. PR #13 kapsamındaki `update/closed-test-next-release` dalında:
 
 - günlük tarih ve sayaç sınırı kaldırıldı,
 - boş oyun kimliği reddedildi,
-- aynı oyun kimliğinin ikinci talebi engellendi,
+- aynı oyun kimliğinin ikinci talebi kalıcı olarak engellendi,
+- eski 200 kayıt budaması kaldırıldı; çok eski oyunların tekrar hak kazanması önlendi,
+- eşzamanlı aynı oyun taleplerinden yalnız birinin hak kazanması için işlem içi kilit eklendi,
 - farklı tamamlanan oyunlar için genel kota kaldırıldı,
-- son 200 oyun kimliği saklanmaya devam edildi,
+- sonuç ekranındaki eski günlük kota metinleri temizlendi,
 - ilgili birim testleri yeni karara göre güncellendi.
 
-**Durum:** `UYGULANDI — TEST/CI/PR BEKLİYOR`. Fiziksel reklam gösterimi ve gerçek XP kabulü cihaz olmadan doğrulanamaz.
+Eklenen regresyon testleri:
+
+- aynı oyun yalnız bir kez,
+- farklı oyunlara genel kota yok,
+- 250 oyundan sonra ilk oyun tekrar açılamaz,
+- eşzamanlı aynı taleplerden yalnız biri kazanır,
+- boş kimlik reddedilir,
+- yeni limiter örneğinde de tekrar verilmez,
+- reklam callback'i başarısızsa XP verilmez.
+
+**Durum:** `UYGULANDI — DRAFT PR #13 AÇIK — CI SONUCU DOĞRULANACAK — FİZİKSEL CİHAZ KABULÜ BEKLİYOR`.
 
 ---
 
-## 6. 3B oyun tahtası
+## 6. CI doğrulaması
+
+Mevcut `.github/workflows/admob-pr-validation.yml` dosyasının tamamı incelendi. Workflow şu doğrulamaları içerir:
+
+- Flutter bağımlılık grafiği,
+- Flutter analiz,
+- tüm Flutter testleri,
+- production AdMob kimlik testi,
+- `git diff --check`,
+- kalıcı anahtarla imzalı release APK,
+- paket/sürüm/manifest/AdMob App ID kontrolü,
+- sertifika SHA-1 kontrolü,
+- Android bağımlılık kontrolü,
+- Android 16 emulator cold-start ve uygulama PID kontrolü,
+- APK ve kanıt artifact'ları.
+
+Workflow yalnız `main` ve eski Codex dallarını dinlediği için release tabanlı PR #13 ilk açıldığında koşu oluşmadı. PR #13 içinde yalnız tetikleyici kapsamı güncellendi:
+
+- PR tabanı olarak `release/final-closed-test-aab-1.68.8` eklendi.
+- Push dalı olarak `update/closed-test-next-release` eklendi.
+- Yalnız `docs/project-memory/**` değişikliklerinde ağır Android doğrulamasını çalıştırmamak için `paths-ignore` eklendi.
+- Test, build, imzalama, manifest ve Android 16 adımlarının içeriği değiştirilmedi.
+
+Bağlı GitHub aracının commit-workflow çağrısı yalnız `pull_request` kaynaklı koşuları listeler; push koşusunun run kimliği ve sonucu bu araçtan alınamamıştır. Bu nedenle CI sonucu `PASS` kabul edilmemiştir ve **DOĞRULANACAK** olarak kalır.
+
+---
+
+## 7. 3B oyun tahtası
 
 - Oynanış ve BoardMap değişmeyecek.
 - Tahta sözleşmesi 67 noktadır:
@@ -149,23 +192,24 @@ Canlı kodda eski günlük üç reklam sınırı `SupportRewardLimiter` içinde 
 
 ---
 
-## 7. CI ve cihaz doğrulaması
-
-Ödüllü reklam değişikliği için birim test dosyası güncellendi; ancak bu kayıt yazılırken GitHub Actions sonucu henüz alınmamıştır. Test geçmeden görev `BİTTİ` sayılmaz.
+## 8. Cihaz doğrulaması
 
 Cihaz gerektiren ve bu çalışma kapsamında tamamlanamayan doğrulamalar:
 
 - gerçek ödüllü reklamın gösterilmesi,
 - reklam tamamlanmadan kapatıldığında ödül verilmemesi,
 - gerçek `+10 XP` yazımı,
+- aynı oyun sonucunda ikinci reklam hakkının kapalı kalması,
+- yeni tamamlanan oyunda yeni hakkın açılması,
+- tahtadaki rastgele joker reklamının korunması,
 - Google giriş,
-- Android 16 cold-start ve logcat,
+- fiziksel Android 16 cold-start ve logcat,
 - iki telefonlu Canlı Düello,
 - Play Console kapalı test kabulü.
 
 ---
 
-## 8. Mağaza ve tanıtım
+## 9. Mağaza ve tanıtım
 
 Hazırlanan varlıklar arasında:
 
@@ -184,12 +228,30 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`.
 
 ---
 
-## 9. Sıradaki işler
+## 10. Bu çalışma sonunda kanıt
 
-1. Ödüllü reklam diff'ini ve birim testleri CI ile doğrula.
-2. `update/closed-test-next-release` dalından release dalına Draft PR aç.
+- Branch: `update/closed-test-next-release`
+- Base: `release/final-closed-test-aab-1.68.8`
+- Release base SHA: `548e8d3046469688a8dcb050552956cf786e525c`
+- Kod/CI kesim commit'i: `7cbe4f1727051a8ea3336fbcbcac7369949287be`
+- Draft PR: #13
+- PR durumu: açık, Draft, merge edilmemiş, çatışmasız
+- Değiştirilen uygulama dosyası: `lib/ad_monetization.dart`
+- Değiştirilen test dosyası: `test/ad_monetization_test.dart`
+- CI workflow dosyası: `.github/workflows/admob-pr-validation.yml`
+- Soru bankası: değiştirilmedi
+- Sürüm: artırılmadı
+- Merge: yapılmadı
+- Play Console yayını: yapılmadı
+
+---
+
+## 11. Sıradaki işler
+
+1. GitHub Actions push koşusunun run kimliğini, adımlarını, tam logunu ve sonucunu canlı Actions ekranından doğrula.
+2. CI başarısızsa yalnız gerçek hata loguna göre düzeltme yap; kör workflow yaması üretme.
 3. Büyük canlı `assets/questions.json` dosyasını güvenilir bir repo checkout'u veya dosya indirme yöntemiyle oku.
 4. 26 benzersiz hatalı soruyu topluca incele ve doğrulanan düzeltmeleri aynı birleşik güncellemeye ekle.
 5. Zorluk bildirimlerinde tek kullanıcı oyuyla kör değişiklik yapma.
-6. Cihaz gerektiren kabul testlerini daha sonra fiziksel cihazlarda çalıştır.
+6. Cihaz gerektiren kabul testlerini fiziksel cihazlarda çalıştır.
 7. Levent onayı olmadan merge veya Play Console yayını yapma.
