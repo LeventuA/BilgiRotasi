@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Dizily gizlilik politikası.">
+  <title>Dizily Gizlilik Politikası</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1020;--panel:#121a2f;--text:#eef2ff;--muted:#aab4d0;--accent:#a78bfa;--line:#26314d}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(160deg,#17112d 0,#0b1020 30%);color:var(--text);line-height:1.7}.wrap{max-width:900px;margin:auto;padding:28px 20px 70px}nav{margin-bottom:28px}a{color:#c4b5fd}.back{text-decoration:none;color:var(--muted)}article{padding:clamp(22px,5vw,48px);border:1px solid var(--line);border-radius:26px;background:#121a2fe6;box-shadow:0 24px 70px #0005}h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.1;margin-top:0}h2{margin-top:2.2rem;font-size:1.35rem}h3{margin-top:1.5rem}.meta{color:var(--muted);padding-bottom:18px;border-bottom:1px solid var(--line)}ul{padding-left:1.25rem}code{background:#080c18;padding:.15rem .4rem;border-radius:.4rem}.note{padding:16px 18px;border-left:4px solid var(--accent);background:#19142e;border-radius:10px}footer{margin-top:30px;color:var(--muted);font-size:.9rem}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <nav><a class="back" href="index.html">← Dizily bilgi merkezine dön</a></nav>
+  <article>
+    <h1>Gizlilik Politikası</h1>
+    <p class="meta"><strong>Uygulama:</strong> Dizily · <strong>Geliştirici:</strong> ZMila Studio · <strong>Yürürlük:</strong> 6 Ağustos 2026</p>
+
+    <h2>1. Kapsam</h2>
+    <p>Bu politika, Dizily mobil uygulamasının kullanıcı verilerini nasıl işlediğini açıklar. Dizily; dizi ve film arşivi, izlenen bölümler, tekrar izlemeler, favoriler, izlenecekler ve bildirim tercihleri için kişisel takip uygulamasıdır. Dizily bir video yayınlama veya içerik izleme hizmeti değildir.</p>
+
+    <h2>2. İşlenebilecek veriler</h2>
+    <h3>Hesap bilgileri</h3>
+    <ul><li>Firebase kullanıcı kimliği</li><li>Ad veya görünen ad</li><li>E-posta adresi</li><li>Profil fotoğrafı bağlantısı</li><li>Giriş yöntemi bilgisi</li></ul>
+    <h3>Arşiv ve kullanım kayıtları</h3>
+    <ul><li>Takip edilen diziler</li><li>İzlenen bölümler ve tekrar izleme sayıları</li><li>İzlenen ve izlenecek filmler</li><li>Favoriler ve ilerleme bilgileri</li><li>Bildirim ve uygulama tercihleri</li><li>Kayıtların oluşturulma ve güncellenme zamanları</li></ul>
+    <h3>İçe aktarılan kayıtlar</h3>
+    <p>Kullanıcının seçtiği desteklenen CSV veya ZIP dosyaları içe aktarma amacıyla cihazda okunabilir. Bu dosyalardan elde edilen dizi, bölüm ve film kayıtları kullanıcı onayıyla Dizily arşivine eklenebilir. Hesapla giriş yapılmışsa uygulamaya dönüştürülen bu kayıtlar bulut yedeğinin parçası olabilir.</p>
+    <h3>Teknik veriler</h3>
+    <p>Firebase, Google giriş hizmetleri ve TMDB; hizmetin çalışması, güvenliği ve hata teşhisi için IP adresi, cihaz veya bağlantı bilgileri gibi sınırlı teknik verileri kendi politikaları kapsamında işleyebilir.</p>
+    <p>Dizily kullanıcı verilerini reklam amacıyla satmaz. Mevcut uygulama bağımlılıklarında reklam veya davranışsal reklam analitiği SDK’sı bulunmamaktadır.</p>
+
+    <h2>3. Kullanım amaçları</h2>
+    <p>Veriler; hesap oluşturma ve giriş, arşiv yönetimi, bulut yedekleme ve geri yükleme, bildirim tercihleri, dosya içe aktarma, güvenlik, hata teşhisi ve kullanıcı destek taleplerini karşılamak için işlenir.</p>
+
+    <h2>4. Yerel ve bulut depolama</h2>
+    <p>Dizily çevrimdışı çalışmak için bazı verileri cihazdaki yerel SQLite veritabanında saklar.</p>
+    <ul><li>Hesaplı kullanıcı verileri kullanıcı kimliğine bağlı ayrı kapsamda tutulur.</li><li>Misafir verileri cihazda ayrı yerel kapsamda tutulur.</li><li>Hesaplı kullanıcı kayıtları Google Firebase Cloud Firestore üzerinden buluta yedeklenebilir.</li></ul>
+    <p>Uygulamanın kaldırılması yalnız cihazdaki yerel verileri kaldırabilir. Hesaba bağlı bulut verilerinin silinmesi için hesap silme işlemi veya dış silme talebi kullanılmalıdır.</p>
+
+    <h2>5. Hizmet sağlayıcılar</h2>
+    <h3>Google Firebase</h3><p>Firebase Authentication kullanıcı girişini ve hesap kimliğini; Cloud Firestore ise hesaplı kullanıcıların bulut yedeğini sağlar.</p>
+    <h3>Google Sign-In</h3><p>Kullanıcı Google ile giriş yapmayı seçerse Google kimlik doğrulama hizmeti kullanılır.</p>
+    <h3>TMDB</h3><p>Dizi, film, sezon, bölüm ve poster gibi katalog bilgileri TMDB API üzerinden alınabilir. Arama veya metadata sorgularında aranan başlıklar ile teknik bağlantı verileri TMDB’ye iletilebilir.</p>
+    <p class="note">Dizily, TMDB tarafından onaylanmış veya sertifikalandırılmış bir uygulama değildir.</p>
+
+    <h2>6. Veri paylaşımı ve satış</h2>
+    <p>Dizily kullanıcı verilerini satmaz. Veriler yalnız temel uygulama işlevlerini sağlayan hizmet sağlayıcılar tarafından işlenebilir. Yasal zorunluluk, güvenlik tehdidi veya kullanıcı talebi dışında kişisel veriler bağımsız üçüncü taraflara açıklanmaz.</p>
+
+    <h2>7. Bildirimler</h2>
+    <p>Kullanıcı yeni bölüm ve yeni sezon bildirimlerini açabilir veya kapatabilir. Bildirim tercihleri cihazda ve hesaplı kullanımda bulut ayarlarında saklanabilir. İşletim sistemi bildirim izni gerekebilir.</p>
+
+    <h2>8. Güvenlik</h2>
+    <p>Hesap bazlı erişim, Firebase güvenlik kuralları, yerel kullanıcı kapsamı ve güvenli bağlantı yöntemleri kullanılır. Hiçbir elektronik depolama veya aktarım yöntemi mutlak güvenlik garantisi vermez.</p>
+
+    <h2>9. Saklama ve silme</h2>
+    <p>Hesaba bağlı veriler, hesap aktif olduğu veya hizmet için gerekli olduğu sürece saklanabilir. Doğrulanmış hesap silme taleplerini genellikle 7 gün içinde tamamlamayı hedefliyoruz. Yasal zorunluluk, güvenlik veya kötüye kullanımın önlenmesi için sınırlı veri tutulması gerekirse kullanıcıya saklanan veri türü ve süre bildirilir.</p>
+    <p>Hesap ve veri silme ayrıntıları için <a href="account-deletion.html">Hesap ve Veri Silme</a> sayfasını inceleyin.</p>
+
+    <h2>10. Kullanıcı hakları</h2>
+    <p>Kullanıcı, geçerli mevzuat kapsamında kişisel verileri için erişim, düzeltme, silme, işlemeyi kısıtlama veya itiraz talebinde bulunabilir. Başka bir kullanıcının verisinin silinmesini veya açıklanmasını önlemek için kimlik doğrulaması istenebilir.</p>
+
+    <h2>11. Çocukların gizliliği</h2>
+    <p>Dizily özellikle çocuklara yönelik tasarlanmamıştır ve bilerek çocuklardan özel nitelikli kişisel veri toplamayı amaçlamaz.</p>
+
+    <h2>12. Değişiklikler</h2>
+    <p>Bu politika, uygulama özellikleri veya yasal gereklilikler değiştiğinde güncellenebilir. Önemli değişiklikler uygulama içinde veya bu sayfada duyurulur.</p>
+
+    <h2>13. İletişim</h2>
+    <p><strong>Geliştirici:</strong> ZMila Studio<br><strong>E-posta:</strong> <a href="mailto:dizilydestek@gmail.com">dizilydestek@gmail.com</a><br><strong>Paket:</strong> <code>app.dizily</code></p>
+  </article>
+  <footer>Son güncelleme: 6 Ağustos 2026</footer>
+</main>
+</body>
+</html>

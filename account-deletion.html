@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Dizily hesap ve veri silme talebi.">
+  <title>Dizily Hesap ve Veri Silme</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1020;--panel:#121a2f;--text:#eef2ff;--muted:#aab4d0;--accent:#22d3ee;--line:#26314d}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(160deg,#0b2430 0,#0b1020 30%);color:var(--text);line-height:1.7}.wrap{max-width:900px;margin:auto;padding:28px 20px 70px}nav{margin-bottom:28px}a{color:#67e8f9}.back{text-decoration:none;color:var(--muted)}article{padding:clamp(22px,5vw,48px);border:1px solid var(--line);border-radius:26px;background:#121a2fe6;box-shadow:0 24px 70px #0005}h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.1;margin-top:0}h2{margin-top:2.2rem;font-size:1.35rem}.meta{color:var(--muted);padding-bottom:18px;border-bottom:1px solid var(--line)}ol,ul{padding-left:1.25rem}.box{padding:20px;border:1px solid #245064;background:#0c1e2a;border-radius:16px}.warn{padding:16px 18px;border-left:4px solid #f59e0b;background:#2b1d0c;border-radius:10px}code{background:#080c18;padding:.15rem .4rem;border-radius:.4rem}footer{margin-top:30px;color:var(--muted);font-size:.9rem}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <nav><a class="back" href="index.html">← Dizily bilgi merkezine dön</a></nav>
+  <article>
+    <h1>Hesap ve Veri Silme</h1>
+    <p class="meta"><strong>Uygulama:</strong> Dizily · <strong>Geliştirici:</strong> ZMila Studio · <strong>Paket:</strong> <code>app.dizily</code></p>
+
+    <p>Dizily hesabınızı ve hesabınıza bağlı verileri silmek için uygulama içindeki hesap ayarlarını kullanabilir veya uygulamaya erişemiyorsanız aşağıdaki dış talep yöntemini kullanabilirsiniz.</p>
+
+    <h2>Uygulama içinden silme</h2>
+    <p>Dizily’nin yayın sürümünde hesap silme yolu şu konumda sunulacaktır:</p>
+    <ol><li>Dizily’yi açın.</li><li><strong>Ayarlar</strong> bölümüne girin.</li><li>Hesap kartındaki <strong>Hesabımı ve verilerimi sil</strong> seçeneğine dokunun.</li><li>Silinecek veri listesini inceleyin.</li><li>Gerekirse kimliğinizi yeniden doğrulayın.</li><li>İşlemi onaylayın.</li></ol>
+    <p>Bu seçenek kullandığınız sürümde henüz görünmüyorsa veya hesabınıza erişemiyorsanız aşağıdaki e-posta yolunu kullanın.</p>
+
+    <h2>Uygulama dışından silme talebi</h2>
+    <div class="box">
+      <p><strong>E-posta:</strong> <a href="mailto:dizilydestek@gmail.com?subject=Dizily%20hesap%20silme%20talebi">dizilydestek@gmail.com</a></p>
+      <p><strong>Konu:</strong> Dizily hesap silme talebi</p>
+    </div>
+    <p>Mesajınızda yalnızca Dizily hesabınızda kullandığınız e-posta adresini ve hesapla ilişkili verilerin silinmesini istediğinizi belirtin.</p>
+    <p class="warn"><strong>Şifrenizi, Google şifrenizi veya doğrulama kodunuzu göndermeyin.</strong> Hesabın size ait olduğunu doğrulamak için aynı e-posta adresinden yanıt vermeniz veya güvenli bir yeniden doğrulama adımı istenebilir.</p>
+
+    <h2>Silinecek veriler</h2>
+    <p>Talep doğrulandıktan sonra normal koşullarda şunlar silinir:</p>
+    <ul><li>Firebase Authentication hesabı ve kullanıcı kimliği</li><li>Takip edilen diziler</li><li>İzlenen bölüm kayıtları ve tekrar izleme sayıları</li><li>İzlenen ve izlenecek filmler</li><li>Favoriler</li><li>Bildirim tercihleri</li><li>Hesaba bağlı diğer uygulama ayarları ve Firestore kayıtları</li></ul>
+
+    <h2>Misafir verileri</h2>
+    <p>Misafir verileri bir kullanıcı hesabına bağlı değildir ve yalnız kullanılan cihazda tutulur. Misafir verilerini silmek için Android ayarlarından Dizily uygulama verilerini temizleyebilir veya uygulamayı kaldırabilirsiniz.</p>
+
+    <h2>Yalnız belirli verileri silme</h2>
+    <p>Yalnız belirli kayıtların silinmesini istiyorsanız e-postanızda açıkça belirtin. Teknik olarak ayrıştırılabilen ve kimliği doğrulanabilen talepler değerlendirilir.</p>
+
+    <h2>İşlem süresi</h2>
+    <p>Doğrulanan hesap ve veri silme taleplerini genellikle <strong>7 gün içinde</strong> tamamlamayı hedefliyoruz. Yasal zorunluluk, güvenlik, dolandırıcılık veya kötüye kullanımın önlenmesi amacıyla sınırlı bir kayıt tutulması gerekirse hangi verinin neden ve ne kadar süre saklandığı kullanıcıya bildirilir.</p>
+
+    <h2>Önemli sonuçlar</h2>
+    <ul><li>Hesap silme işlemi geri alınamaz.</li><li>Silinen bulut arşivi geri yüklenemez.</li><li>Aynı e-posta ile yeni hesap oluşturmak eski verileri geri getirmez.</li><li>Yalnız uygulamayı kaldırmak buluttaki hesabı ve verileri silmez.</li></ul>
+
+    <h2>İletişim</h2>
+    <p><strong>Geliştirici:</strong> ZMila Studio<br><strong>Destek:</strong> <a href="mailto:dizilydestek@gmail.com">dizilydestek@gmail.com</a><br><strong>Gizlilik politikası:</strong> <a href="privacy.html">Dizily Gizlilik Politikası</a></p>
+  </article>
+  <footer>Son güncelleme: 6 Ağustos 2026</footer>
+</main>
+</body>
+</html>
