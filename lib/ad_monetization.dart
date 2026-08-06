@@ -453,31 +453,11 @@ class SharedPreferencesAdLimitStore implements AdLimitStore {
 }
 
 class SupportRewardLimiter {
-  SupportRewardLimiter({
-    required this.store,
-    DateTime Function()? now,
-    this.dailyLimit = 3,
-  }) : now = now ?? DateTime.now;
+  SupportRewardLimiter({required this.store});
 
   final AdLimitStore store;
-  final DateTime Function() now;
-  final int dailyLimit;
 
-  static const String _dailyKey = 'admob_support_daily_v1';
   static const String _gamesKey = 'admob_support_games_v1';
-
-  String get _today {
-    final value = now().toLocal();
-    return '${value.year.toString().padLeft(4, '0')}-'
-        '${value.month.toString().padLeft(2, '0')}-'
-        '${value.day.toString().padLeft(2, '0')}';
-  }
-
-  Future<int> claimsToday() async {
-    final parts = (await store.read(_dailyKey) ?? '').split('|');
-    if (parts.length != 2 || parts.first != _today) return 0;
-    return int.tryParse(parts.last) ?? 0;
-  }
 
   Future<bool> wasClaimedForGame(String gameId) async {
     final values = (await store.read(_gamesKey) ?? '')
@@ -487,24 +467,24 @@ class SupportRewardLimiter {
   }
 
   Future<bool> canClaim(String gameId) async {
-    if (gameId.trim().isEmpty || await wasClaimedForGame(gameId)) return false;
-    return await claimsToday() < dailyLimit;
+    final normalizedGameId = gameId.trim();
+    if (normalizedGameId.isEmpty) return false;
+    return !await wasClaimedForGame(normalizedGameId);
   }
 
   Future<bool> claim(String gameId) async {
-    if (!await canClaim(gameId)) return false;
-    final count = await claimsToday();
+    final normalizedGameId = gameId.trim();
+    if (!await canClaim(normalizedGameId)) return false;
     final existing =
         (await store.read(_gamesKey) ?? '')
             .split('\n')
             .where((value) => value.isNotEmpty)
             .toList();
-    existing.add(gameId);
+    existing.add(normalizedGameId);
     if (existing.length > 200) {
       existing.removeRange(0, existing.length - 200);
     }
     await store.write(_gamesKey, existing.join('\n'));
-    await store.write(_dailyKey, '$_today|${count + 1}');
     return true;
   }
 }
@@ -715,7 +695,10 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
       ..hideCurrentSnackBar()
       ..showSnackBar(
         const SnackBar(
-          content: Text('Reklam tamamlanmadı veya limit doldu; XP verilmedi.'),
+          content: Text(
+            'Reklam tamamlanmadı veya bu oyun için ödül zaten alındı; '
+            'XP verilmedi.',
+          ),
         ),
       );
   }
@@ -749,7 +732,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
                 ? 'İsteğe bağlı reklamı tamamlayarak +10 XP kazan.'
                 : FirebaseRuntimePolicy.productionEnabled
                 ? 'Sunucu doğrulaması tamamlanana kadar +10 XP ödülü kapalı.'
-                : 'Bu oyun için ödül alındı veya günlük 3 reklam limiti doldu.',
+                : 'Bu oyun için +10 XP ödülü zaten alındı.',
             textAlign: TextAlign.center,
             style: TextStyle(color: secondary),
           ),
@@ -764,7 +747,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
                   ? 'Reklam hazırlanıyor…'
                   : _available
                   ? 'Reklamı İzle · +10 XP'
-                  : 'Limit doldu / ödül alındı',
+                  : 'Bu oyun için ödül alındı',
             ),
           ),
         ],
