@@ -59,7 +59,7 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md` ve 6 Ağustos 2026 canlı Sheet özeti.
 
 ### BR-P0-004 - Ödüllü reklam hak sistemini doğrula/uygula
 
-**Durum:** UYGULANDI — TEST/CI/PR BEKLİYOR
+**Durum:** UYGULANDI — DRAFT PR #13 AÇIK — CI VE CİHAZ KABULÜ BEKLİYOR
 
 İstenen:
 
@@ -74,14 +74,31 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md` ve 6 Ağustos 2026 canlı Sheet özeti.
 - `SupportRewardLimiter` içindeki günlük üç reklam sınırı kaldırıldı,
 - yalnız aynı oyun kimliğinin tekrar kullanılması engellendi,
 - boş oyun kimliği reddedildi,
+- 200 kayıt sonrası eski oyunları silen budama kaldırıldı,
+- eşzamanlı aynı oyun talepleri kilitlendi,
 - birim testleri ürün kararına göre güncellendi,
-- tahtadaki rastgele joker reklamına dokunulmadı.
+- tahtadaki rastgele joker reklamına dokunulmadı,
+- release tabanlı Draft PR #13 açıldı,
+- PR çatışmasız olarak doğrulandı.
+
+Eklenen test senaryoları:
+
+- aynı oyun yalnız bir kez,
+- farklı oyunlara genel kota yok,
+- 250 oyun sonrası ilk oyuna yeniden hak yok,
+- eşzamanlı aynı taleplerden yalnız biri kazanır,
+- boş kimlik reddedilir,
+- yeni limiter örneğinde tekrar yok,
+- reklam callback başarısızsa ödül yok.
+
+CI workflow'unun test/build içeriği değiştirilmedi. Yalnız doğru release tabanı, çalışma branch'i push tetikleyicisi ve belge-only değişiklikler için ağır workflow atlama filtresi eklendi.
 
 **Bitti ölçütü:**
 
-- hedefli testler ve CI geçti,
-- diff incelendi,
-- Draft PR açıldı,
+- Actions run kimliği ve tam log doğrulandı,
+- Flutter analiz ve tüm testler geçti,
+- release APK/manifest/imza kontrolleri geçti,
+- Android 16 cold-start sonucu uygulama loguyla doğrulandı,
 - fiziksel cihazda reklam/XP davranışı doğrulandı,
 - Levent onayıyla merge edildi.
 
@@ -102,11 +119,12 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md` ve 6 Ağustos 2026 canlı Sheet özeti.
 - PR #7: açık / Draft / merge edilmemiş
 - PR #6: eski hotfix / açık / Draft
 - PR #12: deterministik geometri / açık / Draft
+- PR #13: birleşik güncelleme / açık / Draft / çatışmasız
 - Birleşik güncelleme dalı: `update/closed-test-next-release`
 
 Açık kalanlar:
 
-- son birleşik güncelleme CI durumu,
+- PR #13 Actions run kimliği ve tam log sonucu,
 - son AAB kaynak commit'i ve artifact kanıtı,
 - PR #9 / #10 merge commitlerinin ayrıntılı envanteri.
 
