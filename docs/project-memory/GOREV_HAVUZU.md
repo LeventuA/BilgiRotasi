@@ -120,7 +120,7 @@ CI kanıtı:
 
 ### BR-P1-001 - GitHub canlı envanteri
 
-**Durum:** KISMEN TAMAMLANDI
+**Durum:** KISMEN TAMAMLANDI / PLAY AAB RUN EŞLEMESİ DOĞRULANACAK
 
 6 Ağustos 2026 doğrulananlar:
 
@@ -128,18 +128,31 @@ CI kanıtı:
 - Release branch: `release/final-closed-test-aab-1.68.8`
 - Release head: `548e8d3046469688a8dcb050552956cf786e525c`
 - Sürüm: `1.68.13+103`
-- PR #7: açık / Draft / merge edilmemiş
-- PR #6: eski hotfix / açık / Draft
-- PR #12: deterministik geometri / açık / Draft
+- Son işlevsel release commit'i: `34e8df9291ff070f333ea4e6d375b48ed7d01754` (PR #10 merge)
+- PR #6: eski hotfix / kapalı / merge edilmemiş / release hattı tarafından superseded
+- PR #7: açık / Draft / güncel `1.68.13+103` release başlığı ve envanteri yazıldı
+- PR #9: merge commit `25f283d87875c766697e43a7b0b9655ceff752b6`; güncel release içinde
+- PR #10: merge commit `34e8df9291ff070f333ea4e6d375b48ed7d01754`; güncel release içinde
+- PR #11: belge-only merge commit `548e8d3046469688a8dcb050552956cf786e525c`
+- PR #12: deterministik geometri / açık / Draft / Codex'e bırakıldı / değiştirilmedi
 - PR #13: birleşik güncelleme / açık / Draft / çatışmasız
 - Birleşik güncelleme dalı: `update/closed-test-next-release`
 - PR #13 kod/test commit'i: `f9d5ab900d0644a969d251ee9fd8e814650857af`
-- Actions run/job ve release APK artifact kanıtı doğrulandı.
+- PR #13 Actions run/job ve release APK artifact kanıtı doğrulandı.
+- PR #10 merge commit'i üzerindeki `1.68.13+103` APK CI kanıtı doğrulandı:
+  - run `30864581523`,
+  - job `91853543414`,
+  - artifact `8879320751`,
+  - SHA-256 `3e8015f512b7710c9997aa7cad854f59aeee796cc2e72d9a3c3d5538f7174f69`.
+- Release dalında production Firebase + test AdMob profilli, imzalı kapalı-test AAB üreten `workflow_dispatch` hattı doğrulandı.
 
 Açık kalanlar:
 
-- son Kapalı Test AAB kaynak commit'inin Play Console ile birebir eşlemesi,
-- PR #9 / #10 merge commitlerinin ayrıntılı envanteri.
+- Play Console'a yüklenen `1.68.13+103` AAB'nin özgül workflow_dispatch run ID'si,
+- yüklenen AAB'nin artifact ID ve SHA-256 değeri,
+- bu AAB kanıtının Play Console sürüm kodu `103` ile birebir eşleştirilmesi.
+
+**Kural:** APK artifact'i Play'e yüklenen AAB kanıtı sayılmaz.
 
 ### BR-P1-002 - Firebase production envanteri
 

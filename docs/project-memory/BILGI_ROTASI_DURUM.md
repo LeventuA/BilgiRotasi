@@ -14,19 +14,30 @@
 | Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI |
 | Yayın/release dalı | `release/final-closed-test-aab-1.68.8` | DOĞRULANDI |
 | Release head | `548e8d3046469688a8dcb050552956cf786e525c` | DOĞRULANDI |
-| Release son commit | `docs: Bilgi Rotası proje hafızası V2` | DOĞRULANDI |
+| Release son commit | `docs: Bilgi Rotası proje hafızası V2` | DOĞRULANDI / yalnız belge |
 | Gerçek paket sürümü | `1.68.13+103` | DOĞRULANDI (`pubspec.yaml`) |
+| Son işlevsel release commit'i | `34e8df9291ff070f333ea4e6d375b48ed7d01754` | DOĞRULANDI / PR #10 merge |
 | Birleşik güncelleme dalı | `update/closed-test-next-release` | DOĞRULANDI |
 | Birleşik güncelleme PR'ı | PR #13 | AÇIK / DRAFT / MERGE EDİLMEDİ |
 | PR #13 tabanı | `release/final-closed-test-aab-1.68.8` | DOĞRULANDI |
 | PR #13 merge durumu | Çatışmasız / `mergeable: true` | DOĞRULANDI |
 | Ödüllü reklam düzeltme commit'i | `f9d5ab900d0644a969d251ee9fd8e814650857af` | DOĞRULANDI / CI PASS |
 | `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR |
-| PR #7 | Açık, Draft, merge edilmemiş | DOĞRULANDI |
-| PR #6 | Açık, Draft; eski hotfix hattı | DOĞRULANDI / güncel taban değil |
-| PR #12 | Açık, Draft; deterministik 67-node geometri | DOĞRULANDI / birleşik güncellemeden ayrı |
+| PR #7 | `release: Bilgi Rotası 1.68.13+103 kapalı test hattı` | AÇIK / DRAFT / MERGE EDİLMEDİ |
+| PR #6 | Eski `1.68.7+97` hotfix | KAPALI / MERGE EDİLMEDİ / YERİNE RELEASE HATTI GEÇTİ |
+| PR #9 | Merge commit `25f283d87875c766697e43a7b0b9655ceff752b6` | MERGE EDİLDİ / RELEASE İÇİNDE |
+| PR #10 | Merge commit `34e8df9291ff070f333ea4e6d375b48ed7d01754` | MERGE EDİLDİ / RELEASE İÇİNDE |
+| PR #11 | Merge commit `548e8d3046469688a8dcb050552956cf786e525c` | MERGE EDİLDİ / YALNIZ PROJE BELGELERİ |
+| PR #12 | Açık, Draft; deterministik 67-node geometri | DOĞRULANDI / BİRLEŞİK GÜNCELLEMEDEN AYRI / CODEX'E BIRAKILDI |
 
 `update/closed-test-next-release` dalı release ile aynı `548e8d3...` commitinden başlamıştır. Doğrudan `main` veya release dalına yazılmamıştır.
+
+Canlı commit karşılaştırmaları:
+
+- Güncel release, PR #6 head commit'inin 45 commit ilerisinde ve 0 commit gerisindedir; PR #6 bu nedenle `superseded` olarak kapatıldı.
+- Güncel release, PR #9 merge commit'inin 3 commit ilerisinde ve 0 commit gerisindedir.
+- Güncel release, PR #10 merge commit'inin 1 commit ilerisinde ve 0 commit gerisindedir.
+- PR #10 sonrasındaki tek commit PR #11'in proje hafızası belgesidir; uygulama kodunu değiştirmemiştir.
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Sürüm hedef dalın `pubspec.yaml` dosyasından okunmalıdır.
 
@@ -44,6 +55,17 @@
 - 14 günlük sürede geçen süre: 2 gün
 
 Bu çalışma sırasında Play Console'a yeni yükleme veya yayın yapılmamıştır.
+
+Release dalında imzalı kapalı-test AAB üreten workflow doğrulandı:
+
+- Giriş workflow'u: `.github/workflows/android-apk.yml`
+- Çekirdek workflow: `.github/workflows/closed-test-release-core.yml`
+- Tetikleyici: `workflow_dispatch` ve `CLOSED_TEST` onayı
+- Yapılandırma: production Firebase + Google demo/test AdMob kimlikleri
+- Çıktı: `BilgiRotasi-<sürüm>-<kod>-closed-test.aab`
+- Doğrulama: AAB sürüm/manifest/imza, Firebase/AdMob profili ve Android 16 cold-start
+
+Play Console'a yüklenen `1.68.13+103` AAB'nin özgül workflow_dispatch run ID'si ve artifact SHA-256 değeri mevcut GitHub bağlantısından doğrulanamadı. PR #10 üzerindeki başarılı APK artifact'i AAB kanıtı sayılmadı. Kesin AAB-run eşleşmesi `DOĞRULANACAK` olarak kalır.
 
 **Kural:**
 
@@ -158,6 +180,8 @@ Kod ve test commit'i: `f9d5ab900d0644a969d251ee9fd8e814650857af` (`fix: ödüll�
 
 ## 6. CI doğrulaması
 
+### PR #13 ödüllü reklam doğrulaması
+
 `.github/workflows/admob-pr-validation.yml` push koşusu, ödüllü reklam düzeltme commit'i `f9d5ab900d0644a969d251ee9fd8e814650857af` üzerinde tamamlandı.
 
 Canlı kanıt:
@@ -192,13 +216,30 @@ Artifact kanıtı:
 - SHA-256: `caf6033b51d233a9bce633b8ca19f69ab91ff2160c33b11b0ec7e50dc36eafd9`
 - Süresi dolmuş değil.
 
+### PR #10 / `1.68.13+103` release kod doğrulaması
+
+PR #10 merge commit'i `34e8df9291ff070f333ea4e6d375b48ed7d01754` üzerinde:
+
+- Workflow: `AdMob PR doğrulaması`
+- Run ID: `30864581523`
+- Job ID: `91853543414`
+- Sonuç: `success`
+- Flutter analiz ve tüm testler: PASS
+- İmzalı release APK, paket/sürüm/manifest/sertifika: PASS
+- Android 16 cold-start: PASS
+- Artifact ID: `8879320751`
+- Artifact: `BilgiRotasi-AdMob-1.68.13-103-kanitlari`
+- Artifact SHA-256: `3e8015f512b7710c9997aa7cad854f59aeee796cc2e72d9a3c3d5538f7174f69`
+
+Bu ikinci artifact test AdMob kimlikli release APK kanıtıdır; Play Console'a yüklenen AAB değildir.
+
 Workflow tetikleyici kapsamındaki önceki değişiklikler korunmuştur:
 
 - PR tabanı olarak `release/final-closed-test-aab-1.68.8`,
 - push dalı olarak `update/closed-test-next-release`,
 - yalnız `docs/project-memory/**` değişikliklerinde ağır Android doğrulamasını atlayan `paths-ignore`.
 
-**Durum:** Otomatik CI `DOĞRULANDI / PASS`. Fiziksel cihazda gerçek rewarded reklam ve XP kabulü ayrı olarak `DOĞRULANACAK`.
+**Durum:** Otomatik CI `DOĞRULANDI / PASS`. Fiziksel cihazda gerçek rewarded reklam ve XP kabulü ayrı olarak `DOĞRULANACAK`. Play'e yüklenen AAB'nin özgül run/artifact eşleşmesi de `DOĞRULANACAK`.
 
 ---
 
@@ -259,14 +300,19 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`.
 - Branch: `update/closed-test-next-release`
 - Base: `release/final-closed-test-aab-1.68.8`
 - Release base SHA: `548e8d3046469688a8dcb050552956cf786e525c`
+- Son işlevsel release commit'i: `34e8df9291ff070f333ea4e6d375b48ed7d01754`
 - Kod/test commit'i: `f9d5ab900d0644a969d251ee9fd8e814650857af`
 - Draft PR: #13
 - PR durumu: açık, Draft, merge edilmemiş, çatışmasız
-- Değiştirilen uygulama dosyası: `lib/ad_monetization.dart`
-- Değiştirilen test dosyası: `test/ad_monetization_test.dart`
+- PR #6: kapalı, merge edilmemiş, superseded
+- PR #7: açık, Draft; başlık ve release envanteri güncellendi
+- PR #9 ve PR #10: release içinde doğrulandı
+- PR #12: değiştirilmedi; 3B tahta çalışması Codex'e bırakıldı
 - CI run: `31111600703` / PASS
 - CI job: `92650502426` / PASS
-- Release APK artifact: `5395999980`
+- PR #13 release APK artifact: `5395999980`
+- PR #10 CI run: `30864581523` / PASS
+- PR #10 release APK artifact: `8879320751`
 - Soru bankası: değiştirilmedi
 - Sürüm: artırılmadı (`1.68.13+103`)
 - Merge: yapılmadı
@@ -276,9 +322,10 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`.
 
 ## 11. Sıradaki işler
 
-1. Fiziksel cihazda sonuç ekranı rewarded reklam ve `+10 XP` kabul testlerini çalıştır.
-2. Production Firebase açıkken sonuç reklamının beklenen ürün davranışını netleştir ve doğrula.
-3. Büyük canlı `assets/questions.json` dosyasını güvenilir bir repo checkout'u veya dosya indirme yöntemiyle oku.
-4. 26 benzersiz hatalı soruyu topluca incele ve doğrulanan düzeltmeleri aynı birleşik güncellemeye ekle.
-5. Zorluk bildirimlerinde tek kullanıcı oyuyla kör değişiklik yapma.
-6. Levent onayı olmadan merge veya Play Console yayını yapma.
+1. Play Console'a yüklenen `1.68.13+103` AAB'nin workflow_dispatch run ID'sini ve artifact SHA-256 değerini canlı Actions/Play kanıtıyla eşleştir.
+2. Fiziksel cihazda sonuç ekranı rewarded reklam ve `+10 XP` kabul testlerini çalıştır.
+3. Production Firebase açıkken sonuç reklamının beklenen ürün davranışını netleştir ve doğrula.
+4. Büyük canlı `assets/questions.json` dosyasını güvenilir bir repo checkout'u veya dosya indirme yöntemiyle oku.
+5. 26 benzersiz hatalı soruyu topluca incele ve doğrulanan düzeltmeleri aynı birleşik güncellemeye ekle.
+6. Zorluk bildirimlerinde tek kullanıcı oyuyla kör değişiklik yapma.
+7. Levent onayı olmadan merge veya Play Console yayını yapma.
