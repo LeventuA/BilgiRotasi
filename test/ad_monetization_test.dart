@@ -95,6 +95,33 @@ void main() {
       expect(await controller.run(), isTrue);
       expect(grants, 1);
     });
+
+    test('ödül verilmezse kalan hak aynı ekranda yeniden denenebilir', () {
+      expect(
+        supportRewardAvailabilityAfterAttempt(
+          rewardGranted: false,
+          canClaimAgain: true,
+        ),
+        isTrue,
+      );
+      expect(
+        supportRewardAvailabilityAfterAttempt(
+          rewardGranted: false,
+          canClaimAgain: false,
+        ),
+        isFalse,
+      );
+    });
+
+    test('ödül verildiyse sonuç kartı yeniden açılmaz', () {
+      expect(
+        supportRewardAvailabilityAfterAttempt(
+          rewardGranted: true,
+          canClaimAgain: true,
+        ),
+        isFalse,
+      );
+    });
   });
 
   group('sonuç reklamı hakları', () {
@@ -140,6 +167,19 @@ void main() {
 
       expect(results.where((result) => result).length, 1);
       expect(await limiter.claim('same-game'), isFalse);
+    });
+
+    test('eşzamanlı farklı oyun taleplerinin ikisini de kalıcı tutar', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
+
+      final results = await Future.wait<bool>(<Future<bool>>[
+        limiter.claim('game-a'),
+        limiter.claim('game-b'),
+      ]);
+
+      expect(results, everyElement(isTrue));
+      expect(await limiter.wasClaimedForGame('game-a'), isTrue);
+      expect(await limiter.wasClaimedForGame('game-b'), isTrue);
     });
 
     test('boş oyun kimliğine hak vermez', () async {

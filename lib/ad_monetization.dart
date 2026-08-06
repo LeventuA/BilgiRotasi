@@ -458,7 +458,7 @@ class SupportRewardLimiter {
   final AdLimitStore store;
 
   static const String _gamesKey = 'admob_support_games_v1';
-  static final Set<String> _claimsInProgress = <String>{};
+  static Future<void> _claimQueue = Future<void>.value();
 
   Future<bool> wasClaimedForGame(String gameId) async {
     final normalizedGameId = gameId.trim();
@@ -471,34 +471,42 @@ class SupportRewardLimiter {
 
   Future<bool> canClaim(String gameId) async {
     final normalizedGameId = gameId.trim();
-    if (normalizedGameId.isEmpty ||
-        _claimsInProgress.contains(normalizedGameId)) {
-      return false;
-    }
+    if (normalizedGameId.isEmpty) return false;
     return !await wasClaimedForGame(normalizedGameId);
   }
 
-  Future<bool> claim(String gameId) async {
+  Future<bool> claim(String gameId) {
     final normalizedGameId = gameId.trim();
-    if (normalizedGameId.isEmpty ||
-        !_claimsInProgress.add(normalizedGameId)) {
-      return false;
-    }
+    if (normalizedGameId.isEmpty) return Future<bool>.value(false);
 
-    try {
-      if (await wasClaimedForGame(normalizedGameId)) return false;
-      final existing =
-          (await store.read(_gamesKey) ?? '')
-              .split('\n')
-              .where((value) => value.isNotEmpty)
-              .toList();
-      existing.add(normalizedGameId);
-      await store.write(_gamesKey, existing.join('\n'));
-      return true;
-    } finally {
-      _claimsInProgress.remove(normalizedGameId);
-    }
+    final completer = Completer<bool>();
+    _claimQueue = _claimQueue.then((_) async {
+      try {
+        final existing =
+            (await store.read(_gamesKey) ?? '')
+                .split('\n')
+                .where((value) => value.isNotEmpty)
+                .toList();
+        if (existing.contains(normalizedGameId)) {
+          completer.complete(false);
+          return;
+        }
+        existing.add(normalizedGameId);
+        await store.write(_gamesKey, existing.join('\n'));
+        completer.complete(true);
+      } catch (error, stackTrace) {
+        completer.completeError(error, stackTrace);
+      }
+    });
+    return completer.future;
   }
+}
+
+bool supportRewardAvailabilityAfterAttempt({
+  required bool rewardGranted,
+  required bool canClaimAgain,
+}) {
+  return !rewardGranted && canClaimAgain;
 }
 
 class AdMonetizationDialogs {
@@ -695,11 +703,19 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
     final rewarded = await controller.run();
     if (!mounted) return;
 
+    final rewardGranted = rewarded && gain != null;
+    final canClaimAgain =
+        !rewardGranted && await _limiter.canClaim(widget.gameId);
+    if (!mounted) return;
+
     setState(() {
       _busy = false;
-      _available = false;
+      _available = supportRewardAvailabilityAfterAttempt(
+        rewardGranted: rewardGranted,
+        canClaimAgain: canClaimAgain,
+      );
     });
-    if (rewarded && gain != null) {
+    if (rewardGranted) {
       await XpCelebration.show(context, gain!);
       return;
     }
