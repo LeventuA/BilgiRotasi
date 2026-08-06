@@ -1,73 +1,140 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 4 Ağustos 2026 gecesi  
-**Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
+**Son canlı doğrulama:** 6 Ağustos 2026  
+**Durum sınıfları:** `DOĞRULANDI`, `UYGULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`, `DOĞRULANACAK`
 
 ---
 
-## 1. Yayın kaynağı
+## 1. Yayın ve çalışma kaynağı
 
-| Alan | Kesim noktasındaki değer | Durum | Kaynak |
-|---|---|---|---|
-| Repo | `LeventuA/BilgiRotasi` | DOĞRULANDI | S01, S02, S07 |
-| Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI | S04 |
-| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` | RAPORLANDI | S06, S07, S09 |
-| Gerçek paket sürümü | `1.68.13+103` | RAPORLANDI ve birden çok kaynakla uyumlu | S06, S07, S09 |
-| `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR | S06, S07, S09 |
-| PR #9 | Merge edildi | RAPORLANDI | S07, S09 |
-| PR #10 | Merge edildi | RAPORLANDI | S06, S07, S09 |
-| PR #7 | Draft ve merge edilmemiş olarak son görüldü | CANLI DOĞRULANACAK | S09 |
-| PR #8 | Kapatıldı, merge edilmedi | RAPORLANDI | S07, S09 |
+| Alan | Güncel değer | Durum |
+|---|---|---|
+| Kanonik repo | `ZMilaStudio/BilgiRotasi` | DOĞRULANDI |
+| Eski repo adı | `LeventuA/BilgiRotasi` | ESKİ SAHİPLİK / güncel işlem adresi değil |
+| Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI |
+| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` | DOĞRULANDI |
+| Release head | `548e8d3046469688a8dcb050552956cf786e525c` | DOĞRULANDI |
+| Release son commit | `docs: Bilgi Rotası proje hafızası V2` | DOĞRULANDI |
+| Gerçek paket sürümü | `1.68.13+103` | DOĞRULANDI (`pubspec.yaml`) |
+| Birleşik güncelleme dalı | `update/closed-test-next-release` | DOĞRULANDI |
+| `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR |
+| PR #7 | Açık, Draft, merge edilmemiş | DOĞRULANDI |
+| PR #6 | Açık, Draft; eski hotfix hattı | DOĞRULANDI / güncel taban değil |
+| PR #12 | Açık, Draft; deterministik 67-node geometri | DOĞRULANDI / birleşik güncellemeden ayrı |
+
+`update/closed-test-next-release` dalı 6 Ağustos 2026'da release ile aynı `548e8d3...` commitinden başlamıştır. Doğrudan `main` veya release dalına yazılmamıştır.
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Sürüm hedef dalın `pubspec.yaml` dosyasından okunmalıdır.
 
 ---
 
-## 2. Google Play
+## 2. Google Play Kapalı Test
 
-- `1.68.13+103` önce Dahili Test'te gerçek cihazda doğrulandı.
-- Aynı AAB mevcut Kapalı Test kanalına yayımlandı.
-- Son konuşmalarda görülen kapalı test katılımcı sayısı **6** idi; canlı sayı değildir.
-- Testçi sayısı ve 14 günlük süreç Play Console'dan yeniden kontrol edilmelidir.
-- Uygulama kaydı, paket adı ve ilk AAB yükleme süreci daha önce adım adım tamamlandı.
-- Play App Signing SHA değeri production Firebase'e eklenmişti; eski upload/release SHA silinmedi.
+6 Ağustos 2026 tarihli Play Console ekranlarından raporlanan durum:
 
-**Durum:** Kapalı Test yayını `DOĞRULANDI/RAPORLANDI`; katılım süreci `AÇIK`.
+- Aktif sürüm: `1.68.13`
+- Sürüm kodu: `103`
+- Yayın tarihi: 4 Ağustos 2026, 09:49
+- Test listesinde bulunan kişi: 20
+- Google'ın katılımcı saydığı kişi: 12
+- 14 günlük sürede geçen süre: 2 gün
+
+Bu çalışma sırasında Play Console'a yeni yükleme veya yayın yapılmamıştır.
+
+**Kural:**
+
+- Kapalı test duraklatılmayacak.
+- Testçi listesinden kimse çıkarılmayacak.
+- Yalnız soru düzeltmeleri için ayrı APK/AAB çıkarılmayacak.
+- Levent açıkça onaylamadan merge veya Play Console yayını yapılmayacak.
 
 ---
 
-## 3. Soru bankası
+## 3. Soru bankası ve geri bildirimler
 
-- Son raporlanan aktif soru sayısı: **8.710**
-- Eski 6.710 soruya 2.000 Türkiye odaklı kolay soru eklenmişti.
-- Son Sheet konuşmasında hiçbir yeni kayıt `Düzeltildi` yapılmadı.
-- Son kontrol kesiminde **41 bekleyen olay / 40 benzersiz soru** bulunduğu hesaplanıyor.
-- İlk ayıklamada:
-  - 14 benzersiz soru açıkça bozuk,
-  - 8 soru zorluk incelemesi adayı,
-  - 4 eski kayıt ayrıntılı inceleme bekliyor,
-  - 13 soru henüz tek tek değerlendirilmemiş,
-  - 1 soru için değişiklik gerekmiyor.
+Son raporlanan aktif soru sayısı: **8.710**.
 
-Ayrıntılı liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
+6 Ağustos 2026 canlı Sheet özeti:
+
+- Toplam bekliyor: 73
+- Soru hatalı bildirimi: 28
+- Benzersiz hatalı soru: 26
+- Zorluk bildirimi: 44
+- Diğer kayıt: 1
+- Son eklenen hatalı soru: `q56421`
+
+İlk doğrulanan örnekler:
+
+- `q61081`: Soru “ilk kez hangi yıl” biçiminde netleştirilmeli; cevap 2009.
+- `q60513`: Doğru cevap Anadolu yaban koyunu; şıklar yeniden hazırlanmalı.
+- `q60872`: Doğru cevap Busenaz Sürmeneli; şıklar yeniden hazırlanmalı.
+- `q60813`: Doğru cevap Sırbistan; diğer şıklar aynı bağlamda hazırlanmalı.
+- `q60766`: Doğru cevap Anadolu Efes; diğer şıklar aynı bağlamda hazırlanmalı.
+
+### 6 Ağustos çalışma sonucu
+
+Bağlı GitHub aracında `assets/questions.json` çok büyük ve tek satırlı olduğu için içerik güvenilir biçimde okunamamıştır. Kod araması da bu dosyadaki hedef kimlikleri döndürmemiştir. Bu nedenle:
+
+- `assets/questions.json` değiştirilmedi.
+- Hiçbir soru için tahmine dayalı yama yapılmadı.
+- Sheet satırları kapatılmadı.
+- Soru düzeltme işi `DOĞRULANACAK/AÇIK` kaldı.
+
+Soru düzeltmesine ancak canlı JSON kayıtları eksiksiz okunabildiğinde devam edilecek. Her kayıt için metin, dört seçenek, doğru indeks, açıklama, kategori ve zorluk birlikte kontrol edilecek.
+
+Ayrıntılı liste: `SORU_GERI_BILDIRIM_HAVUZU.md`.
 
 ---
 
 ## 4. Soru geri bildirim taşıma sistemi
 
-Son canlı kontrollerde:
-
-- Eski cihaz kuyruğundaki kayıtlar Sheet'e aktarılabildi.
+- Eski cihaz kuyruğundaki kayıtların Sheet'e aktarılabildiği raporlandı.
 - `1.68.13+103` sürümünden kuyruk dışı canlı kayıtlar Sheet'e ulaştı.
-- Bu nedenle geri bildirim taşıma sistemi çalışıyor kabul edilir.
-- Ancak soru düzeltme süreci henüz başlamadı veya tamamlanmadı.
-- Sheet kayıtları gerçek soru düzeltmesi merge edilmeden kapatılmamalıdır.
+- Taşıma sistemi çalışıyor kabul edilir.
+- İçerik temizliği tamamlanmadı.
+- Sheet kayıtları gerçek soru düzeltmesi merge edilip doğrulanmadan kapatılmayacak.
 
 **Durum:** Taşıma `DOĞRULANDI`; içerik temizliği `AÇIK`.
 
 ---
 
-## 5. 3B oyun tahtası
+## 5. Ödüllü reklam ve joker sistemi
+
+### Tahtadaki reklam
+
+Tahtadaki **Rastgele Joker Kazan** reklamı XP vermez. Reklam tamamlanınca şu dört jokerden biri rastgele `+1` olur:
+
+- 50:50
+- Soru Değiştir
+- İkinci Şans
+- Kategori Değiştir
+
+Bu akışa, BoardMap'e, oynanışa veya 67 node düzenine dokunulmamıştır.
+
+### Sonuç ekranındaki destek reklamı
+
+Kesin ürün kararı:
+
+- Her tamamlanan oyun bir reklam hakkı üretir.
+- Aynı tamamlanan oyun ikinci kez ödül vermez.
+- Yeni tamamlanan oyun yeni hak üretir.
+- Günlük veya oturumluk toplam sınır yoktur.
+- Ödül `+10 XP`'dir.
+
+Canlı kodda eski günlük üç reklam sınırı `SupportRewardLimiter` içinde doğrulandı. `update/closed-test-next-release` dalında:
+
+- günlük tarih ve sayaç sınırı kaldırıldı,
+- boş oyun kimliği reddedildi,
+- aynı oyun kimliğinin ikinci talebi engellendi,
+- farklı tamamlanan oyunlar için genel kota kaldırıldı,
+- son 200 oyun kimliği saklanmaya devam edildi,
+- ilgili birim testleri yeni karara göre güncellendi.
+
+**Durum:** `UYGULANDI — TEST/CI/PR BEKLİYOR`. Fiziksel reklam gösterimi ve gerçek XP kabulü cihaz olmadan doğrulanamaz.
+
+---
+
+## 6. 3B oyun tahtası
 
 - Oynanış ve BoardMap değişmeyecek.
 - Tahta sözleşmesi 67 noktadır:
@@ -75,57 +142,26 @@ Son canlı kontrollerde:
   - 30 iç kategori,
   - 6 rozet,
   - 1 merkez.
-- Tek Matrix4 ile bütün 2B tahtayı eğme yaklaşımı başarısız bulundu.
-- `experiment/original-board-3d-v1` silindi.
-- `experiment/true-3d-board-renderer-v2` açıldı; konuşma kesiminde gerçek renderer commit'i yoktu.
-- Hiçbir 3B çalışma release dalına merge edilmedi.
-- Son görsel kabul edilmedi ve çalışma durduruldu.
-- 8 adet kategori rozeti konsepti üretildi; tahtadaki 6 fiziksel rozet noktasına eşleme çözülmedi.
-
-**Durum:** `DURDURULDU`; çalışan oyuna etkisi yok.
+- Tek Matrix4 ile bütün 2B tahtayı eğme yaklaşımı kullanılmayacak.
+- PR #12 deterministik numaralı geometri çalışmasıdır; birleşik güncelleme dalına merge edilmemiştir.
+- 8 kategori rozeti ile 6 fiziksel rozet noktası eşlemesi hâlâ açıktır.
+- Kullanıcı onayı olmadan stil, Flutter veya APK aşamasına geçilmeyecektir.
 
 ---
 
-## 6. Oyun ve hesap sistemleri
+## 7. CI ve cihaz doğrulaması
 
-Konuşma ve test kayıtlarında mevcut olduğu görülen ana sistemler:
+Ödüllü reklam değişikliği için birim test dosyası güncellendi; ancak bu kayıt yazılırken GitHub Actions sonucu henüz alınmamıştır. Test geçmeden görev `BİTTİ` sayılmaz.
 
-- 2-6 kişilik yerel tahta oyunu
-- Serbest Rota
-- Soru Maratonu
-- Günlük Görev
-- Hayatta Kalma
-- 60 Saniye
-- Aile, Takım ve Turnuva modları
-- 10 / 20 / 30 soruluk Meydan Okuma
-- Canlı Düello altyapısı ve oyun akışı
-- BR ve lig sistemi
-- Google giriş / misafir ayrımı
-- Bulut kayıt
-- Hesap silme
-- XP, seviye, başarımlar
-- Bilgi Rotası Pasaportu
-- Piyon koleksiyonu ve nadirlik
-- Temalar, jokerler, özel kutular
-- Erişilebilirlik ve Sistem Sağlığı
+Cihaz gerektiren ve bu çalışma kapsamında tamamlanamayan doğrulamalar:
 
-**Dikkat:** Yeni teknik çalışma öncesi canlı release dalında ilgili modülün gerçekten bulunduğu ve testlerin geçtiği doğrulanmalıdır.
-
----
-
-## 7. Reklam
-
-Kesim noktasındaki proje kararına göre:
-
-- Aktif soru ve kritik oyun akışlarında reklam bulunmamalı.
-- Banner yalnız uygun menü/sonuç ekranlarında kullanılmalı.
-- Ödüllü reklam isteğe bağlı olmalı.
-- Ödül: `+10 XP`
-- Günlük toplam kota kaldırılmalı.
-- Her tamamlanan oyun bir adet ödüllü reklam hakkı üretmeli.
-- Aynı oyun sonucu ikinci kez ödül vermemeli.
-
-**Durum:** Son kota değişikliği `AÇIK`; uygulanıp uygulanmadığı canlı koddan doğrulanmalı.
+- gerçek ödüllü reklamın gösterilmesi,
+- reklam tamamlanmadan kapatıldığında ödül verilmemesi,
+- gerçek `+10 XP` yazımı,
+- Google giriş,
+- Android 16 cold-start ve logcat,
+- iki telefonlu Canlı Düello,
+- Play Console kapalı test kabulü.
 
 ---
 
@@ -142,18 +178,18 @@ Hazırlanan varlıklar arasında:
 
 bulunuyor.
 
-Tanıtım videolarının 15/30/60 saniyelik birçok seti üretildi; Levent tarafından yetersiz bulundu. Onaylı final tanıtım videosu yoktur.
+Tanıtım videolarının 15/30/60 saniyelik birçok seti üretildi; onaylı final tanıtım videosu yoktur.
 
-Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`
+Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`.
 
 ---
 
-## 9. Şu anda ilk yapılacak işler
+## 9. Sıradaki işler
 
-1. Play Console'dan canlı kapalı test sayısını ve süreyi doğrula.
-2. Sheet'teki soru geri bildirimlerini soru bankasının gerçek kayıtlarıyla incele.
-3. Açıkça bozuk sorular için release dalından ayrı düzeltme branch'i aç.
-4. Soru düzeltmelerini test et, PR aç, incele ve merge et.
-5. Yeni AAB'yi mevcut Kapalı Test kanalına güncelleme olarak yükle.
-6. Ödüllü reklamın oyun başına hak kararını canlı kodda doğrula ve gerekiyorsa uygula.
-7. 3B tahta çalışmasına, geometri ve 6-rozet eşlemesi çözülmeden dönme.
+1. Ödüllü reklam diff'ini ve birim testleri CI ile doğrula.
+2. `update/closed-test-next-release` dalından release dalına Draft PR aç.
+3. Büyük canlı `assets/questions.json` dosyasını güvenilir bir repo checkout'u veya dosya indirme yöntemiyle oku.
+4. 26 benzersiz hatalı soruyu topluca incele ve doğrulanan düzeltmeleri aynı birleşik güncellemeye ekle.
+5. Zorluk bildirimlerinde tek kullanıcı oyuyla kör değişiklik yapma.
+6. Cihaz gerektiren kabul testlerini daha sonra fiziksel cihazlarda çalıştır.
+7. Levent onayı olmadan merge veya Play Console yayını yapma.
