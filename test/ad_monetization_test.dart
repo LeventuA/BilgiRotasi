@@ -97,32 +97,42 @@ void main() {
     });
   });
 
-  group('sonuç reklamı limitleri', () {
-    test('oyun başına en fazla bir kez hak verir', () async {
-      final limiter = SupportRewardLimiter(
-        store: MemoryAdLimitStore(),
-        now: () => DateTime(2026, 7, 29),
-      );
+  group('sonuç reklamı hakları', () {
+    test('aynı tamamlanan oyun yalnız bir kez hak verir', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
 
       expect(await limiter.claim('game-1'), isTrue);
       expect(await limiter.claim('game-1'), isFalse);
-      expect(await limiter.claimsToday(), 1);
+      expect(await limiter.wasClaimedForGame('game-1'), isTrue);
     });
 
-    test('günlük en fazla üç kez hak verir ve ertesi gün sıfırlanır', () async {
+    test('farklı tamamlanan oyunlara günlük veya oturumluk kota uygulamaz', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
+
+      for (var index = 1; index <= 10; index++) {
+        expect(
+          await limiter.claim('game-$index'),
+          isTrue,
+          reason: 'game-$index ayrı bir tamamlanan oyundur',
+        );
+      }
+    });
+
+    test('boş oyun kimliğine hak vermez', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
+
+      expect(await limiter.claim(''), isFalse);
+      expect(await limiter.claim('   '), isFalse);
+    });
+
+    test('alınan hak yeni limiter örneğinde de tekrar verilmez', () async {
       final store = MemoryAdLimitStore();
-      var now = DateTime(2026, 7, 29);
-      final limiter = SupportRewardLimiter(store: store, now: () => now);
+      final firstLimiter = SupportRewardLimiter(store: store);
+      final secondLimiter = SupportRewardLimiter(store: store);
 
-      expect(await limiter.claim('game-1'), isTrue);
-      expect(await limiter.claim('game-2'), isTrue);
-      expect(await limiter.claim('game-3'), isTrue);
-      expect(await limiter.claim('game-4'), isFalse);
-      expect(await limiter.claimsToday(), 3);
-
-      now = DateTime(2026, 7, 30);
-      expect(await limiter.claim('game-4'), isTrue);
-      expect(await limiter.claimsToday(), 1);
+      expect(await firstLimiter.claim('game-1'), isTrue);
+      expect(await secondLimiter.canClaim('game-1'), isFalse);
+      expect(await secondLimiter.claim('game-2'), isTrue);
     });
   });
 }
