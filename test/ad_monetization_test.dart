@@ -118,6 +118,30 @@ void main() {
       }
     });
 
+    test('eski oyun hakkı 200 yeni oyundan sonra yeniden açılmaz', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
+
+      expect(await limiter.claim('game-1'), isTrue);
+      for (var index = 2; index <= 250; index++) {
+        expect(await limiter.claim('game-$index'), isTrue);
+      }
+
+      expect(await limiter.claim('game-1'), isFalse);
+      expect(await limiter.wasClaimedForGame('game-1'), isTrue);
+    });
+
+    test('eşzamanlı aynı oyun taleplerinden yalnız biri hak kazanır', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
+
+      final results = await Future.wait<bool>(<Future<bool>>[
+        limiter.claim('same-game'),
+        limiter.claim('same-game'),
+      ]);
+
+      expect(results.where((result) => result).length, 1);
+      expect(await limiter.claim('same-game'), isFalse);
+    });
+
     test('boş oyun kimliğine hak vermez', () async {
       final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
 
