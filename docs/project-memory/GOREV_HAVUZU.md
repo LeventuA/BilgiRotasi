@@ -4,23 +4,34 @@
 
 ### BR-P0-001 - Kapalı Test canlı durumunu doğrula
 
-**Durum:** KISMEN DOĞRULANDI / CANLI SAYAÇ İZLENECEK
+**Durum:** DOĞRULANDI / 12 GEÇERLİ TESTÇİ / 4 KESİNTİSİZ GÜN / 14 GÜN BEKLENİYOR
 
-6 Ağustos 2026 raporu:
+7 Ağustos 2026 Play Console canlı ekranı:
 
-- Aktif sürüm: `1.68.13+103`
+- Son doğrulanan aktif sürüm: `1.68.13+103`
 - Yayın tarihi: 4 Ağustos 2026, 09:49
 - Test listesi: 20 kişi
-- Google'ın katılımcı saydığı: 12 kişi
-- 14 günlük sürede geçen: 2 gün
+- Google'ın geçerli saydığı: **12 kişi**
+- 12 kişiyle kesintisiz geçen süre: **4 gün**
+- Gerekli süre: **14 gün**
+- Sayaç kesintisiz sürerse yaklaşık 10 gün daha gerekiyor.
+- `Üretime başvur` düğmesi henüz kapalı.
+
+Aynı oturumda Android geliştirici doğrulaması da kontrol edildi:
+
+- Play Console tüm uygulamaların doğrulama şartları için başarıyla kaydedildiğini bildiriyor.
+- `com.leventua.bilgirotasi` paket adı **Kayıtlı**.
+- Paket kaydında 3 anahtar görünüyor.
+- Ek paket kaydı veya yeni imza anahtarı gerekmiyor.
 
 Açık kalanlar:
 
-- testten ayrılan kişi olup olmadığı,
-- güncel sayaç ve üretim erişimi durumu,
-- sonraki kontrol tarihindeki canlı katılımcı sayısı.
+- 12 geçerli testçinin 14 günlük kesintisiz koşulu tamamlaması,
+- kesin tamamlanma tarih/saatinin canlı Play Console sayacıyla doğrulanması,
+- testçi sayısının 12'nin altına düşmemesi,
+- 14 gün sonunda üretime başvuru sorularının doldurulması.
 
-**Bitti ölçütü:** Güncel ekran kanıtı ve tarih `BILGI_ROTASI_DURUM.md` dosyasına yazılır.
+**Bitti ölçütü:** 14 günlük koşul tamamlanır, `Üretime başvur` etkinleşir ve güncel ekran kanıtı `BILGI_ROTASI_DURUM.md` dosyasına yazılır.
 
 ---
 
