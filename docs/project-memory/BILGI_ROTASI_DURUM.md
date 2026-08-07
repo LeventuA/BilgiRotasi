@@ -1,6 +1,6 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Son canlı doğrulama:** 6 Ağustos 2026  
+**Son canlı doğrulama:** 7 Ağustos 2026  
 **Durum sınıfları:** `DOĞRULANDI`, `UYGULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`, `DOĞRULANACAK`
 
 ---
@@ -43,16 +43,39 @@ Canlı commit karşılaştırmaları:
 
 ---
 
-## 2. Google Play Kapalı Test
+## 2. Google Play Kapalı Test ve geliştirici doğrulaması
 
-6 Ağustos 2026 tarihli Play Console ekranlarından raporlanan durum:
+### Kapalı test
+
+7 Ağustos 2026 Play Console üretim erişimi ekranından canlı doğrulanan durum:
+
+- Google'ın geçerli saydığı test kullanıcısı: **12**
+- 12 test kullanıcısıyla kesintisiz geçen süre: **4 gün**
+- Gereken süre: **14 gün**
+- Kalan süre, sayaç kesintisiz ilerlerse yaklaşık **10 gün**
+- `Üretime başvur` düğmesi henüz kapalı; 14 günlük koşul tamamlanmadı.
+
+Son doğrulanan kapalı-test sürümü:
 
 - Aktif sürüm: `1.68.13`
 - Sürüm kodu: `103`
 - Yayın tarihi: 4 Ağustos 2026, 09:49
 - Test listesinde bulunan kişi: 20
-- Google'ın katılımcı saydığı kişi: 12
-- 14 günlük sürede geçen süre: 2 gün
+
+Kesin bitiş tarih/saatini Play Console belirler. 4 günlük sayaçtan hareketle 17 Ağustos 2026 civarı beklenebilir; bu tarih kesin kabul edilmeyecek ve canlı sayaçla doğrulanacaktır.
+
+### Android geliştirici doğrulaması
+
+7 Ağustos 2026 Play Console ekranlarından:
+
+- Hesap ana sayfası, **tüm uygulamaların Android geliştirici doğrulaması şartlarını karşılamak için başarıyla kaydedildiğini** bildiriyor.
+- Bilgi Rotası paket adı `com.leventua.bilgirotasi` durum olarak **Kayıtlı** görünüyor.
+- Paket kaydında **3 anahtar** görünüyor.
+- Paket kaydının son güncelleme tarihi: **1 Ağustos 2026**.
+- Kimlik bilgileri Play Console geliştirici hesabından alınıyor; ek doğrulama hatası görünmüyor.
+- Yeni paket adı kaydı veya yeni imza anahtarı oluşturma gerekmiyor.
+
+**Durum:** Android geliştirici doğrulaması `DOĞRULANDI / TAMAM`.
 
 Bu çalışma sırasında Play Console'a yeni yükleme veya yayın yapılmamıştır.
 
@@ -71,6 +94,7 @@ Play Console'a yüklenen `1.68.13+103` AAB'nin özgül workflow_dispatch run ID'
 
 - Kapalı test duraklatılmayacak.
 - Testçi listesinden kimse çıkarılmayacak.
+- Geçerli testçi sayısı 12'nin altına düşürülmeyecek; mümkünse birkaç ek geçerli testçiyle güvenlik payı korunacak.
 - Yalnız soru düzeltmeleri için ayrı APK/AAB çıkarılmayacak.
 - Levent açıkça onaylamadan merge veya Play Console yayını yapılmayacak.
 
@@ -272,7 +296,7 @@ Cihaz gerektiren ve bu çalışma kapsamında tamamlanamayan doğrulamalar:
 - Google giriş,
 - fiziksel Android 16 cold-start ve logcat,
 - iki telefonlu Canlı Düello,
-- Play Console kapalı test kabulü.
+- Play Console'da 12 test kullanıcısının 14 günlük kesintisiz koşulu tamamlaması.
 
 ---
 
@@ -313,6 +337,8 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`.
 - PR #13 release APK artifact: `5395999980`
 - PR #10 CI run: `30864581523` / PASS
 - PR #10 release APK artifact: `8879320751`
+- Play Console: 12 geçerli test kullanıcısı / 4 kesintisiz gün
+- Android geliştirici doğrulaması: tüm uygulamalar başarıyla kaydedilmiş / Bilgi Rotası paketi Kayıtlı
 - Soru bankası: değiştirilmedi
 - Sürüm: artırılmadı (`1.68.13+103`)
 - Merge: yapılmadı
@@ -322,10 +348,12 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`.
 
 ## 11. Sıradaki işler
 
-1. Play Console'a yüklenen `1.68.13+103` AAB'nin workflow_dispatch run ID'sini ve artifact SHA-256 değerini canlı Actions/Play kanıtıyla eşleştir.
-2. Fiziksel cihazda sonuç ekranı rewarded reklam ve `+10 XP` kabul testlerini çalıştır.
-3. Production Firebase açıkken sonuç reklamının beklenen ürün davranışını netleştir ve doğrula.
-4. Büyük canlı `assets/questions.json` dosyasını güvenilir bir repo checkout'u veya dosya indirme yöntemiyle oku.
-5. 26 benzersiz hatalı soruyu topluca incele ve doğrulanan düzeltmeleri aynı birleşik güncellemeye ekle.
-6. Zorluk bildirimlerinde tek kullanıcı oyuyla kör değişiklik yapma.
-7. Levent onayı olmadan merge veya Play Console yayını yapma.
+1. Kapalı testte en az 12 geçerli testçiyi kesintisiz tut; mümkünse birkaç ek geçerli testçiyle güvenlik payı oluştur.
+2. Play Console sayacını periyodik kontrol et; 14 gün tamamlanınca `Üretime başvur` aşamasını birlikte doldur.
+3. Fiziksel cihazda sonuç ekranı rewarded reklam ve `+10 XP` kabul testlerini çalıştır.
+4. Production Firebase açıkken sonuç reklamının beklenen ürün davranışını netleştir ve doğrula.
+5. Play Console'a yüklenen `1.68.13+103` AAB'nin workflow_dispatch run ID'sini ve artifact SHA-256 değerini canlı Actions/Play kanıtıyla eşleştir.
+6. Büyük canlı `assets/questions.json` dosyasını güvenilir bir repo checkout'u veya dosya indirme yöntemiyle oku.
+7. 26 benzersiz hatalı soruyu topluca incele ve doğrulanan düzeltmeleri aynı birleşik güncellemeye ekle.
+8. Zorluk bildirimlerinde tek kullanıcı oyuyla kör değişiklik yapma.
+9. Levent onayı olmadan merge veya Play Console yayını yapma.
