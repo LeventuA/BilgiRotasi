@@ -1,6 +1,6 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-**Son güncelleme:** 6 Ağustos 2026
+**Son güncelleme:** 7 Ağustos 2026
 
 ## Çözülen veya kısmen çözülenler
 
@@ -48,11 +48,20 @@
    - Evet. `.github/workflows/android-apk.yml`, `workflow_dispatch` üzerinden `.github/workflows/closed-test-release-core.yml` çağırır.
    - Production Firebase, Google demo/test AdMob kimlikleri ve kalıcı upload anahtarıyla imzalı AAB üretir; AAB metadata/imza ve Android 16 doğrulaması yapar.
 
+11. Android geliştirici doğrulaması tamam mı?
+   - Evet. 7 Ağustos 2026 Play Console ana sayfası tüm uygulamaların Android geliştirici doğrulaması şartları için başarıyla kaydedildiğini bildirdi.
+   - Bilgi Rotası `com.leventua.bilgirotasi` paket adı `Kayıtlı` durumunda; 3 anahtar görünüyor.
+   - Yeni paket kaydı veya yeni imza anahtarı gerekmiyor.
+
+12. Kapalı testte Google'ın güncel saydığı testçi ve süre nedir?
+   - 7 Ağustos 2026 ekranında 12 geçerli test kullanıcısı ve 4 kesintisiz gün doğrulandı.
+   - Gerekli süre 14 gün; `Üretime başvur` henüz etkin değil.
+
 ## Açık ve doğrulanacak konular
 
-1. Kapalı Test'te güncel aktif katılımcı sayısı kaç?
-2. 14 günlük sayaç hangi kesin tarih/saatte tamamlanacak?
-3. Testten ayrılan katılımcı var mı?
+1. 12 geçerli test kullanıcısı 14 günlük koşul tamamlanana kadar kesintisiz korunacak mı?
+2. 14 günlük sayaç hangi kesin tarih/saatte tamamlanacak ve `Üretime başvur` ne zaman etkinleşecek?
+3. Testten ayrılan katılımcı var mı; geçerli sayı 12'nin altına düşüyor mu?
 4. Play Console'a yüklenen `1.68.13+103` AAB'nin özgül workflow_dispatch run ID'si, artifact ID'si ve SHA-256 değeri nedir?
 5. Fiziksel cihazda aynı tamamlanan oyun ikinci kez `+10 XP` vermiyor mu?
 6. Fiziksel cihazda yeni tamamlanan her oyun yeni reklam hakkı üretiyor mu?
