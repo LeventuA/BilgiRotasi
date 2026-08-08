@@ -44,7 +44,7 @@ void main() {
   });
 
   test('minimum pseudonymous telemetry event contract is emitted', () async {
-    await AnalyticsTelemetry.appSessionStarted();
+    await AnalyticsTelemetry.appProcessStarted();
     await AnalyticsTelemetry.gameModeSelected(gameMode: 'marathon');
     await AnalyticsTelemetry.gameStarted(
       gameMode: 'marathon',
@@ -77,7 +77,7 @@ void main() {
       sink.events.map((event) => event.name),
       containsAll(<String>[
         AnalyticsTelemetry.appOpenEvent,
-        AnalyticsTelemetry.appSessionStartedEvent,
+        AnalyticsTelemetry.appProcessStartedEvent,
         AnalyticsTelemetry.gameModeSelectedEvent,
         AnalyticsTelemetry.gameStartedEvent,
         AnalyticsTelemetry.gameCompletedEvent,
@@ -150,6 +150,40 @@ void main() {
     expect(AnalyticsTelemetry.consentGranted, isFalse);
   });
 
+  testWidgets('unknown consent prompt is shown only once per app version', (
+    tester,
+  ) async {
+    await AnalyticsConsentService.initialize();
+    await tester.pumpWidget(
+      MaterialApp(
+        navigatorKey: AnalyticsConsentService.navigatorKey,
+        home: const Scaffold(body: Text('home')),
+      ),
+    );
+
+    final prompt = AnalyticsConsentService.showInitialPromptIfNeeded();
+    await tester.pumpAndSettle();
+    expect(find.text('Kullanım Analizine izin verilsin mi?'), findsOne);
+
+    await tester.tap(find.text('Şimdi Değil'));
+    await tester.pumpAndSettle();
+    await prompt;
+    expect(
+      AnalyticsConsentService.choice.value,
+      AnalyticsConsentChoice.unknown,
+    );
+
+    final preferences = await SharedPreferences.getInstance();
+    expect(
+      preferences.getString(AnalyticsConsentService.promptVersionKey),
+      AppBuildInfo.version,
+    );
+
+    await AnalyticsConsentService.showInitialPromptIfNeeded();
+    await tester.pumpAndSettle();
+    expect(find.text('Kullanım Analizine izin verilsin mi?'), findsNothing);
+  });
+
   test('gameplay completes when Analytics consent is not granted', () async {
     AnalyticsTelemetry.useTestSink(null);
     await AnalyticsConsentService.initialize();
@@ -181,7 +215,7 @@ void main() {
 
     await tester.tap(find.byType(Switch));
     await tester.pumpAndSettle();
-    expect(find.text('Kullanım analizine izin verilsin mi?'), findsOne);
+    expect(find.text('Kullanım Analizine izin verilsin mi?'), findsOne);
     expect(find.textContaining('pseudonymous bir app-instance ID'), findsOne);
 
     await tester.tap(find.text('İzin Ver'));
@@ -239,6 +273,9 @@ void main() {
     expect(source, isNot(contains('displayName')));
     expect(source, isNot(contains('advertisingId')));
     expect(source, isNot(contains('userId')));
+    expect(source, isNot(contains("'app_session_started'")));
+    expect(source, isNot(contains("'session_start'")));
+    expect(source, contains("'app_process_started'"));
     expect(source, contains('FirebaseRuntimePolicy.remoteFirebaseEnabled'));
     expect(source, contains('if (!_consentGranted) return null'));
     expect(source, contains('adStorageConsentGranted: false'));

@@ -968,7 +968,7 @@ Future<void> main() async {
 
   runApp(const BilgiRotasiApp());
 
-  unawaited(AnalyticsTelemetry.appSessionStarted());
+  unawaited(AnalyticsTelemetry.appProcessStarted());
   unawaited(_initializeAccountCloudInBackground());
   unawaited(AdPrivacyService.instance.initialize());
 }
@@ -996,11 +996,15 @@ class _BilgiRotasiAppState extends State<BilgiRotasiApp> {
     super.initState();
     _questionBankFuture = QuestionBank.load();
     unawaited(AnalyticsTelemetry.screenViewed('app_root'));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(AnalyticsConsentService.showInitialPromptIfNeeded());
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: AnalyticsConsentService.navigatorKey,
       navigatorObservers: <NavigatorObserver>[
         AnalyticsTelemetry.navigatorObserver,
       ],

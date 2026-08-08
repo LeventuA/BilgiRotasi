@@ -16,9 +16,9 @@
 | `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR | S06, S07, S09 |
 | PR #9 | Merge edildi | RAPORLANDI | S07, S09 |
 | PR #10 | Merge edildi | RAPORLANDI | S06, S07, S09 |
-| PR #13 | Açık, Draft, merge edilmedi; head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
+| PR #13 | Açık, Draft, merge edilmedi; head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a`; ödüllü reklam işi uygulandı, CI PASS, fiziksel cihaz kabulü bekleniyor | DOĞRULANDI / RAPORLANDI | GitHub canlı durum + doğrulanmış görev sonucu |
 | PR #14 | Açık, Draft, merge edilmedi; head `288d7033da16fe85c4f87d5da135edf0fd4543d0` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
-| PR #15 | Açık, Draft, merge edilmedi; head `b9fa5a7f199ad45a40ac6a8616de3dae810d24f2` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
+| PR #15 | Açık, Draft, merge edilmedi; head `5e7dfe47200375458a6c4f6c40a83e3dab1f0489` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
 | Android geliştirici doğrulaması | Tamamlandı | RAPORLANDI | Levent'in güncel Play doğrulaması |
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Sürüm hedef dalın `pubspec.yaml` dosyasından okunmalıdır.
@@ -143,7 +143,8 @@ Kesim noktasındaki proje kararına göre:
 - Her tamamlanan oyun bir adet ödüllü reklam hakkı üretmeli.
 - Aynı oyun sonucu ikinci kez ödül vermemeli.
 
-**Durum:** Son kota değişikliği `AÇIK`; uygulanıp uygulanmadığı canlı koddan doğrulanmalı.
+**Durum:** PR #13 üzerinde `UYGULANDI / CI PASS / fiziksel cihaz kabulü bekliyor`.
+PR açık, Draft ve merge edilmemiştir; release dalında henüz yoktur.
 
 ---
 
@@ -151,7 +152,10 @@ Kesim noktasındaki proje kararına göre:
 
 - `codex/firebase-analytics-telemetry` dalında merkezi ve hata yalıtımlı
   Firebase Analytics katmanı eklendi.
-- Uygulama açılışı/oturumu ve adlandırılmış ekran geçişleri ölçülür.
+- Kullanıcı izin verdiğinde uygulama süreç başlangıcı `app_process_started` ve
+  adlandırılmış ekran geçişleri ölçülür. `app_process_started`, gerçek Google
+  Analytics oturumu gibi yorumlanmaz; oturum ölçümü SDK'nın otomatik
+  `session_start` metriğine bırakılır.
 - Oyun modu seçimi, oyun başlangıcı/tamamlanması/yarıda bırakılması, joker
   kullanımı, ödüllü reklam tamamlanması ve Canlı Düello başlangıç/sonuç olayları
   ölçülür.
@@ -164,6 +168,9 @@ Kesim noktasındaki proje kararına göre:
 - Analytics varsayılan olarak kapalıdır. Kullanıcı Ayarlar ekranında açıkça izin
   vermeden `analytics_storage` etkinleştirilmez, identifier depolanmaz ve olay
   gönderilmez. Tercih cihazda saklanır ve daha sonra geri alınabilir.
+- Tercih `unknown` ise güncelleme sonrasında sürüm başına yalnız bir kez zorlamayan
+  izin istemi gösterilir. `Şimdi Değil` seçimi aynı sürümde yeniden sorulmaz;
+  kullanıcı daha sonra Ayarlar'dan izin verebilir.
 - Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
   sinyalleri manifestte kapalıdır; Analytics consent ayarında reklam depolaması,
   reklam kullanıcı verisi ve reklam kişiselleştirmesi reddedilir.
@@ -202,5 +209,6 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`
 3. Açıkça bozuk sorular için release dalından ayrı düzeltme branch'i aç.
 4. Soru düzeltmelerini test et, PR aç, incele ve merge et.
 5. Yeni AAB'yi mevcut Kapalı Test kanalına güncelleme olarak yükle.
-6. Ödüllü reklamın oyun başına hak kararını canlı kodda doğrula ve gerekiyorsa uygula.
+6. PR #13 ödüllü reklam değişikliğinin fiziksel cihaz kabul testini tamamla;
+   uygulanmış ve CI PASS durumunu geriye götürme.
 7. 3B tahta çalışmasına, geometri ve 6-rozet eşlemesi çözülmeden dönme.

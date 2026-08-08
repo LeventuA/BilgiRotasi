@@ -38,7 +38,7 @@ class AnalyticsTelemetry {
   AnalyticsTelemetry._();
 
   static const String appOpenEvent = 'app_open';
-  static const String appSessionStartedEvent = 'app_session_started';
+  static const String appProcessStartedEvent = 'app_process_started';
   static const String gameModeSelectedEvent = 'game_mode_selected';
   static const String gameStartedEvent = 'game_started';
   static const String gameCompletedEvent = 'game_completed';
@@ -106,14 +106,14 @@ class AnalyticsTelemetry {
     }
   }
 
-  static Future<void> appSessionStarted() async {
+  static Future<void> appProcessStarted() async {
     if (!_consentGranted && _testSink == null) return;
     if (_sessionLogged) return;
     _sessionLogged = true;
     await _safe((sink) async {
       await sink.logEvent(appOpenEvent);
       await sink.logEvent(
-        appSessionStartedEvent,
+        appProcessStartedEvent,
         parameters: const <String, Object>{'app_version': AppBuildInfo.version},
       );
     });
@@ -125,7 +125,7 @@ class AnalyticsTelemetry {
 
     if (_consentGranted) {
       _firebaseSink = null;
-      await appSessionStarted();
+      await appProcessStarted();
       return;
     }
 
@@ -268,6 +268,9 @@ class AnalyticsConsentService {
   AnalyticsConsentService._();
 
   static const String preferenceKey = 'analytics_consent_granted_v1';
+  static const String promptVersionKey = 'analytics_consent_prompt_version_v1';
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
   static final ValueNotifier<AnalyticsConsentChoice> choice =
       ValueNotifier<AnalyticsConsentChoice>(AnalyticsConsentChoice.unknown);
   static SharedPreferences? _preferences;
@@ -295,6 +298,51 @@ class AnalyticsConsentService {
     choice.value = updated;
     await AnalyticsTelemetry.applyConsent(updated);
   }
+
+  static Future<void> showInitialPromptIfNeeded() async {
+    if (choice.value != AnalyticsConsentChoice.unknown) return;
+
+    final preferences = _preferences ??= await SharedPreferences.getInstance();
+    if (preferences.getString(promptVersionKey) == AppBuildInfo.version) return;
+
+    final context = navigatorKey.currentContext;
+    if (context == null || !context.mounted) return;
+
+    // Önce işaretlenir; geri tuşu veya dışarı dokunma da aynı sürümde tekrar
+    // tekrar istem göstermemelidir.
+    await preferences.setString(promptVersionKey, AppBuildInfo.version);
+    final accepted = await showOptInDialog(context);
+    if (accepted) await setGranted(true);
+  }
+
+  static Future<bool> showOptInDialog(BuildContext context) async {
+    return await showDialog<bool>(
+          context: context,
+          builder: (dialogContext) {
+            return AlertDialog(
+              title: const Text('Kullanım Analizine izin verilsin mi?'),
+              content: const Text(
+                'İzin verirsen Firebase SDK bu uygulama kurulumu için '
+                'pseudonymous bir app-instance ID üretir. Oyun modu, kategori, '
+                'süre ve sonuç gibi kullanım olayları ölçülür; adın, e-posta '
+                'adresin, Google/Firebase hesap kimliğin ve kullanıcı adın '
+                'gönderilmez. İzni daha sonra Ayarlar ekranından kapatabilirsin.',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(dialogContext, false),
+                  child: const Text('Şimdi Değil'),
+                ),
+                FilledButton(
+                  onPressed: () => Navigator.pop(dialogContext, true),
+                  child: const Text('İzin Ver'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+  }
 }
 
 class AnalyticsConsentSettingsCard extends StatelessWidget {
@@ -302,33 +350,7 @@ class AnalyticsConsentSettingsCard extends StatelessWidget {
 
   Future<void> _update(BuildContext context, bool enabled) async {
     if (enabled) {
-      final accepted =
-          await showDialog<bool>(
-            context: context,
-            builder: (dialogContext) {
-              return AlertDialog(
-                title: const Text('Kullanım analizine izin verilsin mi?'),
-                content: const Text(
-                  'İzin verirsen Firebase SDK bu uygulama kurulumu için '
-                  'pseudonymous bir app-instance ID üretir. Oyun modu, kategori, '
-                  'süre ve sonuç gibi kullanım olayları ölçülür; adın, e-posta '
-                  'adresin, Google/Firebase hesap kimliğin ve kullanıcı adın '
-                  'gönderilmez. İzni daha sonra buradan kapatabilirsin.',
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(dialogContext, false),
-                    child: const Text('Şimdi Değil'),
-                  ),
-                  FilledButton(
-                    onPressed: () => Navigator.pop(dialogContext, true),
-                    child: const Text('İzin Ver'),
-                  ),
-                ],
-              );
-            },
-          ) ??
-          false;
+      final accepted = await AnalyticsConsentService.showOptInDialog(context);
       if (!accepted) return;
     }
 

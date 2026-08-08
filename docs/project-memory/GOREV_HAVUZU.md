@@ -44,9 +44,12 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 
 ---
 
-### BR-P0-004 - Ödüllü reklam hak sistemini doğrula/uygula
+### BR-P0-004 - Ödüllü reklam hak sistemi
 
-**Durum:** AÇIK
+**Durum:** UYGULANDI / CI PASS / fiziksel cihaz kabulü bekliyor
+
+Kaynak: Draft PR #13, head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a`.
+PR merge edilmediği için release dalında henüz bulunmaz.
 
 İstenen:
 
@@ -67,9 +70,11 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 - Kanonik repo: `ZMilaStudio/BilgiRotasi`
 - Release head: `548e8d3046469688a8dcb050552956cf786e525c`
 - Release sürümü: `1.68.13+103`
-- PR #13: açık / Draft / merge edilmedi
+- PR #13: açık / Draft / merge edilmedi; ödüllü reklam işi UYGULANDI / CI PASS /
+  fiziksel cihaz kabulü bekliyor
 - PR #14: açık / Draft / merge edilmedi
-- PR #15: açık / Draft / merge edilmedi
+- PR #15: açık / Draft / merge edilmedi; head
+  `5e7dfe47200375458a6c4f6c40a83e3dab1f0489`
 - Android geliştirici doğrulaması: tamamlandı
 - Son Play bilgisi: 12 geçerli testçi / 4 kesintisiz gün; UI yeniden okuması açık
 
@@ -109,7 +114,7 @@ Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
 ### BR-P1-006 - Pseudonymous kapalı test kullanım telemetrisi — UYGULANDI / DRAFT PR BEKLİYOR
 
 - `firebase_analytics` merkezi, hata yalıtımlı bir servis arkasına eklendi.
-- Uygulama/oturum, ekran, oyun seçimi/başlangıç/tamamlanma/yarıda bırakma,
+- Uygulama süreç başlangıcı, ekran, oyun seçimi/başlangıç/tamamlanma/yarıda bırakma,
   joker, ödüllü reklam ve Canlı Düello yaşam döngüsü olayları bağlandı.
 - Parametre sözleşmesi hesap kimliği içermeyen oyun boyutlarıyla sınırlandı; kullanıcı kimliği ve
   serbest parametre haritası kabul edilmez.
@@ -117,6 +122,10 @@ Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
   belgelenir; telemetri tam anonim olarak adlandırılmaz.
 - Analytics varsayılan kapalıdır; açık kullanıcı tercihi cihazda saklanır,
   geri alınabilir ve izin yokken oyun eksiksiz çalışır.
+- `app_process_started` yalnız uygulama süreç başlangıcını belirtir; GA oturum
+  metriği olarak kullanılmaz ve oturum sayımı otomatik `session_start` ile yapılır.
+- Tercih `unknown` ise sürüm başına bir kez zorlamayan izin istemi gösterilir;
+  `Şimdi Değil` sonrasında kullanıcı Ayarlar'dan istediği zaman açabilir.
 - Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
   sinyalleri kapatıldı; reklam amaçlı consent değerleri reddedilir.
 - Soru ekranındaki her dokunuş veya her cevap için olay üretilmez.
