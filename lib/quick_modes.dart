@@ -117,7 +117,7 @@ class QuickModesHomeButton extends StatelessWidget {
       ),
       icon: const Icon(Icons.sports_esports_rounded),
       label: const Text(
-        '7 Oyun Modu • Hız, Aile, Takım, Turnuva',
+        'Farklı oyun modları • Hız, takım ve sürprizler',
         textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.w900),
       ),
@@ -156,7 +156,7 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
   Widget build(BuildContext context) {
     return AdBannerScaffold(
       placement: AdPlacement.otherModes,
-      appBar: AppBar(title: const Text('Yeni Oyun Modları')),
+      appBar: AppBar(title: const Text('Diğer Oyun Modları')),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -175,7 +175,7 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
             builder: (context, snapshot) {
               final records = snapshot.data ?? const QuickModeRecords();
               return ListView(
-                padding: const EdgeInsets.fromLTRB(18, 16, 18, 28),
+                padding: const EdgeInsets.fromLTRB(18, 12, 18, 24),
                 children: [
                   _hero(),
                   const SizedBox(height: 16),
@@ -219,23 +219,6 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
                   ),
                   const SizedBox(height: 12),
                   _modeCard(
-                    emoji: '👨‍👩‍👧‍👦',
-                    title: 'Aile Modu',
-                    description:
-                        'Çocuk ve yetişkinler kendi zorluk seviyelerinde aynı turda yarışır.',
-                    record: '2–6 oyuncu • Kişiye göre zorluk',
-                    colors: const [
-                      Color(0xFF0F766E),
-                      Color(0xFF2563EB),
-                    ],
-                    onTap: () => _open(
-                      FamilyModeSetupScreen(
-                        questionBank: widget.questionBank,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  _modeCard(
                     emoji: '🤝',
                     title: 'Takım Modu',
                     description:
@@ -247,23 +230,6 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
                     ],
                     onTap: () => _open(
                       TeamModeSetupScreen(
-                        questionBank: widget.questionBank,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  _modeCard(
-                    emoji: '🏆',
-                    title: 'Turnuva Modu',
-                    description:
-                        '4 veya 8 oyunculu eleme ağacında yarı final ve finale yüksel.',
-                    record: 'Tek kaybeden elenir',
-                    colors: const [
-                      Color(0xFF92400E),
-                      Color(0xFF7C3AED),
-                    ],
-                    onTap: () => _open(
-                      TournamentSetupScreen(
                         questionBank: widget.questionBank,
                       ),
                     ),
@@ -314,32 +280,36 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
 
   Widget _hero() {
     return Container(
-      padding: const EdgeInsets.all(21),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [Color(0xFF6D28D9), Color(0xFF0F766E)],
         ),
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(22),
         border: Border.all(color: const Color(0x99FFE082)),
       ),
       child: const Column(
         children: [
-          Text('❤️⚡⚔️👨‍👩‍👧‍👦🤝🏆🎭', style: TextStyle(fontSize: 48)),
-          SizedBox(height: 8),
+          Text('⚡⚔️🤝🎭', style: TextStyle(fontSize: 30)),
+          SizedBox(height: 5),
           Text(
-            'Yedi farklı mücadele',
+            'Farklı mücadele modları',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 24,
+              fontSize: 20,
               fontWeight: FontWeight.w900,
             ),
           ),
-          SizedBox(height: 7),
+          SizedBox(height: 4),
           Text(
-            'Hız, aile, takım, turnuva ve sürpriz kurallarla her oyunda başka bir rota.',
+            'Hız, takım oyunu ve sürpriz kurallarla rotanı değiştir.',
             textAlign: TextAlign.center,
-            style: TextStyle(color: Color(0xFFE7E1F0), height: 1.35),
+            style: TextStyle(
+              color: Color(0xFFE7E1F0),
+              fontSize: 12,
+              height: 1.25,
+            ),
           ),
         ],
       ),
@@ -358,18 +328,18 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(21),
         child: Ink(
-          padding: const EdgeInsets.all(19),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: colors),
-            borderRadius: BorderRadius.circular(25),
+            borderRadius: BorderRadius.circular(21),
             border: Border.all(color: const Color(0x66FFFFFF)),
           ),
           child: Row(
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 46)),
-              const SizedBox(width: 14),
+              Text(emoji, style: const TextStyle(fontSize: 36)),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -378,20 +348,20 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
                       title,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 21,
+                        fontSize: 19,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 3),
                     Text(
                       description,
                       style: const TextStyle(
                         color: Color(0xFFEDE9FE),
-                        height: 1.3,
-                        fontSize: 12,
+                        height: 1.22,
+                        fontSize: 11.5,
                       ),
                     ),
-                    const SizedBox(height: 7),
+                    const SizedBox(height: 5),
                     Text(
                       record,
                       style: const TextStyle(

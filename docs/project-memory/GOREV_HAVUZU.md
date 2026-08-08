@@ -93,6 +93,16 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 
 Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
 
+### BR-P1-005 - Oyun modları ve piyon sistemini sadeleştir — UYGULANDI / DRAFT PR BEKLİYOR
+
+- Diğer Oyun Modları üst alanı ve kartları kompaktlaştırıldı.
+- Sabit mod sayısı yerine `Farklı mücadele modları` başlığı kullanıldı.
+- Aile Modu ve Turnuva Modu kartları/navigasyon girişleri kaldırıldı.
+- Piyon kataloğu korunarak ayrı nadirlik modeli, ekranı, etiketleri ve
+  nadirlik temelli görsel vurgu kaldırıldı.
+- Favori piyon kaydı ile geçersiz eski indeks fallback'i korunur.
+- Hedefli sadeleştirme testleri ve sistem smoke testleri PASS'tir.
+
 ---
 
 ## P2 - Görsel ve pazarlama

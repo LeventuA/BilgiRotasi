@@ -365,8 +365,8 @@ class PlayCenterScreen extends StatelessWidget {
           emoji: '⚡',
           title: 'Diğer Oyun Modları',
           description:
-              'Hayatta Kalma, 60 Saniye, Aile, Takım, '
-              'Turnuva ve Karışık Çılgınlık.',
+              'Hayatta Kalma, 60 Saniye, Kategori Düellosu, '
+              'Takım ve Karışık Çılgınlık.',
           accent: const Color(0xFFEA580C),
           onTap:
               () => _open(
@@ -453,17 +453,6 @@ class CareerCenterScreen extends StatelessWidget {
           onTap:
               () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const BilgiPassportScreen()),
-              ),
-        ),
-        _HubActionCard(
-          emoji: '💎',
-          title: 'Piyon Nadirlikleri',
-          description:
-              'Sıradan, Nadir, Destansı, Efsanevi ve Mitik piyonları incele.',
-          accent: const Color(0xFF2563EB),
-          onTap:
-              () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const PawnRarityScreen()),
               ),
         ),
         _HubActionCard(

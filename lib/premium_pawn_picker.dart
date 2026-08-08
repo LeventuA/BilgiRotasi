@@ -52,10 +52,6 @@ class PawnPickerPresentation {
       descriptions[normalize(pawnType)];
   static String labelFor(int pawnType) => labels[normalize(pawnType)];
   static Color auraFor(int pawnType) => auraColors[normalize(pawnType)];
-  static bool isSpecial(int pawnType) {
-    final value = normalize(pawnType);
-    return value >= 12 && value <= 16;
-  }
 }
 
 class PremiumPawnPicker {
@@ -201,7 +197,6 @@ class _PremiumPawnPickerDialogState
   Widget _preview() {
     final pawn = PawnCatalog.at(selected);
     final aura = PawnPickerPresentation.auraFor(selected);
-    final special = PawnPickerPresentation.isSpecial(selected);
 
     return Container(
       margin: const EdgeInsets.fromLTRB(12, 12, 12, 8),
@@ -216,14 +211,12 @@ class _PremiumPawnPickerDialogState
         ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: aura.withOpacity(special ? 0.72 : 0.35),
-          width: special ? 2 : 1,
+          color: aura.withOpacity(0.35),
         ),
         boxShadow: [
           BoxShadow(
-            color: aura.withOpacity(special ? 0.24 : 0.10),
-            blurRadius: special ? 20 : 10,
-            spreadRadius: special ? 2 : 0,
+            color: aura.withOpacity(0.10),
+            blurRadius: 10,
             offset: const Offset(0, 7),
           ),
         ],
@@ -251,9 +244,9 @@ class _PremiumPawnPickerDialogState
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: aura.withOpacity(special ? 0.52 : 0.24),
-                    blurRadius: special ? 24 : 14,
-                    spreadRadius: special ? 3 : 1,
+                    color: aura.withOpacity(0.24),
+                    blurRadius: 14,
+                    spreadRadius: 1,
                   ),
                 ],
               ),
@@ -285,7 +278,6 @@ class _PremiumPawnPickerDialogState
                       ),
                     ),
                     _badge(PawnPickerPresentation.labelFor(selected), aura),
-                    if (special) _badge('ÖZEL', const Color(0xFF7C3AED)),
                   ],
                 ),
                 const SizedBox(height: 6),
@@ -396,7 +388,6 @@ class _PremiumPawnPickerDialogState
   Widget _card(int index) {
     final pawn = PawnCatalog.all[index];
     final active = selected == index;
-    final special = PawnPickerPresentation.isSpecial(index);
     final aura = PawnPickerPresentation.auraFor(index);
 
     return AnimatedScale(
@@ -422,24 +413,20 @@ class _PremiumPawnPickerDialogState
               gradient: LinearGradient(
                 colors: active
                     ? [Color.lerp(aura, Colors.white, 0.78)!, Colors.white]
-                    : special
-                        ? [Color.lerp(aura, Colors.white, 0.90)!, Colors.white]
-                        : const [Color(0xFFFFFFFF), Color(0xFFF6F8FB)],
+                    : const [Color(0xFFFFFFFF), Color(0xFFF6F8FB)],
               ),
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
                 color: active
                     ? aura
-                    : special
-                        ? aura.withOpacity(0.46)
-                        : const Color(0xFFE2E8F0),
-                width: active ? 2.6 : special ? 1.4 : 1,
+                    : const Color(0xFFE2E8F0),
+                width: active ? 2.6 : 1,
               ),
               boxShadow: [
-                if (active || special)
+                if (active)
                   BoxShadow(
-                    color: aura.withOpacity(active ? 0.30 : 0.13),
-                    blurRadius: active ? 14 : 8,
+                    color: aura.withOpacity(0.30),
+                    blurRadius: 14,
                     offset: const Offset(0, 4),
                   ),
               ],
@@ -484,14 +471,12 @@ class _PremiumPawnPickerDialogState
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Text(
-                        special
-                            ? 'ÖZEL • ${PawnPickerPresentation.labelFor(index)}'
-                            : PawnPickerPresentation.labelFor(index),
+                        PawnPickerPresentation.labelFor(index),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Color.lerp(aura, Colors.black, 0.28),
-                          fontSize: special ? 6.7 : 7.2,
+                          fontSize: 7.2,
                           fontWeight: FontWeight.w900,
                         ),
                       ),

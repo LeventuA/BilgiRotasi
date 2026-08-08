@@ -96,7 +96,7 @@ Konuşma ve test kayıtlarında mevcut olduğu görülen ana sistemler:
 - Günlük Görev
 - Hayatta Kalma
 - 60 Saniye
-- Aile, Takım ve Turnuva modları
+- Takım modu ve diğer hızlı oyun modları
 - 10 / 20 / 30 soruluk Meydan Okuma
 - Canlı Düello altyapısı ve oyun akışı
 - BR ve lig sistemi
@@ -105,11 +105,24 @@ Konuşma ve test kayıtlarında mevcut olduğu görülen ana sistemler:
 - Hesap silme
 - XP, seviye, başarımlar
 - Bilgi Rotası Pasaportu
-- Piyon koleksiyonu ve nadirlik
+- Piyon koleksiyonu ve güvenli favori piyon seçimi
 - Temalar, jokerler, özel kutular
 - Erişilebilirlik ve Sistem Sağlığı
 
 **Dikkat:** Yeni teknik çalışma öncesi canlı release dalında ilgili modülün gerçekten bulunduğu ve testlerin geçtiği doğrulanmalıdır.
+
+- `codex/simplify-game-modes-pawn-rarity` dalında Diğer Oyun Modları ekranı
+  daha kompakt hale getirildi; sabit mod sayısı metinleri kaldırıldı.
+- Aile Modu ve Turnuva Modu kartları ile bu ekrandaki navigasyon girişleri
+  kaldırıldı. Hayatta Kalma, 60 Saniye, Kategori Düellosu, Takım Modu ve
+  Karışık Çılgınlık korunur.
+- Kariyer bölümündeki ayrı Piyon Nadirlikleri girişi, nadirlik enum/kataloğu ve
+  piyon seçicideki nadirlik benzeri `ÖZEL` sınıflandırması kaldırıldı.
+- 17 piyonluk ana katalog, piyon görselleri/sesleri, favori piyon verisi ve
+  geçersiz eski indeksler için güvenli fallback korunur.
+
+**Durum:** Ayrı feature dalında uygulanıp hedefli testlerle doğrulandı; Draft PR
+incelemesi ve Levent onayı bekleniyor.
 
 ---
 

@@ -63,12 +63,16 @@
 - Zar Tekrar jokeri kaldırıldı.
 - İleri 2 / Geri 2 kutuları kaldırıldı.
 - Bunların yerine Tekrar Zar At ve Rastgele Joker Kazan kutuları kullanıldı.
+- Aile Modu ve Turnuva Modu, Diğer Oyun Modları ekranı ile bu ekrandaki
+  navigasyon girişlerinden kaldırıldı.
 
 ---
 
 ## 4. Kariyer ve koleksiyon
 
-- Piyon nadirlik sistemi korunacak.
+- Piyon kataloğu, seçim ve kullanıcıdaki favori piyon verisi korunacak; piyon
+  nadirlik katmanı, nadirlik etiketleri ve nadirliğe bağlı farklılaştırma
+  kullanılmayacak.
 - Bilgi Rotası Pasaportu korunacak.
 - Seviye yükseldikçe XP ihtiyacı belirgin artacak.
 - Birkaç soruyla çok sayıda seviye atlama olmayacak.
