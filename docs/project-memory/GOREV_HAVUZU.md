@@ -103,6 +103,20 @@ Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
 - Favori piyon kaydı ile geçersiz eski indeks fallback'i korunur.
 - Hedefli sadeleştirme testleri ve sistem smoke testleri PASS'tir.
 
+### BR-P1-006 - Anonim kapalı test kullanım telemetrisi — UYGULANDI / DRAFT PR BEKLİYOR
+
+- `firebase_analytics` merkezi, hata yalıtımlı bir servis arkasına eklendi.
+- Uygulama/oturum, ekran, oyun seçimi/başlangıç/tamamlanma/yarıda bırakma,
+  joker, ödüllü reklam ve Canlı Düello yaşam döngüsü olayları bağlandı.
+- Parametre sözleşmesi anonim oyun boyutlarıyla sınırlandı; kullanıcı kimliği ve
+  serbest parametre haritası kabul edilmez.
+- Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
+  sinyalleri kapatıldı; reklam amaçlı consent değerleri reddedilir.
+- Soru ekranındaki her dokunuş veya her cevap için olay üretilmez.
+- Unit/widget sözleşme testleri Analytics hatalarının oyuna taşmadığını,
+  izinli parametreleri ve adlandırılmış ekran ölçümünü doğrular.
+- AAB üretimi/yayını bu görevin kapsamında değildir.
+
 ---
 
 ## P2 - Görsel ve pazarlama

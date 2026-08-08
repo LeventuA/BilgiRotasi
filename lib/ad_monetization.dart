@@ -708,6 +708,9 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
       _available = false;
     });
     if (rewarded && gain != null) {
+      unawaited(
+        AnalyticsTelemetry.rewardedAdCompleted(gameMode: widget.gameId),
+      );
       await XpCelebration.show(context, gain!);
       return;
     }

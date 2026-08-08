@@ -105,6 +105,7 @@ class MainNavigationGrid extends StatelessWidget {
               onTap:
                   () => _open(
                     context,
+                    MainNavigationSection.settings.name,
                     SettingsCenterScreen(questionBank: questionBank),
                   ),
             ),
@@ -171,12 +172,17 @@ class MainNavigationGrid extends StatelessWidget {
       ),
     };
 
-    _open(context, screen);
+    _open(context, section.name, screen);
   }
 
-  void _open(BuildContext context, Widget screen) {
+  void _open(BuildContext context, String screenName, Widget screen) {
     GameHaptics.selectionClick();
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
+    Navigator.of(context).push(
+      TelemetryPageRoute<void>(
+        screenName: '${screenName}_center',
+        builder: (_) => screen,
+      ),
+    );
   }
 }
 
@@ -313,8 +319,11 @@ class PlayCenterScreen extends StatelessWidget {
               'ana Bilgi Rotası deneyimi.',
           accent: const Color(0xFF0F766E),
           onTap:
-              () =>
-                  _open(context, PlayerSetupScreen(questionBank: questionBank)),
+              () => _open(
+                context,
+                'board_game',
+                PlayerSetupScreen(questionBank: questionBank),
+              ),
         ),
         _HubActionCard(
           emoji: '🧭',
@@ -324,6 +333,7 @@ class PlayCenterScreen extends StatelessWidget {
           onTap:
               () => _open(
                 context,
+                'solo_route',
                 SoloRouteSetupScreen(questionBank: questionBank),
               ),
         ),
@@ -336,6 +346,7 @@ class PlayCenterScreen extends StatelessWidget {
           onTap:
               () => _open(
                 context,
+                'marathon',
                 MarathonSetupScreen(questionBank: questionBank),
               ),
         ),
@@ -349,6 +360,7 @@ class PlayCenterScreen extends StatelessWidget {
           onTap:
               () => _open(
                 context,
+                'challenge',
                 ShortChallengeModeScreen(questionBank: questionBank),
               ),
         ),
@@ -358,8 +370,11 @@ class PlayCenterScreen extends StatelessWidget {
           description: PlayCenterEntryCatalog.liveDuelDescription,
           accent: const Color(0xFF4338CA),
           onTap:
-              () =>
-                  _open(context, PlayCenterEntryCatalog.buildLiveDuelScreen()),
+              () => _open(
+                context,
+                'live_duel',
+                PlayCenterEntryCatalog.buildLiveDuelScreen(),
+              ),
         ),
         _HubActionCard(
           emoji: '⚡',
@@ -371,6 +386,7 @@ class PlayCenterScreen extends StatelessWidget {
           onTap:
               () => _open(
                 context,
+                'other_modes',
                 QuickModesHubScreen(questionBank: questionBank),
               ),
         ),
@@ -378,8 +394,14 @@ class PlayCenterScreen extends StatelessWidget {
     );
   }
 
-  void _open(BuildContext context, Widget screen) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
+  void _open(BuildContext context, String gameMode, Widget screen) {
+    unawaited(AnalyticsTelemetry.gameModeSelected(gameMode: gameMode));
+    Navigator.of(context).push(
+      TelemetryPageRoute<void>(
+        screenName: '${gameMode}_setup',
+        builder: (_) => screen,
+      ),
+    );
   }
 }
 

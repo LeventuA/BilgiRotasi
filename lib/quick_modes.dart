@@ -146,8 +146,14 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
     _records = QuickModeRecordService.load();
   }
 
-  Future<void> _open(Widget screen) async {
-    await Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
+  Future<void> _open(String gameMode, Widget screen) async {
+    unawaited(AnalyticsTelemetry.gameModeSelected(gameMode: gameMode));
+    await Navigator.of(context).push(
+      TelemetryPageRoute<void>(
+        screenName: '${gameMode}_mode',
+        builder: (_) => screen,
+      ),
+    );
     if (!mounted) return;
     setState(() => _records = QuickModeRecordService.load());
   }
@@ -188,6 +194,7 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
                         : 'Rekor: ${records.bestSurvival} doğru',
                     colors: const [Color(0xFFB91C1C), Color(0xFF7F1D1D)],
                     onTap: () => _open(
+                      'survival',
                       SurvivalModeScreen(questionBank: widget.questionBank),
                     ),
                   ),
@@ -201,6 +208,7 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
                         : 'Rekor: ${records.bestSpeed} doğru',
                     colors: const [Color(0xFFEA580C), Color(0xFF7C2D12)],
                     onTap: () => _open(
+                      'speed_60_seconds',
                       SpeedModeScreen(questionBank: widget.questionBank),
                     ),
                   ),
@@ -214,6 +222,7 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
                         : '${records.duelsPlayed} düello oynandı',
                     colors: const [Color(0xFF4338CA), Color(0xFF312E81)],
                     onTap: () => _open(
+                      'category_duel',
                       CategoryDuelSetupScreen(questionBank: widget.questionBank),
                     ),
                   ),
@@ -229,6 +238,7 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
                       Color(0xFF0F766E),
                     ],
                     onTap: () => _open(
+                      'team',
                       TeamModeSetupScreen(
                         questionBank: widget.questionBank,
                       ),
@@ -246,6 +256,7 @@ class _QuickModesHubScreenState extends State<QuickModesHubScreen> {
                       Color(0xFF6D28D9),
                     ],
                     onTap: () => _open(
+                      'mixed_madness',
                       MixedMadnessIntroScreen(
                         questionBank: widget.questionBank,
                       ),
@@ -551,6 +562,19 @@ class _SurvivalModeScreenState extends State<SurvivalModeScreen> {
   int _bestStreak = 0;
   bool _busy = false;
   bool _finished = false;
+  late final GameTelemetrySession _telemetry;
+
+  @override
+  void initState() {
+    super.initState();
+    _telemetry = GameTelemetrySession.start(gameMode: 'survival');
+  }
+
+  @override
+  void dispose() {
+    _telemetry.abandon();
+    super.dispose();
+  }
 
   String get _difficulty {
     if (_correct < 5) return 'Kolay';
@@ -726,6 +750,7 @@ class _SurvivalModeScreenState extends State<SurvivalModeScreen> {
   Future<void> _finish() async {
     if (_finished) return;
     _finished = true;
+    _telemetry.complete(_correct > _wrong ? 'completed_positive' : 'completed');
     final bonusXp = max(25, _correct * 4);
     final bonus = await XpProgressService._award(bonusXp, 'Hayatta Kalma tamamlandı');
     await QuickModeRecordService.saveSurvival(_correct);
@@ -772,6 +797,7 @@ class _SpeedModeScreenState extends State<SpeedModeScreen> {
   int? _selected;
   bool _locked = false;
   bool _finished = false;
+  late final GameTelemetrySession _telemetry;
 
   String get _difficulty {
     if (_seconds > 40) return 'Kolay';
@@ -782,6 +808,7 @@ class _SpeedModeScreenState extends State<SpeedModeScreen> {
   @override
   void initState() {
     super.initState();
+    _telemetry = GameTelemetrySession.start(gameMode: 'speed_60_seconds');
     _question = _nextQuestion();
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!mounted || _finished) return;
@@ -807,6 +834,7 @@ class _SpeedModeScreenState extends State<SpeedModeScreen> {
   @override
   void dispose() {
     _timer?.cancel();
+    _telemetry.abandon();
     super.dispose();
   }
 
@@ -969,6 +997,7 @@ class _SpeedModeScreenState extends State<SpeedModeScreen> {
   Future<void> _finish() async {
     if (_finished) return;
     _finished = true;
+    _telemetry.complete('time_completed');
     _timer?.cancel();
     await _recording;
     final bonusXp = max(30, _correct * 5);
@@ -1212,6 +1241,19 @@ class _CategoryDuelGameScreenState
   int _turn = 0;
   bool _busy = false;
   bool _finished = false;
+  late final GameTelemetrySession _telemetry;
+
+  @override
+  void initState() {
+    super.initState();
+    _telemetry = GameTelemetrySession.start(gameMode: 'category_duel');
+  }
+
+  @override
+  void dispose() {
+    _telemetry.abandon();
+    super.dispose();
+  }
 
   int get _playerIndex => _turn % 2;
   int get _round => (_turn ~/ 2) + 1;
@@ -1420,6 +1462,7 @@ class _CategoryDuelGameScreenState
     final first = widget.players[0];
     final second = widget.players[1];
     final tie = first.score == second.score;
+    _telemetry.complete(tie ? 'draw' : 'completed');
     final winner = tie
         ? null
         : first.score > second.score

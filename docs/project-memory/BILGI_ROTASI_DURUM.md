@@ -142,6 +142,29 @@ Kesim noktasındaki proje kararına göre:
 
 ---
 
+## 7A. Anonim kapalı test telemetrisi
+
+- `codex/firebase-analytics-telemetry` dalında merkezi ve hata yalıtımlı
+  Firebase Analytics katmanı eklendi.
+- Uygulama açılışı/oturumu ve adlandırılmış ekran geçişleri ölçülür.
+- Oyun modu seçimi, oyun başlangıcı/tamamlanması/yarıda bırakılması, joker
+  kullanımı, ödüllü reklam tamamlanması ve Canlı Düello başlangıç/sonuç olayları
+  ölçülür.
+- Oyun olayları yalnız oyun modu, kategori, gerekiyorsa zorluk grubu, süre,
+  sonuç ve uygulama sürümü gibi anonim boyutları kabul eder.
+- Ad, e-posta, Google kullanıcı kimliği, kullanıcı adı ve reklam kimliği için
+  servis API'si yoktur; her dokunuş veya her cevap ayrı Analytics olayı değildir.
+- Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
+  sinyalleri manifestte kapalıdır; Analytics consent ayarında reklam depolaması,
+  reklam kullanıcı verisi ve reklam kişiselleştirmesi reddedilir.
+- Test/dev/prod Firebase ayrımı `FirebaseRuntimePolicy` üzerinden korunur.
+  Analytics hataları sessizce yutulur ve oyun akışını engellemez.
+
+**Durum:** Uygulandı; hedefli unit/widget testleri PASS. Draft PR incelemesi ve
+Levent onayı bekleniyor; AAB üretilmedi veya yayınlanmadı.
+
+---
+
 ## 8. Mağaza ve tanıtım
 
 Hazırlanan varlıklar arasında:

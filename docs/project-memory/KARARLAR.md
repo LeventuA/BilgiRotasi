@@ -142,3 +142,24 @@
 - Durum, karar ve görev dosyaları her iş sonunda güncellenecek.
 - Devir özeti tek başına kaynak sayılmayacak.
 - Yeni sohbet, canlı kaynak ve bu proje dosyalarını okuyarak başlayacak.
+
+---
+
+## 10. Analytics ve anonim telemetri
+
+- Kapalı test davranışı Firebase Analytics ile yalnız anonim olaylar üzerinden
+  ölçülecek.
+- İzin verilen oyun boyutları oyun modu, kategori, gerekiyorsa zorluk grubu,
+  süre, sonuç ve uygulama sürümüyle sınırlıdır.
+- Ad, e-posta, Firebase/Google kullanıcı kimliği, açık kullanıcı adı, reklam
+  kimliği veya başka kişisel veri Analytics'e gönderilmeyecek.
+- Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
+  sinyalleri kapalı tutulacak; Analytics consent yalnız ölçüm depolamasına izin
+  verirken reklam depolaması, reklam kullanıcı verisi ve kişiselleştirmeyi
+  reddedecek.
+- Analytics katmanı genel amaçlı key/value veya kullanıcı kimliği API'si
+  sunmayacak; yeni olaylar merkezi servisten geçecek.
+- Aktif soru ekranındaki dokunuşlar ve tek tek cevaplar olaylaştırılmayacak.
+- Telemetri ağ/SDK hataları oyunu durdurmayacak ve kullanıcıya hata olarak
+  yansıtılmayacak.
+- Firebase test/development/production çalışma ayrımı korunacak.
