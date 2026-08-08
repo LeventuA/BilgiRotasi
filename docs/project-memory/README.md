@@ -1,7 +1,8 @@
 # Bilgi Rotası - Proje Hafızası V2
 
-**Hazırlanma tarihi:** 5 Ağustos 2026  
-**Kaynak kesim noktası:** 4 Ağustos 2026 gecesi  
+**Hazırlanma tarihi:** 5 Ağustos 2026
+**Son canlı güncelleme:** 8 Ağustos 2026
+**Güncel kaynak kesim noktası:** 8 Ağustos 2026
 **Temel ilke:** Bu paket devir özetlerinden kopyalanmadı. Doğrudan konuşma akışları, Levent'in açık kararları, kullanıcı testleri, ekran kayıtları ve son konuşmalardaki gerçek gelişmeler esas alındı.
 
 ## Önceki paket neden geçersiz?
@@ -16,6 +17,12 @@
 - kategori rozeti çalışmaları
 
 pakette yoktu. V2 baştan hazırlanmıştır; V1 üzerine yama yapılmamıştır.
+
+8 Ağustos güncellemesi kanonik repoyu `ZMilaStudio/BilgiRotasi` olarak,
+`1.68.13+103` release kaynağını, PR #13/#14/#15 durumlarını, tamamlanan Android
+geliştirici doğrulamasını ve son doğrulanan 12 geçerli testçi / 4 kesintisiz gün
+Play bilgisini ekler. Play sayacı bağlı Console oturumu olmadığından bu
+güncellemede UI'dan yeniden okunamamıştır; kaynak ayrımı durum dosyasında yazılıdır.
 
 ## Bu paketteki doğruluk sırası
 

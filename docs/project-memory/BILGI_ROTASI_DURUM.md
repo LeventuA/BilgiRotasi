@@ -1,6 +1,6 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 4 Ağustos 2026 gecesi  
+**Kesim noktası:** 8 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
 ---
@@ -9,15 +9,17 @@
 
 | Alan | Kesim noktasındaki değer | Durum | Kaynak |
 |---|---|---|---|
-| Repo | `LeventuA/BilgiRotasi` | DOĞRULANDI | S01, S02, S07 |
+| Kanonik repo | `ZMilaStudio/BilgiRotasi` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
 | Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI | S04 |
-| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` | RAPORLANDI | S06, S07, S09 |
-| Gerçek paket sürümü | `1.68.13+103` | RAPORLANDI ve birden çok kaynakla uyumlu | S06, S07, S09 |
+| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` (`548e8d3046469688a8dcb050552956cf786e525c`) | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
+| Gerçek paket sürümü | `1.68.13+103` | DOĞRULANDI | Release dalındaki `pubspec.yaml`, 8 Ağustos 2026 |
 | `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR | S06, S07, S09 |
 | PR #9 | Merge edildi | RAPORLANDI | S07, S09 |
 | PR #10 | Merge edildi | RAPORLANDI | S06, S07, S09 |
-| PR #7 | Draft ve merge edilmemiş olarak son görüldü | CANLI DOĞRULANACAK | S09 |
-| PR #8 | Kapatıldı, merge edilmedi | RAPORLANDI | S07, S09 |
+| PR #13 | Açık, Draft, merge edilmedi; head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
+| PR #14 | Açık, Draft, merge edilmedi; head `288d7033da16fe85c4f87d5da135edf0fd4543d0` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
+| PR #15 | Açık, Draft, merge edilmedi; head `b9fa5a7f199ad45a40ac6a8616de3dae810d24f2` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
+| Android geliştirici doğrulaması | Tamamlandı | RAPORLANDI | Levent'in güncel Play doğrulaması |
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Sürüm hedef dalın `pubspec.yaml` dosyasından okunmalıdır.
 
@@ -27,8 +29,11 @@
 
 - `1.68.13+103` önce Dahili Test'te gerçek cihazda doğrulandı.
 - Aynı AAB mevcut Kapalı Test kanalına yayımlandı.
-- Son konuşmalarda görülen kapalı test katılımcı sayısı **6** idi; canlı sayı değildir.
-- Testçi sayısı ve 14 günlük süreç Play Console'dan yeniden kontrol edilmelidir.
+- Son doğrulanan Play kapalı test durumu **12 geçerli testçi / 4 kesintisiz gün**dür.
+- 8 Ağustos 2026'da Play Console'a bağlı tarayıcı bulunamadığı için sayaç UI'dan
+  yeniden okunamadı; 12/4 değeri Levent'in son Play Console doğrulaması olarak
+  kaydedildi ve bir sonraki canlı kontrolde tarih/sayaç yeniden okunmalıdır.
+- Android geliştirici doğrulaması tamamlandı.
 - Uygulama kaydı, paket adı ve ilk AAB yükleme süreci daha önce adım adım tamamlandı.
 - Play App Signing SHA değeri production Firebase'e eklenmişti; eski upload/release SHA silinmedi.
 
@@ -142,7 +147,7 @@ Kesim noktasındaki proje kararına göre:
 
 ---
 
-## 7A. Anonim kapalı test telemetrisi
+## 7A. Kişisel hesap kimliği göndermeyen pseudonymous kullanım telemetrisi
 
 - `codex/firebase-analytics-telemetry` dalında merkezi ve hata yalıtımlı
   Firebase Analytics katmanı eklendi.
@@ -151,9 +156,14 @@ Kesim noktasındaki proje kararına göre:
   kullanımı, ödüllü reklam tamamlanması ve Canlı Düello başlangıç/sonuç olayları
   ölçülür.
 - Oyun olayları yalnız oyun modu, kategori, gerekiyorsa zorluk grubu, süre,
-  sonuç ve uygulama sürümü gibi anonim boyutları kabul eder.
+  sonuç ve uygulama sürümü gibi hesap kimliği içermeyen boyutları kabul eder.
 - Ad, e-posta, Google kullanıcı kimliği, kullanıcı adı ve reklam kimliği için
   servis API'si yoktur; her dokunuş veya her cevap ayrı Analytics olayı değildir.
+- Bu telemetri tam anonim değildir: kullanıcı izin verdiğinde Firebase SDK bu
+  uygulama kurulumu için pseudonymous bir app-instance ID üretir.
+- Analytics varsayılan olarak kapalıdır. Kullanıcı Ayarlar ekranında açıkça izin
+  vermeden `analytics_storage` etkinleştirilmez, identifier depolanmaz ve olay
+  gönderilmez. Tercih cihazda saklanır ve daha sonra geri alınabilir.
 - Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
   sinyalleri manifestte kapalıdır; Analytics consent ayarında reklam depolaması,
   reklam kullanıcı verisi ve reklam kişiselleştirmesi reddedilir.
@@ -186,7 +196,8 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`
 
 ## 9. Şu anda ilk yapılacak işler
 
-1. Play Console'dan canlı kapalı test sayısını ve süreyi doğrula.
+1. Play Console'da son doğrulanan 12 geçerli testçi / 4 kesintisiz gün sayacını
+   bir sonraki erişimde tarihli ekran kanıtıyla yeniden doğrula.
 2. Sheet'teki soru geri bildirimlerini soru bankasının gerçek kayıtlarıyla incele.
 3. Açıkça bozuk sorular için release dalından ayrı düzeltme branch'i aç.
 4. Soru düzeltmelerini test et, PR aç, incele ve merge et.

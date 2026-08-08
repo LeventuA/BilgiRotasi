@@ -510,6 +510,7 @@ class SettingsCenterScreen extends StatelessWidget {
           'tek bölümde.',
       colors: const [Color(0xFF334155), Color(0xFF0F5661)],
       children: [
+        const AnalyticsConsentSettingsCard(),
         _HubActionCard(
           emoji: '👁️',
           title: 'Genel Ayarlar & Erişilebilirlik',

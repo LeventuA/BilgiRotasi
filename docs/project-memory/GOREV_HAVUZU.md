@@ -4,10 +4,10 @@
 
 ### BR-P0-001 - Kapalı Test canlı durumunu doğrula
 
-**Durum:** AÇIK
+**Durum:** İZLENİYOR
 
-- Katılımcı sayısı
-- Gerekli süre/sayaç
+- Son doğrulanan: 12 geçerli testçi
+- Son doğrulanan: 4 kesintisiz gün
 - Testten ayrılanlar
 - Son aktif AAB
 - Play Console'un güncel üretim erişimi koşulları
@@ -62,13 +62,16 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 
 ### BR-P1-001 - GitHub canlı envanteri
 
-- Release branch head
-- PR #7
-- PR #9 / #10 merge commitleri
-- Açık deney branch'leri
-- Son AAB kaynak commit'i
-- `pubspec.yaml`
-- CI durumu
+**8 Ağustos 2026 doğrulaması:**
+
+- Kanonik repo: `ZMilaStudio/BilgiRotasi`
+- Release head: `548e8d3046469688a8dcb050552956cf786e525c`
+- Release sürümü: `1.68.13+103`
+- PR #13: açık / Draft / merge edilmedi
+- PR #14: açık / Draft / merge edilmedi
+- PR #15: açık / Draft / merge edilmedi
+- Android geliştirici doğrulaması: tamamlandı
+- Son Play bilgisi: 12 geçerli testçi / 4 kesintisiz gün; UI yeniden okuması açık
 
 ### BR-P1-002 - Firebase production envanteri
 
@@ -103,13 +106,17 @@ Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
 - Favori piyon kaydı ile geçersiz eski indeks fallback'i korunur.
 - Hedefli sadeleştirme testleri ve sistem smoke testleri PASS'tir.
 
-### BR-P1-006 - Anonim kapalı test kullanım telemetrisi — UYGULANDI / DRAFT PR BEKLİYOR
+### BR-P1-006 - Pseudonymous kapalı test kullanım telemetrisi — UYGULANDI / DRAFT PR BEKLİYOR
 
 - `firebase_analytics` merkezi, hata yalıtımlı bir servis arkasına eklendi.
 - Uygulama/oturum, ekran, oyun seçimi/başlangıç/tamamlanma/yarıda bırakma,
   joker, ödüllü reklam ve Canlı Düello yaşam döngüsü olayları bağlandı.
-- Parametre sözleşmesi anonim oyun boyutlarıyla sınırlandı; kullanıcı kimliği ve
+- Parametre sözleşmesi hesap kimliği içermeyen oyun boyutlarıyla sınırlandı; kullanıcı kimliği ve
   serbest parametre haritası kabul edilmez.
+- Firebase SDK'nın izin sonrasında pseudonymous app-instance ID ürettiği açıkça
+  belgelenir; telemetri tam anonim olarak adlandırılmaz.
+- Analytics varsayılan kapalıdır; açık kullanıcı tercihi cihazda saklanır,
+  geri alınabilir ve izin yokken oyun eksiksiz çalışır.
 - Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
   sinyalleri kapatıldı; reklam amaçlı consent değerleri reddedilir.
 - Soru ekranındaki her dokunuş veya her cevap için olay üretilmez.

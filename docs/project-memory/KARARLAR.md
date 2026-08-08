@@ -145,10 +145,13 @@
 
 ---
 
-## 10. Analytics ve anonim telemetri
+## 10. Analytics ve pseudonymous kullanım telemetrisi
 
-- Kapalı test davranışı Firebase Analytics ile yalnız anonim olaylar üzerinden
-  ölçülecek.
+- Kapalı test davranışı Firebase Analytics ile kişisel hesap kimliği
+  gönderilmeyen pseudonymous olaylar üzerinden ölçülecek.
+- Telemetri tam anonim olarak tanımlanmayacak; kullanıcı izin verdiğinde
+  Firebase SDK'nın uygulama kurulumuna ait pseudonymous app-instance ID ürettiği
+  açıkça belirtilecek.
 - İzin verilen oyun boyutları oyun modu, kategori, gerekiyorsa zorluk grubu,
   süre, sonuç ve uygulama sürümüyle sınırlıdır.
 - Ad, e-posta, Firebase/Google kullanıcı kimliği, açık kullanıcı adı, reklam
@@ -162,4 +165,7 @@
 - Aktif soru ekranındaki dokunuşlar ve tek tek cevaplar olaylaştırılmayacak.
 - Telemetri ağ/SDK hataları oyunu durdurmayacak ve kullanıcıya hata olarak
   yansıtılmayacak.
+- `analytics_storage` koşulsuz açılmayacak. Varsayılan kapalı olacak, açık kullanıcı
+  kabulü cihazda saklanacak ve kullanıcı aynı ayardan izni geri alabilecek.
+- İzin yokken Analytics identifier depolanmayacak ve oyun eksiksiz çalışacak.
 - Firebase test/development/production çalışma ayrımı korunacak.

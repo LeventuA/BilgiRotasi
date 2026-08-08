@@ -960,6 +960,12 @@ Future<void> main() async {
     // Erişilebilirlik ayarları açılamasa bile oyun devam eder.
   }
 
+  try {
+    await AnalyticsConsentService.initialize();
+  } catch (_) {
+    // Tercih okunamazsa Analytics varsayılan olarak kapalı kalır.
+  }
+
   runApp(const BilgiRotasiApp());
 
   unawaited(AnalyticsTelemetry.appSessionStarted());

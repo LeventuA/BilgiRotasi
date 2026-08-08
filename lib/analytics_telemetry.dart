@@ -2,9 +2,10 @@ part of 'main.dart';
 
 /// The deliberately small boundary around Firebase Analytics.
 ///
-/// Callers can only pass gameplay dimensions that are anonymous and useful for
-/// closed-test analysis. There is intentionally no generic parameter map and no
-/// user-identity API in this layer.
+/// Callers can only pass non-account gameplay dimensions that are useful for
+/// closed-test analysis. Firebase still creates a pseudonymous app-instance ID
+/// after the user opts in. There is intentionally no generic parameter map and
+/// no account-identity API in this layer.
 abstract interface class AnalyticsEventSink {
   Future<void> logEvent(String name, {Map<String, Object>? parameters});
 
@@ -53,6 +54,10 @@ class AnalyticsTelemetry {
   static AnalyticsEventSink? _testSink;
   static Future<AnalyticsEventSink?>? _firebaseSink;
   static bool _sessionLogged = false;
+  static bool _consentGranted = false;
+
+  @visibleForTesting
+  static bool get consentGranted => _consentGranted;
 
   @visibleForTesting
   static void useTestSink(AnalyticsEventSink? sink) {
@@ -62,6 +67,7 @@ class AnalyticsTelemetry {
 
   static Future<AnalyticsEventSink?> _resolveSink() async {
     if (_testSink != null) return _testSink;
+    if (!_consentGranted) return null;
     if (!FirebaseRuntimePolicy.remoteFirebaseEnabled) return null;
     return _firebaseSink ??= _createFirebaseSink();
   }
@@ -82,6 +88,7 @@ class AnalyticsTelemetry {
         adUserDataConsentGranted: false,
         adPersonalizationSignalsConsentGranted: false,
       );
+      await analytics.setAnalyticsCollectionEnabled(true);
       return _FirebaseAnalyticsEventSink(analytics);
     } catch (_) {
       return null;
@@ -100,6 +107,7 @@ class AnalyticsTelemetry {
   }
 
   static Future<void> appSessionStarted() async {
+    if (!_consentGranted && _testSink == null) return;
     if (_sessionLogged) return;
     _sessionLogged = true;
     await _safe((sink) async {
@@ -109,6 +117,34 @@ class AnalyticsTelemetry {
         parameters: const <String, Object>{'app_version': AppBuildInfo.version},
       );
     });
+  }
+
+  static Future<void> applyConsent(AnalyticsConsentChoice choice) async {
+    _consentGranted = choice == AnalyticsConsentChoice.granted;
+    _sessionLogged = false;
+
+    if (_consentGranted) {
+      _firebaseSink = null;
+      await appSessionStarted();
+      return;
+    }
+
+    _firebaseSink = null;
+    if (Firebase.apps.isEmpty) return;
+
+    try {
+      final analytics = FirebaseAnalytics.instance;
+      await analytics.setAnalyticsCollectionEnabled(false);
+      await analytics.setConsent(
+        analyticsStorageConsentGranted: false,
+        adStorageConsentGranted: false,
+        adUserDataConsentGranted: false,
+        adPersonalizationSignalsConsentGranted: false,
+      );
+      await analytics.resetAnalyticsData();
+    } catch (_) {
+      // Tercih kaydedilmiştir; SDK hatası oyunu veya ayar ekranını engellemez.
+    }
   }
 
   static Future<void> screenViewed(String screenName) {
@@ -223,6 +259,118 @@ class AnalyticsTelemetry {
         .replaceAll(RegExp(r'^_|_$'), '');
     if (normalized.isEmpty) return fallback;
     return normalized.substring(0, min(40, normalized.length));
+  }
+}
+
+enum AnalyticsConsentChoice { unknown, granted, denied }
+
+class AnalyticsConsentService {
+  AnalyticsConsentService._();
+
+  static const String preferenceKey = 'analytics_consent_granted_v1';
+  static final ValueNotifier<AnalyticsConsentChoice> choice =
+      ValueNotifier<AnalyticsConsentChoice>(AnalyticsConsentChoice.unknown);
+  static SharedPreferences? _preferences;
+
+  static Future<void> initialize() async {
+    final preferences = await SharedPreferences.getInstance();
+    _preferences = preferences;
+    final stored = preferences.getBool(preferenceKey);
+    final restored = switch (stored) {
+      true => AnalyticsConsentChoice.granted,
+      false => AnalyticsConsentChoice.denied,
+      null => AnalyticsConsentChoice.unknown,
+    };
+    choice.value = restored;
+    await AnalyticsTelemetry.applyConsent(restored);
+  }
+
+  static Future<void> setGranted(bool granted) async {
+    final preferences = _preferences ??= await SharedPreferences.getInstance();
+    await preferences.setBool(preferenceKey, granted);
+    final updated =
+        granted
+            ? AnalyticsConsentChoice.granted
+            : AnalyticsConsentChoice.denied;
+    choice.value = updated;
+    await AnalyticsTelemetry.applyConsent(updated);
+  }
+}
+
+class AnalyticsConsentSettingsCard extends StatelessWidget {
+  const AnalyticsConsentSettingsCard({super.key});
+
+  Future<void> _update(BuildContext context, bool enabled) async {
+    if (enabled) {
+      final accepted =
+          await showDialog<bool>(
+            context: context,
+            builder: (dialogContext) {
+              return AlertDialog(
+                title: const Text('Kullanım analizine izin verilsin mi?'),
+                content: const Text(
+                  'İzin verirsen Firebase SDK bu uygulama kurulumu için '
+                  'pseudonymous bir app-instance ID üretir. Oyun modu, kategori, '
+                  'süre ve sonuç gibi kullanım olayları ölçülür; adın, e-posta '
+                  'adresin, Google/Firebase hesap kimliğin ve kullanıcı adın '
+                  'gönderilmez. İzni daha sonra buradan kapatabilirsin.',
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(dialogContext, false),
+                    child: const Text('Şimdi Değil'),
+                  ),
+                  FilledButton(
+                    onPressed: () => Navigator.pop(dialogContext, true),
+                    child: const Text('İzin Ver'),
+                  ),
+                ],
+              );
+            },
+          ) ??
+          false;
+      if (!accepted) return;
+    }
+
+    await AnalyticsConsentService.setGranted(enabled);
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(
+            enabled
+                ? 'Kişisel hesap kimliği göndermeyen kullanım analizi açıldı.'
+                : 'Kullanım analizi kapatıldı.',
+          ),
+        ),
+      );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<AnalyticsConsentChoice>(
+      valueListenable: AnalyticsConsentService.choice,
+      builder: (context, choice, _) {
+        final enabled = choice == AnalyticsConsentChoice.granted;
+        return Card(
+          child: SwitchListTile(
+            value: enabled,
+            onChanged: (value) => unawaited(_update(context, value)),
+            secondary: const Icon(Icons.analytics_outlined),
+            title: const Text(
+              'Kullanım Analizi',
+              style: TextStyle(fontWeight: FontWeight.w900),
+            ),
+            subtitle: Text(
+              enabled
+                  ? 'Açık • Pseudonymous app-instance ID kullanılır; hesap kimliği gönderilmez.'
+                  : 'Kapalı • Analytics identifier depolanmaz ve olay gönderilmez.',
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bilgi_rotasi/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class _RecordedEvent {
   const _RecordedEvent(this.name, this.parameters);
@@ -33,6 +34,7 @@ void main() {
   late _RecordingSink sink;
 
   setUp(() {
+    SharedPreferences.setMockInitialValues(<String, Object>{});
     sink = _RecordingSink();
     AnalyticsTelemetry.useTestSink(sink);
   });
@@ -41,7 +43,7 @@ void main() {
     AnalyticsTelemetry.useTestSink(null);
   });
 
-  test('minimum anonymous telemetry event contract is emitted', () async {
+  test('minimum pseudonymous telemetry event contract is emitted', () async {
     await AnalyticsTelemetry.appSessionStarted();
     await AnalyticsTelemetry.gameModeSelected(gameMode: 'marathon');
     await AnalyticsTelemetry.gameStarted(
@@ -128,6 +130,74 @@ void main() {
     );
   });
 
+  test('stored consent defaults off and persists both choices', () async {
+    await AnalyticsConsentService.initialize();
+
+    expect(
+      AnalyticsConsentService.choice.value,
+      AnalyticsConsentChoice.unknown,
+    );
+    expect(AnalyticsTelemetry.consentGranted, isFalse);
+
+    await AnalyticsConsentService.setGranted(true);
+    var preferences = await SharedPreferences.getInstance();
+    expect(preferences.getBool(AnalyticsConsentService.preferenceKey), isTrue);
+    expect(AnalyticsTelemetry.consentGranted, isTrue);
+
+    await AnalyticsConsentService.setGranted(false);
+    preferences = await SharedPreferences.getInstance();
+    expect(preferences.getBool(AnalyticsConsentService.preferenceKey), isFalse);
+    expect(AnalyticsTelemetry.consentGranted, isFalse);
+  });
+
+  test('gameplay completes when Analytics consent is not granted', () async {
+    AnalyticsTelemetry.useTestSink(null);
+    await AnalyticsConsentService.initialize();
+
+    await expectLater(
+      AnalyticsTelemetry.gameStarted(gameMode: 'board_game'),
+      completes,
+    );
+    await expectLater(
+      AnalyticsTelemetry.gameCompleted(
+        gameMode: 'board_game',
+        duration: const Duration(seconds: 12),
+        result: 'completed',
+      ),
+      completes,
+    );
+  });
+
+  testWidgets('settings requires an explicit opt-in and can revoke it', (
+    tester,
+  ) async {
+    await AnalyticsConsentService.initialize();
+    await tester.pumpWidget(
+      const MaterialApp(home: Scaffold(body: AnalyticsConsentSettingsCard())),
+    );
+
+    expect(find.textContaining('Analytics identifier depolanmaz'), findsOne);
+    expect(tester.widget<Switch>(find.byType(Switch)).value, isFalse);
+
+    await tester.tap(find.byType(Switch));
+    await tester.pumpAndSettle();
+    expect(find.text('Kullanım analizine izin verilsin mi?'), findsOne);
+    expect(find.textContaining('pseudonymous bir app-instance ID'), findsOne);
+
+    await tester.tap(find.text('İzin Ver'));
+    await tester.pumpAndSettle();
+    expect(
+      AnalyticsConsentService.choice.value,
+      AnalyticsConsentChoice.granted,
+    );
+    expect(tester.widget<Switch>(find.byType(Switch)).value, isTrue);
+
+    await tester.tap(find.byType(Switch));
+    await tester.pumpAndSettle();
+    expect(AnalyticsConsentService.choice.value, AnalyticsConsentChoice.denied);
+    expect(tester.widget<Switch>(find.byType(Switch)).value, isFalse);
+  });
+
   testWidgets('named navigation records one normalized screen view', (
     tester,
   ) async {
@@ -170,6 +240,7 @@ void main() {
     expect(source, isNot(contains('advertisingId')));
     expect(source, isNot(contains('userId')));
     expect(source, contains('FirebaseRuntimePolicy.remoteFirebaseEnabled'));
+    expect(source, contains('if (!_consentGranted) return null'));
     expect(source, contains('adStorageConsentGranted: false'));
     expect(source, contains('adUserDataConsentGranted: false'));
     expect(source, contains('adPersonalizationSignalsConsentGranted: false'));
@@ -180,6 +251,7 @@ void main() {
         File('android/app/src/main/AndroidManifest.xml').readAsStringSync();
 
     expect(manifest, contains('google_analytics_adid_collection_enabled'));
+    expect(manifest, contains('firebase_analytics_collection_enabled'));
     expect(
       manifest,
       contains('google_analytics_default_allow_ad_personalization_signals'),
@@ -196,5 +268,25 @@ void main() {
       ).hasMatch(manifest),
       isTrue,
     );
+    expect(
+      RegExp(
+        r'firebase_analytics_collection_enabled"\s*android:value="false"',
+      ).hasMatch(manifest),
+      isTrue,
+    );
+  });
+
+  test('privacy drafts disclose consent and pseudonymous app instance ID', () {
+    final privacyPolicy = File('docs/privacy-policy.html').readAsStringSync();
+    final dataSafety =
+        File('docs/play-console-data-safety.md').readAsStringSync();
+    final inAppPrivacy = File('lib/about_privacy.dart').readAsStringSync();
+
+    for (final source in <String>[privacyPolicy, dataSafety, inAppPrivacy]) {
+      expect(source, contains('pseudonymous'));
+      expect(source, contains('app-instance ID'));
+    }
+    expect(privacyPolicy, contains('varsayılan olarak kapalıdır'));
+    expect(dataSafety, contains('Bu belge Play Console\'u değiştirmez'));
   });
 }
