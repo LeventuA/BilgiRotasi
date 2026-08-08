@@ -73,8 +73,8 @@ PR merge edilmediği için release dalında henüz bulunmaz.
 - PR #13: açık / Draft / merge edilmedi; ödüllü reklam işi UYGULANDI / CI PASS /
   fiziksel cihaz kabulü bekliyor
 - PR #14: açık / Draft / merge edilmedi
-- PR #15: açık / Draft / merge edilmedi; head
-  `5e7dfe47200375458a6c4f6c40a83e3dab1f0489`
+- PR #15: açık / Draft / merge edilmedi; head canlı GitHub PR metadata’sından
+  doğrulanır
 - Android geliştirici doğrulaması: tamamlandı
 - Son Play bilgisi: 12 geçerli testçi / 4 kesintisiz gün; UI yeniden okuması açık
 

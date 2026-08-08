@@ -18,7 +18,7 @@
 | PR #10 | Merge edildi | RAPORLANDI | S06, S07, S09 |
 | PR #13 | Açık, Draft, merge edilmedi; head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a`; ödüllü reklam işi uygulandı, CI PASS, fiziksel cihaz kabulü bekleniyor | DOĞRULANDI / RAPORLANDI | GitHub canlı durum + doğrulanmış görev sonucu |
 | PR #14 | Açık, Draft, merge edilmedi; head `288d7033da16fe85c4f87d5da135edf0fd4543d0` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
-| PR #15 | Açık, Draft, merge edilmedi; head `5e7dfe47200375458a6c4f6c40a83e3dab1f0489` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
+| PR #15 | Açık, Draft, merge edilmedi; head canlı GitHub PR metadata’sından doğrulanır | DOĞRULANDI | GitHub canlı PR metadata’sı |
 | Android geliştirici doğrulaması | Tamamlandı | RAPORLANDI | Levent'in güncel Play doğrulaması |
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Sürüm hedef dalın `pubspec.yaml` dosyasından okunmalıdır.
