@@ -5,10 +5,14 @@ on:
     branches:
       - codex/admob-safe-integration
       - codex/admob-production-ids
+      - update/closed-test-next-release
+    paths-ignore:
+      - 'docs/project-memory/**'
   pull_request:
     branches:
       - main
       - codex/admob-safe-integration
+      - release/final-closed-test-aab-1.68.8
   workflow_dispatch:
 
 permissions:

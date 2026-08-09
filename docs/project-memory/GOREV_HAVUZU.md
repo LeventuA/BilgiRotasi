@@ -59,6 +59,27 @@ PR merge edilmediği için release dalında henüz bulunmaz.
 - günlük/oturumluk toplam kota yok
 - +10 XP
 
+Entegrasyon notu: PR #13'ün işlevsel reklam düzeltmesi
+`integration/closed-test-next-release` dalında PR #14/#15 değişiklikleriyle
+birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sayılmaz.
+
+---
+
+### BR-P0-005 - Final kapalı-test entegrasyon adayını doğrula
+
+**Durum:** YEREL PASS / GITHUB CI CANLI METADATA
+
+- Dal: `integration/closed-test-next-release`
+- Sürüm: `1.68.13+103` (artırılmadı)
+- Kaynak PR #13/#14/#15 açık, Draft ve merge edilmemiştir.
+- Oyun-başına ödül hakkı ve başarılı ödüllü reklam telemetrisi birlikte korunur.
+- Yerel tüm Flutter testleri: `237/237 PASS`
+- Analyzer: exit `0`; mevcut non-fatal tanılar dışında hata yok
+- `git diff --check`: PASS
+- GitHub CI run/job/artifact sonucu canlı Draft PR check metadata'sından izlenir.
+- CI başarısından ve final doğrulamadan önce release merge'i, AAB üretimi/yayını
+  veya Play Console değişikliği yapılmaz.
+
 ---
 
 ## P1 - Teknik doğrulama

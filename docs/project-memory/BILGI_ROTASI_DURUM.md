@@ -19,6 +19,7 @@
 | PR #13 | Açık, Draft, merge edilmedi; head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a`; ödüllü reklam işi uygulandı, CI PASS, fiziksel cihaz kabulü bekleniyor | DOĞRULANDI / RAPORLANDI | GitHub canlı durum + doğrulanmış görev sonucu |
 | PR #14 | Açık, Draft, merge edilmedi; head `288d7033da16fe85c4f87d5da135edf0fd4543d0` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
 | PR #15 | Açık, Draft, merge edilmedi; head canlı GitHub PR metadata’sından doğrulanır | DOĞRULANDI | GitHub canlı PR metadata’sı |
+| Kapalı test entegrasyon adayı | `integration/closed-test-next-release`; PR #13 reklam düzeltmesi ile PR #14/#15 değişiklikleri birlikte doğrulandı | YEREL PASS / CI CANLI METADATA | 9 Ağustos 2026 entegrasyon doğrulaması |
 | Android geliştirici doğrulaması | Tamamlandı | RAPORLANDI | Levent'in güncel Play doğrulaması |
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Sürüm hedef dalın `pubspec.yaml` dosyasından okunmalıdır.
@@ -146,6 +147,11 @@ Kesim noktasındaki proje kararına göre:
 **Durum:** PR #13 üzerinde `UYGULANDI / CI PASS / fiziksel cihaz kabulü bekliyor`.
 PR açık, Draft ve merge edilmemiştir; release dalında henüz yoktur.
 
+PR #13'ün yalnız işlevsel reklam düzeltmesi entegrasyon adayına taşındı.
+Yarış koşullarına dayanıklı oyun-başına hak sistemi ile başarılı ödül sonrası
+`rewarded_ad_completed` telemetrisi birlikte korunur. PR #13 kaynak Draft PR
+olarak kalır; merge edilmiş sayılmaz.
+
 ---
 
 ## 7A. Kişisel hesap kimliği göndermeyen pseudonymous kullanım telemetrisi
@@ -179,6 +185,25 @@ PR açık, Draft ve merge edilmemiştir; release dalında henüz yoktur.
 
 **Durum:** Uygulandı; hedefli unit/widget testleri PASS. Draft PR incelemesi ve
 Levent onayı bekleniyor; AAB üretilmedi veya yayınlanmadı.
+
+---
+
+## 7B. Kapalı test yayın adayı entegrasyonu
+
+- Entegrasyon dalı: `integration/closed-test-next-release`
+- Kaynak PR #13, PR #14 ve PR #15 açık/Draft/merge edilmemiş olarak kalır.
+- PR #14 ve PR #15 değişiklikleri dalın başlangıcında bulunur; PR #13'ten yalnız
+  işlevsel reklam düzeltmesi entegre edilmiştir.
+- `admob-pr-validation.yml`, `update/closed-test-next-release` kaynağındaki güncel
+  CI akışıyla eşleştirildi.
+- Sürüm değiştirilmedi: `1.68.13+103`.
+- Yerel doğrulama: `flutter pub get` PASS, tüm Flutter testleri `237/237` PASS,
+  analyzer exit `0` ve `git diff --check` PASS.
+- GitHub CI run/job/artifact durumu entegrasyon Draft PR'ının canlı check
+  metadata'sından doğrulanır.
+
+**Durum:** Final kapalı-test entegrasyon adayı; release dalına merge edilmedi,
+AAB üretilmedi ve Play Console değişikliği yapılmadı.
 
 ---
 
