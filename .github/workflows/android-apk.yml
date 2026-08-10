@@ -7,6 +7,11 @@ on:
         description: Kapalı test build'i için CLOSED_TEST yazın
         required: true
         type: string
+  push:
+    branches:
+      - release/final-closed-test-aab-1.68.8
+    paths:
+      - .github/closed-test-trigger-1.68.14
 
 permissions:
   contents: read
@@ -15,5 +20,5 @@ jobs:
   closed-test-release:
     uses: ./.github/workflows/closed-test-release-core.yml
     with:
-      confirmation: ${{ inputs.confirmation }}
+      confirmation: ${{ github.event_name == 'workflow_dispatch' && inputs.confirmation || 'CLOSED_TEST' }}
     secrets: inherit
