@@ -24,13 +24,21 @@ void main() {
       expect(source, contains('limitedUseAppCheckToken: true'));
     });
 
-    test('uygulama sürümü 1.68.13+103 olarak tek merkezden gelir', () {
+    test('uygulama sürümü pubspec ve AppBuildInfo arasında tutarlıdır', () {
       final pubspec = File('pubspec.yaml').readAsStringSync();
+      final versionMatch = RegExp(
+        r'^version:\s*([0-9]+\.[0-9]+\.[0-9]+)\+([0-9]+)\s*$',
+        multiLine: true,
+      ).firstMatch(pubspec);
 
-      expect(pubspec, contains('version: 1.68.13+103'));
-      expect(AppBuildInfo.versionName, '1.68.13');
-      expect(AppBuildInfo.buildNumber, 103);
-      expect(AppBuildInfo.version, '1.68.13+103');
+      expect(versionMatch, isNotNull);
+      final versionName = versionMatch!.group(1)!;
+      final buildNumber = int.parse(versionMatch.group(2)!);
+      final version = '$versionName+$buildNumber';
+
+      expect(AppBuildInfo.versionName, versionName);
+      expect(AppBuildInfo.buildNumber, buildNumber);
+      expect(AppBuildInfo.version, version);
     });
   });
 }
