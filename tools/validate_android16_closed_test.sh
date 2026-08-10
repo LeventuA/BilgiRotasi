@@ -7,6 +7,21 @@ rm -f reports/ANDROID16_APP_GATE.txt \
   reports/INFRASTRUCTURE_DIAGNOSTICS.txt \
   reports/SCREEN_CAPTURE_FAILURES.txt
 
+adb_retry() {
+  local timeout_seconds="$1"
+  shift
+  local attempt
+  for attempt in 1 2 3; do
+    if timeout "$timeout_seconds" adb "$@"; then
+      return 0
+    fi
+    echo "ADB command failed or timed out (attempt ${attempt}/3): adb $*" >&2
+    timeout 20 adb wait-for-device || true
+    sleep 5
+  done
+  return 1
+}
+
 capture_diagnostics() {
   timeout 30 adb logcat -d > reports/COLD_START_LOGCAT.txt 2>&1 || true
   timeout 30 adb shell dumpsys activity activities > reports/ACTIVITY_STATE.txt 2>&1 || true
@@ -75,7 +90,7 @@ dismiss_system_anr() {
   cp "reports/UI_${label}.tsv" reports/UI_SYSTEM_ANR.tsv
   printf '%s: Android system ANR dialog dismissed with Wait.\n' "$label" \
     >> reports/SYSTEM_ANR_DISMISSED.txt
-  timeout 15 adb shell input tap $wait_point
+  adb_retry 15 shell input tap $wait_point
   sleep 5
 }
 
@@ -152,11 +167,11 @@ run_settings_tutorial_diagnostic() {
   retry_capture_screen HOME_SETTINGS || return 1
   settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"
   if test -n "$settings_point"; then
-    timeout 15 adb shell input tap $settings_point || return 1
+    adb_retry 15 shell input tap $settings_point || return 1
   else
     # Pixel 2 API 36 profile is fixed at 1080x1920. Tesseract can misread the
     # stylized Ayarlar title even though the card is fully visible.
-    timeout 15 adb shell input tap 540 1530 || return 1
+    adb_retry 15 shell input tap 540 1530 || return 1
   fi
   wait_for_word SETTINGS 'Ayarlar' 6 || return 1
 
@@ -169,7 +184,7 @@ run_settings_tutorial_diagnostic() {
       tutorial_label="SETTINGS_TUTORIAL_${attempt}"
       break
     fi
-    timeout 15 adb shell input swipe 540 1650 540 350 650 || return 1
+    adb_retry 15 shell input swipe 540 1650 540 350 650 || return 1
     sleep 2
   done
   test -n "$tutorial_label" || return 1
@@ -190,7 +205,7 @@ tap_word() {
   local point
   point="$(find_word "$label" "$pattern")"
   test -n "$point"
-  timeout 15 adb shell input tap $point
+  adb_retry 15 shell input tap $point
 }
 
 finalize_validation() {
@@ -232,8 +247,10 @@ sleep 15
 for attempt in $(seq 1 120); do
   package_service="$(timeout 10 adb shell service check package 2>/dev/null | tr -d '\r' || true)"
   activity_service="$(timeout 10 adb shell service check activity 2>/dev/null | tr -d '\r' || true)"
+  input_service="$(timeout 10 adb shell service check input 2>/dev/null | tr -d '\r' || true)"
   if printf '%s' "$package_service" | grep -Fq 'found' \
       && printf '%s' "$activity_service" | grep -Fq 'found' \
+      && printf '%s' "$input_service" | grep -Fq 'found' \
       && timeout 10 adb shell pm path android >/dev/null 2>&1; then
     stable_service_checks=$((stable_service_checks + 1))
     if [ "$stable_service_checks" -ge 3 ]; then break; fi
@@ -241,7 +258,7 @@ for attempt in $(seq 1 120); do
     stable_service_checks=0
   fi
   if [ "$attempt" = "120" ]; then
-    echo "Android 16 package and activity services did not become stable." >&2
+    echo "Android 16 package, activity and input services did not become stable." >&2
     exit 1
   fi
   timeout 20 adb wait-for-device || true
@@ -279,10 +296,10 @@ if [ "$installed" != true ]; then
 fi
 echo 'APK_INSTALL=PASS' >> reports/ANDROID16_APP_GATE.txt
 
-timeout 30 adb logcat -c
-timeout 30 adb shell pm clear com.leventua.bilgirotasi
-timeout 15 adb shell am force-stop com.leventua.bilgirotasi
-timeout 30 adb shell am start -n com.leventua.bilgirotasi/.MainActivity
+adb_retry 30 logcat -c || true
+adb_retry 30 shell pm clear com.leventua.bilgirotasi
+adb_retry 15 shell am force-stop com.leventua.bilgirotasi
+adb_retry 30 shell am start -n com.leventua.bilgirotasi/.MainActivity
 echo 'APP_LAUNCH=PASS' >> reports/ANDROID16_APP_GATE.txt
 
 # First launch may show the analytics-consent dialog before the auth screen.
@@ -302,10 +319,10 @@ for attempt in $(seq 1 8); do
   if grep -Eqi 'Kullanim|Kullanım|Analizine' "reports/UI_ENTRY_${attempt}.tsv"; then
     consent_point="$(find_word "ENTRY_${attempt}" 'Simdi|Şimdi|Degil|Değil')"
     if test -n "$consent_point"; then
-      timeout 15 adb shell input tap $consent_point
+      adb_retry 15 shell input tap $consent_point
     else
       # Pixel 2 API 36 fallback: center of the visible "Şimdi Değil" action.
-      timeout 15 adb shell input tap 760 1065
+      adb_retry 15 shell input tap 760 1065
     fi
     echo 'ANALYTICS_CONSENT_HANDLED=PASS' >> reports/ANDROID16_APP_GATE.txt
     sleep 4
@@ -336,7 +353,7 @@ for attempt in $(seq 1 40); do
   fi
   guest_point="$(find_word "HOME_${attempt}" 'Misafir')"
   if test -n "$guest_point"; then
-    timeout 15 adb shell input tap $guest_point
+    adb_retry 15 shell input tap $guest_point
   fi
   if [ "$attempt" = "40" ]; then
     echo "Guest button did not reach the home screen." >&2
@@ -371,7 +388,7 @@ if test -s reports/SYSTEM_ANR_DISMISSED.txt; then
   rm -f reports/SYSTEM_ANR_DISMISSED.txt
 fi
 POST_GATE_LOGCAT_BOUNDARY=false
-if timeout 30 adb logcat -c; then
+if adb_retry 30 logcat -c; then
   POST_GATE_LOGCAT_BOUNDARY=true
   echo 'POST_GATE_LOGCAT_BOUNDARY=PASS' >> reports/ANDROID16_APP_GATE.txt
 else
