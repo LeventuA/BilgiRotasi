@@ -285,6 +285,35 @@ timeout 15 adb shell am force-stop com.leventua.bilgirotasi
 timeout 30 adb shell am start -n com.leventua.bilgirotasi/.MainActivity
 echo 'APP_LAUNCH=PASS' >> reports/ANDROID16_APP_GATE.txt
 
+# First launch may show the analytics-consent dialog before the auth screen.
+# Handle it deterministically so the release gate verifies the app rather than
+# failing because a newly-added first-run dialog blocks Google/Misafir.
+for attempt in $(seq 1 8); do
+  if ! capture_screen "ENTRY_${attempt}"; then
+    sleep 3
+    continue
+  fi
+  if dismiss_system_anr "ENTRY_${attempt}"; then
+    continue
+  fi
+  if test -n "$(find_word "ENTRY_${attempt}" 'Google|Misafir')"; then
+    break
+  fi
+  if grep -Eqi 'Kullanim|Kullanım|Analizine' "reports/UI_ENTRY_${attempt}.tsv"; then
+    consent_point="$(find_word "ENTRY_${attempt}" 'Simdi|Şimdi|Degil|Değil')"
+    if test -n "$consent_point"; then
+      timeout 15 adb shell input tap $consent_point
+    else
+      # Pixel 2 API 36 fallback: center of the visible "Şimdi Değil" action.
+      timeout 15 adb shell input tap 760 1065
+    fi
+    echo 'ANALYTICS_CONSENT_HANDLED=PASS' >> reports/ANDROID16_APP_GATE.txt
+    sleep 4
+    break
+  fi
+  sleep 3
+done
+
 wait_for_word AUTH 'Google|Misafir' 20
 grep -Eqi 'Google' reports/UI_AUTH.tsv
 grep -Eqi 'Misafir' reports/UI_AUTH.tsv
