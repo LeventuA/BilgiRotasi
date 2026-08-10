@@ -1,6 +1,6 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 4 Ağustos 2026 gecesi  
+**Kesim noktası:** 8 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
 ---
@@ -9,15 +9,18 @@
 
 | Alan | Kesim noktasındaki değer | Durum | Kaynak |
 |---|---|---|---|
-| Repo | `LeventuA/BilgiRotasi` | DOĞRULANDI | S01, S02, S07 |
+| Kanonik repo | `ZMilaStudio/BilgiRotasi` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
 | Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI | S04 |
-| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` | RAPORLANDI | S06, S07, S09 |
-| Gerçek paket sürümü | `1.68.13+103` | RAPORLANDI ve birden çok kaynakla uyumlu | S06, S07, S09 |
+| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` (`548e8d3046469688a8dcb050552956cf786e525c`) | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
+| Gerçek paket sürümü | `1.68.13+103` | DOĞRULANDI | Release dalındaki `pubspec.yaml`, 8 Ağustos 2026 |
 | `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR | S06, S07, S09 |
 | PR #9 | Merge edildi | RAPORLANDI | S07, S09 |
 | PR #10 | Merge edildi | RAPORLANDI | S06, S07, S09 |
-| PR #7 | Draft ve merge edilmemiş olarak son görüldü | CANLI DOĞRULANACAK | S09 |
-| PR #8 | Kapatıldı, merge edilmedi | RAPORLANDI | S07, S09 |
+| PR #13 | Açık, Draft, merge edilmedi; head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a`; ödüllü reklam işi uygulandı, CI PASS, fiziksel cihaz kabulü bekleniyor | DOĞRULANDI / RAPORLANDI | GitHub canlı durum + doğrulanmış görev sonucu |
+| PR #14 | Açık, Draft, merge edilmedi; head `288d7033da16fe85c4f87d5da135edf0fd4543d0` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
+| PR #15 | Açık, Draft, merge edilmedi; head canlı GitHub PR metadata’sından doğrulanır | DOĞRULANDI | GitHub canlı PR metadata’sı |
+| Kapalı test entegrasyon adayı | `integration/closed-test-next-release`; PR #13 reklam düzeltmesi ile PR #14/#15 değişiklikleri birlikte doğrulandı | YEREL PASS / CI CANLI METADATA | 9 Ağustos 2026 entegrasyon doğrulaması |
+| Android geliştirici doğrulaması | Tamamlandı | RAPORLANDI | Levent'in güncel Play doğrulaması |
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Sürüm hedef dalın `pubspec.yaml` dosyasından okunmalıdır.
 
@@ -27,8 +30,11 @@
 
 - `1.68.13+103` önce Dahili Test'te gerçek cihazda doğrulandı.
 - Aynı AAB mevcut Kapalı Test kanalına yayımlandı.
-- Son konuşmalarda görülen kapalı test katılımcı sayısı **6** idi; canlı sayı değildir.
-- Testçi sayısı ve 14 günlük süreç Play Console'dan yeniden kontrol edilmelidir.
+- Son doğrulanan Play kapalı test durumu **12 geçerli testçi / 4 kesintisiz gün**dür.
+- 8 Ağustos 2026'da Play Console'a bağlı tarayıcı bulunamadığı için sayaç UI'dan
+  yeniden okunamadı; 12/4 değeri Levent'in son Play Console doğrulaması olarak
+  kaydedildi ve bir sonraki canlı kontrolde tarih/sayaç yeniden okunmalıdır.
+- Android geliştirici doğrulaması tamamlandı.
 - Uygulama kaydı, paket adı ve ilk AAB yükleme süreci daha önce adım adım tamamlandı.
 - Play App Signing SHA değeri production Firebase'e eklenmişti; eski upload/release SHA silinmedi.
 
@@ -96,7 +102,7 @@ Konuşma ve test kayıtlarında mevcut olduğu görülen ana sistemler:
 - Günlük Görev
 - Hayatta Kalma
 - 60 Saniye
-- Aile, Takım ve Turnuva modları
+- Takım modu ve diğer hızlı oyun modları
 - 10 / 20 / 30 soruluk Meydan Okuma
 - Canlı Düello altyapısı ve oyun akışı
 - BR ve lig sistemi
@@ -105,11 +111,24 @@ Konuşma ve test kayıtlarında mevcut olduğu görülen ana sistemler:
 - Hesap silme
 - XP, seviye, başarımlar
 - Bilgi Rotası Pasaportu
-- Piyon koleksiyonu ve nadirlik
+- Piyon koleksiyonu ve güvenli favori piyon seçimi
 - Temalar, jokerler, özel kutular
 - Erişilebilirlik ve Sistem Sağlığı
 
 **Dikkat:** Yeni teknik çalışma öncesi canlı release dalında ilgili modülün gerçekten bulunduğu ve testlerin geçtiği doğrulanmalıdır.
+
+- `codex/simplify-game-modes-pawn-rarity` dalında Diğer Oyun Modları ekranı
+  daha kompakt hale getirildi; sabit mod sayısı metinleri kaldırıldı.
+- Aile Modu ve Turnuva Modu kartları ile bu ekrandaki navigasyon girişleri
+  kaldırıldı. Hayatta Kalma, 60 Saniye, Kategori Düellosu, Takım Modu ve
+  Karışık Çılgınlık korunur.
+- Kariyer bölümündeki ayrı Piyon Nadirlikleri girişi, nadirlik enum/kataloğu ve
+  piyon seçicideki nadirlik benzeri `ÖZEL` sınıflandırması kaldırıldı.
+- 17 piyonluk ana katalog, piyon görselleri/sesleri, favori piyon verisi ve
+  geçersiz eski indeksler için güvenli fallback korunur.
+
+**Durum:** Ayrı feature dalında uygulanıp hedefli testlerle doğrulandı; Draft PR
+incelemesi ve Levent onayı bekleniyor.
 
 ---
 
@@ -125,7 +144,66 @@ Kesim noktasındaki proje kararına göre:
 - Her tamamlanan oyun bir adet ödüllü reklam hakkı üretmeli.
 - Aynı oyun sonucu ikinci kez ödül vermemeli.
 
-**Durum:** Son kota değişikliği `AÇIK`; uygulanıp uygulanmadığı canlı koddan doğrulanmalı.
+**Durum:** PR #13 üzerinde `UYGULANDI / CI PASS / fiziksel cihaz kabulü bekliyor`.
+PR açık, Draft ve merge edilmemiştir; release dalında henüz yoktur.
+
+PR #13'ün yalnız işlevsel reklam düzeltmesi entegrasyon adayına taşındı.
+Yarış koşullarına dayanıklı oyun-başına hak sistemi ile başarılı ödül sonrası
+`rewarded_ad_completed` telemetrisi birlikte korunur. PR #13 kaynak Draft PR
+olarak kalır; merge edilmiş sayılmaz.
+
+---
+
+## 7A. Kişisel hesap kimliği göndermeyen pseudonymous kullanım telemetrisi
+
+- `codex/firebase-analytics-telemetry` dalında merkezi ve hata yalıtımlı
+  Firebase Analytics katmanı eklendi.
+- Kullanıcı izin verdiğinde uygulama süreç başlangıcı `app_process_started` ve
+  adlandırılmış ekran geçişleri ölçülür. `app_process_started`, gerçek Google
+  Analytics oturumu gibi yorumlanmaz; oturum ölçümü SDK'nın otomatik
+  `session_start` metriğine bırakılır.
+- Oyun modu seçimi, oyun başlangıcı/tamamlanması/yarıda bırakılması, joker
+  kullanımı, ödüllü reklam tamamlanması ve Canlı Düello başlangıç/sonuç olayları
+  ölçülür.
+- Oyun olayları yalnız oyun modu, kategori, gerekiyorsa zorluk grubu, süre,
+  sonuç ve uygulama sürümü gibi hesap kimliği içermeyen boyutları kabul eder.
+- Ad, e-posta, Google kullanıcı kimliği, kullanıcı adı ve reklam kimliği için
+  servis API'si yoktur; her dokunuş veya her cevap ayrı Analytics olayı değildir.
+- Bu telemetri tam anonim değildir: kullanıcı izin verdiğinde Firebase SDK bu
+  uygulama kurulumu için pseudonymous bir app-instance ID üretir.
+- Analytics varsayılan olarak kapalıdır. Kullanıcı Ayarlar ekranında açıkça izin
+  vermeden `analytics_storage` etkinleştirilmez, identifier depolanmaz ve olay
+  gönderilmez. Tercih cihazda saklanır ve daha sonra geri alınabilir.
+- Tercih `unknown` ise güncelleme sonrasında sürüm başına yalnız bir kez zorlamayan
+  izin istemi gösterilir. `Şimdi Değil` seçimi aynı sürümde yeniden sorulmaz;
+  kullanıcı daha sonra Ayarlar'dan izin verebilir.
+- Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
+  sinyalleri manifestte kapalıdır; Analytics consent ayarında reklam depolaması,
+  reklam kullanıcı verisi ve reklam kişiselleştirmesi reddedilir.
+- Test/dev/prod Firebase ayrımı `FirebaseRuntimePolicy` üzerinden korunur.
+  Analytics hataları sessizce yutulur ve oyun akışını engellemez.
+
+**Durum:** Uygulandı; hedefli unit/widget testleri PASS. Draft PR incelemesi ve
+Levent onayı bekleniyor; AAB üretilmedi veya yayınlanmadı.
+
+---
+
+## 7B. Kapalı test yayın adayı entegrasyonu
+
+- Entegrasyon dalı: `integration/closed-test-next-release`
+- Kaynak PR #13, PR #14 ve PR #15 açık/Draft/merge edilmemiş olarak kalır.
+- PR #14 ve PR #15 değişiklikleri dalın başlangıcında bulunur; PR #13'ten yalnız
+  işlevsel reklam düzeltmesi entegre edilmiştir.
+- `admob-pr-validation.yml`, `update/closed-test-next-release` kaynağındaki güncel
+  CI akışıyla eşleştirildi.
+- Sürüm değiştirilmedi: `1.68.13+103`.
+- Yerel doğrulama: `flutter pub get` PASS, tüm Flutter testleri `237/237` PASS,
+  analyzer exit `0` ve `git diff --check` PASS.
+- GitHub CI run/job/artifact durumu entegrasyon Draft PR'ının canlı check
+  metadata'sından doğrulanır.
+
+**Durum:** Final kapalı-test entegrasyon adayı; release dalına merge edilmedi,
+AAB üretilmedi ve Play Console değişikliği yapılmadı.
 
 ---
 
@@ -150,10 +228,12 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`
 
 ## 9. Şu anda ilk yapılacak işler
 
-1. Play Console'dan canlı kapalı test sayısını ve süreyi doğrula.
+1. Play Console'da son doğrulanan 12 geçerli testçi / 4 kesintisiz gün sayacını
+   bir sonraki erişimde tarihli ekran kanıtıyla yeniden doğrula.
 2. Sheet'teki soru geri bildirimlerini soru bankasının gerçek kayıtlarıyla incele.
 3. Açıkça bozuk sorular için release dalından ayrı düzeltme branch'i aç.
 4. Soru düzeltmelerini test et, PR aç, incele ve merge et.
 5. Yeni AAB'yi mevcut Kapalı Test kanalına güncelleme olarak yükle.
-6. Ödüllü reklamın oyun başına hak kararını canlı kodda doğrula ve gerekiyorsa uygula.
+6. PR #13 ödüllü reklam değişikliğinin fiziksel cihaz kabul testini tamamla;
+   uygulanmış ve CI PASS durumunu geriye götürme.
 7. 3B tahta çalışmasına, geometri ve 6-rozet eşlemesi çözülmeden dönme.

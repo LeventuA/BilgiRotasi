@@ -7,6 +7,7 @@
 - Flutter / Dart
 - Android
 - Firebase Authentication
+- Firebase Analytics (açık kullanıcı consent'iyle)
 - Cloud Firestore
 - Google Sign-In
 - Firebase Functions
@@ -23,10 +24,11 @@
 ## Kritik proje kimliği
 
 ```text
-Repo: LeventuA/BilgiRotasi
+Kanonik repo: ZMilaStudio/BilgiRotasi
 Paket: com.leventua.bilgirotasi
-Release dalı (son rapor): release/final-closed-test-aab-1.68.8
-Sürüm (son rapor): 1.68.13+103
+Release dalı (8 Ağustos 2026 doğrulaması): release/final-closed-test-aab-1.68.8
+Release head: 548e8d3046469688a8dcb050552956cf786e525c
+Sürüm: 1.68.13+103
 ```
 
 Bu değerler yeni teknik işten önce canlı depodan yeniden okunmalıdır.

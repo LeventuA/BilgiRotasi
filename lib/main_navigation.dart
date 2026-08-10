@@ -105,6 +105,7 @@ class MainNavigationGrid extends StatelessWidget {
               onTap:
                   () => _open(
                     context,
+                    MainNavigationSection.settings.name,
                     SettingsCenterScreen(questionBank: questionBank),
                   ),
             ),
@@ -171,12 +172,17 @@ class MainNavigationGrid extends StatelessWidget {
       ),
     };
 
-    _open(context, screen);
+    _open(context, section.name, screen);
   }
 
-  void _open(BuildContext context, Widget screen) {
+  void _open(BuildContext context, String screenName, Widget screen) {
     GameHaptics.selectionClick();
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
+    Navigator.of(context).push(
+      TelemetryPageRoute<void>(
+        screenName: '${screenName}_center',
+        builder: (_) => screen,
+      ),
+    );
   }
 }
 
@@ -313,8 +319,11 @@ class PlayCenterScreen extends StatelessWidget {
               'ana Bilgi Rotası deneyimi.',
           accent: const Color(0xFF0F766E),
           onTap:
-              () =>
-                  _open(context, PlayerSetupScreen(questionBank: questionBank)),
+              () => _open(
+                context,
+                'board_game',
+                PlayerSetupScreen(questionBank: questionBank),
+              ),
         ),
         _HubActionCard(
           emoji: '🧭',
@@ -324,6 +333,7 @@ class PlayCenterScreen extends StatelessWidget {
           onTap:
               () => _open(
                 context,
+                'solo_route',
                 SoloRouteSetupScreen(questionBank: questionBank),
               ),
         ),
@@ -336,6 +346,7 @@ class PlayCenterScreen extends StatelessWidget {
           onTap:
               () => _open(
                 context,
+                'marathon',
                 MarathonSetupScreen(questionBank: questionBank),
               ),
         ),
@@ -349,6 +360,7 @@ class PlayCenterScreen extends StatelessWidget {
           onTap:
               () => _open(
                 context,
+                'challenge',
                 ShortChallengeModeScreen(questionBank: questionBank),
               ),
         ),
@@ -358,19 +370,23 @@ class PlayCenterScreen extends StatelessWidget {
           description: PlayCenterEntryCatalog.liveDuelDescription,
           accent: const Color(0xFF4338CA),
           onTap:
-              () =>
-                  _open(context, PlayCenterEntryCatalog.buildLiveDuelScreen()),
+              () => _open(
+                context,
+                'live_duel',
+                PlayCenterEntryCatalog.buildLiveDuelScreen(),
+              ),
         ),
         _HubActionCard(
           emoji: '⚡',
           title: 'Diğer Oyun Modları',
           description:
-              'Hayatta Kalma, 60 Saniye, Aile, Takım, '
-              'Turnuva ve Karışık Çılgınlık.',
+              'Hayatta Kalma, 60 Saniye, Kategori Düellosu, '
+              'Takım ve Karışık Çılgınlık.',
           accent: const Color(0xFFEA580C),
           onTap:
               () => _open(
                 context,
+                'other_modes',
                 QuickModesHubScreen(questionBank: questionBank),
               ),
         ),
@@ -378,8 +394,14 @@ class PlayCenterScreen extends StatelessWidget {
     );
   }
 
-  void _open(BuildContext context, Widget screen) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
+  void _open(BuildContext context, String gameMode, Widget screen) {
+    unawaited(AnalyticsTelemetry.gameModeSelected(gameMode: gameMode));
+    Navigator.of(context).push(
+      TelemetryPageRoute<void>(
+        screenName: '${gameMode}_setup',
+        builder: (_) => screen,
+      ),
+    );
   }
 }
 
@@ -456,17 +478,6 @@ class CareerCenterScreen extends StatelessWidget {
               ),
         ),
         _HubActionCard(
-          emoji: '💎',
-          title: 'Piyon Nadirlikleri',
-          description:
-              'Sıradan, Nadir, Destansı, Efsanevi ve Mitik piyonları incele.',
-          accent: const Color(0xFF2563EB),
-          onTap:
-              () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const PawnRarityScreen()),
-              ),
-        ),
-        _HubActionCard(
           emoji: '🎉',
           title: 'Özel Etkinlikler',
           description:
@@ -499,6 +510,7 @@ class SettingsCenterScreen extends StatelessWidget {
           'tek bölümde.',
       colors: const [Color(0xFF334155), Color(0xFF0F5661)],
       children: [
+        const AnalyticsConsentSettingsCard(),
         _HubActionCard(
           emoji: '👁️',
           title: 'Genel Ayarlar & Erişilebilirlik',

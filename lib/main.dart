@@ -10,6 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'sound_data.dart';
 
 part 'daily_challenge.dart';
+part 'analytics_telemetry.dart';
 part 'ad_monetization.dart';
 part 'question_feedback.dart';
 part 'xp_progression.dart';
@@ -958,8 +960,15 @@ Future<void> main() async {
     // Erişilebilirlik ayarları açılamasa bile oyun devam eder.
   }
 
+  try {
+    await AnalyticsConsentService.initialize();
+  } catch (_) {
+    // Tercih okunamazsa Analytics varsayılan olarak kapalı kalır.
+  }
+
   runApp(const BilgiRotasiApp());
 
+  unawaited(AnalyticsTelemetry.appProcessStarted());
   unawaited(_initializeAccountCloudInBackground());
   unawaited(AdPrivacyService.instance.initialize());
 }
@@ -986,11 +995,19 @@ class _BilgiRotasiAppState extends State<BilgiRotasiApp> {
   void initState() {
     super.initState();
     _questionBankFuture = QuestionBank.load();
+    unawaited(AnalyticsTelemetry.screenViewed('app_root'));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(AnalyticsConsentService.showInitialPromptIfNeeded());
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: AnalyticsConsentService.navigatorKey,
+      navigatorObservers: <NavigatorObserver>[
+        AnalyticsTelemetry.navigatorObserver,
+      ],
       debugShowCheckedModeBanner: false,
       title: 'Bilgi Rotası',
       theme: ThemeData(
@@ -2756,6 +2773,7 @@ class _MarathonScreenState extends State<MarathonScreen> {
   int _maxStreak = 0;
   bool _busy = false;
   bool _exitDialogOpen = false;
+  late final GameTelemetrySession _telemetry;
 
   QuizQuestion get _question => widget.questions[_questionIndex];
 
@@ -2763,6 +2781,19 @@ class _MarathonScreenState extends State<MarathonScreen> {
   void initState() {
     super.initState();
     _stopwatch.start();
+    _telemetry = GameTelemetrySession.start(
+      gameMode: 'marathon',
+      category:
+          widget.categoryIndex == null
+              ? 'mixed'
+              : GameCategory.values[widget.categoryIndex!].label,
+    );
+  }
+
+  @override
+  void dispose() {
+    _telemetry.abandon();
+    super.dispose();
   }
 
   @override
@@ -3003,6 +3034,9 @@ class _MarathonScreenState extends State<MarathonScreen> {
 
     if (finished) {
       _stopwatch.stop();
+      _telemetry.complete(
+        _correct > _wrong ? 'completed_positive' : 'completed',
+      );
 
       final previousBest = await MarathonScoreService.bestScore(
         categoryIndex: widget.categoryIndex,
@@ -4076,6 +4110,7 @@ class _GameScreenState extends State<GameScreen> {
   bool _allowRoutePop = false;
   bool _exitDialogOpen = false;
   final Set<String> _usedQuestionIds = <String>{};
+  late final GameTelemetrySession _telemetry;
 
   PlayerData get _currentPlayer => widget.players[_currentPlayerIndex];
 
@@ -4102,6 +4137,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
+    _telemetry = GameTelemetrySession.start(gameMode: 'board_game');
     _gameId = 'board_${DateTime.now().microsecondsSinceEpoch}';
 
     if (widget.players.isNotEmpty) {
@@ -4115,6 +4151,12 @@ class _GameScreenState extends State<GameScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(_saveGame());
     });
+  }
+
+  @override
+  void dispose() {
+    _telemetry.abandon();
+    super.dispose();
   }
 
   Future<void> _saveGame() {
@@ -5044,6 +5086,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> _showWinnerDialog(PlayerData player) async {
+    _telemetry.complete('completed');
     await Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder:
@@ -7539,6 +7582,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
     if (wallet == null || !wallet.consume(JokerKind.fiftyFifty)) {
       return;
     }
+    unawaited(
+      AnalyticsTelemetry.jokerUsed(
+        gameMode: _gameMode,
+        category: GameCategory.values[_question.categoryIndex].label,
+      ),
+    );
 
     final wrongOptions = <int>[
       for (var index = 0; index < _question.options.length; index++)
@@ -7558,6 +7607,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
     if (wallet == null || !wallet.consume(JokerKind.secondChance)) {
       return;
     }
+    unawaited(
+      AnalyticsTelemetry.jokerUsed(
+        gameMode: _gameMode,
+        category: GameCategory.values[_question.categoryIndex].label,
+      ),
+    );
 
     setState(() {
       _secondChanceArmed = true;
@@ -7591,6 +7646,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
     }
 
     wallet.consume(JokerKind.changeQuestion);
+    unawaited(
+      AnalyticsTelemetry.jokerUsed(
+        gameMode: _gameMode,
+        category: GameCategory.values[_question.categoryIndex].label,
+      ),
+    );
 
     setState(() {
       _question = replacement;

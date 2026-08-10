@@ -173,6 +173,8 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
   String? _errorMessage;
   String? _resultError;
   String? _connectionMessage;
+  DateTime? _telemetryStartedAt;
+  bool _telemetryCompleted = false;
 
   @override
   void initState() {
@@ -220,6 +222,8 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
         _questionSet = questionSet;
         _loading = false;
       });
+      _telemetryStartedAt = DateTime.now();
+      unawaited(AnalyticsTelemetry.liveDuelStarted());
 
       _progressSubscription = LiveDuelProgressService.watchMatchProgress(
         widget.matchId,
@@ -466,6 +470,7 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
         _ownAward = award;
         _finalizingResult = false;
       });
+      _recordTelemetryCompletion(award);
     } on LiveDuelResultException catch (error) {
       if (!mounted) return;
       setState(() {
@@ -527,6 +532,7 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
         _ownAward = award;
         _finalizingResult = false;
       });
+      _recordTelemetryCompletion(award);
     } on LiveDuelResultException catch (error) {
       if (!mounted) return;
 
@@ -552,6 +558,23 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
   }
 
   bool get _ownFinished => _ownProgress?.finished == true;
+
+  void _recordTelemetryCompletion(LiveDuelOwnResultAward award) {
+    if (_telemetryCompleted) return;
+    _telemetryCompleted = true;
+    final startedAt = _telemetryStartedAt ?? DateTime.now();
+    final result = switch (award.result) {
+      LiveDuelResult.win => 'win',
+      LiveDuelResult.draw => 'draw',
+      LiveDuelResult.loss => 'loss',
+    };
+    unawaited(
+      AnalyticsTelemetry.liveDuelCompleted(
+        duration: DateTime.now().difference(startedAt),
+        result: result,
+      ),
+    );
+  }
 
   bool get _opponentFinished => _opponentProgress?.finished == true;
 
@@ -687,6 +710,14 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
 
   @override
   void dispose() {
+    if (_telemetryStartedAt != null && !_telemetryCompleted) {
+      unawaited(
+        AnalyticsTelemetry.gameAbandoned(
+          gameMode: 'live_duel',
+          duration: DateTime.now().difference(_telemetryStartedAt!),
+        ),
+      );
+    }
     WidgetsBinding.instance.removeObserver(this);
     _heartbeatTimer?.cancel();
     _resolutionTimer?.cancel();

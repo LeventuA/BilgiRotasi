@@ -63,12 +63,16 @@
 - Zar Tekrar jokeri kaldırıldı.
 - İleri 2 / Geri 2 kutuları kaldırıldı.
 - Bunların yerine Tekrar Zar At ve Rastgele Joker Kazan kutuları kullanıldı.
+- Aile Modu ve Turnuva Modu, Diğer Oyun Modları ekranı ile bu ekrandaki
+  navigasyon girişlerinden kaldırıldı.
 
 ---
 
 ## 4. Kariyer ve koleksiyon
 
-- Piyon nadirlik sistemi korunacak.
+- Piyon kataloğu, seçim ve kullanıcıdaki favori piyon verisi korunacak; piyon
+  nadirlik katmanı, nadirlik etiketleri ve nadirliğe bağlı farklılaştırma
+  kullanılmayacak.
 - Bilgi Rotası Pasaportu korunacak.
 - Seviye yükseldikçe XP ihtiyacı belirgin artacak.
 - Birkaç soruyla çok sayıda seviye atlama olmayacak.
@@ -138,3 +142,30 @@
 - Durum, karar ve görev dosyaları her iş sonunda güncellenecek.
 - Devir özeti tek başına kaynak sayılmayacak.
 - Yeni sohbet, canlı kaynak ve bu proje dosyalarını okuyarak başlayacak.
+
+---
+
+## 10. Analytics ve pseudonymous kullanım telemetrisi
+
+- Kapalı test davranışı Firebase Analytics ile kişisel hesap kimliği
+  gönderilmeyen pseudonymous olaylar üzerinden ölçülecek.
+- Telemetri tam anonim olarak tanımlanmayacak; kullanıcı izin verdiğinde
+  Firebase SDK'nın uygulama kurulumuna ait pseudonymous app-instance ID ürettiği
+  açıkça belirtilecek.
+- İzin verilen oyun boyutları oyun modu, kategori, gerekiyorsa zorluk grubu,
+  süre, sonuç ve uygulama sürümüyle sınırlıdır.
+- Ad, e-posta, Firebase/Google kullanıcı kimliği, açık kullanıcı adı, reklam
+  kimliği veya başka kişisel veri Analytics'e gönderilmeyecek.
+- Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
+  sinyalleri kapalı tutulacak; Analytics consent yalnız ölçüm depolamasına izin
+  verirken reklam depolaması, reklam kullanıcı verisi ve kişiselleştirmeyi
+  reddedecek.
+- Analytics katmanı genel amaçlı key/value veya kullanıcı kimliği API'si
+  sunmayacak; yeni olaylar merkezi servisten geçecek.
+- Aktif soru ekranındaki dokunuşlar ve tek tek cevaplar olaylaştırılmayacak.
+- Telemetri ağ/SDK hataları oyunu durdurmayacak ve kullanıcıya hata olarak
+  yansıtılmayacak.
+- `analytics_storage` koşulsuz açılmayacak. Varsayılan kapalı olacak, açık kullanıcı
+  kabulü cihazda saklanacak ve kullanıcı aynı ayardan izni geri alabilecek.
+- İzin yokken Analytics identifier depolanmayacak ve oyun eksiksiz çalışacak.
+- Firebase test/development/production çalışma ayrımı korunacak.

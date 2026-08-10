@@ -1,50 +1,5 @@
 part of 'main.dart';
 
-enum PawnRarity {
-  common('Sıradan', '⚪', Color(0xFF94A3B8)),
-  rare('Nadir', '🟢', Color(0xFF22C55E)),
-  epic('Destansı', '🔵', Color(0xFF3B82F6)),
-  legendary('Efsanevi', '🟣', Color(0xFFA855F7)),
-  mythic('Mitik', '🟠', Color(0xFFF59E0B));
-
-  const PawnRarity(this.title, this.emoji, this.color);
-  final String title;
-  final String emoji;
-  final Color color;
-}
-
-class PawnRarityCatalog {
-  PawnRarityCatalog._();
-
-  static const List<String> pawnNames = <String>[
-    'Enerji Yolcusu',
-    'Kristal Taş',
-    'Merak Maskotu',
-    'Klasik Piyon',
-    'Bilge Yolcu',
-    'Şans Küpü',
-    'Kâşif Pusulası',
-    'Bilgi Kitabı',
-    'Fikir Ampulü',
-    'Zaman Ustası',
-    'Meraklı Yolcu',
-    'Şampiyon Kupası',
-    'Minik Galaksi Bilgesi',
-    'Fidan Muhafızı',
-    'Özgür Ev Cini',
-    'Mağara Sinsiği',
-    'Kara Kedi',
-  ];
-
-  static PawnRarity rarityFor(int index) {
-    if (index >= 16) return PawnRarity.mythic;
-    if (index >= 14) return PawnRarity.legendary;
-    if (index >= 12) return PawnRarity.epic;
-    if (index >= 7) return PawnRarity.rare;
-    return PawnRarity.common;
-  }
-}
-
 class PassportDayProgress {
   PassportDayProgress({
     List<Set<String>>? activeDays,
@@ -351,38 +306,6 @@ class _PassportCategoryCard extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class PawnRarityScreen extends StatelessWidget {
-  const PawnRarityScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Piyon Nadirlikleri')),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: PawnRarityCatalog.pawnNames.length,
-        itemBuilder: (context, index) {
-          final rarity = PawnRarityCatalog.rarityFor(index);
-          return Card(
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: rarity.color.withValues(alpha: 0.18),
-                child: Text(rarity.emoji),
-              ),
-              title: Text(
-                PawnRarityCatalog.pawnNames[index],
-                style: const TextStyle(fontWeight: FontWeight.w800),
-              ),
-              subtitle: Text(rarity.title),
-              trailing: Icon(Icons.auto_awesome, color: rarity.color),
-            ),
-          );
-        },
       ),
     );
   }

@@ -106,6 +106,19 @@ class AboutPrivacyScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           _section(
+            emoji: '📊',
+            title: 'Kullanım analizi',
+            text:
+                'Firebase Analytics varsayılan olarak kapalıdır. Ayarlar '
+                'ekranında açıkça izin verirsen Firebase SDK bu uygulama '
+                'kurulumu için pseudonymous bir app-instance ID üretir ve '
+                'ekran, oyun modu, kategori, süre ve sonuç gibi kullanım '
+                'olaylarını işler. Adın, e-posta adresin, Google/Firebase '
+                'hesap kimliğin ve kullanıcı adın gönderilmez. İzni aynı '
+                'ayardan geri alabilirsin.',
+          ),
+          const SizedBox(height: 8),
+          _section(
             emoji: '📺',
             title: 'Reklamlar ve izin',
             text:

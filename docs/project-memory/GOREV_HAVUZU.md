@@ -4,10 +4,10 @@
 
 ### BR-P0-001 - Kapalı Test canlı durumunu doğrula
 
-**Durum:** AÇIK
+**Durum:** İZLENİYOR
 
-- Katılımcı sayısı
-- Gerekli süre/sayaç
+- Son doğrulanan: 12 geçerli testçi
+- Son doğrulanan: 4 kesintisiz gün
 - Testten ayrılanlar
 - Son aktif AAB
 - Play Console'un güncel üretim erişimi koşulları
@@ -44,9 +44,12 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 
 ---
 
-### BR-P0-004 - Ödüllü reklam hak sistemini doğrula/uygula
+### BR-P0-004 - Ödüllü reklam hak sistemi
 
-**Durum:** AÇIK
+**Durum:** UYGULANDI / CI PASS / fiziksel cihaz kabulü bekliyor
+
+Kaynak: Draft PR #13, head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a`.
+PR merge edilmediği için release dalında henüz bulunmaz.
 
 İstenen:
 
@@ -56,19 +59,45 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 - günlük/oturumluk toplam kota yok
 - +10 XP
 
+Entegrasyon notu: PR #13'ün işlevsel reklam düzeltmesi
+`integration/closed-test-next-release` dalında PR #14/#15 değişiklikleriyle
+birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sayılmaz.
+
+---
+
+### BR-P0-005 - Final kapalı-test entegrasyon adayını doğrula
+
+**Durum:** YEREL PASS / GITHUB CI CANLI METADATA
+
+- Dal: `integration/closed-test-next-release`
+- Sürüm: `1.68.13+103` (artırılmadı)
+- Kaynak PR #13/#14/#15 açık, Draft ve merge edilmemiştir.
+- Oyun-başına ödül hakkı ve başarılı ödüllü reklam telemetrisi birlikte korunur.
+- Yerel tüm Flutter testleri: `237/237 PASS`
+- Analyzer: exit `0`; mevcut non-fatal tanılar dışında hata yok
+- `git diff --check`: PASS
+- GitHub CI run/job/artifact sonucu canlı Draft PR check metadata'sından izlenir.
+- CI başarısından ve final doğrulamadan önce release merge'i, AAB üretimi/yayını
+  veya Play Console değişikliği yapılmaz.
+
 ---
 
 ## P1 - Teknik doğrulama
 
 ### BR-P1-001 - GitHub canlı envanteri
 
-- Release branch head
-- PR #7
-- PR #9 / #10 merge commitleri
-- Açık deney branch'leri
-- Son AAB kaynak commit'i
-- `pubspec.yaml`
-- CI durumu
+**8 Ağustos 2026 doğrulaması:**
+
+- Kanonik repo: `ZMilaStudio/BilgiRotasi`
+- Release head: `548e8d3046469688a8dcb050552956cf786e525c`
+- Release sürümü: `1.68.13+103`
+- PR #13: açık / Draft / merge edilmedi; ödüllü reklam işi UYGULANDI / CI PASS /
+  fiziksel cihaz kabulü bekliyor
+- PR #14: açık / Draft / merge edilmedi
+- PR #15: açık / Draft / merge edilmedi; head canlı GitHub PR metadata’sından
+  doğrulanır
+- Android geliştirici doğrulaması: tamamlandı
+- Son Play bilgisi: 12 geçerli testçi / 4 kesintisiz gün; UI yeniden okuması açık
 
 ### BR-P1-002 - Firebase production envanteri
 
@@ -92,6 +121,38 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 ### BR-P1-004 - UMP testi
 
 Türkiye dışı uygun test bölgesi/debug yöntemiyle onay formunu doğrula.
+
+### BR-P1-005 - Oyun modları ve piyon sistemini sadeleştir — UYGULANDI / DRAFT PR BEKLİYOR
+
+- Diğer Oyun Modları üst alanı ve kartları kompaktlaştırıldı.
+- Sabit mod sayısı yerine `Farklı mücadele modları` başlığı kullanıldı.
+- Aile Modu ve Turnuva Modu kartları/navigasyon girişleri kaldırıldı.
+- Piyon kataloğu korunarak ayrı nadirlik modeli, ekranı, etiketleri ve
+  nadirlik temelli görsel vurgu kaldırıldı.
+- Favori piyon kaydı ile geçersiz eski indeks fallback'i korunur.
+- Hedefli sadeleştirme testleri ve sistem smoke testleri PASS'tir.
+
+### BR-P1-006 - Pseudonymous kapalı test kullanım telemetrisi — UYGULANDI / DRAFT PR BEKLİYOR
+
+- `firebase_analytics` merkezi, hata yalıtımlı bir servis arkasına eklendi.
+- Uygulama süreç başlangıcı, ekran, oyun seçimi/başlangıç/tamamlanma/yarıda bırakma,
+  joker, ödüllü reklam ve Canlı Düello yaşam döngüsü olayları bağlandı.
+- Parametre sözleşmesi hesap kimliği içermeyen oyun boyutlarıyla sınırlandı; kullanıcı kimliği ve
+  serbest parametre haritası kabul edilmez.
+- Firebase SDK'nın izin sonrasında pseudonymous app-instance ID ürettiği açıkça
+  belgelenir; telemetri tam anonim olarak adlandırılmaz.
+- Analytics varsayılan kapalıdır; açık kullanıcı tercihi cihazda saklanır,
+  geri alınabilir ve izin yokken oyun eksiksiz çalışır.
+- `app_process_started` yalnız uygulama süreç başlangıcını belirtir; GA oturum
+  metriği olarak kullanılmaz ve oturum sayımı otomatik `session_start` ile yapılır.
+- Tercih `unknown` ise sürüm başına bir kez zorlamayan izin istemi gösterilir;
+  `Şimdi Değil` sonrasında kullanıcı Ayarlar'dan istediği zaman açabilir.
+- Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
+  sinyalleri kapatıldı; reklam amaçlı consent değerleri reddedilir.
+- Soru ekranındaki her dokunuş veya her cevap için olay üretilmez.
+- Unit/widget sözleşme testleri Analytics hatalarının oyuna taşmadığını,
+  izinli parametreleri ve adlandırılmış ekran ölçümünü doğrular.
+- AAB üretimi/yayını bu görevin kapsamında değildir.
 
 ---
 
