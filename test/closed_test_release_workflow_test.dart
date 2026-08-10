@@ -181,7 +181,21 @@ void main() {
       expect(workflow, contains('api-level: 36'));
       expect(coreWorkflow, contains('target: google_apis'));
       expect(coreWorkflow, contains('cores: 4'));
+      expect(coreWorkflow, contains('cores: 2'));
       expect(coreWorkflow, contains('ram-size: 4096M'));
+      expect(coreWorkflow, contains('id: android16_attempt_1'));
+      expect(coreWorkflow, contains('continue-on-error: true'));
+      expect(coreWorkflow, contains('id: android16_retry'));
+      expect(
+        coreWorkflow,
+        contains("if: steps.android16_retry.outputs.retry == 'true'"),
+      );
+      expect(
+        RegExp(
+          r'uses: reactivecircus/android-emulator-runner@v2',
+        ).allMatches(coreWorkflow).length,
+        2,
+      );
       expect(
         coreWorkflow,
         contains('timeout 1200 bash tools/validate_android16_closed_test.sh'),
@@ -211,6 +225,14 @@ void main() {
       expect(workflow, contains(r'tesseract "reports/UI_${label}.png"'));
       expect(workflow, contains("wait_for_word AUTH 'Google|Misafir'"));
       expect(workflow, contains('dismiss_system_anr'));
+      expect(
+        android16Script,
+        contains(r'dismiss_system_anr "ENTRY_${attempt}"'),
+      );
+      expect(
+        android16Script,
+        contains(r'dismiss_system_anr "HOME_${attempt}"'),
+      );
       expect(workflow, contains("'Process|System[[:space:]]+UI'"));
       expect(workflow, contains('SYSTEM_ANR_DISMISSED.txt'));
       expect(workflow, contains("tap_word AUTH 'Misafir'"));
@@ -262,6 +284,20 @@ void main() {
       expect(android16Script, contains('OCR_FAILED_OR_TIMED_OUT'));
       expect(android16Script, contains('retry_capture_screen'));
       expect(android16Script, contains('MANDATORY_APP_GATE_INCOMPLETE'));
+      expect(android16Script, contains('EMULATOR_HEALTH=UNHEALTHY'));
+      expect(android16Script, contains('PERSISTENT_SYSTEM_UI_ANR'));
+      expect(
+        android16Script,
+        contains("result='INFRASTRUCTURE_RETRY_REQUIRED'"),
+      );
+      expect(coreWorkflow, contains("grep -Fxq 'EMULATOR_HEALTH=UNHEALTHY'"));
+      expect(
+        coreWorkflow,
+        contains(
+          "grep -Fqx 'REASON=APPLICATION_CRASH_ANR_FATAL_OR_PROCESS_DEATH'",
+        ),
+      );
+      expect(coreWorkflow, contains('reports/android16-attempt-1/**'));
       expect(android16Script, contains('for attempt in 1 2 3; do'));
       expect(
         android16Script,

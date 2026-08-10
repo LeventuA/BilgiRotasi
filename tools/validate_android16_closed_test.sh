@@ -4,8 +4,17 @@ set -euo pipefail
 mkdir -p reports
 rm -f reports/ANDROID16_APP_GATE.txt \
   reports/ANDROID16_VALIDATION_RESULT.txt \
+  reports/ANDROID16_EMULATOR_HEALTH.txt \
   reports/INFRASTRUCTURE_DIAGNOSTICS.txt \
-  reports/SCREEN_CAPTURE_FAILURES.txt
+  reports/SCREEN_CAPTURE_FAILURES.txt \
+  reports/COLD_START_LOGCAT.txt \
+  reports/APP_GATE_LOGCAT.txt \
+  reports/ACTIVITY_STATE.txt \
+  reports/APP_PID.txt \
+  reports/SYSTEM_ANR_DISMISSED.txt \
+  reports/UI_*
+
+system_anr_observations=0
 
 adb_retry() {
   local timeout_seconds="$1"
@@ -84,6 +93,19 @@ find_word() {
   ' "reports/UI_${label}.tsv"
 }
 
+mark_emulator_unhealthy() {
+  local reason="$1"
+  {
+    echo 'EMULATOR_HEALTH=UNHEALTHY'
+    printf 'REASON=%s\n' "$reason"
+  } > reports/ANDROID16_EMULATOR_HEALTH.txt
+}
+
+emulator_is_unhealthy() {
+  grep -Fxq 'EMULATOR_HEALTH=UNHEALTHY' \
+    reports/ANDROID16_EMULATOR_HEALTH.txt 2>/dev/null
+}
+
 dismiss_system_anr() {
   local label="$1"
   local wait_point
@@ -92,16 +114,47 @@ dismiss_system_anr() {
       || ! grep -Eqi 'Process|System[[:space:]]+UI' "reports/UI_${label}.tsv"; then
     return 1
   fi
-  wait_point="$(find_word "$label" 'Wait')"
-  if test -z "$wait_point"; then
-    return 1
-  fi
   cp "reports/UI_${label}.png" reports/UI_SYSTEM_ANR.png
   cp "reports/UI_${label}.tsv" reports/UI_SYSTEM_ANR.tsv
+  printf '%s: Android system ANR dialog observed.\n' "$label" \
+    >> reports/SYSTEM_ANR_DISMISSED.txt
+  system_anr_observations=$((system_anr_observations + 1))
+  if [ "$system_anr_observations" -ge 3 ]; then
+    mark_emulator_unhealthy 'PERSISTENT_SYSTEM_UI_ANR'
+    return 0
+  fi
+  wait_point="$(find_word "$label" 'Wait')"
+  if test -z "$wait_point"; then
+    return 0
+  fi
   printf '%s: Android system ANR dialog dismissed with Wait.\n' "$label" \
     >> reports/SYSTEM_ANR_DISMISSED.txt
   adb_retry 15 shell input tap $wait_point
   sleep 5
+}
+
+verify_emulator_ui_health() {
+  local attempt
+  for attempt in 1 2 3; do
+    if ! capture_screen "EMULATOR_HEALTH_${attempt}"; then
+      if [ "$attempt" = "3" ]; then
+        mark_emulator_unhealthy 'PRELAUNCH_SCREEN_CAPTURE_UNRESPONSIVE'
+        return 75
+      fi
+      sleep 3
+      continue
+    fi
+    if dismiss_system_anr "EMULATOR_HEALTH_${attempt}"; then
+      if emulator_is_unhealthy; then
+        return 75
+      fi
+      continue
+    fi
+    system_anr_observations=0
+    return 0
+  done
+  mark_emulator_unhealthy 'PRELAUNCH_UI_HEALTH_CHECK_FAILED'
+  return 75
 }
 
 wait_for_word() {
@@ -109,6 +162,9 @@ wait_for_word() {
   local pattern="$2"
   local attempts="${3:-40}"
   for attempt in $(seq 1 "$attempts"); do
+    if emulator_is_unhealthy; then
+      return 75
+    fi
     if test -n "${DIAGNOSTIC_DEADLINE:-}" \
         && [ "$SECONDS" -ge "$DIAGNOSTIC_DEADLINE" ]; then
       return 1
@@ -118,8 +174,12 @@ wait_for_word() {
       continue
     fi
     if dismiss_system_anr "${label}_${attempt}"; then
+      if emulator_is_unhealthy; then
+        return 75
+      fi
       continue
     fi
+    system_anr_observations=0
     if test -n "$(find_word "${label}_${attempt}" "$pattern")"; then
       cp "reports/UI_${label}_${attempt}.png" "reports/UI_${label}.png"
       cp "reports/UI_${label}_${attempt}.tsv" "reports/UI_${label}.tsv"
@@ -226,11 +286,16 @@ finalize_validation() {
       && ! test -s reports/ANDROID16_VALIDATION_RESULT.txt; then
     if has_app_failure; then
       reason='APPLICATION_CRASH_ANR_FATAL_OR_PROCESS_DEATH'
+      result='FAIL'
+    elif emulator_is_unhealthy; then
+      reason='EMULATOR_INFRASTRUCTURE_UNHEALTHY'
+      result='INFRASTRUCTURE_RETRY_REQUIRED'
     else
       reason='MANDATORY_APP_GATE_INCOMPLETE'
+      result='FAIL'
     fi
     {
-      echo 'RESULT=FAIL'
+      printf 'RESULT=%s\n' "$result"
       echo 'RELEASE_GATE=FAIL'
       printf 'REASON=%s\n' "$reason"
     } > reports/ANDROID16_VALIDATION_RESULT.txt
@@ -274,6 +339,8 @@ for attempt in $(seq 1 120); do
   timeout 20 adb wait-for-device || true
   sleep 3
 done
+
+verify_emulator_ui_health
 
 APK="dist/BilgiRotasi-${VERSION_LABEL}-closed-test-universal.apk"
 test -s "$APK"
@@ -321,8 +388,12 @@ for attempt in $(seq 1 8); do
     continue
   fi
   if dismiss_system_anr "ENTRY_${attempt}"; then
+    if emulator_is_unhealthy; then
+      exit 75
+    fi
     continue
   fi
+  system_anr_observations=0
   if test -n "$(find_word "ENTRY_${attempt}" 'Google|Misafir')"; then
     break
   fi
@@ -356,6 +427,13 @@ for attempt in $(seq 1 40); do
     sleep 3
     continue
   fi
+  if dismiss_system_anr "HOME_${attempt}"; then
+    if emulator_is_unhealthy; then
+      exit 75
+    fi
+    continue
+  fi
+  system_anr_observations=0
   if test -n "$(find_word "HOME_${attempt}" 'Oyna')"; then
     cp "reports/UI_HOME_${attempt}.png" reports/UI_HOME.png
     cp "reports/UI_HOME_${attempt}.tsv" reports/UI_HOME.tsv

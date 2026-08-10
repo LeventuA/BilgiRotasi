@@ -346,7 +346,9 @@ jobs:
           fi
           tesseract --version
 
-      - name: Android 16 AAB-derived cold-start ve kritik akışlar
+      - name: Android 16 AAB-derived cold-start ve kritik akışlar (deneme 1/2)
+        id: android16_attempt_1
+        continue-on-error: true
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 36
@@ -354,6 +356,65 @@ jobs:
           arch: x86_64
           profile: pixel_2
           cores: 4
+          ram-size: 4096M
+          heap-size: 768M
+          emulator-boot-timeout: 1200
+          disable-animations: true
+          script: |
+            timeout 1200 bash tools/validate_android16_closed_test.sh
+
+      - name: İlk Android 16 denemesini sınıflandır
+        id: android16_retry
+        if: always()
+        shell: bash
+        env:
+          FIRST_ATTEMPT_OUTCOME: ${{ steps.android16_attempt_1.outcome }}
+        run: |
+          set -euo pipefail
+          if [ "$FIRST_ATTEMPT_OUTCOME" = "success" ]; then
+            echo "retry=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if ! grep -Fxq 'EMULATOR_HEALTH=UNHEALTHY' \
+              reports/ANDROID16_EMULATOR_HEALTH.txt 2>/dev/null; then
+            echo "The first Android 16 attempt failed without an explicit emulator health signal." >&2
+            test ! -s reports/ANDROID16_VALIDATION_RESULT.txt \
+              || cat reports/ANDROID16_VALIDATION_RESULT.txt >&2
+            exit 1
+          fi
+          if grep -Fqx 'REASON=APPLICATION_CRASH_ANR_FATAL_OR_PROCESS_DEATH' \
+              reports/ANDROID16_VALIDATION_RESULT.txt 2>/dev/null; then
+            echo "Application failure cannot be retried as emulator infrastructure." >&2
+            exit 1
+          fi
+
+          attempt_dir="reports/android16-attempt-1"
+          mkdir -p "$attempt_dir"
+          find reports -maxdepth 1 -type f \
+            \( -name 'UI_*' \
+              -o -name 'COLD_START_LOGCAT.txt' \
+              -o -name 'APP_GATE_LOGCAT.txt' \
+              -o -name 'ACTIVITY_STATE.txt' \
+              -o -name 'APP_PID.txt' \
+              -o -name '*ANR_DISMISSED.txt' \
+              -o -name 'ANDROID16_APP_GATE.txt' \
+              -o -name 'ANDROID16_VALIDATION_RESULT.txt' \
+              -o -name 'ANDROID16_EMULATOR_HEALTH.txt' \
+              -o -name 'INFRASTRUCTURE_DIAGNOSTICS.txt' \
+              -o -name 'SCREEN_CAPTURE_FAILURES.txt' \) \
+            -exec cp {} "$attempt_dir/" \;
+          echo "retry=true" >> "$GITHUB_OUTPUT"
+
+      - name: Android 16 AAB-derived cold-start ve kritik akışlar (temiz deneme 2/2)
+        if: steps.android16_retry.outputs.retry == 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
           ram-size: 4096M
           heap-size: 768M
           emulator-boot-timeout: 1200
@@ -415,6 +476,7 @@ jobs:
             reports/ANDROID16_VALIDATION_RESULT.txt
             reports/INFRASTRUCTURE_DIAGNOSTICS.txt
             reports/SCREEN_CAPTURE_FAILURES.txt
+            reports/android16-attempt-1/**
           if-no-files-found: warn
           retention-days: 30
 
