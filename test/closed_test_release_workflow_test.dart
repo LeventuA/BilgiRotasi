@@ -215,7 +215,7 @@ void main() {
       expect(workflow, contains('SYSTEM_ANR_DISMISSED.txt'));
       expect(workflow, contains("tap_word AUTH 'Misafir'"));
       expect(workflow, contains('Guest button did not reach the home screen.'));
-      expect(workflow, contains('adb shell input tap 540 1530'));
+      expect(workflow, contains('adb_retry 15 shell input tap 540 1530'));
       expect(workflow, contains("wait_for_word TUTORIAL_DIALOG 'Anlad'"));
       expect(workflow, contains('reports/UI_*'));
       expect(workflow, contains('reports/COLD_START_LOGCAT.txt'));
@@ -262,6 +262,16 @@ void main() {
       expect(android16Script, contains('OCR_FAILED_OR_TIMED_OUT'));
       expect(android16Script, contains('retry_capture_screen'));
       expect(android16Script, contains('MANDATORY_APP_GATE_INCOMPLETE'));
+      expect(android16Script, contains('for attempt in 1 2 3; do'));
+      expect(
+        android16Script,
+        contains('ADB command failed after 3 attempts: adb \$*'),
+      );
+      expect(android16Script, contains('adb_retry 30 logcat -c\n'));
+      expect(
+        android16Script,
+        isNot(contains('adb_retry 30 logcat -c || true')),
+      );
       expect(
         android16Script,
         contains(r'if ! capture_screen "${label}_${attempt}"; then'),

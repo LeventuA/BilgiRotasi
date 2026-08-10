@@ -11,14 +11,24 @@ adb_retry() {
   local timeout_seconds="$1"
   shift
   local attempt
+  local status
   for attempt in 1 2 3; do
     if timeout "$timeout_seconds" adb "$@"; then
       return 0
+    else
+      status="$?"
     fi
-    echo "ADB command failed or timed out (attempt ${attempt}/3): adb $*" >&2
-    timeout 20 adb wait-for-device || true
+    echo "ADB command failed or timed out with exit ${status}" \
+      "(attempt ${attempt}/3): adb $*" >&2
+    if [ "$attempt" = "3" ]; then
+      break
+    fi
+    if ! timeout 20 adb wait-for-device; then
+      echo "ADB device did not recover before retry ${attempt}: adb $*" >&2
+    fi
     sleep 5
   done
+  echo "ADB command failed after 3 attempts: adb $*" >&2
   return 1
 }
 
@@ -296,7 +306,7 @@ if [ "$installed" != true ]; then
 fi
 echo 'APK_INSTALL=PASS' >> reports/ANDROID16_APP_GATE.txt
 
-adb_retry 30 logcat -c || true
+adb_retry 30 logcat -c
 adb_retry 30 shell pm clear com.leventua.bilgirotasi
 adb_retry 15 shell am force-stop com.leventua.bilgirotasi
 adb_retry 30 shell am start -n com.leventua.bilgirotasi/.MainActivity
