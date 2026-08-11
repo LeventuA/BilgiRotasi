@@ -182,10 +182,12 @@ void main() {
       expect(coreWorkflow, contains('target: google_apis'));
       expect(coreWorkflow, contains('cores: 4'));
       expect(coreWorkflow, contains('cores: 2'));
+      expect(coreWorkflow, contains('timeout-minutes: 120'));
       expect(coreWorkflow, contains('ram-size: 4096M'));
       expect(coreWorkflow, contains('id: android16_attempt_1'));
       expect(coreWorkflow, contains('continue-on-error: true'));
       expect(coreWorkflow, contains('id: android16_retry'));
+      expect(coreWorkflow, contains('id: android16_attempt_2'));
       expect(
         coreWorkflow,
         contains("if: steps.android16_retry.outputs.retry == 'true'"),
@@ -297,6 +299,26 @@ void main() {
           "grep -Fqx 'REASON=APPLICATION_CRASH_ANR_FATAL_OR_PROCESS_DEATH'",
         ),
       );
+      expect(
+        coreWorkflow,
+        contains("grep -Fxq 'RESULT=INFRASTRUCTURE_RETRY_REQUIRED'"),
+      );
+      expect(
+        coreWorkflow,
+        contains("grep -Fxq 'REASON=EMULATOR_INFRASTRUCTURE_UNHEALTHY'"),
+      );
+      for (final requiredGate in <String>[
+        'APK_INSTALL=PASS',
+        'APP_LAUNCH=PASS',
+        'GUEST_LOGIN=PASS',
+        'HOME_OYNA=PASS',
+        'APP_PID=PASS',
+        'APP_LOGCAT=PASS',
+        'APP_GATE=PASS',
+      ]) {
+        expect(coreWorkflow, contains(requiredGate), reason: requiredGate);
+      }
+      expect(coreWorkflow, contains("grep -Fxq 'RELEASE_GATE=PASS'"));
       expect(coreWorkflow, contains('reports/android16-attempt-1/**'));
       expect(android16Script, contains('for attempt in 1 2 3; do'));
       expect(
