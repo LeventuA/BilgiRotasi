@@ -1,14 +1,19 @@
 name: Phone RC2 TSV System ANR fix
 
 on:
-  push:
+  pull_request:
     branches:
-      - fix/rc2-tsv-system-anr-detection
+      - release/final-closed-test-aab-1.68.8
+    types: [opened, reopened]
     paths:
       - ".github/workflows/phone-rc2-tsv-fix.yml"
+      - "tools/detect_android16_system_anr.sh"
+      - "test/android16_system_anr_detector_test.dart"
+      - "test/fixtures/android16_system_ui_anr_multiline.tsv"
 
 permissions:
   contents: write
+  pull-requests: read
 
 jobs:
   patch-test-commit:
@@ -19,6 +24,7 @@ jobs:
       - name: Checkout fix branch
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Setup Flutter
@@ -28,15 +34,15 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Apply exact RC2 TSV detector fix
+      - name: Patch the exact broken TSV detector call
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
 
-          validate_path = Path('tools/validate_android16_closed_test.sh')
-          validate = validate_path.read_text(encoding='utf-8')
+          path = Path('tools/validate_android16_closed_test.sh')
+          text = path.read_text(encoding='utf-8')
           old = '''dismiss_system_anr() {
             local label="$1"
             local wait_point
@@ -54,113 +60,13 @@ jobs:
               return 1
             fi
           '''
-          if validate.count(old) != 1:
-              raise SystemExit(f'Expected dismiss_system_anr block once, found {validate.count(old)}')
-          validate_path.write_text(validate.replace(old, new, 1), encoding='utf-8')
-
-          detector = Path('tools/detect_android16_system_anr.sh')
-          detector.write_text(r'''#!/usr/bin/env bash
-          set -euo pipefail
-
-          tsv_path="${1:?TSV path required}"
-          test -s "$tsv_path"
-
-          screen_text="$(
-            awk -F '\t' '
-              NR > 1 && $12 != "" {
-                if (seen) printf " "
-                printf "%s", $12
-                seen = 1
-              }
-              END { print "" }
-            ' "$tsv_path"
-          )"
-
-          printf '%s\n' "$screen_text" \
-            | grep -Eqi '(System[[:space:]]+UI|Process[[:space:]]+system).{0,40}(isn.?t|not).{0,20}responding'
-          '''.replace('          ', '', 1), encoding='utf-8')
-
-          fixture_dir = Path('test/fixtures')
-          fixture_dir.mkdir(parents=True, exist_ok=True)
-          fixture = fixture_dir / 'android16_system_ui_anr_multiline.tsv'
-          fixture.write_text(
-              "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n"
-              "5\t1\t2\t1\t1\t1\t135\t841\t169\t49\t96\tSystem\n"
-              "5\t1\t2\t1\t1\t2\t324\t841\t40\t38\t85\tUI\n"
-              "5\t1\t2\t1\t1\t3\t385\t839\t86\t40\t93\tisn't\n"
-              "5\t1\t2\t1\t1\t4\t490\t839\t256\t51\t95\tresponding\n"
-              "5\t1\t3\t1\t1\t1\t283\t981\t101\t31\t96\tClose\n"
-              "5\t1\t3\t1\t1\t2\t397\t990\t67\t30\t96\tapp\n"
-              "5\t1\t4\t1\t1\t1\t282\t1108\t79\t30\t96\tWait\n",
-              encoding='utf-8',
-          )
-
-          test_path = Path('test/closed_test_release_workflow_test.dart')
-          test_text = test_path.read_text(encoding='utf-8')
-          marker = "    test('istenen AAB ve kanıt dosyalarını artifact olarak yükler', () {"
-          if test_text.count(marker) != 1:
-              raise SystemExit(f'Expected test insertion marker once, found {test_text.count(marker)}')
-          regression = r'''    test('gerçek RC2 OCR TSV biçiminde sistem ANR algılanır', () {
-            final detector = File('tools/detect_android16_system_anr.sh');
-            final fixture = File(
-              'test/fixtures/android16_system_ui_anr_multiline.tsv',
-            );
-            expect(detector.existsSync(), isTrue);
-            expect(fixture.existsSync(), isTrue);
-            expect(
-              android16Script,
-              contains('bash tools/detect_android16_system_anr.sh'),
-            );
-
-            final rc2Result = Process.runSync('bash', [
-              detector.path,
-              fixture.path,
-            ]);
-            expect(
-              rc2Result.exitCode,
-              0,
-              reason: '${rc2Result.stdout}\n${rc2Result.stderr}',
-            );
-
-            final tempDir = Directory.systemTemp.createTempSync(
-              'bilgi_rotasi_android16_anr_',
-            );
-            addTearDown(() => tempDir.deleteSync(recursive: true));
-
-            final processSystem = File('${tempDir.path}/process_system.tsv');
-            processSystem.writeAsStringSync(
-              'level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n'
-              '5\t1\t1\t1\t1\t1\t0\t0\t1\t1\t95\tProcess\n'
-              '5\t1\t1\t1\t1\t2\t0\t0\t1\t1\t95\tsystem\n'
-              "5\t1\t1\t1\t1\t3\t0\t0\t1\t1\t95\tisn't\n"
-              '5\t1\t1\t1\t1\t4\t0\t0\t1\t1\t95\tresponding\n',
-            );
-            final processResult = Process.runSync('bash', [
-              detector.path,
-              processSystem.path,
-            ]);
-            expect(processResult.exitCode, 0);
-
-            final normalAuth = File('${tempDir.path}/normal_auth.tsv');
-            normalAuth.writeAsStringSync(
-              'level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n'
-              '5\t1\t1\t1\t1\t1\t0\t0\t1\t1\t95\tGoogle\n'
-              '5\t1\t1\t1\t1\t2\t0\t0\t1\t1\t95\tMisafir\n',
-            );
-            final normalResult = Process.runSync('bash', [
-              detector.path,
-              normalAuth.path,
-            ]);
-            expect(normalResult.exitCode, isNot(0));
-          });
-
-'''
-          test_path.write_text(test_text.replace(marker, regression + marker, 1), encoding='utf-8')
+          count = text.count(old)
+          if count != 1:
+              raise SystemExit(f'Expected broken detector block once, found {count}')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
           PY
 
-          chmod +x tools/detect_android16_system_anr.sh
-
-      - name: Run focused regression checks
+      - name: Test before committing the fix
         shell: bash
         run: |
           set -euo pipefail
@@ -168,31 +74,12 @@ jobs:
           bash -n tools/detect_android16_system_anr.sh
           bash tools/detect_android16_system_anr.sh \
             test/fixtures/android16_system_ui_anr_multiline.tsv
-
-          cat > /tmp/process_system.tsv <<'TSV'
-          level	page_num	block_num	par_num	line_num	word_num	left	top	width	height	conf	text
-          5	1	1	1	1	1	0	0	1	1	95	Process
-          5	1	1	1	1	2	0	0	1	1	95	system
-          5	1	1	1	1	3	0	0	1	1	95	isn't
-          5	1	1	1	1	4	0	0	1	1	95	responding
-          TSV
-          bash tools/detect_android16_system_anr.sh /tmp/process_system.tsv
-
-          cat > /tmp/normal_auth.tsv <<'TSV'
-          level	page_num	block_num	par_num	line_num	word_num	left	top	width	height	conf	text
-          5	1	1	1	1	1	0	0	1	1	95	Google
-          5	1	1	1	1	2	0	0	1	1	95	Misafir
-          TSV
-          if bash tools/detect_android16_system_anr.sh /tmp/normal_auth.tsv; then
-            echo 'Normal auth screen was incorrectly classified as system ANR.' >&2
-            exit 1
-          fi
-
           flutter pub get
+          flutter test test/android16_system_anr_detector_test.dart
           flutter test test/closed_test_release_workflow_test.dart
           git diff --check
 
-      - name: Commit tested fix and remove temporary runner
+      - name: Commit tested fix and remove temporary workflow
         shell: bash
         run: |
           set -euo pipefail
@@ -203,8 +90,8 @@ jobs:
           git add -A \
             tools/validate_android16_closed_test.sh \
             tools/detect_android16_system_anr.sh \
-            test/closed_test_release_workflow_test.dart \
+            test/android16_system_anr_detector_test.dart \
             test/fixtures/android16_system_ui_anr_multiline.tsv \
             .github/workflows/phone-rc2-tsv-fix.yml
           git commit -m 'fix: detect multiline Android system ANR OCR'
-          git push origin HEAD:fix/rc2-tsv-system-anr-detection
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
