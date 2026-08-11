@@ -8,15 +8,28 @@ void main() {
     final fixture = File(
       'test/fixtures/android16_system_ui_anr_multiline.tsv',
     );
+    final tempDir = Directory.systemTemp.createTempSync(
+      'bilgi_rotasi_system_ui_anr_',
+    );
+    addTearDown(() => tempDir.deleteSync(recursive: true));
 
     expect(detector.existsSync(), isTrue);
     expect(fixture.existsSync(), isTrue);
 
-    final result = Process.runSync('bash', [detector.path, fixture.path]);
+    final result = Process.runSync('bash', [
+      detector.path,
+      fixture.path,
+      tempDir.path,
+    ]);
     expect(
       result.exitCode,
       0,
       reason: '${result.stdout}\n${result.stderr}',
+    );
+    expect(
+      File('${tempDir.path}/ANDROID16_EMULATOR_HEALTH.txt').existsSync(),
+      isFalse,
+      reason: 'Tek sistem ANR gözlemi retry tetiklememeli.',
     );
   });
 
@@ -36,8 +49,43 @@ void main() {
         '5\t1\t1\t1\t1\t4\t0\t0\t1\t1\t95\tresponding\n',
       );
 
-    final result = Process.runSync('bash', [detector.path, fixture.path]);
+    final result = Process.runSync('bash', [
+      detector.path,
+      fixture.path,
+      tempDir.path,
+    ]);
     expect(result.exitCode, 0);
+  });
+
+  test('iki sistem ANR gözlemi temiz emülatör retry işareti üretir', () {
+    final detector = File('tools/detect_android16_system_anr.sh');
+    final fixture = File(
+      'test/fixtures/android16_system_ui_anr_multiline.tsv',
+    );
+    final tempDir = Directory.systemTemp.createTempSync(
+      'bilgi_rotasi_recurring_system_anr_',
+    );
+    addTearDown(() => tempDir.deleteSync(recursive: true));
+
+    File('${tempDir.path}/SYSTEM_ANR_DISMISSED.txt').writeAsStringSync(
+      'ENTRY_1: Android system ANR dialog observed.\n'
+      'ENTRY_1: Android system ANR dialog dismissed with Wait.\n',
+    );
+
+    final result = Process.runSync('bash', [
+      detector.path,
+      fixture.path,
+      tempDir.path,
+    ]);
+    expect(result.exitCode, 0);
+
+    final health = File('${tempDir.path}/ANDROID16_EMULATOR_HEALTH.txt');
+    expect(health.existsSync(), isTrue);
+    expect(health.readAsStringSync(), contains('EMULATOR_HEALTH=UNHEALTHY'));
+    expect(
+      health.readAsStringSync(),
+      contains('REASON=RECURRING_ANDROID_SYSTEM_ANR'),
+    );
   });
 
   test('normal giriş ekranı sistem ANR sayılmaz', () {
@@ -54,7 +102,20 @@ void main() {
         '5\t1\t1\t1\t1\t2\t0\t0\t1\t1\t95\tMisafir\n',
       );
 
-    final result = Process.runSync('bash', [detector.path, fixture.path]);
+    File('${tempDir.path}/SYSTEM_ANR_DISMISSED.txt').writeAsStringSync(
+      'ENTRY_1: Android system ANR dialog observed.\n',
+    );
+
+    final result = Process.runSync('bash', [
+      detector.path,
+      fixture.path,
+      tempDir.path,
+    ]);
     expect(result.exitCode, isNot(0));
+    expect(
+      File('${tempDir.path}/ANDROID16_EMULATOR_HEALTH.txt').existsSync(),
+      isFalse,
+      reason: 'Normal auth ekranı mevcut geçmişe rağmen retry üretmemeli.',
+    );
   });
 }
