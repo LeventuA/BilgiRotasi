@@ -109,9 +109,8 @@ emulator_is_unhealthy() {
 dismiss_system_anr() {
   local label="$1"
   local wait_point
-  if ! grep -Eqi 'system' "reports/UI_${label}.tsv" \
-      || ! grep -Eqi 'responding' "reports/UI_${label}.tsv" \
-      || ! grep -Eqi 'Process|System[[:space:]]+UI' "reports/UI_${label}.tsv"; then
+  if ! bash tools/detect_android16_system_anr.sh \
+      "reports/UI_${label}.tsv"; then
     return 1
   fi
   cp "reports/UI_${label}.png" reports/UI_SYSTEM_ANR.png

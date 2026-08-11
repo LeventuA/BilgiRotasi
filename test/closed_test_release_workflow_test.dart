@@ -235,7 +235,10 @@ void main() {
         android16Script,
         contains(r'dismiss_system_anr "HOME_${attempt}"'),
       );
-      expect(workflow, contains("'Process|System[[:space:]]+UI'"));
+      expect(
+  android16Script,
+  contains('bash tools/detect_android16_system_anr.sh'),
+);
       expect(workflow, contains('SYSTEM_ANR_DISMISSED.txt'));
       expect(workflow, contains("tap_word AUTH 'Misafir'"));
       expect(workflow, contains('Guest button did not reach the home screen.'));
