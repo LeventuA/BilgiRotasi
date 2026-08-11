@@ -199,8 +199,18 @@ void main() {
         2,
       );
       expect(
-        coreWorkflow,
-        contains('timeout 1200 bash tools/validate_android16_closed_test.sh'),
+        RegExp(r'disable-animations:\s*false').allMatches(coreWorkflow).length,
+        2,
+        reason:
+            'Her iki Android 16 denemesi action pre-script ADB ayarını kapatmalı.',
+      );
+      expect(coreWorkflow, isNot(contains('disable-animations: true')));
+      expect(
+        RegExp(
+          r'timeout 1200 bash tools/validate_android16_closed_test\.sh',
+        ).allMatches(coreWorkflow).length,
+        2,
+        reason: 'Her iki deneme de proje validator betiğine ulaşmalı.',
       );
       expect(
         android16Script,
@@ -236,9 +246,9 @@ void main() {
         contains(r'dismiss_system_anr "HOME_${attempt}"'),
       );
       expect(
-  android16Script,
-  contains('bash tools/detect_android16_system_anr.sh'),
-);
+        android16Script,
+        contains('bash tools/detect_android16_system_anr.sh'),
+      );
       expect(workflow, contains('SYSTEM_ANR_DISMISSED.txt'));
       expect(workflow, contains("tap_word AUTH 'Misafir'"));
       expect(workflow, contains('Guest button did not reach the home screen.'));

@@ -1,17 +1,17 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-**Kesim noktası:** 11 Ağustos 2026
+**Kesim noktası:** 12 Ağustos 2026
 
 ## Canlı durum
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi` — GitHub'da doğrulandı.
 - Release dalı: `release/final-closed-test-aab-1.68.8`, head
-  `fcf253e2358ffb6e74f4ac9dddbab8b64ac15509`, sürüm `1.68.14+104`.
+  `8a99530de7cb370d4db0edff9214ad833a8907cf`, sürüm `1.68.14+104`.
 - Kaynak PR #13 ve PR #15 açık/Draft ve merge edilmemiştir; PR #14 merge
   edilmiştir. PR #13/#15 değişiklikleri PR #16 entegrasyonu üzerinden release'e
   ulaşmıştır.
-- PR #19 açık, Draft ve merge edilmemiştir; AdMob PR run #103 Android 16 uygulama
-  kapısını ve bütün önceki kalite kapılarını geçti.
+- PR #19 release'e merge edilmiştir. Sonraki RC2 #322, project validator başlamadan
+  önce third-party action'ın `disable-animations` settings çağrısında kırılmıştır.
 - Android geliştirici doğrulaması tamamlandı.
 - Son doğrulanan Play kapalı test değeri: **12 geçerli testçi / 4 kesintisiz gün**.
 - 8 Ağustos kontrolünde bağlı Play Console tarayıcısı bulunmadığı için bu sayaç
@@ -64,6 +64,12 @@ Play Console'da bu PR kapsamında değişiklik yapılmayacaktır. Yayın öncesi
 5. Canlı Düello iki güncel kapalı test cihazında uçtan uca test edilmeli.
 6. Telefon, tablet, Chromebook, PC ve XR mağaza varlıklarının Play Console
    yükleme durumu canlı ekrandan doğrulanmalı.
-7. PR #19 Levent incelemesi/onayı sonrasında release'e güvenli merge edilirse eski
-   başarısız RC2 rerun edilmeden yeni bir `android-apk.yml` workflow_dispatch
-   koşusu ayrıca oluşturulmalı; bu PR görevi RC2 veya Play yüklemesi yapmaz.
+7. `fix/rc2-runner-pre-script-adb-failure` Draft PR'ında otomatik CI yeşil olsa
+   bile Android emulator action logunda project scriptine gerçekten ulaşıldığı
+   doğrulanmalı.
+8. Levent onayıyla düzeltme release'e merge edilirse eski RC2 #322 rerun edilmeden
+   yeni `android-apk.yml` workflow_dispatch koşusu ayrıca oluşturulmalı. Bu görev
+   merge, RC2 veya Play yüklemesi yapmaz.
+9. Yeni RC2'de `disable animations: false` ve project validator başlangıcı logdan
+   doğrulanmalı; attempt 1 açık infrastructure quartet üretirse temiz attempt 2'nin
+   gerçekten başladığı ayrıca kanıtlanmalı.

@@ -1,6 +1,6 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 11 Ağustos 2026
+**Kesim noktası:** 12 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
 ---
@@ -11,7 +11,7 @@
 |---|---|---|---|
 | Kanonik repo | `ZMilaStudio/BilgiRotasi` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
 | Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI | S04 |
-| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` (`fcf253e2358ffb6e74f4ac9dddbab8b64ac15509`) | DOĞRULANDI | 11 Ağustos 2026 GitHub canlı sorgusu |
+| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` (`8a99530de7cb370d4db0edff9214ad833a8907cf`) | DOĞRULANDI | 12 Ağustos 2026 GitHub canlı sorgusu |
 | Gerçek paket sürümü | `1.68.14+104` | DOĞRULANDI | Release dalındaki `pubspec.yaml`, 11 Ağustos 2026 |
 | `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR | S06, S07, S09 |
 | PR #9 | Merge edildi | RAPORLANDI | S07, S09 |
@@ -19,7 +19,7 @@
 | PR #13 | Kaynak PR açık, Draft, merge edilmedi; işlevsel ödüllü reklam düzeltmesi PR #16 ile release'e ulaştı; fiziksel cihaz kabulü bekleniyor | DOĞRULANDI / RAPORLANDI | 11 Ağustos 2026 GitHub canlı durumu |
 | PR #14 | Merge edildi (`10 Ağustos 2026`) | DOĞRULANDI | GitHub canlı PR metadata’sı |
 | PR #15 | Kaynak PR açık, Draft, merge edilmedi; değişiklikleri PR #16 entegrasyonu üzerinden release'e ulaştı; head canlı GitHub PR metadata’sından doğrulanır | DOĞRULANDI | GitHub canlı PR metadata’sı |
-| PR #19 | Açık, Draft, merge edilmedi; Android 16 AdMob PR kapısı düzeltmesi `b894805e20278b8fb4b6c5a0e1ce0d06d74fed5d` üzerinde CI PASS | DOĞRULANDI | GitHub run #103 / `31519334862` |
+| PR #19 | Merge edildi (`11 Ağustos 2026`); merge commit `8a99530de7cb370d4db0edff9214ad833a8907cf` | DOĞRULANDI | GitHub canlı PR metadata’sı |
 | Kapalı test entegrasyon adayı | `integration/closed-test-next-release`; PR #16 ile release'e merge edildi (`10 Ağustos 2026`) | DOĞRULANDI | GitHub canlı PR metadata’sı |
 | Android geliştirici doğrulaması | Tamamlandı | RAPORLANDI | Levent'in güncel Play doğrulaması |
 
@@ -226,8 +226,39 @@ AAB üretimi veya Play Console yayını kanıtı değildir.
   (ID `9113075092`) içinde `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`,
   `APP_LOGCAT`, `APP_GATE` ve `RELEASE_GATE` değerlerinin tamamı PASS'tir.
 
-**Durum:** PR #19 `AÇIK / DRAFT / CI PASS`; release'e merge edilmedi ve RC2
-workflow_dispatch başlatılmadı.
+**Durum:** PR #19 release'e merge edildi. Sonraki RC2 #322 yeni bir third-party
+runner pre-script altyapı hatasıyla başarısız oldu.
+
+---
+
+## 7D. RC2 #322 runner pre-script ADB hatası
+
+- Manuel RC2 run #322 (`31528674369`), job `93903134897`, release SHA
+  `8a99530de7cb370d4db0edff9214ad833a8907cf`, artifact `9117187216`.
+- Emülatör `sys.boot_completed=1` ile boot etti. Kullanılan
+  `reactivecircus/android-emulator-runner@v2` action SHA'sı
+  `a421e43855164a8197daf9d8d40fe71c6996bb0d` idi.
+- Action, proje validator'ını başlatmadan önce `disable-animations: true` nedeniyle
+  kendi `adb shell settings put` komutlarını çalıştırdı. İkinci settings çağrısı
+  `Failure calling service settings: Broken pipe (32)` ile kırıldı ve action
+  emülatörü sonlandırdı.
+- `tools/validate_android16_closed_test.sh` hiç başlamadığı için artifact'ta
+  `ANDROID16_*` raporu yoktur. Bu koşu uygulama crash/ANR kanıtı değildir.
+- `fix/rc2-runner-pre-script-adb-failure` dalında her iki Android 16 attempt'i
+  `disable-animations: false` kullanır. Animasyon kapatma release gate değildir;
+  third-party action'ın project scriptinden önce kırılgan settings çağrısı yapması
+  engellenir. Mandatory app/release gate sözleşmesi değişmez.
+- Fiziksel ek kanıt: SM-S938B, Android 16/API 36. Cihazdaki mevcut Play kurulumu
+  `1.68.13+103` cold-start oldu; PID ve resumed `MainActivity` canlı kaldı, ana
+  ekranda Oyna ve test banner'ı görüldü, Oyna bölümü açıldı ve uygulama paketine
+  ait crash/ANR/FATAL/process-death eşleşmesi bulunmadı.
+- Cihaz mevcut Google oturumundaydı; kullanıcı verisini değiştirmemek için çıkış
+  veya Misafir geçişi yapılmadı. Run #322 artifact'ı universal APK içermedi ve
+  cihaz Play-signing SHA-1'i upload sertifikasından farklı olduğu için v104 in-place
+  kurulumu güvenli biçimde yapılamadı. Bu fiziksel test CI Android 16 gate'in
+  yerine geçmez.
+
+**Durum:** Yerel hedefli kontroller PASS; Draft PR ve PR CI doğrulaması bekleniyor.
 
 ---
 

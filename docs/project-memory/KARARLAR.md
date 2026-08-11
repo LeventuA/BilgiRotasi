@@ -186,3 +186,7 @@
 - Sağlıklı denemenin `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`,
   `APP_LOGCAT`, `APP_GATE` ve `RELEASE_GATE` kontrollerinin tamamını geçmesi
   zorunludur.
+- RC2 Android 16 attempt'lerinde third-party `android-emulator-runner` animasyon
+  ayarı etkinleştirilmeyecek (`disable-animations: false`). Animasyon kapatma bir
+  release gate değildir; action'ın project validator başlamadan önce kırılgan
+  `adb shell settings put` çağrılarıyla koşuyu durdurmasına izin verilmeyecek.
