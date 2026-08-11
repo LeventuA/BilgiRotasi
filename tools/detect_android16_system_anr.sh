@@ -4,6 +4,8 @@ set -euo pipefail
 tsv_path="${1:?TSV path required}"
 test -s "$tsv_path"
 
+# Tesseract stores each recognized word on a separate TSV row. Reconstruct the
+# visible sentence before matching Android system ANR dialogs.
 screen_text="$(
   awk -F '\t' '
     NR > 1 && $12 != "" {
