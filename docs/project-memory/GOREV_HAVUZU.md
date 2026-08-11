@@ -46,10 +46,10 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 
 ### BR-P0-004 - Ödüllü reklam hak sistemi
 
-**Durum:** UYGULANDI / CI PASS / fiziksel cihaz kabulü bekliyor
+**Durum:** UYGULANDI / CI PASS / RELEASE'E ENTEGRE / fiziksel cihaz kabulü bekliyor
 
-Kaynak: Draft PR #13, head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a`.
-PR merge edilmediği için release dalında henüz bulunmaz.
+Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel değişiklik PR #16
+entegrasyonu üzerinden release dalına ulaşmıştır.
 
 İstenen:
 
@@ -67,18 +67,36 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 
 ### BR-P0-005 - Final kapalı-test entegrasyon adayını doğrula
 
-**Durum:** YEREL PASS / GITHUB CI CANLI METADATA
+**Durum:** PR #16 İLE RELEASE'E MERGE EDİLDİ
 
 - Dal: `integration/closed-test-next-release`
 - Sürüm: `1.68.13+103` (artırılmadı)
-- Kaynak PR #13/#14/#15 açık, Draft ve merge edilmemiştir.
+- Kaynak PR #13 ve PR #15 açık/Draft kalır; PR #14 merge edilmiştir.
 - Oyun-başına ödül hakkı ve başarılı ödüllü reklam telemetrisi birlikte korunur.
 - Yerel tüm Flutter testleri: `237/237 PASS`
 - Analyzer: exit `0`; mevcut non-fatal tanılar dışında hata yok
 - `git diff --check`: PASS
 - GitHub CI run/job/artifact sonucu canlı Draft PR check metadata'sından izlenir.
-- CI başarısından ve final doğrulamadan önce release merge'i, AAB üretimi/yayını
-  veya Play Console değişikliği yapılmaz.
+- Entegrasyon PR #16 release'e merge edilmiştir; bu kayıt yeni RC2, AAB yayını
+  veya Play Console değişikliği yapıldığı anlamına gelmez.
+
+---
+
+### BR-P0-006 - Android 16 AdMob PR kapısını kanıta dayalı yap
+
+**Durum:** UYGULANDI / CI PASS / DRAFT PR İNCELEMESİ BEKLİYOR
+
+- Dal/PR: `fix/rc2-recurring-system-anr-retry`, Draft PR #19.
+- Run #102 kök nedeni: emülatör Android paket servisinde `Broken pipe (32)`;
+  uygulama kurulmadan oluşan altyapı hatası.
+- Kritik ADB komutları sınırlı retry kullanır; yalnız açık altyapı kanıtı temiz
+  ikinci emülatörü açar.
+- Uygulama crash/ANR/FATAL/process-death ve kanıtsız kapı hataları FAIL kalır.
+- Yerel hedefli testler: `20/20 PASS`; analyzer exit `0`; Bash syntax ve
+  `git diff --check` PASS.
+- GitHub run #103 (`31519334862`), job `93872230451`: PASS.
+- Artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9113075092`.
+- RC2 workflow_dispatch çalıştırılmadı; release merge'i Levent onayı bekler.
 
 ---
 
@@ -86,16 +104,18 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 
 ### BR-P1-001 - GitHub canlı envanteri
 
-**8 Ağustos 2026 doğrulaması:**
+**11 Ağustos 2026 doğrulaması:**
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi`
-- Release head: `548e8d3046469688a8dcb050552956cf786e525c`
-- Release sürümü: `1.68.13+103`
+- Release head: `fcf253e2358ffb6e74f4ac9dddbab8b64ac15509`
+- Release sürümü: `1.68.14+104`
 - PR #13: açık / Draft / merge edilmedi; ödüllü reklam işi UYGULANDI / CI PASS /
   fiziksel cihaz kabulü bekliyor
-- PR #14: açık / Draft / merge edilmedi
-- PR #15: açık / Draft / merge edilmedi; head canlı GitHub PR metadata’sından
-  doğrulanır
+- PR #14: merge edildi (10 Ağustos 2026)
+- PR #15: kaynak PR açık / Draft / merge edilmedi; değişiklikleri PR #16 üzerinden
+  release'e ulaştı; head canlı GitHub PR metadata’sından doğrulanır
+- PR #19: açık / Draft / merge edilmedi; Android 16 AdMob PR kapısı run #103 ile
+  PASS
 - Android geliştirici doğrulaması: tamamlandı
 - Son Play bilgisi: 12 geçerli testçi / 4 kesintisiz gün; UI yeniden okuması açık
 

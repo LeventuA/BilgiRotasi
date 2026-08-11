@@ -169,3 +169,20 @@
   kabulü cihazda saklanacak ve kullanıcı aynı ayardan izni geri alabilecek.
 - İzin yokken Analytics identifier depolanmayacak ve oyun eksiksiz çalışacak.
 - Firebase test/development/production çalışma ayrımı korunacak.
+
+---
+
+## 11. Android 16 CI altyapı sınıflandırması
+
+- Emülatör/System UI/Android paket servisi arızası ile Bilgi Rotası uygulama
+  arızası ayrı sınıflandırılacak.
+- Aynı emülatördeki ADB işlemleri sınırlı retry kullanabilir; sonsuz retry veya
+  zorunlu kapıyı gizleyen `|| true` kullanılmayacak.
+- Temiz ikinci emülatör yalnız `EMULATOR_HEALTH=UNHEALTHY`,
+  `RESULT=INFRASTRUCTURE_RETRY_REQUIRED` ve `RELEASE_GATE=FAIL` kanıtları birlikte
+  bulunduğunda çalıştırılacak; en fazla iki emülatör denemesi yapılacak.
+- Bilgi Rotası paketindeki crash, ANR, FATAL EXCEPTION ve process death hiçbir
+  koşulda altyapı retry sonucu olarak kabul edilmeyecek.
+- Sağlıklı denemenin `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`,
+  `APP_LOGCAT`, `APP_GATE` ve `RELEASE_GATE` kontrollerinin tamamını geçmesi
+  zorunludur.

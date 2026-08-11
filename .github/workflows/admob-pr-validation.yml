@@ -178,7 +178,9 @@ jobs:
           set -euo pipefail
           (cd android && ./gradlew --stop)
 
-      - name: Android 16 emulator cold-start
+      - name: Android 16 emulator cold-start (deneme 1/2)
+        id: android16_attempt_1
+        continue-on-error: true
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 36
@@ -191,17 +193,89 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: true
           script: |
-            adb install -r build/app/outputs/flutter-apk/app-release.apk
-            adb logcat -c
-            adb shell am force-stop com.leventua.bilgirotasi
-            adb shell am start -W -n com.leventua.bilgirotasi/.MainActivity
-            sleep 25
-            adb logcat -d > reports/ADMOB_ANDROID16_COLD_START_LOG.txt
-            grep -Ei 'com\.leventua\.bilgirotasi|AndroidRuntime|FATAL EXCEPTION|MobileAdsInitProvider|Missing application ID|WorkManager|WorkDatabase|WM-|SQLite|Room' reports/ADMOB_ANDROID16_COLD_START_LOG.txt | tail -n 600 || true
-            adb shell dumpsys activity activities | grep -F com.leventua.bilgirotasi || true
-            test -n "$(adb shell pidof com.leventua.bilgirotasi | tr -d '\r')"
-            ! grep -Eqi 'FATAL EXCEPTION|AndroidRuntime.*FATAL|Missing application ID|MobileAdsInitProvider.*IllegalStateException' reports/ADMOB_ANDROID16_COLD_START_LOG.txt
-            adb shell dumpsys activity activities | grep -F com.leventua.bilgirotasi
+            bash tools/validate_admob_android16_cold_start.sh
+
+      - name: İlk AdMob Android 16 denemesini sınıflandır
+        id: android16_retry
+        if: always()
+        shell: bash
+        env:
+          FIRST_ATTEMPT_OUTCOME: ${{ steps.android16_attempt_1.outcome }}
+        run: |
+          set -euo pipefail
+          if [ "$FIRST_ATTEMPT_OUTCOME" = "success" ]; then
+            echo "retry=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if grep -Fqx 'REASON=APPLICATION_CRASH_ANR_FATAL_OR_PROCESS_DEATH' \
+              reports/ADMOB_ANDROID16_VALIDATION_RESULT.txt 2>/dev/null; then
+            echo "Application failure cannot be retried as emulator infrastructure." >&2
+            exit 1
+          fi
+          if ! grep -Fxq 'EMULATOR_HEALTH=UNHEALTHY' \
+              reports/ADMOB_ANDROID16_EMULATOR_HEALTH.txt 2>/dev/null \
+              || ! grep -Fxq 'RESULT=INFRASTRUCTURE_RETRY_REQUIRED' \
+                reports/ADMOB_ANDROID16_VALIDATION_RESULT.txt 2>/dev/null \
+              || ! grep -Fxq 'RELEASE_GATE=FAIL' \
+                reports/ADMOB_ANDROID16_VALIDATION_RESULT.txt 2>/dev/null; then
+            echo "The first Android 16 attempt failed without explicit infrastructure evidence." >&2
+            test ! -s reports/ADMOB_ANDROID16_VALIDATION_RESULT.txt \
+              || cat reports/ADMOB_ANDROID16_VALIDATION_RESULT.txt >&2
+            exit 1
+          fi
+
+          attempt_dir="reports/admob-android16-attempt-1"
+          mkdir -p "$attempt_dir"
+          find reports -maxdepth 1 -type f -name 'ADMOB_ANDROID16_*' \
+            -exec cp {} "$attempt_dir/" \;
+          echo "retry=true" >> "$GITHUB_OUTPUT"
+
+      - name: Android 16 emulator cold-start (temiz deneme 2/2)
+        id: android16_attempt_2
+        if: steps.android16_retry.outputs.retry == 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: true
+          script: |
+            bash tools/validate_admob_android16_cold_start.sh
+
+      - name: AdMob Android 16 uygulama kapısını sonuçlandır
+        if: always()
+        shell: bash
+        env:
+          FIRST_ATTEMPT_OUTCOME: ${{ steps.android16_attempt_1.outcome }}
+          RETRY_REQUIRED: ${{ steps.android16_retry.outputs.retry }}
+          SECOND_ATTEMPT_OUTCOME: ${{ steps.android16_attempt_2.outcome }}
+        run: |
+          set -euo pipefail
+          if [ "$RETRY_REQUIRED" = "true" ]; then
+            test "$SECOND_ATTEMPT_OUTCOME" = "success"
+          else
+            test "$FIRST_ATTEMPT_OUTCOME" = "success"
+          fi
+          for required_gate in \
+            APK_INSTALL=PASS \
+            APP_LAUNCH=PASS \
+            APP_PID=PASS \
+            APP_ACTIVITY=PASS \
+            APP_LOGCAT=PASS \
+            APP_GATE=PASS; do
+            grep -Fxq "$required_gate" reports/ADMOB_ANDROID16_APP_GATE.txt
+          done
+          grep -Fxq 'RELEASE_GATE=PASS' \
+            reports/ADMOB_ANDROID16_VALIDATION_RESULT.txt
+          grep -Fxq 'APP_GATE=PASS' \
+            reports/ADMOB_ANDROID16_VALIDATION_RESULT.txt
+          ! grep -Fqx 'REASON=APPLICATION_CRASH_ANR_FATAL_OR_PROCESS_DEATH' \
+            reports/ADMOB_ANDROID16_VALIDATION_RESULT.txt
 
       - name: APK ve kanıt raporlarını yükle
         if: always()
@@ -217,5 +291,7 @@ jobs:
             reports/ADMOB_APK_SHA256.txt
             reports/ADMOB_APK_CERTIFICATE.txt
             reports/ADMOB_ANDROID16_COLD_START_LOG.txt
+            reports/ADMOB_ANDROID16_*
+            reports/admob-android16-attempt-1/**
           if-no-files-found: warn
           retention-days: 30

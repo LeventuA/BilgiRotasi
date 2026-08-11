@@ -1,6 +1,6 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 8 Ağustos 2026
+**Kesim noktası:** 11 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
 ---
@@ -11,15 +11,16 @@
 |---|---|---|---|
 | Kanonik repo | `ZMilaStudio/BilgiRotasi` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
 | Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI | S04 |
-| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` (`548e8d3046469688a8dcb050552956cf786e525c`) | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
-| Gerçek paket sürümü | `1.68.13+103` | DOĞRULANDI | Release dalındaki `pubspec.yaml`, 8 Ağustos 2026 |
+| Yayın/release dalı | `release/final-closed-test-aab-1.68.8` (`fcf253e2358ffb6e74f4ac9dddbab8b64ac15509`) | DOĞRULANDI | 11 Ağustos 2026 GitHub canlı sorgusu |
+| Gerçek paket sürümü | `1.68.14+104` | DOĞRULANDI | Release dalındaki `pubspec.yaml`, 11 Ağustos 2026 |
 | `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR | S06, S07, S09 |
 | PR #9 | Merge edildi | RAPORLANDI | S07, S09 |
 | PR #10 | Merge edildi | RAPORLANDI | S06, S07, S09 |
-| PR #13 | Açık, Draft, merge edilmedi; head `ddad3e2fb6b6b8512281e053822cb3fc7a79f64a`; ödüllü reklam işi uygulandı, CI PASS, fiziksel cihaz kabulü bekleniyor | DOĞRULANDI / RAPORLANDI | GitHub canlı durum + doğrulanmış görev sonucu |
-| PR #14 | Açık, Draft, merge edilmedi; head `288d7033da16fe85c4f87d5da135edf0fd4543d0` | DOĞRULANDI | 8 Ağustos 2026 GitHub canlı sorgusu |
-| PR #15 | Açık, Draft, merge edilmedi; head canlı GitHub PR metadata’sından doğrulanır | DOĞRULANDI | GitHub canlı PR metadata’sı |
-| Kapalı test entegrasyon adayı | `integration/closed-test-next-release`; PR #13 reklam düzeltmesi ile PR #14/#15 değişiklikleri birlikte doğrulandı | YEREL PASS / CI CANLI METADATA | 9 Ağustos 2026 entegrasyon doğrulaması |
+| PR #13 | Kaynak PR açık, Draft, merge edilmedi; işlevsel ödüllü reklam düzeltmesi PR #16 ile release'e ulaştı; fiziksel cihaz kabulü bekleniyor | DOĞRULANDI / RAPORLANDI | 11 Ağustos 2026 GitHub canlı durumu |
+| PR #14 | Merge edildi (`10 Ağustos 2026`) | DOĞRULANDI | GitHub canlı PR metadata’sı |
+| PR #15 | Kaynak PR açık, Draft, merge edilmedi; değişiklikleri PR #16 entegrasyonu üzerinden release'e ulaştı; head canlı GitHub PR metadata’sından doğrulanır | DOĞRULANDI | GitHub canlı PR metadata’sı |
+| PR #19 | Açık, Draft, merge edilmedi; Android 16 AdMob PR kapısı düzeltmesi `b894805e20278b8fb4b6c5a0e1ce0d06d74fed5d` üzerinde CI PASS | DOĞRULANDI | GitHub run #103 / `31519334862` |
+| Kapalı test entegrasyon adayı | `integration/closed-test-next-release`; PR #16 ile release'e merge edildi (`10 Ağustos 2026`) | DOĞRULANDI | GitHub canlı PR metadata’sı |
 | Android geliştirici doğrulaması | Tamamlandı | RAPORLANDI | Levent'in güncel Play doğrulaması |
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Sürüm hedef dalın `pubspec.yaml` dosyasından okunmalıdır.
@@ -144,8 +145,9 @@ Kesim noktasındaki proje kararına göre:
 - Her tamamlanan oyun bir adet ödüllü reklam hakkı üretmeli.
 - Aynı oyun sonucu ikinci kez ödül vermemeli.
 
-**Durum:** PR #13 üzerinde `UYGULANDI / CI PASS / fiziksel cihaz kabulü bekliyor`.
-PR açık, Draft ve merge edilmemiştir; release dalında henüz yoktur.
+**Durum:** `UYGULANDI / CI PASS / fiziksel cihaz kabulü bekliyor`.
+Kaynak PR #13 açık, Draft ve merge edilmemiştir; işlevsel değişiklik PR #16
+entegrasyonu üzerinden release dalına ulaşmıştır.
 
 PR #13'ün yalnız işlevsel reklam düzeltmesi entegrasyon adayına taşındı.
 Yarış koşullarına dayanıklı oyun-başına hak sistemi ile başarılı ödül sonrası
@@ -183,15 +185,15 @@ olarak kalır; merge edilmiş sayılmaz.
 - Test/dev/prod Firebase ayrımı `FirebaseRuntimePolicy` üzerinden korunur.
   Analytics hataları sessizce yutulur ve oyun akışını engellemez.
 
-**Durum:** Uygulandı; hedefli unit/widget testleri PASS. Draft PR incelemesi ve
-Levent onayı bekleniyor; AAB üretilmedi veya yayınlanmadı.
+**Durum:** Uygulandı ve PR #16 entegrasyonu üzerinden release'e ulaştı. Kaynak
+PR #15 açık/Draft kalır; bu kayıt tek başına yeni AAB veya Play yayını kanıtı değildir.
 
 ---
 
 ## 7B. Kapalı test yayın adayı entegrasyonu
 
 - Entegrasyon dalı: `integration/closed-test-next-release`
-- Kaynak PR #13, PR #14 ve PR #15 açık/Draft/merge edilmemiş olarak kalır.
+- Kaynak PR #13 ve PR #15 açık/Draft kalır; PR #14 merge edilmiştir.
 - PR #14 ve PR #15 değişiklikleri dalın başlangıcında bulunur; PR #13'ten yalnız
   işlevsel reklam düzeltmesi entegre edilmiştir.
 - `admob-pr-validation.yml`, `update/closed-test-next-release` kaynağındaki güncel
@@ -202,8 +204,30 @@ Levent onayı bekleniyor; AAB üretilmedi veya yayınlanmadı.
 - GitHub CI run/job/artifact durumu entegrasyon Draft PR'ının canlı check
   metadata'sından doğrulanır.
 
-**Durum:** Final kapalı-test entegrasyon adayı; release dalına merge edilmedi,
-AAB üretilmedi ve Play Console değişikliği yapılmadı.
+**Durum:** PR #16 ile release dalına merge edildi. Bu merge tek başına yeni RC2,
+AAB üretimi veya Play Console yayını kanıtı değildir.
+
+---
+
+## 7C. Android 16 AdMob PR doğrulama altyapısı
+
+- PR #19'un önceki run #102 (`31511770185`, job `93847084171`) hatası uygulama
+  kodundan önce oluştu: emülatör boot ettikten sonra Android paket servisi ilk
+  `adb install` çağrısını `Failure calling service package: Broken pipe (32)` ile
+  düşürdü. Uygulama kurulmadığı/başlatılmadığı için bu koşu uygulama crash veya
+  ANR kanıtı değildir.
+- AdMob PR cold-start doğrulaması artık kritik ADB komutlarını sınırlı retry ile
+  çalıştırır. Kalıcı altyapı hatası yalnız açık health/result/release-gate
+  kanıtlarıyla en fazla bir temiz Android 16 emülatör denemesine izin verir.
+- Bilgi Rotası paketindeki crash, ANR, FATAL EXCEPTION veya process death ile
+  kanıtsız uygulama kapısı hataları retry edilmez ve FAIL kalır.
+- Düzeltme run #103'te (`31519334862`, job `93872230451`) ilk emülatör denemesinde
+  PASS oldu; ikinci deneme gerekmedi. Artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`
+  (ID `9113075092`) içinde `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`,
+  `APP_LOGCAT`, `APP_GATE` ve `RELEASE_GATE` değerlerinin tamamı PASS'tir.
+
+**Durum:** PR #19 `AÇIK / DRAFT / CI PASS`; release'e merge edilmedi ve RC2
+workflow_dispatch başlatılmadı.
 
 ---
 
