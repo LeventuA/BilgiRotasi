@@ -1,12 +1,17 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-**Kesim noktası:** 8 Ağustos 2026
+**Kesim noktası:** 11 Ağustos 2026
 
 ## Canlı durum
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi` — GitHub'da doğrulandı.
-- Release dalı: `release/final-closed-test-aab-1.68.8`, sürüm `1.68.13+103`.
-- PR #13, #14 ve #15 açık, Draft ve merge edilmemiştir.
+- Release dalı: `release/final-closed-test-aab-1.68.8`, head
+  `fcf253e2358ffb6e74f4ac9dddbab8b64ac15509`, sürüm `1.68.14+104`.
+- Kaynak PR #13 ve PR #15 açık/Draft ve merge edilmemiştir; PR #14 merge
+  edilmiştir. PR #13/#15 değişiklikleri PR #16 entegrasyonu üzerinden release'e
+  ulaşmıştır.
+- PR #19 açık, Draft ve merge edilmemiştir; AdMob PR run #103 Android 16 uygulama
+  kapısını ve bütün önceki kalite kapılarını geçti.
 - Android geliştirici doğrulaması tamamlandı.
 - Son doğrulanan Play kapalı test değeri: **12 geçerli testçi / 4 kesintisiz gün**.
 - 8 Ağustos kontrolünde bağlı Play Console tarayıcısı bulunmadığı için bu sayaç
@@ -59,3 +64,6 @@ Play Console'da bu PR kapsamında değişiklik yapılmayacaktır. Yayın öncesi
 5. Canlı Düello iki güncel kapalı test cihazında uçtan uca test edilmeli.
 6. Telefon, tablet, Chromebook, PC ve XR mağaza varlıklarının Play Console
    yükleme durumu canlı ekrandan doğrulanmalı.
+7. PR #19 Levent incelemesi/onayı sonrasında release'e güvenli merge edilirse eski
+   başarısız RC2 rerun edilmeden yeni bir `android-apk.yml` workflow_dispatch
+   koşusu ayrıca oluşturulmalı; bu PR görevi RC2 veya Play yüklemesi yapmaz.
