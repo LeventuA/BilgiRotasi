@@ -509,6 +509,15 @@ bool supportRewardAvailabilityAfterAttempt({
   return !rewardGranted && canClaimAgain;
 }
 
+bool supportRewardEnabledForProfile({
+  required bool firebaseProductionEnabled,
+  required bool isClosedTest,
+  required bool isProductionAds,
+}) {
+  if (isProductionAds) return false;
+  return !firebaseProductionEnabled || isClosedTest;
+}
+
 class AdMonetizationDialogs {
   const AdMonetizationDialogs._();
 
@@ -667,6 +676,12 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
   bool _available = false;
   bool _busy = false;
 
+  bool get _rewardProfileEnabled => supportRewardEnabledForProfile(
+    firebaseProductionEnabled: FirebaseRuntimePolicy.productionEnabled,
+    isClosedTest: AdMobConfig.isClosedTest,
+    isProductionAds: AdMobConfig.isProduction,
+  );
+
   @override
   void initState() {
     super.initState();
@@ -676,8 +691,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
 
   Future<void> _refresh() async {
     final available =
-        !FirebaseRuntimePolicy.productionEnabled &&
-        await _limiter.canClaim(widget.gameId);
+        _rewardProfileEnabled && await _limiter.canClaim(widget.gameId);
     if (!mounted) return;
     setState(() {
       _available = available;
@@ -686,7 +700,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
   }
 
   Future<void> _watch() async {
-    if (_busy || !_available || FirebaseRuntimePolicy.productionEnabled) {
+    if (_busy || !_available || !_rewardProfileEnabled) {
       return;
     }
     setState(() => _busy = true);
@@ -761,7 +775,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
           Text(
             _available
                 ? 'İsteğe bağlı reklamı tamamlayarak +10 XP kazan.'
-                : FirebaseRuntimePolicy.productionEnabled
+                : !_rewardProfileEnabled
                 ? 'Sunucu doğrulaması tamamlanana kadar +10 XP ödülü kapalı.'
                 : 'Bu oyun için +10 XP ödülü zaten alındı.',
             textAlign: TextAlign.center,

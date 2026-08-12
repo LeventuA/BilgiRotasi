@@ -45,11 +45,9 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 
 ### BR-P0-004 - Ödüllü reklam hak sistemi
 
-**Durum:** UYGULANDI / CI PASS / RELEASE'E ENTEGRE / fiziksel cihaz kabulü bekliyor
+**Durum:** RELEASE'E ENTEGRE / PR #25 KOD CI PASS / FİZİKSEL KABUL BEKLİYOR
 
-Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel değişiklik PR #16 entegrasyonu üzerinden release dalına ulaşmıştır.
-
-İstenen sözleşme:
+Kesin sözleşme:
 
 - tamamlanan oyun başına 1 hak
 - aynı oyun için tekrar yok
@@ -57,7 +55,25 @@ Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel değişiklik PR #1
 - günlük/oturumluk toplam kota yok
 - +10 XP
 
-**Bitti ölçütü:** Güncel Play kapalı test sürümünde gerçek cihazda ödül, tekrar engeli ve başarısız reklam sonrası yeniden deneme davranışı kabul edilir.
+Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel oyun-başına hak sistemi PR #16 üzerinden release'e ulaşmıştır.
+
+Yeni kabul bulgusu:
+
+- `1.68.14+104` kapalı-test AAB'si `FIREBASE_ENVIRONMENT=production` + `ADMOB_ENVIRONMENT=closed_test` kullanır.
+- Eski `SupportRewardCard`, production Firebase açıkken +10 XP kartını kapattığı için RC2 #326 build'inde fiziksel rewarded kabul yapılamıyordu.
+- PR #25 `fix/closed-test-rewarded-acceptance`, closed-test Google demo reklam profilini production Firebase ile açar; gerçek production reklam profilini SSV cutover tamamlanana kadar fail-closed tutar.
+- Son işlevsel PR #25 kod head'i: `2cc47846b42cf98b4f8303bb86148cc475060824`.
+- Kod-head CI #128: run `31635781505`, job `94245596601`, **SUCCESS**.
+- Artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9157235566`, digest `sha256:e7ab0d5b683454f79c4f1a9555fe027906fa5333ec1b016609452f68b384e5c9`.
+- Android 16 attempt 1 PASS, attempt 2 SKIPPED; final AdMob app/release gate PASS; PID `1871`; app crash/ANR/FATAL/process-death yok.
+
+**Bitti ölçütü:**
+
+- PR #25 final project-memory head CI PASS.
+- Levent açık onayıyla PR #25 release'e merge edildi.
+- Merge sonrası fresh geniş RC2 PASS.
+- Güncel Play closed-test build'inde Google demo rewarded reklamı fiziksel cihazda tamamlandı.
+- +10 XP yalnız tamamlanan reklamda verildi; aynı gameId ikinci ödül vermedi; başarısız reklam sonrası hak doğru kaldı.
 
 ---
 
@@ -94,7 +110,6 @@ Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel değişiklik PR #1
 - Android 16 attempt'lerinde `disable-animations: false` kullanılır.
 - `/dev/kvm` read/write erişimi emulator başlamadan önce fail-fast doğrulanır.
 - Mandatory app/release gate'leri gevşetilmedi.
-- PR #20 merge sonrası bu altyapı katmanı doğrulandı.
 
 ---
 
@@ -107,7 +122,6 @@ Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel değişiklik PR #1
 - `Değil` OCR eşleşmesi önceliklendirildi; tek ADB tap başarı sayılmaz.
 - PASS yalnız auth ekranında `Google|Misafir` gerçekten görüldükten sonra yazılır.
 - PR #21 merge commit'i: `2ce47112fce1a0c462ae9f95e8187a6e1d148581`.
-- Bu düzeltme sonraki geniş RC2 zincirinde korundu.
 
 ---
 
@@ -118,7 +132,8 @@ Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel değişiklik PR #1
 - RC2 #325'te auth sonrası Home bekleme döngüsü `Misafir` OCR tokenına ikinci ADB tap üretebiliyordu.
 - Flutter navigasyonu değiştirilmedi; validator post-auth aşaması salt-okunur hale getirildi.
 - PR #23 kod commit'i: `55879a3c5b29d31b25bd0402f8ed623e8afab566`.
-- PR #23 merge commit'i / güncel release HEAD: `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2`.
+- PR #23 merge commit'i / son işlevsel release commit'i: `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2`.
+- Docs-only PR #24 sonrası release HEAD: `bb988e7e4d60a41c1711e70d2ec6125e7136b0d5`.
 - Sürüm: `1.68.14+104`.
 - Fresh RC2 #326: run `31614662061`, job `94174350962`, **SUCCESS**.
 - Android 16 deneme 1 PASS; temiz deneme 2 gerekmedi ve SKIPPED.
@@ -126,10 +141,9 @@ Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel değişiklik PR #1
 - Artifact digest: `sha256:c69b44f40152ecc256ea5ace57c997bf3c8dafb8c051cdfaf69df288837fd56e`.
 - `ANDROID16_APP_GATE.txt`: `APK_INSTALL`, `APP_LAUNCH`, `ANALYTICS_CONSENT_HANDLED`, `GUEST_LOGIN`, `HOME_OYNA`, `APP_PID`, `APP_LOGCAT`, `APP_GATE`, `POST_GATE_LOGCAT_BOUNDARY` = PASS.
 - `ANDROID16_VALIDATION_RESULT.txt`: `RESULT=PASS`, `RELEASE_GATE=PASS`, `APP_GATE=PASS`, `SETTINGS_TUTORIAL_DIAGNOSTIC=PASS`.
-- Canlı uygulama PID: `3566`.
-- Bilgi Rotası crash/ANR/FATAL/process-death kanıtı yok.
+- PID `3566`; app crash/ANR/FATAL/process-death yok.
 
-**Bitti ölçütü:** Karşılandı. RC2 debugging'e geri dönülmez; yayın kabul aşamasına geçilir.
+**Bitti ölçütü:** Karşılandı. RC2 debugging'e geri dönülmez. Ancak PR #25 merge edilirse yeni işlevsel SHA için fresh RC2 gerekir; #326 rerun edilmez.
 
 ---
 
@@ -141,31 +155,47 @@ Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel değişiklik PR #1
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi`
 - Release branch: `release/final-closed-test-aab-1.68.8`
-- Release HEAD: `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2`
+- Release HEAD: `bb988e7e4d60a41c1711e70d2ec6125e7136b0d5` (docs-only PR #24)
+- Son işlevsel release commit'i: `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2`
 - Release sürümü: `1.68.14+104`
 - PR #7: açık / Draft / base `main`; merge edilmeyecek.
-- PR #12: açık; 3B deterministik geometri çalışması.
-- PR #13: açık / Draft; ödüllü reklam fiziksel kabulü bekliyor.
+- PR #12: açık; 3B deterministik geometri.
+- PR #13: açık / Draft; kaynak rewarded PR.
 - PR #15: açık / Draft; telemetri işi PR #16 üzerinden release'e ulaştı.
-- PR #21: merge edildi.
-- PR #23: merge edildi.
-- RC2 #326: SUCCESS.
+- PR #21, #23, #24: merge edildi.
+- PR #25: açık / Draft; kod-head CI #128 PASS.
+- RC2 #326: SUCCESS; PR #25 merge edilirse yeni kod için fresh RC2 gerekir.
 
 ---
 
 ### BR-P1-002 - Firebase production envanteri
 
-**Durum:** AÇIK / CANLI SERVİSTEN DOĞRULANACAK
+**Durum:** REPO ENVANTERİ DOĞRULANDI / CANLI DEPLOY DURUMU AÇIK
 
-- Google Auth sağlayıcısı
+Repo/source:
+
+- Production proje: `bilgi-rotasi-f255d`
+- Android package: `com.leventua.bilgirotasi`
+- `.firebaserc`: yok; deploy yapılacaksa açık `--project bilgi-rotasi-f255d` zorunlu.
+- Functions runtime: Node 20.
+- İstemci Functions region: `europe-west1`.
+- App Check production provider: Play Integrity; dev/test: debug.
+- 3 composite index:
+  - `live_duel_queue`: questionCount/status/ratingBucket
+  - `live_duel_matches`: status/updatedAt
+  - `live_duel_matches`: playerUids ARRAY_CONTAINS/resultProcessed
+- RC2 #326 source/build doğrulamasında Functions testleri, Firestore Rules emulator ve production Firebase profile PASS.
+
+Canlı servisten doğrulanacak:
+
+- Google Auth provider
 - Android package ve SHA kayıtları
-- Functions deploy sürümü
-- Firestore rules
-- Firestore indexes ve hazır olma durumu
-- Dev/prod ayrımı
-- App Check / Play Integrity provider ve enforcement durumu
+- Functions deployed names/revisions/region
+- Firestore rules active revision
+- Firestore indexes READY durumu
+- App Check / Play Integrity enforcement ve metrikler
 
-**Kural:** Kör Firebase deploy yapılmaz.
+**Kural:** Kör/toplu Firebase deploy yapılmaz.
 
 ---
 
@@ -219,17 +249,26 @@ Türkiye dışı uygun test bölgesi/debug yöntemiyle UMP onay formunu doğrula
 
 ### BR-P1-007 - Günlük giriş XP karar çelişkisini kaldır
 
-**Durum:** AÇIK
+**Durum:** AÇIK / KÖK KAYNAK DOĞRULANDI
 
-`KARARLAR.md` içinde **“Günlük giriş ödülü yok.”** kararı bulunmasına rağmen RC2 #325 ekran kanıtında `+20 XP • Günlük giriş serisi • 1. gün` görüldü.
+`KARARLAR.md` içinde **“Günlük giriş ödülü yok.”** kararı bulunmasına rağmen canlı release `lib/retention_system.dart::RetentionProgressService.initialize()` gerçek XP ödülü vermektedir.
+
+Doğrulanan kaynak davranışı:
+
+- ödül dizisi `20, 30, 40, 50, 60, 80, 120`
+- login streak yeni günde ilerletilir
+- `lastLoginReward` yazılır
+- `XpProgressService._award(reward, 'Günlük giriş serisi • N. gün')` çağrılır
+
+RC2 #325 `+20 XP • Günlük giriş serisi • 1. gün` ekranı bu kaynakla uyumludur.
 
 **Bitti ölçütü:**
 
-- retention/XP kaynak kodu canlı release üzerinden incelendi.
-- Ürün kararına aykırı ödül varsa ayrı branch'te kaldırıldı.
-- İlgili testler güncellendi ve PASS oldu.
+- Ayrı branch'te günlük giriş XP ödülü kaldırıldı; gerekiyorsa yalnız streak istatistiği ürün kararına uygun biçimde korundu.
+- Retention/XP testleri ödül verilmemesini kilitledi.
+- CI PASS.
 - Ayrı PR inceleme/merge akışı tamamlandı.
-- RC2 validator hotfix'iyle karıştırılmadı.
+- PR #25 / RC2 validator değişiklikleriyle karıştırılmadı.
 
 ---
 
@@ -245,6 +284,36 @@ RC2 #326 artifact'ındaki gerçek AAB ve kalite raporları `1.68.14+104` / 8.710
 - Dinamik sürüm, commit, AAB adı ve soru sayısı gerçek workflow değerlerinden üretilir.
 - Yeni değişiklik ayrı branch/PR ile test edilir.
 - Sırf rapor metni için RC2 #326 rerun edilmez.
+
+---
+
+### BR-P1-009 - Production rewarded SSV sözleşmesini ürün kararıyla uyumlu hale getir
+
+**Durum:** AÇIK / PRODUCTION'A DEPLOY EDİLMEMİŞ
+
+`docs/rewarded-ssv-setup.md` ve `functions/rewarded_ssv.js` mevcut SSV hazırlığının production'a deploy edilmediğini belirtir. Aday backend günlük 3 işlem / toplam +30 XP limiti taşır; bu, güncel “günlük/oturumluk toplam kota yok” kararıyla çelişir.
+
+**Kural:** Bu sözleşme düzeltilmeden `firebase deploy --only functions` toplu deploy yapılmaz ve `server_config/rewarded.ssvEnabled` açılmaz.
+
+**Bitti ölçütü:**
+
+- Production SSV ürün sözleşmesi tamamlanan oyun başına tek hak ve toplam günlük/oturumluk kota yok kararına uyarlanır.
+- Nonce / transaction id idempotency / Google ECDSA doğrulaması korunur.
+- Functions testleri yeni sözleşmeyi kilitler.
+- AdMob SSV callback/test aracı ve istemci `custom_data` cutover fiziksel/staging kanıtıyla doğrulanır.
+- Ayrı kontrollü deploy ve sonrasında production rewarded açılışı yapılır.
+
+---
+
+### BR-P1-010 - Play/Firebase signing SHA rolünü canlı konsoldan kesinleştir
+
+**Durum:** AÇIK
+
+- Upload/AAB SHA-1: `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`
+- Güncel release testi Play-signing/OAuth için `26:3C:46:C6:AE:9F:27:C3:B3:38:10:FA:89:8C:D7:EB:93:73:CC:F4` bekler.
+- Eski devir kaydında `17:E1:EC:6C:77:4F:B4:59:63:FA:7A:76:51:7D:21:B2:BB:7C:81:1F` Play App Signing olarak geçer.
+
+**Bitti ölçütü:** Play Console uygulama imzalama ve upload sertifika SHA-1 ekranı ile Firebase Android app fingerprint listesi karşılaştırılır; üç değerin rolleri kesin kaydedilir ve yanlış/eski test/doküman varsa ayrı PR ile düzeltilir.
 
 ---
 
