@@ -13,6 +13,16 @@ from rc1_quality_gate_impl import main as quality_gate_main
 from release_readiness_report import generate_report
 
 ROOT = Path(__file__).resolve().parents[1]
+QUALITY_GATE_IMPL = ROOT / "tools/rc1_quality_gate_impl.py"
+QUALITY_GATE_CONTRACT_MARKER = "AppBuildInfo sürümü uyuşmuyor"
+
+
+def _assert_quality_gate_contract() -> None:
+    source = QUALITY_GATE_IMPL.read_text(encoding="utf-8")
+    if QUALITY_GATE_CONTRACT_MARKER not in source:
+        raise RuntimeError(
+            "RC1 kalite motoru AppBuildInfo sürüm uyuşmazlığı kapısını kaybetti"
+        )
 
 
 def _workflow_run_url() -> str:
@@ -25,6 +35,7 @@ def _workflow_run_url() -> str:
 
 
 def main() -> int:
+    _assert_quality_gate_contract()
     quality_exit = quality_gate_main()
 
     if os.environ.get("GITHUB_ACTIONS", "").lower() == "true":

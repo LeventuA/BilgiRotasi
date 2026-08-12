@@ -13,3 +13,14 @@ Dinamik kaynaklar:
 - workflow run adresi: GitHub Actions çalışma ortamı
 
 Bu dosya Play Console canlı kanalını, Firebase canlı deploy durumunu veya fiziksel cihaz kabulünü tek başına doğrulamaz.
+
+## Fiziksel Google Play Internal Testing kontrol listesi
+
+> Ayarlar ve öğretici: ZORUNLU. CI/emülatör kabulü fiziksel Play kurulumundaki bu kontrolün yerine geçmez.
+
+- Google hesabıyla giriş ve uygulamayı yeniden açınca oturumun korunması.
+- Misafir → Google geçişinde kayıtların doğru hesaba bağlanması ve hesaplar arası veri sızmaması.
+- Eğitimin otomatik açılmaması; Ayarlar'dan açılıp “Anladım” ile kapanması.
+- İki ayrı fiziksel cihaz/hesapla Canlı Düello eşleşme, maç bitişi, sonuç kaydı ve leaderboard güncellemesi.
+- Leaderboard belgesi yokken sıra gösterilmemesi; belge oluştuktan sonra tutarlı sıra.
+- Kapalı-test sürümünde yalnız Google demo reklam kreatifleri.

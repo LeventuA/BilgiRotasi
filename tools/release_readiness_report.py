@@ -37,6 +37,23 @@ def _read_question_facts(root: Path) -> tuple[int, str]:
     return len(questions), hashlib.sha256(raw_bytes).hexdigest()
 
 
+def _physical_play_checklist() -> list[str]:
+    return [
+        "## Fiziksel Google Play Internal Testing kontrol listesi",
+        "",
+        "> Ayarlar ve öğretici: ZORUNLU. CI/emülatör kabulü fiziksel Play ",
+        "> kurulumundaki bu kontrolün yerine geçmez.",
+        "",
+        "- Google hesabıyla giriş ve uygulamayı yeniden açınca oturumun korunması.",
+        "- Misafir → Google geçişinde kayıtların doğru hesaba bağlanması ve hesaplar arası veri sızmaması.",
+        "- Eğitimin otomatik açılmaması; Ayarlar'dan açılıp “Anladım” ile kapanması.",
+        "- İki ayrı fiziksel cihaz/hesapla Canlı Düello eşleşme, maç bitişi, sonuç kaydı ve leaderboard güncellemesi.",
+        "- Leaderboard belgesi yokken sıra gösterilmemesi; belge oluştuktan sonra tutarlı sıra.",
+        "- Kapalı-test sürümünde yalnız Google demo reklam kreatifleri.",
+        "",
+    ]
+
+
 def generate_report(
     *,
     root: Path,
@@ -83,6 +100,7 @@ def generate_report(
         "kanıtlarını bu dosyaya ekler. Bu rapor tek başına Play Console veya canlı ",
         "Firebase deploy durumunu doğrulamaz.",
         "",
+        *_physical_play_checklist(),
     ]
 
     output.parent.mkdir(parents=True, exist_ok=True)
