@@ -460,10 +460,9 @@ for attempt in $(seq 1 40); do
     cp "reports/UI_HOME_${attempt}.tsv" reports/UI_HOME.tsv
     break
   fi
-  guest_point="$(find_word "HOME_${attempt}" '^Misafir$')"
-  if test -n "$guest_point"; then
-    adb_retry 15 shell input tap $guest_point
-  fi
+  # Misafir girisi AUTH ekraninda yalnizca bir kez tetiklenir. Bu noktadan
+  # sonra HOME gozlemi salt-okunur kalmali; gecikmis ikinci dokunus Home
+  # kartlarindan birine yarisa girerek istemeden navigasyon baslatabilir.
   if [ "$attempt" = "40" ]; then
     echo "Guest button did not reach the home screen." >&2
     exit 1
