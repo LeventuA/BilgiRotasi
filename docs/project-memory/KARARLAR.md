@@ -186,3 +186,14 @@
 - Sağlıklı denemenin `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`,
   `APP_LOGCAT`, `APP_GATE` ve `RELEASE_GATE` kontrollerinin tamamını geçmesi
   zorunludur.
+- RC2 Android 16 attempt'lerinde third-party `android-emulator-runner` animasyon
+  ayarı etkinleştirilmeyecek (`disable-animations: false`). Animasyon kapatma bir
+  release gate değildir; action'ın project validator başlamadan önce kırılgan
+  `adb shell settings put` çağrılarıyla koşuyu durdurmasına izin verilmeyecek.
+- `Can't find service: package` ve `Can't find service: activity`, Android sistem
+  servisinin emülatörde bulunmadığını gösteren açık altyapı kanıtıdır. Bu kanıt
+  yalnız uygulama crash/ANR/FATAL/process-death kontrolü negatifse temiz emulator
+  retry'ına izin verir; uygulama hatasını PASS'e çevirmez.
+- GitHub-hosted Linux runner'da API 36 x86_64 emulator başlatılmadan önce
+  `/dev/kvm` read/write erişimi fail-fast hazırlanıp doğrulanır. KVM olmadan
+  yazılım emülasyonu sistem servislerini çökertiyorsa retry/gate gevşetilmez.

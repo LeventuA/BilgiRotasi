@@ -20,6 +20,10 @@ if [ "$1" = "install" ]; then
       echo 'adb: failed to install app-release.apk: cmd: Failure calling service package: Broken pipe (32)' >&2
       exit 1
       ;;
+    missing_package_service)
+      echo "adb: failed to install app-release.apk: cmd: Can't find service: package" >&2
+      exit 1
+      ;;
     invalid_apk)
       echo 'Failure [INSTALL_FAILED_INVALID_APK]' >&2
       exit 1
@@ -49,6 +53,7 @@ fi
 
 if [ "$command_line" = 'shell pidof com.leventua.bilgirotasi' ]; then
   if [ "$scenario" != 'infrastructure_install' ] \
+      && [ "$scenario" != 'missing_package_service' ] \
       && [ "$scenario" != 'invalid_apk' ]; then
     echo '4242'
   fi
@@ -57,6 +62,7 @@ fi
 
 if [ "$command_line" = 'shell dumpsys activity activities' ]; then
   if [ "$scenario" != 'infrastructure_install' ] \
+      && [ "$scenario" != 'missing_package_service' ] \
       && [ "$scenario" != 'invalid_apk' ]; then
     echo 'ResumedActivity: ActivityRecord com.leventua.bilgirotasi/.MainActivity'
   fi

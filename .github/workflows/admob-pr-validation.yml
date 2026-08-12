@@ -178,6 +178,15 @@ jobs:
           set -euo pipefail
           (cd android && ./gradlew --stop)
 
+      - name: Android emulator KVM erişimini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
       - name: Android 16 emulator cold-start (deneme 1/2)
         id: android16_attempt_1
         continue-on-error: true
@@ -191,7 +200,7 @@ jobs:
           ram-size: 2048M
           heap-size: 512M
           emulator-boot-timeout: 1200
-          disable-animations: true
+          disable-animations: false
           script: |
             bash tools/validate_admob_android16_cold_start.sh
 
@@ -243,7 +252,7 @@ jobs:
           ram-size: 2048M
           heap-size: 512M
           emulator-boot-timeout: 1200
-          disable-animations: true
+          disable-animations: false
           script: |
             bash tools/validate_admob_android16_cold_start.sh
 

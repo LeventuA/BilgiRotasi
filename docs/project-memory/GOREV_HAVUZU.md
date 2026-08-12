@@ -84,7 +84,7 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 
 ### BR-P0-006 - Android 16 AdMob PR kapısını kanıta dayalı yap
 
-**Durum:** UYGULANDI / CI PASS / DRAFT PR İNCELEMESİ BEKLİYOR
+**Durum:** UYGULANDI / CI PASS / PR #19 İLE RELEASE'E MERGE EDİLDİ
 
 - Dal/PR: `fix/rc2-recurring-system-anr-retry`, Draft PR #19.
 - Run #102 kök nedeni: emülatör Android paket servisinde `Broken pipe (32)`;
@@ -96,7 +96,56 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
   `git diff --check` PASS.
 - GitHub run #103 (`31519334862`), job `93872230451`: PASS.
 - Artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9113075092`.
-- RC2 workflow_dispatch çalıştırılmadı; release merge'i Levent onayı bekler.
+- PR #19 merge commit'i: `8a99530de7cb370d4db0edff9214ad833a8907cf`.
+
+---
+
+### BR-P0-007 - RC2 runner pre-script ADB hatasını kaldır
+
+**Durum:** UYGULANDI / PR #20 CI PASS / MERGE ONAYI BEKLİYOR
+
+- Run #322: `31528674369`; job `93903134897`; artifact `9117187216`.
+- Kesin kök neden: `android-emulator-runner`, proje validator'ından önce
+  `disable-animations` settings çağrısında `Broken pipe (32)` aldı.
+- Artifact'ta `ANDROID16_*` raporu yoktur; validator hiç başlamadı.
+- Dal: `fix/rc2-runner-pre-script-adb-failure`.
+- Her iki Android 16 attempt'i `disable-animations: false` kullanır; mandatory
+  uygulama ve release gate'leri değiştirilmez.
+- Yerel Bash syntax PASS, ilgili Flutter testleri `20/20 PASS`, analyzer exit `0`
+  ve `git diff --check` PASS.
+- Fiziksel ek kanıt: SM-S938B Android 16/API 36 üzerinde mevcut `1.68.13+103`
+  Play kurulumu cold-start/PID/resumed activity/Oyna/logcat kontrollerini geçti.
+  Mevcut Google oturumu ve farklı Play-signing sertifikası nedeniyle Misafir
+  geçişi ile v104 in-place kurulum güvenli biçimde yapılmadı.
+- Draft PR #20 ilk CI run #106 (`31548075906`, job `93964707470`) project
+  validator'a ulaştı; ancak sistem `package` ve `activity` servisleri kayboldu.
+  Artifact `9123654768` içindeki üç install kanıtı `Broken pipe` ve iki kez
+  `Can't find service: package` sonucudur; uygulama crash/ANR kanıtı yoktur.
+- `Can't find service: package/activity` yalnız açık emulator altyapı kanıtı
+  olarak retry quartet'ine gider; gerçek uygulama hataları fail-fast kalır.
+- AdMob PR workflow'undaki iki emulator attempt'i de `disable-animations: false`
+  kullanır. Takip hedefli testleri `17/17 PASS`.
+- Otomatik run #107 (`31549806040`), job `93969855281`: PASS. İlk deneme explicit
+  infrastructure quartet'iyle temiz retry istedi; ikinci denemede tüm AdMob app
+  ve release gate'leri PASS. Artifact: `9124476985`.
+- Run #108'de iki emulator da `system_server` kaybı ve sistem paketi
+  `DeadSystemException` ile explicit infrastructure sonucu üretti; Bilgi Rotası
+  süreci yoktu. Action `/dev/kvm` izin eksikliği nedeniyle yazılım emülasyonu
+  kullanıyordu. PR ve RC2 workflow'ları emulator öncesi KVM read/write erişimini
+  fail-fast hazırlar; uygulama/release gate'leri aynen kalır.
+- Final doğrulanan PR head'i: `18db0393b18fc661cb532a8d4e1b09653bba4259`.
+- Final PR CI run #109 (`31553712368`), job `93981640719`: PASS. Logda KVM hazırlama
+  PASS, `disable animations: false`, `disable Linux hardware acceleration: false`,
+  emulator boot ve `bash tools/validate_admob_android16_cold_start.sh` başlangıcı
+  doğrulandı. Deneme 1 tüm AdMob uygulama/release gate'lerini geçti; deneme 2
+  gerekmedi ve SKIPPED kaldı.
+- Final artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9125437699`.
+- PR #20 açık/Draft ve merge edilmemiştir. Levent açık onayı olmadan merge
+  edilmeyecek; bu kayıt yeni RC2 veya Play yüklemesi yapıldığı anlamına gelmez.
+- Kalan zorunlu yayın doğrulaması: Levent onaylı merge sonrasında release head
+  yeniden doğrulanacak; eski #322 rerun edilmeyecek; yeni `android-apk.yml`
+  workflow_dispatch koşusu `confirmation=CLOSED_TEST` ile oluşturulacak ve daha
+  geniş Misafir → Oyna AAB-derived kapısı PASS olmadan Play yüklemesi yapılmayacak.
 
 ---
 
@@ -107,15 +156,14 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 **11 Ağustos 2026 doğrulaması:**
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi`
-- Release head: `fcf253e2358ffb6e74f4ac9dddbab8b64ac15509`
+- Release head: `8a99530de7cb370d4db0edff9214ad833a8907cf`
 - Release sürümü: `1.68.14+104`
 - PR #13: açık / Draft / merge edilmedi; ödüllü reklam işi UYGULANDI / CI PASS /
   fiziksel cihaz kabulü bekliyor
 - PR #14: merge edildi (10 Ağustos 2026)
 - PR #15: kaynak PR açık / Draft / merge edilmedi; değişiklikleri PR #16 üzerinden
   release'e ulaştı; head canlı GitHub PR metadata’sından doğrulanır
-- PR #19: açık / Draft / merge edilmedi; Android 16 AdMob PR kapısı run #103 ile
-  PASS
+- PR #19: 11 Ağustos 2026'da release'e merge edildi
 - Android geliştirici doğrulaması: tamamlandı
 - Son Play bilgisi: 12 geçerli testçi / 4 kesintisiz gün; UI yeniden okuması açık
 
