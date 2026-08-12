@@ -2,6 +2,30 @@
 
 **Kesim noktası:** 13 Ağustos 2026
 
+## Fresh RC2 release doğrulaması - TAMAMLANDI
+
+Bu bölüm aşağıdaki tarihsel “Fresh RC2 release doğrulaması - AÇIK” kaydının güncel sonucudur ve o gereksinimi kapatır.
+
+- Branch: `release/final-closed-test-aab-1.68.8`.
+- Test edilen release HEAD: `d450c573a122231734437fb097cf17a00e583801`.
+- Son işlevsel release: `7a50a1997c6eade985a3933fd019055dd6a2c791`; `7a50a199... → d450c573...` farkı docs/proje-hafızasıdır.
+- Sürüm: `1.68.14+104`.
+- Workflow run `31645526580`, job `94278055890`: **SUCCESS**.
+- Artifact `BilgiRotasi-1.68.14-104-closed-test-release`, ID `9160985710`, digest `sha256:0a086fab7c0730321c8768aefb94b7887f365d3cc80bf8fe087da83c7a425815`.
+- AAB SHA256 `690424c771867ce4835019449e8f4cc75e36aeca5779838fa7996a96faaa04e1`.
+- AAB-derived Android 16 Misafir → Home → Oyna mandatory akışı PASS; `APP_GATE=PASS`, `RELEASE_GATE=PASS`; ilk deneme SUCCESS, ikinci deneme gerekmedi.
+- Analyze/test, 8.710 soru kalite kapıları, Functions, Firestore Rules emulator, closed-test AdMob ve production Firebase release profile kontrolleri PASS.
+- Bilgi Rotası paketine ait crash/ANR/FATAL/process-death kanıtı bulunmadı.
+
+Fresh RC2 ile kapanmayan canlı doğrulamalar:
+
+1. Play Console güncel kapalı-test AAB sürümü, geçerli testçi ve kesintisiz gün sayacı.
+2. Play App Signing / Upload SHA rolleri ve Firebase Android fingerprint eşleşmesi.
+3. Firebase canlı Google Auth, Functions, Rules, Indexes ve App Check durumları.
+4. Güncel Play kurulumunda Google giriş/oturum, Misafir→Google izolasyonu, öğretici, Google demo rewarded ve Canlı Düello fiziksel kabulü.
+5. **BR-P1-008:** fresh artifact `RELEASE_READINESS.md` eski `1.68.8+98`, eski source/AAB ve 6.710 soru metnini taşımaya devam ediyor; ayrı teknik borç olarak açık.
+6. BR-P1-007 günlük giriş XP karar çelişkisi ve BR-P1-009 production SSV kota çelişkisi ayrı görevlerde açık.
+
 ## Canlı durum
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi`.

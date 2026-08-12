@@ -1,5 +1,17 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0 - 13 Ağustos 2026 fresh RC2 durum güncellemesi
+
+Bu bölüm aşağıdaki tarihsel görev satırlarında kalan “fresh RC2 gerekiyor/bekleniyor” ifadelerinin güncel durumunu geçersiz kılar.
+
+- **BR-P0-004:** Fresh geniş RC2 bitti ölçütü artık `[x]`. Run `31645526580`, job `94278055890`, tested release HEAD `d450c573a122231734437fb097cf17a00e583801`, **SUCCESS**. Fiziksel Play closed-test Google demo rewarded kabulü ve +10 XP/tek-gameId/başarısız reklam yeniden deneme maddeleri hâlâ açık.
+- **BR-P0-009:** Güncel işlevsel release (`7a50a199...`) fresh RC2 ile kabul edildi; test kesimi `d450c573...` yalnız docs/proje-hafızası farkı taşır. Android 16 AAB-derived Misafir → Home → Oyna, APP_GATE ve RELEASE_GATE PASS; crash/ANR/FATAL/process-death kanıtı yok.
+- **BR-P1-001:** Fresh RC2 artifact `BilgiRotasi-1.68.14-104-closed-test-release`, ID `9160985710`, digest `sha256:0a086fab7c0730321c8768aefb94b7887f365d3cc80bf8fe087da83c7a425815`; AAB SHA256 `690424c771867ce4835019449e8f4cc75e36aeca5779838fa7996a96faaa04e1`.
+- **BR-P1-008:** AÇIK kalır. Fresh artifact `RELEASE_READINESS.md` üst bilgisi hâlâ eski `1.68.8+98` / 6.710 soru ve tarihsel source/AAB değerlerini taşır; gerçek AAB/gate kabulünü geçersiz kılmaz.
+- Play/Firebase canlı servis kabulü ve fiziksel cihaz kabul maddeleri bu RC2 ile kapanmış sayılmaz.
+
+---
+
 ## P0 - Kapalı Test ve soru kalitesi
 
 ### BR-P0-001 - Kapalı Test canlı durumunu doğrula
