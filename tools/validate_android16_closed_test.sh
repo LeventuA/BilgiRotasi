@@ -379,8 +379,9 @@ adb_retry 30 shell am start -n com.leventua.bilgirotasi/.MainActivity
 echo 'APP_LAUNCH=PASS' >> reports/ANDROID16_APP_GATE.txt
 
 # First launch may show the analytics-consent dialog before the auth screen.
-# Handle it deterministically so the release gate verifies the app rather than
-# failing because a newly-added first-run dialog blocks Google/Misafir.
+# Keep retrying the dismissal until the auth screen is actually observed; a
+# successful ADB tap by itself is not evidence that the dialog was dismissed.
+analytics_consent_seen=false
 for attempt in $(seq 1 8); do
   if ! capture_screen "ENTRY_${attempt}"; then
     sleep 3
@@ -397,21 +398,41 @@ for attempt in $(seq 1 8); do
     break
   fi
   if grep -Eqi 'Kullanim|Kullanım|Analizine' "reports/UI_ENTRY_${attempt}.tsv"; then
-    consent_point="$(find_word "ENTRY_${attempt}" 'Simdi|Şimdi|Degil|Değil')"
+    analytics_consent_seen=true
+    # "Değil" is unique to the decline action in the #323 dialog. Prefer it
+    # over "Şimdi", which may also occur in explanatory text on future copy.
+    consent_point="$(find_word "ENTRY_${attempt}" 'Degil|Değil')"
+    if test -z "$consent_point"; then
+      consent_point="$(find_word "ENTRY_${attempt}" 'Simdi|Şimdi')"
+    fi
     if test -n "$consent_point"; then
       adb_retry 15 shell input tap $consent_point
     else
-      # Pixel 2 API 36 fallback: center of the visible "Şimdi Değil" action.
-      adb_retry 15 shell input tap 760 1065
+      # Pixel 2 API 36 at 1080x1920. #323 evidence places the visible
+      # "Şimdi Değil" action around y=1240, not the old y=1065 fallback.
+      adb_retry 15 shell input tap 785 1240
     fi
-    echo 'ANALYTICS_CONSENT_HANDLED=PASS' >> reports/ANDROID16_APP_GATE.txt
     sleep 4
-    break
+    continue
   fi
   sleep 3
 done
 
-wait_for_word AUTH 'Google|Misafir' 20
+if wait_for_word AUTH 'Google|Misafir' 20; then
+  :
+else
+  auth_status=$?
+  if [ "$auth_status" -eq 75 ]; then
+    exit 75
+  fi
+  if [ "$analytics_consent_seen" = true ]; then
+    echo "Analytics consent dialog did not reach the auth screen after bounded retries." >&2
+  fi
+  exit 1
+fi
+if [ "$analytics_consent_seen" = true ]; then
+  echo 'ANALYTICS_CONSENT_HANDLED=PASS' >> reports/ANDROID16_APP_GATE.txt
+fi
 grep -Eqi 'Google' reports/UI_AUTH.tsv
 grep -Eqi 'Misafir' reports/UI_AUTH.tsv
 ! grep -Eqi 'Nas.*Oynan' reports/UI_AUTH.tsv
