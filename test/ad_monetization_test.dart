@@ -96,6 +96,40 @@ void main() {
       expect(grants, 1);
     });
 
+    test('kapalı test profili production Firebase ile ödül kabulünü açar', () {
+      expect(
+        supportRewardEnabledForProfile(
+          firebaseProductionEnabled: true,
+          isClosedTest: true,
+        ),
+        isTrue,
+      );
+      expect(
+        supportRewardEnabledForProfile(
+          firebaseProductionEnabled: true,
+          isClosedTest: false,
+        ),
+        isFalse,
+      );
+      expect(
+        supportRewardEnabledForProfile(
+          firebaseProductionEnabled: false,
+          isClosedTest: false,
+        ),
+        isTrue,
+      );
+
+      final source = File('lib/ad_monetization.dart').readAsStringSync();
+      expect(
+        source,
+        contains('_rewardProfileEnabled && await _limiter.canClaim'),
+      );
+      expect(
+        source,
+        contains('if (_busy || !_available || !_rewardProfileEnabled)'),
+      );
+    });
+
     test('ödül verilmezse kalan hak aynı ekranda yeniden denenebilir', () {
       expect(
         supportRewardAvailabilityAfterAttempt(
