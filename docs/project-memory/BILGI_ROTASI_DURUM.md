@@ -3,6 +3,25 @@
 **Kesim noktası:** 13 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
+## 0. Fresh RC2 güncel kabul kesimi — 13 Ağustos 2026
+
+Bu bölüm aşağıdaki tarihsel bölümlerde kalan “fresh RC2 gerekli/bekleniyor” ifadelerinin **güncel durumunu geçersiz kılar**; tarihsel kayıtlar silinmemiştir.
+
+- Release branch: `release/final-closed-test-aab-1.68.8`.
+- Fresh RC2'nin test ettiği release HEAD: `d450c573a122231734437fb097cf17a00e583801`.
+- Son işlevsel release commit'i: `7a50a1997c6eade985a3933fd019055dd6a2c791` (PR #25). `7a50a199... → d450c573...` farkı proje-hafızası/docs değişiklikleridir; uygulama işlevsel içeriği değişmemiştir.
+- Paket sürümü: `1.68.14+104`.
+- Fresh manuel RC2 workflow run: `31645526580`; job: `94278055890`; sonuç: **SUCCESS**.
+- Artifact: `BilgiRotasi-1.68.14-104-closed-test-release`; ID `9160985710`; digest `sha256:0a086fab7c0730321c8768aefb94b7887f365d3cc80bf8fe087da83c7a425815`.
+- AAB SHA256: `690424c771867ce4835019449e8f4cc75e36aeca5779838fa7996a96faaa04e1`.
+- Android 16 AAB-derived `Misafir → Home → Oyna` zinciri ilk denemede PASS; ikinci temiz deneme gerekmedi ve SKIPPED.
+- `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `FIREBASE_AUTH_UI`, `FRESH_USER_AUTH_GATE`, `ANALYTICS_CONSENT_GATE`, `GUEST_LOGIN_GATE`, `HOME_PLAY_GATE`, `APP_GATE`, `RELEASE_GATE` = **PASS**.
+- Flutter analyze/test, soru kapıları (8.710 soru), Functions testleri, Firestore Rules emulator, closed-test AdMob ve production Firebase release profile kontrolleri **PASS**.
+- Artifact/log incelemesinde Bilgi Rotası paketine ait crash, ANR, `FATAL EXCEPTION` veya process-death kanıtı bulunmadı.
+- **BR-P1-008 açık kalır:** fresh artifact içindeki `reports/RELEASE_READINESS.md` hâlâ eski `1.68.8+98`, eski source/AAB ve 6.710 soru gibi tarihsel metinler taşır. Bu rapor kusuru gerçek AAB/gate kabulünü geçersiz kılmaz.
+- Fresh RC2 teknik kabulü tamamlandı; ancak Play Console güncel kanal/sayaç/sürüm, Play signing SHA rolleri ve Firebase canlı Auth/SHA/Functions/Rules/Indexes/App Check durumu hâlâ canlı servislerden **DOĞRULANACAK**.
+- Güncel Play kurulumu üzerinde Google giriş/oturum, Misafir→Google veri izolasyonu, öğretici, Google demo rewarded ve Canlı Düello fiziksel kabulü hâlâ açıktır.
+
 ---
 
 ## 1. Yayın kaynağı
