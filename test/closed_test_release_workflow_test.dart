@@ -239,7 +239,12 @@ void main() {
       );
       expect(workflow, contains('adb exec-out screencap -p'));
       expect(workflow, contains(r'tesseract "reports/UI_${label}.png"'));
-      expect(workflow, contains("wait_for_word AUTH 'Google|Misafir'"));
+      expect(workflow, contains(r"wait_for_word AUTH '^Misafir$'"));
+      expect(workflow, contains(r"find_word AUTH '^Google$'"));
+      expect(
+        workflow,
+        isNot(contains("wait_for_word AUTH 'Google|Misafir'")),
+      );
       expect(workflow, contains('dismiss_system_anr'));
       expect(
         android16Script,
@@ -254,7 +259,7 @@ void main() {
         contains('bash tools/detect_android16_system_anr.sh'),
       );
       expect(workflow, contains('SYSTEM_ANR_DISMISSED.txt'));
-      expect(workflow, contains("tap_word AUTH 'Misafir'"));
+      expect(workflow, contains(r"tap_word AUTH '^Misafir$'"));
       expect(workflow, contains('Guest button did not reach the home screen.'));
       expect(workflow, contains('adb_retry 15 shell input tap 540 1530'));
       expect(workflow, contains("wait_for_word TUTORIAL_DIALOG 'Anlad'"));
@@ -357,7 +362,6 @@ void main() {
       );
       expect(workflow, contains('FATAL EXCEPTION'));
     });
-
     test('istenen AAB ve kanıt dosyalarını artifact olarak yükler', () {
       for (final expected in <String>[
         r'dist/${{ env.AAB_FILE }}',
