@@ -102,7 +102,7 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 
 ### BR-P0-007 - RC2 runner pre-script ADB hatasını kaldır
 
-**Durum:** YEREL PASS / DRAFT PR VE PR CI BEKLİYOR
+**Durum:** UYGULANDI / PR #20 CI PASS / MERGE ONAYI BEKLİYOR
 
 - Run #322: `31528674369`; job `93903134897`; artifact `9117187216`.
 - Kesin kök neden: `android-emulator-runner`, proje validator'ından önce
@@ -117,7 +117,6 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
   Play kurulumu cold-start/PID/resumed activity/Oyna/logcat kontrollerini geçti.
   Mevcut Google oturumu ve farklı Play-signing sertifikası nedeniyle Misafir
   geçişi ile v104 in-place kurulum güvenli biçimde yapılmadı.
-- Bu PR merge edilmeyecek ve bu görevde yeni RC2 başlatılmayacak.
 - Draft PR #20 ilk CI run #106 (`31548075906`, job `93964707470`) project
   validator'a ulaştı; ancak sistem `package` ve `activity` servisleri kayboldu.
   Artifact `9123654768` içindeki üç install kanıtı `Broken pipe` ve iki kez
@@ -129,11 +128,24 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 - Otomatik run #107 (`31549806040`), job `93969855281`: PASS. İlk deneme explicit
   infrastructure quartet'iyle temiz retry istedi; ikinci denemede tüm AdMob app
   ve release gate'leri PASS. Artifact: `9124476985`.
-- Son belge commit'inin run #108'inde iki emulator da `system_server` kaybı ve
-  sistem paketi `DeadSystemException` ile explicit infrastructure sonucu üretti;
-  Bilgi Rotası süreci yoktu. Action `/dev/kvm` izin eksikliği nedeniyle yazılım
-  emülasyonu kullanıyordu. PR ve RC2 workflow'ları emulator öncesi KVM read/write
-  erişimini fail-fast hazırlar; uygulama/release gate'leri aynen kalır.
+- Run #108'de iki emulator da `system_server` kaybı ve sistem paketi
+  `DeadSystemException` ile explicit infrastructure sonucu üretti; Bilgi Rotası
+  süreci yoktu. Action `/dev/kvm` izin eksikliği nedeniyle yazılım emülasyonu
+  kullanıyordu. PR ve RC2 workflow'ları emulator öncesi KVM read/write erişimini
+  fail-fast hazırlar; uygulama/release gate'leri aynen kalır.
+- Final doğrulanan PR head'i: `18db0393b18fc661cb532a8d4e1b09653bba4259`.
+- Final PR CI run #109 (`31553712368`), job `93981640719`: PASS. Logda KVM hazırlama
+  PASS, `disable animations: false`, `disable Linux hardware acceleration: false`,
+  emulator boot ve `bash tools/validate_admob_android16_cold_start.sh` başlangıcı
+  doğrulandı. Deneme 1 tüm AdMob uygulama/release gate'lerini geçti; deneme 2
+  gerekmedi ve SKIPPED kaldı.
+- Final artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9125437699`.
+- PR #20 açık/Draft ve merge edilmemiştir. Levent açık onayı olmadan merge
+  edilmeyecek; bu kayıt yeni RC2 veya Play yüklemesi yapıldığı anlamına gelmez.
+- Kalan zorunlu yayın doğrulaması: Levent onaylı merge sonrasında release head
+  yeniden doğrulanacak; eski #322 rerun edilmeyecek; yeni `android-apk.yml`
+  workflow_dispatch koşusu `confirmation=CLOSED_TEST` ile oluşturulacak ve daha
+  geniş Misafir → Oyna AAB-derived kapısı PASS olmadan Play yüklemesi yapılmayacak.
 
 ---
 

@@ -12,6 +12,12 @@
   ulaşmıştır.
 - PR #19 release'e merge edilmiştir. Sonraki RC2 #322, project validator başlamadan
   önce third-party action'ın `disable-animations` settings çağrısında kırılmıştır.
+- PR #20 açık/Draft ve merge edilmemiştir. Final doğrulanan head
+  `18db0393b18fc661cb532a8d4e1b09653bba4259` üzerindeki AdMob PR doğrulaması
+  run #109 (`31553712368`), job `93981640719` PASS'tir. KVM hazırlama ve
+  `disable animations: false` logdan doğrulanmış; project validator deneme 1'de
+  çalışıp tüm AdMob app/release gate'lerini geçmiştir. Final artifact ID
+  `9125437699`.
 - Android geliştirici doğrulaması tamamlandı.
 - Son doğrulanan Play kapalı test değeri: **12 geçerli testçi / 4 kesintisiz gün**.
 - 8 Ağustos kontrolünde bağlı Play Console tarayıcısı bulunmadığı için bu sayaç
@@ -64,17 +70,11 @@ Play Console'da bu PR kapsamında değişiklik yapılmayacaktır. Yayın öncesi
 5. Canlı Düello iki güncel kapalı test cihazında uçtan uca test edilmeli.
 6. Telefon, tablet, Chromebook, PC ve XR mağaza varlıklarının Play Console
    yükleme durumu canlı ekrandan doğrulanmalı.
-7. `fix/rc2-runner-pre-script-adb-failure` Draft PR'ında otomatik CI yeşil olsa
-   bile Android emulator action logunda project scriptine gerçekten ulaşıldığı
-   doğrulanmalı.
-8. Levent onayıyla düzeltme release'e merge edilirse eski RC2 #322 rerun edilmeden
-   yeni `android-apk.yml` workflow_dispatch koşusu ayrıca oluşturulmalı. Bu görev
-   merge, RC2 veya Play yüklemesi yapmaz.
-9. Yeni RC2'de `disable animations: false` ve project validator başlangıcı logdan
-   doğrulanmalı; attempt 1 açık infrastructure quartet üretirse temiz attempt 2'nin
-   gerçekten başladığı ayrıca kanıtlanmalı.
-10. PR #20 otomatik run #107'de her iki project validator'a ulaştı; ilk
-    denemenin explicit infrastructure quartet'i temiz attempt 2'yi başlattı ve
-    ikinci deneme tüm AdMob app/release gate'lerini geçti. RC2'nin daha geniş
-    Misafir/Oyna kapısı ancak Levent onaylı release merge'inden sonra oluşturulacak
-    yeni manuel run ile doğrulanabilir; bu görevde dispatch yapılmaz.
+7. Levent onayıyla PR #20 release'e merge edilirse release head yeniden
+   doğrulanmalı; eski RC2 #322 rerun edilmeden yeni `android-apk.yml`
+   workflow_dispatch koşusu `confirmation=CLOSED_TEST` ile oluşturulmalı. Bu
+   dokümantasyon görevi merge, RC2 veya Play yüklemesi yapmaz.
+8. Yeni RC2'de `disable animations: false`, KVM erişimi ve project validator
+   başlangıcı logdan doğrulanmalı; attempt 1 açık infrastructure quartet üretirse
+   temiz attempt 2'nin gerçekten başladığı ayrıca kanıtlanmalı. Daha geniş
+   Misafir → Oyna AAB-derived kapısı PASS olmadan Play yüklemesi yapılmamalı.
