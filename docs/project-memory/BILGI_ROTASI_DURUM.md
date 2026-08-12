@@ -10,15 +10,17 @@
 | Alan | Kesim noktasındaki değer | Durum | Kaynak |
 |---|---|---|---|
 | Kanonik repo | `ZMilaStudio/BilgiRotasi` | DOĞRULANDI | 12 Ağustos 2026 GitHub canlı sorgusu |
-| Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI | Canlı repo |
+| Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI | S04 |
 | Yayın/release dalı | `release/final-closed-test-aab-1.68.8` (`1a113a6aba98324b668aa5f037fa6b08c7d776c3`) | DOĞRULANDI | 12 Ağustos 2026 GitHub canlı sorgusu |
 | Gerçek paket sürümü | `1.68.14+104` | DOĞRULANDI | Release dalındaki `pubspec.yaml`, 12 Ağustos 2026 |
-| `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR | Proje kararı |
-| PR #13 | Kaynak PR açık/Draft; işlevsel ödüllü reklam düzeltmesi PR #16 ile release'e ulaştı; fiziksel cihaz kabulü bekleniyor | DOĞRULANDI / RAPORLANDI | GitHub canlı durumu |
+| `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR | S06, S07, S09 |
+| PR #9 | Merge edildi | RAPORLANDI | S07, S09 |
+| PR #10 | Merge edildi | RAPORLANDI | S06, S07, S09 |
+| PR #13 | Kaynak PR açık, Draft, merge edilmedi; işlevsel ödüllü reklam düzeltmesi PR #16 ile release'e ulaştı; fiziksel cihaz kabulü bekleniyor | DOĞRULANDI / RAPORLANDI | 11 Ağustos 2026 GitHub canlı durumu |
 | PR #14 | Merge edildi (`10 Ağustos 2026`) | DOĞRULANDI | GitHub canlı PR metadata’sı |
-| PR #15 | Kaynak PR açık/Draft; değişiklikleri PR #16 üzerinden release'e ulaştı | DOĞRULANDI | GitHub canlı PR metadata’sı |
+| PR #15 | Kaynak PR açık, Draft, merge edilmedi; değişiklikleri PR #16 entegrasyonu üzerinden release'e ulaştı; head canlı GitHub PR metadata’sından doğrulanır | DOĞRULANDI | GitHub canlı PR metadata’sı |
 | PR #19 | Merge edildi (`11 Ağustos 2026`); merge commit `8a99530de7cb370d4db0edff9214ad833a8907cf` | DOĞRULANDI | GitHub canlı PR metadata’sı |
-| PR #20 | Merge edildi; release head'i `1a113a6aba98324b668aa5f037fa6b08c7d776c3` oldu | DOĞRULANDI | 12 Ağustos 2026 GitHub canlı PR/release doğrulaması |
+| PR #20 | Merge edildi; release head `1a113a6aba98324b668aa5f037fa6b08c7d776c3` oldu | DOĞRULANDI | 12 Ağustos 2026 GitHub canlı PR/release doğrulaması |
 | PR #21 | Açık/Draft; son kod değişikliği commit'i `2b247e9c86d00827e4539ac442ff9f242b6931ee`; kod CI #112 PASS; merge onayı bekleniyor | DOĞRULANDI | 12 Ağustos 2026 GitHub canlı PR/Actions doğrulaması |
 | Kapalı test entegrasyon adayı | `integration/closed-test-next-release`; PR #16 ile release'e merge edildi (`10 Ağustos 2026`) | DOĞRULANDI | GitHub canlı PR metadata’sı |
 | Android geliştirici doğrulaması | Tamamlandı | RAPORLANDI | Levent'in güncel Play doğrulaması |
@@ -32,10 +34,13 @@
 - `1.68.13+103` önce Dahili Test'te gerçek cihazda doğrulandı.
 - Aynı AAB mevcut Kapalı Test kanalına yayımlandı.
 - Son doğrulanan Play kapalı test durumu **12 geçerli testçi / 4 kesintisiz gün**dür.
-- 8 Ağustos 2026'da Play Console'a bağlı tarayıcı bulunmadığı için sayaç UI'dan yeniden okunamadı; bir sonraki canlı kontrolde tarih/sayaç yeniden okunmalıdır.
+- 8 Ağustos 2026'da Play Console'a bağlı tarayıcı bulunmadığı için sayaç UI'dan
+  yeniden okunamadı; 12/4 değeri Levent'in son Play Console doğrulaması olarak
+  kaydedildi ve bir sonraki canlı kontrolde tarih/sayaç yeniden okunmalıdır.
 - Android geliştirici doğrulaması tamamlandı.
+- Uygulama kaydı, paket adı ve ilk AAB yükleme süreci daha önce adım adım tamamlandı.
 - Play App Signing SHA değeri production Firebase'e eklenmişti; eski upload/release SHA silinmedi.
-- `1.68.14+104` için yeni RC2 henüz release gate'i geçmediği için Play'e yeni AAB yüklenmemelidir.
+- `1.68.14+104` için fresh RC2 geniş release gate'i henüz PASS olmadığı için Play'e yeni AAB yüklenmemelidir.
 
 **Durum:** Kapalı Test yayını `DOĞRULANDI/RAPORLANDI`; katılım süreci `AÇIK`.
 
@@ -43,11 +48,16 @@
 
 ## 3. Soru bankası
 
-- Son raporlanan aktif soru sayısı: **8.710**.
+- Son raporlanan aktif soru sayısı: **8.710**
 - Eski 6.710 soruya 2.000 Türkiye odaklı kolay soru eklenmişti.
 - Son Sheet konuşmasında hiçbir yeni kayıt `Düzeltildi` yapılmadı.
 - Son kontrol kesiminde **41 bekleyen olay / 40 benzersiz soru** bulunduğu hesaplanıyor.
-- İlk ayıklamada 14 benzersiz soru açıkça bozuk, 8 soru zorluk incelemesi adayı, 4 eski kayıt ayrıntılı inceleme bekliyor, 13 soru henüz tek tek değerlendirilmemiş ve 1 soru için değişiklik gerekmiyor.
+- İlk ayıklamada:
+  - 14 benzersiz soru açıkça bozuk,
+  - 8 soru zorluk incelemesi adayı,
+  - 4 eski kayıt ayrıntılı inceleme bekliyor,
+  - 13 soru henüz tek tek değerlendirilmemiş,
+  - 1 soru için değişiklik gerekmiyor.
 
 Ayrıntılı liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 
@@ -55,10 +65,12 @@ Ayrıntılı liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 
 ## 4. Soru geri bildirim taşıma sistemi
 
+Son canlı kontrollerde:
+
 - Eski cihaz kuyruğundaki kayıtlar Sheet'e aktarılabildi.
 - `1.68.13+103` sürümünden kuyruk dışı canlı kayıtlar Sheet'e ulaştı.
-- Geri bildirim taşıma sistemi çalışıyor kabul edilir.
-- Soru düzeltme süreci tamamlanmadı.
+- Bu nedenle geri bildirim taşıma sistemi çalışıyor kabul edilir.
+- Ancak soru düzeltme süreci henüz başlamadı veya tamamlanmadı.
 - Sheet kayıtları gerçek soru düzeltmesi merge edilmeden kapatılmamalıdır.
 
 **Durum:** Taşıma `DOĞRULANDI`; içerik temizliği `AÇIK`.
@@ -68,13 +80,17 @@ Ayrıntılı liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 ## 5. 3B oyun tahtası
 
 - Oynanış ve BoardMap değişmeyecek.
-- Tahta sözleşmesi 67 noktadır: 30 dış kategori, 30 iç kategori, 6 rozet, 1 merkez.
+- Tahta sözleşmesi 67 noktadır:
+  - 30 dış kategori,
+  - 30 iç kategori,
+  - 6 rozet,
+  - 1 merkez.
 - Tek Matrix4 ile bütün 2B tahtayı eğme yaklaşımı başarısız bulundu.
 - `experiment/original-board-3d-v1` silindi.
-- `experiment/true-3d-board-renderer-v2` açıldı; gerçek renderer commit'i doğrulanmadan güncel kabul edilmez.
+- `experiment/true-3d-board-renderer-v2` açıldı; konuşma kesiminde gerçek renderer commit'i yoktu.
 - Hiçbir 3B çalışma release dalına merge edilmedi.
 - Son görsel kabul edilmedi ve çalışma durduruldu.
-- 8 kategori rozeti konsepti ile tahtadaki 6 fiziksel rozet noktası arasındaki eşleme çözülmedi.
+- 8 adet kategori rozeti konsepti üretildi; tahtadaki 6 fiziksel rozet noktasına eşleme çözülmedi.
 
 **Durum:** `DURDURULDU`; çalışan oyuna etkisi yok.
 
@@ -85,102 +101,261 @@ Ayrıntılı liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 Konuşma ve test kayıtlarında mevcut olduğu görülen ana sistemler:
 
 - 2-6 kişilik yerel tahta oyunu
-- Serbest Rota, Soru Maratonu, Günlük Görev
-- Hayatta Kalma, 60 Saniye, Takım modu ve diğer hızlı oyun modları
+- Serbest Rota
+- Soru Maratonu
+- Günlük Görev
+- Hayatta Kalma
+- 60 Saniye
+- Takım modu ve diğer hızlı oyun modları
 - 10 / 20 / 30 soruluk Meydan Okuma
 - Canlı Düello altyapısı ve oyun akışı
 - BR ve lig sistemi
 - Google giriş / misafir ayrımı
-- Bulut kayıt ve hesap silme
-- XP, seviye, başarımlar ve Bilgi Rotası Pasaportu
+- Bulut kayıt
+- Hesap silme
+- XP, seviye, başarımlar
+- Bilgi Rotası Pasaportu
 - Piyon koleksiyonu ve güvenli favori piyon seçimi
 - Temalar, jokerler, özel kutular
 - Erişilebilirlik ve Sistem Sağlığı
 
 **Dikkat:** Yeni teknik çalışma öncesi canlı release dalında ilgili modülün gerçekten bulunduğu ve testlerin geçtiği doğrulanmalıdır.
 
-`codex/simplify-game-modes-pawn-rarity` dalındaki sadeleştirme ayrı feature çalışmasıdır. Aile Modu/Turnuva Modu girişleri ile ayrı piyon nadirlik sistemi kaldırılmış; ana piyon kataloğu ve favori/fallback davranışı korunmuştur. Release'e merge edilmiş sayılmaz.
+- `codex/simplify-game-modes-pawn-rarity` dalında Diğer Oyun Modları ekranı
+  daha kompakt hale getirildi; sabit mod sayısı metinleri kaldırıldı.
+- Aile Modu ve Turnuva Modu kartları ile bu ekrandaki navigasyon girişleri
+  kaldırıldı. Hayatta Kalma, 60 Saniye, Kategori Düellosu, Takım Modu ve
+  Karışık Çılgınlık korunur.
+- Kariyer bölümündeki ayrı Piyon Nadirlikleri girişi, nadirlik enum/kataloğu ve
+  piyon seçicideki nadirlik benzeri `ÖZEL` sınıflandırması kaldırıldı.
+- 17 piyonluk ana katalog, piyon görselleri/sesleri, favori piyon verisi ve
+  geçersiz eski indeksler için güvenli fallback korunur.
+
+**Durum:** Ayrı feature dalında uygulanıp hedefli testlerle doğrulandı; Draft PR
+incelemesi ve Levent onayı bekleniyor.
 
 ---
 
-## 7. Reklam ve telemetri
+## 7. Reklam
+
+Kesim noktasındaki proje kararına göre:
 
 - Aktif soru ve kritik oyun akışlarında reklam bulunmamalı.
 - Banner yalnız uygun menü/sonuç ekranlarında kullanılmalı.
-- Ödüllü reklam isteğe bağlıdır; ödül `+10 XP`.
-- Her tamamlanan oyun bir ödüllü reklam hakkı üretir; aynı oyun sonucu ikinci kez ödül vermez.
-- İşlevsel reklam düzeltmesi PR #16 üzerinden release'e ulaştı; fiziksel cihaz kabulü hâlâ açıktır.
-- Pseudonymous Firebase Analytics telemetrisi PR #16 üzerinden release'e ulaştı.
-- Analytics varsayılan kapalıdır; kullanıcı açıkça izin vermeden `analytics_storage` etkinleştirilmez.
-- `Şimdi Değil` aynı sürümde yeniden sormaz; kullanıcı daha sonra Ayarlar'dan izin verebilir.
-- Advertising ID toplaması ve Analytics reklam kişiselleştirme sinyalleri kapalıdır.
-- Analytics hataları oyun akışını engellemez.
+- Ödüllü reklam isteğe bağlı olmalı.
+- Ödül: `+10 XP`
+- Günlük toplam kota kaldırılmalı.
+- Her tamamlanan oyun bir adet ödüllü reklam hakkı üretmeli.
+- Aynı oyun sonucu ikinci kez ödül vermemeli.
 
-**Durum:** Reklam/telemetri kodu release'te; fiziksel reklam kabulü ve yayın öncesi Data Safety/consent doğrulamaları `AÇIK`.
+**Durum:** `UYGULANDI / CI PASS / fiziksel cihaz kabulü bekliyor`.
+Kaynak PR #13 açık, Draft ve merge edilmemiştir; işlevsel değişiklik PR #16
+entegrasyonu üzerinden release dalına ulaşmıştır.
+
+PR #13'ün yalnız işlevsel reklam düzeltmesi entegrasyon adayına taşındı.
+Yarış koşullarına dayanıklı oyun-başına hak sistemi ile başarılı ödül sonrası
+`rewarded_ad_completed` telemetrisi birlikte korunur. PR #13 kaynak Draft PR
+olarak kalır; merge edilmiş sayılmaz.
 
 ---
 
-## 7A. Kapalı test yayın adayı entegrasyonu
+## 7A. Kişisel hesap kimliği göndermeyen pseudonymous kullanım telemetrisi
 
-- `integration/closed-test-next-release` PR #16 ile release'e merge edildi.
+- `codex/firebase-analytics-telemetry` dalında merkezi ve hata yalıtımlı
+  Firebase Analytics katmanı eklendi.
+- Kullanıcı izin verdiğinde uygulama süreç başlangıcı `app_process_started` ve
+  adlandırılmış ekran geçişleri ölçülür. `app_process_started`, gerçek Google
+  Analytics oturumu gibi yorumlanmaz; oturum ölçümü SDK'nın otomatik
+  `session_start` metriğine bırakılır.
+- Oyun modu seçimi, oyun başlangıcı/tamamlanması/yarıda bırakılması, joker
+  kullanımı, ödüllü reklam tamamlanması ve Canlı Düello başlangıç/sonuç olayları
+  ölçülür.
+- Oyun olayları yalnız oyun modu, kategori, gerekiyorsa zorluk grubu, süre,
+  sonuç ve uygulama sürümü gibi hesap kimliği içermeyen boyutları kabul eder.
+- Ad, e-posta, Google kullanıcı kimliği, kullanıcı adı ve reklam kimliği için
+  servis API'si yoktur; her dokunuş veya her cevap ayrı Analytics olayı değildir.
+- Bu telemetri tam anonim değildir: kullanıcı izin verdiğinde Firebase SDK bu
+  uygulama kurulumu için pseudonymous bir app-instance ID üretir.
+- Analytics varsayılan olarak kapalıdır. Kullanıcı Ayarlar ekranında açıkça izin
+  vermeden `analytics_storage` etkinleştirilmez, identifier depolanmaz ve olay
+  gönderilmez. Tercih cihazda saklanır ve daha sonra geri alınabilir.
+- Tercih `unknown` ise güncelleme sonrasında sürüm başına yalnız bir kez zorlamayan
+  izin istemi gösterilir. `Şimdi Değil` seçimi aynı sürümde yeniden sorulmaz;
+  kullanıcı daha sonra Ayarlar'dan izin verebilir.
+- Android Advertising ID toplaması ve Analytics reklam kişiselleştirme
+  sinyalleri manifestte kapalıdır; Analytics consent ayarında reklam depolaması,
+  reklam kullanıcı verisi ve reklam kişiselleştirmesi reddedilir.
+- Test/dev/prod Firebase ayrımı `FirebaseRuntimePolicy` üzerinden korunur.
+  Analytics hataları sessizce yutulur ve oyun akışını engellemez.
+
+**Durum:** Uygulandı ve PR #16 entegrasyonu üzerinden release'e ulaştı. Kaynak
+PR #15 açık/Draft kalır; bu kayıt tek başına yeni AAB veya Play yayını kanıtı değildir.
+
+---
+
+## 7B. Kapalı test yayın adayı entegrasyonu
+
+- Entegrasyon dalı: `integration/closed-test-next-release`
 - Kaynak PR #13 ve PR #15 açık/Draft kalır; PR #14 merge edilmiştir.
-- Bu merge tek başına yeni RC2, AAB üretimi veya Play Console yayını kanıtı değildir.
+- PR #14 ve PR #15 değişiklikleri dalın başlangıcında bulunur; PR #13'ten yalnız
+  işlevsel reklam düzeltmesi entegre edilmiştir.
+- `admob-pr-validation.yml`, `update/closed-test-next-release` kaynağındaki güncel
+  CI akışıyla eşleştirildi.
+- Sürüm değiştirilmedi: `1.68.13+103`.
+- Yerel doğrulama: `flutter pub get` PASS, tüm Flutter testleri `237/237` PASS,
+  analyzer exit `0` ve `git diff --check` PASS.
+- GitHub CI run/job/artifact durumu entegrasyon Draft PR'ının canlı check
+  metadata'sından doğrulanır.
+
+**Durum:** PR #16 ile release dalına merge edildi. Bu merge tek başına yeni RC2,
+AAB üretimi veya Play Console yayını kanıtı değildir.
 
 ---
 
-## 7B. Android 16 AdMob PR doğrulama altyapısı
+## 7C. Android 16 AdMob PR doğrulama altyapısı
 
-- PR #19 ile kritik ADB komutlarında sınırlı retry ve açık emulator altyapı sınıflandırması release'e taşındı.
-- Bilgi Rotası crash/ANR/FATAL/process-death ve kanıtsız uygulama kapısı hataları retry edilmez ve FAIL kalır.
-- PR #19 doğrulama run #103 (`31519334862`, job `93872230451`) PASS; artifact `9113075092`.
+- PR #19'un önceki run #102 (`31511770185`, job `93847084171`) hatası uygulama
+  kodundan önce oluştu: emülatör boot ettikten sonra Android paket servisi ilk
+  `adb install` çağrısını `Failure calling service package: Broken pipe (32)` ile
+  düşürdü. Uygulama kurulmadığı/başlatılmadığı için bu koşu uygulama crash veya
+  ANR kanıtı değildir.
+- AdMob PR cold-start doğrulaması artık kritik ADB komutlarını sınırlı retry ile
+  çalıştırır. Kalıcı altyapı hatası yalnız açık health/result/release-gate
+  kanıtlarıyla en fazla bir temiz Android 16 emülatör denemesine izin verir.
+- Bilgi Rotası paketindeki crash, ANR, FATAL EXCEPTION veya process death ile
+  kanıtsız uygulama kapısı hataları retry edilmez ve FAIL kalır.
+- Düzeltme run #103'te (`31519334862`, job `93872230451`) ilk emülatör denemesinde
+  PASS oldu; ikinci deneme gerekmedi. Artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`
+  (ID `9113075092`) içinde `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`,
+  `APP_LOGCAT`, `APP_GATE` ve `RELEASE_GATE` değerlerinin tamamı PASS'tir.
+
+**Durum:** PR #19 release'e merge edildi. Sonraki RC2 #322 yeni bir third-party
+runner pre-script altyapı hatasıyla başarısız oldu.
 
 ---
 
-## 7C. RC2 #322 runner pre-script ADB hatası ve PR #20
+## 7D. RC2 #322 runner pre-script ADB hatası
 
-- RC2 #322: run `31528674369`, job `93903134897`, artifact `9117187216`.
-- Kesin kök neden: `android-emulator-runner`, proje validator'ı başlamadan önce `disable-animations` settings çağrısında `Broken pipe (32)` aldı.
-- Artifact'ta `ANDROID16_*` raporu yoktu; validator hiç başlamadı. Bu uygulama crash/ANR kanıtı değildir.
-- PR #20 her iki Android 16 attempt'inde `disable-animations: false` kullanacak ve KVM erişimini emulator öncesi fail-fast hazırlayacak biçimde düzeltildi.
-- Ara run #106/#108 emulator servis/KVM sorunlarını ortaya çıkardı; uygulama crash/ANR kanıtı yoktu.
-- Son kod değişikliği head'i `18db0393b18fc661cb532a8d4e1b09653bba4259` için AdMob PR run #109 (`31553712368`, job `93981640719`) PASS; artifact `9125437699`.
-- Son docs head'i için run #110 (`31567372445`) PASS oldu.
-- PR #20 Levent onayı sonrasında merge edildi; release head `1a113a6aba98324b668aa5f037fa6b08c7d776c3` oldu.
+- Manuel RC2 run #322 (`31528674369`), job `93903134897`, release SHA
+  `8a99530de7cb370d4db0edff9214ad833a8907cf`, artifact `9117187216`.
+- Emülatör `sys.boot_completed=1` ile boot etti. Kullanılan
+  `reactivecircus/android-emulator-runner@v2` action SHA'sı
+  `a421e43855164a8197daf9d8d40fe71c6996bb0d` idi.
+- Action, proje validator'ını başlatmadan önce `disable-animations: true` nedeniyle
+  kendi `adb shell settings put` komutlarını çalıştırdı. İkinci settings çağrısı
+  `Failure calling service settings: Broken pipe (32)` ile kırıldı ve action
+  emülatörü sonlandırdı.
+- `tools/validate_android16_closed_test.sh` hiç başlamadığı için artifact'ta
+  `ANDROID16_*` raporu yoktur. Bu koşu uygulama crash/ANR kanıtı değildir.
+- `fix/rc2-runner-pre-script-adb-failure` dalında her iki Android 16 attempt'i
+  `disable-animations: false` kullanır. Animasyon kapatma release gate değildir;
+  third-party action'ın project scriptinden önce kırılgan settings çağrısı yapması
+  engellenir. Mandatory app/release gate sözleşmesi değişmez.
+- Fiziksel ek kanıt: SM-S938B, Android 16/API 36. Cihazdaki mevcut Play kurulumu
+  `1.68.13+103` cold-start oldu; PID ve resumed `MainActivity` canlı kaldı, ana
+  ekranda Oyna ve test banner'ı görüldü, Oyna bölümü açıldı ve uygulama paketine
+  ait crash/ANR/FATAL/process-death eşleşmesi bulunmadı.
+- Cihaz mevcut Google oturumundaydı; kullanıcı verisini değiştirmemek için çıkış
+  veya Misafir geçişi yapılmadı. Run #322 artifact'ı universal APK içermedi ve
+  cihaz Play-signing SHA-1'i upload sertifikasından farklı olduğu için v104 in-place
+  kurulumu güvenli biçimde yapılamadı. Bu fiziksel test CI Android 16 gate'in
+  yerine geçmez.
+- Draft PR #20 ilk otomatik CI run #106'da (`31548075906`, job `93964707470`)
+  project validator'a ulaştı. Emülatörün paket servisi ilk kurulumda `Broken
+  pipe`, sonraki iki kurulumda `Can't find service: package`; activity servisi de
+  `Can't find service: activity` verdi. Artifact `9123654768` uygulama crash/ANR
+  kanıtı içermedi.
+- Validator yalnız ilk ifadeyi altyapı saydığından run #106'yı yanlışlıkla
+  `APK_INSTALL_FAILED_WITHOUT_INFRASTRUCTURE_EVIDENCE` olarak sınıflandırdı.
+  `Can't find service: package/activity` artık açık emulator altyapı kanıtıdır;
+  uygulama crash/ANR/FATAL/process-death kontrolü bundan önce çalışmaya devam
+  eder. AdMob PR workflow'undaki iki action attempt'i de validator öncesi settings
+  ADB çağrısı yapmamak için `disable-animations: false` kullanır.
+- Otomatik run #107 (`31549806040`), job `93969855281`: PASS. Her iki action
+  `disable animations: false` ile project validator'a ulaştı; ilk deneme explicit
+  infrastructure quartet'iyle temiz retry istedi, ikinci deneme `APK_INSTALL`,
+  `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE` ve
+  `RELEASE_GATE` kontrollerinin tamamını geçti. Artifact: `9124476985`.
+- Run #108'de iki emülatör de uygulama kurulmadan önce `system_server` kaybı
+  yaşadı; sistem paketlerinde `DeadSystemException` vardı, Bilgi Rotası süreci
+  yoktu. Action her iki denemede `/dev/kvm` izin eksikliği nedeniyle `-accel off`
+  kullandı. Ephemeral runner'da KVM cihazının read/write erişimi artık emülatörden
+  önce fail-fast doğrulanır; gate'ler değişmez.
+- Son kod değişikliği head'i `18db0393b18fc661cb532a8d4e1b09653bba4259`.
+  AdMob PR doğrulaması run #109 (`31553712368`), job `93981640719`: PASS.
+  KVM hazırlama step'i PASS; action logunda `disable animations: false`,
+  `disable Linux hardware acceleration: false`, `Emulator booted.` ve project
+  validator `bash tools/validate_admob_android16_cold_start.sh` başlangıcı
+  doğrulandı. Deneme 1 tüm app/release gate'lerini geçti; temiz deneme 2 gerekli
+  olmadığı için SKIPPED kaldı.
+- Artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9125437699`.
+- Docs-only head için AdMob PR run #110 (`31567372445`) PASS oldu.
+- PR #20 Levent onayıyla release'e merge edildi ve release head
+  `1a113a6aba98324b668aa5f037fa6b08c7d776c3` oldu.
 
-**Durum:** `TAMAMLANDI / MERGE EDİLDİ`. Sonraki doğrulama yeni RC2 ile yapıldı.
+**Durum:** `TAMAMLANDI / PR #20 MERGE EDİLDİ`. Fresh RC2 #323 project validator'a
+ulaştı; sonraki ayrı analytics consent gate hatası aşağıdaki 7E kaydına taşındı.
 
 ---
 
-## 7D. RC2 #323 analytics consent kapısı hatası
+## 7E. RC2 #323 analytics consent popup doğrulama hatası
 
-- Yeni RC2 run #323: `31568589298`, job `94025527635`, release SHA `1a113a6aba98324b668aa5f037fa6b08c7d776c3`, artifact `9130712889`.
-- `APK_INSTALL=PASS` ve `APP_LAUNCH=PASS` oluştu; uygulama PID/MainActivity sağlıklı kaldı ve Bilgi Rotası crash/ANR/FATAL/process-death kanıtı bulunmadı.
-- Artifact sonucu `RESULT=FAIL`, `RELEASE_GATE=FAIL`, `REASON=MANDATORY_APP_GATE_INCOMPLETE` idi.
-- Kesin neden: ilk açılıştaki `Kullanım Analizine İzin Verilsin mi?` penceresi ekranda kalmasına rağmen eski validator tek ADB dokunuşundan sonra `ANALYTICS_CONSENT_HANDLED=PASS` yazdı.
-- #323 OCR kanıtında `Şimdi Değil` aksiyonu yaklaşık `y=1240` bölgesindeydi; eski fallback `760 1065` yanlış yükseklikteydi. Eski `Simdi|Şimdi|Degil|Değil` araması da ilk `Şimdi` eşleşmesini seçebiliyordu.
-- Bu nedenle #323 **uygulama çökmesi değil, validator gate doğrulama hatasıdır**. #323 rerun edilmeyecek.
+- Fresh RC2 #323 (`31568589298`), job `94025527635`, release SHA
+  `1a113a6aba98324b668aa5f037fa6b08c7d776c3`, artifact `9130712889`.
+- Artifact'ta `APK_INSTALL=PASS`, `APP_LAUNCH=PASS` ve eski validator'ın
+  `ANALYTICS_CONSENT_HANDLED=PASS` kaydı bulunur. Buna rağmen `UI_ENTRY` ve
+  `UI_AUTH` kanıtlarında `Kullanım Analizine İzin Verilsin mi?` penceresi hâlâ
+  açıktır.
+- Koşu sonucu `RESULT=FAIL`, `RELEASE_GATE=FAIL`,
+  `REASON=MANDATORY_APP_GATE_INCOMPLETE` oldu.
+- Uygulama PID/MainActivity sağlıklıydı; Bilgi Rotası crash/ANR/FATAL/process-death
+  kanıtı yoktur. #323 uygulama çökmesi değildir.
+- Eski validator `Simdi|Şimdi|Degil|Değil` için tek eşleşmeye dokunup popup'ın
+  gerçekten kapandığını doğrulamadan PASS yazıyordu. #323 OCR kanıtında
+  `Şimdi Değil` aksiyonu yaklaşık y=1240'tadır; eski fallback `760 1065` yanlış
+  yükseklikteydi.
+- Düzeltme dalı: `fix/rc2-analytics-consent-gate`.
+- Son kod değişikliği commit'i `2b247e9c86d00827e4539ac442ff9f242b6931ee` —
+  `fix: verify Android 16 analytics consent dismissal`.
+- `Değil` OCR eşleşmesi önceliklendirildi; `Şimdi` yalnız fallback. Koordinat
+  fallback'i #323 kanıtına göre `785 1240` oldu.
+- Tek ADB dokunuşu artık başarı sayılmaz. Consent bounded retry ile tekrar
+  yakalanır; `ANALYTICS_CONSENT_HANDLED=PASS` yalnız `Google|Misafir` auth ekranı
+  gerçekten görüldükten sonra yazılır.
+- Emulator unhealthy exit `75` korunur; mandatory app/release gate'leri
+  gevşetilmez.
+- Yeni `test/android16_analytics_consent_gate_test.dart` yanlış erken PASS'i,
+  `Değil` önceliğini, fallback koordinatını ve infra exit `75` korumasını kilitler.
+- PR #21 kod CI run #112 (`31573637930`), job `94040784202`: PASS. Analyze ve tüm
+  testler, release APK, package/manifest, KVM hazırlığı, Android 16 cold-start
+  attempt 1, sınıflandırma, final app gate ve artifact upload PASS; attempt 2
+  gerekmedi ve SKIPPED kaldı.
+- #112 artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9132178688`,
+  digest `sha256:2fea7fcc9b3d3acde16d08a56912a980476245d20b34dbb05baac1229460eb7ef`.
+- #112 AdMob cold-start CI'dır; gerçek consent → Misafir → Oyna geniş RC2 kapısının
+  yerine geçmez.
 
-### PR #21 düzeltmesi
-
-- Dal: `fix/rc2-analytics-consent-gate`.
-- Son kod değişikliği commit'i: `2b247e9c86d00827e4539ac442ff9f242b6931ee` — `fix: verify Android 16 analytics consent dismissal`.
-- Değişiklik yalnız `tools/validate_android16_closed_test.sh` ve yeni `test/android16_analytics_consent_gate_test.dart` dosyalarındadır.
-- `Değil` OCR eşleşmesi önceliklidir; `Şimdi` yalnız fallback'tir.
-- Koordinat fallback'i #323 kanıtına göre `785 1240` olarak güncellendi.
-- Tek ADB tap artık PASS sayılmaz; consent bounded retry ile tekrar yakalanır ve `ANALYTICS_CONSENT_HANDLED=PASS` yalnız `Google|Misafir` auth ekranı gerçekten görüldükten sonra yazılır.
-- Emulator unhealthy exit `75` sınıflandırması korunur; mandatory uygulama/release gate'leri gevşetilmedi.
-- Regression testi yanlış erken PASS'i, OCR önceliğini, fallback koordinatını ve infra exit `75` korumasını kilitler.
-- AdMob PR CI run #112 (`31573637930`), job `94040784202`: **PASS**. Analyze+tüm testler, release APK, package/manifest, KVM hazırlığı, Android 16 cold-start attempt 1, classifier, final app gate ve artifact yükleme adımları PASS; attempt 2 gerekmedi ve SKIPPED kaldı.
-- #112 artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9132178688`, digest `sha256:2fea7fcc9b3d3acde16d08a56912a980476245d20b34dbb05baac1229460eb7ef`.
-- #112 AdMob cold-start CI'dır; gerçek `Kullanım Analizi → Misafir → Oyna` geniş RC2 kapısının yerine geçmez.
-
-**Durum:** PR #21 açık/Draft; kod/CI doğrulaması PASS. Levent açık merge onayı bekleniyor. Merge edilmeden yeni RC2 başlatılmayacak; merge sonrasında eski #323 rerun edilmeden **yeni** RC2 oluşturulacak ve geniş Guest/Misafir → Oyna AAB-derived kapısı PASS olmadan Play'e AAB yüklenmeyecek.
+**Durum:** PR #21 açık/Draft; kod CI PASS. Levent açık merge onayı bekleniyor.
+#323 rerun edilmeyecek. Merge sonrasında release head/sürüm yeniden doğrulanacak,
+eski #323 yerine fresh `android-apk.yml` koşusu oluşturulacak ve geniş AAB-derived
+Misafir → Oyna gate'i PASS olmadan Play'e yeni AAB yüklenmeyecektir.
 
 ---
 
 ## 8. Mağaza ve tanıtım
 
-Hazırlanan varlıklar arasında telefon görselleri, tablet planı, PC logosu/ekran görüntüleri, Android XR görselleri ve Instagram kare seti bulunuyor. Tanıtım videolarının 15/30/60 saniyelik birçok seti üretildi; Levent tarafından yetersiz bulundu. Onaylı final tanıtım videosu yoktur.
+Hazırlanan varlıklar arasında:
+
+- 8 telefon görseli
+- Tablet görsel seti planı/çalışması
+- 600 x 400 PC logosu
+- 6 PC ekran görüntüsü
+- 6 Android XR görseli
+- Instagram kare görsel seti
+
+bulunuyor.
+
+Tanıtım videolarının 15/30/60 saniyelik birçok seti üretildi; Levent tarafından yetersiz bulundu. Onaylı final tanıtım videosu yoktur.
 
 Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`
 
@@ -188,12 +363,20 @@ Ayrıntı: `MAGAZA_VE_TANITIM_VARLIKLARI.md`
 
 ## 9. Şu anda ilk yapılacak işler
 
-1. PR #21'in güncel head'i ve son CI sonucu doğrulanmalı; yalnız Levent'in açık onayıyla release'e merge edilmeli.
-2. Merge sonrasında release head ve `pubspec.yaml` yeniden doğrulanmalı.
-3. Eski RC2 #323 rerun edilmeden yeni `android-apk.yml` RC2 koşusu `confirmation=CLOSED_TEST` ile başlatılmalı.
-4. Yeni RC2'de analytics consent penceresinin gerçekten kapanması; ardından `APK_INSTALL`, `APP_LAUNCH`, `GUEST_LOGIN`, `HOME_OYNA`, `APP_PID`, `APP_LOGCAT`, `APP_GATE` ve `RELEASE_GATE` değerlerinin tamamının PASS olması doğrulanmalı.
-5. Yeni RC2 PASS olmadan Play Console'a yeni AAB yüklenmemeli.
-6. Play kapalı test sayacı bir sonraki erişimde tarihli ekran kanıtıyla yeniden doğrulanmalı.
-7. Sheet'teki soru geri bildirimleri gerçek soru kayıtlarıyla incelenmeli; gerçek düzeltme merge edilmeden Sheet satırı kapatılmamalı.
-8. PR #13 ödüllü reklam değişikliğinin fiziksel cihaz kabul testi tamamlanmalı.
-9. 3B tahta çalışmasına, geometri ve 6-rozet eşlemesi çözülmeden dönülmemeli.
+1. PR #21'in güncel head'i ve son CI sonucu doğrulandıktan sonra yalnız Levent'in açık
+   onayıyla release'e merge et.
+2. Merge sonrasında release head ve `pubspec.yaml` sürümünü yeniden doğrula.
+3. Eski RC2 #323'ü rerun etmeden yeni `android-apk.yml` RC2 koşusunu
+   `confirmation=CLOSED_TEST` ile başlat.
+4. Fresh RC2'de analytics consent penceresinin gerçekten kapandığını ve ardından
+   `APK_INSTALL`, `APP_LAUNCH`, `GUEST_LOGIN`, `HOME_OYNA`, `APP_PID`,
+   `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` değerlerinin tamamının PASS olduğunu
+   doğrula. PASS olmadan Play Console'a yeni AAB yükleme.
+5. Play Console'da son doğrulanan 12 geçerli testçi / 4 kesintisiz gün sayacını
+   bir sonraki erişimde tarihli ekran kanıtıyla yeniden doğrula.
+6. Sheet'teki soru geri bildirimlerini soru bankasının gerçek kayıtlarıyla incele.
+7. Açıkça bozuk sorular için release dalından ayrı düzeltme branch'i aç.
+8. Soru düzeltmelerini test et, PR aç, incele ve merge et.
+9. PR #13 ödüllü reklam değişikliğinin fiziksel cihaz kabul testini tamamla;
+   uygulanmış ve CI PASS durumunu geriye götürme.
+10. 3B tahta çalışmasına, geometri ve 6-rozet eşlemesi çözülmeden dönme.
