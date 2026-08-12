@@ -1,0 +1,19 @@
+name: Closed test release doğrulaması
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Kapalı test build'i için CLOSED_TEST yazın
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  closed-test-release:
+    uses: ./.github/workflows/closed-test-release-core.yml
+    with:
+      confirmation: ${{ inputs.confirmation }}
+    secrets: inherit
