@@ -570,7 +570,7 @@ class AdBannerScaffold extends StatelessWidget {
   final Color? backgroundColor;
   final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
-  final Drawer? drawer;
+  final Widget? drawer;
   final Widget? endDrawer;
   final Future<BannerAd?> Function()? bannerLoader;
 
