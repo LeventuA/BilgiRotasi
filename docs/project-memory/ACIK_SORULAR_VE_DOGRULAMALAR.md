@@ -6,22 +6,58 @@
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi` — GitHub'da doğrulandı.
 - Release dalı: `release/final-closed-test-aab-1.68.8`, head
-  `8a99530de7cb370d4db0edff9214ad833a8907cf`, sürüm `1.68.14+104`.
+  `1a113a6aba98324b668aa5f037fa6b08c7d776c3`, sürüm `1.68.14+104`.
 - Kaynak PR #13 ve PR #15 açık/Draft ve merge edilmemiştir; PR #14 merge
   edilmiştir. PR #13/#15 değişiklikleri PR #16 entegrasyonu üzerinden release'e
   ulaşmıştır.
 - PR #19 release'e merge edilmiştir. Sonraki RC2 #322, project validator başlamadan
   önce third-party action'ın `disable-animations` settings çağrısında kırılmıştır.
-- PR #20 açık/Draft ve merge edilmemiştir. Final doğrulanan head
+- PR #20 release'e merge edilmiştir. Son kod değişikliği head
   `18db0393b18fc661cb532a8d4e1b09653bba4259` üzerindeki AdMob PR doğrulaması
   run #109 (`31553712368`), job `93981640719` PASS'tir. KVM hazırlama ve
   `disable animations: false` logdan doğrulanmış; project validator deneme 1'de
-  çalışıp tüm AdMob app/release gate'lerini geçmiştir. Final artifact ID
-  `9125437699`.
+  çalışıp tüm AdMob app/release gate'lerini geçmiştir. Artifact ID `9125437699`.
+  Docs-only head için run #110 (`31567372445`) PASS olmuş; merge sonrası release
+  head `1a113a6aba98324b668aa5f037fa6b08c7d776c3` olmuştur.
+- Fresh RC2 #323 (`31568589298`, job `94025527635`, artifact `9130712889`) project
+  validator'a ulaştı. `APK_INSTALL=PASS` ve `APP_LAUNCH=PASS` oluştu; fakat
+  `Kullanım Analizine İzin Verilsin mi?` penceresi açık kalmasına rağmen eski
+  validator yanlış `ANALYTICS_CONSENT_HANDLED=PASS` verdi. Sonuç
+  `MANDATORY_APP_GATE_INCOMPLETE` oldu; Bilgi Rotası crash/ANR/FATAL/process-death
+  kanıtı yoktur.
+- PR #21 açık/Draft. Dal `fix/rc2-analytics-consent-gate`; son kod değişikliği
+  commit'i `2b247e9c86d00827e4539ac442ff9f242b6931ee`.
+- PR #21 kod CI run #112 (`31573637930`), job `94040784202`: PASS. Analyze+tüm
+  testler, release APK, package/manifest, KVM hazırlığı, Android 16 cold-start
+  attempt 1, classifier, final app gate ve artifact upload PASS; attempt 2
+  SKIPPED. Artifact ID `9132178688`, digest
+  `sha256:2fea7fcc9b3d3acde16d08a56912a980476245d20b34dbb05baac1229460eb7ef`.
+- #112 AdMob cold-start CI'dır; gerçek analytics consent → Misafir → Oyna geniş
+  RC2 gate'inin yerine geçmez.
 - Android geliştirici doğrulaması tamamlandı.
 - Son doğrulanan Play kapalı test değeri: **12 geçerli testçi / 4 kesintisiz gün**.
 - 8 Ağustos kontrolünde bağlı Play Console tarayıcısı bulunmadığı için bu sayaç
   UI'dan yeniden okunamadı; sonraki erişimde tarihli ekran kanıtı alınmalıdır.
+
+## RC2 #323 sonrası açık release doğrulaması
+
+1. PR #21'in proje hafıza güncellemesinden sonraki güncel head CI sonucu PASS
+   olarak doğrulanmalı.
+2. Levent açıkça onaylamadan PR #21 merge edilmemeli.
+3. Merge onayı verilirse merge öncesi base/release head, PR head, mergeability ve
+   checks yeniden doğrulanmalı.
+4. Merge sonrasında release head ve `pubspec.yaml` sürümü yeniden okunmalı.
+5. Eski #323 rerun edilmemeli; yeni `android-apk.yml` workflow_dispatch koşusu
+   `confirmation=CLOSED_TEST` ile oluşturulmalı.
+6. Fresh RC2'de `Kullanım Analizine İzin Verilsin mi?` penceresinin gerçekten
+   kapandığı ve auth ekranında `Google|Misafir` görüldüğü kanıtlanmalı.
+7. Fresh RC2 artifact'ında `APK_INSTALL`, `APP_LAUNCH`, `GUEST_LOGIN`,
+   `HOME_OYNA`, `APP_PID`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` değerlerinin
+   tamamı PASS olmalı.
+8. Attempt 1 açık emulator infrastructure quartet'i üretirse yalnız tanımlı
+   bounded retry ile attempt 2'ye gidildiği doğrulanmalı; uygulama hataları
+   infrastructure olarak yeniden sınıflandırılmamalı.
+9. Fresh RC2 PASS olmadan Play Console'a yeni AAB yüklenmemeli.
 
 ## Analytics consent doğrulaması
 
@@ -70,11 +106,4 @@ Play Console'da bu PR kapsamında değişiklik yapılmayacaktır. Yayın öncesi
 5. Canlı Düello iki güncel kapalı test cihazında uçtan uca test edilmeli.
 6. Telefon, tablet, Chromebook, PC ve XR mağaza varlıklarının Play Console
    yükleme durumu canlı ekrandan doğrulanmalı.
-7. Levent onayıyla PR #20 release'e merge edilirse release head yeniden
-   doğrulanmalı; eski RC2 #322 rerun edilmeden yeni `android-apk.yml`
-   workflow_dispatch koşusu `confirmation=CLOSED_TEST` ile oluşturulmalı. Bu
-   dokümantasyon görevi merge, RC2 veya Play yüklemesi yapmaz.
-8. Yeni RC2'de `disable animations: false`, KVM erişimi ve project validator
-   başlangıcı logdan doğrulanmalı; attempt 1 açık infrastructure quartet üretirse
-   temiz attempt 2'nin gerçekten başladığı ayrıca kanıtlanmalı. Daha geniş
-   Misafir → Oyna AAB-derived kapısı PASS olmadan Play yüklemesi yapılmamalı.
+7. PR #13 ödüllü reklam değişikliğinin fiziksel cihaz kabul testi tamamlanmalı.

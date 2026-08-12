@@ -102,7 +102,7 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 
 ### BR-P0-007 - RC2 runner pre-script ADB hatasını kaldır
 
-**Durum:** UYGULANDI / PR #20 CI PASS / MERGE ONAYI BEKLİYOR
+**Durum:** TAMAMLANDI / PR #20 RELEASE'E MERGE EDİLDİ
 
 - Run #322: `31528674369`; job `93903134897`; artifact `9117187216`.
 - Kesin kök neden: `android-emulator-runner`, proje validator'ından önce
@@ -133,19 +133,71 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
   süreci yoktu. Action `/dev/kvm` izin eksikliği nedeniyle yazılım emülasyonu
   kullanıyordu. PR ve RC2 workflow'ları emulator öncesi KVM read/write erişimini
   fail-fast hazırlar; uygulama/release gate'leri aynen kalır.
-- Final doğrulanan PR head'i: `18db0393b18fc661cb532a8d4e1b09653bba4259`.
-- Final PR CI run #109 (`31553712368`), job `93981640719`: PASS. Logda KVM hazırlama
+- Son kod değişikliği head'i: `18db0393b18fc661cb532a8d4e1b09653bba4259`.
+- PR CI run #109 (`31553712368`), job `93981640719`: PASS. Logda KVM hazırlama
   PASS, `disable animations: false`, `disable Linux hardware acceleration: false`,
   emulator boot ve `bash tools/validate_admob_android16_cold_start.sh` başlangıcı
   doğrulandı. Deneme 1 tüm AdMob uygulama/release gate'lerini geçti; deneme 2
   gerekmedi ve SKIPPED kaldı.
-- Final artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9125437699`.
-- PR #20 açık/Draft ve merge edilmemiştir. Levent açık onayı olmadan merge
-  edilmeyecek; bu kayıt yeni RC2 veya Play yüklemesi yapıldığı anlamına gelmez.
-- Kalan zorunlu yayın doğrulaması: Levent onaylı merge sonrasında release head
-  yeniden doğrulanacak; eski #322 rerun edilmeyecek; yeni `android-apk.yml`
-  workflow_dispatch koşusu `confirmation=CLOSED_TEST` ile oluşturulacak ve daha
-  geniş Misafir → Oyna AAB-derived kapısı PASS olmadan Play yüklemesi yapılmayacak.
+- Artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9125437699`.
+- Docs-only head için run #110 (`31567372445`) PASS oldu.
+- PR #20 Levent onayıyla release'e merge edildi; release head
+  `1a113a6aba98324b668aa5f037fa6b08c7d776c3` oldu.
+
+**Bitti ölçütü:** PR #20 merge edildi ve fresh RC2 project validator'a ulaştı.
+Fresh RC2'da ortaya çıkan ayrı analytics consent gate hatası BR-P0-008'e taşındı.
+
+---
+
+### BR-P0-008 - RC2 analytics consent popup kapısını doğrula
+
+**Durum:** UYGULANDI / PR #21 KOD CI PASS / MERGE ONAYI BEKLİYOR
+
+- Fresh RC2 #323: run `31568589298`; job `94025527635`; artifact `9130712889`;
+  release SHA `1a113a6aba98324b668aa5f037fa6b08c7d776c3`.
+- Artifact'ta `APK_INSTALL=PASS`, `APP_LAUNCH=PASS`; uygulama PID/MainActivity
+  sağlıklıdır ve Bilgi Rotası crash/ANR/FATAL/process-death kanıtı yoktur.
+- Sonuç: `RESULT=FAIL`, `RELEASE_GATE=FAIL`,
+  `REASON=MANDATORY_APP_GATE_INCOMPLETE`.
+- Kesin kök neden: `Kullanım Analizine İzin Verilsin mi?` penceresi açık kalırken
+  eski validator tek ADB dokunuşundan sonra `ANALYTICS_CONSENT_HANDLED=PASS` yazdı.
+- #323 OCR kanıtında `Şimdi Değil` aksiyonu yaklaşık y=1240'tadır; eski fallback
+  `760 1065` yanlış bölgedeydi. Eski birleşik OCR pattern'i ilk `Şimdi` eşleşmesini
+  seçebiliyordu.
+- Dal: `fix/rc2-analytics-consent-gate`.
+- Son kod değişikliği commit'i: `2b247e9c86d00827e4539ac442ff9f242b6931ee`
+  — `fix: verify Android 16 analytics consent dismissal`.
+- `Değil` OCR eşleşmesi önceliklidir; `Şimdi` yalnız fallback. Koordinat fallback'i
+  #323 kanıtına göre `785 1240`.
+- Tek ADB tap artık PASS sayılmaz; consent bounded retry ile tekrar yakalanır.
+  `ANALYTICS_CONSENT_HANDLED=PASS` yalnız `Google|Misafir` auth ekranı gerçekten
+  görüldükten sonra yazılır.
+- Emulator unhealthy exit `75` korunur; mandatory app/release gate'leri
+  gevşetilmez.
+- Regression testi yanlış erken PASS'i, OCR önceliğini, fallback koordinatını ve
+  infra exit `75` korumasını kilitler.
+- PR #21 AdMob PR CI #112 (`31573637930`), job `94040784202`: PASS. Analyze+tüm
+  testler, release APK, package/manifest, KVM hazırlığı, Android 16 cold-start
+  attempt 1, classifier, final app gate ve artifact upload PASS; attempt 2
+  gerekmedi ve SKIPPED kaldı.
+- Artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9132178688`, digest
+  `sha256:2fea7fcc9b3d3acde16d08a56912a980476245d20b34dbb05baac1229460eb7ef`.
+- #112 AdMob cold-start CI'dır; gerçek consent → Misafir → Oyna geniş RC2
+  doğrulamasının yerine geçmez.
+- PR #21 açık/Draft; Levent açık onayı olmadan merge edilmeyecek.
+- #323 rerun edilmeyecek.
+
+**Bitti ölçütü:**
+
+- PR #21'in güncel head CI'ı PASS.
+- Levent açık onayıyla PR #21 release'e merge edildi.
+- Merge sonrasında release head/sürüm yeniden doğrulandı.
+- Eski #323 rerun edilmeden fresh `android-apk.yml` koşusu
+  `confirmation=CLOSED_TEST` ile oluşturuldu.
+- Fresh RC2'de analytics consent penceresi gerçekten kapandı.
+- `APK_INSTALL`, `APP_LAUNCH`, `GUEST_LOGIN`, `HOME_OYNA`, `APP_PID`,
+  `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` tamamı PASS.
+- Bu gate PASS olmadan Play'e AAB yüklenmedi.
 
 ---
 
@@ -153,10 +205,10 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 
 ### BR-P1-001 - GitHub canlı envanteri
 
-**11 Ağustos 2026 doğrulaması:**
+**12 Ağustos 2026 doğrulaması:**
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi`
-- Release head: `8a99530de7cb370d4db0edff9214ad833a8907cf`
+- Release head: `1a113a6aba98324b668aa5f037fa6b08c7d776c3`
 - Release sürümü: `1.68.14+104`
 - PR #13: açık / Draft / merge edilmedi; ödüllü reklam işi UYGULANDI / CI PASS /
   fiziksel cihaz kabulü bekliyor
@@ -164,6 +216,8 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 - PR #15: kaynak PR açık / Draft / merge edilmedi; değişiklikleri PR #16 üzerinden
   release'e ulaştı; head canlı GitHub PR metadata’sından doğrulanır
 - PR #19: 11 Ağustos 2026'da release'e merge edildi
+- PR #20: release'e merge edildi; release head `1a113a6...`
+- PR #21: açık/Draft; son kod değişikliği `2b247e9...`; kod CI #112 PASS
 - Android geliştirici doğrulaması: tamamlandı
 - Son Play bilgisi: 12 geçerli testçi / 4 kesintisiz gün; UI yeniden okuması açık
 
