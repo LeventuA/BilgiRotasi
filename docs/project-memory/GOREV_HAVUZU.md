@@ -45,7 +45,7 @@ Liste: `SORU_GERI_BILDIRIM_HAVUZU.md`
 
 ### BR-P0-004 - Ödüllü reklam hak sistemi
 
-**Durum:** RELEASE'E ENTEGRE / PR #25 KOD CI PASS / FİZİKSEL KABUL BEKLİYOR
+**Durum:** RELEASE'E ENTEGRE / PR #25 MERGED / FRESH RC2 + FİZİKSEL KABUL BEKLİYOR
 
 Kesin sözleşme:
 
@@ -57,23 +57,25 @@ Kesin sözleşme:
 
 Kaynak Draft PR #13 açık ve merge edilmemiştir. İşlevsel oyun-başına hak sistemi PR #16 üzerinden release'e ulaşmıştır.
 
-Yeni kabul bulgusu:
+Closed-test kabul bulgusu ve düzeltme:
 
-- `1.68.14+104` kapalı-test AAB'si `FIREBASE_ENVIRONMENT=production` + `ADMOB_ENVIRONMENT=closed_test` kullanır.
+- `1.68.14+104` kapalı-test AAB `FIREBASE_ENVIRONMENT=production` + `ADMOB_ENVIRONMENT=closed_test` kullanır.
 - Eski `SupportRewardCard`, production Firebase açıkken +10 XP kartını kapattığı için RC2 #326 build'inde fiziksel rewarded kabul yapılamıyordu.
 - PR #25 `fix/closed-test-rewarded-acceptance`, closed-test Google demo reklam profilini production Firebase ile açar; gerçek production reklam profilini SSV cutover tamamlanana kadar fail-closed tutar.
-- Son işlevsel PR #25 kod head'i: `2cc47846b42cf98b4f8303bb86148cc475060824`.
+- Son işlevsel kod head'i: `2cc47846b42cf98b4f8303bb86148cc475060824`.
 - Kod-head CI #128: run `31635781505`, job `94245596601`, **SUCCESS**.
-- Artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9157235566`, digest `sha256:e7ab0d5b683454f79c4f1a9555fe027906fa5333ec1b016609452f68b384e5c9`.
-- Android 16 attempt 1 PASS, attempt 2 SKIPPED; final AdMob app/release gate PASS; PID `1871`; app crash/ANR/FATAL/process-death yok.
+- Final PR head: `f8939b6f6aa950bda48bedf8b87dc0a51c761916`.
+- Final CI #129: run `31637213948`, job `94250454471`, **SUCCESS**.
+- Final artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9157834250`, digest `sha256:3b2c0347b3d194f84618f8c02863dcd5ad21c76cc7ce7b72b906f0314c8f8c25`.
+- PR #25 Levent'in açık onayıyla release'e merge edildi: `7a50a1997c6eade985a3933fd019055dd6a2c791`.
 
 **Bitti ölçütü:**
 
-- PR #25 final project-memory head CI PASS.
-- Levent açık onayıyla PR #25 release'e merge edildi.
-- Merge sonrası fresh geniş RC2 PASS.
-- Güncel Play closed-test build'inde Google demo rewarded reklamı fiziksel cihazda tamamlandı.
-- +10 XP yalnız tamamlanan reklamda verildi; aynı gameId ikinci ödül vermedi; başarısız reklam sonrası hak doğru kaldı.
+- [x] PR #25 final project-memory head CI PASS.
+- [x] Levent açık onayıyla PR #25 release'e merge edildi.
+- [ ] Merge sonrası fresh geniş RC2 PASS.
+- [ ] Güncel Play closed-test build'inde Google demo rewarded reklamı fiziksel cihazda tamamlandı.
+- [ ] +10 XP yalnız tamamlanan reklamda verildi; aynı gameId ikinci ödül vermedi; başarısız reklam sonrası hak doğru kaldı.
 
 ---
 
@@ -127,23 +129,17 @@ Yeni kabul bulgusu:
 
 ### BR-P0-009 - Post-auth Misafir tap yarışını kaldır ve final Android 16 RC2 gate'ini geçir
 
-**Durum:** TAMAMLANDI / PR #23 RELEASE'E MERGE EDİLDİ / RC2 #326 PASS
+**Durum:** TARİHSEL KABUL TAMAMLANDI / PR #23 MERGED / RC2 #326 PASS / GÜNCEL RELEASE İÇİN YENİ RC2 GEREKİYOR
 
 - RC2 #325'te auth sonrası Home bekleme döngüsü `Misafir` OCR tokenına ikinci ADB tap üretebiliyordu.
 - Flutter navigasyonu değiştirilmedi; validator post-auth aşaması salt-okunur hale getirildi.
 - PR #23 kod commit'i: `55879a3c5b29d31b25bd0402f8ed623e8afab566`.
-- PR #23 merge commit'i / son işlevsel release commit'i: `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2`.
-- Docs-only PR #24 sonrası release HEAD: `bb988e7e4d60a41c1711e70d2ec6125e7136b0d5`.
-- Sürüm: `1.68.14+104`.
+- PR #23 merge commit'i: `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2`.
 - Fresh RC2 #326: run `31614662061`, job `94174350962`, **SUCCESS**.
-- Android 16 deneme 1 PASS; temiz deneme 2 gerekmedi ve SKIPPED.
-- Artifact: `BilgiRotasi-1.68.14-104-closed-test-release`, ID `9149285776`.
-- Artifact digest: `sha256:c69b44f40152ecc256ea5ace57c997bf3c8dafb8c051cdfaf69df288837fd56e`.
-- `ANDROID16_APP_GATE.txt`: `APK_INSTALL`, `APP_LAUNCH`, `ANALYTICS_CONSENT_HANDLED`, `GUEST_LOGIN`, `HOME_OYNA`, `APP_PID`, `APP_LOGCAT`, `APP_GATE`, `POST_GATE_LOGCAT_BOUNDARY` = PASS.
-- `ANDROID16_VALIDATION_RESULT.txt`: `RESULT=PASS`, `RELEASE_GATE=PASS`, `APP_GATE=PASS`, `SETTINGS_TUTORIAL_DIAGNOSTIC=PASS`.
-- PID `3566`; app crash/ANR/FATAL/process-death yok.
+- Artifact: `BilgiRotasi-1.68.14-104-closed-test-release`, ID `9149285776`, digest `sha256:c69b44f40152ecc256ea5ace57c997bf3c8dafb8c051cdfaf69df288837fd56e`.
+- `GUEST_LOGIN`, `HOME_OYNA`, `APP_GATE`, `RELEASE_GATE` ve diğer mandatory gate'ler PASS; PID `3566`; app crash/ANR/FATAL/process-death yok.
 
-**Bitti ölçütü:** Karşılandı. RC2 debugging'e geri dönülmez. Ancak PR #25 merge edilirse yeni işlevsel SHA için fresh RC2 gerekir; #326 rerun edilmez.
+**Güncel sınır:** PR #25 sonrasında release HEAD `7a50a199...` oldu. #326 yalnız `ec20e66...` SHA'sını doğrular; güncel release için eski run rerun edilmeden fresh geniş RC2 gerekir.
 
 ---
 
@@ -151,20 +147,21 @@ Yeni kabul bulgusu:
 
 ### BR-P1-001 - GitHub canlı envanteri
 
-**12 Ağustos 2026 doğrulaması:**
+**13 Ağustos 2026 doğrulaması:**
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi`
 - Release branch: `release/final-closed-test-aab-1.68.8`
-- Release HEAD: `bb988e7e4d60a41c1711e70d2ec6125e7136b0d5` (docs-only PR #24)
-- Son işlevsel release commit'i: `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2`
+- Release HEAD / son işlevsel release: `7a50a1997c6eade985a3933fd019055dd6a2c791` (PR #25)
 - Release sürümü: `1.68.14+104`
-- PR #7: açık / Draft / base `main`; merge edilmeyecek.
+- `main` HEAD: `ab9b4f3797a02b92f98f92e439b7edc4c608fec3` (PR #26; yalnız workflow görünürlüğü)
+- `main` yayın kaynağı değildir.
+- PR #7: açık / Draft / release→main; merge edilmeyecek.
 - PR #12: açık; 3B deterministik geometri.
 - PR #13: açık / Draft; kaynak rewarded PR.
 - PR #15: açık / Draft; telemetri işi PR #16 üzerinden release'e ulaştı.
-- PR #21, #23, #24: merge edildi.
-- PR #25: açık / Draft; kod-head CI #128 PASS.
-- RC2 #326: SUCCESS; PR #25 merge edilirse yeni kod için fresh RC2 gerekir.
+- PR #21, #23, #24, #25 merge edildi.
+- PR #26 main'e merge edildi; manual fresh RC2 workflow'u artık Actions listesinde ACTIVE.
+- RC2 #326 SUCCESS fakat güncel `7a50a199...` release SHA'sı için stale; fresh RC2 bekleniyor.
 
 ---
 
@@ -219,7 +216,7 @@ Canlı servisten doğrulanacak:
 
 **Durum:** AÇIK
 
-Türkiye dışı uygun test bölgesi/debug yöntemiyle UMP onay formunu doğrula. Analytics consent ile UMP consent birbirine karıştırılmayacak.
+Türkiye dışı uygun test bölgesi/debug yöntemiyle UMP onay formını doğrula. Analytics consent ile UMP consent birbirine karıştırılmayacak.
 
 ---
 
@@ -260,15 +257,13 @@ Doğrulanan kaynak davranışı:
 - `lastLoginReward` yazılır
 - `XpProgressService._award(reward, 'Günlük giriş serisi • N. gün')` çağrılır
 
-RC2 #325 `+20 XP • Günlük giriş serisi • 1. gün` ekranı bu kaynakla uyumludur.
-
 **Bitti ölçütü:**
 
 - Ayrı branch'te günlük giriş XP ödülü kaldırıldı; gerekiyorsa yalnız streak istatistiği ürün kararına uygun biçimde korundu.
 - Retention/XP testleri ödül verilmemesini kilitledi.
 - CI PASS.
 - Ayrı PR inceleme/merge akışı tamamlandı.
-- PR #25 / RC2 validator değişiklikleriyle karıştırılmadı.
+- RC2/rewarded workflow değişiklikleriyle karıştırılmadı.
 
 ---
 
@@ -314,6 +309,47 @@ RC2 #326 artifact'ındaki gerçek AAB ve kalite raporları `1.68.14+104` / 8.710
 - Eski devir kaydında `17:E1:EC:6C:77:4F:B4:59:63:FA:7A:76:51:7D:21:B2:BB:7C:81:1F` Play App Signing olarak geçer.
 
 **Bitti ölçütü:** Play Console uygulama imzalama ve upload sertifika SHA-1 ekranı ile Firebase Android app fingerprint listesi karşılaştırılır; üç değerin rolleri kesin kaydedilir ve yanlış/eski test/doküman varsa ayrı PR ile düzeltilir.
+
+---
+
+### BR-P1-011 - Fresh RC2 manuel workflow görünürlüğünü default branch'te etkinleştir
+
+**Durum:** TAMAMLANDI / PR #26 MAIN'E MERGE EDİLDİ
+
+Kök neden:
+
+- `closed-test-release.yml` ve `closed-test-release-core.yml` yalnız release dalındaydı.
+- GitHub Actions manuel workflow UI listesinde default branch'te bulunmayan wrapper görünmüyordu.
+
+Uygulama:
+
+- Branch: `ci/expose-closed-test-release-workflow`
+- Commit: `3dc820502ba131258824b27776f292a67e85d54e` — `ci: expose closed-test release workflow on main`
+- PR #26 merge commit: `ab9b4f3797a02b92f98f92e439b7edc4c608fec3`
+- Değişiklik yalnız `.github/workflows/closed-test-release.yml` ve `.github/workflows/closed-test-release-core.yml`.
+- Release'teki ve RC2 #326 source SHA'sındaki kanıtlanmış bloblar byte-for-byte kullanıldı.
+- Wrapper SHA: `f8fe355ad547c7fc4a5ec48c2809d65796b402df`
+- Core SHA: `3afa8793d3f437c63d690c86f3b6dbaaca2ce83a`
+- Quality Checks #292: run `31642575342`, job `94268451360`, **SUCCESS**.
+- `Closed test release çekirdeği`: workflow ID `333114585`, **ACTIVE**.
+- `Closed test release doğrulaması`: workflow ID `333114587`, **ACTIVE**.
+- Release branch ve sürüm değişmedi; PR #7 Draft kaldı.
+
+Eski `apply-game-save-isolation-v4.yml` push run `31642536946` config-level failure üretti ve **0 job** çalıştırdı. Bu ayrı tarihsel workflow borcudur ve PR #26'nın iki dosyalık değişimiyle ilişkili değildir.
+
+**Bitti ölçütü:** Karşılandı. `Closed test release doğrulaması` Actions listesinde ACTIVE ve release branch seçilerek `CLOSED_TEST` ile manuel tetiklenebilir.
+
+---
+
+### BR-P1-012 - Eski `apply-game-save-isolation-v4.yml` config-level workflow hatasını incele
+
+**Durum:** AÇIK / AYRI TEKNİK BORÇ
+
+- PR #26 branch push'unda run `31642536946` kırmızı oluştu.
+- Run'da **0 job** vardır; uygulama, build veya test çalışmamıştır.
+- Bu hata PR #26'nın closed-test workflow eklemesiyle ilişkilendirilmemeli ve fresh RC2 işini bloke etmemelidir.
+
+**Bitti ölçütü:** Workflow dosyası ve tarihsel kullanım amacı ayrı branch'te incelenir; gerekiyorsa güvenli biçimde düzeltilir veya artık kullanılmıyorsa kontrollü kaldırma kararı alınır. Uygulama/release koduyla karıştırılmaz.
 
 ---
 

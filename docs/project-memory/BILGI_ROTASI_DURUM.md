@@ -1,6 +1,6 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 12 Ağustos 2026
+**Kesim noktası:** 13 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
 ---
@@ -9,30 +9,32 @@
 
 | Alan | Güncel değer | Durum | Kaynak |
 |---|---|---|---|
-| Kanonik repo | `ZMilaStudio/BilgiRotasi` | DOĞRULANDI | 12 Ağustos 2026 GitHub canlı sorgusu |
+| Kanonik repo | `ZMilaStudio/BilgiRotasi` | DOĞRULANDI | 13 Ağustos 2026 GitHub canlı sorgusu |
 | Android paket adı | `com.leventua.bilgirotasi` | DOĞRULANDI | Release artifact / source |
 | Yayın/release dalı | `release/final-closed-test-aab-1.68.8` | DOĞRULANDI | GitHub canlı branch |
-| Release HEAD | `bb988e7e4d60a41c1711e70d2ec6125e7136b0d5` | DOĞRULANDI | GitHub canlı branch; docs-only PR #24 merge |
-| Son işlevsel release commit'i | `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2` | DOĞRULANDI | PR #23 merge; RC2 #326 source SHA |
+| Release HEAD | `7a50a1997c6eade985a3933fd019055dd6a2c791` | DOĞRULANDI | PR #25 merge |
+| Son işlevsel release commit'i | `7a50a1997c6eade985a3933fd019055dd6a2c791` | DOĞRULANDI | PR #25 merge |
 | Gerçek paket sürümü | `1.68.14+104` | DOĞRULANDI | Release `pubspec.yaml` |
+| `main` HEAD | `ab9b4f3797a02b92f98f92e439b7edc4c608fec3` | DOĞRULANDI | PR #26 merge; yalnız workflow görünürlüğü |
 | `main` dalı | Güncel yayın kaynağı değil | KESİN KARAR | `KARARLAR.md` |
-| PR #7 | Açık / Draft / base `main` | DOĞRULANDI | GitHub canlı PR |
+| PR #7 | Açık / Draft / release → `main` | DOĞRULANDI | GitHub canlı PR; merge edilmeyecek |
 | PR #12 | Açık; 3B deterministik geometri | DOĞRULANDI | GitHub canlı PR |
 | PR #13 | Açık / Draft; kaynak ödüllü reklam PR'ı | DOĞRULANDI | GitHub canlı PR |
 | PR #15 | Açık / Draft; telemetri işi PR #16 üzerinden release'e ulaştı | DOĞRULANDI | GitHub canlı PR |
-| PR #21 | Merge edildi; merge commit `2ce47112fce1a0c462ae9f95e8187a6e1d148581` | DOĞRULANDI | GitHub canlı PR |
-| PR #23 | Merge edildi; merge commit `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2` | DOĞRULANDI | GitHub canlı PR |
-| PR #24 | Merge edildi; docs-only merge commit `bb988e7e4d60a41c1711e70d2ec6125e7136b0d5` | DOĞRULANDI | GitHub canlı PR |
-| PR #25 | Açık / Draft; closed-test ödüllü reklam kabul kapısı | DOĞRULANDI | GitHub canlı PR / CI #128 |
+| PR #21 | Merge edildi; `2ce47112fce1a0c462ae9f95e8187a6e1d148581` | DOĞRULANDI | GitHub |
+| PR #23 | Merge edildi; `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2` | DOĞRULANDI | GitHub |
+| PR #24 | Merge edildi; docs-only `bb988e7e4d60a41c1711e70d2ec6125e7136b0d5` | DOĞRULANDI | GitHub |
+| PR #25 | Merge edildi; `7a50a1997c6eade985a3933fd019055dd6a2c791` | DOĞRULANDI | GitHub / final CI #129 |
+| PR #26 | Merge edildi; `ab9b4f3797a02b92f98f92e439b7edc4c608fec3` | DOĞRULANDI | GitHub; manual RC2 workflow'unu default branch'te görünür yaptı |
 | Android geliştirici doğrulaması | Tamamlandı | RAPORLANDI | Levent'in Play doğrulaması |
 
 **Kural:** Branch adındaki `1.68.8`, paket sürümü değildir. Gerçek sürüm her zaman hedef dalın `pubspec.yaml` dosyasından okunur.
 
 ---
 
-## 2. RC2 #326 - final Android 16 release gate
+## 2. RC2 #326 - tarihsel kabul kanıtı ve güncel sınır
 
-Fresh manuel RC2:
+Fresh manuel RC2 #326:
 
 - Workflow run: `31614662061`
 - Run number: `326`
@@ -48,7 +50,6 @@ Artifact:
 
 - ID: `9149285776`
 - Ad: `BilgiRotasi-1.68.14-104-closed-test-release`
-- Boyut: yaklaşık 79 MB
 - Digest: `sha256:c69b44f40152ecc256ea5ace57c997bf3c8dafb8c051cdfaf69df288837fd56e`
 - AAB: `BilgiRotasi-1.68.14-104-closed-test.aab`
 - Paket: `com.leventua.bilgirotasi`
@@ -73,13 +74,9 @@ Artifact:
 - `APP_GATE=PASS`
 - `SETTINGS_TUTORIAL_DIAGNOSTIC=PASS`
 
-Canlı Bilgi Rotası PID: `3566`.
+PID `3566`; artifact log taramasında Bilgi Rotası paketine ait crash, ANR, `FATAL EXCEPTION` veya process death kanıtı bulunmadı.
 
-Artifact log taramasında Bilgi Rotası paketine ait crash, ANR, `FATAL EXCEPTION` veya process death kanıtı bulunmadı.
-
-**Durum:** Android 16 mandatory release gate `DOĞRULANDI / TAMAMLANDI`. Eski RC2 #319/#321/#322/#323/#325 yalnız tarihçe ve regression bağlamıdır; yeniden debug hedefi değildir.
-
-**Önemli:** PR #25 işlevsel uygulama kodu getirir. PR #25 merge edilirse RC2 #326 yeni kodu doğrulamaz; eski #326 rerun edilmeden yeni bir fresh RC2 çalıştırılmalıdır.
+**Güncel sınır:** PR #25 işlevsel uygulama kodu release'e `7a50a199...` ile merge edildi. Bu nedenle RC2 #326 artık **güncel release HEAD için kabul kanıtı değildir**. Eski #326 rerun edilmeyecek; `7a50a199...` üzerinde yeni bir fresh geniş RC2 çalıştırılacak ve Guest → Home → Oyna dahil tüm zorunlu gate'ler yeniden PASS olmalıdır.
 
 ---
 
@@ -97,8 +94,7 @@ Canlı source ve artifact incelemesi şu kök nedeni gösterdi:
 PR #23 ile post-auth Home döngüsü salt-okunur yapıldı; ikinci `Misafir` tap kaldırıldı. Mandatory `Oyna` gate'i, emulator health sınıflandırması ve gerçek app crash/ANR fail-fast sözleşmesi değiştirilmedi.
 
 PR #23 kod commit'i: `55879a3c5b29d31b25bd0402f8ed623e8afab566`.
-
-Bu düzeltme fresh RC2 #326'da gerçek AAB-derived `Misafir → Home → Oyna` zinciriyle doğrulandı.
+Bu düzeltme RC2 #326'da gerçek AAB-derived `Misafir → Home → Oyna` zinciriyle doğrulandı.
 
 ---
 
@@ -108,11 +104,11 @@ Bu düzeltme fresh RC2 #326'da gerçek AAB-derived `Misafir → Home → Oyna` z
 - Son doğrulanan Play kapalı test durumu **12 geçerli testçi / 4 kesintisiz gün**dür.
 - Bu değer güncel Play Console UI'sından yeniden okunmadan ileri gün sayısı tahmin edilmeyecek.
 - Android geliştirici doğrulaması tamamlandı.
-- `1.68.14+104` için RC2 #326 teknik engeli kalkmıştır.
-- `1.68.14+104` AAB'nin Play kapalı test kanalına gerçekten yüklenip yüklenmediği bu kesim noktasında **DOĞRULANACAK** durumundadır.
-- PR #25 merge edilirse yeni işlevsel SHA için fresh RC2 PASS olmadan Play'e yeni AAB yüklenmez.
+- `1.68.14+104` için eski RC2 #326 teknik kanıtı yalnız `ec20e66...` SHA'sına aittir.
+- PR #25 sonrası güncel release `7a50a199...` için fresh RC2 PASS olmadan yeni AAB Play'e yüklenmez.
+- `1.68.14+104` AAB'nin Play kapalı test kanalına daha önce gerçekten yüklenip yüklenmediği canlı Console'dan **DOĞRULANACAK** durumundadır. Eğer versionCode 104 zaten yüklenmişse aynı versionCode yeniden yüklenemez; sürüm artırımı ayrı kontrollü görev olur.
 
-**Durum:** Kapalı test hattı aktif; yeni AAB yükleme kararı öncesi canlı Firebase/Play kabul kontrolleri açık.
+**Durum:** Kapalı test hattı aktif; fresh RC2 ve canlı Firebase/Play kabul kontrolleri açık.
 
 ---
 
@@ -124,7 +120,7 @@ Repo/source envanteri:
 
 - Android package: `com.leventua.bilgirotasi`.
 - `firebase.json` Functions için Node 20, Firestore rules/indexes ve emulator yapılandırması içerir.
-- Repoda `.firebaserc` yoktur. Her eventual deploy açıkça `--project bilgi-rotasi-f255d` kullanmadan yapılmamalıdır.
+- Repoda `.firebaserc` yoktur. Eventual deploy açıkça `--project bilgi-rotasi-f255d` kullanmadan yapılmamalıdır.
 - Functions region istemci tarafında `europe-west1` olarak sabittir.
 - `firestore.indexes.json` içinde 3 composite index vardır:
   1. `live_duel_queue`: `questionCount ASC`, `status ASC`, `ratingBucket ASC`
@@ -132,19 +128,14 @@ Repo/source envanteri:
   3. `live_duel_matches`: `playerUids ARRAY_CONTAINS`, `resultProcessed ASC`
 - App Check production provider'ı Play Integrity'dir; dev/test profili debug provider kullanır.
 - RC2 #326 source/build doğrulamasında Production Firebase profile, Cloud Functions testleri ve Firestore Rules emulator testleri PASS olmuştur.
-- RC2 artifact'ı uzak production veritabanını okumadığını/değiştirmediğini belirtir; bu nedenle canlı Functions/Rules/Indexes deploy durumu **DOĞRULANACAK** olarak kalır.
-
-Bilinen/doğrulanmış geçmiş:
-
-- Daha önce yanlış Dizily Google Cloud bağlantısı kaldırılıp doğru Bilgi Rotası projesi bağlandı.
-- Bir aşamada Firestore App Check ekranında `66/66` ve `%100 doğrulanmış istek` görüldü.
+- RC2 artifact'ı uzak production veritabanını okumadığını/değiştirmediğini belirtir; canlı Functions/Rules/Indexes deploy durumu bundan çıkarılamaz.
 
 Canlı servisten yeniden doğrulanacaklar:
 
 - Google Auth provider
-- Android SHA kayıtları ve hangi sertifikanın hangi amaçla kullanıldığı
-- Functions deploy sürümü/names/region
-- Firestore indexes ve READY durumu
+- Android SHA kayıtları ve roller
+- Functions deployed names/revisions/region
+- Firestore indexes READY durumu
 - Firestore rules aktif sürümü
 - App Check / Play Integrity enforcement ve güncel metrikler
 
@@ -162,13 +153,11 @@ Güncel release testi `test/firebase_play_signing_profile_test.dart`, Play-signi
 
 `26:3C:46:C6:AE:9F:27:C3:B3:38:10:FA:89:8C:D7:EB:93:73:CC:F4`
 
-Bu değer 1 Ağustos 2026 tarihli `972042915d1ef8294335e4372f8550cbdf6213bb` commit'iyle bilinçli biçimde teste eklenmiştir.
-
 Eski devir/proje notlarında Play App Signing SHA-1 olarak ayrıca şu değer bulunur:
 
 `17:E1:EC:6C:77:4F:B4:59:63:FA:7A:76:51:7D:21:B2:BB:7C:81:1F`
 
-Repo içinde `17:E1...` değeri doğrulanamadı. Bu nedenle `26:3C...` ile `17:E1...` arasındaki fark tahminle kapatılmayacak. Play Console'daki **Uygulama imzalama anahtarı sertifikası** ve **Yükleme anahtarı sertifikası** SHA-1 değerleri, ardından Firebase Android app fingerprint listesi canlı ekranla karşılaştırılacaktır.
+Repo içinde `17:E1...` değeri doğrulanamadı. `26:3C...` ile `17:E1...` arasındaki fark tahminle kapatılmayacak. Play Console'daki **Uygulama imzalama anahtarı sertifikası** ve **Yükleme anahtarı sertifikası** SHA-1 değerleri, ardından Firebase Android app fingerprint listesi canlı ekranla karşılaştırılacaktır.
 
 ---
 
@@ -200,45 +189,34 @@ Her soru düzeltmesinde soru metni, dört seçenek, doğru indeks, açıklama, k
 - her tamamlanan oyun bir ödüllü reklam hakkı üretir
 - aynı tamamlanmış oyun ikinci ödülü vermez
 
-PR #16 ile yerel oyun-başına hak sistemi release'e taşındı. Ancak `1.68.14+104` kapalı-test AAB'si `FIREBASE_ENVIRONMENT=production` + `ADMOB_ENVIRONMENT=closed_test` ile üretildiği halde eski `SupportRewardCard` production Firebase açıkken +10 XP kartını kapatıyordu. Bu nedenle BR-P0-004 fiziksel kapalı-test ödül kabulü mevcut RC2 #326 build'inde yapılamıyordu.
-
 ### PR #25 - closed-test ödüllü reklam kabul kapısı
 
-Branch: `fix/closed-test-rewarded-acceptance`.
-
-Son işlevsel kod head'i: `2cc47846b42cf98b4f8303bb86148cc475060824`.
+Kök neden: `1.68.14+104` closed-test AAB `FIREBASE_ENVIRONMENT=production` + `ADMOB_ENVIRONMENT=closed_test` ile üretilmesine rağmen eski `SupportRewardCard`, production Firebase açıkken +10 XP kartını kapatıyordu.
 
 Çözüm:
 
-- Production Firebase + `closed_test` AdMob profilinde Google demo rewarded reklamı ve yerel oyun-başına +10 XP kabul akışı açık olur.
-- Gerçek `ADMOB_ENVIRONMENT=production` profilinde, Firebase profili yanlışlıkla dev/test olsa bile +10 XP destek ödülü fail-closed kalır.
-- Oyun-başına tek hak, aynı oyun ikinci ödül yok ve başarısız reklam sonrası hakkın korunması değişmez.
+- production Firebase + `closed_test` AdMob => Google demo rewarded + yerel oyun-başına +10 XP açık
+- production Firebase + production AdMob => kapalı
+- dev/test Firebase + production AdMob => kapalı
+- dev/test Firebase + test AdMob => test/dev davranışı açık
+- oyun-başına tek hak, aynı oyun ikinci ödül yok ve başarısız reklam sonrası hakkın korunması değişmedi
 
-Güncel kod-head CI #128:
+Kanıt:
 
-- Run: `31635781505`
-- Job: `94245596601`
-- Sonuç: **SUCCESS**
-- Analyzer + tüm Flutter testleri: PASS
-- İmzalı test-reklam kimlikli release APK: PASS
-- Paket/birleşik manifest: PASS
-- KVM hazırlığı: PASS
-- Android 16 deneme 1: PASS
-- Deneme 2: SKIPPED; gerekmedi
-- Final AdMob Android 16 app gate: PASS
-- Artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`
-- Artifact ID: `9157235566`
-- Digest: `sha256:e7ab0d5b683454f79c4f1a9555fe027906fa5333ec1b016609452f68b384e5c9`
-- Artifact `ADMOB_ANDROID16_APP_GATE.txt`: `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE` = PASS
-- Artifact `ADMOB_ANDROID16_VALIDATION_RESULT.txt`: `RESULT=PASS`, `RELEASE_GATE=PASS`, `APP_GATE=PASS`
-- PID: `1871`; MainActivity `RESUMED/visible`
-- Bilgi Rotası crash/ANR/FATAL/process-death eşleşmesi yok
+- Son işlevsel kod head'i: `2cc47846b42cf98b4f8303bb86148cc475060824`
+- Kod-head CI #128: run `31635781505`, job `94245596601`, **SUCCESS**
+- Final PR head: `f8939b6f6aa950bda48bedf8b87dc0a51c761916`
+- Final CI #129: run `31637213948`, job `94250454471`, **SUCCESS**
+- Final artifact: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9157834250`
+- Digest: `sha256:3b2c0347b3d194f84618f8c02863dcd5ad21c76cc7ce7b72b906f0314c8f8c25`
+- Final artifact app/release gate PASS; Bilgi Rotası crash/ANR/FATAL/process-death eşleşmesi yok
+- PR #25 Levent'in açık onayıyla release'e merge edildi: `7a50a1997c6eade985a3933fd019055dd6a2c791`
 
-Bu AdMob PR CI, geniş Guest → Home → Oyna RC2'nin yerine geçmez. PR #25 merge edilirse fresh geniş RC2 zorunludur.
+**Açık kabul:** Bu AdMob PR CI geniş Guest → Home → Oyna RC2'nin yerine geçmez. Güncel release HEAD için fresh geniş RC2 ve ardından fiziksel Google demo rewarded kabulü zorunludur.
 
 ### Production SSV - ayrı açık konu
 
-`functions/rewarded_ssv.js` ve `docs/rewarded-ssv-setup.md` production SSV'nin **henüz deploy edilmediğini** açıkça belirtir. Mevcut aday SSV sözleşmesi günlük 3 işlem / toplam +30 XP limiti taşır; bu, güncel `KARARLAR.md` içindeki “günlük/oturumluk toplam kota yok” kararıyla çelişir. Bu nedenle blanket `firebase deploy --only functions` yapılmayacak; production SSV sözleşmesi ayrı branch/görevde ürün kararına uyarlanıp test edilmeden deploy edilmeyecektir.
+`functions/rewarded_ssv.js` ve `docs/rewarded-ssv-setup.md` production SSV'nin **henüz deploy edilmediğini** belirtir. Mevcut aday SSV sözleşmesi günlük 3 işlem / toplam +30 XP limiti taşır; bu, güncel `KARARLAR.md` içindeki “günlük/oturumluk toplam kota yok” kararıyla çelişir. Blanket `firebase deploy --only functions` yapılmayacak; SSV sözleşmesi ayrı branch/görevde ürün kararına uyarlanıp test edilmeden deploy edilmeyecektir.
 
 ### Analytics
 
@@ -259,21 +237,17 @@ Kesin source kanıtı:
 
 - ödül dizisi: `20, 30, 40, 50, 60, 80, 120`
 - yeni gün/streak hesaplandığında `lastLoginReward` yazılır
-- ardından `XpProgressService._award(reward, 'Günlük giriş serisi • N. gün')` çağrılır
+- `XpProgressService._award(reward, 'Günlük giriş serisi • N. gün')` çağrılır
 
 RC2 #325'te görülen `+20 XP • Günlük giriş serisi • 1. gün` bu kodla uyumludur. Bu, RC2 #325 Kariyer yönlendirmesinin kök nedeni değildir; ayrı ürün/karar tutarsızlığıdır.
 
-**Durum:** `AÇIK / KÖK KAYNAK DOĞRULANDI`. Ayrı branch'te kaldırılacak ve retention/XP regression testleri eklenecek; PR #25'e karıştırılmayacak.
+**Durum:** `AÇIK / KÖK KAYNAK DOĞRULANDI`. Ayrı branch'te kaldırılacak ve retention/XP regression testleri eklenecek.
 
 ---
 
 ## 10. `RELEASE_READINESS.md` bayat rapor içeriği
 
-RC2 #326 artifact'ındaki gerçek paket ve kalite raporları doğru biçimde `1.68.14+104` ve **8.710 soru** gösterir.
-
-Buna rağmen artifact içindeki `reports/RELEASE_READINESS.md` dosyasının bazı bölümleri hâlâ eski `1.68.8+98`, eski kaynak commit/AAB adı ve `6.710 / 6710 soru` gibi tarihsel metinler taşır.
-
-Bu durum AAB'nin veya RC2 #326 gate sonucunun yanlış olduğu anlamına gelmez; raporu üreten şablon/kaynak metin bayattır.
+RC2 #326 artifact'ındaki gerçek paket ve kalite raporları doğru biçimde `1.68.14+104` ve **8.710 soru** gösterir. Buna rağmen `reports/RELEASE_READINESS.md` içinde eski `1.68.8+98`, eski kaynak commit/AAB adı ve 6.710 soru gibi tarihsel metinler kalmıştır.
 
 **Durum:** `AÇIK`. Ayrı branch/PR ile dinamikleştirilecek; sırf bu metin için RC2 #326 yeniden çalıştırılmayacak.
 
@@ -328,10 +302,33 @@ Canlı Play Console'da telefon/tablet/Chromebook/PC/XR varlıklarının `hazır 
 
 ---
 
-## 14. Şu anda ilk yapılacak işler
+## 14. GitHub Actions fresh RC2 görünürlüğü
 
-1. PR #25 proje-memory commit'i sonrası oluşan **final PR head** CI'ını PASS olarak doğrula; yalnız bundan sonra Levent'ten merge onayı iste.
-2. PR #25 merge edilirse release head/sürümü yeniden doğrula ve eski #326'yı rerun etmeden fresh geniş RC2 çalıştır.
+Kök neden: `.github/workflows/closed-test-release.yml` ve `.github/workflows/closed-test-release-core.yml` release dalında vardı ancak default branch `main` üzerinde yoktu; bu nedenle GitHub Actions manuel workflow listesinde `Closed test release doğrulaması` görünmüyordu.
+
+Düzeltme:
+
+- Branch: `ci/expose-closed-test-release-workflow`
+- Commit: `3dc820502ba131258824b27776f292a67e85d54e` — `ci: expose closed-test release workflow on main`
+- PR: #26
+- Merge commit: `ab9b4f3797a02b92f98f92e439b7edc4c608fec3`
+- Değişiklik: yalnız iki workflow dosyası; release'teki RC2 #326 ile doğrulanmış bloblar byte-for-byte taşındı
+- Wrapper blob SHA: `f8fe355ad547c7fc4a5ec48c2809d65796b402df`
+- Core blob SHA: `3afa8793d3f437c63d690c86f3b6dbaaca2ce83a`
+- Quality Checks #292: run `31642575342`, job `94268451360`, **SUCCESS**
+- GitHub Actions kayıt durumu: `Closed test release çekirdeği` workflow ID `333114585` **ACTIVE**
+- GitHub Actions kayıt durumu: `Closed test release doğrulaması` workflow ID `333114587` **ACTIVE**
+- Release branch ve `1.68.14+104` sürümü değişmedi.
+- PR #7 açık/Draft kaldı.
+
+Eski `.github/workflows/apply-game-save-isolation-v4.yml` push workflow'u bu branch push'unda config-level kırmızı üretti ve **0 job** çalıştırdı. Bu, PR #26 değişikliğiyle ilişkili uygulama/test hatası değildir; ayrı tarihsel workflow teknik borcu olarak ele alınacaktır.
+
+---
+
+## 15. Şu anda ilk yapılacak işler
+
+1. GitHub Actions → `Closed test release doğrulaması` workflow'unu `release/final-closed-test-aab-1.68.8` üzerinde `confirmation=CLOSED_TEST` ile manuel başlat; eski #326'yı rerun etme.
+2. Yeni fresh RC2'nin tam workflow/job/log/artifact kanıtını incele; Guest → Home → Oyna, app/release gate ve crash/ANR kontrollerinin tamamı PASS olmalı.
 3. Play Console'dan uygulama imzalama ve upload SHA-1 ekran kanıtını al; `26:3C...` / `17:E1...` çelişkisini çöz.
 4. Firebase Console'da Google Auth, Android SHA'lar, Functions, Rules, Indexes ve App Check envanterini canlı doğrula; kör deploy yapma.
 5. Play Console'da güncel kapalı test AAB sürümünü, testçi sayısını ve kesintisiz gün sayacını tarihli kanıtla yeniden oku.
@@ -341,5 +338,6 @@ Canlı Play Console'da telefon/tablet/Chromebook/PC/XR varlıklarının `hazır 
 9. Günlük giriş XP karar çelişkisini ayrı branch/görev olarak çöz.
 10. Production SSV günlük 3/+30 XP sözleşmesini ürün kararıyla uyumlu hale getirmeden deploy etme.
 11. `RELEASE_READINESS.md` bayat şablonunu ayrı teknik görev olarak düzelt.
-12. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür.
-13. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
+12. Eski `apply-game-save-isolation-v4.yml` config-level workflow borcunu ayrı görevde incele; bu düzeltmeyle karıştırma.
+13. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür.
+14. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.

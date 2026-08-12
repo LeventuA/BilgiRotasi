@@ -1,35 +1,70 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-**Kesim noktası:** 12 Ağustos 2026
+**Kesim noktası:** 13 Ağustos 2026
 
 ## Canlı durum
 
 - Kanonik repo: `ZMilaStudio/BilgiRotasi`.
 - Release dalı: `release/final-closed-test-aab-1.68.8`.
-- Release HEAD: `bb988e7e4d60a41c1711e70d2ec6125e7136b0d5` (docs-only PR #24).
-- Son işlevsel release commit'i: `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2`.
+- Release HEAD / son işlevsel release commit'i: `7a50a1997c6eade985a3933fd019055dd6a2c791` (PR #25).
 - Release sürümü: `1.68.14+104`.
-- PR #7 açık/Draft ve `main` karşısında tutuluyor; merge edilmeyecek.
+- `main` HEAD: `ab9b4f3797a02b92f98f92e439b7edc4c608fec3` (PR #26; yalnız workflow görünürlüğü). `main` yayın kaynağı değildir.
+- PR #7 açık/Draft ve release→`main`; merge edilmeyecek.
 - PR #12 açık; 3B deterministik geometri çalışmasıdır.
 - PR #13 açık/Draft; kaynak ödüllü reklam PR'ıdır.
 - PR #15 açık/Draft; telemetri değişiklikleri PR #16 üzerinden release'e ulaştı.
-- PR #21, #23 ve #24 merge edildi.
-- PR #25 açık/Draft: `fix/closed-test-rewarded-acceptance`.
-- PR #25 son işlevsel kod head'i: `2cc47846b42cf98b4f8303bb86148cc475060824`.
-- PR #25 kod-head CI #128: run `31635781505`, job `94245596601`: **SUCCESS**.
-- PR #25 artifact `9157235566`: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`; digest `sha256:e7ab0d5b683454f79c4f1a9555fe027906fa5333ec1b016609452f68b384e5c9`.
-- #128 Android 16 attempt 1 PASS; attempt 2 SKIPPED; `APP_GATE=PASS`, `RELEASE_GATE=PASS`; PID `1871`; MainActivity RESUMED/visible; app crash/ANR/FATAL/process-death yok.
-- RC2 #326 run `31614662061`, job `94174350962`: **SUCCESS** üzerinde source SHA `ec20e66...`.
+- PR #21, #23, #24 ve #25 merge edildi.
+- PR #25 final head `f8939b6f6aa950bda48bedf8b87dc0a51c761916`; CI #129 run `31637213948`, job `94250454471`: **SUCCESS**.
+- PR #25 final artifact `9157834250`: `BilgiRotasi-AdMob-1.68.14-104-kanitlari`; digest `sha256:3b2c0347b3d194f84618f8c02863dcd5ad21c76cc7ce7b72b906f0314c8f8c25`.
+- PR #25 merge commit / güncel release HEAD: `7a50a1997c6eade985a3933fd019055dd6a2c791`.
+- PR #26 main'e merge edildi: `ab9b4f3797a02b92f98f92e439b7edc4c608fec3`.
+- `Closed test release çekirdeği` workflow ID `333114585`: **ACTIVE**.
+- `Closed test release doğrulaması` workflow ID `333114587`: **ACTIVE**.
+- RC2 #326 run `31614662061`, job `94174350962`: **SUCCESS** üzerinde source SHA `ec20e66e1d52126ce99fa09e29f606ae14a5f7a2`.
 - RC2 #326 artifact `9149285776`: `BilgiRotasi-1.68.14-104-closed-test-release`; digest `sha256:c69b44f40152ecc256ea5ace57c997bf3c8dafb8c051cdfaf69df288837fd56e`.
 - #326 `APK_INSTALL`, `APP_LAUNCH`, `ANALYTICS_CONSENT_HANDLED`, `GUEST_LOGIN`, `HOME_OYNA`, `APP_PID`, `APP_LOGCAT`, `APP_GATE`, `POST_GATE_LOGCAT_BOUNDARY`, `RELEASE_GATE`, `SETTINGS_TUTORIAL_DIAGNOSTIC` = PASS.
+- **Ancak #326 güncel `7a50a199...` release SHA'sını doğrulamaz. Fresh geniş RC2 zorunludur.**
 - Android geliştirici doğrulaması tamamlandı.
 - Son doğrulanan Play kapalı test değeri: **12 geçerli testçi / 4 kesintisiz gün**. Güncel sayaç UI'dan yeniden okunacak.
 
-## RC2 release doğrulaması
+## Fresh RC2 release doğrulaması - AÇIK
 
-Android 16 mandatory release gate, son işlevsel release SHA `ec20e66...` üzerinde RC2 #326 ile tamamlandı. Eski #319/#321/#322/#323/#325 koşuları yalnız kök neden/regression tarihçesidir.
+Android 16 mandatory release gate `ec20e66...` üzerinde RC2 #326 ile tarihsel olarak tamamlandı. PR #25 işlevsel uygulama kodu release'e merge edildiği için güncel release `7a50a199...` için yeni kabul gerekir.
 
-**Yeni sınır:** PR #25 işlevsel uygulama kodu içerir. PR #25 merge edilirse #326 yeni kodun release kanıtı değildir. Eski #326 rerun edilmeden yeni fresh geniş RC2 çalıştırılmalı ve Guest → Home → Oyna dahil tüm zorunlu gate'ler tekrar PASS olmalıdır.
+**Yapılacak:**
+
+1. GitHub Actions → `Closed test release doğrulaması`.
+2. Branch: `release/final-closed-test-aab-1.68.8`.
+3. `confirmation`: `CLOSED_TEST`.
+4. Yeni bir fresh run başlat; eski #326'yı rerun etme.
+5. Tam workflow/job/log/artifact birlikte incelenecek.
+6. Guest → Home → Oyna dahil mandatory gate'lerin tamamı PASS olmalı.
+7. Bilgi Rotası crash/ANR/FATAL/process-death kanıtı olmamalı.
+8. Fresh RC2 PASS olmadan yeni AAB Play'e yüklenmemeli.
+
+## GitHub Actions manuel workflow görünürlüğü - ÇÖZÜLDÜ
+
+Kök neden:
+
+- `.github/workflows/closed-test-release.yml` ve `.github/workflows/closed-test-release-core.yml` release dalında vardı ama default branch `main` üzerinde yoktu.
+- Bu nedenle manuel `workflow_dispatch` UI listesinde `Closed test release doğrulaması` görünmüyordu.
+
+Düzeltme ve kanıt:
+
+- Branch: `ci/expose-closed-test-release-workflow`.
+- Commit: `3dc820502ba131258824b27776f292a67e85d54e`.
+- Commit adı: `ci: expose closed-test release workflow on main`.
+- PR #26 Levent'in açık `Düzelt ve merge et` onayıyla main'e merge edildi.
+- Merge commit: `ab9b4f3797a02b92f98f92e439b7edc4c608fec3`.
+- Değişiklik yalnız iki workflow dosyasıdır.
+- Wrapper blob SHA: `f8fe355ad547c7fc4a5ec48c2809d65796b402df`.
+- Core blob SHA: `3afa8793d3f437c63d690c86f3b6dbaaca2ce83a`.
+- Bu bloblar release ve RC2 #326 source commit'indeki kanıtlanmış bloblarla birebir aynıdır.
+- Quality Checks #292: run `31642575342`, job `94268451360`, **SUCCESS**.
+- GitHub Actions API her iki workflow'u da ACTIVE kaydetmiştir.
+- Release branch, release sürümü ve PR #7 değişmedi.
+
+Ayrı teknik borç: eski `.github/workflows/apply-game-save-isolation-v4.yml` branch push'unda run `31642536946` config-level kırmızı üretti ancak **0 job** çalıştırdı. Bu PR #26 uygulama/test hatası değildir; ayrı görevde incelenecek.
 
 ## PR #25 - closed-test ödüllü reklam kabulü
 
@@ -44,41 +79,35 @@ PR #25 çözümü:
 - production Firebase + closed-test AdMob => Google demo rewarded + yerel oyun-başına +10 XP izinli
 - production Firebase + production AdMob => kapalı
 - dev/test Firebase + production AdMob => kapalı
-- dev/test Firebase + test AdMob => mevcut test/dev davranışı izinli
+- dev/test Firebase + test AdMob => test/dev davranışı izinli
 - oyun-başına tek hak, aynı oyun ikinci ödül yok ve başarısız reklam sonrası hak korunması değişmez
 
-#128 kanıtı:
+Kanıt:
 
-- analyzer ve tüm Flutter testleri PASS
-- imzalı test-reklam kimlikli release APK PASS
-- paket/birleşik manifest PASS
-- KVM PASS
-- Android 16 attempt 1 PASS; attempt 2 gerekmedi
-- final AdMob app/release gate PASS
-- artifact ID `9157235566`
-- PID `1871`
-- Bilgi Rotası crash/ANR/FATAL/process-death kanıtı yok
+- Kod-head CI #128: run `31635781505`, job `94245596601`, SUCCESS.
+- Final head CI #129: run `31637213948`, job `94250454471`, SUCCESS.
+- Final artifact ID `9157834250`.
+- PR #25 release'e merge edildi: `7a50a199...`.
 
 Açık:
 
-1. Bu proje-memory commit'inden sonra oluşan **final PR #25 head CI** PASS olmalı.
-2. Levent açıkça merge onayı vermeden PR #25 merge edilmemeli.
-3. Merge sonrası release head/sürüm yeniden doğrulanmalı.
-4. Fresh geniş RC2 çalıştırılmalı; #326 rerun edilmemeli.
-5. Fresh RC2 PASS olmadan yeni AAB Play'e yüklenmemeli.
-6. Ardından Google demo rewarded fiziksel cihaz kabulü yapılmalı.
+1. Fresh geniş RC2 `7a50a199...` üzerinde PASS olmalı.
+2. Ardından güncel Play kurulumu üzerinde Google demo rewarded fiziksel kabulü yapılmalı.
+3. Reklam tamamlanırsa +10 XP verilmeli; aynı gameId ikinci ödülü vermemeli.
+4. Reklam başarısız/yarım kalırsa XP verilmemeli ve hak doğru biçimde yeniden denenebilir kalmalı.
 
 ## Play kapalı test kabulü - açık doğrulamalar
 
 1. Play Console'da güncel aktif kapalı test AAB sürümünü tarihli ekranla doğrula.
 2. Geçerli testçi sayısını ve kesintisiz gün sayacını yeniden oku; eski 12/4 değerini ileri tarih için tahmin etme.
 3. `1.68.14+104` AAB'nin Play kapalı test kanalına yüklenip yüklenmediğini canlı Console'dan doğrula.
-4. Google hesabıyla girişin gerçek Play kurulumu üzerinde çalıştığını doğrula.
-5. Uygulamayı yeniden açınca Google oturumunun korunduğunu doğrula.
-6. Misafir → Google geçişinde kayıtların doğru hesaba bağlandığını ve başka hesaba veri sızmadığını doğrula.
-7. Eğitimin beklenen davranışını ve Ayarlar'dan açılıp `Anladım` ile kapanmasını fiziksel cihazda doğrula.
-8. Kapalı test sürümünde yalnız Google demo reklam kreatiflerinin göründüğünü doğrula.
-9. Ödüllü reklamın tamamlanan oyun başına tek hak, `+10 XP`, ikinci ödül engeli ve başarısız reklam sonrası yeniden deneme sözleşmesini fiziksel cihazda doğrula.
+4. Eğer versionCode 104 daha önce yüklenmişse aynı kodla yeni AAB yüklenemeyeceğini hesaba kat; sürüm bump'ı ayrı kontrollü branch/PR olur.
+5. Google hesabıyla girişin gerçek Play kurulumu üzerinde çalıştığını doğrula.
+6. Uygulamayı yeniden açınca Google oturumunun korunduğunu doğrula.
+7. Misafir → Google geçişinde kayıtların doğru hesaba bağlandığını ve başka hesaba veri sızmadığını doğrula.
+8. Eğitimin beklenen davranışını ve Ayarlar'dan açılıp `Anladım` ile kapanmasını fiziksel cihazda doğrula.
+9. Kapalı test sürümünde yalnız Google demo reklam kreatiflerinin göründüğünü doğrula.
+10. Ödüllü reklamın tamamlanan oyun başına tek hak, `+10 XP`, ikinci ödül engeli ve başarısız reklam sonrası yeniden deneme sözleşmesini fiziksel cihazda doğrula.
 
 ## Firebase production envanteri - repo doğrulandı, canlı deploy açık
 
@@ -113,13 +142,12 @@ Doğrulanan repo/build kayıtları:
 
 - Upload/AAB SHA-1: `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
 - Güncel `test/firebase_play_signing_profile_test.dart` Play-signing/OAuth için `26:3C:46:C6:AE:9F:27:C3:B3:38:10:FA:89:8C:D7:EB:93:73:CC:F4` bekler.
-- `26:3C...` değeri 1 Ağustos 2026 `972042915d1ef8294335e4372f8550cbdf6213bb` commit'iyle bilinçli biçimde teste eklenmiştir.
 - Eski devir kaydında Play App Signing SHA-1 `17:E1:EC:6C:77:4F:B4:59:63:FA:7A:76:51:7D:21:B2:BB:7C:81:1F` olarak geçer.
 - Repo içinde `17:E1...` doğrulanamadı.
 
 Doğrulanacak:
 
-1. Play Console → Play app signing ekranında **Uygulama imzalama anahtarı sertifikası SHA-1**.
+1. Play Console uygulama imzalama ekranında **Uygulama imzalama anahtarı sertifikası SHA-1**.
 2. Aynı ekranda **Yükleme anahtarı sertifikası SHA-1**.
 3. Firebase Project Settings → Android app fingerprint listesi.
 4. `00:0E...`, `26:3C...`, `17:E1...` değerlerinin gerçek rolleri.
@@ -187,15 +215,13 @@ Yayın öncesinde:
 - `lastLoginReward` değerini yazar
 - `XpProgressService._award(reward, 'Günlük giriş serisi • N. gün')` çağrısını yapar
 
-RC2 #325 ekranındaki `+20 XP • Günlük giriş serisi • 1. gün` bu kaynakla uyumludur.
-
 Açık görev:
 
 1. Ayrı branch aç.
 2. Günlük giriş XP ödülünü ürün kararına uygun biçimde kaldır.
 3. Retention/XP regression testleri ekle/güncelle.
 4. CI + ayrı PR inceleme/merge akışını tamamla.
-5. PR #25 ve RC2 validator değişiklikleriyle karıştırma.
+5. RC2/rewarded workflow değişiklikleriyle karıştırma.
 
 ## Ayrı açık teknik borç - `RELEASE_READINESS.md`
 
