@@ -512,7 +512,9 @@ bool supportRewardAvailabilityAfterAttempt({
 bool supportRewardEnabledForProfile({
   required bool firebaseProductionEnabled,
   required bool isClosedTest,
+  required bool isProductionAds,
 }) {
+  if (isProductionAds) return false;
   return !firebaseProductionEnabled || isClosedTest;
 }
 
@@ -568,7 +570,7 @@ class AdBannerScaffold extends StatelessWidget {
   final Color? backgroundColor;
   final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
-  final Widget? drawer;
+  final Drawer? drawer;
   final Widget? endDrawer;
   final Future<BannerAd?> Function()? bannerLoader;
 
@@ -677,6 +679,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
   bool get _rewardProfileEnabled => supportRewardEnabledForProfile(
     firebaseProductionEnabled: FirebaseRuntimePolicy.productionEnabled,
     isClosedTest: AdMobConfig.isClosedTest,
+    isProductionAds: AdMobConfig.isProduction,
   );
 
   @override
