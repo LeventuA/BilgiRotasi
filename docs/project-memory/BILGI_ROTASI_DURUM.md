@@ -274,6 +274,11 @@ PASS. Her iki action `disable animations: false` ile project validator'a ulaşt�
 ilk deneme explicit infrastructure quartet'iyle temiz retry istedi, ikinci deneme
 `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`
 ve `RELEASE_GATE` kontrollerinin tamamını geçti. Artifact: `9124476985`.
+Son belge commit'inin run #108'inde iki emülatör de uygulama kurulmadan önce
+`system_server` kaybı yaşadı; sistem paketlerinde `DeadSystemException` vardı,
+Bilgi Rotası süreci yoktu. Action her iki denemede `/dev/kvm` izin eksikliği
+nedeniyle `-accel off` kullandı. Ephemeral runner'da KVM cihazının read/write
+erişimi artık emülatörden önce fail-fast doğrulanır; gate'ler değişmez.
 
 ---
 

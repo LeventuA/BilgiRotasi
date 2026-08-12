@@ -204,6 +204,10 @@ void main() {
       2,
     );
     expect(workflow, isNot(contains('disable-animations: true')));
+    expect(workflow, contains('test -e /dev/kvm'));
+    expect(workflow, contains('sudo chmod 666 /dev/kvm'));
+    expect(workflow, contains('test -r /dev/kvm'));
+    expect(workflow, contains('test -w /dev/kvm'));
     expect(workflow, contains('id: android16_attempt_1'));
     expect(workflow, contains('id: android16_attempt_2'));
     expect(

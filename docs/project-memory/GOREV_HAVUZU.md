@@ -129,6 +129,11 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 - Otomatik run #107 (`31549806040`), job `93969855281`: PASS. İlk deneme explicit
   infrastructure quartet'iyle temiz retry istedi; ikinci denemede tüm AdMob app
   ve release gate'leri PASS. Artifact: `9124476985`.
+- Son belge commit'inin run #108'inde iki emulator da `system_server` kaybı ve
+  sistem paketi `DeadSystemException` ile explicit infrastructure sonucu üretti;
+  Bilgi Rotası süreci yoktu. Action `/dev/kvm` izin eksikliği nedeniyle yazılım
+  emülasyonu kullanıyordu. PR ve RC2 workflow'ları emulator öncesi KVM read/write
+  erişimini fail-fast hazırlar; uygulama/release gate'leri aynen kalır.
 
 ---
 

@@ -194,3 +194,6 @@
   servisinin emülatörde bulunmadığını gösteren açık altyapı kanıtıdır. Bu kanıt
   yalnız uygulama crash/ANR/FATAL/process-death kontrolü negatifse temiz emulator
   retry'ına izin verir; uygulama hatasını PASS'e çevirmez.
+- GitHub-hosted Linux runner'da API 36 x86_64 emulator başlatılmadan önce
+  `/dev/kvm` read/write erişimi fail-fast hazırlanıp doğrulanır. KVM olmadan
+  yazılım emülasyonu sistem servislerini çökertiyorsa retry/gate gevşetilmez.

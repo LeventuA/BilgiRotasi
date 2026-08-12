@@ -346,6 +346,15 @@ jobs:
           fi
           tesseract --version
 
+      - name: Android emulator KVM erişimini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
       - name: Android 16 AAB-derived cold-start ve kritik akışlar (deneme 1/2)
         id: android16_attempt_1
         continue-on-error: true

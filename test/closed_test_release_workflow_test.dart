@@ -205,6 +205,10 @@ void main() {
             'Her iki Android 16 denemesi action pre-script ADB ayarını kapatmalı.',
       );
       expect(coreWorkflow, isNot(contains('disable-animations: true')));
+      expect(coreWorkflow, contains('test -e /dev/kvm'));
+      expect(coreWorkflow, contains('sudo chmod 666 /dev/kvm'));
+      expect(coreWorkflow, contains('test -r /dev/kvm'));
+      expect(coreWorkflow, contains('test -w /dev/kvm'));
       expect(
         RegExp(
           r'timeout 1200 bash tools/validate_android16_closed_test\.sh',
