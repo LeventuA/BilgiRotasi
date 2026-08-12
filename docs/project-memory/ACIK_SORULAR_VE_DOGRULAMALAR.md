@@ -73,7 +73,8 @@ Play Console'da bu PR kapsamında değişiklik yapılmayacaktır. Yayın öncesi
 9. Yeni RC2'de `disable animations: false` ve project validator başlangıcı logdan
    doğrulanmalı; attempt 1 açık infrastructure quartet üretirse temiz attempt 2'nin
    gerçekten başladığı ayrıca kanıtlanmalı.
-10. PR #20 ilk run #106 project validator'a ulaştı; `package/activity` sistem
-    servislerinin kaybolmasına ilişkin takip sınıflandırma düzeltmesinin yeni
-    otomatik CI runında temiz attempt 2'yi başlattığı ve final gate'i geçtiği
-    tam log/artifact ile doğrulanmalı.
+10. PR #20 otomatik run #107'de her iki project validator'a ulaştı; ilk
+    denemenin explicit infrastructure quartet'i temiz attempt 2'yi başlattı ve
+    ikinci deneme tüm AdMob app/release gate'lerini geçti. RC2'nin daha geniş
+    Misafir/Oyna kapısı ancak Levent onaylı release merge'inden sonra oluşturulacak
+    yeni manuel run ile doğrulanabilir; bu görevde dispatch yapılmaz.

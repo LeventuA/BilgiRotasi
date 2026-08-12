@@ -269,8 +269,11 @@ runner pre-script altyapı hatasıyla başarısız oldu.
   eder. AdMob PR workflow'undaki iki action attempt'i de validator öncesi settings
   ADB çağrısı yapmamak için `disable-animations: false` kullanır.
 
-**Durum:** Takip düzeltmesinin yerel hedefli kontrolleri PASS; Draft PR #20'nin
-yeni otomatik PR CI doğrulaması bekleniyor.
+**Durum:** Draft PR #20 otomatik run #107 (`31549806040`), job `93969855281`
+PASS. Her iki action `disable animations: false` ile project validator'a ulaştı;
+ilk deneme explicit infrastructure quartet'iyle temiz retry istedi, ikinci deneme
+`APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`
+ve `RELEASE_GATE` kontrollerinin tamamını geçti. Artifact: `9124476985`.
 
 ---
 

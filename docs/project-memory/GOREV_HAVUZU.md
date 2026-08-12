@@ -125,7 +125,10 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
 - `Can't find service: package/activity` yalnız açık emulator altyapı kanıtı
   olarak retry quartet'ine gider; gerçek uygulama hataları fail-fast kalır.
 - AdMob PR workflow'undaki iki emulator attempt'i de `disable-animations: false`
-  kullanır. Takip hedefli testleri `17/17 PASS`; yeni PR CI sonucu bekleniyor.
+  kullanır. Takip hedefli testleri `17/17 PASS`.
+- Otomatik run #107 (`31549806040`), job `93969855281`: PASS. İlk deneme explicit
+  infrastructure quartet'iyle temiz retry istedi; ikinci denemede tüm AdMob app
+  ve release gate'leri PASS. Artifact: `9124476985`.
 
 ---
 
