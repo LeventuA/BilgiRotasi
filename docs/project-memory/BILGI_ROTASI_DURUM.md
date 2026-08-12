@@ -257,8 +257,20 @@ runner pre-script altyapı hatasıyla başarısız oldu.
   cihaz Play-signing SHA-1'i upload sertifikasından farklı olduğu için v104 in-place
   kurulumu güvenli biçimde yapılamadı. Bu fiziksel test CI Android 16 gate'in
   yerine geçmez.
+- Draft PR #20 ilk otomatik CI run #106'da (`31548075906`, job `93964707470`)
+  project validator'a ulaştı. Emülatörün paket servisi ilk kurulumda `Broken
+  pipe`, sonraki iki kurulumda `Can't find service: package`; activity servisi de
+  `Can't find service: activity` verdi. Artifact `9123654768` uygulama crash/ANR
+  kanıtı içermedi.
+- Validator yalnız ilk ifadeyi altyapı saydığından run #106'yı yanlışlıkla
+  `APK_INSTALL_FAILED_WITHOUT_INFRASTRUCTURE_EVIDENCE` olarak sınıflandırdı.
+  `Can't find service: package/activity` artık açık emulator altyapı kanıtıdır;
+  uygulama crash/ANR/FATAL/process-death kontrolü bundan önce çalışmaya devam
+  eder. AdMob PR workflow'undaki iki action attempt'i de validator öncesi settings
+  ADB çağrısı yapmamak için `disable-animations: false` kullanır.
 
-**Durum:** Yerel hedefli kontroller PASS; Draft PR ve PR CI doğrulaması bekleniyor.
+**Durum:** Takip düzeltmesinin yerel hedefli kontrolleri PASS; Draft PR #20'nin
+yeni otomatik PR CI doğrulaması bekleniyor.
 
 ---
 

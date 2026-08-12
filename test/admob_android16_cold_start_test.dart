@@ -74,6 +74,28 @@ void main() {
     expect(result, isNot(contains('APP_GATE=PASS')));
   });
 
+  test('kayıp paket servisi yalnız altyapı retry sonucu üretir', () {
+    final execution = runScenario('missing_package_service');
+    expect(
+      execution.result.exitCode,
+      75,
+      reason: '${execution.result.stdout}\n${execution.result.stderr}',
+    );
+    final health =
+        File(
+          '${execution.reports.path}/ADMOB_ANDROID16_EMULATOR_HEALTH.txt',
+        ).readAsStringSync();
+    final result =
+        File(
+          '${execution.reports.path}/ADMOB_ANDROID16_VALIDATION_RESULT.txt',
+        ).readAsStringSync();
+    expect(health, contains('EMULATOR_HEALTH=UNHEALTHY'));
+    expect(health, contains('ANDROID_PACKAGE_SERVICE_UNAVAILABLE'));
+    expect(result, contains('RESULT=INFRASTRUCTURE_RETRY_REQUIRED'));
+    expect(result, contains('RELEASE_GATE=FAIL'));
+    expect(result, isNot(contains('APP_GATE=PASS')));
+  });
+
   test('Bilgi Rotası FATAL EXCEPTION altyapı retry olarak sınıflanmaz', () {
     final execution = runScenario('app_crash');
     expect(execution.result.exitCode, 1);
@@ -177,6 +199,11 @@ void main() {
       ).allMatches(workflow).length,
       2,
     );
+    expect(
+      RegExp(r'disable-animations:\s*false').allMatches(workflow).length,
+      2,
+    );
+    expect(workflow, isNot(contains('disable-animations: true')));
     expect(workflow, contains('id: android16_attempt_1'));
     expect(workflow, contains('id: android16_attempt_2'));
     expect(

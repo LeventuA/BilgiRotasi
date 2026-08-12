@@ -118,6 +118,14 @@ birlikte doğrulandı. PR #13 kaynak Draft PR olarak kalır ve merge edilmiş sa
   Mevcut Google oturumu ve farklı Play-signing sertifikası nedeniyle Misafir
   geçişi ile v104 in-place kurulum güvenli biçimde yapılmadı.
 - Bu PR merge edilmeyecek ve bu görevde yeni RC2 başlatılmayacak.
+- Draft PR #20 ilk CI run #106 (`31548075906`, job `93964707470`) project
+  validator'a ulaştı; ancak sistem `package` ve `activity` servisleri kayboldu.
+  Artifact `9123654768` içindeki üç install kanıtı `Broken pipe` ve iki kez
+  `Can't find service: package` sonucudur; uygulama crash/ANR kanıtı yoktur.
+- `Can't find service: package/activity` yalnız açık emulator altyapı kanıtı
+  olarak retry quartet'ine gider; gerçek uygulama hataları fail-fast kalır.
+- AdMob PR workflow'undaki iki emulator attempt'i de `disable-animations: false`
+  kullanır. Takip hedefli testleri `17/17 PASS`; yeni PR CI sonucu bekleniyor.
 
 ---
 

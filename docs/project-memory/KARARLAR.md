@@ -190,3 +190,7 @@
   ayarı etkinleştirilmeyecek (`disable-animations: false`). Animasyon kapatma bir
   release gate değildir; action'ın project validator başlamadan önce kırılgan
   `adb shell settings put` çağrılarıyla koşuyu durdurmasına izin verilmeyecek.
+- `Can't find service: package` ve `Can't find service: activity`, Android sistem
+  servisinin emülatörde bulunmadığını gösteren açık altyapı kanıtıdır. Bu kanıt
+  yalnız uygulama crash/ANR/FATAL/process-death kontrolü negatifse temiz emulator
+  retry'ına izin verir; uygulama hatasını PASS'e çevirmez.

@@ -73,3 +73,7 @@ Play Console'da bu PR kapsamında değişiklik yapılmayacaktır. Yayın öncesi
 9. Yeni RC2'de `disable animations: false` ve project validator başlangıcı logdan
    doğrulanmalı; attempt 1 açık infrastructure quartet üretirse temiz attempt 2'nin
    gerçekten başladığı ayrıca kanıtlanmalı.
+10. PR #20 ilk run #106 project validator'a ulaştı; `package/activity` sistem
+    servislerinin kaybolmasına ilişkin takip sınıflandırma düzeltmesinin yeni
+    otomatik CI runında temiz attempt 2'yi başlattığı ve final gate'i geçtiği
+    tam log/artifact ile doğrulanmalı.

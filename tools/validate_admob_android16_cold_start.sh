@@ -54,7 +54,7 @@ has_app_failure() {
 
 is_infrastructure_failure_text() {
   grep -Eqi \
-    'Failure calling service package|Broken pipe|device offline|no devices/emulators found|device .* not found|transport error|closed|protocol fault'
+    "Failure calling service (package|activity)|Can't find service: (package|activity)|Broken pipe|device offline|no devices/emulators found|device .* not found|transport error|closed|protocol fault"
 }
 
 write_app_failure() {

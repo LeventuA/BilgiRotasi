@@ -191,7 +191,7 @@ jobs:
           ram-size: 2048M
           heap-size: 512M
           emulator-boot-timeout: 1200
-          disable-animations: true
+          disable-animations: false
           script: |
             bash tools/validate_admob_android16_cold_start.sh
 
@@ -243,7 +243,7 @@ jobs:
           ram-size: 2048M
           heap-size: 512M
           emulator-boot-timeout: 1200
-          disable-animations: true
+          disable-animations: false
           script: |
             bash tools/validate_admob_android16_cold_start.sh
 
