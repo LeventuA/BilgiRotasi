@@ -379,8 +379,9 @@ adb_retry 30 shell am start -n com.leventua.bilgirotasi/.MainActivity
 echo 'APP_LAUNCH=PASS' >> reports/ANDROID16_APP_GATE.txt
 
 # First launch may show the analytics-consent dialog before the auth screen.
-# Keep retrying the dismissal until the auth screen is actually observed; a
-# successful ADB tap by itself is not evidence that the dialog was dismissed.
+# The #324 dialog itself contains the OCR token "Google/Firebase", so auth
+# detection must never treat a loose Google match as the login screen. The
+# standalone guest button token is the deterministic auth-screen marker.
 analytics_consent_seen=false
 for attempt in $(seq 1 8); do
   if ! capture_screen "ENTRY_${attempt}"; then
@@ -394,12 +395,12 @@ for attempt in $(seq 1 8); do
     continue
   fi
   system_anr_observations=0
-  if test -n "$(find_word "ENTRY_${attempt}" 'Google|Misafir')"; then
+  if test -n "$(find_word "ENTRY_${attempt}" '^Misafir$')"; then
     break
   fi
   if grep -Eqi 'Kullanim|Kullanım|Analizine' "reports/UI_ENTRY_${attempt}.tsv"; then
     analytics_consent_seen=true
-    # "Değil" is unique to the decline action in the #323 dialog. Prefer it
+    # "Değil" is unique to the decline action in the #323/#324 dialog. Prefer it
     # over "Şimdi", which may also occur in explanatory text on future copy.
     consent_point="$(find_word "ENTRY_${attempt}" 'Degil|Değil')"
     if test -z "$consent_point"; then
@@ -408,7 +409,7 @@ for attempt in $(seq 1 8); do
     if test -n "$consent_point"; then
       adb_retry 15 shell input tap $consent_point
     else
-      # Pixel 2 API 36 at 1080x1920. #323 evidence places the visible
+      # Pixel 2 API 36 at 1080x1920. #323/#324 evidence places the visible
       # "Şimdi Değil" action around y=1240, not the old y=1065 fallback.
       adb_retry 15 shell input tap 785 1240
     fi
@@ -418,7 +419,7 @@ for attempt in $(seq 1 8); do
   sleep 3
 done
 
-if wait_for_word AUTH 'Google|Misafir' 20; then
+if wait_for_word AUTH '^Misafir$' 20; then
   :
 else
   auth_status=$?
@@ -433,11 +434,11 @@ fi
 if [ "$analytics_consent_seen" = true ]; then
   echo 'ANALYTICS_CONSENT_HANDLED=PASS' >> reports/ANDROID16_APP_GATE.txt
 fi
-grep -Eqi 'Google' reports/UI_AUTH.tsv
-grep -Eqi 'Misafir' reports/UI_AUTH.tsv
+test -n "$(find_word AUTH '^Google$')"
+test -n "$(find_word AUTH '^Misafir$')"
 ! grep -Eqi 'Nas.*Oynan' reports/UI_AUTH.tsv
 
-tap_word AUTH 'Misafir'
+tap_word AUTH '^Misafir$'
 for attempt in $(seq 1 40); do
   if ! capture_screen "HOME_${attempt}"; then
     if [ "$attempt" = "40" ]; then
@@ -459,7 +460,7 @@ for attempt in $(seq 1 40); do
     cp "reports/UI_HOME_${attempt}.tsv" reports/UI_HOME.tsv
     break
   fi
-  guest_point="$(find_word "HOME_${attempt}" 'Misafir')"
+  guest_point="$(find_word "HOME_${attempt}" '^Misafir$')"
   if test -n "$guest_point"; then
     adb_retry 15 shell input tap $guest_point
   fi
