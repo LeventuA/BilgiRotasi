@@ -96,11 +96,12 @@ void main() {
       expect(grants, 1);
     });
 
-    test('kapalı test profili production Firebase ile ödül kabulünü açar', () {
+    test('kapalı test açılır, gerçek production reklam profili daima kapalıdır', () {
       expect(
         supportRewardEnabledForProfile(
           firebaseProductionEnabled: true,
           isClosedTest: true,
+          isProductionAds: false,
         ),
         isTrue,
       );
@@ -108,6 +109,7 @@ void main() {
         supportRewardEnabledForProfile(
           firebaseProductionEnabled: true,
           isClosedTest: false,
+          isProductionAds: true,
         ),
         isFalse,
       );
@@ -115,11 +117,24 @@ void main() {
         supportRewardEnabledForProfile(
           firebaseProductionEnabled: false,
           isClosedTest: false,
+          isProductionAds: true,
+        ),
+        isFalse,
+      );
+      expect(
+        supportRewardEnabledForProfile(
+          firebaseProductionEnabled: false,
+          isClosedTest: false,
+          isProductionAds: false,
         ),
         isTrue,
       );
 
       final source = File('lib/ad_monetization.dart').readAsStringSync();
+      expect(
+        source,
+        contains('isProductionAds: AdMobConfig.isProduction'),
+      );
       expect(
         source,
         contains('_rewardProfileEnabled && await _limiter.canClaim'),
