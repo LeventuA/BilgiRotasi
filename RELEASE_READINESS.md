@@ -1,134 +1,26 @@
-# Bilgi Rotası 1.68.8+98 Kapalı Test Yayın Hazırlığı
+# Bilgi Rotası Kapalı Test Yayın Hazırlığı
 
-## Yayın özeti
+Bu repoda izlenen dosya güncel release sürümü, commit, AAB adı veya soru sayısı için statik kaynak değildir.
 
-- Kaynak: `hotfix/release-login-tutorial-1.68.7` dalındaki doğrulanmış `73ee39c6d32eb49944db2eef0e89477a23c78e70` commit'i.
-- Hedef paket: `com.leventua.bilgirotasi`.
-- Firebase profili: production, proje `bilgi-rotasi-f255d`, callable Functions bölgesi `europe-west1`.
-- Reklam profili: `closed_test`; Google'ın demo App ID, banner ve ödüllü reklam birimleri kullanılır.
-- Production AdMob profili korunur ve yalnız `ADMOB_ENVIRONMENT=production` ile seçilir.
-- Hedef AAB: `BilgiRotasi-1.68.8-98-closed-test.aab`.
-- Beklenen imza SHA-1: `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+Yetkili `Closed test release doğrulaması` akışında `tools/rc1_quality_gate.py`, kalite kapısını çalıştırdıktan sonra `tools/release_readiness_report.py` aracılığıyla bu dosyayı çalışma anındaki gerçek değerlerle yeniden üretir. Üretilen kopya artifact içine `reports/RELEASE_READINESS.md` olarak alınır.
 
-## Korunan düzeltmeler
+Dinamik kaynaklar:
 
-- Google ile girişte sabit web client ID kaldırılmıştır; platform yapılandırması kullanılır.
-- İlk açılış eğitimi otomatik açılmaz. Eğitim yalnız Ayarlar içindeki “Eğitimi Yeniden Göster” seçeneğinden açılır ve “Anladım” ile kapanır.
-- Misafir ve Google hesap verilerinin ayrımı ile önceki güvenlik/gizlilik düzeltmeleri korunur.
+- sürüm: `pubspec.yaml`
+- soru sayısı ve soru dosyası SHA-256: `assets/questions.json`
+- kaynak commit/ref: GitHub Actions `GITHUB_SHA` / `GITHUB_REF_NAME`
+- AAB adı: workflow `AAB_FILE` değeri; yoksa sürümden deterministik türetme
+- workflow run adresi: GitHub Actions çalışma ortamı
 
-## Lig ve sıralama teşhisi
-
-İstemci daha önce kullanıcının `live_duel_leaderboard` belgesi gerçekten var mı diye bakmadan, kendisinden yüksek puanlı kayıt sayısına bir ekleyerek sıra üretiyordu. Boş koleksiyonda bu hesap `#1` gösteriyor, aynı anda “Henüz sıralamaya giren oyuncu yok” mesajı çıkıyordu.
-
-Düzeltme, kullanıcının `users/{uid}.publicPlayerId` değerini okuyup karşılık gelen leaderboard belgesinin varlığını doğrular. Belge yoksa sıra `—`; belge varsa üstündeki gerçek kayıt sayısından sıra hesaplanır. Boş ve dolu durumlar otomatik testlerle kapsanır.
-
-Uzak production veritabanı bu değişiklik sırasında okunmadı veya değiştirilmedi. Dolayısıyla boş listenin operasyonel nedeni (henüz tamamlanmış dereceli maç olmaması ya da backend/rules dağıtımının eksik olması) yayın öncesinde Firebase Console üzerinden ayrıca doğrulanmalıdır.
-
-## Otomatik kalite ve paket kapıları
-
-Manuel `Closed test release doğrulaması` workflow'u şu kontrolleri geçmeden başarılı olmaz:
-
-- Flutter analyze, tüm Flutter testleri ve hedefli Firebase/AdMob profil testleri.
-- Cloud Functions birim testleri ve Firestore Rules emulator testleri.
-- `git diff --check` ve bağımlılık grafiği.
-- Kalıcı keystore secret'larının eksiksizliği; debug imzaya geri dönüş yoktur.
-- APK/AAB paket adı, dinamik sürüm adı/kodu, release/debuggable durumu ve sertifika SHA-1.
-- Production Firebase proje kaynağı ile kapalı-test Google demo AdMob kimlikleri.
-- AAB içinde keystore, `key.properties`, service account, `google-services.json` veya private key bulunmaması.
-- Bundletool ile AAB'den üretilen APK setinin Android 16 emülatöre kurulması.
-- Cold-start, giriş ekranı, misafir devamı, ana ekran ve eğitimin Ayarlar'dan açılıp kapanması; fatal logcat ve çalışan süreç kontrolü.
-
-## Yerel doğrulama sonucu
-
-- `flutter analyze --no-fatal-warnings --no-fatal-infos`: PASS. Mevcut kod tabanında 91 non-fatal warning/info raporlandı; yeni analiz hatası yoktur.
-- Tüm Flutter testleri: PASS, 200/200.
-- Kapalı-test AdMob profili: PASS, 1/1.
-- Production AdMob profilinin korunması: PASS, 1/1.
-- Production Firebase profili: PASS, 1/1.
-- Cloud Functions: PASS, 20/20.
-- Firestore Rules emulator: PASS, 6/6. İlk çalıştırma Java PATH'te olmadığı için başlamadı; Android Studio JBR ile tekrarlandığında geçti.
-- RC1 soru/asset kalite kapısı: PASS; 6710 soru. Kapıdaki eski `1.68.6+96` sabitlemesi dinamik sürüm biçimi ve `AppBuildInfo` eşleşmesi kontrolüyle değiştirildi.
-- `git diff --check`: PASS.
-- Üç profil testinin ilk paralel yerel çağrısı Flutter araç kilidi nedeniyle zaman aşımına uğradı; testler ardışık tekrarlandığında üçü de geçti.
-- İlk GitHub Actions denemesinde APK ve AAB üretildi, ancak Bundletool 1.18.3 `env:` parola önekini kabul etmediği için APK seti kapısında durdu. Parolalar süreç argümanına konmadan, izinleri sınırlandırılmış geçici dosyalarla `file:` biçimine geçirildi; sonraki başarılı run kabul kanıtıdır.
-- İkinci GitHub Actions denemesinde Bundletool geçti ve sertifika doğru SHA-1'i gösterdi; karşılaştırma için AAB SHA-1 değerindeki iki nokta ayraçları kaldırılmadığından metadata adımı yanlış negatif verdi. Normalizasyon APK ile aynı hale getirildi; sonraki başarılı run kabul kanıtıdır.
-- Üçüncü GitHub Actions denemesinde ayrı APK derlemesi GitHub runner'da olağandışı uzun sürdü. Yayın ürünü AAB olduğundan yinelenen standalone APK derlemesi kaldırıldı; paket/badging/imza ve Android 16 kontrolleri artık zorunlu olarak AAB'den Bundletool ile türetilen universal APK üzerinde yapılır.
-- Dördüncü GitHub Actions denemesinde Android 16 emülatörü açıldıktan sonra runner'ın kendi animasyon ayarı ADB `Broken pipe` hatası verdi; uygulama test betiği başlamadan altyapı adımı durdu.
-- Aynı run'ın yeniden denemesinde emülatör açıldı, ancak `android-emulator-runner` betiği `/bin/sh` ile başlattığı için Bash'e özgü `set -o pipefail` kabul edilmedi. Betik taşınabilir `set -eu` kullanacak şekilde düzeltildi; sonraki başarılı run kabul kanıtıdır.
-- Sonraki denemede yeni kabuk koruma testinin `coreWorkflow` değişkeni test kurulum bloğunda yerel bırakıldığı için analyze kapısı hatayı yakaladı ve build başlamadan durdu. Değişken grup kapsamına taşındı; sonraki başarılı run kabul kanıtıdır.
-- Sonraki denemede emülatör açıldı, fakat `android-emulator-runner` her `script:` satırını ayrı süreçte çalıştırdığı için `APKS` değişkeni kurulum satırına taşınmadı. Android 16 doğrulaması tek Bash sürecinde çalışan `tools/validate_android16_closed_test.sh` dosyasına taşındı; sonraki başarılı run kabul kanıtıdır.
-- Sonraki denemede AAB-derived APK seti Android 16'ya kuruldu; düşük kaynaklı emülatörde bloklayan cold-start ve UI Automator hiyerarşi üretimi zaman aşımına uğradı. Emülatör belleği artırıldı, başlatma bloklamayan moda alındı, UI dump süreleri sınırlandı ve logcat/activity/process tanıları çıkışta zorunlu artifact dosyalarına bağlandı; sonraki başarılı run kabul kanıtıdır.
-- Tanılama artifact'i uygulamanın Firebase'i başlattığını, ardından `aosp_atd` slim imajındaki WebView'in `libwebviewchromium.so` içinde native `SIGTRAP` ile öldüğünü ve aynı imajın accessibility servisinin UI Automator'ı null referansla çökerttiğini gösterdi. Android 16 kapısı tam `google_apis` sistem imajına geçirildi; sonraki başarılı run kabul kanıtıdır.
-- Tam `google_apis` ve daha sonra Google ATD API 36 imajlarında UMP'nin açtığı sistem WebView'i aynı native `SIGTRAP` ile uygulama sürecini öldürdü. Fiziksel kapalı-test cihazlarında varsayılan UMP akışı ve Google demo reklamları korunurken yalnız Android emülatörlerinde UMP/Mobile Ads başlatması atlandı; CI gerçek ya da demo reklam isteği göndermeden cold-start doğrular.
-- Bu izolasyondan sonraki run'da uygulama PID'si canlı, `MainActivity` visible/resumed ve logcat fatal/crash içermiyordu. Kalan hata uygulama değil, API 36 imajının UIAutomator/accessibility katmanının sistem ANR'ına düşüp XML üretememesiydi. Kritik ekran kanıtı bu nedenle UIAutomator yerine OCR'lı ekran görüntüsü, kontrollü koordinat dokunuşu, görüntü farkı, aktif PID/Activity ve logcat birleşimine taşındı.
-- İlk yeşil OCR run'ının bağımsız artifact incelemesi, soru kalite taramasının ana isolate'ı blokladığı sırada oluşan uygulama ANR'ını ortaya çıkardı. Negatif `grep` kontrolleri açık `if ...; then exit 1` kapılarına çevrildi; JSON çözümleme ve 6.710 soruluk kalite taraması Flutter `compute` isolate'ına taşındı. Nihai kabul run'ında uygulama ANR'ı bulunmaması zorunludur.
-- Yerel hedefli Flutter test çağrısı 8 GB makinede çıktı üretmeden zaman aşımına uğradı. Aynı testler dahil tam Flutter suite, analyze, Functions, Firestore Rules ve kalite kapıları GitHub Actions'ın temiz runner'ında geçti; nihai run kabul kanıtıdır.
-
-Yerelde 8 GB RAM sınırı nedeniyle release AAB üretilmedi. İmzalı AAB, metadata ve Android 16 doğrulamasının yetkili sonucu yalnız GitHub Actions workflow sonucudur.
-
-## Production backend için manuel dağıtım sırası
-
-Bu branch ve workflow backend dağıtımı yapmaz. Yetkili operatör kapalı testten önce/sonra aşağıdaki sırayı kontrollü uygulamalıdır:
-
-1. Firebase Console'da Google oturum açma sağlayıcısını, Android paketini ve beklenen SHA-1 kaydını doğrula.
-2. Functions testleri geçtikten sonra `firebase deploy --project bilgi-rotasi-f255d --only functions` ile callable backend'i dağıt.
-3. Gerekli indeksleri `firebase deploy --project bilgi-rotasi-f255d --only firestore:indexes` ile dağıt ve indekslerin hazır olmasını bekle.
-4. Bu workflow'un ürettiği kapalı-test AAB'sini Google Play kapalı test kanalına yükle; Google giriş, kayıt izolasyonu ve iki cihazlı Canlı Düello smoke testlerini yap.
-5. Uyumlu istemci doğrulandıktan sonra sıkı kuralları `firebase deploy --project bilgi-rotasi-f255d --only firestore:rules` ile dağıt.
-6. App Check/Play Integrity zorlamasını yalnız gözlem metrikleri temiz ve kapalı-test istemcisi uyumlu olduktan sonra etkinleştir.
+Bu dosya Play Console canlı kanalını, Firebase canlı deploy durumunu veya fiziksel cihaz kabulünü tek başına doğrulamaz.
 
 ## Fiziksel Google Play Internal Testing kontrol listesi
 
-> Ayarlar ve öğretici: ZORUNLU. Emülatör sonucu
-> `INFRASTRUCTURE_INCONCLUSIVE` olsa bile fiziksel Play Internal Testing
-> kapsamında Ayarlar ekranı ve öğreticinin açılıp kapanması onaylanmadan
-> kapalı test yayını onaylanmaz.
-
-Android 16 otomasyonu önce AAB-derived APK kurulumu, uygulama açılışı, Misafir
-girişi, ana menüde “Oyna”, canlı uygulama PID'si ve uygulama paketine ait temiz
-logcat koşullarını sert release kapısı olarak doğrular. Bu kapı geçtikten sonra
-yalnız başka sistem paketlerindeki ANR veya global input kilitlenmesi Ayarlar /
-öğretici sonucunu `INFRASTRUCTURE_INCONCLUSIVE` yapar; release kapısını bozmaz.
-`com.leventua.bilgirotasi` için crash, ANR, fatal exception veya process death
-her aşamada release kapısını başarısız yapar.
+> Ayarlar ve öğretici: ZORUNLU. CI/emülatör kabulü fiziksel Play kurulumundaki bu kontrolün yerine geçmez.
 
 - Google hesabıyla giriş ve uygulamayı yeniden açınca oturumun korunması.
-- Misafir → Google geçişinde kayıtların doğru hesaba bağlanması; başka hesaba veri sızmaması.
+- Misafir → Google geçişinde kayıtların doğru hesaba bağlanması ve hesaplar arası veri sızmaması.
 - Eğitimin otomatik açılmaması; Ayarlar'dan açılıp “Anladım” ile kapanması.
 - İki ayrı fiziksel cihaz/hesapla Canlı Düello eşleşme, maç bitişi, sonuç kaydı ve leaderboard güncellemesi.
-- Leaderboard boşken `#1` yerine `—`; oyuncu belgesi oluştuktan sonra tutarlı sıra.
+- Leaderboard belgesi yokken sıra gösterilmemesi; belge oluştuktan sonra tutarlı sıra.
 - Kapalı-test sürümünde yalnız Google demo reklam kreatifleri.
-
-## Bilinen riskler ve geri alma
-
-- CI emülatörü gerçek Google hesap seçicisini ve iki cihazlı Canlı Düello'yu doğrulayamaz; bunlar fiziksel cihaz kapalı testinde zorunludur.
-- Production Firestore içeriği otomatik workflow tarafından okunmaz; leaderboard veri varlığı manuel doğrulanır.
-- Başarısızlıkta Play kapalı test kanalında önceki AAB aktif bırakılır, backend/rules dağıtımı durdurulur ve ilgili Functions/Rules sürümü Firebase release geçmişinden geri alınır.
-- Bu branch main'e otomatik yazmaz, PR Draft kalır ve hiçbir workflow deployment yapmaz.
-
-## Android 16 emülatör altyapı engeli — Run 30696824232
-
-Son manuel release koşusu, head
-`2f8dbd0b2a88fb677c606a2674fb36b78ae25656` için imzalı
-`BilgiRotasi-1.68.8-98-closed-test.aab` artifact'ını başarıyla üretti.
-AAB paket adı `com.leventua.bilgirotasi`, sürümü `1.68.8`, version code'u
-`98` ve sertifika SHA-1 değeri
-`00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`
-olarak doğrulandı. Production Firebase, kapalı-test Google demo AdMob profili,
-paket, sürüm ve kalıcı imza kontrollerinin tamamı PASS oldu.
-
-Android 16 kanıtında AAB-derived APK kurulumu (`APK_INSTALL=PASS`), uygulama
-başlatma (`APP_LAUNCH=PASS`) ve canlı uygulama PID'si (`4634`) doğrulandı.
-`com.leventua.bilgirotasi` paketinde crash, ANR, ilişkili `FATAL EXCEPTION`
-veya process death bulunmadı. Buna karşılık emülatörde
-`com.google.android.gms` ve diğer sistem paketlerinin ANR'ları, global input
-kilitlenmesi ve `AUTH_1: SCREENSHOT_FAILED_OR_TIMED_OUT` oluştu. Bu nedenle
-Misafir girişi ve ana menüde “Oyna” gibi zorunlu UI checkpoint'leri
-tamamlanamadı; dış Android doğrulama süresi `exit code 124` ile sona erdi.
-
-Bu sonuç uygulama kodu hatası değil, kesin emülatör altyapı engeli olarak
-`INFRASTRUCTURE_INCONCLUSIVE` kaydedilir. Release artifact'ının fiziksel
-kabulü için sonraki zorunlu adım Google Play Internal Testing kanalındaki
-fiziksel Android 16 cihaz testidir. Fiziksel testte Misafir girişi, ana menüde
-“Oyna”, canlı PID, temiz uygulama logcat'i, Ayarlar ve öğretici akışı
-eksiksiz doğrulanmadan yayın onaylanmaz.
