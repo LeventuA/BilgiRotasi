@@ -25,7 +25,7 @@ void main() {
 
     expect(source, contains('Google hesabı ve bulut kaydı'));
     expect(source, contains('Hesabı ve bulut verilerini sil'));
-    expect(source, contains('BilgiRotasi10@gmail.com'));
+    expect(source, contains('BilgiRotasidestek@gmail.com'));
     expect(source, contains('privacy-policy.html'));
   });
 

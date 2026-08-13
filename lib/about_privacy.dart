@@ -6,18 +6,18 @@ class AboutPrivacyScreen extends StatelessWidget {
   final QuestionBank questionBank;
 
   static const String _privacyUrl =
-      'https://leventua.github.io/BilgiRotasi/'
+      'https://zmilastudio.github.io/BilgiRotasi/'
       'privacy-policy.html';
   static const String _deletionUrl =
-      'https://leventua.github.io/BilgiRotasi/'
+      'https://zmilastudio.github.io/BilgiRotasi/'
       'account-deletion.html';
   static const String _termsUrl =
-      'https://leventua.github.io/BilgiRotasi/'
+      'https://zmilastudio.github.io/BilgiRotasi/'
       'terms-of-use.html';
   static const String _communityUrl =
-      'https://leventua.github.io/BilgiRotasi/'
+      'https://zmilastudio.github.io/BilgiRotasi/'
       'community-guidelines.html';
-  static const String _supportEmail = 'BilgiRotasi10@gmail.com';
+  static const String _supportEmail = 'BilgiRotasidestek@gmail.com';
 
   @override
   Widget build(BuildContext context) {
