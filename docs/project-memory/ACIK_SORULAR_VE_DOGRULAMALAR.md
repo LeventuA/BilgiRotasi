@@ -2,6 +2,30 @@
 
 **Kesim noktası:** 13 Ağustos 2026
 
+## PR #29/#30 release-readiness düzeltmesi - GÜNCEL DURUM
+
+Bu bölüm aşağıdaki tarihsel BR-P1-008 / release HEAD kayıtlarının güncel durumunu geçersiz kılar.
+
+- Güncel release branch: `release/final-closed-test-aab-1.68.8`.
+- Güncel release HEAD: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
+- Sürüm: `1.68.14+104`.
+- PR #29 dinamik `RELEASE_READINESS.md` üretimini release'e taşıdı; merge commit `9aef2bd9ceeeba3a47e85e5a508512967d7db29d`.
+- Bu merge sonrasındaki manuel final closed-test run `31654600408`, `git diff --check` tarafından trailing whitespace nedeniyle AAB aşamasından önce durduruldu. Bu uygulama hatası değildir ve release artifact kabulü sayılamaz.
+- PR #30 yalnız rapor üreticisindeki satır-sonu boşluklarını kaldırdı ve regresyon testi ekledi. Kod head `1c809e9f4d02c425705e4812b0daadf87418b9fd`; CI #139 run `31655047190`, job `94307567727`: **SUCCESS**.
+- PR #30 merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
+- **BR-P1-008 uygulama/CI/merge tamamlandı; artifact kabulü henüz açık.** Güncel release HEAD üzerinde yeni `Closed test release doğrulaması` manuel run'ı çalıştırılmalı ve `reports/RELEASE_READINESS.md` içindeki sürüm/source/AAB/soru sayısı ile whitespace kontrolü artifact üzerinden doğrulanmalıdır.
+- Fresh RC2'nin eski proje-hafızası satırlarındaki `690424c...` AAB SHA256 değeri transkripsiyon hatasıdır. Doğrudan indirilen artifact `reports/AAB_SHA256.txt` ve gerçek AAB hash'i: `6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285`.
+- `KARARLAR.md` değişmedi.
+
+Açık sonraki adım:
+
+1. Güncel `d1d5a9ea...` üzerinde `Closed test release doğrulaması` → `confirmation=CLOSED_TEST` ile **yeni** run başlat.
+2. Tam job logu + artifact birlikte incelensin.
+3. `reports/RELEASE_READINESS.md`: `1.68.14+104`, 8.710 soru, doğru source SHA/ref, doğru AAB adı ve trailing whitespace yok.
+4. Android 16 mandatory gate'ler PASS ve Bilgi Rotası crash/ANR/FATAL/process-death kanıtı yoksa yeni AAB Play Kapalı Test yükleme adayıdır.
+
+---
+
 ## Fresh RC2 release doğrulaması - TAMAMLANDI
 
 Bu bölüm aşağıdaki tarihsel “Fresh RC2 release doğrulaması - AÇIK” kaydının güncel sonucudur ve o gereksinimi kapatır.
@@ -96,7 +120,7 @@ Kök neden:
 
 - Closed-test AAB `FIREBASE_ENVIRONMENT=production` + `ADMOB_ENVIRONMENT=closed_test` ile üretilir.
 - Eski sonuç destek kartı `FirebaseRuntimePolicy.productionEnabled` true olduğunda +10 XP ödülünü tamamen kapatıyordu.
-- Bu nedenle RC2 #326 build'i Google demo reklam profili taşısa da BR-P0-004 fiziksel rewarded kabulü yapılamıyordu.
+- Bu nedenle RC2 #326 build'i Google demo reklam profili taşısa da BR-P0-004 fiziksel rewarded kabul yapılamıyordu.
 
 PR #25 çözümü:
 
