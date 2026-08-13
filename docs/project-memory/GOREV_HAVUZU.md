@@ -1,5 +1,20 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0B - 13 Ağustos 2026 BR-P1-008 final artifact kabulü
+
+Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarını **güncel olarak geçersiz kılar**.
+
+- Final release source SHA: `794205f3ad68c0547f2858d530170af3a7a6bd41` (`release/final-closed-test-aab-1.68.8`).
+- `Closed test release doğrulaması` run `31680750887` / job `94385413742`: **SUCCESS**.
+- Artifact ID `9173824623`; digest `sha256:9c6f081211cff19a3d8857c6b6bb15dc312da17819fe67988f994a333c078d73`; AAB SHA-256 `6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285`.
+- Dinamik `reports/RELEASE_READINESS.md` gerçek `1.68.14+104`, 8.710 soru, soru SHA-256 `e71c4ff991873499b986952835b9bb8e0995d2791c47ce4085d7ab9a502299d4`, source ref/SHA, AAB adı ve workflow run URL'sini içerir.
+- Eski `1.68.8+98`, `6710` ve tarihsel source değerleri final readiness artifact'ında yoktur; trailing whitespace **PASS**.
+- Android 16 AAB-derived `Misafir → Home → Oyna`, `APP_GATE`, `RELEASE_GATE` ve ayarlar/öğretici tanısı PASS; app-specific crash/ANR/FATAL/process-death yok.
+- **BR-P1-008 bitti ölçütü karşılandı ve görev kapatıldı.**
+- Bu run aynı zamanda güncel release HEAD için fresh geniş teknik RC kabulünü sağlar; Play/Firebase canlı servis ve fiziksel cihaz kabul maddeleri ayrıca açık kalır.
+
+---
+
 ## 0A - 13 Ağustos 2026 PR #29/#30 release-readiness kapanış kesimi
 
 Bu bölüm aşağıdaki tarihsel BR-P1-008 ve release HEAD kayıtlarının **güncel durumunu geçersiz kılar**; eski kayıtlar denetim izi olarak korunur.
@@ -302,7 +317,9 @@ Doğrulanan kaynak davranışı:
 
 ### BR-P1-008 - `RELEASE_READINESS.md` bayat rapor şablonunu düzelt
 
-**Durum:** AÇIK
+**Durum:** TAMAMLANDI / FINAL RELEASE ARTIFACT KANITI PASS
+
+**Final kanıt:** run `31680750887` / job `94385413742` SUCCESS; artifact `9173824623` / `sha256:9c6f081211cff19a3d8857c6b6bb15dc312da17819fe67988f994a333c078d73`; source `794205f3ad68c0547f2858d530170af3a7a6bd41`; AAB SHA-256 `6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285`. Dinamik readiness `1.68.14+104`, 8.710 soru, doğru source/AAB/run bilgilerini içerir ve eski tarihsel sabitleri taşımaz.
 
 RC2 #326 artifact'ındaki gerçek AAB ve kalite raporları `1.68.14+104` / 8.710 soru gösterirken `reports/RELEASE_READINESS.md` içinde eski `1.68.8+98`, eski kaynak commit ve 6.710 soru gibi tarihsel metinler kalmıştır.
 
