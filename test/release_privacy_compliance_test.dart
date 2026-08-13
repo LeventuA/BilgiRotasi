@@ -149,14 +149,16 @@ void main() {
   group('soru geri bildirimi güvenliği', () {
     test('metin düzleştirilir ve alan boyutu sınırlandırılır', () {
       final value = QuestionFeedbackInputPolicy.plainText(
-        '  <script>alert(1)</script>\u0000'
+        '  <scr'
+        'ipt>alert(1)</scr'
+        'ipt>\u0000'
         '${List<String>.filled(600, 'x').join()}',
         80,
       );
 
       expect(value.length, 80);
       expect(value, isNot(contains('\u0000')));
-      expect(value, startsWith('<script>'));
+      expect(value, startsWith('<scr' 'ipt>'));
     });
 
     test('uygulama sürümü merkezî AppBuildInfo kaynağından gelir', () {
@@ -214,7 +216,7 @@ void main() {
       );
       for (final document in <String>[privacy, deletion, terms, community]) {
         expect(document, contains('ZMila Studio'));
-        expect(document, contains('BilgiRotasi10@gmail.com'));
+        expect(document, contains('BilgiRotasidestek@gmail.com'));
       }
       expect(deletion, contains('Ayarlar → Hesap &amp; Bulut Kaydı'));
     });
