@@ -1,0 +1,118 @@
+name: Temporary project memory release-head cleanup
+
+on:
+  push:
+    branches:
+      - docs/make-release-head-reference-live
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout cleanup branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs/make-release-head-reference-live
+          fetch-depth: 0
+
+      - name: Update only verified current-state lines
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          files = {
+              "docs/project-memory/BILGI_ROTASI_DURUM.md": [
+                  (
+                      "- Güncel release HEAD: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548` (PR #30 merge).",
+                      "- PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.\n"
+                      "- PR #31 proje-hafızası merge commit: `dcab00bee295c75a817fd4dda0a63be10c5a6d56`.\n"
+                      "- Canlı release HEAD bu dosyada statik bir SHA olarak dondurulmaz; her teknik görev başında `release/final-closed-test-aab-1.68.8` dalı GitHub'dan yeniden okunur."
+                  ),
+                  (
+                      "- PR #30 Levent'in açık onayıyla release'e merge edildi; merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.",
+                      "- PR #30 Levent'in açık onayıyla release'e merge edildi; merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.\n"
+                      "- PR #31 sonrası `dcab00bee295c75a817fd4dda0a63be10c5a6d56` üzerinde Quality Checks #298 / run `31657810165` **SUCCESS** ve AdMob PR doğrulaması #142 / run `31657810270` / job `94316006975` **SUCCESS** oldu.\n"
+                      "- #142 artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9165265578`, digest `sha256:da4a2082ca2139529fe4bee0358b560a966391d41e1548c8b20943184edbf2c3`; APK SHA256 `3bdb9ab250c97f42ab958ff1e037c0ad5eaee9458090d97b850710bf4c928813`. Paket `com.leventua.bilgirotasi`, sürüm `1.68.14+104`, upload-signing SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`; Android 16 `APP_GATE=PASS` ve `RELEASE_GATE=PASS`; Bilgi Rotası paketine ait crash/ANR/FATAL/process-death eşleşmesi yok. Bu APK kanıtı manuel final Closed Test AAB kabulünün yerine geçmez."
+                  ),
+                  (
+                      "- **Kapanış için kalan kanıt:** güncel `d1d5a9ea...` üzerinde yeni `Closed test release doğrulaması` manuel workflow'u çalıştırılmalı ve artifact içindeki `reports/RELEASE_READINESS.md` canlı `1.68.14+104`, 8.710 soru, doğru source/AAB ve whitespace'siz raporu göstermelidir.",
+                      "- **Kapanış için kalan kanıt:** bu proje-hafızası temizliği release'e merge edildikten sonra GitHub'dan yeniden okunan **canlı release HEAD** üzerinde yeni `Closed test release doğrulaması` manuel workflow'u çalıştırılmalı ve artifact içindeki `reports/RELEASE_READINESS.md` canlı `1.68.14+104`, 8.710 soru, doğru source SHA/ref, doğru AAB adı ve whitespace'siz raporu göstermelidir."
+                  ),
+              ],
+              "docs/project-memory/GOREV_HAVUZU.md": [
+                  (
+                      "- Güncel release HEAD: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548` (PR #30 merge).",
+                      "- PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.\n"
+                      "- PR #31 proje-hafızası merge commit: `dcab00bee295c75a817fd4dda0a63be10c5a6d56`.\n"
+                      "- Canlı release HEAD statik olarak bu dosyada dondurulmaz; her teknik görev başında GitHub'dan yeniden okunur."
+                  ),
+                  (
+                      "- PR #30 Levent'in açık onayıyla release'e merge edildi: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.",
+                      "- PR #30 Levent'in açık onayıyla release'e merge edildi: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.\n"
+                      "- PR #31 sonrası `dcab00bee295c75a817fd4dda0a63be10c5a6d56` üzerinde Quality Checks #298 / run `31657810165` **SUCCESS**; AdMob PR doğrulaması #142 / run `31657810270` / job `94316006975` **SUCCESS**. #142 artifact ID `9165265578`, digest `sha256:da4a2082ca2139529fe4bee0358b560a966391d41e1548c8b20943184edbf2c3`, APK SHA256 `3bdb9ab250c97f42ab958ff1e037c0ad5eaee9458090d97b850710bf4c928813`; Android 16 app/release gate PASS ve app-specific crash/ANR/FATAL/process-death eşleşmesi yok. Bu APK kanıtı final AAB kabulü değildir."
+                  ),
+                  (
+                      "- **Kapanış için kalan kanıt:** güncel release HEAD `d1d5a9ea...` üzerinde yeni `Closed test release doğrulaması` manuel run'ı çalıştırılmalı; artifact içindeki `reports/RELEASE_READINESS.md` canlı `1.68.14+104`, 8.710 soru, doğru source/AAB ve whitespace'siz içerik göstermelidir.",
+                      "- **Kapanış için kalan kanıt:** bu docs temizliği merge edildikten sonra GitHub'dan yeniden okunan **canlı release HEAD** üzerinde yeni `Closed test release doğrulaması` manuel run'ı çalıştırılmalı; artifact içindeki `reports/RELEASE_READINESS.md` canlı `1.68.14+104`, 8.710 soru, doğru source SHA/ref, doğru AAB adı ve whitespace'siz içerik göstermelidir."
+                  ),
+              ],
+              "docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md": [
+                  (
+                      "- Güncel release HEAD: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.",
+                      "- PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.\n"
+                      "- PR #31 proje-hafızası merge commit: `dcab00bee295c75a817fd4dda0a63be10c5a6d56`.\n"
+                      "- Canlı release HEAD statik olarak bu dosyada dondurulmaz; her teknik görev başında GitHub'dan yeniden okunur."
+                  ),
+                  (
+                      "- PR #30 merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.",
+                      "- PR #30 merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.\n"
+                      "- PR #31 sonrası `dcab00bee295c75a817fd4dda0a63be10c5a6d56` üzerinde Quality Checks #298 / run `31657810165` **SUCCESS**; AdMob PR doğrulaması #142 / run `31657810270` / job `94316006975` **SUCCESS**. #142 artifact ID `9165265578`, digest `sha256:da4a2082ca2139529fe4bee0358b560a966391d41e1548c8b20943184edbf2c3`, APK SHA256 `3bdb9ab250c97f42ab958ff1e037c0ad5eaee9458090d97b850710bf4c928813`; Android 16 app/release gate PASS ve app-specific crash/ANR/FATAL/process-death eşleşmesi yok. Bu APK kanıtı final AAB kabulü değildir."
+                  ),
+                  (
+                      "1. Güncel `d1d5a9ea...` üzerinde `Closed test release doğrulaması` → `confirmation=CLOSED_TEST` ile **yeni** run başlat.",
+                      "1. Bu proje-hafızası temizliği merge edildikten sonra GitHub'dan yeniden okunan **canlı release HEAD** üzerinde `Closed test release doğrulaması` → `confirmation=CLOSED_TEST` ile **yeni** run başlat."
+                  ),
+              ],
+          }
+
+          for path_str, replacements in files.items():
+              path = Path(path_str)
+              text = path.read_text(encoding="utf-8")
+              for old, new in replacements:
+                  count = text.count(old)
+                  if count != 1:
+                      raise SystemExit(f"{path}: expected exactly 1 occurrence, found {count}: {old}")
+                  text = text.replace(old, new, 1)
+              path.write_text(text, encoding="utf-8")
+          PY
+
+          expected="docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
+docs/project-memory/BILGI_ROTASI_DURUM.md
+docs/project-memory/GOREV_HAVUZU.md"
+          actual="$(git diff --name-only | sort)"
+          if [ "$actual" != "$expected" ]; then
+            echo "Unexpected changed files:" >&2
+            printf '%s\n' "$actual" >&2
+            exit 1
+          fi
+          git diff --check
+
+      - name: Commit docs and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/temp-project-memory-release-head-cleanup.yml
+          git add docs/project-memory/BILGI_ROTASI_DURUM.md \
+                  docs/project-memory/GOREV_HAVUZU.md \
+                  docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
+          git diff --cached --check
+          git commit -m "docs: make release head references live"
+          git push origin HEAD:docs/make-release-head-reference-live
