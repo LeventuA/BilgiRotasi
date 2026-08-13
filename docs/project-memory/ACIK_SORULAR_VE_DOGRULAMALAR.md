@@ -7,19 +7,22 @@
 Bu bölüm aşağıdaki tarihsel BR-P1-008 / release HEAD kayıtlarının güncel durumunu geçersiz kılar.
 
 - Güncel release branch: `release/final-closed-test-aab-1.68.8`.
-- Güncel release HEAD: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
+- PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
+- PR #31 proje-hafızası merge commit: `dcab00bee295c75a817fd4dda0a63be10c5a6d56`.
+- Canlı release HEAD statik olarak bu dosyada dondurulmaz; her teknik görev başında GitHub'dan yeniden okunur.
 - Sürüm: `1.68.14+104`.
 - PR #29 dinamik `RELEASE_READINESS.md` üretimini release'e taşıdı; merge commit `9aef2bd9ceeeba3a47e85e5a508512967d7db29d`.
 - Bu merge sonrasındaki manuel final closed-test run `31654600408`, `git diff --check` tarafından trailing whitespace nedeniyle AAB aşamasından önce durduruldu. Bu uygulama hatası değildir ve release artifact kabulü sayılamaz.
 - PR #30 yalnız rapor üreticisindeki satır-sonu boşluklarını kaldırdı ve regresyon testi ekledi. Kod head `1c809e9f4d02c425705e4812b0daadf87418b9fd`; CI #139 run `31655047190`, job `94307567727`: **SUCCESS**.
 - PR #30 merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
+- PR #31 sonrası `dcab00bee295c75a817fd4dda0a63be10c5a6d56` üzerinde Quality Checks #298 / run `31657810165` **SUCCESS**; AdMob PR doğrulaması #142 / run `31657810270` / job `94316006975` **SUCCESS**. #142 artifact ID `9165265578`, digest `sha256:da4a2082ca2139529fe4bee0358b560a966391d41e1548c8b20943184edbf2c3`, APK SHA256 `3bdb9ab250c97f42ab958ff1e037c0ad5eaee9458090d97b850710bf4c928813`; Android 16 app/release gate PASS ve app-specific crash/ANR/FATAL/process-death eşleşmesi yok. Bu APK kanıtı final AAB kabulü değildir.
 - **BR-P1-008 uygulama/CI/merge tamamlandı; artifact kabulü henüz açık.** Güncel release HEAD üzerinde yeni `Closed test release doğrulaması` manuel run'ı çalıştırılmalı ve `reports/RELEASE_READINESS.md` içindeki sürüm/source/AAB/soru sayısı ile whitespace kontrolü artifact üzerinden doğrulanmalıdır.
 - Fresh RC2'nin eski proje-hafızası satırlarındaki `690424c...` AAB SHA256 değeri transkripsiyon hatasıdır. Doğrudan indirilen artifact `reports/AAB_SHA256.txt` ve gerçek AAB hash'i: `6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285`.
 - `KARARLAR.md` değişmedi.
 
 Açık sonraki adım:
 
-1. Güncel `d1d5a9ea...` üzerinde `Closed test release doğrulaması` → `confirmation=CLOSED_TEST` ile **yeni** run başlat.
+1. Bu proje-hafızası temizliği merge edildikten sonra GitHub'dan yeniden okunan **canlı release HEAD** üzerinde `Closed test release doğrulaması` → `confirmation=CLOSED_TEST` ile **yeni** run başlat.
 2. Tam job logu + artifact birlikte incelensin.
 3. `reports/RELEASE_READINESS.md`: `1.68.14+104`, 8.710 soru, doğru source SHA/ref, doğru AAB adı ve trailing whitespace yok.
 4. Android 16 mandatory gate'ler PASS ve Bilgi Rotası crash/ANR/FATAL/process-death kanıtı yoksa yeni AAB Play Kapalı Test yükleme adayıdır.
