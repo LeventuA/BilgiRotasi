@@ -1,0 +1,149 @@
+name: Record BR-P1-008 final proof once
+
+on:
+  push:
+    branches:
+      - docs/close-br-p1-008-final-proof
+
+permissions:
+  contents: write
+
+jobs:
+  record-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/close-br-p1-008-final-proof
+          fetch-depth: 0
+
+      - name: Update project memory from verified artifact facts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          release_sha = "794205f3ad68c0547f2858d530170af3a7a6bd41"
+          run_id = "31680750887"
+          job_id = "94385413742"
+          artifact_id = "9173824623"
+          artifact_digest = "sha256:9c6f081211cff19a3d8857c6b6bb15dc312da17819fe67988f994a333c078d73"
+          aab_sha = "6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285"
+          question_sha = "e71c4ff991873499b986952835b9bb8e0995d2791c47ce4085d7ab9a502299d4"
+
+          durum = Path("docs/project-memory/BILGI_ROTASI_DURUM.md")
+          text = durum.read_text(encoding="utf-8")
+          anchor = "**Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`\n\n"
+          marker = "## 0B. BR-P1-008 final artifact kabulü — 13 Ağustos 2026"
+          assert marker not in text, f"duplicate marker: {durum}"
+          assert text.count(anchor) == 1, f"unexpected anchor count: {durum}"
+          block = f"""## 0B. BR-P1-008 final artifact kabulü — 13 Ağustos 2026
+
+Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **güncel sonucudur**; eski kayıtlar denetim izi olarak korunur.
+
+- PR #32 `docs: make release head references live` squash merge commit'i: `{release_sha}`.
+- Final `Closed test release doğrulaması`: run `{run_id}`, job `{job_id}`, source ref `release/final-closed-test-aab-1.68.8`, source SHA `{release_sha}`: **SUCCESS**.
+- Artifact: `BilgiRotasi-1.68.14-104-closed-test-release`; ID `{artifact_id}`; digest `{artifact_digest}`.
+- Artifact içindeki AAB: `BilgiRotasi-1.68.14-104-closed-test.aab`; gerçek dosya SHA-256 ile `reports/AAB_SHA256.txt` birebir eşleşir: `{aab_sha}`.
+- Dinamik `reports/RELEASE_READINESS.md`: sürüm `1.68.14+104`, **8.710 soru**, soru SHA-256 `{question_sha}`, doğru source ref/SHA, doğru AAB adı ve run `{run_id}` URL'sini içerir.
+- `RELEASE_READINESS.md` içinde eski `1.68.8+98`, `6710`, eski source branch/commit kalıntısı yoktur; trailing whitespace kontrolü **PASS**.
+- `RC1_QUALITY_GATE.md`: **BAŞARILI**, `1.68.14+104`, 8.710 soru, kritik hata/uyarı yok.
+- Android 16 AAB-derived kabul ilk denemede **PASS**; ikinci deneme gerekmedi. `GUEST_LOGIN=PASS`, `HOME_OYNA=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`, `SETTINGS_TUTORIAL_DIAGNOSTIC=PASS`.
+- Artifact log taramasında Bilgi Rotası paketine ait crash, ANR, `FATAL EXCEPTION` veya process-death kanıtı bulunmadı.
+- AAB metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifika SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- **BR-P1-008 TAMAMLANDI.** Dinamik release-readiness üretimi canlı artifact üzerinde kanıtlandı.
+- Bu teknik kabul Play Console'a AAB yüklendiğini, fiziksel Play kabulünü veya Firebase/Play canlı konsol durumlarını tek başına doğrulamaz; bu maddeler ayrı açık görevlerde kalır.
+- `KARARLAR.md` değişmedi; ürün kararı değişikliği yoktur.
+
+---
+
+"""
+          durum.write_text(text.replace(anchor, anchor + block, 1), encoding="utf-8")
+
+          gorev = Path("docs/project-memory/GOREV_HAVUZU.md")
+          text = gorev.read_text(encoding="utf-8")
+          anchor = "# Bilgi Rotası - Görev Havuzu\n\n"
+          marker = "## 0B - 13 Ağustos 2026 BR-P1-008 final artifact kabulü"
+          assert marker not in text, f"duplicate marker: {gorev}"
+          assert text.count(anchor) == 1, f"unexpected anchor count: {gorev}"
+          block = f"""## 0B - 13 Ağustos 2026 BR-P1-008 final artifact kabulü
+
+Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarını **güncel olarak geçersiz kılar**.
+
+- Final release source SHA: `{release_sha}` (`release/final-closed-test-aab-1.68.8`).
+- `Closed test release doğrulaması` run `{run_id}` / job `{job_id}`: **SUCCESS**.
+- Artifact ID `{artifact_id}`; digest `{artifact_digest}`; AAB SHA-256 `{aab_sha}`.
+- Dinamik `reports/RELEASE_READINESS.md` gerçek `1.68.14+104`, 8.710 soru, soru SHA-256 `{question_sha}`, source ref/SHA, AAB adı ve workflow run URL'sini içerir.
+- Eski `1.68.8+98`, `6710` ve tarihsel source değerleri final readiness artifact'ında yoktur; trailing whitespace **PASS**.
+- Android 16 AAB-derived `Misafir → Home → Oyna`, `APP_GATE`, `RELEASE_GATE` ve ayarlar/öğretici tanısı PASS; app-specific crash/ANR/FATAL/process-death yok.
+- **BR-P1-008 bitti ölçütü karşılandı ve görev kapatıldı.**
+- Bu run aynı zamanda güncel release HEAD için fresh geniş teknik RC kabulünü sağlar; Play/Firebase canlı servis ve fiziksel cihaz kabul maddeleri ayrıca açık kalır.
+
+---
+
+"""
+          text = text.replace(anchor, anchor + block, 1)
+          start_marker = "### BR-P1-008 - `RELEASE_READINESS.md` bayat rapor şablonunu düzelt"
+          end_marker = "\n---\n\n### BR-P1-009"
+          assert text.count(start_marker) == 1, "BR-P1-008 section count unexpected"
+          start = text.index(start_marker)
+          end = text.index(end_marker, start)
+          section = text[start:end]
+          assert section.count("**Durum:** AÇIK") == 1, "BR-P1-008 status is not exactly AÇIK once"
+          proof = f"""**Durum:** TAMAMLANDI / FINAL RELEASE ARTIFACT KANITI PASS
+
+**Final kanıt:** run `{run_id}` / job `{job_id}` SUCCESS; artifact `{artifact_id}` / `{artifact_digest}`; source `{release_sha}`; AAB SHA-256 `{aab_sha}`. Dinamik readiness `1.68.14+104`, 8.710 soru, doğru source/AAB/run bilgilerini içerir ve eski tarihsel sabitleri taşımaz.
+"""
+          section = section.replace("**Durum:** AÇIK", proof, 1)
+          text = text[:start] + section + text[end:]
+          gorev.write_text(text, encoding="utf-8")
+
+          acik = Path("docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md")
+          text = acik.read_text(encoding="utf-8")
+          anchor = "**Kesim noktası:** 13 Ağustos 2026\n\n"
+          marker = "## BR-P1-008 final artifact kabulü - KAPALI"
+          assert marker not in text, f"duplicate marker: {acik}"
+          assert text.count(anchor) == 1, f"unexpected anchor count: {acik}"
+          block = f"""## BR-P1-008 final artifact kabulü - KAPALI
+
+Aşağıdaki tarihsel “artifact kabulü açık / yeni run gerekli” kayıtları artık kapanmıştır.
+
+- PR #32 merge commit: `{release_sha}`.
+- Final `Closed test release doğrulaması` run `{run_id}`, job `{job_id}`: **SUCCESS** ve doğru release SHA'yı test etti.
+- Artifact `BilgiRotasi-1.68.14-104-closed-test-release`: ID `{artifact_id}`, digest `{artifact_digest}`.
+- AAB SHA-256: `{aab_sha}`; `reports/AAB_SHA256.txt` ile gerçek AAB dosya hash'i eşleşir.
+- `reports/RELEASE_READINESS.md`: `1.68.14+104`, 8.710 soru, soru SHA-256 `{question_sha}`, source ref `release/final-closed-test-aab-1.68.8`, source SHA `{release_sha}`, doğru AAB adı ve run `{run_id}` URL'si doğrulandı.
+- Eski `1.68.8+98`, `6710` ve eski source değerleri yok; trailing whitespace yok.
+- Android 16 ilk AAB-derived deneme PASS; ikinci deneme gerekmedi. `GUEST_LOGIN`, `HOME_OYNA`, `APP_GATE`, `RELEASE_GATE`, `SETTINGS_TUTORIAL_DIAGNOSTIC` PASS; app-specific crash/ANR/FATAL/process-death kanıtı yok.
+- **BR-P1-008 artık açık konu değildir.**
+- Play Console güncel sürüm/sayaç, fiziksel Google/rewarded/Canlı Düello kabulü ve Firebase/Play canlı servis kontrolleri ayrı açık doğrulamalar olarak devam eder.
+- `KARARLAR.md` değişmedi.
+
+---
+
+"""
+          acik.write_text(text.replace(anchor, anchor + block, 1), encoding="utf-8")
+          PY
+
+      - name: Validate docs diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git diff --name-only | sort)" = "$(printf '%s\n' docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md docs/project-memory/BILGI_ROTASI_DURUM.md docs/project-memory/GOREV_HAVUZU.md | sort)"
+          git diff --check
+          grep -Fq 'BR-P1-008 TAMAMLANDI' docs/project-memory/BILGI_ROTASI_DURUM.md
+          grep -Fq '**Durum:** TAMAMLANDI / FINAL RELEASE ARTIFACT KANITI PASS' docs/project-memory/GOREV_HAVUZU.md
+          grep -Fq '## BR-P1-008 final artifact kabulü - KAPALI' docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
+
+      - name: Commit final project-memory proof and remove helper
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/close-br-p1-008-final-proof-once.yml
+          git add docs/project-memory/BILGI_ROTASI_DURUM.md docs/project-memory/GOREV_HAVUZU.md docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
+          git diff --cached --check
+          git commit -m 'docs: record final release readiness proof'
+          git push origin HEAD:docs/close-br-p1-008-final-proof
