@@ -1,0 +1,106 @@
+name: Record about privacy rollout once
+
+on:
+  push:
+    branches:
+      - docs/record-about-privacy-rollout-20260813
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout docs branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs/record-about-privacy-rollout-20260813
+          fetch-depth: 0
+
+      - name: Record verified rollout facts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          status_path = Path('docs/project-memory/BILGI_ROTASI_DURUM.md')
+          task_path = Path('docs/project-memory/GOREV_HAVUZU.md')
+
+          status = status_path.read_text(encoding='utf-8')
+          marker = '## 0C. Hakkında & Gizlilik / herkese açık destek iletişimi — 13 Ağustos 2026'
+          if marker not in status:
+              anchor = '## 0B. BR-P1-008 final artifact kabulü — 13 Ağustos 2026'
+              section = '''## 0C. Hakkında & Gizlilik / herkese açık destek iletişimi — 13 Ağustos 2026
+
+Bu bölüm aşağıdaki tarihsel release/main kayıtlarının bu iş için güncel sonucudur.
+
+- Levent, PR #35 ve canlı Pages doğrulamasından sonra PR #34 merge sırasına açık onay verdi.
+- PR #35 `fix: update public support contacts`, `main` tabanlı ayrı branch'te hazırlandı; public `docs/` sayfalarındaki destek e-postası `BilgiRotasidestek@gmail.com` olarak güncellendi ve eski beklenti testi yeni adrese hizalandı.
+- PR #35 head `b30689cc5df5ac3dde1479be6fe379a23e7c79c9`; Quality Checks #302 ve AdMob PR doğrulaması #150 / run `31703222864` **SUCCESS**; Android 16 cold-start PASS.
+- PR #35 Levent'in açık onayıyla `main` dalına squash merge edildi: `3b95e226c4e166864b72b22823ddc69b78589150`.
+- GitHub Pages kaynağı `main:/docs`, HTTPS açık ve public; latest Pages build `1149217588` bu merge commit'i `3b95e226...` üzerinden **built** / hata yok olarak tamamladı.
+- PR #34 `fix: update about privacy links`, release tabanlı ayrı branch'te `lib/about_privacy.dart` içindeki dört bağlantıyı `https://zmilastudio.github.io/BilgiRotasi/` alanına ve destek e-postasını `BilgiRotasidestek@gmail.com` adresine taşıdı; eski `leventua.github.io` ve `BilgiRotasi10@gmail.com` değerlerini engelleyen regresyon testi eklendi/güncellendi.
+- PR #34 head `5fd552a2fe35e3b72a43a1f65162830da702655c`; AdMob PR doğrulaması #148 / run `31700031074`: **SUCCESS**.
+- PR #34 Levent'in açık onayıyla `release/final-closed-test-aab-1.68.8` dalına squash merge edildi: `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`.
+- Merge sonrası canlı release HEAD `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`; `pubspec.yaml` sürümü değişmedi: `1.68.14+104`.
+- Merge sonrası AdMob PR doğrulaması #151 / run `31710501542`, job `94481907601` **SUCCESS** ve Quality Checks #304 / run `31710501544` **SUCCESS** oldu.
+- #151 artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9185415759`, digest `sha256:1b831a41d072ee515f808bb6d967bd54ce3740308fed555e8a0086bc0b024344`; APK SHA-256 `bd83e43b0a6af054b15b65d93e57c5c260da1cdf4e57d765582f2e30f830fd7d`.
+- Artifact APK metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifika SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- Android 16 artifact kapıları `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = **PASS**; uygulama PID `2005` ve `MainActivity` RESUMED/visible olarak kaydedildi.
+- Android 16 log taramasında Bilgi Rotası paketine ait `FATAL EXCEPTION`, AndroidRuntime FATAL, eksik AdMob application ID veya app-specific process-death kanıtı bulunmadı. Logdaki genel binder `process died` satırları Bilgi Rotası paketine ait değildir.
+- AOSP ATD emulatorunda Google Play Store bulunmadığına dair Bilgi Rotası Google Play Services uyarısı vardır; bu cold-start kapısını bozmaz ve fiziksel Play kabulünün yerine geçmez.
+- Oynanış, BoardMap, 67 node düzeni, `assets/questions.json` ve sürüm numarası değiştirilmedi.
+- `KARARLAR.md` değişmedi; bu iş yeni ürün kararı değil mevcut Hakkında/Gizlilik ve public destek uçlarının düzeltilmesidir.
+
+---
+
+'''
+              if anchor not in status:
+                  raise SystemExit('BILGI_ROTASI_DURUM anchor bulunamadı')
+              status = status.replace(anchor, section + anchor, 1)
+              status_path.write_text(status, encoding='utf-8')
+
+          tasks = task_path.read_text(encoding='utf-8')
+          task_marker = '### BR-P1-013 - Hakkında & Gizlilik bağlantıları ve public destek iletişimini düzelt'
+          if task_marker not in tasks:
+              anchor = '## P2 - Görsel ve pazarlama'
+              section = '''### BR-P1-013 - Hakkında & Gizlilik bağlantıları ve public destek iletişimini düzelt
+
+**Durum:** TAMAMLANDI / PR #34 + #35 MERGED / PAGES BUILT
+
+- PR #35 main tarafında public `docs/` destek iletişimini `BilgiRotasidestek@gmail.com` olarak güncelledi; head `b30689cc5df5ac3dde1479be6fe379a23e7c79c9`, squash merge `3b95e226c4e166864b72b22823ddc69b78589150`.
+- GitHub Pages kaynağı `main:/docs`; build `1149217588` merge commit'i üzerinde `built`.
+- PR #34 release tarafında dört Hakkında & Gizlilik URL'sini `zmilastudio.github.io/BilgiRotasi` alanına ve destek e-postasını yeni adrese taşıdı; head `5fd552a2fe35e3b72a43a1f65162830da702655c`, squash merge `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`.
+- PR #34 final premerge AdMob #148 SUCCESS; PR #35 final Quality #302 + AdMob #150 / Android 16 SUCCESS.
+- Merge sonrası Quality #304 ve AdMob #151 SUCCESS; #151 artifact ID `9185415759`, digest `sha256:1b831a41d072ee515f808bb6d967bd54ce3740308fed555e8a0086bc0b024344`, APK SHA-256 `bd83e43b0a6af054b15b65d93e57c5c260da1cdf4e57d765582f2e30f830fd7d`.
+- #151 artifact APK'sı `1.68.14 (104)` / targetSdk 36 ve Android 16 `APP_GATE=PASS`, `RELEASE_GATE=PASS` olarak doğrulandı; app-specific FATAL/process-death kanıtı yok.
+- Canlı release `pubspec.yaml`: `1.68.14+104`.
+- Oynanış / BoardMap / 67 node / `assets/questions.json` / sürüm numarası değiştirilmedi.
+
+**Bitti ölçütü:** Karşılandı. Public Pages yeni iletişimi built durumda servis ediyor; uygulama release dalı yeni uçları kullanıyor; regresyon beklentileri güncellendi ve ilgili CI/Android 16 kapıları PASS.
+
+---
+
+'''
+              if anchor not in tasks:
+                  raise SystemExit('GOREV_HAVUZU anchor bulunamadı')
+              tasks = tasks.replace(anchor, section + anchor, 1)
+              task_path.write_text(tasks, encoding='utf-8')
+          PY
+
+          git diff --check
+          git diff -- docs/project-memory/BILGI_ROTASI_DURUM.md docs/project-memory/GOREV_HAVUZU.md
+
+      - name: Commit project memory and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'ZMilaStudio'
+          git config user.email 'levent.ua@gmail.com'
+          git rm .github/workflows/record-about-privacy-rollout-once.yml
+          git add docs/project-memory/BILGI_ROTASI_DURUM.md docs/project-memory/GOREV_HAVUZU.md
+          git diff --cached --check
+          git commit -m 'docs: record about privacy rollout'
+          git push origin HEAD:docs/record-about-privacy-rollout-20260813
