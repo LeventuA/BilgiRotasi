@@ -61,6 +61,16 @@ void main() {
     ]) {
       expect(report, isNot(contains(stale)));
     }
+
+    final linesWithTrailingWhitespace = report
+        .split('\n')
+        .where((line) => RegExp(r'[ \t]+$').hasMatch(line))
+        .toList();
+    expect(
+      linesWithTrailingWhitespace,
+      isEmpty,
+      reason: 'Rapor satır sonlarında boşluk bırakamaz.',
+    );
   });
 
   test('izlenen release readiness dosyası tarihsel build sabiti taşımaz', () {
