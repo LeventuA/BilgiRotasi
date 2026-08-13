@@ -110,7 +110,9 @@ Son canlı kontrollerde:
   1.55 mesafe, 42° dikey FOV ve 1.463752079 yakın/uzak ölçek oranı.
 - AŞAMA 3'te 67 node ayrı üst ve yan yüzleri olan fiziksel parçalar halinde
   yapısal olarak extrude edildi. Sabit kalınlıklar dünya biriminde taşıyıcı
-  taban 0.012, dış 0.024, iç 0.020, rozet 0.034 ve merkez 0.040'tır.
+  taban 0.012, dış 0.024, iç 0.020, rozet 0.027 ve merkez 0.028'dir. Merkez-rozet
+  radyal taşıyıcıları yalnız görsel genişlikte %25 artırıldı; merkez çizgileri,
+  bağlantı noktaları, yükseklikleri ve dış halka taşıyıcıları değişmedi.
 - Ana ve güney yakın plan 4096x4096 çıktılarında tüm 67 kimlik, güney `52-56`,
   Spor `62-66` ve altı iç/dış 5'li yol otomatik doğrulamadan geçti.
 - AŞAMA 3 yalnız yapısal 3B geometridir; final stil/doku, logo, ikon, piyon,

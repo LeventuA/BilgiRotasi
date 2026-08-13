@@ -171,13 +171,18 @@ doku, logo, piyon, Flutter veya APK çalışmasına geçilmeyecek.
 - 30 dış taş, 30 iç taş, 6 rozet ve merkez ayrı ayrı üst yüzey, yan yüzler ve
   pozitif kalınlık içeren 67 fiziksel parça olarak üretildi.
 - Sabit dünya birimi kalınlıkları: taşıyıcı taban `0.012`, dış taş `0.024`, iç
-  taş `0.020`, rozet `0.034`, merkez `0.040`.
+  taş `0.020`, rozet `0.027`, merkez `0.028`.
+- Merkez ile rozetler arasındaki 36 radyal taşıyıcı kolun görsel genişliği
+  `5.0` değerinden `6.25` değerine (`%25`) çıkarıldı. Kol merkez çizgileri,
+  uçları, uzunlukları ve yüksekliği; ayrıca 36 dış halka taşıyıcısının `5.0`
+  genişliği değişmedi.
 - Gerçek parça boşlukları korundu; yüzler ortalama kamera derinliğine göre
   uzaktan yakına çizildi ve kimlik etiketleri hiçbir fiziksel yüz tarafından
   kapatılmadı.
 - BoardMap paritesi `67/67`; altı dış aralık ve altı iç yol ayrı ayrı
   `5/5/5/5/5/5` PASS'tir. Güney `52-56` ve Spor `62-66` yolları görünürdür.
-- Merkez en yakın iç taşı, rozetler komşu dış taşları kapatmaz.
+- Merkez `37, 42, 47, 52, 57, 62` iç taşlarını, rozetler komşu dış taşları
+  kapatmaz; taşıyıcı kollar bütün node yüzlerinin arkasında kalır.
 - Ana ve güney yakın plan çıktıları 4096x4096'dır:
   - `tools/board_renderer/output/board_structural_3d_camera_B_4096.png`
   - `tools/board_renderer/output/board_structural_3d_camera_B_closeup_4096.png`

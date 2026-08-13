@@ -48,15 +48,8 @@ def render_structural_svg(scene: dict[str, Any], closeup: bool = False) -> str:
         '  <rect x="-1000" y="-1000" width="3000" height="3000" fill="#0B1120"/>',
     ]
     by_id = {piece["id"]: piece for piece in scene["pieces"]}
-    drawn_edges: set[tuple[int, int]] = set()
-    for piece in scene["pieces"]:
-        for connected_id in piece["connected_node_ids"]:
-            edge = tuple(sorted((piece["id"], connected_id)))
-            if edge in drawn_edges:
-                continue
-            drawn_edges.add(edge)
-            other = by_id[connected_id]
-            lines.append(f'  <line x1="{_n(piece["center"]["x"])}" y1="{_n(piece["center"]["y"])}" x2="{_n(other["center"]["x"])}" y2="{_n(other["center"]["y"])}" stroke="#334155" stroke-width="5" stroke-linecap="round"/>')
+    for carrier in scene["carriers"]:
+        lines.append(f'  <line x1="{_n(carrier["start"]["x"])}" y1="{_n(carrier["start"]["y"])}" x2="{_n(carrier["end"]["x"])}" y2="{_n(carrier["end"]["y"])}" stroke="#334155" stroke-width="{carrier["stroke_width_viewbox_units"]}" stroke-linecap="round"/>')
     for face in scene["faces_in_occlusion_order"]:
         piece = by_id[face["node_id"]]
         fill = TOP_COLORS[piece["type"]] if face["kind"] == "top" else SIDE_COLORS[piece["type"]]
@@ -94,6 +87,8 @@ def report_markdown(report: dict[str, Any]) -> str:
         f"- Inner path counts: `{report['inner_path_counts']}`",
         f"- South inner path: `{report['south_inner_node_ids']}`",
         f"- Sport inner path: `{report['sport_inner_node_ids']}`",
+        f"- Carrier widths: radial `{report['carrier_stroke_width_viewbox_units']['radial']}` (+`{report['carrier_width_increase_percent']}%`), outer ring `{report['carrier_stroke_width_viewbox_units']['outer_ring']}`",
+        f"- Carrier counts: `{report['carrier_counts']}`",
         "",
         "## Fixed thickness values (world units)",
         "",

@@ -125,7 +125,10 @@ Kamera B sabitleriyle 30 dış, 30 iç, 6 rozet ve merkez ayrı üst/yan yüzler
 sahip 67 parça olarak üretildi. BoardMap paritesi 67/67, altı dış ve altı iç yol
 5/5/5/5/5/5, güney `52-56`, Spor `62-66`, etiket/merkez/rozet boşlukları ve
 uzaktan yakına örtüşme sırası PASS'tir. Ana ve güney yakın plan 4096x4096
-çıktıları hazırdır. Statik görsel onayı olmadan final stil, Flutter veya APK yok.
+çıktıları hazırdır. Rozet/merkez kalınlıkları `0.027`/`0.028` olarak düzeltildi;
+36 radyal taşıyıcı yalnız görsel genişlikte `%25` artırılırken dış halka ve bütün
+bağlantı geometrisi korundu. Statik görsel onayı olmadan final stil, Flutter veya
+APK yok.
 
 ### BR-P2-003 - Profesyonel tanıtım videosu
 

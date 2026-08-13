@@ -144,7 +144,10 @@
 - Yapısal 3B aşamasında her dış/iç taş, rozet ve merkez ayrı üst ve yan yüzlere
   sahip olacaktır; tek bir 2B raster/tahta eğilmeyecektir.
 - Sabit dünya birimi kalınlıkları taşıyıcı taban `0.012`, dış taş `0.024`, iç
-  taş `0.020`, rozet `0.034` ve merkez `0.040` olarak kabul edilmiştir.
+  taş `0.020`, rozet `0.027` ve merkez `0.028` olarak kabul edilmiştir.
+- Merkez-rozet radyal taşıyıcılarının görsel genişliği `5.0` değerinden `6.25`
+  değerine çıkarılacaktır. Taşıyıcı merkez çizgisi, uçları, uzunluğu ve yüksekliği
+  ile dış halka taşıyıcısının `5.0` genişliği sabit kalacaktır.
 - AŞAMA 3 statik görseli açıkça onaylanmadan final stil/doku, logo, ikon, piyon,
   Flutter veya APK aşamasına geçilmeyecektir.
 

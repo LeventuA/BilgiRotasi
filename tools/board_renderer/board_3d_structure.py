@@ -19,9 +19,16 @@ THICKNESS = {
     "ring_base": 0.012,
     "outer_tile": 0.024,
     "inner_tile": 0.020,
+    "badge": 0.027,
+    "center": 0.028,
+}
+CARRIER_ANCHOR_THICKNESS = {
+    "outer_tile": 0.024,
+    "inner_tile": 0.020,
     "badge": 0.034,
     "center": 0.040,
 }
+CARRIER_STROKE_WIDTH = {"outer_ring": 5.0, "radial": 6.25}
 FOOTPRINT_SCALE = {
     "outer_tile": 0.90,
     "inner_tile": 0.88,
@@ -197,6 +204,49 @@ def build_structural_scene(geometry: dict[str, Any] | None = None) -> dict[str, 
                 "faces": faces,
             }
         )
+    nodes_by_id = {node["id"]: node for node in geometry["nodes"]}
+    carriers = []
+    drawn_edges: set[tuple[int, int]] = set()
+    for node in sorted(geometry["nodes"], key=lambda item: item["id"]):
+        for connected_id in sorted(node["connected_node_ids"]):
+            edge = tuple(sorted((node["id"], connected_id)))
+            if edge in drawn_edges:
+                continue
+            drawn_edges.add(edge)
+            first = nodes_by_id[edge[0]]
+            second = nodes_by_id[edge[1]]
+            kind = (
+                "radial"
+                if {first["type"], second["type"]} & {"center", "inner_tile"}
+                else "outer_ring"
+            )
+
+            def carrier_anchor(item: dict[str, Any]) -> tuple[dict[str, float], float]:
+                anchor_z = base_z + CARRIER_ANCHOR_THICKNESS[item["type"]]
+                return (
+                    projector.project(
+                        (
+                            item["x_normalized"] - 0.5,
+                            item["y_normalized"] - 0.5,
+                            anchor_z,
+                        )
+                    ),
+                    anchor_z,
+                )
+
+            start, start_z = carrier_anchor(first)
+            end, end_z = carrier_anchor(second)
+            carriers.append(
+                {
+                    "node_ids": list(edge),
+                    "kind": kind,
+                    "stroke_width_viewbox_units": CARRIER_STROKE_WIDTH[kind],
+                    "start": start,
+                    "end": end,
+                    "start_z": _round(start_z),
+                    "end_z": _round(end_z),
+                }
+            )
     all_faces.sort(
         key=lambda face: (
             -face["average_depth"],
@@ -216,6 +266,9 @@ def build_structural_scene(geometry: dict[str, Any] | None = None) -> dict[str, 
         "near_far_scale_ratio": _round(far_depth / near_depth),
         "thickness_world_units": THICKNESS.copy(),
         "footprint_scale": FOOTPRINT_SCALE.copy(),
+        "carrier_stroke_width_viewbox_units": CARRIER_STROKE_WIDTH.copy(),
+        "carrier_anchor_thickness_world_units": CARRIER_ANCHOR_THICKNESS.copy(),
+        "carriers": carriers,
         "pieces": pieces,
         "faces_in_occlusion_order": all_faces,
     }
@@ -249,6 +302,18 @@ def validate_structural_scene(scene: dict[str, Any]) -> list[str]:
             count = sum(piece["type"] == node_type and piece["sector"] == sector for piece in pieces)
             if count != 5:
                 errors.append(f"Sector {sector} has {count} {node_type} parts.")
+    carriers = scene["carriers"]
+    if len(carriers) != 72:
+        errors.append(f"Expected 72 carrier edges, found {len(carriers)}.")
+    for kind, expected_count in (("radial", 36), ("outer_ring", 36)):
+        matching = [carrier for carrier in carriers if carrier["kind"] == kind]
+        if len(matching) != expected_count:
+            errors.append(f"Expected {expected_count} {kind} carrier edges, found {len(matching)}.")
+        if any(
+            carrier["stroke_width_viewbox_units"] != CARRIER_STROKE_WIDTH[kind]
+            for carrier in matching
+        ):
+            errors.append(f"Unexpected {kind} carrier width.")
     by_id = {piece["id"]: piece for piece in pieces}
     for expected_ids, name in ((list(range(52, 57)), "south"), (list(range(62, 67)), "sport")):
         if any(node_id not in by_id for node_id in expected_ids):
@@ -273,8 +338,9 @@ def validate_structural_scene(scene: dict[str, Any]) -> list[str]:
             if polygons_overlap(label_polygon, second["top"]):
                 errors.append(f"Node {second['id']} top covers node {first['id']} label.")
                 break
-    if polygons_overlap(by_id[0]["top"], by_id[52]["top"]):
-        errors.append("Center overlaps nearest southern inner tile 52.")
+    for inner_id in (37, 42, 47, 52, 57, 62):
+        if polygons_overlap(by_id[0]["top"], by_id[inner_id]["top"]):
+            errors.append(f"Center overlaps nearest inner tile {inner_id}.")
     for badge_id in (1, 7, 13, 19, 25, 31):
         for adjacent in by_id[badge_id]["connected_node_ids"]:
             if by_id[adjacent]["type"] == "outer_tile" and polygons_overlap(by_id[badge_id]["top"], by_id[adjacent]["top"]):
@@ -297,6 +363,14 @@ def build_structural_report(scene: dict[str, Any] | None = None) -> dict[str, An
         "camera": scene["camera"],
         "near_far_scale_ratio": scene["near_far_scale_ratio"],
         "thickness_world_units": scene["thickness_world_units"],
+        "carrier_stroke_width_viewbox_units": scene[
+            "carrier_stroke_width_viewbox_units"
+        ],
+        "carrier_counts": {
+            kind: sum(carrier["kind"] == kind for carrier in scene["carriers"])
+            for kind in CARRIER_STROKE_WIDTH
+        },
+        "carrier_width_increase_percent": 25,
         "visible_node_count": len(pieces),
         "visible_type_counts": {key: sum(piece["type"] == key for piece in pieces) for key in TYPE_COUNTS},
         "outer_segment_counts": [sum(piece["type"] == "outer_tile" and piece["sector"] == sector for piece in pieces) for sector in range(6)],

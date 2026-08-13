@@ -12,6 +12,8 @@ RENDERER_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RENDERER_ROOT))
 
 from board_3d_structure import (  # noqa: E402
+    CARRIER_ANCHOR_THICKNESS,
+    CARRIER_STROKE_WIDTH,
     EXPECTED_NEAR_FAR_RATIO,
     THICKNESS,
     build_structural_report,
@@ -54,12 +56,62 @@ class Structural3DTest(unittest.TestCase):
         )
 
     def test_every_part_has_top_sides_and_fixed_positive_thickness(self) -> None:
+        self.assertEqual(
+            THICKNESS,
+            {
+                "ring_base": 0.012,
+                "outer_tile": 0.024,
+                "inner_tile": 0.020,
+                "badge": 0.027,
+                "center": 0.028,
+            },
+        )
         self.assertEqual(self.scene["thickness_world_units"], THICKNESS)
         for piece in self.scene["pieces"]:
             self.assertGreater(piece["thickness"], 0)
             self.assertGreater(piece["top_area"], 0)
             self.assertEqual(sum(face["kind"] == "top" for face in piece["faces"]), 1)
             self.assertEqual(sum(face["kind"] == "side" for face in piece["faces"]), len(piece["top"]))
+
+    def test_only_radial_carrier_width_increases_without_moving_anchors(self) -> None:
+        carriers = self.scene["carriers"]
+        radial = [carrier for carrier in carriers if carrier["kind"] == "radial"]
+        outer = [carrier for carrier in carriers if carrier["kind"] == "outer_ring"]
+        self.assertEqual(len(radial), 36)
+        self.assertEqual(len(outer), 36)
+        self.assertTrue(
+            all(
+                carrier["stroke_width_viewbox_units"]
+                == CARRIER_STROKE_WIDTH["radial"]
+                == 6.25
+                for carrier in radial
+            )
+        )
+        self.assertTrue(
+            all(
+                carrier["stroke_width_viewbox_units"]
+                == CARRIER_STROKE_WIDTH["outer_ring"]
+                == 5.0
+                for carrier in outer
+            )
+        )
+        for carrier in carriers:
+            for endpoint, node_id in zip(
+                ("start_z", "end_z"), carrier["node_ids"]
+            ):
+                piece = self.by_id[node_id]
+                self.assertAlmostEqual(
+                    carrier[endpoint],
+                    THICKNESS["ring_base"]
+                    + CARRIER_ANCHOR_THICKNESS[piece["type"]],
+                    places=9,
+                )
+
+    def test_carriers_are_drawn_behind_all_node_faces(self) -> None:
+        svg = render_structural_svg(self.scene)
+        self.assertLess(svg.rfind("<line "), svg.find("<polygon "))
+        self.assertEqual(svg.count('stroke-width="6.25"'), 36)
+        self.assertEqual(svg.count('stroke-width="5.0"'), 36)
 
     def test_every_outer_interval_and_inner_path_has_five_parts(self) -> None:
         report = build_structural_report(self.scene)
