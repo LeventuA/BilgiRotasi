@@ -1,5 +1,23 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0A - 13 Ağustos 2026 PR #29/#30 release-readiness kapanış kesimi
+
+Bu bölüm aşağıdaki tarihsel BR-P1-008 ve release HEAD kayıtlarının **güncel durumunu geçersiz kılar**; eski kayıtlar denetim izi olarak korunur.
+
+- Güncel release branch: `release/final-closed-test-aab-1.68.8`.
+- Güncel release HEAD: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548` (PR #30 merge).
+- Sürüm: `1.68.14+104`.
+- PR #29 `fix: generate release readiness from live build facts` release'e merge edildi: `9aef2bd9ceeeba3a47e85e5a508512967d7db29d`.
+- Final closed-test run `31654600408`, uygulama/AAB aşamasından önce `git diff --check` ile kırıldı; kök neden dinamik `RELEASE_READINESS.md` üreticisindeki trailing whitespace idi. Bu koşu release AAB kabul kanıtı değildir.
+- PR #30 `fix: remove release readiness trailing whitespace` yalnız `tools/release_readiness_report.py` ve `test/release_readiness_report_test.dart` dosyalarını değiştirdi.
+- PR #30 kod head'i `1c809e9f4d02c425705e4812b0daadf87418b9fd`; CI #139 run `31655047190`, job `94307567727`: **SUCCESS**.
+- PR #30 Levent'in açık onayıyla release'e merge edildi: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
+- **BR-P1-008 uygulama/CI/merge kısmı tamamlandı.** Dinamik rapor gerçek `pubspec.yaml`, `assets/questions.json`, GitHub Actions source SHA/ref ve AAB adından üretilir; trailing whitespace regresyon testiyle kilitlidir.
+- **Kapanış için kalan kanıt:** güncel release HEAD `d1d5a9ea...` üzerinde yeni `Closed test release doğrulaması` manuel run'ı çalıştırılmalı; artifact içindeki `reports/RELEASE_READINESS.md` canlı `1.68.14+104`, 8.710 soru, doğru source/AAB ve whitespace'siz içerik göstermelidir.
+- Fresh RC2 artifact AAB SHA256 için doğrudan indirilen artifact `reports/AAB_SHA256.txt` + gerçek dosya hash'i otoritatiftir: `6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285`. Aşağıdaki eski `690424c...` satırları tarihsel transkripsiyon hatasıdır ve kullanılmamalıdır.
+
+---
+
 ## 0 - 13 Ağustos 2026 fresh RC2 durum güncellemesi
 
 Bu bölüm aşağıdaki tarihsel görev satırlarında kalan “fresh RC2 gerekiyor/bekleniyor” ifadelerinin güncel durumunu geçersiz kılar.
