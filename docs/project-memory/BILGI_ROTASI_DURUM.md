@@ -3,6 +3,25 @@
 **Kesim noktası:** 13 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
+## 0A. PR #29/#30 ve güncel release-readiness kesimi — 13 Ağustos 2026
+
+Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar denetim izi olarak korunur.
+
+- Güncel yayın dalı: `release/final-closed-test-aab-1.68.8`.
+- Güncel release HEAD: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548` (PR #30 merge).
+- Paket sürümü değişmedi: `1.68.14+104`.
+- PR #29 `fix: generate release readiness from live build facts` release'e merge edildi: `9aef2bd9ceeeba3a47e85e5a508512967d7db29d`.
+- PR #29 sonrası manuel final closed-test run `31654600408`, uygulama/AAB aşamasından önce `git diff --check` ile kırıldı. Kök neden Bilgi Rotası uygulaması değil, dinamik `RELEASE_READINESS.md` üreticisindeki satır-sonu boşluklarıydı; bu run release AAB kabul kanıtı değildir.
+- PR #30 `fix: remove release readiness trailing whitespace` yalnız `tools/release_readiness_report.py` ve `test/release_readiness_report_test.dart` dosyalarını değiştirdi.
+- PR #30 kod head'i `1c809e9f4d02c425705e4812b0daadf87418b9fd`; CI #139 run `31655047190`, job `94307567727`: **SUCCESS**. Analyze/tüm testler, release APK ve Android 16 cold-start kapısı geçti.
+- PR #30 Levent'in açık onayıyla release'e merge edildi; merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
+- **BR-P1-008 uygulama/CI/merge kısmı tamamlandı:** rapor artık sürümü `pubspec.yaml`dan, soru sayısı/SHA'yı `assets/questions.json`dan, source SHA/ref ve AAB adını GitHub Actions ortamından dinamik üretir; trailing whitespace regresyon testiyle kilitlidir.
+- **Kapanış için kalan kanıt:** güncel `d1d5a9ea...` üzerinde yeni `Closed test release doğrulaması` manuel workflow'u çalıştırılmalı ve artifact içindeki `reports/RELEASE_READINESS.md` canlı `1.68.14+104`, 8.710 soru, doğru source/AAB ve whitespace'siz raporu göstermelidir.
+- Fresh RC2 artifact AAB SHA256 için doğrudan indirilen artifact `reports/AAB_SHA256.txt` ve gerçek AAB dosya hash'i otoritatiftir: `6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285`. Aşağıdaki eski `690424c...` satırları tarihsel transkripsiyon hatasıdır ve kullanılmamalıdır.
+- `KARARLAR.md` değişmedi; bu iş ürün kararı değil release kanıt/raporlama düzeltmesidir.
+
+---
+
 ## 0. Fresh RC2 güncel kabul kesimi — 13 Ağustos 2026
 
 Bu bölüm aşağıdaki tarihsel bölümlerde kalan “fresh RC2 gerekli/bekleniyor” ifadelerinin **güncel durumunu geçersiz kılar**; tarihsel kayıtlar silinmemiştir.
