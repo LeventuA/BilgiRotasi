@@ -3,6 +3,26 @@
 **Kesim noktası:** 13 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
+## 0B. BR-P1-008 final artifact kabulü — 13 Ağustos 2026
+
+Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **güncel sonucudur**; eski kayıtlar denetim izi olarak korunur.
+
+- PR #32 `docs: make release head references live` squash merge commit'i: `794205f3ad68c0547f2858d530170af3a7a6bd41`.
+- Final `Closed test release doğrulaması`: run `31680750887`, job `94385413742`, source ref `release/final-closed-test-aab-1.68.8`, source SHA `794205f3ad68c0547f2858d530170af3a7a6bd41`: **SUCCESS**.
+- Artifact: `BilgiRotasi-1.68.14-104-closed-test-release`; ID `9173824623`; digest `sha256:9c6f081211cff19a3d8857c6b6bb15dc312da17819fe67988f994a333c078d73`.
+- Artifact içindeki AAB: `BilgiRotasi-1.68.14-104-closed-test.aab`; gerçek dosya SHA-256 ile `reports/AAB_SHA256.txt` birebir eşleşir: `6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285`.
+- Dinamik `reports/RELEASE_READINESS.md`: sürüm `1.68.14+104`, **8.710 soru**, soru SHA-256 `e71c4ff991873499b986952835b9bb8e0995d2791c47ce4085d7ab9a502299d4`, doğru source ref/SHA, doğru AAB adı ve run `31680750887` URL'sini içerir.
+- `RELEASE_READINESS.md` içinde eski `1.68.8+98`, `6710`, eski source branch/commit kalıntısı yoktur; trailing whitespace kontrolü **PASS**.
+- `RC1_QUALITY_GATE.md`: **BAŞARILI**, `1.68.14+104`, 8.710 soru, kritik hata/uyarı yok.
+- Android 16 AAB-derived kabul ilk denemede **PASS**; ikinci deneme gerekmedi. `GUEST_LOGIN=PASS`, `HOME_OYNA=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`, `SETTINGS_TUTORIAL_DIAGNOSTIC=PASS`.
+- Artifact log taramasında Bilgi Rotası paketine ait crash, ANR, `FATAL EXCEPTION` veya process-death kanıtı bulunmadı.
+- AAB metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifika SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- **BR-P1-008 TAMAMLANDI.** Dinamik release-readiness üretimi canlı artifact üzerinde kanıtlandı.
+- Bu teknik kabul Play Console'a AAB yüklendiğini, fiziksel Play kabulünü veya Firebase/Play canlı konsol durumlarını tek başına doğrulamaz; bu maddeler ayrı açık görevlerde kalır.
+- `KARARLAR.md` değişmedi; ürün kararı değişikliği yoktur.
+
+---
+
 ## 0A. PR #29/#30 ve güncel release-readiness kesimi — 13 Ağustos 2026
 
 Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar denetim izi olarak korunur.

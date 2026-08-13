@@ -2,6 +2,23 @@
 
 **Kesim noktası:** 13 Ağustos 2026
 
+## BR-P1-008 final artifact kabulü - KAPALI
+
+Aşağıdaki tarihsel ‘artifact kabulü açık / yeni run gerekli’ kayıtları artık kapanmıştır.
+
+- PR #32 merge commit: `794205f3ad68c0547f2858d530170af3a7a6bd41`.
+- Final `Closed test release doğrulaması` run `31680750887`, job `94385413742`: **SUCCESS** ve doğru release SHA'yı test etti.
+- Artifact `BilgiRotasi-1.68.14-104-closed-test-release`: ID `9173824623`, digest `sha256:9c6f081211cff19a3d8857c6b6bb15dc312da17819fe67988f994a333c078d73`.
+- AAB SHA-256: `6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285`; `reports/AAB_SHA256.txt` ile gerçek AAB dosya hash'i eşleşir.
+- `reports/RELEASE_READINESS.md`: `1.68.14+104`, 8.710 soru, soru SHA-256 `e71c4ff991873499b986952835b9bb8e0995d2791c47ce4085d7ab9a502299d4`, source ref `release/final-closed-test-aab-1.68.8`, source SHA `794205f3ad68c0547f2858d530170af3a7a6bd41`, doğru AAB adı ve run `31680750887` URL'si doğrulandı.
+- Eski `1.68.8+98`, `6710` ve eski source değerleri yok; trailing whitespace yok.
+- Android 16 ilk AAB-derived deneme PASS; ikinci deneme gerekmedi. `GUEST_LOGIN`, `HOME_OYNA`, `APP_GATE`, `RELEASE_GATE`, `SETTINGS_TUTORIAL_DIAGNOSTIC` PASS; app-specific crash/ANR/FATAL/process-death kanıtı yok.
+- **BR-P1-008 artık açık konu değildir.**
+- Play Console güncel sürüm/sayaç, fiziksel Google/rewarded/Canlı Düello kabulü ve Firebase/Play canlı servis kontrolleri ayrı açık doğrulamalar olarak devam eder.
+- `KARARLAR.md` değişmedi.
+
+---
+
 ## PR #29/#30 release-readiness düzeltmesi - GÜNCEL DURUM
 
 Bu bölüm aşağıdaki tarihsel BR-P1-008 / release HEAD kayıtlarının güncel durumunu geçersiz kılar.
