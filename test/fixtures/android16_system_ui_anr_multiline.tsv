@@ -1,0 +1,8 @@
+level	page_num	block_num	par_num	line_num	word_num	left	top	width	height	conf	text
+5	1	2	1	1	1	135	841	169	49	96	System
+5	1	2	1	1	2	324	841	40	38	85	UI
+5	1	2	1	1	3	385	839	86	40	93	isn't
+5	1	2	1	1	4	490	839	256	51	95	responding
+5	1	3	1	1	1	283	981	101	31	96	Close
+5	1	3	1	1	2	397	990	67	30	96	app
+5	1	4	1	1	1	282	1108	79	30	96	Wait

@@ -6,18 +6,18 @@ class AboutPrivacyScreen extends StatelessWidget {
   final QuestionBank questionBank;
 
   static const String _privacyUrl =
-      'https://leventua.github.io/BilgiRotasi/'
+      'https://zmilastudio.github.io/BilgiRotasi/'
       'privacy-policy.html';
   static const String _deletionUrl =
-      'https://leventua.github.io/BilgiRotasi/'
+      'https://zmilastudio.github.io/BilgiRotasi/'
       'account-deletion.html';
   static const String _termsUrl =
-      'https://leventua.github.io/BilgiRotasi/'
+      'https://zmilastudio.github.io/BilgiRotasi/'
       'terms-of-use.html';
   static const String _communityUrl =
-      'https://leventua.github.io/BilgiRotasi/'
+      'https://zmilastudio.github.io/BilgiRotasi/'
       'community-guidelines.html';
-  static const String _supportEmail = 'BilgiRotasi10@gmail.com';
+  static const String _supportEmail = 'BilgiRotasidestek@gmail.com';
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +103,19 @@ class AboutPrivacyScreen extends StatelessWidget {
                 'Google girişi, bulut eşitlemesi, reklamlar, Canlı '
                 'Düello, soru geri bildirimi ve sistem paylaşım '
                 'özellikleri internet bağlantısı kullanır.',
+          ),
+          const SizedBox(height: 8),
+          _section(
+            emoji: '📊',
+            title: 'Kullanım analizi',
+            text:
+                'Firebase Analytics varsayılan olarak kapalıdır. Ayarlar '
+                'ekranında açıkça izin verirsen Firebase SDK bu uygulama '
+                'kurulumu için pseudonymous bir app-instance ID üretir ve '
+                'ekran, oyun modu, kategori, süre ve sonuç gibi kullanım '
+                'olaylarını işler. Adın, e-posta adresin, Google/Firebase '
+                'hesap kimliğin ve kullanıcı adın gönderilmez. İzni aynı '
+                'ayardan geri alabilirsin.',
           ),
           const SizedBox(height: 8),
           _section(

@@ -95,34 +95,157 @@ void main() {
       expect(await controller.run(), isTrue);
       expect(grants, 1);
     });
+
+    test('kapalı test açılır, gerçek production reklam profili daima kapalıdır', () {
+      expect(
+        supportRewardEnabledForProfile(
+          firebaseProductionEnabled: true,
+          isClosedTest: true,
+          isProductionAds: false,
+        ),
+        isTrue,
+      );
+      expect(
+        supportRewardEnabledForProfile(
+          firebaseProductionEnabled: true,
+          isClosedTest: false,
+          isProductionAds: true,
+        ),
+        isFalse,
+      );
+      expect(
+        supportRewardEnabledForProfile(
+          firebaseProductionEnabled: false,
+          isClosedTest: false,
+          isProductionAds: true,
+        ),
+        isFalse,
+      );
+      expect(
+        supportRewardEnabledForProfile(
+          firebaseProductionEnabled: false,
+          isClosedTest: false,
+          isProductionAds: false,
+        ),
+        isTrue,
+      );
+
+      final source = File('lib/ad_monetization.dart').readAsStringSync();
+      expect(
+        source,
+        contains('isProductionAds: AdMobConfig.isProduction'),
+      );
+      expect(
+        source,
+        contains('_rewardProfileEnabled && await _limiter.canClaim'),
+      );
+      expect(
+        source,
+        contains('if (_busy || !_available || !_rewardProfileEnabled)'),
+      );
+    });
+
+    test('ödül verilmezse kalan hak aynı ekranda yeniden denenebilir', () {
+      expect(
+        supportRewardAvailabilityAfterAttempt(
+          rewardGranted: false,
+          canClaimAgain: true,
+        ),
+        isTrue,
+      );
+      expect(
+        supportRewardAvailabilityAfterAttempt(
+          rewardGranted: false,
+          canClaimAgain: false,
+        ),
+        isFalse,
+      );
+    });
+
+    test('ödül verildiyse sonuç kartı yeniden açılmaz', () {
+      expect(
+        supportRewardAvailabilityAfterAttempt(
+          rewardGranted: true,
+          canClaimAgain: true,
+        ),
+        isFalse,
+      );
+    });
   });
 
-  group('sonuç reklamı limitleri', () {
-    test('oyun başına en fazla bir kez hak verir', () async {
-      final limiter = SupportRewardLimiter(
-        store: MemoryAdLimitStore(),
-        now: () => DateTime(2026, 7, 29),
-      );
+  group('sonuç reklamı hakları', () {
+    test('aynı tamamlanan oyun yalnız bir kez hak verir', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
 
       expect(await limiter.claim('game-1'), isTrue);
       expect(await limiter.claim('game-1'), isFalse);
-      expect(await limiter.claimsToday(), 1);
+      expect(await limiter.wasClaimedForGame('game-1'), isTrue);
     });
 
-    test('günlük en fazla üç kez hak verir ve ertesi gün sıfırlanır', () async {
-      final store = MemoryAdLimitStore();
-      var now = DateTime(2026, 7, 29);
-      final limiter = SupportRewardLimiter(store: store, now: () => now);
+    test('farklı tamamlanan oyunlara günlük veya oturumluk kota uygulamaz', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
+
+      for (var index = 1; index <= 10; index++) {
+        expect(
+          await limiter.claim('game-$index'),
+          isTrue,
+          reason: 'game-$index ayrı bir tamamlanan oyundur',
+        );
+      }
+    });
+
+    test('eski oyun hakkı 200 yeni oyundan sonra yeniden açılmaz', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
 
       expect(await limiter.claim('game-1'), isTrue);
-      expect(await limiter.claim('game-2'), isTrue);
-      expect(await limiter.claim('game-3'), isTrue);
-      expect(await limiter.claim('game-4'), isFalse);
-      expect(await limiter.claimsToday(), 3);
+      for (var index = 2; index <= 250; index++) {
+        expect(await limiter.claim('game-$index'), isTrue);
+      }
 
-      now = DateTime(2026, 7, 30);
-      expect(await limiter.claim('game-4'), isTrue);
-      expect(await limiter.claimsToday(), 1);
+      expect(await limiter.claim('game-1'), isFalse);
+      expect(await limiter.wasClaimedForGame('game-1'), isTrue);
+    });
+
+    test('eşzamanlı aynı oyun taleplerinden yalnız biri hak kazanır', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
+
+      final results = await Future.wait<bool>(<Future<bool>>[
+        limiter.claim('same-game'),
+        limiter.claim('same-game'),
+      ]);
+
+      expect(results.where((result) => result).length, 1);
+      expect(await limiter.claim('same-game'), isFalse);
+    });
+
+    test('eşzamanlı farklı oyun taleplerinin ikisini de kalıcı tutar', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
+
+      final results = await Future.wait<bool>(<Future<bool>>[
+        limiter.claim('game-a'),
+        limiter.claim('game-b'),
+      ]);
+
+      expect(results, everyElement(isTrue));
+      expect(await limiter.wasClaimedForGame('game-a'), isTrue);
+      expect(await limiter.wasClaimedForGame('game-b'), isTrue);
+    });
+
+    test('boş oyun kimliğine hak vermez', () async {
+      final limiter = SupportRewardLimiter(store: MemoryAdLimitStore());
+
+      expect(await limiter.claim(''), isFalse);
+      expect(await limiter.claim('   '), isFalse);
+    });
+
+    test('alınan hak yeni limiter örneğinde de tekrar verilmez', () async {
+      final store = MemoryAdLimitStore();
+      final firstLimiter = SupportRewardLimiter(store: store);
+      final secondLimiter = SupportRewardLimiter(store: store);
+
+      expect(await firstLimiter.claim('game-1'), isTrue);
+      expect(await secondLimiter.canClaim('game-1'), isFalse);
+      expect(await secondLimiter.claim('game-2'), isTrue);
     });
   });
 }

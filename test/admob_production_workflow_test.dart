@@ -50,15 +50,24 @@ void main() {
     test('production APK ve AAB üretip ayrı artifact yükler', () {
       expect(workflow, contains('flutter build apk --release'));
       expect(workflow, contains('flutter build appbundle --release'));
-      expect(workflow, contains('BilgiRotasi-Production-APK-1.68.6-96'));
-      expect(workflow, contains('BilgiRotasi-Production-AAB-1.68.6-96'));
+      expect(
+        workflow,
+        contains(r'BilgiRotasi-Production-APK-${{ env.VERSION_LABEL }}'),
+      );
+      expect(
+        workflow,
+        contains(r'BilgiRotasi-Production-AAB-${{ env.VERSION_LABEL }}'),
+      );
+      expect(workflow, contains(r'VERSION="$(sed -nE'));
+      expect(workflow, contains(r'echo "VERSION_NAME=$VERSION_NAME"'));
+      expect(workflow, isNot(contains('BilgiRotasi-1.68.6-96')));
     });
 
     test('paket, sürüm, production App ID ve SHA-1 doğrulanır', () {
       for (final expected in <String>[
         'com.leventua.bilgirotasi',
-        "versionCode='96'",
-        "versionName='1.68.6'",
+        "versionCode='\$VERSION_CODE'",
+        "versionName='\$VERSION_NAME'",
         'ca-app-pub-7452194004008791~7046504043',
         'ca-app-pub-3940256099942544~3347511713',
         '000EE43F410ABC6B4F634C4F716D76EB19084115',

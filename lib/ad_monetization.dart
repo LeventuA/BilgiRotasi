@@ -60,6 +60,8 @@ class AdMobConfig {
     defaultValue: 'test',
   );
   static const bool isProduction = environment == 'production';
+  static const bool isClosedTest = environment == 'closed_test';
+  static const bool usesGoogleTestAds = !isProduction;
 
   static const String testAndroidAppId =
       'ca-app-pub-3940256099942544~3347511713';
@@ -93,18 +95,37 @@ abstract interface class AdConsentGateway {
   Future<void> showPrivacyOptionsForm();
 }
 
+class AndroidEmulatorGateway {
+  const AndroidEmulatorGateway();
+
+  static const MethodChannel _channel = MethodChannel(
+    'com.leventua.bilgirotasi/runtime_environment',
+  );
+
+  Future<bool> isEmulator() async {
+    if (!Platform.isAndroid) return false;
+    try {
+      return await _channel.invokeMethod<bool>('isEmulator') ?? false;
+    } on PlatformException {
+      return false;
+    } on MissingPluginException {
+      return false;
+    }
+  }
+}
+
 class GoogleUmpConsentGateway implements AdConsentGateway {
   const GoogleUmpConsentGateway();
 
   @override
-  Future<void> requestConsentInfoUpdate() {
+  Future<void> requestConsentInfoUpdate() async {
     final completer = Completer<void>();
     ConsentInformation.instance.requestConsentInfoUpdate(
       ConsentRequestParameters(),
       () => completer.complete(),
       (error) => completer.completeError(error),
     );
-    return completer.future;
+    await completer.future;
   }
 
   @override
@@ -174,6 +195,7 @@ class AdPrivacyService {
   AdPrivacyService({
     required this.consentGateway,
     required this.mobileAdsGateway,
+    this.emulatorGateway = const AndroidEmulatorGateway(),
   });
 
   static final AdPrivacyService instance = AdPrivacyService(
@@ -183,6 +205,7 @@ class AdPrivacyService {
 
   final AdConsentGateway consentGateway;
   final MobileAdsGateway mobileAdsGateway;
+  final AndroidEmulatorGateway emulatorGateway;
   final ValueNotifier<bool> privacyOptionsRequired = ValueNotifier<bool>(false);
 
   Future<bool>? _initializing;
@@ -200,6 +223,12 @@ class AdPrivacyService {
 
   Future<bool> _initialize() async {
     try {
+      // Android x86_64 API 36 system images can crash inside their bundled
+      // WebView while UMP or Mobile Ads is starting. CI/emulator validation
+      // therefore stays ad-free; physical closed-test builds still use the
+      // normal UMP flow and Google's official demo ad units.
+      if (await emulatorGateway.isEmulator()) return false;
+
       await consentGateway.requestConsentInfoUpdate();
       await consentGateway.loadAndShowConsentFormIfRequired();
       privacyOptionsRequired.value =
@@ -424,60 +453,69 @@ class SharedPreferencesAdLimitStore implements AdLimitStore {
 }
 
 class SupportRewardLimiter {
-  SupportRewardLimiter({
-    required this.store,
-    DateTime Function()? now,
-    this.dailyLimit = 3,
-  }) : now = now ?? DateTime.now;
+  SupportRewardLimiter({required this.store});
 
   final AdLimitStore store;
-  final DateTime Function() now;
-  final int dailyLimit;
 
-  static const String _dailyKey = 'admob_support_daily_v1';
   static const String _gamesKey = 'admob_support_games_v1';
-
-  String get _today {
-    final value = now().toLocal();
-    return '${value.year.toString().padLeft(4, '0')}-'
-        '${value.month.toString().padLeft(2, '0')}-'
-        '${value.day.toString().padLeft(2, '0')}';
-  }
-
-  Future<int> claimsToday() async {
-    final parts = (await store.read(_dailyKey) ?? '').split('|');
-    if (parts.length != 2 || parts.first != _today) return 0;
-    return int.tryParse(parts.last) ?? 0;
-  }
+  static Future<void> _claimQueue = Future<void>.value();
 
   Future<bool> wasClaimedForGame(String gameId) async {
+    final normalizedGameId = gameId.trim();
+    if (normalizedGameId.isEmpty) return false;
     final values = (await store.read(_gamesKey) ?? '')
         .split('\n')
         .where((value) => value.isNotEmpty);
-    return values.contains(gameId);
+    return values.contains(normalizedGameId);
   }
 
   Future<bool> canClaim(String gameId) async {
-    if (gameId.trim().isEmpty || await wasClaimedForGame(gameId)) return false;
-    return await claimsToday() < dailyLimit;
+    final normalizedGameId = gameId.trim();
+    if (normalizedGameId.isEmpty) return false;
+    return !await wasClaimedForGame(normalizedGameId);
   }
 
-  Future<bool> claim(String gameId) async {
-    if (!await canClaim(gameId)) return false;
-    final count = await claimsToday();
-    final existing =
-        (await store.read(_gamesKey) ?? '')
-            .split('\n')
-            .where((value) => value.isNotEmpty)
-            .toList();
-    existing.add(gameId);
-    if (existing.length > 200) {
-      existing.removeRange(0, existing.length - 200);
-    }
-    await store.write(_gamesKey, existing.join('\n'));
-    await store.write(_dailyKey, '$_today|${count + 1}');
-    return true;
+  Future<bool> claim(String gameId) {
+    final normalizedGameId = gameId.trim();
+    if (normalizedGameId.isEmpty) return Future<bool>.value(false);
+
+    final completer = Completer<bool>();
+    _claimQueue = _claimQueue.then((_) async {
+      try {
+        final existing =
+            (await store.read(_gamesKey) ?? '')
+                .split('\n')
+                .where((value) => value.isNotEmpty)
+                .toList();
+        if (existing.contains(normalizedGameId)) {
+          completer.complete(false);
+          return;
+        }
+        existing.add(normalizedGameId);
+        await store.write(_gamesKey, existing.join('\n'));
+        completer.complete(true);
+      } catch (error, stackTrace) {
+        completer.completeError(error, stackTrace);
+      }
+    });
+    return completer.future;
   }
+}
+
+bool supportRewardAvailabilityAfterAttempt({
+  required bool rewardGranted,
+  required bool canClaimAgain,
+}) {
+  return !rewardGranted && canClaimAgain;
+}
+
+bool supportRewardEnabledForProfile({
+  required bool firebaseProductionEnabled,
+  required bool isClosedTest,
+  required bool isProductionAds,
+}) {
+  if (isProductionAds) return false;
+  return !firebaseProductionEnabled || isClosedTest;
 }
 
 class AdMonetizationDialogs {
@@ -638,6 +676,12 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
   bool _available = false;
   bool _busy = false;
 
+  bool get _rewardProfileEnabled => supportRewardEnabledForProfile(
+    firebaseProductionEnabled: FirebaseRuntimePolicy.productionEnabled,
+    isClosedTest: AdMobConfig.isClosedTest,
+    isProductionAds: AdMobConfig.isProduction,
+  );
+
   @override
   void initState() {
     super.initState();
@@ -647,8 +691,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
 
   Future<void> _refresh() async {
     final available =
-        !FirebaseRuntimePolicy.productionEnabled &&
-        await _limiter.canClaim(widget.gameId);
+        _rewardProfileEnabled && await _limiter.canClaim(widget.gameId);
     if (!mounted) return;
     setState(() {
       _available = available;
@@ -657,7 +700,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
   }
 
   Future<void> _watch() async {
-    if (_busy || !_available || FirebaseRuntimePolicy.productionEnabled) {
+    if (_busy || !_available || !_rewardProfileEnabled) {
       return;
     }
     setState(() => _busy = true);
@@ -674,11 +717,22 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
     final rewarded = await controller.run();
     if (!mounted) return;
 
+    final rewardGranted = rewarded && gain != null;
+    final canClaimAgain =
+        !rewardGranted && await _limiter.canClaim(widget.gameId);
+    if (!mounted) return;
+
     setState(() {
       _busy = false;
-      _available = false;
+      _available = supportRewardAvailabilityAfterAttempt(
+        rewardGranted: rewardGranted,
+        canClaimAgain: canClaimAgain,
+      );
     });
-    if (rewarded && gain != null) {
+    if (rewardGranted) {
+      unawaited(
+        AnalyticsTelemetry.rewardedAdCompleted(gameMode: widget.gameId),
+      );
       await XpCelebration.show(context, gain!);
       return;
     }
@@ -686,7 +740,10 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
       ..hideCurrentSnackBar()
       ..showSnackBar(
         const SnackBar(
-          content: Text('Reklam tamamlanmadı veya limit doldu; XP verilmedi.'),
+          content: Text(
+            'Reklam tamamlanmadı veya bu oyun için ödül zaten alındı; '
+            'XP verilmedi.',
+          ),
         ),
       );
   }
@@ -718,9 +775,9 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
           Text(
             _available
                 ? 'İsteğe bağlı reklamı tamamlayarak +10 XP kazan.'
-                : FirebaseRuntimePolicy.productionEnabled
+                : !_rewardProfileEnabled
                 ? 'Sunucu doğrulaması tamamlanana kadar +10 XP ödülü kapalı.'
-                : 'Bu oyun için ödül alındı veya günlük 3 reklam limiti doldu.',
+                : 'Bu oyun için +10 XP ödülü zaten alındı.',
             textAlign: TextAlign.center,
             style: TextStyle(color: secondary),
           ),
@@ -735,7 +792,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
                   ? 'Reklam hazırlanıyor…'
                   : _available
                   ? 'Reklamı İzle · +10 XP'
-                  : 'Limit doldu / ödül alındı',
+                  : 'Bu oyun için ödül alındı',
             ),
           ),
         ],

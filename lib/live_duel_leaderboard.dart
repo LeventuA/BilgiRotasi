@@ -123,6 +123,14 @@ class LiveDuelLeaderboardPresentation {
         ownPublicPlayerId.isNotEmpty &&
         entryPublicPlayerId == ownPublicPlayerId;
   }
+
+  static int? visibleRank({
+    required bool hasLeaderboardEntry,
+    required int playersAbove,
+  }) {
+    if (!hasLeaderboardEntry) return null;
+    return max(0, playersAbove) + 1;
+  }
 }
 
 class LiveDuelLeaderboardService {
@@ -146,20 +154,27 @@ class LiveDuelLeaderboardService {
     }
 
     try {
+      final userSnapshot =
+          await _firestore.collection('users').doc(user.uid).get();
+      final ownPublicPlayerId =
+          userSnapshot.data()?['publicPlayerId']?.toString().trim();
+
       final results = await Future.wait<Object>([
         _leaderboard.orderBy('rating', descending: true).limit(100).get(),
         _leaderboard
             .where('rating', isGreaterThan: profile.rating)
             .count()
             .get(),
-        _firestore.collection('users').doc(user.uid).get(),
+        if (ownPublicPlayerId != null && ownPublicPlayerId.isNotEmpty)
+          _leaderboard.doc(ownPublicPlayerId).get(),
       ]);
 
       final leadersSnapshot = results[0] as QuerySnapshot<Map<String, dynamic>>;
       final rankSnapshot = results[1] as AggregateQuerySnapshot;
-      final userSnapshot = results[2] as DocumentSnapshot<Map<String, dynamic>>;
-      final ownPublicPlayerId =
-          userSnapshot.data()?['publicPlayerId']?.toString().trim();
+      final ownLeaderboardSnapshot =
+          results.length > 2
+              ? results[2] as DocumentSnapshot<Map<String, dynamic>>
+              : null;
 
       final leaders = leadersSnapshot.docs
           .map(LiveDuelLeaderboardEntry.fromSnapshot)
@@ -169,7 +184,10 @@ class LiveDuelLeaderboardService {
         profile: profile,
         leaders: leaders,
         ownPublicPlayerId: ownPublicPlayerId,
-        ownRank: (rankSnapshot.count ?? 0) + 1,
+        ownRank: LiveDuelLeaderboardPresentation.visibleRank(
+          hasLeaderboardEntry: ownLeaderboardSnapshot?.exists == true,
+          playersAbove: rankSnapshot.count ?? 0,
+        ),
       );
     } on FirebaseException catch (error) {
       return LiveDuelLeaderboardSnapshot(

@@ -55,6 +55,13 @@ class FakeMobileAdsGateway implements MobileAdsGateway {
   }
 }
 
+class FakeAndroidEmulatorGateway extends AndroidEmulatorGateway {
+  const FakeAndroidEmulatorGateway();
+
+  @override
+  Future<bool> isEmulator() async => true;
+}
+
 void main() {
   group('UMP ve 13+ reklam kapısı', () {
     test('aynı açılışta tek izin ve reklam başlatma akışı çalışır', () async {
@@ -103,6 +110,25 @@ void main() {
       expect(ads.initializations, 0);
     });
 
+    test(
+      'Android emülatörü UMP ve Mobile Ads başlatmadan devam eder',
+      () async {
+        final consent = FakeConsentGateway();
+        final ads = FakeMobileAdsGateway();
+        final service = AdPrivacyService(
+          consentGateway: consent,
+          mobileAdsGateway: ads,
+          emulatorGateway: const FakeAndroidEmulatorGateway(),
+        );
+
+        expect(await service.initialize(), isFalse);
+        expect(consent.updates, 0);
+        expect(consent.forms, 0);
+        expect(ads.configurations, 0);
+        expect(ads.initializations, 0);
+      },
+    );
+
     test('reklam içeriği T/Teen sınırında kalır', () {
       final source = File('lib/ad_monetization.dart').readAsStringSync();
       expect(source, contains('maxAdContentRating: MaxAdContentRating.t'));
@@ -124,9 +150,7 @@ void main() {
       final source = File('lib/ad_monetization.dart').readAsStringSync();
       expect(
         source,
-        isNot(
-          contains('tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.no'),
-        ),
+        isNot(contains('tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.no')),
       );
       expect(source, isNot(contains('tagForUnderAgeOfConsent: false')));
     });
@@ -137,12 +161,28 @@ void main() {
       expect(
         source,
         isNot(
-          contains(
-            'ConsentRequestParameters(tagForUnderAgeOfConsent: false)',
-          ),
+          contains('ConsentRequestParameters(tagForUnderAgeOfConsent: false)'),
         ),
       );
+      expect(source, isNot(contains('tagForUnderAgeOfConsent:')));
+    });
+
+    test('yalnız Android emülatörü reklam başlatmayı atlar', () {
+      final source = File('lib/ad_monetization.dart').readAsStringSync();
+      final androidSource =
+          File(
+            'android/app/src/main/kotlin/com/leventua/bilgirotasi/MainActivity.kt',
+          ).readAsStringSync();
+
+      expect(source, contains('ConsentRequestParameters()'));
+      expect(source, contains("invokeMethod<bool>('isEmulator')"));
+      expect(source, contains('if (await emulatorGateway.isEmulator())'));
       expect(source, isNot(contains('ConsentDebugSettings(')));
+      expect(
+        androidSource,
+        contains('Build.FINGERPRINT.startsWith("generic")'),
+      );
+      expect(androidSource, contains('Build.PRODUCT.contains("sdk_gphone")'));
     });
   });
 
@@ -171,8 +211,29 @@ void main() {
 
   group('yayın gizlilik sözleşmesi', () {
     test('sürüm ve production etiketi günceldir', () {
-      expect(AppBuildInfo.version, '1.68.6+96');
+      final pubspec = File('pubspec.yaml').readAsStringSync();
+      final versionMatch = RegExp(
+        r'^version:\s*(\S+)\s*$',
+        multiLine: true,
+      ).firstMatch(pubspec);
+
+      expect(
+        versionMatch,
+        isNotNull,
+        reason: 'pubspec.yaml version satırı bulunamadı.',
+      );
+      expect(
+        AppBuildInfo.version,
+        versionMatch!.group(1),
+        reason: 'AppBuildInfo ve pubspec.yaml sürümleri uyuşmuyor.',
+      );
       expect(AppBuildInfo.channel, 'Production');
+    });
+
+    test('soru kalite taraması cold-start ana isolate akışını bloklamaz', () {
+      final source = File('lib/main.dart').readAsStringSync();
+      expect(source, contains('compute<String, Map<String, dynamic>>'));
+      expect(source, contains('_prepareQuestionData'));
     });
 
     test('Android hassas yerel verileri otomatik yedekten dışlar', () {

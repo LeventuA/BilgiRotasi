@@ -194,11 +194,8 @@ void main() {
         expect(PawnPickerPresentation.labelFor(index).trim(), isNotEmpty);
       }
 
-      expect(PawnPickerPresentation.isSpecial(11), isFalse);
-      expect(PawnPickerPresentation.isSpecial(12), isTrue);
-      expect(PawnPickerPresentation.isSpecial(15), isTrue);
-      expect(PawnPickerPresentation.isSpecial(16), isTrue);
-      expect(PawnPickerPresentation.isSpecial(17), isFalse);
+      expect(PawnPickerPresentation.normalize(-1), 16);
+      expect(PawnPickerPresentation.normalize(17), 0);
     });
 
     test('On yedi piyonun görsel efekt profili bulunur', () {

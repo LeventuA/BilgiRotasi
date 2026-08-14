@@ -27,8 +27,10 @@ void main() {
       return;
     }
 
-    expect(expectedEnvironment, 'test');
+    expect(expectedEnvironment, anyOf('test', 'closed_test'));
     expect(AdMobConfig.isProduction, isFalse);
+    expect(AdMobConfig.isClosedTest, expectedEnvironment == 'closed_test');
+    expect(AdMobConfig.usesGoogleTestAds, isTrue);
     expect(AdMobConfig.androidAppId, 'ca-app-pub-3940256099942544~3347511713');
     expect(
       AdMobConfig.androidBannerUnitId,

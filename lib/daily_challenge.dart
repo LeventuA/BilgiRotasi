@@ -964,6 +964,7 @@ class _DailyChallengeScreenState
   int _maxAnswerStreak = 0;
   bool _busy = false;
   bool _exitDialogOpen = false;
+  late final GameTelemetrySession _telemetry;
 
   QuizQuestion get _question =>
       widget.questions[_questionIndex];
@@ -972,6 +973,15 @@ class _DailyChallengeScreenState
   void initState() {
     super.initState();
     _stopwatch.start();
+    _telemetry = GameTelemetrySession.start(
+      gameMode: widget.isOfficial ? 'daily_challenge' : 'daily_practice',
+    );
+  }
+
+  @override
+  void dispose() {
+    _telemetry.abandon();
+    super.dispose();
   }
 
   @override
@@ -1266,6 +1276,9 @@ class _DailyChallengeScreenState
 
   Future<void> _finishChallenge() async {
     _stopwatch.stop();
+    _telemetry.complete(
+      _correct == widget.questions.length ? 'perfect' : 'completed',
+    );
 
     final result = DailyChallengeResult(
       dateKey: widget.challengeDateKey,
