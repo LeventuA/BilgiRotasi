@@ -1,7 +1,24 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 13 Ağustos 2026
+**Kesim noktası:** 14 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
+
+## 0D. Android launcher icon / PR #38 — 14 Ağustos 2026
+
+- Canlı release tabanı `release/final-closed-test-aab-1.68.8`; başlangıç HEAD `29a5a23d15485922d670f7e7b3f9b7cea2d0260f`; sürüm `1.68.14+104`.
+- Mevcut açık Draft PR #38 (`fix/text-launcher-icon-20260813`) yeniden kullanıldı; yeni PR açılmadı ve merge yapılmadı.
+- Kullanıcının onayladığı `Bilgi_Rotasi_Android_Icon_512x512.png` kaynak görseli, yeniden tasarlanmadan `assets/branding/app_icon.png` olarak alındı. Kaynak ve repo dosyası SHA-256 değeri `32f9d4144fa5112afd93999fd4b6df3734493f626cc8e96f9b0be1510b9368fa` ile birebir eşleşir.
+- `BİLGİ ROTASI` yazısı, pusula ve renkler korunur; splash varlığı ve yapılandırması değişmez. Legacy mdpi/hdpi/xhdpi/xxhdpi/xxxhdpi ile adaptive foreground kaynakları üretildi; adaptive foreground inset değeri `%18` olarak güvenli alana çekildi.
+- Regresyon testi 512x512 PNG boyutunu, otoritatif kaynak hash'ini, yoğunluk boyutlarını, adaptive XML/inset sözleşmesini ve splash ayrımını kilitler.
+- Yerel `flutter analyze --no-fatal-warnings --no-fatal-infos` PASS (önceden var olan 90 warning/info korunur); hedefli launcher testi PASS; taşınabilir Python 3.12.10 ile tüm Flutter testleri `257/257` PASS; `git diff --check` PASS.
+- PR CI #161 / run `31757717142`, job `94637088436`: **SUCCESS**. Kalıcı imzalı test-ID release APK build, paket/manifest ve Android 16 cold-start kapıları PASS.
+- Artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`: ID `9203624785`, digest `sha256:88a709a875c02d28844bdbfd69c8669acc009ca5846d07e4bb51d9828a908b18`; APK SHA-256 `792a0db0d812acaaaa0e504d1abc61915f020e3bc9f3ec6592bbcc9a3f4ee673`.
+- APK metadata: `com.leventua.bilgirotasi`, `1.68.14 (104)`, targetSdk 36; upload sertifikası SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- Android 16 `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = PASS; PID `1991`, `MainActivity` RESUMED/visible; uygulamaya ait crash/ANR/FATAL/process-death kanıtı yok.
+- Artifact APK içindeki gerçek 192 px legacy ve 432 px adaptive launcher görselleri doğrudan açılarak onaylanan BİLGİ ROTASI yazılı pusula olduğu doğrulandı.
+- Mevcut fiziksel telefondaki Google Play kurulumunu silmeden/üzerine farklı imzalı APK zorlamadan gerçek launcher ekranı kurulumu yapılamadı; bu kabul `DOĞRULANACAK` kalır.
+
+---
 
 ## 0C. Hakkında & Gizlilik / herkese açık destek iletişimi — 13 Ağustos 2026
 

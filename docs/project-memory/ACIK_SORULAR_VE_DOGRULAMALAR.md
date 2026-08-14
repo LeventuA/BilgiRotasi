@@ -1,6 +1,15 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-**Kesim noktası:** 13 Ağustos 2026
+**Kesim noktası:** 14 Ağustos 2026
+
+## PR #38 launcher icon fiziksel kabulü - AÇIK
+
+- Onaylanan 512x512 kaynak, repo varlıkları, APK içindeki legacy/adaptive ikonlar ve Android 16 uygulama kapısı otomatik olarak doğrulandı.
+- CI #161 / run `31757717142`, job `94637088436`: SUCCESS; `APP_GATE=PASS`, `RELEASE_GATE=PASS`.
+- Mevcut fiziksel cihazda Google Play'den kurulu Bilgi Rotası silinmeyecek ve CI imzalı APK bu kurulumun üzerine zorlanmayacak.
+- **DOĞRULANACAK:** uyumlu imzalı bir fiziksel build/Play sürümüyle gerçek launcher gridinde dairesel ve yuvarlatılmış-kare maske görünümü. APK indirme/önizleme ekranı bu gerçek kurulum kabulünün yerine geçmez.
+
+---
 
 ## BR-P1-008 final artifact kabulü - KAPALI
 

@@ -127,7 +127,9 @@
 
 ## 8. Tasarım ve tanıtım
 
-- Uygulama simgesinde yazı kullanılmayacak.
+- Uygulama launcher simgesinin temel tasarımı **BİLGİ ROTASI yazılı pusula** olacaktır; yazı kaldırılmayacaktır.
+- Launcher simgesinde ana pusula ve `BİLGİ ROTASI` yazısı Android adaptive-icon güvenli alanında korunacaktır.
+- Splash ekranı launcher simgesinden ayrı varlıktır; launcher simgesi değişikliği splash'ı kendiliğinden değiştirmez.
 - Kişisel bilgi mağaza görsellerine girmeyecek.
 - Başka bir oyunun görsel kimliği kopyalanmayacak.
 - Ham ekran kaydını kırpıp vermek tanıtım videosu sayılmayacak.

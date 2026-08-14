@@ -23,6 +23,7 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  crypto: ^3.0.6
   flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
@@ -41,8 +42,9 @@ flutter_launcher_icons:
   ios: false
   image_path: "assets/branding/app_icon.png"
   min_sdk_android: 21
-  adaptive_icon_background: "#24122F"
-  adaptive_icon_foreground: "assets/branding/app_icon_foreground.png"
+  adaptive_icon_background: "#01041E"
+  adaptive_icon_foreground: "assets/branding/app_icon.png"
+  adaptive_icon_foreground_inset: 18
 
 flutter_native_splash:
   color: "#24122F"
