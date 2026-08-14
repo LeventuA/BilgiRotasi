@@ -11,6 +11,30 @@
 
 ---
 
+## Issue #37 gerçek FCM fiziksel kabulü - AÇIK
+
+Draft PR #39 client-side altyapısı ve kod-head CI #163 PASS'tir; bu kanıt gerçek
+FCM tesliminin yerine geçmez.
+
+**DOĞRULANACAK — fiziksel gerçek FCM teslimi:**
+
+1. Güncel Google Play closed-test `1.68.14+104` kurulumu silinmeden kullanılır.
+2. Ayarlar anahtarı kapalıyken ilk açılışta izin popup'ı çıkmadığı doğrulanır.
+3. Anahtar açılır; Android 13+ izin kabul ve red senaryolarında oyun normal
+   çalışır.
+4. Yalnız `bilgi_rotasi_announcements_closed_test` topic'ine güvenli test
+   mesajı gönderilir; production topic kullanılmaz.
+5. Foreground'da tek uygulama içi bildirim; background ve terminated durumda
+   tek sistem bildirimi görülür.
+6. Bildirime dokunmak uygulamayı geçersiz route/crash olmadan açar.
+7. Paket logcat'inde crash, ANR, `FATAL EXCEPTION` veya process-death yoktur.
+8. Ancak bu fiziksel kanıttan sonra Issue #37 kapanış/merge kararı verilir.
+
+Firebase Console proje kimliği, topic ve hedef son kez yeniden okunmadan mesaj
+gönderilmez. 30 Ağustos production duyurusu bu PR kapsamında gönderilmemiştir.
+
+---
+
 ## BR-P1-008 final artifact kabulü - KAPALI
 
 Aşağıdaki tarihsel ‘artifact kabulü açık / yeni run gerekli’ kayıtları artık kapanmıştır.

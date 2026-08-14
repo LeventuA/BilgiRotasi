@@ -2,6 +2,23 @@
 
 ---
 
+## 0. Genel duyuru bildirimi
+
+- Genel duyurular Firebase Cloud Messaging ile ve kimlik içermeyen ortam
+  topic'leri üzerinden gönderilecek.
+- Test/CI uzak FCM'ye bağlanmayacak; development, Play closed-test ve
+  production topic'leri birbirinden ayrı olacak.
+- Bildirim izni ilk açılışta istenmeyecek. Kullanıcı Ayarlar'daki anahtarı
+  açıkça açmadan FCM auto-init, token ve topic aboneliği etkinleşmeyecek.
+- Kullanıcı reddeder veya kapatırsa oyun eksiksiz çalışacak; abonelik ve kurulum
+  tokenı temizlenmeye çalışılacak, SDK hatası oyun akışını kesmeyecek.
+- İlk sürümde bildirim payload'ından route/deep-link üretilmeyecek; dokunma
+  yalnız uygulamayı güvenli normal açılışla açacak.
+- Production bildirimi teknik PR veya CI tarafından otomatik gönderilmeyecek;
+  proje/topic/title/body son kontrolü sonrası ayrı Levent kararı gerekecek.
+
+---
+
 ## 1. Çalışma ve Git düzeni
 
 - `main` otomatik olarak güncel kabul edilmeyecek.

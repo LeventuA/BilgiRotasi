@@ -2,7 +2,8 @@
 
 ## 0C - 14 Ağustos 2026 launcher icon / PR #38
 
-- **Durum:** UYGULANDI / CI PASS / FİZİKSEL LAUNCHER KURULUMU DOĞRULANACAK.
+- **Durum:** RELEASE'E MERGE EDİLDİ / CI PASS / FİZİKSEL LAUNCHER KURULUMU DOĞRULANACAK.
+- PR #38 merge commit'i: `37f5ba0b1ea2cc5cfd97ff56beb6c31ba55d33b8`.
 - Onaylanan 512x512 PNG kaynak SHA-256: `32f9d4144fa5112afd93999fd4b6df3734493f626cc8e96f9b0be1510b9368fa`; repo kaynağıyla birebir eşleşir.
 - Legacy ve adaptive Android ikonları yeniden üretildi; `%18` adaptive inset ile yazı/pusula güvenli alanda tutuldu; splash değiştirilmedi.
 - Yerel analyze PASS, hedefli test PASS, tüm Flutter testleri `257/257` PASS, diff check PASS.
@@ -10,6 +11,37 @@
 - APK SHA-256 `792a0db0d812acaaaa0e504d1abc61915f020e3bc9f3ec6592bbcc9a3f4ee673`; Android 16 APP_GATE/RELEASE_GATE PASS; app-specific crash/ANR/FATAL/process-death yok.
 - APK içindeki gerçek legacy/adaptive launcher varlıkları görsel olarak doğrulandı.
 - Bitti ölçütünde kalan tek kabul: Play kurulumunu silmeden uyumlu imzalı build ile fiziksel Android launcher ekranı doğrulaması.
+
+---
+
+## BR-P0-010 - Issue #37 Firebase genel duyuru altyapısı
+
+**Durum:** DRAFT PR #39 / KOD-HEAD CI PASS / FİZİKSEL FCM KABULÜ BEKLİYOR
+
+- Ayrı dal `feat/push-notifications-issue-37`; PR head'i canlı GitHub
+  metadata'sından doğrulanır ve release/main'e merge edilmemiştir.
+- FCM bağımlılığı, Android 13+ izin akışı, notification channel,
+  foreground/background/terminated davranışı ve güvenli açılış uygulanmıştır.
+- İzin yalnız Ayarlar'daki açık kullanıcı eylemiyle istenir; red durumunda oyun
+  eksiksiz çalışır. Test/CI uzak FCM kapalı, development/closed-test/production
+  topic'leri ayrıdır.
+- Kod-head CI #163 run `31762135840`, job `94650543861`: SUCCESS. Release APK,
+  merged manifest, imza, Android 16 APP_GATE ve RELEASE_GATE PASS.
+- Artifact ID `9205231533`; digest
+  `sha256:68ac9764e2fe03f0fdfc44cbef5a4334cc9cd4f9f5d616766373ed7c24cc1529`;
+  APK SHA-256 `9ac0534f56c4af9fc22173ca145ead77ec61b97016fdfd0eb6e6f2141db1143b`.
+- Gönderim runbook'u `docs/push-notification-operations.md`; production'a mesaj
+  veya Firebase deploy yapılmamıştır.
+
+**Bitti ölçütü:**
+
+- [x] Analyze, tüm Flutter testleri ve push profil testleri PASS.
+- [x] Release APK ve birleşik manifestte FCM SDK/izin/channel doğrulandı.
+- [x] Android 16 APP_GATE/RELEASE_GATE PASS; app-specific hata yok.
+- [ ] Güncel Play closed-test fiziksel cihazında izin kabul/red doğrulandı.
+- [ ] Gerçek FCM foreground/background/terminated teslimi ve dokunma açılışı
+  doğrulandı.
+- [ ] Levent açık onayı sonrası merge kararı verildi.
 
 ---
 

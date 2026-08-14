@@ -6,7 +6,8 @@
 ## 0D. Android launcher icon / PR #38 — 14 Ağustos 2026
 
 - Canlı release tabanı `release/final-closed-test-aab-1.68.8`; başlangıç HEAD `29a5a23d15485922d670f7e7b3f9b7cea2d0260f`; sürüm `1.68.14+104`.
-- Mevcut açık Draft PR #38 (`fix/text-launcher-icon-20260813`) yeniden kullanıldı; yeni PR açılmadı ve merge yapılmadı.
+- PR #38 (`fix/text-launcher-icon-20260813`) release dalına merge edildi; merge
+  commit'i `37f5ba0b1ea2cc5cfd97ff56beb6c31ba55d33b8`.
 - Kullanıcının onayladığı `Bilgi_Rotasi_Android_Icon_512x512.png` kaynak görseli, yeniden tasarlanmadan `assets/branding/app_icon.png` olarak alındı. Kaynak ve repo dosyası SHA-256 değeri `32f9d4144fa5112afd93999fd4b6df3734493f626cc8e96f9b0be1510b9368fa` ile birebir eşleşir.
 - `BİLGİ ROTASI` yazısı, pusula ve renkler korunur; splash varlığı ve yapılandırması değişmez. Legacy mdpi/hdpi/xhdpi/xxhdpi/xxxhdpi ile adaptive foreground kaynakları üretildi; adaptive foreground inset değeri `%18` olarak güvenli alana çekildi.
 - Regresyon testi 512x512 PNG boyutunu, otoritatif kaynak hash'ini, yoğunluk boyutlarını, adaptive XML/inset sözleşmesini ve splash ayrımını kilitler.
@@ -17,6 +18,42 @@
 - Android 16 `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = PASS; PID `1991`, `MainActivity` RESUMED/visible; uygulamaya ait crash/ANR/FATAL/process-death kanıtı yok.
 - Artifact APK içindeki gerçek 192 px legacy ve 432 px adaptive launcher görselleri doğrudan açılarak onaylanan BİLGİ ROTASI yazılı pusula olduğu doğrulandı.
 - Mevcut fiziksel telefondaki Google Play kurulumunu silmeden/üzerine farklı imzalı APK zorlamadan gerçek launcher ekranı kurulumu yapılamadı; bu kabul `DOĞRULANACAK` kalır.
+
+---
+
+## 0E. Issue #37 Firebase genel duyuru altyapısı — 14 Ağustos 2026
+
+- Canlı yayın tabanı `release/final-closed-test-aab-1.68.8`; işe başlama HEAD'i
+  `29a5a23d15485922d670f7e7b3f9b7cea2d0260f`, sürüm `1.68.14+104`.
+- Ayrı dal: `feat/push-notifications-issue-37`; açık Draft PR #39. Güncel PR
+  head'i statik yazılmaz, canlı GitHub PR metadata'sından doğrulanır.
+- `firebase_messaging 16.4.3`, Android 13+ `POST_NOTIFICATIONS`, Android
+  notification channel ve background entry-point eklendi.
+- İlk açılışta izin istenmez. Kullanıcı yalnız Ayarlar'daki anahtarı açarsa
+  sistem izni istenir; red/kapatma SDK auto-init, topic ve kurulum tokenını
+  kapatır. Hatalar oyun akışına taşınmaz.
+- Topic'ler kimliksiz ve ortam ayrımlıdır: development, Play closed-test ve
+  production. Varsayılan test/CI profilinde uzak FCM kapalıdır.
+- Foreground mesaj tek uygulama içi bildirim olarak gösterilir;
+  background/terminated notification payload Android/FCM standart davranışını
+  kullanır. Dış payload'dan route/deep-link üretilmez.
+- Kod-head CI #163: run `31762135840`, job `94650543861`, **SUCCESS**.
+  Analyze/tüm testler, release APK, birleşik manifest, kalıcı imza ve Android 16
+  cold-start ilk denemede PASS; temiz ikinci emulator gerekmedi.
+- Artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9205231533`, digest
+  `sha256:68ac9764e2fe03f0fdfc44cbef5a4334cc9cd4f9f5d616766373ed7c24cc1529`;
+  APK SHA-256 `9ac0534f56c4af9fc22173ca145ead77ec61b97016fdfd0eb6e6f2141db1143b`.
+- Artifact paketi `com.leventua.bilgirotasi`, sürüm `1.68.14+104`, targetSdk
+  36 ve upload SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- Birleşik manifestte POST_NOTIFICATIONS, Firebase Messaging servis/provider ve
+  varsayılan channel metadata'sı doğrulandı. `APP_GATE=PASS`,
+  `RELEASE_GATE=PASS`, PID `1976`, MainActivity RESUMED/visible; Bilgi Rotası
+  paketine ait crash/ANR/FATAL/process-death eşleşmesi yok.
+- Firebase deploy veya gerçek bildirim gönderimi yapılmadı. Auth, Firestore,
+  Functions, App Check/Play Integrity ve AdMob davranışı değiştirilmedi.
+- **DOĞRULANACAK:** güncel Play closed-test kurulumu üzerinde gerçek FCM
+  foreground/background/terminated teslimi, izin red/kabul ve bildirim
+  dokunuşuyla güvenli açılış.
 
 ---
 
