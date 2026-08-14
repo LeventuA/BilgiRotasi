@@ -29,7 +29,6 @@ jobs:
           set -euo pipefail
           python3 - <<'RUNNER'
           from pathlib import Path
-          import textwrap
 
           workflow = Path('.github/workflows/project-memory-sync-once.yml').read_text(
               encoding='utf-8',
@@ -40,7 +39,17 @@ jobs:
               raise SystemExit('one-shot memory script markers are not unique')
           start = workflow.index(start_marker) + len(start_marker)
           end = workflow.index(end_marker, start)
-          code = textwrap.dedent(workflow[start:end])
+          raw = workflow[start:end]
+          lines = raw.splitlines()
+          code_lines = []
+          for line in lines:
+              if line.startswith('          '):
+                  code_lines.append(line[10:])
+              elif line.strip():
+                  raise SystemExit('unexpected one-shot script indentation')
+              else:
+                  code_lines.append('')
+          code = '\n'.join(code_lines) + '\n'
           exec(compile(code, 'project-memory-sync-once', 'exec'))
           RUNNER
 
