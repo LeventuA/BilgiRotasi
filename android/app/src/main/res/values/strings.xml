@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bilgi_rotasi_notification_channel_id">bilgi_rotasi_duyurular</string>
+    <string name="bilgi_rotasi_notification_channel_name">Bilgi Rotası duyuruları</string>
+    <string name="bilgi_rotasi_notification_channel_description">Genel Bilgi Rotası duyuruları ve özel gün bildirimleri</string>
+</resources>

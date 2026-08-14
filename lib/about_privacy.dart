@@ -119,6 +119,19 @@ class AboutPrivacyScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           _section(
+            emoji: '🔔',
+            title: 'Genel duyuru bildirimleri',
+            text:
+                'Bildirimler varsayılan olarak kapalıdır. Ayarlar ekranında '
+                'açıkça etkinleştirirsen Firebase Cloud Messaging bu kurulum '
+                'için bir bildirim tokenı üretir ve cihazı ortamına özel genel '
+                'duyuru kanalına bağlar. Token hesap kimliğine eklenmez veya '
+                'Bilgi Rotası sunucusunda saklanmaz. Bildirimleri kapattığında '
+                'abonelik ve cihaz tokenı silinmeye çalışılır; izin vermesen de '
+                'oyun eksiksiz çalışır.',
+          ),
+          const SizedBox(height: 8),
+          _section(
             emoji: '📺',
             title: 'Reklamlar ve izin',
             text:
