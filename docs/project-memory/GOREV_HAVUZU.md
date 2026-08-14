@@ -1,5 +1,18 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0C - 14 Ağustos 2026 launcher icon / PR #38
+
+- **Durum:** UYGULANDI / CI PASS / FİZİKSEL LAUNCHER KURULUMU DOĞRULANACAK.
+- Onaylanan 512x512 PNG kaynak SHA-256: `32f9d4144fa5112afd93999fd4b6df3734493f626cc8e96f9b0be1510b9368fa`; repo kaynağıyla birebir eşleşir.
+- Legacy ve adaptive Android ikonları yeniden üretildi; `%18` adaptive inset ile yazı/pusula güvenli alanda tutuldu; splash değiştirilmedi.
+- Yerel analyze PASS, hedefli test PASS, tüm Flutter testleri `257/257` PASS, diff check PASS.
+- PR CI #161 / run `31757717142`, job `94637088436`: SUCCESS; artifact ID `9203624785`, digest `sha256:88a709a875c02d28844bdbfd69c8669acc009ca5846d07e4bb51d9828a908b18`.
+- APK SHA-256 `792a0db0d812acaaaa0e504d1abc61915f020e3bc9f3ec6592bbcc9a3f4ee673`; Android 16 APP_GATE/RELEASE_GATE PASS; app-specific crash/ANR/FATAL/process-death yok.
+- APK içindeki gerçek legacy/adaptive launcher varlıkları görsel olarak doğrulandı.
+- Bitti ölçütünde kalan tek kabul: Play kurulumunu silmeden uyumlu imzalı build ile fiziksel Android launcher ekranı doğrulaması.
+
+---
+
 ## 0B - 13 Ağustos 2026 BR-P1-008 final artifact kabulü
 
 Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarını **güncel olarak geçersiz kılar**.
