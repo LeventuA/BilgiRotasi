@@ -84,13 +84,35 @@ retry_capture_screen() {
 find_word() {
   local label="$1"
   local pattern="$2"
-  awk -F '\t' -v pattern="$pattern" '
-    BEGIN { IGNORECASE = 1 }
-    NR > 1 && $12 ~ pattern {
-      print int($7 + ($9 / 2)), int($8 + ($10 / 2))
-      exit
-    }
-  ' "reports/UI_${label}.tsv"
+  local tsv_file="reports/UI_${label}.tsv"
+  python3 - "$tsv_file" "$label" "$pattern" <<'PY'
+import csv
+import re
+import sys
+
+path, label, pattern = sys.argv[1:4]
+matcher = re.compile(pattern, re.IGNORECASE)
+with open(path, encoding="utf-8", newline="") as handle:
+    rows = csv.reader(handle, delimiter="\t")
+    next(rows, None)
+    for row in rows:
+        if len(row) < 12 or not matcher.search(row[11]):
+            continue
+        try:
+            left, top, width, height = (int(row[index]) for index in range(6, 10))
+        except ValueError:
+            continue
+        x = left + (width // 2)
+        y = top + (height // 2)
+        confidence = row[10] if len(row) > 10 else ""
+        print(
+            f"OCR_MATCH label={label} pattern={pattern!r} text={row[11]!r} "
+            f"confidence={confidence} point={x},{y}",
+            file=sys.stderr,
+        )
+        print(x, y)
+        break
+PY
 }
 
 mark_emulator_unhealthy() {
@@ -304,6 +326,7 @@ finalize_validation() {
 
 trap finalize_validation EXIT
 command -v tesseract >/dev/null
+command -v python3 >/dev/null
 
 timeout 120 adb wait-for-device
 for attempt in $(seq 1 30); do
