@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:crypto/crypto.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 (int, int) _pngSize(String path) {
@@ -30,21 +31,30 @@ void main() {
           File('android/app/src/main/res/values/colors.xml').readAsStringSync();
 
       expect(manifest, contains('android:icon="@mipmap/launcher_icon"'));
-      expect(pubspec, contains('image_path: "assets/branding/app_icon.jpg"'));
+      expect(pubspec, contains('image_path: "assets/branding/app_icon.png"'));
       expect(
         pubspec,
-        contains('adaptive_icon_foreground: "assets/branding/app_icon.jpg"'),
+        contains('adaptive_icon_foreground: "assets/branding/app_icon.png"'),
       );
       expect(pubspec, contains('adaptive_icon_background: "#01041E"'));
-      expect(pubspec, contains('adaptive_icon_foreground_inset: 4'));
+      expect(pubspec, contains('adaptive_icon_foreground_inset: 18'));
       expect(pubspec, contains('image: assets/branding/splash_logo.png'));
-      expect(adaptive, contains('android:inset="4%"'));
+      expect(adaptive, contains('android:inset="18%"'));
       expect(colors, contains('#01041E'));
 
-      final source = File('assets/branding/app_icon.jpg').readAsBytesSync();
-      expect(source.length, greaterThan(1000));
-      expect(source[0], 0xff);
-      expect(source[1], 0xd8);
+      const pngSignature = <int>[137, 80, 78, 71, 13, 10, 26, 10];
+      expect(_pngSize('assets/branding/app_icon.png'), (512, 512));
+      expect(
+        File('assets/branding/app_icon.png').readAsBytesSync().sublist(0, 8),
+        pngSignature,
+      );
+      expect(
+        sha256
+            .convert(File('assets/branding/app_icon.png').readAsBytesSync())
+            .toString(),
+        '32f9d4144fa5112afd93999fd4b6df3734493f626cc8e96f9b0be1510b9368fa',
+        reason: 'Launcher kaynağı onaylanan 512x512 görselden sapmamalı.',
+      );
 
       const legacy = <String, int>{
         'mipmap-mdpi': 48,
