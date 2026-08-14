@@ -10,28 +10,42 @@ class PushRuntimePolicy {
     defaultValue: '',
   );
 
+  static const List<String> knownTopics = <String>[
+    'bilgi_rotasi_announcements_dev',
+    'bilgi_rotasi_announcements_closed_test',
+    'bilgi_rotasi_announcements_production',
+  ];
+
   static PushEnvironment resolveEnvironment({
     required String explicit,
     required String adMob,
     required String firebase,
   }) {
-    final selected = explicit.trim().toLowerCase();
-    if (selected.isNotEmpty) {
-      return switch (selected) {
-        'production' => PushEnvironment.production,
-        'closed_test' => PushEnvironment.closedTest,
-        'development' => PushEnvironment.development,
-        _ => PushEnvironment.test,
-      };
-    }
-
-    return switch (adMob.trim().toLowerCase()) {
-      'production' => PushEnvironment.production,
-      'closed_test' => PushEnvironment.closedTest,
-      _ when firebase.trim().toLowerCase() == 'development' =>
+    final adMobProfile = adMob.trim().toLowerCase();
+    final firebaseProfile = firebase.trim().toLowerCase();
+    final inferred = switch (adMobProfile) {
+      'production' when firebaseProfile == 'production' =>
+        PushEnvironment.production,
+      'closed_test' when firebaseProfile == 'production' =>
+        PushEnvironment.closedTest,
+      _ when adMobProfile == 'test' && firebaseProfile == 'development' =>
         PushEnvironment.development,
       _ => PushEnvironment.test,
     };
+
+    final selected = explicit.trim().toLowerCase();
+    if (selected.isEmpty) return inferred;
+    final requested = switch (selected) {
+      'production' => PushEnvironment.production,
+      'closed_test' => PushEnvironment.closedTest,
+      'development' => PushEnvironment.development,
+      _ => PushEnvironment.test,
+    };
+
+    // PUSH_ENVIRONMENT yalnız daha geniş build profilini doğrulayabilir; tek
+    // başına closed-test veya production erişimi açamaz. Yanlış/eski define
+    // kombinasyonu güvenli biçimde uzak FCM'i kapatan test profiline düşer.
+    return requested == inferred ? requested : PushEnvironment.test;
   }
 
   static PushEnvironment get environment => resolveEnvironment(
@@ -78,6 +92,10 @@ abstract interface class PushPreferenceStore {
   Future<bool> readEnabled();
 
   Future<void> writeEnabled(bool enabled);
+
+  Future<bool> readCleanupPending();
+
+  Future<void> writeCleanupPending(bool pending);
 }
 
 class PushSubscriptionCoordinator {
@@ -85,16 +103,35 @@ class PushSubscriptionCoordinator {
     required this.gateway,
     required this.store,
     required this.topic,
+    this.knownTopics = PushRuntimePolicy.knownTopics,
   });
 
   final PushMessagingGateway gateway;
   final PushPreferenceStore store;
   final String? topic;
+  final List<String> knownTopics;
 
   Future<PushEnableResult> restore() async {
     if (topic == null) return PushEnableResult.unavailable;
-    if (!await store.readEnabled()) {
-      await gateway.setAutoInitEnabled(false);
+
+    final enabled = await store.readEnabled();
+    if (!enabled) {
+      var autoInitDisabled = true;
+      try {
+        await gateway.setAutoInitEnabled(false);
+      } catch (_) {
+        autoInitDisabled = false;
+      }
+
+      var cleanupPending = false;
+      try {
+        cleanupPending = await store.readCleanupPending();
+      } catch (_) {
+        cleanupPending = true;
+      }
+      if (cleanupPending || !autoInitDisabled) {
+        await _cleanupAllRemoteState();
+      }
       return PushEnableResult.disabled;
     }
 
@@ -104,9 +141,12 @@ class PushSubscriptionCoordinator {
         await _clearLocalChoice();
         return PushEnableResult.denied;
       }
+      if (!await _isolateCurrentTopic()) return PushEnableResult.failed;
       await gateway.subscribeToTopic(topic!);
+      await _safeWriteCleanupPending(false);
       return PushEnableResult.enabled;
     } catch (_) {
+      await _clearLocalChoice();
       return PushEnableResult.failed;
     }
   }
@@ -125,8 +165,10 @@ class PushSubscriptionCoordinator {
         await _clearLocalChoice();
         return PushEnableResult.denied;
       }
+      if (!await _isolateCurrentTopic()) return PushEnableResult.failed;
       await gateway.subscribeToTopic(topic!);
       await store.writeEnabled(true);
+      await _safeWriteCleanupPending(false);
       return PushEnableResult.enabled;
     } catch (_) {
       await _clearLocalChoice();
@@ -134,26 +176,75 @@ class PushSubscriptionCoordinator {
     }
   }
 
-  Future<void> _clearLocalChoice() async {
-    try {
-      if (topic != null) await gateway.unsubscribeFromTopic(topic!);
-    } catch (_) {
-      // Yerel kapatma kararı uzak abonelik hatasından bağımsız saklanır.
+  Future<bool> _isolateCurrentTopic() async {
+    var otherTopicsRemoved = true;
+    for (final candidate in knownTopics) {
+      if (candidate == topic) continue;
+      try {
+        await gateway.unsubscribeFromTopic(candidate);
+      } catch (_) {
+        otherTopicsRemoved = false;
+      }
     }
+    if (otherTopicsRemoved) {
+      await _safeWriteCleanupPending(false);
+      return true;
+    }
+
+    // Ortam topic'i temizlenemediyse eski tokenı sıfırlamak, aynı kurulumun
+    // closed-test ve production topic'lerinde birlikte kalmasını engeller.
     try {
       await gateway.deleteToken();
+      await _safeWriteCleanupPending(false);
+      return true;
     } catch (_) {
-      // Token silme hatası uygulamayı veya ayar değişikliğini engellemez.
+      await _safeWriteCleanupPending(true);
+      try {
+        await gateway.setAutoInitEnabled(false);
+      } catch (_) {
+        // Başarısız uzak temizleme bir sonraki açılışta tekrar denenecek.
+      }
+      return false;
     }
-    try {
-      await gateway.setAutoInitEnabled(false);
-    } catch (_) {
-      // SDK hatası kullanıcı tercihinin kaydedilmesini engellemez.
-    }
+  }
+
+  Future<void> _clearLocalChoice() async {
     try {
       await store.writeEnabled(false);
     } catch (_) {
       // Yerel depolama hatası oyun akışına veya ayar ekranına taşınmaz.
+    }
+    await _cleanupAllRemoteState();
+  }
+
+  Future<bool> _cleanupAllRemoteState() async {
+    var clean = true;
+    try {
+      await gateway.setAutoInitEnabled(false);
+    } catch (_) {
+      clean = false;
+    }
+    for (final candidate in knownTopics) {
+      try {
+        await gateway.unsubscribeFromTopic(candidate);
+      } catch (_) {
+        clean = false;
+      }
+    }
+    try {
+      await gateway.deleteToken();
+    } catch (_) {
+      clean = false;
+    }
+    await _safeWriteCleanupPending(!clean);
+    return clean;
+  }
+
+  Future<void> _safeWriteCleanupPending(bool pending) async {
+    try {
+      await store.writeCleanupPending(pending);
+    } catch (_) {
+      // Cleanup durumu yazılamasa bile oyun ve ayar akışı etkilenmez.
     }
   }
 }
@@ -211,6 +302,7 @@ class _FirebasePushMessagingGateway implements PushMessagingGateway {
 
 class _SharedPreferencesPushStore implements PushPreferenceStore {
   static const String preferenceKey = 'push_notifications_enabled_v1';
+  static const String cleanupPendingKey = 'push_notifications_cleanup_pending_v1';
 
   @override
   Future<bool> readEnabled() async {
@@ -222,6 +314,18 @@ class _SharedPreferencesPushStore implements PushPreferenceStore {
   Future<void> writeEnabled(bool enabled) async {
     final preferences = await SharedPreferences.getInstance();
     await preferences.setBool(preferenceKey, enabled);
+  }
+
+  @override
+  Future<bool> readCleanupPending() async {
+    final preferences = await SharedPreferences.getInstance();
+    return preferences.getBool(cleanupPendingKey) == true;
+  }
+
+  @override
+  Future<void> writeCleanupPending(bool pending) async {
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.setBool(cleanupPendingKey, pending);
   }
 }
 

@@ -11,13 +11,20 @@ class _FakeGateway implements PushMessagingGateway {
   final List<bool> autoInit = <bool>[];
   final List<String> subscribed = <String>[];
   final List<String> unsubscribed = <String>[];
+  final Set<String> failUnsubscribeTopics = <String>{};
+  bool failDeleteToken = false;
+  int deleteTokenAttempts = 0;
   int deletedTokens = 0;
 
   @override
   Future<PushPermissionState> currentPermission() async => permission;
 
   @override
-  Future<void> deleteToken() async => deletedTokens++;
+  Future<void> deleteToken() async {
+    deleteTokenAttempts++;
+    if (failDeleteToken) throw StateError('test delete token failure');
+    deletedTokens++;
+  }
 
   @override
   Future<PushPermissionState> requestPermission() async {
@@ -32,32 +39,51 @@ class _FakeGateway implements PushMessagingGateway {
   Future<void> subscribeToTopic(String topic) async => subscribed.add(topic);
 
   @override
-  Future<void> unsubscribeFromTopic(String topic) async =>
-      unsubscribed.add(topic);
+  Future<void> unsubscribeFromTopic(String topic) async {
+    unsubscribed.add(topic);
+    if (failUnsubscribeTopics.contains(topic)) {
+      throw StateError('test unsubscribe failure: $topic');
+    }
+  }
 }
 
 class _FakeStore implements PushPreferenceStore {
-  _FakeStore([this.enabled = false]);
+  _FakeStore({this.enabled = false, this.cleanupPending = false});
 
   bool enabled;
-  final List<bool> writes = <bool>[];
-  bool failWrites = false;
+  bool cleanupPending;
+  final List<bool> enabledWrites = <bool>[];
+  final List<bool> cleanupWrites = <bool>[];
+  bool failEnabledWrites = false;
+  bool failCleanupWrites = false;
 
   @override
   Future<bool> readEnabled() async => enabled;
 
   @override
   Future<void> writeEnabled(bool enabled) async {
-    if (failWrites) throw StateError('test storage failure');
+    if (failEnabledWrites) throw StateError('test enabled storage failure');
     this.enabled = enabled;
-    writes.add(enabled);
+    enabledWrites.add(enabled);
+  }
+
+  @override
+  Future<bool> readCleanupPending() async => cleanupPending;
+
+  @override
+  Future<void> writeCleanupPending(bool pending) async {
+    if (failCleanupWrites) throw StateError('test cleanup storage failure');
+    cleanupPending = pending;
+    cleanupWrites.add(pending);
   }
 }
 
 void main() {
+  const devTopic = 'bilgi_rotasi_announcements_dev';
   const closedTopic = 'bilgi_rotasi_announcements_closed_test';
+  const productionTopic = 'bilgi_rotasi_announcements_production';
 
-  test('push profilleri test closed-test ve production topiclerini ayırır', () {
+  test('push profilleri build profiliyle fail-closed ayrılır', () {
     expect(
       PushRuntimePolicy.resolveEnvironment(
         explicit: '',
@@ -90,11 +116,47 @@ void main() {
       ),
       PushEnvironment.production,
     );
+    expect(
+      PushRuntimePolicy.resolveEnvironment(
+        explicit: 'production',
+        adMob: 'closed_test',
+        firebase: 'production',
+      ),
+      PushEnvironment.test,
+    );
+    expect(
+      PushRuntimePolicy.resolveEnvironment(
+        explicit: 'closed_test',
+        adMob: 'production',
+        firebase: 'production',
+      ),
+      PushEnvironment.test,
+    );
+    expect(
+      PushRuntimePolicy.resolveEnvironment(
+        explicit: 'production',
+        adMob: 'production',
+        firebase: 'test',
+      ),
+      PushEnvironment.test,
+    );
+    expect(
+      PushRuntimePolicy.resolveEnvironment(
+        explicit: '',
+        adMob: 'production',
+        firebase: 'development',
+      ),
+      PushEnvironment.test,
+    );
     expect(PushRuntimePolicy.topicFor(PushEnvironment.test), isNull);
     expect(PushRuntimePolicy.topicFor(PushEnvironment.closedTest), closedTopic);
     expect(
       PushRuntimePolicy.topicFor(PushEnvironment.production),
-      'bilgi_rotasi_announcements_production',
+      productionTopic,
+    );
+    expect(
+      PushRuntimePolicy.knownTopics,
+      <String>[devTopic, closedTopic, productionTopic],
     );
   });
 
@@ -105,7 +167,7 @@ void main() {
   });
 
   test(
-    'ilk açılış kayıtlı tercih yoksa izin istemez ve token başlatmaz',
+    'ilk açılış kayıtlı tercih yoksa izin token veya topic başlatmaz',
     () async {
       final gateway = _FakeGateway();
       final store = _FakeStore();
@@ -118,12 +180,14 @@ void main() {
       expect(await coordinator.restore(), PushEnableResult.disabled);
       expect(gateway.permissionRequests, 0);
       expect(gateway.subscribed, isEmpty);
+      expect(gateway.unsubscribed, isEmpty);
+      expect(gateway.deleteTokenAttempts, 0);
       expect(gateway.autoInit, <bool>[false]);
     },
   );
 
   test(
-    'açık kullanıcı eylemi izin sonrası yalnız ortam topicine abone olur',
+    'açık kullanıcı eylemi diğer ortam topiclerini temizleyip yalnız hedefe abone olur',
     () async {
       final gateway =
           _FakeGateway()..requestedPermission = PushPermissionState.granted;
@@ -136,13 +200,75 @@ void main() {
 
       expect(await coordinator.setEnabled(true), PushEnableResult.enabled);
       expect(gateway.permissionRequests, 1);
+      expect(gateway.unsubscribed, <String>[devTopic, productionTopic]);
       expect(gateway.subscribed, <String>[closedTopic]);
       expect(gateway.autoInit, <bool>[true]);
+      expect(gateway.deleteTokenAttempts, 0);
       expect(store.enabled, isTrue);
+      expect(store.cleanupPending, isFalse);
     },
   );
 
-  test('izin reddi oyunu engellemeden abonelik ve tokenı kapatır', () async {
+  test('closed-testten productiona geçiş eski topicleri bırakmaz', () async {
+    final gateway = _FakeGateway()..permission = PushPermissionState.granted;
+    final store = _FakeStore(enabled: true);
+    final coordinator = PushSubscriptionCoordinator(
+      gateway: gateway,
+      store: store,
+      topic: productionTopic,
+    );
+
+    expect(await coordinator.restore(), PushEnableResult.enabled);
+    expect(gateway.unsubscribed, <String>[devTopic, closedTopic]);
+    expect(gateway.subscribed, <String>[productionTopic]);
+    expect(gateway.deleteTokenAttempts, 0);
+    expect(store.cleanupPending, isFalse);
+  });
+
+  test('eski topic unsubscribe hatasında token reset ile izolasyon korunur', () async {
+    final gateway =
+        _FakeGateway()
+          ..permission = PushPermissionState.granted
+          ..failUnsubscribeTopics.add(closedTopic);
+    final store = _FakeStore(enabled: true);
+    final coordinator = PushSubscriptionCoordinator(
+      gateway: gateway,
+      store: store,
+      topic: productionTopic,
+    );
+
+    expect(await coordinator.restore(), PushEnableResult.enabled);
+    expect(gateway.unsubscribed, <String>[devTopic, closedTopic]);
+    expect(gateway.deleteTokenAttempts, 1);
+    expect(gateway.deletedTokens, 1);
+    expect(gateway.subscribed, <String>[productionTopic]);
+    expect(store.cleanupPending, isFalse);
+  });
+
+  test(
+    'eski topic ve token temizliği birlikte başarısızsa yeni ortama abone olmaz',
+    () async {
+      final gateway =
+          _FakeGateway()
+            ..permission = PushPermissionState.granted
+            ..failUnsubscribeTopics.add(closedTopic)
+            ..failDeleteToken = true;
+      final store = _FakeStore(enabled: true);
+      final coordinator = PushSubscriptionCoordinator(
+        gateway: gateway,
+        store: store,
+        topic: productionTopic,
+      );
+
+      expect(await coordinator.restore(), PushEnableResult.failed);
+      expect(gateway.subscribed, isEmpty);
+      expect(gateway.deleteTokenAttempts, 1);
+      expect(gateway.autoInit, <bool>[true, false]);
+      expect(store.cleanupPending, isTrue);
+    },
+  );
+
+  test('izin reddi oyunu engellemeden tüm topicleri ve tokenı kapatır', () async {
     final gateway =
         _FakeGateway()..requestedPermission = PushPermissionState.denied;
     final store = _FakeStore();
@@ -154,15 +280,19 @@ void main() {
 
     expect(await coordinator.setEnabled(true), PushEnableResult.denied);
     expect(gateway.subscribed, isEmpty);
-    expect(gateway.unsubscribed, <String>[closedTopic]);
+    expect(
+      gateway.unsubscribed,
+      <String>[devTopic, closedTopic, productionTopic],
+    );
     expect(gateway.deletedTokens, 1);
     expect(gateway.autoInit, <bool>[true, false]);
     expect(store.enabled, isFalse);
+    expect(store.cleanupPending, isFalse);
   });
 
-  test('kapatma topic aboneliğini ve kurulum tokenını temizler', () async {
+  test('kapatma tüm topic aboneliklerini ve kurulum tokenını temizler', () async {
     final gateway = _FakeGateway();
-    final store = _FakeStore(true);
+    final store = _FakeStore(enabled: true);
     final coordinator = PushSubscriptionCoordinator(
       gateway: gateway,
       store: store,
@@ -170,17 +300,56 @@ void main() {
     );
 
     expect(await coordinator.setEnabled(false), PushEnableResult.disabled);
-    expect(gateway.unsubscribed, <String>[closedTopic]);
+    expect(
+      gateway.unsubscribed,
+      <String>[devTopic, closedTopic, productionTopic],
+    );
     expect(gateway.deletedTokens, 1);
     expect(gateway.autoInit, <bool>[false]);
     expect(store.enabled, isFalse);
+    expect(store.cleanupPending, isFalse);
+  });
+
+  test('başarısız kapatma temizliği sonraki açılışta yeniden denenir', () async {
+    final firstGateway =
+        _FakeGateway()
+          ..failUnsubscribeTopics.add(closedTopic)
+          ..failDeleteToken = true;
+    final store = _FakeStore(enabled: true);
+    final firstCoordinator = PushSubscriptionCoordinator(
+      gateway: firstGateway,
+      store: store,
+      topic: closedTopic,
+    );
+
+    expect(
+      await firstCoordinator.setEnabled(false),
+      PushEnableResult.disabled,
+    );
+    expect(store.enabled, isFalse);
+    expect(store.cleanupPending, isTrue);
+
+    final retryGateway = _FakeGateway();
+    final retryCoordinator = PushSubscriptionCoordinator(
+      gateway: retryGateway,
+      store: store,
+      topic: closedTopic,
+    );
+    expect(await retryCoordinator.restore(), PushEnableResult.disabled);
+    expect(
+      retryGateway.unsubscribed,
+      <String>[devTopic, closedTopic, productionTopic],
+    );
+    expect(retryGateway.deletedTokens, 1);
+    expect(retryGateway.autoInit, <bool>[false, false]);
+    expect(store.cleanupPending, isFalse);
   });
 
   test(
     'yerel tercih yazılamasa da kapatma hatası oyun akışına taşınmaz',
     () async {
       final gateway = _FakeGateway();
-      final store = _FakeStore(true)..failWrites = true;
+      final store = _FakeStore(enabled: true)..failEnabledWrites = true;
       final coordinator = PushSubscriptionCoordinator(
         gateway: gateway,
         store: store,
@@ -188,7 +357,10 @@ void main() {
       );
 
       expect(await coordinator.setEnabled(false), PushEnableResult.disabled);
-      expect(gateway.unsubscribed, <String>[closedTopic]);
+      expect(
+        gateway.unsubscribed,
+        <String>[devTopic, closedTopic, productionTopic],
+      );
       expect(gateway.deletedTokens, 1);
       expect(gateway.autoInit, <bool>[false]);
     },
@@ -253,6 +425,7 @@ void main() {
     expect(source, contains('subscribeToTopic'));
     expect(source, contains('unsubscribeFromTopic'));
     expect(source, contains('deleteToken'));
+    expect(source, contains('push_notifications_cleanup_pending_v1'));
     expect(source, isNot(contains('getToken(')));
     expect(source, isNot(contains('FirebaseAuth.instance')));
     expect(source, isNot(contains('Navigator.of(')));
