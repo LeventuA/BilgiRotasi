@@ -16,31 +16,46 @@
 
 ## BR-P0-010 - Issue #37 Firebase genel duyuru altyapısı
 
-**Durum:** DRAFT PR #39 / KOD-HEAD CI PASS / FİZİKSEL FCM KABULÜ BEKLİYOR
+**Durum:** DRAFT PR #39 / KOD-HEAD CI PASS / FİZİKSEL FCM DAVRANIŞI PASS / FİZİKSEL LOGCAT DOĞRULANACAK / MERGE KARARI BEKLİYOR
 
-- Ayrı dal `feat/push-notifications-issue-37`; PR head'i canlı GitHub
-  metadata'sından doğrulanır ve release/main'e merge edilmemiştir.
+- Ayrı dal `feat/push-notifications-issue-37`; PR #39 Draft/açık ve release/main'e
+  merge edilmemiştir. Güncel PR head'i canlı GitHub metadata'sından doğrulanır.
 - FCM bağımlılığı, Android 13+ izin akışı, notification channel,
-  foreground/background/terminated davranışı ve güvenli açılış uygulanmıştır.
-- İzin yalnız Ayarlar'daki açık kullanıcı eylemiyle istenir; red durumunda oyun
-  eksiksiz çalışır. Test/CI uzak FCM kapalı, development/closed-test/production
-  topic'leri ayrıdır.
-- Kod-head CI #163 run `31762135840`, job `94650543861`: SUCCESS. Release APK,
-  merged manifest, imza, Android 16 APP_GATE ve RELEASE_GATE PASS.
-- Artifact ID `9205231533`; digest
-  `sha256:68ac9764e2fe03f0fdfc44cbef5a4334cc9cd4f9f5d616766373ed7c24cc1529`;
-  APK SHA-256 `9ac0534f56c4af9fc22173ca145ead77ec61b97016fdfd0eb6e6f2141db1143b`.
-- Gönderim runbook'u `docs/push-notification-operations.md`; production'a mesaj
-  veya Firebase deploy yapılmamıştır.
+  foreground/background/terminated davranışı ve güvenli normal açılış uygulanmıştır.
+- Topic migration sertleştirildi: ortam değişiminde diğer bilinen topic'ler
+  temizlenir; cleanup hatası token reset ile izole edilir, tamamlanamazsa kalıcı
+  pending-cleanup kaydı sonraki açılışta retry edilir. Yeni ortama güvenli
+  temizlik olmadan abone olunmaz.
+- `PUSH_ENVIRONMENT` override'ı build profilini genişletemez; AdMob + Firebase
+  profiliyle uyuşmazlık `test` ortamına fail-closed düşer.
+- Kod commit'leri: `c7f8227` — `fix: harden push environment isolation` ve
+  `5c13762` — `test: keep push profile validation isolated`.
+- İlk CI run `31805647373` mevcut backend hardening sözleşmesi nedeniyle FAIL;
+  sözleşme gevşetilmeden düzeltildi. Final kod-head AdMob PR doğrulaması #169,
+  run `31806178473`, job `94785535777`: **SUCCESS**.
+- Final artifact ID `9221592169`, digest
+  `sha256:a39afe0417742f67711d12ef7b12b90df3d7d0725da5314bea767ae7d18a4434`;
+  APK SHA-256 `4721a8486c516d94b5ff65ff8e1835492359a657c85463b1f276afefffebcbfa`.
+  Android 16 `APP_GATE`/`RELEASE_GATE` PASS ve CI app-specific crash taraması temiz.
+- Fiziksel Play closed-test `1.68.15+105`: izin kabul/red, foreground,
+  background, terminated, bildirim tap ile normal açılış, uygulama içi kapatma
+  sonrası no-delivery ve Ayarlar öğretici yeniden gösterme **PASS**.
+- Fiziksel cihaz ADB/logcat crash/ANR/FATAL/process-death taraması alınmadı;
+  `DOĞRULANACAK` kalır.
+- Public gizlilik/Pages güncellemesi main tabanlı Draft PR #40'tadır; PR #39 ile
+  karıştırılmaz ve merge edilmemiştir.
+- Production bildirimi veya Firebase deploy yapılmamıştır.
 
 **Bitti ölçütü:**
 
 - [x] Analyze, tüm Flutter testleri ve push profil testleri PASS.
 - [x] Release APK ve birleşik manifestte FCM SDK/izin/channel doğrulandı.
-- [x] Android 16 APP_GATE/RELEASE_GATE PASS; app-specific hata yok.
-- [ ] Güncel Play closed-test fiziksel cihazında izin kabul/red doğrulandı.
-- [ ] Gerçek FCM foreground/background/terminated teslimi ve dokunma açılışı
-  doğrulandı.
+- [x] Android 16 APP_GATE/RELEASE_GATE PASS; CI app-specific hata yok.
+- [x] Güncel Play closed-test fiziksel cihazında izin kabul/red doğrulandı.
+- [x] Gerçek FCM foreground/background/terminated teslimi ve dokunma açılışı doğrulandı.
+- [x] Uygulama içi kapatma sonrası closed-test mesajının gelmediği doğrulandı.
+- [x] Ayarlar → Eğitimi Yeniden Göster fiziksel cihazda açılıp kapandı.
+- [ ] Fiziksel ADB/logcat crash/ANR/FATAL/process-death taraması.
 - [ ] Levent açık onayı sonrası merge kararı verildi.
 
 ---

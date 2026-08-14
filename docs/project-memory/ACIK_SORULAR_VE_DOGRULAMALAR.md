@@ -11,27 +11,35 @@
 
 ---
 
-## Issue #37 gerçek FCM fiziksel kabulü - AÇIK
+## Issue #37 gerçek FCM fiziksel kabulü - DAVRANIŞ PASS / LOGCAT AÇIK
 
-Draft PR #39 client-side altyapısı ve kod-head CI #163 PASS'tir; bu kanıt gerçek
-FCM tesliminin yerine geçmez.
+Draft PR #39 client-side altyapısı, ortam izolasyonu sertleştirmesi ve final
+kod-head CI kabulü tamamlandı. Fiziksel Play closed-test `1.68.15+105` üzerinde:
 
-**DOĞRULANACAK — fiziksel gerçek FCM teslimi:**
+1. Bildirim izni kabul edildi; oyun normal çalıştı — **PASS**.
+2. Foreground closed-test topic mesajı teslim edildi — **PASS**.
+3. Background mesajı teslim edildi ve bildirime dokununca uygulama normal açıldı — **PASS**.
+4. Uygulama son uygulamalardan kapatıldığında mesaj teslim edildi ve tap ile normal açıldı — **PASS**.
+5. Uygulama içi genel duyuru anahtarı kapatıldıktan sonra yeni closed-test topic mesajı gelmedi — **PASS**.
+6. Android sistem bildirim izni reddedildi; oyun normal çalışmaya devam etti — **PASS**.
+7. `Ayarlar → Eğitimi Yeniden Göster` açıldı ve normal kapandı — **PASS**.
 
-1. Güncel Google Play closed-test `1.68.14+104` kurulumu silinmeden kullanılır.
-2. Ayarlar anahtarı kapalıyken ilk açılışta izin popup'ı çıkmadığı doğrulanır.
-3. Anahtar açılır; Android 13+ izin kabul ve red senaryolarında oyun normal
-   çalışır.
-4. Yalnız `bilgi_rotasi_announcements_closed_test` topic'ine güvenli test
-   mesajı gönderilir; production topic kullanılmaz.
-5. Foreground'da tek uygulama içi bildirim; background ve terminated durumda
-   tek sistem bildirimi görülür.
-6. Bildirime dokunmak uygulamayı geçersiz route/crash olmadan açar.
-7. Paket logcat'inde crash, ANR, `FATAL EXCEPTION` veya process-death yoktur.
-8. Ancak bu fiziksel kanıttan sonra Issue #37 kapanış/merge kararı verilir.
+Final kod-head `5c137622822e11fe7e3fe545a48cee97f8061ced`; AdMob PR doğrulaması
+#169 / run `31806178473`, job `94785535777`: **SUCCESS**. Artifact ID
+`9221592169`; Android 16 `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`,
+`APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = PASS ve CI paket log taraması temizdir.
 
-Firebase Console proje kimliği, topic ve hedef son kez yeniden okunmadan mesaj
-gönderilmez. 30 Ağustos production duyurusu bu PR kapsamında gönderilmemiştir.
+**DOĞRULANACAK:** fiziksel telefondan ADB/logcat crash/ANR/`FATAL EXCEPTION`/
+process-death taraması alınmadı. Kullanıcı görünür kabulündeki çökmesiz davranış
+fiziksel log kanıtı olarak yazılmaz.
+
+Public Analytics + FCM gizlilik metni GitHub Pages kaynağı `main:/docs` için ayrı
+Draft PR #40'tadır (`08da14a4d9669438195d50278c5adcdffe0529cc`); Quality Checks
+`31806007248` ve AdMob PR doğrulaması `31806007246` SUCCESS. PR #40 merge
+edilmediğinden canlı Pages güncellenmiş sayılmaz.
+
+Production topic mesajı, PR merge'i veya Firebase deploy bu kabulün parçası
+olarak otomatik yapılmaz; production gönderimi ayrı açık Levent kararı gerektirir.
 
 ---
 
