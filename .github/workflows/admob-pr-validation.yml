@@ -82,21 +82,11 @@ jobs:
             test/admob_id_profile_test.dart
           flutter test \
             --dart-define=PUSH_ENVIRONMENT=closed_test \
-            --dart-define=ADMOB_ENVIRONMENT=closed_test \
-            --dart-define=FIREBASE_ENVIRONMENT=production \
             --dart-define=EXPECT_PUSH_ENVIRONMENT=closed_test \
             test/push_notification_profile_test.dart
           flutter test \
             --dart-define=PUSH_ENVIRONMENT=production \
-            --dart-define=ADMOB_ENVIRONMENT=production \
-            --dart-define=FIREBASE_ENVIRONMENT=production \
             --dart-define=EXPECT_PUSH_ENVIRONMENT=production \
-            test/push_notification_profile_test.dart
-          flutter test \
-            --dart-define=PUSH_ENVIRONMENT=production \
-            --dart-define=ADMOB_ENVIRONMENT=closed_test \
-            --dart-define=FIREBASE_ENVIRONMENT=production \
-            --dart-define=EXPECT_PUSH_ENVIRONMENT=test \
             test/push_notification_profile_test.dart
           git diff --check
 
