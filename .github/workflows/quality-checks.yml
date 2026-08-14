@@ -4,55 +4,10 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main, release/final-closed-test-aab-1.68.8]
+    branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
-  project-memory-sync-once:
-    if: github.event_name == 'pull_request' && github.head_ref == 'feat/push-notifications-issue-37'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Depoyu exact PR branch ile al
-        uses: actions/checkout@v4
-        with:
-          ref: feat/push-notifications-issue-37
-          fetch-depth: 0
-
-      - name: Kanonik proje hafizasini guncelle
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 tools/project_memory_sync_once.py
-          git diff --check
-          mapfile -t changed < <(git diff --name-only | sort)
-          expected=(
-            docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
-            docs/project-memory/BILGI_ROTASI_DURUM.md
-            docs/project-memory/GOREV_HAVUZU.md
-          )
-          test "${changed[*]}" = "${expected[*]}"
-          grep -Fq 'FİZİKSEL FCM DAVRANIŞI PASS' docs/project-memory/GOREV_HAVUZU.md
-          grep -Fq 'run `31806178473`' docs/project-memory/BILGI_ROTASI_DURUM.md
-          grep -Fq 'DAVRANIŞ PASS / LOGCAT AÇIK' docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
-
-      - name: Hafiza commit ve push
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- docs/project-memory/BILGI_ROTASI_DURUM.md
-          git add -- docs/project-memory/GOREV_HAVUZU.md
-          git add -- docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
-          git diff --cached --check
-          git commit -m 'docs: record physical push acceptance'
-          git push origin HEAD:feat/push-notifications-issue-37
-
   quality:
     runs-on: ubuntu-latest
 
