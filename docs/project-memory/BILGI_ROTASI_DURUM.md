@@ -1,6 +1,6 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 14 Ağustos 2026
+**Kesim noktası:** 15 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
 ## 0D. Android launcher icon / PR #38 — 14 Ağustos 2026
@@ -62,9 +62,21 @@
   kapatıldıktan sonra closed-test topic mesajı gelmedi (**PASS**). Android sistem
   bildirim izni reddedildiğinde oyun normal çalışmaya devam etti (**PASS**).
   `Ayarlar → Eğitimi Yeniden Göster` fiziksel cihazda açılıp kapandı (**PASS**).
-- **DOĞRULANACAK:** fiziksel telefondan ADB/logcat ile Bilgi Rotası paketine ait
-  crash/ANR/`FATAL EXCEPTION`/process-death taraması alınmadı. Kullanıcı görünür
-  testlerinde çökme görülmemesi bu log kanıtının yerine yazılmaz.
+- Fiziksel ADB/logcat kabulü 15 Ağustos 2026'da **PASS**. İlk metadata ZIP'i
+  `BilgiRotasi_Fiziksel_Logcat_20260815_215920.zip` Android 16 üzerinde gerçek
+  Play closed-test `1.68.15+105` / versionCode 105 / targetSdk 36 kurulumunu
+  doğruladı. Final kanıt ZIP'i `BilgiRotasi_FINAL_ADB_20260815_220727.zip`;
+  SHA-256 `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`.
+- Final ADB penceresi `22:07:28 → 22:07:40`; `PID_START=14450` ve
+  `PID_END=14450`. `ACTIVITY_START.txt` ve `ACTIVITY_END.txt` aynı
+  `com.leventua.bilgirotasi/.MainActivity` kaydını `visible=true`,
+  `visibleRequested=true` ve `topResumedActivity` olarak gösterir. Full logcat
+  taramasında Bilgi Rotası için `FATAL EXCEPTION`, ANR/`am_anr`, `am_crash`,
+  `am_proc_died`, native tombstone/signal veya beklenmeyen process-death kaydı
+  yoktur. `PROCESS_EXIT_INFO.txt` test saatinde yeni uygulama çıkışı içermez;
+  görülen tarihsel kayıtlar 14 Ağustos kullanıcı `REMOVE TASK` ve izin değişimi
+  olaylarıdır. Ayrı PID `14546` üzerindeki Firebase Installations/Messaging
+  hatası Samsung Game Launcher sürecine aittir, Bilgi Rotası sürecine değil.
 - Public Analytics + FCM gizlilik açıklaması main tabanlı PR #40 ile squash merge
   edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages kaynağı `main:/docs`;
   build `1152991654` bu commit üzerinde **built** ve hata yok. Güncel destek adresi

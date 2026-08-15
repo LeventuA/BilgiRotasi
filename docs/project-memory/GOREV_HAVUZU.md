@@ -16,7 +16,7 @@
 
 ## BR-P0-010 - Issue #37 Firebase genel duyuru altyapısı
 
-**Durum:** DRAFT PR #39 / KOD-HEAD CI PASS / FİZİKSEL FCM DAVRANIŞI PASS / FİZİKSEL LOGCAT DOĞRULANACAK / MERGE KARARI BEKLİYOR
+**Durum:** DRAFT PR #39 / KOD-HEAD CI PASS / FİZİKSEL FCM + ADB/LOGCAT KABULÜ PASS / MERGE KARARI BEKLİYOR
 
 - Ayrı dal `feat/push-notifications-issue-37`; PR #39 Draft/açık ve release/main'e
   merge edilmemiştir. Güncel PR head'i canlı GitHub metadata'sından doğrulanır.
@@ -40,8 +40,11 @@
 - Fiziksel Play closed-test `1.68.15+105`: izin kabul/red, foreground,
   background, terminated, bildirim tap ile normal açılış, uygulama içi kapatma
   sonrası no-delivery ve Ayarlar öğretici yeniden gösterme **PASS**.
-- Fiziksel cihaz ADB/logcat crash/ANR/FATAL/process-death taraması alınmadı;
-  `DOĞRULANACAK` kalır.
+- Fiziksel ADB/logcat kabulü **PASS**: Android 16 / Play closed-test
+  `1.68.15+105`; final ZIP SHA-256
+  `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`;
+  başlangıç/son PID `14450`, MainActivity iki uçta visible/top-resumed,
+  FATAL/ANR/crash/process-death yok ve test saatinde yeni exit-info kaydı yok.
 - Public Analytics + FCM gizlilik/Pages güncellemesi PR #40 ile `main` dalına
   squash merge edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages build
   `1152991654` bu commit üzerinde **built**; PR #39 ile karıştırılmaz.
@@ -56,7 +59,7 @@
 - [x] Gerçek FCM foreground/background/terminated teslimi ve dokunma açılışı doğrulandı.
 - [x] Uygulama içi kapatma sonrası closed-test mesajının gelmediği doğrulandı.
 - [x] Ayarlar → Eğitimi Yeniden Göster fiziksel cihazda açılıp kapandı.
-- [ ] Fiziksel ADB/logcat crash/ANR/FATAL/process-death taraması.
+- [x] Fiziksel ADB/logcat crash/ANR/FATAL/process-death taraması PASS.
 - [ ] Levent açık onayı sonrası merge kararı verildi.
 
 ---

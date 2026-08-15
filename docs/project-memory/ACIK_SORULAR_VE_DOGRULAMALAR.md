@@ -1,6 +1,6 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-**Kesim noktası:** 14 Ağustos 2026
+**Kesim noktası:** 15 Ağustos 2026
 
 ## PR #38 launcher icon fiziksel kabulü - AÇIK
 
@@ -11,7 +11,7 @@
 
 ---
 
-## Issue #37 gerçek FCM fiziksel kabulü - DAVRANIŞ PASS / LOGCAT AÇIK
+## Issue #37 gerçek FCM fiziksel kabulü - FİZİKSEL KABUL PASS / MERGE KARARI AÇIK
 
 Draft PR #39 client-side altyapısı, ortam izolasyonu sertleştirmesi ve final
 kod-head CI kabulü tamamlandı. Fiziksel Play closed-test `1.68.15+105` üzerinde:
@@ -29,14 +29,18 @@ Final kod-head `5c137622822e11fe7e3fe545a48cee97f8061ced`; AdMob PR doğrulamas�
 `9221592169`; Android 16 `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`,
 `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = PASS ve CI paket log taraması temizdir.
 
-**DOĞRULANACAK:** fiziksel telefondan ADB/logcat crash/ANR/`FATAL EXCEPTION`/
-process-death taraması alınmadı. Kullanıcı görünür kabulündeki çökmesiz davranış
-fiziksel log kanıtı olarak yazılmaz.
+**FİZİKSEL ADB/LOGCAT PASS:** `BilgiRotasi_FINAL_ADB_20260815_220727.zip`
+SHA-256 `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`.
+Test penceresi `22:07:28 → 22:07:40`; `PID_START=14450` = `PID_END=14450`;
+MainActivity başlangıç/sonda visible ve top-resumed. Bilgi Rotası için FATAL,
+ANR, am_crash, am_proc_died/native crash veya beklenmeyen process-death yok;
+exit-info test saatinde yeni kayıt içermiyor. Ayrı PID 14546 üzerindeki Firebase
+Installations/Messaging hatası Samsung Game Launcher'a aittir.
 
-Public Analytics + FCM gizlilik metni GitHub Pages kaynağı `main:/docs` için ayrı
-Draft PR #40'tadır (`08da14a4d9669438195d50278c5adcdffe0529cc`); Quality Checks
-`31806007248` ve AdMob PR doğrulaması `31806007246` SUCCESS. PR #40 merge
-edilmediğinden canlı Pages güncellenmiş sayılmaz.
+Public Analytics + FCM gizlilik metni PR #40 ile `main` dalına squash merge
+edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages build
+`1152991654` bu commit üzerinde **built** ve hata yok; güncel destek adresi
+`BilgiRotasidestek@gmail.com` korunur.
 
 Production topic mesajı, PR merge'i veya Firebase deploy bu kabulün parçası
 olarak otomatik yapılmaz; production gönderimi ayrı açık Levent kararı gerektirir.
