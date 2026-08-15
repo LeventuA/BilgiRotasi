@@ -65,15 +65,13 @@
 - **DOĞRULANACAK:** fiziksel telefondan ADB/logcat ile Bilgi Rotası paketine ait
   crash/ANR/`FATAL EXCEPTION`/process-death taraması alınmadı. Kullanıcı görünür
   testlerinde çökme görülmemesi bu log kanıtının yerine yazılmaz.
-- GitHub Pages kaynağı `main:/docs` olduğu için public Analytics + FCM gizlilik
-  açıklaması ayrı main tabanlı `fix/pages-analytics-fcm-privacy-20260814`
-  branch'inde Draft PR #40 olarak hazırlandı. Commit
-  `08da14a4d9669438195d50278c5adcdffe0529cc`; Quality Checks run `31806007248`
-  ve AdMob PR doğrulaması run `31806007246` **SUCCESS**. PR #40 merge edilmediği
-  için canlı Pages metni bu kayıt anında henüz güncellenmiş sayılmaz.
+- Public Analytics + FCM gizlilik açıklaması main tabanlı PR #40 ile squash merge
+  edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages kaynağı `main:/docs`;
+  build `1152991654` bu commit üzerinde **built** ve hata yok. Güncel destek adresi
+  `BilgiRotasidestek@gmail.com` korunur.
 - Production topic'e gerçek mesaj gönderimi ayrı Levent kararı gerektirir; bu
-  fiziksel closed-test kabulü production gönderim yetkisi değildir. PR #39 ve
-  PR #40 için merge yapılmamıştır.
+  fiziksel closed-test kabulü production gönderim yetkisi değildir. PR #39 merge
+  edilmemiştir; PR #40 main'e merge edilmiştir.
 - `KARARLAR.md` değişmedi; ürün kararı değişmedi, mevcut ortam izolasyonu ve açık
   kullanıcı izni kararı teknik olarak sertleştirildi.
 
