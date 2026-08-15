@@ -209,6 +209,11 @@ void main() {
 
       expect(privacy, contains('Google AdMob'));
       expect(privacy, contains('Google Mobile Ads SDK'));
+      expect(privacy, contains('Firebase Analytics'));
+      expect(privacy, contains('Firebase Cloud Messaging'));
+      expect(privacy, contains('pseudonymous bir app-instance ID'));
+      expect(privacy, contains('FCM tokenı'));
+      expect(privacy, contains('1.68.15+105'));
       expect(privacy, contains('13 yaş ve üzeri'));
       expect(
         privacy.toLowerCase(),
@@ -217,6 +222,7 @@ void main() {
       for (final document in <String>[privacy, deletion, terms, community]) {
         expect(document, contains('ZMila Studio'));
         expect(document, contains('BilgiRotasidestek@gmail.com'));
+        expect(document, isNot(contains('BilgiRotasi10@gmail.com')));
       }
       expect(deletion, contains('Ayarlar → Hesap &amp; Bulut Kaydı'));
     });
