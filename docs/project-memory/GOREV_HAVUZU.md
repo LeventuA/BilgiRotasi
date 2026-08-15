@@ -1,5 +1,33 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0D - 15 Ağustos 2026 Issue #37 release kapanışı
+
+Bu bölüm aşağıdaki tarihsel `BR-P0-010` satırlarını **güncel olarak geçersiz kılar**; eski kayıtlar denetim izi olarak korunur.
+
+- **BR-P0-010 Durum:** TAMAMLANDI / PR #39 RELEASE'E SQUASH MERGE EDİLDİ / FİZİKSEL FCM + ADB/LOGCAT PASS / FINAL CI PASS.
+- Levent açık merge onayı verdi; PR #39 merge commit'i ve güncel release HEAD `bb0897f5c8bff9f2257dd5dde437bcf732448914`.
+- Final PR head `c343e68c5452b9bf7205e6fd0860ae16734073b3`; AdMob PR doğrulaması #190 / run `31903365510` / job `95057405310`: **SUCCESS**.
+- Final artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`: ID `9251835873`, digest `sha256:7f5c5d408f39452a1590317e45b9bcb033d98abf68c7019538e2ad07dd26ae8e`.
+- Fiziksel Play closed-test `1.68.15+105` FCM izin kabul/red, foreground/background/terminated, tap, in-app disable sonrası no-delivery ve öğretici yeniden gösterme **PASS**.
+- Fiziksel ADB/logcat final ZIP SHA-256 `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`; PID başlangıç/son aynı, MainActivity visible/top-resumed, FATAL/ANR/crash/process-death yok.
+- Public Analytics + FCM gizlilik/Pages PR #40 ile main'e merge edildi; Pages build `1152991654` **built**.
+- Release sürümü `1.68.14+104`; production topic'e gerçek mesaj gönderilmedi ve production bildirimi ayrı Levent kararı gerektirir.
+- GitHub Issue #37 metadata durumu bu docs-kapanış PR'ı hazırlanırken hâlâ OPEN; bu PR merge edildikten sonra issue ayrı işlemle `completed` kapatılacaktır.
+
+**Bitti ölçütü:**
+
+- [x] Analyze, tüm Flutter testleri ve push profil testleri PASS.
+- [x] Release APK ve birleşik manifestte FCM SDK/izin/channel doğrulandı.
+- [x] Android 16 APP_GATE/RELEASE_GATE PASS; CI app-specific hata yok.
+- [x] Güncel Play closed-test fiziksel cihazında izin kabul/red doğrulandı.
+- [x] Gerçek FCM foreground/background/terminated teslimi ve dokunma açılışı doğrulandı.
+- [x] Uygulama içi kapatma sonrası closed-test mesajının gelmediği doğrulandı.
+- [x] Ayarlar → Eğitimi Yeniden Göster fiziksel cihazda açılıp kapandı.
+- [x] Fiziksel ADB/logcat crash/ANR/FATAL/process-death taraması PASS.
+- [x] Levent açık onayı sonrası PR #39 release'e merge edildi.
+
+---
+
 ## 0C - 14 Ağustos 2026 launcher icon / PR #38
 
 - **Durum:** RELEASE'E MERGE EDİLDİ / CI PASS / FİZİKSEL LAUNCHER KURULUMU DOĞRULANACAK.
