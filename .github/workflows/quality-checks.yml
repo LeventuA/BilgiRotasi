@@ -2,10 +2,13 @@ name: Bilgi Rotasi Quality Checks
 
 on:
   push:
-    branches: [main]
+    branches: [main, feat/push-notifications-issue-37]
   pull_request:
     branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   quality:
@@ -32,3 +35,17 @@ jobs:
 
       - name: Otomatik testler
         run: flutter test
+
+      - name: Fiziksel ADB kabulünü proje hafızasına işle
+        if: github.event_name == 'push' && github.ref == 'refs/heads/feat/push-notifications-issue-37'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/record_physical_adb_acceptance.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/project-memory/BILGI_ROTASI_DURUM.md docs/project-memory/GOREV_HAVUZU.md docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
+          git diff --cached --check
+          git diff --cached --quiet && { echo "No project-memory change to commit."; exit 0; }
+          git commit -m "docs: record physical adb logcat acceptance"
+          git push origin HEAD:feat/push-notifications-issue-37
