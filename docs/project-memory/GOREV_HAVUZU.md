@@ -42,8 +42,9 @@
   sonrası no-delivery ve Ayarlar öğretici yeniden gösterme **PASS**.
 - Fiziksel cihaz ADB/logcat crash/ANR/FATAL/process-death taraması alınmadı;
   `DOĞRULANACAK` kalır.
-- Public gizlilik/Pages güncellemesi main tabanlı Draft PR #40'tadır; PR #39 ile
-  karıştırılmaz ve merge edilmemiştir.
+- Public Analytics + FCM gizlilik/Pages güncellemesi PR #40 ile `main` dalına
+  squash merge edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages build
+  `1152991654` bu commit üzerinde **built**; PR #39 ile karıştırılmaz.
 - Production bildirimi veya Firebase deploy yapılmamıştır.
 
 **Bitti ölçütü:**
