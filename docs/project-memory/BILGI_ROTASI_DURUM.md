@@ -3,6 +3,26 @@
 **Kesim noktası:** 15 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
+## 0F. Issue #37 FCM release kapanışı — 15 Ağustos 2026
+
+Bu bölüm aşağıdaki `0E` Issue #37 ön-merge kaydını **güncel olarak geçersiz kılar**; tarihsel kayıt denetim izi olarak korunur.
+
+- Kanonik yayın dalı `release/final-closed-test-aab-1.68.8`; PR #39 merge öncesi release HEAD `37f5ba0b1ea2cc5cfd97ff56beb6c31ba55d33b8`, sürüm `1.68.14+104` idi.
+- Levent'in açık `PR #39'u merge et` onayı sonrası PR #39 Draft'tan çıkarıldı ve release dalına **squash merge** edildi.
+- PR #39 merge commit'i ve güncel release HEAD: `bb0897f5c8bff9f2257dd5dde437bcf732448914` — `feat: add Firebase push notification infrastructure (#39)`.
+- Merge sonrası canlı `pubspec.yaml` sürümü değişmedi: `1.68.14+104`; `firebase_messaging: ^16.4.3` release dalında mevcuttur.
+- Final PR head `c343e68c5452b9bf7205e6fd0860ae16734073b3`; AdMob PR doğrulaması #190 / run `31903365510` / job `95057405310`: **SUCCESS**. Analyze+tüm testler, kalıcı imza, release APK, manifest doğrulaması ve Android 16 cold-start/final app gate PASS; ikinci temiz deneme gerekmedi.
+- Final PR-head artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`: ID `9251835873`, digest `sha256:7f5c5d408f39452a1590317e45b9bcb033d98abf68c7019538e2ad07dd26ae8e`.
+- Fiziksel Play closed-test `1.68.15+105` üzerinde bildirim izni kabul/red, foreground, background, terminated/swipe-away, bildirim tap ile normal açılış, uygulama içi kapatma sonrası no-delivery ve Ayarlar öğretici yeniden gösterme **PASS**.
+- Fiziksel ADB/logcat kabulü **PASS**: final ZIP `BilgiRotasi_FINAL_ADB_20260815_220727.zip`, SHA-256 `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`; `PID_START=14450` = `PID_END=14450`; MainActivity başlangıç/sonda visible/top-resumed; Bilgi Rotası için FATAL/ANR/am_crash/am_proc_died/native crash/beklenmeyen process-death yok; test saatinde yeni exit-info kaydı yok.
+- Analytics + FCM public gizlilik açıklaması PR #40 ile `main` dalına daha önce squash merge edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`; GitHub Pages build `1152991654` **built** ve hata yok.
+- `assets/questions.json`, BoardMap, 67 node düzeni, Auth/Firestore/Functions/App Check/AdMob ürün davranışı ve sürüm numarası bu kapanış işiyle değiştirilmedi.
+- Production topic'e gerçek mesaj gönderilmedi; production bildirimi hâlâ ayrı açık Levent kararı gerektirir.
+- GitHub Issue #37 bu docs-kapanış PR'ı hazırlanırken metadata olarak hâlâ **OPEN** durumundadır. Teknik kabul ve release merge tamamlanmıştır; issue'nun `completed` kapatılması bu proje-hafızası PR'ı merge edildikten sonra ayrı repo-metadata işlemi olarak yapılacaktır.
+- `KARARLAR.md` değişmedi; ürün kararı değişmedi.
+
+---
+
 ## 0D. Android launcher icon / PR #38 — 14 Ağustos 2026
 
 - Canlı release tabanı `release/final-closed-test-aab-1.68.8`; başlangıç HEAD `29a5a23d15485922d670f7e7b3f9b7cea2d0260f`; sürüm `1.68.14+104`.
