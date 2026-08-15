@@ -2,7 +2,8 @@
 
 ## 0C - 14 Ağustos 2026 launcher icon / PR #38
 
-- **Durum:** UYGULANDI / CI PASS / FİZİKSEL LAUNCHER KURULUMU DOĞRULANACAK.
+- **Durum:** RELEASE'E MERGE EDİLDİ / CI PASS / FİZİKSEL LAUNCHER KURULUMU DOĞRULANACAK.
+- PR #38 merge commit'i: `37f5ba0b1ea2cc5cfd97ff56beb6c31ba55d33b8`.
 - Onaylanan 512x512 PNG kaynak SHA-256: `32f9d4144fa5112afd93999fd4b6df3734493f626cc8e96f9b0be1510b9368fa`; repo kaynağıyla birebir eşleşir.
 - Legacy ve adaptive Android ikonları yeniden üretildi; `%18` adaptive inset ile yazı/pusula güvenli alanda tutuldu; splash değiştirilmedi.
 - Yerel analyze PASS, hedefli test PASS, tüm Flutter testleri `257/257` PASS, diff check PASS.
@@ -10,6 +11,56 @@
 - APK SHA-256 `792a0db0d812acaaaa0e504d1abc61915f020e3bc9f3ec6592bbcc9a3f4ee673`; Android 16 APP_GATE/RELEASE_GATE PASS; app-specific crash/ANR/FATAL/process-death yok.
 - APK içindeki gerçek legacy/adaptive launcher varlıkları görsel olarak doğrulandı.
 - Bitti ölçütünde kalan tek kabul: Play kurulumunu silmeden uyumlu imzalı build ile fiziksel Android launcher ekranı doğrulaması.
+
+---
+
+## BR-P0-010 - Issue #37 Firebase genel duyuru altyapısı
+
+**Durum:** DRAFT PR #39 / KOD-HEAD CI PASS / FİZİKSEL FCM + ADB/LOGCAT KABULÜ PASS / MERGE KARARI BEKLİYOR
+
+- Ayrı dal `feat/push-notifications-issue-37`; PR #39 Draft/açık ve release/main'e
+  merge edilmemiştir. Güncel PR head'i canlı GitHub metadata'sından doğrulanır.
+- FCM bağımlılığı, Android 13+ izin akışı, notification channel,
+  foreground/background/terminated davranışı ve güvenli normal açılış uygulanmıştır.
+- Topic migration sertleştirildi: ortam değişiminde diğer bilinen topic'ler
+  temizlenir; cleanup hatası token reset ile izole edilir, tamamlanamazsa kalıcı
+  pending-cleanup kaydı sonraki açılışta retry edilir. Yeni ortama güvenli
+  temizlik olmadan abone olunmaz.
+- `PUSH_ENVIRONMENT` override'ı build profilini genişletemez; AdMob + Firebase
+  profiliyle uyuşmazlık `test` ortamına fail-closed düşer.
+- Kod commit'leri: `c7f8227` — `fix: harden push environment isolation` ve
+  `5c13762` — `test: keep push profile validation isolated`.
+- İlk CI run `31805647373` mevcut backend hardening sözleşmesi nedeniyle FAIL;
+  sözleşme gevşetilmeden düzeltildi. Final kod-head AdMob PR doğrulaması #169,
+  run `31806178473`, job `94785535777`: **SUCCESS**.
+- Final artifact ID `9221592169`, digest
+  `sha256:a39afe0417742f67711d12ef7b12b90df3d7d0725da5314bea767ae7d18a4434`;
+  APK SHA-256 `4721a8486c516d94b5ff65ff8e1835492359a657c85463b1f276afefffebcbfa`.
+  Android 16 `APP_GATE`/`RELEASE_GATE` PASS ve CI app-specific crash taraması temiz.
+- Fiziksel Play closed-test `1.68.15+105`: izin kabul/red, foreground,
+  background, terminated, bildirim tap ile normal açılış, uygulama içi kapatma
+  sonrası no-delivery ve Ayarlar öğretici yeniden gösterme **PASS**.
+- Fiziksel ADB/logcat kabulü **PASS**: Android 16 / Play closed-test
+  `1.68.15+105`; final ZIP SHA-256
+  `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`;
+  başlangıç/son PID `14450`, MainActivity iki uçta visible/top-resumed,
+  FATAL/ANR/crash/process-death yok ve test saatinde yeni exit-info kaydı yok.
+- Public Analytics + FCM gizlilik/Pages güncellemesi PR #40 ile `main` dalına
+  squash merge edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages build
+  `1152991654` bu commit üzerinde **built**; PR #39 ile karıştırılmaz.
+- Production bildirimi veya Firebase deploy yapılmamıştır.
+
+**Bitti ölçütü:**
+
+- [x] Analyze, tüm Flutter testleri ve push profil testleri PASS.
+- [x] Release APK ve birleşik manifestte FCM SDK/izin/channel doğrulandı.
+- [x] Android 16 APP_GATE/RELEASE_GATE PASS; CI app-specific hata yok.
+- [x] Güncel Play closed-test fiziksel cihazında izin kabul/red doğrulandı.
+- [x] Gerçek FCM foreground/background/terminated teslimi ve dokunma açılışı doğrulandı.
+- [x] Uygulama içi kapatma sonrası closed-test mesajının gelmediği doğrulandı.
+- [x] Ayarlar → Eğitimi Yeniden Göster fiziksel cihazda açılıp kapandı.
+- [x] Fiziksel ADB/logcat crash/ANR/FATAL/process-death taraması PASS.
+- [ ] Levent açık onayı sonrası merge kararı verildi.
 
 ---
 

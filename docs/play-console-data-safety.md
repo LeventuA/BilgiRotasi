@@ -14,6 +14,7 @@ politikaları ve üretim yapılandırmasıyla karşılaştırarak manuel beyan v
 | Kullanıcı adı | Çevrimiçi kimlik/sıralama için toplanır ve diğer oyunculara gösterilir | Çevrimiçi özellikler için gerekli | Uygulama işlevi, topluluk |
 | Oyun etkinliği, XP, seviye, başarımlar, ayarlar | Hesaplı bulut kayıt seçilirse Firestore’a gönderilir | İsteğe bağlı | Bulut yedekleme ve eşitleme |
 | Pseudonymous app-instance ID; ekran, oyun modu, kategori, zorluk grubu, süre ve sonuç olayları; uygulama sürümü | Kullanıcı Analytics'e açıkça izin verirse Firebase Analytics tarafından işlenir | İsteğe bağlı; varsayılan kapalı | Analiz, ürün iyileştirme ve kapalı test davranışını ölçme |
+| FCM kurulum tokenı, uygulama/cihaz teknik bilgisi ve genel duyuru topic aboneliği | Kullanıcı Ayarlar'dan bildirimleri açarsa Firebase Cloud Messaging tarafından işlenir; token hesap verisine yazılmaz veya uygulama sunucusunda saklanmaz | İsteğe bağlı; varsayılan kapalı | Uygulama işlevi ve genel duyuru teslimi |
 | BR ve düello istatistikleri, maç/presence kayıtları | Canlı Düello kullanılırsa Firestore’a gönderilir | Özellik için gerekli | Çevrimiçi maç, güvenlik, sıralama |
 | Soru geri bildirimi ve kullanıcı notu | Kullanıcı oy/bildirim gönderirse Apps Script’e gönderilir | İsteğe bağlı | Soru kalitesi ve destek |
 | Reklam kimliği, IP/yaklaşık konum, cihaz/uygulama bilgisi, reklam etkileşimi ve tanılama | Google Mobile Ads SDK tarafından toplanabilir/paylaşılabilir | Reklam gösteriminde | Reklam, analiz, güvenlik ve sahtekârlık önleme |
@@ -31,6 +32,9 @@ politikaları ve üretim yapılandırmasıyla karşılaştırarak manuel beyan v
 - Analytics için uygulama etkileşimleri, cihaz/diğer tanımlayıcılar ve tanılama
   veri türlerinin güncel SDK davranışında Play tarafından nasıl sınıflandırıldığı
   yayın öncesinde doğrulanmalıdır. Reklam kimliği Analytics tarafında kapalıdır.
+- Firebase Cloud Messaging SDK veri türleri ve FCM tokenının Play Data Safety
+  sınıflandırması yayın öncesinde güncel Google SDK beyanıyla doğrulanmalıdır.
+  Play Console bu belgeyle otomatik olarak değiştirilmez.
 - AdMob SDK veri türleri, Google’ın güncel Data Safety rehberiyle yayın gününde
   tekrar karşılaştırılmalıdır.
 - Veriler satılmaz; hizmet sağlayıcı aktarımının Play tanımında “paylaşım”

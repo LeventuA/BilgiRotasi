@@ -77,6 +77,19 @@
       hizmet verileri ve saklama uygulamaları kendi politikalarına da tabidir.
     </p>
 
+    <h2>2B. İsteğe bağlı genel duyuru bildirimleri</h2>
+    <p>
+      Firebase Cloud Messaging bildirimleri varsayılan olarak kapalıdır.
+      Kullanıcı Ayarlar ekranında açıkça etkinleştirirse Android bildirim izni
+      istenir, Firebase bu uygulama kurulumu için bir FCM tokenı üretir ve cihaz
+      development, kapalı test veya production ortamına ait genel duyuru
+      topic'ine abone edilir. Topic adı kullanıcı kimliği içermez. Token
+      Firebase/Google tarafından bildirim teslimi için işlenir; Bilgi Rotası
+      hesap kaydına eklenmez ve uygulamanın kendi sunucusunda saklanmaz.
+      Bildirim kapatıldığında topic aboneliği ve cihaz tokenı silinmeye çalışılır.
+      İzin verilmezse uygulama ve oyun eksiksiz çalışmaya devam eder.
+    </p>
+
     <h2>3. Kullanıcı adı, sıralama ve Canlı Düello</h2>
     <p>
       Seçilen kullanıcı adı diğer oyunculara genel sıralamada ve Canlı Düello
@@ -140,6 +153,7 @@
         <tr><td>Hesap ve UID</td><td>Kimlik doğrulama, hesap güvenliği</td><td>Google Sign-In, Firebase Authentication</td></tr>
         <tr><td>Bulut kayıt ve oyun etkinliği</td><td>Yedekleme, eşitleme, çevrimiçi oyun</td><td>Cloud Firestore</td></tr>
         <tr><td>Pseudonymous app-instance ID ve isteğe bağlı kullanım olayları</td><td>Ürün kullanımı ve kapalı test davranışını ölçme</td><td>Firebase Analytics</td></tr>
+        <tr><td>FCM kurulum tokenı ve genel duyuru topic aboneliği</td><td>İsteğe bağlı genel duyuru teslimi</td><td>Firebase Cloud Messaging</td></tr>
         <tr><td>Reklam ve cihaz teknik verileri</td><td>Reklam sunumu, ölçüm, güvenlik</td><td>Google AdMob</td></tr>
         <tr><td>Soru geri bildirimi</td><td>Soru kalitesini düzeltme</td><td>Google Apps Script</td></tr>
       </tbody>

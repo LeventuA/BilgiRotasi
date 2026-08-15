@@ -1,12 +1,13 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 14 Ağustos 2026
+**Kesim noktası:** 15 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
 ## 0D. Android launcher icon / PR #38 — 14 Ağustos 2026
 
 - Canlı release tabanı `release/final-closed-test-aab-1.68.8`; başlangıç HEAD `29a5a23d15485922d670f7e7b3f9b7cea2d0260f`; sürüm `1.68.14+104`.
-- Mevcut açık Draft PR #38 (`fix/text-launcher-icon-20260813`) yeniden kullanıldı; yeni PR açılmadı ve merge yapılmadı.
+- PR #38 (`fix/text-launcher-icon-20260813`) release dalına merge edildi; merge
+  commit'i `37f5ba0b1ea2cc5cfd97ff56beb6c31ba55d33b8`.
 - Kullanıcının onayladığı `Bilgi_Rotasi_Android_Icon_512x512.png` kaynak görseli, yeniden tasarlanmadan `assets/branding/app_icon.png` olarak alındı. Kaynak ve repo dosyası SHA-256 değeri `32f9d4144fa5112afd93999fd4b6df3734493f626cc8e96f9b0be1510b9368fa` ile birebir eşleşir.
 - `BİLGİ ROTASI` yazısı, pusula ve renkler korunur; splash varlığı ve yapılandırması değişmez. Legacy mdpi/hdpi/xhdpi/xxhdpi/xxxhdpi ile adaptive foreground kaynakları üretildi; adaptive foreground inset değeri `%18` olarak güvenli alana çekildi.
 - Regresyon testi 512x512 PNG boyutunu, otoritatif kaynak hash'ini, yoğunluk boyutlarını, adaptive XML/inset sözleşmesini ve splash ayrımını kilitler.
@@ -17,6 +18,74 @@
 - Android 16 `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = PASS; PID `1991`, `MainActivity` RESUMED/visible; uygulamaya ait crash/ANR/FATAL/process-death kanıtı yok.
 - Artifact APK içindeki gerçek 192 px legacy ve 432 px adaptive launcher görselleri doğrudan açılarak onaylanan BİLGİ ROTASI yazılı pusula olduğu doğrulandı.
 - Mevcut fiziksel telefondaki Google Play kurulumunu silmeden/üzerine farklı imzalı APK zorlamadan gerçek launcher ekranı kurulumu yapılamadı; bu kabul `DOĞRULANACAK` kalır.
+
+---
+
+## 0E. Issue #37 Firebase genel duyuru altyapısı — 14 Ağustos 2026
+
+- Canlı yayın tabanı `release/final-closed-test-aab-1.68.8`; güncel release HEAD
+  `37f5ba0b1ea2cc5cfd97ff56beb6c31ba55d33b8`; release sürümü `1.68.14+104`.
+- Ayrı dal `feat/push-notifications-issue-37`; Draft PR #39 açık ve release/main'e
+  merge edilmemiştir. PR head'i her teknik işlemde canlı GitHub metadata'sından
+  yeniden doğrulanır.
+- `firebase_messaging 16.4.3`, Android 13+ `POST_NOTIFICATIONS`, notification
+  channel, background entry-point, foreground uygulama içi gösterim ve güvenli
+  normal uygulama açılışı uygulanmıştır. İlk açılışta izin istenmez.
+- Ortam topic izolasyonu sertleştirildi: development, closed-test ve production
+  topic'leri bilinen tek küme olarak yönetilir; ortam değişiminde diğer topic'ler
+  temizlenmeden yeni topic aboneliği açılmaz. Unsubscribe başarısızsa token
+  sıfırlanır; uzak temizlik de başarısızsa `push_notifications_cleanup_pending_v1`
+  ile sonraki açılışta tekrar denenir.
+- `PUSH_ENVIRONMENT` artık tek başına daha geniş bir ortama geçiş açamaz; yalnız
+  AdMob + Firebase runtime profilinden çıkarılan ortamı doğrular. Uyuşmazlıkta
+  `test` profiline fail-closed düşülür.
+- İlk sertleştirme commit'i `c7f8227d0c5a75e5ee2d5f66bd9ff3edbeb9a2ab`
+  (`fix: harden push environment isolation`). İlk CI run `31805647373`, mevcut
+  `backend_hardening_test` PR workflow'unda production Firebase define'ını
+  yasakladığı için FAIL oldu; yeni FCM unit testleri bu koşuda PASS'ti.
+- Güvenlik sözleşmesi gevşetilmeden workflow eski güvenli haline döndürüldü ve
+  saf profil çözümleme testi eklendi. Commit `5c137622822e11fe7e3fe545a48cee97f8061ced`
+  (`test: keep push profile validation isolated`). Final kod-head AdMob PR
+  doğrulaması #169 / run `31806178473`, job `94785535777`: **SUCCESS**.
+- Final CI artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`: ID `9221592169`,
+  digest `sha256:a39afe0417742f67711d12ef7b12b90df3d7d0725da5314bea767ae7d18a4434`;
+  APK SHA-256 `4721a8486c516d94b5ff65ff8e1835492359a657c85463b1f276afefffebcbfa`.
+  Paket `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`,
+  targetSdk 36; upload SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- Artifact Android 16 kanıtında `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`,
+  `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = PASS; PID `1869`,
+  MainActivity RESUMED/visible ve CI logunda Bilgi Rotası paketine ait
+  crash/ANR/FATAL/process-death eşleşmesi yok.
+- Fiziksel Google Play closed-test `1.68.15+105` kabulünde bildirim izni kabulü,
+  foreground teslim, background teslim, terminated/swipe-away teslim ve
+  bildirim dokunuşuyla normal açılış **PASS**. Uygulama içi duyuru anahtarı
+  kapatıldıktan sonra closed-test topic mesajı gelmedi (**PASS**). Android sistem
+  bildirim izni reddedildiğinde oyun normal çalışmaya devam etti (**PASS**).
+  `Ayarlar → Eğitimi Yeniden Göster` fiziksel cihazda açılıp kapandı (**PASS**).
+- Fiziksel ADB/logcat kabulü 15 Ağustos 2026'da **PASS**. İlk metadata ZIP'i
+  `BilgiRotasi_Fiziksel_Logcat_20260815_215920.zip` Android 16 üzerinde gerçek
+  Play closed-test `1.68.15+105` / versionCode 105 / targetSdk 36 kurulumunu
+  doğruladı. Final kanıt ZIP'i `BilgiRotasi_FINAL_ADB_20260815_220727.zip`;
+  SHA-256 `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`.
+- Final ADB penceresi `22:07:28 → 22:07:40`; `PID_START=14450` ve
+  `PID_END=14450`. `ACTIVITY_START.txt` ve `ACTIVITY_END.txt` aynı
+  `com.leventua.bilgirotasi/.MainActivity` kaydını `visible=true`,
+  `visibleRequested=true` ve `topResumedActivity` olarak gösterir. Full logcat
+  taramasında Bilgi Rotası için `FATAL EXCEPTION`, ANR/`am_anr`, `am_crash`,
+  `am_proc_died`, native tombstone/signal veya beklenmeyen process-death kaydı
+  yoktur. `PROCESS_EXIT_INFO.txt` test saatinde yeni uygulama çıkışı içermez;
+  görülen tarihsel kayıtlar 14 Ağustos kullanıcı `REMOVE TASK` ve izin değişimi
+  olaylarıdır. Ayrı PID `14546` üzerindeki Firebase Installations/Messaging
+  hatası Samsung Game Launcher sürecine aittir, Bilgi Rotası sürecine değil.
+- Public Analytics + FCM gizlilik açıklaması main tabanlı PR #40 ile squash merge
+  edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages kaynağı `main:/docs`;
+  build `1152991654` bu commit üzerinde **built** ve hata yok. Güncel destek adresi
+  `BilgiRotasidestek@gmail.com` korunur.
+- Production topic'e gerçek mesaj gönderimi ayrı Levent kararı gerektirir; bu
+  fiziksel closed-test kabulü production gönderim yetkisi değildir. PR #39 merge
+  edilmemiştir; PR #40 main'e merge edilmiştir.
+- `KARARLAR.md` değişmedi; ürün kararı değişmedi, mevcut ortam izolasyonu ve açık
+  kullanıcı izni kararı teknik olarak sertleştirildi.
 
 ---
 

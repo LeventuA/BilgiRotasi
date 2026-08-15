@@ -12,6 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -25,6 +26,7 @@ import 'sound_data.dart';
 
 part 'daily_challenge.dart';
 part 'analytics_telemetry.dart';
+part 'push_notifications.dart';
 part 'ad_monetization.dart';
 part 'question_feedback.dart';
 part 'xp_progression.dart';
@@ -921,6 +923,7 @@ final List<CareerAchievement> careerAchievements = [
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   await AppErrorLogService.initialize();
 
@@ -969,6 +972,7 @@ Future<void> main() async {
   runApp(const BilgiRotasiApp());
 
   unawaited(AnalyticsTelemetry.appProcessStarted());
+  unawaited(PushNotificationService.initialize());
   unawaited(_initializeAccountCloudInBackground());
   unawaited(AdPrivacyService.instance.initialize());
 }

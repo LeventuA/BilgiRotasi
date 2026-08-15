@@ -68,6 +68,8 @@ jobs:
             reports/ADMOB_DEPENDENCIES.txt
           grep -Fq "jni_flutter 1.0.1" \
             reports/ADMOB_DEPENDENCIES.txt
+          grep -Fq "firebase_messaging 16.4.3" \
+            reports/ADMOB_DEPENDENCIES.txt
 
       - name: Analiz ve tüm testler
         shell: bash
@@ -78,6 +80,14 @@ jobs:
           flutter test \
             --dart-define=ADMOB_ENVIRONMENT=production \
             test/admob_id_profile_test.dart
+          flutter test \
+            --dart-define=PUSH_ENVIRONMENT=closed_test \
+            --dart-define=EXPECT_PUSH_ENVIRONMENT=closed_test \
+            test/push_notification_profile_test.dart
+          flutter test \
+            --dart-define=PUSH_ENVIRONMENT=production \
+            --dart-define=EXPECT_PUSH_ENVIRONMENT=production \
+            test/push_notification_profile_test.dart
           git diff --check
 
       - name: Kalıcı Android imzasını hazırla
@@ -150,6 +160,12 @@ jobs:
           ! grep -Fq "ca-app-pub-7452194004008791~7046504043" \
             reports/ADMOB_APK_MANIFEST.txt
           grep -Fq "com.google.android.gms.ads.MobileAdsInitProvider" \
+            reports/ADMOB_APK_MANIFEST.txt
+          grep -Fq "android.permission.POST_NOTIFICATIONS" \
+            reports/ADMOB_APK_MANIFEST.txt
+          grep -Fq "firebase_messaging_auto_init_enabled" \
+            reports/ADMOB_APK_MANIFEST.txt
+          grep -Fq "com.google.firebase.messaging.FirebaseMessagingService" \
             reports/ADMOB_APK_MANIFEST.txt
           sha256sum "$APK" | tee reports/ADMOB_APK_SHA256.txt
 

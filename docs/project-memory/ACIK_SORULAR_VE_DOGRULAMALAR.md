@@ -1,6 +1,6 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-**Kesim noktası:** 14 Ağustos 2026
+**Kesim noktası:** 15 Ağustos 2026
 
 ## PR #38 launcher icon fiziksel kabulü - AÇIK
 
@@ -8,6 +8,42 @@
 - CI #161 / run `31757717142`, job `94637088436`: SUCCESS; `APP_GATE=PASS`, `RELEASE_GATE=PASS`.
 - Mevcut fiziksel cihazda Google Play'den kurulu Bilgi Rotası silinmeyecek ve CI imzalı APK bu kurulumun üzerine zorlanmayacak.
 - **DOĞRULANACAK:** uyumlu imzalı bir fiziksel build/Play sürümüyle gerçek launcher gridinde dairesel ve yuvarlatılmış-kare maske görünümü. APK indirme/önizleme ekranı bu gerçek kurulum kabulünün yerine geçmez.
+
+---
+
+## Issue #37 gerçek FCM fiziksel kabulü - FİZİKSEL KABUL PASS / MERGE KARARI AÇIK
+
+Draft PR #39 client-side altyapısı, ortam izolasyonu sertleştirmesi ve final
+kod-head CI kabulü tamamlandı. Fiziksel Play closed-test `1.68.15+105` üzerinde:
+
+1. Bildirim izni kabul edildi; oyun normal çalıştı — **PASS**.
+2. Foreground closed-test topic mesajı teslim edildi — **PASS**.
+3. Background mesajı teslim edildi ve bildirime dokununca uygulama normal açıldı — **PASS**.
+4. Uygulama son uygulamalardan kapatıldığında mesaj teslim edildi ve tap ile normal açıldı — **PASS**.
+5. Uygulama içi genel duyuru anahtarı kapatıldıktan sonra yeni closed-test topic mesajı gelmedi — **PASS**.
+6. Android sistem bildirim izni reddedildi; oyun normal çalışmaya devam etti — **PASS**.
+7. `Ayarlar → Eğitimi Yeniden Göster` açıldı ve normal kapandı — **PASS**.
+
+Final kod-head `5c137622822e11fe7e3fe545a48cee97f8061ced`; AdMob PR doğrulaması
+#169 / run `31806178473`, job `94785535777`: **SUCCESS**. Artifact ID
+`9221592169`; Android 16 `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`,
+`APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = PASS ve CI paket log taraması temizdir.
+
+**FİZİKSEL ADB/LOGCAT PASS:** `BilgiRotasi_FINAL_ADB_20260815_220727.zip`
+SHA-256 `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`.
+Test penceresi `22:07:28 → 22:07:40`; `PID_START=14450` = `PID_END=14450`;
+MainActivity başlangıç/sonda visible ve top-resumed. Bilgi Rotası için FATAL,
+ANR, am_crash, am_proc_died/native crash veya beklenmeyen process-death yok;
+exit-info test saatinde yeni kayıt içermiyor. Ayrı PID 14546 üzerindeki Firebase
+Installations/Messaging hatası Samsung Game Launcher'a aittir.
+
+Public Analytics + FCM gizlilik metni PR #40 ile `main` dalına squash merge
+edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages build
+`1152991654` bu commit üzerinde **built** ve hata yok; güncel destek adresi
+`BilgiRotasidestek@gmail.com` korunur.
+
+Production topic mesajı, PR merge'i veya Firebase deploy bu kabulün parçası
+olarak otomatik yapılmaz; production gönderimi ayrı açık Levent kararı gerektirir.
 
 ---
 
