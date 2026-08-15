@@ -23,7 +23,6 @@ REQUIRED_FILES = [
     "lib/app_build_info.dart",
     "assets/questions.json",
     "assets/branding/app_icon.png",
-    "assets/branding/app_icon_foreground.png",
     "assets/branding/splash_logo.png",
     "lib/account_cloud.dart",
     "firebase/google-services.json",
