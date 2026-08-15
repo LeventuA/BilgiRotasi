@@ -2,6 +2,20 @@
 
 **Kesim noktası:** 15 Ağustos 2026
 
+## Issue #37 FCM teknik kabulü - KAPALI / ISSUE METADATA KAPANIŞI BEKLİYOR
+
+Bu bölüm aşağıdaki tarihsel `Issue #37 gerçek FCM fiziksel kabulü - FİZİKSEL KABUL PASS / MERGE KARARI AÇIK` bölümünü **güncel olarak geçersiz kılar**.
+
+- PR #39 Levent'in açık onayıyla release dalına squash merge edildi; merge commit / güncel release HEAD `bb0897f5c8bff9f2257dd5dde437bcf732448914`.
+- Final PR head `c343e68c5452b9bf7205e6fd0860ae16734073b3`; AdMob PR doğrulaması #190 / run `31903365510` / job `95057405310`: **SUCCESS**; final artifact ID `9251835873`, digest `sha256:7f5c5d408f39452a1590317e45b9bcb033d98abf68c7019538e2ad07dd26ae8e`.
+- Fiziksel Play closed-test `1.68.15+105` FCM izin kabul/red, foreground/background/terminated, tap, in-app disable sonrası no-delivery ve öğretici yeniden gösterme kabulü **PASS**.
+- Fiziksel ADB/logcat final ZIP `BilgiRotasi_FINAL_ADB_20260815_220727.zip`, SHA-256 `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`; Bilgi Rotası için FATAL/ANR/crash/process-death yok.
+- PR #40 gizlilik/Pages merge'i ve Pages build `1152991654` **built** durumu korunuyor.
+- Teknik kabul, fiziksel kabul ve release merge açısından Issue #37 işi tamamlandı. GitHub Issue #37 metadata'sı bu docs-kapanış PR'ı hazırlanırken hâlâ **OPEN**; bu PR merge edildikten sonra ayrı işlemle `completed` kapatılacak.
+- Production topic'e gerçek mesaj gönderilmedi; production bildirimi ayrı açık Levent kararı gerektirir ve Issue #37 kapanışından bağımsızdır.
+
+---
+
 ## PR #38 launcher icon fiziksel kabulü - AÇIK
 
 - Onaylanan 512x512 kaynak, repo varlıkları, APK içindeki legacy/adaptive ikonlar ve Android 16 uygulama kapısı otomatik olarak doğrulandı.
