@@ -3,7 +3,7 @@
 const { createHash } = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
-const { initializeApp } = require('firebase-admin/app');
+const { applicationDefault, initializeApp } = require('firebase-admin/app');
 const { FieldValue, getFirestore } = require('firebase-admin/firestore');
 const {
   buildQuestionCatalog,
@@ -88,7 +88,7 @@ async function writeAnswerKeys(db, answerKeys) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const { catalog, answerKeys, encodedBytes, sha256 } = readBank();
-  initializeApp({ projectId: args.project });
+  initializeApp({ credential: applicationDefault(), projectId: args.project });
   const db = getFirestore();
 
   const [legacySnapshot, targetSnapshot, existingCatalog] = await Promise.all([
