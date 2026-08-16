@@ -1,5 +1,37 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0G - 16 Ağustos 2026 PR #44 final doğrulama durumu
+
+Bu bölüm aşağıdaki `0F` Android 16 tutorial replay kaydının **güncel durumunu geçersiz kılar**; `0F` ve daha eski bölümler tarihsel denetim izi olarak korunur.
+
+- **BR-P0-011 Durum:** PR #43 RELEASE'E MERGE EDİLDİ / FRESH CLOSED TEST #9 TUTORIAL VALIDATOR SCOPE BUG NEDENİYLE FAIL / DRAFT PR #44 MİNİMUM DÜZELTME + REGRESYON TESTİ HAZIR / TEKNİK-HEAD CI #197 PASS / FINAL DOĞRULANMIŞ HEAD CI #201 PASS / PROJE HAFIZASI GÜNCELLENDİ / MERGE ONAYI BEKLİYOR / MERGE SONRASI FRESH CLOSED TEST PASS BEKLİYOR.
+- Canlı release: `release/final-closed-test-aab-1.68.8` / `9371e0aecc4e677c24682e11a31d91ebed54f309` / `1.68.16+106`.
+- Fresh Closed Test #9 / run `31942307299`, job `95153144908`: `APP_GATE=PASS`, final `RELEASE_GATE=FAIL`, `REASON=SETTINGS_TUTORIAL_FAILED_WITHOUT_INFRASTRUCTURE_EVIDENCE`. Run #9 artifact ID `9262524277`, digest `sha256:1e558a0423b6243d7ded7849b72c7353726ea453e7d70ae4c225914e56df4e0a`; bu AAB Play adayı değildir.
+- İlk açık validator hata mesajı `Settings/tutorial diagnostic failed without emulator infrastructure evidence.` oldu. Artifact'ta `UI_SETTINGS_TUTORIAL_2.tsv` içinde `Yeniden` kontrolü görünür olduğu halde tutorial dialog/closed kanıtı oluşmadı; app crash/ANR/FATAL/process-death veya emulator-unhealthy kanıtı yoktur.
+- Kök neden: `retry_capture_screen()` içindeki local olmayan `attempt`, Bash dinamik kapsamıyla dış tutorial döngüsündeki aynı sayacı değiştiriyordu; doğru `_2.tsv` çekildikten sonra yanlış label okunabiliyordu. OCR/parser veya ürün davranışı kök neden değildir.
+- PR #44 branch `fix/br-p0-011-android16-tutorial-gate`; teknik net diff yalnız `tools/validate_android16_closed_test.sh` + `test/android16_closed_test_retry_scope_test.dart`. Helper sayacı `local attempt`, tutorial döngüsü ayrı `tutorial_attempt`; gerçek Bash regresyon testi caller sayacının korunmasını kilitliyor. Mandatory release gate ve D-032 infra/app sınıflandırması gevşetilmedi.
+- Teknik commitler: `38a13c58b5e85e3e5798b6c4209dd449216e81b7` — `fix: make Android 16 tutorial replay gate deterministic`; `a6ce0ba08bce5d2454aaeb612f62a271d10e8f28` — `fix: isolate Android 16 tutorial retry counters`.
+- Teknik-head AdMob PR doğrulaması #197 / run `31957410025`, job `95190026025`: **SUCCESS**. Son doğrulanan proje-hafızası head'i `c5595c0aa38e7c1458e268061563943d38e79a37` üzerinde AdMob PR doğrulaması #201 / run `31962756913`, job `95203168990`: **SUCCESS**; analyze+tüm testler, release APK, paket/manifest, Android 16 attempt/classifier/final app gate PASS; ikinci emulator gerekmedi.
+- #201 artifact `BilgiRotasi-AdMob-1.68.16-106-kanitlari`: ID `9267811261`, digest `sha256:23750143b62cd7de04d77a24d223626a475d89e871550ff81266f66bc4963443`; APK SHA-256 `cf807552ac1b1a239988d99f5e78125a76722681410b25bb6b8a5cf7cbc2a973`; `RESULT=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`; app-specific crash/ANR/FATAL/process-death yok.
+- Proje-hafızası güncellemeleri runtime davranışını değiştirmez. Bu belgeyi taşıyan güncel PR head'inin CI sonucu merge öncesi GitHub'dan canlı okunur; statik “son docs-head CI SHA” kaydı bitti ölçütüne dönüştürülmez.
+- Sürüm, `assets/questions.json`, BoardMap, 67 node, 3B tahta, launcher/splash, Firebase/AdMob/FCM ürün davranışı değişmedi. `KARARLAR.md` değişmedi. PR #7'ye dokunulmadı.
+
+**Bitti ölçütü:**
+
+- [x] PR #43 release'e merge edildi ve merge sonrası fresh Closed Test #9 doğru release SHA üzerinde çalıştırıldı.
+- [x] Run #9 ilk kesin hata mesajı, artifact ekran/OCR kanıtı ve validator source birlikte incelendi.
+- [x] Run #9 kök nedeni Bash retry scope çakışması olarak kanıtlandı.
+- [x] PR #44 minimum validator düzeltmesi + gerçek Bash regresyon testiyle kök nedeni giderdi; release gate gevşetilmedi.
+- [x] PR #44 teknik-head CI #197 `APP_GATE=PASS` / `RELEASE_GATE=PASS`.
+- [x] Son doğrulanan PR head CI #201 analyze+tüm testler+release APK+Android 16 final gate ile PASS.
+- [x] `BILGI_ROTASI_DURUM.md` ve `GOREV_HAVUZU.md` güncel Run #9 / PR #44 kanıtlarıyla aynı branch üzerinde güncellendi; yeni ürün/teknik karar olmadığı için `KARARLAR.md` değişmedi.
+- [ ] Levent'in ayrıca açık merge onayı verildi.
+- [ ] PR #44 release dalına merge edildi.
+- [ ] Merge sonrası yeni canlı release HEAD üzerinde fresh `Closed test release doğrulaması` PASS ve gerçek `1.68.16+106` AAB artifact üretildi.
+- [ ] Yalnız fresh post-merge release gate PASS sonrası BR-P0-011 kapanır ve AAB Play Kapalı Test yükleme adayı sayılır.
+
+---
+
 ## 0F - 16 Ağustos 2026 Android 16 tutorial replay gate / PR #44
 
 Bu bölüm aşağıdaki `0E` PR #43 ön-merge BR-P0-011 kaydının **güncel durumunu geçersiz kılar**; `0E` tarihsel denetim izi olarak korunur.
@@ -58,7 +90,7 @@ Bu bölüm aşağıdaki tarihsel `BR-P0-010` satırlarını **güncel olarak ge�
 
 - **BR-P0-010 Durum:** TAMAMLANDI / PR #39 RELEASE'E SQUASH MERGE EDİLDİ / FİZİKSEL FCM + ADB/LOGCAT PASS / FINAL CI PASS.
 - Levent açık merge onayı verdi; PR #39 merge commit'i ve güncel release HEAD `bb0897f5c8bff9f2257dd5dde437bcf732448914`.
-- Final PR head `c343e68c5452b9bf7205e6fd0860ae16734073b3`; AdMob PR doğrulaması #190 / run `31903365510` / job `95057405310`: **SUCCESS**.
+- Final PR head `c343e68c5452b9bf7205e6fd0860ae16734073b3`; AdMob PR doğrulaması #190 / run `31903365510`, job `95057405310`: **SUCCESS**.
 - Final artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`: ID `9251835873`, digest `sha256:7f5c5d408f39452a1590317e45b9bcb033d98abf68c7019538e2ad07dd26ae8e`.
 - Fiziksel Play closed-test `1.68.15+105` FCM izin kabul/red, foreground/background/terminated, tap, in-app disable sonrası no-delivery ve öğretici yeniden gösterme **PASS**.
 - Fiziksel ADB/logcat final ZIP SHA-256 `cd1930a7bbc55cd448815bb2662cfc5b2f9785a8d7001cd0bb736301ae3cbba7`; PID başlangıç/son aynı, MainActivity visible/top-resumed, FATAL/ANR/crash/process-death yok.
