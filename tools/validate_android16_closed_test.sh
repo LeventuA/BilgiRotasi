@@ -84,13 +84,7 @@ retry_capture_screen() {
 find_word() {
   local label="$1"
   local pattern="$2"
-  awk -F '\t' -v pattern="$pattern" '
-    BEGIN { IGNORECASE = 1 }
-    NR > 1 && $12 ~ pattern {
-      print int($7 + ($9 / 2)), int($8 + ($10 / 2))
-      exit
-    }
-  ' "reports/UI_${label}.tsv"
+  python3 tools/find_ocr_word.py "reports/UI_${label}.tsv" "$pattern"
 }
 
 mark_emulator_unhealthy() {
