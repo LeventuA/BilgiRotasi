@@ -1,5 +1,32 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0F - 16 Ağustos 2026 Android 16 tutorial replay gate / PR #44
+
+Bu bölüm aşağıdaki `0E` PR #43 ön-merge BR-P0-011 kaydının **güncel durumunu geçersiz kılar**; `0E` tarihsel denetim izi olarak korunur.
+
+- **BR-P0-011 Durum:** PR #43 RELEASE'E MERGE EDİLDİ / POST-MERGE CLOSED TEST #9 TUTORIAL VALIDATOR SCOPE BUG NEDENİYLE FAIL / DRAFT PR #44 TEKNİK-HEAD CI #197 PASS / PROJE-HAFIZASI SONRASI FINAL PR-HEAD CI BEKLİYOR / MERGE ONAYI BEKLİYOR / MERGE SONRASI FRESH CLOSED TEST PASS BEKLİYOR.
+- Canlı release: `release/final-closed-test-aab-1.68.8` / `9371e0aecc4e677c24682e11a31d91ebed54f309` / `1.68.16+106`.
+- PR #43 Levent'in açık onayıyla release'e merge edildi. Fresh post-merge Closed Test #9 / run `31942307299`, job `95153144908` doğru release SHA üzerinde gerçek AAB üretti; `APP_GATE=PASS`, final `RELEASE_GATE=FAIL`, neden `SETTINGS_TUTORIAL_FAILED_WITHOUT_INFRASTRUCTURE_EVIDENCE`. Artifact ID `9262524277`, digest `sha256:1e558a0423b6243d7ded7849b72c7353726ea453e7d70ae4c225914e56df4e0a`; bu AAB Play adayı değildir.
+- Kök neden kanıtlandı: `retry_capture_screen()` içindeki local olmayan `attempt`, Bash dinamik kapsamı nedeniyle dış tutorial döngüsündeki aynı sayacı değiştiriyordu; `_2.tsv` doğru çekildiği halde `_1.tsv` okunabiliyordu. OCR/parser veya uygulama davranışı kök neden değildir.
+- PR #44 branch `fix/br-p0-011-android16-tutorial-gate`; teknik net diff yalnız `tools/validate_android16_closed_test.sh` + `test/android16_closed_test_retry_scope_test.dart`. Helper retry sayacı local, tutorial döngüsü ayrı `tutorial_attempt`; mandatory gate koşulları gevşetilmedi.
+- Teknik commitler: `38a13c58b5e85e3e5798b6c4209dd449216e81b7` ve kök neden düzeltmesi `a6ce0ba08bce5d2454aaeb612f62a271d10e8f28` — `fix: isolate Android 16 tutorial retry counters`.
+- PR #44 teknik-head AdMob PR doğrulaması #197 / run `31957410025`, job `95190026025`: **SUCCESS**. Artifact ID `9266476416`, digest `sha256:c9dd5c698b05dcaa263d5d2d592a5bb2f8e303628e1baca5de1a581090f4d242`; APK SHA-256 `67b148a2140e04835d5226148a27605e2416f38e3c3c20695f6d843bfb26500d`; `RESULT=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`; paket `com.leventua.bilgirotasi`, versionCode 106, versionName 1.68.16, targetSdk 36; app-specific crash/ANR/FATAL/process-death yok.
+- Sürüm, ürün davranışı, `assets/questions.json`, BoardMap, 67 node, 3B tahta, launcher/splash, Firebase/AdMob/FCM davranışı değişmedi. `KARARLAR.md` değişmedi. PR #7'ye dokunulmadı.
+
+**Bitti ölçütü:**
+
+- [x] PR #43 final docs-head CI PASS ve PR #43 release'e merge edildi.
+- [x] Merge sonrası fresh Closed Test #9 doğru release SHA üzerinde çalıştırıldı; AAB üretildi ve final tutorial gate FAIL ayrıca kaydedildi.
+- [x] Run #9 kök nedeni artifact + validator kaynak + Bash scope davranışıyla kanıtlandı.
+- [x] PR #44 minimal validator düzeltmesi ve gerçek Bash regresyon testiyle kök nedeni giderdi; release gate gevşetilmedi.
+- [x] PR #44 teknik-head CI #197 Android 16 `APP_GATE=PASS` / `RELEASE_GATE=PASS` ve temiz app logcat kanıtıyla PASS.
+- [ ] Bu proje-hafızası güncellemesi sonrası yeni final PR #44 head CI tam log/artifact/final diff/Git geçmişiyle PASS.
+- [ ] Levent'in ayrıca açık onayı sonrası PR #44 release'e merge edildi.
+- [ ] PR #44 merge sonrası yeni canlı release HEAD üzerinde fresh `Closed test release doğrulaması` PASS ve gerçek `1.68.16+106` AAB artifact üretildi.
+- [ ] Yalnız fresh post-merge release gate PASS sonrası BR-P0-011 kapanır ve AAB Play Kapalı Test yükleme adayı sayılır.
+
+---
+
 ## 0E - 16 Ağustos 2026 RC1 launcher quality gate / PR #43
 
 - **BR-P0-011 Durum:** DRAFT PR #43 / TEKNİK HEAD CI PASS / LEVENT MERGE ONAYI VERDİ / FINAL DOCS-HEAD CI BEKLİYOR / POST-MERGE FRESH CLOSED TEST BEKLİYOR.
