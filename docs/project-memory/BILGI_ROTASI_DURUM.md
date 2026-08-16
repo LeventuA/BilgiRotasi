@@ -1,7 +1,24 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 15 Ağustos 2026
+**Kesim noktası:** 16 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
+
+## 0G. RC1 launcher quality gate / PR #43 — 16 Ağustos 2026
+
+- Canlı hedef/yayın dalı `release/final-closed-test-aab-1.68.8`; PR #43 taban SHA'sı `84d671735d371282f909ac45f6c42d2721ca9d63`; hedef sürüm `1.68.16+106`.
+- Fresh `Closed test release doğrulaması` #8 / run `31910656517`, gerçek release HEAD üzerinde AAB üretiminden önce RC1 kalite kapısında `assets/branding/app_icon_foreground.png` eksikliğiyle durdu. Canlı kaynak/diff incelemesi bunun launcher asset hatası değil, `tools/rc1_quality_gate_impl.py` içindeki bayat `REQUIRED_FILES` beklentisi olduğunu doğruladı.
+- Güncel kanonik launcher kaynağı `assets/branding/app_icon.png`; mevcut launcher/splash asset'leri değiştirilmedi.
+- Ayrı branch `fix/rc1-launcher-quality-gate-20260816`; Draft PR #43 açık. Teknik commit `7d3166f3a4a2d8009e57af29065a442123a9ec79` — `fix: align RC1 launcher quality gate`.
+- Teknik diff **yalnız iki dosya**: `tools/rc1_quality_gate_impl.py` ve `test/launcher_icon_contract_test.dart`. Gate'ten kaldırılan ayrı foreground kaynak zorunluluğu silindi; test, `app_icon.png` zorunluluğunu ve eski `app_icon_foreground.png` beklentisinin geri gelmemesini kilitler.
+- `assets/questions.json`, BoardMap, 67 node düzeni, oynanış, Firebase/AdMob/FCM ürün davranışı, launcher görseli, splash ve sürüm numarası değiştirilmedi.
+- Teknik-head AdMob PR doğrulaması #194 / run `31912671944` / job `95079995092`: **SUCCESS**. `flutter analyze`: no issues; tüm Flutter testleri PASS; release APK build PASS; Android 16 `ANDROID16_APP_GATE=PASS` ve `ANDROID16_RELEASE_GATE=PASS`; app-specific FATAL/ANR sayıları 0.
+- #194 artifact `BilgiRotasi-AdMob-1.68.16-106-kanitlari`: ID `9249278155`, digest `sha256:d3f25a816c60f4b5f2245254b591e4aed7a7765be928b7a5ad5a59a445bdd7ff`; APK SHA-256 `1841b19e721cff440954478b12844194d816f24a2f7f14426ed19fbdb8f1a16e`.
+- PR #43 canlı Git geçmişi: 1 teknik commit, 2 değişen dosya, 13 ekleme, 1 silme. Tam workflow logu, artifact metadata'sı, PR diff'i ve Git geçmişi birlikte incelendi.
+- `KARARLAR.md` değişmedi; mevcut D-032 launcher kararı bu kalite-kapısı hizalamasında korunur.
+- Levent 16 Ağustos 2026'da açık merge onayı verdi. **Merge henüz yapılmadı**; önce bu proje-hafızası commit'i üzerindeki yeni final PR-head CI'ın tam log/artifact/diff/Git geçmişiyle PASS olması zorunlu.
+- PR #43 bitti ölçütündeki son teknik yayın kabulü merge sonrasıdır: canlı release HEAD üzerinde yeni `Closed test release doğrulaması` PASS olmalı ve gerçek `1.68.16+106` AAB artifact'i üretilmelidir.
+
+---
 
 ## 0F. Issue #37 FCM release kapanışı — 15 Ağustos 2026
 

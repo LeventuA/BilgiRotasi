@@ -1,5 +1,30 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0E - 16 Ağustos 2026 RC1 launcher quality gate / PR #43
+
+- **BR-P0-011 Durum:** DRAFT PR #43 / TEKNİK HEAD CI PASS / LEVENT MERGE ONAYI VERDİ / FINAL DOCS-HEAD CI BEKLİYOR / POST-MERGE FRESH CLOSED TEST BEKLİYOR.
+- Canlı hedef dal `release/final-closed-test-aab-1.68.8`; PR #43 taban SHA'sı `84d671735d371282f909ac45f6c42d2721ca9d63`; sürüm `1.68.16+106`.
+- Fresh `Closed test release doğrulaması` #8 / run `31910656517`, AAB üretiminden önce RC1 kalite kapısında bayat `assets/branding/app_icon_foreground.png` zorunluluğuyla durdu. Güncel kanonik launcher kaynağı `assets/branding/app_icon.png`; launcher görseli/asset'i değiştirilmedi.
+- Teknik commit `7d3166f3a4a2d8009e57af29065a442123a9ec79` — `fix: align RC1 launcher quality gate`; değişiklik yalnız `tools/rc1_quality_gate_impl.py` ve `test/launcher_icon_contract_test.dart` dosyalarında. `assets/questions.json`, BoardMap, 67 node, oynanış, splash ve sürüm değiştirilmedi.
+- AdMob PR doğrulaması #194 / run `31912671944` / job `95079995092`: **SUCCESS**. `flutter analyze` temiz, tüm Flutter testleri PASS, release APK build PASS, Android 16 `APP_GATE=PASS` ve `RELEASE_GATE=PASS`, app-specific FATAL/ANR sayıları 0.
+- #194 artifact `BilgiRotasi-AdMob-1.68.16-106-kanitlari`: ID `9249278155`, digest `sha256:d3f25a816c60f4b5f2245254b591e4aed7a7765be928b7a5ad5a59a445bdd7ff`; APK SHA-256 `1841b19e721cff440954478b12844194d816f24a2f7f14426ed19fbdb8f1a16e`.
+- Tam workflow logu, artifact metadata'sı, PR diff'i ve Git geçmişi birlikte incelendi. PR teknik head'inde 1 commit / 2 dosya / 13 ekleme / 1 silme vardır.
+- `KARARLAR.md` değişmedi; mevcut D-032 launcher kararı korunur.
+- Levent 16 Ağustos 2026'da açık merge onayı verdi. Merge, bu proje-hafızası commit'i üzerindeki yeni PR-head CI tamamen PASS olmadan yapılmayacak.
+
+**Bitti ölçütü:**
+
+- [x] Fresh Closed Test #8 kök nedeni gerçek RC1 kalite kapısında bulundu; uygulama/launcher asset hatası olmadığı doğrulandı.
+- [x] RC1 gate güncel `assets/branding/app_icon.png` sözleşmesine hizalandı ve kaldırılan ayrı foreground kaynağının yeniden zorunlu tutulması regresyon testiyle engellendi.
+- [x] Teknik diff yalnız `tools/rc1_quality_gate_impl.py` + `test/launcher_icon_contract_test.dart`; `assets/questions.json` ve ürün davranışı değişmedi.
+- [x] Teknik head analyze + tüm Flutter testleri + release APK + Android 16 APP_GATE/RELEASE_GATE/logcat kapıları PASS.
+- [x] Levent açık merge onayı verdi.
+- [ ] Proje-hafızası commit'i sonrası yeni final PR-head CI tam log/artifact/diff/Git geçmişiyle PASS.
+- [ ] PR #43 release dalına merge edildi.
+- [ ] Merge sonrası canlı release HEAD üzerinde yeni `Closed test release doğrulaması` PASS ve gerçek `1.68.16+106` AAB artifact'i üretildi.
+
+---
+
 ## 0D - 15 Ağustos 2026 Issue #37 release kapanışı
 
 Bu bölüm aşağıdaki tarihsel `BR-P0-010` satırlarını **güncel olarak geçersiz kılar**; eski kayıtlar denetim izi olarak korunur.
