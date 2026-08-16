@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('node:fs');
+const path = require('node:path');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const {
@@ -28,6 +30,11 @@ function bank({ perBucket = 8 } = {}) {
   return rows;
 }
 
+function releaseBank() {
+  const bankPath = path.resolve(__dirname, '../../assets/questions.json');
+  return JSON.parse(fs.readFileSync(bankPath, 'utf8'));
+}
+
 function metadataById(raw) {
   return new Map(raw.map((item) => [item.id, item]));
 }
@@ -42,6 +49,21 @@ test('catalog plan preserves all six category/difficulty buckets', () => {
   for (let categoryIndex = 0; categoryIndex < 6; categoryIndex += 1) {
     for (const difficulty of ['Kolay', 'Orta', 'Zor']) {
       assert.equal(catalog.buckets[`${categoryIndex}|${difficulty}`].length, 8);
+    }
+  }
+});
+
+test('release question bank builds a production-safe catalog', () => {
+  const raw = releaseBank();
+  const { catalog, answerKeys, encodedBytes } = buildQuestionCatalog(raw);
+  assert.ok(raw.length > 0);
+  assert.equal(catalog.schemaVersion, 2);
+  assert.equal(catalog.questionCount, raw.length);
+  assert.equal(answerKeys.length, raw.length);
+  assert.ok(encodedBytes < 850_000);
+  for (let categoryIndex = 0; categoryIndex < 6; categoryIndex += 1) {
+    for (const difficulty of ['Kolay', 'Orta', 'Zor']) {
+      assert.ok(catalog.buckets[`${categoryIndex}|${difficulty}`].length >= 5);
     }
   }
 });
