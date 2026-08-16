@@ -4,18 +4,22 @@ const { createHash } = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const { applicationDefault, initializeApp } = require('firebase-admin/app');
-const { FieldValue, getFirestore } = require('firebase-admin/firestore');
+const { FieldPath, FieldValue, getFirestore } = require('firebase-admin/firestore');
 const {
   buildQuestionCatalog,
   compareLegacyKeys,
 } = require('../live_duel_catalog');
+const { isCompatibleSubset } = require('../live_duel_migration');
 
 const EXPECTED_PROJECT = 'bilgi-rotasi-f255d';
+const EXPECTED_BANK_QUESTION_COUNT = 8710;
+const EXPECTED_LEGACY_QUESTION_COUNT = 6710;
 const APPLY_CONFIRMATION = 'APPLY_LIVE_DUEL_CUTOVER';
 const LEGACY_COLLECTION = 'live_duel_question_keys';
 const TARGET_COLLECTION = 'live_duel_answer_keys';
 const CATALOG_PATH = 'live_duel_config/question_catalog';
 const BATCH_SIZE = 400;
+const READ_PAGE_SIZE = 500;
 const BANK_PATH = path.resolve(__dirname, '../../assets/questions.json');
 
 function parseArgs(argv) {
@@ -49,10 +53,6 @@ function readBank() {
   return { ...plan, sha256 };
 }
 
-function rowsFromSnapshot(snapshot) {
-  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-}
-
 function summarizeDiff(report) {
   return {
     currentCount: report.currentCount,
@@ -66,18 +66,54 @@ function summarizeDiff(report) {
   };
 }
 
-async function writeAnswerKeys(db, answerKeys) {
+async function countCollection(db, collectionName) {
+  const snapshot = await db.collection(collectionName).count().get();
+  return Number(snapshot.data().count);
+}
+
+async function readKeyRows(db, collectionName, expectedCount) {
+  if (expectedCount === 0) return [];
+  const rows = [];
+  let cursor = null;
+  while (rows.length < expectedCount) {
+    let query = db.collection(collectionName)
+      .select('answerIndex', 'optionCount')
+      .orderBy(FieldPath.documentId())
+      .limit(READ_PAGE_SIZE);
+    if (cursor) query = query.startAfter(cursor);
+    const snapshot = await query.get();
+    if (snapshot.empty) break;
+    for (const doc of snapshot.docs) {
+      rows.push({ id: doc.id, ...doc.data() });
+    }
+    cursor = snapshot.docs.at(-1);
+    process.stdout.write(`read ${collectionName}: ${rows.length}/${expectedCount}\n`);
+    if (snapshot.size < READ_PAGE_SIZE) break;
+  }
+  if (rows.length !== expectedCount) {
+    throw new Error(`${collectionName} okuma sayısı değişti; beklenen=${expectedCount}, okunan=${rows.length}.`);
+  }
+  return rows;
+}
+
+async function writeAnswerKeys(db, answerKeys, legacyIds) {
   let written = 0;
   for (let offset = 0; offset < answerKeys.length; offset += BATCH_SIZE) {
     const batch = db.batch();
     for (const key of answerKeys.slice(offset, offset + BATCH_SIZE)) {
-      batch.set(db.collection(TARGET_COLLECTION).doc(key.id), {
+      const data = {
         answerIndex: key.answerIndex,
         optionCount: key.optionCount,
         schemaVersion: 2,
-        migratedFrom: LEGACY_COLLECTION,
+        sourcePath: 'assets/questions.json',
         updatedAt: FieldValue.serverTimestamp(),
-      });
+      };
+      if (legacyIds.has(key.id)) {
+        data.migratedFrom = LEGACY_COLLECTION;
+      } else {
+        data.seededFrom = 'assets/questions.json';
+      }
+      batch.set(db.collection(TARGET_COLLECTION).doc(key.id), data);
     }
     await batch.commit();
     written += Math.min(BATCH_SIZE, answerKeys.length - offset);
@@ -88,29 +124,63 @@ async function writeAnswerKeys(db, answerKeys) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const { catalog, answerKeys, encodedBytes, sha256 } = readBank();
+  if (answerKeys.length !== EXPECTED_BANK_QUESTION_COUNT) {
+    throw new Error(
+      `Release soru bankası sayısı değişti; beklenen=${EXPECTED_BANK_QUESTION_COUNT}, bulunan=${answerKeys.length}.`,
+    );
+  }
+
   initializeApp({ credential: applicationDefault(), projectId: args.project });
   const db = getFirestore();
 
-  const [legacySnapshot, targetSnapshot, existingCatalog] = await Promise.all([
-    db.collection(LEGACY_COLLECTION).get(),
-    db.collection(TARGET_COLLECTION).get(),
+  const [legacyCount, targetCount, existingCatalog] = await Promise.all([
+    countCollection(db, LEGACY_COLLECTION),
+    countCollection(db, TARGET_COLLECTION),
     db.doc(CATALOG_PATH).get(),
   ]);
 
-  const legacyReport = compareLegacyKeys(answerKeys, rowsFromSnapshot(legacySnapshot));
-  const targetRows = rowsFromSnapshot(targetSnapshot);
+  process.stdout.write(
+    `COUNTS: bank=${answerKeys.length}, legacy=${legacyCount}, target=${targetCount}, catalog=${existingCatalog.exists}\n`,
+  );
+
+  if (legacyCount !== EXPECTED_LEGACY_QUESTION_COUNT) {
+    throw new Error(
+      `Legacy cevap anahtarı sayısı beklenenden farklı; beklenen=${EXPECTED_LEGACY_QUESTION_COUNT}, bulunan=${legacyCount}.`,
+    );
+  }
+  if (targetCount > EXPECTED_BANK_QUESTION_COUNT) {
+    throw new Error(`Yeni cevap anahtarı sayısı release bankasını aşıyor: ${targetCount}.`);
+  }
+
+  const [legacyRows, targetRows] = await Promise.all([
+    readKeyRows(db, LEGACY_COLLECTION, legacyCount),
+    readKeyRows(db, TARGET_COLLECTION, targetCount),
+  ]);
+
+  const legacyReport = compareLegacyKeys(answerKeys, legacyRows);
+  const legacyCompatible = isCompatibleSubset(legacyReport, {
+    expectedCurrentCount: EXPECTED_BANK_QUESTION_COUNT,
+    expectedSubsetCount: EXPECTED_LEGACY_QUESTION_COUNT,
+  });
   const targetReport = targetRows.length === 0
     ? null
     : compareLegacyKeys(answerKeys, targetRows);
+  const targetCompatible = targetReport === null || isCompatibleSubset(targetReport, {
+    expectedCurrentCount: EXPECTED_BANK_QUESTION_COUNT,
+    expectedSubsetCount: targetRows.length,
+  });
 
   const report = {
     mode: args.apply ? 'APPLY' : 'DRY_RUN',
     project: args.project,
     bankSha256: sha256,
     bankQuestionCount: answerKeys.length,
+    expectedLegacyCount: EXPECTED_LEGACY_QUESTION_COUNT,
     catalogEncodedBytes: encodedBytes,
+    legacyCompatible,
     legacy: summarizeDiff(legacyReport),
     targetExistingCount: targetRows.length,
+    targetCompatible,
     targetExisting: targetReport ? summarizeDiff(targetReport) : null,
     existingCatalog: existingCatalog.exists
       ? {
@@ -122,11 +192,13 @@ async function main() {
   };
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
 
-  if (!legacyReport.clean) {
-    throw new Error('Legacy cevap anahtarları güncel release soru bankasıyla birebir uyuşmuyor; apply engellendi.');
+  if (!legacyCompatible) {
+    throw new Error(
+      'Legacy 6.710 cevap anahtarı güncel 8.710 release bankasının doğrulanmış alt kümesi değil; apply engellendi.',
+    );
   }
-  if (targetReport && !targetReport.clean) {
-    throw new Error('Mevcut live_duel_answer_keys güncel bankayla uyuşmuyor; apply engellendi.');
+  if (!targetCompatible) {
+    throw new Error('Mevcut live_duel_answer_keys güncel bankanın güvenli alt kümesi değil; apply engellendi.');
   }
   if (existingCatalog.exists) {
     const data = existingCatalog.data() ?? {};
@@ -144,15 +216,20 @@ async function main() {
     return;
   }
 
-  await writeAnswerKeys(db, answerKeys);
+  const legacyIds = new Set(legacyRows.map((row) => row.id));
+  await writeAnswerKeys(db, answerKeys, legacyIds);
   await db.doc(CATALOG_PATH).set({
     ...catalog,
     sourceSha256: sha256,
     sourcePath: 'assets/questions.json',
-    migratedFrom: LEGACY_COLLECTION,
+    legacyVerifiedCollection: LEGACY_COLLECTION,
+    legacyVerifiedCount: legacyRows.length,
+    currentOnlyCount: answerKeys.length - legacyRows.length,
     updatedAt: FieldValue.serverTimestamp(),
   });
-  process.stdout.write('APPLY_PASS: yeni cevap anahtarları ve soru kataloğu yazıldı; legacy koleksiyon değiştirilmedi.\n');
+  process.stdout.write(
+    'APPLY_PASS: 8.710 cevap anahtarı ve soru kataloğu yazıldı; legacy 6.710 koleksiyon değiştirilmedi.\n',
+  );
 }
 
 main().catch((error) => {
