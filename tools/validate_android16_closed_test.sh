@@ -68,6 +68,7 @@ capture_screen() {
 retry_capture_screen() {
   local label="$1"
   local attempts="${2:-3}"
+  local attempt
   for attempt in $(seq 1 "$attempts"); do
     if test -n "${DIAGNOSTIC_DEADLINE:-}" \
         && [ "$SECONDS" -ge "$DIAGNOSTIC_DEADLINE" ]; then
@@ -232,6 +233,7 @@ has_infrastructure_failure() {
 run_settings_tutorial_diagnostic() {
   local settings_point
   local tutorial_label=''
+  local tutorial_attempt
 
   retry_capture_screen HOME_SETTINGS || return 1
   settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"
@@ -244,13 +246,13 @@ run_settings_tutorial_diagnostic() {
   fi
   wait_for_word SETTINGS 'Ayarlar' 6 || return 1
 
-  for attempt in $(seq 1 4); do
+  for tutorial_attempt in $(seq 1 4); do
     if [ "$SECONDS" -ge "$DIAGNOSTIC_DEADLINE" ]; then
       return 1
     fi
-    retry_capture_screen "SETTINGS_TUTORIAL_${attempt}" || return 1
-    if test -n "$(find_word "SETTINGS_TUTORIAL_${attempt}" 'Yeniden')"; then
-      tutorial_label="SETTINGS_TUTORIAL_${attempt}"
+    retry_capture_screen "SETTINGS_TUTORIAL_${tutorial_attempt}" || return 1
+    if test -n "$(find_word "SETTINGS_TUTORIAL_${tutorial_attempt}" 'Yeniden')"; then
+      tutorial_label="SETTINGS_TUTORIAL_${tutorial_attempt}"
       break
     fi
     adb_retry 15 shell input swipe 540 1650 540 350 650 || return 1
