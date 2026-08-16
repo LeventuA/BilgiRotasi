@@ -29,6 +29,8 @@ void main() {
           ).readAsStringSync();
       final colors =
           File('android/app/src/main/res/values/colors.xml').readAsStringSync();
+      final qualityGate =
+          File('tools/rc1_quality_gate_impl.py').readAsStringSync();
 
       expect(manifest, contains('android:icon="@mipmap/launcher_icon"'));
       expect(pubspec, contains('image_path: "assets/branding/app_icon.png"'));
@@ -41,6 +43,17 @@ void main() {
       expect(pubspec, contains('image: assets/branding/splash_logo.png'));
       expect(adaptive, contains('android:inset="18%"'));
       expect(colors, contains('#01041E'));
+      expect(
+        qualityGate,
+        contains('"assets/branding/app_icon.png"'),
+        reason: 'RC1 kalite kapısı güncel launcher kaynağını zorunlu tutmalı.',
+      );
+      expect(
+        qualityGate,
+        isNot(contains('"assets/branding/app_icon_foreground.png"')),
+        reason:
+            'RC1 kalite kapısı kaldırılan ayrı foreground kaynağını beklememeli.',
+      );
 
       const pngSignature = <int>[137, 80, 78, 71, 13, 10, 26, 10];
       expect(_pngSize('assets/branding/app_icon.png'), (512, 512));
