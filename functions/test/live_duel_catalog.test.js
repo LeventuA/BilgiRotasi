@@ -10,6 +10,7 @@ const {
   difficultyTargets,
   selectBalancedQuestionIds,
 } = require('../live_duel_catalog');
+const { isCompatibleSubset } = require('../live_duel_migration');
 
 function bank({ perBucket = 8 } = {}) {
   const rows = [];
@@ -53,13 +54,13 @@ test('catalog plan preserves all six category/difficulty buckets', () => {
   }
 });
 
-test('release question bank builds a production-safe catalog', () => {
+test('release question bank builds the pinned 8710-question production catalog', () => {
   const raw = releaseBank();
   const { catalog, answerKeys, encodedBytes } = buildQuestionCatalog(raw);
-  assert.ok(raw.length > 0);
+  assert.equal(raw.length, 8710);
   assert.equal(catalog.schemaVersion, 2);
-  assert.equal(catalog.questionCount, raw.length);
-  assert.equal(answerKeys.length, raw.length);
+  assert.equal(catalog.questionCount, 8710);
+  assert.equal(answerKeys.length, 8710);
   assert.ok(encodedBytes < 850_000);
   for (let categoryIndex = 0; categoryIndex < 6; categoryIndex += 1) {
     for (const difficulty of ['Kolay', 'Orta', 'Zor']) {
@@ -99,7 +100,7 @@ test('server selection is deterministic, varied, balanced and unique', () => {
   }
 });
 
-test('legacy comparison is fail-closed on missing, extra or changed answers', () => {
+test('exact key comparison remains fail-closed on missing, extra or changed answers', () => {
   const { answerKeys } = buildQuestionCatalog(bank());
   const exact = answerKeys.map((key) => ({ ...key }));
   assert.equal(compareLegacyKeys(answerKeys, exact).clean, true);
@@ -112,6 +113,38 @@ test('legacy comparison is fail-closed on missing, extra or changed answers', ()
   assert.equal(report.clean, false);
   assert.equal(report.missing.length, 1);
   assert.equal(report.extra.length, 1);
+});
+
+test('production subset rule permits only current-bank additions', () => {
+  const { answerKeys } = buildQuestionCatalog(bank());
+  const subset = answerKeys.slice(0, answerKeys.length - 7).map((key) => ({ ...key }));
+  const compatible = compareLegacyKeys(answerKeys, subset);
+  assert.equal(compatible.clean, false);
+  assert.equal(compatible.missing.length, 7);
+  assert.equal(isCompatibleSubset(compatible, {
+    expectedCurrentCount: answerKeys.length,
+    expectedSubsetCount: subset.length,
+  }), true);
+
+  const changed = subset.map((key) => ({ ...key }));
+  changed[0].answerIndex = (changed[0].answerIndex + 1) % 4;
+  const mismatch = compareLegacyKeys(answerKeys, changed);
+  assert.equal(isCompatibleSubset(mismatch, {
+    expectedCurrentCount: answerKeys.length,
+    expectedSubsetCount: changed.length,
+  }), false);
+
+  const extra = subset.concat({ id: 'legacy-only', answerIndex: 0, optionCount: 4 });
+  const extraReport = compareLegacyKeys(answerKeys, extra);
+  assert.equal(isCompatibleSubset(extraReport, {
+    expectedCurrentCount: answerKeys.length,
+    expectedSubsetCount: extra.length,
+  }), false);
+
+  assert.equal(isCompatibleSubset(compatible, {
+    expectedCurrentCount: answerKeys.length,
+    expectedSubsetCount: subset.length - 1,
+  }), false);
 });
 
 test('catalog rejects thin buckets before production', () => {
