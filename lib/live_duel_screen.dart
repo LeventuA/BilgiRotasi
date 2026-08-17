@@ -17,6 +17,13 @@ class LiveDuelScreenText {
   }
 }
 
+bool liveDuelResumeStillCurrent({
+  required LiveDuelResumeMatch stale,
+  required LiveDuelResumeMatch? fresh,
+}) {
+  return fresh != null && fresh.matchId == stale.matchId;
+}
+
 class LiveDuelScreen extends StatefulWidget {
   const LiveDuelScreen({super.key});
 
@@ -42,6 +49,12 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
   }
 
   Future<void> _loadProfile() async {
+    if (mounted) {
+      setState(() {
+        _loadingProfile = true;
+      });
+    }
+
     final profile = await LiveDuelProfileService.load();
 
     if (!mounted) return;
@@ -53,6 +66,13 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
   }
 
   Future<void> _loadResumeMatch() async {
+    if (mounted) {
+      setState(() {
+        _loadingResume = true;
+        _resumeMatch = null;
+      });
+    }
+
     try {
       final match = await LiveDuelConnectionService.findResumableMatch();
 
@@ -79,32 +99,66 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
   }
 
   Future<void> _resumeDuel() async {
-    final match = _resumeMatch;
-    if (match == null || _openingResume) return;
+    final staleMatch = _resumeMatch;
+    if (staleMatch == null || _openingResume) return;
 
     setState(() {
       _openingResume = true;
       _errorMessage = null;
     });
 
-    await Navigator.of(context).push<void>(
-      MaterialPageRoute<void>(
-        builder:
-            (context) => LiveDuelPlayScreen(
-              matchId: match.matchId,
-              questionCount: match.questionCount,
-            ),
-      ),
-    );
+    try {
+      final freshMatch = await LiveDuelConnectionService.findResumableMatch();
+      if (!mounted) return;
 
-    if (!mounted) return;
+      if (!liveDuelResumeStillCurrent(stale: staleMatch, fresh: freshMatch)) {
+        setState(() {
+          _resumeMatch = freshMatch;
+          _loadingResume = false;
+          _errorMessage =
+              freshMatch == null
+                  ? 'Bu düello zaten tamamlandı. Profilin güncellendi.'
+                  : 'Yarım kalan düello değişti. Tekrar deneyebilirsin.';
+        });
+        await _loadProfile();
+        return;
+      }
 
-    setState(() {
-      _openingResume = false;
-    });
+      final currentMatch = freshMatch!;
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute<void>(
+          builder:
+              (context) => LiveDuelPlayScreen(
+                matchId: currentMatch.matchId,
+                questionCount: currentMatch.questionCount,
+              ),
+        ),
+      );
 
-    await _loadProfile();
-    await _loadResumeMatch();
+      if (!mounted) return;
+      await Future.wait<void>([_loadProfile(), _loadResumeMatch()]);
+    } on LiveDuelConnectionException catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _errorMessage = error.message;
+      });
+    } catch (error, stack) {
+      await AppErrorLogService.record(
+        source: 'Canlı düello yarım maç doğrulaması',
+        error: error,
+        stack: stack,
+      );
+      if (!mounted) return;
+      setState(() {
+        _errorMessage = 'Yarım kalan düello doğrulanamadı. Lütfen tekrar dene.';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _openingResume = false;
+        });
+      }
+    }
   }
 
   Future<void> _openLeaderboard() async {
@@ -159,8 +213,7 @@ class _LiveDuelScreenState extends State<LiveDuelScreen> {
         ),
       );
 
-      await _loadProfile();
-      await _loadResumeMatch();
+      await Future.wait<void>([_loadProfile(), _loadResumeMatch()]);
     } on LiveDuelMatchmakingException catch (error) {
       if (!mounted) return;
 

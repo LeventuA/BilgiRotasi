@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bilgi_rotasi/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -50,6 +52,51 @@ void main() {
           'playerUids': const <String>['levent', 'levent'],
         }),
         throwsA(isA<LiveDuelPlayException>()),
+      );
+    });
+  });
+
+  group('Canlı düello destek ödülü', () {
+    const normalMatch = LiveDuelCompletedMatch(
+      matchId: 'match-normal',
+      playerUids: <String>['levent', 'emel'],
+      scores: <String, int>{'levent': 8, 'emel': 6},
+      draw: false,
+      winnerUid: 'levent',
+    );
+    const forfeitMatch = LiveDuelCompletedMatch(
+      matchId: 'match-forfeit',
+      playerUids: <String>['levent', 'emel'],
+      scores: <String, int>{'levent': 8, 'emel': 4},
+      draw: false,
+      winnerUid: 'levent',
+      completionType: LiveDuelCompletionType.forfeit,
+      forfeitLoserUid: 'emel',
+    );
+
+    test('normal tamamlanan maç bir kez kullanılacak kalıcı gameId üretir', () {
+      expect(liveDuelSupportRewardEligible(normalMatch), isTrue);
+      expect(
+        liveDuelSupportRewardGameId(normalMatch),
+        'live_duel:match-normal',
+      );
+    });
+
+    test('hükmen biten maç destek ödülü üretmez', () {
+      expect(liveDuelSupportRewardEligible(forfeitMatch), isFalse);
+    });
+
+    test('sonuç UI teknik idempotency mesajını göstermez', () {
+      final source = File('lib/live_duel_play_screen.dart').readAsStringSync();
+      expect(source, contains('SupportRewardCard('));
+      expect(source, contains('liveDuelSupportRewardEligible(award.match)'));
+      expect(
+        source,
+        isNot(
+          contains(
+            'Bu maçın BR sonucu daha önce işlendi; tekrar puan eklenmedi.',
+          ),
+        ),
       );
     });
   });

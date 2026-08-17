@@ -1,5 +1,13 @@
 part of 'main.dart';
 
+bool liveDuelSupportRewardEligible(LiveDuelCompletedMatch match) {
+  return !match.forfeited;
+}
+
+String liveDuelSupportRewardGameId(LiveDuelCompletedMatch match) {
+  return 'live_duel:${match.matchId}';
+}
+
 class LiveDuelPlayException implements Exception {
   const LiveDuelPlayException(this.message);
 
@@ -1161,11 +1169,10 @@ class _LiveDuelPlayScreenState extends State<LiveDuelPlayScreen>
                 style: const TextStyle(fontWeight: FontWeight.w800),
               ),
             ],
-            if (award.alreadyApplied) ...[
-              const SizedBox(height: 10),
-              const Text(
-                'Bu maçın BR sonucu daha önce işlendi; tekrar puan eklenmedi.',
-                textAlign: TextAlign.center,
+            if (liveDuelSupportRewardEligible(award.match)) ...[
+              const SizedBox(height: 20),
+              SupportRewardCard(
+                gameId: liveDuelSupportRewardGameId(award.match),
               ),
             ],
             const SizedBox(height: 24),
