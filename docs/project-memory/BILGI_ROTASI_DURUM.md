@@ -1,7 +1,28 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 16 Ağustos 2026
+**Kesim noktası:** 17 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
+
+## 0I. Canlı Düello production cutover / PR #45 merge — 17 Ağustos 2026
+
+Bu bölüm aşağıdaki Canlı Düello/Firebase tarihsel kayıtlarının bu iş için **güncel durumunu geçersiz kılar**; eski bölümler denetim izi olarak korunur.
+
+- Kanonik yayın dalı `release/final-closed-test-aab-1.68.8`; PR #45 merge sonrası canlı release HEAD `45ab749afc46621d86bb50848048beda96e9171f`; `pubspec.yaml` sürümü değişmedi: `1.68.16+106`.
+- Production Firebase projesi `bilgi-rotasi-f255d`. Canlı Functions ekranında PR #45 öncesinde yalnız `claimUsername` deploy edilmişti; Canlı Düello'nun `joinLiveDuelQueue`, `findLiveDuelMatch`, `cancelLiveDuelQueue`, `submitLiveDuelAnswer`, `finalizeLiveDuel`, `resolveLiveDuelForfeit` callable Function'ları production'da yoktu. Telefonda görülen `Eşleştirme başlatılamadı. Lütfen tekrar dene.` hatasının immediate kök nedeni bu eksik production cutover ile uyumludur.
+- Production Firestore'da legacy `live_duel_question_keys`, `live_duel_queue`, `live_duel_matches`, `live_duel_leaderboard` koleksiyonları vardı; hardened backend'in beklediği `live_duel_answer_keys` ve `live_duel_config/question_catalog` yoktu. `Indexes > Manual` ekranı boştu; release `firestore.indexes.json` içindeki üç composite index production'a deploy edilmemişti.
+- Cloud Shell salt-okunur kimlik/erişim kontrolü `ADC_OK` + doğru `(default)` Firestore + `FIRESTORE_OK` verdi. Salt-okunur sayım: `LEGACY_COUNT=6710`, `TARGET_COUNT=0`, `CATALOG_EXISTS=false`, `READ_ONLY_MS=500`.
+- Güncel release soru bankası 8.710 sorudur. PR #45 migration preflight'i production'daki 6.710 legacy anahtarı güncel 8.710 bankanın temiz alt kümesi olarak doğruladı: current-only/missing-from-legacy `2000`, legacy-only/extra `0`, `answerIndex/optionCount` mismatch `0`, target existing `0`, existing catalog `null`; final `DRY_RUN_PASS: production verisine yazılmadı.`
+- PR #45 branch `fix/live-duel-production-cutover-20260817`, final head `7facf566b44cf188d5afd81492f9fb3abefd3396`. Teknik diff yalnız 6 dosyadır: `functions/live_duel.js`, `functions/live_duel_catalog.js`, `functions/live_duel_migration.js`, `functions/package.json`, `functions/scripts/prepare_live_duel_production.js`, `functions/test/live_duel_catalog.test.js`.
+- Server-authoritative soru seçimi eski `questionIds.slice(0, questionCount)` davranışından çıkarıldı; 10/20/30 soruda mevcut zorluk dağılımı korunur, iki oyuncuya aynı soru/sıra verilir, maç seed'iyle deterministik fakat maçtan maça değişen set seçilir, tekrar soru ve ardışık aynı kategori engellenir.
+- Migration fail-closed'dur: production-specific `6710 legacy / 8710 current` sayıları pinlidir; legacy kayıtlardan biri current bankada yoksa, legacy-only ID varsa veya cevap/şık sayısı uyuşmazsa APPLY engellenir. Apply yolu ayrıca `--apply --confirm APPLY_LIVE_DUEL_CUTOVER` gerektirir ve legacy koleksiyonu silmez/değiştirmez.
+- Final current-head Firebase güvenlik doğrulaması #16 / run `31978312958`, job `95241048876`: **SUCCESS**. Functions testleri tam logda `26/26 PASS`; gerçek release bankası `8710` olarak pinli katalog testi ve production subset migration testi PASS; Firestore Rules emulator `6/6 PASS`.
+- Final current-head AdMob PR doğrulaması #211 / run `31978312977`, job `95241048848`: **SUCCESS**. Analyze+tüm Flutter testleri, test-ID release APK, paket/manifest, Android 16 deneme 1, classifier ve final uygulama/release gate PASS; ikinci temiz emulator denemesi gerekmedi/skipped; kanıt artifact upload PASS.
+- Levent 17 Ağustos 2026'da açık merge onayı verdi. Draft durumu kaldırıldı ve PR #45 release dalına **squash merge** edildi: `45ab749afc46621d86bb50848048beda96e9171f` — `fix: prepare Live Duel production cutover (#45)`.
+- PR #45 merge işlemi **production Firebase write/deploy yapmadı**. `live_duel_answer_keys` / `question_catalog` APPLY, composite index deploy/READY doğrulaması ve yalnız gerekli Canlı Düello callable Functions deploy'u hâlâ ayrı kontrollü production adımlarıdır; `claimUsername`a dokunulmayacaktır.
+- Canlı Düello kapanışı için iki fiziksel cihaz / iki ayrı hesapla eşleşme → aynı soru/sıra → cevap → finalize → BR/lig/leaderboard → tekrar-finalize idempotency kabulü hâlâ gereklidir. Uyumlu istemci kabul edilmeden kapalı-write Rules cutover yapılmayacaktır.
+- `assets/questions.json` değiştirilmedi; yalnız doğrulama/migration kaynağı olarak okundu. BoardMap, 67 node, 3B tahta, normal yerel oynanış, launcher/splash ve sürüm numarası değiştirilmedi. `KARARLAR.md` değişmedi; mevcut Canlı Düello ürün kararı korunur.
+
+---
 
 ## 0H. Android 16 tutorial replay gate / PR #44 — 16 Ağustos 2026
 
@@ -555,17 +576,13 @@ Eski `.github/workflows/apply-game-save-isolation-v4.yml` push workflow'u bu bra
 
 ## 15. Şu anda ilk yapılacak işler
 
-1. GitHub Actions → `Closed test release doğrulaması` workflow'unu `release/final-closed-test-aab-1.68.8` üzerinde `confirmation=CLOSED_TEST` ile manuel başlat; eski #326'yı rerun etme.
-2. Yeni fresh RC2'nin tam workflow/job/log/artifact kanıtını incele; Guest → Home → Oyna, app/release gate ve crash/ANR kontrollerinin tamamı PASS olmalı.
-3. Play Console'dan uygulama imzalama ve upload SHA-1 ekran kanıtını al; `26:3C...` / `17:E1...` çelişkisini çöz.
-4. Firebase Console'da Google Auth, Android SHA'lar, Functions, Rules, Indexes ve App Check envanterini canlı doğrula; kör deploy yapma.
-5. Play Console'da güncel kapalı test AAB sürümünü, testçi sayısını ve kesintisiz gün sayacını tarihli kanıtla yeniden oku.
-6. Fresh RC2 ve servis kontrolleri temizse güncel AAB'nin Kapalı Test yükleme durumunu netleştir.
-7. Güncel Play kurulumu üzerinden Google giriş, oturum korunması, Misafir → Google geçişi, hesap izolasyonu, Ayarlar/öğretici ve Google demo ödüllü reklam kabulünü fiziksel cihazda doğrula.
-8. İki ayrı cihaz/hesapla Canlı Düello eşleşme → maç → sonuç → leaderboard zincirini doğrula.
-9. Günlük giriş XP karar çelişkisini ayrı branch/görev olarak çöz.
-10. Production SSV günlük 3/+30 XP sözleşmesini ürün kararıyla uyumlu hale getirmeden deploy etme.
-11. `RELEASE_READINESS.md` bayat şablonunu ayrı teknik görev olarak düzelt.
-12. Eski `apply-game-save-isolation-v4.yml` config-level workflow borcunu ayrı görevde incele; bu düzeltmeyle karıştırma.
-13. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür.
-14. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
+1. Canlı Düello production cutover'u PR #45 merge sonrası kontrollü tamamla: önce migration APPLY + post-write count/hash, sonra kanonik composite index deploy/READY, sonra yalnız gerekli Canlı Düello callable Functions deploy; `claimUsername`a ve ilgisiz Functions'a dokunma.
+2. İki ayrı fiziksel cihaz/hesapla Canlı Düello eşleşme → aynı soru/sıra → cevap → finalize → BR/lig/leaderboard → idempotency kabulünü yap.
+3. Uyumlu istemci kabul edilmeden kapalı-write Firestore Rules cutover yapma.
+4. Play Console üretim erişimi başvurusunun sonucunu takip et; production release hazırlığını canlı onay geldikten sonra güncel release kanıtıyla sürdür.
+5. Play Console'dan uygulama imzalama ve upload SHA-1 ekran kanıtını al; `26:3C...` / `17:E1...` çelişkisini çöz.
+6. Firebase Console'da Google Auth, Android SHA'lar ve App Check envanterini canlı doğrula; kör deploy yapma.
+7. Günlük giriş XP karar çelişkisini ayrı branch/görev olarak çöz.
+8. Production SSV günlük 3/+30 XP sözleşmesini ürün kararıyla uyumlu hale getirmeden deploy etme.
+9. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür.
+10. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
