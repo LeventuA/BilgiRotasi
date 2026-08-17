@@ -47,3 +47,17 @@ test('production repair script is fail-closed and does not write profile/results
   assert.doesNotMatch(source, /live_duel_leaderboard/);
   assert.doesNotMatch(source, /live_duel_results/);
 });
+
+test('canonical production cutover keeps all answer keys but playable-only catalog', () => {
+  const source = fs.readFileSync(
+    path.resolve(__dirname, '../scripts/prepare_live_duel_production.js'),
+    'utf8',
+  );
+  assert.match(source, /buildPlayableQuestionSet/);
+  assert.match(source, /answerKeys: rawPlan\.answerKeys/);
+  assert.match(source, /catalog: playablePlan\.catalog/);
+  assert.match(source, /qualityPolicy: 'flutter-question-quality-guard-v1'/);
+  assert.match(source, /rawQuestionCount: answerKeys\.length/);
+  assert.match(source, /excludedQuestionCount/);
+  assert.match(source, /q1214 kalite regresyonu yeniden üretilemedi/);
+});
