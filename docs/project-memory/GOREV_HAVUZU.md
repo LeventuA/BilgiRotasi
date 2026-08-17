@@ -1,5 +1,34 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0H - 17 Ağustos 2026 Canlı Düello production cutover / PR #45 merge
+
+Bu bölüm aşağıdaki tarihsel `BR-P1-003` Canlı Düello kayıtlarının güncel durumunu geçersiz kılar; eski satırlar denetim izi olarak korunur.
+
+- **BR-P1-003 Durum:** PRODUCTION KÖK NEDEN DOĞRULANDI / PR #45 CI PASS / DRY-RUN PASS / PR #45 RELEASE'E SQUASH MERGE EDİLDİ / PRODUCTION APPLY + INDEX + FUNCTIONS + İKİ CİHAZ FİZİKSEL KABUL BEKLİYOR.
+- Canlı release: `release/final-closed-test-aab-1.68.8` / `45ab749afc46621d86bb50848048beda96e9171f` / `1.68.16+106`.
+- Production Firebase canlı envanteri: Functions ekranında yalnız `claimUsername`; Canlı Düello callable Function'ları yok. Legacy `live_duel_question_keys` 6.710 kayıt; `live_duel_answer_keys` 0; `live_duel_config/question_catalog` yok; Manual composite index listesi boş.
+- Cloud Shell salt-okunur doğrulaması `ADC_OK`, `FIRESTORE_OK`; sayım `LEGACY_COUNT=6710`, `TARGET_COUNT=0`, `CATALOG_EXISTS=false`, `READ_ONLY_MS=500`.
+- DRY-RUN: current bank `8710`, legacy `6710`, current-only `2000`, legacy-only/extra `0`, `answerIndex/optionCount` mismatch `0`, target existing `0`, catalog `null`; final `DRY_RUN_PASS: production verisine yazılmadı.`
+- PR #45 final head `7facf566b44cf188d5afd81492f9fb3abefd3396`. Firebase güvenlik doğrulaması #16 / run `31978312958`, job `95241048876`: **SUCCESS**, Functions `26/26 PASS`, Rules emulator `6/6 PASS`. AdMob PR doğrulaması #211 / run `31978312977`, job `95241048848`: **SUCCESS**; analyze+tüm Flutter testleri, release APK, manifest, Android 16 attempt1/classifier/final gate PASS; ikinci emulator gerekmedi.
+- Levent açık merge onayı verdi; PR #45 release'e squash merge edildi: `45ab749afc46621d86bb50848048beda96e9171f` — `fix: prepare Live Duel production cutover (#45)`.
+- `assets/questions.json`, BoardMap, 67 node, 3B tahta, normal yerel oynanış ve sürüm numarası değiştirilmedi. `KARARLAR.md` değişmedi; mevcut 10/20/30, otomatik eşleştirme, yakın BR, aynı soru/sıra ve BR/lig sonucu kararları korunur.
+- PR merge işlemi production Firebase write/deploy yapmadı. `claimUsername` ve ilgisiz Functions değişmedi.
+
+**Bitti ölçütü:**
+
+- [x] Production Functions/Firestore/index envanteri canlı konsoldan doğrulandı.
+- [x] Immediate kök neden eksik Live Duel callable deployment/cutover olarak kanıtlandı.
+- [x] Legacy 6.710 → current 8.710 migration DRY-RUN fail-closed PASS; 2.000 current-only, 0 extra, 0 mismatch.
+- [x] PR #45 current-head Firebase/Rules/Flutter/Android 16 CI PASS.
+- [x] Levent açık merge onayı verdi ve PR #45 release'e squash merge edildi.
+- [ ] `live_duel_answer_keys` + `live_duel_config/question_catalog` APPLY tamamlandı; post-write 8.710/source/hash doğrulandı.
+- [ ] Release kanonik 3 composite index production'a deploy edilip READY doğrulandı.
+- [ ] Yalnız gerekli Canlı Düello callable Functions production'a deploy edildi; `claimUsername` ve ilgisiz Functions değiştirilmedi.
+- [ ] İki fiziksel cihaz / iki ayrı hesapla 10/20/30 eşleşme, aynı soru/sıra, cevap/finalize, BR/lig/leaderboard ve tekrar-finalize idempotency PASS.
+- [ ] Uyumlu client kabul edilmeden closed-write Firestore Rules cutover yapılmadı; gerekiyorsa son adımda kontrollü yapıldı.
+
+---
+
 ## 0G - 16 Ağustos 2026 PR #44 final doğrulama durumu
 
 Bu bölüm aşağıdaki `0F` Android 16 tutorial replay kaydının **güncel durumunu geçersiz kılar**; `0F` ve daha eski bölümler tarihsel denetim izi olarak korunur.
@@ -561,7 +590,7 @@ Uygulama:
 - `Closed test release doğrulaması`: workflow ID `333114587`, **ACTIVE**.
 - Release branch ve sürüm değişmedi; PR #7 Draft kaldı.
 
-Eski `apply-game-save-isolation-v4.yml` push run `31642536946` config-level failure üretti ve **0 job** çalıştırdı. Bu ayrı tarihsel workflow borcudur ve PR #26'nın iki dosyalık değişimiyle ilişkili değildir.
+Eski `apply-game-save-isolation-v4.yml` push run `31642536946` config-level failure üretti ve **0 job** çalıştırdı. Bu ayrı tarihsel workflow borcudur ve PR #26'nın closed-test workflow eklemesiyle ilişkili değildir.
 
 **Bitti ölçütü:** Karşılandı. `Closed test release doğrulaması` Actions listesinde ACTIVE ve release branch seçilerek `CLOSED_TEST` ile manuel tetiklenebilir.
 
