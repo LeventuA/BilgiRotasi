@@ -1,4 +1,5 @@
 import 'package:bilgi_rotasi/main.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 LiveDuelPresence presence({
@@ -44,6 +45,31 @@ void main() {
       );
 
       expect(loser, isNull);
+    });
+
+    test('inactive tek başına bağlantı kesilmesi sayılmaz', () {
+      expect(
+        LiveDuelConnectionPolicy.shouldMarkBackground(
+          AppLifecycleState.inactive,
+        ),
+        isFalse,
+      );
+      expect(
+        LiveDuelConnectionPolicy.shouldMarkBackground(
+          AppLifecycleState.resumed,
+        ),
+        isFalse,
+      );
+      expect(
+        LiveDuelConnectionPolicy.shouldMarkBackground(AppLifecycleState.paused),
+        isTrue,
+      );
+      expect(
+        LiveDuelConnectionPolicy.shouldMarkBackground(
+          AppLifecycleState.detached,
+        ),
+        isTrue,
+      );
     });
 
     test('yeniden bağlanma süresi dolmayan oyuncu korunur', () {
