@@ -1,5 +1,28 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0H - 18 Ağustos 2026 PR #55 Canlı Düello maç sonu merge durumu
+
+- **BR-P1-003 Durum:** PR #55 RELEASE'E MERGE EDİLDİ / OTOMATİK CI PASS / FİZİKSEL İKİ CİHAZ KABULÜ VE YENİ PLAY DAĞITIMI BEKLİYOR.
+- Kanonik release `release/final-closed-test-aab-1.68.8`; merge commit / canlı HEAD `ac791563bd0f66563a44fdc84fd79479fbda65d4`; sürüm `1.68.16+106`.
+- PR #55 final head `5f54cbb9b89d0670110a1dade631069e33d5273a`; AdMob PR doğrulaması #233 / run `32078088059`: **SUCCESS**. Analyze+tüm testler, release APK, paket/manifest ve Android 16 final app gate PASS.
+- Normal tamamlanan Canlı Düello sonucuna `Bize destek olmak ister misiniz?` / +10 XP rewarded kartı bağlandı; gameId `live_duel:<matchId>`. Forfeit sonucu ödül hakkı üretmez.
+- Stale bitmiş maç resume kartı server revalidation ile engellenir; lobby yüklemesinde eski profil/resume state temizlenir.
+- `assets/questions.json`, BR motoru, BoardMap/67 node/3B ve production Firebase/AdMob cutover değişmedi.
+
+**Bitti ölçütü:**
+
+- [x] PR #55 minimum runtime/test diff'i ile hazırlandı.
+- [x] Final PR head CI #233 tüm Flutter testleri + release APK + Android 16 final app gate ile PASS.
+- [x] Levent açık merge onayı verdi.
+- [x] PR #55 squash merge edildi; merge commit `ac791563bd0f66563a44fdc84fd79479fbda65d4`.
+- [ ] PR #55 değişikliklerini gerçekten içeren yeni Play closed-test build/versionCode üretilip dağıtıma alınır; önceki `1.68.16+106` paket otomatik olarak yeterli sayılmaz.
+- [ ] İki cihazda normal maç tamamlanır; sonuçta destek reklamı kartı görünür, stale `Yarım Kalan Düello` kartı geri gelmez ve BR/maç sayısı doğru yenilenir.
+- [ ] Ayrı intentional leave/forfeit senaryosunda hükmen sonuç çalışır ve destek ödülü kartı gösterilmez.
+- [ ] q1214/local soru bankası hatası yeni Play build'de tekrar etmez; ederse `assets/questions.json` kör yamalanmadan paketlenen bank/server catalog ayrımı yeniden kanıtlanır.
+- [ ] Yalnız fiziksel kabul sonrası BR-P1-003 kapatılır.
+
+---
+
 ## 0G - 16 Ağustos 2026 PR #44 final doğrulama durumu
 
 Bu bölüm aşağıdaki `0F` Android 16 tutorial replay kaydının **güncel durumunu geçersiz kılar**; `0F` ve daha eski bölümler tarihsel denetim izi olarak korunur.
@@ -133,7 +156,7 @@ Bu bölüm aşağıdaki tarihsel `BR-P0-010` satırlarını **güncel olarak ge�
 - Ayrı dal `feat/push-notifications-issue-37`; PR #39 Draft/açık ve release/main'e
   merge edilmemiştir. Güncel PR head'i canlı GitHub metadata'sından doğrulanır.
 - FCM bağımlılığı, Android 13+ izin akışı, notification channel,
-  foreground/background/terminated davranışı ve güvenli normal açılış uygulanmıştır.
+  foreground/background/terminated davranışı ve güvenli normal açılış uygulanmıştır. İlk açılışta izin istenmez.
 - Topic migration sertleştirildi: ortam değişiminde diğer bilinen topic'ler
   temizlenir; cleanup hatası token reset ile izole edilir, tamamlanamazsa kalıcı
   pending-cleanup kaydı sonraki açılışta retry edilir. Yeni ortama güvenli
@@ -561,7 +584,7 @@ Uygulama:
 - `Closed test release doğrulaması`: workflow ID `333114587`, **ACTIVE**.
 - Release branch ve sürüm değişmedi; PR #7 Draft kaldı.
 
-Eski `apply-game-save-isolation-v4.yml` push run `31642536946` config-level failure üretti ve **0 job** çalıştırdı. Bu ayrı tarihsel workflow borcudur ve PR #26'nın iki dosyalık değişimiyle ilişkili değildir.
+Eski `apply-game-save-isolation-v4.yml` push run `31642536946` config-level failure üretti ve **0 job** çalıştırdı. Bu, PR #26'nın closed-test workflow eklemesiyle ilişkili uygulama/test hatası değildir; ayrı görevde incelenecek.
 
 **Bitti ölçütü:** Karşılandı. `Closed test release doğrulaması` Actions listesinde ACTIVE ve release branch seçilerek `CLOSED_TEST` ile manuel tetiklenebilir.
 
@@ -585,12 +608,18 @@ Eski `apply-game-save-isolation-v4.yml` push run `31642536946` config-level fail
 
 - PR #35 main tarafında public `docs/` destek iletişimini `BilgiRotasidestek@gmail.com` olarak güncelledi; head `b30689cc5df5ac3dde1479be6fe379a23e7c79c9`, squash merge `3b95e226c4e166864b72b22823ddc69b78589150`.
 - GitHub Pages kaynağı `main:/docs`; build `1149217588` merge commit'i üzerinde `built`.
-- PR #34 release tarafında dört Hakkında & Gizlilik URL'sini `zmilastudio.github.io/BilgiRotasi` alanına ve destek e-postasını yeni adrese taşıdı; head `5fd552a2fe35e3b72a43a1f65162830da702655c`, squash merge `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`.
-- PR #34 final premerge AdMob #148 SUCCESS; PR #35 final Quality #302 + AdMob #150 / Android 16 SUCCESS.
-- Merge sonrası Quality #304 ve AdMob #151 SUCCESS; #151 artifact ID `9185415759`, digest `sha256:1b831a41d072ee515f808bb6d967bd54ce3740308fed555e8a0086bc0b024344`, APK SHA-256 `bd83e43b0a6af054b15b65d93e57c5c260da1cdf4e57d765582f2e30f830fd7d`.
-- #151 artifact APK'sı `1.68.14 (104)` / targetSdk 36 ve Android 16 `APP_GATE=PASS`, `RELEASE_GATE=PASS` olarak doğrulandı; app-specific FATAL/process-death kanıtı yok.
-- Canlı release `pubspec.yaml`: `1.68.14+104`.
-- Oynanış / BoardMap / 67 node / `assets/questions.json` / sürüm numarası değiştirilmedi.
+- PR #34 release tarafında dört Hakkında & Gizlilik URL'sini `zmilastudio.github.io/BilgiRotasi` alanına ve destek e-postasını yeni adrese taşıdı; eski `leventua.github.io` ve `BilgiRotasi10@gmail.com` değerlerini engelleyen regresyon testi eklendi/güncellendi.
+- PR #34 head `5fd552a2fe35e3b72a43a1f65162830da702655c`; AdMob PR doğrulaması #148 / run `31700031074`: **SUCCESS**.
+- PR #34 Levent'in açık onayıyla release'e squash merge edildi: `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`.
+- Merge sonrası canlı release HEAD `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`; `pubspec.yaml` sürümü değişmedi: `1.68.14+104`.
+- Merge sonrası AdMob PR doğrulaması #151 / run `31710501542`, job `94481907601` **SUCCESS** ve Quality Checks #304 / run `31710501544` **SUCCESS** oldu.
+- #151 artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9185415759`, digest `sha256:1b831a41d072ee515f808bb6d967bd54ce3740308fed555e8a0086bc0b024344`; APK SHA-256 `bd83e43b0a6af054b15b65d93e57c5c260da1cdf4e57d765582f2e30f830fd7d`.
+- Artifact APK metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifika SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- Android 16 artifact kapıları `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = **PASS**; uygulama PID `2005` ve `MainActivity` RESUMED/visible olarak kaydedildi.
+- Android 16 log taramasında Bilgi Rotası paketine ait `FATAL EXCEPTION`, AndroidRuntime FATAL, eksik AdMob application ID veya app-specific process-death kanıtı bulunmadı. Logdaki genel binder `process died` satırları Bilgi Rotası paketine ait değildir.
+- AOSP ATD emulatorunda Google Play Store bulunmadığına dair Bilgi Rotası Google Play Services uyarısı vardır; bu cold-start kapısını bozmaz ve fiziksel Play kabulünün yerine geçmez.
+- Oynanış, BoardMap, 67 node düzeni, `assets/questions.json` ve sürüm numarası değiştirilmedi.
+- `KARARLAR.md` değişmedi; bu iş yeni ürün kararı değil mevcut Hakkında/Gizlilik ve public destek uçlarının düzeltilmesidir.
 
 **Bitti ölçütü:** Karşılandı. Public Pages yeni iletişimi built durumda servis ediyor; uygulama release dalı yeni uçları kullanıyor; regresyon beklentileri güncellendi ve ilgili CI/Android 16 kapıları PASS.
 
