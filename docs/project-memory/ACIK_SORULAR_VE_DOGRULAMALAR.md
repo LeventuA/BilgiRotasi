@@ -1,5 +1,17 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
+## PR #55 sonrası Canlı Düello fiziksel kabulü — AÇIK / DOĞRULANACAK
+
+- PR #55 Levent'in açık onayıyla release'e squash merge edildi: `ac791563bd0f66563a44fdc84fd79479fbda65d4`.
+- Otomatik final PR-head CI #233 / run `32078088059` **SUCCESS**; bu fiziksel Play kabulünün yerine geçmez.
+- **DOĞRULANACAK:** PR #55'i içeren yeni Play closed-test build/versionCode. Daha önce yüklenen `1.68.16+106` AAB PR #55 merge'inden önce üretildi; bu nedenle maç sonu düzeltmesini içerdiği varsayılmaz.
+- **DOĞRULANACAK:** iki cihazda normal maç sonunda opt-in destek reklamı kartının görünmesi; stale `Yarım Kalan Düello` kartının dönmemesi; BR/maç sayısının güncel görünmesi.
+- **DOĞRULANACAK:** ayrı forfeit/leave senaryosunda destek ödülü kartının gösterilmemesi.
+- **DOĞRULANACAK:** q1214/local soru bankası hatasının PR #55'i içeren yeni Play build'de tekrarlamaması.
+- Production rewarded hâlâ kapalıdır. `serverRewardXp` ↔ yerel XP reconciliation ve gerçek AdMob SSV callback kabulü ayrı açık P0 işidir.
+
+---
+
 **Kesim noktası:** 15 Ağustos 2026
 
 ## Issue #37 FCM teknik kabulü - KAPALI / ISSUE METADATA KAPANIŞI BEKLİYOR
@@ -49,7 +61,7 @@ Test penceresi `22:07:28 → 22:07:40`; `PID_START=14450` = `PID_END=14450`;
 MainActivity başlangıç/sonda visible ve top-resumed. Bilgi Rotası için FATAL,
 ANR, am_crash, am_proc_died/native crash veya beklenmeyen process-death yok;
 exit-info test saatinde yeni kayıt içermiyor. Ayrı PID 14546 üzerindeki Firebase
-Installations/Messaging hatası Samsung Game Launcher'a aittir.
+Installations/Messaging hatası Samsung Game Launcher sürecine aittir.
 
 Public Analytics + FCM gizlilik metni PR #40 ile `main` dalına squash merge
 edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages build
