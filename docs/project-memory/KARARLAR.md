@@ -216,3 +216,17 @@
 - GitHub-hosted Linux runner'da API 36 x86_64 emulator başlatılmadan önce
   `/dev/kvm` read/write erişimi fail-fast hazırlanıp doğrulanır. KVM olmadan
   yazılım emülasyonu sistem servislerini çökertiyorsa retry/gate gevşetilmez.
+
+---
+
+## 12. Bağlantı kopmasına dayanıklı çalışma
+
+- Uzun teknik görevler kısa, geri alınabilir adımlara bölünecek.
+- Değerli her ilerlemeden sonra branch/base SHA/head SHA/commit/PR/CI run-job/son tamamlanan adım/sıradaki adım bilgileri uzak checkpoint olarak tutulacak.
+- Önemli durum yalnız sohbet veya geçici terminal hafızasında bırakılmayacak.
+- Bağlantı, timeout veya `502` sonrası write/merge/deploy çağrısı körlemesine tekrar edilmeyecek; önce hedef sistemden mutasyonun gerçekleşip gerçekleşmediği okunacak.
+- Mutasyon gerçekleşmişse tekrar uygulanmayacak; gerçekleşmemişse aynı doğrulanmış parametrelerle yalnız tek kontrollü tekrar yapılacak.
+- `429 Too Many Requests` gibi hosted-runner indirme hataları uygulama hatası sayılmadan önce tam logdaki ilk kesin hata satırı bulunacak; sınırlı retry uygulanacak.
+- Uzun CI yalnız aşama değişimlerinde kontrollü aralıklarla izlenecek; build tek başına çalışma kanıtı olmayacak.
+- Kritik merge/deploy öncesi hedef branch, base SHA, exact head SHA, PR durumu, final CI ve açık kullanıcı onayı yeniden doğrulanacak.
+- Ayrıntılı prosedür `docs/project-memory/BAGLANTI_DAYANIKLI_CALISMA_YONTEMI.md` dosyasındadır ve Bilgi Rotası teknik çalışmalarında varsayılan yöntemdir.
