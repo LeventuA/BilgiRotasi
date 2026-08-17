@@ -264,10 +264,155 @@ class AnalyticsTelemetry {
 
 enum AnalyticsConsentChoice { unknown, granted, denied }
 
+class FirstRunNotificationOptInPolicy {
+  FirstRunNotificationOptInPolicy._();
+
+  static bool shouldOffer({
+    required AccountMode accountMode,
+    required bool remoteMessagingEnabled,
+    required bool alreadyShown,
+    required bool pushAlreadyEnabled,
+  }) {
+    return Platform.isAndroid &&
+        remoteMessagingEnabled &&
+        accountMode != AccountMode.undecided &&
+        !alreadyShown &&
+        !pushAlreadyEnabled;
+  }
+}
+
+class FirstRunNotificationOptInService {
+  FirstRunNotificationOptInService._();
+
+  static const String preferenceKey = 'push_first_run_prompt_shown_v1';
+  static bool _scheduled = false;
+  static bool _showing = false;
+  static VoidCallback? _accountListener;
+
+  static Future<void> scheduleIfNeeded() async {
+    if (_scheduled) return;
+    _scheduled = true;
+
+    if (!Platform.isAndroid || !PushRuntimePolicy.remoteMessagingEnabled) {
+      return;
+    }
+
+    void listener() {
+      if (AccountCloudService.state.value.mode == AccountMode.undecided) return;
+      AccountCloudService.state.removeListener(listener);
+      _accountListener = null;
+      _queueShow();
+    }
+
+    _accountListener = listener;
+    AccountCloudService.state.addListener(listener);
+    listener();
+  }
+
+  static void _queueShow([int retriesRemaining = 4]) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(_attemptShow(retriesRemaining));
+    });
+  }
+
+  static Future<void> _attemptShow(int retriesRemaining) async {
+    if (_showing) return;
+
+    final preferences = await SharedPreferences.getInstance();
+    final alreadyShown = preferences.getBool(preferenceKey) == true;
+    final pushAlreadyEnabled =
+        preferences.getBool(_SharedPreferencesPushStore.preferenceKey) == true ||
+        PushNotificationService.state.value == PushNotificationState.enabled;
+    final mode = AccountCloudService.state.value.mode;
+
+    if (!FirstRunNotificationOptInPolicy.shouldOffer(
+      accountMode: mode,
+      remoteMessagingEnabled: PushRuntimePolicy.remoteMessagingEnabled,
+      alreadyShown: alreadyShown,
+      pushAlreadyEnabled: pushAlreadyEnabled,
+    )) {
+      return;
+    }
+
+    final context = AnalyticsConsentService.navigatorKey.currentContext;
+    final messenger =
+        context == null ? null : ScaffoldMessenger.maybeOf(context);
+    if (context == null || !context.mounted || messenger == null) {
+      if (retriesRemaining > 0) {
+        Future<void>.delayed(const Duration(milliseconds: 250), () {
+          _queueShow(retriesRemaining - 1);
+        });
+      }
+      return;
+    }
+
+    await preferences.setBool(preferenceKey, true);
+    _showing = true;
+    messenger
+      ..hideCurrentMaterialBanner()
+      ..showMaterialBanner(
+        MaterialBanner(
+          leading: const Icon(Icons.notifications_active_outlined),
+          content: const Text(
+            'Yeni özellikler, özel gün duyuruları ve önemli Bilgi Rotası '
+            'haberlerinden haberdar ol.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                messenger.hideCurrentMaterialBanner();
+                _showing = false;
+              },
+              child: const Text('Şimdi Değil'),
+            ),
+            FilledButton(
+              onPressed: () {
+                messenger.hideCurrentMaterialBanner();
+                _showing = false;
+                unawaited(_enableNotifications(context));
+              },
+              child: const Text('Bildirimleri Aç'),
+            ),
+          ],
+        ),
+      );
+  }
+
+  static Future<void> _enableNotifications(BuildContext context) async {
+    final result = await PushNotificationService.setEnabled(true);
+    if (!context.mounted) return;
+    final messenger = ScaffoldMessenger.maybeOf(context);
+    if (messenger == null) return;
+    final message = switch (result) {
+      PushEnableResult.enabled => 'Genel duyuru bildirimleri açıldı.',
+      PushEnableResult.denied =>
+        'Bildirim izni verilmedi. Oyun normal çalışmaya devam eder.',
+      PushEnableResult.unavailable =>
+        'Bu derlemede uzak bildirim bağlantısı kapalı.',
+      PushEnableResult.failed =>
+        'Bildirim ayarı şu anda güncellenemedi. Oyun etkilenmedi.',
+      PushEnableResult.disabled => 'Genel duyuru bildirimleri kapalı kaldı.',
+    };
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  @visibleForTesting
+  static void resetForTesting() {
+    final listener = _accountListener;
+    if (listener != null) AccountCloudService.state.removeListener(listener);
+    _accountListener = null;
+    _scheduled = false;
+    _showing = false;
+  }
+}
+
 class AnalyticsConsentService {
   AnalyticsConsentService._();
 
   static const String preferenceKey = 'analytics_consent_granted_v1';
+  // Tarihsel anahtar korunur; yeni sürümlerde ilk açılış Analytics popup'ı yoktur.
   static const String promptVersionKey = 'analytics_consent_prompt_version_v1';
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
@@ -300,19 +445,11 @@ class AnalyticsConsentService {
   }
 
   static Future<void> showInitialPromptIfNeeded() async {
-    if (choice.value != AnalyticsConsentChoice.unknown) return;
-
-    final preferences = _preferences ??= await SharedPreferences.getInstance();
-    if (preferences.getString(promptVersionKey) == AppBuildInfo.version) return;
-
-    final context = navigatorKey.currentContext;
-    if (context == null || !context.mounted) return;
-
-    // Önce işaretlenir; geri tuşu veya dışarı dokunma da aynı sürümde tekrar
-    // tekrar istem göstermemelidir.
-    await preferences.setString(promptVersionKey, AppBuildInfo.version);
-    final accepted = await showOptInDialog(context);
-    if (accepted) await setGranted(true);
+    // İlk açılışta Analytics popup'ı gösterilmez. Analytics varsayılan kapalı
+    // kalır ve yalnız Ayarlar'daki açık opt-in akışıyla etkinleştirilebilir.
+    // Mevcut app-root çağrısını güvenli biçimde ilk kullanım bildirim çağrısına
+    // yönlendiriyoruz; Android sistem izni yalnız kullanıcı butona basarsa açılır.
+    await FirstRunNotificationOptInService.scheduleIfNeeded();
   }
 
   static Future<bool> showOptInDialog(BuildContext context) async {
