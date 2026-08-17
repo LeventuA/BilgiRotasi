@@ -1,17 +1,15 @@
-# synchronize trigger
 name: Live Duel PR55 docs checkpoint
 
 on:
-  pull_request:
+  push:
     branches:
-      - release/final-closed-test-aab-1.68.8
+      - docs/live-duel-post-match-merge-20260818
 
 permissions:
   contents: write
 
 jobs:
   checkpoint:
-    if: github.event.pull_request.head.ref == 'docs/live-duel-post-match-merge-20260818'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
