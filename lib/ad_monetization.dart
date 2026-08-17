@@ -87,6 +87,50 @@ class AdMobConfig {
           : testAndroidRewardedUnitId;
 }
 
+class RewardedSsvSession {
+  const RewardedSsvSession({required this.uid, required this.customData});
+
+  final String uid;
+  final String customData;
+
+  static RewardedSsvSession? fromCallableResponse({
+    required String uid,
+    required Map<String, dynamic> response,
+  }) {
+    final normalizedUid = uid.trim();
+    final customData = response['customData']?.toString().trim() ?? '';
+    if (normalizedUid.isEmpty || customData.isEmpty) return null;
+    return RewardedSsvSession(uid: normalizedUid, customData: customData);
+  }
+}
+
+class RewardedSsvClient {
+  RewardedSsvClient._();
+
+  static Future<RewardedSsvSession?> issueForGame(String gameId) async {
+    if (!AdMobConfig.isProduction || !FirebaseRuntimePolicy.productionEnabled) {
+      return null;
+    }
+
+    final normalizedGameId = gameId.trim();
+    final uid = FirebaseAuth.instance.currentUser?.uid.trim() ?? '';
+    if (normalizedGameId.isEmpty || uid.isEmpty) return null;
+
+    try {
+      final response = await SecureCallableService.call(
+        'issueRewardNonce',
+        <String, dynamic>{'gameId': normalizedGameId},
+      );
+      return RewardedSsvSession.fromCallableResponse(
+        uid: uid,
+        response: response,
+      );
+    } catch (_) {
+      return null;
+    }
+  }
+}
+
 abstract interface class AdConsentGateway {
   Future<void> requestConsentInfoUpdate();
   Future<void> loadAndShowConsentFormIfRequired();
@@ -332,12 +376,29 @@ class AdMonetizationService {
     }
   }
 
-  Future<bool> showRewarded() async {
+  Future<bool> showRewarded({String? gameId}) async {
     if (!await _loadRewarded()) return false;
     final ad = _rewardedAd;
     if (ad == null) return false;
-    _rewardedAd = null;
 
+    if (AdMobConfig.isProduction) {
+      final ssvSession = await RewardedSsvClient.issueForGame(gameId ?? '');
+      if (ssvSession == null) return false;
+      try {
+        final options = ServerSideVerificationOptions(
+          userId: ssvSession.uid,
+          customData: ssvSession.customData,
+        );
+        ad.setServerSideOptions(options);
+      } catch (_) {
+        ad.dispose();
+        _rewardedAd = null;
+        unawaited(_loadRewarded());
+        return false;
+      }
+    }
+
+    _rewardedAd = null;
     final completer = Completer<bool>();
     var rewardCallbackReceived = false;
     ad.fullScreenContentCallback = FullScreenContentCallback<RewardedAd>(
@@ -514,7 +575,7 @@ bool supportRewardEnabledForProfile({
   required bool isClosedTest,
   required bool isProductionAds,
 }) {
-  if (isProductionAds) return false;
+  if (isProductionAds) return firebaseProductionEnabled;
   return !firebaseProductionEnabled || isClosedTest;
 }
 
@@ -707,7 +768,10 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
 
     XpGainResult? gain;
     final controller = AdRewardController(
-      showRewarded: AdMonetizationService.instance.showRewarded,
+      showRewarded:
+          () => AdMonetizationService.instance.showRewarded(
+            gameId: widget.gameId,
+          ),
       grantReward: () async {
         if (await _limiter.claim(widget.gameId)) {
           gain = await XpProgressService.awardSupportAd();
