@@ -1,5 +1,20 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
+## 0I. Canlı Düello maç sonu düzeltmesi / PR #55 — 18 Ağustos 2026
+
+- Levent'in açık merge onayı sonrası PR #55 (`fix/live-duel-post-match-finalization-20260818`) Draft'tan çıkarıldı ve kanonik release dalına squash merge edildi.
+- Merge commit'i / canlı release HEAD: `ac791563bd0f66563a44fdc84fd79479fbda65d4` — `fix: finalize Live Duel post-match flow (#55)`.
+- Merge öncesi exact PR head `5f54cbb9b89d0670110a1dade631069e33d5273a`; AdMob PR doğrulaması run `32078088059` / #233: **SUCCESS**. Analyze+tüm Flutter testleri, release APK build, paket/manifest ve Android 16 final app gate PASS.
+- Normal tamamlanan Canlı Düello sonucuna opt-in `SupportRewardCard` eklendi; kalıcı oyun kimliği `live_duel:<matchId>` kullanılır. Hükmen/forfeit tamamlanmada destek ödülü kartı gösterilmez.
+- Bitmiş maçın stale `Yarım Kalan Düello` kartından yeniden açılması engellendi: resume navigation öncesi sunucudan yeniden doğrulama yapılır; lobby profil/resume yüklemesinde eski state temizlenir.
+- İlk sonuç görünümündeki yanıltıcı `Bu maçın BR sonucu daha önce işlendi...` teknik metni kaldırıldı; backend BR idempotency davranışı değiştirilmedi.
+- `assets/questions.json`, BR motoru, BoardMap/67 node/3B, production Firebase verisi ve production rewarded/SSV cutover değiştirilmedi. Sürüm `1.68.16+106`, `google_mobile_ads: 9.0.0` korunur.
+- **Fiziksel kabul henüz yapılmadı.** Daha önce Play'e gönderilen `1.68.16+106` paketinin PR #55 merge'inden önce üretildiği için bu değişiklikleri içerdiği varsayılmayacak. Yeni Play dağıtım sürümü/versionCode kararı ve iki cihazlı maç sonu retest sonucu `DOĞRULANACAK`.
+- `serverRewardXp` ↔ yerel XP uzlaştırması ve production rewarded SSV cutover ayrı açık iş olarak kalır; production rewarded bu merge ile etkinleştirilmedi.
+- `KARARLAR.md` değişmedi; mevcut reklam kararı (tamamlanan oyun sonrası isteğe bağlı +10 XP, aynı oyun bir kez) uygulanmıştır.
+
+---
+
 **Kesim noktası:** 16 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
@@ -32,7 +47,7 @@ Bu bölüm aşağıdaki `0G` PR #43 öncesi/sonrası Android 16 kayıtlarının 
 - `assets/questions.json`, BoardMap, 67 node düzeni, oynanış, Firebase/AdMob/FCM ürün davranışı, launcher görseli, splash ve sürüm numarası değiştirilmedi.
 - Teknik-head AdMob PR doğrulaması #194 / run `31912671944` / job `95079995092`: **SUCCESS**. `flutter analyze`: no issues; tüm Flutter testleri PASS; release APK build PASS; Android 16 `ANDROID16_APP_GATE=PASS` ve `ANDROID16_RELEASE_GATE=PASS`; app-specific FATAL/ANR sayıları 0.
 - #194 artifact `BilgiRotasi-AdMob-1.68.16-106-kanitlari`: ID `9249278155`, digest `sha256:d3f25a816c60f4b5f2245254b591e4aed7a7765be928b7a5ad5a59a445bdd7ff`; APK SHA-256 `1841b19e721cff440954478b12844194d816f24a2f7f14426ed19fbdb8f1a16e`.
-- PR #43 canlı Git geçmişi: 1 teknik commit, 2 değişen dosya, 13 ekleme, 1 silme. Tam workflow logu, artifact metadata'sı, PR diff'i ve Git geçmişi birlikte incelendi.
+- PR #43 canlı Git geçmişi: 1 teknik commit, 2 dosya, 13 ekleme, 1 silme. Tam workflow logu, artifact metadata'sı, PR diff'i ve Git geçmişi birlikte incelendi.
 - `KARARLAR.md` değişmedi; mevcut D-032 launcher kararı bu kalite-kapısı hizalamasında korunur.
 - Levent 16 Ağustos 2026'da açık merge onayı verdi. **Merge henüz yapılmadı**; önce bu proje-hafızası commit'i üzerindeki yeni final PR-head CI'ın tam log/artifact/diff/Git geçmişiyle PASS olması zorunlu.
 - PR #43 bitti ölçütündeki son teknik yayın kabulü merge sonrasıdır: canlı release HEAD üzerinde yeni `Closed test release doğrulaması` PASS olmalı ve gerçek `1.68.16+106` AAB artifact'i üretilmelidir.
@@ -69,7 +84,7 @@ Bu bölüm aşağıdaki `0E` Issue #37 ön-merge kaydını **güncel olarak geç
 - Regresyon testi 512x512 PNG boyutunu, otoritatif kaynak hash'ini, yoğunluk boyutlarını, adaptive XML/inset sözleşmesini ve splash ayrımını kilitler.
 - Yerel `flutter analyze --no-fatal-warnings --no-fatal-infos` PASS (önceden var olan 90 warning/info korunur); hedefli launcher testi PASS; taşınabilir Python 3.12.10 ile tüm Flutter testleri `257/257` PASS; `git diff --check` PASS.
 - PR CI #161 / run `31757717142`, job `94637088436`: **SUCCESS**. Kalıcı imzalı test-ID release APK build, paket/manifest ve Android 16 cold-start kapıları PASS.
-- Artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`: ID `9203624785`, digest `sha256:88a709a875c02d28844bdbfd69c8669acc009ca5846d07e4bb51d9828a908b18`; APK SHA-256 `792a0db0d812acaaaa0e504d1abc61915f020e3bc9f3ec6592bbcc9a3f4ee673`.
+- Artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`: ID `9203624785`, digest `sha256:88a709a875c02d28844b51d9828a908b18`; APK SHA-256 `792a0db0d812acaaaa0e504d1abc61915f020e3bc9f3ec6592bbcc9a3f4ee673`.
 - APK metadata: `com.leventua.bilgirotasi`, `1.68.14 (104)`, targetSdk 36; upload sertifikası SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
 - Android 16 `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = PASS; PID `1991`, `MainActivity` RESUMED/visible; uygulamaya ait crash/ANR/FATAL/process-death kanıtı yok.
 - Artifact APK içindeki gerçek 192 px legacy ve 432 px adaptive launcher görselleri doğrudan açılarak onaylanan BİLGİ ROTASI yazılı pusula olduğu doğrulandı.
@@ -191,7 +206,7 @@ Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **gü
 
 ## 0A. PR #29/#30 ve güncel release-readiness kesimi — 13 Ağustos 2026
 
-Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar denetim izi olarak korunur.
+Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar silinmemiştir.
 
 - Güncel yayın dalı: `release/final-closed-test-aab-1.68.8`.
 - PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
@@ -217,14 +232,14 @@ Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **gün
 Bu bölüm aşağıdaki tarihsel bölümlerde kalan “fresh RC2 gerekli/bekleniyor” ifadelerinin **güncel durumunu geçersiz kılar**; tarihsel kayıtlar silinmemiştir.
 
 - Release branch: `release/final-closed-test-aab-1.68.8`.
-- Fresh RC2'nin test ettiği release HEAD: `d450c573a122231734437fb097cf17a00e583801`.
+- Fresh manuel RC2'nin test ettiği release HEAD: `d450c573a122231734437fb097cf17a00e583801`.
 - Son işlevsel release commit'i: `7a50a1997c6eade985a3933fd019055dd6a2c791` (PR #25). `7a50a199... → d450c573...` farkı proje-hafızası/docs değişiklikleridir; uygulama işlevsel içeriği değişmemiştir.
 - Paket sürümü: `1.68.14+104`.
 - Fresh manuel RC2 workflow run: `31645526580`; job: `94278055890`; sonuç: **SUCCESS**.
 - Artifact: `BilgiRotasi-1.68.14-104-closed-test-release`; ID `9160985710`; digest `sha256:0a086fab7c0730321c8768aefb94b7887f365d3cc80bf8fe087da83c7a425815`.
 - AAB SHA256: `690424c771867ce4835019449e8f4cc75e36aeca5779838fa7996a96faaa04e1`.
 - Android 16 AAB-derived `Misafir → Home → Oyna` zinciri ilk denemede PASS; ikinci temiz deneme gerekmedi ve SKIPPED.
-- `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `FIREBASE_AUTH_UI`, `FRESH_USER_AUTH_GATE`, `ANALYTICS_CONSENT_GATE`, `GUEST_LOGIN_GATE`, `HOME_PLAY_GATE`, `APP_GATE`, `RELEASE_GATE` = **PASS**.
+- `APK_INSTALL`, `APP_LAUNCH`, `ANALYTICS_CONSENT_HANDLED`, `GUEST_LOGIN_GATE`, `HOME_PLAY_GATE`, `APP_PID`, `APP_LOGCAT`, `APP_GATE`, `POST_GATE_LOGCAT_BOUNDARY`, `RELEASE_GATE` = **PASS**.
 - Flutter analyze/test, soru kapıları (8.710 soru), Functions testleri, Firestore Rules emulator, closed-test AdMob ve production Firebase release profile kontrolleri **PASS**.
 - Artifact/log incelemesinde Bilgi Rotası paketine ait crash, ANR, `FATAL EXCEPTION` veya process-death kanıtı bulunmadı.
 - **BR-P1-008 açık kalır:** fresh artifact içindeki `reports/RELEASE_READINESS.md` hâlâ eski `1.68.8+98`, eski source/AAB ve 6.710 soru gibi tarihsel metinler taşır. Bu rapor kusuru gerçek AAB/gate kabulünü geçersiz kılmaz.
