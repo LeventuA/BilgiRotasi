@@ -208,7 +208,7 @@ void main() {
         alreadyShown: false,
         pushAlreadyEnabled: false,
       ),
-      isTrue,
+      Platform.isAndroid,
     );
     expect(
       FirstRunNotificationOptInPolicy.shouldOffer(
