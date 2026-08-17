@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bilgi_rotasi/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -28,6 +30,19 @@ void main() {
         LiveDuelMatchmakingPolicy.queueLifetime,
         const Duration(minutes: 3),
       );
+    });
+
+    test('arama ekranı kurulmadan eşleşme başlatılmaz ve matched kayıt kurtarılır', () {
+      final source = File('lib/live_duel_matchmaking.dart').readAsStringSync();
+      final enterQueue = RegExp(
+        r'static Future<void> enterQueue[\s\S]*?^  }',
+        multiLine: true,
+      ).firstMatch(source)?.group(0);
+
+      expect(enterQueue, isNotNull);
+      expect(enterQueue, isNot(contains('await tryMatch()')));
+      expect(source, contains('GetOptions(source: Source.server)'));
+      expect(source, contains('if (ownQueue.matched) return ownQueue.matchId;'));
     });
   });
 }
