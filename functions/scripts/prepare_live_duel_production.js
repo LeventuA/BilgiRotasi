@@ -9,6 +9,7 @@ const {
   buildQuestionCatalog,
   compareLegacyKeys,
 } = require('../live_duel_catalog');
+const { buildPlayableQuestionSet } = require('../live_duel_playable');
 const { isCompatibleSubset } = require('../live_duel_migration');
 
 const EXPECTED_PROJECT = 'bilgi-rotasi-f255d';
@@ -49,8 +50,27 @@ function readBank() {
   const bytes = fs.readFileSync(BANK_PATH);
   const sha256 = createHash('sha256').update(bytes).digest('hex');
   const raw = JSON.parse(bytes.toString('utf8'));
-  const plan = buildQuestionCatalog(raw);
-  return { ...plan, sha256 };
+  const rawPlan = buildQuestionCatalog(raw);
+  const { playable, excluded } = buildPlayableQuestionSet(raw);
+
+  if (
+    excluded.length === 0 ||
+    !excluded.some((item) => item.id === 'q1214')
+  ) {
+    throw new Error(
+      'q1214 kalite regresyonu yeniden üretilemedi; production hazırlığı fail-closed durduruldu.',
+    );
+  }
+
+  const playablePlan = buildQuestionCatalog(playable);
+  return {
+    catalog: playablePlan.catalog,
+    answerKeys: rawPlan.answerKeys,
+    encodedBytes: playablePlan.encodedBytes,
+    playableQuestionCount: playable.length,
+    excludedQuestionCount: excluded.length,
+    sha256,
+  };
 }
 
 function summarizeDiff(report) {
@@ -87,11 +107,15 @@ async function readKeyRows(db, collectionName, expectedCount) {
       rows.push({ id: doc.id, ...doc.data() });
     }
     cursor = snapshot.docs.at(-1);
-    process.stdout.write(`read ${collectionName}: ${rows.length}/${expectedCount}\n`);
+    process.stdout.write(
+      `read ${collectionName}: ${rows.length}/${expectedCount}\n`,
+    );
     if (snapshot.size < READ_PAGE_SIZE) break;
   }
   if (rows.length !== expectedCount) {
-    throw new Error(`${collectionName} okuma sayısı değişti; beklenen=${expectedCount}, okunan=${rows.length}.`);
+    throw new Error(
+      `${collectionName} okuma sayısı değişti; beklenen=${expectedCount}, okunan=${rows.length}.`,
+    );
   }
   return rows;
 }
@@ -117,17 +141,34 @@ async function writeAnswerKeys(db, answerKeys, legacyIds) {
     }
     await batch.commit();
     written += Math.min(BATCH_SIZE, answerKeys.length - offset);
-    process.stdout.write(`answer keys: ${written}/${answerKeys.length}\n`);
+    process.stdout.write(
+      `answer keys: ${written}/${answerKeys.length}\n`,
+    );
   }
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const { catalog, answerKeys, encodedBytes, sha256 } = readBank();
+  const {
+    catalog,
+    answerKeys,
+    encodedBytes,
+    playableQuestionCount,
+    excludedQuestionCount,
+    sha256,
+  } = readBank();
+
   if (answerKeys.length !== EXPECTED_BANK_QUESTION_COUNT) {
     throw new Error(
       `Release soru bankası sayısı değişti; beklenen=${EXPECTED_BANK_QUESTION_COUNT}, bulunan=${answerKeys.length}.`,
     );
+  }
+  if (
+    playableQuestionCount <= 30 ||
+    playableQuestionCount >= answerKeys.length ||
+    playableQuestionCount + excludedQuestionCount !== answerKeys.length
+  ) {
+    throw new Error('Playable katalog sayımı güvenli aralıkta değil.');
   }
 
   initializeApp({ credential: applicationDefault(), projectId: args.project });
@@ -140,7 +181,7 @@ async function main() {
   ]);
 
   process.stdout.write(
-    `COUNTS: bank=${answerKeys.length}, legacy=${legacyCount}, target=${targetCount}, catalog=${existingCatalog.exists}\n`,
+    `COUNTS: bank=${answerKeys.length}, playable=${playableQuestionCount}, excluded=${excludedQuestionCount}, legacy=${legacyCount}, target=${targetCount}, catalog=${existingCatalog.exists}\n`,
   );
 
   if (legacyCount !== EXPECTED_LEGACY_QUESTION_COUNT) {
@@ -149,7 +190,9 @@ async function main() {
     );
   }
   if (targetCount > EXPECTED_BANK_QUESTION_COUNT) {
-    throw new Error(`Yeni cevap anahtarı sayısı release bankasını aşıyor: ${targetCount}.`);
+    throw new Error(
+      `Yeni cevap anahtarı sayısı release bankasını aşıyor: ${targetCount}.`,
+    );
   }
 
   const [legacyRows, targetRows] = await Promise.all([
@@ -165,16 +208,21 @@ async function main() {
   const targetReport = targetRows.length === 0
     ? null
     : compareLegacyKeys(answerKeys, targetRows);
-  const targetCompatible = targetReport === null || isCompatibleSubset(targetReport, {
-    expectedCurrentCount: EXPECTED_BANK_QUESTION_COUNT,
-    expectedSubsetCount: targetRows.length,
-  });
+  const targetCompatible = targetReport === null || isCompatibleSubset(
+    targetReport,
+    {
+      expectedCurrentCount: EXPECTED_BANK_QUESTION_COUNT,
+      expectedSubsetCount: targetRows.length,
+    },
+  );
 
   const report = {
     mode: args.apply ? 'APPLY' : 'DRY_RUN',
     project: args.project,
     bankSha256: sha256,
     bankQuestionCount: answerKeys.length,
+    playableQuestionCount,
+    excludedQuestionCount,
     expectedLegacyCount: EXPECTED_LEGACY_QUESTION_COUNT,
     catalogEncodedBytes: encodedBytes,
     legacyCompatible,
@@ -198,21 +246,31 @@ async function main() {
     );
   }
   if (!targetCompatible) {
-    throw new Error('Mevcut live_duel_answer_keys güncel bankanın güvenli alt kümesi değil; apply engellendi.');
+    throw new Error(
+      'Mevcut live_duel_answer_keys güncel bankanın güvenli alt kümesi değil; apply engellendi.',
+    );
   }
   if (existingCatalog.exists) {
     const data = existingCatalog.data() ?? {};
+    const existingQuestionCount = Number(data.questionCount);
     if (
       Number(data.schemaVersion) !== 2 ||
       data.sourceSha256 !== sha256 ||
-      Number(data.questionCount) !== answerKeys.length
+      (
+        existingQuestionCount !== answerKeys.length &&
+        existingQuestionCount !== playableQuestionCount
+      )
     ) {
-      throw new Error('Mevcut question_catalog farklı bir kaynağa ait; apply engellendi.');
+      throw new Error(
+        'Mevcut question_catalog farklı bir kaynağa veya beklenmeyen soru sayısına ait; apply engellendi.',
+      );
     }
   }
 
   if (!args.apply) {
-    process.stdout.write('DRY_RUN_PASS: production verisine yazılmadı.\n');
+    process.stdout.write(
+      'DRY_RUN_PASS: production verisine yazılmadı.\n',
+    );
     return;
   }
 
@@ -222,13 +280,16 @@ async function main() {
     ...catalog,
     sourceSha256: sha256,
     sourcePath: 'assets/questions.json',
+    qualityPolicy: 'flutter-question-quality-guard-v1',
+    rawQuestionCount: answerKeys.length,
+    excludedQuestionCount,
     legacyVerifiedCollection: LEGACY_COLLECTION,
     legacyVerifiedCount: legacyRows.length,
     currentOnlyCount: answerKeys.length - legacyRows.length,
     updatedAt: FieldValue.serverTimestamp(),
   });
   process.stdout.write(
-    'APPLY_PASS: 8.710 cevap anahtarı ve soru kataloğu yazıldı; legacy 6.710 koleksiyon değiştirilmedi.\n',
+    `APPLY_PASS: ${answerKeys.length} cevap anahtarı ve ${playableQuestionCount} oynanabilir soru kataloğu yazıldı; legacy ${legacyRows.length} koleksiyon değiştirilmedi.\n`,
   );
 }
 

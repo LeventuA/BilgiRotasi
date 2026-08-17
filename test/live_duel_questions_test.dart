@@ -71,7 +71,21 @@ void expectBalancedCategories(List<QuizQuestion> questions) {
 }
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('Canlı düello ortak soru sistemi', () {
+    test('release cihaz bankası server playable katalogla aynı kalır', () async {
+      final bank = await QuestionBank.load();
+      final ids = bank.questionsByCategory.values
+          .expand((questions) => questions)
+          .map((question) => question.id)
+          .toSet();
+
+      expect(bank.totalCount, 8603);
+      expect(ids.length, 8603);
+      expect(ids.contains('q1214'), isFalse);
+    });
+
     test('aynı tohum aynı soru sırasını üretir', () {
       final bank = createBank();
 
@@ -144,7 +158,6 @@ void main() {
         questionCount: 10,
         seed: 2027,
       );
-
       final set = LiveDuelQuestionSetService.resolveQuestionIdsFromBank(
         bank: bank,
         questionIds: ids,
