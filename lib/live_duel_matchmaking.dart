@@ -132,12 +132,19 @@ class LiveDuelMatchmakingService {
 
     _requireUser();
     await LiveDuelServerGateway.joinQueue(questionCount);
-
-    await tryMatch();
   }
 
   static Future<String?> tryMatch() async {
-    _requireUser();
+    final user = _requireUser();
+    final ownQueueSnapshot = await _queue
+        .doc(user.uid)
+        .get(const GetOptions(source: Source.server));
+
+    if (ownQueueSnapshot.exists) {
+      final ownQueue = LiveDuelQueueEntry.fromSnapshot(ownQueueSnapshot);
+      if (ownQueue.matched) return ownQueue.matchId;
+    }
+
     return LiveDuelServerGateway.findMatch();
   }
 
