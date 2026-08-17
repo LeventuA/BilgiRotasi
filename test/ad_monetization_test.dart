@@ -96,7 +96,7 @@ void main() {
       expect(grants, 1);
     });
 
-    test('kapalı test açılır, gerçek production reklam profili daima kapalıdır', () {
+    test('production ödül profili yalnız Firebase production ile açılır', () {
       expect(
         supportRewardEnabledForProfile(
           firebaseProductionEnabled: true,
@@ -111,7 +111,7 @@ void main() {
           isClosedTest: false,
           isProductionAds: true,
         ),
-        isFalse,
+        isTrue,
       );
       expect(
         supportRewardEnabledForProfile(
@@ -143,6 +143,51 @@ void main() {
         source,
         contains('if (_busy || !_available || !_rewardProfileEnabled)'),
       );
+    });
+
+    test('SSV callable yanıtı uid ve customData olmadan kabul edilmez', () {
+      final valid = RewardedSsvSession.fromCallableResponse(
+        uid: ' user-1 ',
+        response: <String, dynamic>{'customData': ' payload '},
+      );
+      expect(valid, isNotNull);
+      expect(valid!.uid, 'user-1');
+      expect(valid.customData, 'payload');
+
+      expect(
+        RewardedSsvSession.fromCallableResponse(
+          uid: '   ',
+          response: <String, dynamic>{'customData': 'payload'},
+        ),
+        isNull,
+      );
+      expect(
+        RewardedSsvSession.fromCallableResponse(
+          uid: 'user-1',
+          response: <String, dynamic>{'customData': '   '},
+        ),
+        isNull,
+      );
+      expect(
+        RewardedSsvSession.fromCallableResponse(
+          uid: 'user-1',
+          response: const <String, dynamic>{},
+        ),
+        isNull,
+      );
+    });
+
+    test('production rewarded akışı nonce, gameId ve Google SSV seçeneklerini bağlar', () {
+      final source = File('lib/ad_monetization.dart').readAsStringSync();
+
+      expect(source, contains("'issueRewardNonce'"));
+      expect(source, contains("'gameId': normalizedGameId"));
+      expect(source, contains('ServerSideVerificationOptions('));
+      expect(source, contains('userId: ssvSession.uid'));
+      expect(source, contains('customData: ssvSession.customData'));
+      expect(source, contains('ad.setServerSideOptions(options)'));
+      expect(source, contains('showRewarded({String? gameId})'));
+      expect(source, contains('gameId: widget.gameId'));
     });
 
     test('ödül verilmezse kalan hak aynı ekranda yeniden denenebilir', () {
