@@ -3,6 +3,12 @@
 const { createVerify, randomUUID } = require('node:crypto');
 const { FieldValue, Timestamp, getFirestore } = require('firebase-admin/firestore');
 const { HttpsError, onCall, onRequest } = require('firebase-functions/v2/https');
+const {
+  decodeRewardCustomData,
+  encodeRewardCustomData,
+  normalizeGameId,
+  rewardClaimId,
+} = require('./rewarded_ssv_helpers');
 
 const db = getFirestore();
 const REGION = 'europe-west1';
@@ -48,15 +54,7 @@ async function verifyCallback(originalUrl, query) {
 }
 
 function decodeCustomData(value) {
-  const parsed = JSON.parse(base64UrlBuffer(value).toString('utf8'));
-  if (
-    !parsed ||
-    typeof parsed.uid !== 'string' ||
-    typeof parsed.nonce !== 'string'
-  ) {
-    throw new Error('invalid-custom-data');
-  }
-  return parsed;
+  return decodeRewardCustomData(value);
 }
 
 exports.issueRewardNonce = onCall(
@@ -64,15 +62,23 @@ exports.issueRewardNonce = onCall(
   async (request) => {
     const uid = request.auth?.uid;
     if (!uid) throw new HttpsError('unauthenticated', 'Oturum gerekli.');
+
+    let gameId;
+    try {
+      gameId = normalizeGameId(request.data?.gameId);
+    } catch (_) {
+      throw new HttpsError('invalid-argument', 'Geçerli oyun kimliği gerekli.');
+    }
+
     const nonce = randomUUID();
     await db.collection('reward_nonces').doc(nonce).create({
       uid,
+      gameId,
       used: false,
       createdAt: FieldValue.serverTimestamp(),
       expiresAt: Timestamp.fromMillis(Date.now() + 15 * 60 * 1000),
     });
-    const customData = Buffer.from(JSON.stringify({ uid, nonce }), 'utf8')
-      .toString('base64url');
+    const customData = encodeRewardCustomData({ uid, nonce, gameId });
     return { nonce, customData };
   },
 );
@@ -90,7 +96,8 @@ exports.rewardedSsvCallback = onRequest(
         response.status(400).send('INVALID_SIGNATURE');
         return;
       }
-      const transactionId = String(request.query.transaction_id ?? '');
+
+      const transactionId = String(request.query.transaction_id ?? '').trim();
       const custom = decodeCustomData(request.query.custom_data);
       if (
         !transactionId ||
@@ -99,34 +106,70 @@ exports.rewardedSsvCallback = onRequest(
         response.status(400).send('INVALID_REWARD');
         return;
       }
+
+      const claimId = rewardClaimId(custom.uid, custom.gameId);
       const transactionRef = db
         .collection('rewarded_transactions')
         .doc(transactionId);
       const nonceRef = db.collection('reward_nonces').doc(custom.nonce);
+      const claimRef = db.collection('rewarded_game_claims').doc(claimId);
       const userRef = db.collection('users').doc(custom.uid);
-      const day = new Date().toISOString().slice(0, 10);
-      const dailyRef = userRef.collection('rewarded_daily').doc(day);
 
       await db.runTransaction(async (transaction) => {
-        const [existing, nonce, daily] = await Promise.all([
+        const [existing, nonce, gameClaim] = await Promise.all([
           transaction.get(transactionRef),
           transaction.get(nonceRef),
-          transaction.get(dailyRef),
+          transaction.get(claimRef),
         ]);
+
+        // Google aynı transaction_id ile callback'i yeniden gönderebilir.
+        // Önceden işlenmiş transaction yeniden XP üretmez.
         if (existing.exists) return;
+
+        const nonceData = nonce.data() ?? {};
+        const expiresAt = nonceData.expiresAt?.toMillis?.() ?? 0;
         if (
           !nonce.exists ||
-          nonce.data().uid !== custom.uid ||
-          nonce.data().used === true ||
-          nonce.data().expiresAt.toMillis() < Date.now()
+          nonceData.uid !== custom.uid ||
+          nonceData.gameId !== custom.gameId ||
+          nonceData.used === true ||
+          expiresAt < Date.now()
         ) {
           throw new Error('invalid-nonce');
         }
-        const count = Number(daily.data()?.count ?? 0);
-        if (count >= 3) throw new Error('daily-limit');
+
+        // Aynı tamamlanan oyun için daha önce ödül verildiyse callback başarılı
+        // kabul edilir fakat ikinci kez XP eklenmez. Nonce yine tüketilir.
+        if (gameClaim.exists) {
+          transaction.create(transactionRef, {
+            uid: custom.uid,
+            gameId: custom.gameId,
+            claimId,
+            rewardXp: 0,
+            status: 'duplicate-game',
+            createdAt: FieldValue.serverTimestamp(),
+          });
+          transaction.update(nonceRef, {
+            used: true,
+            transactionId,
+            usedAt: FieldValue.serverTimestamp(),
+          });
+          return;
+        }
+
         transaction.create(transactionRef, {
           uid: custom.uid,
+          gameId: custom.gameId,
+          claimId,
           rewardXp: 10,
+          status: 'granted',
+          createdAt: FieldValue.serverTimestamp(),
+        });
+        transaction.create(claimRef, {
+          uid: custom.uid,
+          gameId: custom.gameId,
+          rewardXp: 10,
+          transactionId,
           createdAt: FieldValue.serverTimestamp(),
         });
         transaction.update(nonceRef, {
@@ -134,15 +177,6 @@ exports.rewardedSsvCallback = onRequest(
           transactionId,
           usedAt: FieldValue.serverTimestamp(),
         });
-        transaction.set(
-          dailyRef,
-          {
-            count: count + 1,
-            xp: Number(daily.data()?.xp ?? 0) + 10,
-            updatedAt: FieldValue.serverTimestamp(),
-          },
-          { merge: true },
-        );
         transaction.set(
           userRef,
           {
