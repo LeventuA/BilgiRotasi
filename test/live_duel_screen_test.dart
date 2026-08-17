@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bilgi_rotasi/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -23,6 +25,37 @@ void main() {
 
       expect(summary, contains('Altın'));
       expect(summary, contains('1450 BR'));
+    });
+
+    test('tamamlanmış stale maç yeniden açılmaz', () {
+      const stale = LiveDuelResumeMatch(matchId: 'match-1', questionCount: 20);
+      const same = LiveDuelResumeMatch(matchId: 'match-1', questionCount: 20);
+      const other = LiveDuelResumeMatch(matchId: 'match-2', questionCount: 20);
+
+      expect(liveDuelResumeStillCurrent(stale: stale, fresh: same), isTrue);
+      expect(liveDuelResumeStillCurrent(stale: stale, fresh: null), isFalse);
+      expect(liveDuelResumeStillCurrent(stale: stale, fresh: other), isFalse);
+    });
+
+    test('resume sunucuda yeniden doğrulanmadan ekran açılmaz', () {
+      final source = File('lib/live_duel_screen.dart').readAsStringSync();
+      final resumeStart = source.indexOf('Future<void> _resumeDuel()');
+      final revalidation = source.indexOf(
+        'LiveDuelConnectionService.findResumableMatch()',
+        resumeStart,
+      );
+      final navigation = source.indexOf(
+        'Navigator.of(context).push<void>',
+        resumeStart,
+      );
+
+      expect(resumeStart, greaterThanOrEqualTo(0));
+      expect(revalidation, greaterThan(resumeStart));
+      expect(navigation, greaterThan(revalidation));
+      expect(
+        source.substring(resumeStart, navigation),
+        contains('liveDuelResumeStillCurrent'),
+      );
     });
   });
 }
