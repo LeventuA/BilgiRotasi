@@ -134,14 +134,19 @@ void main() {
   });
 
   group('SSV ve retention güvenliği', () {
-    test('ödül varsayılan kapalı, imzalı ve idempotent hazırlanır', () {
+    test('ödül varsayılan kapalı, imzalı ve oyun başına idempotent hazırlanır', () {
       final source = File('functions/rewarded_ssv.js').readAsStringSync();
       final client = File('lib/ad_monetization.dart').readAsStringSync();
       expect(source, contains('ssvEnabled !== true'));
       expect(source, contains('verifier-keys.json'));
       expect(source, contains('signedContentFromOriginalUrl'));
       expect(source, contains('rewarded_transactions'));
-      expect(source, contains('count >= 3'));
+      expect(source, contains('rewarded_game_claims'));
+      expect(source, contains('gameClaim.exists'));
+      expect(source, contains('gameId'));
+      expect(source, isNot(contains('rewarded_daily')));
+      expect(source, isNot(contains('daily-limit')));
+      expect(source, isNot(contains('count >= 3')));
       expect(client, contains('FirebaseRuntimePolicy.productionEnabled'));
       expect(
         client,
