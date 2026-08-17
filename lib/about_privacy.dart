@@ -122,11 +122,12 @@ class AboutPrivacyScreen extends StatelessWidget {
             emoji: '🔔',
             title: 'Genel duyuru bildirimleri',
             text:
-                'Bildirimler varsayılan olarak kapalıdır. Ayarlar ekranında '
-                'açıkça etkinleştirirsen Firebase Cloud Messaging bu kurulum '
-                'için bir bildirim tokenı üretir ve cihazı ortamına özel genel '
-                'duyuru kanalına bağlar. Token hesap kimliğine eklenmez veya '
-                'Bilgi Rotası sunucusunda saklanmaz. Bildirimleri kapattığında '
+                'Bildirimler varsayılan olarak kapalıdır. Ana sayfadaki ilk '
+                'kullanım çağrısından veya Ayarlar ekranından açıkça '
+                'etkinleştirirsen Firebase Cloud Messaging bu kurulum için bir '
+                'bildirim tokenı üretir ve cihazı ortamına özel genel duyuru '
+                'kanalına bağlar. Token hesap kimliğine eklenmez veya Bilgi '
+                'Rotası sunucusunda saklanmaz. Bildirimleri kapattığında '
                 'abonelik ve cihaz tokenı silinmeye çalışılır; izin vermesen de '
                 'oyun eksiksiz çalışır.',
           ),
