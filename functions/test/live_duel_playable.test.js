@@ -68,16 +68,16 @@ test('playable set reports excluded ids and never mutates source rows', () => {
   assert.equal(JSON.stringify(source), before);
 });
 
-test('release bank exposes the real playable Live Duel universe', () => {
+test('release bank exposes the pinned playable Live Duel universe', () => {
   const bankPath = path.resolve(__dirname, '../../assets/questions.json');
   const raw = JSON.parse(fs.readFileSync(bankPath, 'utf8'));
   const { playable, excluded } = buildPlayableQuestionSet(raw);
   const excludedIds = new Set(excluded.map((item) => item.id));
 
   assert.equal(raw.length, 8710);
+  assert.equal(playable.length, 8603);
+  assert.equal(excluded.length, 107);
   assert.equal(excludedIds.has('q1214'), true);
-  assert.ok(playable.length > 30);
-  assert.ok(playable.length < raw.length);
   assert.equal(playable.length + excluded.length, raw.length);
   process.stdout.write(
     `LIVE_DUEL_PLAYABLE: raw=${raw.length} playable=${playable.length} excluded=${excluded.length}\n`,
