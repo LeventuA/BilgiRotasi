@@ -85,6 +85,11 @@ class LiveDuelConnectionPolicy {
   static const Duration resolutionInterval = Duration(seconds: 5);
   static const Duration countdownInterval = Duration(seconds: 1);
 
+  static bool shouldMarkBackground(AppLifecycleState? state) {
+    return state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached;
+  }
+
   static bool canForfeit(LiveDuelPresence presence, DateTime now) {
     if (presence.state == LiveDuelPresenceState.left &&
         presence.leaveRequested) {
@@ -201,6 +206,12 @@ class LiveDuelConnectionService {
   }
 
   static Future<void> markBackground({required String matchId}) async {
+    if (!LiveDuelConnectionPolicy.shouldMarkBackground(
+      WidgetsBinding.instance.lifecycleState,
+    )) {
+      return;
+    }
+
     final user = _requireUser();
     final now = DateTime.now().toUtc();
 
