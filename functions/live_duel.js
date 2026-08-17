@@ -12,6 +12,10 @@ const {
   safeQuestionCount,
   updatedProfile,
 } = require('./duel_helpers');
+const {
+  LiveDuelCatalogError,
+  selectBalancedQuestionIds,
+} = require('./live_duel_catalog');
 
 const db = getFirestore();
 const REGION = 'europe-west1';
@@ -157,14 +161,20 @@ exports.findLiveDuelMatch = onCall(
       );
       const matchRef = db.collection('live_duel_matches').doc(matchId);
       const catalog = await db.doc('live_duel_config/question_catalog').get();
-      const ids = catalog.data()?.questionIds;
-      if (!Array.isArray(ids) || ids.length < data.questionCount) {
+      let questionIds;
+      try {
+        questionIds = selectBalancedQuestionIds({
+          catalog: catalog.data(),
+          questionCount: data.questionCount,
+          seed: matchId,
+        });
+      } catch (error) {
+        if (!(error instanceof LiveDuelCatalogError)) throw error;
         throw new HttpsError(
           'failed-precondition',
           'Sunucu soru kataloğu hazır değil.',
         );
       }
-      const questionIds = ids.slice(0, data.questionCount);
 
       const matched = await db.runTransaction(async (transaction) => {
         const [freshOwn, freshCandidate, existingMatch] = await Promise.all([

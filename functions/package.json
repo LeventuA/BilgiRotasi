@@ -6,7 +6,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "node --test test/safety_helpers.test.js test/duel_helpers.test.js test/live_duel_source.test.js test/rewarded_ssv.test.js",
+    "test": "node --check scripts/prepare_live_duel_production.js && node --test test/safety_helpers.test.js test/duel_helpers.test.js test/live_duel_source.test.js test/live_duel_catalog.test.js test/rewarded_ssv.test.js",
     "test:rules": "firebase emulators:exec --config ../firebase.json --project demo-bilgi-rotasi --only firestore \"node --test test/firestore.rules.test.js\""
   },
   "dependencies": {
