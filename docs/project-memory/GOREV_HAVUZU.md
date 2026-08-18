@@ -42,7 +42,7 @@ Bu bölüm aşağıdaki `0F` Android 16 tutorial replay kaydının **güncel dur
 - Teknik commitler: `38a13c58b5e85e3e5798b6c4209dd449216e81b7` — `fix: make Android 16 tutorial replay gate deterministic`; `a6ce0ba08bce5d2454aaeb612f62a271d10e8f28` — `fix: isolate Android 16 tutorial retry counters`.
 - Teknik-head AdMob PR doğrulaması #197 / run `31957410025`, job `95190026025`: **SUCCESS**. Son doğrulanan proje-hafızası head'i `c5595c0aa38e7c1458e268061563943d38e79a37` üzerinde AdMob PR doğrulaması #201 / run `31962756913`, job `95203168990`: **SUCCESS**; analyze+tüm testler, release APK, paket/manifest, Android 16 attempt/classifier/final app gate PASS; ikinci emulator gerekmedi.
 - #201 artifact `BilgiRotasi-AdMob-1.68.16-106-kanitlari`: ID `9267811261`, digest `sha256:23750143b62cd7de04d77a24d223626a475d89e871550ff81266f66bc4963443`; APK SHA-256 `cf807552ac1b1a239988d99f5e78125a76722681410b25bb6b8a5cf7cbc2a973`; `RESULT=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`; app-specific crash/ANR/FATAL/process-death yok.
-- Proje-hafızası güncellemeleri runtime davranışını değiştirmez. Bu belgeyi taşıyan güncel PR head'inin CI sonucu merge öncesi GitHub'dan canlı okunur; statik “son docs-head CI SHA” kaydı bitti ölçütüne dönüştürülmez.
+- Proje-hafızası güncellemeleri runtime davranışını değiştirmez. Bu belgeyi taşıyan güncel PR head'inin CI sonucu GitHub'dan canlı okunur; statik “son docs-head CI SHA” kaydı bitti ölçütüne dönüştürülmez.
 - Sürüm, `assets/questions.json`, BoardMap, 67 node, 3B tahta, launcher/splash, Firebase/AdMob/FCM ürün davranışı değişmedi. `KARARLAR.md` değişmedi. PR #7'ye dokunulmadı.
 
 **Bitti ölçütü:**
@@ -222,7 +222,7 @@ Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarını **gün
 
 ## 0A - 13 Ağustos 2026 PR #29/#30 release-readiness kapanış kesimi
 
-Bu bölüm aşağıdaki tarihsel BR-P1-008 ve release HEAD kayıtlarının güncel durumunu geçersiz kılar; eski kayıtlar denetim izi olarak korunur.
+Bu bölüm aşağıdaki tarihsel BR-P1-008 ve release HEAD kayıtlarının **güncel durumunu geçersiz kılar**; eski kayıtlar denetim izi olarak korunur.
 
 - Güncel release branch: `release/final-closed-test-aab-1.68.8`.
 - PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
@@ -372,7 +372,7 @@ Closed-test kabul bulgusu ve düzeltme:
 
 **Durum:** TAMAMLANDI / PR #21 RELEASE'E MERGE EDİLDİ
 
-- RC2 #323 run `31568589298`, artifact `9130712889`.
+- RC2 #323 run `31568589298`, job `94025527635`, artifact `9130712889`.
 - Kök neden: Analytics consent penceresi açık kalırken eski validator yanlış erken `ANALYTICS_CONSENT_HANDLED=PASS` yazabiliyordu.
 - `Değil` OCR eşleşmesi önceliklendirildi; tek ADB tap başarı sayılmaz.
 - PASS yalnız auth ekranında `Google|Misafir` gerçekten görüldükten sonra yazılır.
@@ -614,9 +614,12 @@ Eski `apply-game-save-isolation-v4.yml` push run `31642536946` config-level fail
 
 - PR #35 main tarafında public `docs/` destek iletişimini `BilgiRotasidestek@gmail.com` olarak güncelledi; head `b30689cc5df5ac3dde1479be6fe379a23e7c79c9`, squash merge `3b95e226c4e166864b72b22823ddc69b78589150`.
 - GitHub Pages kaynağı `main:/docs`; build `1149217588` merge commit'i üzerinde `built`.
-- PR #34 release tarafında dört Hakkında & Gizlilik URL'sini `zmilastudio.github.io/BilgiRotasi` alanına ve destek e-postasını yeni adrese taşıdı; head `5fd552a2fe35e3b72a43a1f65162830da702655c`, squash merge `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`.
-- PR #34 final premerge AdMob #148 SUCCESS; PR #35 final Quality #302 + AdMob #150 / Android 16 SUCCESS.
-- Merge sonrası Quality #304 ve AdMob #151 SUCCESS; #151 artifact ID `9185415759`, digest `sha256:1b831a41d072ee515f808bb6d967bd54ce3740308fed555e8a0086bc0b024344`, APK SHA-256 `bd83e43b0a6af054b15b65d93e57c5c260da1cdf4e57d765582f2e30f830fd7d`.
+- PR #34 release tarafında dört Hakkında & Gizlilik URL'sini `zmilastudio.github.io/BilgiRotasi` alanına ve destek e-postasını yeni adrese taşıdı; eski `leventua.github.io` ve `BilgiRotasi10@gmail.com` değerlerini engelleyen regresyon testi eklendi/güncellendi.
+- PR #34 head `5fd552a2fe35e3b72a43a1f65162830da702655c`; AdMob PR doğrulaması #148 / run `31700031074`: **SUCCESS**.
+- PR #34 Levent'in açık onayıyla `release/final-closed-test-aab-1.68.8` dalına squash merge edildi: `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`.
+- Merge sonrası canlı release HEAD `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`; `pubspec.yaml` sürümü değişmedi: `1.68.14+104`.
+- Merge sonrası AdMob PR doğrulaması #151 / run `31710501542`, job `94481907601` **SUCCESS** ve Quality Checks #304 / run `31710501544` **SUCCESS** oldu.
+- #151 artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9185415759`, digest `sha256:1b831a41d072ee515f808bb6d967bd54ce3740308fed555e8a0086bc0b024344`; APK SHA-256 `bd83e43b0a6af054b15b65d93e57c5c260da1cdf4e57d765582f2e30f830fd7d`.
 - #151 artifact APK'sı `1.68.14 (104)` / targetSdk 36 ve Android 16 `APP_GATE=PASS`, `RELEASE_GATE=PASS` olarak doğrulandı; app-specific FATAL/process-death kanıtı yok.
 - Canlı release `pubspec.yaml`: `1.68.14+104`.
 - Oynanış / BoardMap / 67 node / `assets/questions.json` / sürüm numarası değiştirilmedi.
