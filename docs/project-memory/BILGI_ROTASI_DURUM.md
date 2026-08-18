@@ -3,6 +3,23 @@
 **Kesim noktası:** 18 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
+## 0J. Issue #64 production-readiness kapanış adayı — 18 Ağustos 2026
+
+- Canlı başlangıç kaynağı `release/final-closed-test-aab-1.68.8` / `05b8882dbcc1e9ffbb59350239d366ee66fd3950` / `1.68.17+107`; PR #63 bu SHA ile merge edilmiştir.
+- Çalışma branch'i `fix/final-production-readiness-20260818`; kod commit'i `8b8913548c208e94a9deacacacabf7d4d6a26be4`; Draft PR #65 açık ve merge edilmemiştir. Güncel PR head'i statik kopyadan değil canlı GitHub metadata'sından doğrulanır.
+- Günlük giriş serisi korunur fakat giriş nedeniyle XP verilmez. Eski `lastLoginReward` / `lastLoginRewardDate` alanları ödülsüz sözleşmeye güvenle taşınır; aynı gün, ardışık gün, boş state ve eski state testleri XP'nin değişmediğini doğrular. Günlük/haftalık görev XP'leri değişmedi.
+- PR #63 sözleşmesi repo/test düzeyinde doğrulandı: tamamlanan her `gameId` en fazla tek +10 XP; farklı oyunlara günlük/oturumluk kota yok; production hesaplı sonuçta nonce + SSV server claim; misafir sonuç ve tahta jokeri yerel; aktif normal soru ve Canlı Düello maç ekranlarında reklam yok.
+- Production SSV için yalnız `issueRewardNonce`, `getRewardedGameState` ve `rewardedSsvCallback` endpoint'lerini, explicit `--project bilgi-rotasi-f255d` ile `europe-west1` bölgesinde hedefleyen kontrollü plan belgelendi. Deploy/config değişikliği yapılmadı; `ssvEnabled` callback ve fiziksel kabul tamamlanana kadar fail-closed kalır.
+- Yerel kanıt: hedefli Flutter `25/25`, tüm Flutter `295/295`, Functions `40/40`, Firestore Rules emulator `6/6` PASS; analyze error sayısı 0 (mevcut 92 warning/info; non-fatal koşu PASS); `git diff --check` PASS.
+- Fresh release run #13 / `32170570288`, job `95820471266`, exact release SHA üzerinde AAB build/metadata/imza adımlarını geçti fakat OCR hazırlığında 60 dakikadan uzun takıldı; Android 16 kapısına ulaşmadan artifactsız iptal edildi. Eski koşu rerun edilmedi.
+- Yerine exact aynı release SHA üzerinde fresh run #14 / `32176210749`, job `95838654578`: **SUCCESS**. Artifact `BilgiRotasi-1.68.17-107-closed-test-release`, ID `9339668986`, digest `sha256:b021e611e071ea3a105607b3ff427ac3a5c67b13603770951572ab12e10b6b32`; gerçek AAB SHA-256 ve `reports/AAB_SHA256.txt` eşleşmesi `fb8d94867f4890c22ddcc62bdd7f361c8ca9efd9807e5c952bd99fab158944ad`.
+- Run #14 package `com.leventua.bilgirotasi`, version `1.68.17+107`, targetSdk 36, upload SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`, production Firebase `bilgi-rotasi-f255d`, closed-test Google demo reklam profili ve 8.710 soru/source SHA/ref readiness alanlarını doğruladı.
+- Android 16 zorunlu kapı ilk AAB-derived denemede `APP_GATE=PASS`, `RELEASE_GATE=PASS`; install, launch, guest login, Home/Oyna, PID ve app logcat PASS. Bilgi Rotası paketinde crash/ANR/FATAL/process-death eşleşmesi 0. Gate sonrasındaki Ayarlar/öğretici sırasında başka sistem paketindeki ANR/global input kanıtı nedeniyle tanı `INFRASTRUCTURE_INCONCLUSIVE`; workflow kararı gereği release gate PASS ve fiziksel Play Internal Testing Ayarlar/öğretici kabulü zorunlu kalır.
+- Draft PR #65 docs-head `5f7b28475aea2fc0789e4954d5907a2f28273e3a` AdMob run `32178111832`, job `95844597170`: SUCCESS; artifact `BilgiRotasi-AdMob-1.68.17-107-kanitlari`, ID `9340171407`, digest `sha256:2e12636945044911e9b730e54c159e8f470cf62c94b91c3cf92a4f746249c317`, APK SHA-256 `12f1339fd6ebfa0186711d0385d84c73a951781e54d0ce1e5a46638bdf654e88`; Android 16 `RESULT/APP_GATE/RELEASE_GATE=PASS`. Firebase güvenlik run `32178111912` da SUCCESS. Güncel PR head/check sonucu statik kopyadan değil canlı GitHub metadata'sından doğrulanır.
+- `assets/questions.json`, BoardMap/67 node, 3B tahta, pubspec sürümü, Android/release workflow'ları, aktif soru ve Canlı Düello maç davranışı değiştirilmedi.
+
+---
+
 ## 0I. `1.68.17+107` release merge / PR #60 — 18 Ağustos 2026
 
 Bu bölüm aşağıdaki `0H` ve daha eski canlı release HEAD/sürüm kayıtlarını **güncel durum açısından geçersiz kılar**; eski bölümler tarihsel denetim izi olarak korunur.

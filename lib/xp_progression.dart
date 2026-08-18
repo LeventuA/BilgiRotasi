@@ -1,5 +1,27 @@
 part of 'main.dart';
 
+abstract interface class ProgressPreferencesStore {
+  Future<String?> read(String key);
+  Future<void> write(String key, String value);
+  Future<void> remove(String key);
+}
+
+class _SharedPreferencesProgressStore implements ProgressPreferencesStore {
+  _SharedPreferencesProgressStore() : _preferences = SharedPreferencesAsync();
+
+  final SharedPreferencesAsync _preferences;
+
+  @override
+  Future<String?> read(String key) => _preferences.getString(key);
+
+  @override
+  Future<void> write(String key, String value) =>
+      _preferences.setString(key, value);
+
+  @override
+  Future<void> remove(String key) => _preferences.remove(key);
+}
+
 class XpRank {
   const XpRank(this.level, this.title, this.emoji, this.description);
 
@@ -79,7 +101,14 @@ class XpProgressService {
   XpProgressService._();
 
   static const String _key = 'bilgi_rotasi_xp_progress_v1';
-  static final SharedPreferencesAsync _prefs = SharedPreferencesAsync();
+  static final ProgressPreferencesStore _preferences =
+      _SharedPreferencesProgressStore();
+
+  @visibleForTesting
+  static ProgressPreferencesStore? debugPreferences;
+
+  static ProgressPreferencesStore get _store =>
+      debugPreferences ?? _preferences;
   static final ValueNotifier<int> revision = ValueNotifier<int>(0);
 
   static Future<void> initialize() async {
@@ -128,7 +157,7 @@ class XpProgressService {
 
   static Future<XpProgress> load() async {
     try {
-      final raw = await _prefs.getString(_key);
+      final raw = await _store.read(_key);
       if (raw != null && raw.isNotEmpty) {
         final decoded = jsonDecode(raw);
         if (decoded is Map) {
@@ -160,7 +189,7 @@ class XpProgressService {
 
   static Future<void> _save(XpProgress progress) async {
     try {
-      await _prefs.setString(_key, jsonEncode(progress.toJson()));
+      await _store.write(_key, jsonEncode(progress.toJson()));
       revision.value++;
     } catch (_) {
       // XP kayıt hatası oyunu durdurmamalı.
@@ -293,7 +322,7 @@ class XpProgressService {
 
   static Future<void> clear() async {
     try {
-      await _prefs.remove(_key);
+      await _store.remove(_key);
       revision.value++;
     } catch (_) {
       // Sıfırlama sorunu ekranı kilitlememeli.

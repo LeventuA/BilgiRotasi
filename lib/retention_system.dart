@@ -174,8 +174,14 @@ class RetentionProgressService {
   static const String _key =
       'bilgi_rotasi_retention_progress_v1';
 
-  static final SharedPreferencesAsync _prefs =
-      SharedPreferencesAsync();
+  static final ProgressPreferencesStore _preferences =
+      _SharedPreferencesProgressStore();
+
+  @visibleForTesting
+  static ProgressPreferencesStore? debugPreferences;
+
+  static ProgressPreferencesStore get _store =>
+      debugPreferences ?? _preferences;
 
   static final ValueNotifier<int> revision =
       ValueNotifier<int>(0);
@@ -250,15 +256,27 @@ class RetentionProgressService {
     return null;
   }
 
-  static Future<void> initialize() async {
+  static Future<void> initialize({DateTime? now}) async {
     final state = await load();
-    final key = dateKey(today);
+    final source = now ?? today;
+    final currentDay = DateTime(source.year, source.month, source.day);
+    final key = dateKey(currentDay);
 
-    if (state.lastLoginDate == key) return;
+    final hadLegacyReward = state.lastLoginReward != 0 ||
+        state.lastLoginRewardDate.isNotEmpty;
+    if (hadLegacyReward) {
+      state.lastLoginReward = 0;
+      state.lastLoginRewardDate = '';
+    }
+
+    if (state.lastLoginDate == key) {
+      if (hadLegacyReward) await _save(state);
+      return;
+    }
 
     final last = DateTime.tryParse(state.lastLoginDate);
     final consecutive = last != null &&
-        today
+        currentDay
                 .difference(
                   DateTime(last.year, last.month, last.day),
                 )
@@ -272,27 +290,18 @@ class RetentionProgressService {
       state.loginStreak,
     );
 
-    const rewards = <int>[20, 30, 40, 50, 60, 80, 120];
-    final reward =
-        rewards[(state.loginStreak - 1) % rewards.length];
-
     state.lastLoginDate = key;
-    state.lastLoginRewardDate = key;
-    state.lastLoginReward = reward;
+    state.lastLoginRewardDate = '';
+    state.lastLoginReward = 0;
 
     await _save(state);
-
-    await XpProgressService._award(
-      reward,
-      'Günlük giriş serisi • ${state.loginStreak}. gün',
-    );
   }
 
   static Future<RetentionState> load() async {
     RetentionState state;
 
     try {
-      final raw = await _prefs.getString(_key);
+      final raw = await _store.read(_key);
 
       if (raw != null && raw.trim().isNotEmpty) {
         final decoded = jsonDecode(raw);
@@ -337,7 +346,7 @@ class RetentionProgressService {
     RetentionState state,
   ) async {
     try {
-      await _prefs.setString(
+      await _store.write(
         _key,
         jsonEncode(state.toJson()),
       );
@@ -538,7 +547,7 @@ class RetentionProgressService {
 
   static Future<void> clear() async {
     try {
-      await _prefs.remove(_key);
+      await _store.remove(_key);
       revision.value++;
     } catch (_) {
       // Sıfırlama sorunu ekranı kilitlememeli.
@@ -854,7 +863,7 @@ class RetentionHubScreen extends StatelessWidget {
           ),
           const SizedBox(height: 11),
           Text(
-            'Bugünün ödülü: +${state.lastLoginReward} XP ✅',
+            'Giriş serisi takibi • XP ödülü yok',
             style: const TextStyle(
               color: Color(0xFFFFE082),
               fontWeight: FontWeight.w900,
@@ -862,7 +871,7 @@ class RetentionHubScreen extends StatelessWidget {
           ),
           const SizedBox(height: 13),
           const Text(
-            '7. gün ödülü 120 XP • Seri devam ettikçe döngü yenilenir.',
+            'Serini sürdür; günlük ve haftalık görev ödülleri ayrı olarak devam eder.',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Color(0xFFE7E1F0),

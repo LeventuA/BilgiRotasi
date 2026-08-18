@@ -1,5 +1,29 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0I - 18 Ağustos 2026 Issue #64 production-readiness kapanış adayı
+
+- **Durum:** DRAFT PR #65 / KOD VE YEREL TESTLER PASS / EXACT RELEASE CLOSED TEST #14 SUCCESS / DOCS-HEAD CI SUCCESS / DEPLOY VE MERGE YOK.
+- Başlangıç release: `05b8882dbcc1e9ffbb59350239d366ee66fd3950`, `1.68.17+107`; branch `fix/final-production-readiness-20260818`; kod commit'i `8b8913548c208e94a9deacacacabf7d4d6a26be4`.
+- Günlük login XP sıfırlandı; streak ve eski state migration'ı korunup dört regresyon senaryosuyla kilitlendi.
+- PR #63 rewarded/SSV sözleşmesi ve public-key imza doğrulaması testlerle kilitlendi; oyun-başına idempotency korunur ve günlük/oturumluk kota yoktur.
+- Production deploy planı yalnız üç SSV endpoint'ini explicit proje/bölge ile seçer. Credential değerleri repoya yazılmadı; deploy ve `ssvEnabled` açılışı yapılmadı.
+- Fresh run #13 / `32170570288` OCR hazırlığında 60 dakikayı aşarak artifactsız iptal edildi. Aynı exact release SHA üzerinde yeni run #14 / `32176210749`, job `95838654578`: SUCCESS; artifact ID `9339668986`, digest `sha256:b021e611e071ea3a105607b3ff427ac3a5c67b13603770951572ab12e10b6b32`, AAB SHA-256 `fb8d94867f4890c22ddcc62bdd7f361c8ca9efd9807e5c952bd99fab158944ad`.
+- Run #14 AAB/package/version/targetSdk/upload SHA/readiness PASS. Android 16 `APP_GATE=PASS`, `RELEASE_GATE=PASS`, uygulama paketinde crash/ANR/FATAL/process-death 0. Gate sonrası Ayarlar/öğretici tanısı sistem ANR/global input nedeniyle `INFRASTRUCTURE_INCONCLUSIVE`; fiziksel Play kabulü açık kalır.
+- PR #65 docs-head `5f7b28475aea2fc0789e4954d5907a2f28273e3a`: AdMob run `32178111832` / job `95844597170` ve Firebase güvenlik run `32178111912` SUCCESS. AdMob artifact ID `9340171407`, digest `sha256:2e12636945044911e9b730e54c159e8f470cf62c94b91c3cf92a4f746249c317`, APK SHA-256 `12f1339fd6ebfa0186711d0385d84c73a951781e54d0ce1e5a46638bdf654e88`, Android 16 `RESULT/APP_GATE/RELEASE_GATE=PASS`. Güncel PR head/check sonucu canlı GitHub metadata'sından okunur.
+
+**Bitti ölçütü:**
+
+- [x] Login XP = 0; streak ve eski state uyumluluğu testli.
+- [x] Rewarded/SSV gameId idempotency, kotasız farklı oyunlar, misafir/joker ayrımı ve reklamsız aktif maç ekranları repo testleriyle doğrulandı.
+- [x] Flutter `295/295`, Functions `40/40`, Rules emulator `6/6`, hedefli Flutter `25/25`, non-fatal analyze ve diff check PASS.
+- [x] Güvenli/selective production SSV deploy planı hazır; deploy/config açılışı yapılmadı.
+- [x] Fresh run #14 tam log + artifact + AAB SHA + Android 16 APP/RELEASE gate ile PASS; Ayarlar/öğretici fiziksel kabulü altyapı tanısı nedeniyle açık.
+- [x] Draft PR #65 docs-head AdMob/Firebase CI tam log/artifact/diff/geçmiş incelemesiyle PASS; güncel head kontrolleri canlı GitHub metadata'sından doğrulanır.
+- [ ] Play/Firebase canlı konsol ve fiziksel cihaz maddeleri aşağıdaki açık doğrulama listesiyle kanıtlanır.
+- [ ] Levent ayrı açık merge onayı verir; bu PR kendi kendine merge edilmez.
+
+---
+
 ## 0H - 18 Ağustos 2026 PR #60 / `1.68.17+107` merge ve yayın kapısı
 
 Bu bölüm aşağıdaki `0G` ve daha eski kesimlerdeki canlı release HEAD/sürüm kayıtlarını **güncel durum açısından geçersiz kılar**; eski bölümler tarihsel denetim izi olarak korunur.

@@ -1,6 +1,23 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-**Kesim noktası:** 15 Ağustos 2026
+**Kesim noktası:** 18 Ağustos 2026
+
+## Issue #64 canlı production kabul checklist'i — DOĞRULANACAK
+
+Repo ve CI kanıtı aşağıdaki canlı Console/fiziksel kabul maddelerinin yerine geçmez:
+
+1. Play Console'da en yüksek mevcut versionCode ve `107` değerinin yeniden kullanılabilirliği ekran/export kanıtıyla doğrulanır.
+2. Play App Signing ile Upload sertifikalarının rolleri ve SHA-1 değerleri canlı ekrandan alınır; repo testindeki `26:3C...`, eski kayıttaki `17:E1...` ve upload `00:0E...` değerleri tahminle eşlenmez.
+3. Firebase Android fingerprint listesi ve Google Auth provider durumu Console'dan doğrulanır.
+4. Deployed Functions isim/revision/region envanteri, Firestore Rules/Indexes READY ve App Check/Play Integrity enforcement gerçek servislerden doğrulanır. Yerel Firebase CLI envanter çağrısı yanıt vermedi, gcloud bu makinede kurulu değil; bu nedenle değer uydurulmadı.
+5. Güncel Play fiziksel kurulumunda Google login/session ve Misafir → Google veri izolasyonu doğrulanır.
+6. Rewarded fiziksel kabulte tek tamamlanan oyun = tek +10 XP, aynı `gameId` no-double, yarım/başarısız reklamda hakkın korunması ve farklı oyunlarda toplam kota olmaması doğrulanır.
+7. İki fiziksel cihazla Canlı Düello eşleşme/maç/sonuç akışı doğrulanır.
+8. Yalnız `issueRewardNonce`, `getRewardedGameState`, `rewardedSsvCallback` kontrollü deploy edildikten sonra AdMob callback test aracı, imza/public-key doğrulaması ve transaction idempotency kanıtlanır. Bu kanıtlar ve açık cutover onayı olmadan `server_config/rewarded.ssvEnabled` true yapılmaz.
+
+Issue #64 Draft PR #65 deploy, Play yükleme, Console değişikliği veya merge yapmaz.
+
+---
 
 ## Issue #37 FCM teknik kabulü - KAPALI / ISSUE METADATA KAPANIŞI BEKLİYOR
 
