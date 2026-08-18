@@ -8,8 +8,13 @@
   topic'leri üzerinden gönderilecek.
 - Test/CI uzak FCM'ye bağlanmayacak; development, Play closed-test ve
   production topic'leri birbirinden ayrı olacak.
-- Bildirim izni ilk açılışta istenmeyecek. Kullanıcı Ayarlar'daki anahtarı
-  açıkça açmadan FCM auto-init, token ve topic aboneliği etkinleşmeyecek.
+- Bildirim izni uygulama açılır açılmaz istenmeyecek. Kullanıcı Google hesabı
+  veya Misafir seçip ana ekrana ulaştıktan sonra bir kez gösterilen kısa
+  açıklama çağrısında `Bildirimleri Aç` seçerse Android sistem izni istenecek;
+  `Şimdi Değil` sistem izin penceresini açmayacak. Aynı tercih Ayarlar'daki
+  bildirim anahtarından daha sonra da değiştirilebilecek.
+- Kullanıcı ilk-kullanım çağrısında veya Ayarlar'daki anahtarda açıkça opt-in
+  vermeden FCM auto-init, token ve topic aboneliği etkinleşmeyecek.
 - Kullanıcı reddeder veya kapatırsa oyun eksiksiz çalışacak; abonelik ve kurulum
   tokenı temizlenmeye çalışılacak, SDK hatası oyun akışını kesmeyecek.
 - İlk sürümde bildirim payload'ından route/deep-link üretilmeyecek; dokunma
@@ -171,6 +176,9 @@
 - Telemetri tam anonim olarak tanımlanmayacak; kullanıcı izin verdiğinde
   Firebase SDK'nın uygulama kurulumuna ait pseudonymous app-instance ID ürettiği
   açıkça belirtilecek.
+- İlk açılışta Analytics izin popup'ı otomatik gösterilmeyecek. Analytics
+  varsayılan kapalı kalacak ve yalnız Ayarlar > Kullanım Analizi üzerinden açık
+  kullanıcı opt-in'i ile etkinleştirilecek; mevcut kayıtlı tercih korunacak.
 - İzin verilen oyun boyutları oyun modu, kategori, gerekiyorsa zorluk grubu,
   süre, sonuç ve uygulama sürümüyle sınırlıdır.
 - Ad, e-posta, Firebase/Google kullanıcı kimliği, açık kullanıcı adı, reklam

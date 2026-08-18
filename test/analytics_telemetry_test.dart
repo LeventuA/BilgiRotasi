@@ -41,6 +41,7 @@ void main() {
 
   tearDown(() {
     AnalyticsTelemetry.useTestSink(null);
+    FirstRunNotificationOptInService.resetForTesting();
   });
 
   test('minimum pseudonymous telemetry event contract is emitted', () async {
@@ -150,7 +151,7 @@ void main() {
     expect(AnalyticsTelemetry.consentGranted, isFalse);
   });
 
-  testWidgets('unknown consent prompt is shown only once per app version', (
+  testWidgets('first launch no longer shows an Analytics consent popup', (
     tester,
   ) async {
     await AnalyticsConsentService.initialize();
@@ -161,13 +162,10 @@ void main() {
       ),
     );
 
-    final prompt = AnalyticsConsentService.showInitialPromptIfNeeded();
+    await AnalyticsConsentService.showInitialPromptIfNeeded();
     await tester.pumpAndSettle();
-    expect(find.text('Kullanım Analizine izin verilsin mi?'), findsOne);
 
-    await tester.tap(find.text('Şimdi Değil'));
-    await tester.pumpAndSettle();
-    await prompt;
+    expect(find.text('Kullanım Analizine izin verilsin mi?'), findsNothing);
     expect(
       AnalyticsConsentService.choice.value,
       AnalyticsConsentChoice.unknown,
@@ -175,13 +173,61 @@ void main() {
 
     final preferences = await SharedPreferences.getInstance();
     expect(
-      preferences.getString(AnalyticsConsentService.promptVersionKey),
-      AppBuildInfo.version,
+      preferences.getBool(AnalyticsConsentService.preferenceKey),
+      isNull,
     );
+    expect(
+      preferences.getString(AnalyticsConsentService.promptVersionKey),
+      isNull,
+    );
+  });
 
-    await AnalyticsConsentService.showInitialPromptIfNeeded();
-    await tester.pumpAndSettle();
-    expect(find.text('Kullanım Analizine izin verilsin mi?'), findsNothing);
+  test('first-run notification offer waits for account and is one-shot', () {
+    expect(
+      FirstRunNotificationOptInPolicy.shouldOffer(
+        accountMode: AccountMode.undecided,
+        remoteMessagingEnabled: true,
+        alreadyShown: false,
+        pushAlreadyEnabled: false,
+      ),
+      isFalse,
+    );
+    expect(
+      FirstRunNotificationOptInPolicy.shouldOffer(
+        accountMode: AccountMode.guest,
+        remoteMessagingEnabled: false,
+        alreadyShown: false,
+        pushAlreadyEnabled: false,
+      ),
+      isFalse,
+    );
+    expect(
+      FirstRunNotificationOptInPolicy.shouldOffer(
+        accountMode: AccountMode.guest,
+        remoteMessagingEnabled: true,
+        alreadyShown: false,
+        pushAlreadyEnabled: false,
+      ),
+      Platform.isAndroid,
+    );
+    expect(
+      FirstRunNotificationOptInPolicy.shouldOffer(
+        accountMode: AccountMode.google,
+        remoteMessagingEnabled: true,
+        alreadyShown: true,
+        pushAlreadyEnabled: false,
+      ),
+      isFalse,
+    );
+    expect(
+      FirstRunNotificationOptInPolicy.shouldOffer(
+        accountMode: AccountMode.google,
+        remoteMessagingEnabled: true,
+        alreadyShown: false,
+        pushAlreadyEnabled: true,
+      ),
+      isFalse,
+    );
   });
 
   test('gameplay completes when Analytics consent is not granted', () async {
