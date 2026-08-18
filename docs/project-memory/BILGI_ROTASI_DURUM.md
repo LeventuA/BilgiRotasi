@@ -177,7 +177,7 @@ Bu bölüm aşağıdaki tarihsel release/main kayıtlarının bu iş için günc
 - Merge sonrası canlı release HEAD `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`; `pubspec.yaml` sürümü değişmedi: `1.68.14+104`.
 - Merge sonrası AdMob PR doğrulaması #151 / run `31710501542`, job `94481907601` **SUCCESS** ve Quality Checks #304 / run `31710501544` **SUCCESS** oldu.
 - #151 artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9185415759`, digest `sha256:1b831a41d072ee515f808bb6d967bd54ce3740308fed555e8a0086bc0b024344`; APK SHA-256 `bd83e43b0a6af054b15b65d93e57c5c260da1cdf4e57d765582f2e30f830fd7d`.
-- Artifact APK metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifikası SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- Artifact APK metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifika SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
 - Android 16 artifact kapıları `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = **PASS**; uygulama PID `2005` ve `MainActivity` RESUMED/visible olarak kaydedildi.
 - Android 16 log taramasında Bilgi Rotası paketine ait `FATAL EXCEPTION`, AndroidRuntime FATAL, eksik AdMob application ID veya app-specific process-death kanıtı bulunmadı. Logdaki genel binder `process died` satırları Bilgi Rotası paketine ait değildir.
 - AOSP ATD emulatorunda Google Play Store bulunmadığına dair Bilgi Rotası Google Play Services uyarısı vardır; bu cold-start kapısını bozmaz ve fiziksel Play kabulünün yerine geçmez.
@@ -208,7 +208,7 @@ Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **gü
 
 ## 0A. PR #29/#30 ve güncel release-readiness kesimi — 13 Ağustos 2026
 
-Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar silinmemiştir.
+Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar denetim izi olarak korunur.
 
 - Güncel yayın dalı: `release/final-closed-test-aab-1.68.8`.
 - PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
