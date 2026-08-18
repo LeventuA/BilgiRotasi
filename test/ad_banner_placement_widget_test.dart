@@ -34,6 +34,17 @@ void main() {
 
   group('ortak güvenli banner scaffold widget matrisi', () {
     for (final entry in allowedScreens.entries) {
+      if (AdVisibilityPolicy.showsAutoSupportReward(entry.value)) {
+        test('${entry.key} banner ve destek ödülü politikasını kullanır', () {
+          expect(AdVisibilityPolicy.showsBanner(entry.value), isTrue);
+          expect(
+            AdVisibilityPolicy.showsAutoSupportReward(entry.value),
+            isTrue,
+          );
+        });
+        continue;
+      }
+
       testWidgets('${entry.key} banner alt çubuğunu kullanır', (tester) async {
         await tester.pumpWidget(
           MaterialApp(

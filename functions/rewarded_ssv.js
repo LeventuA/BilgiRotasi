@@ -83,6 +83,29 @@ exports.issueRewardNonce = onCall(
   },
 );
 
+exports.getRewardedGameState = onCall(
+  { region: REGION, enforceAppCheck: false },
+  async (request) => {
+    const uid = request.auth?.uid;
+    if (!uid) throw new HttpsError('unauthenticated', 'Oturum gerekli.');
+
+    let gameId;
+    try {
+      gameId = normalizeGameId(request.data?.gameId);
+    } catch (_) {
+      throw new HttpsError('invalid-argument', 'Geçerli oyun kimliği gerekli.');
+    }
+
+    const claimId = rewardClaimId(uid, gameId);
+    const claim = await db.collection('rewarded_game_claims').doc(claimId).get();
+    return {
+      gameId,
+      claimed: claim.exists,
+      rewardXp: claim.exists ? Number(claim.data()?.rewardXp ?? 0) : 0,
+    };
+  },
+);
+
 exports.rewardedSsvCallback = onRequest(
   { region: REGION, cors: false },
   async (request, response) => {

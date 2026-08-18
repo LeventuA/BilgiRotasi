@@ -50,6 +50,40 @@ class AdVisibilityPolicy {
       AdPlacement.liveDuelMatch => false,
     };
   }
+
+  static bool showsAutoSupportReward(AdPlacement placement) {
+    return switch (placement) {
+      AdPlacement.marathonResult ||
+      AdPlacement.challengeResult ||
+      AdPlacement.dailyResult ||
+      AdPlacement.otherModeResult => true,
+      _ => false,
+    };
+  }
+}
+
+String autoSupportRewardGameId(
+  AdPlacement placement, {
+  DateTime? now,
+}) {
+  if (!AdVisibilityPolicy.showsAutoSupportReward(placement)) return '';
+  final instant = now ?? DateTime.now();
+  if (placement == AdPlacement.dailyResult) {
+    return 'daily:${DailyChallengeService.dateKey(instant)}';
+  }
+  return '${placement.name}:${instant.toUtc().microsecondsSinceEpoch}';
+}
+
+bool rewardedSsvRequired({
+  required bool isProductionAds,
+  required bool firebaseProductionEnabled,
+  required bool hasAuthenticatedUser,
+  required bool hasGameId,
+}) {
+  return isProductionAds &&
+      firebaseProductionEnabled &&
+      hasAuthenticatedUser &&
+      hasGameId;
 }
 
 class AdMobConfig {
@@ -128,6 +162,35 @@ class RewardedSsvClient {
     } catch (_) {
       return null;
     }
+  }
+
+  static Future<bool> confirmForGame(
+    String gameId, {
+    int attempts = 6,
+    Duration delay = const Duration(seconds: 2),
+  }) async {
+    if (!AdMobConfig.isProduction || !FirebaseRuntimePolicy.productionEnabled) {
+      return false;
+    }
+
+    final normalizedGameId = gameId.trim();
+    final uid = FirebaseAuth.instance.currentUser?.uid.trim() ?? '';
+    if (normalizedGameId.isEmpty || uid.isEmpty || attempts < 1) return false;
+
+    for (var attempt = 0; attempt < attempts; attempt++) {
+      try {
+        final response = await SecureCallableService.call(
+          'getRewardedGameState',
+          <String, dynamic>{'gameId': normalizedGameId},
+        );
+        final rewardXp = (response['rewardXp'] as num?)?.toInt() ?? 0;
+        if (response['claimed'] == true && rewardXp == 10) return true;
+      } catch (_) {
+        // SSV callback kısa süre gecikebilir; sınırlı sayıda tekrar denenir.
+      }
+      if (attempt + 1 < attempts) await Future<void>.delayed(delay);
+    }
+    return false;
   }
 }
 
@@ -267,10 +330,6 @@ class AdPrivacyService {
 
   Future<bool> _initialize() async {
     try {
-      // Android x86_64 API 36 system images can crash inside their bundled
-      // WebView while UMP or Mobile Ads is starting. CI/emulator validation
-      // therefore stays ad-free; physical closed-test builds still use the
-      // normal UMP flow and Google's official demo ad units.
       if (await emulatorGateway.isEmulator()) return false;
 
       await consentGateway.requestConsentInfoUpdate();
@@ -381,8 +440,17 @@ class AdMonetizationService {
     final ad = _rewardedAd;
     if (ad == null) return false;
 
-    if (AdMobConfig.isProduction) {
-      final ssvSession = await RewardedSsvClient.issueForGame(gameId ?? '');
+    final normalizedGameId = gameId?.trim() ?? '';
+    final authenticatedUid = FirebaseAuth.instance.currentUser?.uid.trim() ?? '';
+    final requiresSsv = rewardedSsvRequired(
+      isProductionAds: AdMobConfig.isProduction,
+      firebaseProductionEnabled: FirebaseRuntimePolicy.productionEnabled,
+      hasAuthenticatedUser: authenticatedUid.isNotEmpty,
+      hasGameId: normalizedGameId.isNotEmpty,
+    );
+
+    if (requiresSsv) {
+      final ssvSession = await RewardedSsvClient.issueForGame(normalizedGameId);
       if (ssvSession == null) return false;
       try {
         final options = ServerSideVerificationOptions(
@@ -404,10 +472,14 @@ class AdMonetizationService {
     ad.fullScreenContentCallback = FullScreenContentCallback<RewardedAd>(
       onAdDismissedFullScreenContent: (shownAd) {
         shownAd.dispose();
-        if (!completer.isCompleted) {
-          completer.complete(rewardCallbackReceived);
-        }
-        unawaited(_loadRewarded());
+        unawaited(() async {
+          var earned = rewardCallbackReceived;
+          if (earned && requiresSsv) {
+            earned = await RewardedSsvClient.confirmForGame(normalizedGameId);
+          }
+          if (!completer.isCompleted) completer.complete(earned);
+          unawaited(_loadRewarded());
+        }());
       },
       onAdFailedToShowFullScreenContent: (shownAd, _) {
         shownAd.dispose();
@@ -670,10 +742,13 @@ class AdBannerSlot extends StatefulWidget {
 
 class _AdBannerSlotState extends State<AdBannerSlot> {
   BannerAd? _ad;
+  String? _supportGameId;
 
   @override
   void initState() {
     super.initState();
+    final supportGameId = autoSupportRewardGameId(widget.placement);
+    _supportGameId = supportGameId.isEmpty ? null : supportGameId;
     if (AdVisibilityPolicy.showsBanner(widget.placement)) {
       unawaited(_load());
     }
@@ -699,23 +774,37 @@ class _AdBannerSlotState extends State<AdBannerSlot> {
   @override
   Widget build(BuildContext context) {
     final ad = _ad;
-    if (ad == null || !AdVisibilityPolicy.showsBanner(widget.placement)) {
+    final showBanner =
+        ad != null && AdVisibilityPolicy.showsBanner(widget.placement);
+    final supportGameId = _supportGameId;
+    if (!showBanner && supportGameId == null) {
       return const SizedBox.shrink();
     }
-    return ColoredBox(
-      color: Colors.white,
-      child: SafeArea(
-        top: false,
-        child: SizedBox(
-          height: ad.size.height.toDouble(),
-          child: Center(
-            child: SizedBox(
-              width: ad.size.width.toDouble(),
-              height: ad.size.height.toDouble(),
-              child: AdWidget(ad: ad),
+    return SafeArea(
+      top: false,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (supportGameId != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+              child: SupportRewardCard(gameId: supportGameId),
             ),
-          ),
-        ),
+          if (showBanner)
+            ColoredBox(
+              color: Colors.white,
+              child: SizedBox(
+                height: ad!.size.height.toDouble(),
+                child: Center(
+                  child: SizedBox(
+                    width: ad.size.width.toDouble(),
+                    height: ad.size.height.toDouble(),
+                    child: AdWidget(ad: ad),
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -805,8 +894,8 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
       ..showSnackBar(
         const SnackBar(
           content: Text(
-            'Reklam tamamlanmadı veya bu oyun için ödül zaten alındı; '
-            'XP verilmedi.',
+            'Reklam tamamlanmadı veya sunucu doğrulaması tamamlanamadı; '
+            'XP verilmedi ve bu oyun için hak korunuyor.',
           ),
         ),
       );
@@ -840,7 +929,7 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
             _available
                 ? 'İsteğe bağlı reklamı tamamlayarak +10 XP kazan.'
                 : !_rewardProfileEnabled
-                ? 'Sunucu doğrulaması tamamlanana kadar +10 XP ödülü kapalı.'
+                ? 'Reklam profili hazır olmadığından +10 XP ödülü kapalı.'
                 : 'Bu oyun için +10 XP ödülü zaten alındı.',
             textAlign: TextAlign.center,
             style: TextStyle(color: secondary),

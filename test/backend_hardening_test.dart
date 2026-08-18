@@ -148,10 +148,9 @@ void main() {
       expect(source, isNot(contains('daily-limit')));
       expect(source, isNot(contains('count >= 3')));
       expect(client, contains('FirebaseRuntimePolicy.productionEnabled'));
-      expect(
-        client,
-        contains('Sunucu doğrulaması tamamlanana kadar +10 XP ödülü kapalı.'),
-      );
+      expect(client, contains('rewardedSsvRequired('));
+      expect(client, contains("'getRewardedGameState'"));
+      expect(client, contains('RewardedSsvClient.confirmForGame'));
     });
 
     test('saklama süreleri kod ve dokümanda bulunur', () {
