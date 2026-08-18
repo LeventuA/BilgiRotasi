@@ -18,6 +18,8 @@ void main() {
 
     final diagnostic = source.substring(diagnosticStart, diagnosticEnd);
     const homeCapture = r'retry_capture_screen HOME_SETTINGS';
+    const settingsNeedle =
+        r'''settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"''';
     final firstCapture = diagnostic.indexOf(homeCapture);
     final notificationDetection = diagnostic.indexOf(
       r"find_word HOME_SETTINGS 'Bildirimleri'",
@@ -32,9 +34,7 @@ void main() {
       homeCapture,
       firstCapture + homeCapture.length,
     );
-    final settingsSearch = diagnostic.indexOf(
-      r'''settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"'''.replaceAll(r'\"', '"'),
-    );
+    final settingsSearch = diagnostic.indexOf(settingsNeedle);
 
     expect(firstCapture, greaterThanOrEqualTo(0));
     expect(notificationDetection, greaterThan(firstCapture));
