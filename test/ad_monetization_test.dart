@@ -71,6 +71,44 @@ void main() {
         isNot(contains('AdBannerSlot')),
       );
     });
+
+    test('sonuç yerleşimleri destek kartını otomatik açar', () {
+      const automatic = <AdPlacement>{
+        AdPlacement.marathonResult,
+        AdPlacement.challengeResult,
+        AdPlacement.dailyResult,
+        AdPlacement.otherModeResult,
+      };
+      for (final placement in AdPlacement.values) {
+        expect(
+          AdVisibilityPolicy.showsAutoSupportReward(placement),
+          automatic.contains(placement),
+          reason: placement.name,
+        );
+      }
+
+      final source = File('lib/ad_monetization.dart').readAsStringSync();
+      expect(source, contains('SupportRewardCard(gameId: supportGameId)'));
+      expect(source, contains('if (!showBanner && supportGameId == null)'));
+    });
+
+    test('otomatik sonuç gameId günlük görevde kararlı, diğerlerinde tekildir', () {
+      final first = DateTime.utc(2026, 8, 18, 12);
+      final second = DateTime.utc(2026, 8, 18, 12, 0, 0, 1);
+
+      expect(
+        autoSupportRewardGameId(AdPlacement.dailyResult, now: first),
+        autoSupportRewardGameId(AdPlacement.dailyResult, now: second),
+      );
+      expect(
+        autoSupportRewardGameId(AdPlacement.otherModeResult, now: first),
+        isNot(autoSupportRewardGameId(AdPlacement.otherModeResult, now: second)),
+      );
+      expect(
+        autoSupportRewardGameId(AdPlacement.boardResult, now: first),
+        isEmpty,
+      );
+    });
   });
 
   group('ödül güvenliği', () {
@@ -145,6 +183,47 @@ void main() {
       );
     });
 
+    test('production SSV yalnız hesaplı sonuç XP ödülünde zorunludur', () {
+      expect(
+        rewardedSsvRequired(
+          isProductionAds: true,
+          firebaseProductionEnabled: true,
+          hasAuthenticatedUser: true,
+          hasGameId: true,
+        ),
+        isTrue,
+      );
+      expect(
+        rewardedSsvRequired(
+          isProductionAds: true,
+          firebaseProductionEnabled: true,
+          hasAuthenticatedUser: true,
+          hasGameId: false,
+        ),
+        isFalse,
+        reason: 'Rastgele joker gibi yerel ödül SSV gerektirmez.',
+      );
+      expect(
+        rewardedSsvRequired(
+          isProductionAds: true,
+          firebaseProductionEnabled: true,
+          hasAuthenticatedUser: false,
+          hasGameId: true,
+        ),
+        isFalse,
+        reason: 'Misafir XP yereldir ve Firebase UID yoktur.',
+      );
+      expect(
+        rewardedSsvRequired(
+          isProductionAds: false,
+          firebaseProductionEnabled: true,
+          hasAuthenticatedUser: true,
+          hasGameId: true,
+        ),
+        isFalse,
+      );
+    });
+
     test('SSV callable yanıtı uid ve customData olmadan kabul edilmez', () {
       final valid = RewardedSsvSession.fromCallableResponse(
         uid: ' user-1 ',
@@ -177,17 +256,33 @@ void main() {
       );
     });
 
-    test('production rewarded akışı nonce, gameId ve Google SSV seçeneklerini bağlar', () {
+    test('production rewarded akışı nonce ve server claim doğrulamasını bağlar', () {
       final source = File('lib/ad_monetization.dart').readAsStringSync();
 
       expect(source, contains("'issueRewardNonce'"));
+      expect(source, contains("'getRewardedGameState'"));
       expect(source, contains("'gameId': normalizedGameId"));
       expect(source, contains('ServerSideVerificationOptions('));
       expect(source, contains('userId: ssvSession.uid'));
       expect(source, contains('customData: ssvSession.customData'));
       expect(source, contains('ad.setServerSideOptions(options)'));
+      expect(source, contains('RewardedSsvClient.confirmForGame(normalizedGameId)'));
       expect(source, contains('showRewarded({String? gameId})'));
       expect(source, contains('gameId: widget.gameId'));
+    });
+
+    test('tahta joker reklamı gameId olmadan yerel ödül olarak kalır', () {
+      final source = File('lib/main.dart').readAsStringSync();
+      expect(source, contains('AdMonetizationService.instance.showRewarded()'));
+      expect(
+        rewardedSsvRequired(
+          isProductionAds: true,
+          firebaseProductionEnabled: true,
+          hasAuthenticatedUser: true,
+          hasGameId: false,
+        ),
+        isFalse,
+      );
     });
 
     test('ödül verilmezse kalan hak aynı ekranda yeniden denenebilir', () {
