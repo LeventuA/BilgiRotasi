@@ -33,7 +33,7 @@ void main() {
       firstCapture + homeCapture.length,
     );
     final settingsSearch = diagnostic.indexOf(
-      r'''settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"''',
+      r'''settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"'''.replaceAll(r'\"', '"'),
     );
 
     expect(firstCapture, greaterThanOrEqualTo(0));
