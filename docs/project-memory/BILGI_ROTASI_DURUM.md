@@ -1,7 +1,24 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 16 Ağustos 2026
+**Kesim noktası:** 18 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
+
+## 0I. `1.68.17+107` release merge / PR #60 — 18 Ağustos 2026
+
+Bu bölüm aşağıdaki `0H` ve daha eski canlı release HEAD/sürüm kayıtlarını **güncel durum açısından geçersiz kılar**; eski bölümler tarihsel denetim izi olarak korunur.
+
+- Kanonik yayın dalı `release/final-closed-test-aab-1.68.8`.
+- PR #60 (`chore: prepare closed-test 1.68.17+107`) final head `8254a0b55664f5d50983ab8b3c534580d9f92672`; final head son commit'i `fix: sync app build info to 1.68.17+107`.
+- PR #60 final diff yalnız iki sürüm metadata dosyasıdır: `pubspec.yaml` ve `lib/app_build_info.dart`; `1.68.16+106` → `1.68.17+107`. Ürün davranışı, `assets/questions.json`, Canlı Düello, Firebase/AdMob backend, signing, BoardMap/67 node ve 3B tahta değişmedi.
+- Exact-head `AdMob PR doğrulaması` #248 / run `32105875494`: **SUCCESS**. Analyze + tüm testler, kalıcı imzalı release APK, package/manifest doğrulaması ve Android 16 / API 36 cold-start uygulama kapısı PASS.
+- Levent 18 Ağustos 2026'da açıkça `Merge et` onayı verdi. PR #60 exact-head kilidiyle squash merge edildi.
+- Merge commit ve güncel canlı release HEAD: `03df0a925cc3a0515f86d11e817da619172703fe` — `chore: prepare closed-test 1.68.17+107 (#60)`.
+- Merge sonrası canlı release `pubspec.yaml` yeniden okundu ve gerçek sürüm **`1.68.17+107`** olarak doğrulandı.
+- **DOĞRULANACAK:** `03df0a9...` canlı release HEAD üzerinde fresh `Closed test release doğrulaması` çalıştırılmalı; workflow/job/log, AAB artifact, release-readiness, Android 16 gate ve AAB hash/metadata birlikte incelenmeden +107 AAB final Play adayı sayılmamalı.
+- Google Play üretim erişimi/onayı teknik kalite kapılarını kaldırmaz. Production AdMob/Firebase profilli AAB üretimi ve Play production yüklemesi ayrı kontrollü görevdir; bu merge işlemi production deploy/yükleme yapmadı.
+- Proje hafızası güncellemesi `docs/record-pr60-merge-20260818` branch'inde hazırlanır; `KARARLAR.md` değişmez çünkü yeni ürün/teknik karar alınmadı.
+
+---
 
 ## 0H. Android 16 tutorial replay gate / PR #44 — 16 Ağustos 2026
 
@@ -160,7 +177,7 @@ Bu bölüm aşağıdaki tarihsel release/main kayıtlarının bu iş için günc
 - Merge sonrası canlı release HEAD `1ca0ff063586b15ef37222f8523f1aeefa1d52b7`; `pubspec.yaml` sürümü değişmedi: `1.68.14+104`.
 - Merge sonrası AdMob PR doğrulaması #151 / run `31710501542`, job `94481907601` **SUCCESS** ve Quality Checks #304 / run `31710501544` **SUCCESS** oldu.
 - #151 artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9185415759`, digest `sha256:1b831a41d072ee515f808bb6d967bd54ce3740308fed555e8a0086bc0b024344`; APK SHA-256 `bd83e43b0a6af054b15b65d93e57c5c260da1cdf4e57d765582f2e30f830fd7d`.
-- Artifact APK metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifika SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- Artifact APK metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifikası SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
 - Android 16 artifact kapıları `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = **PASS**; uygulama PID `2005` ve `MainActivity` RESUMED/visible olarak kaydedildi.
 - Android 16 log taramasında Bilgi Rotası paketine ait `FATAL EXCEPTION`, AndroidRuntime FATAL, eksik AdMob application ID veya app-specific process-death kanıtı bulunmadı. Logdaki genel binder `process died` satırları Bilgi Rotası paketine ait değildir.
 - AOSP ATD emulatorunda Google Play Store bulunmadığına dair Bilgi Rotası Google Play Services uyarısı vardır; bu cold-start kapısını bozmaz ve fiziksel Play kabulünün yerine geçmez.
@@ -191,7 +208,7 @@ Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **gü
 
 ## 0A. PR #29/#30 ve güncel release-readiness kesimi — 13 Ağustos 2026
 
-Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar denetim izi olarak korunur.
+Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar silinmemiştir.
 
 - Güncel yayın dalı: `release/final-closed-test-aab-1.68.8`.
 - PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
@@ -555,17 +572,16 @@ Eski `.github/workflows/apply-game-save-isolation-v4.yml` push workflow'u bu bra
 
 ## 15. Şu anda ilk yapılacak işler
 
-1. GitHub Actions → `Closed test release doğrulaması` workflow'unu `release/final-closed-test-aab-1.68.8` üzerinde `confirmation=CLOSED_TEST` ile manuel başlat; eski #326'yı rerun etme.
-2. Yeni fresh RC2'nin tam workflow/job/log/artifact kanıtını incele; Guest → Home → Oyna, app/release gate ve crash/ANR kontrollerinin tamamı PASS olmalı.
-3. Play Console'dan uygulama imzalama ve upload SHA-1 ekran kanıtını al; `26:3C...` / `17:E1...` çelişkisini çöz.
-4. Firebase Console'da Google Auth, Android SHA'lar, Functions, Rules, Indexes ve App Check envanterini canlı doğrula; kör deploy yapma.
-5. Play Console'da güncel kapalı test AAB sürümünü, testçi sayısını ve kesintisiz gün sayacını tarihli kanıtla yeniden oku.
-6. Fresh RC2 ve servis kontrolleri temizse güncel AAB'nin Kapalı Test yükleme durumunu netleştir.
-7. Güncel Play kurulumu üzerinden Google giriş, oturum korunması, Misafir → Google geçişi, hesap izolasyonu, Ayarlar/öğretici ve Google demo ödüllü reklam kabulünü fiziksel cihazda doğrula.
+1. Merge commit `03df0a925cc3a0515f86d11e817da619172703fe` üzerinde fresh `Closed test release doğrulaması` çalıştır; eski run'ı rerun etme.
+2. Yeni run'ın tam workflow/job/log/artifact kanıtını incele; `1.68.17+107`, Guest → Home → Oyna, app/release gate, release-readiness ve crash/ANR kontrollerinin tamamı PASS olmalı.
+3. Fresh +107 release artifact temizse production AdMob/Firebase profilli AAB hazırlığını ayrı branch/workflow ile yap; closed-test test reklam profilli artifact'i production'a yükleme.
+4. Play Console'dan uygulama imzalama ve upload SHA-1 ekran kanıtını al; `26:3C...` / `17:E1...` çelişkisini çöz.
+5. Firebase Console'da Google Auth, Android SHA'lar, Functions, Rules, Indexes ve App Check envanterini canlı doğrula; kör deploy yapma.
+6. Play Console'da güncel test/yayın kanal sürümünü ve production erişim durumunu tarihli kanıtla yeniden oku.
+7. Güncel Play kurulumu üzerinden Google giriş, oturum korunması, Misafir → Google geçişi, hesap izolasyonu, Ayarlar/öğretici ve ödüllü reklam kabulünü fiziksel cihazda doğrula.
 8. İki ayrı cihaz/hesapla Canlı Düello eşleşme → maç → sonuç → leaderboard zincirini doğrula.
 9. Günlük giriş XP karar çelişkisini ayrı branch/görev olarak çöz.
 10. Production SSV günlük 3/+30 XP sözleşmesini ürün kararıyla uyumlu hale getirmeden deploy etme.
-11. `RELEASE_READINESS.md` bayat şablonunu ayrı teknik görev olarak düzelt.
-12. Eski `apply-game-save-isolation-v4.yml` config-level workflow borcunu ayrı görevde incele; bu düzeltmeyle karıştırma.
-13. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür.
-14. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
+11. Eski `apply-game-save-isolation-v4.yml` config-level workflow borcunu ayrı görevde incele; yayın işiyle karıştırma.
+12. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür.
+13. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
