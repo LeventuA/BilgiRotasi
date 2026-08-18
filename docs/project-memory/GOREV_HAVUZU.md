@@ -1,5 +1,34 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0H - 18 Ağustos 2026 PR #60 / `1.68.17+107` merge ve yayın kapısı
+
+Bu bölüm aşağıdaki `0G` ve daha eski kesimlerdeki canlı release HEAD/sürüm kayıtlarını **güncel durum açısından geçersiz kılar**; eski bölümler tarihsel denetim izi olarak korunur.
+
+- **Yayın +107 durumu:** PR #60 LEVENT'İN AÇIK ONAYIYLA SQUASH MERGE EDİLDİ / CANLI RELEASE `1.68.17+107` / POST-MERGE FRESH CLOSED TEST RELEASE DOĞRULAMASI BEKLİYOR / PRODUCTION AAB HENÜZ YAYIN ADAYI SAYILMIYOR.
+- Canlı yayın dalı: `release/final-closed-test-aab-1.68.8`.
+- PR #60 final head: `8254a0b55664f5d50983ab8b3c534580d9f92672`; son commit `fix: sync app build info to 1.68.17+107`.
+- PR #60 exact-head AdMob PR doğrulaması #248 / run `32105875494`: **SUCCESS**. Analyze + tüm testler, kalıcı imzalı release APK, package/manifest doğrulaması ve Android 16 / API 36 cold-start uygulama kapısı PASS.
+- Final diff yalnız `pubspec.yaml` ve `lib/app_build_info.dart` sürüm senkronizasyonudur: `1.68.16+106` → `1.68.17+107`. Ürün davranışı, `assets/questions.json`, Canlı Düello, Firebase/AdMob backend, signing, BoardMap/67 node ve 3B tahta değişmedi.
+- Levent 18 Ağustos 2026'da açıkça `Merge et` onayı verdi; PR #60 squash merge edildi.
+- Merge commit / güncel release HEAD: `03df0a925cc3a0515f86d11e817da619172703fe` — `chore: prepare closed-test 1.68.17+107 (#60)`.
+- Merge sonrası canlı `pubspec.yaml` sürümü GitHub'dan yeniden okundu: **`1.68.17+107`**.
+- **DOĞRULANACAK:** merge commit `03df0a9...` üzerinde fresh `Closed test release doğrulaması` çalıştırılıp tam log, workflow, artifact ve AAB metadata/hash birlikte incelenecek. Bu kanıt alınmadan +107 AAB final Play adayı veya production artifact'i sayılmayacak.
+- Production yayına erişim onayının gelmiş olması teknik kapıları atlama yetkisi değildir; production AdMob/Firebase profilli AAB üretimi ve Play yüklemesi ayrı kontrollü görevdir.
+- `KARARLAR.md` değişmedi; yeni ürün/teknik karar alınmadı.
+
+**Bitti ölçütü:**
+
+- [x] PR #60 final diff yalnız iki sürüm metadata dosyası olarak doğrulandı.
+- [x] Exact-head CI #248 tam PASS.
+- [x] Levent açık merge onayı verdi.
+- [x] PR #60 exact head kilidiyle squash merge edildi.
+- [x] Canlı release `pubspec.yaml` = `1.68.17+107` olarak yeniden doğrulandı.
+- [ ] Merge sonrası fresh `Closed test release doğrulaması` doğru release HEAD üzerinde SUCCESS.
+- [ ] Fresh artifact içindeki AAB, release-readiness, Android 16 gate ve hash/metadata birlikte PASS.
+- [ ] Yalnız bu kanıttan sonra production AAB hazırlığı/yükleme adımı ayrıca yürütülür.
+
+---
+
 ## 0G - 16 Ağustos 2026 PR #44 final doğrulama durumu
 
 Bu bölüm aşağıdaki `0F` Android 16 tutorial replay kaydının **güncel durumunu geçersiz kılar**; `0F` ve daha eski bölümler tarihsel denetim izi olarak korunur.
@@ -193,7 +222,7 @@ Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarını **gün
 
 ## 0A - 13 Ağustos 2026 PR #29/#30 release-readiness kapanış kesimi
 
-Bu bölüm aşağıdaki tarihsel BR-P1-008 ve release HEAD kayıtlarının **güncel durumunu geçersiz kılar**; eski kayıtlar denetim izi olarak korunur.
+Bu bölüm aşağıdaki tarihsel BR-P1-008 ve release HEAD kayıtlarının güncel durumunu geçersiz kılar; eski kayıtlar denetim izi olarak korunur.
 
 - Güncel release branch: `release/final-closed-test-aab-1.68.8`.
 - PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
@@ -343,7 +372,7 @@ Closed-test kabul bulgusu ve düzeltme:
 
 **Durum:** TAMAMLANDI / PR #21 RELEASE'E MERGE EDİLDİ
 
-- RC2 #323 run `31568589298`, job `94025527635`, artifact `9130712889`.
+- RC2 #323 run `31568589298`, artifact `9130712889`.
 - Kök neden: Analytics consent penceresi açık kalırken eski validator yanlış erken `ANALYTICS_CONSENT_HANDLED=PASS` yazabiliyordu.
 - `Değil` OCR eşleşmesi önceliklendirildi; tek ADB tap başarı sayılmaz.
 - PASS yalnız auth ekranında `Google|Misafir` gerçekten görüldükten sonra yazılır.
