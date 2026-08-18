@@ -46,6 +46,25 @@ test('reward claim id is stable per user and game without a daily quota', () => 
   assert.equal(manyGames.size, 250);
 });
 
+test('rewarded game state lookup is authenticated, caller-scoped and read-only', () => {
+  const source = fs.readFileSync(
+    path.resolve(__dirname, '..', 'rewarded_ssv.js'),
+    'utf8',
+  );
+  const start = source.indexOf('exports.getRewardedGameState = onCall');
+  const end = source.indexOf('exports.rewardedSsvCallback = onRequest', start);
+  assert.ok(start >= 0 && end > start);
+  const block = source.slice(start, end);
+
+  assert.match(block, /const uid = request\.auth\?\.uid/);
+  assert.match(block, /normalizeGameId\(request\.data\?\.gameId\)/);
+  assert.match(block, /rewardClaimId\(uid, gameId\)/);
+  assert.match(block, /collection\('rewarded_game_claims'\)/);
+  assert.match(block, /claimed: claim\.exists/);
+  assert.doesNotMatch(block, /request\.data\?\.uid/);
+  assert.doesNotMatch(block, /runTransaction|\.create\(|\.set\(|\.update\(/);
+});
+
 test('SSV source enforces per-game idempotency and has no daily three-ad cap', () => {
   const source = fs.readFileSync(
     path.resolve(__dirname, '..', 'rewarded_ssv.js'),
