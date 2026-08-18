@@ -50,6 +50,62 @@ rewarded hazır sayılmamalıdır:
 Bu doğrulamalar tamamlanana kadar durum **DOĞRULANACAK** olarak kalır. Secret,
 özel anahtar, testçi e-postası veya parola repoya eklenmez.
 
+## Kontrollü production deploy planı
+
+Kanonik Firebase projesi `bilgi-rotasi-f255d`, üç endpoint'in region'ı
+`europe-west1`'dır. Repoda `.firebaserc` olmadığı için bütün salt-okunur envanter
+ve deploy komutları explicit `--project bilgi-rotasi-f255d` taşır.
+
+Önce mevcut canlı envanter salt-okunur olarak alınır:
+
+```sh
+firebase functions:list --project bilgi-rotasi-f255d
+gcloud functions list --gen2 --regions europe-west1 --project bilgi-rotasi-f255d
+```
+
+Canlı revision, region ve isimler kayıt altına alındıktan sonra yetkili operatör
+yalnız aşağıdaki üç fonksiyonu seçerek deploy eder; blanket `--only functions`
+kullanılmaz:
+
+```sh
+firebase deploy \
+  --only functions:issueRewardNonce,functions:getRewardedGameState,functions:rewardedSsvCallback \
+  --project bilgi-rotasi-f255d
+```
+
+Deploy kimliği için yerel/CI ortamında Application Default Credentials gerekir.
+Desteklenen credential adları değerleri repoya yazılmadan şunlardır:
+
+- `GOOGLE_APPLICATION_CREDENTIALS` (yetkili deploy service-account JSON yolunu
+  gösteren ortam değişkeni), veya
+- `gcloud auth application-default login` ile oluşturulan operatör ADC oturumu.
+
+CI daha sonra Workload Identity Federation'a geçirilirse provider ve deploy
+service account tanımları secret/değişken olarak tutulmalıdır; mevcut repoda bu
+isimler tanımlıymış gibi varsayılmaz. SSV doğrulama kodu için ayrıca private key
+runtime secret'ı yoktur; Google verifier public key'leri resmi HTTPS endpoint'inden
+alınır.
+
+## AdMob callback ve güvenli açılış sırası
+
+Production callback adresi:
+
+```text
+https://europe-west1-bilgi-rotasi-f255d.cloudfunctions.net/rewardedSsvCallback
+```
+
+1. Deploy sonrasında üç endpoint'in isim/region/revision envanteri yeniden alınır.
+2. `server_config/rewarded.ssvEnabled` eksik veya `false` bırakılır; bu durumda
+   callback'in `503 SSV_NOT_ENABLED` ile fail-closed kaldığı doğrulanır.
+3. AdMob Console'da production rewarded birimi için callback URL kaydedilir ve
+   SSV test aracıyla Google imzası/public-key akışı doğrulanır.
+4. Test transaction'ının tek kayıt oluşturduğu, aynı `transaction_id` ve aynı
+   `gameId` tekrarlarının ikinci XP üretmediği gözlenir.
+5. Fiziksel production/staging Google hesabında tamamlanan oyun için tek +10 XP,
+   başarısız/yarım reklamda XP verilmemesi ve hakkın korunması doğrulanır.
+6. Ancak bu kanıtlar kaydedildikten ve ayrıca açık cutover onayı verildikten sonra
+   `ssvEnabled: true` düşünülebilir. Bu PR deploy veya config açılışı yapmaz.
+
 Doğrulama uygulaması Google'ın resmî SSV kılavuzundaki ham sorguyu değiştirmeme,
 `signature`/`key_id`, ECDSA ve 24 saatten uzun anahtar cache etmeme kurallarına
 göre hazırlanmıştır:

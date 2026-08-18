@@ -285,6 +285,32 @@ void main() {
       );
     });
 
+    test('aktif soru ve Canlı Düello maç ekranları reklam içermez', () {
+      final source = File('lib/main.dart').readAsStringSync();
+      final liveDuelSource =
+          File('lib/live_duel_play_screen.dart').readAsStringSync();
+      final normalQuestionStart = source.indexOf('class QuestionScreen');
+      final normalQuestionEnd = source.indexOf('class PlayerData');
+      final liveDuelStart =
+          liveDuelSource.indexOf('Widget _buildQuestionView(');
+      final liveDuelEnd =
+          liveDuelSource.indexOf('Widget _buildResultView(');
+
+      expect(normalQuestionStart, greaterThanOrEqualTo(0));
+      expect(normalQuestionEnd, greaterThan(normalQuestionStart));
+      expect(liveDuelStart, greaterThanOrEqualTo(0));
+      expect(liveDuelEnd, greaterThan(liveDuelStart));
+
+      for (final screenSource in <String>[
+        source.substring(normalQuestionStart, normalQuestionEnd),
+        liveDuelSource.substring(liveDuelStart, liveDuelEnd),
+      ]) {
+        expect(screenSource, isNot(contains('AdBannerSlot')));
+        expect(screenSource, isNot(contains('SupportRewardCard')));
+        expect(screenSource, isNot(contains('showRewarded(')));
+      }
+    });
+
     test('ödül verilmezse kalan hak aynı ekranda yeniden denenebilir', () {
       expect(
         supportRewardAvailabilityAfterAttempt(

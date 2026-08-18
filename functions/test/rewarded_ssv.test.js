@@ -72,6 +72,9 @@ test('SSV source enforces per-game idempotency and has no daily three-ad cap', (
   );
 
   assert.match(source, /signedContentFromOriginalUrl/);
+  assert.match(source, /createVerify\('SHA256'\)/);
+  assert.match(source, /verifier\.update\(signedContentFromOriginalUrl/);
+  assert.match(source, /verifier\.verify\(pem, base64UrlBuffer/);
   assert.match(source, /transaction_id/);
   assert.match(source, /rewarded_transactions/);
   assert.match(source, /rewarded_game_claims/);
@@ -85,4 +88,25 @@ test('SSV source enforces per-game idempotency and has no daily three-ad cap', (
   assert.doesNotMatch(source, /rewarded_daily/);
   assert.doesNotMatch(source, /daily-limit/);
   assert.doesNotMatch(source, /count\s*>=\s*3/);
+});
+
+test('production SSV deploy inventory stays limited to the three endpoints', () => {
+  const source = fs.readFileSync(
+    path.resolve(__dirname, '..', 'index.js'),
+    'utf8',
+  );
+  const policy = fs.readFileSync(
+    path.resolve(__dirname, '..', '..', 'docs', 'rewarded-ssv-setup.md'),
+    'utf8',
+  );
+
+  assert.match(source, /require\('\.\/rewarded_ssv'\)/);
+  assert.match(policy, /functions:issueRewardNonce/);
+  assert.match(policy, /functions:getRewardedGameState/);
+  assert.match(policy, /functions:rewardedSsvCallback/);
+  assert.match(policy, /--project bilgi-rotasi-f255d/);
+  assert.match(policy, /europe-west1/);
+  assert.match(policy, /GOOGLE_APPLICATION_CREDENTIALS/);
+  assert.match(policy, /ssvEnabled.*false/s);
+  assert.doesNotMatch(policy, /firebase deploy --only functions\s+--project/);
 });
