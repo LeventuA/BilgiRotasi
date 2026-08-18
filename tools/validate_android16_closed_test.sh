@@ -236,6 +236,12 @@ run_settings_tutorial_diagnostic() {
   local tutorial_attempt
 
   retry_capture_screen HOME_SETTINGS || return 1
+  if test -n "$(find_word HOME_SETTINGS 'Bildirimleri')" \
+      && test -n "$(find_word HOME_SETTINGS 'Degil|Değil')"; then
+    tap_word HOME_SETTINGS 'Degil|Değil' || return 1
+    sleep 3
+    retry_capture_screen HOME_SETTINGS || return 1
+  fi
   settings_point="$(find_word HOME_SETTINGS 'Ayarlar')"
   if test -n "$settings_point"; then
     adb_retry 15 shell input tap $settings_point || return 1
