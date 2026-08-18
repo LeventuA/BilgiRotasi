@@ -13,6 +13,8 @@ const {
 const db = getFirestore();
 const REGION = 'europe-west1';
 const KEY_URL = 'https://www.gstatic.com/admob/reward/verifier-keys.json';
+const VERIFY_ONLY_USER_ID = 'bilgi-rotasi-ssv-verify';
+const VERIFY_ONLY_CUSTOM_DATA = 'bilgi-rotasi-ssv-verify-v1';
 let keyCache = { loadedAt: 0, keys: new Map() };
 
 function base64UrlBuffer(value) {
@@ -55,6 +57,13 @@ async function verifyCallback(originalUrl, query) {
 
 function decodeCustomData(value) {
   return decodeRewardCustomData(value);
+}
+
+function isVerifyOnlyRequest(query) {
+  return (
+    String(query.user_id ?? '') === VERIFY_ONLY_USER_ID &&
+    String(query.custom_data ?? '') === VERIFY_ONLY_CUSTOM_DATA
+  );
 }
 
 exports.issueRewardNonce = onCall(
@@ -110,6 +119,16 @@ exports.rewardedSsvCallback = onRequest(
   { region: REGION, cors: false },
   async (request, response) => {
     try {
+      const verifyOnly = isVerifyOnlyRequest(request.query);
+      if (verifyOnly) {
+        if (!(await verifyCallback(request.originalUrl, request.query))) {
+          response.status(400).send('INVALID_SIGNATURE');
+          return;
+        }
+        response.status(200).send('SSV_VERIFY_OK');
+        return;
+      }
+
       const config = await db.doc('server_config/rewarded').get();
       if (config.data()?.ssvEnabled !== true) {
         response.status(503).send('SSV_NOT_ENABLED');
@@ -218,4 +237,5 @@ exports.rewardedSsvCallback = onRequest(
 
 module.exports.base64UrlBuffer = base64UrlBuffer;
 module.exports.decodeCustomData = decodeCustomData;
+module.exports.isVerifyOnlyRequest = isVerifyOnlyRequest;
 module.exports.signedContentFromOriginalUrl = signedContentFromOriginalUrl;
