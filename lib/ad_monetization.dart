@@ -242,7 +242,7 @@ class GoogleUmpConsentGateway implements AdConsentGateway {
       if (error == null) {
         completer.complete();
       } else {
-        completer.completeError(error),
+        completer.completeError(error);
       }
     });
     return completer.future;
@@ -701,7 +701,7 @@ class AdBannerScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBar;
   final Widget? body;
   final Color? backgroundColor;
-  final FloatingActionButton? floatingActionButton;
+  final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final Widget? drawer;
   final Widget? endDrawer;
@@ -794,7 +794,7 @@ class _AdBannerSlotState extends State<AdBannerSlot> {
             ColoredBox(
               color: Colors.white,
               child: SizedBox(
-                height: ad.size.height.toDouble(),
+                height: ad!.size.height.toDouble(),
                 child: Center(
                   child: SizedBox(
                     width: ad.size.width.toDouble(),
