@@ -23,11 +23,21 @@ function base64UrlBuffer(value) {
 }
 
 function signedContentFromOriginalUrl(originalUrl) {
-  const query = String(originalUrl).split('?')[1] ?? '';
+  const url = String(originalUrl);
+  const queryStart = url.indexOf('?');
+  const query = queryStart >= 0 ? url.slice(queryStart + 1) : '';
   const marker = '&signature=';
   const index = query.indexOf(marker);
   if (index < 0) throw new Error('missing-signature');
-  return query.slice(0, index);
+  try {
+    // Google's reference verifier uses java.net.URI#getQuery(), which
+    // percent-decodes escaped octets before ECDSA verification. Express
+    // request.originalUrl keeps the percent-encoded form, so mirror Google's
+    // decoded-query semantics without reordering query parameters.
+    return decodeURIComponent(query.slice(0, index));
+  } catch (_) {
+    throw new Error('invalid-query-encoding');
+  }
 }
 
 async function publicKeys() {
