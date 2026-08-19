@@ -144,7 +144,7 @@ Bu bölüm aşağıdaki `0E` Issue #37 ön-merge kaydını **güncel olarak geç
 - Regresyon testi 512x512 PNG boyutunu, otoritatif kaynak hash'ini, yoğunluk boyutlarını, adaptive XML/inset sözleşmesini ve splash ayrımını kilitler.
 - Yerel `flutter analyze --no-fatal-warnings --no-fatal-infos` PASS (önceden var olan 90 warning/info korunur); hedefli launcher testi PASS; taşınabilir Python 3.12.10 ile tüm Flutter testleri `257/257` PASS; `git diff --check` PASS.
 - PR CI #161 / run `31757717142`, job `94637088436`: **SUCCESS**. Kalıcı imzalı test-ID release APK build, paket/manifest ve Android 16 cold-start kapıları PASS.
-- Artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9203624785`, digest `sha256:88a709a875c02d28844bdbfd69c8669acc009ca5846d07e4bb51d9828a908b18`; APK SHA-256 `792a0db0d812acaaaa0e504d1abc61915f020e3bc9f3ec6592bbcc9a3f4ee673`.
+- Artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`: ID `9203624785`, digest `sha256:88a709a875c02d28844bdbfd69c8669acc009ca5846d07e4bb51d9828a908b18`; APK SHA-256 `792a0db0d812acaaaa0e504d1abc61915f020e3bc9f3ec6592bbcc9a3f4ee673`.
 - APK metadata: `com.leventua.bilgirotasi`, `1.68.14 (104)`, targetSdk 36; upload sertifikası SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
 - Android 16 `APK_INSTALL`, `APP_LAUNCH`, `APP_PID`, `APP_ACTIVITY`, `APP_LOGCAT`, `APP_GATE`, `RELEASE_GATE` = PASS; PID `1991`, `MainActivity` RESUMED/visible; uygulamaya ait crash/ANR/FATAL/process-death kanıtı yok.
 - Artifact APK içindeki gerçek 192 px legacy ve 432 px adaptive launcher görselleri doğrudan açılarak onaylanan BİLGİ ROTASI yazılı pusula olduğu doğrulandı.
@@ -257,7 +257,7 @@ Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **gü
 - `RC1_QUALITY_GATE.md`: **BAŞARILI**, `1.68.14+104`, 8.710 soru, kritik hata/uyarı yok.
 - Android 16 AAB-derived kabul ilk denemede **PASS**; ikinci deneme gerekmedi. `GUEST_LOGIN=PASS`, `HOME_OYNA=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`, `SETTINGS_TUTORIAL_DIAGNOSTIC=PASS`.
 - Artifact log taramasında Bilgi Rotası paketine ait crash, ANR, `FATAL EXCEPTION` veya process-death kanıtı bulunmadı.
-- AAB metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifika SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
+- AAB metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk 36; upload sertifika SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
 - **BR-P1-008 TAMAMLANDI.** Dinamik release-readiness üretimi canlı artifact üzerinde kanıtlandı.
 - Bu teknik kabul Play Console'a AAB yüklendiğini, fiziksel Play kabulünü veya Firebase/Play canlı konsol durumlarını tek başına doğrulamaz; bu maddeler ayrı açık görevlerde kalır.
 - `KARARLAR.md` değişmedi; ürün kararı değişikliği yoktur.
@@ -266,7 +266,7 @@ Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **gü
 
 ## 0A. PR #29/#30 ve güncel release-readiness kesimi — 13 Ağustos 2026
 
-Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar silinmemiştir.
+Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **güncel durumunu geçersiz kılar**; tarihsel kayıtlar denetim izi olarak korunur.
 
 - Güncel yayın dalı: `release/final-closed-test-aab-1.68.8`.
 - PR #30 kod tabanı / merge commit: `d1d5a9ea128d3d36fe26fafe95c97bf473c02548`.
@@ -405,7 +405,7 @@ Bu düzeltme RC2 #326'da gerçek AAB-derived `Misafir → Home → Oyna` zinciri
 
 - `1.68.13+103` daha önce Dahili Test'te gerçek cihazda doğrulandı ve Kapalı Test kanalına yayımlandı.
 - Son doğrulanan Play kapalı test durumu **12 geçerli testçi / 4 kesintisiz gün**dür.
-- Bu değer güncel Play Console UI'sından yeniden okunmadan ileri gün sayısı tahmin edilmeyecek.
+- Bu değer güncel Play Console UI'sundan yeniden okunmadan ileri gün sayısı tahmin edilmeyecek.
 - Android geliştirici doğrulaması tamamlandı.
 - `1.68.14+104` için eski RC2 #326 teknik kanıtı yalnız `ec20e66...` SHA'sına aittir.
 - PR #25 sonrası güncel release `7a50a199...` için fresh RC2 PASS olmadan yeni AAB Play'e yüklenmez.
@@ -616,7 +616,7 @@ Düzeltme:
 - PR: #26
 - Merge commit: `ab9b4f3797a02b92f98f92e439b7edc4c608fec3`
 - Değişiklik: yalnız iki workflow dosyası; release'teki RC2 #326 ile doğrulanmış bloblar byte-for-byte taşındı
-- Wrapper blob SHA: `f8fe355ad547c7fc45ec48c2809d65796b402df`
+- Wrapper blob SHA: `f8fe355ad547c7fc4a5ec48c2809d65796b402df`
 - Core blob SHA: `3afa8793d3f437c63d690c86f3b6dbaaca2ce83a`
 - Quality Checks #292: run `31642575342`, job `94268451360`, **SUCCESS**
 - GitHub Actions kayıt durumu: `Closed test release çekirdeği` workflow ID `333114585` **ACTIVE**
