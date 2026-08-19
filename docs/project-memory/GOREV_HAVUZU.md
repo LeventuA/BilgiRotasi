@@ -1,5 +1,41 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0K - 19 Ağustos 2026 Issue #67 / PR #69 SSV percent-encoding merge checkpoint
+
+Bu bölüm aşağıdaki `0J` içindeki PR #68 ön-merge durumunu **güncel görev durumu açısından geçersiz kılar**; eski bölüm tarihsel denetim izi olarak korunur.
+
+- **Durum:** PR #68 MERGED / VERIFY-ONLY KODU RELEASE'TE / ADMOB VERIFY URL İLK CANLI DENEME 400 → PERCENT-ENCODING KÖK NEDENİ DOĞRULANDI / PR #69 EXACT-HEAD CI PASS + SQUASH MERGED / CALLBACK REDEPLOY YAPILMADI / `ssvEnabled` KAPALI / PLAY + FİZİKSEL KABUL AÇIK.
+- Kanonik release: `release/final-closed-test-aab-1.68.8` / `fe293d87a33772ff9fa65de829ed59d40a263eca` / `1.68.17+107`.
+- PR #69 branch `fix/ssv-percent-decoded-signature-20260819`; final head `a01f1d19c6ce40ebec1b9c83ab4ed672f65c8cb7`; merge commit `fe293d87a33772ff9fa65de829ed59d40a263eca`.
+- Kök neden: AdMob canlı callback query'sinde `reward_item=%C3%96d%C3%BCl`; Google referans doğrulayıcısı query'yi percent-decode ederken Express `originalUrl` encoded biçimi koruyordu ve ECDSA imza içeriği farklılaşıyordu.
+- Düzeltme yalnız `functions/rewarded_ssv.js` + `functions/test/rewarded_ssv.test.js`: query sırası korunarak `signature` öncesi bölüm `decodeURIComponent` ile çözülür; bozuk percent-encoding `invalid-query-encoding` ile fail-closed. Gerçek callback biçimi ve bozuk encoding regresyonu kanonik suite'e eklendi.
+- Final exact-head Firebase güvenlik doğrulaması run `32222981893`: SUCCESS; Functions **43/43**, Firestore Rules emulator **6/6** PASS. Final exact-head AdMob PR doğrulaması run `32222981901`: SUCCESS. Tam log + workflow + diff + Git geçmişi birlikte incelendi.
+- Levent'in mevcut koşullu merge onayı altında PR #69 review-ready yapıldı; head ve release tabanı yeniden kilitlendikten sonra expected-head SHA ile squash merge edildi.
+- Merge sonrası release ile `fe293d87...` karşılaştırması `identical`; `pubspec.yaml` hâlâ `1.68.17+107`.
+- Issue #67 merge checkpoint comment `5340502656`.
+- Google Play Integrity API'nin Google Cloud Console'da `Enabled` olduğu Levent'in canlı ekran kanıtıyla doğrulandı; Play App Signing/Upload SHA rolleri ayrıca Play Console'dan doğrulanacak.
+- Bu adımda production callback redeploy yapılmadı; `ssvEnabled` açılmadı/değişmedi; blanket Functions deploy yapılmadı. Yeni percent-decoding davranışı canlı callback'te henüz kanıtlanmış değildir.
+- `KARARLAR.md` değişmedi; ödül ürün sözleşmesi değişmedi.
+
+**Bitti ölçütü:**
+
+- [x] PR #68 verify-only handshake release'e merge edildi.
+- [x] AdMob `Verify URL` ilk canlı `HTTP 400` hatasının request biçimi/log kanıtı toplandı ve percent-encoding kök nedeni source + Google referans semantiğiyle doğrulandı.
+- [x] PR #69 minimum düzeltme ve gerçek callback regresyon testiyle hazırlandı; bozuk encoding fail-closed kilitlendi.
+- [x] PR #69 final exact-head Firebase CI: Functions `43/43` + Rules `6/6` PASS; AdMob CI SUCCESS.
+- [x] Levent'in koşullu merge onayı altında PR #69 expected-head kilidiyle squash merge edildi.
+- [x] Merge sonrası release HEAD `fe293d87a33772ff9fa65de829ed59d40a263eca`, sürüm `1.68.17+107` olarak doğrulandı.
+- [x] Issue #67 uzak checkpoint'i merge sonucu ve güvenlik sınırlarıyla güncellendi.
+- [ ] Mevcut yetkili Firebase production execution kanalında yalnız `rewardedSsvCallback` selective redeploy edilir; yeni deploy yolu tahmin edilmez, blanket Functions deploy yapılmaz.
+- [ ] Redeploy sonrası normal callback yine `503 SSV_NOT_ENABLED` döner.
+- [ ] Legacy AdMob rewarded biriminde `Verify URL` yeniden denenir; `200 SSV_VERIFY_OK` ve verify-only sırasında Firestore write yok kanıtlanır.
+- [ ] Play Console'da App Signing SHA-1 / Upload SHA-1 rolleri, versionCode 107 ve production/public listing durumu canlı doğrulanır.
+- [ ] Fiziksel gerçek rewarded: tek gameId tek +10, no-double, yarım/başarısız reklamda hak korunur, farklı oyunlarda toplam kota yok.
+- [ ] İki cihaz/hesapla Canlı Düello eşleşme → maç → sonuç → leaderboard zinciri PASS.
+- [ ] Yalnız bütün canlı kapılar ve ayrıca açık cutover onayı sonrası `server_config/rewarded.ssvEnabled=true` değerlendirilir.
+
+---
+
 ## 0J - 19 Ağustos 2026 Issue #67 production SSV canlı cutover
 
 - **Durum:** 3 SSV FUNCTION SELECTIVE DEPLOY PASS / FAIL-CLOSED 503 PASS / VERIFY URL BLOKAJI İÇİN DRAFT PR #68 / FIREBASE CI PASS / ADMOB FINAL CI BEKLİYOR / MERGE-REDEPLOY-CUTOVER YOK.
