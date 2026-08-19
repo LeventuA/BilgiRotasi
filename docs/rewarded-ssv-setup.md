@@ -30,8 +30,8 @@ Google hesabında sonuç ekranından kazanılan +10 XP için `issueRewardNonce`,
 7. İstemci, Google reward callback'ini tek başına yeterli saymaz; sınırlı süre
    `getRewardedGameState(gameId)` ile sunucu claim'ini doğrular. Claim
    doğrulanmazsa yerel +10 XP verilmez ve yerel oyun hakkı tüketilmez.
-8. `server_config/rewarded.ssvEnabled` varsayılan/eksik durumda callback 503
-   döndürür ve sunucu claim'i oluşmaz.
+8. `server_config/rewarded.ssvEnabled` varsayılan/eksik durumda normal ödül callback'i
+   503 döndürür ve sunucu claim'i oluşmaz.
 
 ## Canlı açılış kapısı
 
@@ -60,7 +60,7 @@ ve deploy komutları explicit `--project bilgi-rotasi-f255d` taşır.
 
 ```sh
 firebase functions:list --project bilgi-rotasi-f255d
-gcloud functions list --gen2 --regions europe-west1 --project bilgi-rotasi-f255d
+gcloud functions list --v2 --regions europe-west1 --project bilgi-rotasi-f255d
 ```
 
 Canlı revision, region ve isimler kayıt altına alındıktan sonra yetkili operatör
@@ -95,16 +95,30 @@ https://europe-west1-bilgi-rotasi-f255d.cloudfunctions.net/rewardedSsvCallback
 ```
 
 1. Deploy sonrasında üç endpoint'in isim/region/revision envanteri yeniden alınır.
-2. `server_config/rewarded.ssvEnabled` eksik veya `false` bırakılır; bu durumda
-   callback'in `503 SSV_NOT_ENABLED` ile fail-closed kaldığı doğrulanır.
-3. AdMob Console'da production rewarded birimi için callback URL kaydedilir ve
-   SSV test aracıyla Google imzası/public-key akışı doğrulanır.
-4. Test transaction'ının tek kayıt oluşturduğu, aynı `transaction_id` ve aynı
+2. `server_config/rewarded.ssvEnabled` eksik veya `false` bırakılır; normal callback'in
+   `503 SSV_NOT_ENABLED` ile fail-closed kaldığı doğrulanır.
+3. AdMob Console production rewarded biriminin SSV test aracında yalnız URL doğrulaması
+   için şu sabit test değerleri kullanılır:
+
+```text
+User ID: bilgi-rotasi-ssv-verify
+Custom data: bilgi-rotasi-ssv-verify-v1
+```
+
+4. Callback bu iki değer birlikte geldiğinde dahi Google ECDSA imzasını zorunlu
+   doğrular. İmza geçersizse `400 INVALID_SIGNATURE`; imza geçerliyse yalnız
+   `200 SSV_VERIFY_OK` döndürür. Verify-only yol nonce, claim, transaction veya XP
+   yazmaz ve `ssvEnabled` açmaz.
+5. Verify-only değerleri dışında kalan normal callback'lerde `ssvEnabled` eksik/false
+   iken `503 SSV_NOT_ENABLED` davranışı korunur.
+6. AdMob `Verify URL` aracı PASS olduktan sonra public-key/imza akışı ve write-free
+   davranış canlı log/veri kanıtıyla doğrulanır.
+7. Gerçek test transaction'ının tek kayıt oluşturduğu, aynı `transaction_id` ve aynı
    `gameId` tekrarlarının ikinci XP üretmediği gözlenir.
-5. Fiziksel production/staging Google hesabında tamamlanan oyun için tek +10 XP,
+8. Fiziksel production/staging Google hesabında tamamlanan oyun için tek +10 XP,
    başarısız/yarım reklamda XP verilmemesi ve hakkın korunması doğrulanır.
-6. Ancak bu kanıtlar kaydedildikten ve ayrıca açık cutover onayı verildikten sonra
-   `ssvEnabled: true` düşünülebilir. Bu PR deploy veya config açılışı yapmaz.
+9. Ancak bu kanıtlar kaydedildikten ve ayrıca açık cutover onayı verildikten sonra
+   `ssvEnabled: true` düşünülebilir.
 
 Doğrulama uygulaması Google'ın resmî SSV kılavuzundaki ham sorguyu değiştirmeme,
 `signature`/`key_id`, ECDSA ve 24 saatten uzun anahtar cache etmeme kurallarına

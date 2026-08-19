@@ -1,5 +1,37 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0J - 19 Ağustos 2026 Issue #67 production SSV canlı cutover
+
+- **Durum:** 3 SSV FUNCTION SELECTIVE DEPLOY PASS / FAIL-CLOSED 503 PASS / VERIFY URL BLOKAJI İÇİN DRAFT PR #68 / FIREBASE CI PASS / ADMOB FINAL CI BEKLİYOR / MERGE-REDEPLOY-CUTOVER YOK.
+- Kanonik release başlangıcı: `release/final-closed-test-aab-1.68.8` / `7cf17591ba12cbb422c0e2e34609795546258784` / `1.68.17+107`.
+- Legacy production AdMob App ID/banner/rewarded ID'leri canlı Console'da repo ile birebir eşleşti; yeni duplicate AdMob hesabı kullanılmayacak.
+- Firebase canlı envanteri doğrulandı: Google Auth etkin, Android SHA listesi mevcut, Play Integrity provider kayıtlı, App Check enforcement kapalı/Monitoring, üç composite index `Enabled`; hardened repo Firestore Rules henüz canlıya cutover edilmedi.
+- Levent'in açık production deploy onayıyla yalnız `issueRewardNonce`, `getRewardedGameState`, `rewardedSsvCallback` `bilgi-rotasi-f255d/europe-west1` hattına deploy edildi; mevcut 7 Function korundu. `server_config/rewarded` ve `ssvEnabled` oluşturulmadı.
+- Canlı callback probe `HTTP 503` + `SSV_NOT_ENABLED` ile fail-closed PASS.
+- AdMob `Verify URL` başarılı yanıt ihtiyacı ile disabled callback'in 503 kapısı çakıştığı için ayrı branch `fix/ssv-verify-url-handshake-20260819` açıldı; Draft PR #68.
+- Teknik commitler: `94a7d883ebff0b857b3bdd2335c10fd7ee65b8c6` — `fix: allow signed AdMob SSV URL verification`; `d7e015533d94be21768554c19266830d5fadc035` — `test: run SSV verify handshake in canonical suite`.
+- Verify-only yol yalnız `user_id=bilgi-rotasi-ssv-verify` + `custom_data=bilgi-rotasi-ssv-verify-v1` birlikte geldiğinde çalışır; Google ECDSA imzası zorunludur, geçerli istekte `200 SSV_VERIFY_OK` döner ve hiçbir nonce/claim/transaction/XP yazımı yapmaz. Normal disabled callback `503 SSV_NOT_ENABLED` olarak kalır.
+- Firebase güvenlik run `32197564562`: SUCCESS; Functions `42/42`, Firestore Rules emulator `6/6` PASS. İlk ayrı test dosyasının `npm test` explicit listesine girmediği CI logundan yakalandı; testler kanonik `rewarded_ssv.test.js` içine taşındı ve gerçek suite içinde PASS olduğu doğrulandı.
+- Doküman commitleri aynı PR branch'inde ilerler; `KARARLAR.md` değişmez çünkü ürün ödül sözleşmesi değişmedi, yalnız güvenli AdMob doğrulama handshake'i uygulandı.
+
+**Bitti ölçütü:**
+
+- [x] Legacy production AdMob App ID/banner/rewarded ID repo ile canlıda eşleşti.
+- [x] Firebase Auth/SHA/Functions/Indexes/App Check canlı envanteri toplandı; Rules cutover'ın ayrı olduğu kaydedildi.
+- [x] Levent açık onayı sonrası yalnız üç SSV Function selective deploy edildi; diğer Function'lar korunuyor.
+- [x] `ssvEnabled` eksik/kapalıyken canlı callback `503 SSV_NOT_ENABLED` PASS.
+- [x] Verify-only düzeltme ayrı branch/Draft PR ile hazırlandı ve normal fail-closed davranış regresyon testiyle kilitlendi.
+- [x] Firebase güvenlik CI final teknik head'de Functions `42/42` + Rules `6/6` PASS.
+- [ ] PR #68 docs-head AdMob PR doğrulaması tam log/artifact/Android 16 kapılarıyla SUCCESS.
+- [ ] Levent ayrıca açık merge onayı verir; PR #68 release'e merge edilir.
+- [ ] Merge sonrası güncel release HEAD kilitlenir ve yalnız güncellenmiş `rewardedSsvCallback` production redeploy'u ayrıca açık Levent onayıyla yapılır.
+- [ ] Redeploy sonrası normal callback yine `503 SSV_NOT_ENABLED`; AdMob Verify URL test User ID/custom data ile PASS ve verify-only sırasında Firestore write yok.
+- [ ] Fiziksel gerçek rewarded: tek gameId tek +10, no-double, yarım/başarısız reklamda hak korunur, farklı oyunlarda toplam kota yok.
+- [ ] Play versionCode/signing/public listing ve iki cihaz Canlı Düello canlı kabulü tamamlanır.
+- [ ] Yalnız tüm kapılar ve ayrıca açık cutover onayı sonrası `ssvEnabled=true` değerlendirilir.
+
+---
+
 ## 0I - 18 Ağustos 2026 Issue #64 production-readiness kapanış adayı
 
 - **Durum:** DRAFT PR #65 / KOD VE YEREL TESTLER PASS / EXACT RELEASE CLOSED TEST #14 SUCCESS / DOCS-HEAD CI SUCCESS / DEPLOY VE MERGE YOK.

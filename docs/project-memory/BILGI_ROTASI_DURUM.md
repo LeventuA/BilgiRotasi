@@ -1,7 +1,27 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 18 Ağustos 2026
+**Kesim noktası:** 19 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
+
+## 0K. Issue #67 production AdMob/Firebase SSV canlı cutover — 19 Ağustos 2026
+
+- Kanonik release `release/final-closed-test-aab-1.68.8`; görev başlangıcında canlı HEAD `7cf17591ba12cbb422c0e2e34609795546258784`, gerçek sürüm `1.68.17+107` olarak yeniden doğrulandı. PR #65 merged durumdadır.
+- Legacy production AdMob hesabı kanonik monetizasyon hesabı olarak doğrulandı. Canlı App ID `ca-app-pub-7452194004008791~7046504043`, banner `ca-app-pub-7452194004008791/4228769011`, rewarded `ca-app-pub-7452194004008791/4974874471` release source ile birebir eşleşti. Yeni duplicate AdMob hesabı production için kullanılmayacak; ödeme yöntemi/banka ve public store bağlantısı ayrıca doğrulanacak.
+- Firebase production projesi `bilgi-rotasi-f255d`. Google Auth sağlayıcısı Levent'in canlı gözlemiyle etkin; Android fingerprint listesinde upload SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15` ile `26:3C...`, `D4:BA...` SHA-1 ve `60:EC...` SHA-256 kayıtları görüldü. Son iki kaydın gerçek sertifika rolleri Play Console ile **DOĞRULANACAK**.
+- App Check Android sağlayıcısı Play Integrity olarak doğrulandı. Firestore ve Authentication `Monitoring`; enforcement açılmadı. Üç composite Firestore index canlıda `Enabled` ve repo ile birebir eşleşiyor. Canlı Firestore Rules son yayın kesimi hardened repo Rules'tan eski; Rules cutover bilerek yapılmadı.
+- Firestore kök koleksiyonlarında `server_config` yok; `server_config/rewarded` ve `ssvEnabled` yok. Bu durum true olarak yorumlanmadı.
+- Levent'in açık `Onaylıyorum, 3 SSV Function'ını deploy edelim.` onayıyla yalnız `issueRewardNonce`, `getRewardedGameState`, `rewardedSsvCallback` production `bilgi-rotasi-f255d/europe-west1` hattına selective deploy edildi. Mevcut 7 Function korundu; toplam canlı Function 10. Blanket Functions deploy, Rules/Indexes deploy veya config açılışı yapılmadı.
+- Deploy sonrası `rewardedSsvCallback` canlı probe `HTTP/2 503` + `SSV_NOT_ENABLED` döndürdü: fail-closed kapısı **PASS**.
+- AdMob SSV `Verify URL` işleminin başarılı HTTP callback gereksinimi ile mevcut `ssvEnabled`-önce 503 sırası arasında blokaj bulundu. `ssvEnabled=true` ile kestirme yapılmadı. Ayrı branch `fix/ssv-verify-url-handshake-20260819`, Draft PR #68 açıldı.
+- PR #68 verify-only tasarımı: yalnız `user_id=bilgi-rotasi-ssv-verify` + `custom_data=bilgi-rotasi-ssv-verify-v1` birlikte geldiğinde Google ECDSA imzası doğrulanır; geçerli istekte `200 SSV_VERIFY_OK`, geçersiz imzada `400 INVALID_SIGNATURE`. Bu yol nonce/claim/transaction/XP yazmaz. Normal disabled callback `503 SSV_NOT_ENABLED` kalır.
+- Teknik commitler: `94a7d883ebff0b857b3bdd2335c10fd7ee65b8c6` — `fix: allow signed AdMob SSV URL verification`; `d7e015533d94be21768554c19266830d5fadc035` — `test: run SSV verify handshake in canonical suite`.
+- İlk ayrı test dosyasının `npm test` explicit listesine girmediği tam CI logundan yakalandı; yanlış PASS kabul edilmedi. Testler kanonik `functions/test/rewarded_ssv.test.js` içine taşındı. Final teknik head Firebase güvenlik run `32197564562`: **SUCCESS**, Functions `42/42`, Firestore Rules emulator `6/6` PASS; yeni verify-only ve normal 503 regresyon testleri gerçek suite içinde geçti.
+- `docs/rewarded-ssv-setup.md`, `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` aynı PR branch'inde güncellendi. `KARARLAR.md` değişmedi; ödül ürün sözleşmesi değişmedi, yalnız güvenli AdMob URL doğrulama handshake'i eklendi.
+- `assets/questions.json`, BoardMap/67 node, 3B tahta, Flutter oynanışı ve `pubspec.yaml` sürümü değiştirilmedi.
+
+**Açık sonraki kapılar:** PR #68 final docs-head AdMob/Firebase CI PASS → Levent ayrı merge onayı → merge sonrası canlı release HEAD kilidi → yalnız güncellenmiş callback production redeploy'u için ayrı Levent onayı → normal 503 probe → AdMob Verify URL PASS + write-free kanıt → fiziksel gerçek rewarded/iki cihaz Canlı Düello/Play signing-versionCode-public listing kabulü → ancak tüm kanıtlar + ayrı cutover onayı sonrası `ssvEnabled=true` değerlendirmesi.
+
+---
 
 ## 0J. Issue #64 production-readiness kapanış adayı — 18 Ağustos 2026
 
@@ -240,7 +260,7 @@ Bu bölüm aşağıdaki tarihsel release HEAD / BR-P1-008 kayıtlarının **gün
 - PR #31 sonrası `dcab00bee295c75a817fd4dda0a63be10c5a6d56` üzerinde Quality Checks #298 / run `31657810165` **SUCCESS** ve AdMob PR doğrulaması #142 / run `31657810270` / job `94316006975` **SUCCESS** oldu.
 - #142 artifact `BilgiRotasi-AdMob-1.68.14-104-kanitlari`, ID `9165265578`, digest `sha256:da4a2082ca2139529fe4bee0358b560a966391d41e1548c8b20943184edbf2c3`; APK SHA256 `3bdb9ab250c97f42ab958ff1e037c0ad5eaee9458090d97b850710bf4c928813`. Paket `com.leventua.bilgirotasi`, sürüm `1.68.14+104`, upload-signing SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`; Android 16 `APP_GATE=PASS` ve `RELEASE_GATE=PASS`; Bilgi Rotası paketine ait crash/ANR/FATAL/process-death eşleşmesi yok. Bu APK kanıtı manuel final Closed Test AAB kabulünün yerine geçmez.
 - **BR-P1-008 uygulama/CI/merge kısmı tamamlandı:** rapor artık sürümü `pubspec.yaml`dan, soru sayısı/SHA'yı `assets/questions.json`dan, source SHA/ref ve AAB adını GitHub Actions ortamından dinamik üretir; trailing whitespace regresyon testiyle kilitlidir.
-- **Kapanış için kalan kanıt:** bu proje-hafızası temizliği release'e merge edildikten sonra GitHub'dan yeniden okunan **canlı release HEAD** üzerinde yeni `Closed test release doğrulaması` manuel workflow'u çalıştırılmalı ve artifact içindeki `reports/RELEASE_READINESS.md` canlı `1.68.14+104`, 8.710 soru, doğru source SHA/ref, doğru AAB adı ve whitespace'siz raporu göstermelidir.
+- **Kapanış için kalan kanıt:** bu proje-hafızası temizliği release'e merge edildikten sonra GitHub'dan yeniden okunan **canlı release HEAD** üzerinde yeni bir fresh geniş RC2 çalıştırılacak ve Guest → Home → Oyna dahil tüm zorunlu gate'ler yeniden PASS olmalıdır.
 - Fresh RC2 artifact AAB SHA256 için doğrudan indirilen artifact `reports/AAB_SHA256.txt` ve gerçek AAB dosya hash'i otoritatiftir: `6904249d00e12e3e671c9a282364dc4791948e9ec45cafecfaae15f8f734d285`. Aşağıdaki eski `690424c...` satırları tarihsel transkripsiyon hatasıdır ve kullanılmamalıdır.
 - `KARARLAR.md` değişmedi; bu iş ürün kararı değil release kanıt/raporlama düzeltmesidir.
 
@@ -589,16 +609,13 @@ Eski `.github/workflows/apply-game-save-isolation-v4.yml` push workflow'u bu bra
 
 ## 15. Şu anda ilk yapılacak işler
 
-1. Merge commit `03df0a925cc3a0515f86d11e817da619172703fe` üzerinde fresh `Closed test release doğrulaması` çalıştır; eski run'ı rerun etme.
-2. Yeni run'ın tam workflow/job/log/artifact kanıtını incele; `1.68.17+107`, Guest → Home → Oyna, app/release gate, release-readiness ve crash/ANR kontrollerinin tamamı PASS olmalı.
-3. Fresh +107 release artifact temizse production AdMob/Firebase profilli AAB hazırlığını ayrı branch/workflow ile yap; closed-test test reklam profilli artifact'i production'a yükleme.
-4. Play Console'dan uygulama imzalama ve upload SHA-1 ekran kanıtını al; `26:3C...` / `17:E1...` çelişkisini çöz.
-5. Firebase Console'da Google Auth, Android SHA'lar, Functions, Rules, Indexes ve App Check envanterini canlı doğrula; kör deploy yapma.
-6. Play Console'da güncel test/yayın kanal sürümünü ve production erişim durumunu tarihli kanıtla yeniden oku.
-7. Güncel Play kurulumu üzerinden Google giriş, oturum korunması, Misafir → Google geçişi, hesap izolasyonu, Ayarlar/öğretici ve ödüllü reklam kabulünü fiziksel cihazda doğrula.
-8. İki ayrı cihaz/hesapla Canlı Düello eşleşme → maç → sonuç → leaderboard zincirini doğrula.
-9. Günlük giriş XP karar çelişkisini ayrı branch/görev olarak çöz.
-10. Production SSV günlük 3/+30 XP sözleşmesini ürün kararıyla uyumlu hale getirmeden deploy etme.
-11. Eski `apply-game-save-isolation-v4.yml` config-level workflow borcunu ayrı görevde incele; yayın işiyle karıştırma.
-12. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür.
-13. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
+1. PR #68 final docs-head CI sonuçlarını tam log/artifact/diff/Git geçmişiyle kapat.
+2. CI PASS ise Levent'ten PR #68 için ayrı açık merge onayı al; kendi kendine merge etme.
+3. Merge sonrası canlı release HEAD/sürümü tekrar kilitle ve yalnız `rewardedSsvCallback` production redeploy'u için ayrı açık onay al.
+4. Redeploy sonrası normal callback'in `503 SSV_NOT_ENABLED` kaldığını doğrula; ardından legacy AdMob rewarded biriminde verify-only User ID/custom data ile `Verify URL` PASS ve write-free davranışı kanıtla.
+5. `ssvEnabled` açmadan fiziksel gerçek rewarded kabulünün ön koşullarını tamamla; tek +10/no-double/failure-right-preserved/no-total-quota kanıtını al.
+6. Play Console'da versionCode 107, production/public listing ve App Signing/Upload SHA rollerini canlı doğrula.
+7. İki ayrı cihaz/hesapla Canlı Düello eşleşme → maç → sonuç → leaderboard zincirini doğrula.
+8. Yalnız bütün canlı kapılar + ayrı cutover onayı sonrası `server_config/rewarded.ssvEnabled=true` değerlendir.
+9. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür; `assets/questions.json` kontrolsüz değişmesin.
+10. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
