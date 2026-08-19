@@ -3,6 +3,27 @@
 **Kesim noktası:** 19 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
+## 0L. Issue #67 / PR #69 SSV percent-encoding düzeltmesi merge checkpoint — 19 Ağustos 2026
+
+Bu bölüm aşağıdaki `0K` içindeki PR #68 ön-merge açık kapılarını ve bölüm 15'teki eski SSV sırasını **güncel durum açısından geçersiz kılar**; eski kayıtlar tarihsel denetim izi olarak korunur.
+
+- Kanonik release `release/final-closed-test-aab-1.68.8`; PR #69 merge sonrası canlı HEAD `fe293d87a33772ff9fa65de829ed59d40a263eca`, gerçek sürüm `1.68.17+107`. Merge SHA ile release karşılaştırması `identical` olarak doğrulandı.
+- PR #68 daha önce release'e `60dce6cf80f1665360462f443455e282509ecd95` ile merge edildi. Bu verify-only kodunun production callback redeploy'u bu oturumdaki yetkili execution kanalı eksikliği nedeniyle uygulanmamış ve `ssvEnabled` açılmamıştı.
+- AdMob `Verify URL` canlı denemesinde geçerli Google callback'i `HTTP 400` ile reddedildi; Cloud Run request kanıtında `reward_item=%C3%96d%C3%BCl` görüldü. Kök neden, Google'ın referans doğrulayıcısının URI query'sini percent-decode etmesi ile Express `request.originalUrl` değerinin percent-encoded biçimi koruması arasındaki imza içeriği farkı olarak kapatıldı.
+- Ayrı branch `fix/ssv-percent-decoded-signature-20260819`, PR #69. Final head `a01f1d19c6ce40ebec1b9c83ab4ed672f65c8cb7`.
+- PR #69 net diff yalnız `functions/rewarded_ssv.js` ve `functions/test/rewarded_ssv.test.js`: query sırası korunarak `signature` öncesi imza içeriği `decodeURIComponent` ile percent-decode edilir; bozuk encoding `invalid-query-encoding` ile fail-closed kalır. Canlı biçimdeki `reward_item=%C3%96d%C3%BCl` → `reward_item=Ödül` regresyonu ve bozuk encoding reddi kanonik suite'e eklendi.
+- Final exact-head Firebase güvenlik doğrulaması run `32222981893`: **SUCCESS**; tam logda Functions **43/43 PASS**, Firestore Rules emulator **6/6 PASS**. Final exact-head AdMob PR doğrulaması run `32222981901`: **SUCCESS**. Workflow, tam log, diff ve iki commitlik Git geçmişi birlikte incelendi.
+- Levent'in mevcut koşullu PR #69 merge onayı altında PR Draft'tan çıkarıldı; head yeniden kilitlenip değişmediği doğrulandıktan sonra expected-head SHA ile squash merge edildi. Merge commit `fe293d87a33772ff9fa65de829ed59d40a263eca`.
+- `assets/questions.json`, Flutter oynanışı, Firestore Rules/Indexes, BoardMap/67 node, 3B tahta ve `pubspec.yaml` sürümü PR #69 ile değiştirilmedi.
+- Issue #67 üzerinde merge checkpoint comment `5340502656` ile kalıcı uzak kayıt oluşturuldu.
+- **Production mutation yapılmadı:** PR #69 merge adımı callback redeploy yapmadı; `ssvEnabled` açılmadı/değişmedi; blanket Functions deploy yapılmadı. Yeni percent-decoding kodunun canlı callback'e ulaştığı henüz kanıtlanmış değildir.
+- Google Play Integrity API'nin Google Cloud Console'da `Enabled` olduğu Levent'in canlı ekran kanıtıyla **DOĞRULANDI**. Bu, Play App Signing / Upload SHA rollerini tek başına doğrulamaz; sertifika rolleri Play Console'dan **DOĞRULANACAK**.
+- `KARARLAR.md` değişmedi; ürün ödül sözleşmesi değişmedi.
+
+**Açık sonraki kapılar:** mevcut yetkili Firebase production execution kanalında yalnız `rewardedSsvCallback` selective redeploy → normal callback'in yine `503 SSV_NOT_ENABLED` olduğunu doğrulama → legacy AdMob rewarded biriminde `Verify URL` tekrar denemesi ve `200 SSV_VERIFY_OK` + verify-only sırasında Firestore write yok kanıtı → Play App Signing/Upload SHA rol eşlemesi ve versionCode/public listing → fiziksel gerçek rewarded + iki cihaz Canlı Düello kabulü → yalnız bütün kapılar ve ayrıca açık cutover onayı sonrası `server_config/rewarded.ssvEnabled=true` değerlendirmesi.
+
+---
+
 ## 0K. Issue #67 production AdMob/Firebase SSV canlı cutover — 19 Ağustos 2026
 
 - Kanonik release `release/final-closed-test-aab-1.68.8`; görev başlangıcında canlı HEAD `7cf17591ba12cbb422c0e2e34609795546258784`, gerçek sürüm `1.68.17+107` olarak yeniden doğrulandı. PR #65 merged durumdadır.
