@@ -4,6 +4,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 
 const {
   decodeRewardCustomData,
@@ -30,6 +31,51 @@ test('game id validation is fail-closed', () => {
   assert.throws(() => normalizeGameId(''), /invalid-game-id/);
   assert.throws(() => normalizeGameId('x'.repeat(181)), /invalid-game-id/);
   assert.throws(() => normalizeGameId('bad\nvalue'), /invalid-game-id/);
+});
+
+test('SSV signed content percent-decodes query bytes without reordering', () => {
+  const source = fs.readFileSync(
+    path.resolve(__dirname, '..', 'rewarded_ssv.js'),
+    'utf8',
+  );
+  const start = source.indexOf(
+    'function signedContentFromOriginalUrl(originalUrl) {',
+  );
+  const end = source.indexOf('\n}\n\nasync function publicKeys', start);
+  assert.ok(start >= 0 && end > start);
+
+  const functionSource = source.slice(start, end + 2);
+  const signedContentFromOriginalUrl = vm.runInNewContext(`(${functionSource})`);
+  const callbackUrl =
+    '/rewardedSsvCallback?ad_network=5450213213286189855' +
+    '&ad_unit=1234567890' +
+    '&custom_data=bilgi-rotasi-ssv-verify-v1' +
+    '&reward_amount=1' +
+    '&reward_item=%C3%96d%C3%BCl' +
+    '&timestamp=1787119784615' +
+    '&transaction_id=123456789' +
+    '&user_id=bilgi-rotasi-ssv-verify' +
+    '&signature=MEUCIQ-test' +
+    '&key_id=3335741209';
+
+  assert.equal(
+    signedContentFromOriginalUrl(callbackUrl),
+    'ad_network=5450213213286189855' +
+      '&ad_unit=1234567890' +
+      '&custom_data=bilgi-rotasi-ssv-verify-v1' +
+      '&reward_amount=1' +
+      '&reward_item=Ödül' +
+      '&timestamp=1787119784615' +
+      '&transaction_id=123456789' +
+      '&user_id=bilgi-rotasi-ssv-verify',
+  );
+  assert.throws(
+    () =>
+      signedContentFromOriginalUrl(
+        '/rewardedSsvCallback?reward_item=%E0%A4%A&signature=x&key_id=1',
+      ),
+    /invalid-query-encoding/,
+  );
 });
 
 test('reward claim id is stable per user and game without a daily quota', () => {
