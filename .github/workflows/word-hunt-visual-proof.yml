@@ -74,6 +74,23 @@ jobs:
             | grep -F 'assets/word_hunt/baslangic_limani_bg.webp' \
             | tee reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
           test -s reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
+          sha256sum assets/word_hunt/baslangic_limani_bg.webp \
+            | tee reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
+          wc -c assets/word_hunt/baslangic_limani_bg.webp \
+            | tee reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
+          unzip -p build/app/outputs/flutter-apk/app-debug.apk \
+            assets/flutter_assets/assets/word_hunt/baslangic_limani_bg.webp \
+            > reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp
+          test -s reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp
+          sha256sum reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp \
+            | tee reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
+          wc -c reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp \
+            | tee reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
+          if cmp -s assets/word_hunt/baslangic_limani_bg.webp reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp; then
+            echo 'SOURCE_EQUALS_PACKAGED=YES' | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
+          else
+            echo 'SOURCE_EQUALS_PACKAGED=NO' | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
+          fi
 
       - name: Android 16 emulator KVM erişimini hazırla
         shell: bash
@@ -132,5 +149,11 @@ jobs:
             reports/WORD_HUNT_VISUAL_PROOF_HEAD_SHA.txt
             reports/WORD_HUNT_VISUAL_PROOF_APK_SHA256.txt
             reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
+            reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
+            reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
+            reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp
+            reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
+            reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
+            reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
           if-no-files-found: error
           retention-days: 30
