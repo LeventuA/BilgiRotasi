@@ -1,7 +1,26 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-**Kesim noktası:** 19 Ağustos 2026
+**Kesim noktası:** 20 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
+
+## 0M. Issue #73 / Draft PR #74 Kelime Avı foundation ve home hub CI checkpoint — 20 Ağustos 2026
+
+- Kanonik release tabanı `release/final-closed-test-aab-1.68.8`; PR #74 başlangıç base SHA `9331802b9a2b12d1f4ec6715da96dc7d0f60b24b`; gerçek sürüm `1.68.17+107`.
+- Çalışma branch'i `feat/home-word-hunt-foundation-20260820`; Draft PR #74 açık ve merge edilmemiştir. Mevcut yayınlanmış Bilgi Oyunu bu hazırlık hattında ana navigasyona bağlanmadı.
+- Canlı PR dosya envanteri **22 dosya**dır. İlk PR gövdesindeki 7 dosyalık kapsam bayattır; gerçek kapsam `docs/kelime-avi`, Kelime Avı checkpoint'i, `lib/word_hunt/*` prototip/çekirdek dosyaları ve ilgili `test/*` dosyalarıdır.
+- Foundation; `Başlangıç Limanı` için 10 bölüm/30 yıldız/6 bilgi kartı, 8 yönlü Türkçe uyumlu kelime seçim yolu, progress codec, validator, yıldız puanlama ve izole 6×6 prototip ekranlarını içerir.
+- PR head `0ac0ef303936221f0c923701f974b3f8be00a83f` üzerinde run `32348243734` başarısızdı. Kaynak incelemesinde dikey `SingleChildScrollView` içindeki ana mod `Row`'unda `CrossAxisAlignment.stretch` ile kart içindeki `Spacer()` sınırsız dikey ölçü altında riskli kombinasyon oluşturuyordu.
+- Commit `a9bb89ed1f80790ddbe9c81e79d83d2347c2e2da` — `fix: stabilize home hub responsive layout`: yalnız `lib/word_hunt/home_hub_screen.dart` içinde Row stretch kaldırıldı ve `Spacer()` bounded boşlukla değiştirildi.
+- Bu commit üzerindeki run `32361294613` / job `96401221605`, `360×800` dar ekran regresyonunun artık **PASS** olduğunu kanıtladı. Kalan tek test hatası uygulama layout'u değil, `Günlük Görevler` kartının varsayılan `800×600` widget yüzeyinde `y=648` ile ekran dışında olmasına rağmen testin scroll etmeden `tap()` çağırmasıydı; exact hata `Expected 1 / Actual 0`.
+- Commit `c377e9043b039c2e1368704fcd875cc60bf8f597` — `test: scroll home hub daily card into view`: test `ensureVisible` + `pumpAndSettle` sonrası karta dokunur; runtime küçültülmedi.
+- Exact teknik head `c377e904...` için AdMob PR doğrulaması #297 / run `32361507978`, job `96401878115` içinde **`Analiz ve tüm testler` SUCCESS** oldu. Bu aşama dar ekran ve günlük callback regresyonları dahil tüm Flutter testlerini, non-fatal analyze kapısını ve diff check'i geçti.
+- Proje-hafızası commitleri yeni PR head'leri oluşturduğu için final docs-head CI sonucu bu belgeye statik SHA olarak dondurulmaz; görev kapanışında PR #74'ün canlı son HEAD'i üzerindeki workflow/log/artifact/Android 16 sonucu ayrıca okunur.
+- `assets/questions.json`, `lib/main.dart`, mevcut Bilgi Oyunu oynanışı/ana navigasyon, BoardMap/67 node/3B, Firebase/AdMob/Play config ve `pubspec.yaml` değiştirilmedi.
+- `KARARLAR.md` değişmedi; bu iş mevcut izolasyon ve Git çalışma kararlarını uygular, yeni ürün kararı üretmez.
+
+**Açık sonraki kapılar:** proje-hafızası güncellemeleri tamamlandıktan sonra final PR #74 head CI'ını tam workflow/log/artifact/Android 16 kapılarıyla doğrula → PR gövdesini gerçek 22 dosyalık kapsam ve final CI kanıtıyla güncelle → kullanıcı görsel/onay turu olmadan mevcut ana navigasyona entegrasyon yapma → PR Draft kalsın ve ayrı açık merge onayı olmadan release'e merge etme.
+
+---
 
 ## 0L. Issue #67 / PR #69 SSV percent-encoding düzeltmesi merge checkpoint — 19 Ağustos 2026
 
@@ -630,13 +649,12 @@ Eski `.github/workflows/apply-game-save-isolation-v4.yml` push workflow'u bu bra
 
 ## 15. Şu anda ilk yapılacak işler
 
-1. PR #68 final docs-head CI sonuçlarını tam log/artifact/diff/Git geçmişiyle kapat.
-2. CI PASS ise Levent'ten PR #68 için ayrı açık merge onayı al; kendi kendine merge etme.
-3. Merge sonrası canlı release HEAD/sürümü tekrar kilitle ve yalnız `rewardedSsvCallback` production redeploy'u için ayrı açık onay al.
-4. Redeploy sonrası normal callback'in `503 SSV_NOT_ENABLED` kaldığını doğrula; ardından legacy AdMob rewarded biriminde verify-only User ID/custom data ile `Verify URL` PASS ve write-free davranışı kanıtla.
-5. `ssvEnabled` açmadan fiziksel gerçek rewarded kabulünün ön koşullarını tamamla; tek +10/no-double/failure-right-preserved/no-total-quota kanıtını al.
+1. PR #74 final docs-head AdMob PR doğrulamasını tam workflow/log/artifact/Android 16 kapılarıyla kapat.
+2. PR #74 gövdesini canlı 22 dosyalık kapsam ve final CI kanıtıyla güncelle; Draft bırak.
+3. Kullanıcı görsel/onay turu olmadan Kelime Avı/home hub prototipini mevcut ana navigasyona bağlama.
+4. PR #74 için ayrı açık merge onayı olmadan release'e merge yapma.
+5. Issue #67 SSV canlı cutover açık kapılarını ayrı görev olarak sürdür; `ssvEnabled` kestirmesi yapma.
 6. Play Console'da versionCode 107, production/public listing ve App Signing/Upload SHA rollerini canlı doğrula.
 7. İki ayrı cihaz/hesapla Canlı Düello eşleşme → maç → sonuç → leaderboard zincirini doğrula.
-8. Yalnız bütün canlı kapılar + ayrı cutover onayı sonrası `server_config/rewarded.ssvEnabled=true` değerlendir.
-9. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür; `assets/questions.json` kontrolsüz değişmesin.
-10. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
+8. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür; `assets/questions.json` kontrolsüz değişmesin.
+9. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
