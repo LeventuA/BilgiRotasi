@@ -4,9 +4,11 @@ on:
   pull_request:
     branches:
       - release/final-closed-test-aab-1.68.8
+      - feat/home-word-hunt-foundation-20260820
     paths:
       - 'lib/word_hunt/**'
       - 'test/word_hunt_route_map_view_test.dart'
+      - 'test/word_hunt_route_map_v2_view_test.dart'
       - '.github/workflows/word-hunt-visual-proof.yml'
   workflow_dispatch:
 
@@ -40,12 +42,18 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Bağımlılıkları kur ve rota testini çalıştır
+      - name: Bağımlılıkları kur ve rota testlerini çalıştır
         shell: bash
         run: |
           set -euo pipefail
           flutter pub get
-          flutter test test/word_hunt_route_map_view_test.dart --reporter expanded
+          dart analyze lib/word_hunt/word_hunt_route_map_v2_screen.dart
+          dart analyze lib/word_hunt/word_hunt_visual_proof_main.dart
+          dart analyze test/word_hunt_route_map_v2_view_test.dart
+          flutter test \
+            test/word_hunt_route_map_view_test.dart \
+            test/word_hunt_route_map_v2_view_test.dart \
+            --reporter expanded
           git diff --check
 
       - name: İzole görsel kanıt APK'sını üret
