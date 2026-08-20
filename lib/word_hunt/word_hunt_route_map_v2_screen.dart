@@ -1,153 +1,288 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import 'word_hunt_models.dart';
 import 'word_hunt_progress.dart';
 import 'word_hunt_starter_content.dart';
 
-/// Görsel onay turu için izole V2 rota haritası.
-///
-/// - Mevcut Bilgi Oyunu navigasyonuna bağlı değildir.
-/// - Oynanış/progression sözleşmesini değiştirmez.
-/// - Arka plan için gerçek illüstrasyon asset'i takılabilecek ayrı bir katman
-///   sunar; asset yokken yalnız geliştirme/CI için deterministik fallback çizer.
 class WordHuntRouteMapV2Screen extends StatelessWidget {
   const WordHuntRouteMapV2Screen({
     super.key,
     this.route = WordHuntStarterContent.baslangicLimani,
     this.progress = const WordHuntProgressSnapshot(),
-    this.sceneAssetPath,
+    this.onLevelTap,
     this.onBack,
     this.onInfo,
     this.onCompass,
-    this.onBook,
-    this.onLevelTap,
+    this.onJournal,
   });
+
+  static const String backgroundAsset =
+      'assets/word_hunt/baslangic_limani_bg.webp';
 
   final WordHuntRouteDefinition route;
   final WordHuntProgressSnapshot progress;
-  final String? sceneAssetPath;
+  final ValueChanged<int>? onLevelTap;
   final VoidCallback? onBack;
   final VoidCallback? onInfo;
   final VoidCallback? onCompass;
-  final VoidCallback? onBook;
-  final ValueChanged<int>? onLevelTap;
+  final VoidCallback? onJournal;
 
   static const List<Offset> _stops = <Offset>[
-    Offset(0.15, 0.10),
-    Offset(0.46, 0.17),
-    Offset(0.70, 0.28),
-    Offset(0.82, 0.39),
-    Offset(0.33, 0.48),
-    Offset(0.17, 0.60),
-    Offset(0.46, 0.67),
-    Offset(0.76, 0.73),
-    Offset(0.24, 0.82),
-    Offset(0.51, 0.91),
+    Offset(0.18, 0.07),
+    Offset(0.48, 0.12),
+    Offset(0.70, 0.20),
+    Offset(0.82, 0.30),
+    Offset(0.34, 0.38),
+    Offset(0.16, 0.50),
+    Offset(0.48, 0.54),
+    Offset(0.76, 0.59),
+    Offset(0.24, 0.72),
+    Offset(0.53, 0.83),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final routeStars = WordHuntRouteProgressEngine.totalStars(route, progress);
-    final routeComplete = WordHuntRouteProgressEngine.isRouteComplete(
-      route,
-      progress,
-    );
+    final totalStars = WordHuntRouteProgressEngine.totalStars(route, progress);
+    final lastUnlocked = _lastUnlockedIndex();
 
     return Scaffold(
-      backgroundColor: const Color(0xFF030711),
+      backgroundColor: const Color(0xFF020617),
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final horizontalPadding = constraints.maxWidth < 380 ? 10.0 : 14.0;
-            return SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(
-                horizontalPadding,
-                8,
-                horizontalPadding,
-                18,
-              ),
-              child: Column(
+        child: Column(
+          children: [
+            _TopBar(onBack: onBack, onInfo: onInfo),
+            _RouteBanner(
+              title: route.title,
+              stars: totalStars,
+              maximumStars: route.maximumStars,
+              gate: route.unlockStarsRequired,
+            ),
+            Expanded(
+              child: Stack(
                 children: [
-                  _TopNavigation(
-                    onBack: onBack,
-                    onInfo: onInfo,
+                  Positioned.fill(
+                    child: Image.asset(
+                      backgroundAsset,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                      filterQuality: FilterQuality.high,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const _HarborArtFallback(),
+                    ),
                   ),
-                  const SizedBox(height: 8),
-                  _RouteHeaderPanel(
-                    title: route.title,
-                    stars: routeStars,
-                    maximumStars: route.maximumStars,
-                    unlockStarsRequired: route.unlockStarsRequired,
-                    complete: routeComplete,
+                  const Positioned.fill(child: _BackgroundReadabilityOverlay()),
+                  Positioned.fill(
+                    child: SingleChildScrollView(
+                      key: const Key('word_hunt_v2_scroll'),
+                      padding: const EdgeInsets.only(bottom: 104),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          final mapHeight = math.max(
+                            920.0,
+                            MediaQuery.sizeOf(context).height * 1.20,
+                          );
+                          final size = Size(constraints.maxWidth, mapHeight);
+                          final points = _stops
+                              .map(
+                                (stop) => Offset(
+                                  stop.dx * size.width,
+                                  stop.dy * size.height,
+                                ),
+                              )
+                              .toList(growable: false);
+
+                          return SizedBox(
+                            height: mapHeight,
+                            child: Stack(
+                              children: [
+                                Positioned.fill(
+                                  child: CustomPaint(
+                                    painter: _V2RoutePainter(
+                                      points: points,
+                                      route: route,
+                                      lastUnlockedIndex: lastUnlocked,
+                                    ),
+                                  ),
+                                ),
+                                for (
+                                  var index = 0;
+                                  index < route.levels.length;
+                                  index++
+                                )
+                                  _positionedStop(
+                                    point: points[index],
+                                    level: route.levels[index],
+                                    stars: progress.starsFor(
+                                      route.levels[index].id,
+                                    ),
+                                    unlocked:
+                                        WordHuntRouteProgressEngine.isLevelUnlocked(
+                                          route,
+                                          progress,
+                                          index + 1,
+                                        ),
+                                    mapSize: size,
+                                  ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 8),
-                  _MapScene(
-                    route: route,
-                    progress: progress,
-                    sceneAssetPath: sceneAssetPath,
-                    onLevelTap: onLevelTap,
-                    onCompass: onCompass,
-                    onBook: onBook,
+                  Positioned(
+                    left: 20,
+                    bottom: 18,
+                    child: _RoundControl(
+                      icon: Icons.explore_rounded,
+                      semanticLabel: 'Rota pusulası',
+                      onTap: onCompass,
+                    ),
+                  ),
+                  Positioned(
+                    right: 20,
+                    bottom: 18,
+                    child: _RoundControl(
+                      icon: Icons.menu_book_rounded,
+                      semanticLabel: 'Kelime günlüğü',
+                      onTap: onJournal,
+                    ),
                   ),
                 ],
               ),
-            );
-          },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  int _lastUnlockedIndex() {
+    var last = 0;
+    for (var index = 1; index <= route.levels.length; index++) {
+      if (WordHuntRouteProgressEngine.isLevelUnlocked(route, progress, index)) {
+        last = index;
+      }
+    }
+    return last;
+  }
+
+  Widget _positionedStop({
+    required Offset point,
+    required WordHuntLevelDefinition level,
+    required int stars,
+    required bool unlocked,
+    required Size mapSize,
+  }) {
+    final special = level.type != WordHuntLevelType.normal;
+    final width = special ? 176.0 : 92.0;
+    final height = special ? 112.0 : 88.0;
+    final left = (point.dx - width / 2)
+        .clamp(8.0, math.max(8.0, mapSize.width - width - 8))
+        .toDouble();
+    final top = (point.dy - height / 2)
+        .clamp(8.0, math.max(8.0, mapSize.height - height - 8))
+        .toDouble();
+
+    return Positioned(
+      left: left,
+      top: top,
+      width: width,
+      height: height,
+      child: _V2Stop(
+        key: Key('word_hunt_v2_level_${level.index}'),
+        level: level,
+        stars: stars,
+        unlocked: unlocked,
+        onTap: unlocked && onLevelTap != null
+            ? () => onLevelTap!(level.index)
+            : null,
+      ),
+    );
+  }
+}
+
+class _BackgroundReadabilityOverlay extends StatelessWidget {
+  const _BackgroundReadabilityOverlay();
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: const <double>[0, 0.18, 0.58, 1],
+            colors: <Color>[
+              const Color(0xFF020617).withValues(alpha: 0.28),
+              const Color(0xFF020617).withValues(alpha: 0.05),
+              Colors.transparent,
+              const Color(0xFF020617).withValues(alpha: 0.32),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _TopNavigation extends StatelessWidget {
-  const _TopNavigation({this.onBack, this.onInfo});
+class _TopBar extends StatelessWidget {
+  const _TopBar({this.onBack, this.onInfo});
 
   final VoidCallback? onBack;
   final VoidCallback? onInfo;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 54,
+    return Container(
+      height: 64,
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: <Color>[Color(0xFF050A1D), Color(0xFF100A2A)],
+        ),
+      ),
       child: Row(
         children: [
-          _RoundChromeButton(
+          IconButton(
             key: const Key('word_hunt_v2_back'),
-            icon: Icons.arrow_back_rounded,
-            semanticLabel: 'Geri',
-            onTap: onBack,
-          ),
-          const SizedBox(width: 8),
-          const Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'KELİME AVI',
-                  maxLines: 1,
-                  overflow: TextOverflow.fade,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFFE9C7FF),
-                    fontSize: 21,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.8,
-                    shadows: <Shadow>[
-                      Shadow(color: Color(0xAA8B5CF6), blurRadius: 15),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 3),
-                _TitleOrnament(),
-              ],
+            tooltip: 'Geri',
+            onPressed: onBack,
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Color(0xFFFFD27A),
+              size: 31,
             ),
           ),
-          const SizedBox(width: 8),
-          _RoundChromeButton(
+          const Expanded(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                '✦  KELİME AVI  ✦',
+                style: TextStyle(
+                  color: Color(0xFFE9B8FF),
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.8,
+                  shadows: <Shadow>[
+                    Shadow(color: Color(0xFF7C3AED), blurRadius: 16),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          IconButton(
             key: const Key('word_hunt_v2_info'),
-            icon: Icons.info_outline_rounded,
-            semanticLabel: 'Bilgi',
-            onTap: onInfo,
+            tooltip: 'Bilgi',
+            onPressed: onInfo,
+            icon: const Icon(
+              Icons.info_outline_rounded,
+              color: Color(0xFFE9B8FF),
+              size: 30,
+            ),
           ),
         ],
       ),
@@ -155,32 +290,217 @@ class _TopNavigation extends StatelessWidget {
   }
 }
 
-class _TitleOrnament extends StatelessWidget {
-  const _TitleOrnament();
+class _RouteBanner extends StatelessWidget {
+  const _RouteBanner({
+    required this.title,
+    required this.stars,
+    required this.maximumStars,
+    required this.gate,
+  });
+
+  final String title;
+  final int stars;
+  final int maximumStars;
+  final int gate;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(width: 38, height: 1, color: const Color(0x557C3AED)),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 6),
-          child: Icon(
-            Icons.diamond_outlined,
-            size: 8,
-            color: Color(0xFFB37AFF),
+    return Container(
+      margin: const EdgeInsets.fromLTRB(12, 4, 12, 8),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 11),
+      decoration: BoxDecoration(
+        color: const Color(0xE90A1024),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFB58B4A), width: 1.4),
+        boxShadow: const <BoxShadow>[
+          BoxShadow(color: Color(0x66000000), blurRadius: 14, offset: Offset(0, 5)),
+        ],
+      ),
+      child: Column(
+        children: [
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              title.replaceAll('i', 'İ').replaceAll('ı', 'I').toUpperCase(),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 1.2,
+              ),
+            ),
           ),
-        ),
-        Container(width: 38, height: 1, color: const Color(0x557C3AED)),
-      ],
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              const Icon(Icons.star_rounded, color: Color(0xFFFFD166), size: 25),
+              const SizedBox(width: 5),
+              Text(
+                '$stars / $maximumStars',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                'Kapı: $gate',
+                style: const TextStyle(
+                  color: Color(0xFFE5E7EB),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(width: 4),
+              const Icon(Icons.star_rounded, color: Color(0xFFFFD166), size: 22),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
 
-class _RoundChromeButton extends StatelessWidget {
-  const _RoundChromeButton({
+class _V2Stop extends StatelessWidget {
+  const _V2Stop({
     super.key,
+    required this.level,
+    required this.stars,
+    required this.unlocked,
+    this.onTap,
+  });
+
+  final WordHuntLevelDefinition level;
+  final int stars;
+  final bool unlocked;
+  final VoidCallback? onTap;
+
+  Color get accent => switch (level.type) {
+    WordHuntLevelType.normal => const Color(0xFF49E8F2),
+    WordHuntLevelType.challenge => const Color(0xFFFF9D2E),
+    WordHuntLevelType.bonus => const Color(0xFFC85CFF),
+    WordHuntLevelType.routeFinal => const Color(0xFFFFD166),
+  };
+
+  String get specialLabel => switch (level.type) {
+    WordHuntLevelType.normal => '',
+    WordHuntLevelType.challenge => '⚔  MEYDAN OKUMA',
+    WordHuntLevelType.bonus => '🎁  BONUS DURAK',
+    WordHuntLevelType.routeFinal => '▣  ROTA FİNALİ',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final activeAccent = unlocked ? accent : const Color(0xFF7C8495);
+    final special = level.type != WordHuntLevelType.normal;
+    final nodeSize = level.type == WordHuntLevelType.routeFinal ? 72.0 : 60.0;
+
+    return Semantics(
+      button: unlocked,
+      label: unlocked
+          ? 'Bölüm ${level.index}, ${specialLabel.isEmpty ? 'normal' : specialLabel}, $stars yıldız, açık'
+          : 'Bölüm ${level.index}, kilitli',
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: nodeSize,
+                  height: nodeSize,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: unlocked
+                          ? <Color>[
+                              activeAccent.withValues(alpha: 0.65),
+                              const Color(0xFF071427),
+                            ]
+                          : const <Color>[Color(0xFF3A3E48), Color(0xFF10131A)],
+                    ),
+                    border: Border.all(
+                      color: activeAccent,
+                      width: level.type == WordHuntLevelType.routeFinal ? 3.5 : 2.6,
+                    ),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: activeAccent.withValues(alpha: unlocked ? 0.75 : 0.18),
+                        blurRadius: unlocked ? 20 : 8,
+                        spreadRadius: unlocked ? 3 : 0,
+                      ),
+                    ],
+                  ),
+                  child: unlocked
+                      ? Text(
+                          '${level.index}',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: level.type == WordHuntLevelType.routeFinal ? 28 : 23,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        )
+                      : const Icon(Icons.lock_rounded, color: Color(0xFFE5E7EB), size: 28),
+                ),
+                if (special) ...[
+                  const SizedBox(width: 5),
+                  Flexible(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+                      decoration: BoxDecoration(
+                        color: const Color(0xE60A0F1E),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: activeAccent.withValues(alpha: 0.9)),
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                            color: activeAccent.withValues(alpha: 0.22),
+                            blurRadius: 10,
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        specialLabel,
+                        maxLines: 2,
+                        style: TextStyle(
+                          color: activeAccent,
+                          fontSize: 9.5,
+                          height: 1.05,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+            const SizedBox(height: 4),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: List<Widget>.generate(
+                3,
+                (index) => Icon(
+                  Icons.star_rounded,
+                  size: 17,
+                  color: index < stars
+                      ? const Color(0xFFFFD166)
+                      : const Color(0xFF737989),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RoundControl extends StatelessWidget {
+  const _RoundControl({
     required this.icon,
     required this.semanticLabel,
     this.onTap,
@@ -195,727 +515,21 @@ class _RoundChromeButton extends StatelessWidget {
     return Semantics(
       button: true,
       label: semanticLabel,
-      child: Material(
-        color: Colors.transparent,
-        shape: const CircleBorder(),
-        child: InkWell(
-          onTap: onTap,
-          customBorder: const CircleBorder(),
-          child: Container(
-            width: 46,
-            height: 46,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const RadialGradient(
-                colors: <Color>[Color(0xFF1A1731), Color(0xFF080C18)],
-              ),
-              border: Border.all(color: const Color(0xFF8B6A40), width: 1.2),
-              boxShadow: const <BoxShadow>[
-                BoxShadow(color: Color(0x442A1753), blurRadius: 10),
-              ],
-            ),
-            child: Icon(icon, color: const Color(0xFFE7C57C), size: 25),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _RouteHeaderPanel extends StatelessWidget {
-  const _RouteHeaderPanel({
-    required this.title,
-    required this.stars,
-    required this.maximumStars,
-    required this.unlockStarsRequired,
-    required this.complete,
-  });
-
-  final String title;
-  final int stars;
-  final int maximumStars;
-  final int unlockStarsRequired;
-  final bool complete;
-
-  String _turkishUppercase(String value) {
-    return value.replaceAll('i', 'İ').replaceAll('ı', 'I').toUpperCase();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: const _OrnateFramePainter(),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.fromLTRB(18, 13, 18, 13),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: <Color>[
-              Color(0xED11101D),
-              Color(0xEE07101E),
-              Color(0xED0B0C18),
-            ],
-          ),
-          boxShadow: const <BoxShadow>[
-            BoxShadow(color: Color(0x66000000), blurRadius: 14, offset: Offset(0, 7)),
-            BoxShadow(color: Color(0x338B5CF6), blurRadius: 16),
-          ],
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              _turkishUppercase(title),
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFFFFF8E7),
-                fontSize: 27,
-                fontWeight: FontWeight.w900,
-                letterSpacing: 1.2,
-                shadows: <Shadow>[
-                  Shadow(color: Color(0xAA000000), offset: Offset(0, 2), blurRadius: 5),
-                ],
-              ),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.star_rounded, color: Color(0xFFFFC94A), size: 28),
-                      const SizedBox(width: 6),
-                      Flexible(
-                        child: Text(
-                          '$stars / $maximumStars',
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
-                          style: const TextStyle(
-                            color: Color(0xFFFFF2D0),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Flexible(
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.centerRight,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          complete ? 'ROTA TAMAMLANDI' : 'Kapı: $unlockStarsRequired',
-                          style: TextStyle(
-                            color: complete
-                                ? const Color(0xFF6EE7D6)
-                                : const Color(0xFFFFE6A3),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        const Icon(Icons.star_rounded, color: Color(0xFFFFC94A), size: 21),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _MapScene extends StatelessWidget {
-  const _MapScene({
-    required this.route,
-    required this.progress,
-    required this.sceneAssetPath,
-    required this.onLevelTap,
-    required this.onCompass,
-    required this.onBook,
-  });
-
-  final WordHuntRouteDefinition route;
-  final WordHuntProgressSnapshot progress;
-  final String? sceneAssetPath;
-  final ValueChanged<int>? onLevelTap;
-  final VoidCallback? onCompass;
-  final VoidCallback? onBook;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final sceneHeight = (constraints.maxWidth * 1.74).clamp(590.0, 760.0);
-        final size = Size(constraints.maxWidth, sceneHeight);
-        final points = WordHuntRouteMapV2Screen._stops
-            .take(route.levels.length)
-            .map((stop) => Offset(stop.dx * size.width, stop.dy * size.height))
-            .toList(growable: false);
-        final lastUnlocked = _lastUnlockedIndex();
-
-        return Container(
-          key: const Key('word_hunt_v2_scene'),
-          height: sceneHeight,
+      child: InkWell(
+        onTap: onTap,
+        customBorder: const CircleBorder(),
+        child: Container(
+          width: 62,
+          height: 62,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: const Color(0xFF7D6039), width: 1.2),
+            shape: BoxShape.circle,
+            color: const Color(0xE70A1020),
+            border: Border.all(color: const Color(0xFFB58B4A), width: 2),
             boxShadow: const <BoxShadow>[
-              BoxShadow(color: Color(0xAA000000), blurRadius: 20, offset: Offset(0, 10)),
-              BoxShadow(color: Color(0x2245E6F2), blurRadius: 16),
+              BoxShadow(color: Color(0x88000000), blurRadius: 12),
             ],
           ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(23),
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: _IllustratedSceneLayer(assetPath: sceneAssetPath),
-                ),
-                const Positioned.fill(child: _SceneLegibilityOverlay()),
-                Positioned.fill(
-                  child: CustomPaint(
-                    painter: _V2RoutePainter(
-                      points: points,
-                      route: route,
-                      lastUnlockedIndex: lastUnlocked,
-                    ),
-                  ),
-                ),
-                for (var index = 0; index < points.length; index++)
-                  _positionNode(
-                    point: points[index],
-                    level: route.levels[index],
-                    stars: progress.starsFor(route.levels[index].id),
-                    unlocked: WordHuntRouteProgressEngine.isLevelUnlocked(
-                      route,
-                      progress,
-                      index + 1,
-                    ),
-                    sceneSize: size,
-                  ),
-                const Positioned(
-                  top: 48,
-                  right: 24,
-                  child: _ScenicBadge(
-                    icon: Icons.light_mode_rounded,
-                    label: 'Fener',
-                  ),
-                ),
-                const Positioned(
-                  top: 196,
-                  left: 18,
-                  child: _ScenicBadge(
-                    icon: Icons.sailing_rounded,
-                    label: 'Liman',
-                  ),
-                ),
-                const Positioned(
-                  bottom: 82,
-                  right: 24,
-                  child: _ScenicBadge(
-                    icon: Icons.inventory_2_rounded,
-                    label: 'Hazine',
-                  ),
-                ),
-                Positioned(
-                  left: 18,
-                  bottom: 14,
-                  child: _BottomMapButton(
-                    key: const Key('word_hunt_v2_compass'),
-                    icon: Icons.explore_rounded,
-                    label: 'Pusula',
-                    onTap: onCompass,
-                  ),
-                ),
-                Positioned(
-                  right: 18,
-                  bottom: 14,
-                  child: _BottomMapButton(
-                    key: const Key('word_hunt_v2_book'),
-                    icon: Icons.menu_book_rounded,
-                    label: 'Bilgi Kitabı',
-                    onTap: onBook,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  int _lastUnlockedIndex() {
-    var last = 0;
-    for (var index = 1; index <= route.levels.length; index++) {
-      if (WordHuntRouteProgressEngine.isLevelUnlocked(route, progress, index)) {
-        last = index;
-      }
-    }
-    return last;
-  }
-
-  Widget _positionNode({
-    required Offset point,
-    required WordHuntLevelDefinition level,
-    required int stars,
-    required bool unlocked,
-    required Size sceneSize,
-  }) {
-    final special = level.type != WordHuntLevelType.normal;
-    final boxWidth = special ? 188.0 : 76.0;
-    final boxHeight = special ? 100.0 : 78.0;
-    final placeLabelToLeft = level.index == 8;
-    final centerX = special && !placeLabelToLeft ? 42.0 : boxWidth - 42.0;
-    final left = (point.dx - centerX)
-        .clamp(4.0, sceneSize.width - boxWidth - 4)
-        .toDouble();
-    final top = (point.dy - 39)
-        .clamp(4.0, sceneSize.height - boxHeight - 4)
-        .toDouble();
-
-    return Positioned(
-      left: left,
-      top: top,
-      width: boxWidth,
-      height: boxHeight,
-      child: _RouteStop(
-        key: Key('word_hunt_v2_level_${level.index}'),
-        level: level,
-        stars: stars,
-        unlocked: unlocked,
-        labelOnLeft: placeLabelToLeft,
-        onTap: unlocked && onLevelTap != null
-            ? () => onLevelTap!(level.index)
-            : null,
-      ),
-    );
-  }
-}
-
-class _IllustratedSceneLayer extends StatelessWidget {
-  const _IllustratedSceneLayer({required this.assetPath});
-
-  final String? assetPath;
-
-  @override
-  Widget build(BuildContext context) {
-    final path = assetPath;
-    if (path != null && path.isNotEmpty) {
-      return Image.asset(
-        path,
-        key: const Key('word_hunt_v2_illustrated_asset'),
-        fit: BoxFit.cover,
-        alignment: Alignment.center,
-        errorBuilder: (context, error, stackTrace) {
-          return const CustomPaint(painter: _FallbackHarborPainter());
-        },
-      );
-    }
-
-    return const CustomPaint(
-      key: Key('word_hunt_v2_fallback_scene'),
-      painter: _FallbackHarborPainter(),
-    );
-  }
-}
-
-class _SceneLegibilityOverlay extends StatelessWidget {
-  const _SceneLegibilityOverlay();
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: <Color>[
-            const Color(0xFF020817).withValues(alpha: 0.15),
-            Colors.transparent,
-            Colors.transparent,
-            const Color(0xFF030512).withValues(alpha: 0.30),
-          ],
-          stops: const <double>[0, 0.22, 0.72, 1],
-        ),
-      ),
-    );
-  }
-}
-
-class _RouteStop extends StatelessWidget {
-  const _RouteStop({
-    super.key,
-    required this.level,
-    required this.stars,
-    required this.unlocked,
-    required this.labelOnLeft,
-    this.onTap,
-  });
-
-  final WordHuntLevelDefinition level;
-  final int stars;
-  final bool unlocked;
-  final bool labelOnLeft;
-  final VoidCallback? onTap;
-
-  Color get typeColor => switch (level.type) {
-    WordHuntLevelType.normal => const Color(0xFF32E6E7),
-    WordHuntLevelType.challenge => const Color(0xFFFF9E2B),
-    WordHuntLevelType.bonus => const Color(0xFFC45CFF),
-    WordHuntLevelType.routeFinal => const Color(0xFFFFD268),
-  };
-
-  String get typeLabel => switch (level.type) {
-    WordHuntLevelType.normal => '',
-    WordHuntLevelType.challenge => 'MEYDAN OKUMA',
-    WordHuntLevelType.bonus => 'BONUS DURAK',
-    WordHuntLevelType.routeFinal => 'ROTA FİNALİ',
-  };
-
-  IconData get typeIcon => switch (level.type) {
-    WordHuntLevelType.normal => Icons.circle,
-    WordHuntLevelType.challenge => Icons.sports_martial_arts_rounded,
-    WordHuntLevelType.bonus => Icons.card_giftcard_rounded,
-    WordHuntLevelType.routeFinal => Icons.inventory_2_rounded,
-  };
-
-  @override
-  Widget build(BuildContext context) {
-    final accent = !unlocked && level.type == WordHuntLevelType.normal
-        ? const Color(0xFF7A8190)
-        : typeColor;
-    final node = _NodeOrb(
-      level: level,
-      unlocked: unlocked,
-      accent: accent,
-    );
-    final label = level.type == WordHuntLevelType.normal
-        ? const SizedBox.shrink()
-        : Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: labelOnLeft ? 0 : 6,
-                right: labelOnLeft ? 6 : 0,
-                top: 4,
-              ),
-              child: _SpecialStopLabel(
-                label: typeLabel,
-                icon: typeIcon,
-                accent: accent,
-                dimmed: !unlocked,
-              ),
-            ),
-          );
-
-    return Semantics(
-      button: unlocked,
-      label: unlocked
-          ? 'Bölüm ${level.index}, ${typeLabel.isEmpty ? 'normal' : typeLabel}, $stars yıldız, açık'
-          : 'Bölüm ${level.index}, kilitli',
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(44),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: labelOnLeft
-                    ? <Widget>[label, node]
-                    : <Widget>[node, label],
-              ),
-              SizedBox(
-                width: level.type == WordHuntLevelType.normal ? 76 : 82,
-                child: _StarStrip(stars: stars, unlocked: unlocked),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _NodeOrb extends StatelessWidget {
-  const _NodeOrb({
-    required this.level,
-    required this.unlocked,
-    required this.accent,
-  });
-
-  final WordHuntLevelDefinition level;
-  final bool unlocked;
-  final Color accent;
-
-  @override
-  Widget build(BuildContext context) {
-    final size = switch (level.type) {
-      WordHuntLevelType.normal => 60.0,
-      WordHuntLevelType.challenge => 68.0,
-      WordHuntLevelType.bonus => 68.0,
-      WordHuntLevelType.routeFinal => 74.0,
-    };
-    final finalNode = level.type == WordHuntLevelType.routeFinal;
-
-    return SizedBox(
-      width: size,
-      height: size,
-      child: Stack(
-        alignment: Alignment.center,
-        clipBehavior: Clip.none,
-        children: [
-          if (finalNode)
-            Positioned(
-              top: -15,
-              child: Icon(
-                Icons.workspace_premium_rounded,
-                size: 28,
-                color: accent,
-                shadows: <Shadow>[
-                  Shadow(color: accent.withValues(alpha: 0.75), blurRadius: 12),
-                ],
-              ),
-            ),
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: accent.withValues(alpha: unlocked ? 0.60 : 0.26),
-                  blurRadius: unlocked ? 18 : 9,
-                  spreadRadius: unlocked ? 4 : 1,
-                ),
-                const BoxShadow(color: Color(0xAA000000), blurRadius: 5, offset: Offset(0, 4)),
-              ],
-              border: Border.all(
-                color: accent.withValues(alpha: unlocked ? 0.95 : 0.60),
-                width: finalNode ? 3.2 : 2.4,
-              ),
-              gradient: RadialGradient(
-                colors: <Color>[
-                  accent.withValues(alpha: unlocked ? 0.42 : 0.16),
-                  const Color(0xFF10202B),
-                  const Color(0xFF071019),
-                ],
-                stops: const <double>[0, 0.62, 1],
-              ),
-            ),
-          ),
-          Container(
-            width: size - 12,
-            height: size - 12,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: accent.withValues(alpha: 0.48), width: 1),
-            ),
-          ),
-          if (!unlocked && level.type == WordHuntLevelType.normal)
-            const Icon(Icons.lock_rounded, color: Color(0xFFE6E7EB), size: 26)
-          else
-            Text(
-              '${level.index}',
-              style: TextStyle(
-                color: unlocked
-                    ? const Color(0xFFFFFFFF)
-                    : const Color(0xFFD8D8D8),
-                fontSize: finalNode ? 28 : 24,
-                fontWeight: FontWeight.w900,
-                shadows: const <Shadow>[
-                  Shadow(color: Color(0xCC000000), blurRadius: 4, offset: Offset(0, 2)),
-                ],
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class _SpecialStopLabel extends StatelessWidget {
-  const _SpecialStopLabel({
-    required this.label,
-    required this.icon,
-    required this.accent,
-    required this.dimmed,
-  });
-
-  final String label;
-  final IconData icon;
-  final Color accent;
-  final bool dimmed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Opacity(
-      opacity: dimmed ? 0.68 : 1,
-      child: Container(
-        constraints: const BoxConstraints(minHeight: 40),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          gradient: LinearGradient(
-            colors: <Color>[
-              const Color(0xF20C0B14),
-              accent.withValues(alpha: 0.18),
-              const Color(0xF20C0B14),
-            ],
-          ),
-          border: Border.all(color: accent.withValues(alpha: 0.72), width: 1.1),
-          boxShadow: <BoxShadow>[
-            BoxShadow(color: accent.withValues(alpha: 0.24), blurRadius: 9),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: accent, size: 19),
-            const SizedBox(width: 7),
-            Flexible(
-              child: Text(
-                label,
-                maxLines: 2,
-                style: TextStyle(
-                  color: accent,
-                  fontSize: 10.5,
-                  height: 1.05,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 0.5,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _StarStrip extends StatelessWidget {
-  const _StarStrip({required this.stars, required this.unlocked});
-
-  final int stars;
-  final bool unlocked;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List<Widget>.generate(
-        3,
-        (index) => Icon(
-          Icons.star_rounded,
-          size: 18,
-          color: index < stars
-              ? const Color(0xFFFFC94A)
-              : unlocked
-                  ? const Color(0xFF6E7482)
-                  : const Color(0xFF535866),
-          shadows: index < stars
-              ? const <Shadow>[
-                  Shadow(color: Color(0x99FFB52E), blurRadius: 6),
-                ]
-              : const <Shadow>[],
-        ),
-      ),
-    );
-  }
-}
-
-class _BottomMapButton extends StatelessWidget {
-  const _BottomMapButton({
-    super.key,
-    required this.icon,
-    required this.label,
-    this.onTap,
-  });
-
-  final IconData icon;
-  final String label;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      label: label,
-      child: Material(
-        color: Colors.transparent,
-        shape: const CircleBorder(),
-        child: InkWell(
-          onTap: onTap,
-          customBorder: const CircleBorder(),
-          child: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const RadialGradient(
-                colors: <Color>[Color(0xFF241C18), Color(0xFF090B10)],
-              ),
-              border: Border.all(color: const Color(0xFF9B7440), width: 2),
-              boxShadow: const <BoxShadow>[
-                BoxShadow(color: Color(0x99000000), blurRadius: 9, offset: Offset(0, 4)),
-                BoxShadow(color: Color(0x338B6B40), blurRadius: 8),
-              ],
-            ),
-            child: Icon(icon, color: const Color(0xFFDAB66D), size: 30),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ScenicBadge extends StatelessWidget {
-  const _ScenicBadge({required this.icon, required this.label});
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: Opacity(
-        opacity: 0.78,
-        child: Column(
-          children: [
-            Container(
-              width: 35,
-              height: 35,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xAA07101B),
-                border: Border.all(color: const Color(0xAAE9C77D)),
-              ),
-              child: Icon(icon, size: 19, color: const Color(0xFFE9C77D)),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: const TextStyle(
-                color: Color(0xFFD7CFBE),
-                fontSize: 8,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ],
+          child: Icon(icon, color: const Color(0xFFFFD27A), size: 32),
         ),
       ),
     );
@@ -933,58 +547,47 @@ class _V2RoutePainter extends CustomPainter {
   final WordHuntRouteDefinition route;
   final int lastUnlockedIndex;
 
-  Color _typeColor(WordHuntLevelType type) => switch (type) {
-    WordHuntLevelType.normal => const Color(0xFF32E6E7),
-    WordHuntLevelType.challenge => const Color(0xFFFF9E2B),
-    WordHuntLevelType.bonus => const Color(0xFFC45CFF),
-    WordHuntLevelType.routeFinal => const Color(0xFFFFD268),
-  };
-
   @override
   void paint(Canvas canvas, Size size) {
-    if (points.length < 2) return;
-
     for (var index = 0; index < points.length - 1; index++) {
       final start = points[index];
       final end = points[index + 1];
-      final bendX = (start.dx + end.dx) / 2 + (index.isEven ? 24 : -24);
-      final bendY = (start.dy + end.dy) / 2 + (index == 7 ? 18 : 0);
+      final control = Offset(
+        (start.dx + end.dx) / 2 + (index.isEven ? 36 : -36),
+        (start.dy + end.dy) / 2,
+      );
       final path = Path()
         ..moveTo(start.dx, start.dy)
-        ..quadraticBezierTo(bendX, bendY, end.dx, end.dy);
-
-      final nextType = route.levels[index + 1].type;
-      final segmentUnlocked = index + 2 <= lastUnlockedIndex;
-      final accent = _typeColor(nextType);
-
-      canvas.drawPath(
-        path,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeCap = StrokeCap.round
-          ..strokeWidth = 9
-          ..color = const Color(0x88000308),
-      );
+        ..quadraticBezierTo(control.dx, control.dy, end.dx, end.dy);
+      final active = index + 2 <= lastUnlockedIndex;
+      final destination = route.levels[index + 1].type;
+      final color = switch (destination) {
+        WordHuntLevelType.challenge => const Color(0xFFFFA133),
+        WordHuntLevelType.bonus => const Color(0xFFC85CFF),
+        WordHuntLevelType.routeFinal => const Color(0xFFFFD166),
+        WordHuntLevelType.normal => const Color(0xFF55E7EF),
+      };
 
       canvas.drawPath(
         path,
         Paint()
           ..style = PaintingStyle.stroke
           ..strokeCap = StrokeCap.round
-          ..strokeWidth = segmentUnlocked ? 6 : 3.5
-          ..color = segmentUnlocked
-              ? accent.withValues(alpha: 0.34)
-              : const Color(0xFFCBD5E1).withValues(alpha: 0.28),
+          ..strokeWidth = active ? 11 : 7
+          ..color = active
+              ? color.withValues(alpha: 0.18)
+              : const Color(0xFFCBD5E1).withValues(alpha: 0.08),
       );
-
-      final linePaint = Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeCap = StrokeCap.round
-        ..strokeWidth = segmentUnlocked ? 2.8 : 2
-        ..color = segmentUnlocked
-            ? accent.withValues(alpha: 0.96)
-            : const Color(0xFFD6D8DF).withValues(alpha: 0.58);
-      canvas.drawPath(path, linePaint);
+      canvas.drawPath(
+        path,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = active ? 4 : 2.5
+          ..color = active
+              ? color.withValues(alpha: 0.96)
+              : const Color(0xFFB7C0CF).withValues(alpha: 0.62),
+      );
     }
   }
 
@@ -996,51 +599,19 @@ class _V2RoutePainter extends CustomPainter {
   }
 }
 
-class _OrnateFramePainter extends CustomPainter {
-  const _OrnateFramePainter();
+class _HarborArtFallback extends StatelessWidget {
+  const _HarborArtFallback();
 
   @override
-  void paint(Canvas canvas, Size size) {
-    final border = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1
-      ..color = const Color(0xFF9B7440).withValues(alpha: 0.78);
-    final inner = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.8
-      ..color = const Color(0xFFE7C57C).withValues(alpha: 0.25);
-
-    final outerRect = RRect.fromRectAndRadius(
-      Offset.zero & size,
-      const Radius.circular(16),
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _HarborArtPainter(),
+      child: const SizedBox.expand(),
     );
-    final innerRect = RRect.fromRectAndRadius(
-      Rect.fromLTWH(4, 4, size.width - 8, size.height - 8),
-      const Radius.circular(13),
-    );
-    canvas.drawRRect(outerRect, border);
-    canvas.drawRRect(innerRect, inner);
-
-    final corner = Paint()
-      ..strokeWidth = 2
-      ..strokeCap = StrokeCap.round
-      ..color = const Color(0xFFD9B46B).withValues(alpha: 0.64);
-    const length = 15.0;
-    canvas.drawLine(const Offset(6, 6), const Offset(6 + length, 6), corner);
-    canvas.drawLine(const Offset(6, 6), const Offset(6, 6 + length), corner);
-    canvas.drawLine(Offset(size.width - 6, 6), Offset(size.width - 6 - length, 6), corner);
-    canvas.drawLine(Offset(size.width - 6, 6), Offset(size.width - 6, 6 + length), corner);
   }
-
-  @override
-  bool shouldRepaint(covariant _OrnateFramePainter oldDelegate) => false;
 }
 
-/// Yalnız asset henüz bağlanmadığında CI ve erken görsel prototip için kullanılır.
-/// Final hedef, bu katmanın gerçek illüstrasyon asset'i ile değiştirilmesidir.
-class _FallbackHarborPainter extends CustomPainter {
-  const _FallbackHarborPainter();
-
+class _HarborArtPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
@@ -1051,181 +622,127 @@ class _FallbackHarborPainter extends CustomPainter {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: <Color>[
-            Color(0xFF071027),
-            Color(0xFF072A42),
-            Color(0xFF06324A),
-            Color(0xFF08182B),
-            Color(0xFF120B20),
+            Color(0xFF020617),
+            Color(0xFF082A43),
+            Color(0xFF07506A),
+            Color(0xFF031B2E),
           ],
-          stops: <double>[0, 0.24, 0.48, 0.74, 1],
         ).createShader(rect),
     );
 
-    _drawMoon(canvas, size);
-    _drawMoonReflection(canvas, size);
-    _drawIsland(canvas, size, const Offset(-0.13, 0.06), const Size(0.52, 0.26));
-    _drawIsland(canvas, size, const Offset(0.70, 0.18), const Size(0.43, 0.27));
-    _drawIsland(canvas, size, const Offset(-0.18, 0.38), const Size(0.48, 0.30));
-    _drawIsland(canvas, size, const Offset(0.64, 0.48), const Size(0.52, 0.32));
-    _drawIsland(canvas, size, const Offset(-0.14, 0.72), const Size(0.52, 0.30));
-    _drawIsland(canvas, size, const Offset(0.58, 0.78), const Size(0.55, 0.30));
-
-    _drawLighthouse(canvas, size);
-    _drawSailboat(canvas, size, Offset(size.width * 0.12, size.height * 0.30), 0.78);
-    _drawSailboat(canvas, size, Offset(size.width * 0.28, size.height * 0.39), 0.58);
-    _drawVillageLights(canvas, size);
-    _drawWaterLines(canvas, size);
-  }
-
-  void _drawMoon(Canvas canvas, Size size) {
-    final center = Offset(size.width * 0.73, size.height * 0.08);
+    final moon = Offset(size.width * 0.72, size.height * 0.10);
     canvas.drawCircle(
-      center,
-      size.width * 0.075,
+      moon,
+      34,
       Paint()
-        ..color = const Color(0xFFFFF1C8)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
+        ..shader = const RadialGradient(
+          colors: <Color>[Color(0xFFFFF4D6), Color(0x55FFF4D6), Colors.transparent],
+        ).createShader(Rect.fromCircle(center: moon, radius: 54)),
     );
-    canvas.drawCircle(
-      center,
-      size.width * 0.055,
-      Paint()..color = const Color(0xFFFFF8E6),
-    );
-  }
 
-  void _drawMoonReflection(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..strokeCap = StrokeCap.round
-      ..color = const Color(0x99CFEFFF);
-    for (var i = 0; i < 14; i++) {
-      final y = size.height * (0.13 + i * 0.026);
-      final half = size.width * (0.015 + i * 0.006);
-      paint.strokeWidth = i.isEven ? 2 : 1;
-      final centerX = size.width * 0.73;
-      canvas.drawLine(Offset(centerX - half, y), Offset(centerX + half, y), paint);
-    }
-  }
-
-  void _drawIsland(
-    Canvas canvas,
-    Size size,
-    Offset normalizedOrigin,
-    Size normalizedSize,
-  ) {
-    final rect = Rect.fromLTWH(
-      normalizedOrigin.dx * size.width,
-      normalizedOrigin.dy * size.height,
-      normalizedSize.width * size.width,
-      normalizedSize.height * size.height,
-    );
-    final path = Path()
-      ..moveTo(rect.left, rect.center.dy)
-      ..quadraticBezierTo(rect.left + rect.width * 0.12, rect.top, rect.center.dx, rect.top + rect.height * 0.08)
-      ..quadraticBezierTo(rect.right - rect.width * 0.07, rect.top, rect.right, rect.center.dy)
-      ..quadraticBezierTo(rect.right - rect.width * 0.15, rect.bottom, rect.center.dx, rect.bottom - rect.height * 0.08)
-      ..quadraticBezierTo(rect.left + rect.width * 0.06, rect.bottom, rect.left, rect.center.dy)
+    final reflection = Path()
+      ..moveTo(size.width * 0.66, size.height * 0.15)
+      ..lineTo(size.width * 0.84, size.height * 0.15)
+      ..lineTo(size.width * 0.66, size.height * 0.80)
+      ..lineTo(size.width * 0.48, size.height * 0.80)
       ..close();
-
     canvas.drawPath(
-      path,
+      reflection,
       Paint()
         ..shader = const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: <Color>[Color(0xFF1A423D), Color(0xFF172B32), Color(0xFF0D1725)],
-        ).createShader(rect)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 1.2),
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color>[Color(0x44FFF4D6), Colors.transparent],
+        ).createShader(rect),
     );
-    canvas.drawPath(
-      path,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.2
-        ..color = const Color(0x554EE7C8),
-    );
+
+    _drawIsland(canvas, size, Offset(size.width * -0.08, size.height * 0.12), 0.46, 0.16);
+    _drawIsland(canvas, size, Offset(size.width * 0.66, size.height * 0.24), 0.46, 0.18);
+    _drawIsland(canvas, size, Offset(size.width * -0.16, size.height * 0.44), 0.55, 0.17);
+    _drawIsland(canvas, size, Offset(size.width * 0.68, size.height * 0.55), 0.45, 0.16);
+    _drawIsland(canvas, size, Offset(size.width * -0.08, size.height * 0.74), 0.50, 0.18);
+    _drawIsland(canvas, size, Offset(size.width * 0.62, size.height * 0.82), 0.50, 0.18);
+
+    _drawLighthouse(canvas, size, Offset(size.width * 0.87, size.height * 0.20));
+    _drawShip(canvas, size, Offset(size.width * 0.14, size.height * 0.32), 1.0);
+    _drawShip(canvas, size, Offset(size.width * 0.78, size.height * 0.67), 0.72);
   }
 
-  void _drawLighthouse(Canvas canvas, Size size) {
-    final baseX = size.width * 0.86;
-    final baseY = size.height * 0.30;
-    final body = Path()
-      ..moveTo(baseX - 8, baseY)
-      ..lineTo(baseX - 4, baseY - 54)
-      ..lineTo(baseX + 4, baseY - 54)
-      ..lineTo(baseX + 8, baseY)
+  void _drawIsland(Canvas canvas, Size size, Offset origin, double w, double h) {
+    final islandRect = Rect.fromLTWH(origin.dx, origin.dy, size.width * w, size.height * h);
+    canvas.drawOval(
+      islandRect,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color>[Color(0xFF174B42), Color(0xFF092C2F), Color(0xFF071C29)],
+        ).createShader(islandRect),
+    );
+    final glowPaint = Paint()..color = const Color(0xFFFFC766);
+    final count = math.max(3, (w * 12).round());
+    for (var i = 0; i < count; i++) {
+      final x = islandRect.left + 18 + (i * 31) % math.max(24, islandRect.width - 30);
+      final y = islandRect.top + islandRect.height * (0.48 + (i % 3) * 0.12);
+      canvas.drawCircle(Offset(x, y), 2.3, glowPaint);
+      canvas.drawCircle(
+        Offset(x, y),
+        7,
+        Paint()..color = const Color(0x22FFD166),
+      );
+    }
+  }
+
+  void _drawLighthouse(Canvas canvas, Size size, Offset base) {
+    final tower = Path()
+      ..moveTo(base.dx - 12, base.dy + 64)
+      ..lineTo(base.dx + 12, base.dy + 64)
+      ..lineTo(base.dx + 8, base.dy)
+      ..lineTo(base.dx - 8, base.dy)
       ..close();
-    canvas.drawPath(body, Paint()..color = const Color(0xFFD8D0BE));
+    canvas.drawPath(tower, Paint()..color = const Color(0xFFD8D0B8));
     canvas.drawRect(
-      Rect.fromCenter(center: Offset(baseX, baseY - 59), width: 18, height: 8),
-      Paint()..color = const Color(0xFF50382A),
+      Rect.fromCenter(center: Offset(base.dx, base.dy - 3), width: 24, height: 13),
+      Paint()..color = const Color(0xFF2B2230),
     );
     canvas.drawCircle(
-      Offset(baseX, baseY - 60),
-      4,
-      Paint()
-        ..color = const Color(0xFFFFD36E)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5),
+      Offset(base.dx, base.dy - 4),
+      5,
+      Paint()..color = const Color(0xFFFFD166),
+    );
+    canvas.drawCircle(
+      Offset(base.dx, base.dy - 4),
+      22,
+      Paint()..color = const Color(0x22FFD166),
     );
   }
 
-  void _drawSailboat(Canvas canvas, Size size, Offset origin, double scale) {
+  void _drawShip(Canvas canvas, Size size, Offset base, double scale) {
     final hull = Path()
-      ..moveTo(origin.dx - 20 * scale, origin.dy)
-      ..lineTo(origin.dx + 21 * scale, origin.dy)
-      ..lineTo(origin.dx + 12 * scale, origin.dy + 8 * scale)
-      ..lineTo(origin.dx - 13 * scale, origin.dy + 8 * scale)
+      ..moveTo(base.dx - 28 * scale, base.dy)
+      ..quadraticBezierTo(
+        base.dx,
+        base.dy + 18 * scale,
+        base.dx + 31 * scale,
+        base.dy,
+      )
       ..close();
-    canvas.drawPath(hull, Paint()..color = const Color(0xFF5B3C24));
+    canvas.drawPath(hull, Paint()..color = const Color(0xFF3B2418));
     canvas.drawLine(
-      Offset(origin.dx, origin.dy),
-      Offset(origin.dx, origin.dy - 42 * scale),
+      Offset(base.dx, base.dy - 44 * scale),
+      Offset(base.dx, base.dy + 3 * scale),
       Paint()
-        ..strokeWidth = 2 * scale
-        ..color = const Color(0xFFB99667),
+        ..color = const Color(0xFFBA8B5C)
+        ..strokeWidth = 2,
     );
     final sail = Path()
-      ..moveTo(origin.dx - 2 * scale, origin.dy - 40 * scale)
-      ..lineTo(origin.dx - 2 * scale, origin.dy - 5 * scale)
-      ..lineTo(origin.dx - 23 * scale, origin.dy - 12 * scale)
+      ..moveTo(base.dx + 2 * scale, base.dy - 40 * scale)
+      ..lineTo(base.dx + 24 * scale, base.dy - 15 * scale)
+      ..lineTo(base.dx + 2 * scale, base.dy - 10 * scale)
       ..close();
-    canvas.drawPath(sail, Paint()..color = const Color(0xFFC4B18E));
-  }
-
-  void _drawVillageLights(Canvas canvas, Size size) {
-    final lights = <Offset>[
-      Offset(0.08, 0.20), Offset(0.17, 0.22), Offset(0.24, 0.18),
-      Offset(0.82, 0.28), Offset(0.91, 0.34), Offset(0.12, 0.49),
-      Offset(0.20, 0.56), Offset(0.75, 0.55), Offset(0.87, 0.62),
-      Offset(0.08, 0.78), Offset(0.18, 0.84), Offset(0.72, 0.84),
-      Offset(0.86, 0.89),
-    ];
-    for (final light in lights) {
-      final point = Offset(light.dx * size.width, light.dy * size.height);
-      canvas.drawCircle(
-        point,
-        2.6,
-        Paint()
-          ..color = const Color(0xFFFFB84C)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4),
-      );
-      canvas.drawCircle(point, 1.2, Paint()..color = const Color(0xFFFFE2A1));
-    }
-  }
-
-  void _drawWaterLines(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.8
-      ..color = const Color(0x224DEBFF);
-    for (var y = size.height * 0.12; y < size.height; y += 28) {
-      final path = Path()..moveTo(0, y);
-      for (var x = 0.0; x < size.width; x += 32) {
-        path.quadraticBezierTo(x + 8, y + 2, x + 16, y);
-      }
-      canvas.drawPath(path, paint);
-    }
+    canvas.drawPath(sail, Paint()..color = const Color(0xFFD6C9AA));
   }
 
   @override
-  bool shouldRepaint(covariant _FallbackHarborPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _HarborArtPainter oldDelegate) => false;
 }
