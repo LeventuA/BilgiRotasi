@@ -589,7 +589,7 @@ class _RouteStop extends StatelessWidget {
 
   IconData get typeIcon => switch (level.type) {
     WordHuntLevelType.normal => Icons.circle,
-    WordHuntLevelType.challenge => Icons.swords,
+    WordHuntLevelType.challenge => Icons.sports_martial_arts_rounded,
     WordHuntLevelType.bonus => Icons.card_giftcard_rounded,
     WordHuntLevelType.routeFinal => Icons.inventory_2_rounded,
   };
