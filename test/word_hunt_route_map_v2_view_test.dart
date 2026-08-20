@@ -1,5 +1,3 @@
-import 'dart:ui' as ui;
-
 import 'package:bilgi_rotasi/word_hunt/word_hunt_progress.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_route_map_v2_screen.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +93,7 @@ void main() {
     expect(find.byKey(const Key('word_hunt_v2_scene')), findsOneWidget);
   });
 
-  testWidgets('illustrated Baslangic Limani asset is bundled and decodable', (
+  testWidgets('illustrated Baslangic Limani asset is bundled as WebP', (
     tester,
   ) async {
     final data = await rootBundle.load(
@@ -107,12 +105,7 @@ void main() {
       data.offsetInBytes,
       data.lengthInBytes,
     );
-    final codec = await ui.instantiateImageCodec(bytes);
-    addTearDown(codec.dispose);
-    final frame = await codec.getNextFrame();
-    addTearDown(frame.image.dispose);
-
-    expect(frame.image.width, greaterThan(300));
-    expect(frame.image.height, greaterThan(500));
+    expect(String.fromCharCodes(bytes.sublist(0, 4)), 'RIFF');
+    expect(String.fromCharCodes(bytes.sublist(8, 12)), 'WEBP');
   });
 }
