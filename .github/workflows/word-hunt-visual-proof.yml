@@ -83,39 +83,21 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
-            set -eu
-            APK='build/app/outputs/flutter-apk/app-debug.apk'
-            PACKAGE='com.leventua.bilgirotasi'
             mkdir -p reports
-
-            adb install -r "$APK"
+            adb install -r build/app/outputs/flutter-apk/app-debug.apk
             adb logcat -c
-            adb shell am force-stop "$PACKAGE"
-            adb shell monkey -p "$PACKAGE" -c android.intent.category.LAUNCHER 1 >/dev/null
+            adb shell am force-stop com.leventua.bilgirotasi
+            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null
             sleep 6
-
-            adb shell dumpsys activity activities \
-              > reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
-            adb exec-out screencap -p \
-              > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
-            adb logcat -d \
-              > reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt
-
+            adb shell dumpsys activity activities > reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
+            adb exec-out screencap -p > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
+            adb logcat -d > reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt
             test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
-            grep -Fq 'com.leventua.bilgirotasi/.MainActivity' \
-              reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
-
-            if grep -E \
-              'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' \
-              reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt; then
-              echo 'Bilgi Rotası visual-proof process failure detected.' >&2
-              exit 1
-            fi
-
+            grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt; then echo 'Bilgi Rotası visual-proof process failure detected.' >&2; exit 1; fi
             adb shell input swipe 540 1550 540 520 400 || true
             sleep 2
-            adb exec-out screencap -p \
-              > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
+            adb exec-out screencap -p > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
             test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
 
       - name: Görsel kanıtları yükle
