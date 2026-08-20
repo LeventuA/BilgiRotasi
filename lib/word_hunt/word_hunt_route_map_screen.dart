@@ -261,7 +261,7 @@ class _ApprovedRouteHeader extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            title.toUpperCase(),
+            title.replaceAll('i', 'İ').replaceAll('ı', 'I').toUpperCase(),
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
