@@ -1,6 +1,9 @@
+import 'dart:ui' as ui;
+
 import 'package:bilgi_rotasi/word_hunt/word_hunt_progress.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_route_map_v2_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -90,5 +93,26 @@ void main() {
 
     expect(tester.takeException(), isNull);
     expect(find.byKey(const Key('word_hunt_v2_scene')), findsOneWidget);
+  });
+
+  testWidgets('illustrated Baslangic Limani asset is bundled and decodable', (
+    tester,
+  ) async {
+    final data = await rootBundle.load(
+      'assets/word_hunt/baslangic_limani_bg.webp',
+    );
+    expect(data.lengthInBytes, greaterThan(1024));
+
+    final bytes = data.buffer.asUint8List(
+      data.offsetInBytes,
+      data.lengthInBytes,
+    );
+    final codec = await ui.instantiateImageCodec(bytes);
+    addTearDown(codec.dispose);
+    final frame = await codec.getNextFrame();
+    addTearDown(frame.image.dispose);
+
+    expect(frame.image.width, greaterThan(300));
+    expect(frame.image.height, greaterThan(500));
   });
 }
