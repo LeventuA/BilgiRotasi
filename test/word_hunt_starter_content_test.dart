@@ -20,10 +20,12 @@ void main() {
       counts[level.type] = (counts[level.type] ?? 0) + 1;
     }
 
-    expect(counts[WordHuntLevelType.normal], 6);
-    expect(counts[WordHuntLevelType.challenge], 2);
+    expect(counts[WordHuntLevelType.normal], 7);
+    expect(counts[WordHuntLevelType.challenge], 1);
     expect(counts[WordHuntLevelType.bonus], 1);
     expect(counts[WordHuntLevelType.routeFinal], 1);
+    expect(route.levels[4].type, WordHuntLevelType.challenge);
+    expect(route.levels[7].type, WordHuntLevelType.bonus);
     expect(route.levels.last.type, WordHuntLevelType.routeFinal);
   });
 
@@ -50,9 +52,13 @@ void main() {
 
   test('ilk rota öğretimden finale doğru kontrollü biçimde ilerler', () {
     expect(route.levels[0].targetWords, containsAll(<String>['KALEM', 'MASA']));
-    expect(route.levels[3].type, WordHuntLevelType.challenge);
-    expect(route.levels[6].type, WordHuntLevelType.bonus);
-    expect(route.levels[8].type, WordHuntLevelType.challenge);
+    expect(route.levels[3].type, WordHuntLevelType.normal);
+    expect(route.levels[4].type, WordHuntLevelType.challenge);
+    expect(route.levels[4].timeLimitSeconds, 60);
+    expect(route.levels[6].type, WordHuntLevelType.normal);
+    expect(route.levels[7].type, WordHuntLevelType.bonus);
+    expect(route.levels[8].type, WordHuntLevelType.normal);
+    expect(route.levels[8].timeLimitSeconds, isNull);
     expect(
       route.levels[9].targetWords,
       containsAll(<String>['PUSULA', 'ROTA', 'BİLGİ']),

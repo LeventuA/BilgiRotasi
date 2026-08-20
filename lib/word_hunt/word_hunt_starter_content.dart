@@ -121,7 +121,7 @@ class WordHuntStarterContent {
         id: 'baslangic-4',
         routeId: 'baslangic-limani',
         index: 4,
-        type: WordHuntLevelType.challenge,
+        type: WordHuntLevelType.normal,
         grid: <String>[
           'HIZLIK',
           'ZAMANI',
@@ -132,11 +132,8 @@ class WordHuntStarterContent {
         ],
         targetWords: <String>['HIZLI', 'ZAMAN'],
         bonusWords: <String>['SÜRE'],
-        timeLimitSeconds: 60,
         starRules: WordHuntStarRules(
-          twoStarMaxSeconds: 50,
-          threeStarMaxSeconds: 35,
-          twoStarMaxMistakes: 1,
+          twoStarMaxMistakes: 2,
           threeStarMaxMistakes: 0,
         ),
       ),
@@ -144,7 +141,7 @@ class WordHuntStarterContent {
         id: 'baslangic-5',
         routeId: 'baslangic-limani',
         index: 5,
-        type: WordHuntLevelType.normal,
+        type: WordHuntLevelType.challenge,
         grid: <String>[
           'ANKARA',
           'ŞEHİRL',
@@ -156,8 +153,11 @@ class WordHuntStarterContent {
         targetWords: <String>['ANKARA', 'ŞEHİR'],
         bonusWords: <String>['KALE'],
         infoCardIds: <String>['info-ankara'],
+        timeLimitSeconds: 60,
         starRules: WordHuntStarRules(
-          twoStarMaxMistakes: 2,
+          twoStarMaxSeconds: 50,
+          threeStarMaxSeconds: 35,
+          twoStarMaxMistakes: 1,
           threeStarMaxMistakes: 0,
         ),
       ),
@@ -185,7 +185,7 @@ class WordHuntStarterContent {
         id: 'baslangic-7',
         routeId: 'baslangic-limani',
         index: 7,
-        type: WordHuntLevelType.bonus,
+        type: WordHuntLevelType.normal,
         grid: <String>[
           'ARILAR',
           'ÇİÇEKÇ',
@@ -206,7 +206,7 @@ class WordHuntStarterContent {
         id: 'baslangic-8',
         routeId: 'baslangic-limani',
         index: 8,
-        type: WordHuntLevelType.normal,
+        type: WordHuntLevelType.bonus,
         grid: <String>[
           'SPORCU',
           'TOPLAR',
@@ -226,7 +226,7 @@ class WordHuntStarterContent {
         id: 'baslangic-9',
         routeId: 'baslangic-limani',
         index: 9,
-        type: WordHuntLevelType.challenge,
+        type: WordHuntLevelType.normal,
         grid: <String>[
           'MARSIN',
           'UZAYLI',
@@ -238,11 +238,8 @@ class WordHuntStarterContent {
         targetWords: <String>['MARS', 'UZAY'],
         bonusWords: <String>['AY'],
         infoCardIds: <String>['info-mars'],
-        timeLimitSeconds: 60,
         starRules: WordHuntStarRules(
-          twoStarMaxSeconds: 50,
-          threeStarMaxSeconds: 35,
-          twoStarMaxMistakes: 1,
+          twoStarMaxMistakes: 2,
           threeStarMaxMistakes: 0,
         ),
       ),
