@@ -1,5 +1,5 @@
 import 'package:bilgi_rotasi/word_hunt/word_hunt_progress.dart';
-import 'package:bilgi_rotasi/word_hunt/word_hunt_prototype_screens.dart';
+import 'package:bilgi_rotasi/word_hunt/word_hunt_screens.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_starter_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
