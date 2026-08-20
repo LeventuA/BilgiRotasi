@@ -105,7 +105,10 @@ void main() {
     expect(find.text('250 / 1000 XP'), findsOneWidget);
     expect(find.text('3/5'), findsOneWidget);
 
-    await tester.tap(find.byKey(const Key('home_hub_daily')));
+    final dailyCard = find.byKey(const Key('home_hub_daily'));
+    await tester.ensureVisible(dailyCard);
+    await tester.pumpAndSettle();
+    await tester.tap(dailyCard);
     await tester.pump();
     expect(daily, 1);
   });
