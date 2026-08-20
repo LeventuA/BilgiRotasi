@@ -49,13 +49,15 @@ Mevcut yayınlanmış/çalışan Bilgi Rotası oyununa bu hazırlık aşamasınd
 
 ## Güncel PR kapsamı
 
-Canlı PR #74 toplam 22 dosya içerir. İlk PR açıklamasındaki 7 dosyalık liste artık bayattır ve PR gövdesi final teknik kanıta göre güncellenecektir.
+Canlı PR #74 toplam **24 dosya** içerir. İlk teknik/ürün kapsamı 22 dosyaydı; görev sonu zorunlu proje-hafızası güncellemeleriyle `docs/project-memory/BILGI_ROTASI_DURUM.md` ve `docs/project-memory/GOREV_HAVUZU.md` de PR kapsamına girdi. İlk PR açıklamasındaki 7 dosyalık liste artık bayattır ve PR gövdesi final teknik kanıta göre güncellenecektir.
 
-Dokümantasyon:
+Dokümantasyon / proje hafızası:
 
 - `docs/kelime-avi/ANA_EKRAN_V1.md`
 - `docs/kelime-avi/KELIME_AVI_V1.md`
 - `docs/kelime-avi/README.md`
+- `docs/project-memory/BILGI_ROTASI_DURUM.md`
+- `docs/project-memory/GOREV_HAVUZU.md`
 - bu checkpoint
 
 İzole yeni çekirdek/prototip:
@@ -104,9 +106,10 @@ PR head `0ac0ef303936221f0c923701f974b3f8be00a83f` üzerinde AdMob PR doğrulama
 ## Sonraki açık işler
 
 1. Tüm proje-hafızası güncellemelerinden sonraki final PR #74 head'inde AdMob PR doğrulamasını tam workflow/log/artifact/Android 16 kapılarıyla doğrula.
-2. İzole prototip için kullanıcı görsel/onay turu tamamlanmadan mevcut ana navigasyona entegrasyon yapma.
-3. Profil ekranı ve hesap kapsamlı gerçek storage entegrasyonunu ayrı kontrollü adımda ele al.
-4. PR #74 Draft olarak kalsın; ayrı açık merge onayı olmadan release'e merge edilmesin.
+2. PR gövdesini canlı 24 dosyalık kapsam ve final CI kanıtıyla güncelle.
+3. İzole prototip için kullanıcı görsel/onay turu tamamlanmadan mevcut ana navigasyona entegrasyon yapma.
+4. Profil ekranı ve hesap kapsamlı gerçek storage entegrasyonunu ayrı kontrollü adımda ele al.
+5. PR #74 Draft olarak kalsın; ayrı açık merge onayı olmadan release'e merge edilmesin.
 
 ## Merge durumu
 
