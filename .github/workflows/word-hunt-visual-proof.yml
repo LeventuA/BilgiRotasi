@@ -83,7 +83,7 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
-            set -euo pipefail
+            set -eu
             APK='build/app/outputs/flutter-apk/app-debug.apk'
             PACKAGE='com.leventua.bilgirotasi'
             mkdir -p reports
