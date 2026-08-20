@@ -64,4 +64,23 @@ void main() {
     expect(tappedIndex, 2);
     expect(find.text('2 / 30'), findsOneWidget);
   });
+
+  testWidgets('enriched harbor map remains stable on a narrow phone surface', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(360, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      const MaterialApp(home: WordHuntRouteMapPrototypeScreen()),
+    );
+    await tester.pumpAndSettle();
+
+    expect(tester.takeException(), isNull);
+    expect(find.byKey(const Key('word_hunt_map_level_1')), findsOneWidget);
+    expect(find.byKey(const Key('word_hunt_map_level_10')), findsOneWidget);
+    expect(find.text('MEYDAN OKUMA'), findsOneWidget);
+    expect(find.text('BONUS DURAK'), findsOneWidget);
+    expect(find.text('ROTA FİNALİ'), findsOneWidget);
+  });
 }
