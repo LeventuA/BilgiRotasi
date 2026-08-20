@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'word_hunt_progress.dart';
-import 'word_hunt_route_map_screen.dart';
+import 'word_hunt_route_map_v2_screen.dart';
 
 /// Yalnız görsel inceleme/kanıt için kullanılan izole giriş noktası.
 /// Production `lib/main.dart` ve mevcut uygulama navigasyonuna bağlı değildir.
@@ -20,6 +20,9 @@ class _WordHuntVisualProofApp extends StatelessWidget {
           'baslangic-2': 3,
           'baslangic-3': 3,
           'baslangic-4': 3,
+          'baslangic-5': 3,
+          'baslangic-6': 3,
+          'baslangic-7': 3,
         },
       );
 
@@ -32,7 +35,7 @@ class _WordHuntVisualProofApp extends StatelessWidget {
         brightness: Brightness.dark,
         useMaterial3: true,
       ),
-      home: const WordHuntRouteMapPrototypeScreen(progress: _proofProgress),
+      home: const WordHuntRouteMapV2Screen(progress: _proofProgress),
     );
   }
 }
