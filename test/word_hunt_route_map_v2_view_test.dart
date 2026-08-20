@@ -55,12 +55,18 @@ void main() {
       ),
     );
 
-    await tester.tap(find.byKey(const Key('word_hunt_v2_level_8')));
+    final level8 = find.byKey(const Key('word_hunt_v2_level_8'));
+    await tester.ensureVisible(level8);
+    await tester.pumpAndSettle();
+    await tester.tap(level8);
     await tester.pump();
     expect(tapped, 8);
 
     tapped = 0;
-    await tester.tap(find.byKey(const Key('word_hunt_v2_level_9')));
+    final level9 = find.byKey(const Key('word_hunt_v2_level_9'));
+    await tester.ensureVisible(level9);
+    await tester.pumpAndSettle();
+    await tester.tap(level9, warnIfMissed: false);
     await tester.pump();
     expect(tapped, 0);
   });
