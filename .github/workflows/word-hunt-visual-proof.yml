@@ -1,0 +1,134 @@
+name: Kelime Avı Android 16 görsel kanıtı
+
+on:
+  pull_request:
+    branches:
+      - release/final-closed-test-aab-1.68.8
+    paths:
+      - 'lib/word_hunt/**'
+      - 'test/word_hunt_route_map_view_test.dart'
+      - '.github/workflows/word-hunt-visual-proof.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  visual-proof:
+    name: Başlangıç Limanı gerçek Android 16 ekranı
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    env:
+      PROOF_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Exact feature HEAD'i indir
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PROOF_SHA }}
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Bağımlılıkları kur ve rota testini çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          flutter test test/word_hunt_route_map_view_test.dart --reporter expanded
+          git diff --check
+
+      - name: İzole görsel kanıt APK'sını üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_visual_proof_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          mkdir -p reports
+          git rev-parse HEAD | tee reports/WORD_HUNT_VISUAL_PROOF_HEAD_SHA.txt
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk \
+            | tee reports/WORD_HUNT_VISUAL_PROOF_APK_SHA256.txt
+
+      - name: Android 16 emulator KVM erişimini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Android 16'da gerçek Flutter ekranını çek
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            set -euo pipefail
+            APK='build/app/outputs/flutter-apk/app-debug.apk'
+            PACKAGE='com.leventua.bilgirotasi'
+            mkdir -p reports
+
+            adb install -r "$APK"
+            adb logcat -c
+            adb shell am force-stop "$PACKAGE"
+            adb shell monkey -p "$PACKAGE" -c android.intent.category.LAUNCHER 1 >/dev/null
+            sleep 6
+
+            adb shell dumpsys activity activities \
+              > reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
+            adb exec-out screencap -p \
+              > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
+            adb logcat -d \
+              > reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt
+
+            test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
+            grep -Fq 'com.leventua.bilgirotasi/.MainActivity' \
+              reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
+
+            if grep -E \
+              'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' \
+              reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt; then
+              echo 'Bilgi Rotası visual-proof process failure detected.' >&2
+              exit 1
+            fi
+
+            adb shell input swipe 540 1550 540 520 400 || true
+            sleep 2
+            adb exec-out screencap -p \
+              > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
+            test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
+
+      - name: Görsel kanıtları yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-VisualProof-${{ env.PROOF_SHA }}
+          path: |
+            reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
+            reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
+            reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
+            reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt
+            reports/WORD_HUNT_VISUAL_PROOF_HEAD_SHA.txt
+            reports/WORD_HUNT_VISUAL_PROOF_APK_SHA256.txt
+          if-no-files-found: error
+          retention-days: 30
