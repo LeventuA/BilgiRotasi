@@ -478,7 +478,7 @@ class _MapScene extends StatelessWidget {
   }) {
     final special = level.type != WordHuntLevelType.normal;
     final boxWidth = special ? 188.0 : 76.0;
-    final boxHeight = special ? 88.0 : 78.0;
+    final boxHeight = special ? 100.0 : 78.0;
     final placeLabelToLeft = level.index == 8;
     final centerX = special && !placeLabelToLeft ? 42.0 : boxWidth - 42.0;
     final left = (point.dx - centerX)
