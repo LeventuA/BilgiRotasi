@@ -10,7 +10,7 @@
 - Çalışma branch'i: `feat/home-word-hunt-foundation-20260820`
 - Issue: `#73`
 - Draft PR: `#74`
-- Son doğrulanmış pre-merge-prep head: `343ebf2d9241888bdbcd31536f79bd62720191ac`
+- Son doğrulanmış merge-prep head: `fcc713f6094f3a826aaa199ed1d956afd289fc88`
 
 ## Kullanıcı kararı
 
@@ -49,7 +49,7 @@ Mevcut yayınlanmış/çalışan Bilgi Rotası oyununa bu hazırlık aşamasınd
 
 ## Güncel PR kapsamı
 
-Canlı PR #74 toplam **24 dosya** içerir. İlk teknik/ürün kapsamı 22 dosyaydı; görev sonu zorunlu proje-hafızası güncellemeleriyle `docs/project-memory/BILGI_ROTASI_DURUM.md` ve `docs/project-memory/GOREV_HAVUZU.md` de PR kapsamına girdi. İlk PR açıklamasındaki 7 dosyalık liste bayattır; PR gövdesi bu merge-prep turunda gerçek 24 dosyalık kapsama hizalanacaktır.
+Canlı PR #74 toplam **24 dosya** içerir. İlk teknik/ürün kapsamı 22 dosyaydı; görev sonu zorunlu proje-hafızası güncellemeleriyle `docs/project-memory/BILGI_ROTASI_DURUM.md` ve `docs/project-memory/GOREV_HAVUZU.md` de PR kapsamına girdi. PR gövdesi gerçek 24 dosyalık kapsama ve `fcc713f...` merge-prep CI kanıtına hizalanmıştır.
 
 Dokümantasyon / proje hafızası:
 
@@ -93,7 +93,11 @@ PR head `0ac0ef303936221f0c923701f974b3f8be00a83f` üzerinde AdMob PR doğrulama
 3. Run `32361294613` / job `96401221605` sonucunda `360×800` dar ekran regresyon testi **PASS** oldu. Kalan tek hata, `Günlük Görevler` kartının varsayılan widget test yüzeyinde ekran dışında (`y=648`, kök `800×600`) iken testin scroll etmeden `tap()` çağırmasıydı; callback `Expected 1 / Actual 0` ile kaldı.
 4. Commit `c377e9043b039c2e1368704fcd875cc60bf8f597` — `test: scroll home hub daily card into view`: test `ensureVisible` + `pumpAndSettle` sonrası karta dokunur; runtime küçültülmedi.
 5. Exact teknik head `c377e904...` için run `32361507978` / job `96401878115` içinde **`Analiz ve tüm testler` SUCCESS** oldu. Bu, dar ekran testi ve günlük callback regresyonu dahil tüm Flutter test aşamasının geçtiğini doğrular.
-6. PR kapsam düzeltme head'i `343ebf2d9241888bdbcd31536f79bd62720191ac` için AdMob PR doğrulaması #301 / run `32362882273` **SUCCESS** oldu. Workflow metadata'sı head SHA'yı, PR #74'ü ve base `9331802...` kesimini birebir doğrular. Bu merge-prep kayıt commit'i yeni head oluşturacağı için merge öncesi final CI sonucu statik SHA olarak bu checkpoint'e dondurulmaz; canlı son HEAD üzerinden yeniden okunur.
+6. PR kapsam düzeltme head'i `343ebf2d9241888bdbcd31536f79bd62720191ac` için AdMob PR doğrulaması #301 / run `32362882273` **SUCCESS** oldu.
+7. Merge-prep docs head `fcc713f6094f3a826aaa199ed1d956afd289fc88` için AdMob PR doğrulaması #302 / run `32377129911` / job `96451136017` **SUCCESS** oldu. Analyze + tüm testler, kalıcı Android imzası, release APK, package/manifest ve Android 16 ilk deneme/final app gate PASS; ikinci temiz emulator gerekmedi.
+8. #302 artifact `BilgiRotasi-AdMob-1.68.17-107-kanitlari`, ID `9409986778`, digest `sha256:7b650d890cd7771f372d2ca69b90e6f84560b139227161640633d92a99f1fec6`. İndirilen ZIP SHA-256 digest ile birebir eşleşti. Android 16 `RESULT=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`; PID `1866`; Bilgi Rotası paketine ait FATAL/ANR/crash/process-death eşleşmesi yok.
+
+Bu checkpoint'i güncelleyen sonraki docs-only commit yeni bir PR HEAD oluşturacaktır. Final CI sonucu burada her docs commit ile tekrar statik SHA kovalanarak dondurulmaz; Draft'tan çıkarma veya merge gibi kritik geçişten hemen önce **canlı mevcut PR HEAD** ve onun workflow/log/artifact sonucu yeniden okunur.
 
 ## Korunan alanlar
 
@@ -108,15 +112,15 @@ PR head `0ac0ef303936221f0c923701f974b3f8be00a83f` üzerinde AdMob PR doğrulama
 
 - `GOREV_HAVUZU.md` içindeki Kelime Avı kapsamı 22 → **24 dosya** olarak canlı PR ile hizalandı.
 - Önceki kanonik görev-havuzu blobu `538e1055d50c831dad7111de5a91a4f49809a0fb` içinde açık olan `BR-P2-003 - Profesyonel tanıtım videosu`, sadeleştirme sırasında yanlışlıkla düşmüş olduğu için aynı ürün kapsamıyla geri kondu.
+- BR-P0-014 içindeki final merge-prep CI ve PR gövdesi maddeleri #302 kanıtıyla tamamlandı olarak işaretlendi.
 - `KARARLAR.md` değişmedi; yeni ürün veya teknik karar alınmadı.
 
 ## Sonraki açık işler
 
-1. Bu merge-prep kayıt commit'ini taşıyan canlı son PR #74 head'inde AdMob PR doğrulamasını tam workflow/log/artifact/Android 16 kapılarıyla doğrula.
-2. PR gövdesini canlı 24 dosyalık kapsam ve canlı final-head CI kanıtıyla güncelle.
-3. İzole prototip için kullanıcı görsel/onay turu tamamlanmadan mevcut ana navigasyona entegrasyon yapma.
-4. Profil ekranı ve hesap kapsamlı gerçek storage entegrasyonunu ayrı kontrollü adımda ele al.
-5. PR #74 Draft olarak kalsın; ayrı açık merge onayı olmadan release'e merge edilmesin.
+1. İzole prototip için kullanıcı görsel/onay turunu yap; bu onay olmadan mevcut ana navigasyona entegrasyon yapma.
+2. Profil ekranı ve hesap kapsamlı gerçek persistent storage entegrasyonunu ayrı kontrollü görevde ele al.
+3. PR #74 Draft olarak kalsın; ayrı açık merge onayı olmadan release'e merge edilmesin.
+4. Draft'tan çıkarma veya merge değerlendirmesinden hemen önce canlı PR HEAD + final CI/workflow/artifact sonucu yeniden doğrulansın.
 
 ## Merge durumu
 

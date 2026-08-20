@@ -6,7 +6,7 @@
 
 ## BR-P0-014 - Issue #73 / Draft PR #74 Kelime Avı foundation ve home hub CI
 
-**Durum:** DRAFT PR #74 / FOUNDATION + İZOLE PROTOTİP HAZIR / RESPONSIVE CI BLOCKER GİDERİLDİ / PRE-MERGE-PREP HEAD FULL CI SUCCESS / MERGE-PREP DOCS COMMIT SONRASI CANLI FINAL-HEAD CI DOĞRULANACAK / MERGE YOK
+**Durum:** DRAFT PR #74 / FOUNDATION + İZOLE PROTOTİP HAZIR / RESPONSIVE CI BLOCKER GİDERİLDİ / MERGE-PREP HEAD #302 FULL CI SUCCESS / PR GÖVDESİ GÜNCEL / GÖRSEL ONAY + STORAGE AYRI / MERGE YOK
 
 - Kanonik release tabanı: `release/final-closed-test-aab-1.68.8`.
 - PR başlangıç base SHA: `9331802b9a2b12d1f4ec6715da96dc7d0f60b24b`.
@@ -25,7 +25,10 @@
 - Checkpoint commit'i: `6b8b956e9e4d151dd4cb35582ea74bdf3cf59374` — `docs: refresh word hunt checkpoint`.
 - Durum dosyası commit'i: `0a9eafd9a2e149071fcc89a6213e2ab889541f51` — `docs: record word hunt CI checkpoint`.
 - PR kapsam düzeltme head'i `343ebf2d9241888bdbcd31536f79bd62720191ac` üzerinde AdMob PR doğrulaması #301 / run `32362882273`: **SUCCESS**; head SHA ve base SHA canlı workflow metadata'sıyla eşleşir.
-- Bu merge-prep kayıt düzeltmesi yeni bir docs head üreteceği için merge öncesi son CI sonucu statik SHA olarak burada dondurulmaz; canlı PR HEAD üzerinden yeniden okunur.
+- Merge-prep docs head `fcc713f6094f3a826aaa199ed1d956afd289fc88` üzerinde AdMob PR doğrulaması #302 / run `32377129911` / job `96451136017`: **SUCCESS**. Analyze + tüm testler, kalıcı Android imzası, release APK, package/manifest ve Android 16 ilk deneme/final app gate PASS; ikinci temiz emulator gerekmedi.
+- #302 artifact: `BilgiRotasi-AdMob-1.68.17-107-kanitlari`, ID `9409986778`, digest `sha256:7b650d890cd7771f372d2ca69b90e6f84560b139227161640633d92a99f1fec6`; indirilen ZIP hash'i digest ile birebir eşleşti. Android 16 `RESULT/APP_GATE/RELEASE_GATE=PASS`; PID `1866`; Bilgi Rotası'na ait FATAL/ANR/crash/process-death eşleşmesi yok.
+- PR #74 gövdesi gerçek 24 dosyalık kapsam, `fcc713f...` final merge-prep CI ve artifact kanıtıyla güncellendi; PR Draft kaldı ve merge edilmedi.
+- Bundan sonraki docs-only bookkeeping commitleri final CI kanıtını statik SHA zinciriyle sonsuza kadar kovalamaz. Draft'tan çıkarma veya merge gibi kritik geçişten hemen önce **canlı mevcut HEAD** ve onun workflow/log/artifact sonucu yeniden okunur.
 - `assets/questions.json`, `lib/main.dart`, mevcut Bilgi Oyunu oynanışı/ana navigasyon, BoardMap/67 node/3B, Firebase/AdMob/Play config ve `pubspec.yaml` değiştirilmedi.
 - `KARARLAR.md` değişmedi.
 
@@ -38,10 +41,12 @@
 - [x] Exact teknik head üzerinde analyze + tüm Flutter testleri + diff check PASS.
 - [x] PR kapsam düzeltme head'i `343ebf2...` üzerinde AdMob PR doğrulaması #301 / run `32362882273` SUCCESS.
 - [x] `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve Kelime Avı checkpoint'i 24 dosyalık gerçek kapsama hizalandı; yeni karar olmadığı için `KARARLAR.md` değişmedi.
-- [ ] Bu merge-prep docs commit'ini taşıyan canlı son PR #74 head'inde AdMob PR doğrulaması tam workflow/log/artifact/Android 16 kapılarıyla SUCCESS.
-- [ ] PR #74 gövdesi gerçek 24 dosyalık kapsam ve canlı final-head CI kanıtıyla güncellendi; Draft durumda kaldı.
-- [ ] Kullanıcı görsel/onay turu olmadan mevcut ana navigasyona entegrasyon yapılmadı; entegrasyon ayrıca onaylandıktan sonra ele alınır.
-- [ ] Ayrı açık merge onayı olmadan PR #74 release'e merge edilmez.
+- [x] Merge-prep head `fcc713f...` üzerinde AdMob PR doğrulaması #302 / run `32377129911` tam workflow/artifact/Android 16 kapılarıyla SUCCESS.
+- [x] PR #74 gövdesi gerçek 24 dosyalık kapsam ve `fcc713f...` final merge-prep CI kanıtıyla güncellendi; Draft durumda kaldı.
+- [x] Kullanıcı görsel/onay turu olmadan mevcut ana navigasyona entegrasyon yapılmadı; entegrasyon ayrıca onaylandıktan sonra ele alınır.
+- [x] Ayrı açık merge onayı olmadan PR #74 release'e merge edilmedi.
+
+**Sonraki faz kapısı:** foundation/izole prototip hazırlığı teknik olarak tamamlandı. Kullanıcı görsel onayı ve gerçek hesap-scope persistent storage/entegrasyon ayrı kontrollü görevlerdir. Draft/merge durum değişikliğinden hemen önce canlı PR HEAD ve CI yeniden doğrulanır.
 
 ---
 
