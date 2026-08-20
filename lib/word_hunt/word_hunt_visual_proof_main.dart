@@ -35,7 +35,10 @@ class _WordHuntVisualProofApp extends StatelessWidget {
         brightness: Brightness.dark,
         useMaterial3: true,
       ),
-      home: const WordHuntRouteMapV2Screen(progress: _proofProgress),
+      home: const WordHuntRouteMapV2Screen(
+        progress: _proofProgress,
+        sceneAssetPath: 'assets/word_hunt/baslangic_limani_bg.webp',
+      ),
     );
   }
 }
