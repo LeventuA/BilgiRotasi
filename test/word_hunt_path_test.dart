@@ -59,7 +59,7 @@ void main() {
   test('çapraz sekiz yön seçimi okunur', () {
     final result = WordHuntPathEngine.evaluate(
       level: level(
-        grid: const <String>['İXXX', 'XSXX', 'XXİX', 'XXX M'.replaceAll(' ', '')],
+        grid: const <String>['İXXX', 'XSXX', 'XXİX', 'XXXM'],
         targets: const <String>['İSİM'],
       ),
       path: const <WordHuntCell>[
