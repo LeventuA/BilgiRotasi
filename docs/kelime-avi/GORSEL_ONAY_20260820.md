@@ -86,6 +86,13 @@ Bu yön, `Kayıp Kelime + Bilgi Kartı` yaklaşımını Kelime Avı'nın ayırt 
 4. Her ekran için izole widget/test + Android ekran görüntüsü doğrulaması yap.
 5. Bu üç ekran yeniden kullanıcıya gösterilip uygulama içi görünüm onaylanmadan mevcut ana navigasyona bağlama.
 
+## Gerçek Android 16 görsel kanıt hattı
+
+- Üretim `lib/main.dart` değiştirilmeden ayrı `lib/word_hunt/word_hunt_visual_proof_main.dart` giriş noktası kullanılacaktır.
+- `.github/workflows/word-hunt-visual-proof.yml` yalnız Kelime Avı görsel doğrulaması için Android 16 emulator üzerinde izole debug APK üretir.
+- Görsel kanıt akışı `WordHuntRouteMapPrototypeScreen` ekranını gerçek Flutter/Android renderer ile açar ve üst/alt PNG screenshot, activity state, logcat, exact HEAD SHA ve APK SHA-256 dosyalarını artifact olarak kaydeder.
+- Bu visual-proof APK release adayı değildir; production package/navigasyon davranışını değiştirmez ve mevcut release kabul kapılarının yerine geçmez.
+
 ## Güvenlik ve kapsam sınırı
 
 Bu görsel onay:
