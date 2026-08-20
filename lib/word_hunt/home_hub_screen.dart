@@ -364,7 +364,6 @@ class _MainModes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
           child: _GameModeCard(
@@ -473,8 +472,7 @@ class _GameModeCard extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const Spacer(),
-          const SizedBox(height: 10),
+          SizedBox(height: compact ? 16 : 20),
           SizedBox(
             width: double.infinity,
             child: FilledButton(
