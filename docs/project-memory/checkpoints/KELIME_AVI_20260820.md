@@ -10,7 +10,7 @@
 - Çalışma branch'i: `feat/home-word-hunt-foundation-20260820`
 - Issue: `#73`
 - Draft PR: `#74`
-- Son teknik head: `c377e9043b039c2e1368704fcd875cc60bf8f597`
+- Son doğrulanmış pre-merge-prep head: `343ebf2d9241888bdbcd31536f79bd62720191ac`
 
 ## Kullanıcı kararı
 
@@ -49,7 +49,7 @@ Mevcut yayınlanmış/çalışan Bilgi Rotası oyununa bu hazırlık aşamasınd
 
 ## Güncel PR kapsamı
 
-Canlı PR #74 toplam **24 dosya** içerir. İlk teknik/ürün kapsamı 22 dosyaydı; görev sonu zorunlu proje-hafızası güncellemeleriyle `docs/project-memory/BILGI_ROTASI_DURUM.md` ve `docs/project-memory/GOREV_HAVUZU.md` de PR kapsamına girdi. İlk PR açıklamasındaki 7 dosyalık liste artık bayattır ve PR gövdesi final teknik kanıta göre güncellenecektir.
+Canlı PR #74 toplam **24 dosya** içerir. İlk teknik/ürün kapsamı 22 dosyaydı; görev sonu zorunlu proje-hafızası güncellemeleriyle `docs/project-memory/BILGI_ROTASI_DURUM.md` ve `docs/project-memory/GOREV_HAVUZU.md` de PR kapsamına girdi. İlk PR açıklamasındaki 7 dosyalık liste bayattır; PR gövdesi bu merge-prep turunda gerçek 24 dosyalık kapsama hizalanacaktır.
 
 Dokümantasyon / proje hafızası:
 
@@ -92,7 +92,8 @@ PR head `0ac0ef303936221f0c923701f974b3f8be00a83f` üzerinde AdMob PR doğrulama
 2. Commit `a9bb89ed1f80790ddbe9c81e79d83d2347c2e2da` — `fix: stabilize home hub responsive layout`: yalnız ilgili `Row` stretch davranışı kaldırıldı ve `Spacer()` bounded boşlukla değiştirildi.
 3. Run `32361294613` / job `96401221605` sonucunda `360×800` dar ekran regresyon testi **PASS** oldu. Kalan tek hata, `Günlük Görevler` kartının varsayılan widget test yüzeyinde ekran dışında (`y=648`, kök `800×600`) iken testin scroll etmeden `tap()` çağırmasıydı; callback `Expected 1 / Actual 0` ile kaldı.
 4. Commit `c377e9043b039c2e1368704fcd875cc60bf8f597` — `test: scroll home hub daily card into view`: test `ensureVisible` + `pumpAndSettle` sonrası karta dokunur; runtime küçültülmedi.
-5. Exact teknik head `c377e904...` için run `32361507978` / job `96401878115` içinde **`Analiz ve tüm testler` SUCCESS** oldu. Bu, dar ekran testi ve günlük callback regresyonu dahil tüm Flutter test aşamasının geçtiğini doğrular. Proje hafızası commitleri yeni head oluşturacağı için final PR-head CI sonucu statik olarak bu checkpoint'e dondurulmaz; GitHub'dan son head üzerinde canlı okunur.
+5. Exact teknik head `c377e904...` için run `32361507978` / job `96401878115` içinde **`Analiz ve tüm testler` SUCCESS** oldu. Bu, dar ekran testi ve günlük callback regresyonu dahil tüm Flutter test aşamasının geçtiğini doğrular.
+6. PR kapsam düzeltme head'i `343ebf2d9241888bdbcd31536f79bd62720191ac` için AdMob PR doğrulaması #301 / run `32362882273` **SUCCESS** oldu. Workflow metadata'sı head SHA'yı, PR #74'ü ve base `9331802...` kesimini birebir doğrular. Bu merge-prep kayıt commit'i yeni head oluşturacağı için merge öncesi final CI sonucu statik SHA olarak bu checkpoint'e dondurulmaz; canlı son HEAD üzerinden yeniden okunur.
 
 ## Korunan alanlar
 
@@ -103,10 +104,16 @@ PR head `0ac0ef303936221f0c923701f974b3f8be00a83f` üzerinde AdMob PR doğrulama
 - Firebase/AdMob/Play config: değişmedi.
 - `pubspec.yaml`: değişmedi; `1.68.17+107`.
 
+## Proje-hafızası düzeltmesi
+
+- `GOREV_HAVUZU.md` içindeki Kelime Avı kapsamı 22 → **24 dosya** olarak canlı PR ile hizalandı.
+- Önceki kanonik görev-havuzu blobu `538e1055d50c831dad7111de5a91a4f49809a0fb` içinde açık olan `BR-P2-003 - Profesyonel tanıtım videosu`, sadeleştirme sırasında yanlışlıkla düşmüş olduğu için aynı ürün kapsamıyla geri kondu.
+- `KARARLAR.md` değişmedi; yeni ürün veya teknik karar alınmadı.
+
 ## Sonraki açık işler
 
-1. Tüm proje-hafızası güncellemelerinden sonraki final PR #74 head'inde AdMob PR doğrulamasını tam workflow/log/artifact/Android 16 kapılarıyla doğrula.
-2. PR gövdesini canlı 24 dosyalık kapsam ve final CI kanıtıyla güncelle.
+1. Bu merge-prep kayıt commit'ini taşıyan canlı son PR #74 head'inde AdMob PR doğrulamasını tam workflow/log/artifact/Android 16 kapılarıyla doğrula.
+2. PR gövdesini canlı 24 dosyalık kapsam ve canlı final-head CI kanıtıyla güncelle.
 3. İzole prototip için kullanıcı görsel/onay turu tamamlanmadan mevcut ana navigasyona entegrasyon yapma.
 4. Profil ekranı ve hesap kapsamlı gerçek storage entegrasyonunu ayrı kontrollü adımda ele al.
 5. PR #74 Draft olarak kalsın; ayrı açık merge onayı olmadan release'e merge edilmesin.

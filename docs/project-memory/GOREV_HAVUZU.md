@@ -6,7 +6,7 @@
 
 ## BR-P0-014 - Issue #73 / Draft PR #74 Kelime Avı foundation ve home hub CI
 
-**Durum:** DRAFT PR #74 / FOUNDATION + İZOLE PROTOTİP HAZIR / RESPONSIVE CI BLOCKER GİDERİLDİ / TEKNİK-HEAD ANALİZ + TÜM TESTLER PASS / FINAL DOCS-HEAD FULL CI DOĞRULANACAK / MERGE YOK
+**Durum:** DRAFT PR #74 / FOUNDATION + İZOLE PROTOTİP HAZIR / RESPONSIVE CI BLOCKER GİDERİLDİ / PRE-MERGE-PREP HEAD FULL CI SUCCESS / MERGE-PREP DOCS COMMIT SONRASI CANLI FINAL-HEAD CI DOĞRULANACAK / MERGE YOK
 
 - Kanonik release tabanı: `release/final-closed-test-aab-1.68.8`.
 - PR başlangıç base SHA: `9331802b9a2b12d1f4ec6715da96dc7d0f60b24b`.
@@ -14,7 +14,7 @@
 - Branch: `feat/home-word-hunt-foundation-20260820`.
 - Issue: #73.
 - Draft PR: #74.
-- Canlı PR kapsamı: 22 dosya; `docs/kelime-avi`, Kelime Avı checkpoint'i, `lib/word_hunt/*` ve ilgili `test/*`.
+- Canlı PR kapsamı: **24 dosya**; `docs/kelime-avi`, proje-hafızası/checkpoint kayıtları, `lib/word_hunt/*` ve ilgili `test/*`.
 - Foundation: `Başlangıç Limanı` 10 bölüm / 30 yıldız / 6 bilgi kartı; 8 yönlü seçim yolu; progress codec; validator; yıldız puanlama; izole 6×6 bölüm ve home hub prototipleri.
 - İlk kırmızı head: `0ac0ef303936221f0c923701f974b3f8be00a83f`.
 - İlk kırmızı run: `32348243734`.
@@ -24,19 +24,22 @@
 - Exact teknik head `c377e904...` üzerinde AdMob PR doğrulaması #297 / run `32361507978` / job `96401878115`: `Analiz ve tüm testler` **SUCCESS**.
 - Checkpoint commit'i: `6b8b956e9e4d151dd4cb35582ea74bdf3cf59374` — `docs: refresh word hunt checkpoint`.
 - Durum dosyası commit'i: `0a9eafd9a2e149071fcc89a6213e2ab889541f51` — `docs: record word hunt CI checkpoint`.
+- PR kapsam düzeltme head'i `343ebf2d9241888bdbcd31536f79bd62720191ac` üzerinde AdMob PR doğrulaması #301 / run `32362882273`: **SUCCESS**; head SHA ve base SHA canlı workflow metadata'sıyla eşleşir.
+- Bu merge-prep kayıt düzeltmesi yeni bir docs head üreteceği için merge öncesi son CI sonucu statik SHA olarak burada dondurulmaz; canlı PR HEAD üzerinden yeniden okunur.
 - `assets/questions.json`, `lib/main.dart`, mevcut Bilgi Oyunu oynanışı/ana navigasyon, BoardMap/67 node/3B, Firebase/AdMob/Play config ve `pubspec.yaml` değiştirilmedi.
 - `KARARLAR.md` değişmedi.
 
 **Bitti ölçütü:**
 
 - [x] Canlı base/branch/sürüm/PR durumu doğrulandı; `main` güncel varsayılmadı.
-- [x] Canlı 22 dosyalık PR kapsamı ve korunan alanlar doğrulandı.
+- [x] Canlı **24 dosyalık** PR kapsamı ve korunan alanlar doğrulandı.
 - [x] Responsive runtime blocker minimum diff ile giderildi; `360×800` regresyonu PASS.
 - [x] Off-screen günlük kart test problemi tam CI logundan kanıtlandı ve gerçek scroll davranışına hizalandı.
 - [x] Exact teknik head üzerinde analyze + tüm Flutter testleri + diff check PASS.
-- [x] `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve Kelime Avı checkpoint'i güncellendi; yeni karar olmadığı için `KARARLAR.md` değişmedi.
-- [ ] Bu görev-havuzu güncellemesini taşıyan final PR #74 head'inde AdMob PR doğrulaması tam workflow/log/artifact/Android 16 kapılarıyla SUCCESS.
-- [ ] PR #74 gövdesi gerçek 22 dosyalık kapsam ve final CI kanıtıyla güncellendi; Draft durumda kaldı.
+- [x] PR kapsam düzeltme head'i `343ebf2...` üzerinde AdMob PR doğrulaması #301 / run `32362882273` SUCCESS.
+- [x] `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve Kelime Avı checkpoint'i 24 dosyalık gerçek kapsama hizalandı; yeni karar olmadığı için `KARARLAR.md` değişmedi.
+- [ ] Bu merge-prep docs commit'ini taşıyan canlı son PR #74 head'inde AdMob PR doğrulaması tam workflow/log/artifact/Android 16 kapılarıyla SUCCESS.
+- [ ] PR #74 gövdesi gerçek 24 dosyalık kapsam ve canlı final-head CI kanıtıyla güncellendi; Draft durumda kaldı.
 - [ ] Kullanıcı görsel/onay turu olmadan mevcut ana navigasyona entegrasyon yapılmadı; entegrasyon ayrıca onaylandıktan sonra ele alınır.
 - [ ] Ayrı açık merge onayı olmadan PR #74 release'e merge edilmez.
 
@@ -114,6 +117,14 @@ Eski `apply-game-save-isolation-v4.yml` config-level workflow hatası uygulama/r
 - Sonra numaralı deterministik geometri doğrulanır.
 - Kullanıcı görsel onayı olmadan stil/Flutter/APK aşamasına geçilmez.
 - Bütün 2B sahneyi tek Matrix4 ile eğme yaklaşımı kullanılmaz.
+
+---
+
+## BR-P2-003 - Profesyonel tanıtım videosu
+
+**Durum:** AÇIK
+
+Eski yetersiz setleri final kabul etme. Gerçek kurgu, efekt, ses ve güçlü açılış üret.
 
 ---
 
