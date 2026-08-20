@@ -1,4 +1,4 @@
-import 'package:bilgi_rotasi/word_hunt/home_hub_prototype.dart';
+import 'package:bilgi_rotasi/word_hunt/home_hub_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -110,7 +110,9 @@ void main() {
     expect(daily, 1);
   });
 
-  testWidgets('dar ekranda taşma olmadan çizilir', (tester) async {
+  testWidgets('dar ekranda taşma olmadan iki ana oyun kartını korur', (
+    tester,
+  ) async {
     await tester.binding.setSurfaceSize(const Size(360, 800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
@@ -122,5 +124,6 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.byKey(const Key('home_hub_bilgi_oyunu')), findsOneWidget);
     expect(find.byKey(const Key('home_hub_kelime_avi')), findsOneWidget);
+    expect(find.byKey(const Key('home_hub_settings')), findsOneWidget);
   });
 }
