@@ -49,6 +49,7 @@ class WordHuntRouteMapPrototypeScreen extends StatelessWidget {
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: true,
+        titleSpacing: 8,
         foregroundColor: const Color(0xFFFFD27A),
         backgroundColor: Colors.transparent,
         flexibleSpace: const DecoratedBox(
@@ -224,26 +225,29 @@ class _GameTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: const <Widget>[
-        _TitleSparkLine(),
-        SizedBox(width: 8),
-        Text(
-          'KELİME AVI',
-          style: TextStyle(
-            color: Color(0xFFE4B7FF),
-            fontSize: 20,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.4,
-            shadows: <Shadow>[
-              Shadow(color: Color(0xFFB84CFF), blurRadius: 12),
-            ],
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: const <Widget>[
+          _TitleSparkLine(),
+          SizedBox(width: 7),
+          Text(
+            'KELİME AVI',
+            style: TextStyle(
+              color: Color(0xFFE4B7FF),
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              letterSpacing: 1.4,
+              shadows: <Shadow>[
+                Shadow(color: Color(0xFFB84CFF), blurRadius: 12),
+              ],
+            ),
           ),
-        ),
-        SizedBox(width: 8),
-        _TitleSparkLine(),
-      ],
+          SizedBox(width: 7),
+          _TitleSparkLine(),
+        ],
+      ),
     );
   }
 }
@@ -254,7 +258,7 @@ class _TitleSparkLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 28,
+      width: 22,
       height: 2,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -356,15 +360,25 @@ class _ApprovedRouteHeader extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              const Spacer(),
-              Text(
-                complete ? 'ROTA TAMAMLANDI' : 'Kapı: $unlockStarsRequired ⭐',
-                style: TextStyle(
-                  color: complete
-                      ? const Color(0xFF5EEAD4)
-                      : const Color(0xFFFFE2A0),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w900,
+              const SizedBox(width: 12),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      complete ? 'ROTA TAMAMLANDI' : 'Kapı: $unlockStarsRequired ⭐',
+                      maxLines: 1,
+                      softWrap: false,
+                      style: TextStyle(
+                        color: complete
+                            ? const Color(0xFF5EEAD4)
+                            : const Color(0xFFFFE2A0),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
