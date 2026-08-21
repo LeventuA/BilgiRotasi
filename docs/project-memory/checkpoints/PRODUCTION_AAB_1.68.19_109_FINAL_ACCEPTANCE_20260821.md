@@ -1,8 +1,8 @@
 # Bilgi Rotası - Final Production AAB 1.68.19+109 Kabul Checkpoint'i
 
 **Tarih:** 21 Ağustos 2026  
-**Durum:** `DOĞRULANDI` — Play Console yüklemesi ayrıca açık  
-**Kapsam:** Yalnız production AAB artifact kabulü ve provenance kaydı. Runtime, `assets/questions.json`, BoardMap/67 node, 3B tahta, Firebase/AdMob canlı ayarı ve Play Console değiştirilmedi.
+**Durum:** `DOĞRULANDI` — Play Console production yayınlama işlemi kullanıcı tarafından tamamlandı; public dağıtım/kurulum ayrıca doğrulanacak  
+**Kapsam:** Production AAB artifact kabulü, provenance ve Play production yayınlama checkpoint'i. Runtime, `assets/questions.json`, BoardMap/67 node, 3B tahta, Firebase/AdMob canlı ayarı değiştirilmedi.
 
 ## 1. Kanonik kaynak kilidi
 
@@ -110,11 +110,18 @@ Aynı gün yapılan fiziksel production kabulü ayrıca PASS olarak kaydedildi:
 
 Bu maddeler ürün kararını değiştirmez; `KARARLAR.md` bölüm 5'teki mevcut sözleşmenin canlı kabulüdür.
 
-## 8. Açık kalan tek yayın kapısı
+## 8. Play production yayınlama checkpoint'i
 
-**DOĞRULANACAK:** Bu exact SHA-256'ya sahip `1.68.19+109` AAB'nin Google Play Console production kanalına yüklenmesi, Play tarafından kabul edilmesi, Play kurulumunun doğrulanması ve rollout/public durumunun kaydedilmesi.
+21 Ağustos 2026 saat 20:39 (+03:00) itibarıyla Levent, exact `1.68.19+109` production AAB'yi Google Play Console'a yüklediğini ve ardından production yayınlama işlemini tamamladığını bildirdi.
 
-Play'e farklı hash'e sahip +109 AAB verilmez. Yeni build gerekirse bu checkpoint otomatik olarak yeni artifact'i kabul etmez; aynı provenance ve bağımsız doğrulama kapıları yeniden çalıştırılır.
+Bu kullanıcı teyidi aşağıdaki adımları kapatır:
+
+- production AAB Play Console'a yüklendi — **KULLANICI TEYİDİ**.
+- production yayınlama işlemi başlatıldı/tamamlandı — **KULLANICI TEYİDİ**.
+
+**DOĞRULANACAK:** Google Play'in public dağıtımının tamamlanması, mağazada +109'un gerçekten kullanıcılara sunulması, temiz kurulum/güncelleme ile Play-delivered build'in kurulabilmesi ve rollout/public durumunun ekran/cihaz kanıtıyla kapanması.
+
+Google Play durum kontrol panelinde 21 Ağustos 2026 itibarıyla genel bir Play yayınlama hizmet kesintisi görünmemesi yalnız platform-geneli bağlamdır; Bilgi Rotası'nın rollout durumunu tek başına kanıtlamaz.
 
 ## 9. Git / merge sınırı
 
@@ -125,4 +132,10 @@ Play'e farklı hash'e sahip +109 AAB verilmez. Yeni build gerekirse bu checkpoin
 
 ## 10. Proje hafızası notu
 
-`BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` büyük tarihsel dosyalardır. Connector üzerinden komple replace sırasında veri kaybı riski bulunduğundan mevcut kanonik tarihçe ezilmedi. Bu checkpoint final AAB kabulünün kayıpsız uzak kanıtıdır; kanonik dosyalarda açık olan production AAB maddesi bir sonraki kontrollü docs entegrasyonunda bu checkpoint'e dayanarak kapatılmalıdır.
+`BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` büyük tarihsel dosyalardır. Connector üzerinden komple replace sırasında veri kaybı riski bulunduğundan mevcut kanonik tarihçe ezilmedi. Bu checkpoint final AAB kabulünün ve Play production yayınlama kullanıcı teyidinin kayıpsız uzak kanıtıdır; kanonik dosyalardaki açık maddeler bir sonraki kontrollü docs entegrasyonunda bu checkpoint'e dayanarak güncellenmelidir.
+
+## 11. Bu checkpoint güncellemesinin kanıt sınırı
+
+- Play Console ekran görüntüsü bu checkpoint güncellemesinde ayrıca incelenmedi.
+- Google Play Store public listing üzerinden sürüm numarası bu oturumda güvenilir biçimde okunamadı.
+- Bu nedenle `rollout/public/install PASS` yazılmadı; durum bilinçli olarak `DOĞRULANACAK` bırakıldı.
