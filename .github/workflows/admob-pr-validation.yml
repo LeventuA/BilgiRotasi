@@ -16,96 +16,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  diagnostic-patch:
-    name: AdMob tanısını test et ve commit et
-    if: github.event_name == 'pull_request' && github.head_ref == 'fix/admob-runtime-diagnostics-20260821'
-    runs-on: ubuntu-22.04
-    timeout-minutes: 60
-
-    steps:
-      - name: Tanı branch'ini indir
-        uses: actions/checkout@v4
-        with:
-          ref: fix/admob-runtime-diagnostics-20260821
-          fetch-depth: 0
-
-      - name: Kilitli tabanı doğrula
-        shell: bash
-        run: |
-          set -euo pipefail
-          BASE_SHA=9331802b9a2b12d1f4ec6715da96dc7d0f60b24b
-          git merge-base --is-ancestor "$BASE_SHA" HEAD
-          test "$(sed -nE 's/^version:[[:space:]]*([^[:space:]]+).*$/\1/p' pubspec.yaml)" = "1.68.17+107"
-          test -f .github/workflows/admob-runtime-diagnostics-patch.yml
-
-      - name: Deterministik tanı patch'ini çalışma ağacına uygula
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-          import textwrap
-
-          source = Path('.github/workflows/admob-runtime-diagnostics-patch.yml').read_text().splitlines()
-          start = next(i for i, line in enumerate(source) if line.strip() == "python3 - <<'PY'") + 1
-          end = next(i for i in range(start, len(source)) if source[i].strip() == 'PY')
-          script = textwrap.dedent('\n'.join(source[start:end])) + '\n'
-          Path('/tmp/apply_admob_runtime_diagnostics.py').write_text(script)
-          PY
-          python3 /tmp/apply_admob_runtime_diagnostics.py
-          dart format lib/ad_monetization.dart test/ad_monetization_diagnostics_test.dart
-          git diff --check
-
-      - name: Flutter kur
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.44.6"
-          channel: stable
-          cache: true
-
-      - name: Ürün commitinden önce test et
-        shell: bash
-        run: |
-          set -euo pipefail
-          flutter pub get
-          flutter test test/ad_monetization_diagnostics_test.dart test/ad_monetization_test.dart --reporter expanded
-          flutter test --concurrency=1 --reporter expanded
-          flutter analyze --no-fatal-warnings --no-fatal-infos
-          git diff --check
-
-      - name: Yalnız test edilmiş ürün diffini commit et
-        shell: bash
-        run: |
-          set -euo pipefail
-          BASE_SHA=9331802b9a2b12d1f4ec6715da96dc7d0f60b24b
-          git checkout "$BASE_SHA" -- .github/workflows/admob-pr-validation.yml
-          rm .github/workflows/admob-runtime-diagnostics-patch.yml
-          rm .github/workflows/admob-runtime-diagnostics-pr.yml
-
-          mapfile -t changed < <(git status --short | awk '{print $2}' | sort)
-          expected=$(printf '%s\n' \
-            '.github/workflows/admob-pr-validation.yml' \
-            '.github/workflows/admob-runtime-diagnostics-patch.yml' \
-            '.github/workflows/admob-runtime-diagnostics-pr.yml' \
-            'lib/ad_monetization.dart' \
-            'test/ad_monetization_diagnostics_test.dart' | sort)
-          actual=$(printf '%s\n' "${changed[@]}" | sort)
-          printf 'Changed files:\n%s\n' "$actual"
-          test "$actual" = "$expected"
-          test "$(git diff -- assets/questions.json | wc -c)" -eq 0
-          test "$(git diff -- lib/main.dart | wc -c)" -eq 0
-          test "$(git diff -- pubspec.yaml | wc -c)" -eq 0
-          git diff --check
-
-          git config user.name 'ZMilaStudio'
-          git config user.email 'levent.ua@gmail.com'
-          git add -A
-          git commit -m 'fix: expose AdMob runtime diagnostics'
-          git push origin HEAD:fix/admob-runtime-diagnostics-20260821
-
   test-build-launch:
     name: Test, release APK ve Android 16 cold-start
     runs-on: ubuntu-22.04
