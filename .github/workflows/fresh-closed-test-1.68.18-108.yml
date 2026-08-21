@@ -1,0 +1,34 @@
+name: Fresh closed test 1.68.18+108
+
+on:
+  push:
+    branches:
+      - ci/fresh-closed-test-1.68.18-108
+
+permissions:
+  contents: read
+
+jobs:
+  verify-source:
+    name: Exact release kaynak kilidi
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Release ebeveynini ve tek CI farkını doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "fea206036366c604a54159be3bbe39e22fe24a2d"
+          test "$(git diff --name-only HEAD^ HEAD)" = ".github/workflows/fresh-closed-test-1.68.18-108.yml"
+          grep -Fxq 'version: 1.68.18+108' pubspec.yaml
+
+  closed-test-release:
+    name: İmzalı fresh AAB ve Android 16 doğrulaması
+    needs: verify-source
+    uses: ./.github/workflows/closed-test-release-core.yml
+    with:
+      confirmation: CLOSED_TEST
+    secrets: inherit
