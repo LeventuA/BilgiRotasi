@@ -36,6 +36,7 @@ flutter:
     - assets/sounds/
     - assets/pawns/
     - assets/questions.json
+    - assets/word_hunt/
 
 
 flutter_launcher_icons:
