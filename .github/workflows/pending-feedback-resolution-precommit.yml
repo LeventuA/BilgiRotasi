@@ -43,7 +43,7 @@ jobs:
           test "$RELEASE_HEAD" = "$EXPECTED_BASE"
           test "$MERGE_BASE" = "$EXPECTED_BASE"
           grep -qx 'version: 1.68.17+107' pubspec.yaml
-          test -z "$(git diff --name-only origin/release/final-closed-test-aab-1.68.8...HEAD -- assets/questions.json pubspec.yaml)"
+          test -z "$(git diff --name-only origin/release/final-closed-test-aab-1.68.8...HEAD -- assets/questions.json lib/app_build_info.dart pubspec.yaml)"
           echo 'APPROVAL_MARKER_GATE=PASS'
           echo 'BASE_GATE=PASS'
           echo 'SOURCE_VERSION_GATE=PASS'
@@ -56,7 +56,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 tools/validate_questions.py
-          python3 tools/rc1_quality_gate.py --report /tmp/RC1_QUALITY_GATE_PENDING_FEEDBACK.md
+          python3 tools/rc1_quality_gate.py --report reports/RC1_QUALITY_GATE_PENDING_FEEDBACK.md
           python3 - <<'PY'
           import json
           from pathlib import Path
@@ -83,7 +83,7 @@ jobs:
           test "$TOTAL" -gt 0
           test "$TOTAL" -lt 2000
           test "$(git diff --name-only | sort | tr '\n' ' ')" = \
-            'assets/questions.json pubspec.yaml reports/pending_question_feedback_resolution_20260821.md '
+            'assets/questions.json lib/app_build_info.dart pubspec.yaml reports/RC1_QUALITY_GATE_PENDING_FEEDBACK.md reports/pending_question_feedback_resolution_20260821.md '
           git diff --check
           echo 'DIFF_SCOPE_GATE=PASS'
 
@@ -129,7 +129,9 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- \
             assets/questions.json \
+            lib/app_build_info.dart \
             pubspec.yaml \
+            reports/RC1_QUALITY_GATE_PENDING_FEEDBACK.md \
             reports/pending_question_feedback_resolution_20260821.md \
             .github/workflows/pending-feedback-live-audit.yml \
             .github/workflows/pending-feedback-resolution-precommit.yml \
