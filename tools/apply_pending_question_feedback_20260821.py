@@ -10,6 +10,7 @@ from pathlib import Path
 
 QUESTIONS = Path('assets/questions.json')
 PUBSPEC = Path('pubspec.yaml')
+APP_BUILD_INFO = Path('lib/app_build_info.dart')
 AUDIT = Path('reports/pending_question_feedback_live_audit_20260821.json')
 MANIFEST = Path('reports/pending_question_feedback_resolution_manifest_20260821.json')
 REPORT = Path('reports/pending_question_feedback_resolution_20260821.md')
@@ -48,7 +49,7 @@ def read_json(path: Path):
         fail(f'{path} okunamadı: {error}')
 
 
-for required in (QUESTIONS, PUBSPEC, AUDIT, MANIFEST):
+for required in (QUESTIONS, PUBSPEC, APP_BUILD_INFO, AUDIT, MANIFEST):
     if not required.exists():
         fail(f'Gerekli dosya bulunamadı: {required}')
 
@@ -192,25 +193,61 @@ for qid in set(by_id) - action_ids:
     if by_id[qid] != before_by_id[qid]:
         fail(f'{qid}: kapsam dışı soru değiştirildi.')
 
+expected_version = str(manifest['expectedVersion'])
+target_version = str(manifest['targetVersion'])
+if '+' not in expected_version or '+' not in target_version:
+    fail('Manifest sürümleri name+build biçiminde olmalı.')
+expected_name, expected_build_raw = expected_version.split('+', 1)
+target_name, target_build_raw = target_version.split('+', 1)
+try:
+    expected_build = int(expected_build_raw)
+    target_build = int(target_build_raw)
+except ValueError:
+    fail('Manifest build numarası tamsayı olmalı.')
+
 pubspec_text = PUBSPEC.read_text(encoding='utf-8')
-old_version_line = f"version: {manifest['expectedVersion']}"
-new_version_line = f"version: {manifest['targetVersion']}"
+old_version_line = f'version: {expected_version}'
+new_version_line = f'version: {target_version}'
 if pubspec_text.count(old_version_line) != 1:
     fail(f'pubspec beklenen sürüm satırını tam bir kez içermiyor: {old_version_line}')
 if new_version_line in pubspec_text:
     fail('Hedef sürüm pubspec içinde zaten mevcut; tekrar uygulama durduruldu.')
 
+app_build_info_text = APP_BUILD_INFO.read_text(encoding='utf-8')
+app_build_replacements = (
+    (
+        f"static const String versionName = '{expected_name}';",
+        f"static const String versionName = '{target_name}';",
+    ),
+    (
+        f'static const int buildNumber = {expected_build};',
+        f'static const int buildNumber = {target_build};',
+    ),
+    (
+        f"static const String version = '{expected_version}';",
+        f"static const String version = '{target_version}';",
+    ),
+)
+for old_value, new_value in app_build_replacements:
+    if app_build_info_text.count(old_value) != 1:
+        fail(f'AppBuildInfo beklenen değeri tam bir kez içermiyor: {old_value}')
+    if new_value in app_build_info_text:
+        fail(f'AppBuildInfo hedef değeri zaten içeriyor: {new_value}')
+    app_build_info_text = app_build_info_text.replace(old_value, new_value, 1)
+
 new_questions_text = canonical_json(questions)
 post_sha = sha256_bytes(new_questions_text.encode('utf-8'))
 QUESTIONS.write_text(new_questions_text, encoding='utf-8')
 PUBSPEC.write_text(pubspec_text.replace(old_version_line, new_version_line, 1), encoding='utf-8')
+APP_BUILD_INFO.write_text(app_build_info_text, encoding='utf-8')
 
 lines = [
     '# Bilgi Rotası — Bekleyen Soru Geri Bildirimi Çözüm Raporu',
     '',
     '- Tarih: 21 Ağustos 2026',
-    f"- Kaynak sürüm: `{manifest['expectedVersion']}`",
-    f"- Hedef sürüm: `{manifest['targetVersion']}`",
+    f"- Kaynak sürüm: `{expected_version}`",
+    f"- Hedef sürüm: `{target_version}`",
+    '- AppBuildInfo ve pubspec sürümü birlikte güncellendi: **PASS**',
     f"- Kaynak soru bankası SHA-256: `{source_sha}`",
     f"- Yeni soru bankası SHA-256: `{post_sha}`",
     f"- Sheet olay sayısı: **{counts['sheetEvents']}**",
@@ -257,4 +294,4 @@ print(f'CATEGORY_FIXES={len(category_ids)}')
 print(f'NO_CHANGE={len(no_change_ids)}')
 print(f'QUESTION_BANK_SHA256_BEFORE={source_sha}')
 print(f'QUESTION_BANK_SHA256_AFTER={post_sha}')
-print(f'TARGET_VERSION={manifest["targetVersion"]}')
+print(f'TARGET_VERSION={target_version}')
