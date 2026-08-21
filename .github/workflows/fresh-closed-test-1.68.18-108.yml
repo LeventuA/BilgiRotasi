@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - ci/fresh-closed-test-1.68.18-108
+  pull_request:
+    branches:
+      - release/final-closed-test-aab-1.68.8
+    paths:
+      - .github/workflows/fresh-closed-test-1.68.18-108.yml
 
 permissions:
   contents: read
@@ -16,13 +21,15 @@ jobs:
       - name: Depoyu indir
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
-      - name: Release ebeveynini ve tek CI farkını doğrula
+          fetch-depth: 0
+      - name: Release SHA ve tek CI farkını doğrula
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = "fea206036366c604a54159be3bbe39e22fe24a2d"
-          test "$(git diff --name-only HEAD^ HEAD)" = ".github/workflows/fresh-closed-test-1.68.18-108.yml"
+          RELEASE_SHA="fea206036366c604a54159be3bbe39e22fe24a2d"
+          git cat-file -e "$RELEASE_SHA^{commit}"
+          CHANGED="$(git diff --name-only "$RELEASE_SHA" HEAD)"
+          test "$CHANGED" = ".github/workflows/fresh-closed-test-1.68.18-108.yml"
           grep -Fxq 'version: 1.68.18+108' pubspec.yaml
 
   closed-test-release:
