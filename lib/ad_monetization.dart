@@ -62,10 +62,7 @@ class AdVisibilityPolicy {
   }
 }
 
-String autoSupportRewardGameId(
-  AdPlacement placement, {
-  DateTime? now,
-}) {
+String autoSupportRewardGameId(AdPlacement placement, {DateTime? now}) {
   if (!AdVisibilityPolicy.showsAutoSupportReward(placement)) return '';
   final instant = now ?? DateTime.now();
   if (placement == AdPlacement.dailyResult) {
@@ -111,14 +108,56 @@ class AdMobConfig {
   static const String productionAndroidRewardedUnitId =
       'ca-app-pub-7452194004008791/4974874471';
 
-  static const String androidAppId =
-      isProduction ? productionAndroidAppId : testAndroidAppId;
-  static const String androidBannerUnitId =
-      isProduction ? productionAndroidBannerUnitId : testAndroidBannerUnitId;
-  static const String androidRewardedUnitId =
-      isProduction
-          ? productionAndroidRewardedUnitId
-          : testAndroidRewardedUnitId;
+  static const String androidAppId = isProduction
+      ? productionAndroidAppId
+      : testAndroidAppId;
+  static const String androidBannerUnitId = isProduction
+      ? productionAndroidBannerUnitId
+      : testAndroidBannerUnitId;
+  static const String androidRewardedUnitId = isProduction
+      ? productionAndroidRewardedUnitId
+      : testAndroidRewardedUnitId;
+}
+
+class AdRuntimeDiagnostics {
+  const AdRuntimeDiagnostics._();
+
+  static String? _lastFailure;
+
+  static String? get lastFailure => _lastFailure;
+
+  static void clear() {
+    _lastFailure = null;
+  }
+
+  static void record(String stage, {Object? error}) {
+    final normalizedStage = stage.trim().isEmpty
+        ? 'ADMOB_UNKNOWN'
+        : stage.trim();
+    final detail = error == null
+        ? normalizedStage
+        : '$normalizedStage: ${_clean(error)}';
+    _lastFailure = detail;
+    debugPrint('ADMOB_DIAG $detail');
+  }
+
+  static void recordLoadError(String stage, LoadAdError error) {
+    record(
+      stage,
+      error:
+          'code=${error.code} domain=${error.domain} message=${error.message}',
+    );
+  }
+
+  static String get userFacingSummary => _lastFailure ?? 'ADMOB_UNKNOWN';
+
+  static String _clean(Object value) {
+    var text = value.toString().replaceAll(RegExp(r'\s+'), ' ').trim();
+    if (text.length > 220) {
+      text = '${text.substring(0, 220)}…';
+    }
+    return text;
+  }
 }
 
 class RewardedSsvSession {
@@ -330,21 +369,53 @@ class AdPrivacyService {
 
   Future<bool> _initialize() async {
     try {
-      if (await emulatorGateway.isEmulator()) return false;
+      if (await emulatorGateway.isEmulator()) {
+        AdRuntimeDiagnostics.record('INIT_EMULATOR_BLOCKED');
+        return false;
+      }
 
-      await consentGateway.requestConsentInfoUpdate();
-      await consentGateway.loadAndShowConsentFormIfRequired();
-      privacyOptionsRequired.value =
-          await consentGateway.isPrivacyOptionsRequired();
+      try {
+        await consentGateway.requestConsentInfoUpdate();
+      } catch (error) {
+        AdRuntimeDiagnostics.record('CONSENT_INFO_UPDATE_FAILED', error: error);
+        rethrow;
+      }
+      try {
+        await consentGateway.loadAndShowConsentFormIfRequired();
+      } catch (error) {
+        AdRuntimeDiagnostics.record('CONSENT_FORM_FAILED', error: error);
+        rethrow;
+      }
+      try {
+        privacyOptionsRequired.value = await consentGateway
+            .isPrivacyOptionsRequired();
+      } catch (error) {
+        AdRuntimeDiagnostics.record(
+          'CONSENT_PRIVACY_STATUS_FAILED',
+          error: error,
+        );
+        rethrow;
+      }
 
-      if (!await consentGateway.canRequestAds()) return false;
+      if (!await consentGateway.canRequestAds()) {
+        AdRuntimeDiagnostics.record('CONSENT_CAN_REQUEST_ADS_FALSE');
+        return false;
+      }
 
-      await mobileAdsGateway.configureForTeenAudience();
-      await mobileAdsGateway.initialize();
+      try {
+        await mobileAdsGateway.configureForTeenAudience();
+        await mobileAdsGateway.initialize();
+      } catch (error) {
+        AdRuntimeDiagnostics.record('MOBILE_ADS_INIT_FAILED', error: error);
+        rethrow;
+      }
       _adsReady = true;
       return true;
-    } catch (_) {
+    } catch (error) {
       _adsReady = false;
+      if (AdRuntimeDiagnostics.lastFailure == null) {
+        AdRuntimeDiagnostics.record('AD_PRIVACY_INIT_FAILED', error: error);
+      }
       return false;
     } finally {
       _initializing = null;
@@ -355,8 +426,8 @@ class AdPrivacyService {
     if (!privacyOptionsRequired.value) return false;
     try {
       await consentGateway.showPrivacyOptionsForm();
-      privacyOptionsRequired.value =
-          await consentGateway.isPrivacyOptionsRequired();
+      privacyOptionsRequired.value = await consentGateway
+          .isPrivacyOptionsRequired();
       return true;
     } catch (_) {
       return false;
@@ -376,7 +447,14 @@ class AdMonetizationService {
   bool _disposed = false;
 
   Future<bool> _ensureInitialized() {
-    if (_disposed || !Platform.isAndroid) return Future<bool>.value(false);
+    if (_disposed) {
+      AdRuntimeDiagnostics.record('SERVICE_DISPOSED');
+      return Future<bool>.value(false);
+    }
+    if (!Platform.isAndroid) {
+      AdRuntimeDiagnostics.record('UNSUPPORTED_PLATFORM');
+      return Future<bool>.value(false);
+    }
     if (_initialized) return Future<bool>.value(true);
     final active = _initializing;
     if (active != null) return active;
@@ -385,8 +463,9 @@ class AdMonetizationService {
       try {
         _initialized = await AdPrivacyService.instance.initialize();
         return _initialized;
-      } catch (_) {
+      } catch (error) {
         _initialized = false;
+        AdRuntimeDiagnostics.record('MONETIZATION_INIT_FAILED', error: error);
         return false;
       } finally {
         _initializing = null;
@@ -418,17 +497,22 @@ class AdMonetizationService {
             _rewardedAd = ad;
             if (!completer.isCompleted) completer.complete(true);
           },
-          onAdFailedToLoad: (_) {
+          onAdFailedToLoad: (error) {
             _rewardedAd = null;
+            AdRuntimeDiagnostics.recordLoadError('REWARDED_LOAD_FAILED', error);
             if (!completer.isCompleted) completer.complete(false);
           },
         ),
       );
       return await completer.future.timeout(
         const Duration(seconds: 12),
-        onTimeout: () => false,
+        onTimeout: () {
+          AdRuntimeDiagnostics.record('REWARDED_LOAD_TIMEOUT');
+          return false;
+        },
       );
-    } catch (_) {
+    } catch (error) {
+      AdRuntimeDiagnostics.record('REWARDED_LOAD_EXCEPTION', error: error);
       return false;
     } finally {
       _rewardedLoading = null;
@@ -436,12 +520,17 @@ class AdMonetizationService {
   }
 
   Future<bool> showRewarded({String? gameId}) async {
+    AdRuntimeDiagnostics.clear();
     if (!await _loadRewarded()) return false;
     final ad = _rewardedAd;
-    if (ad == null) return false;
+    if (ad == null) {
+      AdRuntimeDiagnostics.record('REWARDED_AD_MISSING_AFTER_LOAD');
+      return false;
+    }
 
     final normalizedGameId = gameId?.trim() ?? '';
-    final authenticatedUid = FirebaseAuth.instance.currentUser?.uid.trim() ?? '';
+    final authenticatedUid =
+        FirebaseAuth.instance.currentUser?.uid.trim() ?? '';
     final requiresSsv = rewardedSsvRequired(
       isProductionAds: AdMobConfig.isProduction,
       firebaseProductionEnabled: FirebaseRuntimePolicy.productionEnabled,
@@ -451,14 +540,18 @@ class AdMonetizationService {
 
     if (requiresSsv) {
       final ssvSession = await RewardedSsvClient.issueForGame(normalizedGameId);
-      if (ssvSession == null) return false;
+      if (ssvSession == null) {
+        AdRuntimeDiagnostics.record('SSV_SESSION_UNAVAILABLE');
+        return false;
+      }
       try {
         final options = ServerSideVerificationOptions(
           userId: ssvSession.uid,
           customData: ssvSession.customData,
         );
         ad.setServerSideOptions(options);
-      } catch (_) {
+      } catch (error) {
+        AdRuntimeDiagnostics.record('SSV_OPTIONS_FAILED', error: error);
         ad.dispose();
         _rewardedAd = null;
         unawaited(_loadRewarded());
@@ -476,12 +569,19 @@ class AdMonetizationService {
           var earned = rewardCallbackReceived;
           if (earned && requiresSsv) {
             earned = await RewardedSsvClient.confirmForGame(normalizedGameId);
+            if (!earned) {
+              AdRuntimeDiagnostics.record('SSV_CONFIRMATION_FAILED');
+            }
+          }
+          if (!earned && AdRuntimeDiagnostics.lastFailure == null) {
+            AdRuntimeDiagnostics.record('REWARD_CALLBACK_NOT_EARNED');
           }
           if (!completer.isCompleted) completer.complete(earned);
           unawaited(_loadRewarded());
         }());
       },
-      onAdFailedToShowFullScreenContent: (shownAd, _) {
+      onAdFailedToShowFullScreenContent: (shownAd, error) {
+        AdRuntimeDiagnostics.record('REWARDED_SHOW_FAILED', error: error);
         shownAd.dispose();
         if (!completer.isCompleted) completer.complete(false);
         unawaited(_loadRewarded());
@@ -501,7 +601,8 @@ class AdMonetizationService {
           return false;
         },
       );
-    } catch (_) {
+    } catch (error) {
+      AdRuntimeDiagnostics.record('REWARDED_SHOW_EXCEPTION', error: error);
       ad.dispose();
       unawaited(_loadRewarded());
       return false;
@@ -520,7 +621,8 @@ class AdMonetizationService {
         onAdLoaded: (_) {
           if (!completer.isCompleted) completer.complete(ad);
         },
-        onAdFailedToLoad: (failedAd, _) {
+        onAdFailedToLoad: (failedAd, error) {
+          AdRuntimeDiagnostics.recordLoadError('BANNER_LOAD_FAILED', error);
           failedAd.dispose();
           if (!completer.isCompleted) completer.complete(null);
         },
@@ -531,11 +633,13 @@ class AdMonetizationService {
       return await completer.future.timeout(
         const Duration(seconds: 12),
         onTimeout: () {
+          AdRuntimeDiagnostics.record('BANNER_LOAD_TIMEOUT');
           ad.dispose();
           return null;
         },
       );
-    } catch (_) {
+    } catch (error) {
+      AdRuntimeDiagnostics.record('BANNER_LOAD_EXCEPTION', error: error);
       ad.dispose();
       return null;
     }
@@ -615,11 +719,10 @@ class SupportRewardLimiter {
     final completer = Completer<bool>();
     _claimQueue = _claimQueue.then((_) async {
       try {
-        final existing =
-            (await store.read(_gamesKey) ?? '')
-                .split('\n')
-                .where((value) => value.isNotEmpty)
-                .toList();
+        final existing = (await store.read(_gamesKey) ?? '')
+            .split('\n')
+            .where((value) => value.isNotEmpty)
+            .toList();
         if (existing.contains(normalizedGameId)) {
           completer.complete(false);
           return;
@@ -657,27 +760,26 @@ class AdMonetizationDialogs {
   static Future<bool> askForJokerReward(BuildContext context) async {
     return await showDialog<bool>(
           context: context,
-          builder:
-              (dialogContext) => AlertDialog(
-                icon: const Text('🎁📺', style: TextStyle(fontSize: 46)),
-                title: const Text('Joker ödülü'),
-                content: const Text(
-                  'İstersen kısa bir reklamı tamamlayarak rastgele bir joker +1 '
-                  'kazanabilirsin. Reklamı reddedersen oyun normal devam eder.',
-                  textAlign: TextAlign.center,
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(dialogContext, false),
-                    child: const Text('Hayır, devam et'),
-                  ),
-                  FilledButton.icon(
-                    onPressed: () => Navigator.pop(dialogContext, true),
-                    icon: const Icon(Icons.play_circle_fill_rounded),
-                    label: const Text('Reklamı izle'),
-                  ),
-                ],
+          builder: (dialogContext) => AlertDialog(
+            icon: const Text('🎁📺', style: TextStyle(fontSize: 46)),
+            title: const Text('Joker ödülü'),
+            content: const Text(
+              'İstersen kısa bir reklamı tamamlayarak rastgele bir joker +1 '
+              'kazanabilirsin. Reklamı reddedersen oyun normal devam eder.',
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialogContext, false),
+                child: const Text('Hayır, devam et'),
               ),
+              FilledButton.icon(
+                onPressed: () => Navigator.pop(dialogContext, true),
+                icon: const Icon(Icons.play_circle_fill_rounded),
+                label: const Text('Reklamı izle'),
+              ),
+            ],
+          ),
         ) ??
         false;
   }
@@ -720,12 +822,12 @@ class AdBannerScaffold extends StatelessWidget {
       endDrawer: endDrawer,
       bottomNavigationBar:
           adPlacement != null && AdVisibilityPolicy.showsBanner(adPlacement)
-              ? AdBannerSlot(
-                key: ValueKey<String>('ad-banner-${adPlacement.name}'),
-                placement: adPlacement,
-                loadBanner: bannerLoader,
-              )
-              : null,
+          ? AdBannerSlot(
+              key: ValueKey<String>('ad-banner-${adPlacement.name}'),
+              placement: adPlacement,
+              loadBanner: bannerLoader,
+            )
+          : null,
     );
   }
 }
@@ -857,10 +959,8 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
 
     XpGainResult? gain;
     final controller = AdRewardController(
-      showRewarded:
-          () => AdMonetizationService.instance.showRewarded(
-            gameId: widget.gameId,
-          ),
+      showRewarded: () =>
+          AdMonetizationService.instance.showRewarded(gameId: widget.gameId),
       grantReward: () async {
         if (await _limiter.claim(widget.gameId)) {
           gain = await XpProgressService.awardSupportAd();
@@ -889,13 +989,14 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
       await XpCelebration.show(context, gain!);
       return;
     }
+    final diagnostic = AdRuntimeDiagnostics.userFacingSummary;
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
             'Reklam tamamlanmadı veya sunucu doğrulaması tamamlanamadı; '
-            'XP verilmedi ve bu oyun için hak korunuyor.',
+            'XP verilmedi ve bu oyun için hak korunuyor.\nTanı: $diagnostic',
           ),
         ),
       );
@@ -904,8 +1005,9 @@ class _SupportRewardCardState extends State<SupportRewardCard> {
   @override
   Widget build(BuildContext context) {
     final foreground = widget.dark ? Colors.white : const Color(0xFF281538);
-    final secondary =
-        widget.dark ? const Color(0xFFD8CCEA) : const Color(0xFF64748B);
+    final secondary = widget.dark
+        ? const Color(0xFFD8CCEA)
+        : const Color(0xFF64748B);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
