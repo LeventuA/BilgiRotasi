@@ -1,0 +1,79 @@
+name: Promote tested Release 109 candidate
+
+on:
+  pull_request:
+    branches:
+      - release/final-closed-test-aab-1.68.8
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  promote:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout gate branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download locked tested candidate
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/release109
+          mkdir -p /tmp/release109
+          gh run download 32481091014 \
+            --repo ZMilaStudio/BilgiRotasi \
+            --name BilgiRotasi-1.68.19-109-tested-candidate \
+            --dir /tmp/release109
+          test -f /tmp/release109/candidate/ad_monetization.dart
+          test -f /tmp/release109/candidate/ad_monetization_diagnostics_test.dart
+          test -f /tmp/release109/candidate/admob_ump_fallback_test.dart
+          test -f /tmp/release109/candidate/app_build_info.dart
+          test -f /tmp/release109/candidate/pubspec.yaml
+          echo '5a4c86abaef688fec4c16ca5ab0aef4deb516bd395ef22f4acd134f8ab5de0ad  /tmp/release109/candidate/ad_monetization.dart' | sha256sum -c -
+          echo 'b10ac37daef97f1624bb84255a4f74a9339124fb7f9cb88dd9642ed06f8bd93d  /tmp/release109/candidate/ad_monetization_diagnostics_test.dart' | sha256sum -c -
+          echo 'a5aedefefc89eefe8910395851990ede4d04c1540f10aa506218ad0fb150fd52  /tmp/release109/candidate/admob_ump_fallback_test.dart' | sha256sum -c -
+          echo '806bf7982aa598faf9281fa5782905daa88a19c3a659a7cceb2ee32cfb0c864a  /tmp/release109/candidate/app_build_info.dart' | sha256sum -c -
+          echo '0fc9abdf4a515177fb05e58ee273328d2fe79666336eff8eb0e76ea10400aa46  /tmp/release109/candidate/pubspec.yaml' | sha256sum -c -
+
+      - name: Create exact clean product commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout --detach fea206036366c604a54159be3bbe39e22fe24a2d
+          cp /tmp/release109/candidate/ad_monetization.dart lib/ad_monetization.dart
+          cp /tmp/release109/candidate/ad_monetization_diagnostics_test.dart test/ad_monetization_diagnostics_test.dart
+          cp /tmp/release109/candidate/admob_ump_fallback_test.dart test/admob_ump_fallback_test.dart
+          cp /tmp/release109/candidate/app_build_info.dart lib/app_build_info.dart
+          cp /tmp/release109/candidate/pubspec.yaml pubspec.yaml
+
+          git diff --exit-code -- assets/questions.json
+          git diff --check
+          test "$(git diff --name-only | wc -l)" -eq 5
+          printf '%s\n' \
+            lib/ad_monetization.dart \
+            lib/app_build_info.dart \
+            pubspec.yaml \
+            test/ad_monetization_diagnostics_test.dart \
+            test/admob_ump_fallback_test.dart \
+            | sort > /tmp/expected.txt
+          git diff --name-only | sort > /tmp/actual.txt
+          diff -u /tmp/expected.txt /tmp/actual.txt
+          grep -Fxq 'version: 1.68.19+109' pubspec.yaml
+
+          git add \
+            lib/ad_monetization.dart \
+            lib/app_build_info.dart \
+            pubspec.yaml \
+            test/ad_monetization_diagnostics_test.dart \
+            test/admob_ump_fallback_test.dart
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: ship 1.68.19+109 with AdMob UMP recovery'
+          git push origin HEAD:refs/heads/release/1.68.19-109-admob-fix-20260821
