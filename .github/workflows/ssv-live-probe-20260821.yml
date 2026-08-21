@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - test/ssv-live-probe-20260821
+  pull_request:
+    branches:
+      - release/final-closed-test-aab-1.68.8
 
 permissions:
   contents: read
