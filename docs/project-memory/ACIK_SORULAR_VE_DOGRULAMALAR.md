@@ -1,5 +1,19 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
+## 1.68.19+109 merge sonrası canlı kabul — AÇIK
+
+- PR #88 squash merge edildi; release exact `b0240a7a4009c41326f459a37b8bedeab080d8d8`, sürüm `1.68.19+109`.
+- `assets/questions.json` +108/+109 blob SHA aynı: `b19956972c05bdc58e6b9a0c010a407e6c05613f`.
+- Exact-head CI `32481746889` / `96769404446` SUCCESS; Android 16 app gate PASS; artifact ID `9446694140`; APK SHA `0b9cf5e0b3a9568ea4424818cb4162f677bab3ade4fd214e6dc4d6bcdcefb376`.
+- Fiziksel gerçek banner/rewarded/SSV +10 XP tek kabul PASS.
+- **DOĞRULANACAK:** aynı `gameId` ikinci +10 XP vermez.
+- **DOĞRULANACAK:** yarım/başarısız reklamda ödül yok, hak korunur ve yeniden denenebilir.
+- **DOĞRULANACAK:** farklı tamamlanan oyunlarda toplam günlük/oturum kotası yok.
+- **DOĞRULANACAK:** merge SHA'dan production +109 AAB; package/version/signing ve gerçek AdMob+Firebase production profili.
+- **DOĞRULANACAK:** Play Console +109 upload, Play kurulumu ve rollout/public kabul.
+
+---
+
 **Kesim noktası:** 19 Ağustos 2026
 
 ## Issue #67 SSV canlı cutover — AÇIK / VERIFY-ONLY PR #68
