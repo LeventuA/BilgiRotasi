@@ -1,4 +1,4 @@
-Pending feedback resolution precommit gate armed on 2026-08-21.
+Pending feedback resolution precommit gate re-armed on 2026-08-21 after RC1 diff-scope fix.
 Expected release base: 9331802b9a2b12d1f4ec6715da96dc7d0f60b24b
 Expected source version: 1.68.17+107
 Target version after PASS: 1.68.18+108
