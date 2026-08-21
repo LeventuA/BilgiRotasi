@@ -82,7 +82,9 @@ jobs:
           echo "QUESTION_DIFF_LINES=$TOTAL"
           test "$TOTAL" -gt 0
           test "$TOTAL" -lt 2000
-          test "$(git diff --name-only | sort | tr '\n' ' ')" = \
+          ACTUAL_SCOPE="$(git status --porcelain=v1 | cut -c4- | sort | tr '\n' ' ')"
+          echo "ACTUAL_SCOPE=$ACTUAL_SCOPE"
+          test "$ACTUAL_SCOPE" = \
             'assets/questions.json lib/app_build_info.dart pubspec.yaml reports/RC1_QUALITY_GATE_PENDING_FEEDBACK.md reports/pending_question_feedback_resolution_20260821.md '
           git diff --check
           echo 'DIFF_SCOPE_GATE=PASS'
