@@ -44,7 +44,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 tools/validate_questions.py
-          python3 tools/rc1_quality_gate.py --report reports/RC1_QUALITY_GATE_PENDING_FEEDBACK.md
+          python3 tools/rc1_quality_gate.py --report /tmp/RC1_QUALITY_GATE_PENDING_FEEDBACK.md
           python3 - <<'PY'
           import json
           from pathlib import Path
