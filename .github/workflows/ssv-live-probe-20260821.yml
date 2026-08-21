@@ -1,0 +1,37 @@
+name: SSV live read-only probe
+
+on:
+  push:
+    branches:
+      - test/ssv-live-probe-20260821
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Normal callback must remain fail-closed
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://europe-west1-bilgi-rotasi-f255d.cloudfunctions.net/rewardedSsvCallback'
+          code="$(curl --fail-with-body --silent --show-error --output normal_body.txt --write-out '%{http_code}' "$url" || true)"
+          body="$(cat normal_body.txt 2>/dev/null || true)"
+          echo "NORMAL_STATUS=$code"
+          echo "NORMAL_BODY=$body"
+          test "$code" = '503'
+          test "$body" = 'SSV_NOT_ENABLED'
+
+      - name: Verify-only route must be deployed
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://europe-west1-bilgi-rotasi-f255d.cloudfunctions.net/rewardedSsvCallback?user_id=bilgi-rotasi-ssv-verify&custom_data=bilgi-rotasi-ssv-verify-v1'
+          code="$(curl --fail-with-body --silent --show-error --output verify_body.txt --write-out '%{http_code}' "$url" || true)"
+          body="$(cat verify_body.txt 2>/dev/null || true)"
+          echo "VERIFY_STATUS=$code"
+          echo "VERIFY_BODY=$body"
+          test "$code" = '400'
+          test "$body" = 'INVALID_SIGNATURE'
