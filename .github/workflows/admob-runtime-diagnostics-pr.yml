@@ -32,6 +32,13 @@ jobs:
           git merge-base --is-ancestor "$BASE_SHA" HEAD
           test "$(sed -nE 's/^version:[[:space:]]*([^[:space:]]+).*$/\1/p' pubspec.yaml)" = "1.68.17+107"
 
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
       - name: Reuse deterministic patch from helper workflow
         shell: bash
         run: |
@@ -50,13 +57,6 @@ jobs:
           dart format lib/ad_monetization.dart test/ad_monetization_diagnostics_test.dart
           git diff --check
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.44.6'
-          channel: stable
-          cache: true
-
       - name: Test before product commit
         shell: bash
         run: |
@@ -71,10 +71,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          BASE_SHA=9331802b9a2b12d1f4ec6715da96dc7d0f60b24b
+          git checkout "$BASE_SHA" -- .github/workflows/admob-pr-validation.yml
           rm .github/workflows/admob-runtime-diagnostics-patch.yml
           rm .github/workflows/admob-runtime-diagnostics-pr.yml
           mapfile -t changed < <(git status --short | awk '{print $2}' | sort)
           expected=$(printf '%s\n' \
+            '.github/workflows/admob-pr-validation.yml' \
             '.github/workflows/admob-runtime-diagnostics-patch.yml' \
             '.github/workflows/admob-runtime-diagnostics-pr.yml' \
             'lib/ad_monetization.dart' \
