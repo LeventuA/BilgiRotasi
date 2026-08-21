@@ -54,16 +54,6 @@ jobs:
 
           git diff --exit-code -- assets/questions.json
           git diff --check
-          test "$(git diff --name-only | wc -l)" -eq 5
-          printf '%s\n' \
-            lib/ad_monetization.dart \
-            lib/app_build_info.dart \
-            pubspec.yaml \
-            test/ad_monetization_diagnostics_test.dart \
-            test/admob_ump_fallback_test.dart \
-            | sort > /tmp/expected.txt
-          git diff --name-only | sort > /tmp/actual.txt
-          diff -u /tmp/expected.txt /tmp/actual.txt
           grep -Fxq 'version: 1.68.19+109' pubspec.yaml
 
           git add \
@@ -73,6 +63,18 @@ jobs:
             test/ad_monetization_diagnostics_test.dart \
             test/admob_ump_fallback_test.dart
           git diff --cached --check
+          test "$(git diff --cached --name-only | wc -l)" -eq 5
+          printf '%s\n' \
+            lib/ad_monetization.dart \
+            lib/app_build_info.dart \
+            pubspec.yaml \
+            test/ad_monetization_diagnostics_test.dart \
+            test/admob_ump_fallback_test.dart \
+            | sort > /tmp/expected.txt
+          git diff --cached --name-only | sort > /tmp/actual.txt
+          diff -u /tmp/expected.txt /tmp/actual.txt
+          ! grep -Fxq 'assets/questions.json' /tmp/actual.txt
+
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'fix: ship 1.68.19+109 with AdMob UMP recovery'
