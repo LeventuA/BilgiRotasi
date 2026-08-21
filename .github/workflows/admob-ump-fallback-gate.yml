@@ -42,25 +42,10 @@ jobs:
           path = Path('lib/ad_monetization.dart')
           source = path.read_text()
 
-          old = '''  static void recordLoadError(String stage, LoadAdError error) {
-            record(
-              stage,
-              error:
-                  'code=${error.code} domain=${error.domain} message=${error.message}',
-            );
-          }
-
-          static String get userFacingSummary => _lastFailure ?? 'ADMOB_UNKNOWN';
-          '''
-          new = '''  static void recordLoadError(String stage, LoadAdError error) {
-            record(
-              stage,
-              error:
-                  'code=${error.code} domain=${error.domain} message=${error.message}',
-            );
-          }
-
-          static void recordFormError(String stage, Object error) {
+          summary_anchor = "  static String get userFacingSummary => _lastFailure ?? 'ADMOB_UNKNOWN';"
+          if summary_anchor not in source:
+              raise SystemExit('diagnostics summary anchor not found')
+          form_helper = """  static void recordFormError(String stage, Object error) {
             if (error is FormError) {
               record(
                 stage,
@@ -71,41 +56,17 @@ jobs:
             record(stage, error: error);
           }
 
-          static String get userFacingSummary => _lastFailure ?? 'ADMOB_UNKNOWN';
-          '''
-          if old not in source:
-              raise SystemExit('diagnostics anchor not found')
-          source = source.replace(old, new, 1)
+          """
+          source = source.replace(summary_anchor, form_helper + summary_anchor, 1)
 
-          old = '''      try {
-            await consentGateway.requestConsentInfoUpdate();
-          } catch (error) {
-            AdRuntimeDiagnostics.record('CONSENT_INFO_UPDATE_FAILED', error: error);
-            rethrow;
-          }
-          try {
-            await consentGateway.loadAndShowConsentFormIfRequired();
-          } catch (error) {
-            AdRuntimeDiagnostics.record('CONSENT_FORM_FAILED', error: error);
-            rethrow;
-          }
-          try {
-            privacyOptionsRequired.value = await consentGateway
-                .isPrivacyOptionsRequired();
-          } catch (error) {
-            AdRuntimeDiagnostics.record(
-              'CONSENT_PRIVACY_STATUS_FAILED',
-              error: error,
-            );
-            rethrow;
-          }
+          start_anchor = "      try {\n        await consentGateway.requestConsentInfoUpdate();"
+          end_anchor = "      try {\n        await mobileAdsGateway.configureForTeenAudience();"
+          start = source.find(start_anchor)
+          end = source.find(end_anchor, start)
+          if start < 0 or end < 0:
+              raise SystemExit(f'consent flow anchors not found start={start} end={end}')
 
-          if (!await consentGateway.canRequestAds()) {
-            AdRuntimeDiagnostics.record('CONSENT_CAN_REQUEST_ADS_FALSE');
-            return false;
-          }
-          '''
-          new = '''      var consentInfoUpdated = false;
+          replacement = """      var consentInfoUpdated = false;
           try {
             await consentGateway.requestConsentInfoUpdate();
             consentInfoUpdated = true;
@@ -149,10 +110,9 @@ jobs:
             }
             return false;
           }
-          '''
-          if old not in source:
-              raise SystemExit('consent flow anchor not found')
-          source = source.replace(old, new, 1)
+
+          """
+          source = source[:start] + replacement + source[end:]
           path.write_text(source)
 
           test = Path('test/admob_ump_fallback_test.dart')
@@ -318,10 +278,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p reports
           flutter analyze --no-fatal-warnings --no-fatal-infos
           git diff --check
-          git diff -- lib/ad_monetization.dart test/admob_ump_fallback_test.dart > /tmp/ump.patch
-          test -s /tmp/ump.patch
+          git diff -- lib/ad_monetization.dart test/admob_ump_fallback_test.dart > reports/UMP_PATCH.diff
+          test -s reports/UMP_PATCH.diff
 
       - name: Upload exact tested files
         uses: actions/upload-artifact@v4
@@ -330,6 +291,6 @@ jobs:
           path: |
             lib/ad_monetization.dart
             test/admob_ump_fallback_test.dart
-            /tmp/ump.patch
+            reports/UMP_PATCH.diff
           if-no-files-found: error
           retention-days: 7
