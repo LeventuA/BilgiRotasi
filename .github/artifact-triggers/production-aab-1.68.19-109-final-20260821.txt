@@ -1,0 +1,5 @@
+Artifact-only trigger for deterministic production AAB 1.68.19+109.
+
+Source product commit: b0240a7a4009c41326f459a37b8bedeab080d8d8
+Runner base requires both Dart and Gradle production AdMob profiles.
+DO NOT MERGE this artifact branch.
