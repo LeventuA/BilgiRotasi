@@ -320,3 +320,74 @@ jobs:
             reports/admob-android16-attempt-1/**
           if-no-files-found: warn
           retention-days: 30
+      - name: Production AdMob profilli tanı APK'sını üret
+        env:
+          ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT: production
+        run: >-
+          flutter build apk --release
+          --dart-define=ADMOB_ENVIRONMENT=production
+
+      - name: Production AdMob tanı APK'sını doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="build/app/outputs/flutter-apk/app-release.apk"
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 \
+            | sort -V | tail -n 1)"
+          APKSIGNER="$(find "$SDK_ROOT/build-tools" -type f -name apksigner \
+            | sort -V | tail -n 1)"
+
+          test -f "$APK"
+          test -x "$AAPT2"
+          test -x "$APKSIGNER"
+          mkdir -p dist reports
+
+          "$AAPT2" dump badging "$APK" \
+            | tee reports/ADMOB_PRODUCTION_APK_BADGING.txt
+          "$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" \
+            | tee reports/ADMOB_PRODUCTION_APK_MANIFEST.txt
+
+          grep -Fq "package: name='com.leventua.bilgirotasi'" \
+            reports/ADMOB_PRODUCTION_APK_BADGING.txt
+          grep -Fq "versionCode='$VERSION_CODE'" \
+            reports/ADMOB_PRODUCTION_APK_BADGING.txt
+          grep -Fq "versionName='$VERSION_NAME'" \
+            reports/ADMOB_PRODUCTION_APK_BADGING.txt
+          grep -Fq "com.google.android.gms.ads.APPLICATION_ID" \
+            reports/ADMOB_PRODUCTION_APK_MANIFEST.txt
+          grep -Fq "ca-app-pub-7452194004008791~7046504043" \
+            reports/ADMOB_PRODUCTION_APK_MANIFEST.txt
+          ! grep -Fq "ca-app-pub-3940256099942544~3347511713" \
+            reports/ADMOB_PRODUCTION_APK_MANIFEST.txt
+
+          CERT_OUTPUT="$("$APKSIGNER" verify --print-certs "$APK")"
+          printf '%s\n' "$CERT_OUTPUT" \
+            | tee reports/ADMOB_PRODUCTION_APK_CERTIFICATE.txt
+          ACTUAL_SHA1="$(
+            printf '%s\n' "$CERT_OUTPUT" \
+              | awk -F': ' \
+                '/certificate SHA-1 digest/ {print $NF; exit}' \
+              | tr '[:lower:]' '[:upper:]' \
+              | tr -d '[:space:]:'
+          )"
+          EXPECTED_SHA1="000EE43F410ABC6B4F634C4F716D76EB19084115"
+          test "$ACTUAL_SHA1" = "$EXPECTED_SHA1"
+
+          sha256sum "$APK" \
+            | tee reports/ADMOB_PRODUCTION_APK_SHA256.txt
+          cp "$APK" \
+            "dist/BilgiRotasi-${VERSION_LABEL}-AdMob-Production-Diagnostic.apk"
+
+      - name: Production AdMob tanı APK artifactını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-${{ env.VERSION_LABEL }}-AdMob-Production-Diagnostic
+          path: |
+            dist/BilgiRotasi-${{ env.VERSION_LABEL }}-AdMob-Production-Diagnostic.apk
+            reports/ADMOB_PRODUCTION_APK_BADGING.txt
+            reports/ADMOB_PRODUCTION_APK_MANIFEST.txt
+            reports/ADMOB_PRODUCTION_APK_CERTIFICATE.txt
+            reports/ADMOB_PRODUCTION_APK_SHA256.txt
+          if-no-files-found: error
+          retention-days: 7
