@@ -7,8 +7,8 @@ on:
       - feat/home-word-hunt-foundation-20260820
     paths:
       - 'lib/word_hunt/**'
-      - 'test/word_hunt_route_map_view_test.dart'
-      - 'test/word_hunt_route_map_v2_view_test.dart'
+      - 'test/home_hub_prototype_test.dart'
+      - 'test/word_hunt_*.dart'
       - 'assets/word_hunt/**'
       - 'pubspec.yaml'
       - '.github/workflows/word-hunt-visual-proof.yml'
@@ -44,17 +44,23 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Bağımlılıkları kur ve rota testlerini çalıştır
+      - name: Bağımlılıkları kur ve Kelime Avı focused suite'ini çalıştır
         shell: bash
         run: |
           set -euo pipefail
           flutter pub get
-          dart analyze lib/word_hunt/word_hunt_route_map_v2_screen.dart
-          dart analyze lib/word_hunt/word_hunt_visual_proof_main.dart
-          dart analyze test/word_hunt_route_map_v2_view_test.dart
+          dart analyze lib/word_hunt
           flutter test \
-            test/word_hunt_route_map_view_test.dart \
+            test/home_hub_prototype_test.dart \
+            test/word_hunt_models_test.dart \
+            test/word_hunt_path_test.dart \
+            test/word_hunt_progress_codec_test.dart \
+            test/word_hunt_progress_test.dart \
+            test/word_hunt_prototype_screens_test.dart \
             test/word_hunt_route_map_v2_view_test.dart \
+            test/word_hunt_route_map_view_test.dart \
+            test/word_hunt_scoring_test.dart \
+            test/word_hunt_starter_content_test.dart \
             --reporter expanded
           git diff --check
 
@@ -90,6 +96,7 @@ jobs:
             echo 'SOURCE_EQUALS_PACKAGED=YES' | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
           else
             echo 'SOURCE_EQUALS_PACKAGED=NO' | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
+            exit 1
           fi
 
       - name: Android 16 emulator KVM erişimini hazırla
