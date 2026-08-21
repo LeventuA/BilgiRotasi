@@ -1,0 +1,140 @@
+name: AdMob fiziksel production tani APK
+
+on:
+  pull_request:
+    branches:
+      - test/admob-production-diagnostic-apk-20260821
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-production-diagnostic:
+    name: Full production profilli tani APK
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.6"
+          channel: stable
+          cache: true
+
+      - name: Surumu oku ve bagimliliklari kur
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(sed -nE 's/^version:[[:space:]]*([^[:space:]]+).*$/\1/p' pubspec.yaml)"
+          test -n "$VERSION"
+          VERSION_NAME="${VERSION%%+*}"
+          VERSION_CODE="${VERSION##*+}"
+          test "$VERSION_NAME" != "$VERSION"
+          echo "VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
+          echo "VERSION_CODE=$VERSION_CODE" >> "$GITHUB_ENV"
+          echo "VERSION_LABEL=${VERSION_NAME}-${VERSION_CODE}" >> "$GITHUB_ENV"
+          flutter pub get
+
+      - name: Production reklam kimligi profil testini calistir
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter test \
+            --dart-define=ADMOB_ENVIRONMENT=production \
+            test/admob_id_profile_test.dart
+          git diff --check
+
+      - name: Kalici Android imzasini hazirla
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$ANDROID_KEYSTORE_BASE64"
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" \
+            | base64 --decode \
+            > android/app/bilgi_rotasi_upload.jks
+          cat > android/key.properties <<EOF
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyPassword=$ANDROID_KEY_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          storeFile=bilgi_rotasi_upload.jks
+          EOF
+          chmod 600 android/app/bilgi_rotasi_upload.jks android/key.properties
+          test -s android/app/bilgi_rotasi_upload.jks
+          test -s android/key.properties
+
+      - name: AdMob ve Firebase full production profilli APK uret
+        env:
+          ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT: production
+        run: >-
+          flutter build apk --release
+          --dart-define=ADMOB_ENVIRONMENT=production
+          --dart-define=FIREBASE_ENVIRONMENT=production
+
+      - name: APK paket manifest imza ve profili dogrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="build/app/outputs/flutter-apk/app-release.apk"
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 | sort -V | tail -n 1)"
+          APKSIGNER="$(find "$SDK_ROOT/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          test -f "$APK"
+          test -x "$AAPT2"
+          test -x "$APKSIGNER"
+          mkdir -p dist reports
+
+          "$AAPT2" dump badging "$APK" | tee reports/ADMOB_PHYSICAL_APK_BADGING.txt
+          "$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" | tee reports/ADMOB_PHYSICAL_APK_MANIFEST.txt
+
+          grep -Fq "package: name='com.leventua.bilgirotasi'" reports/ADMOB_PHYSICAL_APK_BADGING.txt
+          grep -Fq "versionCode='$VERSION_CODE'" reports/ADMOB_PHYSICAL_APK_BADGING.txt
+          grep -Fq "versionName='$VERSION_NAME'" reports/ADMOB_PHYSICAL_APK_BADGING.txt
+          grep -Fq "ca-app-pub-7452194004008791~7046504043" reports/ADMOB_PHYSICAL_APK_MANIFEST.txt
+          ! grep -Fq "ca-app-pub-3940256099942544~3347511713" reports/ADMOB_PHYSICAL_APK_MANIFEST.txt
+
+          CERT_OUTPUT="$("$APKSIGNER" verify --print-certs "$APK")"
+          printf '%s\n' "$CERT_OUTPUT" | tee reports/ADMOB_PHYSICAL_APK_CERTIFICATE.txt
+          ACTUAL_SHA1="$(printf '%s\n' "$CERT_OUTPUT" | awk -F': ' '/certificate SHA-1 digest/ {print $NF; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          EXPECTED_SHA1="000EE43F410ABC6B4F634C4F716D76EB19084115"
+          test "$ACTUAL_SHA1" = "$EXPECTED_SHA1"
+
+          printf '%s\n' \
+            'ADMOB_ENVIRONMENT=production' \
+            'FIREBASE_ENVIRONMENT=production' \
+            'BUILD_MODE=release' \
+            | tee reports/ADMOB_PHYSICAL_BUILD_PROFILE.txt
+          sha256sum "$APK" | tee reports/ADMOB_PHYSICAL_APK_SHA256.txt
+          cp "$APK" "dist/BilgiRotasi-${VERSION_LABEL}-AdMob-Full-Production-Diagnostic.apk"
+
+      - name: Fiziksel tani APK artifactini yukle
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-${{ env.VERSION_LABEL }}-AdMob-Full-Production-Diagnostic
+          path: |
+            dist/BilgiRotasi-${{ env.VERSION_LABEL }}-AdMob-Full-Production-Diagnostic.apk
+            reports/ADMOB_PHYSICAL_APK_BADGING.txt
+            reports/ADMOB_PHYSICAL_APK_MANIFEST.txt
+            reports/ADMOB_PHYSICAL_APK_CERTIFICATE.txt
+            reports/ADMOB_PHYSICAL_APK_SHA256.txt
+            reports/ADMOB_PHYSICAL_BUILD_PROFILE.txt
+          if-no-files-found: error
+          retention-days: 7
