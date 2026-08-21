@@ -1,16 +1,25 @@
 name: Pending question feedback resolution precommit
 
 on:
-  push:
+  pull_request:
     branches:
-      - fix/all-pending-question-feedback-20260821
+      - release/final-closed-test-aab-1.68.8
+    types:
+      - opened
+      - reopened
+      - synchronize
 
 permissions:
   contents: write
+  pull-requests: read
+
+concurrency:
+  group: pending-feedback-resolution-20260821
+  cancel-in-progress: false
 
 jobs:
   resolve-and-test:
-    if: github.event.head_commit.message == 'chore: arm pending feedback resolution'
+    if: github.event.pull_request.head.ref == 'fix/all-pending-question-feedback-20260821'
     runs-on: ubuntu-22.04
     timeout-minutes: 90
 
@@ -21,10 +30,12 @@ jobs:
           ref: fix/all-pending-question-feedback-20260821
           fetch-depth: 0
 
-      - name: Lock release base and source version
+      - name: Lock approval marker, release base and source version
         shell: bash
         run: |
           set -euo pipefail
+          grep -Fqx 'Target version after PASS: 1.68.18+108' \
+            reports/PENDING_FEEDBACK_RESOLUTION_ARMED.txt
           git fetch origin release/final-closed-test-aab-1.68.8
           EXPECTED_BASE='9331802b9a2b12d1f4ec6715da96dc7d0f60b24b'
           RELEASE_HEAD="$(git rev-parse origin/release/final-closed-test-aab-1.68.8)"
@@ -33,6 +44,7 @@ jobs:
           test "$MERGE_BASE" = "$EXPECTED_BASE"
           grep -qx 'version: 1.68.17+107' pubspec.yaml
           test -z "$(git diff --name-only origin/release/final-closed-test-aab-1.68.8...HEAD -- assets/questions.json pubspec.yaml)"
+          echo 'APPROVAL_MARKER_GATE=PASS'
           echo 'BASE_GATE=PASS'
           echo 'SOURCE_VERSION_GATE=PASS'
 
@@ -115,7 +127,15 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
+          git add -- \
+            assets/questions.json \
+            pubspec.yaml \
+            reports/pending_question_feedback_resolution_20260821.md \
+            .github/workflows/pending-feedback-live-audit.yml \
+            .github/workflows/pending-feedback-resolution-precommit.yml \
+            tools/audit_pending_question_feedback_20260821.py \
+            tools/apply_pending_question_feedback_20260821.py \
+            reports/PENDING_FEEDBACK_RESOLUTION_ARMED.txt
           git diff --cached --check
           git commit -m 'fix: resolve all pending question feedback'
           git push origin HEAD:fix/all-pending-question-feedback-20260821
