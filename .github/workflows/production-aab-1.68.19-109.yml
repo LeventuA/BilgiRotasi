@@ -139,8 +139,11 @@ jobs:
 
       - name: Gerçek reklamlı production AAB üret
         shell: bash
+        env:
+          ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT: production
         run: |
           set -euo pipefail
+          test "$ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT" = "production"
           flutter build appbundle --release \
             --dart-define=ADMOB_ENVIRONMENT=production \
             --dart-define=FIREBASE_ENVIRONMENT=production
