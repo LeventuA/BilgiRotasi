@@ -51,6 +51,13 @@ jobs:
           PY
           git diff --exit-code -- assets/questions.json
 
+      - name: Upload immutable audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: pending-question-feedback-live-audit-20260821
+          path: reports/pending_question_feedback_live_audit_20260821.json
+          if-no-files-found: error
+
       - name: Commit immutable audit report to work branch
         shell: bash
         run: |
