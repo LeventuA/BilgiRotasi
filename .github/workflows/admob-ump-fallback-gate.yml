@@ -1,0 +1,335 @@
+name: AdMob UMP fallback pre-commit gate
+
+on:
+  pull_request:
+    branches:
+      - fix/admob-runtime-diagnostics-clean-20260821
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.6"
+          channel: stable
+          cache: true
+
+      - name: Dependencies
+        run: flutter pub get
+
+      - name: Apply candidate UMP patch in workspace only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/ad_monetization.dart')
+          source = path.read_text()
+
+          old = '''  static void recordLoadError(String stage, LoadAdError error) {
+            record(
+              stage,
+              error:
+                  'code=${error.code} domain=${error.domain} message=${error.message}',
+            );
+          }
+
+          static String get userFacingSummary => _lastFailure ?? 'ADMOB_UNKNOWN';
+          '''
+          new = '''  static void recordLoadError(String stage, LoadAdError error) {
+            record(
+              stage,
+              error:
+                  'code=${error.code} domain=${error.domain} message=${error.message}',
+            );
+          }
+
+          static void recordFormError(String stage, Object error) {
+            if (error is FormError) {
+              record(
+                stage,
+                error: 'code=${error.errorCode} message=${error.message}',
+              );
+              return;
+            }
+            record(stage, error: error);
+          }
+
+          static String get userFacingSummary => _lastFailure ?? 'ADMOB_UNKNOWN';
+          '''
+          if old not in source:
+              raise SystemExit('diagnostics anchor not found')
+          source = source.replace(old, new, 1)
+
+          old = '''      try {
+            await consentGateway.requestConsentInfoUpdate();
+          } catch (error) {
+            AdRuntimeDiagnostics.record('CONSENT_INFO_UPDATE_FAILED', error: error);
+            rethrow;
+          }
+          try {
+            await consentGateway.loadAndShowConsentFormIfRequired();
+          } catch (error) {
+            AdRuntimeDiagnostics.record('CONSENT_FORM_FAILED', error: error);
+            rethrow;
+          }
+          try {
+            privacyOptionsRequired.value = await consentGateway
+                .isPrivacyOptionsRequired();
+          } catch (error) {
+            AdRuntimeDiagnostics.record(
+              'CONSENT_PRIVACY_STATUS_FAILED',
+              error: error,
+            );
+            rethrow;
+          }
+
+          if (!await consentGateway.canRequestAds()) {
+            AdRuntimeDiagnostics.record('CONSENT_CAN_REQUEST_ADS_FALSE');
+            return false;
+          }
+          '''
+          new = '''      var consentInfoUpdated = false;
+          try {
+            await consentGateway.requestConsentInfoUpdate();
+            consentInfoUpdated = true;
+          } catch (error) {
+            AdRuntimeDiagnostics.recordFormError(
+              'CONSENT_INFO_UPDATE_FAILED',
+              error,
+            );
+          }
+
+          if (consentInfoUpdated) {
+            try {
+              await consentGateway.loadAndShowConsentFormIfRequired();
+            } catch (error) {
+              AdRuntimeDiagnostics.recordFormError('CONSENT_FORM_FAILED', error);
+            }
+            try {
+              privacyOptionsRequired.value = await consentGateway
+                  .isPrivacyOptionsRequired();
+            } catch (error) {
+              AdRuntimeDiagnostics.recordFormError(
+                'CONSENT_PRIVACY_STATUS_FAILED',
+                error,
+              );
+            }
+          }
+
+          bool canRequestAds;
+          try {
+            canRequestAds = await consentGateway.canRequestAds();
+          } catch (error) {
+            AdRuntimeDiagnostics.record(
+              'CONSENT_CAN_REQUEST_ADS_FAILED',
+              error: error,
+            );
+            return false;
+          }
+          if (!canRequestAds) {
+            if (AdRuntimeDiagnostics.lastFailure == null) {
+              AdRuntimeDiagnostics.record('CONSENT_CAN_REQUEST_ADS_FALSE');
+            }
+            return false;
+          }
+          '''
+          if old not in source:
+              raise SystemExit('consent flow anchor not found')
+          source = source.replace(old, new, 1)
+          path.write_text(source)
+
+          test = Path('test/admob_ump_fallback_test.dart')
+          test.write_text(r'''import 'package:bilgi_rotasi/main.dart';
+          import 'package:flutter_test/flutter_test.dart';
+          import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+          class _FakeConsentGateway implements AdConsentGateway {
+            _FakeConsentGateway({
+              required this.canRequest,
+              this.updateError,
+              this.formError,
+              this.privacyError,
+            });
+
+            final bool canRequest;
+            final Object? updateError;
+            final Object? formError;
+            final Object? privacyError;
+            int formCalls = 0;
+
+            @override
+            Future<void> requestConsentInfoUpdate() async {
+              if (updateError case final error?) throw error;
+            }
+
+            @override
+            Future<void> loadAndShowConsentFormIfRequired() async {
+              formCalls++;
+              if (formError case final error?) throw error;
+            }
+
+            @override
+            Future<bool> canRequestAds() async => canRequest;
+
+            @override
+            Future<bool> isPrivacyOptionsRequired() async {
+              if (privacyError case final error?) throw error;
+              return false;
+            }
+
+            @override
+            Future<void> showPrivacyOptionsForm() async {}
+          }
+
+          class _FakeMobileAdsGateway implements MobileAdsGateway {
+            bool initialized = false;
+
+            @override
+            Future<void> configureForTeenAudience() async {}
+
+            @override
+            Future<void> initialize() async {
+              initialized = true;
+            }
+          }
+
+          class _PhysicalDeviceGateway extends AndroidEmulatorGateway {
+            const _PhysicalDeviceGateway();
+
+            @override
+            Future<bool> isEmulator() async => false;
+          }
+
+          void main() {
+            tearDown(AdRuntimeDiagnostics.clear);
+
+            test('FormError code ve message ayrintisini korur', () {
+              AdRuntimeDiagnostics.recordFormError(
+                'CONSENT_INFO_UPDATE_FAILED',
+                FormError(errorCode: 2, message: 'network unavailable'),
+              );
+              expect(
+                AdRuntimeDiagnostics.userFacingSummary,
+                'CONSENT_INFO_UPDATE_FAILED: code=2 message=network unavailable',
+              );
+            });
+
+            test('consent update hata verse de cached izin varsa reklamlara devam eder', () async {
+              final consent = _FakeConsentGateway(
+                canRequest: true,
+                updateError: FormError(errorCode: 2, message: 'network'),
+              );
+              final mobileAds = _FakeMobileAdsGateway();
+              final service = AdPrivacyService(
+                consentGateway: consent,
+                mobileAdsGateway: mobileAds,
+                emulatorGateway: const _PhysicalDeviceGateway(),
+              );
+
+              expect(await service.initialize(), isTrue);
+              expect(consent.formCalls, 0);
+              expect(mobileAds.initialized, isTrue);
+            });
+
+            test('consent update hata ve cached izin yoksa fail closed kalir', () async {
+              final consent = _FakeConsentGateway(
+                canRequest: false,
+                updateError: FormError(errorCode: 2, message: 'network'),
+              );
+              final mobileAds = _FakeMobileAdsGateway();
+              final service = AdPrivacyService(
+                consentGateway: consent,
+                mobileAdsGateway: mobileAds,
+                emulatorGateway: const _PhysicalDeviceGateway(),
+              );
+
+              expect(await service.initialize(), isFalse);
+              expect(mobileAds.initialized, isFalse);
+              expect(
+                AdRuntimeDiagnostics.userFacingSummary,
+                'CONSENT_INFO_UPDATE_FAILED: code=2 message=network',
+              );
+            });
+
+            test('consent form hata verse de canRequestAds true ise devam eder', () async {
+              final consent = _FakeConsentGateway(
+                canRequest: true,
+                formError: FormError(errorCode: 1, message: 'form error'),
+              );
+              final mobileAds = _FakeMobileAdsGateway();
+              final service = AdPrivacyService(
+                consentGateway: consent,
+                mobileAdsGateway: mobileAds,
+                emulatorGateway: const _PhysicalDeviceGateway(),
+              );
+
+              expect(await service.initialize(), isTrue);
+              expect(mobileAds.initialized, isTrue);
+            });
+
+            test('privacy status hata verse de canRequestAds true ise devam eder', () async {
+              final consent = _FakeConsentGateway(
+                canRequest: true,
+                privacyError: FormError(errorCode: 1, message: 'privacy status'),
+              );
+              final mobileAds = _FakeMobileAdsGateway();
+              final service = AdPrivacyService(
+                consentGateway: consent,
+                mobileAdsGateway: mobileAds,
+                emulatorGateway: const _PhysicalDeviceGateway(),
+              );
+
+              expect(await service.initialize(), isTrue);
+              expect(mobileAds.initialized, isTrue);
+            });
+          }
+          ''')
+          PY
+          dart format lib/ad_monetization.dart test/admob_ump_fallback_test.dart
+
+      - name: Focused tests
+        run: >-
+          flutter test --concurrency=1
+          test/admob_ump_fallback_test.dart
+          test/ad_monetization_diagnostics_test.dart
+          test/ad_monetization_test.dart
+
+      - name: Full Flutter tests
+        run: flutter test --concurrency=1 --reporter expanded
+
+      - name: Analyze and diff check
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-warnings --no-fatal-infos
+          git diff --check
+          git diff -- lib/ad_monetization.dart test/admob_ump_fallback_test.dart > /tmp/ump.patch
+          test -s /tmp/ump.patch
+
+      - name: Upload exact tested files
+        uses: actions/upload-artifact@v4
+        with:
+          name: admob-ump-fallback-tested-files
+          path: |
+            lib/ad_monetization.dart
+            test/admob_ump_fallback_test.dart
+            /tmp/ump.patch
+          if-no-files-found: error
+          retention-days: 7
