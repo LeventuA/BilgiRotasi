@@ -54,6 +54,16 @@ jobs:
           Path('/tmp/apply_admob_runtime_diagnostics.py').write_text(script)
           PY
           python3 /tmp/apply_admob_runtime_diagnostics.py
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('test/ad_monetization_diagnostics_test.dart')
+          text = path.read_text()
+          old = "contains('Tanı: $diagnostic')"
+          new = "contains(r'Tanı: $diagnostic')"
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected one diagnostic literal, found {text.count(old)}')
+          path.write_text(text.replace(old, new, 1))
+          PY
           dart format lib/ad_monetization.dart test/ad_monetization_diagnostics_test.dart
           git diff --check
 
