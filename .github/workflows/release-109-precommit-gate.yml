@@ -1,0 +1,123 @@
+name: Release 109 pre-commit gate
+
+on:
+  pull_request:
+    branches:
+      - release/final-closed-test-aab-1.68.8
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout exact +108 base
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Lock source baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git merge-base HEAD origin/release/final-closed-test-aab-1.68.8)" = "fea206036366c604a54159be3bbe39e22fe24a2d"
+          test "$(git show fea206036366c604a54159be3bbe39e22fe24a2d:pubspec.yaml | sed -nE 's/^version:[[:space:]]*([^[:space:]]+).*$/\1/p')" = "1.68.18+108"
+          test "$(git hash-object lib/ad_monetization.dart)" = "e31f8a8cd798b150d6c27466fa1ba73b15832bca"
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.6"
+          channel: stable
+          cache: true
+
+      - name: Build +109 candidate in workspace only
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL "https://raw.githubusercontent.com/ZMilaStudio/BilgiRotasi/3fe02974f37029099952dd002969b8c8d8ceefa5/lib/ad_monetization.dart" -o lib/ad_monetization.dart
+          curl -fsSL "https://raw.githubusercontent.com/ZMilaStudio/BilgiRotasi/3fe02974f37029099952dd002969b8c8d8ceefa5/test/ad_monetization_diagnostics_test.dart" -o test/ad_monetization_diagnostics_test.dart
+          curl -fsSL "https://raw.githubusercontent.com/ZMilaStudio/BilgiRotasi/3fe02974f37029099952dd002969b8c8d8ceefa5/test/admob_ump_fallback_test.dart" -o test/admob_ump_fallback_test.dart
+
+          python3 - <<'PY'
+          from pathlib import Path
+
+          pubspec = Path('pubspec.yaml')
+          text = pubspec.read_text()
+          old = 'version: 1.68.18+108'
+          new = 'version: 1.68.19+109'
+          if text.count(old) != 1:
+              raise SystemExit('pubspec version anchor mismatch')
+          pubspec.write_text(text.replace(old, new, 1))
+
+          build = Path('lib/app_build_info.dart')
+          text = build.read_text()
+          replacements = {
+              "static const String versionName = '1.68.18';": "static const String versionName = '1.68.19';",
+              'static const int buildNumber = 108;': 'static const int buildNumber = 109;',
+              "static const String version = '1.68.18+108';": "static const String version = '1.68.19+109';",
+          }
+          for old, new in replacements.items():
+              if text.count(old) != 1:
+                  raise SystemExit(f'app_build_info anchor mismatch: {old}')
+              text = text.replace(old, new, 1)
+          build.write_text(text)
+          PY
+
+          dart format lib/ad_monetization.dart lib/app_build_info.dart test/ad_monetization_diagnostics_test.dart test/admob_ump_fallback_test.dart
+
+          grep -Fxq 'version: 1.68.19+109' pubspec.yaml
+          grep -Fq "versionName = '1.68.19'" lib/app_build_info.dart
+          grep -Fq 'buildNumber = 109' lib/app_build_info.dart
+          grep -Fq "version = '1.68.19+109'" lib/app_build_info.dart
+          git diff --exit-code -- assets/questions.json
+
+      - name: Dependencies
+        run: flutter pub get
+
+      - name: Focused AdMob and privacy tests
+        run: >-
+          flutter test --concurrency=1
+          test/admob_ump_fallback_test.dart
+          test/ad_monetization_diagnostics_test.dart
+          test/ad_monetization_test.dart
+          test/release_privacy_compliance_test.dart
+
+      - name: Full Flutter tests
+        run: flutter test --concurrency=1 --reporter expanded
+
+      - name: Analyze and exact diff checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-warnings --no-fatal-infos
+          git diff --check
+          git diff --exit-code -- assets/questions.json
+          mkdir -p reports candidate
+          git diff -- lib/ad_monetization.dart test/ad_monetization_diagnostics_test.dart test/admob_ump_fallback_test.dart pubspec.yaml lib/app_build_info.dart > reports/RELEASE_109_CANDIDATE.diff
+          test -s reports/RELEASE_109_CANDIDATE.diff
+          cp lib/ad_monetization.dart candidate/
+          cp lib/app_build_info.dart candidate/
+          cp pubspec.yaml candidate/
+          cp test/ad_monetization_diagnostics_test.dart candidate/
+          cp test/admob_ump_fallback_test.dart candidate/
+          sha256sum candidate/* | tee reports/RELEASE_109_CANDIDATE_SHA256.txt
+
+      - name: Upload exact tested +109 candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-1.68.19-109-tested-candidate
+          path: |
+            candidate/
+            reports/RELEASE_109_CANDIDATE.diff
+            reports/RELEASE_109_CANDIDATE_SHA256.txt
+          if-no-files-found: error
+          retention-days: 7
