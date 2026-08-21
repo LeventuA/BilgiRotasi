@@ -1,16 +1,17 @@
 name: Pending question feedback live audit
 
 on:
-  push:
+  pull_request:
     branches:
-      - fix/all-pending-question-feedback-20260821
+      - release/final-closed-test-aab-1.68.8
 
 permissions:
   contents: write
+  pull-requests: read
 
 jobs:
   audit:
-    if: github.event.head_commit.message == 'chore: run pending feedback live audit'
+    if: github.event.pull_request.head.ref == 'fix/all-pending-question-feedback-20260821'
     runs-on: ubuntu-latest
 
     steps:
