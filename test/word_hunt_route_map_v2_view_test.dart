@@ -93,11 +93,11 @@ void main() {
     expect(find.byKey(const Key('word_hunt_v2_scene')), findsOneWidget);
   });
 
-  testWidgets('illustrated Baslangic Limani asset is bundled as WebP', (
+  testWidgets('illustrated Baslangic Limani asset is bundled as JPEG', (
     tester,
   ) async {
     final data = await rootBundle.load(
-      'assets/word_hunt/baslangic_limani_bg.webp',
+      'assets/word_hunt/baslangic_limani_bg.jpg',
     );
     expect(data.lengthInBytes, greaterThan(1024));
 
@@ -105,7 +105,9 @@ void main() {
       data.offsetInBytes,
       data.lengthInBytes,
     );
-    expect(String.fromCharCodes(bytes.sublist(0, 4)), 'RIFF');
-    expect(String.fromCharCodes(bytes.sublist(8, 12)), 'WEBP');
+    expect(bytes[0], 0xFF);
+    expect(bytes[1], 0xD8);
+    expect(bytes[bytes.length - 2], 0xFF);
+    expect(bytes[bytes.length - 1], 0xD9);
   });
 }

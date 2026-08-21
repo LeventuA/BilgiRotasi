@@ -71,22 +71,22 @@ jobs:
           sha256sum build/app/outputs/flutter-apk/app-debug.apk \
             | tee reports/WORD_HUNT_VISUAL_PROOF_APK_SHA256.txt
           unzip -l build/app/outputs/flutter-apk/app-debug.apk \
-            | grep -F 'assets/word_hunt/baslangic_limani_bg.webp' \
+            | grep -F 'assets/word_hunt/baslangic_limani_bg.jpg' \
             | tee reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
           test -s reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
-          sha256sum assets/word_hunt/baslangic_limani_bg.webp \
+          sha256sum assets/word_hunt/baslangic_limani_bg.jpg \
             | tee reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
-          wc -c assets/word_hunt/baslangic_limani_bg.webp \
+          wc -c assets/word_hunt/baslangic_limani_bg.jpg \
             | tee reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
           unzip -p build/app/outputs/flutter-apk/app-debug.apk \
-            assets/flutter_assets/assets/word_hunt/baslangic_limani_bg.webp \
-            > reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp
-          test -s reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp
-          sha256sum reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp \
+            assets/flutter_assets/assets/word_hunt/baslangic_limani_bg.jpg \
+            > reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg
+          test -s reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg
+          sha256sum reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg \
             | tee reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
-          wc -c reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp \
+          wc -c reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg \
             | tee reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
-          if cmp -s assets/word_hunt/baslangic_limani_bg.webp reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp; then
+          if cmp -s assets/word_hunt/baslangic_limani_bg.jpg reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg; then
             echo 'SOURCE_EQUALS_PACKAGED=YES' | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
           else
             echo 'SOURCE_EQUALS_PACKAGED=NO' | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
@@ -151,7 +151,7 @@ jobs:
             reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
             reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
             reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
-            reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.webp
+            reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg
             reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
             reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
             reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt

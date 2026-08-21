@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'word_hunt_progress.dart';
 import 'word_hunt_route_map_v2_screen.dart';
 
-const _sceneAssetPath = 'assets/word_hunt/baslangic_limani_bg.webp';
+const _sceneAssetPath = 'assets/word_hunt/baslangic_limani_bg.jpg';
 
 /// Yalnız görsel inceleme/kanıt için kullanılan izole giriş noktası.
 /// Production `lib/main.dart` ve mevcut uygulama navigasyonuna bağlı değildir.
