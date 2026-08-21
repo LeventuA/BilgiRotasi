@@ -1,0 +1,53 @@
+name: Promote tested UMP fix
+
+on:
+  pull_request:
+    branches:
+      - fix/admob-runtime-diagnostics-clean-20260821
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  promote:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout gate branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download exact tested artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/ump-tested
+          mkdir -p /tmp/ump-tested
+          gh run download 32469104053 \
+            --repo ZMilaStudio/BilgiRotasi \
+            --name admob-ump-fallback-tested-files \
+            --dir /tmp/ump-tested
+          test -f /tmp/ump-tested/lib/ad_monetization.dart
+          test -f /tmp/ump-tested/test/admob_ump_fallback_test.dart
+          echo '92086bb21145c4dcaac29d4f0310e36ae913a321b6d8767788b6254d2d61c200  /tmp/ump-tested/lib/ad_monetization.dart' | sha256sum -c -
+          echo 'a5aedefefc89eefe8910395851990ede4d04c1540f10aa506218ad0fb150fd52  /tmp/ump-tested/test/admob_ump_fallback_test.dart' | sha256sum -c -
+
+      - name: Create clean product commit from locked PR 78 head
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin 14002ef6860da9246503cf82f62e532c8f13f4ba
+          git checkout --detach 14002ef6860da9246503cf82f62e532c8f13f4ba
+          cp /tmp/ump-tested/lib/ad_monetization.dart lib/ad_monetization.dart
+          cp /tmp/ump-tested/test/admob_ump_fallback_test.dart test/admob_ump_fallback_test.dart
+          git diff --check
+          git add lib/ad_monetization.dart test/admob_ump_fallback_test.dart
+          git diff --cached --check
+          test "$(git diff --cached --name-only | wc -l)" -eq 2
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: handle UMP consent update failure safely'
+          git push origin HEAD:refs/heads/fix/admob-ump-request-fallback-20260821
