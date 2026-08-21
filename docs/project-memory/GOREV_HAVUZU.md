@@ -1,5 +1,26 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0M - 21 Ağustos 2026 / 1.68.19+109 merge ve yayın kapıları
+
+- **Durum:** PR #88 MERGED / release `b0240a7a4009c41326f459a37b8bedeab080d8d8` / `1.68.19+109` / +108 soru bankası korundu / UMP-AdMob + SSV tek gerçek +10 XP PASS / Play yükleme açık.
+
+**Bitti ölçütü:**
+- [x] Exact +108 tabanı ve soru bankası koruması doğrulandı.
+- [x] Fiziksel banner + rewarded PASS.
+- [x] AdMob Verify URL, SSV selective redeploy, açık cutover/readback ve gerçek +10 XP PASS.
+- [x] Pre-commit 42/42 focused, 301/301 tüm Flutter, analyze/diff PASS.
+- [x] PR #88 exact-head CI, signing/package/manifest ve Android 16 app gate PASS.
+- [x] Levent açık merge onayı ve expected-head squash merge PASS.
+- [ ] Aynı `gameId` fiziksel no-double PASS.
+- [ ] Yarım/başarısız reklam ödül vermez; hak korunur ve retry PASS.
+- [ ] Farklı tamamlanan oyunlarda günlük/oturumluk toplam kota yok — fiziksel PASS.
+- [ ] Exact merge SHA'dan production `1.68.19+109` AAB; package/version/signing/production AdMob+Firebase profil doğrulaması.
+- [ ] Doğrulanmış +109 AAB Play Console upload/install/rollout kabulü.
+
+Kanıt: ürün head `1999a049018b5d23eeda59b0b9d2e0e435cf0a64`; merge `b0240a7a4009c41326f459a37b8bedeab080d8d8`; run/job `32481746889` / `96769404446`; artifact ID `9446694140`; APK SHA `0b9cf5e0b3a9568ea4424818cb4162f677bab3ade4fd214e6dc4d6bcdcefb376`.
+
+---
+
 ## 0K - 19 Ağustos 2026 Issue #67 / PR #69 SSV percent-encoding merge checkpoint
 
 Bu bölüm aşağıdaki `0J` içindeki PR #68 ön-merge durumunu **güncel görev durumu açısından geçersiz kılar**; eski bölüm tarihsel denetim izi olarak korunur.

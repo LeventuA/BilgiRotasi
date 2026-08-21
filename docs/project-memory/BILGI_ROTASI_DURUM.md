@@ -1,5 +1,18 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
+## 0N. 1.68.19+109 AdMob/UMP release merge checkpoint — 21 Ağustos 2026
+
+- Kanonik release `release/final-closed-test-aab-1.68.8` exact `b0240a7a4009c41326f459a37b8bedeab080d8d8`; sürüm `1.68.19+109`.
+- PR #88 final head `1999a049018b5d23eeda59b0b9d2e0e435cf0a64`, Levent'in açık onayı sonrası expected-head ile squash merge edildi; merge SHA `b0240a7a4009c41326f459a37b8bedeab080d8d8`.
+- Merge yalnız `lib/ad_monetization.dart`, `lib/app_build_info.dart`, `pubspec.yaml`, `test/ad_monetization_diagnostics_test.dart`, `test/admob_ump_fallback_test.dart` dosyalarını değiştirdi. `assets/questions.json` +108 ve +109'da aynı blob SHA `b19956972c05bdc58e6b9a0c010a407e6c05613f`; +108'deki 81 gerçek soru düzeltmesi korundu.
+- Pre-commit run/job `32481091014` / `96767404086`: focused 42/42, tüm Flutter 301/301, analyze non-fatal policy, diff check PASS; artifact ID `9446124898`, digest `sha256:3c9e11123a9203ba1efce156044e72a3cab2a3b8f116f04ab08cb1d26df60c17`.
+- Exact-head run/job `32481746889` / `96769404446`: SUCCESS; signing, release APK, package/manifest ve Android 16 app gate PASS. Artifact ID `9446694140`, digest `sha256:c6615ba1ad6ad80137af0218759fa99f946c78554c7ae54100c779a340abfa9a`; APK SHA-256 `0b9cf5e0b3a9568ea4424818cb4162f677bab3ade4fd214e6dc4d6bcdcefb376`; package `com.leventua.bilgirotasi`, versionCode 109, versionName 1.68.19, targetSdk 36, signer SHA-1 `26:3C:70:7C:FE:2E:2E:52:62:52:C3:8E:9B:AB:59:79:8C:FF:81:94`. App-specific crash/ANR/FATAL yok.
+- Fiziksel production: banner PASS, rewarded PASS, AdMob Verify URL PASS, SSV selective redeploy PASS, açık cutover sonrası `ssvEnabled=true` readback PASS, gerçek rewarded -> SSV claim -> +10 XP PASS.
+- `KARARLAR.md` değişmedi.
+- Açık: fiziksel no-double; yarım/başarısız reklamda hak/retry; farklı oyunlarda toplam kota yok; merge SHA'dan production +109 AAB doğrulaması; Play +109 upload/install/rollout.
+
+---
+
 **Kesim noktası:** 19 Ağustos 2026
 **Durum sınıfları:** `DOĞRULANDI`, `RAPORLANDI`, `AÇIK`, `DURDURULDU`
 
