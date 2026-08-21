@@ -1,0 +1,1838 @@
+{
+  "source": "assets/questions.json",
+  "questionBankSha256": "e71c4ff991873499b986952835b9bb8e0995d2791c47ce4085d7ab9a502299d4",
+  "questionBankCount": 8710,
+  "targetCount": 122,
+  "targets": [
+    {
+      "id": "q1674",
+      "categoryIndex": 3,
+      "question": "Jane Austen tarafından oluşturulan eser hangisidir?",
+      "options": [
+        "Kutadgu Bilig",
+        "Gulliver’in Gezileri",
+        "Gurur ve Önyargı",
+        "Son Akşam Yemeği"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Gurur ve Önyargı",
+      "difficulty": "Kolay",
+      "explanation": "Jane Austen, Gurur ve Önyargı ile ilişkilidir."
+    },
+    {
+      "id": "q3637",
+      "categoryIndex": 3,
+      "question": "Doktor Jivago adlı eserin yazarı kimdir?",
+      "options": [
+        "Isabel Allende",
+        "William Faulkner",
+        "Ralph Ellison",
+        "Boris Pasternak"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Boris Pasternak",
+      "difficulty": "Orta",
+      "explanation": "Doktor Jivago, Boris Pasternak tarafından yazılmış bir roman eseridir."
+    },
+    {
+      "id": "q4133",
+      "categoryIndex": 0,
+      "question": "Benin ile kara sınırı bulunan ülkelerden biri hangisidir?",
+      "options": [
+        "Avusturya",
+        "Bolivya",
+        "Kuzey Kore",
+        "Burkina Faso"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Burkina Faso",
+      "difficulty": "Orta",
+      "explanation": "Burkina Faso, Benin ile kara sınırı paylaşan ülkelerden biridir."
+    },
+    {
+      "id": "q4651",
+      "categoryIndex": 3,
+      "question": "Composition VII adlı eserin sanatçısı kimdir?",
+      "options": [
+        "Kazimir Malevich",
+        "Eugène Delacroix",
+        "Wassily Kandinsky",
+        "Yayoi Kusama"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Wassily Kandinsky",
+      "difficulty": "Orta",
+      "explanation": "Composition VII, Wassily Kandinsky tarafından 1913 yılında üretilmiştir."
+    },
+    {
+      "id": "q5881",
+      "categoryIndex": 4,
+      "question": "Mide insan vücudunda nerede bulunur?",
+      "options": [
+        "Akciğerlerin girişinde",
+        "Karnın sol üst bölümünde",
+        "Böbrekler ile mesane arasında",
+        "Alt bacağın dış tarafında"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Karnın sol üst bölümünde",
+      "difficulty": "Orta",
+      "explanation": "Mide, karnın sol üst bölümünde bulunur."
+    },
+    {
+      "id": "q5895",
+      "categoryIndex": 4,
+      "question": "Skapula insan vücudunda nerede bulunur?",
+      "options": [
+        "Sırtın üst bölümünde",
+        "Karın boşluğunda ince bağırsağın çevresinde",
+        "Kafatası içinde",
+        "Bel bölgesinde omurganın iki yanında"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Sırtın üst bölümünde",
+      "difficulty": "Orta",
+      "explanation": "Skapula, sırtın üst bölümünde bulunur."
+    },
+    {
+      "id": "q5923",
+      "categoryIndex": 4,
+      "question": "Dalak yapısının temel görevlerinden biri hangisidir?",
+      "options": [
+        "Vücut sıcaklığı, açlık ve hormon kontrolüne katkı sağlar",
+        "Kan hücrelerini süzer ve bağışıklığa katkı sağlar",
+        "T lenfositlerinin olgunlaşmasına katkı sağlar",
+        "Stres yanıtı ve tuz-su dengesinde görevli hormonlar salgılar"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Kan hücrelerini süzer ve bağışıklığa katkı sağlar",
+      "difficulty": "Zor",
+      "explanation": "Dalak; kan hücrelerini süzer ve bağışıklığa katkı sağlar."
+    },
+    {
+      "id": "q53177",
+      "categoryIndex": 3,
+      "question": "Alice Harikalar Diyarında’nın başında Alice hangi hayvanı takip eder?",
+      "options": [
+        "Beyaz Tavşan",
+        "Sırıtan Kedi",
+        "Mavi Tırtıl",
+        "Mart Tavşanı"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Beyaz Tavşan",
+      "difficulty": "Kolay",
+      "explanation": "Alice, cebinden saat çıkaran Beyaz Tavşan’ın peşinden giderek tavşan deliğine düşer."
+    },
+    {
+      "id": "q53487",
+      "categoryIndex": 3,
+      "question": "Aşk-ı Memnu romanının yazarı kimdir?",
+      "options": [
+        "Mehmet Rauf",
+        "Recaizade Mahmut Ekrem",
+        "Yakup Kadri Karaosmanoğlu",
+        "Halit Ziya Uşaklıgil"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Halit Ziya Uşaklıgil",
+      "difficulty": "Kolay",
+      "explanation": "Halit Ziya’nın romanı, bir İstanbul yalısındaki yasak ilişki ve aile çatışmalarını anlatır."
+    },
+    {
+      "id": "q53516",
+      "categoryIndex": 5,
+      "question": "Okçulukta hedefin tam merkezine ne denir?",
+      "options": [
+        "Bullseye",
+        "Birdie",
+        "Strike zone",
+        "Sweet spot"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Bullseye",
+      "difficulty": "Kolay",
+      "explanation": "Bullseye hedefin en merkezi ve genellikle en yüksek puanlı bölümüdür."
+    },
+    {
+      "id": "q53762",
+      "categoryIndex": 2,
+      "question": "Pearl Harbor saldırısı hangi yılda gerçekleşti?",
+      "options": [
+        "1939",
+        "1942",
+        "1941",
+        "1944"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "1941",
+      "difficulty": "Kolay",
+      "explanation": "Japonya 7 Aralık 1941’de Hawaii’deki Pearl Harbor deniz üssüne saldırdı ve ABD savaşa girdi."
+    },
+    {
+      "id": "q53795",
+      "categoryIndex": 4,
+      "question": "İnsan beyninin en büyük bölümü hangisidir?",
+      "options": [
+        "Beyincik",
+        "Omurilik soğanı",
+        "Hipofiz",
+        "Büyük beyin"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Büyük beyin",
+      "difficulty": "Kolay",
+      "explanation": "Büyük beyin düşünme, hafıza, duyular ve istemli hareketlerin büyük bölümünü yönetir."
+    },
+    {
+      "id": "q53840",
+      "categoryIndex": 1,
+      "question": "Peaky Blinders’ta Thomas Shelby’yi kim canlandırır?",
+      "options": [
+        "Cillian Murphy",
+        "Tom Hardy",
+        "Paul Anderson",
+        "Sam Neill"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Cillian Murphy",
+      "difficulty": "Kolay",
+      "explanation": "Cillian Murphy, Shelby ailesinin hırslı ve stratejik lideri Thomas Shelby rolündedir."
+    },
+    {
+      "id": "q53895",
+      "categoryIndex": 4,
+      "question": "Güneş Sistemi hangi galakside bulunur?",
+      "options": [
+        "Andromeda",
+        "Sombrero",
+        "Üçgen",
+        "Samanyolu"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Samanyolu",
+      "difficulty": "Kolay",
+      "explanation": "Güneş Sistemi Samanyolu’nun Orion Kolu adı verilen küçük bir kol bölgesindedir."
+    },
+    {
+      "id": "q54089",
+      "categoryIndex": 4,
+      "question": "Suyun kimyasal formülü nedir?",
+      "options": [
+        "CO₂",
+        "H₂O",
+        "O₂",
+        "NaCl"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "H₂O",
+      "difficulty": "Kolay",
+      "explanation": "Bir su molekülü iki hidrojen ve bir oksijen atomundan oluşur."
+    },
+    {
+      "id": "q54117",
+      "categoryIndex": 5,
+      "question": "Karatede sporcuların giydiği kıyafete ne denir?",
+      "options": [
+        "Judogi",
+        "Karategi",
+        "Dobok",
+        "Hakama"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Karategi",
+      "difficulty": "Orta",
+      "explanation": "Karategi, karate antrenman ve müsabakalarında kullanılan hafif beyaz üniformadır."
+    },
+    {
+      "id": "q54456",
+      "categoryIndex": 2,
+      "question": "Vasco da Gama deniz yoluyla Avrupa’dan hangi ülkeye ulaştı?",
+      "options": [
+        "Hindistan",
+        "Çin",
+        "Japonya",
+        "Brezilya"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Hindistan",
+      "difficulty": "Kolay",
+      "explanation": "Vasco da Gama 1498’de Ümit Burnu’nu dolaşarak Hindistan’ın Kalikut limanına ulaştı."
+    },
+    {
+      "id": "q54458",
+      "categoryIndex": 2,
+      "question": "James Cook hangi okyanus bölgesindeki haritalarıyla tanınır?",
+      "options": [
+        "Arktik",
+        "Atlas’ın kuzeyi",
+        "Pasifik",
+        "Akdeniz"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Pasifik",
+      "difficulty": "Kolay",
+      "explanation": "Cook Yeni Zelanda, Avustralya’nın doğu kıyısı ve birçok Pasifik adasını ayrıntılı haritaladı."
+    },
+    {
+      "id": "q54542",
+      "categoryIndex": 1,
+      "question": "“Smells Like Teen Spirit” hangi gruba aittir?",
+      "options": [
+        "Pearl Jam",
+        "Metallica",
+        "Nirvana",
+        "Green Day"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Nirvana",
+      "difficulty": "Kolay",
+      "explanation": "Şarkı Nirvana’nın Nevermind albümünü ve grunge akımını dünya çapında popülerleştirdi."
+    },
+    {
+      "id": "q54578",
+      "categoryIndex": 3,
+      "question": "“Carmina Burana” eserindeki ünlü açılış bölümünün adı nedir?",
+      "options": [
+        "Dies Irae",
+        "Lacrimosa",
+        "O Fortuna",
+        "Ave Maria"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "O Fortuna",
+      "difficulty": "Orta",
+      "explanation": "Carl Orff’un Carmina Burana kantatı güçlü koro bölümü O Fortuna ile açılıp kapanır."
+    },
+    {
+      "id": "q54698",
+      "categoryIndex": 4,
+      "question": "Potasyumun kimyasal simgesi neden K’dır?",
+      "options": [
+        "Kelvin’den",
+        "Kütlesinden",
+        "Latince kalium adından",
+        "Keşfedenin soyadından"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Latince kalium adından",
+      "difficulty": "Orta",
+      "explanation": "K simgesi potasyumun Neo-Latince adı kaliumdan gelir."
+    },
+    {
+      "id": "q54720",
+      "categoryIndex": 5,
+      "question": "Dalgıçların su altında nefes almak için taşıdığı tüp sistemine genel olarak ne denir?",
+      "options": [
+        "Scuba",
+        "Sonar",
+        "Snorkel yalnızca",
+        "Hydrofoil"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Scuba",
+      "difficulty": "Kolay",
+      "explanation": "SCUBA, “self-contained underwater breathing apparatus” ifadesinin kısaltmasıdır."
+    },
+    {
+      "id": "q54859",
+      "categoryIndex": 2,
+      "question": "Haiti Devrimi hangi özelliğiyle tarihte benzersizdir?",
+      "options": [
+        "İlk sanayi devrimi olması",
+        "Roma’yı yıkması",
+        "Matbaayı icat etmesi",
+        "Başarılı köle isyanıyla bağımsız devlet kurulması"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Başarılı köle isyanıyla bağımsız devlet kurulması",
+      "difficulty": "Orta",
+      "explanation": "Köleleştirilmiş insanlar Fransız sömürge yönetimini yenerek 1804’te Haiti’yi kurdu."
+    },
+    {
+      "id": "q54864",
+      "categoryIndex": 2,
+      "question": "Yeni Zelanda’daki Waitangi Antlaşması Britanya ile hangi halk arasında imzalandı?",
+      "options": [
+        "Maoriler",
+        "Aborjinler",
+        "İnuitler",
+        "Sami halkı"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Maoriler",
+      "difficulty": "Orta",
+      "explanation": "1840 antlaşması Britanya tacı ile çok sayıda Maori şefi arasında yapıldı."
+    },
+    {
+      "id": "q54906",
+      "categoryIndex": 5,
+      "question": "1936 Berlin Olimpiyatları’nda dört altın madalya kazanan atlet kimdir?",
+      "options": [
+        "Emil Zátopek",
+        "Paavo Nurmi",
+        "Jesse Owens",
+        "Jim Thorpe"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Jesse Owens",
+      "difficulty": "Kolay",
+      "explanation": "Owens 100 m, 200 m, uzun atlama ve 4x100 bayrakta altın kazanarak Nazi propagandasına meydan okudu."
+    },
+    {
+      "id": "q55048",
+      "categoryIndex": 1,
+      "question": "The Expanse dizisinde asteroit kuşağında yaşayanlara ne denir?",
+      "options": [
+        "Belter",
+        "Spacer",
+        "Outer",
+        "Drifter"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Belter",
+      "difficulty": "Orta",
+      "explanation": "Belterlar düşük yer çekiminde büyümüş, kendine özgü dil ve kültür geliştirmiş insanlardır."
+    },
+    {
+      "id": "q55622",
+      "categoryIndex": 1,
+      "question": "How to Train Your Dragon’da Toothless hangi ejderha türüdür?",
+      "options": [
+        "Gronckle",
+        "Night Fury",
+        "Monstrous Nightmare",
+        "Deadly Nadder"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Night Fury",
+      "difficulty": "Orta",
+      "explanation": "Toothless, çok hızlı ve nadir bir tür olan Night Fury’dir."
+    },
+    {
+      "id": "q55642",
+      "categoryIndex": 3,
+      "question": "İzlenim: Gün Doğumu tablosu hangi sanat akımına ad verdi?",
+      "options": [
+        "Fütürizm",
+        "Empresyonizm",
+        "Kübizm",
+        "Ekspresyonizm"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Empresyonizm",
+      "difficulty": "Orta",
+      "explanation": "Bir eleştirmenin tablonun adından türettiği 'empresyonist' sözü akımın adı oldu."
+    },
+    {
+      "id": "q55644",
+      "categoryIndex": 4,
+      "question": "Jüpiter’deki Büyük Kırmızı Leke nedir?",
+      "options": [
+        "Krater",
+        "Buz denizi",
+        "Yanardağ",
+        "Dev bir fırtına"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Dev bir fırtına",
+      "difficulty": "Kolay",
+      "explanation": "Büyük Kırmızı Leke, yüzyıllardır gözlenen dev bir antisiklonik fırtınadır."
+    },
+    {
+      "id": "q55769",
+      "categoryIndex": 0,
+      "question": "Birr hangi Afrika ülkesinin para birimidir?",
+      "options": [
+        "Etiyopya",
+        "Eritre",
+        "Uganda",
+        "Kenya"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Etiyopya",
+      "difficulty": "Zor",
+      "explanation": "Etiyopya’nın ulusal para birimi birrdir."
+    },
+    {
+      "id": "q55884",
+      "categoryIndex": 2,
+      "question": "Britanya Savaşı ağırlıklı olarak hangi ortamda yapıldı?",
+      "options": [
+        "Dağ geçitlerinde",
+        "Denizaltında",
+        "Çöllerde",
+        "Havada"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Havada",
+      "difficulty": "Kolay",
+      "explanation": "1940’taki Britanya Savaşı, Alman ve Britanya hava kuvvetlerinin hava üstünlüğü mücadelesiydi."
+    },
+    {
+      "id": "q55897",
+      "categoryIndex": 1,
+      "question": "Assassin’s Creed suikastçılarıyla özdeşleşen bilek silahı hangisidir?",
+      "options": [
+        "Hidden Blade",
+        "Energy Sword",
+        "Buster Sword",
+        "Gunblade"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Hidden Blade",
+      "difficulty": "Kolay",
+      "explanation": "Hidden Blade, kolun altına gizlenen ve yakın mesafede kullanılan sembolik suikastçı silahıdır."
+    },
+    {
+      "id": "q55974",
+      "categoryIndex": 2,
+      "question": "Mors alfabesi hangi iletişim aracıyla birlikte yaygınlaştı?",
+      "options": [
+        "Gramofon",
+        "Telgraf",
+        "Televizyon",
+        "Matbaa"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Telgraf",
+      "difficulty": "Kolay",
+      "explanation": "Nokta ve çizgilerden oluşan kod, elektrikli telgraf üzerinden mesaj iletimini hızlandırdı."
+    },
+    {
+      "id": "q56205",
+      "categoryIndex": 0,
+      "question": "6 Şubat 2023 depremleri nerede gerçekleşti?",
+      "options": [
+        "Kahramanmaraş çevresi",
+        "La Palma",
+        "Reykjanes Yarımadası",
+        "Tonga takımadaları"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Kahramanmaraş çevresi",
+      "difficulty": "Kolay",
+      "explanation": "6 Şubat 2023 depremleri, 2023 yılında Kahramanmaraş çevresi ile doğrudan ilişkilidir."
+    },
+    {
+      "id": "q56212",
+      "categoryIndex": 1,
+      "question": "“The Legend of Zelda: Tears of the Kingdom” oyununu hangi stüdyo geliştirdi?",
+      "options": [
+        "Remedy Entertainment",
+        "Sucker Punch Productions",
+        "Hazelight Studios",
+        "Nintendo EPD"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Nintendo EPD",
+      "difficulty": "Kolay",
+      "explanation": "Nintendo EPD, 2023 yapımı “The Legend of Zelda: Tears of the Kingdom” oyununun geliştiricisidir."
+    },
+    {
+      "id": "q56291",
+      "categoryIndex": 2,
+      "question": "Chandrayaan-3’ün Ay’a inişi hangi yılda gerçekleşti?",
+      "options": [
+        "2022",
+        "2020",
+        "2023",
+        "2021"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "2023",
+      "difficulty": "Kolay",
+      "explanation": "Hindistan’ın Chandrayaan-3 görevi Ağustos 2023’te Ay’a yumuşak iniş yaptı."
+    },
+    {
+      "id": "q56292",
+      "categoryIndex": 3,
+      "question": "Joshua Cohen hangi eserle 2022 ödül sezonunda öne çıktı?",
+      "options": [
+        "Flesh",
+        "Trust",
+        "Heart Lamp",
+        "The Netanyahus"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "The Netanyahus",
+      "difficulty": "Kolay",
+      "explanation": "Joshua Cohen, “The Netanyahus” eseriyle 2022 yılında öne çıktı."
+    },
+    {
+      "id": "q56421",
+      "categoryIndex": 0,
+      "question": "Paris 2024 Yaz Olimpiyatları hangi ülkede gerçekleşti?",
+      "options": [
+        "Fransa",
+        "Pakistan",
+        "İtalya",
+        "Türkiye"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Fransa",
+      "difficulty": "Kolay",
+      "explanation": "Paris 2024 Yaz Olimpiyatları, Fransa sınırları içinde gerçekleşti."
+    },
+    {
+      "id": "q56438",
+      "categoryIndex": 5,
+      "question": "2021 Formula 1 Dünya Şampiyonası organizasyonunu ikinci sırada kim tamamladı?",
+      "options": [
+        "Real Betis",
+        "Lewis Hamilton",
+        "Roma",
+        "Manchester City"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Lewis Hamilton",
+      "difficulty": "Orta",
+      "explanation": "2021 Formula 1 Dünya Şampiyonası organizasyonunda ikinci sırayı Lewis Hamilton aldı."
+    },
+    {
+      "id": "q56483",
+      "categoryIndex": 2,
+      "question": "László Krasznahorkai’nin Nobel Edebiyat Ödülü’nü kazanması hangi yılda gerçekleşti?",
+      "options": [
+        "2020",
+        "2021",
+        "2025",
+        "2022"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "2025",
+      "difficulty": "Kolay",
+      "explanation": "Macar yazar László Krasznahorkai 2025 Nobel Edebiyat Ödülü’nü kazandı."
+    },
+    {
+      "id": "q56525",
+      "categoryIndex": 2,
+      "question": "COP27’de kayıp ve zarar fonu kurulması kararı: Fon en doğrudan hangi sorunla ilgilidir?",
+      "options": [
+        "İklim değişikliğinin yol açtığı kayıp ve zararlar",
+        "Siber suçlar",
+        "Küresel vergi kaçakçılığı",
+        "Uzay çöpleri"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "İklim değişikliğinin yol açtığı kayıp ve zararlar",
+      "difficulty": "Orta",
+      "explanation": "COP27’de iklim etkilerinden ağır zarar gören ülkeler için fon kurulması kabul edildi. Bu bilgi 2022 yılındaki gelişmeyle ilişkilidir."
+    },
+    {
+      "id": "q56603",
+      "categoryIndex": 2,
+      "question": "Güney Afrika’da ulusal birlik hükûmeti kurulması: Seçimde meclis çoğunluğunu ilk kez kaybeden parti hangisiydi?",
+      "options": [
+        "Inkatha Özgürlük Partisi",
+        "Ekonomik Özgürlük Savaşçıları",
+        "Afrika Ulusal Kongresi",
+        "Demokratik İttifak"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Afrika Ulusal Kongresi",
+      "difficulty": "Orta",
+      "explanation": "ANC, 2024 seçiminde apartheid sonrasındaki ilk kez tek başına çoğunluğu kaybetti."
+    },
+    {
+      "id": "q56652",
+      "categoryIndex": 3,
+      "question": "2024 Grammy töreninde “Flowers” ile ödül alan sanatçı kimdir?",
+      "options": [
+        "Chappell Roan",
+        "Taylor Swift",
+        "Harry Styles",
+        "Miley Cyrus"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Miley Cyrus",
+      "difficulty": "Kolay",
+      "explanation": "Miley Cyrus, 2024 Grammy töreninde “Flowers” ile öne çıktı."
+    },
+    {
+      "id": "q56838",
+      "categoryIndex": 3,
+      "question": "Banu Mushtaq hangi eserle 2025 ödül sezonunda öne çıktı?",
+      "options": [
+        "James",
+        "Heart Lamp",
+        "Demon Copperhead",
+        "The Promise"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Heart Lamp",
+      "difficulty": "Kolay",
+      "explanation": "Banu Mushtaq, “Heart Lamp” eseriyle 2025 yılında öne çıktı."
+    },
+    {
+      "id": "q56861",
+      "categoryIndex": 2,
+      "question": "Paris Saint-Germain’in ilk UEFA Şampiyonlar Ligi şampiyonluğu hangi yılda gerçekleşti?",
+      "options": [
+        "2025",
+        "2020",
+        "2021",
+        "2022"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "2025",
+      "difficulty": "Kolay",
+      "explanation": "PSG, 2025 finalinde Inter’i 5-0 yenerek ilk Şampiyonlar Ligi kupasını aldı."
+    },
+    {
+      "id": "q56874",
+      "categoryIndex": 3,
+      "question": "2023 Grammy töreninde “Just Like That” ile ödül alan sanatçı kimdir?",
+      "options": [
+        "Bruno Mars, Anderson .Paak ve ortak yazarları",
+        "Bonnie Raitt",
+        "Samara Joy",
+        "Kendrick Lamar ve SZA"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Bonnie Raitt",
+      "difficulty": "Kolay",
+      "explanation": "Bonnie Raitt, 2023 Grammy töreninde “Just Like That” ile öne çıktı."
+    },
+    {
+      "id": "q56990",
+      "categoryIndex": 3,
+      "question": "2023 Grammy töreninde “Harry’s House” ile ödül alan sanatçı kimdir?",
+      "options": [
+        "Kendrick Lamar",
+        "Harry Styles",
+        "Bonnie Raitt",
+        "Samara Joy"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Harry Styles",
+      "difficulty": "Kolay",
+      "explanation": "Harry Styles, 2023 Grammy töreninde “Harry’s House” ile öne çıktı."
+    },
+    {
+      "id": "q57009",
+      "categoryIndex": 1,
+      "question": "“God of War Ragnarök” oyununda öne çıkan karakter veya ortam hangisidir?",
+      "options": [
+        "Kratos ve Atreus",
+        "joker kartları",
+        "Cody ve May",
+        "Forgotten Realms"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Kratos ve Atreus",
+      "difficulty": "Orta",
+      "explanation": "2022 yapımı oyunun merkezinde Kratos ve Atreus bulunur."
+    },
+    {
+      "id": "q57245",
+      "categoryIndex": 4,
+      "question": "2020 Nobel Fizyoloji veya Tıp Ödülü hangi çalışma veya keşif için verildi?",
+      "options": [
+        "Hepatit C virüsünün keşfi",
+        "DART çarpmasının Dimorphos üzerindeki sonuçları",
+        "Güneş'in kutup bölgeleri",
+        "Mars atmosferi"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Hepatit C virüsünün keşfi",
+      "difficulty": "Orta",
+      "explanation": "2020 Nobel Fizyoloji veya Tıp Ödülü, Hepatit C virüsünün keşfi alanındaki çalışma veya keşifleri ödüllendirdi."
+    },
+    {
+      "id": "q57273",
+      "categoryIndex": 2,
+      "question": "2020'de NATO'nun otuzuncu üyesi olan Balkan ülkesi hangisidir?",
+      "options": [
+        "Kuzey Makedonya",
+        "Karadağ",
+        "Sırbistan",
+        "Bosna-Hersek"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Kuzey Makedonya",
+      "difficulty": "Kolay",
+      "explanation": "Kuzey Makedonya, 27 Mart 2020'de NATO'ya katılarak ittifakın otuzuncu üyesi oldu."
+    },
+    {
+      "id": "q57344",
+      "categoryIndex": 1,
+      "question": "Cyberpunk 2077 temel olarak hangi oyun türünde sınıflandırılır?",
+      "options": [
+        "Metroidvania",
+        "Aksiyon-macera",
+        "Roguelike kart oyunu",
+        "Aksiyon rol yapma"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Aksiyon rol yapma",
+      "difficulty": "Orta",
+      "explanation": "Cyberpunk 2077 genel olarak aksiyon rol yapma türünde sınıflandırılır."
+    },
+    {
+      "id": "q57392",
+      "categoryIndex": 1,
+      "question": "“Only Murders in the Building” yapımında öne çıkan isim hangisidir?",
+      "options": [
+        "Phoebe Dynevor",
+        "Steven Yeun ve Ali Wong",
+        "Cody ve May",
+        "Steve Martin, Martin Short ve Selena Gomez"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Steve Martin, Martin Short ve Selena Gomez",
+      "difficulty": "Kolay",
+      "explanation": "“Only Murders in the Building” yapımında öne çıkan oyuncu veya karakter Steve Martin, Martin Short ve Selena Gomez olarak bilinir."
+    },
+    {
+      "id": "q57582",
+      "categoryIndex": 5,
+      "question": "2024 Roland Garros erkekler şampiyonu kimdi?",
+      "options": [
+        "Novak Djokovic",
+        "Carlos Alcaraz",
+        "Jannik Sinner",
+        "Alexander Zverev"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Carlos Alcaraz",
+      "difficulty": "Kolay",
+      "explanation": "Carlos Alcaraz, 2024 Roland Garros finalinde Alexander Zverev'i yenerek ilk Fransa Açık kupasını aldı."
+    },
+    {
+      "id": "q57606",
+      "categoryIndex": 5,
+      "question": "2021 Copa América şampiyonu hangi milli takımdı?",
+      "options": [
+        "Brezilya",
+        "Arjantin",
+        "Kolombiya",
+        "Uruguay"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Arjantin",
+      "difficulty": "Kolay",
+      "explanation": "Arjantin, Maracanã'daki finalde Brezilya'yı yenerek 2021 Copa América'yı kazandı."
+    },
+    {
+      "id": "q57626",
+      "categoryIndex": 1,
+      "question": "“Shōgun” dizisi ilk sezonu hangi platform veya kanalda yayımlandı?",
+      "options": [
+        "HBO",
+        "FX",
+        "Netflix",
+        "Apple TV+"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "FX",
+      "difficulty": "Kolay",
+      "explanation": "“Shōgun”, 2024 yılında FX üzerinden izleyiciyle buluşan öne çıkan dizilerden biridir."
+    },
+    {
+      "id": "q57669",
+      "categoryIndex": 2,
+      "question": "Peloponez Savaşı günümüzde hangi ülkenin sınırları içinde yaşandı?",
+      "options": [
+        "Yunanistan",
+        "İtalya",
+        "Türkiye",
+        "Mısır"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Yunanistan",
+      "difficulty": "Kolay",
+      "explanation": "Atina ile Sparta öncülüğündeki ittifaklar arasında geçen Peloponez Savaşı Antik Yunan dünyasında yaşandı."
+    },
+    {
+      "id": "q57837",
+      "categoryIndex": 2,
+      "question": "2021'de duyurulan AUKUS güvenlik ortaklığında Avustralya ve Birleşik Krallık'a hangi ülke eşlik etti?",
+      "options": [
+        "Amerika Birleşik Devletleri",
+        "Yeni Zelanda",
+        "Fransa",
+        "Kanada"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Amerika Birleşik Devletleri",
+      "difficulty": "Orta",
+      "explanation": "AUKUS, Avustralya, Birleşik Krallık ve Amerika Birleşik Devletleri arasında kuruldu."
+    },
+    {
+      "id": "q57878",
+      "categoryIndex": 1,
+      "question": "The Sopranos dizisinin yaratıcısı veya yaratıcıları kimdir?",
+      "options": [
+        "Jesse Armstrong",
+        "David Chase",
+        "Moshe Zonder",
+        "Sudip Sharma"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "David Chase",
+      "difficulty": "Orta",
+      "explanation": "The Sopranos, David Chase tarafından geliştirilen ve 1999 yılında başlayan bir dizidir."
+    },
+    {
+      "id": "q58001",
+      "categoryIndex": 4,
+      "question": "Sakkaroz bileşiğinin moleküler veya formül gösterimi hangisidir?",
+      "options": [
+        "C12H22O11",
+        "C8H10N4O2",
+        "SiO2",
+        "SO3"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "C12H22O11",
+      "difficulty": "Orta",
+      "explanation": "Sakkaroz için kullanılan kimyasal gösterim C12H22O11 biçimindedir."
+    },
+    {
+      "id": "q58048",
+      "categoryIndex": 5,
+      "question": "1904 Yaz Olimpiyat Oyunları’nın ana ev sahibi şehri hangisidir?",
+      "options": [
+        "Londra",
+        "Anvers",
+        "Barselona",
+        "St. Louis"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "St. Louis",
+      "difficulty": "Orta",
+      "explanation": "1904 Yaz Olimpiyat Oyunları St. Louis, Amerika Birleşik Devletleri merkezli düzenlendi."
+    },
+    {
+      "id": "q58182",
+      "categoryIndex": 0,
+      "question": "Damlataş Mağarası hangi turizm ilçemizdedir?",
+      "options": [
+        "Kemer",
+        "Alanya",
+        "Marmaris",
+        "Kaş"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Alanya",
+      "difficulty": "Kolay",
+      "explanation": "Damlataş Mağarası Antalya'nın Alanya ilçesinde, kalenin batı kıyısındadır."
+    },
+    {
+      "id": "q58331",
+      "categoryIndex": 1,
+      "question": "İnci Taneleri dizisinde Azem Yücedağ karakterini kim oynadı?",
+      "options": [
+        "Hazar Ergüçlü",
+        "Kubİlay Aka",
+        "Yılmaz Erdoğan",
+        "Selma Ergeç"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Yılmaz Erdoğan",
+      "difficulty": "Kolay",
+      "explanation": "Yılmaz Erdoğan dizinin senaryosunu yazdı ve Azem karakterini canlandırdı."
+    },
+    {
+      "id": "q58413",
+      "categoryIndex": 1,
+      "question": "Mustang filminin yönetmeni kimdir?",
+      "options": [
+        "Deniz Gamze Ergüven",
+        "Yeşim Ustaoğlu",
+        "Pelin Esmer",
+        "Handan İpekçi"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Deniz Gamze Ergüven",
+      "difficulty": "Orta",
+      "explanation": "Deniz Gamze Ergüven'in yönettiği Mustang uluslararası ödüller kazandı."
+    },
+    {
+      "id": "q58469",
+      "categoryIndex": 1,
+      "question": "'Cevapsız Çınlama' şarkısıyla geniş kitlelere ulaşan sanatçı kimdir?",
+      "options": [
+        "Aleyna Tilki",
+        "Mabel Matiz",
+        "Edis",
+        "Simge"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Aleyna Tilki",
+      "difficulty": "Kolay",
+      "explanation": "Aleyna Tilki, Emrah Karaduman ile seslendirdiği Cevapsız Çınlama ile tanındı."
+    },
+    {
+      "id": "q59101",
+      "categoryIndex": 4,
+      "question": "Sümer ve Hitit tabletleri üzerine çalışmalarıyla tanınan bilim insanı kimdir?",
+      "options": [
+        "Muazzez İlmiye Çığ",
+        "Jale İnan",
+        "Halet Çambel",
+        "Nüzhet Gökdoğan"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Muazzez İlmiye Çığ",
+      "difficulty": "Kolay",
+      "explanation": "Muazzez İlmiye Çığ, İstanbul Arkeoloji Müzelerinde binlerce çivi yazılı tableti sınıflandırdı."
+    },
+    {
+      "id": "q59379",
+      "categoryIndex": 0,
+      "question": "Kızılırmak’ın döküldüğü deniz hangisidir?",
+      "options": [
+        "Antalya",
+        "Bitlis",
+        "Karadeniz",
+        "Trakya"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Karadeniz",
+      "difficulty": "Kolay",
+      "explanation": "Karadeniz, Kızılırmak’ın döküldüğü deniz olarak bilinir."
+    },
+    {
+      "id": "q59438",
+      "categoryIndex": 0,
+      "question": "İç Anadolu’da yaygın doğal bitki örtüsü hangisidir?",
+      "options": [
+        "Antalya",
+        "Bozkır",
+        "Ege Bölgesi",
+        "İğneada"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Bozkır",
+      "difficulty": "Kolay",
+      "explanation": "Bozkır, İç Anadolu’da yaygın doğal bitki örtüsü olarak bilinir."
+    },
+    {
+      "id": "q59474",
+      "categoryIndex": 1,
+      "question": "Kiralık Aşk dizisinin Defne Topal rolünde hangi oyuncu vardır?",
+      "options": [
+        "Pınar Deniz",
+        "Elçin Sangu",
+        "Songül Öden",
+        "Aslıhan Gürbüz"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Elçin Sangu",
+      "difficulty": "Kolay",
+      "explanation": "Elçin Sangu, Kiralık Aşk yapımında Defne Topal rolünü canlandırmıştır."
+    },
+    {
+      "id": "q59480",
+      "categoryIndex": 1,
+      "question": "Tolga Sarıtaş, Söz dizisinde hangi karakteri canlandırdı?",
+      "options": [
+        "Atiye Özgürsoy",
+        "Kadir",
+        "Behzat Ç.",
+        "Yavuz Karasu"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Yavuz Karasu",
+      "difficulty": "Kolay",
+      "explanation": "Tolga Sarıtaş, Söz dizisinde Yavuz Karasu karakterine hayat verdi."
+    },
+    {
+      "id": "q59537",
+      "categoryIndex": 1,
+      "question": "Bir Demet Tiyatro ile ilgili olarak yaratıcısı ya da başlıca senaristi hangi seçenekte doğru verilmiştir?",
+      "options": [
+        "Yılmaz Erdoğan",
+        "Birol Güven",
+        "Mehmet Bozdağ",
+        "Good Doctor"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Yılmaz Erdoğan",
+      "difficulty": "Kolay",
+      "explanation": "Bir Demet Tiyatro dizisinin yaratıcısı ya da başlıca senaristi Yılmaz Erdoğan olarak bilinir."
+    },
+    {
+      "id": "q59729",
+      "categoryIndex": 1,
+      "question": "Daha Mutlu Olamam şarkısıyla özdeşleşen sanatçı ya da grup hangisidir?",
+      "options": [
+        "Mor ve Ötesi",
+        "Cem Karaca",
+        "Teoman",
+        "Nilüfer"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Mor ve Ötesi",
+      "difficulty": "Kolay",
+      "explanation": "Daha Mutlu Olamam parçasının bilinen yorumcusu Mor ve Ötesi’dır."
+    },
+    {
+      "id": "q60051",
+      "categoryIndex": 2,
+      "question": "Aphrodisias’ın bulunduğu il hangisidir?",
+      "options": [
+        "Van Kalesi",
+        "Moğolistan",
+        "Aydın",
+        "Birgi"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Aydın",
+      "difficulty": "Kolay",
+      "explanation": "Aydın, Aphrodisias’ın bulunduğu il olarak bilinir."
+    },
+    {
+      "id": "q60058",
+      "categoryIndex": 2,
+      "question": "Aşağıdakilerden hangisi Harran’ın bulunduğu il olarak bilinir?",
+      "options": [
+        "Hattuşa",
+        "Şanlıurfa",
+        "Esnaf dayanışması",
+        "Elbistan"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Şanlıurfa",
+      "difficulty": "Kolay",
+      "explanation": "Şanlıurfa, Harran’ın bulunduğu il olarak bilinir."
+    },
+    {
+      "id": "q60099",
+      "categoryIndex": 2,
+      "question": "Süleymaniye Camii’nin bulunduğu şehir hangisidir?",
+      "options": [
+        "Sultanahmet Meydanı",
+        "Erzincan",
+        "İstanbul",
+        "İstanbul Boğazı"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "İstanbul",
+      "difficulty": "Kolay",
+      "explanation": "İstanbul, Süleymaniye Camii’nin bulunduğu şehir olarak bilinir."
+    },
+    {
+      "id": "q60204",
+      "categoryIndex": 3,
+      "question": "Cevdet Bey ve Oğulları adlı eserin yazarı kimdir?",
+      "options": [
+        "Peyami Safa",
+        "Ahmet Hamdi Tanpınar",
+        "Ahmet Ümit",
+        "Orhan Pamuk"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Orhan Pamuk",
+      "difficulty": "Kolay",
+      "explanation": "Cevdet Bey ve Oğulları, Orhan Pamuk tarafından yazılmıştır."
+    },
+    {
+      "id": "q60223",
+      "categoryIndex": 3,
+      "question": "Balık İzlerinin Sesi ile eşleşen yazar hangisidir?",
+      "options": [
+        "Yaşar Kemal",
+        "Ayşe Kulin",
+        "Buket Uzuner",
+        "Ahmet Ümit"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Buket Uzuner",
+      "difficulty": "Kolay",
+      "explanation": "Buket Uzuner, Balık İzlerinin Sesi adlı eserin yazarıdır."
+    },
+    {
+      "id": "q60324",
+      "categoryIndex": 3,
+      "question": "Türk şiirinde Sessiz Gemi kimin eseridir?",
+      "options": [
+        "Ahmet Haşim",
+        "Ahmed Arif",
+        "Cahit Sıtkı Tarancı",
+        "Yahya Kemal Beyatlı"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Yahya Kemal Beyatlı",
+      "difficulty": "Kolay",
+      "explanation": "Yahya Kemal Beyatlı, Sessiz Gemi şiirinin şairidir."
+    },
+    {
+      "id": "q60346",
+      "categoryIndex": 3,
+      "question": "Bursa'da Zaman ile eşleşen şair hangisidir?",
+      "options": [
+        "Abdülhak Hâmid Tarhan",
+        "Ahmet Hamdi Tanpınar",
+        "Turgut Uyar",
+        "Arif Nihat Asya"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Ahmet Hamdi Tanpınar",
+      "difficulty": "Kolay",
+      "explanation": "Türk şiirinin tanınmış eserlerinden Bursa'da Zaman, Ahmet Hamdi Tanpınar imzası taşır."
+    },
+    {
+      "id": "q60481",
+      "categoryIndex": 4,
+      "question": "TUSAŞ tarafından geliştirilen insansız hava aracı hangisidir?",
+      "options": [
+        "ANKA",
+        "Türkiye Uzay Ajansı",
+        "Aksungur",
+        "TUSAŞ"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "ANKA",
+      "difficulty": "Kolay",
+      "explanation": "ANKA, TUSAŞ tarafından geliştirilen insansız hava aracı olarak bilinir."
+    },
+    {
+      "id": "q60506",
+      "categoryIndex": 4,
+      "question": "Beyaz postlu Türk çoban köpeği ırkı hangisidir?",
+      "options": [
+        "kayısı",
+        "Akbaş",
+        "çam",
+        "Antep fıstığı"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Akbaş",
+      "difficulty": "Kolay",
+      "explanation": "Akbaş, beyaz postlu Türk çoban köpeği ırkı olarak bilinir."
+    },
+    {
+      "id": "q60513",
+      "categoryIndex": 4,
+      "question": "Aşağıdakilerden hangisi Konya Bozdağ’da koruma altında bulunan yaban koyunudir?",
+      "options": [
+        "Anadolu yaban koyunu",
+        "ilkbahar",
+        "incir",
+        "longoz"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Anadolu yaban koyunu",
+      "difficulty": "Kolay",
+      "explanation": "Anadolu yaban koyunu, Konya Bozdağ’da koruma altında bulunan yaban koyunu olarak bilinir."
+    },
+    {
+      "id": "q60525",
+      "categoryIndex": 4,
+      "question": "Aşağıdakilerden hangisi Van Gölü’ne özgü ünlü balıkdir?",
+      "options": [
+        "inci kefali",
+        "kayısı",
+        "incir",
+        "muz"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "inci kefali",
+      "difficulty": "Kolay",
+      "explanation": "Inci kefali, Van Gölü’ne özgü ünlü balık olarak bilinir."
+    },
+    {
+      "id": "q60547",
+      "categoryIndex": 4,
+      "question": "Toros Dağlarında yaygın görülen iğne yapraklı ağaç hangisidir?",
+      "options": [
+        "Avrasya su samuru",
+        "leylek",
+        "sedir",
+        "Van kedisi"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "sedir",
+      "difficulty": "Kolay",
+      "explanation": "Sedir, Toros Dağlarında yaygın görülen iğne yapraklı ağaç olarak bilinir."
+    },
+    {
+      "id": "q60592",
+      "categoryIndex": 4,
+      "question": "Türkiye’de İç Anadolu’nun yaygın iklim tipi olarak bilinen unsur hangisidir?",
+      "options": [
+        "sismograf",
+        "Marmara Bölgesi",
+        "Fırat Nehri",
+        "karasal iklim"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "karasal iklim",
+      "difficulty": "Kolay",
+      "explanation": "Karasal iklim, İç Anadolu’nun yaygın iklim tipi olarak bilinir."
+    },
+    {
+      "id": "q60598",
+      "categoryIndex": 4,
+      "question": "Ağaçlandırmanın toprak üzerindeki temel yararı hangisidir?",
+      "options": [
+        "Sakarya Nehri",
+        "erozyonu azaltmak",
+        "Karadeniz Bölgesi",
+        "Doğu Anadolu Bölgesi"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "erozyonu azaltmak",
+      "difficulty": "Kolay",
+      "explanation": "Erozyonu azaltmak, ağaçlandırmanın toprak üzerindeki temel yararı olarak bilinir."
+    },
+    {
+      "id": "q60649",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi Fenerbahçe’nin efsane Brezilyalı 10 numarası olarak bilinir?",
+      "options": [
+        "Alex de Souza",
+        "Cemil Turan",
+        "çeyrek final",
+        "futbol"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Alex de Souza",
+      "difficulty": "Kolay",
+      "explanation": "Alex de Souza, Fenerbahçe’nin efsane Brezilyalı 10 numarası olarak bilinir."
+    },
+    {
+      "id": "q60652",
+      "categoryIndex": 5,
+      "question": "Fenerbahçe’nin Manchester United’ın Avrupa kupalarındaki uzun iç saha yenilmezliğini bitirdiği yıl hangisidir?",
+      "options": [
+        "Yeşil Timsahlar",
+        "Rıdvan Dilmen",
+        "kırmızı",
+        "1996"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "1996",
+      "difficulty": "Kolay",
+      "explanation": "1996, Fenerbahçe’nin Manchester United’ın Avrupa kupalarındaki uzun iç saha yenilmezliğini bitirdiği yıl olarak bilinir."
+    },
+    {
+      "id": "q60654",
+      "categoryIndex": 5,
+      "question": "Fenerbahçe’nin 2008’de Sevilla’yı elediği tur hangisidir?",
+      "options": [
+        "Feyyaz Uçar",
+        "Şampiyonlar Ligi son 16 turu",
+        "futbol",
+        "siyah ve beyaz"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Şampiyonlar Ligi son 16 turu",
+      "difficulty": "Kolay",
+      "explanation": "Şampiyonlar Ligi son 16 turu, Fenerbahçe’nin 2008’de Sevilla’yı elediği tur olarak bilinir."
+    },
+    {
+      "id": "q60665",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi Beşiktaş’ın yenilgisiz şampiyon olduğu sezon olarak bilinir?",
+      "options": [
+        "1991-92",
+        "Metin Tekin",
+        "Çağlar Söyüncü",
+        "bordo ve mavi"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "1991-92",
+      "difficulty": "Kolay",
+      "explanation": "1991-92, Beşiktaş’ın yenilgisiz şampiyon olduğu sezon olarak bilinir."
+    },
+    {
+      "id": "q60668",
+      "categoryIndex": 5,
+      "question": "Metin-Ali-Feyyaz üçlüsündeki “Feyyaz” hangisidir?",
+      "options": [
+        "Benfica",
+        "Süper Lig ve Türkiye Kupası",
+        "Mustafa Denizli",
+        "Feyyaz Uçar"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Feyyaz Uçar",
+      "difficulty": "Kolay",
+      "explanation": "Feyyaz Uçar, Metin-Ali-Feyyaz üçlüsündeki “Feyyaz” olarak bilinir."
+    },
+    {
+      "id": "q60705",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi 2002 Dünya Kupası’nda Türkiye’nin çeyrek finalde elediği takım olarak bilinir?",
+      "options": [
+        "Senegal",
+        "Cláudio Taffarel",
+        "Bologna",
+        "Süleyman Seba"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Senegal",
+      "difficulty": "Kolay",
+      "explanation": "Senegal, 2002 Dünya Kupası’nda Türkiye’nin çeyrek finalde elediği takım olarak bilinir."
+    },
+    {
+      "id": "q60714",
+      "categoryIndex": 5,
+      "question": "Türkiye’nin ilk kez Dünya Kupası’na katıldığı yıl hangisidir?",
+      "options": [
+        "1975-76",
+        "1954",
+        "Mustafa Doğan",
+        "Metin Tekin"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "1954",
+      "difficulty": "Kolay",
+      "explanation": "1954, Türkiye’nin ilk kez Dünya Kupası’na katıldığı yıl olarak bilinir."
+    },
+    {
+      "id": "q60739",
+      "categoryIndex": 5,
+      "question": "“Şeytan” lakabıyla tanınan Türk futbolcu hangisidir?",
+      "options": [
+        "Güney Kore",
+        "Can Bartu",
+        "Rıdvan Dilmen",
+        "Lefter Küçükandonyadis"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Rıdvan Dilmen",
+      "difficulty": "Kolay",
+      "explanation": "Rıdvan Dilmen, “Şeytan” lakabıyla tanınan Türk futbolcu olarak bilinir."
+    },
+    {
+      "id": "q60746",
+      "categoryIndex": 5,
+      "question": "Türkiye’de “Ordinaryüs” lakabıyla tanınan futbolcu kimdir?",
+      "options": [
+        "Şampiyonlar Ligi son 16 turu",
+        "Lefter Küçükandonyadis",
+        "38 yıl",
+        "kırmızı"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Lefter Küçükandonyadis",
+      "difficulty": "Kolay",
+      "explanation": "Lefter Küçükandonyadis, Türkiye’de “Ordinaryüs” lakabıyla tanınan futbolcu olarak bilinir."
+    },
+    {
+      "id": "q60753",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi Türkiye’nin 2002 Dünya Kupası kadrosundaki Japonya Ligi tecrübesi olan futbolcu olarak bilinir?",
+      "options": [
+        "İlhan Mansız",
+        "Chelsea",
+        "Hırvatistan",
+        "çeyrek final"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "İlhan Mansız",
+      "difficulty": "Kolay",
+      "explanation": "İlhan Mansız, Türkiye’nin 2002 Dünya Kupası kadrosundaki Japonya Ligi tecrübesi olan futbolcu olarak bilinir."
+    },
+    {
+      "id": "q60756",
+      "categoryIndex": 5,
+      "question": "Euro 2008’de İsviçre’ye uzatmalarda gol atan futbolcu kimdir?",
+      "options": [
+        "Senegal",
+        "Fuar Şehirleri Kupası",
+        "Fethi Heper",
+        "Arda Turan"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Arda Turan",
+      "difficulty": "Kolay",
+      "explanation": "Arda Turan, Euro 2008’de İsviçre’ye uzatmalarda gol atan futbolcu olarak bilinir."
+    },
+    {
+      "id": "q60765",
+      "categoryIndex": 5,
+      "question": "2017 EuroLeague Final Four MVP’si olan Fenerbahçeli oyuncu hangisidir?",
+      "options": [
+        "Ekpe Udoh",
+        "2012",
+        "2001 Avrupa Şampiyonası",
+        "2010"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Ekpe Udoh",
+      "difficulty": "Kolay",
+      "explanation": "Ekpe Udoh, 2017 EuroLeague Final Four MVP’si olan Fenerbahçeli oyuncu olarak bilinir."
+    },
+    {
+      "id": "q60766",
+      "categoryIndex": 5,
+      "question": "Türk basketbolunda EuroLeague’i üst üste iki kez kazanan Türk takımı hangisidir?",
+      "options": [
+        "2010",
+        "Anadolu Efes",
+        "İbrahim Kutluay",
+        "1996"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Anadolu Efes",
+      "difficulty": "Kolay",
+      "explanation": "Anadolu Efes, EuroLeague’i üst üste iki kez kazanan Türk takımı olarak bilinir."
+    },
+    {
+      "id": "q60774",
+      "categoryIndex": 5,
+      "question": "Türk basketbolunda Efes Pilsen’in Koraç Kupası’nı kazandığı yıl hangisidir?",
+      "options": [
+        "12 Dev Adam",
+        "1996",
+        "Amerika Birleşik Devletleri",
+        "2001 Avrupa Şampiyonası"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "1996",
+      "difficulty": "Kolay",
+      "explanation": "1996, Efes Pilsen’in Koraç Kupası’nı kazandığı yıl olarak bilinir."
+    },
+    {
+      "id": "q60788",
+      "categoryIndex": 5,
+      "question": "NBA’de oynayan ilk Türk basketbolcu kimdir?",
+      "options": [
+        "Darüşşafaka",
+        "Potanın Perileri",
+        "Efes Pilsen",
+        "Mirsad Türkcan"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Mirsad Türkcan",
+      "difficulty": "Kolay",
+      "explanation": "Mirsad Türkcan, NBA’de oynayan ilk Türk basketbolcu olarak bilinir."
+    },
+    {
+      "id": "q60810",
+      "categoryIndex": 5,
+      "question": "Türk basketbolunda 2010 Dünya Basketbol Şampiyonası finalinin oynandığı salon hangisidir?",
+      "options": [
+        "Orhun Ene",
+        "Sinan Erdem Spor Salonu",
+        "Olimpia Milano",
+        "1996"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Sinan Erdem Spor Salonu",
+      "difficulty": "Kolay",
+      "explanation": "Sinan Erdem Spor Salonu, 2010 Dünya Basketbol Şampiyonası finalinin oynandığı salon olarak bilinir."
+    },
+    {
+      "id": "q60813",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi 2023 Avrupa Voleybol Şampiyonası finalinde Türkiye’nin yendiği takım olarak bilinir?",
+      "options": [
+        "Sırbistan",
+        "sarı ve siyah",
+        "2010",
+        "6"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Sırbistan",
+      "difficulty": "Kolay",
+      "explanation": "Sırbistan, 2023 Avrupa Voleybol Şampiyonası finalinde Türkiye’nin yendiği takım olarak bilinir."
+    },
+    {
+      "id": "q60818",
+      "categoryIndex": 5,
+      "question": "2023 Milletler Ligi finalinde Türkiye’nin yendiği takım hangisidir?",
+      "options": [
+        "Arkas Spor",
+        "Çin",
+        "VakıfBank",
+        "2023"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Çin",
+      "difficulty": "Kolay",
+      "explanation": "Çin, 2023 Milletler Ligi finalinde Türkiye’nin yendiği takım olarak bilinir."
+    },
+    {
+      "id": "q60836",
+      "categoryIndex": 5,
+      "question": "Türk voleybolunda Fenerbahçe kadın voleybol takımının Kulüpler Dünya Şampiyonu olduğu yıl hangisidir?",
+      "options": [
+        "6",
+        "Arkas Spor",
+        "CEV Kupası",
+        "2010"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "2010",
+      "difficulty": "Kolay",
+      "explanation": "2010, Fenerbahçe kadın voleybol takımının Kulüpler Dünya Şampiyonu olduğu yıl olarak bilinir."
+    },
+    {
+      "id": "q60857",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi Hande Baladın’ın oynadığı temel pozisyon olarak bilinir?",
+      "options": [
+        "smaçör",
+        "Eczacıbaşı",
+        "2010",
+        "Naz Aydemir Akyol"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "smaçör",
+      "difficulty": "Kolay",
+      "explanation": "Smaçör, Hande Baladın’ın oynadığı temel pozisyon olarak bilinir."
+    },
+    {
+      "id": "q60872",
+      "categoryIndex": 5,
+      "question": "Tokyo 2020’de boksta altın madalya kazanan Türk kadın sporcu kimdir?",
+      "options": [
+        "yağlı güreş",
+        "Enes Erkan",
+        "Paralimpik Oyunları",
+        "Busenaz Sürmeneli"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Busenaz Sürmeneli",
+      "difficulty": "Kolay",
+      "explanation": "Busenaz Sürmeneli, Tokyo 2020’de boksta altın madalya kazanan Türk kadın sporcu olarak bilinir."
+    },
+    {
+      "id": "q60874",
+      "categoryIndex": 5,
+      "question": "Türk sporunda Londra 2012’de tekvandoda altın madalya kazanan Türk sporcu kim ya da kimdir?",
+      "options": [
+        "yüzme",
+        "Servet Tazegül",
+        "kıspet",
+        "Mete Gazoz"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Servet Tazegül",
+      "difficulty": "Kolay",
+      "explanation": "Servet Tazegül, Londra 2012’de tekvandoda altın madalya kazanan Türk sporcu olarak bilinir."
+    },
+    {
+      "id": "q60880",
+      "categoryIndex": 5,
+      "question": "Rio 2016’da 400 metre engellide bronz madalya kazanan atlet hangisidir?",
+      "options": [
+        "Ramil Guliyev",
+        "Nur Tatar",
+        "başpehlivanlık",
+        "Yasmani Copello"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Yasmani Copello",
+      "difficulty": "Kolay",
+      "explanation": "Yasmani Copello, Rio 2016’da 400 metre engellide bronz madalya kazanan atlet olarak bilinir."
+    },
+    {
+      "id": "q60889",
+      "categoryIndex": 5,
+      "question": "Dünya Superbike şampiyonu olan Türk motosikletçi hangisidir?",
+      "options": [
+        "Toprak Razgatlıoğlu",
+        "bilardo",
+        "Öznur Cüre Girdi",
+        "Enes Erkan"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Toprak Razgatlıoğlu",
+      "difficulty": "Kolay",
+      "explanation": "Toprak Razgatlıoğlu, Dünya Superbike şampiyonu olan Türk motosikletçi olarak bilinir."
+    },
+    {
+      "id": "q60898",
+      "categoryIndex": 5,
+      "question": "Türk sporunda 2023 dünya tekvando şampiyonu Türk kadın sporcu kim ya da kimdir?",
+      "options": [
+        "Toprak Razgatlıoğlu",
+        "Merve Dinçel",
+        "kürek",
+        "Türk yayı"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Merve Dinçel",
+      "difficulty": "Kolay",
+      "explanation": "Merve Dinçel, 2023 dünya tekvando şampiyonu Türk kadın sporcu olarak bilinir."
+    },
+    {
+      "id": "q60899",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi 2023 dünya güreş şampiyonu Türk kadın sporcu olarak bilinir?",
+      "options": [
+        "cirit",
+        "Edirne",
+        "Buse Tosun Çavuşoğlu",
+        "artistik jimnastik"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Buse Tosun Çavuşoğlu",
+      "difficulty": "Kolay",
+      "explanation": "Buse Tosun Çavuşoğlu, 2023 dünya güreş şampiyonu Türk kadın sporcu olarak bilinir."
+    },
+    {
+      "id": "q60904",
+      "categoryIndex": 5,
+      "question": "Türkiye Kadın Goalball Millî Takımının kazandığı büyük organizasyon hangisidir?",
+      "options": [
+        "Busenaz Sürmeneli",
+        "eskrim",
+        "boks",
+        "Paralimpik Oyunları"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Paralimpik Oyunları",
+      "difficulty": "Kolay",
+      "explanation": "Paralimpik Oyunları, Türkiye Kadın Goalball Millî Takımının kazandığı büyük organizasyon olarak bilinir."
+    },
+    {
+      "id": "q60908",
+      "categoryIndex": 5,
+      "question": "Cirit oyunuyla özdeşleşen Türk şehri hangisidir?",
+      "options": [
+        "yağlı güreş",
+        "Enes Erkan",
+        "Türk yayı",
+        "Erzurum"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "Erzurum",
+      "difficulty": "Kolay",
+      "explanation": "Erzurum, cirit oyunuyla özdeşleşen Türk şehri olarak bilinir."
+    },
+    {
+      "id": "q60920",
+      "categoryIndex": 5,
+      "question": "Semih Saygıner’in spor branşı hangisidir?",
+      "options": [
+        "Taha Akgül",
+        "okçuluk",
+        "Buse Naz Çakıroğlu",
+        "bilardo"
+      ],
+      "answerIndex": 3,
+      "correctAnswer": "bilardo",
+      "difficulty": "Kolay",
+      "explanation": "Bilardo, Semih Saygıner’in spor branşı olarak bilinir."
+    },
+    {
+      "id": "q61051",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi Fenerbahçe’nin 2013 Avrupa Ligi çeyrek finalindeki rakibi olarak bilinir?",
+      "options": [
+        "400 metre engelli",
+        "Londra",
+        "Lazio",
+        "Ankara"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Lazio",
+      "difficulty": "Kolay",
+      "explanation": "Lazio, Fenerbahçe’nin 2013 Avrupa Ligi çeyrek finalindeki rakibi olarak bilinir."
+    },
+    {
+      "id": "q61062",
+      "categoryIndex": 5,
+      "question": "Türk sporunda Samsunspor’un renkleri hangisidir?",
+      "options": [
+        "üçüncülük",
+        "kırmızı ve beyaz",
+        "David Blatt",
+        "okçuluk"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "kırmızı ve beyaz",
+      "difficulty": "Kolay",
+      "explanation": "Kırmızı ve beyaz, Samsunspor’un renkleri olarak bilinir."
+    },
+    {
+      "id": "q61074",
+      "categoryIndex": 5,
+      "question": "Türk sporunda Darüşşafaka’nın EuroCup şampiyonu olduğu yıl hangisidir?",
+      "options": [
+        "turuncu",
+        "2018",
+        "Lyon",
+        "yeşil ve mavi"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "2018",
+      "difficulty": "Kolay",
+      "explanation": "2018, Darüşşafaka’nın EuroCup şampiyonu olduğu yıl olarak bilinir."
+    },
+    {
+      "id": "q61075",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi Darüşşafaka’yı 2018 EuroCup şampiyonu yapan başantrenör olarak bilinir?",
+      "options": [
+        "3",
+        "İzmir",
+        "David Blatt",
+        "masa tenisi"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "David Blatt",
+      "difficulty": "Kolay",
+      "explanation": "David Blatt, Darüşşafaka’yı 2018 EuroCup şampiyonu yapan başantrenör olarak bilinir."
+    },
+    {
+      "id": "q61081",
+      "categoryIndex": 5,
+      "question": "Galatasaray Kadın Basketbol Takımının EuroCup şampiyonu olduğu yıllardan biri hangisidir?",
+      "options": [
+        "2009",
+        "2018",
+        "halka",
+        "Ömer Erdoğan"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "2009",
+      "difficulty": "Kolay",
+      "explanation": "2009, Galatasaray Kadın Basketbol Takımının EuroCup şampiyonu olduğu yıllardan biri olarak bilinir."
+    },
+    {
+      "id": "q61083",
+      "categoryIndex": 5,
+      "question": "Aşağıdakilerden hangisi Türkiye’nin 2010 Dünya Şampiyonası yarı finalindeki rakibi olarak bilinir?",
+      "options": [
+        "yeşil ve siyah",
+        "2018",
+        "Sırbistan",
+        "güreş"
+      ],
+      "answerIndex": 2,
+      "correctAnswer": "Sırbistan",
+      "difficulty": "Kolay",
+      "explanation": "Sırbistan, Türkiye’nin 2010 Dünya Şampiyonası yarı finalindeki rakibi olarak bilinir."
+    },
+    {
+      "id": "q61094",
+      "categoryIndex": 5,
+      "question": "Türk sporunda VakıfBank’ın 2017 Kulüpler Dünya Şampiyonası şehri hangisidir?",
+      "options": [
+        "Manş Denizi",
+        "Kobe",
+        "kırmızı ve beyaz",
+        "Ankara"
+      ],
+      "answerIndex": 1,
+      "correctAnswer": "Kobe",
+      "difficulty": "Kolay",
+      "explanation": "Kobe, VakıfBank’ın 2017 Kulüpler Dünya Şampiyonası şehri olarak bilinir."
+    },
+    {
+      "id": "q61097",
+      "categoryIndex": 5,
+      "question": "Halkbank Spor Kulübünün merkezi olduğu il hangisidir?",
+      "options": [
+        "Ankara",
+        "tekvando",
+        "2009",
+        "Beşiktaş"
+      ],
+      "answerIndex": 0,
+      "correctAnswer": "Ankara",
+      "difficulty": "Kolay",
+      "explanation": "Ankara, Halkbank Spor Kulübünün merkezi olduğu il olarak bilinir."
+    }
+  ]
+}

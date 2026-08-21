@@ -7710,7 +7710,7 @@
       "Yayoi Kusama"
     ],
     "answerIndex": 2,
-    "difficulty": "Orta",
+    "difficulty": "Zor",
     "explanation": "Composition VII, Wassily Kandinsky tarafından 1913 yılında üretilmiştir."
   },
   {
@@ -9446,7 +9446,7 @@
       "Alt bacağın dış tarafında"
     ],
     "answerIndex": 1,
-    "difficulty": "Orta",
+    "difficulty": "Kolay",
     "explanation": "Mide, karnın sol üst bölümünde bulunur."
   },
   {
@@ -9712,7 +9712,7 @@
       "Stres yanıtı ve tuz-su dengesinde görevli hormonlar salgılar"
     ],
     "answerIndex": 1,
-    "difficulty": "Zor",
+    "difficulty": "Orta",
     "explanation": "Dalak; kan hücrelerini süzer ve bağışıklığa katkı sağlar."
   },
   {
@@ -29368,7 +29368,7 @@
       "Brezilya"
     ],
     "answerIndex": 0,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Vasco da Gama 1498’de Ümit Burnu’nu dolaşarak Hindistan’ın Kalikut limanına ulaştı."
   },
   {
@@ -31076,7 +31076,7 @@
       "Ave Maria"
     ],
     "answerIndex": 2,
-    "difficulty": "Orta",
+    "difficulty": "Zor",
     "explanation": "Carl Orff’un Carmina Burana kantatı güçlü koro bölümü O Fortuna ile açılıp kapanır."
   },
   {
@@ -35010,7 +35010,7 @@
       "Başarılı köle isyanıyla bağımsız devlet kurulması"
     ],
     "answerIndex": 3,
-    "difficulty": "Orta",
+    "difficulty": "Zor",
     "explanation": "Köleleştirilmiş insanlar Fransız sömürge yönetimini yenerek 1804’te Haiti’yi kurdu."
   },
   {
@@ -35080,7 +35080,7 @@
       "Sami halkı"
     ],
     "answerIndex": 0,
-    "difficulty": "Orta",
+    "difficulty": "Zor",
     "explanation": "1840 antlaşması Britanya tacı ile çok sayıda Maori şefi arasında yapıldı."
   },
   {
@@ -35668,7 +35668,7 @@
       "Jim Thorpe"
     ],
     "answerIndex": 2,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Owens 100 m, 200 m, uzun atlama ve 4x100 bayrakta altın kazanarak Nazi propagandasına meydan okudu."
   },
   {
@@ -37656,7 +37656,7 @@
       "Drifter"
     ],
     "answerIndex": 0,
-    "difficulty": "Orta",
+    "difficulty": "Zor",
     "explanation": "Belterlar düşük yer çekiminde büyümüş, kendine özgü dil ve kültür geliştirmiş insanlardır."
   },
   {
@@ -47623,7 +47623,7 @@
       "Kenya"
     ],
     "answerIndex": 0,
-    "difficulty": "Zor",
+    "difficulty": "Orta",
     "explanation": "Etiyopya’nın ulusal para birimi birrdir.",
     "id": "q55769"
   },
@@ -49415,7 +49415,7 @@
       "Gunblade"
     ],
     "answerIndex": 0,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Hidden Blade, kolun altına gizlenen ve yakın mesafede kullanılan sembolik suikastçı silahıdır.",
     "id": "q55897"
   },
@@ -53826,7 +53826,7 @@
       "Nintendo EPD"
     ],
     "answerIndex": 3,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Nintendo EPD, 2023 yapımı “The Legend of Zelda: Tears of the Kingdom” oyununun geliştiricisidir."
   },
   {
@@ -54932,7 +54932,7 @@
       "2021"
     ],
     "answerIndex": 2,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Hindistan’ın Chandrayaan-3 görevi Ağustos 2023’te Ay’a yumuşak iniş yaptı."
   },
   {
@@ -54946,7 +54946,7 @@
       "The Netanyahus"
     ],
     "answerIndex": 3,
-    "difficulty": "Kolay",
+    "difficulty": "Zor",
     "explanation": "Joshua Cohen, “The Netanyahus” eseriyle 2022 yılında öne çıktı."
   },
   {
@@ -56968,16 +56968,16 @@
   {
     "id": "q56438",
     "categoryIndex": 5,
-    "question": "2021 Formula 1 Dünya Şampiyonası organizasyonunu ikinci sırada kim tamamladı?",
+    "question": "2021 Formula 1 Sürücüler Şampiyonası’nı ikinci sırada kim tamamladı?",
     "options": [
-      "Real Betis",
+      "Max Verstappen",
       "Lewis Hamilton",
-      "Roma",
-      "Manchester City"
+      "Valtteri Bottas",
+      "Sergio Pérez"
     ],
     "answerIndex": 1,
     "difficulty": "Orta",
-    "explanation": "2021 Formula 1 Dünya Şampiyonası organizasyonunda ikinci sırayı Lewis Hamilton aldı."
+    "explanation": "2021 Formula 1 Sürücüler Şampiyonası’nı Max Verstappen’in ardından Lewis Hamilton ikinci sırada tamamladı."
   },
   {
     "id": "q56439",
@@ -57606,7 +57606,7 @@
       "2022"
     ],
     "answerIndex": 2,
-    "difficulty": "Kolay",
+    "difficulty": "Zor",
     "explanation": "Macar yazar László Krasznahorkai 2025 Nobel Edebiyat Ödülü’nü kazandı."
   },
   {
@@ -59286,7 +59286,7 @@
       "Demokratik İttifak"
     ],
     "answerIndex": 2,
-    "difficulty": "Orta",
+    "difficulty": "Zor",
     "explanation": "ANC, 2024 seçiminde apartheid sonrasındaki ilk kez tek başına çoğunluğu kaybetti."
   },
   {
@@ -59972,7 +59972,7 @@
       "Miley Cyrus"
     ],
     "answerIndex": 3,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Miley Cyrus, 2024 Grammy töreninde “Flowers” ile öne çıktı."
   },
   {
@@ -62576,7 +62576,7 @@
       "The Promise"
     ],
     "answerIndex": 1,
-    "difficulty": "Kolay",
+    "difficulty": "Zor",
     "explanation": "Banu Mushtaq, “Heart Lamp” eseriyle 2025 yılında öne çıktı."
   },
   {
@@ -62889,7 +62889,7 @@
   },
   {
     "id": "q56861",
-    "categoryIndex": 2,
+    "categoryIndex": 5,
     "question": "Paris Saint-Germain’in ilk UEFA Şampiyonlar Ligi şampiyonluğu hangi yılda gerçekleşti?",
     "options": [
       "2025",
@@ -63080,7 +63080,7 @@
       "Kendrick Lamar ve SZA"
     ],
     "answerIndex": 1,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Bonnie Raitt, 2023 Grammy töreninde “Just Like That” ile öne çıktı."
   },
   {
@@ -64962,16 +64962,16 @@
   {
     "id": "q57009",
     "categoryIndex": 1,
-    "question": "“God of War Ragnarök” oyununda öne çıkan karakter veya ortam hangisidir?",
+    "question": "God of War Ragnarök oyununda hikâyenin merkezindeki baba-oğul ikilisi hangisidir?",
     "options": [
       "Kratos ve Atreus",
-      "joker kartları",
-      "Cody ve May",
-      "Forgotten Realms"
+      "Joel ve Ellie",
+      "Ratchet ve Clank",
+      "Nathan Drake ve Sully"
     ],
     "answerIndex": 0,
     "difficulty": "Orta",
-    "explanation": "2022 yapımı oyunun merkezinde Kratos ve Atreus bulunur."
+    "explanation": "God of War Ragnarök’ün hikâyesinin merkezinde Kratos ile oğlu Atreus yer alır."
   },
   {
     "id": "q57010",
@@ -68204,7 +68204,7 @@
       "Mars atmosferi"
     ],
     "answerIndex": 0,
-    "difficulty": "Orta",
+    "difficulty": "Zor",
     "explanation": "2020 Nobel Fizyoloji veya Tıp Ödülü, Hepatit C virüsünün keşfi alanındaki çalışma veya keşifleri ödüllendirdi."
   },
   {
@@ -68596,7 +68596,7 @@
       "Bosna-Hersek"
     ],
     "answerIndex": 0,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Kuzey Makedonya, 27 Mart 2020'de NATO'ya katılarak ittifakın otuzuncu üyesi oldu."
   },
   {
@@ -70156,16 +70156,16 @@
   {
     "id": "q57392",
     "categoryIndex": 1,
-    "question": "“Only Murders in the Building” yapımında öne çıkan isim hangisidir?",
+    "question": "Only Murders in the Building dizisinin başrol oyuncu üçlüsü hangisidir?",
     "options": [
-      "Phoebe Dynevor",
-      "Steven Yeun ve Ali Wong",
-      "Cody ve May",
+      "Jason Sudeikis, Hannah Waddingham ve Brett Goldstein",
+      "Jeremy Allen White, Ayo Edebiri ve Ebon Moss-Bachrach",
+      "Pedro Pascal, Bella Ramsey ve Anna Torv",
       "Steve Martin, Martin Short ve Selena Gomez"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "“Only Murders in the Building” yapımında öne çıkan oyuncu veya karakter Steve Martin, Martin Short ve Selena Gomez olarak bilinir."
+    "explanation": "Only Murders in the Building dizisinin başrollerinde Steve Martin, Martin Short ve Selena Gomez yer alır."
   },
   {
     "id": "q57393",
@@ -72740,7 +72740,7 @@
       "Alexander Zverev"
     ],
     "answerIndex": 1,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Carlos Alcaraz, 2024 Roland Garros finalinde Alexander Zverev'i yenerek ilk Fransa Açık kupasını aldı."
   },
   {
@@ -73328,7 +73328,7 @@
       "Apple TV+"
     ],
     "answerIndex": 1,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "“Shōgun”, 2024 yılında FX üzerinden izleyiciyle buluşan öne çıkan dizilerden biridir."
   },
   {
@@ -73902,7 +73902,7 @@
       "Mısır"
     ],
     "answerIndex": 0,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Atina ile Sparta öncülüğündeki ittifaklar arasında geçen Peloponez Savaşı Antik Yunan dünyasında yaşandı."
   },
   {
@@ -78340,7 +78340,7 @@
       "SO3"
     ],
     "answerIndex": 0,
-    "difficulty": "Orta",
+    "difficulty": "Zor",
     "explanation": "Sakkaroz için kullanılan kimyasal gösterim C12H22O11 biçimindedir."
   },
   {
@@ -93670,7 +93670,7 @@
       "Nüzhet Gökdoğan"
     ],
     "answerIndex": 0,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Muazzez İlmiye Çığ, İstanbul Arkeoloji Müzelerinde binlerce çivi yazılı tableti sınıflandırdı."
   },
   {
@@ -97554,16 +97554,16 @@
   {
     "id": "q59379",
     "categoryIndex": 0,
-    "question": "Kızılırmak’ın döküldüğü deniz hangisidir?",
+    "question": "Kızılırmak hangi denize dökülür?",
     "options": [
-      "Antalya",
-      "Bitlis",
+      "Akdeniz",
+      "Marmara Denizi",
       "Karadeniz",
-      "Trakya"
+      "Ege Denizi"
     ],
     "answerIndex": 2,
     "difficulty": "Kolay",
-    "explanation": "Karadeniz, Kızılırmak’ın döküldüğü deniz olarak bilinir."
+    "explanation": "Kızılırmak, Samsun’un Bafra ilçesi yakınlarında Karadeniz’e dökülür."
   },
   {
     "id": "q59380",
@@ -98380,16 +98380,16 @@
   {
     "id": "q59438",
     "categoryIndex": 0,
-    "question": "İç Anadolu’da yaygın doğal bitki örtüsü hangisidir?",
+    "question": "İç Anadolu Bölgesi’nin yaygın doğal bitki örtüsü hangisidir?",
     "options": [
-      "Antalya",
+      "Maki",
       "Bozkır",
-      "Ege Bölgesi",
-      "İğneada"
+      "Tundra",
+      "Tayga"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Bozkır, İç Anadolu’da yaygın doğal bitki örtüsü olarak bilinir."
+    "explanation": "İç Anadolu’nun yarı kurak karasal iklim koşullarında bozkır bitki örtüsü yaygındır."
   },
   {
     "id": "q59439",
@@ -99766,16 +99766,16 @@
   {
     "id": "q59537",
     "categoryIndex": 1,
-    "question": "Bir Demet Tiyatro ile ilgili olarak yaratıcısı ya da başlıca senaristi hangi seçenekte doğru verilmiştir?",
+    "question": "Bir Demet Tiyatro’nun yazarı kimdir?",
     "options": [
       "Yılmaz Erdoğan",
+      "Gülse Birsel",
       "Birol Güven",
-      "Mehmet Bozdağ",
-      "Good Doctor"
+      "Levent Kırca"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Bir Demet Tiyatro dizisinin yaratıcısı ya da başlıca senaristi Yılmaz Erdoğan olarak bilinir."
+    "explanation": "Bir Demet Tiyatro’nun yazarı Yılmaz Erdoğan’dır."
   },
   {
     "id": "q59538",
@@ -106962,16 +106962,16 @@
   {
     "id": "q60051",
     "categoryIndex": 2,
-    "question": "Aphrodisias’ın bulunduğu il hangisidir?",
+    "question": "Aphrodisias Antik Kenti hangi ilimizdedir?",
     "options": [
-      "Van Kalesi",
-      "Moğolistan",
+      "Muğla",
+      "Denizli",
       "Aydın",
-      "Birgi"
+      "İzmir"
     ],
     "answerIndex": 2,
     "difficulty": "Kolay",
-    "explanation": "Aydın, Aphrodisias’ın bulunduğu il olarak bilinir."
+    "explanation": "Aphrodisias Antik Kenti, Aydın’ın Karacasu ilçesi sınırlarında yer alır."
   },
   {
     "id": "q60052",
@@ -107060,16 +107060,16 @@
   {
     "id": "q60058",
     "categoryIndex": 2,
-    "question": "Aşağıdakilerden hangisi Harran’ın bulunduğu il olarak bilinir?",
+    "question": "Harran hangi ilimizin sınırları içindedir?",
     "options": [
-      "Hattuşa",
+      "Mardin",
       "Şanlıurfa",
-      "Esnaf dayanışması",
-      "Elbistan"
+      "Gaziantep",
+      "Diyarbakır"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Şanlıurfa, Harran’ın bulunduğu il olarak bilinir."
+    "explanation": "Harran, Şanlıurfa ilinin bir ilçesidir."
   },
   {
     "id": "q60059",
@@ -107634,16 +107634,16 @@
   {
     "id": "q60099",
     "categoryIndex": 2,
-    "question": "Süleymaniye Camii’nin bulunduğu şehir hangisidir?",
+    "question": "Süleymaniye Camii hangi şehirdedir?",
     "options": [
-      "Sultanahmet Meydanı",
-      "Erzincan",
+      "Ankara",
+      "Bursa",
       "İstanbul",
-      "İstanbul Boğazı"
+      "Edirne"
     ],
     "answerIndex": 2,
     "difficulty": "Kolay",
-    "explanation": "İstanbul, Süleymaniye Camii’nin bulunduğu şehir olarak bilinir."
+    "explanation": "Süleymaniye Camii, İstanbul’da yer alır."
   },
   {
     "id": "q60100",
@@ -109378,7 +109378,7 @@
       "Ahmet Ümit"
     ],
     "answerIndex": 2,
-    "difficulty": "Kolay",
+    "difficulty": "Orta",
     "explanation": "Buket Uzuner, Balık İzlerinin Sesi adlı eserin yazarıdır."
   },
   {
@@ -112982,16 +112982,16 @@
   {
     "id": "q60481",
     "categoryIndex": 4,
-    "question": "TUSAŞ tarafından geliştirilen insansız hava aracı hangisidir?",
+    "question": "ANKA, TUSAŞ tarafından geliştirilen hangi tür hava aracıdır?",
     "options": [
-      "ANKA",
-      "Türkiye Uzay Ajansı",
-      "Aksungur",
-      "TUSAŞ"
+      "İnsansız hava aracı",
+      "Savaş helikopteri",
+      "Yolcu uçağı",
+      "Eğitim uçağı"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "ANKA, TUSAŞ tarafından geliştirilen insansız hava aracı olarak bilinir."
+    "explanation": "ANKA, TUSAŞ tarafından geliştirilen orta irtifa uzun havada kalış sınıfında bir insansız hava aracıdır."
   },
   {
     "id": "q60482",
@@ -113332,16 +113332,16 @@
   {
     "id": "q60506",
     "categoryIndex": 4,
-    "question": "Beyaz postlu Türk çoban köpeği ırkı hangisidir?",
+    "question": "Beyaz postuyla tanınan Türk çoban köpeği ırkı hangisidir?",
     "options": [
-      "kayısı",
+      "Kangal",
       "Akbaş",
-      "çam",
-      "Antep fıstığı"
+      "Tarsus Çatalburun",
+      "Aksaray Malaklısı"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Akbaş, beyaz postlu Türk çoban köpeği ırkı olarak bilinir."
+    "explanation": "Akbaş, beyaz postuyla tanınan Türkiye kökenli çoban köpeği ırklarından biridir."
   },
   {
     "id": "q60507",
@@ -113430,16 +113430,16 @@
   {
     "id": "q60513",
     "categoryIndex": 4,
-    "question": "Aşağıdakilerden hangisi Konya Bozdağ’da koruma altında bulunan yaban koyunudir?",
+    "question": "Konya Bozdağ’da koruma altında bulunan yaban koyunu türü hangisidir?",
     "options": [
       "Anadolu yaban koyunu",
-      "ilkbahar",
-      "incir",
-      "longoz"
+      "Argali",
+      "Muflon",
+      "Marco Polo koyunu"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Anadolu yaban koyunu, Konya Bozdağ’da koruma altında bulunan yaban koyunu olarak bilinir."
+    "explanation": "Konya Bozdağ’da Anadolu yaban koyunu koruma altında tutulmaktadır."
   },
   {
     "id": "q60514",
@@ -113598,16 +113598,16 @@
   {
     "id": "q60525",
     "categoryIndex": 4,
-    "question": "Aşağıdakilerden hangisi Van Gölü’ne özgü ünlü balıkdir?",
+    "question": "Van Gölü havzasına özgü ünlü balık türü hangisidir?",
     "options": [
-      "inci kefali",
-      "kayısı",
-      "incir",
-      "muz"
+      "İnci kefali",
+      "Sazan",
+      "Hamsi",
+      "Levrek"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Inci kefali, Van Gölü’ne özgü ünlü balık olarak bilinir."
+    "explanation": "İnci kefali, Van Gölü havzasıyla özdeşleşen ve sodalı göl koşullarına uyum sağlamış bir balıktır."
   },
   {
     "id": "q60526",
@@ -113906,16 +113906,16 @@
   {
     "id": "q60547",
     "categoryIndex": 4,
-    "question": "Toros Dağlarında yaygın görülen iğne yapraklı ağaç hangisidir?",
+    "question": "Lübnan sediri (Cedrus libani) Türkiye’de özellikle hangi dağ silsilesinde doğal yayılış gösterir?",
     "options": [
-      "Avrasya su samuru",
-      "leylek",
-      "sedir",
-      "Van kedisi"
+      "Kaçkar Dağları",
+      "Yıldız Dağları",
+      "Toros Dağları",
+      "Küre Dağları"
     ],
     "answerIndex": 2,
     "difficulty": "Kolay",
-    "explanation": "Sedir, Toros Dağlarında yaygın görülen iğne yapraklı ağaç olarak bilinir."
+    "explanation": "Lübnan sediri Türkiye’de özellikle Toros Dağları boyunca doğal yayılış gösterir."
   },
   {
     "id": "q60548",
@@ -114536,16 +114536,16 @@
   {
     "id": "q60592",
     "categoryIndex": 4,
-    "question": "Türkiye’de İç Anadolu’nun yaygın iklim tipi olarak bilinen unsur hangisidir?",
+    "question": "İç Anadolu Bölgesi’nde yaygın görülen iklim tipi hangisidir?",
     "options": [
-      "sismograf",
-      "Marmara Bölgesi",
-      "Fırat Nehri",
-      "karasal iklim"
+      "Akdeniz iklimi",
+      "Karadeniz iklimi",
+      "Muson iklimi",
+      "Karasal iklim"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Karasal iklim, İç Anadolu’nun yaygın iklim tipi olarak bilinir."
+    "explanation": "İç Anadolu Bölgesi’nde karasal iklim yaygındır."
   },
   {
     "id": "q60593",
@@ -114620,16 +114620,16 @@
   {
     "id": "q60598",
     "categoryIndex": 4,
-    "question": "Ağaçlandırmanın toprak üzerindeki temel yararı hangisidir?",
+    "question": "Ağaçlandırmanın toprak üzerindeki temel yararlarından biri hangisidir?",
     "options": [
-      "Sakarya Nehri",
-      "erozyonu azaltmak",
-      "Karadeniz Bölgesi",
-      "Doğu Anadolu Bölgesi"
+      "Toprağın tuzlanmasını artırmak",
+      "Erozyonu azaltmak",
+      "Toprak kaybını hızlandırmak",
+      "Çölleşmeyi artırmak"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Erozyonu azaltmak, ağaçlandırmanın toprak üzerindeki temel yararı olarak bilinir."
+    "explanation": "Ağaç kökleri toprağı tutarak erozyonun ve toprak kaybının azalmasına katkı sağlar."
   },
   {
     "id": "q60599",
@@ -115334,16 +115334,16 @@
   {
     "id": "q60649",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi Fenerbahçe’nin efsane Brezilyalı 10 numarası olarak bilinir?",
+    "question": "Fenerbahçe’de uzun yıllar 10 numaralı formayla özdeşleşen Brezilyalı futbolcu kimdir?",
     "options": [
       "Alex de Souza",
-      "Cemil Turan",
-      "çeyrek final",
-      "futbol"
+      "Roberto Carlos",
+      "Deivid de Souza",
+      "Diego Ribas"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Alex de Souza, Fenerbahçe’nin efsane Brezilyalı 10 numarası olarak bilinir."
+    "explanation": "Alex de Souza, Fenerbahçe’de uzun yıllar 10 numaralı formayla özdeşleşen Brezilyalı futbolcudur."
   },
   {
     "id": "q60650",
@@ -115376,16 +115376,16 @@
   {
     "id": "q60652",
     "categoryIndex": 5,
-    "question": "Fenerbahçe’nin Manchester United’ın Avrupa kupalarındaki uzun iç saha yenilmezliğini bitirdiği yıl hangisidir?",
+    "question": "Fenerbahçe, Manchester United’ın Avrupa kupalarındaki uzun iç saha yenilmezliğini hangi yılda bitirdi?",
     "options": [
-      "Yeşil Timsahlar",
-      "Rıdvan Dilmen",
-      "kırmızı",
+      "1993",
+      "1994",
+      "1995",
       "1996"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "1996, Fenerbahçe’nin Manchester United’ın Avrupa kupalarındaki uzun iç saha yenilmezliğini bitirdiği yıl olarak bilinir."
+    "explanation": "Fenerbahçe, 1996’da Old Trafford’da Manchester United’ı 1-0 yenerek rakibinin Avrupa kupalarındaki uzun iç saha yenilmezliğini sona erdirdi."
   },
   {
     "id": "q60653",
@@ -115404,16 +115404,16 @@
   {
     "id": "q60654",
     "categoryIndex": 5,
-    "question": "Fenerbahçe’nin 2008’de Sevilla’yı elediği tur hangisidir?",
+    "question": "Fenerbahçe, 2007–2008 UEFA Şampiyonlar Ligi’nde Sevilla’yı hangi turda eledi?",
     "options": [
-      "Feyyaz Uçar",
-      "Şampiyonlar Ligi son 16 turu",
-      "futbol",
-      "siyah ve beyaz"
+      "Çeyrek final",
+      "Son 16 turu",
+      "Grup aşaması",
+      "Yarı final"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Şampiyonlar Ligi son 16 turu, Fenerbahçe’nin 2008’de Sevilla’yı elediği tur olarak bilinir."
+    "explanation": "Fenerbahçe, 2007-08 UEFA Şampiyonlar Ligi son 16 turunda Sevilla’yı eledi."
   },
   {
     "id": "q60655",
@@ -115558,16 +115558,16 @@
   {
     "id": "q60665",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi Beşiktaş’ın yenilgisiz şampiyon olduğu sezon olarak bilinir?",
+    "question": "Beşiktaş’ın Süper Lig’i yenilgisiz şampiyon tamamladığı sezon hangisidir?",
     "options": [
       "1991-92",
-      "Metin Tekin",
-      "Çağlar Söyüncü",
-      "bordo ve mavi"
+      "1989-90",
+      "1994-95",
+      "2002-03"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "1991-92, Beşiktaş’ın yenilgisiz şampiyon olduğu sezon olarak bilinir."
+    "explanation": "Beşiktaş 1991-92 sezonunu yenilgisiz tamamlayarak şampiyon oldu."
   },
   {
     "id": "q60666",
@@ -115600,16 +115600,16 @@
   {
     "id": "q60668",
     "categoryIndex": 5,
-    "question": "Metin-Ali-Feyyaz üçlüsündeki “Feyyaz” hangisidir?",
+    "question": "Metin-Ali-Feyyaz üçlüsündeki Feyyaz’ın soyadı nedir?",
     "options": [
-      "Benfica",
-      "Süper Lig ve Türkiye Kupası",
-      "Mustafa Denizli",
-      "Feyyaz Uçar"
+      "Tekin",
+      "Gültiken",
+      "Çalımbay",
+      "Uçar"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Feyyaz Uçar, Metin-Ali-Feyyaz üçlüsündeki “Feyyaz” olarak bilinir."
+    "explanation": "Metin-Ali-Feyyaz üçlüsündeki Feyyaz, Feyyaz Uçar’dır."
   },
   {
     "id": "q60669",
@@ -116118,16 +116118,16 @@
   {
     "id": "q60705",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi 2002 Dünya Kupası’nda Türkiye’nin çeyrek finalde elediği takım olarak bilinir?",
+    "question": "2002 FIFA Dünya Kupası’nda Türkiye çeyrek finalde hangi takımı eledi?",
     "options": [
       "Senegal",
-      "Cláudio Taffarel",
-      "Bologna",
-      "Süleyman Seba"
+      "Japonya",
+      "Brezilya",
+      "Kosta Rika"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Senegal, 2002 Dünya Kupası’nda Türkiye’nin çeyrek finalde elediği takım olarak bilinir."
+    "explanation": "Türkiye, 2002 FIFA Dünya Kupası çeyrek finalinde Senegal’i uzatmalarda 1-0 yenerek eledi."
   },
   {
     "id": "q60706",
@@ -116244,16 +116244,16 @@
   {
     "id": "q60714",
     "categoryIndex": 5,
-    "question": "Türkiye’nin ilk kez Dünya Kupası’na katıldığı yıl hangisidir?",
+    "question": "Türkiye A Millî Futbol Takımı FIFA Dünya Kupası’na ilk kez hangi yılda katıldı?",
     "options": [
-      "1975-76",
+      "1950",
       "1954",
-      "Mustafa Doğan",
-      "Metin Tekin"
+      "1958",
+      "1962"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "1954, Türkiye’nin ilk kez Dünya Kupası’na katıldığı yıl olarak bilinir."
+    "explanation": "Türkiye A Millî Futbol Takımı Dünya Kupası’na ilk kez 1954’te katıldı."
   },
   {
     "id": "q60715",
@@ -116596,14 +116596,14 @@
     "categoryIndex": 5,
     "question": "“Şeytan” lakabıyla tanınan Türk futbolcu hangisidir?",
     "options": [
-      "Güney Kore",
       "Can Bartu",
+      "Lefter Küçükandonyadis",
       "Rıdvan Dilmen",
-      "Lefter Küçükandonyadis"
+      "Metin Oktay"
     ],
     "answerIndex": 2,
     "difficulty": "Kolay",
-    "explanation": "Rıdvan Dilmen, “Şeytan” lakabıyla tanınan Türk futbolcu olarak bilinir."
+    "explanation": "Rıdvan Dilmen, futbolculuk döneminde “Şeytan” lakabıyla tanındı."
   },
   {
     "id": "q60740",
@@ -116694,14 +116694,14 @@
     "categoryIndex": 5,
     "question": "Türkiye’de “Ordinaryüs” lakabıyla tanınan futbolcu kimdir?",
     "options": [
-      "Şampiyonlar Ligi son 16 turu",
+      "Metin Oktay",
       "Lefter Küçükandonyadis",
-      "38 yıl",
-      "kırmızı"
+      "Can Bartu",
+      "Rıdvan Dilmen"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Lefter Küçükandonyadis, Türkiye’de “Ordinaryüs” lakabıyla tanınan futbolcu olarak bilinir."
+    "explanation": "Lefter Küçükandonyadis, Türk futbolunda “Ordinaryüs” lakabıyla tanınır."
   },
   {
     "id": "q60747",
@@ -116790,16 +116790,16 @@
   {
     "id": "q60753",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi Türkiye’nin 2002 Dünya Kupası kadrosundaki Japonya Ligi tecrübesi olan futbolcu olarak bilinir?",
+    "question": "2002 Dünya Kupası kadrosunda yer alan ve daha sonra Japonya’da Vissel Kobe forması giyen Türk futbolcu kimdir?",
     "options": [
       "İlhan Mansız",
-      "Chelsea",
-      "Hırvatistan",
-      "çeyrek final"
+      "Hakan Şükür",
+      "Hasan Şaş",
+      "Ümit Davala"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "İlhan Mansız, Türkiye’nin 2002 Dünya Kupası kadrosundaki Japonya Ligi tecrübesi olan futbolcu olarak bilinir."
+    "explanation": "İlhan Mansız, 2002 Dünya Kupası kadrosunda yer aldı ve daha sonra Japonya’da Vissel Kobe forması giydi."
   },
   {
     "id": "q60754",
@@ -116832,16 +116832,16 @@
   {
     "id": "q60756",
     "categoryIndex": 5,
-    "question": "Euro 2008’de İsviçre’ye uzatmalarda gol atan futbolcu kimdir?",
+    "question": "EURO 2008’de Türkiye’nin İsviçre karşısındaki galibiyet golünü kim attı?",
     "options": [
-      "Senegal",
-      "Fuar Şehirleri Kupası",
-      "Fethi Heper",
+      "Semih Şentürk",
+      "Nihat Kahveci",
+      "Tuncay Şanlı",
       "Arda Turan"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Arda Turan, Euro 2008’de İsviçre’ye uzatmalarda gol atan futbolcu olarak bilinir."
+    "explanation": "Arda Turan, EURO 2008’de İsviçre karşısında 92. dakikada Türkiye’nin 2-1’lik galibiyet golünü attı."
   },
   {
     "id": "q60757",
@@ -116958,30 +116958,30 @@
   {
     "id": "q60765",
     "categoryIndex": 5,
-    "question": "2017 EuroLeague Final Four MVP’si olan Fenerbahçeli oyuncu hangisidir?",
+    "question": "2017 EuroLeague Final Four MVP’si olan Fenerbahçeli oyuncu kimdir?",
     "options": [
       "Ekpe Udoh",
-      "2012",
-      "2001 Avrupa Şampiyonası",
-      "2010"
+      "Bogdan Bogdanović",
+      "Jan Veselý",
+      "Kostas Sloukas"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Ekpe Udoh, 2017 EuroLeague Final Four MVP’si olan Fenerbahçeli oyuncu olarak bilinir."
+    "explanation": "Ekpe Udoh, Fenerbahçe’nin 2017 EuroLeague şampiyonluğunda Final Four MVP’si seçildi."
   },
   {
     "id": "q60766",
     "categoryIndex": 5,
-    "question": "Türk basketbolunda EuroLeague’i üst üste iki kez kazanan Türk takımı hangisidir?",
+    "question": "EuroLeague’i 2021 ve 2022’de üst üste kazanan Türk takımı hangisidir?",
     "options": [
-      "2010",
+      "Fenerbahçe",
       "Anadolu Efes",
-      "İbrahim Kutluay",
-      "1996"
+      "Galatasaray",
+      "Beşiktaş"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Anadolu Efes, EuroLeague’i üst üste iki kez kazanan Türk takımı olarak bilinir."
+    "explanation": "Anadolu Efes, EuroLeague’i 2021 ve 2022’de üst üste kazandı."
   },
   {
     "id": "q60767",
@@ -117084,16 +117084,16 @@
   {
     "id": "q60774",
     "categoryIndex": 5,
-    "question": "Türk basketbolunda Efes Pilsen’in Koraç Kupası’nı kazandığı yıl hangisidir?",
+    "question": "Efes Pilsen Koraç Kupası’nı hangi yılda kazandı?",
     "options": [
-      "12 Dev Adam",
+      "1995",
       "1996",
-      "Amerika Birleşik Devletleri",
-      "2001 Avrupa Şampiyonası"
+      "1997",
+      "1998"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "1996, Efes Pilsen’in Koraç Kupası’nı kazandığı yıl olarak bilinir."
+    "explanation": "Efes Pilsen, Koraç Kupası’nı 1996 yılında kazandı."
   },
   {
     "id": "q60775",
@@ -117280,16 +117280,16 @@
   {
     "id": "q60788",
     "categoryIndex": 5,
-    "question": "NBA’de oynayan ilk Türk basketbolcu kimdir?",
+    "question": "NBA’de forma giyen ilk Türk basketbolcu kimdir?",
     "options": [
-      "Darüşşafaka",
-      "Potanın Perileri",
-      "Efes Pilsen",
+      "Hidayet Türkoğlu",
+      "Mehmet Okur",
+      "Ömer Aşık",
       "Mirsad Türkcan"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Mirsad Türkcan, NBA’de oynayan ilk Türk basketbolcu olarak bilinir."
+    "explanation": "Mirsad Türkcan, NBA’de forma giyen ilk Türk basketbolcu oldu."
   },
   {
     "id": "q60789",
@@ -117588,16 +117588,16 @@
   {
     "id": "q60810",
     "categoryIndex": 5,
-    "question": "Türk basketbolunda 2010 Dünya Basketbol Şampiyonası finalinin oynandığı salon hangisidir?",
+    "question": "2010 FIBA Dünya Basketbol Şampiyonası finali hangi salonda oynandı?",
     "options": [
-      "Orhun Ene",
+      "Abdi İpekçi Spor Salonu",
       "Sinan Erdem Spor Salonu",
-      "Olimpia Milano",
-      "1996"
+      "Ülker Spor ve Etkinlik Salonu",
+      "Ankara Arena"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Sinan Erdem Spor Salonu, 2010 Dünya Basketbol Şampiyonası finalinin oynandığı salon olarak bilinir."
+    "explanation": "2010 FIBA Dünya Basketbol Şampiyonası finali İstanbul’daki Sinan Erdem Spor Salonu’nda oynandı."
   },
   {
     "id": "q60811",
@@ -117630,16 +117630,16 @@
   {
     "id": "q60813",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi 2023 Avrupa Voleybol Şampiyonası finalinde Türkiye’nin yendiği takım olarak bilinir?",
+    "question": "2023 Avrupa Kadınlar Voleybol Şampiyonası finalinde Türkiye hangi takımı yenerek şampiyon oldu?",
     "options": [
       "Sırbistan",
-      "sarı ve siyah",
-      "2010",
-      "6"
+      "İtalya",
+      "Hollanda",
+      "Polonya"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Sırbistan, 2023 Avrupa Voleybol Şampiyonası finalinde Türkiye’nin yendiği takım olarak bilinir."
+    "explanation": "Türkiye, 2023 Avrupa Kadınlar Voleybol Şampiyonası finalinde Sırbistan’ı 3-2 yenerek şampiyon oldu."
   },
   {
     "id": "q60814",
@@ -117700,16 +117700,16 @@
   {
     "id": "q60818",
     "categoryIndex": 5,
-    "question": "2023 Milletler Ligi finalinde Türkiye’nin yendiği takım hangisidir?",
+    "question": "2023 FIVB Kadınlar Voleybol Milletler Ligi finalinde Türkiye hangi takımı yenerek şampiyon oldu?",
     "options": [
-      "Arkas Spor",
+      "ABD",
       "Çin",
-      "VakıfBank",
-      "2023"
+      "Sırbistan",
+      "Brezilya"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Çin, 2023 Milletler Ligi finalinde Türkiye’nin yendiği takım olarak bilinir."
+    "explanation": "Türkiye, 2023 FIVB Kadınlar Voleybol Milletler Ligi finalinde Çin’i yenerek şampiyon oldu."
   },
   {
     "id": "q60819",
@@ -117952,16 +117952,16 @@
   {
     "id": "q60836",
     "categoryIndex": 5,
-    "question": "Türk voleybolunda Fenerbahçe kadın voleybol takımının Kulüpler Dünya Şampiyonu olduğu yıl hangisidir?",
+    "question": "Fenerbahçe Kadın Voleybol Takımı ilk Kulüpler Dünya Şampiyonluğu’nu hangi yılda kazandı?",
     "options": [
-      "6",
-      "Arkas Spor",
-      "CEV Kupası",
+      "2007",
+      "2008",
+      "2009",
       "2010"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "2010, Fenerbahçe kadın voleybol takımının Kulüpler Dünya Şampiyonu olduğu yıl olarak bilinir."
+    "explanation": "Fenerbahçe Kadın Voleybol Takımı ilk Kulüpler Dünya Şampiyonluğu’nu 2010’da kazandı."
   },
   {
     "id": "q60837",
@@ -118246,16 +118246,16 @@
   {
     "id": "q60857",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi Hande Baladın’ın oynadığı temel pozisyon olarak bilinir?",
+    "question": "Hande Baladın’ın temel voleybol pozisyonu hangisidir?",
     "options": [
-      "smaçör",
-      "Eczacıbaşı",
-      "2010",
-      "Naz Aydemir Akyol"
+      "Smaçör",
+      "Pasör",
+      "Libero",
+      "Orta oyuncu"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Smaçör, Hande Baladın’ın oynadığı temel pozisyon olarak bilinir."
+    "explanation": "Hande Baladın temel olarak smaçör pozisyonunda oynar."
   },
   {
     "id": "q60858",
@@ -118456,16 +118456,16 @@
   {
     "id": "q60872",
     "categoryIndex": 5,
-    "question": "Tokyo 2020’de boksta altın madalya kazanan Türk kadın sporcu kimdir?",
+    "question": "Tokyo 2020 Olimpiyatları’nda boksta altın madalya kazanan Türk kadın sporcu kimdir?",
     "options": [
-      "yağlı güreş",
-      "Enes Erkan",
-      "Paralimpik Oyunları",
+      "Buse Naz Çakıroğlu",
+      "Esra Yıldız Kahraman",
+      "Hatice Akbaş",
       "Busenaz Sürmeneli"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Busenaz Sürmeneli, Tokyo 2020’de boksta altın madalya kazanan Türk kadın sporcu olarak bilinir."
+    "explanation": "Busenaz Sürmeneli, Tokyo 2020 Olimpiyatları’nda boksta altın madalya kazandı."
   },
   {
     "id": "q60873",
@@ -118484,16 +118484,16 @@
   {
     "id": "q60874",
     "categoryIndex": 5,
-    "question": "Türk sporunda Londra 2012’de tekvandoda altın madalya kazanan Türk sporcu kim ya da kimdir?",
+    "question": "Londra 2012 Olimpiyatları’nda tekvandoda altın madalya kazanan Türk sporcu kimdir?",
     "options": [
-      "yüzme",
+      "Rıza Kayaalp",
       "Servet Tazegül",
-      "kıspet",
-      "Mete Gazoz"
+      "Nur Tatar",
+      "Taha Akgül"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Servet Tazegül, Londra 2012’de tekvandoda altın madalya kazanan Türk sporcu olarak bilinir."
+    "explanation": "Servet Tazegül, Londra 2012 Olimpiyatları’nda tekvandoda altın madalya kazandı."
   },
   {
     "id": "q60875",
@@ -118568,16 +118568,16 @@
   {
     "id": "q60880",
     "categoryIndex": 5,
-    "question": "Rio 2016’da 400 metre engellide bronz madalya kazanan atlet hangisidir?",
+    "question": "Rio 2016 Olimpiyatları’nda erkekler 400 metre engellide bronz madalya kazanan Türkiye adına yarışan atlet kimdir?",
     "options": [
-      "Ramil Guliyev",
-      "Nur Tatar",
-      "başpehlivanlık",
+      "Kerron Clement",
+      "Boniface Mucheru",
+      "Thomas Barr",
       "Yasmani Copello"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Yasmani Copello, Rio 2016’da 400 metre engellide bronz madalya kazanan atlet olarak bilinir."
+    "explanation": "Yasmani Copello, Rio 2016 Olimpiyatları’nda erkekler 400 metre engellide Türkiye adına bronz madalya kazandı."
   },
   {
     "id": "q60881",
@@ -118694,16 +118694,16 @@
   {
     "id": "q60889",
     "categoryIndex": 5,
-    "question": "Dünya Superbike şampiyonu olan Türk motosikletçi hangisidir?",
+    "question": "Dünya Superbike Şampiyonası’nda dünya şampiyonu olan Türk motosikletçi kimdir?",
     "options": [
       "Toprak Razgatlıoğlu",
-      "bilardo",
-      "Öznur Cüre Girdi",
-      "Enes Erkan"
+      "Kenan Sofuoğlu",
+      "Can Öncü",
+      "Bahattin Sofuoğlu"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Toprak Razgatlıoğlu, Dünya Superbike şampiyonu olan Türk motosikletçi olarak bilinir."
+    "explanation": "Toprak Razgatlıoğlu, Dünya Superbike Şampiyonası’nda dünya şampiyonu olan Türk motosikletçidir."
   },
   {
     "id": "q60890",
@@ -118820,30 +118820,30 @@
   {
     "id": "q60898",
     "categoryIndex": 5,
-    "question": "Türk sporunda 2023 dünya tekvando şampiyonu Türk kadın sporcu kim ya da kimdir?",
+    "question": "2023 Dünya Tekvando Şampiyonası’nda kadınlar 49 kg’da altın madalya kazanan Türk sporcu kimdir?",
     "options": [
-      "Toprak Razgatlıoğlu",
+      "Nafia Kuş Aydın",
       "Merve Dinçel",
-      "kürek",
-      "Türk yayı"
+      "Hatice Kübra İlgün",
+      "Nur Tatar"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Merve Dinçel, 2023 dünya tekvando şampiyonu Türk kadın sporcu olarak bilinir."
+    "explanation": "Merve Dinçel, 2023 Dünya Tekvando Şampiyonası’nda kadınlar 49 kg’da altın madalya kazandı."
   },
   {
     "id": "q60899",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi 2023 dünya güreş şampiyonu Türk kadın sporcu olarak bilinir?",
+    "question": "2023 Dünya Güreş Şampiyonası’nda kadınlar 68 kg’da altın madalya kazanan Türk sporcu kimdir?",
     "options": [
-      "cirit",
-      "Edirne",
+      "Yasemin Adar Yiğit",
+      "Evin Demirhan Yavuz",
       "Buse Tosun Çavuşoğlu",
-      "artistik jimnastik"
+      "Elif Jale Yeşilırmak"
     ],
     "answerIndex": 2,
     "difficulty": "Kolay",
-    "explanation": "Buse Tosun Çavuşoğlu, 2023 dünya güreş şampiyonu Türk kadın sporcu olarak bilinir."
+    "explanation": "Buse Tosun Çavuşoğlu, 2023 Dünya Güreş Şampiyonası’nda kadınlar 68 kg’da altın madalya kazandı."
   },
   {
     "id": "q60900",
@@ -118904,16 +118904,16 @@
   {
     "id": "q60904",
     "categoryIndex": 5,
-    "question": "Türkiye Kadın Goalball Millî Takımının kazandığı büyük organizasyon hangisidir?",
+    "question": "Türkiye Kadın Goalball Millî Takımı 2016 Rio’da hangi büyük organizasyonda altın madalya kazandı?",
     "options": [
-      "Busenaz Sürmeneli",
-      "eskrim",
-      "boks",
+      "Dünya Oyunları",
+      "Universiade",
+      "Akdeniz Oyunları",
       "Paralimpik Oyunları"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Paralimpik Oyunları, Türkiye Kadın Goalball Millî Takımının kazandığı büyük organizasyon olarak bilinir."
+    "explanation": "Türkiye Kadın Goalball Millî Takımı, Rio 2016 Paralimpik Oyunları’nda altın madalya kazandı."
   },
   {
     "id": "q60905",
@@ -118960,16 +118960,16 @@
   {
     "id": "q60908",
     "categoryIndex": 5,
-    "question": "Cirit oyunuyla özdeşleşen Türk şehri hangisidir?",
+    "question": "Erzurum’da yaygın olarak oynanan geleneksel atlı spor hangisidir?",
     "options": [
-      "yağlı güreş",
-      "Enes Erkan",
-      "Türk yayı",
-      "Erzurum"
+      "Yağlı güreş",
+      "Matrak",
+      "Okçuluk",
+      "Cirit"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Erzurum, cirit oyunuyla özdeşleşen Türk şehri olarak bilinir."
+    "explanation": "Cirit, Erzurum’la güçlü biçimde özdeşleşen geleneksel atlı sporlardan biridir."
   },
   {
     "id": "q60909",
@@ -119130,14 +119130,14 @@
     "categoryIndex": 5,
     "question": "Semih Saygıner’in spor branşı hangisidir?",
     "options": [
-      "Taha Akgül",
-      "okçuluk",
-      "Buse Naz Çakıroğlu",
-      "bilardo"
+      "Güreş",
+      "Okçuluk",
+      "Tekvando",
+      "Bilardo"
     ],
     "answerIndex": 3,
     "difficulty": "Kolay",
-    "explanation": "Bilardo, Semih Saygıner’in spor branşı olarak bilinir."
+    "explanation": "Semih Saygıner, üç bant bilardodaki başarılarıyla tanınır."
   },
   {
     "id": "q60921",
@@ -120962,16 +120962,16 @@
   {
     "id": "q61051",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi Fenerbahçe’nin 2013 Avrupa Ligi çeyrek finalindeki rakibi olarak bilinir?",
+    "question": "Fenerbahçe’nin 2012–2013 UEFA Avrupa Ligi çeyrek finalindeki rakibi hangisiydi?",
     "options": [
-      "400 metre engelli",
-      "Londra",
+      "Benfica",
+      "Viktoria Plzeň",
       "Lazio",
-      "Ankara"
+      "BATE Borisov"
     ],
     "answerIndex": 2,
     "difficulty": "Kolay",
-    "explanation": "Lazio, Fenerbahçe’nin 2013 Avrupa Ligi çeyrek finalindeki rakibi olarak bilinir."
+    "explanation": "Fenerbahçe, 2012-13 UEFA Avrupa Ligi çeyrek finalinde Lazio ile karşılaştı."
   },
   {
     "id": "q61052",
@@ -121116,16 +121116,16 @@
   {
     "id": "q61062",
     "categoryIndex": 5,
-    "question": "Türk sporunda Samsunspor’un renkleri hangisidir?",
+    "question": "Samsunspor’un kulüp renkleri hangileridir?",
     "options": [
-      "üçüncülük",
-      "kırmızı ve beyaz",
-      "David Blatt",
-      "okçuluk"
+      "Sarı-lacivert",
+      "Kırmızı-beyaz",
+      "Siyah-beyaz",
+      "Bordo-mavi"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Kırmızı ve beyaz, Samsunspor’un renkleri olarak bilinir."
+    "explanation": "Samsunspor’un kulüp renkleri kırmızı ve beyazdır."
   },
   {
     "id": "q61063",
@@ -121284,30 +121284,30 @@
   {
     "id": "q61074",
     "categoryIndex": 5,
-    "question": "Türk sporunda Darüşşafaka’nın EuroCup şampiyonu olduğu yıl hangisidir?",
+    "question": "Darüşşafaka EuroCup şampiyonluğunu hangi yılda kazandı?",
     "options": [
-      "turuncu",
+      "2017",
       "2018",
-      "Lyon",
-      "yeşil ve mavi"
+      "2019",
+      "2020"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "2018, Darüşşafaka’nın EuroCup şampiyonu olduğu yıl olarak bilinir."
+    "explanation": "Darüşşafaka, EuroCup şampiyonluğunu 2018 yılında kazandı."
   },
   {
     "id": "q61075",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi Darüşşafaka’yı 2018 EuroCup şampiyonu yapan başantrenör olarak bilinir?",
+    "question": "Darüşşafaka’yı 2018 EuroCup şampiyonluğuna taşıyan başantrenör kimdi?",
     "options": [
-      "3",
-      "İzmir",
+      "Ergin Ataman",
+      "Željko Obradović",
       "David Blatt",
-      "masa tenisi"
+      "Ufuk Sarıca"
     ],
     "answerIndex": 2,
     "difficulty": "Kolay",
-    "explanation": "David Blatt, Darüşşafaka’yı 2018 EuroCup şampiyonu yapan başantrenör olarak bilinir."
+    "explanation": "Darüşşafaka’nın 2018 EuroCup şampiyonluğunda başantrenörü David Blatt’tı."
   },
   {
     "id": "q61076",
@@ -121382,16 +121382,16 @@
   {
     "id": "q61081",
     "categoryIndex": 5,
-    "question": "Galatasaray Kadın Basketbol Takımının EuroCup şampiyonu olduğu yıllardan biri hangisidir?",
+    "question": "Galatasaray Kadın Basketbol Takımı EuroCup Women’ı ilk kez hangi yılda kazandı?",
     "options": [
       "2009",
-      "2018",
-      "halka",
-      "Ömer Erdoğan"
+      "2010",
+      "2014",
+      "2018"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "2009, Galatasaray Kadın Basketbol Takımının EuroCup şampiyonu olduğu yıllardan biri olarak bilinir."
+    "explanation": "Galatasaray Kadın Basketbol Takımı EuroCup Women’daki ilk şampiyonluğunu 2009’da kazandı; ikinci şampiyonluğu 2018’de geldi."
   },
   {
     "id": "q61082",
@@ -121410,16 +121410,16 @@
   {
     "id": "q61083",
     "categoryIndex": 5,
-    "question": "Aşağıdakilerden hangisi Türkiye’nin 2010 Dünya Şampiyonası yarı finalindeki rakibi olarak bilinir?",
+    "question": "Türkiye, 2010 FIBA Dünya Basketbol Şampiyonası yarı finalinde hangi takımla karşılaştı?",
     "options": [
-      "yeşil ve siyah",
-      "2018",
+      "Slovenya",
+      "Yunanistan",
       "Sırbistan",
-      "güreş"
+      "İspanya"
     ],
     "answerIndex": 2,
     "difficulty": "Kolay",
-    "explanation": "Sırbistan, Türkiye’nin 2010 Dünya Şampiyonası yarı finalindeki rakibi olarak bilinir."
+    "explanation": "Türkiye, 2010 FIBA Dünya Basketbol Şampiyonası yarı finalinde Sırbistan ile karşılaştı."
   },
   {
     "id": "q61084",
@@ -121564,16 +121564,16 @@
   {
     "id": "q61094",
     "categoryIndex": 5,
-    "question": "Türk sporunda VakıfBank’ın 2017 Kulüpler Dünya Şampiyonası şehri hangisidir?",
+    "question": "VakıfBank’ın 2017 FIVB Kadınlar Kulüpler Dünya Şampiyonluğu’nu kazandığı Japon şehri hangisidir?",
     "options": [
-      "Manş Denizi",
+      "Tokyo",
       "Kobe",
-      "kırmızı ve beyaz",
-      "Ankara"
+      "Osaka",
+      "Nagoya"
     ],
     "answerIndex": 1,
     "difficulty": "Kolay",
-    "explanation": "Kobe, VakıfBank’ın 2017 Kulüpler Dünya Şampiyonası şehri olarak bilinir."
+    "explanation": "VakıfBank, 2017 FIVB Kadınlar Kulüpler Dünya Şampiyonluğu’nu Japonya’nın Kobe kentinde kazandı."
   },
   {
     "id": "q61095",
@@ -121606,16 +121606,16 @@
   {
     "id": "q61097",
     "categoryIndex": 5,
-    "question": "Halkbank Spor Kulübünün merkezi olduğu il hangisidir?",
+    "question": "Halkbank Spor Kulübünün merkezi hangi ildedir?",
     "options": [
       "Ankara",
-      "tekvando",
-      "2009",
-      "Beşiktaş"
+      "İstanbul",
+      "İzmir",
+      "Bursa"
     ],
     "answerIndex": 0,
     "difficulty": "Kolay",
-    "explanation": "Ankara, Halkbank Spor Kulübünün merkezi olduğu il olarak bilinir."
+    "explanation": "Halkbank Spor Kulübünün merkezi Ankara’dadır."
   },
   {
     "id": "q61098",
