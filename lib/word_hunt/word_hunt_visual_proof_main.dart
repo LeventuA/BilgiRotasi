@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'word_hunt_progress.dart';
-import 'word_hunt_route_map_v2_screen.dart';
+import 'word_hunt_reference_route_screen.dart';
 
 const _sceneAssetPath = 'assets/word_hunt/baslangic_limani_bg.jpg';
 
@@ -32,13 +32,13 @@ class _WordHuntVisualProofApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Kelime Avı Görsel Kanıtı',
+      title: 'Kelime Avı Referans Görsel Kanıtı',
       theme: ThemeData(
         brightness: Brightness.dark,
         useMaterial3: true,
       ),
       home: const _AssetRuntimeProbe(
-        child: WordHuntRouteMapV2Screen(
+        child: WordHuntReferenceRouteScreen(
           progress: _proofProgress,
           sceneAssetPath: _sceneAssetPath,
         ),
