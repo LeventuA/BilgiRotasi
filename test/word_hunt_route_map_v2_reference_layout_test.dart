@@ -69,4 +69,37 @@ void main() {
     expect(find.text('Hazine'), findsNothing);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('route geometry follows the latest user harbor reference', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(360, 800);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: WordHuntRouteMapV2Screen(progress: proofProgress),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    Offset center(int level) =>
+        tester.getCenter(find.byKey(Key('word_hunt_v2_level_$level')));
+
+    expect(center(4).dx, greaterThan(center(3).dx));
+    expect(center(5).dy, lessThan(center(4).dy));
+    expect(center(5).dx, lessThan(center(4).dx));
+    expect(center(6).dx, lessThan(center(5).dx));
+    expect(center(6).dy, greaterThan(center(5).dy));
+    expect(center(7).dx, greaterThan(center(6).dx));
+    expect(center(8).dx, greaterThan(center(7).dx));
+    expect(center(9).dx, lessThan(center(8).dx));
+    expect(center(10).dx, greaterThan(center(9).dx));
+    expect(center(10).dy, greaterThan(center(9).dy));
+    expect(tester.takeException(), isNull);
+  });
 }
