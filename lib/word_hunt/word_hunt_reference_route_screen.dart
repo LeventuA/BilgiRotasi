@@ -20,8 +20,8 @@ class WordHuntReferenceRouteLayout {
     Offset(0.77, 0.35), // 4 - üst sağda ferah dönüş
     Offset(0.26, 0.41), // 5 - meydan okuma, merkez-sol
     Offset(0.12, 0.53), // 6 - sol geçiş
-    Offset(0.52, 0.58), // 7 - merkez/merkez-sağ
-    Offset(0.58, 0.69), // 8 - bonus, sağ bölge
+    Offset(0.41, 0.64), // 7 - merkez; 9'dan uzak, 8'in yıldız alanından açık
+    Offset(0.60, 0.69), // 8 - bonus, sağ bölge
     Offset(0.18, 0.79), // 9 - kilitli sol bölge
     Offset(0.44, 0.90), // 10 - rota finali, alt-orta
   ];
