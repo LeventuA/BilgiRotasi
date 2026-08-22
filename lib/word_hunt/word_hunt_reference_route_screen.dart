@@ -30,6 +30,37 @@ class WordHuntReferenceRouteLayout {
   static const double routeAreaBottom = 68;
 }
 
+enum WordHuntReferenceRouteSegmentStyle {
+  normal,
+  challenge,
+  bonus,
+  finalStop,
+  locked,
+}
+
+/// Onaylı referanstaki rota ışık dilini oyun mantığından ayırır.
+/// Kilit/progression yine [WordHuntRouteProgressEngine] tarafından belirlenir.
+class WordHuntReferenceRouteVisualContract {
+  WordHuntReferenceRouteVisualContract._();
+
+  static WordHuntReferenceRouteSegmentStyle segmentStyleFor({
+    required WordHuntLevelType destinationType,
+    required bool unlocked,
+  }) {
+    if (!unlocked) {
+      return WordHuntReferenceRouteSegmentStyle.locked;
+    }
+    return switch (destinationType) {
+      WordHuntLevelType.normal => WordHuntReferenceRouteSegmentStyle.normal,
+      WordHuntLevelType.challenge =>
+        WordHuntReferenceRouteSegmentStyle.challenge,
+      WordHuntLevelType.bonus => WordHuntReferenceRouteSegmentStyle.bonus,
+      WordHuntLevelType.routeFinal =>
+        WordHuntReferenceRouteSegmentStyle.finalStop,
+    };
+  }
+}
+
 /// Başlangıç Limanı'nın resmi referans hiyerarşisini doğrulamak için izole
 /// Flutter ekranı. Production `lib/main.dart` navigasyonuna bağlı değildir.
 class WordHuntReferenceRouteScreen extends StatelessWidget {
@@ -87,6 +118,10 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                   ),
                 )
                 .toList(growable: false);
+            final levelTypes = route.levels
+                .take(points.length)
+                .map((level) => level.type)
+                .toList(growable: false);
 
             return Stack(
               fit: StackFit.expand,
@@ -113,6 +148,7 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                         child: CustomPaint(
                           painter: _ReferenceRoutePainter(
                             points: points,
+                            levelTypes: levelTypes,
                             lastUnlockedIndex: lastUnlocked,
                           ),
                         ),
@@ -479,38 +515,22 @@ class _ReferenceBottomControl extends StatelessWidget {
 class _ReferenceRoutePainter extends CustomPainter {
   const _ReferenceRoutePainter({
     required this.points,
+    required this.levelTypes,
     required this.lastUnlockedIndex,
   });
 
   final List<Offset> points;
+  final List<WordHuntLevelType> levelTypes;
   final int lastUnlockedIndex;
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (points.length < 2) return;
+    if (points.length < 2 || levelTypes.length < points.length) return;
 
     final shadow = Paint()
-      ..color = const Color(0xB8000000)
+      ..color = const Color(0xA8000000)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 8
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
-    final dormant = Paint()
-      ..color = const Color(0x807E8792)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 3
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
-    final activeGlow = Paint()
-      ..color = const Color(0x6639DEE1)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 9
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
-    final active = Paint()
-      ..color = const Color(0xFFE2C46D)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 3.2
+      ..strokeWidth = 6.5
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round;
 
@@ -529,12 +549,78 @@ class _ReferenceRoutePainter extends CustomPainter {
       );
 
       canvas.drawPath(path, shadow);
+
       final unlockedSegment = index + 2 <= lastUnlockedIndex;
-      if (unlockedSegment) {
-        canvas.drawPath(path, activeGlow);
-        canvas.drawPath(path, active);
-      } else {
-        canvas.drawPath(path, dormant);
+      final style = WordHuntReferenceRouteVisualContract.segmentStyleFor(
+        destinationType: levelTypes[index + 1],
+        unlocked: unlockedSegment,
+      );
+
+      if (style == WordHuntReferenceRouteSegmentStyle.locked) {
+        final dormantGlow = Paint()
+          ..color = const Color(0x305B7589)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 5.5
+          ..strokeCap = StrokeCap.round;
+        final dormant = Paint()
+          ..color = const Color(0xB59AA5B2)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2.2
+          ..strokeCap = StrokeCap.round;
+        canvas.drawPath(path, dormantGlow);
+        _drawDashedPath(canvas, path, dormant);
+        continue;
+      }
+
+      final (coreColor, glowColor) = switch (style) {
+        WordHuntReferenceRouteSegmentStyle.normal => (
+            const Color(0xFF76F7FF),
+            const Color(0x7047EAF1),
+          ),
+        WordHuntReferenceRouteSegmentStyle.challenge => (
+            const Color(0xFFFFC45F),
+            const Color(0x70F39B38),
+          ),
+        WordHuntReferenceRouteSegmentStyle.bonus => (
+            const Color(0xFFC06BFF),
+            const Color(0x70A94AF3),
+          ),
+        WordHuntReferenceRouteSegmentStyle.finalStop => (
+            const Color(0xFFFFD76B),
+            const Color(0x70F6B83D),
+          ),
+        WordHuntReferenceRouteSegmentStyle.locked => throw StateError(
+            'Locked segment is handled before active palette selection.',
+          ),
+      };
+
+      final glow = Paint()
+        ..color = glowColor
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 7.5
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
+      final core = Paint()
+        ..color = coreColor
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.4
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
+
+      canvas.drawPath(path, glow);
+      canvas.drawPath(path, core);
+    }
+  }
+
+  void _drawDashedPath(Canvas canvas, Path path, Paint paint) {
+    const dashLength = 8.0;
+    const gapLength = 6.0;
+    for (final metric in path.computeMetrics()) {
+      var distance = 0.0;
+      while (distance < metric.length) {
+        final end = (distance + dashLength).clamp(0.0, metric.length).toDouble();
+        canvas.drawPath(metric.extractPath(distance, end), paint);
+        distance += dashLength + gapLength;
       }
     }
   }
@@ -542,6 +628,7 @@ class _ReferenceRoutePainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant _ReferenceRoutePainter oldDelegate) {
     return oldDelegate.points != points ||
+        oldDelegate.levelTypes != levelTypes ||
         oldDelegate.lastUnlockedIndex != lastUnlockedIndex;
   }
 }
