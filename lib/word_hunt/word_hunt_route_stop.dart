@@ -201,6 +201,15 @@ class WordHuntRouteStop extends StatelessWidget {
         : theme.lockedAccent;
     final clampedStars = stars.clamp(0, 3).toInt();
 
+    final stopWithStars = _StopMedallionAndStars(
+      level: level,
+      stars: clampedStars,
+      unlocked: unlocked,
+      accent: accent,
+      theme: theme,
+      metrics: metrics,
+    );
+
     return Semantics(
       button: unlocked,
       enabled: unlocked,
@@ -216,11 +225,8 @@ class WordHuntRouteStop extends StatelessWidget {
           child: InkWell(
             onTap: unlocked ? onTap : null,
             borderRadius: BorderRadius.circular(42),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (special)
-                  _SpecialRow(
+            child: special
+                ? _SpecialRow(
                     level: level,
                     unlocked: unlocked,
                     accent: accent,
@@ -229,28 +235,55 @@ class WordHuntRouteStop extends StatelessWidget {
                     labelOnLeft: labelOnLeft,
                     theme: theme,
                     metrics: metrics,
+                    stopWithStars: stopWithStars,
                   )
-                else
-                  _RouteStopOrb(
-                    level: level,
-                    unlocked: unlocked,
-                    accent: accent,
-                    theme: theme,
-                    diameter: metrics.normalDiameter,
-                  ),
-                SizedBox(height: metrics.starGap),
-                _RouteStopStars(
-                  levelIndex: level.index,
-                  stars: clampedStars,
-                  unlocked: unlocked,
-                  theme: theme,
-                  starSize: metrics.starSize,
-                ),
-              ],
-            ),
+                : Center(child: stopWithStars),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _StopMedallionAndStars extends StatelessWidget {
+  const _StopMedallionAndStars({
+    required this.level,
+    required this.stars,
+    required this.unlocked,
+    required this.accent,
+    required this.theme,
+    required this.metrics,
+  });
+
+  final WordHuntLevelDefinition level;
+  final int stars;
+  final bool unlocked;
+  final Color accent;
+  final WordHuntRouteStopTheme theme;
+  final WordHuntRouteStopMetrics metrics;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _RouteStopOrb(
+          level: level,
+          unlocked: unlocked,
+          accent: accent,
+          theme: theme,
+          diameter: metrics.diameterFor(level.type),
+        ),
+        SizedBox(height: metrics.starGap),
+        _RouteStopStars(
+          levelIndex: level.index,
+          stars: stars,
+          unlocked: unlocked,
+          theme: theme,
+          starSize: metrics.starSize,
+        ),
+      ],
     );
   }
 }
@@ -265,6 +298,7 @@ class _SpecialRow extends StatelessWidget {
     required this.labelOnLeft,
     required this.theme,
     required this.metrics,
+    required this.stopWithStars,
   });
 
   final WordHuntLevelDefinition level;
@@ -275,19 +309,13 @@ class _SpecialRow extends StatelessWidget {
   final bool labelOnLeft;
   final WordHuntRouteStopTheme theme;
   final WordHuntRouteStopMetrics metrics;
+  final Widget stopWithStars;
 
   @override
   Widget build(BuildContext context) {
     final diameter = metrics.diameterFor(level.type);
     final labelWidth =
         metrics.specialContainerWidth - diameter - metrics.specialLabelGap;
-    final orb = _RouteStopOrb(
-      level: level,
-      unlocked: unlocked,
-      accent: accent,
-      theme: theme,
-      diameter: diameter,
-    );
     final stopLabel = SizedBox(
       width: labelWidth,
       child: _SpecialStopLabel(
@@ -303,9 +331,10 @@ class _SpecialRow extends StatelessWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: labelOnLeft
-          ? <Widget>[stopLabel, gap, orb]
-          : <Widget>[orb, gap, stopLabel],
+          ? <Widget>[stopLabel, gap, stopWithStars]
+          : <Widget>[stopWithStars, gap, stopLabel],
     );
   }
 }
