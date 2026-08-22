@@ -196,15 +196,19 @@ class WordHuntRouteStop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final special = level.type != WordHuntLevelType.normal;
-    final accent = unlocked
-        ? theme.accentFor(level.type)
-        : theme.lockedAccent;
+    final lockedFinal = level.type == WordHuntLevelType.routeFinal && !unlocked;
+    final accent = lockedFinal
+        ? theme.finalAccent
+        : unlocked
+            ? theme.accentFor(level.type)
+            : theme.lockedAccent;
     final clampedStars = stars.clamp(0, 3).toInt();
 
     final stopWithStars = _StopMedallionAndStars(
       level: level,
       stars: clampedStars,
       unlocked: unlocked,
+      lockedFinal: lockedFinal,
       accent: accent,
       theme: theme,
       metrics: metrics,
@@ -229,6 +233,7 @@ class WordHuntRouteStop extends StatelessWidget {
                 ? _SpecialRow(
                     level: level,
                     unlocked: unlocked,
+                    lockedFinal: lockedFinal,
                     accent: accent,
                     label: _typeLabel,
                     icon: _typeIcon,
@@ -250,6 +255,7 @@ class _StopMedallionAndStars extends StatelessWidget {
     required this.level,
     required this.stars,
     required this.unlocked,
+    required this.lockedFinal,
     required this.accent,
     required this.theme,
     required this.metrics,
@@ -258,6 +264,7 @@ class _StopMedallionAndStars extends StatelessWidget {
   final WordHuntLevelDefinition level;
   final int stars;
   final bool unlocked;
+  final bool lockedFinal;
   final Color accent;
   final WordHuntRouteStopTheme theme;
   final WordHuntRouteStopMetrics metrics;
@@ -271,6 +278,7 @@ class _StopMedallionAndStars extends StatelessWidget {
         _RouteStopOrb(
           level: level,
           unlocked: unlocked,
+          lockedFinal: lockedFinal,
           accent: accent,
           theme: theme,
           diameter: metrics.diameterFor(level.type),
@@ -292,6 +300,7 @@ class _SpecialRow extends StatelessWidget {
   const _SpecialRow({
     required this.level,
     required this.unlocked,
+    required this.lockedFinal,
     required this.accent,
     required this.label,
     required this.icon,
@@ -303,6 +312,7 @@ class _SpecialRow extends StatelessWidget {
 
   final WordHuntLevelDefinition level;
   final bool unlocked;
+  final bool lockedFinal;
   final Color accent;
   final String label;
   final IconData icon;
@@ -322,7 +332,7 @@ class _SpecialRow extends StatelessWidget {
         label: label,
         icon: icon,
         accent: accent,
-        dimmed: !unlocked,
+        dimmed: !unlocked && !lockedFinal,
         theme: theme,
         emphasized: level.type == WordHuntLevelType.routeFinal,
       ),
@@ -343,6 +353,7 @@ class _RouteStopOrb extends StatelessWidget {
   const _RouteStopOrb({
     required this.level,
     required this.unlocked,
+    required this.lockedFinal,
     required this.accent,
     required this.theme,
     required this.diameter,
@@ -350,6 +361,7 @@ class _RouteStopOrb extends StatelessWidget {
 
   final WordHuntLevelDefinition level;
   final bool unlocked;
+  final bool lockedFinal;
   final Color accent;
   final WordHuntRouteStopTheme theme;
   final double diameter;
@@ -362,7 +374,7 @@ class _RouteStopOrb extends StatelessWidget {
       WordHuntLevelType.bonus => 20.0,
       WordHuntLevelType.routeFinal => 24.0,
     };
-    final lockSize = level.type == WordHuntLevelType.routeFinal ? 23.0 : 20.0;
+    final visuallyHighlighted = unlocked || lockedFinal;
 
     return SizedBox.square(
       key: Key('word_hunt_route_stop_orb_${level.index}'),
@@ -373,37 +385,69 @@ class _RouteStopOrb extends StatelessWidget {
           accent: accent,
           surfaceOuter: theme.surfaceOuter,
           surfaceInner: theme.surfaceInner,
-          unlocked: unlocked,
+          unlocked: visuallyHighlighted,
           type: level.type,
         ),
-        child: Center(
-          child: unlocked
-              ? Text(
-                  '${level.index}',
-                  key: Key('word_hunt_route_stop_number_${level.index}'),
-                  style: TextStyle(
-                    color: theme.textColor,
-                    fontSize: numberSize,
-                    fontWeight: FontWeight.w800,
-                    height: 1,
-                    shadows: const <Shadow>[
-                      Shadow(
-                        color: Color(0xDD000000),
-                        blurRadius: 3,
-                        offset: Offset(0, 1.5),
+        child: Stack(
+          fit: StackFit.expand,
+          clipBehavior: Clip.none,
+          children: [
+            Center(
+              child: visuallyHighlighted
+                  ? Text(
+                      '${level.index}',
+                      key: Key('word_hunt_route_stop_number_${level.index}'),
+                      style: TextStyle(
+                        color: theme.textColor,
+                        fontSize: numberSize,
+                        fontWeight: FontWeight.w800,
+                        height: 1,
+                        shadows: const <Shadow>[
+                          Shadow(
+                            color: Color(0xDD000000),
+                            blurRadius: 3,
+                            offset: Offset(0, 1.5),
+                          ),
+                        ],
                       ),
+                    )
+                  : Icon(
+                      Icons.lock_rounded,
+                      key: Key('word_hunt_route_stop_lock_${level.index}'),
+                      color: theme.lockColor,
+                      size: 20,
+                      shadows: const <Shadow>[
+                        Shadow(color: Color(0xCC000000), blurRadius: 3),
+                      ],
+                    ),
+            ),
+            if (lockedFinal)
+              Positioned(
+                right: 2,
+                bottom: 2,
+                child: Container(
+                  key: Key('word_hunt_route_stop_lock_badge_${level.index}'),
+                  width: 18,
+                  height: 18,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color(0xE6131820),
+                    border: Border.all(
+                      color: theme.finalAccent.withValues(alpha: 0.92),
+                      width: 1.2,
+                    ),
+                    boxShadow: const <BoxShadow>[
+                      BoxShadow(color: Color(0x99000000), blurRadius: 3),
                     ],
                   ),
-                )
-              : Icon(
-                  Icons.lock_rounded,
-                  key: Key('word_hunt_route_stop_lock_${level.index}'),
-                  color: theme.lockColor,
-                  size: lockSize,
-                  shadows: const <Shadow>[
-                    Shadow(color: Color(0xCC000000), blurRadius: 3),
-                  ],
+                  child: Icon(
+                    Icons.lock_rounded,
+                    color: theme.lockColor,
+                    size: 11,
+                  ),
                 ),
+              ),
+          ],
         ),
       ),
     );
