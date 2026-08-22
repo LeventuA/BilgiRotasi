@@ -1,0 +1,85 @@
+name: Kelime Avı kullanıcı referans geometrisi doğrulaması
+
+on:
+  pull_request:
+    branches:
+      - ci/kelime-avi-user-reference-geometry-runner-20260822
+    paths:
+      - '.tmp/kelime-avi-user-reference-geometry.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-commit:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - name: Head branch'i indir
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Yeni referans geometrisini ve testini deterministik uygula
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .tmp/kelime-avi-user-reference-geometry.trigger
+          python3 - <<'PY'
+          from pathlib import Path
+
+          screen = Path('lib/word_hunt/word_hunt_route_map_v2_screen.dart')
+          text = screen.read_text(encoding='utf-8')
+          old = '''  static const List<Offset> _stops = <Offset>[\n    Offset(0.15, 0.08),\n    Offset(0.42, 0.14),\n    Offset(0.65, 0.22),\n    Offset(0.80, 0.31),\n    Offset(0.33, 0.40),\n    Offset(0.15, 0.52),\n    Offset(0.44, 0.58),\n    Offset(0.69, 0.64),\n    Offset(0.22, 0.72),\n    Offset(0.46, 0.80),\n  ];'''
+          new = '''  static const List<Offset> _stops = <Offset>[\n    Offset(0.14, 0.07),\n    Offset(0.41, 0.14),\n    Offset(0.65, 0.21),\n    Offset(0.84, 0.39),\n    Offset(0.32, 0.31),\n    Offset(0.10, 0.45),\n    Offset(0.29, 0.58),\n    Offset(0.67, 0.63),\n    Offset(0.21, 0.71),\n    Offset(0.45, 0.82),\n  ];'''
+          if text.count(old) != 1:
+              raise SystemExit('Expected exact existing _stops geometry once')
+          screen.write_text(text.replace(old, new), encoding='utf-8')
+
+          test_path = Path('test/word_hunt_route_map_v2_reference_layout_test.dart')
+          test_text = test_path.read_text(encoding='utf-8')
+          anchor = """    expect(find.text('Hazine'), findsNothing);\n    expect(tester.takeException(), isNull);\n  });\n}"""
+          addition = """    expect(find.text('Hazine'), findsNothing);\n    expect(tester.takeException(), isNull);\n  });\n\n  testWidgets('route geometry follows the latest user harbor reference', (\n    tester,\n  ) async {\n    tester.view.physicalSize = const Size(360, 800);\n    tester.view.devicePixelRatio = 1;\n    addTearDown(() {\n      tester.view.resetPhysicalSize();\n      tester.view.resetDevicePixelRatio();\n    });\n\n    await tester.pumpWidget(\n      const MaterialApp(\n        home: WordHuntRouteMapV2Screen(progress: proofProgress),\n      ),\n    );\n    await tester.pumpAndSettle();\n\n    Offset center(int level) =>\n        tester.getCenter(find.byKey(Key('word_hunt_v2_level_$level')));\n\n    expect(center(4).dx, greaterThan(center(3).dx));\n    expect(center(5).dy, lessThan(center(4).dy));\n    expect(center(5).dx, lessThan(center(4).dx));\n    expect(center(6).dx, lessThan(center(5).dx));\n    expect(center(6).dy, greaterThan(center(5).dy));\n    expect(center(7).dx, greaterThan(center(6).dx));\n    expect(center(8).dx, greaterThan(center(7).dx));\n    expect(center(9).dx, lessThan(center(8).dx));\n    expect(center(10).dx, greaterThan(center(9).dx));\n    expect(center(10).dy, greaterThan(center(9).dy));\n    expect(tester.takeException(), isNull);\n  });\n}"""
+          if test_text.count(anchor) != 1:
+              raise SystemExit('Expected exact reference-layout test anchor once')
+          test_path.write_text(test_text.replace(anchor, addition), encoding='utf-8')
+          PY
+          git diff --check
+          git diff -- lib/word_hunt/word_hunt_route_map_v2_screen.dart test/word_hunt_route_map_v2_reference_layout_test.dart
+
+      - name: Kelime Avı testlerini çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_route_map_v2_reference_layout_test.dart --reporter expanded
+          flutter test test/word_hunt_route_map_v2_view_test.dart --reporter expanded
+          git diff --check
+
+      - name: Test edilmiş geometriyi commit et
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .tmp/kelime-avi-user-reference-geometry.trigger
+          git add lib/word_hunt/word_hunt_route_map_v2_screen.dart test/word_hunt_route_map_v2_reference_layout_test.dart
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(kelime-avi): align route geometry with user reference'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
