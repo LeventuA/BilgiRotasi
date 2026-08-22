@@ -33,16 +33,16 @@ class WordHuntRouteMapV2Screen extends StatelessWidget {
   final ValueChanged<int>? onLevelTap;
 
   static const List<Offset> _stops = <Offset>[
-    Offset(0.15, 0.08),
-    Offset(0.42, 0.14),
-    Offset(0.65, 0.22),
-    Offset(0.80, 0.31),
-    Offset(0.33, 0.40),
-    Offset(0.15, 0.52),
-    Offset(0.44, 0.58),
-    Offset(0.69, 0.64),
-    Offset(0.22, 0.72),
-    Offset(0.46, 0.80),
+    Offset(0.14, 0.07),
+    Offset(0.41, 0.14),
+    Offset(0.65, 0.21),
+    Offset(0.84, 0.39),
+    Offset(0.32, 0.31),
+    Offset(0.10, 0.45),
+    Offset(0.29, 0.58),
+    Offset(0.67, 0.63),
+    Offset(0.21, 0.71),
+    Offset(0.45, 0.82),
   ];
 
   @override
