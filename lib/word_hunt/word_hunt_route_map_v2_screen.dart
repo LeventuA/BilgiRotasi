@@ -39,7 +39,7 @@ class WordHuntRouteMapV2Screen extends StatelessWidget {
     Offset(0.84, 0.39),
     Offset(0.32, 0.31),
     Offset(0.10, 0.45),
-    Offset(0.29, 0.58),
+    Offset(0.36, 0.58),
     Offset(0.67, 0.63),
     Offset(0.21, 0.71),
     Offset(0.45, 0.82),

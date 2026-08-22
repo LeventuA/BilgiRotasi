@@ -96,6 +96,7 @@ void main() {
     expect(center(6).dx, lessThan(center(5).dx));
     expect(center(6).dy, greaterThan(center(5).dy));
     expect(center(7).dx, greaterThan(center(6).dx));
+    expect(center(7).dx - center(9).dx, greaterThan(40));
     expect(center(8).dx, greaterThan(center(7).dx));
     expect(center(9).dx, lessThan(center(8).dx));
     expect(center(10).dx, greaterThan(center(9).dx));
