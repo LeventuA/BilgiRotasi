@@ -48,11 +48,11 @@ void main() {
 
     expect(
       tester.getSize(find.byKey(const Key('word_hunt_route_stop_orb_1'))),
-      const Size.square(metrics.normalDiameter),
+      Size.square(metrics.normalDiameter),
     );
     expect(
       tester.getSize(find.byKey(const Key('word_hunt_route_stop_orb_2'))),
-      const Size.square(metrics.normalDiameter),
+      Size.square(metrics.normalDiameter),
     );
 
     for (var star = 0; star < 3; star++) {
