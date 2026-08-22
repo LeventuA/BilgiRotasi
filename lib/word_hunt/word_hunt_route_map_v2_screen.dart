@@ -68,10 +68,7 @@ class WordHuntRouteMapV2Screen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  _TopNavigation(
-                    onBack: onBack,
-                    onInfo: onInfo,
-                  ),
+                  _TopNavigation(onBack: onBack, onInfo: onInfo),
                   const SizedBox(height: 8),
                   _RouteHeaderPanel(
                     title: route.title,
@@ -260,7 +257,11 @@ class _RouteHeaderPanel extends StatelessWidget {
             ],
           ),
           boxShadow: const <BoxShadow>[
-            BoxShadow(color: Color(0x66000000), blurRadius: 14, offset: Offset(0, 7)),
+            BoxShadow(
+              color: Color(0x66000000),
+              blurRadius: 14,
+              offset: Offset(0, 7),
+            ),
             BoxShadow(color: Color(0x338B5CF6), blurRadius: 16),
           ],
         ),
@@ -277,7 +278,11 @@ class _RouteHeaderPanel extends StatelessWidget {
                 fontWeight: FontWeight.w900,
                 letterSpacing: 1.2,
                 shadows: <Shadow>[
-                  Shadow(color: Color(0xAA000000), offset: Offset(0, 2), blurRadius: 5),
+                  Shadow(
+                    color: Color(0xAA000000),
+                    offset: Offset(0, 2),
+                    blurRadius: 5,
+                  ),
                 ],
               ),
             ),
@@ -288,7 +293,11 @@ class _RouteHeaderPanel extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.star_rounded, color: Color(0xFFFFC94A), size: 28),
+                      const Icon(
+                        Icons.star_rounded,
+                        color: Color(0xFFFFC94A),
+                        size: 28,
+                      ),
                       const SizedBox(width: 6),
                       Flexible(
                         child: Text(
@@ -314,7 +323,9 @@ class _RouteHeaderPanel extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          complete ? 'ROTA TAMAMLANDI' : 'Kapı: $unlockStarsRequired',
+                          complete
+                              ? 'ROTA TAMAMLANDI'
+                              : 'Kapı: $unlockStarsRequired',
                           style: TextStyle(
                             color: complete
                                 ? const Color(0xFF6EE7D6)
@@ -324,7 +335,11 @@ class _RouteHeaderPanel extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 5),
-                        const Icon(Icons.star_rounded, color: Color(0xFFFFC94A), size: 21),
+                        const Icon(
+                          Icons.star_rounded,
+                          color: Color(0xFFFFC94A),
+                          size: 21,
+                        ),
                       ],
                     ),
                   ),
@@ -374,7 +389,11 @@ class _MapScene extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
             border: Border.all(color: const Color(0xFF7D6039), width: 1.2),
             boxShadow: const <BoxShadow>[
-              BoxShadow(color: Color(0xAA000000), blurRadius: 20, offset: Offset(0, 10)),
+              BoxShadow(
+                color: Color(0xAA000000),
+                blurRadius: 20,
+                offset: Offset(0, 10),
+              ),
               BoxShadow(color: Color(0x2245E6F2), blurRadius: 16),
             ],
           ),
@@ -575,18 +594,14 @@ class _RouteStop extends StatelessWidget {
     final accent = !unlocked && level.type == WordHuntLevelType.normal
         ? const Color(0xFF7A8190)
         : typeColor;
-    final node = _NodeOrb(
-      level: level,
-      unlocked: unlocked,
-      accent: accent,
-    );
+    final node = _NodeOrb(level: level, unlocked: unlocked, accent: accent);
     final label = level.type == WordHuntLevelType.normal
         ? const SizedBox.shrink()
         : Expanded(
             child: Padding(
               padding: EdgeInsets.only(
-                left: labelOnLeft ? 0 : 6,
-                right: labelOnLeft ? 6 : 0,
+                left: labelOnLeft ? 0 : 4,
+                right: labelOnLeft ? 4 : 0,
                 top: 4,
               ),
               child: _SpecialStopLabel(
@@ -678,7 +693,11 @@ class _NodeOrb extends StatelessWidget {
                   blurRadius: unlocked ? 18 : 9,
                   spreadRadius: unlocked ? 4 : 1,
                 ),
-                const BoxShadow(color: Color(0xAA000000), blurRadius: 5, offset: Offset(0, 4)),
+                const BoxShadow(
+                  color: Color(0xAA000000),
+                  blurRadius: 5,
+                  offset: Offset(0, 4),
+                ),
               ],
               border: Border.all(
                 color: accent.withValues(alpha: unlocked ? 0.95 : 0.60),
@@ -699,7 +718,10 @@ class _NodeOrb extends StatelessWidget {
             height: size - 12,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: accent.withValues(alpha: 0.48), width: 1),
+              border: Border.all(
+                color: accent.withValues(alpha: 0.48),
+                width: 1,
+              ),
             ),
           ),
           if (!unlocked && level.type == WordHuntLevelType.normal)
@@ -714,7 +736,11 @@ class _NodeOrb extends StatelessWidget {
                 fontSize: finalNode ? 28 : 24,
                 fontWeight: FontWeight.w900,
                 shadows: const <Shadow>[
-                  Shadow(color: Color(0xCC000000), blurRadius: 4, offset: Offset(0, 2)),
+                  Shadow(
+                    color: Color(0xCC000000),
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
+                  ),
                 ],
               ),
             ),
@@ -743,7 +769,7 @@ class _SpecialStopLabel extends StatelessWidget {
       opacity: dimmed ? 0.68 : 1,
       child: Container(
         constraints: const BoxConstraints(minHeight: 40),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
@@ -761,18 +787,18 @@ class _SpecialStopLabel extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: accent, size: 17),
-            const SizedBox(width: 5),
+            Icon(icon, color: accent, size: 14),
+            const SizedBox(width: 4),
             Flexible(
               child: Text(
                 label,
                 maxLines: 2,
                 style: TextStyle(
                   color: accent,
-                  fontSize: 10.0,
+                  fontSize: 9.4,
                   height: 1.05,
                   fontWeight: FontWeight.w900,
-                  letterSpacing: 0.5,
+                  letterSpacing: 0.2,
                 ),
               ),
             ),
@@ -801,12 +827,10 @@ class _StarStrip extends StatelessWidget {
           color: index < stars
               ? const Color(0xFFFFC94A)
               : unlocked
-                  ? const Color(0xFF6E7482)
-                  : const Color(0xFF535866),
+              ? const Color(0xFF6E7482)
+              : const Color(0xFF535866),
           shadows: index < stars
-              ? const <Shadow>[
-                  Shadow(color: Color(0x99FFB52E), blurRadius: 6),
-                ]
+              ? const <Shadow>[Shadow(color: Color(0x99FFB52E), blurRadius: 6)]
               : const <Shadow>[],
         ),
       ),
@@ -847,7 +871,11 @@ class _BottomMapButton extends StatelessWidget {
               ),
               border: Border.all(color: const Color(0xFF9B7440), width: 2),
               boxShadow: const <BoxShadow>[
-                BoxShadow(color: Color(0x99000000), blurRadius: 9, offset: Offset(0, 4)),
+                BoxShadow(
+                  color: Color(0x99000000),
+                  blurRadius: 9,
+                  offset: Offset(0, 4),
+                ),
                 BoxShadow(color: Color(0x338B6B40), blurRadius: 8),
               ],
             ),
@@ -965,8 +993,16 @@ class _OrnateFramePainter extends CustomPainter {
     const length = 15.0;
     canvas.drawLine(const Offset(6, 6), const Offset(6 + length, 6), corner);
     canvas.drawLine(const Offset(6, 6), const Offset(6, 6 + length), corner);
-    canvas.drawLine(Offset(size.width - 6, 6), Offset(size.width - 6 - length, 6), corner);
-    canvas.drawLine(Offset(size.width - 6, 6), Offset(size.width - 6, 6 + length), corner);
+    canvas.drawLine(
+      Offset(size.width - 6, 6),
+      Offset(size.width - 6 - length, 6),
+      corner,
+    );
+    canvas.drawLine(
+      Offset(size.width - 6, 6),
+      Offset(size.width - 6, 6 + length),
+      corner,
+    );
   }
 
   @override
@@ -1000,16 +1036,41 @@ class _FallbackHarborPainter extends CustomPainter {
 
     _drawMoon(canvas, size);
     _drawMoonReflection(canvas, size);
-    _drawIsland(canvas, size, const Offset(-0.13, 0.06), const Size(0.52, 0.26));
+    _drawIsland(
+      canvas,
+      size,
+      const Offset(-0.13, 0.06),
+      const Size(0.52, 0.26),
+    );
     _drawIsland(canvas, size, const Offset(0.70, 0.18), const Size(0.43, 0.27));
-    _drawIsland(canvas, size, const Offset(-0.18, 0.38), const Size(0.48, 0.30));
+    _drawIsland(
+      canvas,
+      size,
+      const Offset(-0.18, 0.38),
+      const Size(0.48, 0.30),
+    );
     _drawIsland(canvas, size, const Offset(0.64, 0.48), const Size(0.52, 0.32));
-    _drawIsland(canvas, size, const Offset(-0.14, 0.72), const Size(0.52, 0.30));
+    _drawIsland(
+      canvas,
+      size,
+      const Offset(-0.14, 0.72),
+      const Size(0.52, 0.30),
+    );
     _drawIsland(canvas, size, const Offset(0.58, 0.78), const Size(0.55, 0.30));
 
     _drawLighthouse(canvas, size);
-    _drawSailboat(canvas, size, Offset(size.width * 0.12, size.height * 0.30), 0.78);
-    _drawSailboat(canvas, size, Offset(size.width * 0.28, size.height * 0.39), 0.58);
+    _drawSailboat(
+      canvas,
+      size,
+      Offset(size.width * 0.12, size.height * 0.30),
+      0.78,
+    );
+    _drawSailboat(
+      canvas,
+      size,
+      Offset(size.width * 0.28, size.height * 0.39),
+      0.58,
+    );
     _drawVillageLights(canvas, size);
     _drawWaterLines(canvas, size);
   }
@@ -1039,7 +1100,11 @@ class _FallbackHarborPainter extends CustomPainter {
       final half = size.width * (0.015 + i * 0.006);
       paint.strokeWidth = i.isEven ? 2 : 1;
       final centerX = size.width * 0.73;
-      canvas.drawLine(Offset(centerX - half, y), Offset(centerX + half, y), paint);
+      canvas.drawLine(
+        Offset(centerX - half, y),
+        Offset(centerX + half, y),
+        paint,
+      );
     }
   }
 
@@ -1057,10 +1122,30 @@ class _FallbackHarborPainter extends CustomPainter {
     );
     final path = Path()
       ..moveTo(rect.left, rect.center.dy)
-      ..quadraticBezierTo(rect.left + rect.width * 0.12, rect.top, rect.center.dx, rect.top + rect.height * 0.08)
-      ..quadraticBezierTo(rect.right - rect.width * 0.07, rect.top, rect.right, rect.center.dy)
-      ..quadraticBezierTo(rect.right - rect.width * 0.15, rect.bottom, rect.center.dx, rect.bottom - rect.height * 0.08)
-      ..quadraticBezierTo(rect.left + rect.width * 0.06, rect.bottom, rect.left, rect.center.dy)
+      ..quadraticBezierTo(
+        rect.left + rect.width * 0.12,
+        rect.top,
+        rect.center.dx,
+        rect.top + rect.height * 0.08,
+      )
+      ..quadraticBezierTo(
+        rect.right - rect.width * 0.07,
+        rect.top,
+        rect.right,
+        rect.center.dy,
+      )
+      ..quadraticBezierTo(
+        rect.right - rect.width * 0.15,
+        rect.bottom,
+        rect.center.dx,
+        rect.bottom - rect.height * 0.08,
+      )
+      ..quadraticBezierTo(
+        rect.left + rect.width * 0.06,
+        rect.bottom,
+        rect.left,
+        rect.center.dy,
+      )
       ..close();
 
     canvas.drawPath(
@@ -1069,7 +1154,11 @@ class _FallbackHarborPainter extends CustomPainter {
         ..shader = const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: <Color>[Color(0xFF1A423D), Color(0xFF172B32), Color(0xFF0D1725)],
+          colors: <Color>[
+            Color(0xFF1A423D),
+            Color(0xFF172B32),
+            Color(0xFF0D1725),
+          ],
         ).createShader(rect)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 1.2),
     );
@@ -1130,10 +1219,18 @@ class _FallbackHarborPainter extends CustomPainter {
 
   void _drawVillageLights(Canvas canvas, Size size) {
     final lights = <Offset>[
-      Offset(0.08, 0.20), Offset(0.17, 0.22), Offset(0.24, 0.18),
-      Offset(0.82, 0.28), Offset(0.91, 0.34), Offset(0.12, 0.49),
-      Offset(0.20, 0.56), Offset(0.75, 0.55), Offset(0.87, 0.62),
-      Offset(0.08, 0.78), Offset(0.18, 0.84), Offset(0.72, 0.84),
+      Offset(0.08, 0.20),
+      Offset(0.17, 0.22),
+      Offset(0.24, 0.18),
+      Offset(0.82, 0.28),
+      Offset(0.91, 0.34),
+      Offset(0.12, 0.49),
+      Offset(0.20, 0.56),
+      Offset(0.75, 0.55),
+      Offset(0.87, 0.62),
+      Offset(0.08, 0.78),
+      Offset(0.18, 0.84),
+      Offset(0.72, 0.84),
       Offset(0.86, 0.89),
     ];
     for (final light in lights) {
