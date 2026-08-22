@@ -107,6 +107,17 @@ Kelime Avı görsel çalışmalarında açık onay olmadan değişmez:
 - Android / AdMob / Firebase / release config
 - onaylı Başlangıç Limanı background asset'i
 
+## Kalıcılaştırma altyapısı — 22 Ağustos 2026
+
+- Branch: `docs/general-project-summary-rule-20260822`.
+- Draft PR: **#106 — `docs: make general project summary a permanent workflow rule`**.
+- Base: `release/final-closed-test-aab-1.68.8` @ `39c03f169bbdf5dabb207af95c1fccf365400f98`.
+- `CHATGPT_PROJE_TALIMATI.txt`, yeni sohbet başında bu özeti okumayı ve her proje yanıtından sonra fark bazlı güncellemeyi zorunlu hale getirir.
+- `KARARLAR.md`, yaşayan özet kuralı ile Kelime Avı kullanıcı-onaylı referans/modüler üretim kararını kalıcı karar olarak kaydeder.
+- PR #106 yalnız proje-hafızası dokümanlarını değiştirir; runtime, soru bankası ve release konfigürasyonu kapsam dışıdır.
+- PR #106 **Draft / merge yok**. Levent'in açık merge onayı gerekir.
+- ChatGPT uygulamasındaki **Proje Talimatları** alanını bu oturumdan doğrudan değiştirecek bir proje-ayar yazma aracı yoktur. Bu nedenle aynı kısa kuralın Proje Talimatları'na bir kez kullanıcı tarafından eklenmesi `DOĞRULANACAK` / manuel adımdır. Repo kuralı ise PR #106 merge edildiğinde kalıcı teknik kayıt olur.
+
 ## Sıradaki açık kapılar
 
 1. 7 numara düzeltmesi dahil son gerçek Android 16 görünümünün kullanıcı tarafından nihai görsel kabulü.
@@ -115,6 +126,8 @@ Kelime Avı görsel çalışmalarında açık onay olmadan değişmez:
 4. PR #96 → release ancak Levent ayrıca açık merge onayı verirse.
 5. Production ana navigasyon entegrasyonu ayrı branch ve ayrı onayla yapılır.
 6. Başlangıç Limanı kabulünden sonra sonraki temalar modüler asset sistemiyle üretilir; her tema için ayrı kullanıcı-onaylı resmi referans gerekir.
+7. PR #106 merge kararı Levent'in açık onayını bekler; merge sonrası repo seviyesindeki yaşayan özet kuralı release hattında kalıcı olur.
+8. ChatGPT Proje Talimatları'na kısa otomatik-özet kuralı bir kez eklenirse yeni sohbetlerde repo kuralını çağırma davranışı daha güvenilir olur.
 
 ## Bu özetin bakım kuralı
 
