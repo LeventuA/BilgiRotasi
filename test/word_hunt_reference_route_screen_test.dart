@@ -67,6 +67,19 @@ void main() {
     );
   });
 
+  testWidgets('approved top chrome keeps real route data in reference hierarchy', (
+    tester,
+  ) async {
+    await pumpReferenceRoute(tester);
+
+    expect(find.text('Kelime Avı'), findsOneWidget);
+    expect(find.text('Başlangıç Limanı'), findsOneWidget);
+    expect(find.text('0 / 30'), findsOneWidget);
+    expect(find.text('Kapı: 18'), findsOneWidget);
+    expect(find.text('KELİME AVI'), findsNothing);
+    expect(find.text('BAŞLANGIÇ LİMANI'), findsNothing);
+  });
+
   testWidgets('reference route follows the approved composition hierarchy', (
     tester,
   ) async {
@@ -187,8 +200,9 @@ void main() {
   ) async {
     await pumpReferenceRoute(tester);
 
-    expect(find.text('KELİME AVI'), findsOneWidget);
-    expect(find.text('BAŞLANGIÇ LİMANI'), findsOneWidget);
     expect(find.byKey(const Key('word_hunt_reference_route_area')), findsOneWidget);
+    for (var level = 1; level <= 10; level++) {
+      expect(find.byKey(Key('word_hunt_reference_level_$level')), findsOneWidget);
+    }
   });
 }
