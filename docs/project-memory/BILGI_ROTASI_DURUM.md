@@ -1,5 +1,23 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
+## 0O. PR #96 Kelime Avı foundation + Başlangıç Limanı teknik doğrulaması — 22 Ağustos 2026
+
+- Kanonik repo `ZMilaStudio/BilgiRotasi`; canlı base `release/final-closed-test-aab-1.68.8` head `39c03f169bbdf5dabb207af95c1fccf365400f98`; sürüm `1.68.19+109`.
+- Çalışma branch'i `feat/kelime-avi-clean-release-integration-20260821`; PR #96 açık, Draft ve merge edilmemiştir. Doğrulanan kaynak head `8b4022d939153f88f14c765a61a0962ba0473769`.
+- Son bot commit'i incelendi: geçici `.tmp/kelime-avi-bg/**` parçaları ve tek kullanımlık `.github/workflows/kelime-avi-bg-materialize.yml` final PR diff'inde yoktur.
+- `assets/word_hunt/baslangic_limani_bg.jpg` gerçek JPEG; `1080x2340`, `81310` byte, SHA-256 `ea0034e2b3a7713f36bd36d2757815748e2988e831c91f213ad0c7a2eb050d45`.
+- Yerel Kelime Avı kaynak analizi 0 issue; focused suite **59/59 PASS**. Tam yerel Flutter koşusu **358 PASS / 1 ortam hatası** verdi: ürün/test hatası değil, Windows'ta `python3` komutu bulunamadığı için yalnız `release_readiness_report_test.dart` exit `9009` aldı.
+- Linux Quality Checks run/job `32543598848` / `96958050560`: **SUCCESS**; soru bankası yapısal kapısı PASS, analyze non-fatal policy ile mevcut **92 issue** (Kelime Avı değişen kaynaklarında yeni issue yok), tam Flutter **360/360 PASS**.
+- Android 16 görsel kanıt run/job `32543597270` / `96958047145`: **SUCCESS**. Artifact `BilgiRotasi-KelimeAvi-VisualProof-8b4022d939153f88f14c765a61a0962ba0473769`, ID `9467915888`, digest `sha256:4c9d2e22a3dc26459b3639db6781b5cb08056366c4f30592da0ac3c4b7b4d696`.
+- İzole debug APK SHA-256 `67109045d89365ff1e189dea992152bef50d2267460568eeb3e9639af9e9c1c1`. Paketlenmiş JPG kaynakla byte-for-byte eşit; runtime `[WORD_HUNT_ASSET_LOADED]` kaydı var; `MainActivity` RESUMED/visible; app-specific crash/ANR/FATAL/process-death eşleşmesi 0.
+- Artifact'taki üst/alt Android 16 screenshot'ları `1080x1920` olarak saklandı ve Başlangıç Limanı gerçek Flutter ekranının açıldığını gösteriyor. Bu teknik kanıt yeni bir nihai kullanıcı görsel onayı değildir.
+- Final base diff kontrolünde `assets/questions.json`, `lib/main.dart`, BoardMap/67 node, 3B tahta, Android, AdMob/Firebase/release config değişikliği yoktur; `pubspec.yaml` yalnız `assets/word_hunt/` kaydını ekler ve sürüm `1.68.19+109` kalır.
+- `KARARLAR.md` değişmedi; yeni ürün/görsel kararı alınmadı.
+
+**Durum:** Teknik doğrulama PASS; PR #96 Draft incelemeye hazırdır. Kullanıcı görsel kabulü ve production ana navigasyona bağlama ayrı açık onay/iş olarak kalır; merge yapılmadı.
+
+---
+
 ## 0N. 1.68.19+109 AdMob/UMP release merge checkpoint — 21 Ağustos 2026
 
 - Kanonik release `release/final-closed-test-aab-1.68.8` exact `b0240a7a4009c41326f459a37b8bedeab080d8d8`; sürüm `1.68.19+109`.

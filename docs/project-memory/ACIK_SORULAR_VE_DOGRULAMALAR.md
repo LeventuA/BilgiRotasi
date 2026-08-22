@@ -1,5 +1,19 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
+## PR #96 Kelime Avı teknik kanıt sonrası — AÇIK KABULLER
+
+- Teknik kaynak/test/Android 16 kanıtı `8b4022d939153f88f14c765a61a0962ba0473769` üzerinde PASS: run/job `32543597270` / `96958047145`, artifact ID `9467915888`.
+- Artifact'ta üst ve alt `1080x1920` screenshot, packaged JPG, runtime load kaydı, Activity ve logcat bulunur. App-specific crash/ANR/FATAL/process-death eşleşmesi yoktur.
+- Packaged asset kaynakla birebir eşittir: `1080x2340`, `81310` byte, SHA-256 `ea0034e2b3a7713f36bd36d2757815748e2988e831c91f213ad0c7a2eb050d45`.
+
+**DOĞRULANACAK:**
+
+1. Levent Android 16 artifact screenshot'larını nihai görsel kabul ediyor mu? CI PASS tek başına tasarım kabulü değildir.
+2. Kelime Avı foundation'ın production ana navigasyona bağlanması için ayrı kapsam ve açık onay verilecek mi? PR #96 `lib/main.dart` değiştirmez.
+3. PR #96 için Levent açık merge onayı verecek mi? O zamana kadar PR açık/Draft/merge edilmemiş kalır.
+
+---
+
 ## 1.68.19+109 merge sonrası canlı kabul — AÇIK
 
 - PR #88 squash merge edildi; release exact `b0240a7a4009c41326f459a37b8bedeab080d8d8`, sürüm `1.68.19+109`.

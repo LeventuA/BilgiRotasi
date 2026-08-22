@@ -1,5 +1,24 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0N - 22 Ağustos 2026 / PR #96 Kelime Avı gece doğrulaması
+
+- **Durum:** TEKNİK DOĞRULAMA PASS / PR #96 AÇIK + DRAFT / MERGE YOK / GÖRSEL NİHAİ KULLANICI KABULÜ AÇIK.
+- Branch `feat/kelime-avi-clean-release-integration-20260821`; doğrulanan kaynak head `8b4022d939153f88f14c765a61a0962ba0473769`; base canlı head `39c03f169bbdf5dabb207af95c1fccf365400f98`; sürüm `1.68.19+109`.
+
+**Bitti ölçütü:**
+- [x] Geçici background transfer parçaları ve materializer workflow final diff'ten temiz.
+- [x] JPEG `1080x2340` / `81310` byte / SHA-256 `ea0034e2b3a7713f36bd36d2757815748e2988e831c91f213ad0c7a2eb050d45`.
+- [x] Kelime Avı kaynak analizi 0 issue; focused testler 59/59 PASS.
+- [x] Linux tam kalite run/job `32543598848` / `96958050560`: 360/360 Flutter PASS; mevcut 92 analyze issue, yeni Kelime Avı issue'su yok.
+- [x] Android 16 run/job `32543597270` / `96958047145`: gerçek ekran, packaged asset/runtime load, Activity ve app logcat kapıları PASS.
+- [x] Artifact ID `9467915888`, digest `sha256:4c9d2e22a3dc26459b3639db6781b5cb08056366c4f30592da0ac3c4b7b4d696`; üst/alt screenshot saklandı.
+- [x] `assets/questions.json`, `lib/main.dart`, BoardMap/67 node, 3B tahta ve release/AdMob/Firebase/Android config kapsam dışı kaldı.
+- [ ] Levent artifact screenshot'larını görsel olarak nihai kabul eder veya geri bildirim verir.
+- [ ] Ayrı açık onay ve ayrı entegrasyon işi olmadan Kelime Avı production `lib/main.dart` navigasyonuna bağlanmaz.
+- [ ] Levent açık merge onayı olmadan PR #96 merge edilmez veya Draft'tan çıkarılmaz.
+
+---
+
 ## 0M - 21 Ağustos 2026 / 1.68.19+109 merge ve yayın kapıları
 
 - **Durum:** PR #88 MERGED / release `b0240a7a4009c41326f459a37b8bedeab080d8d8` / `1.68.19+109` / +108 soru bankası korundu / UMP-AdMob + SSV tek gerçek +10 XP PASS / Play yükleme açık.
