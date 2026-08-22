@@ -132,6 +132,7 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                   title: route.title,
                   stars: totalStars,
                   maximumStars: route.maximumStars,
+                  unlockStarsRequired: route.unlockStarsRequired,
                   onBack: onBack,
                   onInfo: onInfo,
                 ),
@@ -325,6 +326,7 @@ class _ReferenceTopChrome extends StatelessWidget {
     required this.title,
     required this.stars,
     required this.maximumStars,
+    required this.unlockStarsRequired,
     this.onBack,
     this.onInfo,
   });
@@ -332,11 +334,9 @@ class _ReferenceTopChrome extends StatelessWidget {
   final String title;
   final int stars;
   final int maximumStars;
+  final int unlockStarsRequired;
   final VoidCallback? onBack;
   final VoidCallback? onInfo;
-
-  String _upper(String value) =>
-      value.replaceAll('i', 'İ').replaceAll('ı', 'I').toUpperCase();
 
   @override
   Widget build(BuildContext context) {
@@ -357,17 +357,35 @@ class _ReferenceTopChrome extends StatelessWidget {
                   semanticLabel: 'Geri',
                   onTap: onBack,
                 ),
-                const Expanded(
-                  child: Text(
-                    'KELİME AVI',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFFF3E7FF),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 1.7,
-                      shadows: <Shadow>[
-                        Shadow(color: Color(0xAA7C3AED), blurRadius: 14),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      children: [
+                        const Expanded(
+                          child: _ReferenceTitleFlourish(reverse: false),
+                        ),
+                        const SizedBox(width: 7),
+                        const Text(
+                          'Kelime Avı',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFFF4E7FF),
+                            fontSize: 19,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.5,
+                            shadows: <Shadow>[
+                              Shadow(
+                                color: Color(0xD99C4DFF),
+                                blurRadius: 12,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 7),
+                        const Expanded(
+                          child: _ReferenceTitleFlourish(reverse: true),
+                        ),
                       ],
                     ),
                   ),
@@ -384,47 +402,122 @@ class _ReferenceTopChrome extends StatelessWidget {
           const SizedBox(height: 5),
           Container(
             constraints: const BoxConstraints(maxWidth: 330),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: const Color(0xD908111D),
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: const Color(0xB9A57A3D), width: 1.2),
+              color: const Color(0xE308101B),
+              borderRadius: BorderRadius.circular(13),
+              border: Border.all(
+                color: const Color(0xD0B68B45),
+                width: 1.3,
+              ),
               boxShadow: const <BoxShadow>[
-                BoxShadow(color: Color(0x77000000), blurRadius: 12, offset: Offset(0, 5)),
-                BoxShadow(color: Color(0x337A5AF5), blurRadius: 14),
+                BoxShadow(
+                  color: Color(0x88000000),
+                  blurRadius: 12,
+                  offset: Offset(0, 5),
+                ),
+                BoxShadow(color: Color(0x2D8B5CF6), blurRadius: 13),
               ],
             ),
-            child: Row(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: Text(
-                    _upper(title),
-                    maxLines: 1,
-                    overflow: TextOverflow.fade,
-                    style: const TextStyle(
-                      color: Color(0xFFFFF7E7),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 0.7,
-                    ),
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.fade,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Color(0xFFFFF7E7),
+                    fontSize: 23,
+                    height: 1,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.25,
+                    shadows: <Shadow>[
+                      Shadow(color: Color(0x99000000), blurRadius: 4),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 10),
-                const Icon(Icons.star_rounded, color: Color(0xFFFFC94A), size: 22),
-                const SizedBox(width: 3),
-                Text(
-                  '$stars/$maximumStars',
-                  style: const TextStyle(
-                    color: Color(0xFFFFF0C2),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w900,
-                  ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.star_rounded,
+                      color: Color(0xFFFFC94A),
+                      size: 19,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      '$stars / $maximumStars',
+                      style: const TextStyle(
+                        color: Color(0xFFFFE9B0),
+                        fontSize: 14.5,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      'Kapı: $unlockStarsRequired',
+                      style: const TextStyle(
+                        color: Color(0xFFF3E6C9),
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(width: 3),
+                    const Icon(
+                      Icons.star_rounded,
+                      color: Color(0xFFFFC94A),
+                      size: 17,
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ReferenceTitleFlourish extends StatelessWidget {
+  const _ReferenceTitleFlourish({required this.reverse});
+
+  final bool reverse;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      textDirection: reverse ? TextDirection.rtl : TextDirection.ltr,
+      children: [
+        Expanded(
+          child: Container(
+            height: 1,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: reverse ? Alignment.centerRight : Alignment.centerLeft,
+                end: reverse ? Alignment.centerLeft : Alignment.centerRight,
+                colors: const <Color>[
+                  Color(0x007B3BB5),
+                  Color(0xA88A4FC5),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 4),
+        Transform.rotate(
+          angle: 0.785398,
+          child: Container(
+            width: 5,
+            height: 5,
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xB9A764DD), width: 0.8),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -501,7 +594,11 @@ class _ReferenceBottomControl extends StatelessWidget {
               ),
               border: Border.all(color: const Color(0xB8C29650), width: 1.3),
               boxShadow: const <BoxShadow>[
-                BoxShadow(color: Color(0x77000000), blurRadius: 8, offset: Offset(0, 4)),
+                BoxShadow(
+                  color: Color(0x77000000),
+                  blurRadius: 8,
+                  offset: Offset(0, 4),
+                ),
               ],
             ),
             child: Icon(icon, color: const Color(0xFFE9C86E), size: 28),
