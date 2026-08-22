@@ -1,0 +1,88 @@
+name: Kelime Avı 7 numara boşluk doğrulaması
+
+on:
+  pull_request:
+    branches:
+      - ci/kelime-avi-level7-spacing-runner-20260822
+    paths:
+      - '.tmp/kelime-avi-level7-spacing.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-commit:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - name: Head branch'i indir
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Yalnız 7 numarayı sağa al ve boşluk testini kilitle
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .tmp/kelime-avi-level7-spacing.trigger
+          python3 - <<'PY'
+          from pathlib import Path
+
+          screen = Path('lib/word_hunt/word_hunt_route_map_v2_screen.dart')
+          text = screen.read_text(encoding='utf-8')
+          old = '    Offset(0.29, 0.58),\n'
+          new = '    Offset(0.36, 0.58),\n'
+          if text.count(old) != 1:
+              raise SystemExit('Expected exact level 7 coordinate once')
+          screen.write_text(text.replace(old, new), encoding='utf-8')
+
+          test_path = Path('test/word_hunt_route_map_v2_reference_layout_test.dart')
+          test_text = test_path.read_text(encoding='utf-8')
+          old_test = """    expect(center(7).dx, greaterThan(center(6).dx));\n    expect(center(8).dx, greaterThan(center(7).dx));\n    expect(center(9).dx, lessThan(center(8).dx));\n"""
+          new_test = """    expect(center(7).dx, greaterThan(center(6).dx));\n    expect(center(7).dx - center(9).dx, greaterThan(40));\n    expect(center(8).dx, greaterThan(center(7).dx));\n    expect(center(9).dx, lessThan(center(8).dx));\n"""
+          if test_text.count(old_test) != 1:
+              raise SystemExit('Expected exact level 7/9 geometry test anchor once')
+          test_path.write_text(test_text.replace(old_test, new_test), encoding='utf-8')
+          PY
+
+          git diff --check
+          changed="$(git diff --name-only)"
+          test "$changed" = $'lib/word_hunt/word_hunt_route_map_v2_screen.dart\ntest/word_hunt_route_map_v2_reference_layout_test.dart'
+          git diff -- lib/word_hunt/word_hunt_route_map_v2_screen.dart test/word_hunt_route_map_v2_reference_layout_test.dart
+
+      - name: Kelime Avı focused doğrulamasını çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_route_map_v2_reference_layout_test.dart --reporter expanded
+          flutter test test/word_hunt_route_map_v2_view_test.dart --reporter expanded
+          git diff --check
+
+      - name: Test edilmiş tek düzeltmeyi commit et
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .tmp/kelime-avi-level7-spacing.trigger
+          git add lib/word_hunt/word_hunt_route_map_v2_screen.dart test/word_hunt_route_map_v2_reference_layout_test.dart
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(kelime-avi): separate level 7 from locked stop'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
