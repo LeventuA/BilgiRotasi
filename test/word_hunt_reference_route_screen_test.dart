@@ -1,3 +1,4 @@
+import 'package:bilgi_rotasi/word_hunt/word_hunt_models.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_reference_route_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -26,6 +27,45 @@ void main() {
       find.byKey(Key('word_hunt_reference_level_$level')),
     );
   }
+
+  test('reference route segment palette follows destination type and lock state', () {
+    expect(
+      WordHuntReferenceRouteVisualContract.segmentStyleFor(
+        destinationType: WordHuntLevelType.normal,
+        unlocked: true,
+      ),
+      WordHuntReferenceRouteSegmentStyle.normal,
+    );
+    expect(
+      WordHuntReferenceRouteVisualContract.segmentStyleFor(
+        destinationType: WordHuntLevelType.challenge,
+        unlocked: true,
+      ),
+      WordHuntReferenceRouteSegmentStyle.challenge,
+    );
+    expect(
+      WordHuntReferenceRouteVisualContract.segmentStyleFor(
+        destinationType: WordHuntLevelType.bonus,
+        unlocked: true,
+      ),
+      WordHuntReferenceRouteSegmentStyle.bonus,
+    );
+    expect(
+      WordHuntReferenceRouteVisualContract.segmentStyleFor(
+        destinationType: WordHuntLevelType.routeFinal,
+        unlocked: true,
+      ),
+      WordHuntReferenceRouteSegmentStyle.finalStop,
+    );
+    expect(
+      WordHuntReferenceRouteVisualContract.segmentStyleFor(
+        destinationType: WordHuntLevelType.bonus,
+        unlocked: false,
+      ),
+      WordHuntReferenceRouteSegmentStyle.locked,
+      reason: 'Kilitli rota parçası özel hedef rengini kullanmamalı.',
+    );
+  });
 
   testWidgets('reference route follows the approved composition hierarchy', (
     tester,
