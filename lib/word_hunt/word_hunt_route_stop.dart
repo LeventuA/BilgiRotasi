@@ -196,7 +196,7 @@ class WordHuntRouteStop extends StatelessWidget {
     final accent = unlocked
         ? theme.accentFor(level.type)
         : theme.lockedAccent;
-    final clampedStars = stars.clamp(0, 3);
+    final clampedStars = stars.clamp(0, 3).toInt();
 
     return Semantics(
       button: unlocked,
