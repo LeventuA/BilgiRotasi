@@ -5,13 +5,7 @@ on:
     branches:
       - fix/kelime-avi-reference-layout-20260822
     paths:
-      - '.github/workflows/kelime-avi-reference-layout-apply.yml'
-  pull_request:
-    branches:
-      - feat/kelime-avi-clean-release-integration-20260821
-    paths:
-      - '.github/workflows/kelime-avi-reference-layout-apply.yml'
-      - 'test/word_hunt_route_map_v2_reference_layout_test.dart'
+      - '.tmp/kelime-avi-reference-layout.trigger'
 
 permissions:
   contents: write
@@ -137,11 +131,12 @@ jobs:
           flutter test test/word_hunt_route_map_v2_reference_layout_test.dart --reporter expanded
           flutter test test/word_hunt_route_map_v2_view_test.dart --reporter expanded
 
-      - name: Patch'i commit et ve tek kullanımlık workflow'u temizle
+      - name: Patch'i commit et ve tek kullanımlık dosyaları temizle
         shell: bash
         run: |
           set -euo pipefail
           git rm .github/workflows/kelime-avi-reference-layout-apply.yml
+          git rm .tmp/kelime-avi-reference-layout.trigger
           git add lib/word_hunt/word_hunt_route_map_v2_screen.dart test/word_hunt_route_map_v2_reference_layout_test.dart
           git diff --cached --check
           git config user.name 'github-actions[bot]'
