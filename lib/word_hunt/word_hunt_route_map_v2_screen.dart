@@ -585,8 +585,8 @@ class _RouteStop extends StatelessWidget {
         : Expanded(
             child: Padding(
               padding: EdgeInsets.only(
-                left: labelOnLeft ? 0 : 6,
-                right: labelOnLeft ? 6 : 0,
+                left: labelOnLeft ? 0 : 4,
+                right: labelOnLeft ? 4 : 0,
                 top: 4,
               ),
               child: _SpecialStopLabel(
@@ -743,7 +743,7 @@ class _SpecialStopLabel extends StatelessWidget {
       opacity: dimmed ? 0.68 : 1,
       child: Container(
         constraints: const BoxConstraints(minHeight: 40),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
@@ -761,18 +761,18 @@ class _SpecialStopLabel extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: accent, size: 17),
-            const SizedBox(width: 5),
+            Icon(icon, color: accent, size: 14),
+            const SizedBox(width: 4),
             Flexible(
               child: Text(
                 label,
                 maxLines: 2,
                 style: TextStyle(
                   color: accent,
-                  fontSize: 10.0,
+                  fontSize: 9.4,
                   height: 1.05,
                   fontWeight: FontWeight.w900,
-                  letterSpacing: 0.5,
+                  letterSpacing: 0.2,
                 ),
               ),
             ),
