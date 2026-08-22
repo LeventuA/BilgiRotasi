@@ -18,6 +18,47 @@ WordHuntLevelDefinition _level(int index, WordHuntLevelType type) {
 void main() {
   const metrics = WordHuntRouteStopMetrics.referenceBaseline;
 
+  testWidgets('approved reference keeps normal medallions compact and ornate', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: WordHuntRouteStop(
+            level: _level(1, WordHuntLevelType.normal),
+            stars: 3,
+            unlocked: true,
+          ),
+        ),
+      ),
+    );
+
+    expect(
+      metrics.normalDiameter,
+      lessThanOrEqualTo(52),
+      reason: 'Onaylı referansta normal rota medalyonları küçük kalmalı.',
+    );
+    expect(
+      metrics.starSize,
+      lessThanOrEqualTo(16),
+      reason: 'Yıldızlar küçük medalyonla orantılı kalmalı.',
+    );
+    expect(
+      find.byKey(const Key('word_hunt_route_stop_frame_1')),
+      findsOneWidget,
+      reason: 'Düz daire yerine dekoratif medalyon çerçevesi bulunmalı.',
+    );
+
+    final number = tester.widget<Text>(
+      find.byKey(const Key('word_hunt_route_stop_number_1')),
+    );
+    expect(
+      number.style?.fontSize,
+      lessThanOrEqualTo(20),
+      reason: 'Rota numarası referanstaki gibi küçük ve dengeli olmalı.',
+    );
+  });
+
   testWidgets('normal route stop keeps one geometry for open and locked states', (
     tester,
   ) async {
