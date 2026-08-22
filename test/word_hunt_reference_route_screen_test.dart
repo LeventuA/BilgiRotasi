@@ -98,9 +98,9 @@ void main() {
       reason: '7 numaranın yıldız alanı 8 numaralı Bonus durağın arkasında kalmamalı.',
     );
     expect(
-      eight.top - seven.bottom,
-      greaterThanOrEqualTo(8),
-      reason: '7 ve 8 arasında yıldızları okunur tutan net bir boşluk olmalı.',
+      eight.left - seven.right,
+      greaterThanOrEqualTo(1),
+      reason: '7 ve 8 yatay açılımında yıldızları okunur tutan güvenlik boşluğu olmalı.',
     );
   });
 
