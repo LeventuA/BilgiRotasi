@@ -1,5 +1,22 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0O - 22 Ağustos 2026 / Kelime Avı 7 numara son boşluk düzeltmesi
+
+- **Durum:** TEKNİK PASS / ANDROID 16 GÖRSEL KANIT PASS / PR #98 AÇIK + DRAFT / MERGE YOK / LEVENT NİHAİ GÖRSEL KABULÜ AÇIK.
+- Görsel branch `fix/kelime-avi-reference-layout-20260822`; exact head `54d75cd60217c3867601a23e10ddd1a4fe68f920`; parent PR #96 merge edilmemiştir.
+
+**Bitti ölçütü:**
+- [x] Yalnız 7 numara `x=0.29` -> `x=0.36`; `y=0.58` aynı; 9 ve diğer duraklar sabit.
+- [x] 7-9 yatay boşluğu referans testinde `>40` px olarak kilitlendi.
+- [x] Runner run `32571076320`: analyze 0 issue; referans 3/3; V2 4/4; diff check PASS.
+- [x] Android 16 visual proof run `32571152461`: SUCCESS; artifact `9475441130`; gerçek üst/alt screenshot üretildi.
+- [x] Genel regression run `32571152462`: SUCCESS.
+- [x] Soru bankası, main navigasyon, arka plan asset'i, oynanış, BoardMap/3B ve release config kapsam dışı kaldı.
+- [ ] Levent son Android 16 ekranını görsel olarak kabul eder veya ek geri bildirim verir.
+- [ ] Açık merge onayı olmadan PR #98 parent PR #96'ya, PR #96 da release'e merge edilmez.
+
+---
+
 ## 0M - 21 Ağustos 2026 / 1.68.19+109 merge ve yayın kapıları
 
 - **Durum:** PR #88 MERGED / release `b0240a7a4009c41326f459a37b8bedeab080d8d8` / `1.68.19+109` / +108 soru bankası korundu / UMP-AdMob + SSV tek gerçek +10 XP PASS / Play yükleme açık.
