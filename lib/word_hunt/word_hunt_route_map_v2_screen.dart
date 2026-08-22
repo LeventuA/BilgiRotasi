@@ -859,45 +859,6 @@ class _BottomMapButton extends StatelessWidget {
   }
 }
 
-class _ScenicBadge extends StatelessWidget {
-  const _ScenicBadge({required this.icon, required this.label});
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: Opacity(
-        opacity: 0.78,
-        child: Column(
-          children: [
-            Container(
-              width: 35,
-              height: 35,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xAA07101B),
-                border: Border.all(color: const Color(0xAAE9C77D)),
-              ),
-              child: Icon(icon, size: 19, color: const Color(0xFFE9C77D)),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: const TextStyle(
-                color: Color(0xFFD7CFBE),
-                fontSize: 8,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class _V2RoutePainter extends CustomPainter {
   const _V2RoutePainter({
     required this.points,
