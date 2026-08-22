@@ -64,7 +64,6 @@ jobs:
               text = text.replace(old, new)
           path.write_text(text, encoding='utf-8')
           PY
-          dart format lib/word_hunt/word_hunt_route_map_v2_screen.dart
           git diff --check
           git diff -- lib/word_hunt/word_hunt_route_map_v2_screen.dart
 
