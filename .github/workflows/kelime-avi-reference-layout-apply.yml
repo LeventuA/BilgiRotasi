@@ -1,0 +1,144 @@
+name: Kelime Avı referans yerleşimini uygula
+
+on:
+  push:
+    branches:
+      - fix/kelime-avi-reference-layout-20260822
+    paths:
+      - '.github/workflows/kelime-avi-reference-layout-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-test:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - name: Exact child branch HEAD'i indir
+        uses: actions/checkout@v4
+        with:
+          ref: fix/kelime-avi-reference-layout-20260822
+          fetch-depth: 0
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Referans yerleşim patch'ini deterministik uygula
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/word_hunt/word_hunt_route_map_v2_screen.dart')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = {
+          '''  static const List<Offset> _stops = <Offset>[
+              Offset(0.15, 0.10),
+              Offset(0.46, 0.17),
+              Offset(0.70, 0.28),
+              Offset(0.82, 0.39),
+              Offset(0.33, 0.48),
+              Offset(0.17, 0.60),
+              Offset(0.46, 0.67),
+              Offset(0.76, 0.73),
+              Offset(0.24, 0.82),
+              Offset(0.51, 0.91),
+            ];''': '''  static const List<Offset> _stops = <Offset>[
+              Offset(0.15, 0.08),
+              Offset(0.42, 0.14),
+              Offset(0.65, 0.22),
+              Offset(0.80, 0.31),
+              Offset(0.33, 0.40),
+              Offset(0.15, 0.52),
+              Offset(0.44, 0.58),
+              Offset(0.69, 0.64),
+              Offset(0.22, 0.72),
+              Offset(0.46, 0.80),
+            ];''',
+          'final sceneHeight = (constraints.maxWidth * 1.74).clamp(590.0, 760.0);':
+              'final sceneHeight = (constraints.maxWidth * 1.42).clamp(470.0, 540.0);',
+          'final boxWidth = special ? 188.0 : 76.0;':
+              'final boxWidth = special ? 148.0 : 76.0;',
+          'final boxHeight = special ? 100.0 : 78.0;':
+              'final boxHeight = special ? 92.0 : 78.0;',
+          'final placeLabelToLeft = level.index == 8;':
+              'const placeLabelToLeft = false;',
+          '''                const Positioned(
+                  top: 48,
+                  right: 24,
+                  child: _ScenicBadge(
+                    icon: Icons.light_mode_rounded,
+                    label: 'Fener',
+                  ),
+                ),
+                const Positioned(
+                  top: 196,
+                  left: 18,
+                  child: _ScenicBadge(
+                    icon: Icons.sailing_rounded,
+                    label: 'Liman',
+                  ),
+                ),
+                const Positioned(
+                  bottom: 82,
+                  right: 24,
+                  child: _ScenicBadge(
+                    icon: Icons.inventory_2_rounded,
+                    label: 'Hazine',
+                  ),
+                ),
+''': '',
+          'padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),':
+              'padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),',
+          'Icon(icon, color: accent, size: 19),':
+              'Icon(icon, color: accent, size: 17),',
+          'const SizedBox(width: 7),':
+              'const SizedBox(width: 5),',
+          'fontSize: 10.5,':
+              'fontSize: 10.0,',
+          }
+
+          for old, new in replacements.items():
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly one match, got {count}: {old[:80]!r}')
+              text = text.replace(old, new)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+          dart format lib/word_hunt/word_hunt_route_map_v2_screen.dart test/word_hunt_route_map_v2_reference_layout_test.dart
+          git diff --check
+
+      - name: Referans yerleşim testlerini çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt/word_hunt_route_map_v2_screen.dart
+          flutter test test/word_hunt_route_map_v2_reference_layout_test.dart --reporter expanded
+          flutter test test/word_hunt_route_map_v2_view_test.dart --reporter expanded
+
+      - name: Patch'i commit et ve tek kullanımlık workflow'u temizle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/kelime-avi-reference-layout-apply.yml
+          git add lib/word_hunt/word_hunt_route_map_v2_screen.dart test/word_hunt_route_map_v2_reference_layout_test.dart
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(kelime-avi): align route regions with approved reference'
+          git push origin HEAD:fix/kelime-avi-reference-layout-20260822
