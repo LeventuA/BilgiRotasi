@@ -21,6 +21,12 @@ void main() {
     );
   }
 
+  Rect rectOf(WidgetTester tester, int level) {
+    return tester.getRect(
+      find.byKey(Key('word_hunt_reference_level_$level')),
+    );
+  }
+
   testWidgets('reference route follows the approved composition hierarchy', (
     tester,
   ) async {
@@ -56,6 +62,26 @@ void main() {
     expect(nine.dx, lessThan(seven.dx));
     expect(ten.dy, greaterThan(nine.dy));
     expect((ten.dx - 411 / 2).abs(), lessThan(65));
+  });
+
+  testWidgets('upper stops keep enough breathing room for node and stars', (
+    tester,
+  ) async {
+    await pumpReferenceRoute(tester);
+
+    final three = rectOf(tester, 3);
+    final four = rectOf(tester, 4);
+
+    expect(
+      three.overlaps(four),
+      isFalse,
+      reason: '3 ve 4 durak kutuları veya yıldız alanları üst üste binmemeli.',
+    );
+    expect(
+      four.top - three.bottom,
+      greaterThanOrEqualTo(8),
+      reason: '1-4 üst bölgesi referanstaki gibi ferah kalmalı.',
+    );
   });
 
   testWidgets('special labels stay to the right of stops 5, 8 and 10', (
