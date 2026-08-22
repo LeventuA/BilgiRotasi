@@ -6,6 +6,12 @@ on:
       - fix/kelime-avi-reference-layout-20260822
     paths:
       - '.github/workflows/kelime-avi-reference-layout-apply.yml'
+  pull_request:
+    branches:
+      - feat/kelime-avi-clean-release-integration-20260821
+    paths:
+      - '.github/workflows/kelime-avi-reference-layout-apply.yml'
+      - 'test/word_hunt_route_map_v2_reference_layout_test.dart'
 
 permissions:
   contents: write
