@@ -84,6 +84,26 @@ void main() {
     );
   });
 
+  testWidgets('stop 7 stars stay clear of the bonus stop', (
+    tester,
+  ) async {
+    await pumpReferenceRoute(tester);
+
+    final seven = rectOf(tester, 7);
+    final eight = rectOf(tester, 8);
+
+    expect(
+      seven.overlaps(eight),
+      isFalse,
+      reason: '7 numaranın yıldız alanı 8 numaralı Bonus durağın arkasında kalmamalı.',
+    );
+    expect(
+      eight.top - seven.bottom,
+      greaterThanOrEqualTo(8),
+      reason: '7 ve 8 arasında yıldızları okunur tutan net bir boşluk olmalı.',
+    );
+  });
+
   testWidgets('special labels stay to the right of stops 5, 8 and 10', (
     tester,
   ) async {
