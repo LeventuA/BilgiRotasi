@@ -168,6 +168,42 @@ void main() {
     expect(harborSize.height, metrics.normalContainerHeight);
   });
 
+  testWidgets('special stars stay directly beneath their medallion', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: WordHuntRouteStop(
+              level: _level(5, WordHuntLevelType.challenge),
+              stars: 3,
+              unlocked: true,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final orbCenter = tester.getCenter(
+      find.byKey(const Key('word_hunt_route_stop_orb_5')),
+    );
+    final middleStarCenter = tester.getCenter(
+      find.byKey(const Key('word_hunt_route_stop_star_5_1')),
+    );
+
+    expect(
+      (orbCenter.dx - middleStarCenter.dx).abs(),
+      lessThanOrEqualTo(2),
+      reason: 'Özel durak yıldızları referanstaki gibi medalyonun altında olmalı.',
+    );
+    expect(
+      middleStarCenter.dy,
+      greaterThan(orbCenter.dy),
+      reason: 'Yıldız sırası medalyonun altında kalmalı.',
+    );
+  });
+
   testWidgets('special stops share the same component family and fixed labels', (
     tester,
   ) async {
