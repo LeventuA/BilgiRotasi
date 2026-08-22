@@ -1,0 +1,68 @@
+name: Kelime Avı 7 numara doğrulama kaydı
+
+on:
+  pull_request:
+    branches:
+      - ci/kelime-avi-level7-memory-runner-20260822
+    paths:
+      - '.tmp/kelime-avi-level7-memory.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - name: Head branch'i indir
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Proje hafızasını kontrollü güncelle
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .tmp/kelime-avi-level7-memory.trigger
+          python3 - <<'PY'
+          from pathlib import Path
+
+          status = Path('docs/project-memory/BILGI_ROTASI_DURUM.md')
+          status_text = status.read_text(encoding='utf-8')
+          status_heading = '# Bilgi Rotası - Güncel Proje Durumu\n\n'
+          status_section = '''## 0P. Kelime Avı Başlangıç Limanı 7 numara boşluk doğrulaması — 22 Ağustos 2026\n\n- Kanonik release `release/final-closed-test-aab-1.68.8` exact `39c03f169bbdf5dabb207af95c1fccf365400f98`; sürüm `1.68.19+109`.\n- Parent foundation PR #96 açık/Draft ve merge edilmemiştir. Görsel düzen branch'i `fix/kelime-avi-reference-layout-20260822`; PR #98 açık/Draft ve merge edilmemiştir.\n- Kullanıcının son görsel geri bildirimi yalnız 7 numaralı durağın 9 numaralı kilitli duraktan biraz daha uzak, merkez-sağ yönüne alınmasıydı. Deterministik değişiklik `Offset(0.29, 0.58)` -> `Offset(0.36, 0.58)`; 9 ve diğer duraklar değişmedi.\n- Test runner PR #103 / run `32571076320`: SUCCESS. `dart analyze lib/word_hunt` 0 issue; referans-layout 3/3 PASS; mevcut V2 view 4/4 PASS; `git diff --check` PASS. Commit `54d75cd60217c3867601a23e10ddd1a4fe68f920` — `fix(kelime-avi): separate level 7 from locked stop`.\n- Exact görsel branch head `54d75cd60217c3867601a23e10ddd1a4fe68f920` için Kelime Avı Android 16 run `32571152461`: SUCCESS. Artifact ID `9475441130`, digest `sha256:582bf85e0a19ed2b374332607c77568d3116ba341f76f267d35271aa0e1fadc1`. Gerçek Android 16 üst/alt screenshot'larında 7 ile 9 arasındaki yatay boşluk belirgin biçimde açılmıştır; 7, 8'in alanına taşmamıştır.\n- Aynı exact head için genel AdMob/Android regression run `32571152462`: SUCCESS; analiz/tüm testler, release APK, paket/manifest ve Android 16 app gate PASS.\n- `assets/questions.json`, `lib/main.dart`, onaylı `assets/word_hunt/baslangic_limani_bg.jpg`, oynanış/progression, BoardMap/67 node/3B, Android/AdMob/Firebase/release config değiştirilmedi.\n- `KARARLAR.md` değişmedi; yeni ürün kararı yok.\n\n**Durum:** Teknik ve Android 16 görsel doğrulaması PASS. Son kullanıcı görsel kabulü açık; PR #98 ve PR #96 için merge yapılmadı.\n\n---\n\n'''
+          if status_section.splitlines()[0] in status_text:
+              raise SystemExit('Status checkpoint already present')
+          if not status_text.startswith(status_heading):
+              raise SystemExit('Unexpected BILGI_ROTASI_DURUM heading')
+          status.write_text(status_heading + status_section + status_text[len(status_heading):], encoding='utf-8')
+
+          pool = Path('docs/project-memory/GOREV_HAVUZU.md')
+          pool_text = pool.read_text(encoding='utf-8')
+          pool_heading = '# Bilgi Rotası - Görev Havuzu\n\n'
+          pool_section = '''## 0O - 22 Ağustos 2026 / Kelime Avı 7 numara son boşluk düzeltmesi\n\n- **Durum:** TEKNİK PASS / ANDROID 16 GÖRSEL KANIT PASS / PR #98 AÇIK + DRAFT / MERGE YOK / LEVENT NİHAİ GÖRSEL KABULÜ AÇIK.\n- Görsel branch `fix/kelime-avi-reference-layout-20260822`; exact head `54d75cd60217c3867601a23e10ddd1a4fe68f920`; parent PR #96 merge edilmemiştir.\n\n**Bitti ölçütü:**\n- [x] Yalnız 7 numara `x=0.29` -> `x=0.36`; `y=0.58` aynı; 9 ve diğer duraklar sabit.\n- [x] 7-9 yatay boşluğu referans testinde `>40` px olarak kilitlendi.\n- [x] Runner run `32571076320`: analyze 0 issue; referans 3/3; V2 4/4; diff check PASS.\n- [x] Android 16 visual proof run `32571152461`: SUCCESS; artifact `9475441130`; gerçek üst/alt screenshot üretildi.\n- [x] Genel regression run `32571152462`: SUCCESS.\n- [x] Soru bankası, main navigasyon, arka plan asset'i, oynanış, BoardMap/3B ve release config kapsam dışı kaldı.\n- [ ] Levent son Android 16 ekranını görsel olarak kabul eder veya ek geri bildirim verir.\n- [ ] Açık merge onayı olmadan PR #98 parent PR #96'ya, PR #96 da release'e merge edilmez.\n\n---\n\n'''
+          if pool_section.splitlines()[0] in pool_text:
+              raise SystemExit('Task checkpoint already present')
+          if not pool_text.startswith(pool_heading):
+              raise SystemExit('Unexpected GOREV_HAVUZU heading')
+          pool.write_text(pool_heading + pool_section + pool_text[len(pool_heading):], encoding='utf-8')
+          PY
+
+          git diff --check
+          changed="$(git diff --name-only)"
+          test "$changed" = $'docs/project-memory/BILGI_ROTASI_DURUM.md\ndocs/project-memory/GOREV_HAVUZU.md'
+
+      - name: Hafıza kaydını commit et
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .tmp/kelime-avi-level7-memory.trigger
+          git add docs/project-memory/BILGI_ROTASI_DURUM.md docs/project-memory/GOREV_HAVUZU.md
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs: record Kelime Avi level 7 visual verification'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
