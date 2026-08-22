@@ -743,4 +743,4 @@ jobs:
             reports/ADMOB_SINGLE_APK_SHA256.txt
             reports/ADMOB_ANDROID_LAUNCH_LOG.txt
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 1

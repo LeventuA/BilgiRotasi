@@ -319,4 +319,4 @@ jobs:
             reports/ADMOB_ANDROID16_*
             reports/admob-android16-attempt-1/**
           if-no-files-found: warn
-          retention-days: 30
+          retention-days: 1

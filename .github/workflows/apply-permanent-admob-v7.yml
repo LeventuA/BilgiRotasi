@@ -232,7 +232,7 @@ jobs:
             reports/ADMOB_PRODUCTION_APK_CERTIFICATE.txt
             reports/ADMOB_PRODUCTION_APK_SHA256.txt
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 3
 
       - name: Production AAB artifact yükle
         uses: actions/upload-artifact@v4
@@ -244,7 +244,7 @@ jobs:
             reports/ADMOB_PRODUCTION_AAB_CERTIFICATE.txt
             reports/ADMOB_PRODUCTION_AAB_SHA256.txt
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 7
 
       - name: Geçici imza dosyalarını temizle
         if: always()

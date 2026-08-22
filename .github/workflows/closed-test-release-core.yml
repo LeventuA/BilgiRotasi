@@ -523,7 +523,7 @@ jobs:
             reports/SCREEN_CAPTURE_FAILURES.txt
             reports/android16-attempt-1/**
           if-no-files-found: warn
-          retention-days: 30
+          retention-days: 3
 
       - name: Geçici imza dosyalarını temizle
         if: always()

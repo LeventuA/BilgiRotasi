@@ -398,7 +398,7 @@ jobs:
             reports/RC1_AUTOMATED_REPORT.md
             reports/PHYSICAL_DEVICE_TEST.md
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 3
 
       - name: Reklam entegrasyonunu ana dala kaydet
         shell: bash
