@@ -25,16 +25,16 @@ class WordHuntRouteStopMetrics {
   });
 
   static const referenceBaseline = WordHuntRouteStopMetrics(
-    normalDiameter: 50,
-    specialDiameter: 58,
-    finalDiameter: 70,
-    normalContainerWidth: 68,
-    normalContainerHeight: 76,
-    specialContainerWidth: 184,
-    specialContainerHeight: 96,
-    specialLabelGap: 7,
-    starSize: 15,
-    starGap: 2,
+    normalDiameter: 32,
+    specialDiameter: 42,
+    finalDiameter: 58,
+    normalContainerWidth: 48,
+    normalContainerHeight: 54,
+    specialContainerWidth: 146,
+    specialContainerHeight: 70,
+    specialLabelGap: 5,
+    starSize: 11,
+    starGap: 1,
   );
 
   final double normalDiameter;
@@ -197,9 +197,10 @@ class WordHuntRouteStop extends StatelessWidget {
   Widget build(BuildContext context) {
     final special = level.type != WordHuntLevelType.normal;
     final lockedFinal = level.type == WordHuntLevelType.routeFinal && !unlocked;
-    final accent = lockedFinal
-        ? theme.finalAccent
-        : unlocked
+    final accent =
+        lockedFinal
+            ? theme.finalAccent
+            : unlocked
             ? theme.accentFor(level.type)
             : theme.lockedAccent;
     final clampedStars = stars.clamp(0, 3).toInt();
@@ -217,9 +218,10 @@ class WordHuntRouteStop extends StatelessWidget {
     return Semantics(
       button: unlocked,
       enabled: unlocked,
-      label: unlocked
-          ? 'Bölüm ${level.index}, ${_typeLabel.isEmpty ? 'normal' : _typeLabel}, $clampedStars yıldız, açık'
-          : 'Bölüm ${level.index}, kilitli',
+      label:
+          unlocked
+              ? 'Bölüm ${level.index}, ${_typeLabel.isEmpty ? 'normal' : _typeLabel}, $clampedStars yıldız, açık'
+              : 'Bölüm ${level.index}, kilitli',
       child: SizedBox(
         key: Key('word_hunt_route_stop_${level.index}'),
         width: metrics.containerWidthFor(level.type),
@@ -229,20 +231,21 @@ class WordHuntRouteStop extends StatelessWidget {
           child: InkWell(
             onTap: unlocked ? onTap : null,
             borderRadius: BorderRadius.circular(42),
-            child: special
-                ? _SpecialRow(
-                    level: level,
-                    unlocked: unlocked,
-                    lockedFinal: lockedFinal,
-                    accent: accent,
-                    label: _typeLabel,
-                    icon: _typeIcon,
-                    labelOnLeft: labelOnLeft,
-                    theme: theme,
-                    metrics: metrics,
-                    stopWithStars: stopWithStars,
-                  )
-                : Center(child: stopWithStars),
+            child:
+                special
+                    ? _SpecialRow(
+                      level: level,
+                      unlocked: unlocked,
+                      lockedFinal: lockedFinal,
+                      accent: accent,
+                      label: _typeLabel,
+                      icon: _typeIcon,
+                      labelOnLeft: labelOnLeft,
+                      theme: theme,
+                      metrics: metrics,
+                      stopWithStars: stopWithStars,
+                    )
+                    : Center(child: stopWithStars),
           ),
         ),
       ),
@@ -342,9 +345,10 @@ class _SpecialRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: labelOnLeft
-          ? <Widget>[stopLabel, gap, stopWithStars]
-          : <Widget>[stopWithStars, gap, stopLabel],
+      children:
+          labelOnLeft
+              ? <Widget>[stopLabel, gap, stopWithStars]
+              : <Widget>[stopWithStars, gap, stopLabel],
     );
   }
 }
@@ -369,10 +373,10 @@ class _RouteStopOrb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final numberSize = switch (level.type) {
-      WordHuntLevelType.normal => 18.0,
-      WordHuntLevelType.challenge => 20.0,
-      WordHuntLevelType.bonus => 20.0,
-      WordHuntLevelType.routeFinal => 24.0,
+      WordHuntLevelType.normal => 14.0,
+      WordHuntLevelType.challenge => 17.0,
+      WordHuntLevelType.bonus => 17.0,
+      WordHuntLevelType.routeFinal => 23.0,
     };
     final visuallyHighlighted = unlocked || lockedFinal;
 
@@ -393,33 +397,34 @@ class _RouteStopOrb extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Center(
-              child: visuallyHighlighted
-                  ? Text(
-                      '${level.index}',
-                      key: Key('word_hunt_route_stop_number_${level.index}'),
-                      style: TextStyle(
-                        color: theme.textColor,
-                        fontSize: numberSize,
-                        fontWeight: FontWeight.w800,
-                        height: 1,
+              child:
+                  visuallyHighlighted
+                      ? Text(
+                        '${level.index}',
+                        key: Key('word_hunt_route_stop_number_${level.index}'),
+                        style: TextStyle(
+                          color: theme.textColor,
+                          fontSize: numberSize,
+                          fontWeight: FontWeight.w800,
+                          height: 1,
+                          shadows: const <Shadow>[
+                            Shadow(
+                              color: Color(0xDD000000),
+                              blurRadius: 3,
+                              offset: Offset(0, 1.5),
+                            ),
+                          ],
+                        ),
+                      )
+                      : Icon(
+                        Icons.lock_rounded,
+                        key: Key('word_hunt_route_stop_lock_${level.index}'),
+                        color: theme.lockColor,
+                        size: 15,
                         shadows: const <Shadow>[
-                          Shadow(
-                            color: Color(0xDD000000),
-                            blurRadius: 3,
-                            offset: Offset(0, 1.5),
-                          ),
+                          Shadow(color: Color(0xCC000000), blurRadius: 3),
                         ],
                       ),
-                    )
-                  : Icon(
-                      Icons.lock_rounded,
-                      key: Key('word_hunt_route_stop_lock_${level.index}'),
-                      color: theme.lockColor,
-                      size: 20,
-                      shadows: const <Shadow>[
-                        Shadow(color: Color(0xCC000000), blurRadius: 3),
-                      ],
-                    ),
             ),
             if (lockedFinal)
               Positioned(
@@ -427,8 +432,8 @@ class _RouteStopOrb extends StatelessWidget {
                 bottom: 2,
                 child: Container(
                   key: Key('word_hunt_route_stop_lock_badge_${level.index}'),
-                  width: 18,
-                  height: 18,
+                  width: 14,
+                  height: 14,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: const Color(0xE6131820),
@@ -443,7 +448,7 @@ class _RouteStopOrb extends StatelessWidget {
                   child: Icon(
                     Icons.lock_rounded,
                     color: theme.lockColor,
-                    size: 11,
+                    size: 9,
                   ),
                 ),
               ),
@@ -477,52 +482,59 @@ class _MedallionFramePainter extends CustomPainter {
     final finalStop = type == WordHuntLevelType.routeFinal;
     final alpha = unlocked ? 1.0 : 0.72;
 
-    final glowPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = finalStop ? 5.5 : (special ? 4.5 : 3.5)
-      ..color = accent.withValues(alpha: unlocked ? 0.22 : 0.10)
-      ..maskFilter = MaskFilter.blur(
-        BlurStyle.normal,
-        unlocked ? (finalStop ? 7 : 5) : 2,
-      );
+    final glowPaint =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = finalStop ? 5.5 : (special ? 4.5 : 3.5)
+          ..color = accent.withValues(alpha: unlocked ? 0.22 : 0.10)
+          ..maskFilter = MaskFilter.blur(
+            BlurStyle.normal,
+            unlocked ? (finalStop ? 7 : 5) : 2,
+          );
     canvas.drawCircle(center, radius - 5, glowPaint);
 
-    final shellPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..shader = RadialGradient(
-        colors: <Color>[
-          accent.withValues(alpha: unlocked ? 0.32 : 0.12),
-          surfaceInner,
-          surfaceOuter,
-        ],
-        stops: const <double>[0, 0.58, 1],
-      ).createShader(Rect.fromCircle(center: center, radius: radius - 4));
+    final shellPaint =
+        Paint()
+          ..style = PaintingStyle.fill
+          ..shader = RadialGradient(
+            colors: <Color>[
+              accent.withValues(alpha: unlocked ? 0.32 : 0.12),
+              surfaceInner,
+              surfaceOuter,
+            ],
+            stops: const <double>[0, 0.58, 1],
+          ).createShader(Rect.fromCircle(center: center, radius: radius - 4));
     canvas.drawCircle(center, radius - 5, shellPaint);
 
-    final outerRing = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = finalStop ? 2.6 : 2.0
-      ..color = accent.withValues(alpha: 0.94 * alpha);
-    final innerRing = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0
-      ..color = accent.withValues(alpha: 0.48 * alpha);
-    final fineRing = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.8
-      ..color = const Color(0xFFFFF2C6).withValues(alpha: 0.42 * alpha);
+    final outerRing =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = finalStop ? 2.6 : 2.0
+          ..color = accent.withValues(alpha: 0.94 * alpha);
+    final innerRing =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.0
+          ..color = accent.withValues(alpha: 0.48 * alpha);
+    final fineRing =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 0.8
+          ..color = const Color(0xFFFFF2C6).withValues(alpha: 0.42 * alpha);
 
     canvas.drawCircle(center, radius - 5.5, outerRing);
     canvas.drawCircle(center, radius - 9.0, innerRing);
     canvas.drawCircle(center, radius - 12.5, fineRing);
 
-    final ornamentPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..color = accent.withValues(alpha: 0.90 * alpha);
-    final ornamentOutline = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.8
-      ..color = const Color(0xFFFFF2C6).withValues(alpha: 0.65 * alpha);
+    final ornamentPaint =
+        Paint()
+          ..style = PaintingStyle.fill
+          ..color = accent.withValues(alpha: 0.90 * alpha);
+    final ornamentOutline =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 0.8
+          ..color = const Color(0xFFFFF2C6).withValues(alpha: 0.65 * alpha);
 
     final ornamentCount = finalStop ? 8 : (special ? 6 : 4);
     final ornamentLength = finalStop ? 7.0 : (special ? 5.5 : 4.5);
@@ -539,29 +551,32 @@ class _MedallionFramePainter extends CustomPainter {
       final right = base - tangent * ornamentWidth;
       final inner = center + radial * (ornamentRadius - ornamentLength * 1.15);
 
-      final path = Path()
-        ..moveTo(tip.dx, tip.dy)
-        ..lineTo(left.dx, left.dy)
-        ..lineTo(inner.dx, inner.dy)
-        ..lineTo(right.dx, right.dy)
-        ..close();
+      final path =
+          Path()
+            ..moveTo(tip.dx, tip.dy)
+            ..lineTo(left.dx, left.dy)
+            ..lineTo(inner.dx, inner.dy)
+            ..lineTo(right.dx, right.dy)
+            ..close();
       canvas.drawPath(path, ornamentPaint);
       canvas.drawPath(path, ornamentOutline);
     }
 
     if (finalStop) {
-      final crownPaint = Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.4
-        ..strokeCap = StrokeCap.round
-        ..color = accent.withValues(alpha: 0.95 * alpha);
+      final crownPaint =
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1.4
+            ..strokeCap = StrokeCap.round
+            ..color = accent.withValues(alpha: 0.95 * alpha);
       final top = center.dy - radius + 2;
-      final crown = Path()
-        ..moveTo(center.dx - 10, top + 9)
-        ..lineTo(center.dx - 6, top + 2)
-        ..lineTo(center.dx, top + 7)
-        ..lineTo(center.dx + 6, top + 2)
-        ..lineTo(center.dx + 10, top + 9);
+      final crown =
+          Path()
+            ..moveTo(center.dx - 10, top + 9)
+            ..lineTo(center.dx - 6, top + 2)
+            ..lineTo(center.dx, top + 7)
+            ..lineTo(center.dx + 6, top + 2)
+            ..lineTo(center.dx + 10, top + 9);
       canvas.drawPath(crown, crownPaint);
     }
   }
@@ -601,17 +616,19 @@ class _RouteStopStars extends StatelessWidget {
           Icons.star_rounded,
           key: Key('word_hunt_route_stop_star_${levelIndex}_$index'),
           size: starSize,
-          color: earned
-              ? theme.starFilled
-              : theme.starEmpty.withValues(alpha: unlocked ? 1 : 0.72),
-          shadows: earned
-              ? <Shadow>[
-                  Shadow(
-                    color: theme.starFilled.withValues(alpha: 0.55),
-                    blurRadius: 4,
-                  ),
-                ]
-              : const <Shadow>[],
+          color:
+              earned
+                  ? theme.starFilled
+                  : theme.starEmpty.withValues(alpha: unlocked ? 1 : 0.72),
+          shadows:
+              earned
+                  ? <Shadow>[
+                    Shadow(
+                      color: theme.starFilled.withValues(alpha: 0.55),
+                      blurRadius: 4,
+                    ),
+                  ]
+                  : const <Shadow>[],
         );
       }),
     );
@@ -640,20 +657,17 @@ class _SpecialStopLabel extends StatelessWidget {
     return Opacity(
       opacity: dimmed ? 0.72 : 1,
       child: Container(
-        constraints: BoxConstraints(minHeight: emphasized ? 44 : 40),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        constraints: BoxConstraints(minHeight: emphasized ? 38 : 34),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
         decoration: BoxDecoration(
           color: theme.labelSurface,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(2),
           border: Border.all(
             color: accent.withValues(alpha: 0.84),
             width: emphasized ? 1.6 : 1.2,
           ),
           boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: accent.withValues(alpha: 0.20),
-              blurRadius: 7,
-            ),
+            BoxShadow(color: accent.withValues(alpha: 0.20), blurRadius: 7),
           ],
         ),
         child: DecoratedBox(
@@ -662,16 +676,16 @@ class _SpecialStopLabel extends StatelessWidget {
               color: accent.withValues(alpha: 0.22),
               width: 0.8,
             ),
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(1),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(icon, color: accent, size: emphasized ? 17 : 16),
-                const SizedBox(width: 5),
+                Icon(icon, color: accent, size: emphasized ? 15 : 14),
+                const SizedBox(width: 4),
                 Flexible(
                   child: Text(
                     label,
@@ -680,7 +694,7 @@ class _SpecialStopLabel extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: accent,
-                      fontSize: emphasized ? 10.5 : 10,
+                      fontSize: emphasized ? 10 : 9.5,
                       height: 1.05,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.3,
