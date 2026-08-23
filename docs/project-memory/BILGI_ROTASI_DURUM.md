@@ -1,5 +1,21 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
+## 0P. Issue #109 / PR #110 Başlangıç Limanı bağlayıcı referans eşlemesi — 23 Ağustos 2026
+
+- Başlangıç kaynağı PR #107 exact head `a4290d9f4893a20c1b0ae1f6e70365419552720e`; ayrı branch `fix/kelime-avi-approved-reference-pixel-match-20260823`, Draft PR #110. Güncel head canlı GitHub PR metadata'sından doğrulanır; merge yapılmadı.
+- Issue #109'a eklenen `720x1280` `Photo 1.jpg` tek bağlayıcı görsel kaynak olarak kullanıldı; mevcut Flutter ekranı ve eski screenshot'lar tasarım kaynağı yapılmadı.
+- 1-10 durak merkezleri normalize referans koordinatlarıyla kilitlendi. Üst mor başlık, ince süslü altın panel, cyan/amber/mor/kilit/final rota dili, küçük medalyonlar, dinamik yıldız/kilit/özel etiketler ve alt kontroller ayrı Flutter katmanları olarak korundu.
+- Progression/unlock motoru değişmedi. Exact-head kanıt state'i gerçek `21 / 30` değerini gösterir; referanstaki statik `12 / 30` sahte veriyle taklit edilmedi. Kilitli final oynanamaz kalırken altın hedef/final yolu görselini korur.
+- Focused suite **74/74 PASS**; yeni geometri/medalyon hedefli suite **15/15 PASS**; `dart analyze lib/word_hunt` **0 issue**; `git diff --check` PASS. Tam yerel Flutter koşusu **373 PASS / 1 ortam hatası**: yalnız Windows'ta `python3` bulunmadığı için mevcut `release_readiness_report_test.dart` exit `9009`.
+- `flutter analyze --no-pub --no-fatal-warnings --no-fatal-infos` PASS; repo genelindeki mevcut 92 warning/info korundu, değişen Kelime Avı kaynaklarında yeni issue yok.
+- Final Android 16 run/job `32630447439` / `97172319614`: SUCCESS. Artifact ID `9490988424`, digest `sha256:d94c0b793d9aead8062f0ccd9baf1efbcce0ca5969be0e29d701dbda00464e91`; screenshot `1080x1920`; APK SHA-256 `9d27a9a9c5b42b1e0f618c8c7d96be07dcb2718e8b7efea1748fb57ef4f7fc8d`.
+- Packaged background kaynakla byte-eşit, runtime asset load PASS; app-specific crash/ANR/FATAL/process-death eşleşmesi 0. Referans + Android screenshot aynı tuvalde karşılaştırıldı; `design-qa.md` sonucu `passed`, P0/P1/P2 açık bulgu yok.
+- `assets/questions.json`, `lib/main.dart`, BoardMap/67 node, 3B tahta, AdMob/Firebase/Android/release config ve `pubspec.yaml` sürümü değişmedi; sürüm `1.68.19+109`.
+
+**Durum:** PR #110 açık/Draft, merge edilmedi. Android 16 teknik ve görsel QA PASS; Levent'in PR inceleme/merge kararı ayrıdır.
+
+---
+
 ## 0O. PR #96 Kelime Avı foundation + Başlangıç Limanı teknik doğrulaması — 22 Ağustos 2026
 
 - Kanonik repo `ZMilaStudio/BilgiRotasi`; canlı base `release/final-closed-test-aab-1.68.8` head `39c03f169bbdf5dabb207af95c1fccf365400f98`; sürüm `1.68.19+109`.

@@ -1,5 +1,24 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0O - 23 Ağustos 2026 / Issue #109 Başlangıç Limanı pixel-match
+
+- **Durum:** UYGULANDI / ANDROID 16 + GÖRSEL QA PASS / PR #110 AÇIK + DRAFT / MERGE YOK.
+- Kaynak PR #107 exact `a4290d9f4893a20c1b0ae1f6e70365419552720e`; branch `fix/kelime-avi-approved-reference-pixel-match-20260823`; sürüm `1.68.19+109`.
+
+**Bitti ölçütü:**
+- [x] Issue #109 `Photo 1.jpg` tek bağlayıcı referans olarak ölçüldü; mevcut ekran/eski screenshot tasarım kaynağı olmadı.
+- [x] 1-10 geometri, panel, rota paleti, medalyon/yıldız/kilit, 5/8/10 etiketleri ve alt kontroller modüler Flutter katmanlarıyla eşleştirildi.
+- [x] Progression/unlock davranışı ve ayrı background asset sözleşmesi korundu.
+- [x] Focused 74/74; hedefli 15/15; Kelime Avı analyze 0 issue; diff check PASS.
+- [x] Tam Flutter 373 PASS / 1 ortam hatası (`python3` yok, mevcut readiness testi exit 9009); repo analyze non-fatal PASS, mevcut 92 issue.
+- [x] Final Android 16 run/job `32630447439` / `97172319614` SUCCESS; artifact ID `9490988424`, screenshot ve logcat saklandı.
+- [x] Packaged asset byte-eşit/runtime load PASS; app crash/ANR/FATAL/process-death 0.
+- [x] Referans + exact-head screenshot aynı tuvalde karşılaştırıldı; `design-qa.md` P0/P1/P2 yok ve `passed`.
+- [x] Kapsam dışı dosyalar ve sürüm korunuyor.
+- [ ] Levent açık merge onayı vermeden PR #110 merge edilmez veya Draft'tan çıkarılmaz.
+
+---
+
 ## 0N - 22 Ağustos 2026 / PR #96 Kelime Avı gece doğrulaması
 
 - **Durum:** TEKNİK DOĞRULAMA PASS / PR #96 AÇIK + DRAFT / MERGE YOK / GÖRSEL NİHAİ KULLANICI KABULÜ AÇIK.

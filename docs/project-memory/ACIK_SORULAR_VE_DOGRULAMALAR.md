@@ -1,5 +1,13 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
+## Issue #109 / PR #110 teknik ve görsel QA sonrası — AÇIK KARAR
+
+- Exact-head Android 16 run/job `32630447439` / `97172319614` SUCCESS; artifact ID `9490988424`.
+- `design-qa.md` sonucu PASS; P0/P1/P2 açık görsel bulgu yok. CI screenshot kanıtı kullanıcının merge onayı yerine geçmez.
+- **DOĞRULANACAK:** Levent PR #110 için açık merge/onay kararı verecek mi? O zamana kadar PR açık/Draft/merge edilmemiş kalır.
+
+---
+
 ## PR #96 Kelime Avı teknik kanıt sonrası — AÇIK KABULLER
 
 - Teknik kaynak/test/Android 16 kanıtı `8b4022d939153f88f14c765a61a0962ba0473769` üzerinde PASS: run/job `32543597270` / `96958047145`, artifact ID `9467915888`.

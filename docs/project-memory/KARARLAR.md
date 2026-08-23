@@ -2,6 +2,14 @@
 
 ---
 
+## 0A. Kelime Avı Başlangıç Limanı bağlayıcı görseli
+
+- Issue #109'a eklenen `Photo 1.jpg`, Başlangıç Limanı rota ekranı için tek bağlayıcı görsel referanstır; eski Flutter ekranları ve screenshot'lar tasarım kaynağı değildir.
+- Arka plan ayrı raster asset, rota/panel/medalyon/yıldız/kilit/etiket/kontrol katmanları dinamik Flutter bileşenleri olarak kalır; referans screenshot uygulamaya tek parça UI olarak gömülmez.
+- Görsel state oyun progression gerçeğini bozmaz. Kilitli final altın hedef olarak görünebilir fakat oynanabilir sayılmaz; ilerleme sayısı gerçek state'ten hesaplanır.
+
+---
+
 ## 0. Genel duyuru bildirimi
 
 - Genel duyurular Firebase Cloud Messaging ile ve kimlik içermeyen ortam
