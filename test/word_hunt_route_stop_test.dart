@@ -37,6 +37,8 @@ void main() {
     expect(metrics.challengeDiameter, 49);
     expect(metrics.bonusDiameter, 50);
     expect(metrics.finalDiameter, 65);
+    expect(metrics.challengeContainerWidth, 190);
+    expect(metrics.bonusContainerWidth, 152);
     expect(
       metrics.starSize,
       14,

@@ -34,8 +34,8 @@ class WordHuntRouteStopMetrics {
     finalDiameter: 65,
     normalContainerWidth: 51,
     normalContainerHeight: 55,
-    challengeContainerWidth: 168,
-    bonusContainerWidth: 132,
+    challengeContainerWidth: 190,
+    bonusContainerWidth: 152,
     finalContainerWidth: 166,
     specialContainerHeight: 86,
     specialLabelGap: 5,
@@ -744,10 +744,10 @@ class _SpecialStopLabel extends StatelessWidget {
                       fontFamily: 'serif',
                       fontSize:
                           label == 'MEYDAN OKUMA'
-                              ? 10.5
+                              ? 9.0
                               : emphasized
                               ? 11.5
-                              : 10.5,
+                              : 9.5,
                       height: 1.05,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.3,
