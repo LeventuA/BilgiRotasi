@@ -30,8 +30,10 @@ Dinamik kanıt state'i gerçek `21 / 30` ilerlemeyi gösterir; referanstaki stat
 
 ## Açık bulgular
 
-P0: yok.  
-P1: yok.  
+P0: yok.
+
+P1: yok.
+
 P2: yok.
 
 final result: passed
