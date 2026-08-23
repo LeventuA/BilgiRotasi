@@ -1,3 +1,5 @@
+import 'dart:ui' show SemanticsAction;
+
 import 'package:bilgi_rotasi/word_hunt/word_hunt_models.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_route_stop.dart';
 import 'package:flutter/material.dart';
@@ -33,15 +35,15 @@ void main() {
       ),
     );
 
-    expect(metrics.normalDiameter, 39);
-    expect(metrics.challengeDiameter, 49);
-    expect(metrics.bonusDiameter, 50);
-    expect(metrics.finalDiameter, 65);
-    expect(metrics.challengeContainerWidth, 190);
-    expect(metrics.bonusContainerWidth, 152);
+    expect(metrics.normalDiameter, 78);
+    expect(metrics.challengeDiameter, 104);
+    expect(metrics.bonusDiameter, 104);
+    expect(metrics.finalDiameter, 142);
+    expect(metrics.challengeContainerWidth, 440);
+    expect(metrics.bonusContainerWidth, 321);
     expect(
       metrics.starSize,
-      14,
+      24,
       reason: 'Yıldızlar küçük medalyonla orantılı kalmalı.',
     );
     expect(
@@ -55,7 +57,7 @@ void main() {
     );
     expect(
       number.style?.fontSize,
-      16,
+      30,
       reason: 'Rota numarası referanstaki gibi küçük ve dengeli olmalı.',
     );
   });
@@ -126,20 +128,82 @@ void main() {
     },
   );
 
-  testWidgets('locked final stays disabled but keeps gold numbered destination', (
+  testWidgets(
+    'locked final stays disabled but keeps gold numbered destination',
+    (tester) async {
+      var tapped = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: WordHuntRouteStop(
+                level: _level(10, WordHuntLevelType.routeFinal),
+                stars: 0,
+                unlocked: false,
+                onTap: () => tapped = true,
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_number_10')),
+        findsOneWidget,
+        reason: 'Kilitli final, referanstaki altın 10 hedefini göstermeli.',
+      );
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_lock_badge_10')),
+        findsNothing,
+        reason: 'Bağlayıcı referansta altın final üzerinde lock badge yoktur.',
+      );
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_crown_10')),
+        findsOneWidget,
+        reason: 'Final hedefi ayrı ve süslü taç siluetini korumalı.',
+      );
+      for (var star = 0; star < 3; star++) {
+        final icon = tester.widget<Icon>(
+          find.byKey(Key('word_hunt_route_stop_star_10_$star')),
+        );
+        expect(icon.color, WordHuntRouteStopTheme.harbor.starFilled);
+      }
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_lock_10')),
+        findsNothing,
+        reason: 'Final hedefi ana kilit ikonuna dönüşmemeli.',
+      );
+
+      await tester.tap(
+        find.byKey(const Key('word_hunt_route_stop_10')),
+        warnIfMissed: false,
+      );
+      await tester.pump();
+      expect(tapped, isFalse, reason: 'Kilitli final callback üretmemeli.');
+
+      final semantics = tester.getSemantics(
+        find.byKey(const Key('word_hunt_route_stop_10')),
+      );
+      expect(semantics.label, contains('kilitli'));
+      expect(
+        semantics.getSemanticsData().hasAction(SemanticsAction.tap),
+        isFalse,
+      );
+    },
+  );
+
+  testWidgets('locked normal stop keeps silver lock and three empty stars', (
     tester,
   ) async {
-    var tapped = false;
-
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
           body: Center(
             child: WordHuntRouteStop(
-              level: _level(10, WordHuntLevelType.routeFinal),
+              level: _level(9, WordHuntLevelType.normal),
               stars: 0,
               unlocked: false,
-              onTap: () => tapped = true,
             ),
           ),
         ),
@@ -147,39 +211,22 @@ void main() {
     );
 
     expect(
-      find.byKey(const Key('word_hunt_route_stop_number_10')),
+      find.byKey(const Key('word_hunt_route_stop_lock_9')),
       findsOneWidget,
-      reason: 'Kilitli final, referanstaki altın 10 hedefini göstermeli.',
     );
     expect(
-      find.byKey(const Key('word_hunt_route_stop_lock_badge_10')),
-      findsOneWidget,
-      reason:
-          'Finalin oynanamaz olduğu küçük kilit rozetiyle açıkça belirtilmeli.',
-    );
-    expect(
-      find.byKey(const Key('word_hunt_route_stop_crown_10')),
-      findsOneWidget,
-      reason: 'Final hedefi ayrı ve süslü taç siluetini korumalı.',
+      find.byKey(const Key('word_hunt_route_stop_number_9')),
+      findsNothing,
     );
     for (var star = 0; star < 3; star++) {
       final icon = tester.widget<Icon>(
-        find.byKey(Key('word_hunt_route_stop_star_10_$star')),
+        find.byKey(Key('word_hunt_route_stop_star_9_$star')),
       );
-      expect(icon.color, WordHuntRouteStopTheme.harbor.starFilled);
+      expect(
+        icon.color,
+        WordHuntRouteStopTheme.harbor.starEmpty.withValues(alpha: 0.72),
+      );
     }
-    expect(
-      find.byKey(const Key('word_hunt_route_stop_lock_10')),
-      findsNothing,
-      reason: 'Final hedefi ana kilit ikonuna dönüşmemeli.',
-    );
-
-    await tester.tap(
-      find.byKey(const Key('word_hunt_route_stop_10')),
-      warnIfMissed: false,
-    );
-    await tester.pump();
-    expect(tapped, isFalse, reason: 'Kilitli final callback üretmemeli.');
   });
 
   testWidgets('theme changes visual tokens without changing stop geometry', (
@@ -266,6 +313,8 @@ void main() {
   testWidgets(
     'special stops share the same component family and fixed labels',
     (tester) async {
+      await tester.binding.setSurfaceSize(const Size(800, 800));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -321,7 +370,7 @@ void main() {
       );
       expect(
         find.byKey(const Key('word_hunt_route_stop_lock_badge_10')),
-        findsOneWidget,
+        findsNothing,
       );
     },
   );

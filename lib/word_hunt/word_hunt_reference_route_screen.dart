@@ -15,41 +15,85 @@ import 'word_hunt_starter_content.dart';
 class WordHuntReferenceRouteLayout {
   WordHuntReferenceRouteLayout._();
 
+  static const Size canonicalSize = Size(1080, 1920);
+
   static const List<Offset> stops = <Offset>[
-    Offset(0.189, 0.238), // 1 - üst sol
-    Offset(0.443, 0.257), // 2 - üst orta
-    Offset(0.642, 0.305), // 3 - üst sağ
-    Offset(0.803, 0.373), // 4 - sağdaki deniz feneri dönüşü
-    Offset(0.335, 0.453), // 5 - meydan okuma
-    Offset(0.167, 0.552), // 6 - alt sol
-    Offset(0.460, 0.583), // 7 - merkez-alt
-    Offset(0.668, 0.616), // 8 - bonus, sağ
-    Offset(0.236, 0.697), // 9 - kilitli sol kol
-    Offset(0.489, 0.797), // 10 - rota finali
+    Offset(204.12, 456.96), // 1 - üst sol
+    Offset(478.44, 493.44), // 2 - üst orta
+    Offset(693.36, 585.60), // 3 - üst sağ
+    Offset(867.24, 716.16), // 4 - sağdaki deniz feneri dönüşü
+    Offset(361.80, 869.76), // 5 - meydan okuma
+    Offset(180.36, 1059.84), // 6 - alt sol
+    Offset(496.80, 1119.36), // 7 - merkez-alt
+    Offset(721.44, 1182.72), // 8 - bonus, sağ
+    Offset(254.88, 1338.24), // 9 - kilitli sol kol
+    Offset(528.12, 1530.24), // 10 - rota finali
   ];
 
-  static const double routeAreaTop = 0;
-  static const double routeAreaBottom = 0;
-
-  static const Rect topPanel = Rect.fromLTRB(0.081, 0.070, 0.924, 0.158);
+  static const Rect topPanel = Rect.fromLTRB(87.48, 134.40, 997.92, 303.36);
 
   static const List<Offset> bottomControlCenters = <Offset>[
-    Offset(0.126, 0.933),
-    Offset(0.875, 0.933),
+    Offset(136.08, 1764.00),
+    Offset(945.00, 1764.00),
   ];
+
+  static const Map<int, Rect> specialPlaques = <int, Rect>{
+    5: Rect.fromLTWH(426, 825, 324, 88),
+    8: Rect.fromLTWH(785, 1142, 206, 82),
+    10: Rect.fromLTWH(613, 1488, 250, 110),
+  };
+
+  static const Rect finalCrown = Rect.fromLTWH(451, 1417, 154, 94);
 
   /// Her segment için bağlayıcı referanstan ölçülen iki cubic Bézier kontrolü.
   static const List<(Offset, Offset)> routeControls = <(Offset, Offset)>[
-    (Offset(0.270, 0.236), Offset(0.365, 0.242)),
-    (Offset(0.515, 0.266), Offset(0.585, 0.286)),
-    (Offset(0.704, 0.325), Offset(0.760, 0.348)),
-    (Offset(0.778, 0.410), Offset(0.520, 0.423)),
-    (Offset(0.250, 0.480), Offset(0.190, 0.515)),
-    (Offset(0.245, 0.565), Offset(0.360, 0.575)),
-    (Offset(0.535, 0.590), Offset(0.610, 0.603)),
-    (Offset(0.600, 0.645), Offset(0.335, 0.660)),
-    (Offset(0.225, 0.746), Offset(0.380, 0.775)),
+    (Offset(291.60, 453.12), Offset(394.20, 464.64)),
+    (Offset(556.20, 510.72), Offset(631.80, 549.12)),
+    (Offset(760.32, 624.00), Offset(820.80, 668.16)),
+    (Offset(840.24, 787.20), Offset(561.60, 812.16)),
+    (Offset(270.00, 921.60), Offset(205.20, 988.80)),
+    (Offset(264.60, 1084.80), Offset(388.80, 1104.00)),
+    (Offset(577.80, 1132.80), Offset(658.80, 1157.76)),
+    (Offset(648.00, 1238.40), Offset(361.80, 1267.20)),
+    (Offset(243.00, 1432.32), Offset(410.40, 1488.00)),
   ];
+}
+
+/// Canonical 1080x1920 sahneyi viewport'a tek ölçek ve tek öteleme ile taşır.
+/// Background ve bütün Flutter overlay'leri aynı sahnenin çocuğudur.
+@immutable
+class WordHuntCanonicalSceneTransform {
+  const WordHuntCanonicalSceneTransform._({
+    required this.viewportSize,
+    required this.scale,
+    required this.translation,
+  });
+
+  factory WordHuntCanonicalSceneTransform.cover(Size viewportSize) {
+    final scale = math.max(
+      viewportSize.width / WordHuntReferenceRouteLayout.canonicalSize.width,
+      viewportSize.height / WordHuntReferenceRouteLayout.canonicalSize.height,
+    );
+    final scaledSize = WordHuntReferenceRouteLayout.canonicalSize * scale;
+    return WordHuntCanonicalSceneTransform._(
+      viewportSize: viewportSize,
+      scale: scale,
+      translation: Offset(
+        (viewportSize.width - scaledSize.width) / 2,
+        (viewportSize.height - scaledSize.height) / 2,
+      ),
+    );
+  }
+
+  final Size viewportSize;
+  final double scale;
+  final Offset translation;
+
+  Rect get sceneRect =>
+      translation & (WordHuntReferenceRouteLayout.canonicalSize * scale);
+
+  Offset toViewport(Offset canonicalPoint) =>
+      translation + canonicalPoint * scale;
 }
 
 enum WordHuntReferenceRouteSegmentStyle {
@@ -119,118 +163,123 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
       backgroundColor: const Color(0xFF020611),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          final size = Size(constraints.maxWidth, constraints.maxHeight);
-          const routeTop = WordHuntReferenceRouteLayout.routeAreaTop;
-          const routeBottom = WordHuntReferenceRouteLayout.routeAreaBottom;
-          final routeHeight = size.height - routeTop - routeBottom;
-          final routeSize = Size(size.width, routeHeight);
+          final viewportSize = Size(
+            constraints.maxWidth,
+            constraints.maxHeight,
+          );
+          final sceneTransform = WordHuntCanonicalSceneTransform.cover(
+            viewportSize,
+          );
+          const routeSize = WordHuntReferenceRouteLayout.canonicalSize;
           final points = WordHuntReferenceRouteLayout.stops
               .take(route.levels.length)
-              .map(
-                (stop) => Offset(
-                  stop.dx * routeSize.width,
-                  stop.dy * routeSize.height,
-                ),
-              )
               .toList(growable: false);
           final levelTypes = route.levels
               .take(points.length)
               .map((level) => level.type)
               .toList(growable: false);
 
-          return Stack(
-            fit: StackFit.expand,
-            children: [
-              _ReferenceBackground(assetPath: sceneAssetPath),
-              const _ReferenceLegibilityOverlay(),
-              const Positioned.fill(
-                child: IgnorePointer(
-                  child: CustomPaint(painter: _ReferenceFramePainter()),
-                ),
-              ),
-              _ReferenceTopChrome(
-                viewportSize: size,
-                title: route.title,
-                stars: totalStars,
-                maximumStars: route.maximumStars,
-                unlockStarsRequired: route.unlockStarsRequired,
-                onBack: onBack,
-                onInfo: onInfo,
-              ),
-              Positioned(
-                key: const Key('word_hunt_reference_route_area'),
-                left: 0,
-                right: 0,
-                top: routeTop,
-                height: routeHeight,
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Positioned.fill(
-                      child: CustomPaint(
-                        painter: _ReferenceRoutePainter(
-                          points: points,
-                          levelTypes: levelTypes,
-                          lastUnlockedIndex: lastUnlocked,
-                        ),
+          return ClipRect(
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Positioned.fromRect(
+                  rect: sceneTransform.sceneRect,
+                  child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: SizedBox.fromSize(
+                      key: const Key('word_hunt_reference_canonical_scene'),
+                      size: WordHuntReferenceRouteLayout.canonicalSize,
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          _ReferenceBackground(assetPath: sceneAssetPath),
+                          const _ReferenceLegibilityOverlay(),
+                          const Positioned.fill(
+                            child: IgnorePointer(
+                              child: CustomPaint(
+                                painter: _ReferenceFramePainter(),
+                              ),
+                            ),
+                          ),
+                          _ReferenceTopChrome(
+                            title: route.title,
+                            stars: totalStars,
+                            maximumStars: route.maximumStars,
+                            unlockStarsRequired: route.unlockStarsRequired,
+                            onBack: onBack,
+                            onInfo: onInfo,
+                          ),
+                          Positioned.fill(
+                            key: const Key('word_hunt_reference_route_area'),
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                Positioned.fill(
+                                  child: CustomPaint(
+                                    painter: _ReferenceRoutePainter(
+                                      points: points,
+                                      levelTypes: levelTypes,
+                                      lastUnlockedIndex: lastUnlocked,
+                                    ),
+                                  ),
+                                ),
+                                for (
+                                  var index = 0;
+                                  index < points.length;
+                                  index++
+                                )
+                                  _positionStop(
+                                    point: points[index],
+                                    level: route.levels[index],
+                                    stars: progress.starsFor(
+                                      route.levels[index].id,
+                                    ),
+                                    unlocked:
+                                        WordHuntRouteProgressEngine.isLevelUnlocked(
+                                          route,
+                                          progress,
+                                          index + 1,
+                                        ),
+                                    routeSize: routeSize,
+                                  ),
+                              ],
+                            ),
+                          ),
+                          for (var index = 0; index < 2; index++)
+                            Positioned(
+                              left:
+                                  WordHuntReferenceRouteLayout
+                                      .bottomControlCenters[index]
+                                      .dx -
+                                  77,
+                              top:
+                                  WordHuntReferenceRouteLayout
+                                      .bottomControlCenters[index]
+                                      .dy -
+                                  77,
+                              child: _ReferenceBottomControl(
+                                key: Key(
+                                  index == 0
+                                      ? 'word_hunt_reference_compass'
+                                      : 'word_hunt_reference_book',
+                                ),
+                                icon:
+                                    index == 0
+                                        ? Icons.explore_rounded
+                                        : Icons.menu_book_rounded,
+                                semanticLabel:
+                                    index == 0 ? 'Pusula' : 'Bilgi Kitabı',
+                                onTap: index == 0 ? onCompass : onBook,
+                              ),
+                            ),
+                        ],
                       ),
                     ),
-                    for (var index = 0; index < points.length; index++)
-                      _positionStop(
-                        point: points[index],
-                        level: route.levels[index],
-                        stars: progress.starsFor(route.levels[index].id),
-                        unlocked: WordHuntRouteProgressEngine.isLevelUnlocked(
-                          route,
-                          progress,
-                          index + 1,
-                        ),
-                        routeSize: routeSize,
-                      ),
-                  ],
+                  ),
                 ),
-              ),
-              Positioned(
-                left:
-                    size.width *
-                        WordHuntReferenceRouteLayout
-                            .bottomControlCenters[0]
-                            .dx -
-                    35,
-                top:
-                    size.height *
-                        WordHuntReferenceRouteLayout
-                            .bottomControlCenters[0]
-                            .dy -
-                    35,
-                child: _ReferenceBottomControl(
-                  key: const Key('word_hunt_reference_compass'),
-                  icon: Icons.explore_rounded,
-                  semanticLabel: 'Pusula',
-                  onTap: onCompass,
-                ),
-              ),
-              Positioned(
-                left:
-                    size.width *
-                        WordHuntReferenceRouteLayout
-                            .bottomControlCenters[1]
-                            .dx -
-                    35,
-                top:
-                    size.height *
-                        WordHuntReferenceRouteLayout
-                            .bottomControlCenters[1]
-                            .dy -
-                    35,
-                child: _ReferenceBottomControl(
-                  key: const Key('word_hunt_reference_book'),
-                  icon: Icons.menu_book_rounded,
-                  semanticLabel: 'Bilgi Kitabı',
-                  onTap: onBook,
-                ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),
@@ -303,13 +352,19 @@ class _ReferenceBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final path = assetPath;
     if (path != null && path.isNotEmpty) {
-      return Image.asset(
-        path,
-        key: const Key('word_hunt_reference_background_asset'),
-        fit: BoxFit.cover,
-        alignment: Alignment.topCenter,
-        errorBuilder:
-            (context, error, stackTrace) => const _FallbackBackground(),
+      return ClipRect(
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Image.asset(
+            path,
+            key: const Key('word_hunt_reference_background_asset'),
+            width: 1080,
+            height: 2340,
+            fit: BoxFit.fill,
+            errorBuilder:
+                (context, error, stackTrace) => const _FallbackBackground(),
+          ),
+        ),
       );
     }
     return const _FallbackBackground();
@@ -364,7 +419,6 @@ class _ReferenceLegibilityOverlay extends StatelessWidget {
 
 class _ReferenceTopChrome extends StatelessWidget {
   const _ReferenceTopChrome({
-    required this.viewportSize,
     required this.title,
     required this.stars,
     required this.maximumStars,
@@ -373,7 +427,6 @@ class _ReferenceTopChrome extends StatelessWidget {
     this.onInfo,
   });
 
-  final Size viewportSize;
   final String title;
   final int stars;
   final int maximumStars;
@@ -388,11 +441,11 @@ class _ReferenceTopChrome extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: 12,
-            right: 12,
-            top: 8,
+            left: 45,
+            right: 45,
+            top: 32,
             child: SizedBox(
-              height: 38,
+              height: 78,
               child: Row(
                 children: [
                   _ReferenceRoundButton(
@@ -403,31 +456,31 @@ class _ReferenceTopChrome extends StatelessWidget {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Row(
                         children: [
                           const Expanded(
                             child: _ReferenceTitleFlourish(reverse: false),
                           ),
-                          const SizedBox(width: 7),
+                          const SizedBox(width: 18),
                           const Text(
                             'KELİME AVI',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFFF4E7FF),
                               fontFamily: 'serif',
-                              fontSize: 16,
+                              fontSize: 45,
                               fontWeight: FontWeight.w600,
-                              letterSpacing: 0.7,
+                              letterSpacing: 1.8,
                               shadows: <Shadow>[
                                 Shadow(
                                   color: Color(0xD99C4DFF),
-                                  blurRadius: 12,
+                                  blurRadius: 24,
                                 ),
                               ],
                             ),
                           ),
-                          const SizedBox(width: 7),
+                          const SizedBox(width: 18),
                           const Expanded(
                             child: _ReferenceTitleFlourish(reverse: true),
                           ),
@@ -447,28 +500,28 @@ class _ReferenceTopChrome extends StatelessWidget {
           ),
           Positioned(
             key: const Key('word_hunt_reference_top_panel'),
-            left: panel.left * viewportSize.width,
-            top: panel.top * viewportSize.height,
-            width: panel.width * viewportSize.width,
-            height: panel.height * viewportSize.height,
+            left: panel.left,
+            top: panel.top,
+            width: panel.width,
+            height: panel.height,
             child: CustomPaint(
               foregroundPainter: const _ReferencePanelOrnamentPainter(),
               child: Container(
-                padding: const EdgeInsets.fromLTRB(16, 5, 16, 3),
+                padding: const EdgeInsets.fromLTRB(42, 14, 42, 10),
                 decoration: BoxDecoration(
                   color: const Color(0xE308101B),
-                  borderRadius: BorderRadius.circular(3),
+                  borderRadius: BorderRadius.circular(7),
                   border: Border.all(
                     color: const Color(0xD0B68B45),
-                    width: 1.3,
+                    width: 2.6,
                   ),
                   boxShadow: const <BoxShadow>[
                     BoxShadow(
                       color: Color(0x88000000),
-                      blurRadius: 12,
-                      offset: Offset(0, 5),
+                      blurRadius: 24,
+                      offset: Offset(0, 10),
                     ),
-                    BoxShadow(color: Color(0x2D8B5CF6), blurRadius: 13),
+                    BoxShadow(color: Color(0x2D8B5CF6), blurRadius: 26),
                   ],
                 ),
                 child: Column(
@@ -482,30 +535,30 @@ class _ReferenceTopChrome extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(0xFFFFF7E7),
                         fontFamily: 'serif',
-                        fontSize: 20,
+                        fontSize: 49,
                         height: 1,
                         fontWeight: FontWeight.w800,
-                        letterSpacing: 0.55,
+                        letterSpacing: 1.2,
                         shadows: <Shadow>[
-                          Shadow(color: Color(0x99000000), blurRadius: 4),
+                          Shadow(color: Color(0x99000000), blurRadius: 8),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 3),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         const Icon(
                           Icons.star_rounded,
                           color: Color(0xFFFFC94A),
-                          size: 17,
+                          size: 38,
                         ),
-                        const SizedBox(width: 4),
+                        const SizedBox(width: 12),
                         Text(
                           '$stars / $maximumStars',
                           style: const TextStyle(
                             color: Color(0xFFFFE9B0),
                             fontFamily: 'serif',
-                            fontSize: 13,
+                            fontSize: 32,
                             fontWeight: FontWeight.w800,
                           ),
                         ),
@@ -515,15 +568,15 @@ class _ReferenceTopChrome extends StatelessWidget {
                           style: const TextStyle(
                             color: Color(0xFFF3E6C9),
                             fontFamily: 'serif',
-                            fontSize: 12.5,
+                            fontSize: 30,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        const SizedBox(width: 3),
+                        const SizedBox(width: 9),
                         const Icon(
                           Icons.star_rounded,
                           color: Color(0xFFFFC94A),
-                          size: 16,
+                          size: 36,
                         ),
                       ],
                     ),
@@ -546,10 +599,10 @@ class _ReferencePanelOrnamentPainter extends CustomPainter {
     final paint =
         Paint()
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 0.8
+          ..strokeWidth = 1.8
           ..color = const Color(0xC6D1A45B);
-    const inset = 4.0;
-    const arm = 11.0;
+    const inset = 10.0;
+    const arm = 28.0;
     for (final corner in <(Offset, double, double)>[
       (const Offset(inset, inset), 1, 1),
       (Offset(size.width - inset, inset), -1, 1),
@@ -561,20 +614,20 @@ class _ReferencePanelOrnamentPainter extends CustomPainter {
       canvas.drawLine(origin, origin + Offset(0, corner.$3 * arm), paint);
       final diamond =
           Path()
-            ..moveTo(origin.dx, origin.dy - 2)
-            ..lineTo(origin.dx + 2, origin.dy)
-            ..lineTo(origin.dx, origin.dy + 2)
-            ..lineTo(origin.dx - 2, origin.dy)
+            ..moveTo(origin.dx, origin.dy - 5)
+            ..lineTo(origin.dx + 5, origin.dy)
+            ..lineTo(origin.dx, origin.dy + 5)
+            ..lineTo(origin.dx - 5, origin.dy)
             ..close();
       canvas.drawPath(diamond, paint);
     }
     final midpoint = Offset(size.width / 2, inset);
     final diamond =
         Path()
-          ..moveTo(midpoint.dx, midpoint.dy - 2.5)
-          ..lineTo(midpoint.dx + 3, midpoint.dy)
-          ..lineTo(midpoint.dx, midpoint.dy + 2.5)
-          ..lineTo(midpoint.dx - 3, midpoint.dy)
+          ..moveTo(midpoint.dx, midpoint.dy - 6)
+          ..lineTo(midpoint.dx + 7, midpoint.dy)
+          ..lineTo(midpoint.dx, midpoint.dy + 6)
+          ..lineTo(midpoint.dx - 7, midpoint.dy)
           ..close();
     canvas.drawPath(diamond, paint);
   }
@@ -606,14 +659,14 @@ class _ReferenceTitleFlourish extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 4),
+        const SizedBox(width: 10),
         Transform.rotate(
           angle: 0.785398,
           child: Container(
-            width: 5,
-            height: 5,
+            width: 12,
+            height: 12,
             decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xB9A764DD), width: 0.8),
+              border: Border.all(color: const Color(0xB9A764DD), width: 1.8),
             ),
           ),
         ),
@@ -646,14 +699,14 @@ class _ReferenceRoundButton extends StatelessWidget {
           onTap: onTap,
           customBorder: const CircleBorder(),
           child: Container(
-            width: 27,
-            height: 27,
+            width: 66,
+            height: 66,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: const Color(0x660A111D),
               border: Border.all(color: const Color(0xBBA57A3D)),
             ),
-            child: Icon(icon, color: const Color(0xFFE8C678), size: 19),
+            child: Icon(icon, color: const Color(0xFFE8C678), size: 44),
           ),
         ),
       ),
@@ -685,10 +738,10 @@ class _ReferenceBottomControl extends StatelessWidget {
           onTap: onTap,
           customBorder: const CircleBorder(),
           child: SizedBox.square(
-            dimension: 70,
+            dimension: 154,
             child: CustomPaint(
               painter: const _ReferenceBottomControlPainter(),
-              child: Icon(icon, color: const Color(0xFFF2CE71), size: 36),
+              child: Icon(icon, color: const Color(0xFFF2CE71), size: 72),
             ),
           ),
         ),
@@ -712,9 +765,9 @@ class _ReferenceBottomControlPainter extends CustomPainter {
         ).createShader(Offset.zero & size),
     );
     for (final ring in <(double, double, Color)>[
-      (0.46, 1.5, const Color(0xFFE2B760)),
-      (0.39, 0.9, const Color(0xFF7F5B2D)),
-      (0.32, 0.6, const Color(0xFFB38B4D)),
+      (0.46, 3.0, const Color(0xFFE2B760)),
+      (0.39, 1.8, const Color(0xFF7F5B2D)),
+      (0.32, 1.2, const Color(0xFFB38B4D)),
     ]) {
       canvas.drawCircle(
         center,
@@ -729,7 +782,7 @@ class _ReferenceBottomControlPainter extends CustomPainter {
     for (var index = 0; index < 8; index++) {
       final angle = index * math.pi / 4;
       final direction = Offset(math.cos(angle), math.sin(angle));
-      canvas.drawCircle(center + direction * size.width * 0.425, 1.2, ornament);
+      canvas.drawCircle(center + direction * size.width * 0.425, 2.4, ornament);
     }
   }
 
@@ -744,25 +797,25 @@ class _ReferenceFramePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final outer = RRect.fromRectAndRadius(
-      Rect.fromLTWH(3, 3, size.width - 6, size.height - 6),
-      const Radius.circular(22),
+      Rect.fromLTWH(9, 9, size.width - 18, size.height - 18),
+      const Radius.circular(54),
     );
     final inner = RRect.fromRectAndRadius(
-      Rect.fromLTWH(8, 8, size.width - 16, size.height - 16),
-      const Radius.circular(18),
+      Rect.fromLTWH(20, 20, size.width - 40, size.height - 40),
+      const Radius.circular(44),
     );
     canvas.drawRRect(
       outer,
       Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.1
+        ..strokeWidth = 2.4
         ..color = const Color(0x7AB78A3E),
     );
     canvas.drawRRect(
       inner,
       Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 0.7
+        ..strokeWidth = 1.4
         ..color = const Color(0x554A3A25),
     );
   }
@@ -790,7 +843,7 @@ class _ReferenceRoutePainter extends CustomPainter {
         Paint()
           ..color = const Color(0xA8000000)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 2.4
+          ..strokeWidth = 4.2
           ..strokeCap = StrokeCap.round
           ..strokeJoin = StrokeJoin.round;
 
@@ -798,14 +851,8 @@ class _ReferenceRoutePainter extends CustomPainter {
       final from = points[index];
       final to = points[index + 1];
       final controls = WordHuntReferenceRouteLayout.routeControls[index];
-      final control1 = Offset(
-        controls.$1.dx * size.width,
-        controls.$1.dy * size.height,
-      );
-      final control2 = Offset(
-        controls.$2.dx * size.width,
-        controls.$2.dy * size.height,
-      );
+      final control1 = controls.$1;
+      final control2 = controls.$2;
       final path =
           Path()
             ..moveTo(from.dx, from.dy)
@@ -831,13 +878,14 @@ class _ReferenceRoutePainter extends CustomPainter {
             Paint()
               ..color = const Color(0x305B7589)
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 3.2
-              ..strokeCap = StrokeCap.round;
+              ..strokeWidth = 8.0
+              ..strokeCap = StrokeCap.round
+              ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
         final dormant =
             Paint()
               ..color = const Color(0xB59AA5B2)
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 1.8
+              ..strokeWidth = 3.2
               ..strokeCap = StrokeCap.round;
         canvas.drawPath(path, dormantGlow);
         _drawDashedPath(canvas, path, dormant);
@@ -871,15 +919,15 @@ class _ReferenceRoutePainter extends CustomPainter {
           Paint()
             ..color = glowColor
             ..style = PaintingStyle.stroke
-            ..strokeWidth = 3.8
+            ..strokeWidth = 9.0
             ..strokeCap = StrokeCap.round
             ..strokeJoin = StrokeJoin.round
-            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2.2);
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4.8);
       final core =
           Paint()
             ..color = coreColor
             ..style = PaintingStyle.stroke
-            ..strokeWidth = 1.45
+            ..strokeWidth = 3.0
             ..strokeCap = StrokeCap.round
             ..strokeJoin = StrokeJoin.round;
 
@@ -905,8 +953,8 @@ class _ReferenceRoutePainter extends CustomPainter {
   }
 
   void _drawDashedPath(Canvas canvas, Path path, Paint paint) {
-    const dashLength = 8.0;
-    const gapLength = 6.0;
+    const dashLength = 16.0;
+    const gapLength = 12.0;
     for (final metric in path.computeMetrics()) {
       var distance = 0.0;
       while (distance < metric.length) {

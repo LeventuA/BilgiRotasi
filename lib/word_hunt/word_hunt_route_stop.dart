@@ -22,25 +22,35 @@ class WordHuntRouteStopMetrics {
     required this.bonusContainerWidth,
     required this.finalContainerWidth,
     required this.specialContainerHeight,
-    required this.specialLabelGap,
+    required this.challengeLabelGap,
+    required this.bonusLabelGap,
+    required this.finalLabelGap,
+    required this.challengePlaqueHeight,
+    required this.bonusPlaqueHeight,
+    required this.finalPlaqueHeight,
     required this.starSize,
     required this.starGap,
   });
 
   static const referenceBaseline = WordHuntRouteStopMetrics(
-    normalDiameter: 39,
-    challengeDiameter: 49,
-    bonusDiameter: 50,
-    finalDiameter: 65,
-    normalContainerWidth: 51,
-    normalContainerHeight: 55,
-    challengeContainerWidth: 190,
-    bonusContainerWidth: 152,
-    finalContainerWidth: 166,
-    specialContainerHeight: 86,
-    specialLabelGap: 5,
-    starSize: 14,
-    starGap: 0.5,
+    normalDiameter: 78,
+    challengeDiameter: 104,
+    bonusDiameter: 104,
+    finalDiameter: 142,
+    normalContainerWidth: 90,
+    normalContainerHeight: 112,
+    challengeContainerWidth: 440,
+    bonusContainerWidth: 321,
+    finalContainerWidth: 406,
+    specialContainerHeight: 210,
+    challengeLabelGap: 12,
+    bonusLabelGap: 11,
+    finalLabelGap: 14,
+    challengePlaqueHeight: 88,
+    bonusPlaqueHeight: 82,
+    finalPlaqueHeight: 110,
+    starSize: 24,
+    starGap: 3,
   );
 
   final double normalDiameter;
@@ -53,7 +63,12 @@ class WordHuntRouteStopMetrics {
   final double bonusContainerWidth;
   final double finalContainerWidth;
   final double specialContainerHeight;
-  final double specialLabelGap;
+  final double challengeLabelGap;
+  final double bonusLabelGap;
+  final double finalLabelGap;
+  final double challengePlaqueHeight;
+  final double bonusPlaqueHeight;
+  final double finalPlaqueHeight;
   final double starSize;
   final double starGap;
 
@@ -75,6 +90,20 @@ class WordHuntRouteStopMetrics {
       type == WordHuntLevelType.normal
           ? normalContainerHeight
           : specialContainerHeight;
+
+  double labelGapFor(WordHuntLevelType type) => switch (type) {
+    WordHuntLevelType.challenge => challengeLabelGap,
+    WordHuntLevelType.bonus => bonusLabelGap,
+    WordHuntLevelType.routeFinal => finalLabelGap,
+    WordHuntLevelType.normal => 0,
+  };
+
+  double plaqueHeightFor(WordHuntLevelType type) => switch (type) {
+    WordHuntLevelType.challenge => challengePlaqueHeight,
+    WordHuntLevelType.bonus => bonusPlaqueHeight,
+    WordHuntLevelType.routeFinal => finalPlaqueHeight,
+    WordHuntLevelType.normal => 0,
+  };
 }
 
 /// Rota düğümünün yalnız görsel tokenlarını taşır.
@@ -342,19 +371,29 @@ class _SpecialRow extends StatelessWidget {
     final labelWidth =
         metrics.containerWidthFor(level.type) -
         diameter -
-        metrics.specialLabelGap;
-    final stopLabel = SizedBox(
-      width: labelWidth,
-      child: _SpecialStopLabel(
-        label: label,
-        icon: icon,
-        accent: accent,
-        dimmed: !unlocked && !lockedFinal,
-        theme: theme,
-        emphasized: level.type == WordHuntLevelType.routeFinal,
+        metrics.labelGapFor(level.type);
+    final stopLabel = Transform.translate(
+      offset: Offset(
+        0,
+        level.type == WordHuntLevelType.routeFinal
+            ? 0
+            : -(metrics.starGap + metrics.starSize) / 2,
+      ),
+      child: SizedBox(
+        width: labelWidth,
+        height: metrics.plaqueHeightFor(level.type),
+        child: _SpecialStopLabel(
+          levelIndex: level.index,
+          label: label,
+          icon: icon,
+          accent: accent,
+          dimmed: !unlocked && !lockedFinal,
+          theme: theme,
+          emphasized: level.type == WordHuntLevelType.routeFinal,
+        ),
       ),
     );
-    final gap = SizedBox(width: metrics.specialLabelGap);
+    final gap = SizedBox(width: metrics.labelGapFor(level.type));
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -387,10 +426,10 @@ class _RouteStopOrb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final numberSize = switch (level.type) {
-      WordHuntLevelType.normal => 16.0,
-      WordHuntLevelType.challenge => 19.0,
-      WordHuntLevelType.bonus => 20.0,
-      WordHuntLevelType.routeFinal => 28.0,
+      WordHuntLevelType.normal => 30.0,
+      WordHuntLevelType.challenge => 39.0,
+      WordHuntLevelType.bonus => 40.0,
+      WordHuntLevelType.routeFinal => 58.0,
     };
     final visuallyHighlighted = unlocked || lockedFinal;
 
@@ -434,45 +473,19 @@ class _RouteStopOrb extends StatelessWidget {
                         Icons.lock_rounded,
                         key: Key('word_hunt_route_stop_lock_${level.index}'),
                         color: theme.lockColor,
-                        size: 15,
+                        size: 34,
                         shadows: const <Shadow>[
                           Shadow(color: Color(0xCC000000), blurRadius: 3),
                         ],
                       ),
             ),
-            if (lockedFinal)
-              Positioned(
-                right: 2,
-                bottom: 2,
-                child: Container(
-                  key: Key('word_hunt_route_stop_lock_badge_${level.index}'),
-                  width: 14,
-                  height: 14,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: const Color(0xE6131820),
-                    border: Border.all(
-                      color: theme.finalAccent.withValues(alpha: 0.92),
-                      width: 1.2,
-                    ),
-                    boxShadow: const <BoxShadow>[
-                      BoxShadow(color: Color(0x99000000), blurRadius: 3),
-                    ],
-                  ),
-                  child: Icon(
-                    Icons.lock_rounded,
-                    color: theme.lockColor,
-                    size: 9,
-                  ),
-                ),
-              ),
             if (level.type == WordHuntLevelType.routeFinal)
               Positioned(
                 key: Key('word_hunt_route_stop_crown_${level.index}'),
-                top: -18,
-                left: diameter * 0.18,
-                right: diameter * 0.18,
-                height: 24,
+                top: -42,
+                left: -6,
+                width: 154,
+                height: 94,
                 child: CustomPaint(painter: _FinalCrownPainter(accent: accent)),
               ),
           ],
@@ -508,11 +521,11 @@ class _MedallionFramePainter extends CustomPainter {
     final glowPaint =
         Paint()
           ..style = PaintingStyle.stroke
-          ..strokeWidth = finalStop ? 5.5 : (special ? 4.5 : 3.5)
+          ..strokeWidth = finalStop ? 9.0 : (special ? 7.0 : 5.0)
           ..color = accent.withValues(alpha: unlocked ? 0.22 : 0.10)
           ..maskFilter = MaskFilter.blur(
             BlurStyle.normal,
-            unlocked ? (finalStop ? 7 : 5) : 2,
+            unlocked ? (finalStop ? 12 : 8) : 4,
           );
     canvas.drawCircle(center, radius - 5, glowPaint);
 
@@ -532,17 +545,17 @@ class _MedallionFramePainter extends CustomPainter {
     final outerRing =
         Paint()
           ..style = PaintingStyle.stroke
-          ..strokeWidth = finalStop ? 2.6 : 2.0
+          ..strokeWidth = finalStop ? 5.2 : 3.6
           ..color = accent.withValues(alpha: 0.94 * alpha);
     final innerRing =
         Paint()
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.0
+          ..strokeWidth = 2.0
           ..color = accent.withValues(alpha: 0.48 * alpha);
     final fineRing =
         Paint()
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 0.8
+          ..strokeWidth = 1.4
           ..color = const Color(0xFFFFF2C6).withValues(alpha: 0.42 * alpha);
 
     canvas.drawCircle(center, radius - 5.5, outerRing);
@@ -560,19 +573,23 @@ class _MedallionFramePainter extends CustomPainter {
           ..color = const Color(0xFFFFF2C6).withValues(alpha: 0.65 * alpha);
 
     final ornamentCount = finalStop ? 8 : (special ? 6 : 4);
-    final ornamentLength = finalStop ? 4.5 : (special ? 3.5 : 2.6);
-    final ornamentWidth = finalStop ? 2.8 : (special ? 2.1 : 1.6);
-    final ornamentRadius = radius - 4.5;
+    final ornamentLength = finalStop ? 8.0 : (special ? 5.0 : 2.2);
+    final ornamentWidth = finalStop ? 5.0 : (special ? 3.2 : 1.8);
+    final ornamentRadius = radius - 6.5;
 
     for (var index = 0; index < ornamentCount; index++) {
       final angle = -math.pi / 2 + (2 * math.pi * index / ornamentCount);
       final radial = Offset(math.cos(angle), math.sin(angle));
       final tangent = Offset(-radial.dy, radial.dx);
       final base = center + radial * (ornamentRadius - ornamentLength * 0.5);
-      final tip = center + radial * (ornamentRadius + ornamentLength * 0.45);
+      final tip =
+          center +
+          radial * (ornamentRadius + (special ? ornamentLength * 0.34 : 0.8));
       final left = base + tangent * ornamentWidth;
       final right = base - tangent * ornamentWidth;
-      final inner = center + radial * (ornamentRadius - ornamentLength * 1.15);
+      final inner =
+          center +
+          radial * (ornamentRadius - (special ? ornamentLength * 0.9 : 2.0));
 
       final path =
           Path()
@@ -603,17 +620,25 @@ class _FinalCrownPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
     final crown =
         Path()
-          ..moveTo(1, size.height - 4)
-          ..lineTo(size.width * 0.12, size.height * 0.30)
-          ..lineTo(size.width * 0.33, size.height * 0.63)
-          ..lineTo(size.width * 0.50, 1)
-          ..lineTo(size.width * 0.67, size.height * 0.63)
-          ..lineTo(size.width * 0.88, size.height * 0.30)
-          ..lineTo(size.width - 1, size.height - 4)
+          ..moveTo(w * 0.08, h * 0.82)
+          ..quadraticBezierTo(w * 0.10, h * 0.54, w * 0.16, h * 0.23)
+          ..quadraticBezierTo(w * 0.20, h * 0.12, w * 0.24, h * 0.25)
+          ..lineTo(w * 0.39, h * 0.57)
+          ..quadraticBezierTo(w * 0.42, h * 0.63, w * 0.44, h * 0.52)
+          ..lineTo(w * 0.49, h * 0.08)
+          ..quadraticBezierTo(w * 0.50, 0, w * 0.51, h * 0.08)
+          ..lineTo(w * 0.56, h * 0.52)
+          ..quadraticBezierTo(w * 0.58, h * 0.63, w * 0.61, h * 0.57)
+          ..lineTo(w * 0.76, h * 0.25)
+          ..quadraticBezierTo(w * 0.80, h * 0.12, w * 0.84, h * 0.23)
+          ..quadraticBezierTo(w * 0.90, h * 0.54, w * 0.92, h * 0.82)
+          ..quadraticBezierTo(w * 0.50, h * 0.94, w * 0.08, h * 0.82)
           ..close();
-    canvas.drawShadow(crown, accent, 5, true);
+    canvas.drawShadow(crown, accent, 12, true);
     canvas.drawPath(
       crown,
       Paint()
@@ -623,21 +648,55 @@ class _FinalCrownPainter extends CustomPainter {
           colors: <Color>[
             const Color(0xFFFFF1A0),
             accent,
-            const Color(0xFF8E4D0B),
+            const Color(0xFFE49A20),
+            const Color(0xFF6D3506),
           ],
+          stops: <double>[0, 0.42, 0.74, 1],
         ).createShader(Offset.zero & size),
     );
     canvas.drawPath(
       crown,
       Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.1
+        ..strokeWidth = 2.4
         ..color = const Color(0xFFFFE99B),
     );
-    final jewel = Paint()..color = const Color(0xFFFFF2B4);
-    for (final x in <double>[0.12, 0.50, 0.88]) {
-      canvas.drawCircle(Offset(size.width * x, size.height * 0.25), 1.8, jewel);
+    final band = RRect.fromRectAndRadius(
+      Rect.fromLTRB(w * 0.11, h * 0.72, w * 0.89, h * 0.90),
+      Radius.circular(h * 0.07),
+    );
+    canvas.drawRRect(
+      band,
+      Paint()
+        ..shader = const LinearGradient(
+          colors: <Color>[Color(0xFFFFE58B), Color(0xFF9B560E)],
+        ).createShader(band.outerRect),
+    );
+    canvas.drawRRect(
+      band,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2
+        ..color = const Color(0xFFFFF0A7),
+    );
+    final jewel = Paint()..color = const Color(0xFFFFF1B2);
+    final ruby = Paint()..color = const Color(0xFF8D2D42);
+    for (final point in <Offset>[
+      Offset(w * 0.16, h * 0.23),
+      Offset(w * 0.50, h * 0.08),
+      Offset(w * 0.84, h * 0.23),
+    ]) {
+      canvas.drawCircle(point, h * 0.045, jewel);
     }
+    canvas.drawCircle(Offset(w * 0.50, h * 0.81), h * 0.055, ruby);
+    canvas.drawCircle(
+      Offset(w * 0.50, h * 0.81),
+      h * 0.055,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5
+        ..color = const Color(0xFFFFEAA2),
+    );
   }
 
   @override
@@ -669,7 +728,7 @@ class _RouteStopStars extends StatelessWidget {
       children: List<Widget>.generate(3, (index) {
         final earned = index < stars || goldTarget;
         return Icon(
-          Icons.star_rounded,
+          earned ? Icons.star_rounded : Icons.star_border_rounded,
           key: Key('word_hunt_route_stop_star_${levelIndex}_$index'),
           size: starSize,
           color:
@@ -693,6 +752,7 @@ class _RouteStopStars extends StatelessWidget {
 
 class _SpecialStopLabel extends StatelessWidget {
   const _SpecialStopLabel({
+    required this.levelIndex,
     required this.label,
     required this.icon,
     required this.accent,
@@ -701,6 +761,7 @@ class _SpecialStopLabel extends StatelessWidget {
     required this.emphasized,
   });
 
+  final int levelIndex;
   final String label;
   final IconData icon;
   final Color accent;
@@ -712,8 +773,8 @@ class _SpecialStopLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Opacity(
       opacity: dimmed ? 0.72 : 1,
-      child: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: emphasized ? 50 : 38),
+      child: SizedBox.expand(
+        key: Key('word_hunt_route_stop_plaque_$levelIndex'),
         child: CustomPaint(
           painter: _FantasyPlaquePainter(
             accent: accent,
@@ -721,7 +782,7 @@ class _SpecialStopLabel extends StatelessWidget {
             emphasized: emphasized,
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -730,9 +791,9 @@ class _SpecialStopLabel extends StatelessWidget {
                   label: label,
                   fallback: icon,
                   color: accent,
-                  size: emphasized ? 18 : 17,
+                  size: emphasized ? 40 : 36,
                 ),
-                const SizedBox(width: 4),
+                const SizedBox(width: 12),
                 Flexible(
                   child: Text(
                     label,
@@ -744,13 +805,13 @@ class _SpecialStopLabel extends StatelessWidget {
                       fontFamily: 'serif',
                       fontSize:
                           label == 'MEYDAN OKUMA'
-                              ? 9.0
+                              ? 24.0
                               : emphasized
-                              ? 11.5
-                              : 9.5,
+                              ? 29.0
+                              : 24.0,
                       height: 1.05,
                       fontWeight: FontWeight.w900,
-                      letterSpacing: 0.3,
+                      letterSpacing: 0.7,
                     ),
                   ),
                 ),
@@ -808,12 +869,12 @@ class _CrossedSwordsPainter extends CustomPainter {
           ..color = color
           ..style = PaintingStyle.stroke
           ..strokeCap = StrokeCap.round
-          ..strokeWidth = 1.8;
+          ..strokeWidth = size.width * 0.09;
     final hilt =
         Paint()
           ..color = const Color(0xFFFFE3A0)
           ..strokeCap = StrokeCap.round
-          ..strokeWidth = 1.5;
+          ..strokeWidth = size.width * 0.075;
     canvas.drawLine(
       Offset(size.width * 0.22, size.height * 0.18),
       Offset(size.width * 0.78, size.height * 0.82),
@@ -852,7 +913,7 @@ class _TreasureChestPainter extends CustomPainter {
         Paint()
           ..color = color
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.7
+          ..strokeWidth = size.width * 0.085
           ..strokeJoin = StrokeJoin.round;
     final body = Rect.fromLTRB(
       size.width * 0.12,
@@ -907,7 +968,7 @@ class _FantasyPlaquePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final notch = emphasized ? 7.0 : 5.0;
+    final notch = emphasized ? 18.0 : 14.0;
     final path =
         Path()
           ..moveTo(notch, 1)
@@ -927,19 +988,19 @@ class _FantasyPlaquePainter extends CustomPainter {
       path,
       Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = emphasized ? 1.5 : 1.2
+        ..strokeWidth = emphasized ? 3.2 : 2.6
         ..color = accent.withValues(alpha: 0.95),
     );
     canvas.drawRect(
-      Rect.fromLTRB(6, 5, size.width - 6, size.height - 5),
+      Rect.fromLTRB(14, 11, size.width - 14, size.height - 11),
       Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 0.7
+        ..strokeWidth = 1.5
         ..color = accent.withValues(alpha: 0.40),
     );
     final dot = Paint()..color = accent.withValues(alpha: 0.85);
-    canvas.drawCircle(Offset(notch, size.height / 2), 1.5, dot);
-    canvas.drawCircle(Offset(size.width - notch, size.height / 2), 1.5, dot);
+    canvas.drawCircle(Offset(notch, size.height / 2), 3.4, dot);
+    canvas.drawCircle(Offset(size.width - notch, size.height / 2), 3.4, dot);
   }
 
   @override

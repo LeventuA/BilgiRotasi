@@ -14,6 +14,18 @@ void main() {
     await tester.pump();
   }
 
+  Future<void> pumpCanonicalReferenceRoute(WidgetTester tester) async {
+    await tester.binding.setSurfaceSize(
+      WordHuntReferenceRouteLayout.canonicalSize,
+    );
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    await tester.pumpWidget(
+      const MaterialApp(home: WordHuntReferenceRouteScreen()),
+    );
+    await tester.pump();
+  }
+
   Offset centerOf(WidgetTester tester, int level) {
     return tester.getCenter(find.byKey(Key('word_hunt_route_stop_orb_$level')));
   }
@@ -85,22 +97,22 @@ void main() {
     },
   );
 
-  testWidgets('route centers follow the binding 720x1280 reference geometry', (
+  testWidgets('route centers follow the canonical 1080x1920 pixel contract', (
     tester,
   ) async {
-    await pumpReferenceRoute(tester);
+    await pumpCanonicalReferenceRoute(tester);
 
     const expected = <Offset>[
-      Offset(0.189, 0.238),
-      Offset(0.443, 0.257),
-      Offset(0.642, 0.305),
-      Offset(0.803, 0.373),
-      Offset(0.335, 0.453),
-      Offset(0.167, 0.552),
-      Offset(0.460, 0.583),
-      Offset(0.668, 0.616),
-      Offset(0.236, 0.697),
-      Offset(0.489, 0.797),
+      Offset(204.12, 456.96),
+      Offset(478.44, 493.44),
+      Offset(693.36, 585.60),
+      Offset(867.24, 716.16),
+      Offset(361.80, 869.76),
+      Offset(180.36, 1059.84),
+      Offset(496.80, 1119.36),
+      Offset(721.44, 1182.72),
+      Offset(254.88, 1338.24),
+      Offset(528.12, 1530.24),
     ];
 
     for (var index = 0; index < expected.length; index++) {
@@ -108,13 +120,13 @@ void main() {
         find.byKey(Key('word_hunt_route_stop_orb_${index + 1}')),
       );
       expect(
-        actual.dx / 411,
-        closeTo(expected[index].dx, 0.012),
+        actual.dx,
+        closeTo(expected[index].dx, 0.01),
         reason: '${index + 1}. durağın yatay merkezi referansla eşleşmeli.',
       );
       expect(
-        actual.dy / 891,
-        closeTo(expected[index].dy, 0.012),
+        actual.dy,
+        closeTo(expected[index].dy, 0.01),
         reason: '${index + 1}. durağın dikey merkezi referansla eşleşmeli.',
       );
     }
@@ -124,43 +136,102 @@ void main() {
     'binding reference locks the measured panel, controls and route curves',
     () {
       expect(
+        WordHuntReferenceRouteLayout.canonicalSize,
+        const Size(1080, 1920),
+      );
+      expect(
         WordHuntReferenceRouteLayout.topPanel,
-        const Rect.fromLTRB(0.081, 0.070, 0.924, 0.158),
+        const Rect.fromLTRB(87.48, 134.40, 997.92, 303.36),
       );
       expect(WordHuntReferenceRouteLayout.bottomControlCenters, const <Offset>[
-        Offset(0.126, 0.933),
-        Offset(0.875, 0.933),
+        Offset(136.08, 1764.00),
+        Offset(945.00, 1764.00),
       ]);
       expect(WordHuntReferenceRouteLayout.routeControls, hasLength(9));
       expect(
         WordHuntReferenceRouteLayout.routeControls,
         const <(Offset, Offset)>[
-          (Offset(0.270, 0.236), Offset(0.365, 0.242)),
-          (Offset(0.515, 0.266), Offset(0.585, 0.286)),
-          (Offset(0.704, 0.325), Offset(0.760, 0.348)),
-          (Offset(0.778, 0.410), Offset(0.520, 0.423)),
-          (Offset(0.250, 0.480), Offset(0.190, 0.515)),
-          (Offset(0.245, 0.565), Offset(0.360, 0.575)),
-          (Offset(0.535, 0.590), Offset(0.610, 0.603)),
-          (Offset(0.600, 0.645), Offset(0.335, 0.660)),
-          (Offset(0.225, 0.746), Offset(0.380, 0.775)),
+          (Offset(291.60, 453.12), Offset(394.20, 464.64)),
+          (Offset(556.20, 510.72), Offset(631.80, 549.12)),
+          (Offset(760.32, 624.00), Offset(820.80, 668.16)),
+          (Offset(840.24, 787.20), Offset(561.60, 812.16)),
+          (Offset(270.00, 921.60), Offset(205.20, 988.80)),
+          (Offset(264.60, 1084.80), Offset(388.80, 1104.00)),
+          (Offset(577.80, 1132.80), Offset(658.80, 1157.76)),
+          (Offset(648.00, 1238.40), Offset(361.80, 1267.20)),
+          (Offset(243.00, 1432.32), Offset(410.40, 1488.00)),
         ],
+      );
+      expect(WordHuntReferenceRouteLayout.specialPlaques, const <int, Rect>{
+        5: Rect.fromLTWH(426, 825, 324, 88),
+        8: Rect.fromLTWH(785, 1142, 206, 82),
+        10: Rect.fromLTWH(613, 1488, 250, 110),
+      });
+      expect(
+        WordHuntReferenceRouteLayout.finalCrown,
+        const Rect.fromLTWH(451, 1417, 154, 94),
       );
     },
   );
 
+  test('canonical scene transform is shared and deterministic', () {
+    final identity = WordHuntCanonicalSceneTransform.cover(
+      const Size(1080, 1920),
+    );
+    expect(identity.scale, 1);
+    expect(identity.translation, Offset.zero);
+    expect(identity.sceneRect, Offset.zero & const Size(1080, 1920));
+
+    final narrow = WordHuntCanonicalSceneTransform.cover(const Size(411, 891));
+    expect(narrow.scale, closeTo(891 / 1920, 0.000001));
+    expect(
+      narrow.toViewport(WordHuntReferenceRouteLayout.stops.first),
+      narrow.translation +
+          WordHuntReferenceRouteLayout.stops.first * narrow.scale,
+    );
+  });
+
+  testWidgets('background and overlays share one canonical scene transform', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(411, 891));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: WordHuntReferenceRouteScreen(
+          sceneAssetPath: 'assets/word_hunt/baslangic_limani_bg.jpg',
+        ),
+      ),
+    );
+    await tester.pump();
+
+    final scene = find.byKey(const Key('word_hunt_reference_canonical_scene'));
+    expect(scene, findsOneWidget);
+    expect(
+      find.descendant(
+        of: scene,
+        matching: find.byKey(const Key('word_hunt_reference_background_asset')),
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(
+        of: scene,
+        matching: find.byKey(const Key('word_hunt_reference_route_area')),
+      ),
+      findsOneWidget,
+    );
+  });
+
   testWidgets('panel and premium bottom controls use measured centers', (
     tester,
   ) async {
-    await pumpReferenceRoute(tester);
+    await pumpCanonicalReferenceRoute(tester);
 
     final panel = tester.getRect(
       find.byKey(const Key('word_hunt_reference_top_panel')),
     );
-    expect(panel.left / 411, closeTo(0.081, 0.012));
-    expect(panel.right / 411, closeTo(0.924, 0.012));
-    expect(panel.top / 891, closeTo(0.070, 0.012));
-    expect(panel.bottom / 891, closeTo(0.158, 0.012));
+    expect(panel, WordHuntReferenceRouteLayout.topPanel);
 
     final compass = tester.getCenter(
       find.byKey(const Key('word_hunt_reference_compass')),
@@ -168,16 +239,44 @@ void main() {
     final book = tester.getCenter(
       find.byKey(const Key('word_hunt_reference_book')),
     );
-    expect(compass.dx / 411, closeTo(0.126, 0.012));
-    expect(compass.dy / 891, closeTo(0.933, 0.012));
-    expect(book.dx / 411, closeTo(0.875, 0.012));
-    expect(book.dy / 891, closeTo(0.933, 0.012));
+    expect(compass, WordHuntReferenceRouteLayout.bottomControlCenters.first);
+    expect(book, WordHuntReferenceRouteLayout.bottomControlCenters.last);
+  });
+
+  testWidgets('special plaques and final crown follow canonical bounds', (
+    tester,
+  ) async {
+    await pumpCanonicalReferenceRoute(tester);
+
+    for (final entry in WordHuntReferenceRouteLayout.specialPlaques.entries) {
+      final actual = tester.getRect(
+        find.byKey(Key('word_hunt_route_stop_plaque_${entry.key}')),
+      );
+      expect(actual.left, closeTo(entry.value.left, 1.1));
+      expect(actual.top, closeTo(entry.value.top, 1.1));
+      expect(actual.width, closeTo(entry.value.width, 1.1));
+      expect(actual.height, closeTo(entry.value.height, 1.1));
+    }
+
+    final crown = tester.getRect(
+      find.byKey(const Key('word_hunt_route_stop_crown_10')),
+    );
+    expect(
+      crown.left,
+      closeTo(WordHuntReferenceRouteLayout.finalCrown.left, 1.1),
+    );
+    expect(
+      crown.top,
+      closeTo(WordHuntReferenceRouteLayout.finalCrown.top, 1.1),
+    );
+    expect(crown.width, WordHuntReferenceRouteLayout.finalCrown.width);
+    expect(crown.height, WordHuntReferenceRouteLayout.finalCrown.height);
   });
 
   testWidgets('Android 16 proof viewport has no render overflow', (
     tester,
   ) async {
-    await tester.binding.setSurfaceSize(const Size(360, 640));
+    await tester.binding.setSurfaceSize(const Size(1080, 1920));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
       const MaterialApp(home: WordHuntReferenceRouteScreen()),
@@ -186,8 +285,15 @@ void main() {
     expect(
       tester.takeException(),
       isNull,
-      reason: 'Android 16 kanıt tuvalinde panel veya rota taşmamalı.',
+      reason: 'Canonical Android 16 tuvalinde panel veya rota taşmamalı.',
     );
+  });
+
+  testWidgets('411x891 narrow phone keeps one scene without render overflow', (
+    tester,
+  ) async {
+    await pumpReferenceRoute(tester);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('reference route follows the approved composition hierarchy', (
