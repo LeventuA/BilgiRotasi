@@ -9,7 +9,8 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
+  actions: write
 
 jobs:
   closed-test-release:
@@ -17,3 +18,84 @@ jobs:
     with:
       confirmation: ${{ inputs.confirmation }}
     secrets: inherit
+
+  publish-github-release:
+    name: Kapalı test çıktısını GitHub Release'e taşı
+    needs: closed-test-release
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Sürümü oku
+        uses: actions/checkout@v4
+
+      - name: Release kimliğini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(sed -nE 's/^version:[[:space:]]*([^[:space:]]+).*$/\1/p' pubspec.yaml)"
+          test -n "$VERSION"
+          VERSION_NAME="${VERSION%%+*}"
+          VERSION_CODE="${VERSION##*+}"
+          test "$VERSION_NAME" != "$VERSION"
+          [[ "$VERSION_NAME" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$VERSION_CODE" =~ ^[0-9]+$ ]]
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+          echo "VERSION_LABEL=${VERSION_NAME}-${VERSION_CODE}" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=closed-test-v${VERSION_NAME}+${VERSION_CODE}-${SHORT_SHA}" >> "$GITHUB_ENV"
+          echo "RELEASE_TITLE=Bilgi Rotası ${VERSION_NAME}+${VERSION_CODE} Closed Test" >> "$GITHUB_ENV"
+          echo "ARTIFACT_NAME=BilgiRotasi-${VERSION_NAME}-${VERSION_CODE}-closed-test-release" >> "$GITHUB_ENV"
+
+      - name: Kapalı test artifactını indir
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: release-artifact
+
+      - name: Release dosyalarını hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          AAB="$(find release-artifact -maxdepth 1 -type f -name '*.aab' -print -quit)"
+          test -n "$AAB"
+          test -s "$AAB"
+          cp "$AAB" "BilgiRotasi-${VERSION_LABEL}-closed-test.aab"
+          sha256sum "BilgiRotasi-${VERSION_LABEL}-closed-test.aab" \
+            > "BilgiRotasi-${VERSION_LABEL}-closed-test.aab.sha256"
+          rm -f release-artifact/*.aab
+          zip -qr "BilgiRotasi-${VERSION_LABEL}-closed-test-evidence.zip" release-artifact
+          test -s "BilgiRotasi-${VERSION_LABEL}-closed-test-evidence.zip"
+
+      - name: GitHub pre-release yayımla
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "Release zaten mevcut; dosyalar üstüne yazılmadı: $RELEASE_TAG"
+            exit 0
+          fi
+          gh release create "$RELEASE_TAG" \
+            "BilgiRotasi-${VERSION_LABEL}-closed-test.aab" \
+            "BilgiRotasi-${VERSION_LABEL}-closed-test.aab.sha256" \
+            "BilgiRotasi-${VERSION_LABEL}-closed-test-evidence.zip" \
+            --target "$GITHUB_SHA" \
+            --title "$RELEASE_TITLE" \
+            --prerelease \
+            --notes "Closed-test AAB, SHA-256 ve Android 16/kalite kapısı kanıtları. Kaynak commit: $GITHUB_SHA. Workflow: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+
+      - name: Actions artifact kopyasını sil
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ARTIFACT_ID="$(gh api \
+            "/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" \
+            --jq ".artifacts[] | select(.name == \"$ARTIFACT_NAME\") | .id" \
+            | head -n 1)"
+          if [ -n "$ARTIFACT_ID" ]; then
+            gh api --method DELETE "/repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID"
+            echo "Actions artifact silindi: $ARTIFACT_ID"
+          else
+            echo "Silinecek Actions artifact bulunamadı: $ARTIFACT_NAME"
+          fi
