@@ -18,6 +18,7 @@ class WordHuntRouteStopMetrics {
     required this.normalContainerWidth,
     required this.normalContainerHeight,
     required this.specialContainerWidth,
+    required this.finalContainerWidth,
     required this.specialContainerHeight,
     required this.specialLabelGap,
     required this.starSize,
@@ -31,6 +32,7 @@ class WordHuntRouteStopMetrics {
     normalContainerWidth: 48,
     normalContainerHeight: 54,
     specialContainerWidth: 146,
+    finalContainerWidth: 165,
     specialContainerHeight: 82,
     specialLabelGap: 5,
     starSize: 11,
@@ -43,6 +45,7 @@ class WordHuntRouteStopMetrics {
   final double normalContainerWidth;
   final double normalContainerHeight;
   final double specialContainerWidth;
+  final double finalContainerWidth;
   final double specialContainerHeight;
   final double specialLabelGap;
   final double starSize;
@@ -55,10 +58,12 @@ class WordHuntRouteStopMetrics {
     WordHuntLevelType.routeFinal => finalDiameter,
   };
 
-  double containerWidthFor(WordHuntLevelType type) =>
-      type == WordHuntLevelType.normal
-          ? normalContainerWidth
-          : specialContainerWidth;
+  double containerWidthFor(WordHuntLevelType type) => switch (type) {
+    WordHuntLevelType.normal => normalContainerWidth,
+    WordHuntLevelType.routeFinal => finalContainerWidth,
+    WordHuntLevelType.challenge ||
+    WordHuntLevelType.bonus => specialContainerWidth,
+  };
 
   double containerHeightFor(WordHuntLevelType type) =>
       type == WordHuntLevelType.normal
@@ -328,7 +333,9 @@ class _SpecialRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final diameter = metrics.diameterFor(level.type);
     final labelWidth =
-        metrics.specialContainerWidth - diameter - metrics.specialLabelGap;
+        metrics.containerWidthFor(level.type) -
+        diameter -
+        metrics.specialLabelGap;
     final stopLabel = SizedBox(
       width: labelWidth,
       child: _SpecialStopLabel(

@@ -294,7 +294,7 @@ void main() {
       );
       expect(
         tester.getSize(find.byKey(const Key('word_hunt_route_stop_10'))).width,
-        metrics.specialContainerWidth,
+        metrics.finalContainerWidth,
       );
       expect(
         find.byKey(const Key('word_hunt_route_stop_lock_badge_10')),
