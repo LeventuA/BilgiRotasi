@@ -35,12 +35,12 @@ void main() {
 
     expect(
       metrics.normalDiameter,
-      lessThanOrEqualTo(52),
+      inInclusiveRange(30, 34),
       reason: 'Onaylı referansta normal rota medalyonları küçük kalmalı.',
     );
     expect(
       metrics.starSize,
-      lessThanOrEqualTo(16),
+      inInclusiveRange(10, 12),
       reason: 'Yıldızlar küçük medalyonla orantılı kalmalı.',
     );
     expect(
@@ -59,70 +59,71 @@ void main() {
     );
   });
 
-  testWidgets('normal route stop keeps one geometry for open and locked states', (
-    tester,
-  ) async {
-    var tapped = 0;
+  testWidgets(
+    'normal route stop keeps one geometry for open and locked states',
+    (tester) async {
+      var tapped = 0;
 
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: Row(
-            children: [
-              WordHuntRouteStop(
-                level: _level(1, WordHuntLevelType.normal),
-                stars: 2,
-                unlocked: true,
-                onTap: () => tapped = 1,
-              ),
-              WordHuntRouteStop(
-                level: _level(2, WordHuntLevelType.normal),
-                stars: 0,
-                unlocked: false,
-                onTap: () => tapped = 2,
-              ),
-            ],
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Row(
+              children: [
+                WordHuntRouteStop(
+                  level: _level(1, WordHuntLevelType.normal),
+                  stars: 2,
+                  unlocked: true,
+                  onTap: () => tapped = 1,
+                ),
+                WordHuntRouteStop(
+                  level: _level(2, WordHuntLevelType.normal),
+                  stars: 0,
+                  unlocked: false,
+                  onTap: () => tapped = 2,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
 
-    expect(
-      tester.getSize(find.byKey(const Key('word_hunt_route_stop_orb_1'))),
-      Size.square(metrics.normalDiameter),
-    );
-    expect(
-      tester.getSize(find.byKey(const Key('word_hunt_route_stop_orb_2'))),
-      Size.square(metrics.normalDiameter),
-    );
-
-    for (var star = 0; star < 3; star++) {
       expect(
-        find.byKey(Key('word_hunt_route_stop_star_1_$star')),
-        findsOneWidget,
+        tester.getSize(find.byKey(const Key('word_hunt_route_stop_orb_1'))),
+        Size.square(metrics.normalDiameter),
       );
       expect(
-        find.byKey(Key('word_hunt_route_stop_star_2_$star')),
+        tester.getSize(find.byKey(const Key('word_hunt_route_stop_orb_2'))),
+        Size.square(metrics.normalDiameter),
+      );
+
+      for (var star = 0; star < 3; star++) {
+        expect(
+          find.byKey(Key('word_hunt_route_stop_star_1_$star')),
+          findsOneWidget,
+        );
+        expect(
+          find.byKey(Key('word_hunt_route_stop_star_2_$star')),
+          findsOneWidget,
+        );
+      }
+
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_lock_2')),
         findsOneWidget,
       );
-    }
 
-    expect(
-      find.byKey(const Key('word_hunt_route_stop_lock_2')),
-      findsOneWidget,
-    );
+      await tester.tap(find.byKey(const Key('word_hunt_route_stop_1')));
+      await tester.pump();
+      expect(tapped, 1);
 
-    await tester.tap(find.byKey(const Key('word_hunt_route_stop_1')));
-    await tester.pump();
-    expect(tapped, 1);
-
-    await tester.tap(
-      find.byKey(const Key('word_hunt_route_stop_2')),
-      warnIfMissed: false,
-    );
-    await tester.pump();
-    expect(tapped, 1, reason: 'Kilitli durak etkileşim üretmemeli.');
-  });
+      await tester.tap(
+        find.byKey(const Key('word_hunt_route_stop_2')),
+        warnIfMissed: false,
+      );
+      await tester.pump();
+      expect(tapped, 1, reason: 'Kilitli durak etkileşim üretmemeli.');
+    },
+  );
 
   testWidgets('locked final stays disabled but keeps gold numbered destination', (
     tester,
@@ -152,7 +153,8 @@ void main() {
     expect(
       find.byKey(const Key('word_hunt_route_stop_lock_badge_10')),
       findsOneWidget,
-      reason: 'Finalin oynanamaz olduğu küçük kilit rozetiyle açıkça belirtilmeli.',
+      reason:
+          'Finalin oynanamaz olduğu küçük kilit rozetiyle açıkça belirtilmeli.',
     );
     expect(
       find.byKey(const Key('word_hunt_route_stop_lock_10')),
@@ -239,7 +241,8 @@ void main() {
     expect(
       (orbCenter.dx - middleStarCenter.dx).abs(),
       lessThanOrEqualTo(2),
-      reason: 'Özel durak yıldızları referanstaki gibi medalyonun altında olmalı.',
+      reason:
+          'Özel durak yıldızları referanstaki gibi medalyonun altında olmalı.',
     );
     expect(
       middleStarCenter.dy,
@@ -248,54 +251,55 @@ void main() {
     );
   });
 
-  testWidgets('special stops share the same component family and fixed labels', (
-    tester,
-  ) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: Column(
-            children: [
-              WordHuntRouteStop(
-                level: _level(5, WordHuntLevelType.challenge),
-                stars: 1,
-                unlocked: true,
-              ),
-              WordHuntRouteStop(
-                level: _level(8, WordHuntLevelType.bonus),
-                stars: 2,
-                unlocked: true,
-              ),
-              WordHuntRouteStop(
-                level: _level(10, WordHuntLevelType.routeFinal),
-                stars: 0,
-                unlocked: false,
-              ),
-            ],
+  testWidgets(
+    'special stops share the same component family and fixed labels',
+    (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Column(
+              children: [
+                WordHuntRouteStop(
+                  level: _level(5, WordHuntLevelType.challenge),
+                  stars: 1,
+                  unlocked: true,
+                ),
+                WordHuntRouteStop(
+                  level: _level(8, WordHuntLevelType.bonus),
+                  stars: 2,
+                  unlocked: true,
+                ),
+                WordHuntRouteStop(
+                  level: _level(10, WordHuntLevelType.routeFinal),
+                  stars: 0,
+                  unlocked: false,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
 
-    expect(find.text('MEYDAN OKUMA'), findsOneWidget);
-    expect(find.text('BONUS DURAK'), findsOneWidget);
-    expect(find.text('ROTA FİNALİ'), findsOneWidget);
+      expect(find.text('MEYDAN OKUMA'), findsOneWidget);
+      expect(find.text('BONUS DURAK'), findsOneWidget);
+      expect(find.text('ROTA FİNALİ'), findsOneWidget);
 
-    expect(
-      tester.getSize(find.byKey(const Key('word_hunt_route_stop_5'))).width,
-      metrics.specialContainerWidth,
-    );
-    expect(
-      tester.getSize(find.byKey(const Key('word_hunt_route_stop_8'))).width,
-      metrics.specialContainerWidth,
-    );
-    expect(
-      tester.getSize(find.byKey(const Key('word_hunt_route_stop_10'))).width,
-      metrics.specialContainerWidth,
-    );
-    expect(
-      find.byKey(const Key('word_hunt_route_stop_lock_badge_10')),
-      findsOneWidget,
-    );
-  });
+      expect(
+        tester.getSize(find.byKey(const Key('word_hunt_route_stop_5'))).width,
+        metrics.specialContainerWidth,
+      );
+      expect(
+        tester.getSize(find.byKey(const Key('word_hunt_route_stop_8'))).width,
+        metrics.specialContainerWidth,
+      );
+      expect(
+        tester.getSize(find.byKey(const Key('word_hunt_route_stop_10'))).width,
+        metrics.specialContainerWidth,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_lock_badge_10')),
+        findsOneWidget,
+      );
+    },
+  );
 }

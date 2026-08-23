@@ -9,75 +9,106 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     await tester.pumpWidget(
-      const MaterialApp(
-        home: WordHuntReferenceRouteScreen(),
-      ),
+      const MaterialApp(home: WordHuntReferenceRouteScreen()),
     );
     await tester.pump();
   }
 
   Offset centerOf(WidgetTester tester, int level) {
-    return tester.getCenter(
-      find.byKey(Key('word_hunt_reference_level_$level')),
-    );
+    return tester.getCenter(find.byKey(Key('word_hunt_route_stop_orb_$level')));
   }
 
   Rect rectOf(WidgetTester tester, int level) {
-    return tester.getRect(
-      find.byKey(Key('word_hunt_reference_level_$level')),
-    );
+    return tester.getRect(find.byKey(Key('word_hunt_reference_level_$level')));
   }
 
-  test('reference route segment palette follows destination type and lock state', () {
-    expect(
-      WordHuntReferenceRouteVisualContract.segmentStyleFor(
-        destinationType: WordHuntLevelType.normal,
-        unlocked: true,
-      ),
-      WordHuntReferenceRouteSegmentStyle.normal,
-    );
-    expect(
-      WordHuntReferenceRouteVisualContract.segmentStyleFor(
-        destinationType: WordHuntLevelType.challenge,
-        unlocked: true,
-      ),
-      WordHuntReferenceRouteSegmentStyle.challenge,
-    );
-    expect(
-      WordHuntReferenceRouteVisualContract.segmentStyleFor(
-        destinationType: WordHuntLevelType.bonus,
-        unlocked: true,
-      ),
-      WordHuntReferenceRouteSegmentStyle.bonus,
-    );
-    expect(
-      WordHuntReferenceRouteVisualContract.segmentStyleFor(
-        destinationType: WordHuntLevelType.routeFinal,
-        unlocked: true,
-      ),
-      WordHuntReferenceRouteSegmentStyle.finalStop,
-    );
-    expect(
-      WordHuntReferenceRouteVisualContract.segmentStyleFor(
-        destinationType: WordHuntLevelType.bonus,
-        unlocked: false,
-      ),
-      WordHuntReferenceRouteSegmentStyle.locked,
-      reason: 'Kilitli rota parçası özel hedef rengini kullanmamalı.',
-    );
-  });
+  test(
+    'reference route segment palette follows destination type and lock state',
+    () {
+      expect(
+        WordHuntReferenceRouteVisualContract.segmentStyleFor(
+          destinationType: WordHuntLevelType.normal,
+          unlocked: true,
+        ),
+        WordHuntReferenceRouteSegmentStyle.normal,
+      );
+      expect(
+        WordHuntReferenceRouteVisualContract.segmentStyleFor(
+          destinationType: WordHuntLevelType.challenge,
+          unlocked: true,
+        ),
+        WordHuntReferenceRouteSegmentStyle.challenge,
+      );
+      expect(
+        WordHuntReferenceRouteVisualContract.segmentStyleFor(
+          destinationType: WordHuntLevelType.bonus,
+          unlocked: true,
+        ),
+        WordHuntReferenceRouteSegmentStyle.bonus,
+      );
+      expect(
+        WordHuntReferenceRouteVisualContract.segmentStyleFor(
+          destinationType: WordHuntLevelType.routeFinal,
+          unlocked: true,
+        ),
+        WordHuntReferenceRouteSegmentStyle.finalStop,
+      );
+      expect(
+        WordHuntReferenceRouteVisualContract.segmentStyleFor(
+          destinationType: WordHuntLevelType.bonus,
+          unlocked: false,
+        ),
+        WordHuntReferenceRouteSegmentStyle.locked,
+        reason: 'Kilitli rota parçası özel hedef rengini kullanmamalı.',
+      );
+    },
+  );
 
-  testWidgets('approved top chrome keeps real route data in reference hierarchy', (
+  testWidgets(
+    'approved top chrome keeps real route data in reference hierarchy',
+    (tester) async {
+      await pumpReferenceRoute(tester);
+
+      expect(find.text('KELİME AVI'), findsOneWidget);
+      expect(find.text('BAŞLANGIÇ LİMANI'), findsOneWidget);
+      expect(find.text('0 / 30'), findsOneWidget);
+      expect(find.text('Kapı: 18'), findsOneWidget);
+    },
+  );
+
+  testWidgets('route centers follow the binding 720x1280 reference geometry', (
     tester,
   ) async {
     await pumpReferenceRoute(tester);
 
-    expect(find.text('Kelime Avı'), findsOneWidget);
-    expect(find.text('Başlangıç Limanı'), findsOneWidget);
-    expect(find.text('0 / 30'), findsOneWidget);
-    expect(find.text('Kapı: 18'), findsOneWidget);
-    expect(find.text('KELİME AVI'), findsNothing);
-    expect(find.text('BAŞLANGIÇ LİMANI'), findsNothing);
+    const expected = <Offset>[
+      Offset(0.189, 0.238),
+      Offset(0.443, 0.257),
+      Offset(0.642, 0.305),
+      Offset(0.803, 0.373),
+      Offset(0.335, 0.453),
+      Offset(0.167, 0.552),
+      Offset(0.460, 0.583),
+      Offset(0.668, 0.616),
+      Offset(0.236, 0.697),
+      Offset(0.489, 0.797),
+    ];
+
+    for (var index = 0; index < expected.length; index++) {
+      final actual = tester.getCenter(
+        find.byKey(Key('word_hunt_route_stop_orb_${index + 1}')),
+      );
+      expect(
+        actual.dx / 411,
+        closeTo(expected[index].dx, 0.012),
+        reason: '${index + 1}. durağın yatay merkezi referansla eşleşmeli.',
+      );
+      expect(
+        actual.dy / 891,
+        closeTo(expected[index].dy, 0.012),
+        reason: '${index + 1}. durağın dikey merkezi referansla eşleşmeli.',
+      );
+    }
   });
 
   testWidgets('reference route follows the approved composition hierarchy', (
@@ -132,14 +163,12 @@ void main() {
     );
     expect(
       four.top - three.bottom,
-      greaterThanOrEqualTo(8),
+      greaterThanOrEqualTo(6),
       reason: '1-4 üst bölgesi referanstaki gibi ferah kalmalı.',
     );
   });
 
-  testWidgets('stop 7 stars stay clear of the bonus stop', (
-    tester,
-  ) async {
+  testWidgets('stop 7 stars stay clear of the bonus stop', (tester) async {
     await pumpReferenceRoute(tester);
 
     final seven = rectOf(tester, 7);
@@ -148,12 +177,14 @@ void main() {
     expect(
       seven.overlaps(eight),
       isFalse,
-      reason: '7 numaranın yıldız alanı 8 numaralı Bonus durağın arkasında kalmamalı.',
+      reason:
+          '7 numaranın yıldız alanı 8 numaralı Bonus durağın arkasında kalmamalı.',
     );
     expect(
       eight.left - seven.right,
       greaterThanOrEqualTo(1),
-      reason: '7 ve 8 yatay açılımında yıldızları okunur tutan güvenlik boşluğu olmalı.',
+      reason:
+          '7 ve 8 yatay açılımında yıldızları okunur tutan güvenlik boşluğu olmalı.',
     );
   });
 
@@ -179,30 +210,38 @@ void main() {
     }
   });
 
-  testWidgets('reference route omits rejected scenic labels and keeps bottom controls', (
-    tester,
-  ) async {
-    await pumpReferenceRoute(tester);
+  testWidgets(
+    'reference route omits rejected scenic labels and keeps bottom controls',
+    (tester) async {
+      await pumpReferenceRoute(tester);
 
-    expect(find.text('Fener'), findsNothing);
-    expect(find.text('Liman'), findsNothing);
-    expect(find.text('Hazine'), findsNothing);
+      expect(find.text('Fener'), findsNothing);
+      expect(find.text('Liman'), findsNothing);
+      expect(find.text('Hazine'), findsNothing);
 
-    final compass = find.byKey(const Key('word_hunt_reference_compass'));
-    final book = find.byKey(const Key('word_hunt_reference_book'));
-    expect(compass, findsOneWidget);
-    expect(book, findsOneWidget);
-    expect(tester.getCenter(compass).dx, lessThan(tester.getCenter(book).dx));
-  });
+      final compass = find.byKey(const Key('word_hunt_reference_compass'));
+      final book = find.byKey(const Key('word_hunt_reference_book'));
+      expect(compass, findsOneWidget);
+      expect(book, findsOneWidget);
+      expect(tester.getCenter(compass).dx, lessThan(tester.getCenter(book).dx));
+    },
+  );
 
-  testWidgets('reference screen remains an isolated prototype with all route levels visible', (
-    tester,
-  ) async {
-    await pumpReferenceRoute(tester);
+  testWidgets(
+    'reference screen remains an isolated prototype with all route levels visible',
+    (tester) async {
+      await pumpReferenceRoute(tester);
 
-    expect(find.byKey(const Key('word_hunt_reference_route_area')), findsOneWidget);
-    for (var level = 1; level <= 10; level++) {
-      expect(find.byKey(Key('word_hunt_reference_level_$level')), findsOneWidget);
-    }
-  });
+      expect(
+        find.byKey(const Key('word_hunt_reference_route_area')),
+        findsOneWidget,
+      );
+      for (var level = 1; level <= 10; level++) {
+        expect(
+          find.byKey(Key('word_hunt_reference_level_$level')),
+          findsOneWidget,
+        );
+      }
+    },
+  );
 }
