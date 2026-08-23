@@ -196,13 +196,13 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                         WordHuntReferenceRouteLayout
                             .bottomControlCenters[0]
                             .dx -
-                    30,
+                    35,
                 top:
                     size.height *
                         WordHuntReferenceRouteLayout
                             .bottomControlCenters[0]
                             .dy -
-                    30,
+                    35,
                 child: _ReferenceBottomControl(
                   key: const Key('word_hunt_reference_compass'),
                   icon: Icons.explore_rounded,
@@ -216,13 +216,13 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                         WordHuntReferenceRouteLayout
                             .bottomControlCenters[1]
                             .dx -
-                    30,
+                    35,
                 top:
                     size.height *
                         WordHuntReferenceRouteLayout
                             .bottomControlCenters[1]
                             .dy -
-                    30,
+                    35,
                 child: _ReferenceBottomControl(
                   key: const Key('word_hunt_reference_book'),
                   icon: Icons.menu_book_rounded,
@@ -307,7 +307,7 @@ class _ReferenceBackground extends StatelessWidget {
         path,
         key: const Key('word_hunt_reference_background_asset'),
         fit: BoxFit.cover,
-        alignment: const Alignment(0, -0.5),
+        alignment: Alignment.topCenter,
         errorBuilder:
             (context, error, stackTrace) => const _FallbackBackground(),
       );
@@ -416,7 +416,7 @@ class _ReferenceTopChrome extends StatelessWidget {
                             style: TextStyle(
                               color: Color(0xFFF4E7FF),
                               fontFamily: 'serif',
-                              fontSize: 19,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 0.7,
                               shadows: <Shadow>[
@@ -454,7 +454,7 @@ class _ReferenceTopChrome extends StatelessWidget {
             child: CustomPaint(
               foregroundPainter: const _ReferencePanelOrnamentPainter(),
               child: Container(
-                padding: const EdgeInsets.fromLTRB(18, 9, 18, 7),
+                padding: const EdgeInsets.fromLTRB(16, 5, 16, 3),
                 decoration: BoxDecoration(
                   color: const Color(0xE308101B),
                   borderRadius: BorderRadius.circular(3),
@@ -482,7 +482,7 @@ class _ReferenceTopChrome extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(0xFFFFF7E7),
                         fontFamily: 'serif',
-                        fontSize: 24,
+                        fontSize: 20,
                         height: 1,
                         fontWeight: FontWeight.w800,
                         letterSpacing: 0.55,
@@ -491,13 +491,13 @@ class _ReferenceTopChrome extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 3),
                     Row(
                       children: [
                         const Icon(
                           Icons.star_rounded,
                           color: Color(0xFFFFC94A),
-                          size: 20,
+                          size: 17,
                         ),
                         const SizedBox(width: 4),
                         Text(
@@ -505,7 +505,7 @@ class _ReferenceTopChrome extends StatelessWidget {
                           style: const TextStyle(
                             color: Color(0xFFFFE9B0),
                             fontFamily: 'serif',
-                            fontSize: 15.5,
+                            fontSize: 13,
                             fontWeight: FontWeight.w800,
                           ),
                         ),
@@ -515,7 +515,7 @@ class _ReferenceTopChrome extends StatelessWidget {
                           style: const TextStyle(
                             color: Color(0xFFF3E6C9),
                             fontFamily: 'serif',
-                            fontSize: 14,
+                            fontSize: 12.5,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -523,7 +523,7 @@ class _ReferenceTopChrome extends StatelessWidget {
                         const Icon(
                           Icons.star_rounded,
                           color: Color(0xFFFFC94A),
-                          size: 18,
+                          size: 16,
                         ),
                       ],
                     ),
@@ -646,14 +646,14 @@ class _ReferenceRoundButton extends StatelessWidget {
           onTap: onTap,
           customBorder: const CircleBorder(),
           child: Container(
-            width: 30,
-            height: 30,
+            width: 27,
+            height: 27,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: const Color(0x660A111D),
               border: Border.all(color: const Color(0xBBA57A3D)),
             ),
-            child: Icon(icon, color: const Color(0xFFE8C678), size: 21),
+            child: Icon(icon, color: const Color(0xFFE8C678), size: 19),
           ),
         ),
       ),
@@ -685,10 +685,10 @@ class _ReferenceBottomControl extends StatelessWidget {
           onTap: onTap,
           customBorder: const CircleBorder(),
           child: SizedBox.square(
-            dimension: 60,
+            dimension: 70,
             child: CustomPaint(
               painter: const _ReferenceBottomControlPainter(),
-              child: Icon(icon, color: const Color(0xFFF2CE71), size: 31),
+              child: Icon(icon, color: const Color(0xFFF2CE71), size: 36),
             ),
           ),
         ),
@@ -790,7 +790,7 @@ class _ReferenceRoutePainter extends CustomPainter {
         Paint()
           ..color = const Color(0xA8000000)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 4.2
+          ..strokeWidth = 2.4
           ..strokeCap = StrokeCap.round
           ..strokeJoin = StrokeJoin.round;
 
@@ -831,7 +831,7 @@ class _ReferenceRoutePainter extends CustomPainter {
             Paint()
               ..color = const Color(0x305B7589)
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 3.8
+              ..strokeWidth = 3.2
               ..strokeCap = StrokeCap.round;
         final dormant =
             Paint()
@@ -871,14 +871,15 @@ class _ReferenceRoutePainter extends CustomPainter {
           Paint()
             ..color = glowColor
             ..style = PaintingStyle.stroke
-            ..strokeWidth = 4.4
+            ..strokeWidth = 3.8
             ..strokeCap = StrokeCap.round
-            ..strokeJoin = StrokeJoin.round;
+            ..strokeJoin = StrokeJoin.round
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2.2);
       final core =
           Paint()
             ..color = coreColor
             ..style = PaintingStyle.stroke
-            ..strokeWidth = 1.9
+            ..strokeWidth = 1.45
             ..strokeCap = StrokeCap.round
             ..strokeJoin = StrokeJoin.round;
 

@@ -28,18 +28,18 @@ class WordHuntRouteStopMetrics {
   });
 
   static const referenceBaseline = WordHuntRouteStopMetrics(
-    normalDiameter: 32,
-    challengeDiameter: 42,
-    bonusDiameter: 44,
-    finalDiameter: 58,
-    normalContainerWidth: 42,
-    normalContainerHeight: 50,
-    challengeContainerWidth: 168,
-    bonusContainerWidth: 132,
-    finalContainerWidth: 166,
-    specialContainerHeight: 78,
-    specialLabelGap: 4,
-    starSize: 10,
+    normalDiameter: 43,
+    challengeDiameter: 52,
+    bonusDiameter: 56,
+    finalDiameter: 80,
+    normalContainerWidth: 55,
+    normalContainerHeight: 59,
+    challengeContainerWidth: 220,
+    bonusContainerWidth: 165,
+    finalContainerWidth: 216,
+    specialContainerHeight: 100,
+    specialLabelGap: 5,
+    starSize: 14,
     starGap: 0.5,
   );
 
@@ -387,10 +387,10 @@ class _RouteStopOrb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final numberSize = switch (level.type) {
-      WordHuntLevelType.normal => 13.0,
-      WordHuntLevelType.challenge => 16.0,
-      WordHuntLevelType.bonus => 16.0,
-      WordHuntLevelType.routeFinal => 22.0,
+      WordHuntLevelType.normal => 16.0,
+      WordHuntLevelType.challenge => 19.0,
+      WordHuntLevelType.bonus => 20.0,
+      WordHuntLevelType.routeFinal => 28.0,
     };
     final visuallyHighlighted = unlocked || lockedFinal;
 
@@ -469,10 +469,10 @@ class _RouteStopOrb extends StatelessWidget {
             if (level.type == WordHuntLevelType.routeFinal)
               Positioned(
                 key: Key('word_hunt_route_stop_crown_${level.index}'),
-                top: -17,
+                top: -20,
                 left: diameter * 0.18,
                 right: diameter * 0.18,
-                height: 22,
+                height: 27,
                 child: CustomPaint(painter: _FinalCrownPainter(accent: accent)),
               ),
           ],
@@ -713,7 +713,7 @@ class _SpecialStopLabel extends StatelessWidget {
     return Opacity(
       opacity: dimmed ? 0.72 : 1,
       child: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: emphasized ? 40 : 36),
+        constraints: BoxConstraints(minHeight: emphasized ? 56 : 44),
         child: CustomPaint(
           painter: _FantasyPlaquePainter(
             accent: accent,
@@ -721,7 +721,7 @@ class _SpecialStopLabel extends StatelessWidget {
             emphasized: emphasized,
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -739,10 +739,10 @@ class _SpecialStopLabel extends StatelessWidget {
                       fontFamily: 'serif',
                       fontSize:
                           label == 'MEYDAN OKUMA'
-                              ? 9.0
+                              ? 10.5
                               : emphasized
-                              ? 10
-                              : 9.5,
+                              ? 11.5
+                              : 10.5,
                       height: 1.05,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.3,

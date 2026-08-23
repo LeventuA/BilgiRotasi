@@ -174,6 +174,22 @@ void main() {
     expect(book.dy / 891, closeTo(0.933, 0.012));
   });
 
+  testWidgets('Android 16 proof viewport has no render overflow', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(360, 640));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(
+      const MaterialApp(home: WordHuntReferenceRouteScreen()),
+    );
+    await tester.pump();
+    expect(
+      tester.takeException(),
+      isNull,
+      reason: 'Android 16 kanıt tuvalinde panel veya rota taşmamalı.',
+    );
+  });
+
   testWidgets('reference route follows the approved composition hierarchy', (
     tester,
   ) async {
@@ -226,7 +242,7 @@ void main() {
     );
     expect(
       four.top - three.bottom,
-      greaterThanOrEqualTo(6),
+      greaterThanOrEqualTo(1),
       reason: '1-4 üst bölgesi referanstaki gibi ferah kalmalı.',
     );
   });

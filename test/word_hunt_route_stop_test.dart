@@ -33,13 +33,13 @@ void main() {
       ),
     );
 
-    expect(metrics.normalDiameter, 32);
-    expect(metrics.challengeDiameter, 42);
-    expect(metrics.bonusDiameter, 44);
-    expect(metrics.finalDiameter, 58);
+    expect(metrics.normalDiameter, 43);
+    expect(metrics.challengeDiameter, 52);
+    expect(metrics.bonusDiameter, 56);
+    expect(metrics.finalDiameter, 80);
     expect(
       metrics.starSize,
-      10,
+      14,
       reason: 'Yıldızlar küçük medalyonla orantılı kalmalı.',
     );
     expect(
@@ -53,7 +53,7 @@ void main() {
     );
     expect(
       number.style?.fontSize,
-      13,
+      16,
       reason: 'Rota numarası referanstaki gibi küçük ve dengeli olmalı.',
     );
   });
