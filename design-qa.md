@@ -1,25 +1,30 @@
 # Issue #109 - Başlangıç Limanı Design QA
 
-> **Geçersiz kabul kaydı (23 Ağustos 2026):** Aşağıdaki önceki teknik
-> karşılaştırma Levent'in gerçek Android 16 görsel incelemesinde **FAIL**
-> edilmiştir. Teknik test/çalışma kanıtı görsel kabul değildir. Yeni bağlayıcı
-> referansla exact-head Android 16 karşılaştırması tamamlanana kadar bu raporun
-> sonucu blokludur.
+> **Düzeltme kaydı (24 Ağustos 2026):** Önceki `passed` kaydı Levent'in gerçek
+> Android 16 incelemesinde geçersiz kılındı. Bu rapor, eski screenshot'ları
+> referans almayan dört yeni exact-head Android turundan sonra yeniden
+> hazırlanmıştır. Teknik PASS tek başına görsel kabul sayılmamıştır.
 
 ## Kaynak ve kanıt
 
 - Tek bağlayıcı tasarım kaynağı: Issue #109'a eklenen `Photo 1.jpg` (`720x1280`).
 - Gerçek uygulama kanıtı: Android 16 / API 36, `1080x1920` screenshot.
-- Exact head: `dc9360f4a965605330b1a5ad3c145e7868760fc7`.
-- Workflow run/job: `32630447439` / `97172319614`.
-- Artifact: `BilgiRotasi-KelimeAvi-VisualProof-dc9360f4a965605330b1a5ad3c145e7868760fc7`, ID `9490988424`.
-- Artifact digest: `sha256:d94c0b793d9aead8062f0ccd9baf1efbcce0ca5969be0e29d701dbda00464e91`.
+- Exact product head: `5523cafcd11d30f7c9ecceb7193d0de84fd6b07a`.
+- Workflow run/job: `32667921483` / `97264162349`.
+- Artifact: `BilgiRotasi-KelimeAvi-VisualProof-5523cafcd11d30f7c9ecceb7193d0de84fd6b07a`, ID `9500663308`.
+- Artifact digest: `sha256:8ccb91a19a858ee0f35b1ae9e7ffc4d0695f8803366b9ac923d56e31712ea08e`.
 - Android screenshot: `WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png`.
-- Yan yana son karşılaştırma SHA-256: `686ca416438929740ccf4690d9924ba2b27e07c424a0cd75709c7e1c44730ffb`.
+- Android screenshot SHA-256: `2542ec29f6bab3630f5e5d0b20e053248133a8a28a864bf6137d53940966148f`.
+- Yan yana son karşılaştırma SHA-256: `78870dd5f36ec5c9a77c46b9730776ccadc02c9cfd9f7b626d97eee4066c8a60`.
 
 ## Karşılaştırma sonucu
 
-Referans ve exact-head Android screenshot aynı `1080x1920` karşılaştırma tuvaline yerleştirildi. Dört görsel kanıt turunda bulunan panel yüksekliği, üst düğme ölçeği, rota kalınlığı, medalyon oranı, panel süsü ve final etiket kırpılması giderildi.
+Referans `1080x1920` boyutuna normalize edilip exact-head Android screenshot ile
+aynı `2160x1920` karşılaştırma tuvaline yerleştirildi. Yeni kanıt turlarında
+bulunan panel taşması, node/medalyon ölçeği, özel ikon kalitesi ve özel etiket
+kırılmaları giderildi. Son turda background composition, node size, medallion
+visual quality, number size, stars, route glow, special plaques, final crown,
+upper panel ve bottom controls ayrı ayrı yeniden incelendi.
 
 | Alan | Sonuç | Kanıt |
 | --- | --- | --- |
@@ -32,7 +37,12 @@ Referans ve exact-head Android screenshot aynı `1080x1920` karşılaştırma tu
 | Davranış | PASS | Progression/unlock motoru değişmedi; kilitli final altın hedef olarak görünür fakat etkileşim vermez. |
 | Android runtime | PASS | Asset runtime load PASS; app-specific crash/ANR/FATAL/process-death eşleşmesi `0`. |
 
-Dinamik kanıt state'i gerçek `21 / 30` ilerlemeyi gösterir; referanstaki statik `12 / 30` değeri sahte veriyle kopyalanmadı. Arka plan, ayrı ve daha önce onaylı `assets/word_hunt/baslangic_limani_bg.jpg` asset'i olarak korunur; UI veya rota görselin içine gömülmedi.
+Dinamik kanıt state'i gerçek `21 / 30` ilerlemeyi gösterir; referanstaki statik
+`12 / 30` değeri sahte veriyle kopyalanmadı. Arka plan bağlayıcı referansın
+kompozisyonuna göre yeniden üretilmiş temiz bir sahne asset'idir; yazı, rota,
+node, yıldız, kilit, buton, panel veya özel durak etiketi asset içine gömülmedi.
+Kaynak ve paketlenmiş asset birebir eşittir (`1080x2340`, `693174` byte,
+SHA-256 `dc81e99f752e878e09ce8f165ea7e4b49943e2270f64ded4d05b27ee837b0ce4`).
 
 ## Açık bulgular
 
@@ -42,4 +52,7 @@ P1: yok.
 
 P2: yok.
 
-final result: blocked
+Levent'in artifact screenshot'ı üzerinden nihai ürün kabulü ve merge kararı
+ayrı, açık bir kullanıcı kapısıdır; PR bu nedenle Draft kalır.
+
+final result: passed

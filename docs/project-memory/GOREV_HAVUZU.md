@@ -2,19 +2,20 @@
 
 ## 0O - 23 Ağustos 2026 / Issue #109 Başlangıç Limanı pixel-match
 
-- **Durum:** UYGULANDI / ANDROID 16 + GÖRSEL QA PASS / PR #110 AÇIK + DRAFT / MERGE YOK.
+- **Durum:** UYGULANDI / ANDROID 16 + AJAN GÖRSEL QA PASS / LEVENT NİHAİ KABULÜ AÇIK / PR #110 AÇIK + DRAFT / MERGE YOK.
 - Kaynak PR #107 exact `a4290d9f4893a20c1b0ae1f6e70365419552720e`; branch `fix/kelime-avi-approved-reference-pixel-match-20260823`; sürüm `1.68.19+109`.
 
 **Bitti ölçütü:**
 - [x] Issue #109 `Photo 1.jpg` tek bağlayıcı referans olarak ölçüldü; mevcut ekran/eski screenshot tasarım kaynağı olmadı.
 - [x] 1-10 geometri, panel, rota paleti, medalyon/yıldız/kilit, 5/8/10 etiketleri ve alt kontroller modüler Flutter katmanlarıyla eşleştirildi.
 - [x] Progression/unlock davranışı ve ayrı background asset sözleşmesi korundu.
-- [x] Focused 74/74; hedefli 15/15; Kelime Avı analyze 0 issue; diff check PASS.
-- [x] Tam Flutter 373 PASS / 1 ortam hatası (`python3` yok, mevcut readiness testi exit 9009); repo analyze non-fatal PASS, mevcut 92 issue.
-- [x] Final Android 16 run/job `32630447439` / `97172319614` SUCCESS; artifact ID `9490988424`, screenshot ve logcat saklandı.
+- [x] Exact product head `5523cafcd11d30f7c9ecceb7193d0de84fd6b07a`; focused 77/77; hedefli 18/18; Kelime Avı analyze 0 issue; diff check PASS.
+- [x] Tam Flutter 377 PASS / 1 ortam hatası (`python3` yok, mevcut readiness testi exit 9009).
+- [x] Final Android 16 run/job `32667921483` / `97264162349` SUCCESS; artifact ID `9500663308`, digest `sha256:8ccb91a19a858ee0f35b1ae9e7ffc4d0695f8803366b9ac923d56e31712ea08e`.
 - [x] Packaged asset byte-eşit/runtime load PASS; app crash/ANR/FATAL/process-death 0.
-- [x] Referans + exact-head screenshot aynı tuvalde karşılaştırıldı; `design-qa.md` P0/P1/P2 yok ve `passed`.
+- [x] Referans + exact-head screenshot aynı `2160x1920` tuvalde karşılaştırıldı; karşılaştırma SHA-256 `78870dd5f36ec5c9a77c46b9730776ccadc02c9cfd9f7b626d97eee4066c8a60`; `design-qa.md` P0/P1/P2 yok ve `passed`.
 - [x] Kapsam dışı dosyalar ve sürüm korunuyor.
+- [ ] Levent final Android 16 artifact screenshot'ı için açık görsel kabul verecek.
 - [ ] Levent açık merge onayı vermeden PR #110 merge edilmez veya Draft'tan çıkarılmaz.
 
 ---

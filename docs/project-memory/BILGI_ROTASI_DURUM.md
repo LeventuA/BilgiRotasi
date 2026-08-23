@@ -6,13 +6,13 @@
 - Issue #109'a eklenen `720x1280` `Photo 1.jpg` tek bağlayıcı görsel kaynak olarak kullanıldı; mevcut Flutter ekranı ve eski screenshot'lar tasarım kaynağı yapılmadı.
 - 1-10 durak merkezleri normalize referans koordinatlarıyla kilitlendi. Üst mor başlık, ince süslü altın panel, cyan/amber/mor/kilit/final rota dili, küçük medalyonlar, dinamik yıldız/kilit/özel etiketler ve alt kontroller ayrı Flutter katmanları olarak korundu.
 - Progression/unlock motoru değişmedi. Exact-head kanıt state'i gerçek `21 / 30` değerini gösterir; referanstaki statik `12 / 30` sahte veriyle taklit edilmedi. Kilitli final oynanamaz kalırken altın hedef/final yolu görselini korur.
-- Focused suite **74/74 PASS**; yeni geometri/medalyon hedefli suite **15/15 PASS**; `dart analyze lib/word_hunt` **0 issue**; `git diff --check` PASS. Tam yerel Flutter koşusu **373 PASS / 1 ortam hatası**: yalnız Windows'ta `python3` bulunmadığı için mevcut `release_readiness_report_test.dart` exit `9009`.
-- `flutter analyze --no-pub --no-fatal-warnings --no-fatal-infos` PASS; repo genelindeki mevcut 92 warning/info korundu, değişen Kelime Avı kaynaklarında yeni issue yok.
-- Final Android 16 run/job `32630447439` / `97172319614`: SUCCESS. Artifact ID `9490988424`, digest `sha256:d94c0b793d9aead8062f0ccd9baf1efbcce0ca5969be0e29d701dbda00464e91`; screenshot `1080x1920`; APK SHA-256 `9d27a9a9c5b42b1e0f618c8c7d96be07dcb2718e8b7efea1748fb57ef4f7fc8d`.
-- Packaged background kaynakla byte-eşit, runtime asset load PASS; app-specific crash/ANR/FATAL/process-death eşleşmesi 0. Referans + Android screenshot aynı tuvalde karşılaştırıldı; `design-qa.md` sonucu `passed`, P0/P1/P2 açık bulgu yok.
+- Exact product head `5523cafcd11d30f7c9ecceb7193d0de84fd6b07a`. Focused suite **77/77 PASS**; geometri/medalyon hedefli suite **18/18 PASS**; `dart analyze lib/word_hunt` **0 issue**; `git diff --check` PASS. Final tam yerel Flutter koşusu **377 PASS / 1 ortam hatası**: yalnız Windows'ta `python3` bulunmadığı için mevcut `release_readiness_report_test.dart` exit `9009`.
+- Final Android 16 run/job `32667921483` / `97264162349`: SUCCESS. Artifact ID `9500663308`, digest `sha256:8ccb91a19a858ee0f35b1ae9e7ffc4d0695f8803366b9ac923d56e31712ea08e`; screenshot `1080x1920`, SHA-256 `2542ec29f6bab3630f5e5d0b20e053248133a8a28a864bf6137d53940966148f`; APK SHA-256 `02e24504d5dfb6641fd77fc52e5644a0beff357b75469e70a1903755d57b301a`.
+- Yeni temiz background `1080x2340`, `693174` byte, SHA-256 `dc81e99f752e878e09ce8f165ea7e4b49943e2270f64ded4d05b27ee837b0ce4`; packaged background kaynakla byte-eşit ve runtime asset load PASS. App-specific crash/ANR/FATAL/process-death eşleşmesi 0.
+- Referans ile final Android screenshot aynı `2160x1920` tuvalde karşılaştırıldı; karşılaştırma SHA-256 `78870dd5f36ec5c9a77c46b9730776ccadc02c9cfd9f7b626d97eee4066c8a60`. `design-qa.md` sonucu yeniden `passed`; P0/P1/P2 açık ajan bulgusu yok. Bu kayıt Levent'in nihai görsel kabulünün yerine geçmez.
 - `assets/questions.json`, `lib/main.dart`, BoardMap/67 node, 3B tahta, AdMob/Firebase/Android/release config ve `pubspec.yaml` sürümü değişmedi; sürüm `1.68.19+109`.
 
-**Durum:** PR #110 açık/Draft, merge edilmedi. Android 16 teknik ve görsel QA PASS; Levent'in PR inceleme/merge kararı ayrıdır.
+**Durum:** PR #110 açık/Draft, merge edilmedi. Android 16 teknik ve ajan görsel QA PASS; Levent'in artifact screenshot'ı için nihai görsel kabulü ve merge kararı açık kalır.
 
 ---
 

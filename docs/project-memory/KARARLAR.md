@@ -7,6 +7,8 @@
 - Issue #109'a eklenen `Photo 1.jpg`, Başlangıç Limanı rota ekranı için tek bağlayıcı görsel referanstır; eski Flutter ekranları ve screenshot'lar tasarım kaynağı değildir.
 - Arka plan ayrı raster asset, rota/panel/medalyon/yıldız/kilit/etiket/kontrol katmanları dinamik Flutter bileşenleri olarak kalır; referans screenshot uygulamaya tek parça UI olarak gömülmez.
 - Görsel state oyun progression gerçeğini bozmaz. Kilitli final altın hedef olarak görünebilir fakat oynanabilir sayılmaz; ilerleme sayısı gerçek state'ten hesaplanır.
+- Arka plan yalnız sahne/çevre içeren ayrı asset'tir; yazı, rota, node, yıldız, kilit, buton, panel ve özel durak etiketleri Flutter katmanlarında dinamik kalır. Eski arka plan bağlayıcı referansla uyuşmadığında kontrollü biçimde değiştirilebilir.
+- Ajanın aynı-tuval görsel QA sonucu, Levent'in gerçek Android 16 artifact screenshot'ı için vereceği nihai görsel kabulün yerine geçmez; PR bu açık kabul gelene kadar Draft kalır.
 
 ---
 

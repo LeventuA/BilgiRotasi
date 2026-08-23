@@ -2,9 +2,9 @@
 
 ## Issue #109 / PR #110 teknik ve görsel QA sonrası — AÇIK KARAR
 
-- Exact-head Android 16 run/job `32630447439` / `97172319614` SUCCESS; artifact ID `9490988424`.
-- `design-qa.md` sonucu PASS; P0/P1/P2 açık görsel bulgu yok. CI screenshot kanıtı kullanıcının merge onayı yerine geçmez.
-- **DOĞRULANACAK:** Levent PR #110 için açık merge/onay kararı verecek mi? O zamana kadar PR açık/Draft/merge edilmemiş kalır.
+- Exact product head `5523cafcd11d30f7c9ecceb7193d0de84fd6b07a`; Android 16 run/job `32667921483` / `97264162349` SUCCESS; artifact ID `9500663308`.
+- `design-qa.md` ajan karşılaştırma sonucu PASS; P0/P1/P2 açık görsel bulgu yok. CI screenshot ve ajan QA kaydı kullanıcının nihai görsel kabulü veya merge onayı yerine geçmez.
+- **DOĞRULANACAK:** Levent final Android 16 artifact screenshot'ını açıkça kabul ediyor mu ve PR #110 için ayrı merge/onay kararı veriyor mu? O zamana kadar PR açık/Draft/merge edilmemiş kalır.
 
 ---
 
