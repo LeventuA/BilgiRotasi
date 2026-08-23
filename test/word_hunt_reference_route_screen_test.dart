@@ -120,6 +120,60 @@ void main() {
     }
   });
 
+  test(
+    'binding reference locks the measured panel, controls and route curves',
+    () {
+      expect(
+        WordHuntReferenceRouteLayout.topPanel,
+        const Rect.fromLTRB(0.081, 0.070, 0.924, 0.158),
+      );
+      expect(WordHuntReferenceRouteLayout.bottomControlCenters, const <Offset>[
+        Offset(0.126, 0.933),
+        Offset(0.875, 0.933),
+      ]);
+      expect(WordHuntReferenceRouteLayout.routeControls, hasLength(9));
+      expect(
+        WordHuntReferenceRouteLayout.routeControls,
+        const <(Offset, Offset)>[
+          (Offset(0.270, 0.236), Offset(0.365, 0.242)),
+          (Offset(0.515, 0.266), Offset(0.585, 0.286)),
+          (Offset(0.704, 0.325), Offset(0.760, 0.348)),
+          (Offset(0.778, 0.410), Offset(0.520, 0.423)),
+          (Offset(0.250, 0.480), Offset(0.190, 0.515)),
+          (Offset(0.245, 0.565), Offset(0.360, 0.575)),
+          (Offset(0.535, 0.590), Offset(0.610, 0.603)),
+          (Offset(0.600, 0.645), Offset(0.335, 0.660)),
+          (Offset(0.225, 0.746), Offset(0.380, 0.775)),
+        ],
+      );
+    },
+  );
+
+  testWidgets('panel and premium bottom controls use measured centers', (
+    tester,
+  ) async {
+    await pumpReferenceRoute(tester);
+
+    final panel = tester.getRect(
+      find.byKey(const Key('word_hunt_reference_top_panel')),
+    );
+    expect(panel.left / 411, closeTo(0.081, 0.012));
+    expect(panel.right / 411, closeTo(0.924, 0.012));
+    expect(panel.top / 891, closeTo(0.070, 0.012));
+    expect(panel.bottom / 891, closeTo(0.158, 0.012));
+
+    final compass = tester.getCenter(
+      find.byKey(const Key('word_hunt_reference_compass')),
+    );
+    final book = tester.getCenter(
+      find.byKey(const Key('word_hunt_reference_book')),
+    );
+    expect(compass.dx / 411, closeTo(0.126, 0.012));
+    expect(compass.dy / 891, closeTo(0.933, 0.012));
+    expect(book.dx / 411, closeTo(0.875, 0.012));
+    expect(book.dy / 891, closeTo(0.933, 0.012));
+  });
+
   testWidgets('reference route follows the approved composition hierarchy', (
     tester,
   ) async {

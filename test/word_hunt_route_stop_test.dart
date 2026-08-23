@@ -33,14 +33,13 @@ void main() {
       ),
     );
 
-    expect(
-      metrics.normalDiameter,
-      inInclusiveRange(36, 40),
-      reason: 'Onaylı referansta normal rota medalyonları küçük kalmalı.',
-    );
+    expect(metrics.normalDiameter, 32);
+    expect(metrics.challengeDiameter, 42);
+    expect(metrics.bonusDiameter, 44);
+    expect(metrics.finalDiameter, 58);
     expect(
       metrics.starSize,
-      inInclusiveRange(10, 12),
+      10,
       reason: 'Yıldızlar küçük medalyonla orantılı kalmalı.',
     );
     expect(
@@ -54,7 +53,7 @@ void main() {
     );
     expect(
       number.style?.fontSize,
-      lessThanOrEqualTo(20),
+      13,
       reason: 'Rota numarası referanstaki gibi küçük ve dengeli olmalı.',
     );
   });
@@ -156,6 +155,17 @@ void main() {
       reason:
           'Finalin oynanamaz olduğu küçük kilit rozetiyle açıkça belirtilmeli.',
     );
+    expect(
+      find.byKey(const Key('word_hunt_route_stop_crown_10')),
+      findsOneWidget,
+      reason: 'Final hedefi ayrı ve süslü taç siluetini korumalı.',
+    );
+    for (var star = 0; star < 3; star++) {
+      final icon = tester.widget<Icon>(
+        find.byKey(Key('word_hunt_route_stop_star_10_$star')),
+      );
+      expect(icon.color, WordHuntRouteStopTheme.harbor.starFilled);
+    }
     expect(
       find.byKey(const Key('word_hunt_route_stop_lock_10')),
       findsNothing,
@@ -284,13 +294,16 @@ void main() {
       expect(find.text('BONUS DURAK'), findsOneWidget);
       expect(find.text('ROTA FİNALİ'), findsOneWidget);
 
+      final challengeLabel = tester.widget<Text>(find.text('MEYDAN OKUMA'));
+      expect(challengeLabel.maxLines, 1);
+
       expect(
         tester.getSize(find.byKey(const Key('word_hunt_route_stop_5'))).width,
-        metrics.specialContainerWidth,
+        metrics.challengeContainerWidth,
       );
       expect(
         tester.getSize(find.byKey(const Key('word_hunt_route_stop_8'))).width,
-        metrics.specialContainerWidth,
+        metrics.bonusContainerWidth,
       );
       expect(
         tester.getSize(find.byKey(const Key('word_hunt_route_stop_10'))).width,

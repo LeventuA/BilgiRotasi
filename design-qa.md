@@ -1,5 +1,11 @@
 # Issue #109 - Başlangıç Limanı Design QA
 
+> **Geçersiz kabul kaydı (23 Ağustos 2026):** Aşağıdaki önceki teknik
+> karşılaştırma Levent'in gerçek Android 16 görsel incelemesinde **FAIL**
+> edilmiştir. Teknik test/çalışma kanıtı görsel kabul değildir. Yeni bağlayıcı
+> referansla exact-head Android 16 karşılaştırması tamamlanana kadar bu raporun
+> sonucu blokludur.
+
 ## Kaynak ve kanıt
 
 - Tek bağlayıcı tasarım kaynağı: Issue #109'a eklenen `Photo 1.jpg` (`720x1280`).
@@ -36,4 +42,4 @@ P1: yok.
 
 P2: yok.
 
-final result: passed
+final result: blocked

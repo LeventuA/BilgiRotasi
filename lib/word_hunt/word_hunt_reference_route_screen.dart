@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import 'word_hunt_models.dart';
@@ -28,6 +30,26 @@ class WordHuntReferenceRouteLayout {
 
   static const double routeAreaTop = 0;
   static const double routeAreaBottom = 0;
+
+  static const Rect topPanel = Rect.fromLTRB(0.081, 0.070, 0.924, 0.158);
+
+  static const List<Offset> bottomControlCenters = <Offset>[
+    Offset(0.126, 0.933),
+    Offset(0.875, 0.933),
+  ];
+
+  /// Her segment için bağlayıcı referanstan ölçülen iki cubic Bézier kontrolü.
+  static const List<(Offset, Offset)> routeControls = <(Offset, Offset)>[
+    (Offset(0.270, 0.236), Offset(0.365, 0.242)),
+    (Offset(0.515, 0.266), Offset(0.585, 0.286)),
+    (Offset(0.704, 0.325), Offset(0.760, 0.348)),
+    (Offset(0.778, 0.410), Offset(0.520, 0.423)),
+    (Offset(0.250, 0.480), Offset(0.190, 0.515)),
+    (Offset(0.245, 0.565), Offset(0.360, 0.575)),
+    (Offset(0.535, 0.590), Offset(0.610, 0.603)),
+    (Offset(0.600, 0.645), Offset(0.335, 0.660)),
+    (Offset(0.225, 0.746), Offset(0.380, 0.775)),
+  ];
 }
 
 enum WordHuntReferenceRouteSegmentStyle {
@@ -127,6 +149,7 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                 ),
               ),
               _ReferenceTopChrome(
+                viewportSize: size,
                 title: route.title,
                 stars: totalStars,
                 maximumStars: route.maximumStars,
@@ -168,8 +191,18 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                left: 18,
-                bottom: 16,
+                left:
+                    size.width *
+                        WordHuntReferenceRouteLayout
+                            .bottomControlCenters[0]
+                            .dx -
+                    30,
+                top:
+                    size.height *
+                        WordHuntReferenceRouteLayout
+                            .bottomControlCenters[0]
+                            .dy -
+                    30,
                 child: _ReferenceBottomControl(
                   key: const Key('word_hunt_reference_compass'),
                   icon: Icons.explore_rounded,
@@ -178,8 +211,18 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                right: 18,
-                bottom: 16,
+                left:
+                    size.width *
+                        WordHuntReferenceRouteLayout
+                            .bottomControlCenters[1]
+                            .dx -
+                    30,
+                top:
+                    size.height *
+                        WordHuntReferenceRouteLayout
+                            .bottomControlCenters[1]
+                            .dy -
+                    30,
                 child: _ReferenceBottomControl(
                   key: const Key('word_hunt_reference_book'),
                   icon: Icons.menu_book_rounded,
@@ -264,7 +307,7 @@ class _ReferenceBackground extends StatelessWidget {
         path,
         key: const Key('word_hunt_reference_background_asset'),
         fit: BoxFit.cover,
-        alignment: Alignment.center,
+        alignment: const Alignment(0, -0.5),
         errorBuilder:
             (context, error, stackTrace) => const _FallbackBackground(),
       );
@@ -321,6 +364,7 @@ class _ReferenceLegibilityOverlay extends StatelessWidget {
 
 class _ReferenceTopChrome extends StatelessWidget {
   const _ReferenceTopChrome({
+    required this.viewportSize,
     required this.title,
     required this.stars,
     required this.maximumStars,
@@ -329,6 +373,7 @@ class _ReferenceTopChrome extends StatelessWidget {
     this.onInfo,
   });
 
+  final Size viewportSize;
   final String title;
   final int stars;
   final int maximumStars;
@@ -338,139 +383,152 @@ class _ReferenceTopChrome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      left: 12,
-      right: 12,
-      top: 5,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+    final panel = WordHuntReferenceRouteLayout.topPanel;
+    return Positioned.fill(
+      child: Stack(
         children: [
-          SizedBox(
-            height: 38,
-            child: Row(
-              children: [
-                _ReferenceRoundButton(
-                  key: const Key('word_hunt_reference_back'),
-                  icon: Icons.arrow_back_rounded,
-                  semanticLabel: 'Geri',
-                  onTap: onBack,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        const Expanded(
-                          child: _ReferenceTitleFlourish(reverse: false),
-                        ),
-                        const SizedBox(width: 7),
-                        const Text(
-                          'KELİME AVI',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFFF4E7FF),
-                            fontFamily: 'serif',
-                            fontSize: 19,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0.7,
-                            shadows: <Shadow>[
-                              Shadow(color: Color(0xD99C4DFF), blurRadius: 12),
-                            ],
+          Positioned(
+            left: 12,
+            right: 12,
+            top: 8,
+            child: SizedBox(
+              height: 38,
+              child: Row(
+                children: [
+                  _ReferenceRoundButton(
+                    key: const Key('word_hunt_reference_back'),
+                    icon: Icons.arrow_back_rounded,
+                    semanticLabel: 'Geri',
+                    onTap: onBack,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          const Expanded(
+                            child: _ReferenceTitleFlourish(reverse: false),
                           ),
-                        ),
-                        const SizedBox(width: 7),
-                        const Expanded(
-                          child: _ReferenceTitleFlourish(reverse: true),
-                        ),
-                      ],
+                          const SizedBox(width: 7),
+                          const Text(
+                            'KELİME AVI',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFFF4E7FF),
+                              fontFamily: 'serif',
+                              fontSize: 19,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.7,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  color: Color(0xD99C4DFF),
+                                  blurRadius: 12,
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 7),
+                          const Expanded(
+                            child: _ReferenceTitleFlourish(reverse: true),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                _ReferenceRoundButton(
-                  key: const Key('word_hunt_reference_info'),
-                  icon: Icons.info_outline_rounded,
-                  semanticLabel: 'Bilgi',
-                  onTap: onInfo,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 7),
-          CustomPaint(
-            foregroundPainter: const _ReferencePanelOrnamentPainter(),
-            child: Container(
-              constraints: const BoxConstraints(maxWidth: 348, minHeight: 64),
-              padding: const EdgeInsets.fromLTRB(18, 7, 18, 6),
-              decoration: BoxDecoration(
-                color: const Color(0xE308101B),
-                borderRadius: BorderRadius.circular(3),
-                border: Border.all(color: const Color(0xD0B68B45), width: 1.3),
-                boxShadow: const <BoxShadow>[
-                  BoxShadow(
-                    color: Color(0x88000000),
-                    blurRadius: 12,
-                    offset: Offset(0, 5),
+                  _ReferenceRoundButton(
+                    key: const Key('word_hunt_reference_info'),
+                    icon: Icons.info_outline_rounded,
+                    semanticLabel: 'Bilgi',
+                    onTap: onInfo,
                   ),
-                  BoxShadow(color: Color(0x2D8B5CF6), blurRadius: 13),
                 ],
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    title.toUpperCase().replaceFirst('LIMANI', 'LİMANI'),
-                    maxLines: 1,
-                    overflow: TextOverflow.fade,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color(0xFFFFF7E7),
-                      fontFamily: 'serif',
-                      fontSize: 24,
-                      height: 1,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.55,
-                      shadows: <Shadow>[
-                        Shadow(color: Color(0x99000000), blurRadius: 4),
+            ),
+          ),
+          Positioned(
+            key: const Key('word_hunt_reference_top_panel'),
+            left: panel.left * viewportSize.width,
+            top: panel.top * viewportSize.height,
+            width: panel.width * viewportSize.width,
+            height: panel.height * viewportSize.height,
+            child: CustomPaint(
+              foregroundPainter: const _ReferencePanelOrnamentPainter(),
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(18, 9, 18, 7),
+                decoration: BoxDecoration(
+                  color: const Color(0xE308101B),
+                  borderRadius: BorderRadius.circular(3),
+                  border: Border.all(
+                    color: const Color(0xD0B68B45),
+                    width: 1.3,
+                  ),
+                  boxShadow: const <BoxShadow>[
+                    BoxShadow(
+                      color: Color(0x88000000),
+                      blurRadius: 12,
+                      offset: Offset(0, 5),
+                    ),
+                    BoxShadow(color: Color(0x2D8B5CF6), blurRadius: 13),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title.toUpperCase().replaceFirst('LIMANI', 'LİMANI'),
+                      maxLines: 1,
+                      overflow: TextOverflow.fade,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Color(0xFFFFF7E7),
+                        fontFamily: 'serif',
+                        fontSize: 24,
+                        height: 1,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 0.55,
+                        shadows: <Shadow>[
+                          Shadow(color: Color(0x99000000), blurRadius: 4),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star_rounded,
+                          color: Color(0xFFFFC94A),
+                          size: 20,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '$stars / $maximumStars',
+                          style: const TextStyle(
+                            color: Color(0xFFFFE9B0),
+                            fontFamily: 'serif',
+                            fontSize: 15.5,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          'Kapı: $unlockStarsRequired',
+                          style: const TextStyle(
+                            color: Color(0xFFF3E6C9),
+                            fontFamily: 'serif',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(width: 3),
+                        const Icon(
+                          Icons.star_rounded,
+                          color: Color(0xFFFFC94A),
+                          size: 18,
+                        ),
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 6),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.star_rounded,
-                        color: Color(0xFFFFC94A),
-                        size: 20,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '$stars / $maximumStars',
-                        style: const TextStyle(
-                          color: Color(0xFFFFE9B0),
-                          fontFamily: 'serif',
-                          fontSize: 15.5,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      const Spacer(),
-                      Text(
-                        'Kapı: $unlockStarsRequired',
-                        style: const TextStyle(
-                          color: Color(0xFFF3E6C9),
-                          fontFamily: 'serif',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(width: 3),
-                      const Icon(
-                        Icons.star_rounded,
-                        color: Color(0xFFFFC94A),
-                        size: 18,
-                      ),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -626,29 +684,58 @@ class _ReferenceBottomControl extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           customBorder: const CircleBorder(),
-          child: Container(
-            width: 58,
-            height: 58,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const RadialGradient(
-                colors: <Color>[Color(0xFF18313B), Color(0xFF07131D)],
-              ),
-              border: Border.all(color: const Color(0xB8C29650), width: 1.3),
-              boxShadow: const <BoxShadow>[
-                BoxShadow(
-                  color: Color(0x77000000),
-                  blurRadius: 8,
-                  offset: Offset(0, 4),
-                ),
-              ],
+          child: SizedBox.square(
+            dimension: 60,
+            child: CustomPaint(
+              painter: const _ReferenceBottomControlPainter(),
+              child: Icon(icon, color: const Color(0xFFF2CE71), size: 31),
             ),
-            child: Icon(icon, color: const Color(0xFFE9C86E), size: 30),
           ),
         ),
       ),
     );
   }
+}
+
+class _ReferenceBottomControlPainter extends CustomPainter {
+  const _ReferenceBottomControlPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = size.center(Offset.zero);
+    canvas.drawCircle(
+      center,
+      size.width * 0.49,
+      Paint()
+        ..shader = const RadialGradient(
+          colors: <Color>[Color(0xFF1C303A), Color(0xFF071019)],
+        ).createShader(Offset.zero & size),
+    );
+    for (final ring in <(double, double, Color)>[
+      (0.46, 1.5, const Color(0xFFE2B760)),
+      (0.39, 0.9, const Color(0xFF7F5B2D)),
+      (0.32, 0.6, const Color(0xFFB38B4D)),
+    ]) {
+      canvas.drawCircle(
+        center,
+        size.width * ring.$1,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = ring.$2
+          ..color = ring.$3,
+      );
+    }
+    final ornament = Paint()..color = const Color(0xFFD8A951);
+    for (var index = 0; index < 8; index++) {
+      final angle = index * math.pi / 4;
+      final direction = Offset(math.cos(angle), math.sin(angle));
+      canvas.drawCircle(center + direction * size.width * 0.425, 1.2, ornament);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _ReferenceBottomControlPainter oldDelegate) =>
+      false;
 }
 
 class _ReferenceFramePainter extends CustomPainter {
@@ -710,9 +797,26 @@ class _ReferenceRoutePainter extends CustomPainter {
     for (var index = 0; index < points.length - 1; index++) {
       final from = points[index];
       final to = points[index + 1];
-      final path = Path()..moveTo(from.dx, from.dy);
-      final middleY = (from.dy + to.dy) / 2;
-      path.cubicTo(from.dx, middleY, to.dx, middleY, to.dx, to.dy);
+      final controls = WordHuntReferenceRouteLayout.routeControls[index];
+      final control1 = Offset(
+        controls.$1.dx * size.width,
+        controls.$1.dy * size.height,
+      );
+      final control2 = Offset(
+        controls.$2.dx * size.width,
+        controls.$2.dy * size.height,
+      );
+      final path =
+          Path()
+            ..moveTo(from.dx, from.dy)
+            ..cubicTo(
+              control1.dx,
+              control1.dy,
+              control2.dx,
+              control2.dy,
+              to.dx,
+              to.dy,
+            );
 
       canvas.drawPath(path, shadow);
 
@@ -778,8 +882,24 @@ class _ReferenceRoutePainter extends CustomPainter {
             ..strokeCap = StrokeCap.round
             ..strokeJoin = StrokeJoin.round;
 
-      canvas.drawPath(path, glow);
-      canvas.drawPath(path, core);
+      if (style == WordHuntReferenceRouteSegmentStyle.finalStop) {
+        _drawFinalGradient(canvas, path, glow, core);
+      } else {
+        canvas.drawPath(path, glow);
+        canvas.drawPath(path, core);
+      }
+    }
+  }
+
+  void _drawFinalGradient(Canvas canvas, Path path, Paint glow, Paint core) {
+    for (final metric in path.computeMetrics()) {
+      final split = metric.length * 0.52;
+      final purple = metric.extractPath(0, split);
+      final gold = metric.extractPath(split, metric.length);
+      canvas.drawPath(purple, glow..color = const Color(0x70A94AF3));
+      canvas.drawPath(purple, core..color = const Color(0xFFC06BFF));
+      canvas.drawPath(gold, glow..color = const Color(0x70F6B83D));
+      canvas.drawPath(gold, core..color = const Color(0xFFFFD76B));
     }
   }
 

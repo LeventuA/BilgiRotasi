@@ -13,11 +13,13 @@ import 'word_hunt_models.dart';
 class WordHuntRouteStopMetrics {
   const WordHuntRouteStopMetrics({
     required this.normalDiameter,
-    required this.specialDiameter,
+    required this.challengeDiameter,
+    required this.bonusDiameter,
     required this.finalDiameter,
     required this.normalContainerWidth,
     required this.normalContainerHeight,
-    required this.specialContainerWidth,
+    required this.challengeContainerWidth,
+    required this.bonusContainerWidth,
     required this.finalContainerWidth,
     required this.specialContainerHeight,
     required this.specialLabelGap,
@@ -26,25 +28,29 @@ class WordHuntRouteStopMetrics {
   });
 
   static const referenceBaseline = WordHuntRouteStopMetrics(
-    normalDiameter: 38,
-    specialDiameter: 48,
-    finalDiameter: 66,
-    normalContainerWidth: 48,
-    normalContainerHeight: 54,
-    specialContainerWidth: 146,
-    finalContainerWidth: 165,
-    specialContainerHeight: 82,
-    specialLabelGap: 5,
-    starSize: 11,
-    starGap: 1,
+    normalDiameter: 32,
+    challengeDiameter: 42,
+    bonusDiameter: 44,
+    finalDiameter: 58,
+    normalContainerWidth: 42,
+    normalContainerHeight: 50,
+    challengeContainerWidth: 168,
+    bonusContainerWidth: 132,
+    finalContainerWidth: 166,
+    specialContainerHeight: 78,
+    specialLabelGap: 4,
+    starSize: 10,
+    starGap: 0.5,
   );
 
   final double normalDiameter;
-  final double specialDiameter;
+  final double challengeDiameter;
+  final double bonusDiameter;
   final double finalDiameter;
   final double normalContainerWidth;
   final double normalContainerHeight;
-  final double specialContainerWidth;
+  final double challengeContainerWidth;
+  final double bonusContainerWidth;
   final double finalContainerWidth;
   final double specialContainerHeight;
   final double specialLabelGap;
@@ -53,16 +59,16 @@ class WordHuntRouteStopMetrics {
 
   double diameterFor(WordHuntLevelType type) => switch (type) {
     WordHuntLevelType.normal => normalDiameter,
-    WordHuntLevelType.challenge => specialDiameter,
-    WordHuntLevelType.bonus => specialDiameter,
+    WordHuntLevelType.challenge => challengeDiameter,
+    WordHuntLevelType.bonus => bonusDiameter,
     WordHuntLevelType.routeFinal => finalDiameter,
   };
 
   double containerWidthFor(WordHuntLevelType type) => switch (type) {
     WordHuntLevelType.normal => normalContainerWidth,
     WordHuntLevelType.routeFinal => finalContainerWidth,
-    WordHuntLevelType.challenge ||
-    WordHuntLevelType.bonus => specialContainerWidth,
+    WordHuntLevelType.challenge => challengeContainerWidth,
+    WordHuntLevelType.bonus => bonusContainerWidth,
   };
 
   double containerHeightFor(WordHuntLevelType type) =>
@@ -296,6 +302,7 @@ class _StopMedallionAndStars extends StatelessWidget {
           levelIndex: level.index,
           stars: stars,
           unlocked: unlocked,
+          goldTarget: level.type == WordHuntLevelType.routeFinal,
           theme: theme,
           starSize: metrics.starSize,
         ),
@@ -380,10 +387,10 @@ class _RouteStopOrb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final numberSize = switch (level.type) {
-      WordHuntLevelType.normal => 14.0,
-      WordHuntLevelType.challenge => 17.0,
-      WordHuntLevelType.bonus => 17.0,
-      WordHuntLevelType.routeFinal => 23.0,
+      WordHuntLevelType.normal => 13.0,
+      WordHuntLevelType.challenge => 16.0,
+      WordHuntLevelType.bonus => 16.0,
+      WordHuntLevelType.routeFinal => 22.0,
     };
     final visuallyHighlighted = unlocked || lockedFinal;
 
@@ -458,6 +465,15 @@ class _RouteStopOrb extends StatelessWidget {
                     size: 9,
                   ),
                 ),
+              ),
+            if (level.type == WordHuntLevelType.routeFinal)
+              Positioned(
+                key: Key('word_hunt_route_stop_crown_${level.index}'),
+                top: -17,
+                left: diameter * 0.18,
+                right: diameter * 0.18,
+                height: 22,
+                child: CustomPaint(painter: _FinalCrownPainter(accent: accent)),
               ),
           ],
         ),
@@ -568,25 +584,6 @@ class _MedallionFramePainter extends CustomPainter {
       canvas.drawPath(path, ornamentPaint);
       canvas.drawPath(path, ornamentOutline);
     }
-
-    if (finalStop) {
-      final crownPaint =
-          Paint()
-            ..style = PaintingStyle.stroke
-            ..strokeWidth = 1.9
-            ..strokeCap = StrokeCap.round
-            ..color = accent.withValues(alpha: 0.95 * alpha);
-      final top = center.dy - radius - 3;
-      final crown =
-          Path()
-            ..moveTo(center.dx - 12, top + 11)
-            ..lineTo(center.dx - 7, top + 1)
-            ..lineTo(center.dx, top + 7)
-            ..lineTo(center.dx + 7, top + 1)
-            ..lineTo(center.dx + 12, top + 11)
-            ..lineTo(center.dx - 12, top + 11);
-      canvas.drawPath(crown, crownPaint);
-    }
   }
 
   @override
@@ -599,11 +596,61 @@ class _MedallionFramePainter extends CustomPainter {
   }
 }
 
+class _FinalCrownPainter extends CustomPainter {
+  const _FinalCrownPainter({required this.accent});
+
+  final Color accent;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final crown =
+        Path()
+          ..moveTo(1, size.height - 4)
+          ..lineTo(size.width * 0.12, size.height * 0.30)
+          ..lineTo(size.width * 0.33, size.height * 0.63)
+          ..lineTo(size.width * 0.50, 1)
+          ..lineTo(size.width * 0.67, size.height * 0.63)
+          ..lineTo(size.width * 0.88, size.height * 0.30)
+          ..lineTo(size.width - 1, size.height - 4)
+          ..close();
+    canvas.drawShadow(crown, accent, 5, true);
+    canvas.drawPath(
+      crown,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color>[
+            const Color(0xFFFFF1A0),
+            accent,
+            const Color(0xFF8E4D0B),
+          ],
+        ).createShader(Offset.zero & size),
+    );
+    canvas.drawPath(
+      crown,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.1
+        ..color = const Color(0xFFFFE99B),
+    );
+    final jewel = Paint()..color = const Color(0xFFFFF2B4);
+    for (final x in <double>[0.12, 0.50, 0.88]) {
+      canvas.drawCircle(Offset(size.width * x, size.height * 0.25), 1.8, jewel);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _FinalCrownPainter oldDelegate) =>
+      oldDelegate.accent != accent;
+}
+
 class _RouteStopStars extends StatelessWidget {
   const _RouteStopStars({
     required this.levelIndex,
     required this.stars,
     required this.unlocked,
+    required this.goldTarget,
     required this.theme,
     required this.starSize,
   });
@@ -611,6 +658,7 @@ class _RouteStopStars extends StatelessWidget {
   final int levelIndex;
   final int stars;
   final bool unlocked;
+  final bool goldTarget;
   final WordHuntRouteStopTheme theme;
   final double starSize;
 
@@ -619,7 +667,7 @@ class _RouteStopStars extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: List<Widget>.generate(3, (index) {
-        final earned = index < stars;
+        final earned = index < stars || goldTarget;
         return Icon(
           Icons.star_rounded,
           key: Key('word_hunt_route_stop_star_${levelIndex}_$index'),
@@ -664,30 +712,16 @@ class _SpecialStopLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Opacity(
       opacity: dimmed ? 0.72 : 1,
-      child: Container(
-        constraints: BoxConstraints(minHeight: emphasized ? 38 : 34),
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-        decoration: BoxDecoration(
-          color: theme.labelSurface,
-          borderRadius: BorderRadius.circular(2),
-          border: Border.all(
-            color: accent.withValues(alpha: 0.84),
-            width: emphasized ? 1.6 : 1.2,
-          ),
-          boxShadow: <BoxShadow>[
-            BoxShadow(color: accent.withValues(alpha: 0.20), blurRadius: 7),
-          ],
-        ),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: accent.withValues(alpha: 0.22),
-              width: 0.8,
-            ),
-            borderRadius: BorderRadius.circular(1),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minHeight: emphasized ? 40 : 36),
+        child: CustomPaint(
+          painter: _FantasyPlaquePainter(
+            accent: accent,
+            surface: theme.labelSurface,
+            emphasized: emphasized,
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -697,13 +731,18 @@ class _SpecialStopLabel extends StatelessWidget {
                 Flexible(
                   child: Text(
                     label,
-                    maxLines: 2,
+                    maxLines: label == 'MEYDAN OKUMA' ? 1 : 2,
                     overflow: TextOverflow.fade,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: accent,
                       fontFamily: 'serif',
-                      fontSize: emphasized ? 10 : 9.5,
+                      fontSize:
+                          label == 'MEYDAN OKUMA'
+                              ? 9.0
+                              : emphasized
+                              ? 10
+                              : 9.5,
                       height: 1.05,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.3,
@@ -717,4 +756,59 @@ class _SpecialStopLabel extends StatelessWidget {
       ),
     );
   }
+}
+
+class _FantasyPlaquePainter extends CustomPainter {
+  const _FantasyPlaquePainter({
+    required this.accent,
+    required this.surface,
+    required this.emphasized,
+  });
+
+  final Color accent;
+  final Color surface;
+  final bool emphasized;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final notch = emphasized ? 7.0 : 5.0;
+    final path =
+        Path()
+          ..moveTo(notch, 1)
+          ..lineTo(size.width - notch, 1)
+          ..lineTo(size.width - 1, size.height * 0.24)
+          ..lineTo(size.width - notch, size.height * 0.50)
+          ..lineTo(size.width - 1, size.height * 0.76)
+          ..lineTo(size.width - notch, size.height - 1)
+          ..lineTo(notch, size.height - 1)
+          ..lineTo(1, size.height * 0.76)
+          ..lineTo(notch, size.height * 0.50)
+          ..lineTo(1, size.height * 0.24)
+          ..close();
+    canvas.drawShadow(path, accent.withValues(alpha: 0.85), 7, true);
+    canvas.drawPath(path, Paint()..color = surface);
+    canvas.drawPath(
+      path,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = emphasized ? 1.5 : 1.2
+        ..color = accent.withValues(alpha: 0.95),
+    );
+    canvas.drawRect(
+      Rect.fromLTRB(6, 5, size.width - 6, size.height - 5),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 0.7
+        ..color = accent.withValues(alpha: 0.40),
+    );
+    final dot = Paint()..color = accent.withValues(alpha: 0.85);
+    canvas.drawCircle(Offset(notch, size.height / 2), 1.5, dot);
+    canvas.drawCircle(Offset(size.width - notch, size.height / 2), 1.5, dot);
+  }
+
+  @override
+  bool shouldRepaint(covariant _FantasyPlaquePainter oldDelegate) =>
+      oldDelegate.accent != accent ||
+      oldDelegate.surface != surface ||
+      oldDelegate.emphasized != emphasized;
 }
