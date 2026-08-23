@@ -1,0 +1,49 @@
+name: Claude Kelime Avi Context Export
+
+on:
+  push:
+    branches:
+      - chore/claude-kelime-avi-context-export-20260823
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Claude context ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          PACK="Claude_Kelime_Avi_Context"
+          rm -rf "$PACK" Claude_Kelime_Avi_Context.zip
+          mkdir -p "$PACK/lib/word_hunt" "$PACK/test"
+
+          cp CLAUDE_KELIME_AVI_CONTEXT.md "$PACK/"
+          cp pubspec.yaml "$PACK/"
+          cp lib/word_hunt/word_hunt_models.dart "$PACK/lib/word_hunt/"
+          cp lib/word_hunt/word_hunt_progress.dart "$PACK/lib/word_hunt/"
+          cp lib/word_hunt/word_hunt_progress_codec.dart "$PACK/lib/word_hunt/"
+          cp lib/word_hunt/word_hunt_starter_content.dart "$PACK/lib/word_hunt/"
+          cp lib/word_hunt/word_hunt_reference_route_screen.dart "$PACK/lib/word_hunt/"
+          cp lib/word_hunt/word_hunt_route_stop.dart "$PACK/lib/word_hunt/"
+          cp lib/word_hunt/word_hunt_visual_proof_main.dart "$PACK/lib/word_hunt/"
+          cp test/word_hunt_reference_route_screen_test.dart "$PACK/test/"
+          cp test/word_hunt_route_stop_test.dart "$PACK/test/"
+
+          zip -r Claude_Kelime_Avi_Context.zip "$PACK"
+          sha256sum Claude_Kelime_Avi_Context.zip | tee CLAUDE_CONTEXT_ZIP_SHA256.txt
+
+      - name: Upload Claude context
+        uses: actions/upload-artifact@v4
+        with:
+          name: Claude-Kelime-Avi-Context
+          path: |
+            Claude_Kelime_Avi_Context.zip
+            CLAUDE_CONTEXT_ZIP_SHA256.txt
+          retention-days: 1
+          if-no-files-found: error
