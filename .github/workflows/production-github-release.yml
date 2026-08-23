@@ -1,0 +1,294 @@
+name: Production GitHub Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Production build için PRODUCTION yazın
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bilgirotasi-production-github-release
+  cancel-in-progress: false
+
+jobs:
+  production-release:
+    name: Production APK + AAB → GitHub Release
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    env:
+      CANONICAL_RELEASE_BRANCH: release/final-closed-test-aab-1.68.8
+      EXPECTED_SHA1: 000EE43F410ABC6B4F634C4F716D76EB19084115
+      PROD_ADMOB_APP_ID: ca-app-pub-7452194004008791~7046504043
+      PROD_BANNER_ID: ca-app-pub-7452194004008791/4228769011
+      PROD_REWARDED_ID: ca-app-pub-7452194004008791/4974874471
+      PROD_FIREBASE_PROJECT: bilgi-rotasi-f255d
+      ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT: production
+
+    steps:
+      - name: Production onayını ve branch'i doğrula
+        shell: bash
+        env:
+          PRODUCTION_CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          set -euo pipefail
+          test "$PRODUCTION_CONFIRMATION" = "PRODUCTION"
+          test "$GITHUB_REF" = "refs/heads/$CANONICAL_RELEASE_BRANCH"
+
+      - name: Kaynağı indir
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Kaynak HEAD, sürüm ve soru bankasını kaydet
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "$CANONICAL_RELEASE_BRANCH"
+          ACTUAL_SHA="$(git rev-parse HEAD)"
+          REMOTE_SHA="$(git ls-remote origin "refs/heads/$CANONICAL_RELEASE_BRANCH" | awk '{print $1}')"
+          test "$ACTUAL_SHA" = "$GITHUB_SHA"
+          test "$REMOTE_SHA" = "$GITHUB_SHA"
+
+          VERSION="$(sed -nE 's/^version:[[:space:]]*([^[:space:]]+).*$/\1/p' pubspec.yaml)"
+          test -n "$VERSION"
+          VERSION_NAME="${VERSION%%+*}"
+          VERSION_CODE="${VERSION##*+}"
+          test "$VERSION_NAME" != "$VERSION"
+          [[ "$VERSION_NAME" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$VERSION_CODE" =~ ^[0-9]+$ ]]
+          QUESTIONS_BLOB="$(git rev-parse HEAD:assets/questions.json)"
+
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
+          echo "VERSION_CODE=$VERSION_CODE" >> "$GITHUB_ENV"
+          echo "VERSION_LABEL=${VERSION_NAME}-${VERSION_CODE}" >> "$GITHUB_ENV"
+          echo "QUESTIONS_BLOB=$QUESTIONS_BLOB" >> "$GITHUB_ENV"
+          echo "AAB_FILE=BilgiRotasi-${VERSION_NAME}-${VERSION_CODE}-production.aab" >> "$GITHUB_ENV"
+          echo "APK_FILE=BilgiRotasi-${VERSION_NAME}-${VERSION_CODE}-production-universal.apk" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=v${VERSION_NAME}+${VERSION_CODE}" >> "$GITHUB_ENV"
+
+      - name: Aynı production sürümünün tekrar yayınlanmasını engelle
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "Production GitHub Release zaten mevcut: $RELEASE_TAG" >&2
+            echo "Mevcut release varlıklarının üstüne yazılmadı." >&2
+            exit 1
+          fi
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.6"
+          channel: stable
+          cache: true
+
+      - name: Production profilleri ve kalite kapılarını doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports dist
+          flutter pub get
+          flutter pub deps --style=compact | tee reports/DEPENDENCY_GRAPH.txt
+          flutter analyze --no-fatal-warnings --no-fatal-infos | tee reports/ANALYZE_RESULTS.txt
+          flutter test --concurrency=1 --reporter expanded | tee reports/FLUTTER_TEST_RESULTS.txt
+          flutter test \
+            --dart-define=ADMOB_ENVIRONMENT=production \
+            test/admob_id_profile_test.dart \
+            | tee reports/PRODUCTION_AD_PROFILE.txt
+          flutter test \
+            --dart-define=FIREBASE_ENVIRONMENT=production \
+            --dart-define=EXPECT_FIREBASE_PRODUCTION=true \
+            test/firebase_production_profile_test.dart \
+            | tee reports/PRODUCTION_FIREBASE_PROFILE.txt
+          python3 tools/rc1_quality_gate.py \
+            --report reports/RC1_QUALITY_GATE.md
+          git diff --check
+          (
+            cd functions
+            npm ci
+            npm test
+            npm run test:rules
+          ) | tee reports/FIREBASE_TEST_RESULTS.txt
+
+          {
+            echo "Source branch: $CANONICAL_RELEASE_BRANCH"
+            echo "Source SHA: $GITHUB_SHA"
+            echo "Version: $VERSION"
+            echo "Questions blob: $QUESTIONS_BLOB"
+            echo "Flutter analyze: PASS"
+            echo "Flutter tests: PASS"
+            echo "Question bank and asset gates: PASS"
+            echo "Production AdMob profile: PASS"
+            echo "Production Firebase profile: PASS"
+            echo "Functions and Firestore Rules tests: PASS"
+            echo "git diff --check: PASS"
+          } > reports/TEST_RESULTS.txt
+
+      - name: Android upload imzasını hazırla
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$ANDROID_KEYSTORE_BASE64"
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" \
+            | base64 --decode \
+            > android/app/bilgi_rotasi_upload.jks
+          cat > android/key.properties <<EOF
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyPassword=$ANDROID_KEY_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          storeFile=bilgi_rotasi_upload.jks
+          EOF
+          chmod 600 android/key.properties android/app/bilgi_rotasi_upload.jks
+          test -s android/key.properties
+          test -s android/app/bilgi_rotasi_upload.jks
+
+      - name: Gerçek reklamlı production AAB üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$ORG_GRADLE_PROJECT_ADMOB_ENVIRONMENT" = "production"
+          flutter build appbundle --release \
+            --dart-define=ADMOB_ENVIRONMENT=production \
+            --dart-define=FIREBASE_ENVIRONMENT=production
+          cp build/app/outputs/bundle/release/app-release.aab "dist/$AAB_FILE"
+          test -s "dist/$AAB_FILE"
+
+      - name: Universal APK üret ve production çıktısını doğrula
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          AAB="dist/$AAB_FILE"
+          APK="dist/$APK_FILE"
+          KS_PASS_FILE="$RUNNER_TEMP/bundletool-keystore.pass"
+          KEY_PASS_FILE="$RUNNER_TEMP/bundletool-key.pass"
+          trap 'rm -f "$KS_PASS_FILE" "$KEY_PASS_FILE"' EXIT
+          printf '%s' "$ANDROID_KEYSTORE_PASSWORD" > "$KS_PASS_FILE"
+          printf '%s' "$ANDROID_KEY_PASSWORD" > "$KEY_PASS_FILE"
+          chmod 600 "$KS_PASS_FILE" "$KEY_PASS_FILE"
+
+          curl --fail --location --silent --show-error \
+            --output "$RUNNER_TEMP/bundletool.jar" \
+            "https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar"
+          java -jar "$RUNNER_TEMP/bundletool.jar" version
+          java -jar "$RUNNER_TEMP/bundletool.jar" build-apks \
+            --bundle="$AAB" \
+            --output="$RUNNER_TEMP/production.apks" \
+            --mode=universal \
+            --ks=android/app/bilgi_rotasi_upload.jks \
+            --ks-key-alias="$ANDROID_KEY_ALIAS" \
+            --ks-pass="file:$KS_PASS_FILE" \
+            --key-pass="file:$KEY_PASS_FILE"
+          unzip -p "$RUNNER_TEMP/production.apks" universal.apk > "$APK"
+          test -s "$APK"
+
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          AAPT2="$(find "$SDK_ROOT/build-tools" -type f -name aapt2 | sort -V | tail -n 1)"
+          APKSIGNER="$(find "$SDK_ROOT/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          test -x "$AAPT2"
+          test -x "$APKSIGNER"
+
+          "$AAPT2" dump badging "$APK" | tee reports/APK_BADGING.txt
+          java -jar "$RUNNER_TEMP/bundletool.jar" dump manifest --bundle="$AAB" | tee reports/AAB_MANIFEST.xml
+          grep -Fq "package: name='com.leventua.bilgirotasi'" reports/APK_BADGING.txt
+          grep -Fq "versionCode='$VERSION_CODE'" reports/APK_BADGING.txt
+          grep -Fq "versionName='$VERSION_NAME'" reports/APK_BADGING.txt
+          grep -Fq "targetSdkVersion:'36'" reports/APK_BADGING.txt
+          grep -Fq 'package="com.leventua.bilgirotasi"' reports/AAB_MANIFEST.xml
+          grep -Fq "android:versionCode=\"$VERSION_CODE\"" reports/AAB_MANIFEST.xml
+          grep -Fq "android:versionName=\"$VERSION_NAME\"" reports/AAB_MANIFEST.xml
+          ! grep -Fq 'android:debuggable="true"' reports/AAB_MANIFEST.xml
+
+          "$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" | tee reports/APK_MANIFEST.txt
+          grep -Fq "$PROD_ADMOB_APP_ID" reports/APK_MANIFEST.txt
+          ! grep -Fq 'ca-app-pub-3940256099942544~3347511713' reports/APK_MANIFEST.txt
+          grep -Fq "$PROD_ADMOB_APP_ID" reports/AAB_MANIFEST.xml
+          ! grep -Fq 'ca-app-pub-3940256099942544~3347511713' reports/AAB_MANIFEST.xml
+
+          "$AAPT2" dump resources "$APK" | tee reports/APK_RESOURCES.txt
+          grep -Fq "$PROD_FIREBASE_PROJECT" reports/APK_RESOURCES.txt
+          ! grep -Fq 'bilgirotasi-dev' reports/APK_RESOURCES.txt
+
+          APK_CERT="$($APKSIGNER verify --print-certs "$APK")"
+          printf '%s\n' "$APK_CERT" > reports/APK_CERTIFICATE.txt
+          APK_SHA1="$(printf '%s\n' "$APK_CERT" | awk -F': ' '/certificate SHA-1 digest/ {print $NF; exit}' | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          jarsigner -verify "$AAB"
+          keytool -printcert -jarfile "$AAB" | tee reports/AAB_CERTIFICATE.txt
+          AAB_SHA1="$(awk -F': ' '/SHA1:/ {print $2; exit}' reports/AAB_CERTIFICATE.txt | tr '[:lower:]' '[:upper:]' | tr -d '[:space:]:')"
+          test "$APK_SHA1" = "$EXPECTED_SHA1"
+          test "$AAB_SHA1" = "$EXPECTED_SHA1"
+
+          unzip -l "$AAB" | tee reports/AAB_CONTENTS.txt
+          ! grep -Eqi '\.(jks|keystore)|key\.properties|service.?account|google-services\.json|private.?key' reports/AAB_CONTENTS.txt
+          ! unzip -p "$AAB" | strings \
+            | grep -Eqi 'BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|"private_key"[[:space:]]*:'
+
+          sha256sum "$AAB" > "dist/${AAB_FILE}.sha256"
+          sha256sum "$APK" > "dist/${APK_FILE}.sha256"
+          cp "dist/${AAB_FILE}.sha256" reports/AAB_SHA256.txt
+          cp "dist/${APK_FILE}.sha256" reports/APK_SHA256.txt
+
+          {
+            echo "Source branch: $CANONICAL_RELEASE_BRANCH"
+            echo "Source SHA: $GITHUB_SHA"
+            echo "Version: $VERSION"
+            echo "Questions blob: $QUESTIONS_BLOB"
+            echo "AdMob profile: production"
+            echo "AdMob App ID: $PROD_ADMOB_APP_ID"
+            echo "Banner ID: $PROD_BANNER_ID"
+            echo "Rewarded ID: $PROD_REWARDED_ID"
+            echo "Firebase profile: production"
+            echo "Firebase project: $PROD_FIREBASE_PROJECT"
+            echo "Upload certificate SHA-1: 00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15"
+            echo "GitHub Actions run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          } > reports/PRODUCTION_CONFIGURATION.txt
+
+          zip -qr "dist/BilgiRotasi-${VERSION_LABEL}-production-evidence.zip" reports
+          test -s "dist/BilgiRotasi-${VERSION_LABEL}-production-evidence.zip"
+
+      - name: Production GitHub Release yayımla
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" \
+            "dist/$AAB_FILE" \
+            "dist/${AAB_FILE}.sha256" \
+            "dist/$APK_FILE" \
+            "dist/${APK_FILE}.sha256" \
+            "dist/BilgiRotasi-${VERSION_LABEL}-production-evidence.zip" \
+            --target "$GITHUB_SHA" \
+            --title "Bilgi Rotası ${VERSION_NAME}+${VERSION_CODE}" \
+            --notes "Doğrulanmış production APK/AAB. Production AdMob + Firebase profili, upload sertifikası, Flutter/Functions/Rules kalite kapıları doğrulanmıştır. Play Console'a otomatik yükleme yapılmaz. Kaynak commit: $GITHUB_SHA."
+
+      - name: Geçici imza dosyalarını temizle
+        if: always()
+        shell: bash
+        run: rm -f android/key.properties android/app/bilgi_rotasi_upload.jks
