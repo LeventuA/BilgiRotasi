@@ -13,6 +13,7 @@ import 'word_hunt_models.dart';
 class WordHuntRouteStopMetrics {
   const WordHuntRouteStopMetrics({
     required this.normalDiameter,
+    required this.lockedNormalDiameter,
     required this.challengeDiameter,
     required this.bonusDiameter,
     required this.finalDiameter,
@@ -34,11 +35,12 @@ class WordHuntRouteStopMetrics {
 
   static const referenceBaseline = WordHuntRouteStopMetrics(
     normalDiameter: 78,
+    lockedNormalDiameter: 100,
     challengeDiameter: 104,
     bonusDiameter: 104,
     finalDiameter: 142,
-    normalContainerWidth: 90,
-    normalContainerHeight: 112,
+    normalContainerWidth: 110,
+    normalContainerHeight: 128,
     challengeContainerWidth: 440,
     bonusContainerWidth: 321,
     finalContainerWidth: 406,
@@ -54,6 +56,7 @@ class WordHuntRouteStopMetrics {
   );
 
   final double normalDiameter;
+  final double lockedNormalDiameter;
   final double challengeDiameter;
   final double bonusDiameter;
   final double finalDiameter;
@@ -324,7 +327,10 @@ class _StopMedallionAndStars extends StatelessWidget {
           lockedFinal: lockedFinal,
           accent: accent,
           theme: theme,
-          diameter: metrics.diameterFor(level.type),
+          diameter:
+              level.type == WordHuntLevelType.normal && !unlocked
+                  ? metrics.lockedNormalDiameter
+                  : metrics.diameterFor(level.type),
         ),
         SizedBox(height: metrics.starGap),
         _RouteStopStars(
@@ -638,9 +644,46 @@ class _FinalCrownPainter extends CustomPainter {
           ..quadraticBezierTo(w * 0.90, h * 0.54, w * 0.92, h * 0.82)
           ..quadraticBezierTo(w * 0.50, h * 0.94, w * 0.08, h * 0.82)
           ..close();
-    canvas.drawShadow(crown, accent, 12, true);
+    final cutouts =
+        Path()
+          ..addPath(
+            Path()
+              ..moveTo(w * 0.18, h * 0.38)
+              ..lineTo(w * 0.34, h * 0.61)
+              ..lineTo(w * 0.27, h * 0.70)
+              ..lineTo(w * 0.14, h * 0.55)
+              ..close(),
+            Offset.zero,
+          )
+          ..addPath(
+            Path()
+              ..moveTo(w * 0.36, h * 0.58)
+              ..lineTo(w * 0.47, h * 0.20)
+              ..lineTo(w * 0.46, h * 0.68)
+              ..close(),
+            Offset.zero,
+          )
+          ..addPath(
+            Path()
+              ..moveTo(w * 0.64, h * 0.58)
+              ..lineTo(w * 0.53, h * 0.20)
+              ..lineTo(w * 0.54, h * 0.68)
+              ..close(),
+            Offset.zero,
+          )
+          ..addPath(
+            Path()
+              ..moveTo(w * 0.82, h * 0.38)
+              ..lineTo(w * 0.66, h * 0.61)
+              ..lineTo(w * 0.73, h * 0.70)
+              ..lineTo(w * 0.86, h * 0.55)
+              ..close(),
+            Offset.zero,
+          );
+    final ornateCrown = Path.combine(PathOperation.difference, crown, cutouts);
+    canvas.drawShadow(ornateCrown, accent, 12, true);
     canvas.drawPath(
-      crown,
+      ornateCrown,
       Paint()
         ..shader = LinearGradient(
           begin: Alignment.topCenter,
@@ -655,7 +698,7 @@ class _FinalCrownPainter extends CustomPainter {
         ).createShader(Offset.zero & size),
     );
     canvas.drawPath(
-      crown,
+      ornateCrown,
       Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = 2.4

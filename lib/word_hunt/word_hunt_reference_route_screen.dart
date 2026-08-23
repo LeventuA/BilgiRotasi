@@ -16,6 +16,7 @@ class WordHuntReferenceRouteLayout {
   WordHuntReferenceRouteLayout._();
 
   static const Size canonicalSize = Size(1080, 1920);
+  static const Offset backgroundSceneOffset = Offset(0, 90);
 
   static const List<Offset> stops = <Offset>[
     Offset(204.12, 456.96), // 1 - üst sol
@@ -252,12 +253,12 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                                   WordHuntReferenceRouteLayout
                                       .bottomControlCenters[index]
                                       .dx -
-                                  77,
+                                  85,
                               top:
                                   WordHuntReferenceRouteLayout
                                       .bottomControlCenters[index]
                                       .dy -
-                                  77,
+                                  85,
                               child: _ReferenceBottomControl(
                                 key: Key(
                                   index == 0
@@ -352,18 +353,25 @@ class _ReferenceBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final path = assetPath;
     if (path != null && path.isNotEmpty) {
-      return ClipRect(
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: Image.asset(
-            path,
-            key: const Key('word_hunt_reference_background_asset'),
-            width: 1080,
-            height: 2340,
-            fit: BoxFit.fill,
-            errorBuilder:
-                (context, error, stackTrace) => const _FallbackBackground(),
-          ),
+      return ColoredBox(
+        color: const Color(0xFF020611),
+        child: Stack(
+          clipBehavior: Clip.hardEdge,
+          children: [
+            Positioned(
+              left: WordHuntReferenceRouteLayout.backgroundSceneOffset.dx,
+              top: WordHuntReferenceRouteLayout.backgroundSceneOffset.dy,
+              width: 1080,
+              height: 2340,
+              child: Image.asset(
+                path,
+                key: const Key('word_hunt_reference_background_asset'),
+                fit: BoxFit.fill,
+                errorBuilder:
+                    (context, error, stackTrace) => const _FallbackBackground(),
+              ),
+            ),
+          ],
         ),
       );
     }
@@ -738,10 +746,10 @@ class _ReferenceBottomControl extends StatelessWidget {
           onTap: onTap,
           customBorder: const CircleBorder(),
           child: SizedBox.square(
-            dimension: 154,
+            dimension: 170,
             child: CustomPaint(
               painter: const _ReferenceBottomControlPainter(),
-              child: Icon(icon, color: const Color(0xFFF2CE71), size: 72),
+              child: Icon(icon, color: const Color(0xFFF2CE71), size: 78),
             ),
           ),
         ),

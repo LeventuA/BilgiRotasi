@@ -171,6 +171,10 @@ void main() {
         WordHuntReferenceRouteLayout.finalCrown,
         const Rect.fromLTWH(451, 1417, 154, 94),
       );
+      expect(
+        WordHuntReferenceRouteLayout.backgroundSceneOffset,
+        const Offset(0, 90),
+      );
     },
   );
 
@@ -241,6 +245,14 @@ void main() {
     );
     expect(compass, WordHuntReferenceRouteLayout.bottomControlCenters.first);
     expect(book, WordHuntReferenceRouteLayout.bottomControlCenters.last);
+    expect(
+      tester.getSize(find.byKey(const Key('word_hunt_reference_compass'))),
+      const Size.square(170),
+    );
+    expect(
+      tester.getSize(find.byKey(const Key('word_hunt_reference_book'))),
+      const Size.square(170),
+    );
   });
 
   testWidgets('special plaques and final crown follow canonical bounds', (

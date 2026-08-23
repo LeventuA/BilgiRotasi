@@ -36,6 +36,7 @@ void main() {
     );
 
     expect(metrics.normalDiameter, 78);
+    expect(metrics.lockedNormalDiameter, 100);
     expect(metrics.challengeDiameter, 104);
     expect(metrics.bonusDiameter, 104);
     expect(metrics.finalDiameter, 142);
@@ -63,7 +64,7 @@ void main() {
   });
 
   testWidgets(
-    'normal route stop keeps one geometry for open and locked states',
+    'locked normal stop gains reference weight without changing domain type',
     (tester) async {
       var tapped = 0;
 
@@ -96,7 +97,7 @@ void main() {
       );
       expect(
         tester.getSize(find.byKey(const Key('word_hunt_route_stop_orb_2'))),
-        Size.square(metrics.normalDiameter),
+        Size.square(metrics.lockedNormalDiameter),
       );
 
       for (var star = 0; star < 3; star++) {
