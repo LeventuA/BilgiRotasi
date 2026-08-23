@@ -35,7 +35,7 @@ void main() {
 
     expect(
       metrics.normalDiameter,
-      inInclusiveRange(30, 34),
+      inInclusiveRange(36, 40),
       reason: 'Onaylı referansta normal rota medalyonları küçük kalmalı.',
     );
     expect(

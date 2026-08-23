@@ -25,13 +25,13 @@ class WordHuntRouteStopMetrics {
   });
 
   static const referenceBaseline = WordHuntRouteStopMetrics(
-    normalDiameter: 32,
-    specialDiameter: 42,
-    finalDiameter: 58,
+    normalDiameter: 38,
+    specialDiameter: 48,
+    finalDiameter: 66,
     normalContainerWidth: 48,
     normalContainerHeight: 54,
     specialContainerWidth: 146,
-    specialContainerHeight: 70,
+    specialContainerHeight: 82,
     specialLabelGap: 5,
     starSize: 11,
     starGap: 1,
@@ -695,6 +695,7 @@ class _SpecialStopLabel extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: accent,
+                      fontFamily: 'serif',
                       fontSize: emphasized ? 10 : 9.5,
                       height: 1.05,
                       fontWeight: FontWeight.w900,

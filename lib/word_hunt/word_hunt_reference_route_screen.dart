@@ -396,85 +396,134 @@ class _ReferenceTopChrome extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 7),
-          Container(
-            constraints: const BoxConstraints(maxWidth: 348, minHeight: 64),
-            padding: const EdgeInsets.fromLTRB(18, 7, 18, 6),
-            decoration: BoxDecoration(
-              color: const Color(0xE308101B),
-              borderRadius: BorderRadius.circular(3),
-              border: Border.all(color: const Color(0xD0B68B45), width: 1.3),
-              boxShadow: const <BoxShadow>[
-                BoxShadow(
-                  color: Color(0x88000000),
-                  blurRadius: 12,
-                  offset: Offset(0, 5),
-                ),
-                BoxShadow(color: Color(0x2D8B5CF6), blurRadius: 13),
-              ],
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  title.toUpperCase().replaceFirst('LIMANI', 'LİMANI'),
-                  maxLines: 1,
-                  overflow: TextOverflow.fade,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Color(0xFFFFF7E7),
-                    fontFamily: 'serif',
-                    fontSize: 24,
-                    height: 1,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 0.55,
-                    shadows: <Shadow>[
-                      Shadow(color: Color(0x99000000), blurRadius: 4),
+          CustomPaint(
+            foregroundPainter: const _ReferencePanelOrnamentPainter(),
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 348, minHeight: 64),
+              padding: const EdgeInsets.fromLTRB(18, 7, 18, 6),
+              decoration: BoxDecoration(
+                color: const Color(0xE308101B),
+                borderRadius: BorderRadius.circular(3),
+                border: Border.all(color: const Color(0xD0B68B45), width: 1.3),
+                boxShadow: const <BoxShadow>[
+                  BoxShadow(
+                    color: Color(0x88000000),
+                    blurRadius: 12,
+                    offset: Offset(0, 5),
+                  ),
+                  BoxShadow(color: Color(0x2D8B5CF6), blurRadius: 13),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title.toUpperCase().replaceFirst('LIMANI', 'LİMANI'),
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(0xFFFFF7E7),
+                      fontFamily: 'serif',
+                      fontSize: 24,
+                      height: 1,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.55,
+                      shadows: <Shadow>[
+                        Shadow(color: Color(0x99000000), blurRadius: 4),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.star_rounded,
+                        color: Color(0xFFFFC94A),
+                        size: 20,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '$stars / $maximumStars',
+                        style: const TextStyle(
+                          color: Color(0xFFFFE9B0),
+                          fontFamily: 'serif',
+                          fontSize: 15.5,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        'Kapı: $unlockStarsRequired',
+                        style: const TextStyle(
+                          color: Color(0xFFF3E6C9),
+                          fontFamily: 'serif',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(width: 3),
+                      const Icon(
+                        Icons.star_rounded,
+                        color: Color(0xFFFFC94A),
+                        size: 18,
+                      ),
                     ],
                   ),
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star_rounded,
-                      color: Color(0xFFFFC94A),
-                      size: 20,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      '$stars / $maximumStars',
-                      style: const TextStyle(
-                        color: Color(0xFFFFE9B0),
-                        fontFamily: 'serif',
-                        fontSize: 15.5,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      'Kapı: $unlockStarsRequired',
-                      style: const TextStyle(
-                        color: Color(0xFFF3E6C9),
-                        fontFamily: 'serif',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(width: 3),
-                    const Icon(
-                      Icons.star_rounded,
-                      color: Color(0xFFFFC94A),
-                      size: 18,
-                    ),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
   }
+}
+
+class _ReferencePanelOrnamentPainter extends CustomPainter {
+  const _ReferencePanelOrnamentPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 0.8
+          ..color = const Color(0xC6D1A45B);
+    const inset = 4.0;
+    const arm = 11.0;
+    for (final corner in <(Offset, double, double)>[
+      (const Offset(inset, inset), 1, 1),
+      (Offset(size.width - inset, inset), -1, 1),
+      (Offset(inset, size.height - inset), 1, -1),
+      (Offset(size.width - inset, size.height - inset), -1, -1),
+    ]) {
+      final origin = corner.$1;
+      canvas.drawLine(origin, origin + Offset(corner.$2 * arm, 0), paint);
+      canvas.drawLine(origin, origin + Offset(0, corner.$3 * arm), paint);
+      final diamond =
+          Path()
+            ..moveTo(origin.dx, origin.dy - 2)
+            ..lineTo(origin.dx + 2, origin.dy)
+            ..lineTo(origin.dx, origin.dy + 2)
+            ..lineTo(origin.dx - 2, origin.dy)
+            ..close();
+      canvas.drawPath(diamond, paint);
+    }
+    final midpoint = Offset(size.width / 2, inset);
+    final diamond =
+        Path()
+          ..moveTo(midpoint.dx, midpoint.dy - 2.5)
+          ..lineTo(midpoint.dx + 3, midpoint.dy)
+          ..lineTo(midpoint.dx, midpoint.dy + 2.5)
+          ..lineTo(midpoint.dx - 3, midpoint.dy)
+          ..close();
+    canvas.drawPath(diamond, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant _ReferencePanelOrnamentPainter oldDelegate) =>
+      false;
 }
 
 class _ReferenceTitleFlourish extends StatelessWidget {
