@@ -422,4 +422,4 @@ jobs:
             reports/ADMOB_LAUNCH_LOG.txt
             reports/RC1_AUTOMATED_REPORT.md
           if-no-files-found: error
-          retention-days: 3
+          retention-days: 7

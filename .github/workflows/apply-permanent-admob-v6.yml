@@ -461,4 +461,4 @@ jobs:
             reports/ANDROID_16_INSTALLED_VERSION.txt
             reports/RC1_AUTOMATED_REPORT.md
           if-no-files-found: error
-          retention-days: 3
+          retention-days: 7
