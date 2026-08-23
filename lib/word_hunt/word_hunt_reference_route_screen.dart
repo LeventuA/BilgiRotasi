@@ -47,7 +47,7 @@ class WordHuntReferenceRouteVisualContract {
     required WordHuntLevelType destinationType,
     required bool unlocked,
   }) {
-    if (!unlocked) {
+    if (!unlocked && destinationType != WordHuntLevelType.routeFinal) {
       return WordHuntReferenceRouteSegmentStyle.locked;
     }
     return switch (destinationType) {
@@ -341,12 +341,12 @@ class _ReferenceTopChrome extends StatelessWidget {
     return Positioned(
       left: 12,
       right: 12,
-      top: 10,
+      top: 5,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            height: 40,
+            height: 38,
             child: Row(
               children: [
                 _ReferenceRoundButton(
@@ -395,10 +395,10 @@ class _ReferenceTopChrome extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 7),
           Container(
-            constraints: const BoxConstraints(maxWidth: 348, minHeight: 78),
-            padding: const EdgeInsets.fromLTRB(18, 10, 18, 8),
+            constraints: const BoxConstraints(maxWidth: 348, minHeight: 64),
+            padding: const EdgeInsets.fromLTRB(18, 7, 18, 6),
             decoration: BoxDecoration(
               color: const Color(0xE308101B),
               borderRadius: BorderRadius.circular(3),
@@ -432,7 +432,7 @@ class _ReferenceTopChrome extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 9),
+                const SizedBox(height: 6),
                 Row(
                   children: [
                     const Icon(
@@ -539,14 +539,14 @@ class _ReferenceRoundButton extends StatelessWidget {
           onTap: onTap,
           customBorder: const CircleBorder(),
           child: Container(
-            width: 40,
-            height: 40,
+            width: 30,
+            height: 30,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: const Color(0x660A111D),
               border: Border.all(color: const Color(0xBBA57A3D)),
             ),
-            child: Icon(icon, color: const Color(0xFFE8C678), size: 25),
+            child: Icon(icon, color: const Color(0xFFE8C678), size: 21),
           ),
         ),
       ),
@@ -654,7 +654,7 @@ class _ReferenceRoutePainter extends CustomPainter {
         Paint()
           ..color = const Color(0xA8000000)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 6.5
+          ..strokeWidth = 4.2
           ..strokeCap = StrokeCap.round
           ..strokeJoin = StrokeJoin.round;
 
@@ -678,13 +678,13 @@ class _ReferenceRoutePainter extends CustomPainter {
             Paint()
               ..color = const Color(0x305B7589)
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 5.5
+              ..strokeWidth = 3.8
               ..strokeCap = StrokeCap.round;
         final dormant =
             Paint()
               ..color = const Color(0xB59AA5B2)
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 2.2
+              ..strokeWidth = 1.8
               ..strokeCap = StrokeCap.round;
         canvas.drawPath(path, dormantGlow);
         _drawDashedPath(canvas, path, dormant);
@@ -718,14 +718,14 @@ class _ReferenceRoutePainter extends CustomPainter {
           Paint()
             ..color = glowColor
             ..style = PaintingStyle.stroke
-            ..strokeWidth = 7.5
+            ..strokeWidth = 4.4
             ..strokeCap = StrokeCap.round
             ..strokeJoin = StrokeJoin.round;
       final core =
           Paint()
             ..color = coreColor
             ..style = PaintingStyle.stroke
-            ..strokeWidth = 2.4
+            ..strokeWidth = 1.9
             ..strokeCap = StrokeCap.round
             ..strokeJoin = StrokeJoin.round;
 

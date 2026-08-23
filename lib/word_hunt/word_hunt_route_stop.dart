@@ -537,8 +537,8 @@ class _MedallionFramePainter extends CustomPainter {
           ..color = const Color(0xFFFFF2C6).withValues(alpha: 0.65 * alpha);
 
     final ornamentCount = finalStop ? 8 : (special ? 6 : 4);
-    final ornamentLength = finalStop ? 7.0 : (special ? 5.5 : 4.5);
-    final ornamentWidth = finalStop ? 4.0 : 3.0;
+    final ornamentLength = finalStop ? 4.5 : (special ? 3.5 : 2.6);
+    final ornamentWidth = finalStop ? 2.8 : (special ? 2.1 : 1.6);
     final ornamentRadius = radius - 4.5;
 
     for (var index = 0; index < ornamentCount; index++) {
@@ -566,17 +566,18 @@ class _MedallionFramePainter extends CustomPainter {
       final crownPaint =
           Paint()
             ..style = PaintingStyle.stroke
-            ..strokeWidth = 1.4
+            ..strokeWidth = 1.9
             ..strokeCap = StrokeCap.round
             ..color = accent.withValues(alpha: 0.95 * alpha);
-      final top = center.dy - radius + 2;
+      final top = center.dy - radius - 3;
       final crown =
           Path()
-            ..moveTo(center.dx - 10, top + 9)
-            ..lineTo(center.dx - 6, top + 2)
+            ..moveTo(center.dx - 12, top + 11)
+            ..lineTo(center.dx - 7, top + 1)
             ..lineTo(center.dx, top + 7)
-            ..lineTo(center.dx + 6, top + 2)
-            ..lineTo(center.dx + 10, top + 9);
+            ..lineTo(center.dx + 7, top + 1)
+            ..lineTo(center.dx + 12, top + 11)
+            ..lineTo(center.dx - 12, top + 11);
       canvas.drawPath(crown, crownPaint);
     }
   }

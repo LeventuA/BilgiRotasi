@@ -61,6 +61,15 @@ void main() {
         WordHuntReferenceRouteSegmentStyle.locked,
         reason: 'Kilitli rota parçası özel hedef rengini kullanmamalı.',
       );
+      expect(
+        WordHuntReferenceRouteVisualContract.segmentStyleFor(
+          destinationType: WordHuntLevelType.routeFinal,
+          unlocked: false,
+        ),
+        WordHuntReferenceRouteSegmentStyle.finalStop,
+        reason:
+            'Kilitli final oynanamaz kalırken referanstaki sıcak altın hedef yolunu korumalı.',
+      );
     },
   );
 
