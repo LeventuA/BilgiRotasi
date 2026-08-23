@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 24 Ağustos 2026, 02:13 (Europe/Istanbul)
+**Son güncelleme:** 24 Ağustos 2026, 02:18 (Europe/Istanbul)
 
 > Bu dosya yeni bir sohbeti hızlı ve güvenli biçimde başlatmak için yaşayan devir özetidir. Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` GitHub deposu ve ilgili canlı servislerdir. Bu özet canlı repo doğrulamasının yerine geçmez.
 
@@ -31,15 +31,7 @@
 - Güncel HEAD: `bc8a03bfefd401570e0c51cc4aab4206ea45d363`
 - Durum: **OPEN / DRAFT / MERGE YOK**
 - Sürüm: `1.68.19+109`
-- Korunacak kazanımlar:
-  - Flutter + Dart mimarisi,
-  - 1080×1920 canonical coordinate-space,
-  - tek ortak scene transform,
-  - 1–10 deterministik koordinatlar,
-  - route control point'leri,
-  - progression/unlock mantığı,
-  - interaction davranışı,
-  - focused/regresyon testleri.
+- Korunacak kazanımlar: Flutter + Dart, 1080×1920 canonical coordinate-space, tek scene transform, 1–10 deterministik koordinatlar, route control point'leri, progression/unlock, interaction ve regresyon testleri.
 - Eski 77/77 focused ve Android 16 kanıtı `5523caf...` product head'ine aittir; güncel `bc8a03bf...` HEAD için kör biçimde yeniden kullanılamaz.
 
 ### PR #131 — bağlayıcı görsel üretim standardı
@@ -49,14 +41,21 @@
 - HEAD: `1b74bf6ff5c3df2a5aaf50822e889441da56b4e4`
 - Durum: **OPEN / DRAFT / MERGE YOK**
 - Dosya: `görsel oyun üretimstandartı.md`
-- Bu PR yalnız dokümantasyondur; Levent açık merge onayı vermeden merge edilmez.
+- Kullanıcı talimatıyla Kelime Avı için bağlayıcı standarttır; PR'ın kendisi Levent açık merge onayı vermeden merge edilmez.
 
-### Yeni asset-first pilot branch'i
+### PR #132 — Başlangıç Limanı asset-first pilotu
 
+- PR: `#132` — `feat(kelime-avi): start Baslangic Limani asset-first production pilot`
+- Base: PR #110 branch'i `fix/kelime-avi-approved-reference-pixel-match-20260823`
+- Base exact SHA: `bc8a03bfefd401570e0c51cc4aab4206ea45d363`
 - Branch: `feat/kelime-avi-baslangic-limani-asset-first-20260824`
-- Başlangıç SHA: PR #110 güncel HEAD `bc8a03bfefd401570e0c51cc4aab4206ea45d363`
-- Amaç: mevcut teknik çekirdeği kaybetmeden yalnız Başlangıç Limanı'nı production asset yaklaşımına geçirmek.
-- Durum: **AKTİF ÇALIŞMA / MERGE YOK**
+- Güncel doğrulanan ürün/test HEAD: `13701cecc28fc8ab8ae2ceb24aeb59e95149bdb9`
+- Durum: **OPEN / DRAFT / MERGE YOK / AKTİF ÇALIŞMA**
+- İlk asset sözleşmesi: `docs/kelime-avi/BASLANGIC_LIMANI_PRODUCTION_ASSET_CONTRACT.md`.
+- Asset seçim kodu: `lib/word_hunt/word_hunt_production_assets.dart`.
+- Asset mapping testi: `test/word_hunt_production_assets_test.dart`.
+- Production asset dosyalarının kendileri henüz üretilmedi/entegre edilmedi.
+- Bu HEAD için PR-triggered workflow run henüz görünmedi; test/CI sonucu **DOĞRULANACAK**.
 
 ## 3. Kelime Avı bağlayıcı görsel üretim standardı
 
@@ -71,9 +70,11 @@
 - Kod yalnız doğru asset'i doğru canonical koordinata yerleştirir, state varyantını seçer, progression/gesture/animasyon/ölçekleme işini yürütür.
 - Placeholder veya düşük kaliteli geçici çizimler final kabul edilmez.
 
-### Başlangıç Limanı production asset adayları
+### Başlangıç Limanı production asset listesi
 
-- `baslangic_limani_scene.webp`
+Hedef klasör: `assets/word_hunt/baslangic_limani/`
+
+- `scene.webp`
 - `node_normal.webp`
 - `node_locked.webp`
 - `node_challenge.webp`
@@ -86,8 +87,6 @@
 - `compass_button.webp`
 - `book_button.webp`
 - gerekirse route / route-glow state overlay asset'leri
-
-Dosya adları uygulama yapısına göre değişebilir; asset-first yaklaşımı değişmez.
 
 ## 4. PR #110'dan korunacak ve değiştirilecek alanlar
 
@@ -112,7 +111,7 @@ Dosya adları uygulama yapısına göre değişebilir; asset-first yaklaşımı 
 - `_FantasyPlaquePainter`
 - premium medalyon / özel ikon / dekor niteliğindeki diğer procedural çizimler
 
-Bu yapılar teknik referans veya geçiş dönemi kodu olarak geçmişte kalabilir; final Başlangıç Limanı render yolu production asset kullanacaktır.
+Final Başlangıç Limanı render yolu production asset kullanacaktır.
 
 ## 5. Başlangıç Limanı ürün sözleşmesi
 
@@ -158,14 +157,14 @@ Kelime Avı asset-first pilotunda açık onay olmadan dokunulmaz:
 
 - PR #96 Kelime Avı foundation hattıdır; açık/Draft kalmıştır.
 - PR #98 teknik olarak PASS olsa da son Android görüntüsü resmi referansa uymadığı için kullanıcı tarafından görsel olarak reddedilmiştir.
-- Bu nedenle teknik başarı görsel kabul sayılmayacağı kalıcı kuraldır.
-- PR #110 canonical transform ve test kazanımlarıyla daha ileri teknik temel oluşturdu; ancak procedural premium-art final çözüm olarak yeni standart tarafından geçersiz kılındı.
+- Teknik başarı görsel kabul sayılmaz.
+- PR #110 canonical transform ve test kazanımlarıyla ileri teknik temel oluşturdu; procedural premium-art final çözüm olarak yeni standart tarafından geçersiz kılındı.
 
 ## 9. Sıradaki aktif iş
 
-1. Yeni asset-first branch üzerinde production asset sözleşmesini kilitle.
-2. Başlangıç Limanı MASTER ART'tan gerçek katmanlı production asset'leri hazırla.
-3. Procedural premium-art final render yolunu asset-backed widget'larla değiştir.
+1. MASTER ART'tan gerçek katmanlı production asset'leri hazırla.
+2. Asset-backed widget entegrasyonunu yap.
+3. Procedural premium-art final render yolunu kaldır.
 4. Canonical transform, progression, koordinatlar ve interaction testlerini koru.
 5. Exact HEAD focused test + tam regresyon + analyze çalıştır.
 6. Android 16 / gerçek cihaz screenshot üret ve referansla yan yana incele.
