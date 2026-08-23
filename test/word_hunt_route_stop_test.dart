@@ -33,10 +33,10 @@ void main() {
       ),
     );
 
-    expect(metrics.normalDiameter, 43);
-    expect(metrics.challengeDiameter, 52);
-    expect(metrics.bonusDiameter, 56);
-    expect(metrics.finalDiameter, 80);
+    expect(metrics.normalDiameter, 39);
+    expect(metrics.challengeDiameter, 49);
+    expect(metrics.bonusDiameter, 50);
+    expect(metrics.finalDiameter, 65);
     expect(
       metrics.starSize,
       14,
@@ -293,6 +293,14 @@ void main() {
       expect(find.text('MEYDAN OKUMA'), findsOneWidget);
       expect(find.text('BONUS DURAK'), findsOneWidget);
       expect(find.text('ROTA FİNALİ'), findsOneWidget);
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_crossed_swords_5')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_treasure_chest_10')),
+        findsOneWidget,
+      );
 
       final challengeLabel = tester.widget<Text>(find.text('MEYDAN OKUMA'));
       expect(challengeLabel.maxLines, 1);

@@ -28,16 +28,16 @@ class WordHuntRouteStopMetrics {
   });
 
   static const referenceBaseline = WordHuntRouteStopMetrics(
-    normalDiameter: 43,
-    challengeDiameter: 52,
-    bonusDiameter: 56,
-    finalDiameter: 80,
-    normalContainerWidth: 55,
-    normalContainerHeight: 59,
-    challengeContainerWidth: 220,
-    bonusContainerWidth: 165,
-    finalContainerWidth: 216,
-    specialContainerHeight: 100,
+    normalDiameter: 39,
+    challengeDiameter: 49,
+    bonusDiameter: 50,
+    finalDiameter: 65,
+    normalContainerWidth: 51,
+    normalContainerHeight: 55,
+    challengeContainerWidth: 168,
+    bonusContainerWidth: 132,
+    finalContainerWidth: 166,
+    specialContainerHeight: 86,
     specialLabelGap: 5,
     starSize: 14,
     starGap: 0.5,
@@ -469,10 +469,10 @@ class _RouteStopOrb extends StatelessWidget {
             if (level.type == WordHuntLevelType.routeFinal)
               Positioned(
                 key: Key('word_hunt_route_stop_crown_${level.index}'),
-                top: -20,
+                top: -18,
                 left: diameter * 0.18,
                 right: diameter * 0.18,
-                height: 27,
+                height: 24,
                 child: CustomPaint(painter: _FinalCrownPainter(accent: accent)),
               ),
           ],
@@ -713,7 +713,7 @@ class _SpecialStopLabel extends StatelessWidget {
     return Opacity(
       opacity: dimmed ? 0.72 : 1,
       child: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: emphasized ? 56 : 44),
+        constraints: BoxConstraints(minHeight: emphasized ? 50 : 38),
         child: CustomPaint(
           painter: _FantasyPlaquePainter(
             accent: accent,
@@ -721,12 +721,17 @@ class _SpecialStopLabel extends StatelessWidget {
             emphasized: emphasized,
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(icon, color: accent, size: emphasized ? 15 : 14),
+                _SpecialStopIcon(
+                  label: label,
+                  fallback: icon,
+                  color: accent,
+                  size: emphasized ? 18 : 17,
+                ),
                 const SizedBox(width: 4),
                 Flexible(
                   child: Text(
@@ -756,6 +761,137 @@ class _SpecialStopLabel extends StatelessWidget {
       ),
     );
   }
+}
+
+class _SpecialStopIcon extends StatelessWidget {
+  const _SpecialStopIcon({
+    required this.label,
+    required this.fallback,
+    required this.color,
+    required this.size,
+  });
+
+  final String label;
+  final IconData fallback;
+  final Color color;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    if (label == 'MEYDAN OKUMA') {
+      return SizedBox.square(
+        key: const Key('word_hunt_route_stop_crossed_swords_5'),
+        dimension: size,
+        child: CustomPaint(painter: _CrossedSwordsPainter(color: color)),
+      );
+    }
+    if (label == 'ROTA FİNALİ') {
+      return SizedBox.square(
+        key: const Key('word_hunt_route_stop_treasure_chest_10'),
+        dimension: size,
+        child: CustomPaint(painter: _TreasureChestPainter(color: color)),
+      );
+    }
+    return Icon(fallback, color: color, size: size);
+  }
+}
+
+class _CrossedSwordsPainter extends CustomPainter {
+  const _CrossedSwordsPainter({required this.color});
+
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final blade =
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.stroke
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = 1.8;
+    final hilt =
+        Paint()
+          ..color = const Color(0xFFFFE3A0)
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = 1.5;
+    canvas.drawLine(
+      Offset(size.width * 0.22, size.height * 0.18),
+      Offset(size.width * 0.78, size.height * 0.82),
+      blade,
+    );
+    canvas.drawLine(
+      Offset(size.width * 0.78, size.height * 0.18),
+      Offset(size.width * 0.22, size.height * 0.82),
+      blade,
+    );
+    canvas.drawLine(
+      Offset(size.width * 0.18, size.height * 0.30),
+      Offset(size.width * 0.32, size.height * 0.16),
+      hilt,
+    );
+    canvas.drawLine(
+      Offset(size.width * 0.68, size.height * 0.16),
+      Offset(size.width * 0.82, size.height * 0.30),
+      hilt,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _CrossedSwordsPainter oldDelegate) =>
+      oldDelegate.color != color;
+}
+
+class _TreasureChestPainter extends CustomPainter {
+  const _TreasureChestPainter({required this.color});
+
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final outline =
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.7
+          ..strokeJoin = StrokeJoin.round;
+    final body = Rect.fromLTRB(
+      size.width * 0.12,
+      size.height * 0.42,
+      size.width * 0.88,
+      size.height * 0.86,
+    );
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(body, Radius.circular(size.width * 0.07)),
+      outline,
+    );
+    final lid =
+        Path()
+          ..moveTo(size.width * 0.15, size.height * 0.43)
+          ..quadraticBezierTo(
+            size.width * 0.50,
+            size.height * 0.08,
+            size.width * 0.85,
+            size.height * 0.43,
+          );
+    canvas.drawPath(lid, outline);
+    canvas.drawLine(
+      Offset(size.width * 0.12, size.height * 0.58),
+      Offset(size.width * 0.88, size.height * 0.58),
+      outline,
+    );
+    canvas.drawRect(
+      Rect.fromCenter(
+        center: Offset(size.width * 0.50, size.height * 0.60),
+        width: size.width * 0.16,
+        height: size.height * 0.22,
+      ),
+      Paint()..color = const Color(0xFFFFE3A0),
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _TreasureChestPainter oldDelegate) =>
+      oldDelegate.color != color;
 }
 
 class _FantasyPlaquePainter extends CustomPainter {
