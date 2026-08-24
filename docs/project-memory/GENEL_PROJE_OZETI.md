@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 24 Ağustos 2026, 02:18 (Europe/Istanbul)
+**Son güncelleme:** 24 Ağustos 2026, 03:16 (Europe/Istanbul)
 
 > Bu dosya yeni bir sohbeti hızlı ve güvenli biçimde başlatmak için yaşayan devir özetidir. Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` GitHub deposu ve ilgili canlı servislerdir. Bu özet canlı repo doğrulamasının yerine geçmez.
 
@@ -49,13 +49,19 @@
 - Base: PR #110 branch'i `fix/kelime-avi-approved-reference-pixel-match-20260823`
 - Base exact SHA: `bc8a03bfefd401570e0c51cc4aab4206ea45d363`
 - Branch: `feat/kelime-avi-baslangic-limani-asset-first-20260824`
-- Güncel doğrulanan ürün/test HEAD: `13701cecc28fc8ab8ae2ceb24aeb59e95149bdb9`
+- Son asset commit'i: `470118940fdcfe6ece6dd4799436832cfd856fe9` — `assets(kelime-avi): add Baslangic Limani challenge medallion`.
 - Durum: **OPEN / DRAFT / MERGE YOK / AKTİF ÇALIŞMA**
 - İlk asset sözleşmesi: `docs/kelime-avi/BASLANGIC_LIMANI_PRODUCTION_ASSET_CONTRACT.md`.
 - Asset seçim kodu: `lib/word_hunt/word_hunt_production_assets.dart`.
 - Asset mapping testi: `test/word_hunt_production_assets_test.dart`.
-- Production asset dosyalarının kendileri henüz üretilmedi/entegre edilmedi.
-- Bu HEAD için PR-triggered workflow run henüz görünmedi; test/CI sonucu **DOĞRULANACAK**.
+- MASTER ART bu sohbet içinde yeniden sağlandı ve tek bağlayıcı görsel referans olarak kilitlendi.
+- Repo içine gerçek binary production asset olarak eklenenler:
+  - `assets/word_hunt/baslangic_limani/node_normal.webp`
+  - `assets/word_hunt/baslangic_limani/node_locked.webp`
+  - `assets/word_hunt/baslangic_limani/node_challenge.webp`
+- Branch içinden push-triggered tek kullanımlık apply workflow denenmiş ancak connector/API commit'i workflow'u tetiklemedi. Test edilmemiş kod zorla commit edilmedi; geçici workflow ve helper dosyaları branch'ten temizlendi.
+- Asset-backed `WordHuntRouteStop` entegrasyonu hâlâ **DOĞRULANACAK / UYGULANACAK**. Mevcut product render yolunun procedural premium-art kısmı henüz kaldırılmış sayılmaz.
+- Güncel exact HEAD için focused test/CI sonucu bu asset ekleme adımı sonrasında henüz yok; **DOĞRULANACAK**.
 
 ## 3. Kelime Avı bağlayıcı görsel üretim standardı
 
@@ -74,10 +80,10 @@
 
 Hedef klasör: `assets/word_hunt/baslangic_limani/`
 
-- `scene.webp`
-- `node_normal.webp`
-- `node_locked.webp`
-- `node_challenge.webp`
+- `scene.webp` veya mevcut onaylı temiz scene/background asset'i
+- `node_normal.webp` — **REPOYA EKLENDİ**
+- `node_locked.webp` — **REPOYA EKLENDİ**
+- `node_challenge.webp` — **REPOYA EKLENDİ**
 - `node_bonus.webp`
 - `node_final.webp`
 - `challenge_plaque.webp`
@@ -162,8 +168,8 @@ Kelime Avı asset-first pilotunda açık onay olmadan dokunulmaz:
 
 ## 9. Sıradaki aktif iş
 
-1. MASTER ART'tan gerçek katmanlı production asset'leri hazırla.
-2. Asset-backed widget entegrasyonunu yap.
+1. Kalan MASTER ART production asset'lerini hazırla: bonus/final node, 3 plaque, crown, compass, book.
+2. Asset-backed widget entegrasyonunu testli bir commit ile yap; connector kaynaklı push-workflow tetiklenmemesini test kapısını atlamak için kullanma.
 3. Procedural premium-art final render yolunu kaldır.
 4. Canonical transform, progression, koordinatlar ve interaction testlerini koru.
 5. Exact HEAD focused test + tam regresyon + analyze çalıştır.
