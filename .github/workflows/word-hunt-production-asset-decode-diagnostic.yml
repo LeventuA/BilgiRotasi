@@ -1,0 +1,72 @@
+name: Kelime Avi production asset decode diagnostic
+
+on:
+  pull_request:
+    branches:
+      - qa/kelime-avi-asset-decode-base-1968-20260824
+    paths:
+      - 'test/word_hunt_asset_decode_trigger_test.dart'
+      - '.github/workflows/word-hunt-production-asset-decode-diagnostic.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  decode:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    env:
+      PRODUCT_SHA: 1968c4bccd22468bec50f2188414a3e5f6f3fa4b
+    steps:
+      - name: Checkout exact product head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PRODUCT_SHA }}
+
+      - name: Verify exact product head
+        run: test "$(git rev-parse HEAD)" = "$PRODUCT_SHA"
+
+      - name: Decode every Baslangic Limani production WebP
+        shell: bash
+        run: |
+          set -uo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y webp
+          mkdir -p reports
+          status=0
+          : > reports/WORD_HUNT_PRODUCTION_ASSET_DECODE.txt
+          for asset in \
+            scene.webp \
+            node_normal.webp \
+            node_locked.webp \
+            node_challenge.webp \
+            node_bonus.webp \
+            node_final.webp \
+            challenge_plaque.webp \
+            bonus_plaque.webp \
+            final_plaque.webp \
+            final_crown.webp \
+            compass_button.webp \
+            book_button.webp
+          do
+            path="assets/word_hunt/baslangic_limani/$asset"
+            echo "=== $asset ===" | tee -a reports/WORD_HUNT_PRODUCTION_ASSET_DECODE.txt
+            if webpinfo "$path" >> reports/WORD_HUNT_PRODUCTION_ASSET_DECODE.txt 2>&1 && \
+               dwebp "$path" -o /dev/null >> reports/WORD_HUNT_PRODUCTION_ASSET_DECODE.txt 2>&1; then
+              echo "DECODE_PASS=$asset" | tee -a reports/WORD_HUNT_PRODUCTION_ASSET_DECODE.txt
+            else
+              echo "DECODE_FAIL=$asset" | tee -a reports/WORD_HUNT_PRODUCTION_ASSET_DECODE.txt
+              status=1
+            fi
+          done
+          cat reports/WORD_HUNT_PRODUCTION_ASSET_DECODE.txt
+          exit "$status"
+
+      - name: Upload decode report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: KelimeAvi-ProductionAsset-Decode-1968
+          path: reports/WORD_HUNT_PRODUCTION_ASSET_DECODE.txt
+          if-no-files-found: error
+          retention-days: 1
