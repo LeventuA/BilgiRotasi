@@ -109,8 +109,8 @@ def inner_face_alpha(
 
 
 def extract(source: Image.Image, name: str, spec: dict[str, object]) -> dict[str, object]:
-    crop_box = tuple(spec["crop"])
-    crop = source.crop(crop_box).convert("RGBA")
+    requested_crop_box = tuple(spec["crop"])
+    crop = source.crop(requested_crop_box).convert("RGBA")
     center = tuple(spec["center"])
     radial = radial_alpha(
         crop.size,
@@ -132,6 +132,27 @@ def extract(source: Image.Image, name: str, spec: dict[str, object]) -> dict[str
             alpha_bytes[start : start + crop.width] = bytes(crop.width)
         alpha = Image.frombytes("L", crop.size, bytes(alpha_bytes))
     crop.putalpha(alpha)
+
+    # Remove only fully transparent padding. This preserves the binding-source
+    # pixels and makes Flutter's BoxFit.contain scale the visible medallion or
+    # control to its measured contract diameter instead of shrinking it because
+    # of unused transparent canvas around the extraction.
+    if alpha.getbbox() is None:
+        raise RuntimeError(f"Empty alpha mask for {name}")
+    outer_radius = float(spec["outer_radius"])
+    alpha_bounds = (
+        max(0, math.floor(center[0] - outer_radius)),
+        max(0, math.floor(center[1] - outer_radius)),
+        min(crop.width, math.ceil(center[0] + outer_radius)),
+        min(crop.height, math.ceil(center[1] + outer_radius)),
+    )
+    crop = crop.crop(alpha_bounds)
+    crop_box = (
+        requested_crop_box[0] + alpha_bounds[0],
+        requested_crop_box[1] + alpha_bounds[1],
+        requested_crop_box[0] + alpha_bounds[2],
+        requested_crop_box[1] + alpha_bounds[3],
+    )
 
     destination = OUTPUT / name
     crop.save(destination, format="WEBP", lossless=True, method=6, exact=True)
@@ -159,6 +180,8 @@ def extract(source: Image.Image, name: str, spec: dict[str, object]) -> dict[str
 
     return {
         "source_crop": list(crop_box),
+        "requested_source_crop": list(requested_crop_box),
+        "transparent_padding_trim": list(alpha_bounds),
         "dimensions": [crop.width, crop.height],
         "mask": {
             "kind": "source-segmentation-plus-inner-face-radial-edge",
