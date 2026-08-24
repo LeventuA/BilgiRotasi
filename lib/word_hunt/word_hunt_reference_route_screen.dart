@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import 'word_hunt_models.dart';
+import 'word_hunt_pixel_proof_screen.dart';
 import 'word_hunt_progress.dart';
 import 'word_hunt_production_assets.dart';
 import 'word_hunt_route_stop.dart';
@@ -129,8 +130,11 @@ class WordHuntReferenceRouteVisualContract {
   }
 }
 
-/// Başlangıç Limanı'nın resmi referans hiyerarşisini doğrulamak için izole
-/// Flutter ekranı. Production `lib/main.dart` navigasyonuna bağlı değildir.
+/// Başlangıç Limanı'nın production rota bileşeni.
+///
+/// Varsayılan rota, onaylı MASTER ART sahnesini şeffaf etkileşim hitbox'ları
+/// ve yalnız gerekli state override'larıyla gösterir. `sceneAssetPath` yalnız
+/// eski katmanlı geometri sözleşmesinin izole regresyon testleri içindir.
 class WordHuntReferenceRouteScreen extends StatelessWidget {
   const WordHuntReferenceRouteScreen({
     super.key,
@@ -158,6 +162,26 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (route.id == WordHuntStarterContent.baslangicLimani.id &&
+        sceneAssetPath == null) {
+      final nodeNineOpen = WordHuntRouteProgressEngine.isLevelUnlocked(
+        route,
+        progress,
+        9,
+      );
+      return WordHuntPixelProofScreen(
+        key: const Key('word_hunt_production_master_art_route'),
+        route: route,
+        progress: progress,
+        nodeNineOpenOverride: nodeNineOpen,
+        onBack: onBack,
+        onInfo: onInfo,
+        onCompass: onCompass,
+        onBook: onBook,
+        onLevelTap: onLevelTap,
+      );
+    }
+
     final totalStars = WordHuntRouteProgressEngine.totalStars(route, progress);
     final lastUnlocked = _lastUnlockedIndex();
 

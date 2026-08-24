@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'word_hunt_production_assets.dart';
+import 'word_hunt_models.dart';
 import 'word_hunt_progress.dart';
 import 'word_hunt_starter_content.dart';
 
 /// Issue #109 piksel kanıtına ait tek görünür raster kaynak.
 ///
 /// Dosya, kullanıcının bağlayıcı 720x1280 Photo 1.jpg dosyasının byte düzeyinde
-/// kopyasıdır. Production layered UI sözleşmesinin parçası değildir.
+/// kopyasıdır. Onay sonrasında gerçek Başlangıç Limanı production rota
+/// ekranının da görünür tabanı olmuştur.
 abstract final class WordHuntPixelProofAssets {
   static const String masterArt =
       'assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg';
@@ -48,6 +50,9 @@ abstract final class WordHuntPixelProofLayout {
   static const Offset compassCenter = Offset(90.72, 1176);
   static const Offset bookCenter = Offset(630, 1176);
   static const double controlHitboxDiameter = 120;
+  static const Offset backCenter = Offset(60, 50);
+  static const Offset infoCenter = Offset(660, 50);
+  static const double topControlHitboxDiameter = 72;
 
   /// MASTER ART'taki kilitli node 9'u tamamen örten tek görünür override.
   static const Offset nodeNineCenter = Offset(169.92, 892.16);
@@ -58,25 +63,32 @@ abstract final class WordHuntPixelProofLayout {
 ///
 /// Görünür sahne MASTER ART'tan gelir; yalnız node 9 kullanıcının açık kararına
 /// göre mevcut normal node asset'iyle örtülür. Diğer çocuklar renksiz ve
-/// bordersız hitbox'tır. Production `lib/main.dart`, layered rota ekranı ve
-/// progression verisi değiştirilmez.
+/// bordersız hitbox'tır. Production `lib/main.dart` ve progression verisi
+/// değiştirilmez.
 class WordHuntPixelProofScreen extends StatelessWidget {
   const WordHuntPixelProofScreen({
     super.key,
+    this.route = WordHuntStarterContent.baslangicLimani,
     this.progress = const WordHuntProgressSnapshot(),
+    this.nodeNineOpenOverride = true,
+    this.onBack,
+    this.onInfo,
     this.onLevelTap,
     this.onCompass,
     this.onBook,
   });
 
+  final WordHuntRouteDefinition route;
   final WordHuntProgressSnapshot progress;
+  final bool nodeNineOpenOverride;
+  final VoidCallback? onBack;
+  final VoidCallback? onInfo;
   final ValueChanged<int>? onLevelTap;
   final VoidCallback? onCompass;
   final VoidCallback? onBook;
 
   @override
   Widget build(BuildContext context) {
-    final route = WordHuntStarterContent.baslangicLimani;
     return Scaffold(
       backgroundColor: Colors.black,
       body: ClipRect(
@@ -97,7 +109,7 @@ class WordHuntPixelProofScreen extends StatelessWidget {
                     fit: BoxFit.fill,
                     filterQuality: FilterQuality.none,
                   ),
-                  const _NodeNineOpenOverride(),
+                  if (nodeNineOpenOverride) const _NodeNineOpenOverride(),
                   for (
                     var index = 0;
                     index < WordHuntPixelProofLayout.levelCenters.length;
@@ -129,6 +141,18 @@ class WordHuntPixelProofScreen extends StatelessWidget {
                     center: WordHuntPixelProofLayout.bookCenter,
                     diameter: WordHuntPixelProofLayout.controlHitboxDiameter,
                     onTap: onBook,
+                  ),
+                  _TransparentHitbox(
+                    key: const Key('word_hunt_pixel_proof_back'),
+                    center: WordHuntPixelProofLayout.backCenter,
+                    diameter: WordHuntPixelProofLayout.topControlHitboxDiameter,
+                    onTap: onBack,
+                  ),
+                  _TransparentHitbox(
+                    key: const Key('word_hunt_pixel_proof_info'),
+                    center: WordHuntPixelProofLayout.infoCenter,
+                    diameter: WordHuntPixelProofLayout.topControlHitboxDiameter,
+                    onTap: onInfo,
                   ),
                 ],
               ),

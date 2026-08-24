@@ -116,6 +116,8 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
     var compassTaps = 0;
     var bookTaps = 0;
+    var backTaps = 0;
+    var infoTaps = 0;
 
     await tester.pumpWidget(
       MaterialApp(
@@ -123,6 +125,8 @@ void main() {
           progress: const WordHuntProgressSnapshot(),
           onCompass: () => compassTaps++,
           onBook: () => bookTaps++,
+          onBack: () => backTaps++,
+          onInfo: () => infoTaps++,
         ),
       ),
     );
@@ -130,8 +134,12 @@ void main() {
 
     await tester.tap(find.byKey(const Key('word_hunt_pixel_proof_compass')));
     await tester.tap(find.byKey(const Key('word_hunt_pixel_proof_book')));
+    await tester.tap(find.byKey(const Key('word_hunt_pixel_proof_back')));
+    await tester.tap(find.byKey(const Key('word_hunt_pixel_proof_info')));
     await tester.pump();
     expect(compassTaps, 1);
     expect(bookTaps, 1);
+    expect(backTaps, 1);
+    expect(infoTaps, 1);
   });
 }

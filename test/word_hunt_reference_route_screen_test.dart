@@ -10,7 +10,11 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     await tester.pumpWidget(
-      const MaterialApp(home: WordHuntReferenceRouteScreen()),
+      const MaterialApp(
+        home: WordHuntReferenceRouteScreen(
+          sceneAssetPath: 'assets/word_hunt/baslangic_limani_bg.jpg',
+        ),
+      ),
     );
     await tester.pump();
   }
@@ -22,7 +26,11 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     await tester.pumpWidget(
-      const MaterialApp(home: WordHuntReferenceRouteScreen()),
+      const MaterialApp(
+        home: WordHuntReferenceRouteScreen(
+          sceneAssetPath: 'assets/word_hunt/baslangic_limani_bg.jpg',
+        ),
+      ),
     );
     await tester.pump();
   }
@@ -99,7 +107,7 @@ void main() {
   );
 
   testWidgets(
-    'production route renders node 9 open and interactive while node 10 stays locked',
+    'production route uses MASTER ART with transparent progression hitboxes',
     (tester) async {
       final tappedLevels = <int>[];
       await tester.binding.setSurfaceSize(
@@ -126,31 +134,37 @@ void main() {
       );
       await tester.pump();
 
-      final nodeNineAsset = tester.widget<Image>(
-        find.byKey(const Key('word_hunt_route_stop_asset_9')),
+      final masterArt = tester.widget<Image>(
+        find.byKey(const Key('word_hunt_pixel_proof_master_art')),
       );
       expect(
-        (nodeNineAsset.image as AssetImage).assetName,
-        'assets/word_hunt/baslangic_limani/node_normal.webp',
+        (masterArt.image as AssetImage).assetName,
+        'assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg',
       );
       expect(
-        find.byKey(const Key('word_hunt_route_stop_number_9')),
+        find.byKey(const Key('word_hunt_pixel_proof_node_9_override')),
         findsOneWidget,
       );
       expect(
-        find.byKey(const Key('word_hunt_route_stop_lock_9')),
+        find.byKey(const Key('word_hunt_reference_route_area')),
         findsNothing,
+        reason: 'MASTER ART üzerine eski layered rota ikinci kez çizilmemeli.',
+      );
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_asset_1')),
+        findsNothing,
+        reason: 'MASTER ART üzerine eski görünür node sanatı bindirilmemeli.',
       );
 
       await tester.tap(
-        find.byKey(const Key('word_hunt_reference_level_9')),
+        find.byKey(const Key('word_hunt_pixel_proof_level_9')),
         warnIfMissed: false,
       );
       await tester.pump();
       expect(tappedLevels, <int>[9]);
 
       await tester.tap(
-        find.byKey(const Key('word_hunt_reference_level_10')),
+        find.byKey(const Key('word_hunt_pixel_proof_level_10')),
         warnIfMissed: false,
       );
       await tester.pump();

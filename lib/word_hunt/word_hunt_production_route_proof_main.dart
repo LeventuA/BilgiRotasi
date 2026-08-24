@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'word_hunt_progress.dart';
+import 'word_hunt_pixel_proof_screen.dart';
 import 'word_hunt_reference_route_screen.dart';
 
 /// Gerçek production rota bileşenini Android 16 üzerinde doğrulayan izole
-/// giriş noktası. Pixel-proof ekranını veya production `lib/main.dart`ı
-/// değiştirmez.
+/// giriş noktası. Aynı APK içinde production ve pixel-proof ekranlarını ayrı
+/// screenshot olarak yakalatır; production `lib/main.dart`ı değiştirmez.
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
@@ -16,9 +17,16 @@ Future<void> main() async {
   runApp(const _WordHuntProductionRouteProofApp());
 }
 
-class _WordHuntProductionRouteProofApp extends StatelessWidget {
+class _WordHuntProductionRouteProofApp extends StatefulWidget {
   const _WordHuntProductionRouteProofApp();
 
+  @override
+  State<_WordHuntProductionRouteProofApp> createState() =>
+      _WordHuntProductionRouteProofAppState();
+}
+
+class _WordHuntProductionRouteProofAppState
+    extends State<_WordHuntProductionRouteProofApp> {
   static const WordHuntProgressSnapshot _productionProgress =
       WordHuntProgressSnapshot(
         bestStarsByLevelId: <String, int>{
@@ -37,14 +45,35 @@ class _WordHuntProductionRouteProofApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kelime Avı Production Route Proof',
-      home: _ProductionRouteRuntimeProbe(
-        child: WordHuntReferenceRouteScreen(
-          progress: _productionProgress,
-          onLevelTap: (level) {
-            debugPrint('[WORD_HUNT_PRODUCTION_NODE_TAP] level=$level');
-          },
-        ),
-      ),
+      home: _ProductionRouteRuntimeProbe(child: _buildProofScreen()),
+    );
+  }
+
+  bool _showPixelProof = false;
+
+  Widget _buildProofScreen() {
+    void onLevelTap(int level) {
+      debugPrint('[WORD_HUNT_PRODUCTION_NODE_TAP] level=$level');
+    }
+
+    if (_showPixelProof) {
+      return WordHuntPixelProofScreen(
+        progress: _productionProgress,
+        onLevelTap: onLevelTap,
+        onBack: () {
+          debugPrint('[WORD_HUNT_PIXEL_PROOF_CAPTURED]');
+          setState(() => _showPixelProof = false);
+        },
+      );
+    }
+
+    return WordHuntReferenceRouteScreen(
+      progress: _productionProgress,
+      onLevelTap: onLevelTap,
+      onInfo: () {
+        debugPrint('[WORD_HUNT_PRODUCTION_ROUTE_CAPTURED]');
+        setState(() => _showPixelProof = true);
+      },
     );
   }
 }
