@@ -39,7 +39,7 @@ void main() {
       WordHuntPixelProofAssets.masterArt,
     );
     expect(images.single.fit, BoxFit.fill);
-    expect(images.single.filterQuality, FilterQuality.low);
+    expect(images.single.filterQuality, FilterQuality.none);
 
     expect(find.byType(Text), findsNothing);
     final scene = find.byKey(const Key('word_hunt_pixel_proof_source_scene'));

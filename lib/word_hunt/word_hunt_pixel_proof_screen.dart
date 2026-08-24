@@ -88,7 +88,7 @@ class WordHuntPixelProofScreen extends StatelessWidget {
                     width: WordHuntPixelProofLayout.sourceSize.width,
                     height: WordHuntPixelProofLayout.sourceSize.height,
                     fit: BoxFit.fill,
-                    filterQuality: FilterQuality.low,
+                    filterQuality: FilterQuality.none,
                   ),
                   for (
                     var index = 0;

@@ -43,7 +43,7 @@ void main(List<String> args) {
     sourceReference,
     width: _width,
     height: _height,
-    interpolation: img.Interpolation.linear,
+    interpolation: img.Interpolation.nearest,
   );
 
   File(
