@@ -44,23 +44,48 @@ jobs:
       - name: Dependencies
         run: flutter pub get
 
-      - name: Decode and lossless-normalize special medallion WebP assets
+      - name: Build special medallion production variants from valid master node
         shell: bash
         run: |
           set -euo pipefail
           sudo apt-get update -qq
-          sudo apt-get install -y webp
+          sudo apt-get install -y webp imagemagick
+
+          base='assets/word_hunt/baslangic_limani/node_normal.webp'
+          dwebp "$base" -o /tmp/node_master.png
+          identify /tmp/node_master.png
+
+          convert /tmp/node_master.png \
+            -modulate 108,145,58 \
+            -sharpen 0x0.8 \
+            /tmp/node_challenge.png
+          convert /tmp/node_master.png \
+            -modulate 98,150,128 \
+            -sharpen 0x0.8 \
+            /tmp/node_bonus.png
+          convert /tmp/node_master.png \
+            -modulate 112,155,58 \
+            -resize 135% \
+            -gravity center \
+            -extent 414x414 \
+            -sharpen 0x1 \
+            /tmp/node_final.png
+
+          cwebp -quiet -lossless -z 9 /tmp/node_challenge.png \
+            -o assets/word_hunt/baslangic_limani/node_challenge.webp
+          cwebp -quiet -lossless -z 9 /tmp/node_bonus.png \
+            -o assets/word_hunt/baslangic_limani/node_bonus.webp
+          cwebp -quiet -lossless -z 9 /tmp/node_final.png \
+            -o assets/word_hunt/baslangic_limani/node_final.webp
+
           for asset in \
             assets/word_hunt/baslangic_limani/node_challenge.webp \
             assets/word_hunt/baslangic_limani/node_bonus.webp \
             assets/word_hunt/baslangic_limani/node_final.webp
           do
-            tmp="$(mktemp --suffix=.png)"
-            echo "NORMALIZE_ASSET=$asset"
-            dwebp "$asset" -o "$tmp"
-            cwebp -quiet -lossless -z 9 "$tmp" -o "$asset"
+            echo "VERIFY_ASSET=$asset"
+            webpinfo "$asset"
             dwebp "$asset" -o /dev/null
-            rm -f "$tmp"
           done
 
       - name: Apply candidate patch in workspace only
