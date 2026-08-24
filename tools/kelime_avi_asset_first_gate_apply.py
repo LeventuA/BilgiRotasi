@@ -376,5 +376,19 @@ if marker not in text:
 text = text.replace(marker, new_test + marker, 1)
 write(path, text)
 
+# ---- pubspec: nested production asset bundle ----
+path = 'pubspec.yaml'
+text = read(path)
+parent_asset = "    - assets/word_hunt/\n"
+nested_asset = "    - assets/word_hunt/baslangic_limani/\n"
+if nested_asset not in text:
+    text = replace_once(
+        text,
+        parent_asset,
+        parent_asset + nested_asset,
+        'nested production asset registration',
+    )
+write(path, text)
+
 Path('tools/kelime_avi_asset_first_gate_apply.py').unlink()
 print('Kelime Avi asset-first candidate applied in workspace.')
