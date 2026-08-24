@@ -1,0 +1,1 @@
+QA-only targeted asset generation marker. No production merge.
