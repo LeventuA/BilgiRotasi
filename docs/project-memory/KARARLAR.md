@@ -5,14 +5,11 @@
 ## 0A. Kelime Avı Başlangıç Limanı bağlayıcı görseli
 
 - Issue #109'a eklenen `Photo 1.jpg`, Başlangıç Limanı rota ekranı için tek bağlayıcı görsel referanstır; eski Flutter ekranları ve screenshot'lar tasarım kaynağı değildir.
-- Arka plan ayrı raster asset, rota/panel/medalyon/yıldız/kilit/etiket/kontrol katmanları dinamik Flutter bileşenleri olarak kalır; referans screenshot uygulamaya tek parça UI olarak gömülmez.
-- Görsel state oyun progression gerçeğini bozmaz. Kilitli final altın hedef olarak görünebilir fakat oynanabilir sayılmaz; ilerleme sayısı gerçek state'ten hesaplanır.
-- Arka plan yalnız sahne/çevre içeren ayrı asset'tir; yazı, rota, node, yıldız, kilit, buton, panel ve özel durak etiketleri Flutter katmanlarında dinamik kalır. Eski arka plan bağlayıcı referansla uyuşmadığında kontrollü biçimde değiştirilebilir.
-- Ajanın aynı-tuval görsel QA sonucu, Levent'in gerçek Android 16 artifact screenshot'ı için vereceği nihai görsel kabulün yerine geçmez; PR bu açık kabul gelene kadar Draft kalır.
-- Levent'in 24 Ağustos 2026 görsel kabulü sonrasında Başlangıç Limanı node 9
-  solda normal/open duraktır. Bonus 8 zorunlu geçiş kapısı değildir; 7
-  tamamlandığında 8 ve 9 birlikte açılır. Final 10'un 9 tamamlanmadan
-  oynanamaz kalması korunur.
+- **25 Ağustos 2026 Levent açık mimari onayı:** Başlangıç Limanı production rota ekranında MASTER ART raster sahne görünür taban olarak kullanılacaktır. Level 1–10, geri, bilgi, pusula ve kitap davranışları görünmez/şeffaf hitbox'larla gerçek callback ve progression akışına bağlanır.
+- MASTER ART üzerindeki rota, node, plaque, yıldız, crown, pusula, kitap ve panel sanatı ikinci kez Flutter katmanı olarak çizilmez. Yalnız oyun state'i MASTER ART'tan gerçekten farklı olduğunda minimum bölgesel override uygulanır; mevcut sözleşmede node 9 normal/open override'ı buna örnektir.
+- Bu karar, Başlangıç Limanı için daha önceki “referans screenshot tek parça UI olarak gömülmez; görünür rota/node/panel katmanları tamamen dinamik kalır” şartını **geçersiz kılar / supersede eder**. Diğer tema veya rotalara otomatik genellenmez; her yeni rota ayrıca görsel ve teknik onay ister.
+- Görsel state oyun progression gerçeğini bozmaz. Bonus 8 zorunlu geçiş kapısı değildir; 7 tamamlandığında 8 ve normal/open 9 birlikte açılır. Final 10, node 9 tamamlanmadan oynanamaz ve callback üretmez.
+- Levent MASTER ART ↔ Android 16 production görünümünü ve `MASTER ART raster + şeffaf hitbox` production mimarisini açıkça kabul etti. Bu **merge onayı değildir**; PR #147 ayrı açık merge kararı gelene kadar Draft ve unmerged kalır.
 
 ---
 
@@ -47,14 +44,15 @@
 - Sıra: **test -> commit -> push -> PR -> inceleme -> merge**
 - Levent açık onay vermeden kritik merge yapılmayacak.
 - Build alınması, uygulamanın çalıştığının tek başına kanıtı değildir.
-- Tam hata logu, workflow, değişen dosyalar ve Git geçmişi birlikte incelenecek.
-- Aynı hataya V2, V3, V4 adıyla kör yama yapılmayacak.
+- Tam hata logu, workflow, diff'i ve Git geçmişi birlikte incelenecek.
+- Kör V2/V3 yamaları üretilmeyecek.
 - `assets/questions.json` kontrolsüz değiştirilmeyecek.
-- Kullanıcının ilgisiz yerel dosyaları silinmeyecek.
+- Kullanıcının ilgisiz yerel değişiklikleri silinmeyecek.
 - `git reset --hard` rutin çözüm olarak verilmeyecek.
-- Telefonda uygulanabilir, tek parça komutlar tercih edilecek.
-- Büyük manuel kod yapıştırmaları yerine kontrollü ZIP/kurucu kullanılabilir.
-- Her GitHub yüklemesinde commit adı açıkça söylenecek.
+- Telefonda tek parça uygulanabilir komut tercih edilecek.
+- Commit adı açıkça yazılacak.
+- Gizli bilgi, testçi e-postası, parola veya anahtarlar dosyalara eklenmeyecek.
+- Bir bilgi doğrulanmamışsa `DOĞRULANACAK` olarak işaretlenecek; tahmin edilmeyecek.
 
 ---
 
