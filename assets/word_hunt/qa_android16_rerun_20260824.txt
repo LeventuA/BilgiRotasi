@@ -1,0 +1,1 @@
+QA-only trigger for Android 16 visual proof after shell-runner fix. Not for production merge.
