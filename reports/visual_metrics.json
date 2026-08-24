@@ -12,7 +12,7 @@
     "width": 1080,
     "height": 1920
   },
-  "mean_absolute_rgb_error": 0.09153531290345356,
+  "mean_absolute_rgb_error": 0.09031501275921891,
   "node_center_deltas_px": {
     "1": {
       "dx": 0.0,

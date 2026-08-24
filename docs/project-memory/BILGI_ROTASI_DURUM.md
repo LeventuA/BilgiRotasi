@@ -2,20 +2,19 @@
 
 ## 0Q. Issue #109 MASTER ART production asset tamamlama — 24 Ağustos 2026
 
-> **SONRAKİ KULLANICI KARARI / GEÇERSİZ KANIT:** Product head `8b1731c...`
-> ve run `32750728333` teknik olarak PASS olsa da Levent, 5/10/kitap asset
-> kaynak sadakatini **VISUAL FAIL** olarak reddetti. Bu screenshot ve aşağıdaki
-> eski ajan P0/P1/P2 değerlendirmesi görsel kabul değildir. Yalnız MASTER ART
-> direct-pixel crop/mask extraction ile yeni exact-head Android 16 kanıtı
-> üretilecektir.
+> **GEÇERSİZ ESKİ KANIT:** Product head `8b1731c...` ve run `32750728333`
+> teknik olarak PASS olsa da Levent, 5/10/kitap asset kaynak sadakatini
+> **VISUAL FAIL** olarak reddetti. Yeni kanıt yalnız bağlayıcı MASTER ART
+> direct-pixel crop/mask/alpha extraction'ından üretilmiştir; bu yeni ajan
+> doğrulaması da Levent'in nihai görsel kabulü değildir.
 
 - Kanonik repo `ZMilaStudio/BilgiRotasi`; canlı release `release/final-closed-test-aab-1.68.8` head `8977d7ecdc88b50aedc9933739a1e17ac5b39833`. Çalışma PR #132 exact head `1968c4bccd22468bec50f2188414a3e5f6f3fa4b` üzerinden ayrı `fix/kelime-avi-baslangic-limani-master-art-codex-20260824` branch'inde yürütüldü; Draft PR #147 açık, merge yok. Sürüm `1.68.19+109` kaldı.
 - Issue #109 `Photo 1.jpg` tek bağlayıcı MASTER ART'tır. `720x1280` kaynak, `1080x1920` kanonik rapora normalize edildi. PR #146 ve run `32740827443` **REJECTED BY LEVENT — NOT A VISUAL SOURCE** olarak kaydedildi.
-- Product head `8b1731cbf91ec5c3c997ae8841eabb3b20383705`: 5 amber, 8 mor, 10 altın+crown; pusula; sol sayfasında `A` görünen kitap; challenge/bonus/final ikonları gerçek production asset olarak kullanılıyor. Procedural kılıç/sandık final-art painter'ları kaldırıldı; runtime background sözleşmesi gerçek `assets/word_hunt/baslangic_limani_bg.jpg` ile eşlendi.
-- Tüm 15 production asset bağımsız Flutter codec ile decode edildi ve APK içindeki kopyaları kaynaklarla byte-eşit doğrulandı. Focused Kelime Avı suite **103/103 PASS**; hedefli route/reference suite **24/24 PASS**; `dart analyze lib/word_hunt` **0 issue**; comparison tool analyze **0 issue**; `git diff --check` PASS.
-- Exact product-head Android 16 run/job `32750728333` / `97506798151`: **SUCCESS**. Artifact ID `9529208713`, digest `sha256:30f3e4d0b51f2b5a6df756dbdfd611b29e936440eda5d44292807b29bfe8e3e9`; APK SHA-256 `23499ad94d820c9c6ed413162ff74a3b6fe7a6124a524d3333fe886d8615de69`. MainActivity resumed/visible; 15/15 runtime asset load; app-specific crash/ANR/FATAL/process-death eşleşmesi 0.
-- MASTER ART ve gerçek Android 16 ekranı aynı `2160x1920` tuvalde yan yana incelendi. İlk koşudaki küçük özel plaque ikonları agent QA ile tespit edilip widget içinde şeffaf padding telafisiyle büyütüldü; yeni exact-head ekran yeniden üretildi. Son agent Product Design QA'da açık P0/P1/P2 kalmadı; bu **Levent görsel kabulü değildir**.
-- `reports/MASTER_ART_REFERENCE.png`, `ANDROID16_ACTUAL.png`, `REFERENCE_VS_ACTUAL_SIDE_BY_SIDE.png`, `REFERENCE_VS_ACTUAL_DIFF.png`, `visual_metrics.json`, `master_art_contract.json`, `master_art_asset_inventory.json` ve `design-qa.md` kanıtları saklandı. Android screenshot SHA-256 `6b5aeef4e1229850c12fc66cc92174c465da6a08b73ae68c5c4010227bba4e61`; yan-yana kanıt SHA-256 `5f33e39888380c199d1b8f95637c59b0d47982621c7241f7fd04c19db508cde5`.
+- Product head `89c1416906c048cd7fd350b9432261a59e30b115`: `node_challenge.webp`, `node_final.webp` ve `book_button.webp` yalnız MASTER ART'ın kendi RGB piksellerinden crop/mask/alpha ile çıkarıldı. Şeffaf dış boşluk deterministik olarak kırpıldı; node merkezleri, contract çapları ve rota geometrisi değişmedi. Manifest `source_pixel_identity: true`, `generated_art: false` ve boş forbidden-source listesi kaydeder.
+- Hedefli direct-extraction/codec testleri **21/21 PASS**; önceki tam focused Kelime Avı suite **104/104 PASS**; `dart analyze lib/word_hunt` **0 issue** ve `git diff --check` PASS kaydı korunuyor.
+- Exact product-head Android 16 run/job `32756717218` / `97525842035`: **SUCCESS**. Artifact ID `9531391794`, digest `sha256:85f74cd05a222c40acdc2c543d3f580919156816f26c6aae0909af1e10fe7c3d`; APK SHA-256 `4a1577f831d6270bbe8d7477cbbe7ecd18cb48d9fa68471fc6e0d99489dd8eeb`. 15/15 packaged byte parity ve runtime load PASS; app-specific crash/ANR/FATAL/process-death eşleşmesi 0.
+- MASTER ART ve gerçek Android 16 ekranı aynı `2160x1920` tuvalde incelendi. Düzeltme istenen 5/10/kitap bölgelerinde ajan-actionable P0/P1/P2 kalmadı; `design-qa.md` Levent kabulü beklediği için `blocked` kalır. Bu **Levent görsel kabulü değildir**.
+- `reports/MASTER_ART_REFERENCE.png`, `ANDROID16_ACTUAL.png`, `REFERENCE_VS_ACTUAL_SIDE_BY_SIDE.png`, `REFERENCE_VS_ACTUAL_DIFF.png`, `visual_metrics.json`, `master_art_contract.json`, `master_art_asset_inventory.json`, `master_art_extraction_manifest.json` ve `design-qa.md` kanıtları saklandı. Android screenshot SHA-256 `fdfd22945f196bdfd1f1251877a2f8cecb11e09fef3b0abca4f29654ef1933c5`; yan-yana kanıt SHA-256 `3007eddae1b19933d00bb30e40df8dc0fbd5993a59fd9ef26fd2dd6567c3cd38`.
 - `assets/questions.json`, production `lib/main.dart`, progression, BoardMap/67 node/3B, AdMob/Firebase/Android/release config ve `pubspec.yaml` değiştirilmedi.
 
 **Durum:** TECHNICAL PASS / ANDROID 16 PROOF READY / VISUAL USER ACCEPTANCE OPEN. PR #147 açık/Draft; Ready/merge yapılmadı.

@@ -2,8 +2,8 @@
 
 ## 0P - 24 Ağustos 2026 / Issue #109 MASTER ART production tamamlama
 
-- **Durum:** ÖNCEKİ SCREENSHOT VISUAL FAIL / 5-10-KİTAP DIRECT MASTER ART EXTRACTION UYGULANIYOR / PR #147 AÇIK + DRAFT / MERGE YOK.
-- Branch `fix/kelime-avi-baslangic-limani-master-art-codex-20260824`; base PR #132 exact `1968c4bccd22468bec50f2188414a3e5f6f3fa4b`; product head `8b1731cbf91ec5c3c997ae8841eabb3b20383705`; sürüm `1.68.19+109`.
+- **Durum:** ÖNCEKİ SCREENSHOT VISUAL FAIL / DIRECT MASTER ART EXTRACTION + ANDROID 16 KANITI PASS / LEVENT GÖRSEL KABULÜ AÇIK / PR #147 AÇIK + DRAFT / MERGE YOK.
+- Branch `fix/kelime-avi-baslangic-limani-master-art-codex-20260824`; base PR #132 exact `1968c4bccd22468bec50f2188414a3e5f6f3fa4b`; exact product head `89c1416906c048cd7fd350b9432261a59e30b115`; sürüm `1.68.19+109`.
 
 **Bitti ölçütü:**
 - [x] Issue #109 `Photo 1.jpg` tek bağlayıcı MASTER ART olarak ölçüldü ve `1080x1920` sözleşmesi raporlandı.
@@ -11,9 +11,9 @@
 - [x] 5 amber, 8 mor, 10 büyük altın+crown; üç plaque ikonu; pusula ve `A` kitap gerçek asset yolunda.
 - [x] Procedural premium-art kılıç/sandık painter'ları final render yolundan kaldırıldı; hayalet `scene.webp` sözleşmesi temizlendi.
 - [x] Focused **103/103**, hedefli **24/24**, Kelime Avı analyze 0 issue, comparison tool analyze 0 issue, diff check PASS.
-- [x] Android 16 exact-head run/job `32750728333` / `97506798151` SUCCESS; artifact `9529208713`, digest `sha256:30f3e4d0b51f2b5a6df756dbdfd611b29e936440eda5d44292807b29bfe8e3e9`.
+- [x] Android 16 exact-head run/job `32756717218` / `97525842035` SUCCESS; artifact `9531391794`, digest `sha256:85f74cd05a222c40acdc2c543d3f580919156816f26c6aae0909af1e10fe7c3d`.
 - [x] APK 15/15 source-packaged byte parity; runtime 15/15 load; Activity resumed/visible; app crash/ANR/FATAL/process-death 0.
-- [ ] `8b1731c...` screenshot Levent tarafından 5/10/kitap kaynak sadakati nedeniyle VISUAL FAIL olarak reddedildi; yalnız MASTER ART direct-pixel extraction sonrası yeni exact-head screenshot üretilecek.
+- [x] `8b1731c...` screenshot Levent tarafından 5/10/kitap kaynak sadakati nedeniyle VISUAL FAIL olarak reddedildi; üç asset MASTER ART direct-source-pixel extraction ile değiştirildi ve yeni exact-head screenshot üretildi.
 - [x] PR #146 / run `32740827443`: **REJECTED BY LEVENT — NOT A VISUAL SOURCE**.
 - [ ] Levent gerçek Android 16 artifact screenshot'ını açıkça görsel kabul edecek.
 - [ ] Levent açık onay vermeden PR #147 Ready yapılmaz veya merge edilmez.

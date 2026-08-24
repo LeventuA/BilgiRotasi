@@ -3,12 +3,12 @@
 ## Issue #109 / Draft PR #147 MASTER ART kanıtı — AÇIK KULLANICI KABULÜ
 
 > `8b1731c...` / run `32750728333` ekranı Levent tarafından **VISUAL FAIL**
-> olarak reddedildi. 5, 10 ve kitap için yeni direct MASTER ART extraction ve
-> yeni Android 16 kanıtı tamamlanmadan bu kayıt kabul kanıtı değildir.
+> olarak reddedildi. 5, 10 ve kitap artık direct MASTER ART extraction'dır;
+> yeni Android 16 kanıtı teknik olarak hazırdır fakat kullanıcı kabulü değildir.
 
-- Product head `8b1731cbf91ec5c3c997ae8841eabb3b20383705`; Android 16 run/job `32750728333` / `97506798151` SUCCESS; artifact ID `9529208713`.
+- Exact product head `89c1416906c048cd7fd350b9432261a59e30b115`; Android 16 run/job `32756717218` / `97525842035` SUCCESS; artifact ID `9531391794`, digest `sha256:85f74cd05a222c40acdc2c543d3f580919156816f26c6aae0909af1e10fe7c3d`.
 - 15/15 asset decode/runtime/APK parity, MainActivity resumed/visible ve app-specific crash/ANR/FATAL/process-death 0 olarak doğrulandı.
-- Product Design yan-yana incelemesinde agent-actionable P0/P1/P2 kalmadı. Bu teknik/ajan sonucu Levent görsel kabulü yerine geçmez.
+- Product Design yan-yana incelemesinde düzeltilen 5/10/kitap bölgelerinde agent-actionable P0/P1/P2 kalmadı. Bu teknik/ajan sonucu Levent görsel kabulü yerine geçmez; `design-qa.md` bu nedenle `blocked` kalır.
 - PR #146 ve run `32740827443`: **REJECTED BY LEVENT — NOT A VISUAL SOURCE**.
 - **DOĞRULANACAK:** Levent `ANDROID16_ACTUAL.png` / `REFERENCE_VS_ACTUAL_SIDE_BY_SIDE.png` kanıtını açıkça kabul ediyor mu? O zamana kadar PR #147 açık/Draft/merge edilmemiş kalır.
 
