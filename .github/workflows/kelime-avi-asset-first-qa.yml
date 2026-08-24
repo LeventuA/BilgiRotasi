@@ -1,0 +1,131 @@
+name: Kelime Avi asset-first QA gate
+
+on:
+  pull_request:
+    branches:
+      - feat/kelime-avi-baslangic-limani-asset-first-20260824
+    paths:
+      - 'lib/word_hunt/**'
+      - 'test/word_hunt_*.dart'
+      - 'test/home_hub_prototype_test.dart'
+      - 'tools/kelime_avi_asset_first_gate_apply.py'
+      - '.github/workflows/kelime-avi-asset-first-qa.yml'
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact QA head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Dependencies
+        run: flutter pub get
+
+      - name: Apply candidate patch in workspace only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f tools/kelime_avi_asset_first_gate_apply.py
+          python3 tools/kelime_avi_asset_first_gate_apply.py
+          test ! -f tools/kelime_avi_asset_first_gate_apply.py
+          dart format lib/word_hunt/word_hunt_route_stop.dart \
+            lib/word_hunt/word_hunt_reference_route_screen.dart \
+            test/word_hunt_route_stop_test.dart \
+            test/word_hunt_reference_route_screen_test.dart
+          git diff --check
+
+      - name: Scope guard before test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import subprocess, sys
+          changed = subprocess.check_output(['git','diff','--name-only'], text=True).splitlines()
+          allowed = (
+              'lib/word_hunt/',
+              'test/word_hunt_',
+              'test/home_hub_prototype_test.dart',
+              'tools/kelime_avi_asset_first_gate_apply.py',
+          )
+          bad = [p for p in changed if not p.startswith(allowed)]
+          print('workspace changed:', *changed, sep='\n- ')
+          if bad:
+              print('OUT-OF-SCOPE:', bad)
+              sys.exit(1)
+          PY
+
+      - name: Analyze candidate before commit
+        run: dart analyze lib/word_hunt
+
+      - name: Focused Kelime Avi suite before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter test \
+            test/home_hub_prototype_test.dart \
+            test/word_hunt_models_test.dart \
+            test/word_hunt_path_test.dart \
+            test/word_hunt_progress_codec_test.dart \
+            test/word_hunt_progress_test.dart \
+            test/word_hunt_production_assets_test.dart \
+            test/word_hunt_route_stop_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            test/word_hunt_prototype_screens_test.dart \
+            test/word_hunt_route_map_v2_view_test.dart \
+            test/word_hunt_route_map_view_test.dart \
+            test/word_hunt_scoring_test.dart \
+            test/word_hunt_starter_content_test.dart \
+            --reporter expanded
+
+      - name: Commit only after candidate passes
+        id: commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'feat(kelime-avi): integrate Baslangic Limani production assets'
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Exact committed head verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check HEAD^
+          dart analyze lib/word_hunt
+          flutter test \
+            test/word_hunt_production_assets_test.dart \
+            test/word_hunt_route_stop_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            --reporter expanded
+
+      - name: Push tested commit to QA branch
+        shell: bash
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          git push origin "HEAD:${HEAD_BRANCH}"
+          echo "TESTED_COMMIT=${{ steps.commit.outputs.sha }}"
