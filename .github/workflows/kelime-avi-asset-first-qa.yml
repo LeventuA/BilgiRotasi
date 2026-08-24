@@ -47,7 +47,18 @@ jobs:
         run: |
           set -euo pipefail
           test -f tools/kelime_avi_asset_first_gate_apply.py
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('tools/kelime_avi_asset_first_gate_apply.py')
+          s = p.read_text(encoding='utf-8')
+          old = '''text = replace_once(\n    text,\n    "  final bool lockedFinal;\\n  final Color accent;\\n  final WordHuntRouteStopTheme theme;\\n",\n    "  final bool lockedFinal;\\n  final WordHuntRouteStopTheme theme;\\n",\n    'stop medallion accent field removal',\n)'''
+          new = '''old_field = "  final bool lockedFinal;\\n  final Color accent;\\n  final WordHuntRouteStopTheme theme;\\n"\n          if old_field not in text:\n              raise RuntimeError('stop medallion accent field missing')\n          text = text.replace(\n              old_field,\n              "  final bool lockedFinal;\\n  final WordHuntRouteStopTheme theme;\\n",\n              1,\n          )'''
+          if old not in s:
+              raise RuntimeError('QA helper hotfix anchor missing')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
           python3 tools/kelime_avi_asset_first_gate_apply.py
+          rm -f test/word_hunt_asset_first_qa_trigger_test.dart
           test ! -f tools/kelime_avi_asset_first_gate_apply.py
           dart format lib/word_hunt/word_hunt_route_stop.dart \
             lib/word_hunt/word_hunt_reference_route_screen.dart \
