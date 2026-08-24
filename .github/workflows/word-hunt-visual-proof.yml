@@ -102,7 +102,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ls -l /dev/kvm
+          test -e /dev/kvm
           sudo chmod 666 /dev/kvm
           test -r /dev/kvm
           test -w /dev/kvm
@@ -111,36 +111,43 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 36
-          target: google_apis
+          target: aosp_atd
           arch: x86_64
-          profile: pixel_7
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
           disable-animations: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
             set -euo pipefail
-            adb wait-for-device
-            adb install -r build/app/outputs/flutter-apk/app-debug.apk
+            mkdir -p reports
+            if adb shell pm path com.leventua.bilgirotasi 2>/dev/null | grep -q '^package:'; then adb uninstall com.leventua.bilgirotasi; fi
+            adb install build/app/outputs/flutter-apk/app-debug.apk
             adb logcat -c
             adb shell am force-stop com.leventua.bilgirotasi
-            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1
+            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null
             sleep 8
-            adb shell dumpsys activity activities \
-              | grep -E 'mResumedActivity|topResumedActivity|com.leventua.bilgirotasi' \
-              | tee reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
+            adb shell dumpsys activity activities > reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
             adb exec-out screencap -p > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
+            adb logcat -d > reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt
+            grep -E 'WORD_HUNT_ASSET_(LOADED|ERROR)' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt > reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt || true
             test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
-            cp reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png \
-              reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
-            adb logcat -d \
-              | grep -E 'WORD_HUNT_ASSET|AndroidRuntime|FATAL EXCEPTION|ANR in com.leventua.bilgirotasi|Process com.leventua.bilgirotasi.*died' \
-              | tee reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt || true
-            grep -F '[WORD_HUNT_ASSET_LOADED]' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt \
-              | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt
-            if grep -E 'FATAL EXCEPTION|ANR in com.leventua.bilgirotasi|Process com.leventua.bilgirotasi.*died' \
-              reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt; then
-              echo 'Bilgi Rotası crash/ANR/process-death bulundu.'
+            grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt; then
+              echo 'Bilgi Rotası visual-proof process failure detected.' >&2
               exit 1
             fi
+            if grep -Fq '[WORD_HUNT_ASSET_ERROR]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt; then
+              cat reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt >&2
+              exit 1
+            fi
+            grep -Fq '[WORD_HUNT_ASSET_LOADED]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt
+            adb shell input swipe 540 1550 540 520 400 || true
+            sleep 2
+            adb exec-out screencap -p > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
+            test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
 
       - name: Görsel kanıt artifact'ini yükle
         uses: actions/upload-artifact@v4
