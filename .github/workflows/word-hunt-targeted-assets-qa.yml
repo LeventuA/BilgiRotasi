@@ -1,0 +1,183 @@
+name: Kelime Avı hedefli asset Android 16 QA
+
+on:
+  pull_request:
+    branches:
+      - qa/kelime-avi-visual-proof-base-1968-20260824
+    paths:
+      - 'tools/generate_kelime_avi_targeted_assets.py'
+      - '.github/workflows/word-hunt-targeted-assets-qa.yml'
+      - 'assets/word_hunt/baslangic_limani/node_challenge.webp'
+      - 'assets/word_hunt/baslangic_limani/node_final.webp'
+      - 'assets/word_hunt/baslangic_limani/book_button.webp'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  targeted-assets:
+    name: 5 amber + 10 altın + A kitap gerçek Android 16
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+
+    steps:
+      - name: Exact QA head'i indir
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Hedef üç asset'i üret ve doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check pillow
+          python3 tools/generate_kelime_avi_targeted_assets.py
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          names = ['node_challenge.webp', 'node_final.webp', 'book_button.webp']
+          root = Path('assets/word_hunt/baslangic_limani')
+          for name in names:
+              path = root / name
+              assert path.is_file() and path.stat().st_size > 1000, path
+              with Image.open(path) as image:
+                  assert image.format == 'WEBP', (name, image.format)
+                  assert image.size == (256, 256), (name, image.size)
+                  assert image.mode == 'RGBA', (name, image.mode)
+              print(name, path.stat().st_size)
+          PY
+          mapfile -t changed < <(git diff --name-only | sort)
+          printf '%s\n' "${changed[@]}"
+          expected=(
+            assets/word_hunt/baslangic_limani/book_button.webp
+            assets/word_hunt/baslangic_limani/node_challenge.webp
+            assets/word_hunt/baslangic_limani/node_final.webp
+          )
+          test "${#changed[@]}" -eq 3
+          for i in 0 1 2; do test "${changed[$i]}" = "${expected[$i]}"; done
+
+      - name: Focused test + analyze
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test \
+            test/home_hub_prototype_test.dart \
+            test/word_hunt_models_test.dart \
+            test/word_hunt_path_test.dart \
+            test/word_hunt_progress_codec_test.dart \
+            test/word_hunt_progress_test.dart \
+            test/word_hunt_production_assets_test.dart \
+            test/word_hunt_route_stop_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            test/word_hunt_prototype_screens_test.dart \
+            test/word_hunt_route_map_v2_view_test.dart \
+            test/word_hunt_route_map_view_test.dart \
+            test/word_hunt_scoring_test.dart \
+            test/word_hunt_starter_content_test.dart \
+            --reporter expanded
+          git diff --check
+
+      - name: Test geçen üç asset'i commit ve push et
+        id: commit
+        shell: bash
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            assets/word_hunt/baslangic_limani/node_challenge.webp \
+            assets/word_hunt/baslangic_limani/node_final.webp \
+            assets/word_hunt/baslangic_limani/book_button.webp
+          git commit -m 'fix(kelime-avi): align challenge final and book assets'
+          sha=$(git rev-parse HEAD)
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          if [ -n "$HEAD_BRANCH" ]; then git push origin "HEAD:$HEAD_BRANCH"; fi
+
+      - name: İzole debug APK üret ve üç asset'i paket içinde doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_visual_proof_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          mkdir -p reports
+          git rev-parse HEAD | tee reports/WORD_HUNT_TARGETED_HEAD_SHA.txt
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk | tee reports/WORD_HUNT_TARGETED_APK_SHA256.txt
+          for name in node_challenge.webp node_final.webp book_button.webp; do
+            src="assets/word_hunt/baslangic_limani/$name"
+            packed="reports/PACKAGED_$name"
+            unzip -p build/app/outputs/flutter-apk/app-debug.apk "assets/flutter_assets/$src" > "$packed"
+            test -s "$packed"
+            cmp -s "$src" "$packed"
+            sha256sum "$src" "$packed" | tee "reports/${name}.sha256.txt"
+          done
+
+      - name: KVM erişimini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Android 16 emülatörde gerçek ekranı çek
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            set -eu
+            mkdir -p reports
+            adb wait-for-device
+            if adb shell pm path com.leventua.bilgirotasi 2>/dev/null | grep -q '^package:'; then adb uninstall com.leventua.bilgirotasi; fi
+            adb install build/app/outputs/flutter-apk/app-debug.apk
+            adb logcat -c
+            adb shell am force-stop com.leventua.bilgirotasi
+            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null
+            sleep 8
+            adb shell dumpsys activity activities > reports/WORD_HUNT_TARGETED_ACTIVITY.txt
+            adb exec-out screencap -p > reports/WORD_HUNT_TARGETED_ANDROID16.png
+            adb logcat -d > reports/WORD_HUNT_TARGETED_LOGCAT.txt
+            test -s reports/WORD_HUNT_TARGETED_ANDROID16.png
+            grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/WORD_HUNT_TARGETED_ACTIVITY.txt
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_TARGETED_LOGCAT.txt; then
+              echo 'Bilgi Rotası crash/ANR/process failure bulundu.' >&2
+              exit 1
+            fi
+
+      - name: Görsel kanıtları yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-TargetedAssets-${{ steps.commit.outputs.sha || github.sha }}
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 7
