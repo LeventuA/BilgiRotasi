@@ -3,8 +3,7 @@ name: Kelime Avı Android 16 görsel kanıtı
 on:
   pull_request:
     branches:
-      - release/final-closed-test-aab-1.68.8
-      - feat/home-word-hunt-foundation-20260820
+      - qa/kelime-avi-visual-proof-base-1968-20260824
     paths:
       - 'lib/word_hunt/**'
       - 'test/home_hub_prototype_test.dart'
@@ -23,7 +22,7 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 35
     env:
-      PROOF_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      PROOF_SHA: 1968c4bccd22468bec50f2188414a3e5f6f3fa4b
 
     steps:
       - name: Exact feature HEAD'i indir
@@ -48,6 +47,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PROOF_SHA"
           flutter pub get
           dart analyze lib/word_hunt
           flutter test \
@@ -56,6 +56,7 @@ jobs:
             test/word_hunt_path_test.dart \
             test/word_hunt_progress_codec_test.dart \
             test/word_hunt_progress_test.dart \
+            test/word_hunt_production_assets_test.dart \
             test/word_hunt_route_stop_test.dart \
             test/word_hunt_reference_route_screen_test.dart \
             test/word_hunt_prototype_screens_test.dart \
@@ -165,4 +166,4 @@ jobs:
             reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
             reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 7
