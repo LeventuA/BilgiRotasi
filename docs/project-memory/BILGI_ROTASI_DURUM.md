@@ -1,5 +1,20 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
+## 0Q. Issue #109 MASTER ART production asset tamamlama — 24 Ağustos 2026
+
+- Kanonik repo `ZMilaStudio/BilgiRotasi`; canlı release `release/final-closed-test-aab-1.68.8` head `8977d7ecdc88b50aedc9933739a1e17ac5b39833`. Çalışma PR #132 exact head `1968c4bccd22468bec50f2188414a3e5f6f3fa4b` üzerinden ayrı `fix/kelime-avi-baslangic-limani-master-art-codex-20260824` branch'inde yürütüldü; Draft PR #147 açık, merge yok. Sürüm `1.68.19+109` kaldı.
+- Issue #109 `Photo 1.jpg` tek bağlayıcı MASTER ART'tır. `720x1280` kaynak, `1080x1920` kanonik rapora normalize edildi. PR #146 ve run `32740827443` **REJECTED BY LEVENT — NOT A VISUAL SOURCE** olarak kaydedildi.
+- Product head `8b1731cbf91ec5c3c997ae8841eabb3b20383705`: 5 amber, 8 mor, 10 altın+crown; pusula; sol sayfasında `A` görünen kitap; challenge/bonus/final ikonları gerçek production asset olarak kullanılıyor. Procedural kılıç/sandık final-art painter'ları kaldırıldı; runtime background sözleşmesi gerçek `assets/word_hunt/baslangic_limani_bg.jpg` ile eşlendi.
+- Tüm 15 production asset bağımsız Flutter codec ile decode edildi ve APK içindeki kopyaları kaynaklarla byte-eşit doğrulandı. Focused Kelime Avı suite **103/103 PASS**; hedefli route/reference suite **24/24 PASS**; `dart analyze lib/word_hunt` **0 issue**; comparison tool analyze **0 issue**; `git diff --check` PASS.
+- Exact product-head Android 16 run/job `32750728333` / `97506798151`: **SUCCESS**. Artifact ID `9529208713`, digest `sha256:30f3e4d0b51f2b5a6df756dbdfd611b29e936440eda5d44292807b29bfe8e3e9`; APK SHA-256 `23499ad94d820c9c6ed413162ff74a3b6fe7a6124a524d3333fe886d8615de69`. MainActivity resumed/visible; 15/15 runtime asset load; app-specific crash/ANR/FATAL/process-death eşleşmesi 0.
+- MASTER ART ve gerçek Android 16 ekranı aynı `2160x1920` tuvalde yan yana incelendi. İlk koşudaki küçük özel plaque ikonları agent QA ile tespit edilip widget içinde şeffaf padding telafisiyle büyütüldü; yeni exact-head ekran yeniden üretildi. Son agent Product Design QA'da açık P0/P1/P2 kalmadı; bu **Levent görsel kabulü değildir**.
+- `reports/MASTER_ART_REFERENCE.png`, `ANDROID16_ACTUAL.png`, `REFERENCE_VS_ACTUAL_SIDE_BY_SIDE.png`, `REFERENCE_VS_ACTUAL_DIFF.png`, `visual_metrics.json`, `master_art_contract.json`, `master_art_asset_inventory.json` ve `design-qa.md` kanıtları saklandı. Android screenshot SHA-256 `6b5aeef4e1229850c12fc66cc92174c465da6a08b73ae68c5c4010227bba4e61`; yan-yana kanıt SHA-256 `5f33e39888380c199d1b8f95637c59b0d47982621c7241f7fd04c19db508cde5`.
+- `assets/questions.json`, production `lib/main.dart`, progression, BoardMap/67 node/3B, AdMob/Firebase/Android/release config ve `pubspec.yaml` değiştirilmedi.
+
+**Durum:** TECHNICAL PASS / ANDROID 16 PROOF READY / VISUAL USER ACCEPTANCE OPEN. PR #147 açık/Draft; Ready/merge yapılmadı.
+
+---
+
 ## 0P. Issue #109 / PR #110 Başlangıç Limanı bağlayıcı referans eşlemesi — 23 Ağustos 2026
 
 - Başlangıç kaynağı PR #107 exact head `a4290d9f4893a20c1b0ae1f6e70365419552720e`; ayrı branch `fix/kelime-avi-approved-reference-pixel-match-20260823`, Draft PR #110. Güncel head canlı GitHub PR metadata'sından doğrulanır; merge yapılmadı.

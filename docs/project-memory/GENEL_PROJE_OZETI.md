@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 24 Ağustos 2026, 03:16 (Europe/Istanbul)
+**Son güncelleme:** 24 Ağustos 2026 (Europe/Istanbul)
 
 > Bu dosya yeni bir sohbeti hızlı ve güvenli biçimde başlatmak için yaşayan devir özetidir. Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` GitHub deposu ve ilgili canlı servislerdir. Bu özet canlı repo doğrulamasının yerine geçmez.
 
@@ -23,6 +23,15 @@
 - Paket: `com.leventua.bilgirotasi`
 - `main` HEAD: `f42ba228bd7c38b0a00448a19f43d762058e4319` — `ci: add weekly Dependabot updates (#113)`.
 - `main/pubspec.yaml` sürümü eski hatta `1.68.6+96`; Kelime Avı için çalışma kaynağı değildir.
+
+### 24 Ağustos MASTER ART exact-head kanıtı
+
+- Bu branch'teki yaşayan özet, iş başında canlı release hattındaki özetin gerisindeydi; canlı release head `8977d7ecdc88b50aedc9933739a1e17ac5b39833` ayrıca doğrulandı. Teknik doğrulukta canlı GitHub önceliklidir.
+- Issue #109 `Photo 1.jpg` tek bağlayıcı MASTER ART; PR #146/run `32740827443` **REJECTED BY LEVENT — NOT A VISUAL SOURCE**.
+- Yeni branch `fix/kelime-avi-baslangic-limani-master-art-codex-20260824`, base PR #132 exact `1968c4bccd22468bec50f2188414a3e5f6f3fa4b`, product head `8b1731cbf91ec5c3c997ae8841eabb3b20383705`, Draft PR #147.
+- 15 gerçek production asset; asset-backed 5/8/10 ikonları, pusula ve `A` kitap; gerçek runtime background sözleşmesi; procedural premium kılıç/sandık painter'larının kaldırılması tamamlandı.
+- Focused 103/103, hedefli 24/24, analyze 0 issue ve diff PASS. Android 16 run/job `32750728333` / `97506798151` SUCCESS; artifact `9529208713`, digest `sha256:30f3e4d0b51f2b5a6df756dbdfd611b29e936440eda5d44292807b29bfe8e3e9`; app-specific crash/ANR/FATAL/process-death 0.
+- Durum: **TECHNICAL PASS / ANDROID 16 PROOF READY / VISUAL USER ACCEPTANCE OPEN**. Levent screenshot'ı görmeden Ready/merge yok.
 
 ### PR #110 — Başlangıç Limanı mevcut teknik çekirdeği
 

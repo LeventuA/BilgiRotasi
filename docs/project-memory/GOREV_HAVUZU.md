@@ -1,5 +1,25 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0P - 24 Ağustos 2026 / Issue #109 MASTER ART production tamamlama
+
+- **Durum:** TECHNICAL PASS / ANDROID 16 PROOF READY / VISUAL USER ACCEPTANCE OPEN / PR #147 AÇIK + DRAFT / MERGE YOK.
+- Branch `fix/kelime-avi-baslangic-limani-master-art-codex-20260824`; base PR #132 exact `1968c4bccd22468bec50f2188414a3e5f6f3fa4b`; product head `8b1731cbf91ec5c3c997ae8841eabb3b20383705`; sürüm `1.68.19+109`.
+
+**Bitti ölçütü:**
+- [x] Issue #109 `Photo 1.jpg` tek bağlayıcı MASTER ART olarak ölçüldü ve `1080x1920` sözleşmesi raporlandı.
+- [x] 15 production asset format/dimension/alpha/byte/SHA envanteri ve bağımsız Flutter codec decode testi PASS.
+- [x] 5 amber, 8 mor, 10 büyük altın+crown; üç plaque ikonu; pusula ve `A` kitap gerçek asset yolunda.
+- [x] Procedural premium-art kılıç/sandık painter'ları final render yolundan kaldırıldı; hayalet `scene.webp` sözleşmesi temizlendi.
+- [x] Focused **103/103**, hedefli **24/24**, Kelime Avı analyze 0 issue, comparison tool analyze 0 issue, diff check PASS.
+- [x] Android 16 exact-head run/job `32750728333` / `97506798151` SUCCESS; artifact `9529208713`, digest `sha256:30f3e4d0b51f2b5a6df756dbdfd611b29e936440eda5d44292807b29bfe8e3e9`.
+- [x] APK 15/15 source-packaged byte parity; runtime 15/15 load; Activity resumed/visible; app crash/ANR/FATAL/process-death 0.
+- [x] İlk screenshot'taki küçük özel ikon farkı düzeltildi; yeni exact-head screenshot + side-by-side + diff + metrics saklandı.
+- [x] PR #146 / run `32740827443`: **REJECTED BY LEVENT — NOT A VISUAL SOURCE**.
+- [ ] Levent gerçek Android 16 artifact screenshot'ını açıkça görsel kabul edecek.
+- [ ] Levent açık onay vermeden PR #147 Ready yapılmaz veya merge edilmez.
+
+---
+
 ## 0O - 23 Ağustos 2026 / Issue #109 Başlangıç Limanı pixel-match
 
 - **Durum:** UYGULANDI / ANDROID 16 + AJAN GÖRSEL QA PASS / LEVENT NİHAİ KABULÜ AÇIK / PR #110 AÇIK + DRAFT / MERGE YOK.

@@ -1,0 +1,178 @@
+{
+  "comparison_note": "Full-frame error is diagnostic only and is never a visual PASS gate.",
+  "source_dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "actual_dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "normalized_dimensions": {
+    "width": 1080,
+    "height": 1920
+  },
+  "mean_absolute_rgb_error": 0.09153531290345356,
+  "node_center_deltas_px": {
+    "1": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "2": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "3": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "4": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "5": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "6": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "7": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "8": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "9": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "10": {
+      "dx": 0.0,
+      "dy": 0.0
+    }
+  },
+  "node_size_deltas_px": {
+    "1": {
+      "reference_contract": 78.0,
+      "actual_contract": 78.0,
+      "delta": 0.0
+    },
+    "2": {
+      "reference_contract": 78.0,
+      "actual_contract": 78.0,
+      "delta": 0.0
+    },
+    "3": {
+      "reference_contract": 78.0,
+      "actual_contract": 78.0,
+      "delta": 0.0
+    },
+    "4": {
+      "reference_contract": 78.0,
+      "actual_contract": 78.0,
+      "delta": 0.0
+    },
+    "5": {
+      "reference_contract": 104.0,
+      "actual_contract": 104.0,
+      "delta": 0.0
+    },
+    "6": {
+      "reference_contract": 78.0,
+      "actual_contract": 78.0,
+      "delta": 0.0
+    },
+    "7": {
+      "reference_contract": 78.0,
+      "actual_contract": 78.0,
+      "delta": 0.0
+    },
+    "8": {
+      "reference_contract": 104.0,
+      "actual_contract": 104.0,
+      "delta": 0.0
+    },
+    "9": {
+      "reference_contract": 100.0,
+      "actual_contract": 100.0,
+      "delta": 0.0
+    },
+    "10": {
+      "reference_contract": 142.0,
+      "actual_contract": 142.0,
+      "delta": 0.0
+    }
+  },
+  "plaque_bounds_deltas_px": {
+    "5": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "dwidth": 0.0,
+      "dheight": 0.0
+    },
+    "8": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "dwidth": 0.0,
+      "dheight": 0.0
+    },
+    "10": {
+      "dx": 0.0,
+      "dy": 0.0,
+      "dwidth": 0.0,
+      "dheight": 0.0
+    }
+  },
+  "bottom_control_center_deltas_px": {
+    "compass": {
+      "dx": 0.0,
+      "dy": 0.0
+    },
+    "book": {
+      "dx": 0.0,
+      "dy": 0.0
+    }
+  },
+  "dominant_color_comparisons": {
+    "5": {
+      "reference_rgb": [
+        80,
+        48,
+        16
+      ],
+      "actual_rgb": [
+        80,
+        48,
+        16
+      ]
+    },
+    "8": {
+      "reference_rgb": [
+        48,
+        16,
+        80
+      ],
+      "actual_rgb": [
+        48,
+        16,
+        80
+      ]
+    },
+    "10": {
+      "reference_rgb": [
+        80,
+        48,
+        16
+      ],
+      "actual_rgb": [
+        80,
+        48,
+        16
+      ]
+    }
+  }
+}

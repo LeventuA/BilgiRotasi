@@ -1,5 +1,15 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
+## Issue #109 / Draft PR #147 MASTER ART kanıtı — AÇIK KULLANICI KABULÜ
+
+- Product head `8b1731cbf91ec5c3c997ae8841eabb3b20383705`; Android 16 run/job `32750728333` / `97506798151` SUCCESS; artifact ID `9529208713`.
+- 15/15 asset decode/runtime/APK parity, MainActivity resumed/visible ve app-specific crash/ANR/FATAL/process-death 0 olarak doğrulandı.
+- Product Design yan-yana incelemesinde agent-actionable P0/P1/P2 kalmadı. Bu teknik/ajan sonucu Levent görsel kabulü yerine geçmez.
+- PR #146 ve run `32740827443`: **REJECTED BY LEVENT — NOT A VISUAL SOURCE**.
+- **DOĞRULANACAK:** Levent `ANDROID16_ACTUAL.png` / `REFERENCE_VS_ACTUAL_SIDE_BY_SIDE.png` kanıtını açıkça kabul ediyor mu? O zamana kadar PR #147 açık/Draft/merge edilmemiş kalır.
+
+---
+
 ## Issue #109 / PR #110 teknik ve görsel QA sonrası — AÇIK KARAR
 
 - Exact product head `5523cafcd11d30f7c9ecceb7193d0de84fd6b07a`; Android 16 run/job `32667921483` / `97264162349` SUCCESS; artifact ID `9500663308`.
