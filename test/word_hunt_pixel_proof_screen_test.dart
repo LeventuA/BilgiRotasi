@@ -21,44 +21,70 @@ void main() {
     expect(source.height, 1280);
   });
 
-  testWidgets('pixel proof renders one raster scene and transparent hitboxes', (
-    tester,
-  ) async {
-    await tester.binding.setSurfaceSize(const Size(540, 960));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
+  testWidgets(
+    'pixel proof keeps master scene and overrides only node 9 as normal/open',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(540, 960));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
 
-    await tester.pumpWidget(
-      const MaterialApp(home: WordHuntPixelProofScreen()),
-    );
-    await tester.pump();
+      await tester.pumpWidget(
+        const MaterialApp(home: WordHuntPixelProofScreen()),
+      );
+      await tester.pump();
 
-    final images = tester.widgetList<Image>(find.byType(Image)).toList();
-    expect(images, hasLength(1));
-    expect(
-      (images.single.image as AssetImage).assetName,
-      WordHuntPixelProofAssets.masterArt,
-    );
-    expect(images.single.fit, BoxFit.fill);
-    expect(images.single.filterQuality, FilterQuality.none);
-
-    expect(find.byType(Text), findsNothing);
-    final scene = find.byKey(const Key('word_hunt_pixel_proof_source_scene'));
-    expect(
-      find.descendant(of: scene, matching: find.byType(CustomPaint)),
-      findsNothing,
-    );
-    for (var level = 1; level <= 10; level++) {
+      final images = tester.widgetList<Image>(find.byType(Image)).toList();
+      expect(images, hasLength(2));
+      final masterArt = tester.widget<Image>(
+        find.byKey(const Key('word_hunt_pixel_proof_master_art')),
+      );
       expect(
-        find.byKey(Key('word_hunt_pixel_proof_level_$level')),
+        (masterArt.image as AssetImage).assetName,
+        WordHuntPixelProofAssets.masterArt,
+      );
+      expect(masterArt.fit, BoxFit.fill);
+      expect(masterArt.filterQuality, FilterQuality.none);
+
+      final nodeNine = tester.widget<Image>(
+        find.byKey(const Key('word_hunt_pixel_proof_node_9_asset')),
+      );
+      expect(
+        (nodeNine.image as AssetImage).assetName,
+        WordHuntPixelProofAssets.nodeNineOpen,
+      );
+      expect(find.text('9'), findsOneWidget);
+      expect(find.byIcon(Icons.lock_rounded), findsNothing);
+      expect(find.byIcon(Icons.star_rounded), findsNothing);
+
+      final override = find.byKey(
+        const Key('word_hunt_pixel_proof_node_9_override'),
+      );
+      expect(tester.getSize(override), const Size.square(72));
+      expect(
+        tester.getCenter(override),
+        offsetMoreOrLessEquals(const Offset(127.44, 669.12), epsilon: 0.01),
+      );
+
+      final scene = find.byKey(const Key('word_hunt_pixel_proof_source_scene'));
+      expect(
+        find.descendant(of: scene, matching: find.byType(CustomPaint)),
+        findsNothing,
+      );
+      for (var level = 1; level <= 10; level++) {
+        expect(
+          find.byKey(Key('word_hunt_pixel_proof_level_$level')),
+          findsOneWidget,
+        );
+      }
+      expect(
+        find.byKey(const Key('word_hunt_pixel_proof_compass')),
         findsOneWidget,
       );
-    }
-    expect(
-      find.byKey(const Key('word_hunt_pixel_proof_compass')),
-      findsOneWidget,
-    );
-    expect(find.byKey(const Key('word_hunt_pixel_proof_book')), findsOneWidget);
-  });
+      expect(
+        find.byKey(const Key('word_hunt_pixel_proof_book')),
+        findsOneWidget,
+      );
+    },
+  );
 
   testWidgets('pixel proof keeps progression callbacks behind invisible art', (
     tester,

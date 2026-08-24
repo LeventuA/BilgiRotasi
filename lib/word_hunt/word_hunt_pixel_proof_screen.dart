@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'word_hunt_production_assets.dart';
 import 'word_hunt_progress.dart';
 import 'word_hunt_starter_content.dart';
 
@@ -10,6 +11,7 @@ import 'word_hunt_starter_content.dart';
 abstract final class WordHuntPixelProofAssets {
   static const String masterArt =
       'assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg';
+  static const String nodeNineOpen = WordHuntProductionAssets.nodeNormal;
 }
 
 /// Flattened MASTER ART'ın üzerindeki görünmez etkileşim geometrisi.
@@ -46,13 +48,18 @@ abstract final class WordHuntPixelProofLayout {
   static const Offset compassCenter = Offset(90.72, 1176);
   static const Offset bookCenter = Offset(630, 1176);
   static const double controlHitboxDiameter = 120;
+
+  /// MASTER ART'taki kilitli node 9'u tamamen örten tek görünür override.
+  static const Offset nodeNineCenter = Offset(169.92, 892.16);
+  static const double nodeNineVisualDiameter = 72;
 }
 
 /// Yalnız pixel-perfect Android kanıtı için kullanılan izole sahne.
 ///
-/// Bütün görünür sanat tek [Image] widget'ından gelir. Diğer çocuklar yalnız
-/// renksiz ve bordersız hitbox'tır. Production `lib/main.dart`, layered rota
-/// ekranı ve progression verisi değiştirilmez.
+/// Görünür sahne MASTER ART'tan gelir; yalnız node 9 kullanıcının açık kararına
+/// göre mevcut normal node asset'iyle örtülür. Diğer çocuklar renksiz ve
+/// bordersız hitbox'tır. Production `lib/main.dart`, layered rota ekranı ve
+/// progression verisi değiştirilmez.
 class WordHuntPixelProofScreen extends StatelessWidget {
   const WordHuntPixelProofScreen({
     super.key,
@@ -90,6 +97,7 @@ class WordHuntPixelProofScreen extends StatelessWidget {
                     fit: BoxFit.fill,
                     filterQuality: FilterQuality.none,
                   ),
+                  const _NodeNineOpenOverride(),
                   for (
                     var index = 0;
                     index < WordHuntPixelProofLayout.levelCenters.length;
@@ -126,6 +134,59 @@ class WordHuntPixelProofScreen extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NodeNineOpenOverride extends StatelessWidget {
+  const _NodeNineOpenOverride();
+
+  @override
+  Widget build(BuildContext context) {
+    const diameter = WordHuntPixelProofLayout.nodeNineVisualDiameter;
+    const center = WordHuntPixelProofLayout.nodeNineCenter;
+    return Positioned(
+      key: const Key('word_hunt_pixel_proof_node_9_override'),
+      left: center.dx - diameter / 2,
+      top: center.dy - diameter / 2,
+      width: diameter,
+      height: diameter,
+      child: ClipOval(
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            Transform.scale(
+              scale: 1.08,
+              child: Image.asset(
+                WordHuntPixelProofAssets.nodeNineOpen,
+                key: const Key('word_hunt_pixel_proof_node_9_asset'),
+                fit: BoxFit.cover,
+                filterQuality: FilterQuality.high,
+              ),
+            ),
+            const Center(
+              child: Text(
+                '9',
+                key: Key('word_hunt_pixel_proof_node_9_number'),
+                style: TextStyle(
+                  color: Color(0xFFF6F1E3),
+                  fontFamily: 'serif',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                  height: 1,
+                  shadows: <Shadow>[
+                    Shadow(
+                      color: Color(0xE6000000),
+                      blurRadius: 2,
+                      offset: Offset(0, 1),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

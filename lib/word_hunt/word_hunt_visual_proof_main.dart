@@ -64,15 +64,14 @@ class _AssetRuntimeProbeState extends State<_AssetRuntimeProbe> {
       if (!mounted) return;
       String? loadingPath;
       try {
-        loadingPath = WordHuntPixelProofAssets.masterArt;
-        await precacheImage(
-          const AssetImage(WordHuntPixelProofAssets.masterArt),
-          context,
-        );
-        debugPrint(
-          '[WORD_HUNT_PIXEL_PROOF_ASSET_LOADED] '
-          'path=${WordHuntPixelProofAssets.masterArt}',
-        );
+        for (final path in const <String>[
+          WordHuntPixelProofAssets.masterArt,
+          WordHuntPixelProofAssets.nodeNineOpen,
+        ]) {
+          loadingPath = path;
+          await precacheImage(AssetImage(path), context);
+          debugPrint('[WORD_HUNT_PIXEL_PROOF_ASSET_LOADED] path=$path');
+        }
       } catch (error, stackTrace) {
         debugPrint(
           '[WORD_HUNT_PIXEL_PROOF_ASSET_ERROR] '

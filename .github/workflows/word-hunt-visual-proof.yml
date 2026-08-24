@@ -91,7 +91,10 @@ jobs:
           git rev-parse HEAD | tee reports/WORD_HUNT_VISUAL_PROOF_HEAD_SHA.txt
           sha256sum build/app/outputs/flutter-apk/app-debug.apk \
             | tee reports/WORD_HUNT_VISUAL_PROOF_APK_SHA256.txt
-          source_assets=(assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg)
+          source_assets=(
+            assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg
+            assets/word_hunt/baslangic_limani/node_normal.webp
+          )
           : > reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
           : > reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
           : > reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
@@ -113,7 +116,7 @@ jobs:
             sha256sum "$packaged" | tee -a reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
             wc -c "$packaged" | tee -a reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
           done
-          echo "SOURCE_EQUALS_PACKAGED=YES count=1" \
+          echo "SOURCE_EQUALS_PACKAGED=YES count=2" \
             | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
 
       - name: Android 16 emulator KVM erişimini hazırla
@@ -155,6 +158,7 @@ jobs:
             if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt; then echo 'Bilgi Rotası visual-proof process failure detected.' >&2; exit 1; fi
             if grep -Fq '[WORD_HUNT_PIXEL_PROOF_ASSET_ERROR]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt; then cat reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt >&2; exit 1; fi
             grep -Fq '[WORD_HUNT_PIXEL_PROOF_ASSET_LOADED]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt
+            test "$(grep -Fc '[WORD_HUNT_PIXEL_PROOF_ASSET_LOADED]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt)" -eq 2
 
       - name: MASTER ART karşılaştırma kanıtlarını üret
         shell: bash
