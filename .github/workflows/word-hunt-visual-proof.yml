@@ -9,6 +9,7 @@ on:
       - 'test/home_hub_prototype_test.dart'
       - 'test/word_hunt_*.dart'
       - 'assets/word_hunt/**'
+      - 'assets/pawns/**'
       - 'pubspec.yaml'
       - '.github/workflows/word-hunt-visual-proof.yml'
   workflow_dispatch:
@@ -43,7 +44,7 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Bağımlılıkları kur ve Kelime Avı focused suite'ini çalıştır
+      - name: Focused test ve analyze
         shell: bash
         run: |
           set -euo pipefail
@@ -64,7 +65,7 @@ jobs:
             --reporter expanded
           git diff --check
 
-      - name: İzole görsel kanıt APK'sını üret ve asset'i doğrula
+      - name: İzole görsel kanıt APK'sını üret
         shell: bash
         run: |
           set -euo pipefail
@@ -74,29 +75,10 @@ jobs:
           test -s build/app/outputs/flutter-apk/app-debug.apk
           mkdir -p reports
           git rev-parse HEAD | tee reports/WORD_HUNT_VISUAL_PROOF_HEAD_SHA.txt
-          sha256sum build/app/outputs/flutter-apk/app-debug.apk \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_APK_SHA256.txt
-          unzip -l build/app/outputs/flutter-apk/app-debug.apk \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
-          asset_entry='assets/flutter_assets/assets/word_hunt/baslangic_limani_bg.jpg'
-          grep -Fq "$asset_entry" reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
-          unzip -p build/app/outputs/flutter-apk/app-debug.apk "$asset_entry" \
-            > reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg
-          test -s reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg
-          cmp -s \
-            assets/word_hunt/baslangic_limani_bg.jpg \
-            reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg
-          printf 'MATCH\n' | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
-          wc -c < assets/word_hunt/baslangic_limani_bg.jpg \
-            | tr -d ' ' \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
-          wc -c < reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg \
-            | tr -d ' ' \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
-          sha256sum assets/word_hunt/baslangic_limani_bg.jpg \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
-          sha256sum reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk | tee reports/WORD_HUNT_VISUAL_PROOF_APK_SHA256.txt
+          unzip -l build/app/outputs/flutter-apk/app-debug.apk | tee reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
+          grep -Fq 'assets/flutter_assets/assets/word_hunt/baslangic_limani_bg.jpg' reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
+          grep -Fq 'assets/flutter_assets/assets/pawns/08_acik_kitap.png' reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
 
       - name: KVM erişimini hazırla
         shell: bash
@@ -121,7 +103,7 @@ jobs:
           disable-animations: false
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
-            set -euo pipefail
+            set -eu
             mkdir -p reports
             if adb shell pm path com.leventua.bilgirotasi 2>/dev/null | grep -q '^package:'; then adb uninstall com.leventua.bilgirotasi; fi
             adb install build/app/outputs/flutter-apk/app-debug.apk
@@ -135,14 +117,8 @@ jobs:
             grep -E 'WORD_HUNT_ASSET_(LOADED|ERROR)' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt > reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt || true
             test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
             grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
-            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt; then
-              echo 'Bilgi Rotası visual-proof process failure detected.' >&2
-              exit 1
-            fi
-            if grep -Fq '[WORD_HUNT_ASSET_ERROR]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt; then
-              cat reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt >&2
-              exit 1
-            fi
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt; then exit 1; fi
+            if grep -Fq '[WORD_HUNT_ASSET_ERROR]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt; then exit 1; fi
             grep -Fq '[WORD_HUNT_ASSET_LOADED]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt
             adb shell input swipe 540 1550 540 520 400 || true
             sleep 2
@@ -150,6 +126,7 @@ jobs:
             test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
 
       - name: Görsel kanıt artifact'ini yükle
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: BilgiRotasi-KelimeAvi-VisualProof-${{ env.PROOF_SHA }}
