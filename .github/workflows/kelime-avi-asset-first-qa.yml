@@ -9,6 +9,7 @@ on:
       - 'test/word_hunt_*.dart'
       - 'test/home_hub_prototype_test.dart'
       - 'tools/kelime_avi_asset_first_gate_apply.py'
+      - 'pubspec.yaml'
       - '.github/workflows/kelime-avi-asset-first-qa.yml'
 
 permissions:
@@ -89,6 +90,7 @@ jobs:
             lib/word_hunt/word_hunt_reference_route_screen.dart \
             test/word_hunt_route_stop_test.dart \
             test/word_hunt_reference_route_screen_test.dart
+          flutter pub get
           git diff --check
 
       - name: Scope guard before test
@@ -103,6 +105,7 @@ jobs:
               'test/word_hunt_',
               'test/home_hub_prototype_test.dart',
               'tools/kelime_avi_asset_first_gate_apply.py',
+              'pubspec.yaml',
           )
           bad = [p for p in changed if not p.startswith(allowed)]
           print('workspace changed:', *changed, sep='\n- ')
