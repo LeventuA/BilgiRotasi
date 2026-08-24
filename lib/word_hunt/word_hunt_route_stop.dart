@@ -422,6 +422,9 @@ class _RouteStopOrb extends StatelessWidget {
       WordHuntLevelType.routeFinal => 58.0,
     };
     final visuallyHighlighted = unlocked || lockedFinal;
+    final numberIsBakedIntoBindingSource =
+        level.type == WordHuntLevelType.challenge ||
+        level.type == WordHuntLevelType.routeFinal;
     final assetPath = WordHuntProductionAssets.nodeFor(
       type: level.type,
       unlocked: unlocked,
@@ -443,23 +446,27 @@ class _RouteStopOrb extends StatelessWidget {
           Center(
             child:
                 visuallyHighlighted
-                    ? Text(
-                      '${level.index}',
-                      key: Key('word_hunt_route_stop_number_${level.index}'),
-                      style: TextStyle(
-                        color: theme.textColor,
-                        fontSize: numberSize,
-                        fontWeight: FontWeight.w800,
-                        height: 1,
-                        shadows: const <Shadow>[
-                          Shadow(
-                            color: Color(0xDD000000),
-                            blurRadius: 3,
-                            offset: Offset(0, 1.5),
+                    ? numberIsBakedIntoBindingSource
+                        ? const SizedBox.shrink()
+                        : Text(
+                          '${level.index}',
+                          key: Key(
+                            'word_hunt_route_stop_number_${level.index}',
                           ),
-                        ],
-                      ),
-                    )
+                          style: TextStyle(
+                            color: theme.textColor,
+                            fontSize: numberSize,
+                            fontWeight: FontWeight.w800,
+                            height: 1,
+                            shadows: const <Shadow>[
+                              Shadow(
+                                color: Color(0xDD000000),
+                                blurRadius: 3,
+                                offset: Offset(0, 1.5),
+                              ),
+                            ],
+                          ),
+                        )
                     : Icon(
                       Icons.lock_rounded,
                       key: Key('word_hunt_route_stop_lock_${level.index}'),

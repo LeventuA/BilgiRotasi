@@ -11,6 +11,9 @@ on:
       - 'test/home_hub_prototype_test.dart'
       - 'test/word_hunt_*.dart'
       - 'assets/word_hunt/**'
+      - 'reports/MASTER_ART_REFERENCE.png'
+      - 'reports/master_art_extraction_manifest.json'
+      - 'tools/extract_kelime_avi_master_art_assets.py'
       - 'pubspec.yaml'
       - '.github/workflows/word-hunt-visual-proof.yml'
   workflow_dispatch:
@@ -37,6 +40,18 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+
+      - name: MASTER ART direct-pixel extraction kaynağını doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check pillow==12.3.0
+          python3 tools/extract_kelime_avi_master_art_assets.py
+          git diff --exit-code -- \
+            assets/word_hunt/baslangic_limani/node_challenge.webp \
+            assets/word_hunt/baslangic_limani/node_final.webp \
+            assets/word_hunt/baslangic_limani/book_button.webp \
+            reports/master_art_extraction_manifest.json
 
       - name: Flutter 3.44.6 kur
         uses: subosito/flutter-action@v2

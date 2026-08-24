@@ -1,5 +1,11 @@
 # Başlangıç Limanı MASTER ART ↔ Android 16 Design QA
 
+> **SUPERSEDED / VISUAL FAIL:** Levent, product head `8b1731c...` ekranındaki
+> `node_challenge.webp`, `node_final.webp` ve `book_button.webp` kaynak
+> sadakatini reddetti. Aşağıdaki eski ajan değerlendirmesi görsel kabul olarak
+> kullanılamaz. Yeni direct-pixel extraction exact-head Android 16 kanıtı
+> üretilene kadar `final result: failed`.
+
 - Binding reference: Issue #109 `Photo 1.jpg`, normalized to `1080x1920`.
 - Product head: `8b1731cbf91ec5c3c997ae8841eabb3b20383705`.
 - Android 16 run/job: `32750728333` / `97506798151`.
@@ -20,8 +26,8 @@
 
 ## Result
 
-`TECHNICAL PASS / ANDROID 16 PROOF READY / VISUAL USER ACCEPTANCE OPEN`
+`VISUAL FAIL / DIRECT MASTER ART EXTRACTION IN PROGRESS`
 
-No remaining agent-actionable P0/P1/P2 mismatch was identified in the exact-head side-by-side review. This is not a claim that Levent approved the visual. Levent must inspect the real Android 16 screenshot before any Ready or merge action.
+`final result: failed`
 
 PR #146 and run `32740827443`: **REJECTED BY LEVENT — NOT A VISUAL SOURCE**.

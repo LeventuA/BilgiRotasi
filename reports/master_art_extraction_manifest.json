@@ -1,0 +1,94 @@
+{
+  "source": "Issue #109 Photo 1.jpg",
+  "source_path": "reports/MASTER_ART_REFERENCE.png",
+  "source_sha256": "faf8a4a2598e7e63fc857e694483a923fd3d3994e242b9f1b83554693ed52160",
+  "source_dimensions": [
+    1080,
+    1920
+  ],
+  "method": "direct-source-pixels-crop-mask-alpha",
+  "forbidden_sources_used": [],
+  "assets": {
+    "node_challenge.webp": {
+      "source_crop": [
+        290,
+        798,
+        434,
+        942
+      ],
+      "dimensions": [
+        144,
+        144
+      ],
+      "mask": {
+        "kind": "source-segmentation-plus-inner-face-radial-edge",
+        "center": [
+          72.0,
+          72.0
+        ],
+        "outer_radius": 56.0,
+        "inner_radius": 43.0,
+        "feather": 3.0,
+        "min_y": 0,
+        "max_y": 144
+      },
+      "sha256": "48c0c05452c2e5d26ccfacd9cfabe5424229fb07a9d7f70e33659774fab71429",
+      "source_pixel_identity": true,
+      "generated_art": false
+    },
+    "node_final.webp": {
+      "source_crop": [
+        430,
+        1432,
+        626,
+        1628
+      ],
+      "dimensions": [
+        196,
+        196
+      ],
+      "mask": {
+        "kind": "source-segmentation-plus-inner-face-radial-edge",
+        "center": [
+          98.0,
+          98.0
+        ],
+        "outer_radius": 78.0,
+        "inner_radius": 65.0,
+        "feather": 3.0,
+        "min_y": 46,
+        "max_y": 196
+      },
+      "sha256": "f367aafc0865b990e478577f1099b7ef71f60444bfb44d503a9c76b49e4ef078",
+      "source_pixel_identity": true,
+      "generated_art": false
+    },
+    "book_button.webp": {
+      "source_crop": [
+        850,
+        1669,
+        1040,
+        1859
+      ],
+      "dimensions": [
+        190,
+        190
+      ],
+      "mask": {
+        "kind": "source-segmentation-plus-inner-face-radial-edge",
+        "center": [
+          95.0,
+          95.0
+        ],
+        "outer_radius": 86.0,
+        "inner_radius": 72.0,
+        "feather": 3.0,
+        "min_y": 0,
+        "max_y": 190
+      },
+      "sha256": "9ebe43604384c56da32011ab323092e34bb94be212c3d4c9d6f7aa101c1e0fa3",
+      "source_pixel_identity": true,
+      "generated_art": false
+    }
+  }
+}

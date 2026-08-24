@@ -2,6 +2,10 @@
 
 ## Issue #109 / Draft PR #147 MASTER ART kanıtı — AÇIK KULLANICI KABULÜ
 
+> `8b1731c...` / run `32750728333` ekranı Levent tarafından **VISUAL FAIL**
+> olarak reddedildi. 5, 10 ve kitap için yeni direct MASTER ART extraction ve
+> yeni Android 16 kanıtı tamamlanmadan bu kayıt kabul kanıtı değildir.
+
 - Product head `8b1731cbf91ec5c3c997ae8841eabb3b20383705`; Android 16 run/job `32750728333` / `97506798151` SUCCESS; artifact ID `9529208713`.
 - 15/15 asset decode/runtime/APK parity, MainActivity resumed/visible ve app-specific crash/ANR/FATAL/process-death 0 olarak doğrulandı.
 - Product Design yan-yana incelemesinde agent-actionable P0/P1/P2 kalmadı. Bu teknik/ajan sonucu Levent görsel kabulü yerine geçmez.

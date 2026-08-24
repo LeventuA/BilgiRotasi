@@ -163,8 +163,8 @@ void main() {
 
       expect(
         find.byKey(const Key('word_hunt_route_stop_number_10')),
-        findsOneWidget,
-        reason: 'Kilitli final, referanstaki altın 10 hedefini göstermeli.',
+        findsNothing,
+        reason: 'Final 10 rakamı doğrudan MASTER ART extraction pikselidir.',
       );
       expect(
         find.byKey(const Key('word_hunt_route_stop_lock_badge_10')),
@@ -398,6 +398,16 @@ void main() {
           'assets/word_hunt/baslangic_limani/${entry.$3}',
         );
       }
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_number_5')),
+        findsNothing,
+        reason: 'Challenge 5 rakamı doğrudan MASTER ART extraction pikselidir.',
+      );
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_number_10')),
+        findsNothing,
+        reason: 'Final 10 rakamı doğrudan MASTER ART extraction pikselidir.',
+      );
       for (final entry in <(int, String)>[
         (5, 'challenge_icon.png'),
         (8, 'bonus_icon.png'),

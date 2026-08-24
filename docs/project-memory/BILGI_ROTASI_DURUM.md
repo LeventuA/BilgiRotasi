@@ -2,6 +2,13 @@
 
 ## 0Q. Issue #109 MASTER ART production asset tamamlama — 24 Ağustos 2026
 
+> **SONRAKİ KULLANICI KARARI / GEÇERSİZ KANIT:** Product head `8b1731c...`
+> ve run `32750728333` teknik olarak PASS olsa da Levent, 5/10/kitap asset
+> kaynak sadakatini **VISUAL FAIL** olarak reddetti. Bu screenshot ve aşağıdaki
+> eski ajan P0/P1/P2 değerlendirmesi görsel kabul değildir. Yalnız MASTER ART
+> direct-pixel crop/mask extraction ile yeni exact-head Android 16 kanıtı
+> üretilecektir.
+
 - Kanonik repo `ZMilaStudio/BilgiRotasi`; canlı release `release/final-closed-test-aab-1.68.8` head `8977d7ecdc88b50aedc9933739a1e17ac5b39833`. Çalışma PR #132 exact head `1968c4bccd22468bec50f2188414a3e5f6f3fa4b` üzerinden ayrı `fix/kelime-avi-baslangic-limani-master-art-codex-20260824` branch'inde yürütüldü; Draft PR #147 açık, merge yok. Sürüm `1.68.19+109` kaldı.
 - Issue #109 `Photo 1.jpg` tek bağlayıcı MASTER ART'tır. `720x1280` kaynak, `1080x1920` kanonik rapora normalize edildi. PR #146 ve run `32740827443` **REJECTED BY LEVENT — NOT A VISUAL SOURCE** olarak kaydedildi.
 - Product head `8b1731cbf91ec5c3c997ae8841eabb3b20383705`: 5 amber, 8 mor, 10 altın+crown; pusula; sol sayfasında `A` görünen kitap; challenge/bonus/final ikonları gerçek production asset olarak kullanılıyor. Procedural kılıç/sandık final-art painter'ları kaldırıldı; runtime background sözleşmesi gerçek `assets/word_hunt/baslangic_limani_bg.jpg` ile eşlendi.
