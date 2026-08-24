@@ -238,3 +238,16 @@
 - Uzun CI yalnız aşama değişimlerinde kontrollü aralıklarla izlenecek; build tek başına çalışma kanıtı olmayacak.
 - Kritik merge/deploy öncesi hedef branch, base SHA, exact head SHA, PR durumu, final CI ve açık kullanıcı onayı yeniden doğrulanacak.
 - Ayrıntılı prosedür `docs/project-memory/BAGLANTI_DAYANIKLI_CALISMA_YONTEMI.md` dosyasındadır ve Bilgi Rotası teknik çalışmalarında varsayılan yöntemdir.
+
+---
+
+## 13. Yaşayan genel proje özeti ve Kelime Avı görsel standardı
+
+- `docs/project-memory/GENEL_PROJE_OZETI.md` yeni sohbetlerin başlangıç bağlamını taşıyan yaşayan özet dosyasıdır; canlı GitHub ve servis doğrulamasının yerine geçmez.
+- Bu proje kapsamındaki her yanıttan sonra genel özet sıfırdan yazılmadan, yalnız gerekli farklarla güncellenir.
+- Yeni kararlar, tamamlanan görevler, branch/commit/PR/test kanıtları ve açık konular özete işlenir; gereksiz tekrarlar temizlenebilir fakat önemli bilgi silinmez.
+- Yeni sohbet önce genel özeti okur; ardından normal zorunlu canlı GitHub doğrulama sırasını uygular.
+- Kelime Avı için kullanıcı tarafından onaylanan referans görseller her temanın resmi görsel standardıdır.
+- Her temanın varlıkları sanat stili, kalite seviyesi, renk paleti, ışıklandırma ve atmosfer açısından kendi onaylı referansına bağlı kalır.
+- Kelime Avı görsel üretimi modülerdir: AI'dan tam ekran oyun UI'ı değil, yalnız tekil parçalar istenir; montaj, metin, rota, düğüm durumları ve etkileşim Flutter tarafından yönetilir.
+- Ortak bileşen geometrisi ve davranışı korunur; tema değişiminde renk, doku, süs ve ışık karakteri değiştirilir.

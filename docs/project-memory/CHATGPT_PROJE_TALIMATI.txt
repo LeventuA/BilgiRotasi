@@ -2,6 +2,11 @@ BİLGİ ROTASI - CHATGPT PROJE TALİMATI
 
 Bu projede tek doğru teknik kaynak canlı GitHub deposu ve ilgili canlı servislerdir.
 
+YENİ SOHBET BAŞINDA:
+1. GENEL_PROJE_OZETI.md dosyasını oku.
+2. Bu özetin tek başına teknik kaynak olmadığını kabul et; canlı GitHub ve ilgili servisleri ayrıca doğrula.
+3. GENEL_PROJE_OZETI.md içindeki açık işler, son kararlar ve branch/PR referanslarını başlangıç bağlamı olarak kullan.
+
 HER GÖREVDEN ÖNCE:
 1. BILGI_ROTASI_DURUM.md dosyasını oku.
 2. KARARLAR.md içindeki ilgili kararı kontrol et.
@@ -26,6 +31,24 @@ HER GÖREVDEN ÖNCE:
 - Gizli bilgi, testçi e-postası, parola veya anahtarları dosyalara ekleme.
 - Bir bilgi doğrulanmamışsa DOĞRULANACAK olarak işaretle; tahmin etme.
 
+GENEL PROJE ÖZETİ YAŞAM DÖNGÜSÜ:
+- Bu proje kapsamındaki her yanıttan sonra docs/project-memory/GENEL_PROJE_OZETI.md dosyasını güncelle.
+- Her seferinde sıfırdan yazma; mevcut dosyayı oku ve yalnız gerekli farkları uygula.
+- Yeni kararları ekle.
+- Tamamlanan görevleri, branch/commit/PR/test kanıtlarını güncelle.
+- Açık kalan konuları not et.
+- Gereksiz tekrarları temizle fakat önemli teknik, ürün, görsel ve yayın bilgilerini silme.
+- Dosyayı yeni bir sohbeti başlatmaya yetecek güncel durumda tut.
+- Genel özet canlı GitHub doğrulamasının yerine geçmez.
+
+KELİME AVI GÖRSEL ÜRETİMİ:
+- Kullanıcı tarafından onaylanan referans görseller her tema için resmi görsel standardıdır.
+- Tema varlıkları sanat stili, kalite seviyesi, renk paleti, ışıklandırma ve atmosfer açısından kendi onaylı referansıyla tutarlı kalır.
+- AI'dan tam ekran oyun UI'ı üretme; yalnız tekil parça üret.
+- Arka plan, rota/yol, bölüm düğümleri, yıldız/kilitler, Meydan Okuma, Bonus Durak, Rota Finali, üst panel ve alt menü modüler parçalardır.
+- Tek ortak bileşen sistemi kullan; tema değişince temel geometri/davranış değil renk, doku, süs ve ışık karakteri değişir.
+- Montaj, metin, rota, düğüm durumları ve etkileşim Flutter tarafından yönetilir; Kelime Avı için Godot bağımlılığı eklenmez.
+
 3B TAHTA:
 - Oynanışa, BoardMap'e ve 67 node düzenine dokunma.
 - Önce numaralı deterministik geometri.
@@ -43,3 +66,4 @@ HER GÖREVİN SONUNDA:
 3. GOREV_HAVUZU.md durumunu değiştir.
 4. Branch, commit, PR ve test kanıtını yaz.
 5. Yeni açık konu varsa ACIK_SORULAR_VE_DOGRULAMALAR.md dosyasına ekle.
+6. GENEL_PROJE_OZETI.md dosyasını son durumla fark bazlı güncelle.
