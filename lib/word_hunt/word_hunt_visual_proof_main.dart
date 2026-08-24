@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'word_hunt_pixel_proof_screen.dart';
 import 'word_hunt_progress.dart';
-import 'word_hunt_production_assets.dart';
-import 'word_hunt_reference_route_screen.dart';
-
-const _sceneAssetPath = WordHuntProductionAssets.scene;
 
 /// Yalnız görsel inceleme/kanıt için kullanılan izole giriş noktası.
 /// Production `lib/main.dart` ve mevcut uygulama navigasyonuna bağlı değildir.
@@ -38,13 +35,9 @@ class _WordHuntVisualProofApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Kelime Avı Referans Görsel Kanıtı',
-      theme: ThemeData(brightness: Brightness.dark, useMaterial3: true),
+      title: 'Kelime Avı Pixel Proof',
       home: const _AssetRuntimeProbe(
-        child: WordHuntReferenceRouteScreen(
-          progress: _proofProgress,
-          sceneAssetPath: _sceneAssetPath,
-        ),
+        child: WordHuntPixelProofScreen(progress: _proofProgress),
       ),
     );
   }
@@ -71,15 +64,22 @@ class _AssetRuntimeProbeState extends State<_AssetRuntimeProbe> {
       if (!mounted) return;
       String? loadingPath;
       try {
-        for (final path in WordHuntProductionAssets.requiredPilotAssets) {
-          loadingPath = path;
-          await precacheImage(AssetImage(path), context);
-          debugPrint('[WORD_HUNT_ASSET_LOADED] path=$path');
-        }
+        loadingPath = WordHuntPixelProofAssets.masterArt;
+        await precacheImage(
+          const AssetImage(WordHuntPixelProofAssets.masterArt),
+          context,
+        );
+        debugPrint(
+          '[WORD_HUNT_PIXEL_PROOF_ASSET_LOADED] '
+          'path=${WordHuntPixelProofAssets.masterArt}',
+        );
       } catch (error, stackTrace) {
-        debugPrint('[WORD_HUNT_ASSET_ERROR] path=$loadingPath error=$error');
+        debugPrint(
+          '[WORD_HUNT_PIXEL_PROOF_ASSET_ERROR] '
+          'path=$loadingPath error=$error',
+        );
         debugPrintStack(
-          label: '[WORD_HUNT_ASSET_ERROR_STACK]',
+          label: '[WORD_HUNT_PIXEL_PROOF_ASSET_ERROR_STACK]',
           stackTrace: stackTrace,
         );
       }
