@@ -117,7 +117,7 @@ jobs:
       - name: Focused Kelime Avi suite before commit
         shell: bash
         run: |
-          set -euo pipefail
+          set -o pipefail
           flutter test \
             test/home_hub_prototype_test.dart \
             test/word_hunt_models_test.dart \
@@ -132,7 +132,16 @@ jobs:
             test/word_hunt_route_map_view_test.dart \
             test/word_hunt_scoring_test.dart \
             test/word_hunt_starter_content_test.dart \
-            --reporter expanded
+            --reporter expanded 2>&1 | tee /tmp/kelime-avi-focused.log
+
+      - name: Persist focused test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kelime-avi-focused-log-${{ github.run_id }}
+          path: /tmp/kelime-avi-focused.log
+          if-no-files-found: warn
+          retention-days: 1
 
       - name: Commit only after candidate passes
         id: commit
