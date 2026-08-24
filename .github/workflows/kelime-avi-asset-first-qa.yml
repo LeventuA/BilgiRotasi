@@ -9,7 +9,6 @@ on:
       - 'lib/word_hunt/**'
       - 'test/word_hunt_*.dart'
       - 'test/home_hub_prototype_test.dart'
-      - 'tools/kelime_avi_asset_first_gate_apply.py'
       - 'pubspec.yaml'
       - '.github/workflows/kelime-avi-asset-first-qa.yml'
 
@@ -44,7 +43,7 @@ jobs:
       - name: Dependencies
         run: flutter pub get
 
-      - name: Build special medallion production variants from valid master node
+      - name: Rebuild final medallion with transparency preserved
         shell: bash
         run: |
           set -euo pipefail
@@ -52,118 +51,36 @@ jobs:
           sudo apt-get install -y webp imagemagick
 
           base='assets/word_hunt/baslangic_limani/node_normal.webp'
-          dwebp "$base" -o /tmp/node_master.png
-          identify /tmp/node_master.png
+          final='assets/word_hunt/baslangic_limani/node_final.webp'
 
-          convert /tmp/node_master.png \
-            -modulate 108,145,58 \
-            -sharpen 0x0.8 \
-            /tmp/node_challenge.png
-          convert /tmp/node_master.png \
-            -modulate 98,150,128 \
-            -sharpen 0x0.8 \
-            /tmp/node_bonus.png
+          dwebp "$base" -o /tmp/node_master.png
           convert /tmp/node_master.png \
             -modulate 112,155,58 \
-            -resize 135% \
-            -gravity center \
-            -extent 414x414 \
+            -resize 414x414 \
+            -alpha on \
             -sharpen 0x1 \
             /tmp/node_final.png
+          cwebp -quiet -lossless -z 9 /tmp/node_final.png -o "$final"
 
-          cwebp -quiet -lossless -z 9 /tmp/node_challenge.png \
-            -o assets/word_hunt/baslangic_limani/node_challenge.webp
-          cwebp -quiet -lossless -z 9 /tmp/node_bonus.png \
-            -o assets/word_hunt/baslangic_limani/node_bonus.webp
-          cwebp -quiet -lossless -z 9 /tmp/node_final.png \
-            -o assets/word_hunt/baslangic_limani/node_final.webp
-
-          for asset in \
-            assets/word_hunt/baslangic_limani/node_challenge.webp \
-            assets/word_hunt/baslangic_limani/node_bonus.webp \
-            assets/word_hunt/baslangic_limani/node_final.webp
-          do
-            echo "VERIFY_ASSET=$asset"
-            webpinfo "$asset"
-            dwebp "$asset" -o /dev/null
-          done
-
-      - name: Apply candidate patch in workspace only
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -f tools/kelime_avi_asset_first_gate_apply.py
-          python3 - <<'PY'
-          from pathlib import Path
-          p = Path('tools/kelime_avi_asset_first_gate_apply.py')
-          s = p.read_text(encoding='utf-8')
-
-          old_field_patch = '''text = replace_once(\n    text,\n    "  final bool lockedFinal;\\n  final Color accent;\\n  final WordHuntRouteStopTheme theme;\\n",\n    "  final bool lockedFinal;\\n  final WordHuntRouteStopTheme theme;\\n",\n    'stop medallion accent field removal',\n)'''
-          new_field_patch = (
-              "old_field = \"  final bool lockedFinal;\\n  final Color accent;\\n  final WordHuntRouteStopTheme theme;\\n\"\n"
-              "if old_field not in text:\n"
-              "    raise RuntimeError('stop medallion accent field missing')\n"
-              "text = text.replace(\n"
-              "    old_field,\n"
-              "    \"  final bool lockedFinal;\\n  final WordHuntRouteStopTheme theme;\\n\",\n"
-              "    1,\n"
-              ")"
-          )
-          if old_field_patch not in s:
-              raise RuntimeError('QA helper field hotfix anchor missing')
-          s = s.replace(old_field_patch, new_field_patch, 1)
-
-          old_tail = "text = text[:control_start] + new_control\nwrite(path, text)"
-          new_tail = (
-              "frame_start = text.index(\n"
-              "    'class _ReferenceFramePainter extends CustomPainter {',\n"
-              "    control_start,\n"
-              ")\n"
-              "text = text[:control_start] + new_control + '\\n' + text[frame_start:]\n"
-              "write(path, text)"
-          )
-          if old_tail not in s:
-              raise RuntimeError('QA helper bottom-control hotfix anchor missing')
-          s = s.replace(old_tail, new_tail, 1)
-
-          p.write_text(s, encoding='utf-8')
-          PY
-          python3 tools/kelime_avi_asset_first_gate_apply.py
-          rm -f test/word_hunt_asset_first_qa_trigger*_test.dart
-          test ! -f tools/kelime_avi_asset_first_gate_apply.py
-          dart format lib/word_hunt/word_hunt_route_stop.dart \
-            lib/word_hunt/word_hunt_reference_route_screen.dart \
-            test/word_hunt_route_stop_test.dart \
-            test/word_hunt_reference_route_screen_test.dart
-          flutter pub get
-          git diff --check
+          webpinfo "$final" | tee /tmp/node_final_webpinfo.txt
+          grep -q 'Width: 414' /tmp/node_final_webpinfo.txt
+          grep -q 'Height: 414' /tmp/node_final_webpinfo.txt
+          grep -q 'Alpha: 1' /tmp/node_final_webpinfo.txt
+          dwebp "$final" -o /dev/null
 
       - name: Scope guard before test
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
-          import subprocess, sys
-          changed = subprocess.check_output(['git','diff','--name-only'], text=True).splitlines()
-          allowed = (
-              'assets/word_hunt/baslangic_limani/',
-              'lib/word_hunt/',
-              'test/word_hunt_',
-              'test/home_hub_prototype_test.dart',
-              'tools/kelime_avi_asset_first_gate_apply.py',
-              'pubspec.yaml',
-          )
-          bad = [p for p in changed if not p.startswith(allowed)]
-          print('workspace changed:', *changed, sep='\n- ')
-          if bad:
-              print('OUT-OF-SCOPE:', bad)
-              sys.exit(1)
-          PY
+          changed="$(git diff --name-only)"
+          printf '%s\n' "$changed"
+          test "$changed" = 'assets/word_hunt/baslangic_limani/node_final.webp'
+          git diff --check
 
-      - name: Analyze candidate before commit
+      - name: Analyze candidate
         run: dart analyze lib/word_hunt
 
-      - name: Focused Kelime Avi suite before commit
+      - name: Focused Kelime Avi suite
         shell: bash
         run: |
           set -o pipefail
@@ -192,15 +109,15 @@ jobs:
           if-no-files-found: warn
           retention-days: 1
 
-      - name: Commit only after candidate passes
+      - name: Commit only after transparency and tests pass
         id: commit
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git commit -m 'feat(kelime-avi): integrate Baslangic Limani production assets'
+          git add assets/word_hunt/baslangic_limani/node_final.webp
+          git commit -m 'fix(kelime-avi): preserve final medallion transparency'
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Exact committed head verification
