@@ -1,5 +1,20 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
+## 0P. Kelime Avı Başlangıç Limanı 7 numara boşluk doğrulaması — 22 Ağustos 2026
+
+- Kanonik release `release/final-closed-test-aab-1.68.8` exact `39c03f169bbdf5dabb207af95c1fccf365400f98`; sürüm `1.68.19+109`.
+- Parent foundation PR #96 açık/Draft ve merge edilmemiştir. Görsel düzen branch'i `fix/kelime-avi-reference-layout-20260822`; PR #98 açık/Draft ve merge edilmemiştir.
+- Kullanıcının son görsel geri bildirimi yalnız 7 numaralı durağın 9 numaralı kilitli duraktan biraz daha uzak, merkez-sağ yönüne alınmasıydı. Deterministik değişiklik `Offset(0.29, 0.58)` -> `Offset(0.36, 0.58)`; 9 ve diğer duraklar değişmedi.
+- Test runner PR #103 / run `32571076320`: SUCCESS. `dart analyze lib/word_hunt` 0 issue; referans-layout 3/3 PASS; mevcut V2 view 4/4 PASS; `git diff --check` PASS. Commit `54d75cd60217c3867601a23e10ddd1a4fe68f920` — `fix(kelime-avi): separate level 7 from locked stop`.
+- Exact görsel branch head `54d75cd60217c3867601a23e10ddd1a4fe68f920` için Kelime Avı Android 16 run `32571152461`: SUCCESS. Artifact ID `9475441130`, digest `sha256:582bf85e0a19ed2b374332607c77568d3116ba341f76f267d35271aa0e1fadc1`. Gerçek Android 16 üst/alt screenshot'larında 7 ile 9 arasındaki yatay boşluk belirgin biçimde açılmıştır; 7, 8'in alanına taşmamıştır.
+- Aynı exact head için genel AdMob/Android regression run `32571152462`: SUCCESS; analiz/tüm testler, release APK, paket/manifest ve Android 16 app gate PASS.
+- `assets/questions.json`, `lib/main.dart`, onaylı `assets/word_hunt/baslangic_limani_bg.jpg`, oynanış/progression, BoardMap/67 node/3B, Android/AdMob/Firebase/release config değiştirilmedi.
+- `KARARLAR.md` değişmedi; yeni ürün kararı yok.
+
+**Durum:** Teknik ve Android 16 görsel doğrulaması PASS. Son kullanıcı görsel kabulü açık; PR #98 ve PR #96 için merge yapılmadı.
+
+---
+
 ## 0N. 1.68.19+109 AdMob/UMP release merge checkpoint — 21 Ağustos 2026
 
 - Kanonik release `release/final-closed-test-aab-1.68.8` exact `b0240a7a4009c41326f459a37b8bedeab080d8d8`; sürüm `1.68.19+109`.
