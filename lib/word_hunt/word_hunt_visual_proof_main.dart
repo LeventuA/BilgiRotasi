@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'word_hunt_progress.dart';
+import 'word_hunt_production_assets.dart';
 import 'word_hunt_reference_route_screen.dart';
 
-const _sceneAssetPath = 'assets/word_hunt/baslangic_limani_bg.jpg';
+const _sceneAssetPath = WordHuntProductionAssets.scene;
 
 /// Yalnız görsel inceleme/kanıt için kullanılan izole giriş noktası.
 /// Production `lib/main.dart` ve mevcut uygulama navigasyonuna bağlı değildir.
@@ -38,10 +39,7 @@ class _WordHuntVisualProofApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kelime Avı Referans Görsel Kanıtı',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        useMaterial3: true,
-      ),
+      theme: ThemeData(brightness: Brightness.dark, useMaterial3: true),
       home: const _AssetRuntimeProbe(
         child: WordHuntReferenceRouteScreen(
           progress: _proofProgress,
@@ -71,13 +69,15 @@ class _AssetRuntimeProbeState extends State<_AssetRuntimeProbe> {
     _started = true;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
+      String? loadingPath;
       try {
-        await precacheImage(const AssetImage(_sceneAssetPath), context);
-        debugPrint('[WORD_HUNT_ASSET_LOADED] path=$_sceneAssetPath');
+        for (final path in WordHuntProductionAssets.requiredPilotAssets) {
+          loadingPath = path;
+          await precacheImage(AssetImage(path), context);
+          debugPrint('[WORD_HUNT_ASSET_LOADED] path=$path');
+        }
       } catch (error, stackTrace) {
-        debugPrint(
-          '[WORD_HUNT_ASSET_ERROR] path=$_sceneAssetPath error=$error',
-        );
+        debugPrint('[WORD_HUNT_ASSET_ERROR] path=$loadingPath error=$error');
         debugPrintStack(
           label: '[WORD_HUNT_ASSET_ERROR_STACK]',
           stackTrace: stackTrace,

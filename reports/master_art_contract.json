@@ -1,0 +1,41 @@
+{
+  "source": "Issue #109 Photo 1.jpg",
+  "source_pixels": {"width": 720, "height": 1280},
+  "source_sha256": "fb4597bb4d37b30cefeec2ba913c591fe9471529f80966830afd5b801a86fca3",
+  "canonical_pixels": {"width": 1080, "height": 1920},
+  "scale": 1.5,
+  "top_panel": {"left": 87.48, "top": 134.4, "right": 997.92, "bottom": 303.36},
+  "nodes": {
+    "1": {"center": [204.12, 456.96], "diameter": 78},
+    "2": {"center": [478.44, 493.44], "diameter": 78},
+    "3": {"center": [693.36, 585.6], "diameter": 78},
+    "4": {"center": [867.24, 716.16], "diameter": 78},
+    "5": {"center": [361.8, 869.76], "diameter": 104, "character": "amber-orange-gold"},
+    "6": {"center": [180.36, 1059.84], "diameter": 78},
+    "7": {"center": [496.8, 1119.36], "diameter": 78},
+    "8": {"center": [721.44, 1182.72], "diameter": 104, "character": "violet-purple"},
+    "9": {"center": [254.88, 1338.24], "diameter": 100, "character": "silver-locked"},
+    "10": {"center": [528.12, 1530.24], "diameter": 142, "character": "large-gold-final"}
+  },
+  "plaques": {
+    "5": [426, 825, 324, 88],
+    "8": [785, 1142, 206, 82],
+    "10": [613, 1488, 250, 110]
+  },
+  "final_crown": [451, 1417, 154, 94],
+  "bottom_controls": {
+    "diameter": 170,
+    "compass_center": [136.08, 1764],
+    "book_center": [945, 1764]
+  },
+  "route": {
+    "core_width": 3,
+    "glow_width": 9,
+    "normal": "#76F7FF",
+    "challenge": "#FFC45F",
+    "bonus": "#C06BFF",
+    "locked": "#9AA5B2",
+    "final": "#FFD76B"
+  },
+  "state_note": "Reference shows 12/30; implementation must render real progress and proof state remains 21/30."
+}

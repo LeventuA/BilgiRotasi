@@ -398,13 +398,28 @@ void main() {
           'assets/word_hunt/baslangic_limani/${entry.$3}',
         );
       }
+      for (final entry in <(int, String)>[
+        (5, 'challenge_icon.png'),
+        (8, 'bonus_icon.png'),
+        (10, 'final_icon.png'),
+      ]) {
+        final iconImage = tester.widget<Image>(
+          find.byKey(Key('word_hunt_route_stop_special_icon_${entry.$1}')),
+        );
+        expect(
+          (iconImage.image as AssetImage).assetName,
+          'assets/word_hunt/baslangic_limani/${entry.$2}',
+        );
+      }
       expect(
         find.byKey(const Key('word_hunt_route_stop_crossed_swords_5')),
-        findsOneWidget,
+        findsNothing,
+        reason: 'Premium kılıç final artı procedural painter olmamalı.',
       );
       expect(
         find.byKey(const Key('word_hunt_route_stop_treasure_chest_10')),
-        findsOneWidget,
+        findsNothing,
+        reason: 'Premium sandık final artı procedural painter olmamalı.',
       );
 
       final challengeLabel = tester.widget<Text>(find.text('MEYDAN OKUMA'));
