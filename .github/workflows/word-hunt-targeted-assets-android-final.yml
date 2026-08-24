@@ -1,0 +1,125 @@
+name: Kelime Avı hedefli asset final Android 16 kanıtı
+
+on:
+  pull_request:
+    branches:
+      - qa/kelime-avi-visual-proof-base-1968-20260824
+    paths:
+      - '.github/workflows/word-hunt-targeted-assets-android-final.yml'
+      - 'assets/word_hunt/baslangic_limani/node_challenge.webp'
+      - 'assets/word_hunt/baslangic_limani/node_final.webp'
+      - 'assets/word_hunt/baslangic_limani/book_button.webp'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android16-final:
+    name: Test edilmiş 5 + 10 + A kitap final Android 16
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+
+    steps:
+      - name: Exact QA head'i indir
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Test edilmiş üç asset SHA'sını kilitle
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'ca0c08e57b524681180e5f24e70b32e67593c3ed200c446d6c81806eb4c65e47  assets/word_hunt/baslangic_limani/node_challenge.webp' | sha256sum -c -
+          echo 'a215ba6e877600ef4bbd4bfe6ca9d799edc310dba02d9786e7a84da0fda2330f  assets/word_hunt/baslangic_limani/node_final.webp' | sha256sum -c -
+          echo '91e168415b56ed992dc6b416278c0f7e35c8bfd5f0713479de5064dfff6bd0c2  assets/word_hunt/baslangic_limani/book_button.webp' | sha256sum -c -
+          git diff --check
+
+      - name: Exact head analyze + hedefli regresyon
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test \
+            test/word_hunt_production_assets_test.dart \
+            test/word_hunt_route_stop_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            --reporter expanded
+
+      - name: İzole debug APK üret ve asset paket eşitliğini doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_visual_proof_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          mkdir -p reports
+          git rev-parse HEAD | tee reports/WORD_HUNT_TARGETED_FINAL_HEAD_SHA.txt
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk | tee reports/WORD_HUNT_TARGETED_FINAL_APK_SHA256.txt
+          for name in node_challenge.webp node_final.webp book_button.webp; do
+            src="assets/word_hunt/baslangic_limani/$name"
+            packed="reports/PACKAGED_$name"
+            unzip -p build/app/outputs/flutter-apk/app-debug.apk "assets/flutter_assets/$src" > "$packed"
+            test -s "$packed"
+            cmp -s "$src" "$packed"
+          done
+
+      - name: KVM erişimini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Android 16 emülatörde gerçek ekranı çek
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            mkdir -p reports
+            adb wait-for-device
+            adb install build/app/outputs/flutter-apk/app-debug.apk
+            adb logcat -c
+            adb shell am force-stop com.leventua.bilgirotasi
+            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null
+            sleep 8
+            adb shell dumpsys activity activities > reports/WORD_HUNT_TARGETED_FINAL_ACTIVITY.txt
+            adb exec-out screencap -p > reports/WORD_HUNT_TARGETED_FINAL_ANDROID16.png
+            adb logcat -d > reports/WORD_HUNT_TARGETED_FINAL_LOGCAT.txt
+            test -s reports/WORD_HUNT_TARGETED_FINAL_ANDROID16.png
+            grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/WORD_HUNT_TARGETED_FINAL_ACTIVITY.txt
+            ! grep -Eq 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_TARGETED_FINAL_LOGCAT.txt
+
+      - name: Final Android 16 kanıtlarını yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-TargetedAssets-Final-${{ github.event.pull_request.head.sha || github.sha }}
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 7
