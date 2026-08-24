@@ -5,10 +5,12 @@ on:
     branches:
       - feat/kelime-avi-baslangic-limani-asset-first-20260824
     paths:
+      - 'assets/word_hunt/baslangic_limani/**'
       - 'lib/word_hunt/**'
       - 'test/word_hunt_*.dart'
       - 'test/home_hub_prototype_test.dart'
       - 'tools/kelime_avi_asset_first_gate_apply.py'
+      - 'pubspec.yaml'
       - '.github/workflows/kelime-avi-asset-first-qa.yml'
 
 permissions:
@@ -41,6 +43,25 @@ jobs:
 
       - name: Dependencies
         run: flutter pub get
+
+      - name: Decode and lossless-normalize special medallion WebP assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y webp
+          for asset in \
+            assets/word_hunt/baslangic_limani/node_challenge.webp \
+            assets/word_hunt/baslangic_limani/node_bonus.webp \
+            assets/word_hunt/baslangic_limani/node_final.webp
+          do
+            tmp="$(mktemp --suffix=.png)"
+            echo "NORMALIZE_ASSET=$asset"
+            dwebp "$asset" -o "$tmp"
+            cwebp -quiet -lossless -z 9 "$tmp" -o "$asset"
+            dwebp "$asset" -o /dev/null
+            rm -f "$tmp"
+          done
 
       - name: Apply candidate patch in workspace only
         shell: bash
@@ -89,6 +110,7 @@ jobs:
             lib/word_hunt/word_hunt_reference_route_screen.dart \
             test/word_hunt_route_stop_test.dart \
             test/word_hunt_reference_route_screen_test.dart
+          flutter pub get
           git diff --check
 
       - name: Scope guard before test
@@ -99,10 +121,12 @@ jobs:
           import subprocess, sys
           changed = subprocess.check_output(['git','diff','--name-only'], text=True).splitlines()
           allowed = (
+              'assets/word_hunt/baslangic_limani/',
               'lib/word_hunt/',
               'test/word_hunt_',
               'test/home_hub_prototype_test.dart',
               'tools/kelime_avi_asset_first_gate_apply.py',
+              'pubspec.yaml',
           )
           bad = [p for p in changed if not p.startswith(allowed)]
           print('workspace changed:', *changed, sep='\n- ')
