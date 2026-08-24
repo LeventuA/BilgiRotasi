@@ -23,7 +23,7 @@ class WordHuntProductionAssets {
   static const String finalCrown = '$base/final_crown.webp';
 
   static const String compassButton = '$base/compass_button.webp';
-  static const String bookButton = '$base/book_button.webp';
+  static const String bookButton = 'assets/pawns/08_acik_kitap.png';
 
   /// Kilitli final progression bakımından oynanamaz kalsa da MASTER ART'taki
   /// altın hedef görünümünü korur. Interaction kararı bu sınıfın işi değildir.
