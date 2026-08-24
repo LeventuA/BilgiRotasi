@@ -255,6 +255,25 @@ void main() {
     );
   });
 
+  testWidgets('premium bottom controls use production assets', (tester) async {
+    await pumpCanonicalReferenceRoute(tester);
+
+    final compassImage = tester.widget<Image>(
+      find.byKey(const Key('word_hunt_reference_compass_asset')),
+    );
+    expect(
+      (compassImage.image as AssetImage).assetName,
+      'assets/word_hunt/baslangic_limani/compass_button.webp',
+    );
+    final bookImage = tester.widget<Image>(
+      find.byKey(const Key('word_hunt_reference_book_asset')),
+    );
+    expect(
+      (bookImage.image as AssetImage).assetName,
+      'assets/word_hunt/baslangic_limani/book_button.webp',
+    );
+  });
+
   testWidgets('special plaques and final crown follow canonical bounds', (
     tester,
   ) async {

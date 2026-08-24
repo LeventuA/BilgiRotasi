@@ -48,9 +48,21 @@ void main() {
       reason: 'Yıldızlar küçük medalyonla orantılı kalmalı.',
     );
     expect(
-      find.byKey(const Key('word_hunt_route_stop_frame_1')),
+      find.byKey(const Key('word_hunt_route_stop_asset_1')),
       findsOneWidget,
-      reason: 'Düz daire yerine dekoratif medalyon çerçevesi bulunmalı.',
+      reason: 'Normal durak production medalyon asset kullanmalı.',
+    );
+    final normalAsset = tester.widget<Image>(
+      find.byKey(const Key('word_hunt_route_stop_asset_1')),
+    );
+    expect(
+      (normalAsset.image as AssetImage).assetName,
+      'assets/word_hunt/baslangic_limani/node_normal.webp',
+    );
+    expect(
+      find.byKey(const Key('word_hunt_route_stop_frame_1')),
+      findsNothing,
+      reason: 'Final render procedural medalyon painter kullanmamalı.',
     );
 
     final number = tester.widget<Text>(
@@ -164,6 +176,20 @@ void main() {
         findsOneWidget,
         reason: 'Final hedefi ayrı ve süslü taç siluetini korumalı.',
       );
+      final finalNode = tester.widget<Image>(
+        find.byKey(const Key('word_hunt_route_stop_asset_10')),
+      );
+      expect(
+        (finalNode.image as AssetImage).assetName,
+        'assets/word_hunt/baslangic_limani/node_final.webp',
+      );
+      final crownAsset = tester.widget<Image>(
+        find.byKey(const Key('word_hunt_route_stop_crown_asset_10')),
+      );
+      expect(
+        (crownAsset.image as AssetImage).assetName,
+        'assets/word_hunt/baslangic_limani/final_crown.webp',
+      );
       for (var star = 0; star < 3; star++) {
         final icon = tester.widget<Icon>(
           find.byKey(Key('word_hunt_route_stop_star_10_$star')),
@@ -214,6 +240,13 @@ void main() {
     expect(
       find.byKey(const Key('word_hunt_route_stop_lock_9')),
       findsOneWidget,
+    );
+    final lockedAsset = tester.widget<Image>(
+      find.byKey(const Key('word_hunt_route_stop_asset_9')),
+    );
+    expect(
+      (lockedAsset.image as AssetImage).assetName,
+      'assets/word_hunt/baslangic_limani/node_locked.webp',
     );
     expect(
       find.byKey(const Key('word_hunt_route_stop_number_9')),
@@ -345,6 +378,26 @@ void main() {
       expect(find.text('MEYDAN OKUMA'), findsOneWidget);
       expect(find.text('BONUS DURAK'), findsOneWidget);
       expect(find.text('ROTA FİNALİ'), findsOneWidget);
+      for (final entry in <(int, String, String)>[
+        (5, 'node_challenge.webp', 'challenge_plaque.webp'),
+        (8, 'node_bonus.webp', 'bonus_plaque.webp'),
+        (10, 'node_final.webp', 'final_plaque.webp'),
+      ]) {
+        final nodeImage = tester.widget<Image>(
+          find.byKey(Key('word_hunt_route_stop_asset_${entry.$1}')),
+        );
+        expect(
+          (nodeImage.image as AssetImage).assetName,
+          'assets/word_hunt/baslangic_limani/${entry.$2}',
+        );
+        final plaqueImage = tester.widget<Image>(
+          find.byKey(Key('word_hunt_route_stop_plaque_asset_${entry.$1}')),
+        );
+        expect(
+          (plaqueImage.image as AssetImage).assetName,
+          'assets/word_hunt/baslangic_limani/${entry.$3}',
+        );
+      }
       expect(
         find.byKey(const Key('word_hunt_route_stop_crossed_swords_5')),
         findsOneWidget,
