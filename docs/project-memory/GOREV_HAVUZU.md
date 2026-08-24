@@ -1,5 +1,27 @@
 # Bilgi Rotası - Görev Havuzu
 
+## 0Q - 24 Ağustos 2026 / Production node 9 açılışı
+
+- **Durum:** UYGULANDI / LOCAL 110/110 PASS / PRODUCTION ANDROID 16 PASS /
+  PIXEL-PROOF PASS / PR #147 AÇIK + DRAFT / MERGE YOK.
+- Product commit `e34832bde06f8318833f8a4373d0aa43ba71141a`; exact CI
+  head `29153b127fee8706b7a8b93b45e703847ac99f93`.
+
+**Bitti ölçütü:**
+- [x] Node 9 gerçek progression motorunda 7 tamamlandığında normal/open.
+- [x] Production rota node 9 normal teal/cyan asset, `9` ve kilitsiz state.
+- [x] Node 9 gerçek callback üretir; final 10 callback üretmez.
+- [x] Focused 110/110, hedefli 29/29, analyze 0 issue, diff check PASS.
+- [x] Production Android 16 run/job `32773565500` / `97579308851`
+  SUCCESS; artifact `9537404909`, screenshot SHA-256
+  `1bf27b1eca778380e2ca3fc64e7f256b375284af1e46447a5bfe2b65ceb943c0`.
+- [x] Exact-head pixel-proof run/job `32773565540` / `97579309057`
+  SUCCESS; artifact `9537442972`.
+- [x] Levent MASTER ART / Android 16 görselini açıkça kabul etti.
+- [ ] PR #147 merge/Ready için ayrıca açık Levent onayı gerekir.
+
+---
+
 ## 0P - 24 Ağustos 2026 / Issue #109 MASTER ART production tamamlama
 
 - **Durum:** ÖNCEKİ SCREENSHOT VISUAL FAIL / DIRECT MASTER ART EXTRACTION + ANDROID 16 KANITI PASS / LEVENT GÖRSEL KABULÜ AÇIK / PR #147 AÇIK + DRAFT / MERGE YOK.

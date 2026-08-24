@@ -6,12 +6,12 @@
 - Kullanıcı kararı: yalnız node 9 locked görünümden normal/open teal-cyan
   görünüme geçer; diğer sahne değişmez.
 - Gerçek uygulama kanıtı: Android 16 / API 36, `1080x1920`.
-- Exact product head: `320f15486e1767e66698ce75a443787df09ad75c`.
-- Workflow run/job: `32767726614` / `97560895182`.
-- Artifact: `BilgiRotasi-KelimeAvi-PixelProof-320f15486e1767e66698ce75a443787df09ad75c`,
-  ID `9535342463`.
+- Exact product head: `29153b127fee8706b7a8b93b45e703847ac99f93`.
+- Workflow run/job: `32773565540` / `97579309057`.
+- Artifact: `BilgiRotasi-KelimeAvi-PixelProof-29153b127fee8706b7a8b93b45e703847ac99f93`,
+  ID `9537442972`.
 - Artifact digest:
-  `sha256:64abb81573916b2b2a68aef356c806d88e07911eb05b5c03b0cae4091cfd51e0`.
+  `sha256:e20628296464cf70bcdae08b72cfdf776291a9372766a7f544816e2d3eddeef2`.
 - Uygulama screenshot'ı: artifact içindeki `ANDROID16.png`.
 - Tam karşılaştırma: artifact içindeki `SIDE_BY_SIDE.png`.
 - Piksel farkı: artifact içindeki `DIFF.png`.
@@ -39,7 +39,7 @@ rota kontrol noktaları ve çevre pikselleri yerinde kalır.
 - P0: yok.
 - P1: yok.
 - P2: yok.
-- Levent'in gerçek Android screenshot üzerinden açık görsel kabulü henüz yok;
-  PR Draft kalmalıdır.
+- Levent, gerçek Android screenshot üzerinden görseli açıkça kabul etti.
+- Bu kabul merge/Ready onayı değildir; PR Draft kalmalıdır.
 
-final result: blocked
+final result: passed

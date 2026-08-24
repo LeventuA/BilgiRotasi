@@ -9,6 +9,10 @@
 - Görsel state oyun progression gerçeğini bozmaz. Kilitli final altın hedef olarak görünebilir fakat oynanabilir sayılmaz; ilerleme sayısı gerçek state'ten hesaplanır.
 - Arka plan yalnız sahne/çevre içeren ayrı asset'tir; yazı, rota, node, yıldız, kilit, buton, panel ve özel durak etiketleri Flutter katmanlarında dinamik kalır. Eski arka plan bağlayıcı referansla uyuşmadığında kontrollü biçimde değiştirilebilir.
 - Ajanın aynı-tuval görsel QA sonucu, Levent'in gerçek Android 16 artifact screenshot'ı için vereceği nihai görsel kabulün yerine geçmez; PR bu açık kabul gelene kadar Draft kalır.
+- Levent'in 24 Ağustos 2026 görsel kabulü sonrasında Başlangıç Limanı node 9
+  solda normal/open duraktır. Bonus 8 zorunlu geçiş kapısı değildir; 7
+  tamamlandığında 8 ve 9 birlikte açılır. Final 10'un 9 tamamlanmadan
+  oynanamaz kalması korunur.
 
 ---
 

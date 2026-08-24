@@ -137,7 +137,8 @@ Final Başlangıç Limanı render yolu production asset kullanacaktır.
 - 6 sol geçiş.
 - 7 merkez/merkez-sağ.
 - 8 `BONUS DURAK`: sağ bölge, plaque sağında.
-- 9 kilitli durak solda.
+- 9 normal/open durak solda; bonus 8 zorunlu geçiş kapısı değildir ve 7
+  tamamlandığında 8 ile birlikte açılır.
 - 10 `ROTA FİNALİ`: alt-orta, plaque sağında.
 - Pusula sol altta, kitap sağ altta.
 - Arka plan: premium gece limanı, ay ışığı, deniz, sıcak köy ışıkları, gemiler/iskeleler ve sağda deniz feneri.

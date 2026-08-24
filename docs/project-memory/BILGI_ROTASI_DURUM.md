@@ -1,5 +1,44 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
+## 0R. Başlangıç Limanı production node 9 açılışı — 24 Ağustos 2026
+
+- Levent, MASTER ART / Android 16 pixel-proof görselini açıkça onayladı. PR
+  #147 açık ve Draft kalır; merge veya Ready işlemi yapılmadı.
+- Product commit `e34832bde06f8318833f8a4373d0aa43ba71141a`, gerçek
+  `WordHuntRouteProgressEngine` içinde yalnız `baslangic-limani` node 9
+  sözleşmesini düzeltti: bonus 8 zorunlu geçiş kapısı değildir; 7
+  tamamlandığında 8 ve normal/open 9 birlikte açılır. Final 10, 9
+  tamamlanmadan oynanamaz ve callback üretmez.
+- Gerçek layered rota ekranında node 9 `node_normal.webp`, okunur `9`, kilit
+  ikonsuz Semantics/InkWell ve gerçek `onLevelTap(9)` callback'i ile render
+  edilir. Pixel-proof ekranı ve diğer node'lar değiştirilmedi.
+- Yerel `dart analyze lib/word_hunt`: **0 issue**; focused Kelime Avı suite:
+  **110/110 PASS**; hedefli progression/reference/v2 suite: **29/29 PASS**;
+  `git diff --check`: PASS.
+- Exact product head `29153b127fee8706b7a8b93b45e703847ac99f93`
+  Android 16 production rota run/job `32773565500` / `97579308851`:
+  **SUCCESS**. Artifact ID `9537404909`, digest
+  `sha256:66f5ea3038162dbf0c01d792da52f361a48642504deab1d1f37e1a3fd193e7ef`;
+  screenshot SHA-256
+  `1bf27b1eca778380e2ca3fc64e7f256b375284af1e46447a5bfe2b65ceb943c0`;
+  debug APK SHA-256
+  `f515cb0e266610fc62714472c6ad4a2c7c435e8a9724aa6fad79afb85ae1f7cc`.
+- Runtime kanıtı `PRODUCTION_ROUTE_RENDER=PASS`,
+  `NODE_9_UNLOCKED_AND_CALLBACK=PASS`, `NODE_10_LOCKED_NO_CALLBACK=PASS` ve
+  `APP_PROCESS_FAILURE_SCAN=PASS`; logcat'te gerçek
+  `[WORD_HUNT_PRODUCTION_NODE_TAP] level=9` kaydı vardır.
+- Aynı exact head pixel-proof run/job `32773565540` / `97579309057`:
+  **SUCCESS**; artifact ID `9537442972`, digest
+  `sha256:e20628296464cf70bcdae08b72cfdf776291a9372766a7f544816e2d3eddeef2`.
+- `assets/questions.json`, production `lib/main.dart`, 1–8/10 tanımları,
+  BoardMap/67 node/3B, AdMob/Firebase/Android/release config ve sürüm
+  `1.68.19+109` değiştirilmedi.
+
+**Durum:** VISUAL USER ACCEPTANCE PASS / PRODUCTION NODE 9 ANDROID 16 PASS /
+PR #147 OPEN + DRAFT / MERGE YOK.
+
+---
+
 ## 0Q. Issue #109 MASTER ART production asset tamamlama — 24 Ağustos 2026
 
 > **GEÇERSİZ ESKİ KANIT:** Product head `8b1731c...` ve run `32750728333`
