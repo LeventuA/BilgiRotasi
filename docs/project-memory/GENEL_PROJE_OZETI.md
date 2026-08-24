@@ -18,7 +18,7 @@
 
 - Repo: `ZMilaStudio/BilgiRotasi`
 - Kanonik release branch: `release/final-closed-test-aab-1.68.8`
-- Bu kural işi başındaki doğrulanmış release HEAD: `39c03f169bbdf5dabb207af95c1fccf365400f98`
+- Son doğrulanan release HEAD: `8977d7ecdc88b50aedc9933739a1e17ac5b39833` — PR #106 squash merge.
 - Release `pubspec.yaml`: `1.68.19+109`
 - Paket: `com.leventua.bilgirotasi`
 - `main` yayın kaynağı olarak varsayılmaz.
@@ -107,16 +107,19 @@ Kelime Avı görsel çalışmalarında açık onay olmadan değişmez:
 - Android / AdMob / Firebase / release config
 - onaylı Başlangıç Limanı background asset'i
 
-## Kalıcılaştırma altyapısı — 22 Ağustos 2026
+## Yaşayan özet kalıcılaştırması — PR #106
 
 - Branch: `docs/general-project-summary-rule-20260822`.
-- Draft PR: **#106 — `docs: make general project summary a permanent workflow rule`**.
-- Base: `release/final-closed-test-aab-1.68.8` @ `39c03f169bbdf5dabb207af95c1fccf365400f98`.
-- `CHATGPT_PROJE_TALIMATI.txt`, yeni sohbet başında bu özeti okumayı ve her proje yanıtından sonra fark bazlı güncellemeyi zorunlu hale getirir.
-- `KARARLAR.md`, yaşayan özet kuralı ile Kelime Avı kullanıcı-onaylı referans/modüler üretim kararını kalıcı karar olarak kaydeder.
-- PR #106 yalnız proje-hafızası dokümanlarını değiştirir; runtime, soru bankası ve release konfigürasyonu kapsam dışıdır.
-- PR #106 **Draft / merge yok**. Levent'in açık merge onayı gerekir.
-- ChatGPT uygulamasındaki **Proje Talimatları** alanını bu oturumdan doğrudan değiştirecek bir proje-ayar yazma aracı yoktur. Bu nedenle aynı kısa kuralın Proje Talimatları'na bir kez kullanıcı tarafından eklenmesi `DOĞRULANACAK` / manuel adımdır. Repo kuralı ise PR #106 merge edildiğinde kalıcı teknik kayıt olur.
+- PR #106: **MERGED**.
+- Final PR head: `27081e59d40696f1c0cf83cbec23aef67eea60a3`.
+- Squash merge SHA / release HEAD: `8977d7ecdc88b50aedc9933739a1e17ac5b39833`.
+- Commit: `docs: make general project summary a permanent workflow rule (#106)`.
+- Exact-head AdMob PR doğrulaması run/job `32578442339` / `97044127097`: **SUCCESS**; analyze+tüm testler, release APK, paket/manifest ve Android 16 app/release gate PASS.
+- Artifact: `BilgiRotasi-AdMob-1.68.19-109-kanitlari`, ID `9477310958`, digest `sha256:2526375593aaf25f440fc579da6a0ab379d16fdb0af2c6077c48ab5c87c278cc`.
+- Merge yalnız `docs/project-memory/CHATGPT_PROJE_TALIMATI.txt`, `docs/project-memory/GENEL_PROJE_OZETI.md`, `docs/project-memory/KARARLAR.md` dosyalarını değiştirdi; runtime, `assets/questions.json`, `lib/main.dart`, BoardMap/3B ve release konfigürasyonu değişmedi.
+- `CHATGPT_PROJE_TALIMATI.txt` artık yeni sohbet başında `GENEL_PROJE_OZETI.md` okuma ve her proje yanıtından sonra fark bazlı güncelleme kuralını içerir.
+- ChatGPT uygulamasındaki **Proje Talimatları** alanını bu oturumdan doğrudan değiştirecek bir proje-ayar yazma aracı yoktur. Bu nedenle UI alanına aynı kuralın kullanıcı tarafından bir kez eklenmesi `DOĞRULANACAK / MANUEL` kalır.
+- Yanlışlıkla açılan boş Draft PR #133 aynı dakika içinde kapatıldı; merge edilmedi ve ürün/release değişikliği oluşturmadı.
 
 ## Sıradaki açık kapılar
 
@@ -126,8 +129,7 @@ Kelime Avı görsel çalışmalarında açık onay olmadan değişmez:
 4. PR #96 → release ancak Levent ayrıca açık merge onayı verirse.
 5. Production ana navigasyon entegrasyonu ayrı branch ve ayrı onayla yapılır.
 6. Başlangıç Limanı kabulünden sonra sonraki temalar modüler asset sistemiyle üretilir; her tema için ayrı kullanıcı-onaylı resmi referans gerekir.
-7. PR #106 merge kararı Levent'in açık onayını bekler; merge sonrası repo seviyesindeki yaşayan özet kuralı release hattında kalıcı olur.
-8. ChatGPT Proje Talimatları'na kısa otomatik-özet kuralı bir kez eklenirse yeni sohbetlerde repo kuralını çağırma davranışı daha güvenilir olur.
+7. ChatGPT Proje Talimatları UI alanına kısa otomatik-özet kuralı bir kez eklenirse yeni sohbetlerde repo kuralını çağırma davranışı daha güvenilir olur.
 
 ## Bu özetin bakım kuralı
 
