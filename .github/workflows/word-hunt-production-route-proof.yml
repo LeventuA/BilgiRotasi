@@ -90,11 +90,8 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
-            set -eu
             mkdir -p reports
-            if adb shell pm path com.leventua.bilgirotasi 2>/dev/null | grep -q '^package:'; then
-              adb uninstall com.leventua.bilgirotasi
-            fi
+            if adb shell pm path com.leventua.bilgirotasi 2>/dev/null | grep -q '^package:'; then adb uninstall com.leventua.bilgirotasi; fi
             adb install build/app/outputs/flutter-apk/app-debug.apk
             adb logcat -c
             adb shell am force-stop com.leventua.bilgirotasi
@@ -109,26 +106,13 @@ jobs:
             adb shell input tap 255 1338
             sleep 2
             adb logcat -d > reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt
-            grep -F '[WORD_HUNT_PRODUCTION_ROUTE_READY]' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt \
-              > reports/WORD_HUNT_PRODUCTION_ROUTE_RUNTIME.txt
-            grep -F '[WORD_HUNT_PRODUCTION_NODE_TAP] level=9' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt \
-              >> reports/WORD_HUNT_PRODUCTION_ROUTE_RUNTIME.txt
-            if grep -Fq '[WORD_HUNT_PRODUCTION_NODE_TAP] level=10' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt; then
-              echo 'Final 10 locked state produced a callback.' >&2
-              exit 1
-            fi
+            grep -F '[WORD_HUNT_PRODUCTION_ROUTE_READY]' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt > reports/WORD_HUNT_PRODUCTION_ROUTE_RUNTIME.txt
+            grep -F '[WORD_HUNT_PRODUCTION_NODE_TAP] level=9' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt >> reports/WORD_HUNT_PRODUCTION_ROUTE_RUNTIME.txt
+            if grep -Fq '[WORD_HUNT_PRODUCTION_NODE_TAP] level=10' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt; then echo 'Final 10 locked state produced a callback.' >&2; exit 1; fi
             grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/WORD_HUNT_PRODUCTION_ROUTE_ACTIVITY.txt
             grep -Eq 'mResumedActivity.*com\.leventua\.bilgirotasi|topResumedActivity=.*com\.leventua\.bilgirotasi|mCurrentFocus=.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_PRODUCTION_ROUTE_ACTIVITY.txt
-            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt; then
-              echo 'Bilgi Rotası production route process failure detected.' >&2
-              exit 1
-            fi
-            printf '%s\n' \
-              'PRODUCTION_ROUTE_RENDER=PASS' \
-              'NODE_9_UNLOCKED_AND_CALLBACK=PASS' \
-              'NODE_10_LOCKED_NO_CALLBACK=PASS' \
-              'APP_PROCESS_FAILURE_SCAN=PASS' \
-              > reports/WORD_HUNT_PRODUCTION_ROUTE_RESULT.txt
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt; then echo 'Bilgi Rotası production route process failure detected.' >&2; exit 1; fi
+            printf '%s\n' 'PRODUCTION_ROUTE_RENDER=PASS' 'NODE_9_UNLOCKED_AND_CALLBACK=PASS' 'NODE_10_LOCKED_NO_CALLBACK=PASS' 'APP_PROCESS_FAILURE_SCAN=PASS' > reports/WORD_HUNT_PRODUCTION_ROUTE_RESULT.txt
 
       - name: Production rota kanıtlarını yükle
         if: always()
