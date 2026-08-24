@@ -558,6 +558,12 @@ class _SpecialStopLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final plaquePath = WordHuntProductionAssets.plaqueFor(type);
+    final iconScale = switch (type) {
+      WordHuntLevelType.challenge => 2.2,
+      WordHuntLevelType.bonus => 2.0,
+      WordHuntLevelType.routeFinal => 1.55,
+      WordHuntLevelType.normal => 1.0,
+    };
     assert(plaquePath != null);
     return Opacity(
       opacity: dimmed ? 0.72 : 1,
@@ -580,11 +586,21 @@ class _SpecialStopLabel extends StatelessWidget {
                 children: [
                   SizedBox.square(
                     dimension: emphasized ? 42 : 38,
-                    child: Image.asset(
-                      iconAssetPath,
-                      key: Key('word_hunt_route_stop_special_icon_$levelIndex'),
-                      fit: BoxFit.contain,
-                      filterQuality: FilterQuality.high,
+                    child: ClipRect(
+                      child: Transform.scale(
+                        key: Key(
+                          'word_hunt_route_stop_special_icon_scale_$levelIndex',
+                        ),
+                        scale: iconScale,
+                        child: Image.asset(
+                          iconAssetPath,
+                          key: Key(
+                            'word_hunt_route_stop_special_icon_$levelIndex',
+                          ),
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.high,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 12),
