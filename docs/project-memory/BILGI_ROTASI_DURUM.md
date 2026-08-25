@@ -1,5 +1,82 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
+## 0S. Başlangıç Limanı production MASTER ART mimari kabulü — 25 Ağustos 2026
+
+- Levent, gerçek Android 16 production ekranını ve **MASTER ART raster + şeffaf hitbox** production mimarisini açıkça kabul etti. Bu kabul görsel/mimari kabulüdür; PR #147 için merge/Ready onayı değildir.
+- Aktif branch `fix/kelime-avi-baslangic-limani-master-art-codex-20260824`; Draft PR #147 base exact `1968c4bccd22468bec50f2188414a3e5f6f3fa4b`; doğrulanmış production HEAD `0ebd1212d7e66f809705c9c3d2711dd63141f4d7` (`fix(kelime-avi): use approved master art in production route`).
+- Production `WordHuntReferenceRouteScreen` MASTER ART raster sahneyi görünür taban yapar; level 1–10, geri, bilgi, pusula ve kitap şeffaf hitbox'larla gerçek callback/progression sistemine bağlıdır. MASTER ART'taki görünür rota/node/plaque/panel/crown/kontrol sanatı ikinci kez çizilmez.
+- Yalnız gerçek state farkı minimum override ile uygulanır. Node 9 progression commit'i `e34832bde06f8318833f8a4373d0aa43ba71141a` korunur: 7 tamamlanınca 8 + normal/open 9 açılır; 9 callback aktif; final 10 node 9 tamamlanana kadar kilitli/callback yok.
+- Focused Kelime Avı suite `110/110 PASS`; `dart analyze lib/word_hunt` `No issues found`; `git diff --check` PASS.
+- Production Android 16 run/job `32778145314` / `97593889745` SUCCESS; artifact `9539030303`, digest `sha256:a38a1cae778a32f232b266571c249ae3ca710ab7598119fb666af574e9e503f3`, APK SHA-256 `99c945aefeabfa58b15f3b17d4f17b04ad709f4bc233f5239894bc4222ec9429`.
+- Pixel-proof run/job `32778145292` / `97593889800` SUCCESS; artifact `9539028131`, digest `sha256:9794a1d5a3a1b94d5c030a879ae08f82dec9fa29abdabf5ad2742672a41d4b81`.
+- Production ve pixel-proof screenshot SHA-256 birebir aynı: `7fc42a56c15501785da02854f62e31041b1ead77869146f1a1cd64096e13bfcb`.
+- Runtime: `PRODUCTION_ROUTE_RENDER=PASS`, `NODE_9_UNLOCKED_AND_CALLBACK=PASS`, `NODE_10_LOCKED_NO_CALLBACK=PASS`, `APP_PROCESS_FAILURE_SCAN=PASS`; uygulamaya ait crash/ANR/FATAL/process-death eşleşmesi 0.
+- `assets/questions.json`, production `lib/main.dart`, BoardMap/67 node/3B, AdMob/Firebase/Android/release config ve sürüm `1.68.19+109` değiştirilmedi.
+
+**Durum:** VISUAL USER ACCEPTANCE PASS / ARCHITECTURE ACCEPTANCE PASS / PRODUCTION ANDROID 16 PASS / PR #147 OPEN + DRAFT / MERGE YOK.
+
+---
+
+## 0R. Başlangıç Limanı production node 9 açılışı — 24 Ağustos 2026
+
+- Levent, MASTER ART / Android 16 pixel-proof görselini açıkça onayladı. PR
+  #147 açık ve Draft kalır; merge veya Ready işlemi yapılmadı.
+- Product commit `e34832bde06f8318833f8a4373d0aa43ba71141a`, gerçek
+  `WordHuntRouteProgressEngine` içinde yalnız `baslangic-limani` node 9
+  sözleşmesini düzeltti: bonus 8 zorunlu geçiş kapısı değildir; 7
+  tamamlandığında 8 ve normal/open 9 birlikte açılır. Final 10, 9
+  tamamlanmadan oynanamaz ve callback üretmez.
+- Gerçek layered rota ekranında node 9 `node_normal.webp`, okunur `9`, kilit
+  ikonsuz Semantics/InkWell ve gerçek `onLevelTap(9)` callback'i ile render
+  edilir. Pixel-proof ekranı ve diğer node'lar değiştirilmedi.
+- Yerel `dart analyze lib/word_hunt`: **0 issue**; focused Kelime Avı suite:
+  **110/110 PASS**; hedefli progression/reference/v2 suite: **29/29 PASS**;
+  `git diff --check`: PASS.
+- Exact product head `29153b127fee8706b7a8b93b45e703847ac99f93`
+  Android 16 production rota run/job `32773565500` / `97579308851`:
+  **SUCCESS**. Artifact ID `9537404909`, digest
+  `sha256:66f5ea3038162dbf0c01d792da52f361a48642504deab1d1f37e1a3fd193e7ef`;
+  screenshot SHA-256
+  `1bf27b1eca778380e2ca3fc64e7f256b375284af1e46447a5bfe2b65ceb943c0`;
+  debug APK SHA-256
+  `f515cb0e266610fc62714472c6ad4a2c7c435e8a9724aa6fad79afb85ae1f7cc`.
+- Runtime kanıtı `PRODUCTION_ROUTE_RENDER=PASS`,
+  `NODE_9_UNLOCKED_AND_CALLBACK=PASS`, `NODE_10_LOCKED_NO_CALLBACK=PASS` ve
+  `APP_PROCESS_FAILURE_SCAN=PASS`; logcat'te gerçek
+  `[WORD_HUNT_PRODUCTION_NODE_TAP] level=9` kaydı vardır.
+- Aynı exact head pixel-proof run/job `32773565540` / `97579309057`:
+  **SUCCESS**; artifact ID `9537442972`, digest
+  `sha256:e20628296464cf70bcdae08b72cfdf776291a9372766a7f544816e2d3eddeef2`.
+- `assets/questions.json`, production `lib/main.dart`, 1–8/10 tanımları,
+  BoardMap/67 node/3B, AdMob/Firebase/Android/release config ve sürüm
+  `1.68.19+109` değiştirilmedi.
+
+**Durum:** VISUAL USER ACCEPTANCE PASS / PRODUCTION NODE 9 ANDROID 16 PASS /
+PR #147 OPEN + DRAFT / MERGE YOK.
+
+---
+
+## 0Q. Issue #109 MASTER ART production asset tamamlama — 24 Ağustos 2026
+
+> **GEÇERSİZ ESKİ KANIT:** Product head `8b1731c...` ve run `32750728333`
+> teknik olarak PASS olsa da Levent, 5/10/kitap asset kaynak sadakatini
+> **VISUAL FAIL** olarak reddetti. Yeni kanıt yalnız bağlayıcı MASTER ART
+> direct-pixel crop/mask/alpha extraction'ından üretilmiştir; bu yeni ajan
+> doğrulaması da Levent'in nihai görsel kabulü değildir.
+
+- Kanonik repo `ZMilaStudio/BilgiRotasi`; canlı release `release/final-closed-test-aab-1.68.8` head `8977d7ecdc88b50aedc9933739a1e17ac5b39833`. Çalışma PR #132 exact head `1968c4bccd22468bec50f2188414a3e5f6f3fa4b` üzerinden ayrı `fix/kelime-avi-baslangic-limani-master-art-codex-20260824` branch'inde yürütüldü; Draft PR #147 açık, merge yok. Sürüm `1.68.19+109` kaldı.
+- Issue #109 `Photo 1.jpg` tek bağlayıcı MASTER ART'tır. `720x1280` kaynak, `1080x1920` kanonik rapora normalize edildi. PR #146 ve run `32740827443` **REJECTED BY LEVENT — NOT A VISUAL SOURCE** olarak kaydedildi.
+- Product head `89c1416906c048cd7fd350b9432261a59e30b115`: `node_challenge.webp`, `node_final.webp` ve `book_button.webp` yalnız MASTER ART'ın kendi RGB piksellerinden crop/mask/alpha ile çıkarıldı. Şeffaf dış boşluk deterministik olarak kırpıldı; node merkezleri, contract çapları ve rota geometrisi değişmedi. Manifest `source_pixel_identity: true`, `generated_art: false` ve boş forbidden-source listesi kaydeder.
+- Hedefli direct-extraction/codec testleri **21/21 PASS**; önceki tam focused Kelime Avı suite **104/104 PASS**; `dart analyze lib/word_hunt` **0 issue** ve `git diff --check` PASS kaydı korunuyor.
+- Exact product-head Android 16 run/job `32756717218` / `97525842035`: **SUCCESS**. Artifact ID `9531391794`, digest `sha256:85f74cd05a222c40acdc2c543d3f580919156816f26c6aae0909af1e10fe7c3d`; APK SHA-256 `4a1577f831d6270bbe8d7477cbbe7ecd18cb48d9fa68471fc6e0d99489dd8eeb`. 15/15 packaged byte parity ve runtime load PASS; app-specific crash/ANR/FATAL/process-death eşleşmesi 0.
+- MASTER ART ve gerçek Android 16 ekranı aynı `2160x1920` tuvalde incelendi. Düzeltme istenen 5/10/kitap bölgelerinde ajan-actionable P0/P1/P2 kalmadı; `design-qa.md` Levent kabulü beklediği için `blocked` kalır. Bu **Levent görsel kabulü değildir**.
+- `reports/MASTER_ART_REFERENCE.png`, `ANDROID16_ACTUAL.png`, `REFERENCE_VS_ACTUAL_SIDE_BY_SIDE.png`, `REFERENCE_VS_ACTUAL_DIFF.png`, `visual_metrics.json`, `master_art_contract.json`, `master_art_asset_inventory.json`, `master_art_extraction_manifest.json` ve `design-qa.md` kanıtları saklandı. Android screenshot SHA-256 `fdfd22945f196bdfd1f1251877a2f8cecb11e09fef3b0abca4f29654ef1933c5`; yan-yana kanıt SHA-256 `3007eddae1b19933d00bb30e40df8dc0fbd5993a59fd9ef26fd2dd6567c3cd38`.
+- `assets/questions.json`, production `lib/main.dart`, progression, BoardMap/67 node/3B, AdMob/Firebase/Android/release config ve `pubspec.yaml` değiştirilmedi.
+
+**Durum:** TECHNICAL PASS / ANDROID 16 PROOF READY / VISUAL USER ACCEPTANCE OPEN. PR #147 açık/Draft; Ready/merge yapılmadı.
+
+---
+
 ## 0P. Issue #109 / PR #110 Başlangıç Limanı bağlayıcı referans eşlemesi — 23 Ağustos 2026
 
 - Başlangıç kaynağı PR #107 exact head `a4290d9f4893a20c1b0ae1f6e70365419552720e`; ayrı branch `fix/kelime-avi-approved-reference-pixel-match-20260823`, Draft PR #110. Güncel head canlı GitHub PR metadata'sından doğrulanır; merge yapılmadı.
@@ -22,7 +99,7 @@
 - Çalışma branch'i `feat/kelime-avi-clean-release-integration-20260821`; PR #96 açık, Draft ve merge edilmemiştir. Doğrulanan kaynak head `8b4022d939153f88f14c765a61a0962ba0473769`.
 - Son bot commit'i incelendi: geçici `.tmp/kelime-avi-bg/**` parçaları ve tek kullanımlık `.github/workflows/kelime-avi-bg-materialize.yml` final PR diff'inde yoktur.
 - `assets/word_hunt/baslangic_limani_bg.jpg` gerçek JPEG; `1080x2340`, `81310` byte, SHA-256 `ea0034e2b3a7713f36bd36d2757815748e2988e831c91f213ad0c7a2eb050d45`.
-- Yerel Kelime Avı kaynak analizi 0 issue; focused suite **59/59 PASS**. Tam yerel Flutter koşusu **358 PASS / 1 ortam hatası** verdi: ürün/test hatası değil, Windows'ta `python3` komutu bulunamadığı için yalnız `release_readiness_report_test.dart` exit `9009` aldı.
+- Yerel Kelime Avı kaynak analizi 0 issue; focused suite **59/59 PASS**. Tam yerel Flutter koşusu **358 PASS / 1 ortam hatası** verdi: ürün/test hatası değil, Windows'ta `python3` komutu bulunmadığı için yalnız `release_readiness_report_test.dart` exit `9009` aldı.
 - Linux Quality Checks run/job `32543598848` / `96958050560`: **SUCCESS**; soru bankası yapısal kapısı PASS, analyze non-fatal policy ile mevcut **92 issue** (Kelime Avı değişen kaynaklarında yeni issue yok), tam Flutter **360/360 PASS**.
 - Android 16 görsel kanıt run/job `32543597270` / `96958047145`: **SUCCESS**. Artifact `BilgiRotasi-KelimeAvi-VisualProof-8b4022d939153f88f14c765a61a0962ba0473769`, ID `9467915888`, digest `sha256:4c9d2e22a3dc26459b3639db6781b5cb08056366c4f30592da0ac3c4b7b4d696`.
 - İzole debug APK SHA-256 `67109045d89365ff1e189dea992152bef50d2267460568eeb3e9639af9e9c1c1`. Paketlenmiş JPG kaynakla byte-for-byte eşit; runtime `[WORD_HUNT_ASSET_LOADED]` kaydı var; `MainActivity` RESUMED/visible; app-specific crash/ANR/FATAL/process-death eşleşmesi 0.
@@ -137,7 +214,7 @@ Bu bölüm aşağıdaki `0G` PR #43 öncesi/sonrası Android 16 kayıtlarının 
 - Düzeltme branch'i `fix/br-p0-011-android16-tutorial-gate`; Draft PR #44 açık ve merge edilmedi. Teknik commitler: `38a13c58b5e85e3e5798b6c4209dd449216e81b7` — `fix: make Android 16 tutorial replay gate deterministic`; `a6ce0ba08bce5d2454aaeb612f62a271d10e8f28` — `fix: isolate Android 16 tutorial retry counters`.
 - Teknik net diff yalnız `tools/validate_android16_closed_test.sh` + `test/android16_closed_test_retry_scope_test.dart`: helper retry sayacı local yapıldı, tutorial taraması ayrı `tutorial_attempt` kullanıyor ve gerçek Bash regresyon testi caller sayacının değişmediğini kilitliyor. Mandatory release gate/infra sınıflandırması gevşetilmedi.
 - Teknik-head AdMob PR doğrulaması #197 / run `31957410025`, job `95190026025`: **SUCCESS**. Ardından proje-hafızası head'i `c5595c0aa38e7c1458e268061563943d38e79a37` üzerinde final AdMob PR doğrulaması #201 / run `31962756913`, job `95203168990`: **SUCCESS**. `Analiz ve tüm testler`, release APK build, paket/manifest ve Android 16 deneme/classifier/final app gate PASS; ikinci emulator denemesi gerekmedi.
-- #201 artifact `BilgiRotasi-AdMob-1.68.16-106-kanitlari`, ID `9267811261`, digest `sha256:23750143b62cd7de04d77a24d223626a475d89e871550ff81266f66bc4963443`; APK SHA-256 `cf807552ac1b1a239988d99f5e78125a76722681410b25bb6b8a5cf7cbc2a973`; `RESULT=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`; app-specific crash/ANR/FATAL/process-death yok.
+- #201 artifact `BilgiRotasi-AdMob-1.68.16-106-kanitlari`: ID `9267811261`, digest `sha256:23750143b62cd7de04d77a24d223626a475d89e871550ff81266f66bc4963443`; APK SHA-256 `cf807552ac1b1a239988d99f5e78125a76722681410b25bb6b8a5cf7cbc2a973`; `RESULT=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`; app-specific crash/ANR/FATAL/process-death yok.
 - Sürüm, ürün davranışı, `assets/questions.json`, BoardMap, 67 node, 3B tahta, launcher/splash ve Firebase/AdMob/FCM ürün davranışı değiştirilmedi. `KARARLAR.md` değişmedi; mevcut Android 16 D-032 sınıflandırma kararı korunur. PR #7'ye dokunulmadı.
 - PR #44 Draft olarak açık tutulur. Bu belgeyi taşıyan güncel PR head'inin CI sonucu GitHub'dan canlı okunur; statik bir “son docs-head CI” SHA'sı burada dondurulmaz.
 - **BR-P0-011 henüz kapanmadı:** Levent'in ayrıca açık merge onayı olmadan PR #44 merge edilmeyecek. Merge sonrası yeni canlı release HEAD üzerinde fresh `Closed test release doğrulaması` PASS ve gerçek `1.68.16+106` AAB artifact üretilmeden AAB Play Kapalı Test yükleme adayı sayılmayacak.
@@ -257,8 +334,8 @@ Bu bölüm aşağıdaki `0E` Issue #37 ön-merge kaydını **güncel olarak geç
   hatası Samsung Game Launcher sürecine aittir, Bilgi Rotası sürecine değil.
 - Public Analytics + FCM gizlilik açıklaması main tabanlı PR #40 ile squash merge
   edildi: `c7b3be9925344f3c8f6bc608a1f7d98a42c0a210`. GitHub Pages kaynağı `main:/docs`;
-  build `1152991654` bu commit üzerinde **built** ve hata yok. Güncel destek adresi
-  `BilgiRotasidestek@gmail.com` korunur.
+  build `1152991654` bu commit üzerinde **built** / hata yok olarak tamamlandı.
+  Güncel destek adresi `BilgiRotasidestek@gmail.com` korunur.
 - Production topic'e gerçek mesaj gönderimi ayrı Levent kararı gerektirir; bu
   fiziksel closed-test kabulü production gönderim yetkisi değildir. PR #39 merge
   edilmemiştir; PR #40 main'e merge edilmiştir.
@@ -293,7 +370,7 @@ Bu bölüm aşağıdaki tarihsel release/main kayıtlarının bu iş için günc
 
 ## 0B. BR-P1-008 final artifact kabulü — 13 Ağustos 2026
 
-Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **güncel sonucudur**; eski kayıtlar denetim izi olarak korunur.
+Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **güncel sonucudur**; eski bölümler denetim izi olarak korunur.
 
 - PR #32 `docs: make release head references live` squash merge commit'i: `794205f3ad68c0547f2858d530170af3a7a6bd41`.
 - Final `Closed test release doğrulaması`: run `31680750887`, job `94385413742`, source ref `release/final-closed-test-aab-1.68.8`, source SHA `794205f3ad68c0547f2858d530170af3a7a6bd41`: **SUCCESS**.
@@ -304,7 +381,6 @@ Bu bölüm aşağıdaki tarihsel BR-P1-008 açık/bekliyor kayıtlarının **gü
 - `RC1_QUALITY_GATE.md`: **BAŞARILI**, `1.68.14+104`, 8.710 soru, kritik hata/uyarı yok.
 - Android 16 AAB-derived kabul ilk denemede **PASS**; ikinci deneme gerekmedi. `GUEST_LOGIN=PASS`, `HOME_OYNA=PASS`, `APP_GATE=PASS`, `RELEASE_GATE=PASS`, `SETTINGS_TUTORIAL_DIAGNOSTIC=PASS`.
 - Artifact log taramasında Bilgi Rotası paketine ait crash, ANR, `FATAL EXCEPTION` veya process-death kanıtı bulunmadı.
-- AAB metadata: package `com.leventua.bilgirotasi`, versionCode `104`, versionName `1.68.14`, targetSdk `36`; upload sertifika SHA-1 `00:0E:E4:3F:41:0A:BC:6B:4F:63:4C:4F:71:6D:76:EB:19:08:41:15`.
 - **BR-P1-008 TAMAMLANDI.** Dinamik release-readiness üretimi canlı artifact üzerinde kanıtlandı.
 - Bu teknik kabul Play Console'a AAB yüklendiğini, fiziksel Play kabulünü veya Firebase/Play canlı konsol durumlarını tek başına doğrulamaz; bu maddeler ayrı açık görevlerde kalır.
 - `KARARLAR.md` değişmedi; ürün kararı değişikliği yoktur.
@@ -677,13 +753,9 @@ Eski `.github/workflows/apply-game-save-isolation-v4.yml` push workflow'u bu bra
 
 ## 15. Şu anda ilk yapılacak işler
 
-1. PR #68 final docs-head CI sonuçlarını tam log/artifact/diff/Git geçmişiyle kapat.
-2. CI PASS ise Levent'ten PR #68 için ayrı açık merge onayı al; kendi kendine merge etme.
-3. Merge sonrası canlı release HEAD/sürümü tekrar kilitle ve yalnız `rewardedSsvCallback` production redeploy'u için ayrı açık onay al.
-4. Redeploy sonrası normal callback'in `503 SSV_NOT_ENABLED` kaldığını doğrula; ardından legacy AdMob rewarded biriminde verify-only User ID/custom data ile `Verify URL` PASS ve write-free davranışı kanıtla.
-5. `ssvEnabled` açmadan fiziksel gerçek rewarded kabulünün ön koşullarını tamamla; tek +10/no-double/failure-right-preserved/no-total-quota kanıtını al.
-6. Play Console'da versionCode 107, production/public listing ve App Signing/Upload SHA rollerini canlı doğrula.
-7. İki ayrı cihaz/hesapla Canlı Düello eşleşme → maç → sonuç → leaderboard zincirini doğrula.
-8. Yalnız bütün canlı kapılar + ayrı cutover onayı sonrası `server_config/rewarded.ssvEnabled=true` değerlendir.
-9. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür; `assets/questions.json` kontrolsüz değişmesin.
-10. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.
+1. PR #147 mimari-onay docs commit'i sonrası exact HEAD ve CI durumunu yeniden doğrula.
+2. Levent ayrıca açık merge/Ready onayı vermeden PR #147'yi değiştirme veya merge etme.
+3. Merge kararı verilirse base SHA + exact head + final CI yeniden kilitlenerek kontrollü merge uygula.
+4. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı açık onay gerektirir.
+5. Soru geri bildirim düzeltmelerini ayrı branch/PR düzeninde sürdür; `assets/questions.json` kontrolsüz değişmesin.
+6. 3B tahta işine 6-rozet eşlemesi ve geometri onayı olmadan dönme.

@@ -9,7 +9,9 @@ class WordHuntProductionAssets {
 
   static const String base = 'assets/word_hunt/baslangic_limani';
 
-  static const String scene = '$base/scene.webp';
+  /// Gerçek runtime sahnesi. Eski `scene.webp` hayalet sözleşmesi kaldırıldı.
+  static const String background = 'assets/word_hunt/baslangic_limani_bg.jpg';
+  static const String scene = background;
 
   static const String nodeNormal = '$base/node_normal.webp';
   static const String nodeLocked = '$base/node_locked.webp';
@@ -21,6 +23,10 @@ class WordHuntProductionAssets {
   static const String bonusPlaque = '$base/bonus_plaque.webp';
   static const String finalPlaque = '$base/final_plaque.webp';
   static const String finalCrown = '$base/final_crown.webp';
+
+  static const String challengeIcon = '$base/challenge_icon.png';
+  static const String bonusIcon = '$base/bonus_icon.png';
+  static const String finalIcon = '$base/final_icon.png';
 
   static const String compassButton = '$base/compass_button.webp';
   static const String bookButton = '$base/book_button.webp';
@@ -50,6 +56,13 @@ class WordHuntProductionAssets {
     WordHuntLevelType.routeFinal => finalPlaque,
   };
 
+  static String? iconFor(WordHuntLevelType type) => switch (type) {
+    WordHuntLevelType.normal => null,
+    WordHuntLevelType.challenge => challengeIcon,
+    WordHuntLevelType.bonus => bonusIcon,
+    WordHuntLevelType.routeFinal => finalIcon,
+  };
+
   static const List<String> requiredPilotAssets = <String>[
     scene,
     nodeNormal,
@@ -61,6 +74,9 @@ class WordHuntProductionAssets {
     bonusPlaque,
     finalPlaque,
     finalCrown,
+    challengeIcon,
+    bonusIcon,
+    finalIcon,
     compassButton,
     bookButton,
   ];

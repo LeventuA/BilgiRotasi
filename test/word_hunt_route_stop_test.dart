@@ -163,8 +163,8 @@ void main() {
 
       expect(
         find.byKey(const Key('word_hunt_route_stop_number_10')),
-        findsOneWidget,
-        reason: 'Kilitli final, referanstaki altın 10 hedefini göstermeli.',
+        findsNothing,
+        reason: 'Final 10 rakamı doğrudan MASTER ART extraction pikselidir.',
       );
       expect(
         find.byKey(const Key('word_hunt_route_stop_lock_badge_10')),
@@ -399,12 +399,46 @@ void main() {
         );
       }
       expect(
+        find.byKey(const Key('word_hunt_route_stop_number_5')),
+        findsNothing,
+        reason: 'Challenge 5 rakamı doğrudan MASTER ART extraction pikselidir.',
+      );
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_number_10')),
+        findsNothing,
+        reason: 'Final 10 rakamı doğrudan MASTER ART extraction pikselidir.',
+      );
+      for (final entry in <(int, String)>[
+        (5, 'challenge_icon.png'),
+        (8, 'bonus_icon.png'),
+        (10, 'final_icon.png'),
+      ]) {
+        final iconImage = tester.widget<Image>(
+          find.byKey(Key('word_hunt_route_stop_special_icon_${entry.$1}')),
+        );
+        expect(
+          (iconImage.image as AssetImage).assetName,
+          'assets/word_hunt/baslangic_limani/${entry.$2}',
+        );
+      }
+      for (final entry in <(int, double)>[(5, 2.2), (8, 2.0), (10, 1.55)]) {
+        final transform = tester.widget<Transform>(
+          find.byKey(
+            Key('word_hunt_route_stop_special_icon_scale_${entry.$1}'),
+          ),
+        );
+        expect(transform.transform.storage[0], closeTo(entry.$2, 0.001));
+        expect(transform.transform.storage[5], closeTo(entry.$2, 0.001));
+      }
+      expect(
         find.byKey(const Key('word_hunt_route_stop_crossed_swords_5')),
-        findsOneWidget,
+        findsNothing,
+        reason: 'Premium kılıç final artı procedural painter olmamalı.',
       );
       expect(
         find.byKey(const Key('word_hunt_route_stop_treasure_chest_10')),
-        findsOneWidget,
+        findsNothing,
+        reason: 'Premium sandık final artı procedural painter olmamalı.',
       );
 
       final challengeLabel = tester.widget<Text>(find.text('MEYDAN OKUMA'));

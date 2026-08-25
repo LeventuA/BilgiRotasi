@@ -228,13 +228,6 @@ class WordHuntRouteStop extends StatelessWidget {
     WordHuntLevelType.routeFinal => 'ROTA FİNALİ',
   };
 
-  IconData get _typeIcon => switch (level.type) {
-    WordHuntLevelType.normal => Icons.circle,
-    WordHuntLevelType.challenge => Icons.sports_martial_arts_rounded,
-    WordHuntLevelType.bonus => Icons.card_giftcard_rounded,
-    WordHuntLevelType.routeFinal => Icons.inventory_2_rounded,
-  };
-
   @override
   Widget build(BuildContext context) {
     final special = level.type != WordHuntLevelType.normal;
@@ -280,7 +273,8 @@ class WordHuntRouteStop extends StatelessWidget {
                       lockedFinal: lockedFinal,
                       accent: accent,
                       label: _typeLabel,
-                      icon: _typeIcon,
+                      iconAssetPath:
+                          WordHuntProductionAssets.iconFor(level.type)!,
                       labelOnLeft: labelOnLeft,
                       metrics: metrics,
                       stopWithStars: stopWithStars,
@@ -347,7 +341,7 @@ class _SpecialRow extends StatelessWidget {
     required this.lockedFinal,
     required this.accent,
     required this.label,
-    required this.icon,
+    required this.iconAssetPath,
     required this.labelOnLeft,
     required this.metrics,
     required this.stopWithStars,
@@ -358,7 +352,7 @@ class _SpecialRow extends StatelessWidget {
   final bool lockedFinal;
   final Color accent;
   final String label;
-  final IconData icon;
+  final String iconAssetPath;
   final bool labelOnLeft;
   final WordHuntRouteStopMetrics metrics;
   final Widget stopWithStars;
@@ -384,7 +378,7 @@ class _SpecialRow extends StatelessWidget {
           levelIndex: level.index,
           type: level.type,
           label: label,
-          icon: icon,
+          iconAssetPath: iconAssetPath,
           accent: accent,
           dimmed: !unlocked && !lockedFinal,
           emphasized: level.type == WordHuntLevelType.routeFinal,
@@ -428,6 +422,9 @@ class _RouteStopOrb extends StatelessWidget {
       WordHuntLevelType.routeFinal => 58.0,
     };
     final visuallyHighlighted = unlocked || lockedFinal;
+    final numberIsBakedIntoBindingSource =
+        level.type == WordHuntLevelType.challenge ||
+        level.type == WordHuntLevelType.routeFinal;
     final assetPath = WordHuntProductionAssets.nodeFor(
       type: level.type,
       unlocked: unlocked,
@@ -449,23 +446,27 @@ class _RouteStopOrb extends StatelessWidget {
           Center(
             child:
                 visuallyHighlighted
-                    ? Text(
-                      '${level.index}',
-                      key: Key('word_hunt_route_stop_number_${level.index}'),
-                      style: TextStyle(
-                        color: theme.textColor,
-                        fontSize: numberSize,
-                        fontWeight: FontWeight.w800,
-                        height: 1,
-                        shadows: const <Shadow>[
-                          Shadow(
-                            color: Color(0xDD000000),
-                            blurRadius: 3,
-                            offset: Offset(0, 1.5),
+                    ? numberIsBakedIntoBindingSource
+                        ? const SizedBox.shrink()
+                        : Text(
+                          '${level.index}',
+                          key: Key(
+                            'word_hunt_route_stop_number_${level.index}',
                           ),
-                        ],
-                      ),
-                    )
+                          style: TextStyle(
+                            color: theme.textColor,
+                            fontSize: numberSize,
+                            fontWeight: FontWeight.w800,
+                            height: 1,
+                            shadows: const <Shadow>[
+                              Shadow(
+                                color: Color(0xDD000000),
+                                blurRadius: 3,
+                                offset: Offset(0, 1.5),
+                              ),
+                            ],
+                          ),
+                        )
                     : Icon(
                       Icons.lock_rounded,
                       key: Key('word_hunt_route_stop_lock_${level.index}'),
@@ -547,7 +548,7 @@ class _SpecialStopLabel extends StatelessWidget {
     required this.levelIndex,
     required this.type,
     required this.label,
-    required this.icon,
+    required this.iconAssetPath,
     required this.accent,
     required this.dimmed,
     required this.emphasized,
@@ -556,7 +557,7 @@ class _SpecialStopLabel extends StatelessWidget {
   final int levelIndex;
   final WordHuntLevelType type;
   final String label;
-  final IconData icon;
+  final String iconAssetPath;
   final Color accent;
   final bool dimmed;
   final bool emphasized;
@@ -564,6 +565,12 @@ class _SpecialStopLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final plaquePath = WordHuntProductionAssets.plaqueFor(type);
+    final iconScale = switch (type) {
+      WordHuntLevelType.challenge => 2.2,
+      WordHuntLevelType.bonus => 2.0,
+      WordHuntLevelType.routeFinal => 1.55,
+      WordHuntLevelType.normal => 1.0,
+    };
     assert(plaquePath != null);
     return Opacity(
       opacity: dimmed ? 0.72 : 1,
@@ -584,11 +591,24 @@ class _SpecialStopLabel extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _SpecialStopIcon(
-                    label: label,
-                    fallback: icon,
-                    color: accent,
-                    size: emphasized ? 40 : 36,
+                  SizedBox.square(
+                    dimension: emphasized ? 42 : 38,
+                    child: ClipRect(
+                      child: Transform.scale(
+                        key: Key(
+                          'word_hunt_route_stop_special_icon_scale_$levelIndex',
+                        ),
+                        scale: iconScale,
+                        child: Image.asset(
+                          iconAssetPath,
+                          key: Key(
+                            'word_hunt_route_stop_special_icon_$levelIndex',
+                          ),
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.high,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 12),
                   Flexible(
@@ -620,135 +640,4 @@ class _SpecialStopLabel extends StatelessWidget {
       ),
     );
   }
-}
-
-class _SpecialStopIcon extends StatelessWidget {
-  const _SpecialStopIcon({
-    required this.label,
-    required this.fallback,
-    required this.color,
-    required this.size,
-  });
-
-  final String label;
-  final IconData fallback;
-  final Color color;
-  final double size;
-
-  @override
-  Widget build(BuildContext context) {
-    if (label == 'MEYDAN OKUMA') {
-      return SizedBox.square(
-        key: const Key('word_hunt_route_stop_crossed_swords_5'),
-        dimension: size,
-        child: CustomPaint(painter: _CrossedSwordsPainter(color: color)),
-      );
-    }
-    if (label == 'ROTA FİNALİ') {
-      return SizedBox.square(
-        key: const Key('word_hunt_route_stop_treasure_chest_10'),
-        dimension: size,
-        child: CustomPaint(painter: _TreasureChestPainter(color: color)),
-      );
-    }
-    return Icon(fallback, color: color, size: size);
-  }
-}
-
-class _CrossedSwordsPainter extends CustomPainter {
-  const _CrossedSwordsPainter({required this.color});
-
-  final Color color;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final blade =
-        Paint()
-          ..color = color
-          ..style = PaintingStyle.stroke
-          ..strokeCap = StrokeCap.round
-          ..strokeWidth = size.width * 0.09;
-    final hilt =
-        Paint()
-          ..color = const Color(0xFFFFE3A0)
-          ..strokeCap = StrokeCap.round
-          ..strokeWidth = size.width * 0.075;
-    canvas.drawLine(
-      Offset(size.width * 0.22, size.height * 0.18),
-      Offset(size.width * 0.78, size.height * 0.82),
-      blade,
-    );
-    canvas.drawLine(
-      Offset(size.width * 0.78, size.height * 0.18),
-      Offset(size.width * 0.22, size.height * 0.82),
-      blade,
-    );
-    canvas.drawLine(
-      Offset(size.width * 0.18, size.height * 0.30),
-      Offset(size.width * 0.32, size.height * 0.16),
-      hilt,
-    );
-    canvas.drawLine(
-      Offset(size.width * 0.68, size.height * 0.16),
-      Offset(size.width * 0.82, size.height * 0.30),
-      hilt,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant _CrossedSwordsPainter oldDelegate) =>
-      oldDelegate.color != color;
-}
-
-class _TreasureChestPainter extends CustomPainter {
-  const _TreasureChestPainter({required this.color});
-
-  final Color color;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final outline =
-        Paint()
-          ..color = color
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = size.width * 0.085
-          ..strokeJoin = StrokeJoin.round;
-    final body = Rect.fromLTRB(
-      size.width * 0.12,
-      size.height * 0.42,
-      size.width * 0.88,
-      size.height * 0.86,
-    );
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(body, Radius.circular(size.width * 0.07)),
-      outline,
-    );
-    final lid =
-        Path()
-          ..moveTo(size.width * 0.15, size.height * 0.43)
-          ..quadraticBezierTo(
-            size.width * 0.50,
-            size.height * 0.08,
-            size.width * 0.85,
-            size.height * 0.43,
-          );
-    canvas.drawPath(lid, outline);
-    canvas.drawLine(
-      Offset(size.width * 0.12, size.height * 0.58),
-      Offset(size.width * 0.88, size.height * 0.58),
-      outline,
-    );
-    canvas.drawRect(
-      Rect.fromCenter(
-        center: Offset(size.width * 0.50, size.height * 0.60),
-        width: size.width * 0.16,
-        height: size.height * 0.22,
-      ),
-      Paint()..color = const Color(0xFFFFE3A0),
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant _TreasureChestPainter oldDelegate) =>
-      oldDelegate.color != color;
 }

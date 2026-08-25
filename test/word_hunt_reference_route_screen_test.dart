@@ -1,4 +1,5 @@
 import 'package:bilgi_rotasi/word_hunt/word_hunt_models.dart';
+import 'package:bilgi_rotasi/word_hunt/word_hunt_progress.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_reference_route_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,7 +10,11 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     await tester.pumpWidget(
-      const MaterialApp(home: WordHuntReferenceRouteScreen()),
+      const MaterialApp(
+        home: WordHuntReferenceRouteScreen(
+          sceneAssetPath: 'assets/word_hunt/baslangic_limani_bg.jpg',
+        ),
+      ),
     );
     await tester.pump();
   }
@@ -21,7 +26,11 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     await tester.pumpWidget(
-      const MaterialApp(home: WordHuntReferenceRouteScreen()),
+      const MaterialApp(
+        home: WordHuntReferenceRouteScreen(
+          sceneAssetPath: 'assets/word_hunt/baslangic_limani_bg.jpg',
+        ),
+      ),
     );
     await tester.pump();
   }
@@ -94,6 +103,76 @@ void main() {
       expect(find.text('BAŞLANGIÇ LİMANI'), findsOneWidget);
       expect(find.text('0 / 30'), findsOneWidget);
       expect(find.text('Kapı: 18'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'production route uses MASTER ART with transparent progression hitboxes',
+    (tester) async {
+      final tappedLevels = <int>[];
+      await tester.binding.setSurfaceSize(
+        WordHuntReferenceRouteLayout.canonicalSize,
+      );
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: WordHuntReferenceRouteScreen(
+            progress: const WordHuntProgressSnapshot(
+              bestStarsByLevelId: <String, int>{
+                'baslangic-1': 3,
+                'baslangic-2': 3,
+                'baslangic-3': 3,
+                'baslangic-4': 3,
+                'baslangic-5': 3,
+                'baslangic-6': 3,
+                'baslangic-7': 3,
+              },
+            ),
+            onLevelTap: tappedLevels.add,
+          ),
+        ),
+      );
+      await tester.pump();
+
+      final masterArt = tester.widget<Image>(
+        find.byKey(const Key('word_hunt_pixel_proof_master_art')),
+      );
+      expect(
+        (masterArt.image as AssetImage).assetName,
+        'assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg',
+      );
+      expect(
+        find.byKey(const Key('word_hunt_pixel_proof_node_9_override')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_reference_route_area')),
+        findsNothing,
+        reason: 'MASTER ART üzerine eski layered rota ikinci kez çizilmemeli.',
+      );
+      expect(
+        find.byKey(const Key('word_hunt_route_stop_asset_1')),
+        findsNothing,
+        reason: 'MASTER ART üzerine eski görünür node sanatı bindirilmemeli.',
+      );
+
+      await tester.tap(
+        find.byKey(const Key('word_hunt_pixel_proof_level_9')),
+        warnIfMissed: false,
+      );
+      await tester.pump();
+      expect(tappedLevels, <int>[9]);
+
+      await tester.tap(
+        find.byKey(const Key('word_hunt_pixel_proof_level_10')),
+        warnIfMissed: false,
+      );
+      await tester.pump();
+      expect(
+        tappedLevels,
+        <int>[9],
+        reason: 'Final 10, node 9 tamamlanmadan callback üretmemelidir.',
+      );
     },
   );
 

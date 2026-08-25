@@ -1,5 +1,6 @@
 import 'package:bilgi_rotasi/word_hunt/word_hunt_models.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_progress.dart';
+import 'package:bilgi_rotasi/word_hunt/word_hunt_starter_content.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -62,6 +63,32 @@ void main() {
     );
   });
 
+  test('Baslangic Limani 9 acik kalirken 10 mevcut sirali kilidi korur', () {
+    const progress = WordHuntProgressSnapshot(
+      bestStarsByLevelId: <String, int>{
+        'baslangic-1': 3,
+        'baslangic-2': 3,
+        'baslangic-3': 3,
+        'baslangic-4': 3,
+        'baslangic-5': 3,
+        'baslangic-6': 3,
+        'baslangic-7': 3,
+      },
+    );
+    const definition = WordHuntStarterContent.baslangicLimani;
+
+    expect(
+      WordHuntRouteProgressEngine.isLevelUnlocked(definition, progress, 9),
+      isTrue,
+      reason: 'Başlangıç Limanı 9 normal/açık ürün durağıdır.',
+    );
+    expect(
+      WordHuntRouteProgressEngine.isLevelUnlocked(definition, progress, 10),
+      isFalse,
+      reason: 'Final 10, 9 tamamlanmadan oynanabilir olmamalıdır.',
+    );
+  });
+
   test('dusuk tekrar sonucu daha iyi yildizi dusurmez', () {
     final first = const WordHuntProgressSnapshot().recordLevelResult(
       levelId: 'level_1',
@@ -75,7 +102,10 @@ void main() {
     );
 
     expect(second.starsFor('level_1'), 3);
-    expect(second.unlockedInfoCardIds, containsAll(<String>['kart_1', 'kart_2']));
+    expect(
+      second.unlockedInfoCardIds,
+      containsAll(<String>['kart_1', 'kart_2']),
+    );
   });
 
   test('yildiz sonucu 0 ile 3 arasinda sinirlanir', () {
