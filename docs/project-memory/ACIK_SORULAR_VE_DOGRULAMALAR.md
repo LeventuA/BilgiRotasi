@@ -2,24 +2,41 @@
 
 > 25 Ağustos 2026 aktif kesimidir. Bu tarihten önceki dosyanın tam ve değişmemiş kopyası `docs/project-memory/archive/ACIK_SORULAR_VE_DOGRULAMALAR_PRE_20260825.md` altında korunur.
 
-## Issue #109 / Draft PR #147 — GÖRSEL + MİMARİ KABUL KAPANDI / MERGE KARARI AÇIK
+## Issue #109 / PR #147 — KAPANDI
 
 - Issue #109 `Photo 1.jpg` Başlangıç Limanı için tek bağlayıcı MASTER ART'tır.
-- Önceki `8b1731c...` ve PR #146 / run `32740827443` görselleri Levent tarafından reddedildi; görsel kaynak değildir.
-- Güncel production commit `0ebd1212d7e66f809705c9c3d2711dd63141f4d7` gerçek `WordHuntReferenceRouteScreen` içinde MASTER ART raster taban + şeffaf hitbox mimarisini kullanır.
-- Node 9 progression commit'i `e34832bde06f8318833f8a4373d0aa43ba71141a`: 7 tamamlanınca 8 + 9 açılır; 9 callback aktif; final 10 node 9 tamamlanana kadar kilitli/callback yok.
-- Production Android 16 run/job `32778145314` / `97593889745`: SUCCESS; artifact `9539030303`, digest `sha256:a38a1cae778a32f232b266571c249ae3ca710ab7598119fb666af574e9e503f3`.
-- Pixel-proof run/job `32778145292` / `97593889800`: SUCCESS; artifact `9539028131`, digest `sha256:9794a1d5a3a1b94d5c030a879ae08f82dec9fa29abdabf5ad2742672a41d4b81`.
-- Production ve pixel-proof screenshot'ları byte düzeyinde aynı: SHA-256 `7fc42a56c15501785da02854f62e31041b1ead77869146f1a1cd64096e13bfcb`.
 - Levent gerçek production Android 16 görünümünü **GÖRSEL PASS** olarak kabul etti.
-- Levent `MASTER ART raster + şeffaf hitbox` production mimarisini **MİMARİ PASS** olarak açıkça kabul etti.
+- Levent `MASTER ART raster + şeffaf hitbox` production mimarisini **MİMARİ PASS** olarak kabul etti.
+- PR #147 final pre-merge head `4f1e2f60962236990556610f87313dda0b341e8b` üzerinde production Android 16 run `32781169538` ve pixel-proof run `32781169568` SUCCESS oldu.
+- Levent ayrıca açıkça `Merge et` onayı verdi.
+- PR #147 expected-head ile squash merge edildi; merge SHA `d118aa98c5551cb3b4418f61047f6a730406d963`.
+- PR #147 canlı durum: `CLOSED / MERGED`.
+- Hedef branch `feat/kelime-avi-baslangic-limani-asset-first-20260824` canlı HEAD: `d118aa98c5551cb3b4418f61047f6a730406d963`.
 
-**KAPANAN DOĞRULAMA:** Kullanıcı görsel/mimari kabulü artık `DOĞRULANACAK` değildir.
+**KAPANAN DOĞRULAMALAR:** görsel kabul, mimari kabul, node 9 progression, Android 16 production kanıtı ve PR #147 merge kararı artık açık değildir.
 
-**AÇIK KALAN:**
-1. PR #147 için ayrıca açık Ready/merge onayı verilecek mi? Mimari kabul merge onayı değildir.
-2. Mimari-onay docs commit'i sonrası PR #147 exact HEAD ve CI/check durumu yeniden doğrulanacak.
-3. Production ana uygulama navigasyonu (`lib/main.dart`) entegrasyonu için ayrı kapsam ve açık onay verilecek mi?
+---
+
+## PR #132 Başlangıç Limanı asset-first pilot — AÇIK
+
+- PR #132 canlı durum: `OPEN / DRAFT / MERGEABLE / MERGED=false`.
+- Base: `fix/kelime-avi-approved-reference-pixel-match-20260823` / `bc8a03bfefd401570e0c51cc4aab4206ea45d363`.
+- Head: `feat/kelime-avi-baslangic-limani-asset-first-20260824` / `d118aa98c5551cb3b4418f61047f6a730406d963`.
+- PR body eski ara asset durumunu taşıyabilir; güncel teknik gerçek canlı diff/HEAD'dir.
+
+**DOĞRULANACAK:**
+1. PR #132 net diff ve Git geçmişi final `d118aa98...` HEAD'inde temiz mi?
+2. PR #132 için fresh exact-head CI gerekli mi, yoksa merge edilen PR #147 tree kanıtı yeterli mi?
+3. Levent PR #132 için ayrıca merge onayı verecek mi?
+
+---
+
+## Kelime Avı production ana navigasyon entegrasyonu — AÇIK
+
+- `lib/main.dart` PR #147 ile değiştirilmedi.
+- Başlangıç Limanı production route ekranının gerçek uygulama girişine bağlanması ayrı kapsamdır.
+
+**DOĞRULANACAK:** Levent bu entegrasyon için ayrı açık kapsam/onay verecek mi?
 
 ---
 
@@ -36,16 +53,7 @@
 
 ## Canlı Düello fiziksel kabulü — AÇIK
 
-İki güncel Play cihazı ve iki ayrı hesapla:
-- otomatik eşleştirme,
-- 10/20/30 soru,
-- aynı soru/sıra,
-- skor/ilerleme,
-- maç sonucu,
-- BR/lig tek sefer işleme,
-- leaderboard,
-- kopma/ayrılma davranışı
-uçtan uca doğrulanacak.
+İki güncel Play cihazı ve iki ayrı hesapla otomatik eşleştirme, 10/20/30 soru, aynı soru/sıra, skor/ilerleme, maç sonucu, BR/lig tek sefer işleme, leaderboard ve kopma/ayrılma davranışı uçtan uca doğrulanacak.
 
 ---
 
