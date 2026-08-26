@@ -12,6 +12,7 @@ import 'package:image/image.dart' as img;
 // changes no production/test behavior; it triggers the path-filtered Android
 // 16 proof workflows after docs-only finalization commits.
 // Final-gate child PR intentionally preserves the exact production tree.
+// Final-cleanup gate also verifies the finalized pilot-status documentation.
 void main() {
   test('pixel proof source is the untouched Issue 109 Photo 1 JPEG', () {
     final file = File(WordHuntPixelProofAssets.masterArt);
