@@ -1,0 +1,171 @@
+name: Kelime Avı production rota Android 16 kanıtı
+
+on:
+  pull_request:
+    branches:
+      - feat/kelime-avi-baslangic-limani-asset-first-20260824
+    paths:
+      - 'lib/word_hunt/**'
+      - 'test/word_hunt_*.dart'
+      - 'assets/word_hunt/**'
+      - 'pubspec.yaml'
+      - '.github/workflows/word-hunt-production-route-proof.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production-route-proof:
+    name: Gerçek rota/progression Android 16 ekranı
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    env:
+      PROOF_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    steps:
+      - name: Exact feature HEAD'i indir
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PROOF_SHA }}
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Production progression ve rota testlerini çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test \
+            test/word_hunt_progress_test.dart \
+            test/word_hunt_route_stop_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            --reporter expanded
+          git diff --check
+
+      - name: Gerçek production rota bileşeni APK'sını üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_production_route_proof_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          mkdir -p reports
+          git rev-parse HEAD | tee reports/WORD_HUNT_PRODUCTION_ROUTE_HEAD_SHA.txt
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk \
+            | tee reports/WORD_HUNT_PRODUCTION_ROUTE_APK_SHA256.txt
+
+      - name: Android 16 emulator KVM erişimini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Android 16'da production rota ve node 9 callback'ini doğrula
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            mkdir -p reports
+            if adb shell pm path com.leventua.bilgirotasi 2>/dev/null | grep -q '^package:'; then adb uninstall com.leventua.bilgirotasi; fi
+            adb install build/app/outputs/flutter-apk/app-debug.apk
+            adb logcat -c
+            adb shell am force-stop com.leventua.bilgirotasi
+            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null
+            sleep 8
+            adb shell wm size > reports/WORD_HUNT_PRODUCTION_ROUTE_WM_SIZE.txt
+            adb shell dumpsys activity activities > reports/WORD_HUNT_PRODUCTION_ROUTE_ACTIVITY.txt
+            adb exec-out screencap -p > reports/PRODUCTION_ROUTE_ANDROID16.png
+            test -s reports/PRODUCTION_ROUTE_ANDROID16.png
+            adb shell input tap 528 1530
+            sleep 1
+            adb shell input tap 255 1338
+            sleep 2
+            adb shell input tap 990 75
+            sleep 2
+            adb exec-out screencap -p > reports/PIXEL_PROOF_ANDROID16.png
+            test -s reports/PIXEL_PROOF_ANDROID16.png
+            adb logcat -d > reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt
+            grep -F '[WORD_HUNT_PRODUCTION_ROUTE_READY]' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt > reports/WORD_HUNT_PRODUCTION_ROUTE_RUNTIME.txt
+            grep -F '[WORD_HUNT_PRODUCTION_NODE_TAP] level=9' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt >> reports/WORD_HUNT_PRODUCTION_ROUTE_RUNTIME.txt
+            if grep -Fq '[WORD_HUNT_PRODUCTION_NODE_TAP] level=10' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt; then echo 'Final 10 locked state produced a callback.' >&2; exit 1; fi
+            grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/WORD_HUNT_PRODUCTION_ROUTE_ACTIVITY.txt
+            grep -Eq 'mResumedActivity.*com\.leventua\.bilgirotasi|topResumedActivity=.*com\.leventua\.bilgirotasi|mCurrentFocus=.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_PRODUCTION_ROUTE_ACTIVITY.txt
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt; then echo 'Bilgi Rotası production route process failure detected.' >&2; exit 1; fi
+            printf '%s\n' 'PRODUCTION_ROUTE_RENDER=PASS' 'NODE_9_UNLOCKED_AND_CALLBACK=PASS' 'NODE_10_LOCKED_NO_CALLBACK=PASS' 'APP_PROCESS_FAILURE_SCAN=PASS' > reports/WORD_HUNT_PRODUCTION_ROUTE_RESULT.txt
+
+      - name: MASTER ART ve production karşılaştırma kanıtlarını üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/production-comparison reports/pixel-proof-comparison
+          dart run tools/compare_kelime_avi_master_art.dart \
+            assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg \
+            reports/PRODUCTION_ROUTE_ANDROID16.png \
+            reports/production-comparison
+          dart run tools/compare_kelime_avi_master_art.dart \
+            assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg \
+            reports/PIXEL_PROOF_ANDROID16.png \
+            reports/pixel-proof-comparison
+          cp reports/production-comparison/REFERENCE.png \
+            reports/MASTER_ART_REFERENCE.png
+          cp reports/production-comparison/SIDE_BY_SIDE.png \
+            reports/MASTER_VS_PRODUCTION_SIDE_BY_SIDE.png
+          cp reports/production-comparison/DIFF.png \
+            reports/MASTER_VS_PRODUCTION_DIFF.png
+          cp reports/production-comparison/pixel_geometry_metrics.json \
+            reports/MASTER_VS_PRODUCTION_METRICS.json
+          cp reports/pixel-proof-comparison/pixel_geometry_metrics.json \
+            reports/MASTER_VS_PIXEL_PROOF_METRICS.json
+          test -s reports/MASTER_ART_REFERENCE.png
+          test -s reports/PIXEL_PROOF_ANDROID16.png
+          test -s reports/PRODUCTION_ROUTE_ANDROID16.png
+          test -s reports/MASTER_VS_PRODUCTION_SIDE_BY_SIDE.png
+          test -s reports/MASTER_VS_PRODUCTION_DIFF.png
+
+      - name: Production rota kanıtlarını yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-ProductionRoute-${{ env.PROOF_SHA }}
+          path: |
+            reports/MASTER_ART_REFERENCE.png
+            reports/PIXEL_PROOF_ANDROID16.png
+            reports/PRODUCTION_ROUTE_ANDROID16.png
+            reports/MASTER_VS_PRODUCTION_SIDE_BY_SIDE.png
+            reports/MASTER_VS_PRODUCTION_DIFF.png
+            reports/MASTER_VS_PRODUCTION_METRICS.json
+            reports/MASTER_VS_PIXEL_PROOF_METRICS.json
+            reports/WORD_HUNT_PRODUCTION_ROUTE_ACTIVITY.txt
+            reports/WORD_HUNT_PRODUCTION_ROUTE_LOGCAT.txt
+            reports/WORD_HUNT_PRODUCTION_ROUTE_RUNTIME.txt
+            reports/WORD_HUNT_PRODUCTION_ROUTE_RESULT.txt
+            reports/WORD_HUNT_PRODUCTION_ROUTE_WM_SIZE.txt
+            reports/WORD_HUNT_PRODUCTION_ROUTE_HEAD_SHA.txt
+            reports/WORD_HUNT_PRODUCTION_ROUTE_APK_SHA256.txt
+          if-no-files-found: error
+          retention-days: 30

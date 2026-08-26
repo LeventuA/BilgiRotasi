@@ -36,14 +36,11 @@ void main() {
     expect(find.byKey(const Key('word_hunt_v2_book')), findsOneWidget);
 
     for (var index = 1; index <= 10; index++) {
-      expect(
-        find.byKey(Key('word_hunt_v2_level_$index')),
-        findsOneWidget,
-      );
+      expect(find.byKey(Key('word_hunt_v2_level_$index')), findsOneWidget);
     }
   });
 
-  testWidgets('v2 keeps progression semantics instead of faking unlock state', (
+  testWidgets('v2 opens node 9 but keeps final 10 progression locked', (
     tester,
   ) async {
     var tapped = 0;
@@ -68,6 +65,14 @@ void main() {
     await tester.ensureVisible(level9);
     await tester.pumpAndSettle();
     await tester.tap(level9, warnIfMissed: false);
+    await tester.pump();
+    expect(tapped, 9);
+
+    tapped = 0;
+    final level10 = find.byKey(const Key('word_hunt_v2_level_10'));
+    await tester.ensureVisible(level10);
+    await tester.pumpAndSettle();
+    await tester.tap(level10, warnIfMissed: false);
     await tester.pump();
     expect(tapped, 0);
   });

@@ -1,8 +1,7 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import 'word_hunt_models.dart';
+import 'word_hunt_production_assets.dart';
 
 /// Kelime Avı rota düğümlerinin tema bağımsız, deterministik geometrisi.
 ///
@@ -13,57 +12,100 @@ import 'word_hunt_models.dart';
 class WordHuntRouteStopMetrics {
   const WordHuntRouteStopMetrics({
     required this.normalDiameter,
-    required this.specialDiameter,
+    required this.lockedNormalDiameter,
+    required this.challengeDiameter,
+    required this.bonusDiameter,
     required this.finalDiameter,
     required this.normalContainerWidth,
     required this.normalContainerHeight,
-    required this.specialContainerWidth,
+    required this.challengeContainerWidth,
+    required this.bonusContainerWidth,
+    required this.finalContainerWidth,
     required this.specialContainerHeight,
-    required this.specialLabelGap,
+    required this.challengeLabelGap,
+    required this.bonusLabelGap,
+    required this.finalLabelGap,
+    required this.challengePlaqueHeight,
+    required this.bonusPlaqueHeight,
+    required this.finalPlaqueHeight,
     required this.starSize,
     required this.starGap,
   });
 
   static const referenceBaseline = WordHuntRouteStopMetrics(
-    normalDiameter: 50,
-    specialDiameter: 58,
-    finalDiameter: 70,
-    normalContainerWidth: 68,
-    normalContainerHeight: 76,
-    specialContainerWidth: 184,
-    specialContainerHeight: 96,
-    specialLabelGap: 7,
-    starSize: 15,
-    starGap: 2,
+    normalDiameter: 78,
+    lockedNormalDiameter: 100,
+    challengeDiameter: 104,
+    bonusDiameter: 104,
+    finalDiameter: 142,
+    normalContainerWidth: 110,
+    normalContainerHeight: 128,
+    challengeContainerWidth: 440,
+    bonusContainerWidth: 321,
+    finalContainerWidth: 406,
+    specialContainerHeight: 210,
+    challengeLabelGap: 12,
+    bonusLabelGap: 11,
+    finalLabelGap: 14,
+    challengePlaqueHeight: 88,
+    bonusPlaqueHeight: 82,
+    finalPlaqueHeight: 110,
+    starSize: 24,
+    starGap: 3,
   );
 
   final double normalDiameter;
-  final double specialDiameter;
+  final double lockedNormalDiameter;
+  final double challengeDiameter;
+  final double bonusDiameter;
   final double finalDiameter;
   final double normalContainerWidth;
   final double normalContainerHeight;
-  final double specialContainerWidth;
+  final double challengeContainerWidth;
+  final double bonusContainerWidth;
+  final double finalContainerWidth;
   final double specialContainerHeight;
-  final double specialLabelGap;
+  final double challengeLabelGap;
+  final double bonusLabelGap;
+  final double finalLabelGap;
+  final double challengePlaqueHeight;
+  final double bonusPlaqueHeight;
+  final double finalPlaqueHeight;
   final double starSize;
   final double starGap;
 
   double diameterFor(WordHuntLevelType type) => switch (type) {
     WordHuntLevelType.normal => normalDiameter,
-    WordHuntLevelType.challenge => specialDiameter,
-    WordHuntLevelType.bonus => specialDiameter,
+    WordHuntLevelType.challenge => challengeDiameter,
+    WordHuntLevelType.bonus => bonusDiameter,
     WordHuntLevelType.routeFinal => finalDiameter,
   };
 
-  double containerWidthFor(WordHuntLevelType type) =>
-      type == WordHuntLevelType.normal
-          ? normalContainerWidth
-          : specialContainerWidth;
+  double containerWidthFor(WordHuntLevelType type) => switch (type) {
+    WordHuntLevelType.normal => normalContainerWidth,
+    WordHuntLevelType.routeFinal => finalContainerWidth,
+    WordHuntLevelType.challenge => challengeContainerWidth,
+    WordHuntLevelType.bonus => bonusContainerWidth,
+  };
 
   double containerHeightFor(WordHuntLevelType type) =>
       type == WordHuntLevelType.normal
           ? normalContainerHeight
           : specialContainerHeight;
+
+  double labelGapFor(WordHuntLevelType type) => switch (type) {
+    WordHuntLevelType.challenge => challengeLabelGap,
+    WordHuntLevelType.bonus => bonusLabelGap,
+    WordHuntLevelType.routeFinal => finalLabelGap,
+    WordHuntLevelType.normal => 0,
+  };
+
+  double plaqueHeightFor(WordHuntLevelType type) => switch (type) {
+    WordHuntLevelType.challenge => challengePlaqueHeight,
+    WordHuntLevelType.bonus => bonusPlaqueHeight,
+    WordHuntLevelType.routeFinal => finalPlaqueHeight,
+    WordHuntLevelType.normal => 0,
+  };
 }
 
 /// Rota düğümünün yalnız görsel tokenlarını taşır.
@@ -186,20 +228,14 @@ class WordHuntRouteStop extends StatelessWidget {
     WordHuntLevelType.routeFinal => 'ROTA FİNALİ',
   };
 
-  IconData get _typeIcon => switch (level.type) {
-    WordHuntLevelType.normal => Icons.circle,
-    WordHuntLevelType.challenge => Icons.sports_martial_arts_rounded,
-    WordHuntLevelType.bonus => Icons.card_giftcard_rounded,
-    WordHuntLevelType.routeFinal => Icons.inventory_2_rounded,
-  };
-
   @override
   Widget build(BuildContext context) {
     final special = level.type != WordHuntLevelType.normal;
     final lockedFinal = level.type == WordHuntLevelType.routeFinal && !unlocked;
-    final accent = lockedFinal
-        ? theme.finalAccent
-        : unlocked
+    final accent =
+        lockedFinal
+            ? theme.finalAccent
+            : unlocked
             ? theme.accentFor(level.type)
             : theme.lockedAccent;
     final clampedStars = stars.clamp(0, 3).toInt();
@@ -209,7 +245,6 @@ class WordHuntRouteStop extends StatelessWidget {
       stars: clampedStars,
       unlocked: unlocked,
       lockedFinal: lockedFinal,
-      accent: accent,
       theme: theme,
       metrics: metrics,
     );
@@ -217,9 +252,10 @@ class WordHuntRouteStop extends StatelessWidget {
     return Semantics(
       button: unlocked,
       enabled: unlocked,
-      label: unlocked
-          ? 'Bölüm ${level.index}, ${_typeLabel.isEmpty ? 'normal' : _typeLabel}, $clampedStars yıldız, açık'
-          : 'Bölüm ${level.index}, kilitli',
+      label:
+          unlocked
+              ? 'Bölüm ${level.index}, ${_typeLabel.isEmpty ? 'normal' : _typeLabel}, $clampedStars yıldız, açık'
+              : 'Bölüm ${level.index}, kilitli',
       child: SizedBox(
         key: Key('word_hunt_route_stop_${level.index}'),
         width: metrics.containerWidthFor(level.type),
@@ -229,20 +265,21 @@ class WordHuntRouteStop extends StatelessWidget {
           child: InkWell(
             onTap: unlocked ? onTap : null,
             borderRadius: BorderRadius.circular(42),
-            child: special
-                ? _SpecialRow(
-                    level: level,
-                    unlocked: unlocked,
-                    lockedFinal: lockedFinal,
-                    accent: accent,
-                    label: _typeLabel,
-                    icon: _typeIcon,
-                    labelOnLeft: labelOnLeft,
-                    theme: theme,
-                    metrics: metrics,
-                    stopWithStars: stopWithStars,
-                  )
-                : Center(child: stopWithStars),
+            child:
+                special
+                    ? _SpecialRow(
+                      level: level,
+                      unlocked: unlocked,
+                      lockedFinal: lockedFinal,
+                      accent: accent,
+                      label: _typeLabel,
+                      iconAssetPath:
+                          WordHuntProductionAssets.iconFor(level.type)!,
+                      labelOnLeft: labelOnLeft,
+                      metrics: metrics,
+                      stopWithStars: stopWithStars,
+                    )
+                    : Center(child: stopWithStars),
           ),
         ),
       ),
@@ -256,7 +293,6 @@ class _StopMedallionAndStars extends StatelessWidget {
     required this.stars,
     required this.unlocked,
     required this.lockedFinal,
-    required this.accent,
     required this.theme,
     required this.metrics,
   });
@@ -265,7 +301,6 @@ class _StopMedallionAndStars extends StatelessWidget {
   final int stars;
   final bool unlocked;
   final bool lockedFinal;
-  final Color accent;
   final WordHuntRouteStopTheme theme;
   final WordHuntRouteStopMetrics metrics;
 
@@ -279,15 +314,18 @@ class _StopMedallionAndStars extends StatelessWidget {
           level: level,
           unlocked: unlocked,
           lockedFinal: lockedFinal,
-          accent: accent,
           theme: theme,
-          diameter: metrics.diameterFor(level.type),
+          diameter:
+              level.type == WordHuntLevelType.normal && !unlocked
+                  ? metrics.lockedNormalDiameter
+                  : metrics.diameterFor(level.type),
         ),
         SizedBox(height: metrics.starGap),
         _RouteStopStars(
           levelIndex: level.index,
           stars: stars,
           unlocked: unlocked,
+          goldTarget: level.type == WordHuntLevelType.routeFinal,
           theme: theme,
           starSize: metrics.starSize,
         ),
@@ -303,9 +341,8 @@ class _SpecialRow extends StatelessWidget {
     required this.lockedFinal,
     required this.accent,
     required this.label,
-    required this.icon,
+    required this.iconAssetPath,
     required this.labelOnLeft,
-    required this.theme,
     required this.metrics,
     required this.stopWithStars,
   });
@@ -315,9 +352,8 @@ class _SpecialRow extends StatelessWidget {
   final bool lockedFinal;
   final Color accent;
   final String label;
-  final IconData icon;
+  final String iconAssetPath;
   final bool labelOnLeft;
-  final WordHuntRouteStopTheme theme;
   final WordHuntRouteStopMetrics metrics;
   final Widget stopWithStars;
 
@@ -325,26 +361,39 @@ class _SpecialRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final diameter = metrics.diameterFor(level.type);
     final labelWidth =
-        metrics.specialContainerWidth - diameter - metrics.specialLabelGap;
-    final stopLabel = SizedBox(
-      width: labelWidth,
-      child: _SpecialStopLabel(
-        label: label,
-        icon: icon,
-        accent: accent,
-        dimmed: !unlocked && !lockedFinal,
-        theme: theme,
-        emphasized: level.type == WordHuntLevelType.routeFinal,
+        metrics.containerWidthFor(level.type) -
+        diameter -
+        metrics.labelGapFor(level.type);
+    final stopLabel = Transform.translate(
+      offset: Offset(
+        0,
+        level.type == WordHuntLevelType.routeFinal
+            ? 0
+            : -(metrics.starGap + metrics.starSize) / 2,
+      ),
+      child: SizedBox(
+        width: labelWidth,
+        height: metrics.plaqueHeightFor(level.type),
+        child: _SpecialStopLabel(
+          levelIndex: level.index,
+          type: level.type,
+          label: label,
+          iconAssetPath: iconAssetPath,
+          accent: accent,
+          dimmed: !unlocked && !lockedFinal,
+          emphasized: level.type == WordHuntLevelType.routeFinal,
+        ),
       ),
     );
-    final gap = SizedBox(width: metrics.specialLabelGap);
+    final gap = SizedBox(width: metrics.labelGapFor(level.type));
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: labelOnLeft
-          ? <Widget>[stopLabel, gap, stopWithStars]
-          : <Widget>[stopWithStars, gap, stopLabel],
+      children:
+          labelOnLeft
+              ? <Widget>[stopLabel, gap, stopWithStars]
+              : <Widget>[stopWithStars, gap, stopLabel],
     );
   }
 }
@@ -354,7 +403,6 @@ class _RouteStopOrb extends StatelessWidget {
     required this.level,
     required this.unlocked,
     required this.lockedFinal,
-    required this.accent,
     required this.theme,
     required this.diameter,
   });
@@ -362,217 +410,90 @@ class _RouteStopOrb extends StatelessWidget {
   final WordHuntLevelDefinition level;
   final bool unlocked;
   final bool lockedFinal;
-  final Color accent;
   final WordHuntRouteStopTheme theme;
   final double diameter;
 
   @override
   Widget build(BuildContext context) {
     final numberSize = switch (level.type) {
-      WordHuntLevelType.normal => 18.0,
-      WordHuntLevelType.challenge => 20.0,
-      WordHuntLevelType.bonus => 20.0,
-      WordHuntLevelType.routeFinal => 24.0,
+      WordHuntLevelType.normal => 30.0,
+      WordHuntLevelType.challenge => 39.0,
+      WordHuntLevelType.bonus => 40.0,
+      WordHuntLevelType.routeFinal => 58.0,
     };
     final visuallyHighlighted = unlocked || lockedFinal;
+    final numberIsBakedIntoBindingSource =
+        level.type == WordHuntLevelType.challenge ||
+        level.type == WordHuntLevelType.routeFinal;
+    final assetPath = WordHuntProductionAssets.nodeFor(
+      type: level.type,
+      unlocked: unlocked,
+    );
 
     return SizedBox.square(
       key: Key('word_hunt_route_stop_orb_${level.index}'),
       dimension: diameter,
-      child: CustomPaint(
-        key: Key('word_hunt_route_stop_frame_${level.index}'),
-        painter: _MedallionFramePainter(
-          accent: accent,
-          surfaceOuter: theme.surfaceOuter,
-          surfaceInner: theme.surfaceInner,
-          unlocked: visuallyHighlighted,
-          type: level.type,
-        ),
-        child: Stack(
-          fit: StackFit.expand,
-          clipBehavior: Clip.none,
-          children: [
-            Center(
-              child: visuallyHighlighted
-                  ? Text(
-                      '${level.index}',
-                      key: Key('word_hunt_route_stop_number_${level.index}'),
-                      style: TextStyle(
-                        color: theme.textColor,
-                        fontSize: numberSize,
-                        fontWeight: FontWeight.w800,
-                        height: 1,
-                        shadows: const <Shadow>[
-                          Shadow(
-                            color: Color(0xDD000000),
-                            blurRadius: 3,
-                            offset: Offset(0, 1.5),
+      child: Stack(
+        fit: StackFit.expand,
+        clipBehavior: Clip.none,
+        children: [
+          Image.asset(
+            assetPath,
+            key: Key('word_hunt_route_stop_asset_${level.index}'),
+            fit: BoxFit.contain,
+            filterQuality: FilterQuality.high,
+          ),
+          Center(
+            child:
+                visuallyHighlighted
+                    ? numberIsBakedIntoBindingSource
+                        ? const SizedBox.shrink()
+                        : Text(
+                          '${level.index}',
+                          key: Key(
+                            'word_hunt_route_stop_number_${level.index}',
                           ),
-                        ],
-                      ),
-                    )
-                  : Icon(
+                          style: TextStyle(
+                            color: theme.textColor,
+                            fontSize: numberSize,
+                            fontWeight: FontWeight.w800,
+                            height: 1,
+                            shadows: const <Shadow>[
+                              Shadow(
+                                color: Color(0xDD000000),
+                                blurRadius: 3,
+                                offset: Offset(0, 1.5),
+                              ),
+                            ],
+                          ),
+                        )
+                    : Icon(
                       Icons.lock_rounded,
                       key: Key('word_hunt_route_stop_lock_${level.index}'),
                       color: theme.lockColor,
-                      size: 20,
+                      size: 34,
                       shadows: const <Shadow>[
                         Shadow(color: Color(0xCC000000), blurRadius: 3),
                       ],
                     ),
-            ),
-            if (lockedFinal)
-              Positioned(
-                right: 2,
-                bottom: 2,
-                child: Container(
-                  key: Key('word_hunt_route_stop_lock_badge_${level.index}'),
-                  width: 18,
-                  height: 18,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: const Color(0xE6131820),
-                    border: Border.all(
-                      color: theme.finalAccent.withValues(alpha: 0.92),
-                      width: 1.2,
-                    ),
-                    boxShadow: const <BoxShadow>[
-                      BoxShadow(color: Color(0x99000000), blurRadius: 3),
-                    ],
-                  ),
-                  child: Icon(
-                    Icons.lock_rounded,
-                    color: theme.lockColor,
-                    size: 11,
-                  ),
-                ),
+          ),
+          if (level.type == WordHuntLevelType.routeFinal)
+            Positioned(
+              key: Key('word_hunt_route_stop_crown_${level.index}'),
+              top: -42,
+              left: -6,
+              width: 154,
+              height: 94,
+              child: Image.asset(
+                WordHuntProductionAssets.finalCrown,
+                key: Key('word_hunt_route_stop_crown_asset_${level.index}'),
+                fit: BoxFit.contain,
+                filterQuality: FilterQuality.high,
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
-  }
-}
-
-class _MedallionFramePainter extends CustomPainter {
-  const _MedallionFramePainter({
-    required this.accent,
-    required this.surfaceOuter,
-    required this.surfaceInner,
-    required this.unlocked,
-    required this.type,
-  });
-
-  final Color accent;
-  final Color surfaceOuter;
-  final Color surfaceInner;
-  final bool unlocked;
-  final WordHuntLevelType type;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
-    final radius = size.shortestSide / 2;
-    final special = type != WordHuntLevelType.normal;
-    final finalStop = type == WordHuntLevelType.routeFinal;
-    final alpha = unlocked ? 1.0 : 0.72;
-
-    final glowPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = finalStop ? 5.5 : (special ? 4.5 : 3.5)
-      ..color = accent.withValues(alpha: unlocked ? 0.22 : 0.10)
-      ..maskFilter = MaskFilter.blur(
-        BlurStyle.normal,
-        unlocked ? (finalStop ? 7 : 5) : 2,
-      );
-    canvas.drawCircle(center, radius - 5, glowPaint);
-
-    final shellPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..shader = RadialGradient(
-        colors: <Color>[
-          accent.withValues(alpha: unlocked ? 0.32 : 0.12),
-          surfaceInner,
-          surfaceOuter,
-        ],
-        stops: const <double>[0, 0.58, 1],
-      ).createShader(Rect.fromCircle(center: center, radius: radius - 4));
-    canvas.drawCircle(center, radius - 5, shellPaint);
-
-    final outerRing = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = finalStop ? 2.6 : 2.0
-      ..color = accent.withValues(alpha: 0.94 * alpha);
-    final innerRing = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0
-      ..color = accent.withValues(alpha: 0.48 * alpha);
-    final fineRing = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.8
-      ..color = const Color(0xFFFFF2C6).withValues(alpha: 0.42 * alpha);
-
-    canvas.drawCircle(center, radius - 5.5, outerRing);
-    canvas.drawCircle(center, radius - 9.0, innerRing);
-    canvas.drawCircle(center, radius - 12.5, fineRing);
-
-    final ornamentPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..color = accent.withValues(alpha: 0.90 * alpha);
-    final ornamentOutline = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.8
-      ..color = const Color(0xFFFFF2C6).withValues(alpha: 0.65 * alpha);
-
-    final ornamentCount = finalStop ? 8 : (special ? 6 : 4);
-    final ornamentLength = finalStop ? 7.0 : (special ? 5.5 : 4.5);
-    final ornamentWidth = finalStop ? 4.0 : 3.0;
-    final ornamentRadius = radius - 4.5;
-
-    for (var index = 0; index < ornamentCount; index++) {
-      final angle = -math.pi / 2 + (2 * math.pi * index / ornamentCount);
-      final radial = Offset(math.cos(angle), math.sin(angle));
-      final tangent = Offset(-radial.dy, radial.dx);
-      final base = center + radial * (ornamentRadius - ornamentLength * 0.5);
-      final tip = center + radial * (ornamentRadius + ornamentLength * 0.45);
-      final left = base + tangent * ornamentWidth;
-      final right = base - tangent * ornamentWidth;
-      final inner = center + radial * (ornamentRadius - ornamentLength * 1.15);
-
-      final path = Path()
-        ..moveTo(tip.dx, tip.dy)
-        ..lineTo(left.dx, left.dy)
-        ..lineTo(inner.dx, inner.dy)
-        ..lineTo(right.dx, right.dy)
-        ..close();
-      canvas.drawPath(path, ornamentPaint);
-      canvas.drawPath(path, ornamentOutline);
-    }
-
-    if (finalStop) {
-      final crownPaint = Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.4
-        ..strokeCap = StrokeCap.round
-        ..color = accent.withValues(alpha: 0.95 * alpha);
-      final top = center.dy - radius + 2;
-      final crown = Path()
-        ..moveTo(center.dx - 10, top + 9)
-        ..lineTo(center.dx - 6, top + 2)
-        ..lineTo(center.dx, top + 7)
-        ..lineTo(center.dx + 6, top + 2)
-        ..lineTo(center.dx + 10, top + 9);
-      canvas.drawPath(crown, crownPaint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _MedallionFramePainter oldDelegate) {
-    return oldDelegate.accent != accent ||
-        oldDelegate.surfaceOuter != surfaceOuter ||
-        oldDelegate.surfaceInner != surfaceInner ||
-        oldDelegate.unlocked != unlocked ||
-        oldDelegate.type != type;
   }
 }
 
@@ -581,6 +502,7 @@ class _RouteStopStars extends StatelessWidget {
     required this.levelIndex,
     required this.stars,
     required this.unlocked,
+    required this.goldTarget,
     required this.theme,
     required this.starSize,
   });
@@ -588,6 +510,7 @@ class _RouteStopStars extends StatelessWidget {
   final int levelIndex;
   final int stars;
   final bool unlocked;
+  final bool goldTarget;
   final WordHuntRouteStopTheme theme;
   final double starSize;
 
@@ -596,22 +519,24 @@ class _RouteStopStars extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: List<Widget>.generate(3, (index) {
-        final earned = index < stars;
+        final earned = index < stars || goldTarget;
         return Icon(
-          Icons.star_rounded,
+          earned ? Icons.star_rounded : Icons.star_border_rounded,
           key: Key('word_hunt_route_stop_star_${levelIndex}_$index'),
           size: starSize,
-          color: earned
-              ? theme.starFilled
-              : theme.starEmpty.withValues(alpha: unlocked ? 1 : 0.72),
-          shadows: earned
-              ? <Shadow>[
-                  Shadow(
-                    color: theme.starFilled.withValues(alpha: 0.55),
-                    blurRadius: 4,
-                  ),
-                ]
-              : const <Shadow>[],
+          color:
+              earned
+                  ? theme.starFilled
+                  : theme.starEmpty.withValues(alpha: unlocked ? 1 : 0.72),
+          shadows:
+              earned
+                  ? <Shadow>[
+                    Shadow(
+                      color: theme.starFilled.withValues(alpha: 0.55),
+                      blurRadius: 4,
+                    ),
+                  ]
+                  : const <Shadow>[],
         );
       }),
     );
@@ -620,76 +545,97 @@ class _RouteStopStars extends StatelessWidget {
 
 class _SpecialStopLabel extends StatelessWidget {
   const _SpecialStopLabel({
+    required this.levelIndex,
+    required this.type,
     required this.label,
-    required this.icon,
+    required this.iconAssetPath,
     required this.accent,
     required this.dimmed,
-    required this.theme,
     required this.emphasized,
   });
 
+  final int levelIndex;
+  final WordHuntLevelType type;
   final String label;
-  final IconData icon;
+  final String iconAssetPath;
   final Color accent;
   final bool dimmed;
-  final WordHuntRouteStopTheme theme;
   final bool emphasized;
 
   @override
   Widget build(BuildContext context) {
+    final plaquePath = WordHuntProductionAssets.plaqueFor(type);
+    final iconScale = switch (type) {
+      WordHuntLevelType.challenge => 2.2,
+      WordHuntLevelType.bonus => 2.0,
+      WordHuntLevelType.routeFinal => 1.55,
+      WordHuntLevelType.normal => 1.0,
+    };
+    assert(plaquePath != null);
     return Opacity(
       opacity: dimmed ? 0.72 : 1,
-      child: Container(
-        constraints: BoxConstraints(minHeight: emphasized ? 44 : 40),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-        decoration: BoxDecoration(
-          color: theme.labelSurface,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: accent.withValues(alpha: 0.84),
-            width: emphasized ? 1.6 : 1.2,
-          ),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: accent.withValues(alpha: 0.20),
-              blurRadius: 7,
+      child: SizedBox.expand(
+        key: Key('word_hunt_route_stop_plaque_$levelIndex'),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              plaquePath!,
+              key: Key('word_hunt_route_stop_plaque_asset_$levelIndex'),
+              fit: BoxFit.fill,
+              filterQuality: FilterQuality.high,
             ),
-          ],
-        ),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: accent.withValues(alpha: 0.22),
-              width: 0.8,
-            ),
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(icon, color: accent, size: emphasized ? 17 : 16),
-                const SizedBox(width: 5),
-                Flexible(
-                  child: Text(
-                    label,
-                    maxLines: 2,
-                    overflow: TextOverflow.fade,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: accent,
-                      fontSize: emphasized ? 10.5 : 10,
-                      height: 1.05,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 0.3,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox.square(
+                    dimension: emphasized ? 42 : 38,
+                    child: ClipRect(
+                      child: Transform.scale(
+                        key: Key(
+                          'word_hunt_route_stop_special_icon_scale_$levelIndex',
+                        ),
+                        scale: iconScale,
+                        child: Image.asset(
+                          iconAssetPath,
+                          key: Key(
+                            'word_hunt_route_stop_special_icon_$levelIndex',
+                          ),
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.high,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 12),
+                  Flexible(
+                    child: Text(
+                      label,
+                      maxLines: label == 'MEYDAN OKUMA' ? 1 : 2,
+                      overflow: TextOverflow.fade,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: accent,
+                        fontFamily: 'serif',
+                        fontSize:
+                            label == 'MEYDAN OKUMA'
+                                ? 24.0
+                                : emphasized
+                                ? 29.0
+                                : 24.0,
+                        height: 1.05,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 0.7,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

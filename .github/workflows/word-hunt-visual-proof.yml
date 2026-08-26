@@ -5,11 +5,13 @@ on:
     branches:
       - release/final-closed-test-aab-1.68.8
       - feat/home-word-hunt-foundation-20260820
+      - feat/kelime-avi-baslangic-limani-asset-first-20260824
     paths:
       - 'lib/word_hunt/**'
       - 'test/home_hub_prototype_test.dart'
       - 'test/word_hunt_*.dart'
       - 'assets/word_hunt/**'
+      - 'tools/compare_kelime_avi_master_art.dart'
       - 'pubspec.yaml'
       - '.github/workflows/word-hunt-visual-proof.yml'
   workflow_dispatch:
@@ -37,6 +39,15 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Dokunulmamış MASTER ART kaynağını doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          source=assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg
+          test "$(wc -c < "$source")" -eq 156589
+          test "$(sha256sum "$source" | cut -d' ' -f1)" = \
+            fb4597bb4d37b30cefeec2ba913c591fe9471529f80966830afd5b801a86fca3
+
       - name: Flutter 3.44.6 kur
         uses: subosito/flutter-action@v2
         with:
@@ -56,6 +67,8 @@ jobs:
             test/word_hunt_path_test.dart \
             test/word_hunt_progress_codec_test.dart \
             test/word_hunt_progress_test.dart \
+            test/word_hunt_production_assets_test.dart \
+            test/word_hunt_pixel_proof_screen_test.dart \
             test/word_hunt_route_stop_test.dart \
             test/word_hunt_reference_route_screen_test.dart \
             test/word_hunt_prototype_screens_test.dart \
@@ -78,28 +91,33 @@ jobs:
           git rev-parse HEAD | tee reports/WORD_HUNT_VISUAL_PROOF_HEAD_SHA.txt
           sha256sum build/app/outputs/flutter-apk/app-debug.apk \
             | tee reports/WORD_HUNT_VISUAL_PROOF_APK_SHA256.txt
-          unzip -l build/app/outputs/flutter-apk/app-debug.apk \
-            | grep -F 'assets/word_hunt/baslangic_limani_bg.jpg' \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
-          test -s reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
-          sha256sum assets/word_hunt/baslangic_limani_bg.jpg \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
-          wc -c assets/word_hunt/baslangic_limani_bg.jpg \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
-          unzip -p build/app/outputs/flutter-apk/app-debug.apk \
-            assets/flutter_assets/assets/word_hunt/baslangic_limani_bg.jpg \
-            > reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg
-          test -s reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg
-          sha256sum reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
-          wc -c reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg \
-            | tee reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
-          if cmp -s assets/word_hunt/baslangic_limani_bg.jpg reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg; then
-            echo 'SOURCE_EQUALS_PACKAGED=YES' | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
-          else
-            echo 'SOURCE_EQUALS_PACKAGED=NO' | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
-            exit 1
-          fi
+          source_assets=(
+            assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg
+            assets/word_hunt/baslangic_limani/node_normal.webp
+          )
+          : > reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
+          : > reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
+          : > reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
+          : > reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
+          : > reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
+          mkdir -p reports/packaged-assets
+          for source in "${source_assets[@]}"; do
+            packaged="reports/packaged-assets/${source#assets/}"
+            mkdir -p "$(dirname "$packaged")"
+            unzip -l build/app/outputs/flutter-apk/app-debug.apk \
+              | grep -F "assets/flutter_assets/$source" \
+              | tee -a reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
+            unzip -p build/app/outputs/flutter-apk/app-debug.apk \
+              "assets/flutter_assets/$source" > "$packaged"
+            test -s "$packaged"
+            cmp -s "$source" "$packaged"
+            sha256sum "$source" | tee -a reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
+            wc -c "$source" | tee -a reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
+            sha256sum "$packaged" | tee -a reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
+            wc -c "$packaged" | tee -a reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
+          done
+          echo "SOURCE_EQUALS_PACKAGED=YES count=2" \
+            | tee reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
 
       - name: Android 16 emulator KVM erişimini hazırla
         shell: bash
@@ -131,27 +149,43 @@ jobs:
             adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null
             sleep 8
             adb shell dumpsys activity activities > reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
-            adb exec-out screencap -p > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
+            adb exec-out screencap -p > reports/ANDROID16_RAW.png
             adb logcat -d > reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt
-            grep -E 'WORD_HUNT_ASSET_(LOADED|ERROR)' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt > reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt || true
-            test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
+            awk '/WORD_HUNT_PIXEL_PROOF_ASSET_(LOADED|ERROR)/' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt > reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt
+            test -s reports/ANDROID16_RAW.png
             grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
+            grep -Eq 'mResumedActivity.*com\.leventua\.bilgirotasi|topResumedActivity=.*com\.leventua\.bilgirotasi|mCurrentFocus=.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
             if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi' reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt; then echo 'Bilgi Rotası visual-proof process failure detected.' >&2; exit 1; fi
-            if grep -Fq '[WORD_HUNT_ASSET_ERROR]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt; then cat reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt >&2; exit 1; fi
-            grep -Fq '[WORD_HUNT_ASSET_LOADED]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt
-            adb shell input swipe 540 1550 540 520 400 || true
-            sleep 2
-            adb exec-out screencap -p > reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
-            test -s reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
+            if grep -Fq '[WORD_HUNT_PIXEL_PROOF_ASSET_ERROR]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt; then cat reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt >&2; exit 1; fi
+            grep -Fq '[WORD_HUNT_PIXEL_PROOF_ASSET_LOADED]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt
+            test "$(grep -Fc '[WORD_HUNT_PIXEL_PROOF_ASSET_LOADED]' reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt)" -eq 2
+
+      - name: MASTER ART karşılaştırma kanıtlarını üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          dart run tools/compare_kelime_avi_master_art.dart \
+            assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg \
+            reports/ANDROID16_RAW.png \
+            reports
+          test -s reports/REFERENCE.png
+          test -s reports/ANDROID16.png
+          test -s reports/SIDE_BY_SIDE.png
+          test -s reports/DIFF.png
+          test -s reports/pixel_geometry_metrics.json
 
       - name: Görsel kanıtları yükle
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-KelimeAvi-VisualProof-${{ env.PROOF_SHA }}
+          name: BilgiRotasi-KelimeAvi-PixelProof-${{ env.PROOF_SHA }}
           path: |
-            reports/WORD_HUNT_ROUTE_MAP_ANDROID16_TOP.png
-            reports/WORD_HUNT_ROUTE_MAP_ANDROID16_BOTTOM.png
+            reports/ANDROID16_RAW.png
+            reports/REFERENCE.png
+            reports/ANDROID16.png
+            reports/SIDE_BY_SIDE.png
+            reports/DIFF.png
+            reports/pixel_geometry_metrics.json
             reports/WORD_HUNT_VISUAL_PROOF_ACTIVITY.txt
             reports/WORD_HUNT_VISUAL_PROOF_LOGCAT.txt
             reports/WORD_HUNT_VISUAL_PROOF_ASSET_RUNTIME.txt
@@ -160,7 +194,6 @@ jobs:
             reports/WORD_HUNT_VISUAL_PROOF_APK_ASSET_LIST.txt
             reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_SHA256.txt
             reports/WORD_HUNT_VISUAL_PROOF_SOURCE_ASSET_BYTES.txt
-            reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET.jpg
             reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_SHA256.txt
             reports/WORD_HUNT_VISUAL_PROOF_PACKAGED_ASSET_BYTES.txt
             reports/WORD_HUNT_VISUAL_PROOF_ASSET_COMPARE.txt
