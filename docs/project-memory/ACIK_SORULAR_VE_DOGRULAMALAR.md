@@ -1,39 +1,75 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-> 25 Ağustos 2026 aktif kesimidir. Bu tarihten önceki dosyanın tam ve değişmemiş kopyası `docs/project-memory/archive/ACIK_SORULAR_VE_DOGRULAMALAR_PRE_20260825.md` altında korunur.
+> 26 Ağustos 2026 aktif kesimidir. Bu tarihten önceki dosyanın tam ve değişmemiş kopyası `docs/project-memory/archive/ACIK_SORULAR_VE_DOGRULAMALAR_PRE_20260825.md` altında korunur.
 
-## Issue #109 / PR #147 — KAPANDI
+## Issue #109 / PR #147 MASTER ART production — KAPANDI
 
 - Issue #109 `Photo 1.jpg` Başlangıç Limanı için tek bağlayıcı MASTER ART'tır.
-- Levent gerçek production Android 16 görünümünü **GÖRSEL PASS** olarak kabul etti.
+- Levent gerçek production Android 16 MASTER ART görünümünü **GÖRSEL PASS** olarak kabul etti.
 - Levent `MASTER ART raster + şeffaf hitbox` production mimarisini **MİMARİ PASS** olarak kabul etti.
-- PR #147 final pre-merge head `4f1e2f60962236990556610f87313dda0b341e8b` üzerinde production Android 16 run `32781169538` ve pixel-proof run `32781169568` SUCCESS oldu.
-- Levent ayrıca açıkça `Merge et` onayı verdi.
-- PR #147 expected-head ile squash merge edildi; merge SHA `d118aa98c5551cb3b4418f61047f6a730406d963`.
-- PR #147 canlı durum: `CLOSED / MERGED`.
-- Hedef branch `feat/kelime-avi-baslangic-limani-asset-first-20260824` canlı HEAD: `d118aa98c5551cb3b4418f61047f6a730406d963`.
+- PR #147 expected-head ile PR #132 feature branch'ine squash merge edildi.
+- Merge SHA `d118aa98c5551cb3b4418f61047f6a730406d963`.
 
-**KAPANAN DOĞRULAMALAR:** görsel kabul, mimari kabul, node 9 progression, Android 16 production kanıtı ve PR #147 merge kararı artık açık değildir.
+**KAPANDI:** MASTER ART kaynağı, mimari kabul, node 9 progression, PR #147 merge kararı.
 
 ---
 
-## PR #132 Başlangıç Limanı asset-first pilot — AÇIK
+## PR #150 dynamic progression state — KAPANDI
 
-- PR #132 canlı durum: `OPEN / DRAFT / MERGEABLE / MERGED=false`.
+PR #132 final incelemesinde MASTER ART içindeki demo state ile runtime progression state'in çelişebildiği tespit edildi.
+
+Düzeltildi:
+- gerçek `X / 30`,
+- level 1–10 gerçek `0–3` yıldız state'i,
+- gerçek locked/open state,
+- node 9 open state'i.
+
+İlk ikinci-yıldız-satırı denemesi FAIL kabul edildi ve kullanılmadı. MASTER ART'ın ölçülmüş star-slot pikselleri kullanılarak eski demo yıldız kalıntıları temizlendi.
+
+Son doğrulanmış kod HEAD: `aebb384912d379fc87908e4e79b31aecdaba427b`.
+- Android 16 production run `32969604847`: SUCCESS.
+- Artifact `9607328059`.
+- Digest `sha256:a1c01a5acb1c515b584e6cf1d24dea63ece57eaa9417f279f4b52f17e41ef776`.
+- Node 9 callback PASS.
+- Node 10 locked/no callback PASS.
+- App process failure scan PASS.
+- Screenshot visual QA PASS.
+
+PR #150 PR #132 feature branch'ine merge edildi; merge SHA `d64fcd4ea63f173c6653ff33926b12a6c99ef37d`.
+
+**KAPANDI:** raster demo progression state'in kullanıcıya yanlış görünmesi açığı.
+
+---
+
+## PR #149 proje hafızası checkpoint — KAPANDI
+
+- PR #149 PR #132 feature branch'ine merge edildi.
+- Merge SHA `adb4557a9a95dd624166b6b08a9e0ab27b1e4f80`.
+
+---
+
+## PR #132 Başlangıç Limanı production pilot — AÇIK
+
+- PR #132: `OPEN / DRAFT / MERGED=false`.
 - Base: `fix/kelime-avi-approved-reference-pixel-match-20260823` / `bc8a03bfefd401570e0c51cc4aab4206ea45d363`.
-- Head: `feat/kelime-avi-baslangic-limani-asset-first-20260824` / `d118aa98c5551cb3b4418f61047f6a730406d963`.
-- PR body eski ara asset durumunu taşıyabilir; güncel teknik gerçek canlı diff/HEAD'dir.
+- Head branch: `feat/kelime-avi-baslangic-limani-asset-first-20260824`.
+- Sürüm: `1.68.19+109`.
+- PR #147, #150 ve #149 bu branch'e merge edildi.
+- PR body güncel mimari ve final kapılarla hizalandı.
 
-**DOĞRULANACAK:**
-1. PR #132 net diff ve Git geçmişi final `d118aa98...` HEAD'inde temiz mi?
-2. PR #132 için fresh exact-head CI gerekli mi, yoksa merge edilen PR #147 tree kanıtı yeterli mi?
-3. Levent PR #132 için ayrıca merge onayı verecek mi?
+**DOĞRULANACAK — KALANLAR:**
+1. Bütün merge/docs commit'lerini içeren yeni exact HEAD nedir?
+2. Bu exact HEAD üzerinde focused test + analyze + `git diff --check` PASS mi?
+3. Android 16 production proof yeni exact HEAD üzerinde SUCCESS mi?
+4. Crash/ANR/FATAL/process-death taraması temiz mi?
+5. Final production screenshot/artifact görünümü kabul edilebilir mi?
+6. Levent PR #132 için ayrıca açık merge onayı verecek mi?
 
 ---
 
-## Kelime Avı production ana navigasyon entegrasyonu — AÇIK
+## Kelime Avı production ana navigasyon entegrasyonu — AÇIK / AYRI KAPSAM
 
-- `lib/main.dart` PR #147 ile değiştirilmedi.
+- Production `lib/main.dart` bu pilot merge zincirinde değiştirilmedi.
 - Başlangıç Limanı production route ekranının gerçek uygulama girişine bağlanması ayrı kapsamdır.
 
 **DOĞRULANACAK:** Levent bu entegrasyon için ayrı açık kapsam/onay verecek mi?

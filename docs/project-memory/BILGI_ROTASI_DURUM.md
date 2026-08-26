@@ -1,62 +1,105 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-> 25 Ağustos 2026 aktif kesimidir. PR #147 merge öncesi ayrıntılı durum dosyasının değişmemiş kopyası `docs/project-memory/archive/BILGI_ROTASI_DURUM_PRE_PR147_MERGE_20260825.md` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
+> 26 Ağustos 2026 aktif kesimidir. PR #147 merge öncesi ayrıntılı durum dosyasının değişmemiş kopyası `docs/project-memory/archive/BILGI_ROTASI_DURUM_PRE_PR147_MERGE_20260825.md` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
 
-## 0T. PR #147 Başlangıç Limanı MASTER ART production merge checkpoint — 25 Ağustos 2026
+## 0T. PR #147 Başlangıç Limanı MASTER ART production merge checkpoint — TAMAMLANDI
 
-- Levent gerçek Android 16 production görünümünü ve **MASTER ART raster + şeffaf hitbox** mimarisini daha önce açıkça kabul etti.
-- Levent 25 Ağustos 2026'da ayrıca açıkça `Merge et` onayı verdi.
-- PR #147 Draft'tan Ready'ye alındı; exact head `4f1e2f60962236990556610f87313dda0b341e8b` değişmeden kilitlendi.
-- PR #147 `squash` yöntemi ve `expected_head_sha=4f1e2f60962236990556610f87313dda0b341e8b` ile kontrollü merge edildi.
+- Levent gerçek Android 16 production görünümünü ve **MASTER ART raster + şeffaf hitbox** mimarisini açıkça kabul etti.
+- PR #147 controlled squash merge ile PR #132 feature branch'ine alındı.
 - Merge SHA: `d118aa98c5551cb3b4418f61047f6a730406d963`.
-- Merge mesajı: `fix(kelime-avi): match Baslangic Limani binding master art (#147)`.
-- Hedef branch `feat/kelime-avi-baslangic-limani-asset-first-20260824` merge sonrası canlı HEAD olarak `d118aa98c5551cb3b4418f61047f6a730406d963` değerine ilerledi.
-- GitHub PR #147 canlı metadata: `CLOSED / MERGED`; `merged_at=2026-08-25T12:31:03Z`.
-- Merge commit GitHub tarafından doğrulanmış imzalı commit olarak kaydedildi ve parent `1968c4bccd22468bec50f2188414a3e5f6f3fa4b` → tree `d78905a980c2e9928e2bc9de51eb2d825a81d293` biçimindedir.
-
-### Merge edilen ürün sözleşmesi
-
 - Issue #109 `Photo 1.jpg` Başlangıç Limanı için tek bağlayıcı MASTER ART'tır.
 - Production `WordHuntReferenceRouteScreen` MASTER ART raster görünür taban + şeffaf hitbox mimarisini kullanır.
 - Node 9 normal/open'dır; 7 tamamlanınca 8 + 9 açılır; 9 gerçek callback üretir.
 - Final 10, node 9 tamamlanmadan locked ve callback üretmez.
-- MASTER ART görünür node/route/plaque/kontrol sanatı ikinci kez Flutter katmanı olarak çizilmez; yalnız gerekli state farkı minimum override alır.
+- MASTER ART görünür rota/node/plaque/kontrol sanatı ikinci kez komple Flutter katmanı olarak çizilmez; yalnız gerekli state farkı minimum override alır.
 
-### Merge öncesi exact-head kanıtı
-
-Exact PR head `4f1e2f60962236990556610f87313dda0b341e8b`:
-
-- Production Android 16 run `32781169538`: SUCCESS; artifact `9540046796`; digest `sha256:e567f5e1b2681aa4fbab6ed4977c12f1aa78973fbf06dacf88ff4621680165bf`.
-- Pixel-proof Android 16 run `32781169568`: SUCCESS; artifact `9540079789`; digest `sha256:c6619bc468b6c90edcfb69e2b19798b762ec031cdc54e2515f2602f46b385b16`.
-- Focused Kelime Avı suite: `110/110 PASS`.
+PR #147 pre-merge exact-head kanıtı:
+- Production Android 16 run `32781169538`: SUCCESS; artifact `9540046796`.
+- Pixel-proof run `32781169568`: SUCCESS; artifact `9540079789`.
+- Focused Kelime Avı `110/110 PASS`.
 - `dart analyze lib/word_hunt`: `No issues found`.
-- `git diff --check`: PASS.
-- Runtime: `PRODUCTION_ROUTE_RENDER=PASS`, `NODE_9_UNLOCKED_AND_CALLBACK=PASS`, `NODE_10_LOCKED_NO_CALLBACK=PASS`, `APP_PROCESS_FAILURE_SCAN=PASS`.
-- App crash/ANR/FATAL/process-death: 0.
+- Runtime gates PASS; app crash/ANR/FATAL/process-death: 0.
 
-Merge SHA `d118aa98...` aynı onaylı tree'yi taşır. Merge anındaki canlı sorguda bu yeni squash SHA üzerinde ayrıca check-run yoktu; pre-merge exact-head kanıtı merge edilen tree'nin doğrudan kanıtıdır.
-
-**Durum:** PR #147 MERGED / VISUAL PASS / ARCHITECTURE PASS / ANDROID 16 PASS.
+**Durum:** PR #147 MERGED / VISUAL PASS / ARCHITECTURE PASS.
 
 ---
 
-## 0U. PR #132 Başlangıç Limanı asset-first pilot final entegrasyon kapısı
+## 0U. PR #150 Dynamic progression doğruluğu — TAMAMLANDI / MERGED
 
-- PR #132: `feat(kelime-avi): start Baslangic Limani asset-first production pilot`.
-- Durum: `OPEN / DRAFT / MERGEABLE / MERGED=false`.
+PR #132 final incelemesinde flattened MASTER ART içindeki demo progression bilgisinin runtime state ile çelişebildiği bulundu:
+
+- MASTER ART'ta sabit `12 / 30`,
+- sabit dolu/boş yıldızlar,
+- raster locked/open state
+
+gerçek `WordHuntProgressSnapshot` değiştiğinde yanlış bilgi gösterebiliyordu.
+
+Draft PR #150 ile production görünür state lokalde dinamik hale getirildi:
+
+- gerçek `X / 30`,
+- level 1–10 gerçek `0–3` yıldız state'i,
+- gerçek locked/open state,
+- node 9 open state'i.
+
+İlk deneme ikinci yıldız satırı oluşturduğu için görsel FAIL kabul edildi. MASTER ART'ın gerçek star-slot piksel yuvaları ölçülerek düzeltildi. Bonus 8, normal 9 ve büyük final 10 generic çap hesabı kullanmaz.
+
+Son doğrulanmış kod HEAD: `aebb384912d379fc87908e4e79b31aecdaba427b`.
+
+- Android 16 production run `32969604847`: SUCCESS.
+- Artifact `9607328059`.
+- Digest `sha256:a1c01a5acb1c515b584e6cf1d24dea63ece57eaa9417f279f4b52f17e41ef776`.
+- Focused progression/route test adımı: PASS.
+- Node 9 callback: PASS.
+- Node 10 locked/no callback: PASS.
+- App process failure scan: PASS.
+- MASTER ART comparison: PASS.
+- Production screenshot görsel QA: eski demo star kalıntısı yok; proof progression ile görünür state tutarlı.
+
+PR #150 merge SHA: `d64fcd4ea63f173c6653ff33926b12a6c99ef37d`.
+
+Production asset contract da kullanıcı tarafından kabul edilen mimariye hizalandı:
+
+`MASTER ART RASTER → TRANSPARENT INTERACTION HITBOXES → MINIMUM LOCAL STATE OVERRIDES`
+
+**Durum:** TAMAMLANDI / PR #132 FEATURE BRANCH'İNE MERGED.
+
+---
+
+## 0V. PR #149 proje hafızası merge checkpoint — TAMAMLANDI
+
+- PR #149 PR #147 sonrası yaşayan proje hafızası checkpoint'ini taşıdı.
+- Hedef: PR #132 feature branch.
+- Merge SHA: `adb4557a9a95dd624166b6b08a9e0ab27b1e4f80`.
+- Bu merge ürün kodunu değiştirmedi.
+
+**Durum:** MERGED.
+
+---
+
+## 0W. PR #132 Başlangıç Limanı final entegrasyon kapısı — AÇIK
+
+- PR #132 başlığı güncellendi: `feat(kelime-avi): Baslangic Limani MASTER ART production pilot`.
+- Durum: `OPEN / DRAFT / MERGED=false`.
 - Base: `fix/kelime-avi-approved-reference-pixel-match-20260823` / `bc8a03bfefd401570e0c51cc4aab4206ea45d363`.
-- Head: `feat/kelime-avi-baslangic-limani-asset-first-20260824` / `d118aa98c5551cb3b4418f61047f6a730406d963`.
-- PR #132 body eski asset-first ara durumunu içeriyor olabilir; güncel teknik gerçek canlı HEAD/diff ve bu checkpoint'tir.
-- PR #132 için Levent'ten ayrı açık merge onayı alınmadan Ready/merge yapılmaz.
+- Head branch: `feat/kelime-avi-baslangic-limani-asset-first-20260824`.
+- PR #147, PR #150 ve PR #149 artık bu branch'e alınmıştır.
+- Sürüm hâlâ `1.68.19+109`.
 
-**Durum:** AÇIK / AYRI REVIEW + AYRI MERGE ONAYI GEREKİYOR.
+**Kalan final kapılar:**
+1. Bütün merge/docs commit'lerini içeren yeni exact HEAD üzerinde focused test + analyze + `git diff --check`.
+2. Yeni exact HEAD Android 16 production route proof.
+3. Crash/ANR/FATAL/process-death taraması.
+4. Final production screenshot/artifact incelemesi.
+5. Levent'in ayrıca açık PR #132 merge onayı.
+
+**Durum:** AÇIK / FINAL EXACT-HEAD DOĞRULAMA + AYRI MERGE ONAYI GEREKİYOR.
 
 ---
 
-## 0V. Kelime Avı production ana navigasyon entegrasyonu
+## 0X. Kelime Avı production ana navigasyon entegrasyonu — AYRI KAPSAM
 
-- `lib/main.dart` PR #147 kapsamında değiştirilmedi.
-- Başlangıç Limanı production route ekranının gerçek uygulama girişine bağlanması ayrı görevdir.
+- Production `lib/main.dart` bu pilot merge zincirinde değiştirilmedi.
+- Başlangıç Limanı production route ekranının gerçek uygulama navigasyonuna bağlanması ayrı görevdir.
 - Release/main, AdMob/Firebase, BoardMap/67 node/3B ve `assets/questions.json` bu entegrasyon uğruna kontrolsüz değiştirilemez.
 
 **Durum:** AÇIK / AYRI BRANCH + TEST + PR + ONAY GEREKİYOR.
