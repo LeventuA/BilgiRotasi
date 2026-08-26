@@ -1,0 +1,230 @@
+{
+  "generated_at": "2026-08-24T18:30:00+03:00",
+  "pillow_version": "12.3.0",
+  "webpinfo": "UNAVAILABLE_ON_WINDOWS_HOST",
+  "dwebp": "UNAVAILABLE_ON_WINDOWS_HOST",
+  "flutter_codec_test": "PASS (test/word_hunt_production_assets_test.dart)",
+  "assets": [
+    {
+      "path": "assets/word_hunt/baslangic_limani_bg.jpg",
+      "bytes": 693174,
+      "sha256": "dc81e99f752e878e09ce8f165ea7e4b49943e2270f64ded4d05b27ee837b0ce4",
+      "format": "JPEG",
+      "width": 1080,
+      "height": 2340,
+      "mode": "RGB",
+      "alpha": false,
+      "decode": "PASS"
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/bonus_icon.png",
+      "bytes": 3341,
+      "sha256": "2fa0aa640d9ba713d43e6b4fd41a060d25ab503ffbbd147265fd0ed46881a4fd",
+      "format": "PNG",
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/bonus_plaque.webp",
+      "bytes": 6186,
+      "sha256": "b5deec70beb4312ed7065a2aa74f6a0570ce08d880d13dd785314c352b05c8cd",
+      "format": "WEBP",
+      "width": 504,
+      "height": 210,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/book_button.webp",
+      "bytes": 39554,
+      "sha256": "f07f259fa683bb3228d7dbfea67d653a60d5266ea1fe9b6b449b7157fbdaceac",
+      "format": "WEBP",
+      "width": 172,
+      "height": 172,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/challenge_icon.png",
+      "bytes": 2500,
+      "sha256": "e2d8e99916e464e0fc485282d93ff6c1573ac235ceb01da0ce19037a66b4ae66",
+      "format": "PNG",
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/challenge_plaque.webp",
+      "bytes": 6856,
+      "sha256": "4729340d1d7d52d2afa3bdc25e4712c96f907083de6a8439b2875e822b90788e",
+      "format": "WEBP",
+      "width": 756,
+      "height": 198,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/compass_button.webp",
+      "bytes": 61648,
+      "sha256": "6ecf2385bc2c565beb4ca19c5ad6eb9d1592662f23712c6ea5fa10dfdf5869d7",
+      "format": "WEBP",
+      "width": 280,
+      "height": 280,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/final_crown.webp",
+      "bytes": 12060,
+      "sha256": "38b86507e2fe192b94a497e61f07ff7a71362536fef468a0074f1991361de051",
+      "format": "WEBP",
+      "width": 333,
+      "height": 204,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/final_icon.png",
+      "bytes": 4801,
+      "sha256": "916dd265c466da0b61792442ebe53734120a5725f0fd1988cd174483a065c8ab",
+      "format": "PNG",
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/final_plaque.webp",
+      "bytes": 8360,
+      "sha256": "70b6568bbbaf7fdcdc2a6a8216865cd33ae72f831b9a9fcd074333a42cdeb064",
+      "format": "WEBP",
+      "width": 720,
+      "height": 258,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/node_bonus.webp",
+      "bytes": 44460,
+      "sha256": "7e814e6335a67e281bae6bdbf3f29de2778488e72fae4675915e5e8327a37037",
+      "format": "WEBP",
+      "width": 246,
+      "height": 246,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/node_challenge.webp",
+      "bytes": 21302,
+      "sha256": "1775e5ac730c90a88de3233e75980ab2bbe77aa4e9280c4edddb20b88511123b",
+      "format": "WEBP",
+      "width": 112,
+      "height": 112,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/node_final.webp",
+      "bytes": 38664,
+      "sha256": "f1686c53d5d558497c9cd5adcf48583d56f1a1df4642bc6482591e26f7f82651",
+      "format": "WEBP",
+      "width": 156,
+      "height": 156,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/node_locked.webp",
+      "bytes": 13628,
+      "sha256": "45bbe37421001f919ad001a228817e38997f7938ef6ef2e92b7d8057c6c4c52f",
+      "format": "WEBP",
+      "width": 318,
+      "height": 318,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/word_hunt/baslangic_limani/node_normal.webp",
+      "bytes": 10268,
+      "sha256": "f8f92c6e690bbb2681f0d404186b67d5419168fbfc1164490292df0f2892659c",
+      "format": "WEBP",
+      "width": 246,
+      "height": 246,
+      "mode": "RGBA",
+      "alpha": true,
+      "decode": "PASS",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    }
+  ]
+}

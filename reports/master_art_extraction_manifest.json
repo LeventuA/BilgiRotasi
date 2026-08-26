@@ -1,0 +1,130 @@
+{
+  "source": "Issue #109 Photo 1.jpg",
+  "source_path": "reports/MASTER_ART_REFERENCE.png",
+  "source_sha256": "faf8a4a2598e7e63fc857e694483a923fd3d3994e242b9f1b83554693ed52160",
+  "source_dimensions": [
+    1080,
+    1920
+  ],
+  "method": "direct-source-pixels-crop-mask-alpha",
+  "forbidden_sources_used": [],
+  "assets": {
+    "node_challenge.webp": {
+      "source_crop": [
+        306,
+        814,
+        418,
+        926
+      ],
+      "requested_source_crop": [
+        290,
+        798,
+        434,
+        942
+      ],
+      "transparent_padding_trim": [
+        16,
+        16,
+        128,
+        128
+      ],
+      "dimensions": [
+        112,
+        112
+      ],
+      "mask": {
+        "kind": "source-segmentation-plus-inner-face-radial-edge",
+        "center": [
+          72.0,
+          72.0
+        ],
+        "outer_radius": 56.0,
+        "inner_radius": 43.0,
+        "feather": 3.0,
+        "min_y": 0,
+        "max_y": 144
+      },
+      "sha256": "1775e5ac730c90a88de3233e75980ab2bbe77aa4e9280c4edddb20b88511123b",
+      "source_pixel_identity": true,
+      "generated_art": false
+    },
+    "node_final.webp": {
+      "source_crop": [
+        450,
+        1452,
+        606,
+        1608
+      ],
+      "requested_source_crop": [
+        430,
+        1432,
+        626,
+        1628
+      ],
+      "transparent_padding_trim": [
+        20,
+        20,
+        176,
+        176
+      ],
+      "dimensions": [
+        156,
+        156
+      ],
+      "mask": {
+        "kind": "source-segmentation-plus-inner-face-radial-edge",
+        "center": [
+          98.0,
+          98.0
+        ],
+        "outer_radius": 78.0,
+        "inner_radius": 65.0,
+        "feather": 3.0,
+        "min_y": 46,
+        "max_y": 196
+      },
+      "sha256": "f1686c53d5d558497c9cd5adcf48583d56f1a1df4642bc6482591e26f7f82651",
+      "source_pixel_identity": true,
+      "generated_art": false
+    },
+    "book_button.webp": {
+      "source_crop": [
+        859,
+        1678,
+        1031,
+        1850
+      ],
+      "requested_source_crop": [
+        850,
+        1669,
+        1040,
+        1859
+      ],
+      "transparent_padding_trim": [
+        9,
+        9,
+        181,
+        181
+      ],
+      "dimensions": [
+        172,
+        172
+      ],
+      "mask": {
+        "kind": "source-segmentation-plus-inner-face-radial-edge",
+        "center": [
+          95.0,
+          95.0
+        ],
+        "outer_radius": 86.0,
+        "inner_radius": 72.0,
+        "feather": 3.0,
+        "min_y": 0,
+        "max_y": 190
+      },
+      "sha256": "f07f259fa683bb3228d7dbfea67d653a60d5266ea1fe9b6b449b7157fbdaceac",
+      "source_pixel_identity": true,
+      "generated_art": false
+    }
+  }
+}
