@@ -12,8 +12,8 @@ import 'word_hunt_pixel_proof_screen.dart';
 /// - kilitli durakların görünür lock state'i,
 /// - her durağın gerçek 0-3 yıldızı.
 ///
-/// Böylece kabul edilmiş raster görünüm korunurken ekranda görünen state gerçek
-/// [WordHuntProgressSnapshot] ile çelişmez.
+/// Değişken alanlar MASTER ART'taki eski demo değerlerinin tam üstüne oturur;
+/// ikinci sayaç veya ikinci yıldız satırı oluşturmaz.
 class WordHuntMasterArtProgressOverlay extends StatelessWidget {
   const WordHuntMasterArtProgressOverlay({
     super.key,
@@ -24,7 +24,9 @@ class WordHuntMasterArtProgressOverlay extends StatelessWidget {
   final WordHuntRouteDefinition route;
   final WordHuntProgressSnapshot progress;
 
-  static const Rect _progressCounterRect = Rect.fromLTWH(286, 151, 148, 34);
+  // 720x1280 MASTER ART kaynak uzayında eski `12 / 30` metin yuvası.
+  // Soldaki dekoratif altın yıldız raster'da kalır; yalnız demo sayı maskelenir.
+  static const Rect _progressCounterRect = Rect.fromLTWH(166, 158, 100, 34);
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +83,10 @@ class _ProgressCounter extends StatelessWidget {
     return DecoratedBox(
       key: const Key('word_hunt_master_art_progress_counter'),
       decoration: BoxDecoration(
-        color: const Color(0xE80A1420),
-        borderRadius: BorderRadius.circular(17),
-        border: Border.all(color: const Color(0x8057DCE5), width: 1),
+        color: const Color(0xFF0A0D13),
+        borderRadius: BorderRadius.circular(4),
         boxShadow: const <BoxShadow>[
-          BoxShadow(color: Color(0x99000000), blurRadius: 5),
+          BoxShadow(color: Color(0x66000000), blurRadius: 2),
         ],
       ),
       child: Center(
@@ -93,13 +94,14 @@ class _ProgressCounter extends StatelessWidget {
           '$stars / $maximumStars',
           key: const Key('word_hunt_master_art_progress_counter_text'),
           style: const TextStyle(
-            color: Color(0xFFFFF4D0),
-            fontSize: 17,
+            color: Color(0xFFFFD56A),
+            fontFamily: 'serif',
+            fontSize: 20,
             fontWeight: FontWeight.w700,
-            letterSpacing: .4,
+            letterSpacing: .15,
             height: 1,
             shadows: <Shadow>[
-              Shadow(color: Color(0xFF000000), blurRadius: 3),
+              Shadow(color: Color(0xFF000000), blurRadius: 2),
             ],
           ),
         ),
@@ -168,9 +170,11 @@ class _LevelStarsOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final safeStars = stars.clamp(0, 3);
-    const width = 54.0;
-    const height = 19.0;
-    final top = center.dy + diameter / 2 + 6;
+    const width = 48.0;
+    const height = 17.0;
+    // MASTER ART'taki yıldızların merkezine oturur; eski demo yıldızları
+    // maskelenir ve yalnız gerçek state görünür kalır.
+    final top = center.dy + diameter / 2 - 5;
 
     return Positioned(
       key: Key('word_hunt_master_art_level_${levelIndex}_stars'),
@@ -180,9 +184,8 @@ class _LevelStarsOverlay extends StatelessWidget {
       height: height,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: const Color(0xD90A111B),
-          borderRadius: BorderRadius.circular(9.5),
-          border: Border.all(color: const Color(0x553E8F9A), width: .7),
+          color: const Color(0xC9000000),
+          borderRadius: BorderRadius.circular(8.5),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -193,7 +196,7 @@ class _LevelStarsOverlay extends StatelessWidget {
               key: Key(
                 'word_hunt_master_art_level_${levelIndex}_star_${index + 1}',
               ),
-              size: 15,
+              size: 14,
               color:
                   filled
                       ? const Color(0xFFFFC94A)
