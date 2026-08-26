@@ -28,6 +28,35 @@ class WordHuntMasterArtProgressOverlay extends StatelessWidget {
   // Soldaki dekoratif altın yıldız raster'da kalır; yalnız demo sayı maskelenir.
   static const Rect _progressCounterRect = Rect.fromLTWH(166, 158, 100, 34);
 
+  // Issue #109 MASTER ART'ın 720x1280 kaynak piksellerinden ölçülen yıldız
+  // yuvaları. Generic node çapı hesabı özellikle 8/9/10'da ikinci yıldız
+  // satırı üretiyordu; bu rect'ler eski demo yıldızlarının TAM üstüne oturur.
+  static const List<Rect> _levelStarRects = <Rect>[
+    Rect.fromLTWH(106, 334, 58, 18), // 1
+    Rect.fromLTWH(292, 360, 56, 18), // 2
+    Rect.fromLTWH(436, 419, 54, 18), // 3
+    Rect.fromLTWH(550, 508, 56, 18), // 4
+    Rect.fromLTWH(211, 614, 62, 20), // 5 challenge
+    Rect.fromLTWH(94, 740, 58, 18), // 6
+    Rect.fromLTWH(304, 777, 56, 18), // 7
+    Rect.fromLTWH(448, 830, 64, 20), // 8 bonus
+    Rect.fromLTWH(137, 930, 66, 20), // 9
+    Rect.fromLTWH(304, 1072, 96, 30), // 10 final
+  ];
+
+  static const List<double> _levelStarIconSizes = <double>[
+    16,
+    16,
+    16,
+    16,
+    17,
+    16,
+    16,
+    17,
+    17,
+    27,
+  ];
+
   @override
   Widget build(BuildContext context) {
     final totalStars = WordHuntRouteProgressEngine.totalStars(route, progress);
@@ -50,8 +79,8 @@ class WordHuntMasterArtProgressOverlay extends StatelessWidget {
           for (var index = 0; index < levelCount; index++) ...<Widget>[
             _LevelStarsOverlay(
               levelIndex: index + 1,
-              center: WordHuntPixelProofLayout.levelCenters[index],
-              diameter: WordHuntPixelProofLayout.levelHitboxDiameters[index],
+              rect: _levelStarRects[index],
+              iconSize: _levelStarIconSizes[index],
               stars: progress.starsFor(route.levels[index].id),
             ),
             if (!WordHuntRouteProgressEngine.isLevelUnlocked(
@@ -157,38 +186,32 @@ class _LockedLevelOverlay extends StatelessWidget {
 class _LevelStarsOverlay extends StatelessWidget {
   const _LevelStarsOverlay({
     required this.levelIndex,
-    required this.center,
-    required this.diameter,
+    required this.rect,
+    required this.iconSize,
     required this.stars,
   });
 
   final int levelIndex;
-  final Offset center;
-  final double diameter;
+  final Rect rect;
+  final double iconSize;
   final int stars;
 
   @override
   Widget build(BuildContext context) {
     final safeStars = stars.clamp(0, 3);
-    const width = 48.0;
-    const height = 17.0;
-    // MASTER ART'taki yıldızların merkezine oturur; eski demo yıldızları
-    // maskelenir ve yalnız gerçek state görünür kalır.
-    final top = center.dy + diameter / 2 - 5;
 
-    return Positioned(
+    return Positioned.fromRect(
       key: Key('word_hunt_master_art_level_${levelIndex}_stars'),
-      left: center.dx - width / 2,
-      top: top,
-      width: width,
-      height: height,
+      rect: rect,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: const Color(0xC9000000),
-          borderRadius: BorderRadius.circular(8.5),
+          // Tam opak lokal maske MASTER ART'taki demo yıldız pikselini gizler.
+          // Rect yalnız yıldız yuvasını kapsar; rota/node/plaque sanatına taşmaz.
+          color: const Color(0xFF060B12),
+          borderRadius: BorderRadius.circular(rect.height / 2),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List<Widget>.generate(3, (index) {
             final filled = index < safeStars;
             return Icon(
@@ -196,7 +219,7 @@ class _LevelStarsOverlay extends StatelessWidget {
               key: Key(
                 'word_hunt_master_art_level_${levelIndex}_star_${index + 1}',
               ),
-              size: 14,
+              size: iconSize,
               color:
                   filled
                       ? const Color(0xFFFFC94A)
