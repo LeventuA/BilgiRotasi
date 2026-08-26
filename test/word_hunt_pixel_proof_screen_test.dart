@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bilgi_rotasi/word_hunt/word_hunt_pixel_proof_screen.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_progress.dart';
+import 'package:bilgi_rotasi/word_hunt/word_hunt_starter_content.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -22,7 +23,7 @@ void main() {
   });
 
   testWidgets(
-    'pixel proof keeps master scene and overrides only node 9 as normal/open',
+    'pixel proof keeps master art while visible progression follows real state',
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(540, 960));
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -32,8 +33,6 @@ void main() {
       );
       await tester.pump();
 
-      final images = tester.widgetList<Image>(find.byType(Image)).toList();
-      expect(images, hasLength(2));
       final masterArt = tester.widget<Image>(
         find.byKey(const Key('word_hunt_pixel_proof_master_art')),
       );
@@ -44,6 +43,24 @@ void main() {
       expect(masterArt.fit, BoxFit.fill);
       expect(masterArt.filterQuality, FilterQuality.none);
 
+      expect(
+        find.byKey(const Key('word_hunt_master_art_progress_counter_text')),
+        findsOneWidget,
+      );
+      expect(find.text('0 / 30'), findsOneWidget);
+      expect(
+        find.byKey(const Key('word_hunt_master_art_level_1_locked')),
+        findsNothing,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_master_art_level_2_locked')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_master_art_level_10_locked')),
+        findsOneWidget,
+      );
+
       final nodeNine = tester.widget<Image>(
         find.byKey(const Key('word_hunt_pixel_proof_node_9_asset')),
       );
@@ -52,17 +69,6 @@ void main() {
         WordHuntPixelProofAssets.nodeNineOpen,
       );
       expect(find.text('9'), findsOneWidget);
-      expect(find.byIcon(Icons.lock_rounded), findsNothing);
-      expect(find.byIcon(Icons.star_rounded), findsNothing);
-
-      final override = find.byKey(
-        const Key('word_hunt_pixel_proof_node_9_override'),
-      );
-      expect(tester.getSize(override), const Size.square(72));
-      expect(
-        tester.getCenter(override),
-        offsetMoreOrLessEquals(const Offset(127.44, 669.12), epsilon: 0.01),
-      );
 
       final scene = find.byKey(const Key('word_hunt_pixel_proof_source_scene'));
       expect(
@@ -74,17 +80,73 @@ void main() {
           find.byKey(Key('word_hunt_pixel_proof_level_$level')),
           findsOneWidget,
         );
+        expect(
+          find.byKey(Key('word_hunt_master_art_level_${level}_stars')),
+          findsOneWidget,
+        );
       }
-      expect(
-        find.byKey(const Key('word_hunt_pixel_proof_compass')),
-        findsOneWidget,
-      );
-      expect(
-        find.byKey(const Key('word_hunt_pixel_proof_book')),
-        findsOneWidget,
-      );
     },
   );
+
+  testWidgets('visible stars and unlocks track progressed snapshot', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(720, 1280));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final route = WordHuntStarterContent.baslangicLimani;
+    final progress = WordHuntProgressSnapshot(
+      bestStarsByLevelId: <String, int>{
+        route.levels[0].id: 3,
+        route.levels[1].id: 2,
+        route.levels[2].id: 1,
+        route.levels[3].id: 3,
+        route.levels[4].id: 1,
+        route.levels[5].id: 2,
+        route.levels[6].id: 3,
+      },
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: WordHuntPixelProofScreen(
+          route: route,
+          progress: progress,
+          nodeNineOpenOverride: true,
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(find.text('15 / 30'), findsOneWidget);
+    expect(
+      find.byKey(const Key('word_hunt_master_art_level_8_locked')),
+      findsNothing,
+      reason: '7 tamamlanınca bonus 8 açılmalı.',
+    );
+    expect(
+      find.byKey(const Key('word_hunt_master_art_level_9_locked')),
+      findsNothing,
+      reason: '7 tamamlanınca normal 9 da açılmalı.',
+    );
+    expect(
+      find.byKey(const Key('word_hunt_master_art_level_10_locked')),
+      findsOneWidget,
+      reason: '9 tamamlanmadan final 10 kilitli kalmalı.',
+    );
+
+    expect(
+      tester.widget<Icon>(
+        find.byKey(const Key('word_hunt_master_art_level_1_star_3')),
+      ).icon,
+      Icons.star_rounded,
+    );
+    expect(
+      tester.widget<Icon>(
+        find.byKey(const Key('word_hunt_master_art_level_2_star_3')),
+      ).icon,
+      Icons.star_outline_rounded,
+    );
+  });
 
   testWidgets('pixel proof keeps progression callbacks behind invisible art', (
     tester,
