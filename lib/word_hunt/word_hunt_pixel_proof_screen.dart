@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'word_hunt_master_art_progress_overlay.dart';
 import 'word_hunt_production_assets.dart';
 import 'word_hunt_models.dart';
 import 'word_hunt_progress.dart';
@@ -59,12 +60,11 @@ abstract final class WordHuntPixelProofLayout {
   static const double nodeNineVisualDiameter = 72;
 }
 
-/// Yalnız pixel-perfect Android kanıtı için kullanılan izole sahne.
+/// Kabul edilmiş MASTER ART raster sahnesini gerçek progression state'iyle
+/// birlikte gösteren Başlangıç Limanı production/pixel-proof sahnesi.
 ///
-/// Görünür sahne MASTER ART'tan gelir; yalnız node 9 kullanıcının açık kararına
-/// göre mevcut normal node asset'iyle örtülür. Diğer çocuklar renksiz ve
-/// bordersız hitbox'tır. Production `lib/main.dart` ve progression verisi
-/// değiştirilmez.
+/// MASTER ART görünür taban olarak korunur. Değişken oyun durumu yalnız küçük
+/// state override'larıyla yansıtılır; etkileşimler görünmez hitbox'lardadır.
 class WordHuntPixelProofScreen extends StatelessWidget {
   const WordHuntPixelProofScreen({
     super.key,
@@ -108,6 +108,10 @@ class WordHuntPixelProofScreen extends StatelessWidget {
                     height: WordHuntPixelProofLayout.sourceSize.height,
                     fit: BoxFit.fill,
                     filterQuality: FilterQuality.none,
+                  ),
+                  WordHuntMasterArtProgressOverlay(
+                    route: route,
+                    progress: progress,
                   ),
                   if (nodeNineOpenOverride) const _NodeNineOpenOverride(),
                   for (
