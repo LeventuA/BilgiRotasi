@@ -3,7 +3,9 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import 'word_hunt_models.dart';
+import 'word_hunt_pixel_proof_screen.dart';
 import 'word_hunt_progress.dart';
+import 'word_hunt_production_assets.dart';
 import 'word_hunt_route_stop.dart';
 import 'word_hunt_starter_content.dart';
 
@@ -128,8 +130,11 @@ class WordHuntReferenceRouteVisualContract {
   }
 }
 
-/// Başlangıç Limanı'nın resmi referans hiyerarşisini doğrulamak için izole
-/// Flutter ekranı. Production `lib/main.dart` navigasyonuna bağlı değildir.
+/// Başlangıç Limanı'nın production rota bileşeni.
+///
+/// Varsayılan rota, onaylı MASTER ART sahnesini şeffaf etkileşim hitbox'ları
+/// ve yalnız gerekli state override'larıyla gösterir. `sceneAssetPath` yalnız
+/// eski katmanlı geometri sözleşmesinin izole regresyon testleri içindir.
 class WordHuntReferenceRouteScreen extends StatelessWidget {
   const WordHuntReferenceRouteScreen({
     super.key,
@@ -157,6 +162,26 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (route.id == WordHuntStarterContent.baslangicLimani.id &&
+        sceneAssetPath == null) {
+      final nodeNineOpen = WordHuntRouteProgressEngine.isLevelUnlocked(
+        route,
+        progress,
+        9,
+      );
+      return WordHuntPixelProofScreen(
+        key: const Key('word_hunt_production_master_art_route'),
+        route: route,
+        progress: progress,
+        nodeNineOpenOverride: nodeNineOpen,
+        onBack: onBack,
+        onInfo: onInfo,
+        onCompass: onCompass,
+        onBook: onBook,
+        onLevelTap: onLevelTap,
+      );
+    }
+
     final totalStars = WordHuntRouteProgressEngine.totalStars(route, progress);
     final lastUnlocked = _lastUnlockedIndex();
 
@@ -265,10 +290,10 @@ class WordHuntReferenceRouteScreen extends StatelessWidget {
                                       ? 'word_hunt_reference_compass'
                                       : 'word_hunt_reference_book',
                                 ),
-                                icon:
+                                assetPath:
                                     index == 0
-                                        ? Icons.explore_rounded
-                                        : Icons.menu_book_rounded,
+                                        ? WordHuntProductionAssets.compassButton
+                                        : WordHuntProductionAssets.bookButton,
                                 semanticLabel:
                                     index == 0 ? 'Pusula' : 'Bilgi Kitabı',
                                 onTap: index == 0 ? onCompass : onBook,
@@ -725,12 +750,12 @@ class _ReferenceRoundButton extends StatelessWidget {
 class _ReferenceBottomControl extends StatelessWidget {
   const _ReferenceBottomControl({
     super.key,
-    required this.icon,
+    required this.assetPath,
     required this.semanticLabel,
     this.onTap,
   });
 
-  final IconData icon;
+  final String assetPath;
   final String semanticLabel;
   final VoidCallback? onTap;
 
@@ -747,56 +772,21 @@ class _ReferenceBottomControl extends StatelessWidget {
           customBorder: const CircleBorder(),
           child: SizedBox.square(
             dimension: 170,
-            child: CustomPaint(
-              painter: const _ReferenceBottomControlPainter(),
-              child: Icon(icon, color: const Color(0xFFF2CE71), size: 78),
+            child: Image.asset(
+              assetPath,
+              key: Key(
+                semanticLabel == 'Pusula'
+                    ? 'word_hunt_reference_compass_asset'
+                    : 'word_hunt_reference_book_asset',
+              ),
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.high,
             ),
           ),
         ),
       ),
     );
   }
-}
-
-class _ReferenceBottomControlPainter extends CustomPainter {
-  const _ReferenceBottomControlPainter();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = size.center(Offset.zero);
-    canvas.drawCircle(
-      center,
-      size.width * 0.49,
-      Paint()
-        ..shader = const RadialGradient(
-          colors: <Color>[Color(0xFF1C303A), Color(0xFF071019)],
-        ).createShader(Offset.zero & size),
-    );
-    for (final ring in <(double, double, Color)>[
-      (0.46, 3.0, const Color(0xFFE2B760)),
-      (0.39, 1.8, const Color(0xFF7F5B2D)),
-      (0.32, 1.2, const Color(0xFFB38B4D)),
-    ]) {
-      canvas.drawCircle(
-        center,
-        size.width * ring.$1,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = ring.$2
-          ..color = ring.$3,
-      );
-    }
-    final ornament = Paint()..color = const Color(0xFFD8A951);
-    for (var index = 0; index < 8; index++) {
-      final angle = index * math.pi / 4;
-      final direction = Offset(math.cos(angle), math.sin(angle));
-      canvas.drawCircle(center + direction * size.width * 0.425, 2.4, ornament);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _ReferenceBottomControlPainter oldDelegate) =>
-      false;
 }
 
 class _ReferenceFramePainter extends CustomPainter {
