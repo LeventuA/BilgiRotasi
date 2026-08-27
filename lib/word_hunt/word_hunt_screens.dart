@@ -31,10 +31,12 @@ class WordHuntLevelProductionScreen extends StatefulWidget {
     super.key,
     required this.level,
     required this.infoCards,
+    this.now,
   });
 
   final WordHuntLevelDefinition level;
   final List<WordHuntInfoCard> infoCards;
+  final DateTime Function()? now;
 
   @override
   State<WordHuntLevelProductionScreen> createState() =>
@@ -52,6 +54,8 @@ class _WordHuntLevelProductionScreenState
   List<WordHuntCell> _selectedPath = const <WordHuntCell>[];
   WordHuntCell? _dragStart;
   Timer? _timer;
+  Timer? _errorFeedbackTimer;
+  late final DateTime _startedAt;
   int _elapsedSeconds = 0;
   int? _completionElapsedSeconds;
   int _mistakes = 0;
@@ -60,6 +64,7 @@ class _WordHuntLevelProductionScreenState
   bool _resultDelivered = false;
   bool _exitDialogOpen = false;
   bool _allowPop = false;
+  Set<WordHuntCell> _errorCells = const <WordHuntCell>{};
   String _status = 'İlk harfe dokun, parmağını kelimenin üzerinde sürükle.';
 
   bool get _allTargetsFound =>
@@ -71,19 +76,38 @@ class _WordHuntLevelProductionScreenState
   int get _displayedElapsedSeconds =>
       _completionElapsedSeconds ?? _elapsedSeconds;
 
+  DateTime _now() => widget.now?.call() ?? DateTime.now();
+
+  int _wallClockElapsedSeconds() =>
+      math.max(0, _now().difference(_startedAt).inSeconds);
+
   @override
   void initState() {
     super.initState();
+    _startedAt = _now();
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!mounted || _completionElapsedSeconds != null) return;
-      setState(() => _elapsedSeconds++);
+      final elapsed = _wallClockElapsedSeconds();
+      if (elapsed == _elapsedSeconds) return;
+      setState(() => _elapsedSeconds = elapsed);
     });
   }
 
   @override
   void dispose() {
     _timer?.cancel();
+    _errorFeedbackTimer?.cancel();
     super.dispose();
+  }
+
+  void _startErrorFeedback(Iterable<WordHuntCell> cells) {
+    _errorFeedbackTimer?.cancel();
+    _errorCells = cells.where((cell) => !_isFound(cell)).toSet();
+    if (_errorCells.isEmpty) return;
+    _errorFeedbackTimer = Timer(const Duration(milliseconds: 280), () {
+      if (!mounted) return;
+      setState(() => _errorCells = const <WordHuntCell>{});
+    });
   }
 
   WordHuntCell? _cellForPosition(Offset position, Size size) {
@@ -131,6 +155,8 @@ class _WordHuntLevelProductionScreenState
     final cell = _cellForPosition(position, size);
     if (cell == null) return;
     setState(() {
+      _errorFeedbackTimer?.cancel();
+      _errorCells = const <WordHuntCell>{};
       _dragStart = cell;
       _selectedPath = <WordHuntCell>[cell];
       _selectionInvalid = false;
@@ -144,7 +170,10 @@ class _WordHuntLevelProductionScreenState
     if (end == null) return;
     final path = _straightPathBetween(start, end);
     if (path == null) {
-      setState(() => _selectionInvalid = true);
+      setState(() {
+        _selectionInvalid = true;
+        _selectedPath = <WordHuntCell>[start, end];
+      });
       return;
     }
 
@@ -175,6 +204,7 @@ class _WordHuntLevelProductionScreenState
     if (_dragStart == null || _completionElapsedSeconds != null) return;
     if (_selectionInvalid) {
       setState(() {
+        _startErrorFeedback(_selectedPath);
         _selectedPath = const <WordHuntCell>[];
         _dragStart = null;
         _selectionInvalid = false;
@@ -207,7 +237,9 @@ class _WordHuntLevelProductionScreenState
                   ? '$word bulundu!'
                   : 'Bilgi kartı açıldı: $cardTitle';
           if (_allTargetsFound && _completionElapsedSeconds == null) {
-            _completionElapsedSeconds = _elapsedSeconds;
+            final elapsed = _wallClockElapsedSeconds();
+            _elapsedSeconds = elapsed;
+            _completionElapsedSeconds = elapsed;
             _timer?.cancel();
           }
         case WordHuntSelectionKind.bonus:
@@ -222,6 +254,7 @@ class _WordHuntLevelProductionScreenState
         case WordHuntSelectionKind.alreadyFound:
           _status = '${result.canonicalWord} zaten bulundu.';
         case WordHuntSelectionKind.notAWord:
+          _startErrorFeedback(selectedPath);
           _mistakes++;
           _status = 'Bu seçim listede yok. Başka bir yol dene.';
         case WordHuntSelectionKind.invalidPath:
@@ -506,6 +539,7 @@ class _WordHuntLevelProductionScreenState
                             );
                             final selected = _selectedPath.contains(cell);
                             final found = _isFound(cell);
+                            final error = _errorCells.contains(cell);
                             return AnimatedContainer(
                               key: Key(
                                 'word_hunt_production_cell_${row}_$column',
@@ -516,6 +550,8 @@ class _WordHuntLevelProductionScreenState
                                 color:
                                     selected
                                         ? const Color(0xFF8B5CF6)
+                                        : error
+                                        ? const Color(0xFF9A3412)
                                         : found
                                         ? const Color(0xFF0F766E)
                                         : const Color(0xFF142A4C),
@@ -524,18 +560,36 @@ class _WordHuntLevelProductionScreenState
                                   color:
                                       selected
                                           ? const Color(0xFFD8B4FE)
+                                          : error
+                                          ? const Color(0xFFF97316)
                                           : found
                                           ? const Color(0xFF5EEAD4)
                                           : const Color(0xFF34527A),
                                 ),
                               ),
-                              child: Text(
-                                String.fromCharCode(rune),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w900,
-                                ),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                alignment: Alignment.center,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      String.fromCharCode(rune),
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
+                                  ),
+                                  if (error)
+                                    IgnorePointer(
+                                      child: SizedBox.expand(
+                                        key: Key(
+                                          'word_hunt_production_error_cell_${row}_$column',
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
                             );
                           },

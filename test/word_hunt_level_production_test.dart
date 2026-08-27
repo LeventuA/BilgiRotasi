@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  Future<void> pumpLevel(WidgetTester tester) async {
+  Future<void> pumpLevel(
+    WidgetTester tester, {
+    DateTime Function()? now,
+  }) async {
     await tester.binding.setSurfaceSize(const Size(540, 960));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
@@ -12,6 +15,7 @@ void main() {
         home: WordHuntLevelProductionScreen(
           level: WordHuntStarterContent.baslangicLimani.levels.first,
           infoCards: WordHuntStarterContent.infoCards,
+          now: now,
         ),
       ),
     );
@@ -87,21 +91,43 @@ void main() {
 
     await dragCells(
       tester,
-      startRow: 0,
+      startRow: 3,
       startColumn: 0,
-      endRow: 0,
+      endRow: 3,
       endColumn: 1,
     );
     expect(find.text('1 hata'), findsOneWidget);
+    expect(
+      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
+      findsOneWidget,
+    );
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(
+      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
+      findsNothing,
+    );
 
     await dragCells(
       tester,
-      startRow: 0,
+      startRow: 3,
       startColumn: 0,
-      endRow: 1,
+      endRow: 4,
       endColumn: 2,
     );
     expect(find.text('1 hata'), findsOneWidget);
+    expect(
+      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const Key('word_hunt_production_error_cell_4_2')),
+      findsOneWidget,
+    );
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(
+      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
+      findsNothing,
+    );
 
     await dragCells(
       tester,
@@ -122,6 +148,7 @@ void main() {
     tester,
   ) async {
     WordHuntLevelPlayResult? result;
+    var now = DateTime(2026, 8, 27, 12);
     await tester.binding.setSurfaceSize(const Size(540, 960));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
@@ -143,6 +170,7 @@ void main() {
                                         .levels
                                         .first,
                                 infoCards: WordHuntStarterContent.infoCards,
+                                now: () => now,
                               ),
                         ),
                       );
@@ -156,7 +184,9 @@ void main() {
     );
     await tester.tap(find.byKey(const Key('open_level')));
     await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 2));
+    now = now.add(const Duration(seconds: 7));
+    await tester.pump(const Duration(seconds: 1));
+    expect(find.text('7s'), findsOneWidget);
 
     await dragCells(
       tester,
@@ -165,6 +195,7 @@ void main() {
       endRow: 0,
       endColumn: 4,
     );
+    now = now.add(const Duration(seconds: 3));
     await dragCells(
       tester,
       startRow: 1,
@@ -183,7 +214,9 @@ void main() {
               find.byKey(const Key('word_hunt_production_elapsed_text')),
             )
             .data;
-    await tester.pump(const Duration(seconds: 3));
+    expect(frozen, '10s');
+    now = now.add(const Duration(seconds: 5));
+    await tester.pump(const Duration(seconds: 5));
     expect(
       tester
           .widget<Text>(
@@ -207,6 +240,7 @@ void main() {
       find.byKey(const Key('word_hunt_production_result_star_3')),
       findsOneWidget,
     );
+    expect(find.text('10 saniye'), findsOneWidget);
     await tester.tap(
       find.byKey(const Key('word_hunt_production_return_route')),
     );
@@ -361,6 +395,29 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('word_hunt_production_screen')), findsNothing);
     await tester.pump(const Duration(seconds: 2));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('dispose elapsed ve error feedback callbacklerini iptal eder', (
+    tester,
+  ) async {
+    var now = DateTime(2026, 8, 27, 12);
+    await pumpLevel(tester, now: () => now);
+    await dragCells(
+      tester,
+      startRow: 3,
+      startColumn: 0,
+      endRow: 3,
+      endColumn: 1,
+    );
+    expect(
+      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
+      findsOneWidget,
+    );
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    now = now.add(const Duration(seconds: 5));
+    await tester.pump(const Duration(seconds: 5));
     expect(tester.takeException(), isNull);
   });
 }
