@@ -1,0 +1,105 @@
+name: Kelime Avı Bölüm 1 Android 16 gameplay kanıtı
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gameplay-proof:
+    name: Gerçek Bölüm 1 akışı Android 16
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    env:
+      PRODUCT_BASE_SHA: 4edd4090862bbbdcc8e7422b913fae7d7d758540
+      REPORT_DIR: reports/word-hunt-gameplay-android16
+
+    steps:
+      - name: Exact QA HEAD'i indir
+        uses: actions/checkout@v4
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Product tabanı ve QA kapsamını doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          git merge-base --is-ancestor "$PRODUCT_BASE_SHA" HEAD
+          git rev-parse HEAD | tee "$REPORT_DIR/QA_HEAD_SHA.txt"
+          printf '%s\n' "$PRODUCT_BASE_SHA" | tee "$REPORT_DIR/PRODUCT_BASE_SHA.txt"
+          git diff --name-only "$PRODUCT_BASE_SHA" HEAD \
+            | tee "$REPORT_DIR/QA_DIFF_NAME_ONLY.txt"
+          test "$(git diff --name-only "$PRODUCT_BASE_SHA" HEAD | grep -Ev '^(lib/word_hunt/word_hunt_gameplay_android16_proof_main\.dart|tools/validate_word_hunt_gameplay_android16\.sh|\.github/workflows/word-hunt-gameplay-android16-proof\.yml)$' | wc -l)" -eq 0
+
+      - name: Static Word Hunt kapısını çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          flutter pub get 2>&1 | tee "$REPORT_DIR/FLUTTER_PUB_GET.txt"
+          dart analyze lib/word_hunt 2>&1 | tee "$REPORT_DIR/DART_ANALYZE_WORD_HUNT.txt"
+          mapfile -t word_hunt_tests < <(find test -maxdepth 1 -type f -name 'word_hunt_*_test.dart' | sort)
+          printf 'WORD_HUNT_TEST_FILES=%s\n' "${#word_hunt_tests[@]}" \
+            | tee "$REPORT_DIR/WORD_HUNT_TEST_FILE_COUNT.txt"
+          flutter test "${word_hunt_tests[@]}" --concurrency=1 --reporter expanded \
+            2>&1 | tee "$REPORT_DIR/WORD_HUNT_TESTS.txt"
+          git diff --check 2>&1 | tee "$REPORT_DIR/GIT_DIFF_CHECK.txt"
+
+      - name: İzole debug proof APK üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_gameplay_android16_proof_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test \
+            2>&1 | tee "$REPORT_DIR/FLUTTER_BUILD_APK.txt"
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk \
+            | tee "$REPORT_DIR/WORD_HUNT_GAMEPLAY_PROOF_APK_SHA256.txt"
+
+      - name: Android 16 emulator KVM erişimini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Gerçek production gameplay akışını Android 16'da doğrula
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 3072M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: bash tools/validate_word_hunt_gameplay_android16.sh
+
+      - name: Gameplay proof artifact'ını yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-Level1-Android16-${{ github.sha }}
+          path: |
+            reports/word-hunt-gameplay-android16/**
+            build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 21
