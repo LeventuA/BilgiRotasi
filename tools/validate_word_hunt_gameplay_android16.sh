@@ -99,6 +99,21 @@ drag_cells() {
   adb shell input swipe "$x1" "$y1" "$x2" "$y2" 350
 }
 
+drag_cells_and_capture_error() {
+  local start_row="$1"
+  local start_column="$2"
+  local end_row="$3"
+  local end_column="$4"
+  local screenshot="$5"
+  local start end x1 y1 x2 y2
+  start="$(cell_center "$start_row" "$start_column")"
+  end="$(cell_center "$end_row" "$end_column")"
+  IFS=, read -r x1 y1 <<< "$start"
+  IFS=, read -r x2 y2 <<< "$end"
+  adb shell input swipe "$x1" "$y1" "$x2" "$y2" 80
+  capture "$screenshot"
+}
+
 capture() {
   local name="$1"
   adb exec-out screencap -p > "$report_dir/$name"
@@ -115,7 +130,9 @@ adb shell monkey -p "$package_name" -c android.intent.category.LAUNCHER 1 >/dev/
 
 wait_log '[WORD_HUNT_PROOF_ROUTE_VISIBLE] visit=1 total=0 level1=0 node2Unlocked=false'
 wait_log '[WORD_HUNT_PROOF_GEOMETRY] key=word_hunt_pixel_proof_level_1 '
+sleep 3
 capture 01_ROUTE_BEFORE.png
+test "$(wc -c < "$report_dir/01_ROUTE_BEFORE.png")" -gt 500000
 
 tap_key word_hunt_pixel_proof_level_1
 wait_log '[WORD_HUNT_PROOF_GAMEPLAY_VISIBLE] attempt=1'
@@ -126,10 +143,9 @@ drag_cells 0 0 0 4
 wait_log '[WORD_HUNT_PROOF_TARGET_FOUND] attempt=1 word=KALEM'
 capture 03_KALEM_FOUND.png
 
-drag_cells 3 0 3 1
+drag_cells_and_capture_error 3 0 3 1 04_ERROR_FEEDBACK.png
 wait_log '[WORD_HUNT_PROOF_STATE] attempt=1 mistakes=1 hata'
 wait_log '[WORD_HUNT_PROOF_ERROR_VISIBLE] attempt=1 anchor=3,0'
-capture 04_ERROR_FEEDBACK.png
 
 sleep 0.6
 drag_cells 3 0 4 2
@@ -177,6 +193,7 @@ tap_key word_hunt_production_return_route
 wait_log '[WORD_HUNT_PROOF_PROGRESS_RECORDED] level1=3 total=3 node2Unlocked=true'
 wait_log '[WORD_HUNT_PROOF_ROUTE_VISIBLE] visit=3 total=3 level1=3 node2Unlocked=true'
 capture 07_ROUTE_AFTER.png
+test "$(wc -c < "$report_dir/07_ROUTE_AFTER.png")" -gt 500000
 
 adb shell dumpsys activity activities > "$report_dir/WORD_HUNT_GAMEPLAY_ANDROID16_ACTIVITY.txt"
 adb shell dumpsys window windows > "$report_dir/WORD_HUNT_GAMEPLAY_ANDROID16_FOCUS.txt"
