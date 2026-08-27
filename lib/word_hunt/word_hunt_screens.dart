@@ -21,6 +21,568 @@ class WordHuntLevelPlayResult {
   final Set<String> unlockedInfoCardIds;
 }
 
+/// Başlangıç Limanı Bölüm 1 için production oynanış ekranı.
+///
+/// Prototype ekran korunur; bu ekran aynı path/scoring motorlarını production
+/// akış sözleşmesindeki timer freeze, güvenli çıkış ve idempotent sonuç
+/// davranışlarıyla kullanır.
+class WordHuntLevelProductionScreen extends StatefulWidget {
+  const WordHuntLevelProductionScreen({
+    super.key,
+    required this.level,
+    required this.infoCards,
+  });
+
+  final WordHuntLevelDefinition level;
+  final List<WordHuntInfoCard> infoCards;
+
+  @override
+  State<WordHuntLevelProductionScreen> createState() =>
+      _WordHuntLevelProductionScreenState();
+}
+
+class _WordHuntLevelProductionScreenState
+    extends State<WordHuntLevelProductionScreen> {
+  final Set<String> _foundTargets = <String>{};
+  final Set<String> _foundBonus = <String>{};
+  final Map<String, List<WordHuntCell>> _foundPaths =
+      <String, List<WordHuntCell>>{};
+  final Set<String> _unlockedInfoCards = <String>{};
+
+  List<WordHuntCell> _selectedPath = const <WordHuntCell>[];
+  WordHuntCell? _dragStart;
+  Timer? _timer;
+  int _elapsedSeconds = 0;
+  int? _completionElapsedSeconds;
+  int _mistakes = 0;
+  bool _selectionInvalid = false;
+  bool _completionDialogOpen = false;
+  bool _resultDelivered = false;
+  bool _exitDialogOpen = false;
+  bool _allowPop = false;
+  String _status = 'İlk harfe dokun, parmağını kelimenin üzerinde sürükle.';
+
+  bool get _allTargetsFound =>
+      _foundTargets.length >= widget.level.targetWords.length;
+
+  bool get _hasMeaningfulAttempt =>
+      _foundTargets.isNotEmpty || _foundBonus.isNotEmpty || _mistakes > 0;
+
+  int get _displayedElapsedSeconds =>
+      _completionElapsedSeconds ?? _elapsedSeconds;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (!mounted || _completionElapsedSeconds != null) return;
+      setState(() => _elapsedSeconds++);
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  WordHuntCell? _cellForPosition(Offset position, Size size) {
+    if (position.dx < 0 ||
+        position.dy < 0 ||
+        position.dx >= size.width ||
+        position.dy >= size.height) {
+      return null;
+    }
+    final row = (position.dy / (size.height / widget.level.rowCount)).floor();
+    final column =
+        (position.dx / (size.width / widget.level.columnCount)).floor();
+    return WordHuntCell(row, column);
+  }
+
+  List<WordHuntCell>? _straightPathBetween(
+    WordHuntCell start,
+    WordHuntCell end,
+  ) {
+    final rowDelta = end.row - start.row;
+    final columnDelta = end.column - start.column;
+    if (rowDelta == 0 && columnDelta == 0) return <WordHuntCell>[start];
+
+    final straight =
+        rowDelta == 0 ||
+        columnDelta == 0 ||
+        rowDelta.abs() == columnDelta.abs();
+    if (!straight) return null;
+
+    final steps = math.max(rowDelta.abs(), columnDelta.abs());
+    final rowStep = rowDelta.sign;
+    final columnStep = columnDelta.sign;
+    return List<WordHuntCell>.generate(
+      steps + 1,
+      (index) => WordHuntCell(
+        start.row + rowStep * index,
+        start.column + columnStep * index,
+      ),
+      growable: false,
+    );
+  }
+
+  void _pointerDown(Offset position, Size size) {
+    if (_completionElapsedSeconds != null) return;
+    final cell = _cellForPosition(position, size);
+    if (cell == null) return;
+    setState(() {
+      _dragStart = cell;
+      _selectedPath = <WordHuntCell>[cell];
+      _selectionInvalid = false;
+    });
+  }
+
+  void _pointerMove(Offset position, Size size) {
+    final start = _dragStart;
+    if (_completionElapsedSeconds != null || start == null) return;
+    final end = _cellForPosition(position, size);
+    if (end == null) return;
+    final path = _straightPathBetween(start, end);
+    if (path == null) {
+      setState(() => _selectionInvalid = true);
+      return;
+    }
+
+    final read = WordHuntPathEngine.readWord(
+      grid: widget.level.grid,
+      path: path,
+    );
+    if (!read.isValid) {
+      setState(() => _selectionInvalid = true);
+      return;
+    }
+    setState(() {
+      _selectionInvalid = false;
+      _selectedPath = path;
+    });
+  }
+
+  void _pointerCancel() {
+    if (!mounted) return;
+    setState(() {
+      _selectedPath = const <WordHuntCell>[];
+      _dragStart = null;
+      _selectionInvalid = false;
+    });
+  }
+
+  void _pointerUp() {
+    if (_dragStart == null || _completionElapsedSeconds != null) return;
+    if (_selectionInvalid) {
+      setState(() {
+        _selectedPath = const <WordHuntCell>[];
+        _dragStart = null;
+        _selectionInvalid = false;
+        _status = 'Bu yol düz bir çizgi oluşturmuyor.';
+      });
+      return;
+    }
+    if (_selectedPath.isEmpty) return;
+
+    final selectedPath = List<WordHuntCell>.unmodifiable(_selectedPath);
+    final result = WordHuntPathEngine.evaluate(
+      level: widget.level,
+      path: selectedPath,
+      foundTargetWords: _foundTargets,
+      foundBonusWords: _foundBonus,
+    );
+
+    setState(() {
+      _selectedPath = const <WordHuntCell>[];
+      _dragStart = null;
+
+      switch (result.kind) {
+        case WordHuntSelectionKind.target:
+          final word = result.canonicalWord!;
+          _foundTargets.add(word);
+          _foundPaths[word] = selectedPath;
+          final cardTitle = _unlockInfoCardFor(word);
+          _status =
+              cardTitle == null
+                  ? '$word bulundu!'
+                  : 'Bilgi kartı açıldı: $cardTitle';
+          if (_allTargetsFound && _completionElapsedSeconds == null) {
+            _completionElapsedSeconds = _elapsedSeconds;
+            _timer?.cancel();
+          }
+        case WordHuntSelectionKind.bonus:
+          final word = result.canonicalWord!;
+          _foundBonus.add(word);
+          _foundPaths[word] = selectedPath;
+          final cardTitle = _unlockInfoCardFor(word);
+          _status =
+              cardTitle == null
+                  ? 'Bonus kelime: $word ✨'
+                  : 'Bilgi kartı açıldı: $cardTitle';
+        case WordHuntSelectionKind.alreadyFound:
+          _status = '${result.canonicalWord} zaten bulundu.';
+        case WordHuntSelectionKind.notAWord:
+          _mistakes++;
+          _status = 'Bu seçim listede yok. Başka bir yol dene.';
+        case WordHuntSelectionKind.invalidPath:
+          _status = result.error ?? 'Bu yol geçerli değil.';
+      }
+    });
+  }
+
+  String? _unlockInfoCardFor(String word) {
+    final normalized = WordHuntPathEngine.normalizeWord(word);
+    for (final card in widget.infoCards) {
+      if (!widget.level.infoCardIds.contains(card.id)) continue;
+      if (WordHuntPathEngine.normalizeWord(card.word) == normalized) {
+        _unlockedInfoCards.add(card.id);
+        return card.title;
+      }
+    }
+    return null;
+  }
+
+  Future<void> _finishLevel() async {
+    if (!_allTargetsFound || _completionDialogOpen || _resultDelivered) return;
+    _completionDialogOpen = true;
+    final elapsed = _displayedElapsedSeconds;
+    final score = WordHuntScoringEngine.calculate(
+      level: widget.level,
+      foundTargetCount: _foundTargets.length,
+      mistakes: _mistakes,
+      elapsedSeconds: elapsed,
+    );
+
+    if (!mounted) return;
+    final leave = await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder:
+          (context) => AlertDialog(
+            key: const Key('word_hunt_production_result_dialog'),
+            backgroundColor: const Color(0xFF102443),
+            title: const Text(
+              'Bölüm Tamamlandı',
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List<Widget>.generate(
+                    3,
+                    (index) => Icon(
+                      index < score.stars
+                          ? Icons.star_rounded
+                          : Icons.star_outline_rounded,
+                      key: Key('word_hunt_production_result_star_${index + 1}'),
+                      size: 42,
+                      color:
+                          index < score.stars
+                              ? const Color(0xFFFFD166)
+                              : const Color(0xFF77829A),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  '$elapsed saniye',
+                  key: const Key('word_hunt_production_result_elapsed'),
+                  style: const TextStyle(color: Color(0xFFD6D9E8)),
+                ),
+                Text(
+                  '$_mistakes hata',
+                  key: const Key('word_hunt_production_result_mistakes'),
+                  style: const TextStyle(color: Color(0xFFD6D9E8)),
+                ),
+                if (_foundBonus.isNotEmpty)
+                  Text(
+                    'Bonus: ${_foundBonus.join(', ')}',
+                    style: const TextStyle(color: Color(0xFFFFD166)),
+                  ),
+              ],
+            ),
+            actions: [
+              FilledButton(
+                key: const Key('word_hunt_production_return_route'),
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Rotaya Dön'),
+              ),
+            ],
+          ),
+    );
+
+    if (!mounted) return;
+    if (leave == true && !_resultDelivered) {
+      _resultDelivered = true;
+      Navigator.of(context).pop(
+        WordHuntLevelPlayResult(
+          levelId: widget.level.id,
+          stars: score.stars,
+          unlockedInfoCardIds: Set<String>.unmodifiable(_unlockedInfoCards),
+        ),
+      );
+      return;
+    }
+    _completionDialogOpen = false;
+  }
+
+  Future<void> _requestExit() async {
+    if (_allowPop || _exitDialogOpen || _resultDelivered) return;
+    if (!_hasMeaningfulAttempt) {
+      _popWithoutResult();
+      return;
+    }
+
+    _exitDialogOpen = true;
+    final leave = await showDialog<bool>(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            key: const Key('word_hunt_production_exit_dialog'),
+            title: const Text('Bölümden çıkılsın mı?'),
+            content: const Text('Bu denemedeki ilerleme kaybolacak.'),
+            actions: [
+              TextButton(
+                key: const Key('word_hunt_production_exit_continue'),
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('Devam Et'),
+              ),
+              FilledButton(
+                key: const Key('word_hunt_production_exit_confirm'),
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Çık'),
+              ),
+            ],
+          ),
+    );
+    _exitDialogOpen = false;
+    if (leave == true && mounted) _popWithoutResult();
+  }
+
+  void _popWithoutResult() {
+    if (!mounted || _allowPop) return;
+    setState(() => _allowPop = true);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) Navigator.of(context).pop();
+    });
+  }
+
+  bool _isFound(WordHuntCell cell) =>
+      _foundPaths.values.any((path) => path.contains(cell));
+
+  @override
+  Widget build(BuildContext context) {
+    return PopScope<Object?>(
+      canPop: _allowPop,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) _requestExit();
+      },
+      child: Scaffold(
+        key: const Key('word_hunt_production_screen'),
+        backgroundColor: const Color(0xFF06142E),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF06142E),
+          foregroundColor: Colors.white,
+          leading: IconButton(
+            key: const Key('word_hunt_production_back'),
+            onPressed: _requestExit,
+            icon: const Icon(Icons.arrow_back_rounded),
+          ),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Bölüm ${widget.level.index}',
+                style: const TextStyle(fontWeight: FontWeight.w800),
+              ),
+              const Text(
+                'Başlangıç Limanı',
+                style: TextStyle(fontSize: 12, color: Color(0xFFA7B0C9)),
+              ),
+            ],
+          ),
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: _MetricChip(
+                        icon: Icons.search_rounded,
+                        label:
+                            '${_foundTargets.length}/${widget.level.targetWords.length}',
+                        key: const Key('word_hunt_production_progress'),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _MetricChip(
+                        icon: Icons.close_rounded,
+                        label: '$_mistakes hata',
+                        key: const Key('word_hunt_production_mistakes'),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _MetricChip(
+                        icon: Icons.timer_outlined,
+                        label: '${_displayedElapsedSeconds}s',
+                        textKey: const Key('word_hunt_production_elapsed_text'),
+                        key: const Key('word_hunt_production_elapsed'),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final word in widget.level.targetWords)
+                      KeyedSubtree(
+                        key: Key(
+                          'word_hunt_production_target_${word}_${_foundTargets.contains(word) ? 'found' : 'pending'}',
+                        ),
+                        child: _WordChip(
+                          word: word,
+                          found: _foundTargets.contains(word),
+                        ),
+                      ),
+                    for (final word in widget.level.bonusWords)
+                      KeyedSubtree(
+                        key: Key(
+                          'word_hunt_production_bonus_${word}_${_foundBonus.contains(word) ? 'found' : 'pending'}',
+                        ),
+                        child: _WordChip(
+                          word: word,
+                          found: _foundBonus.contains(word),
+                          bonus: true,
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final gridSize = Size(
+                        constraints.maxWidth,
+                        constraints.maxHeight,
+                      );
+                      return Listener(
+                        key: const Key('word_hunt_production_grid'),
+                        behavior: HitTestBehavior.opaque,
+                        onPointerDown:
+                            (event) =>
+                                _pointerDown(event.localPosition, gridSize),
+                        onPointerMove:
+                            (event) =>
+                                _pointerMove(event.localPosition, gridSize),
+                        onPointerUp: (_) => _pointerUp(),
+                        onPointerCancel: (_) => _pointerCancel(),
+                        child: GridView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: widget.level.columnCount,
+                                crossAxisSpacing: 7,
+                                mainAxisSpacing: 7,
+                              ),
+                          itemCount:
+                              widget.level.rowCount * widget.level.columnCount,
+                          itemBuilder: (context, index) {
+                            final row = index ~/ widget.level.columnCount;
+                            final column = index % widget.level.columnCount;
+                            final cell = WordHuntCell(row, column);
+                            final rune = widget.level.grid[row].runes.elementAt(
+                              column,
+                            );
+                            final selected = _selectedPath.contains(cell);
+                            final found = _isFound(cell);
+                            return AnimatedContainer(
+                              key: Key(
+                                'word_hunt_production_cell_${row}_$column',
+                              ),
+                              duration: const Duration(milliseconds: 120),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color:
+                                    selected
+                                        ? const Color(0xFF8B5CF6)
+                                        : found
+                                        ? const Color(0xFF0F766E)
+                                        : const Color(0xFF142A4C),
+                                borderRadius: BorderRadius.circular(14),
+                                border: Border.all(
+                                  color:
+                                      selected
+                                          ? const Color(0xFFD8B4FE)
+                                          : found
+                                          ? const Color(0xFF5EEAD4)
+                                          : const Color(0xFF34527A),
+                                ),
+                              ),
+                              child: Text(
+                                String.fromCharCode(rune),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Container(
+                  constraints: const BoxConstraints(minHeight: 48),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF0D203D),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    _status,
+                    key: const Key('word_hunt_production_status'),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(0xFFD6D9E8),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                if (_allTargetsFound)
+                  FilledButton.icon(
+                    key: const Key('word_hunt_production_finish'),
+                    onPressed:
+                        _completionDialogOpen || _resultDelivered
+                            ? null
+                            : _finishLevel,
+                    icon: const Icon(Icons.flag_rounded),
+                    label: const Text('Bölümü Tamamla'),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 /// İzole rota ekranı. Mevcut Bilgi Rotası ana navigasyonuna bağlı değildir.
 class WordHuntRoutePrototypeScreen extends StatefulWidget {
   const WordHuntRoutePrototypeScreen({
@@ -61,10 +623,11 @@ class _WordHuntRoutePrototypeScreenState
     final level = widget.route.levels[index - 1];
     final result = await Navigator.of(context).push<WordHuntLevelPlayResult>(
       MaterialPageRoute<WordHuntLevelPlayResult>(
-        builder: (_) => WordHuntLevelPrototypeScreen(
-          level: level,
-          infoCards: widget.infoCards,
-        ),
+        builder:
+            (_) => WordHuntLevelPrototypeScreen(
+              level: level,
+              infoCards: widget.infoCards,
+            ),
       ),
     );
     if (!mounted || result == null) return;
@@ -108,7 +671,11 @@ class _WordHuntRoutePrototypeScreenState
               complete: routeComplete,
             ),
             const SizedBox(height: 22),
-            for (var index = 1; index <= widget.route.levels.length; index++) ...[
+            for (
+              var index = 1;
+              index <= widget.route.levels.length;
+              index++
+            ) ...[
               _RouteLevelNode(
                 key: Key('word_hunt_level_$index'),
                 level: widget.route.levels[index - 1],
@@ -204,9 +771,10 @@ class _RouteHeader extends StatelessWidget {
               Text(
                 complete ? 'ROTA TAMAMLANDI' : 'Kapı: $unlockStarsRequired ⭐',
                 style: TextStyle(
-                  color: complete
-                      ? const Color(0xFF5EEAD4)
-                      : const Color(0xFFA7B0C9),
+                  color:
+                      complete
+                          ? const Color(0xFF5EEAD4)
+                          : const Color(0xFFA7B0C9),
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -258,9 +826,10 @@ class _RouteLevelNode extends StatelessWidget {
             color: unlocked ? const Color(0xFF102443) : const Color(0xFF0B1730),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: unlocked
-                  ? accent.withValues(alpha: 0.75)
-                  : const Color(0xFF26354D),
+              color:
+                  unlocked
+                      ? accent.withValues(alpha: 0.75)
+                      : const Color(0xFF26354D),
             ),
           ),
           child: Row(
@@ -271,26 +840,28 @@ class _RouteLevelNode extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: unlocked
-                      ? accent.withValues(alpha: 0.18)
-                      : const Color(0xFF172238),
+                  color:
+                      unlocked
+                          ? accent.withValues(alpha: 0.18)
+                          : const Color(0xFF172238),
                   border: Border.all(
                     color: unlocked ? accent : const Color(0xFF445066),
                   ),
                 ),
-                child: unlocked
-                    ? Text(
-                        '${level.index}',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
+                child:
+                    unlocked
+                        ? Text(
+                          '${level.index}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        )
+                        : const Icon(
+                          Icons.lock_rounded,
+                          color: Color(0xFF77829A),
                         ),
-                      )
-                    : const Icon(
-                        Icons.lock_rounded,
-                        color: Color(0xFF77829A),
-                      ),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -300,7 +871,8 @@ class _RouteLevelNode extends StatelessWidget {
                     Text(
                       'Bölüm ${level.index}',
                       style: TextStyle(
-                        color: unlocked ? Colors.white : const Color(0xFF77829A),
+                        color:
+                            unlocked ? Colors.white : const Color(0xFF77829A),
                         fontSize: 17,
                         fontWeight: FontWeight.w800,
                       ),
@@ -324,9 +896,10 @@ class _RouteLevelNode extends StatelessWidget {
                     (starIndex) => Icon(
                       Icons.star_rounded,
                       size: 20,
-                      color: starIndex < stars
-                          ? const Color(0xFFFFD166)
-                          : const Color(0xFF3B465C),
+                      color:
+                          starIndex < stars
+                              ? const Color(0xFFFFD166)
+                              : const Color(0xFF3B465C),
                     ),
                   ),
                 )
@@ -441,7 +1014,8 @@ class _WordHuntLevelPrototypeScreenState
     final columnDelta = end.column - start.column;
     if (rowDelta == 0 && columnDelta == 0) return <WordHuntCell>[start];
 
-    final straight = rowDelta == 0 ||
+    final straight =
+        rowDelta == 0 ||
         columnDelta == 0 ||
         rowDelta.abs() == columnDelta.abs();
     if (!straight) return null;
@@ -505,17 +1079,19 @@ class _WordHuntLevelPrototypeScreenState
           _foundTargets.add(word);
           _foundPaths[word] = selectedPath;
           final cardTitle = _unlockInfoCardFor(word);
-          _status = cardTitle == null
-              ? 'Harika! $word bulundu.'
-              : 'Bilgi kartı açıldı: $cardTitle';
+          _status =
+              cardTitle == null
+                  ? 'Harika! $word bulundu.'
+                  : 'Bilgi kartı açıldı: $cardTitle';
         case WordHuntSelectionKind.bonus:
           final word = result.canonicalWord!;
           _foundBonus.add(word);
           _foundPaths[word] = selectedPath;
           final cardTitle = _unlockInfoCardFor(word);
-          _status = cardTitle == null
-              ? 'Bonus kelime: $word ✨'
-              : 'Bilgi kartı açıldı: $cardTitle';
+          _status =
+              cardTitle == null
+                  ? 'Bonus kelime: $word ✨'
+                  : 'Bilgi kartı açıldı: $cardTitle';
         case WordHuntSelectionKind.alreadyFound:
           _status = '${result.canonicalWord} zaten bulundu.';
         case WordHuntSelectionKind.notAWord:
@@ -554,42 +1130,44 @@ class _WordHuntLevelPrototypeScreenState
     final leave = await showDialog<bool>(
       context: context,
       barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF102443),
-        title: const Text(
-          'Bölüm Tamamlandı',
-          style: TextStyle(color: Colors.white),
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List<Widget>.generate(
-                3,
-                (index) => Icon(
-                  Icons.star_rounded,
-                  size: 42,
-                  color: index < score.stars
-                      ? const Color(0xFFFFD166)
-                      : const Color(0xFF3B465C),
+      builder:
+          (context) => AlertDialog(
+            backgroundColor: const Color(0xFF102443),
+            title: const Text(
+              'Bölüm Tamamlandı',
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List<Widget>.generate(
+                    3,
+                    (index) => Icon(
+                      Icons.star_rounded,
+                      size: 42,
+                      color:
+                          index < score.stars
+                              ? const Color(0xFFFFD166)
+                              : const Color(0xFF3B465C),
+                    ),
+                  ),
                 ),
+                const SizedBox(height: 12),
+                Text(
+                  '${elapsed}s • $_mistakes hata • ${_foundBonus.length} bonus',
+                  style: const TextStyle(color: Color(0xFFD6D9E8)),
+                ),
+              ],
+            ),
+            actions: [
+              FilledButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Rotaya Dön'),
               ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              '${elapsed}s • $_mistakes hata • ${_foundBonus.length} bonus',
-              style: const TextStyle(color: Color(0xFFD6D9E8)),
-            ),
-          ],
-        ),
-        actions: [
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Rotaya Dön'),
+            ],
           ),
-        ],
-      ),
     );
 
     if (leave == true && mounted) {
@@ -608,9 +1186,10 @@ class _WordHuntLevelPrototypeScreenState
 
   @override
   Widget build(BuildContext context) {
-    final remaining = widget.level.timeLimitSeconds == null
-        ? null
-        : math.max(0, widget.level.timeLimitSeconds! - _elapsedSeconds);
+    final remaining =
+        widget.level.timeLimitSeconds == null
+            ? null
+            : math.max(0, widget.level.timeLimitSeconds! - _elapsedSeconds);
 
     return Scaffold(
       backgroundColor: const Color(0xFF06142E),
@@ -645,9 +1224,10 @@ class _WordHuntLevelPrototypeScreenState
                   Expanded(
                     child: _MetricChip(
                       icon: Icons.timer_outlined,
-                      label: remaining == null
-                          ? '${_elapsedSeconds}s'
-                          : '${remaining}s',
+                      label:
+                          remaining == null
+                              ? '${_elapsedSeconds}s'
+                              : '${remaining}s',
                       warning: remaining != null && remaining <= 10,
                     ),
                   ),
@@ -659,10 +1239,7 @@ class _WordHuntLevelPrototypeScreenState
                 runSpacing: 8,
                 children: [
                   for (final word in widget.level.targetWords)
-                    _WordChip(
-                      word: word,
-                      found: _foundTargets.contains(word),
-                    ),
+                    _WordChip(word: word, found: _foundTargets.contains(word)),
                   for (final word in widget.level.bonusWords)
                     _WordChip(
                       word: word,
@@ -683,10 +1260,12 @@ class _WordHuntLevelPrototypeScreenState
                     return Listener(
                       key: const Key('word_hunt_grid'),
                       behavior: HitTestBehavior.opaque,
-                      onPointerDown: (event) =>
-                          _pointerDown(event.localPosition, gridSize),
-                      onPointerMove: (event) =>
-                          _pointerMove(event.localPosition, gridSize),
+                      onPointerDown:
+                          (event) =>
+                              _pointerDown(event.localPosition, gridSize),
+                      onPointerMove:
+                          (event) =>
+                              _pointerMove(event.localPosition, gridSize),
                       onPointerUp: (_) => _pointerUp(),
                       onPointerCancel: (_) {
                         setState(() {
@@ -707,24 +1286,27 @@ class _WordHuntLevelPrototypeScreenState
                           final row = index ~/ widget.level.columnCount;
                           final column = index % widget.level.columnCount;
                           final cell = WordHuntCell(row, column);
-                          final rune =
-                              widget.level.grid[row].runes.elementAt(column);
+                          final rune = widget.level.grid[row].runes.elementAt(
+                            column,
+                          );
                           final selected = _selectedPath.contains(cell);
                           final found = _isFound(cell);
                           return AnimatedContainer(
                             duration: const Duration(milliseconds: 120),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color: selected
-                                  ? const Color(0xFF8B5CF6)
-                                  : found
+                              color:
+                                  selected
+                                      ? const Color(0xFF8B5CF6)
+                                      : found
                                       ? const Color(0xFF0F766E)
                                       : const Color(0xFF142A4C),
                               borderRadius: BorderRadius.circular(14),
                               border: Border.all(
-                                color: selected
-                                    ? const Color(0xFFD8B4FE)
-                                    : found
+                                color:
+                                    selected
+                                        ? const Color(0xFFD8B4FE)
+                                        : found
                                         ? const Color(0xFF5EEAD4)
                                         : const Color(0xFF34527A),
                               ),
@@ -784,14 +1366,17 @@ class _WordHuntLevelPrototypeScreenState
 
 class _MetricChip extends StatelessWidget {
   const _MetricChip({
+    super.key,
     required this.icon,
     required this.label,
     this.warning = false,
+    this.textKey,
   });
 
   final IconData icon;
   final String label;
   final bool warning;
+  final Key? textKey;
 
   @override
   Widget build(BuildContext context) {
@@ -811,6 +1396,7 @@ class _MetricChip extends StatelessWidget {
           Flexible(
             child: Text(
               label,
+              key: textKey,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: Colors.white,
