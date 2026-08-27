@@ -81,8 +81,8 @@ class _GameplayRuntimeProbeState extends State<_GameplayRuntimeProbe> {
   final Set<String> _emitted = <String>{};
 
   static const List<String> _geometryKeys = <String>[
-    'word_hunt_reference_level_1',
-    'word_hunt_reference_level_2',
+    'word_hunt_pixel_proof_level_1',
+    'word_hunt_pixel_proof_level_2',
     'word_hunt_production_grid',
     'word_hunt_production_back',
     'word_hunt_production_finish',

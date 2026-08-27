@@ -114,10 +114,10 @@ adb shell am force-stop "$package_name"
 adb shell monkey -p "$package_name" -c android.intent.category.LAUNCHER 1 >/dev/null
 
 wait_log '[WORD_HUNT_PROOF_ROUTE_VISIBLE] visit=1 total=0 level1=0 node2Unlocked=false'
-wait_log '[WORD_HUNT_PROOF_GEOMETRY] key=word_hunt_reference_level_1 '
+wait_log '[WORD_HUNT_PROOF_GEOMETRY] key=word_hunt_pixel_proof_level_1 '
 capture 01_ROUTE_BEFORE.png
 
-tap_key word_hunt_reference_level_1
+tap_key word_hunt_pixel_proof_level_1
 wait_log '[WORD_HUNT_PROOF_GAMEPLAY_VISIBLE] attempt=1'
 wait_log '[WORD_HUNT_PROOF_GEOMETRY] key=word_hunt_production_grid '
 capture 02_LEVEL1_INITIAL.png
@@ -152,8 +152,8 @@ if adb logcat -d | grep -Fq '[WORD_HUNT_PROOF_PROGRESS_RECORDED]'; then
   exit 1
 fi
 
-wait_log_count '[WORD_HUNT_PROOF_GEOMETRY] key=word_hunt_reference_level_1 ' 2
-tap_key word_hunt_reference_level_1
+wait_log_count '[WORD_HUNT_PROOF_GEOMETRY] key=word_hunt_pixel_proof_level_1 ' 2
+tap_key word_hunt_pixel_proof_level_1
 wait_log '[WORD_HUNT_PROOF_GAMEPLAY_VISIBLE] attempt=2'
 wait_log_count '[WORD_HUNT_PROOF_GEOMETRY] key=word_hunt_production_grid ' 2
 
