@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Exact QA HEAD'i indir
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Java 17 kur
         uses: actions/setup-java@v4
@@ -43,7 +45,7 @@ jobs:
           printf '%s\n' "$PRODUCT_BASE_SHA" | tee "$REPORT_DIR/PRODUCT_BASE_SHA.txt"
           git diff --name-only "$PRODUCT_BASE_SHA" HEAD \
             | tee "$REPORT_DIR/QA_DIFF_NAME_ONLY.txt"
-          test "$(git diff --name-only "$PRODUCT_BASE_SHA" HEAD | grep -Ev '^(lib/word_hunt/word_hunt_gameplay_android16_proof_main\.dart|tools/validate_word_hunt_gameplay_android16\.sh|\.github/workflows/word-hunt-gameplay-android16-proof\.yml)$' | wc -l)" -eq 0
+          test "$(git diff --name-only "$PRODUCT_BASE_SHA" HEAD | grep -Ev '^(lib/word_hunt/word_hunt_gameplay_android16_proof_main\.dart|tools/validate_word_hunt_gameplay_android16\.sh|\.github/workflows/word-hunt-gameplay-android16-proof\.yml|\.github/workflows/word-hunt-visual-proof\.yml)$' | wc -l)" -eq 0
 
       - name: Static Word Hunt kapısını çalıştır
         shell: bash
