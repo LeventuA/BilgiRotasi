@@ -45,6 +45,49 @@ void main() {
     expect(errors, isEmpty, reason: errors.join('\n'));
   });
 
+  test('bütün hedef ve bonus kelimeler en az 3 harftir', () {
+    for (final level in route.levels) {
+      for (final word in <String>[...level.targetWords, ...level.bonusWords]) {
+        expect(word.trim().runes.length, greaterThanOrEqualTo(3), reason: '${level.id}: $word');
+      }
+    }
+  });
+
+  test('validator iki harfli hedef ve bonus kelimeleri reddeder', () {
+    const level = WordHuntLevelDefinition(
+      id: 'min-length-test',
+      routeId: 'test-route',
+      index: 1,
+      type: WordHuntLevelType.normal,
+      grid: <String>['AYX', 'OKX', 'XXX'],
+      targetWords: <String>['AY'],
+      bonusWords: <String>['OK'],
+      starRules: WordHuntStarRules(),
+    );
+
+    final errors = WordHuntDefinitionValidator.validateLevel(level);
+
+    expect(errors, contains('targetWords en az 3 harf olmalı: AY'));
+    expect(errors, contains('bonusWords en az 3 harf olmalı: OK'));
+  });
+
+  test('Bölüm 8 TOP yalnız tek fiziksel çözüm hattında bulunur', () {
+    final level = route.levels[7];
+
+    expect(level.id, 'baslangic-8');
+    expect(level.grid[3], 'RAKİBİ');
+    expect(_countStraightOccurrences(level.grid, 'TOP'), 1);
+  });
+
+  test('Bölüm 9 bonusu AY değil, tek hatlı ROKET olur', () {
+    final level = route.levels[8];
+
+    expect(level.id, 'baslangic-9');
+    expect(level.bonusWords, <String>['ROKET']);
+    expect(level.bonusWords, isNot(contains('AY')));
+    expect(_countStraightOccurrences(level.grid, 'ROKET'), 1);
+  });
+
   test('bilgi kartı kimlikleri benzersizdir', () {
     final ids = WordHuntStarterContent.infoCards.map((card) => card.id).toList();
     expect(ids.toSet().length, ids.length);
@@ -73,4 +116,45 @@ void main() {
     expect(categories, containsAll(<String>['Doğa', 'Kültür', 'Türkiye', 'Uzay', 'Keşif']));
     expect(WordHuntStarterContent.infoCards, hasLength(6));
   });
+}
+
+int _countStraightOccurrences(List<String> grid, String candidate) {
+  final rows = grid.map((row) => row.runes.toList(growable: false)).toList();
+  final word = candidate.runes.toList(growable: false);
+  if (rows.isEmpty || word.isEmpty) return 0;
+
+  const directions = <(int, int)>[
+    (-1, -1),
+    (-1, 0),
+    (-1, 1),
+    (0, -1),
+    (0, 1),
+    (1, -1),
+    (1, 0),
+    (1, 1),
+  ];
+
+  var count = 0;
+  for (var startRow = 0; startRow < rows.length; startRow++) {
+    for (var startColumn = 0; startColumn < rows[startRow].length; startColumn++) {
+      for (final direction in directions) {
+        var matches = true;
+        for (var index = 0; index < word.length; index++) {
+          final row = startRow + direction.$1 * index;
+          final column = startColumn + direction.$2 * index;
+          if (row < 0 ||
+              row >= rows.length ||
+              column < 0 ||
+              column >= rows[row].length ||
+              rows[row][column] != word[index]) {
+            matches = false;
+            break;
+          }
+        }
+        if (matches) count++;
+      }
+    }
+  }
+
+  return count;
 }
