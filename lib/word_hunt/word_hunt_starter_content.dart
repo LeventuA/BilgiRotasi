@@ -211,7 +211,7 @@ class WordHuntStarterContent {
           'SPORCU',
           'TOPLAR',
           'KOŞUCU',
-          'TAKIMI',
+          'RAKİBİ',
           'HIZLAR',
           'OYUNCU',
         ],
@@ -236,7 +236,7 @@ class WordHuntStarterContent {
           'GEZEGE',
         ],
         targetWords: <String>['MARS', 'UZAY'],
-        bonusWords: <String>['AY'],
+        bonusWords: <String>['ROKET'],
         infoCardIds: <String>['info-mars'],
         starRules: WordHuntStarRules(
           twoStarMaxMistakes: 2,

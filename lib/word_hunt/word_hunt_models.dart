@@ -122,6 +122,9 @@ class WordHuntDefinitionValidator {
         errors.add('targetWords boş kelime içeremez');
         continue;
       }
+      if (normalized.runes.length < 3) {
+        errors.add('targetWords en az 3 harf olmalı: $normalized');
+      }
       if (!normalizedTargets.add(normalized)) {
         errors.add('targetWords tekrar içeremez: $normalized');
       }
@@ -136,6 +139,9 @@ class WordHuntDefinitionValidator {
       if (normalized.isEmpty) {
         errors.add('bonusWords boş kelime içeremez');
         continue;
+      }
+      if (normalized.runes.length < 3) {
+        errors.add('bonusWords en az 3 harf olmalı: $normalized');
       }
       if (!normalizedBonus.add(normalized)) {
         errors.add('bonusWords tekrar içeremez: $normalized');
