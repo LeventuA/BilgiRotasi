@@ -1,6 +1,7 @@
 name: Kelime Avı Bölüm 1 Android 16 gameplay kanıtı
 
 on:
+  workflow_call:
   workflow_dispatch:
 
 permissions:
