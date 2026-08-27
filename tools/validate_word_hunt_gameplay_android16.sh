@@ -111,6 +111,7 @@ drag_cells_and_capture_error() {
   IFS=, read -r x1 y1 <<< "$start"
   IFS=, read -r x2 y2 <<< "$end"
   adb shell input swipe "$x1" "$y1" "$x2" "$y2" 80
+  sleep 0.12
   capture "$screenshot"
 }
 
@@ -137,7 +138,10 @@ test "$(wc -c < "$report_dir/01_ROUTE_BEFORE.png")" -gt 500000
 tap_key word_hunt_pixel_proof_level_1
 wait_log '[WORD_HUNT_PROOF_GAMEPLAY_VISIBLE] attempt=1'
 wait_log '[WORD_HUNT_PROOF_GEOMETRY] key=word_hunt_production_grid '
+sleep 1
 capture 02_LEVEL1_INITIAL.png
+test "$(sha256sum "$report_dir/01_ROUTE_BEFORE.png" | cut -d' ' -f1)" != \
+  "$(sha256sum "$report_dir/02_LEVEL1_INITIAL.png" | cut -d' ' -f1)"
 
 drag_cells 0 0 0 4
 wait_log '[WORD_HUNT_PROOF_TARGET_FOUND] attempt=1 word=KALEM'
