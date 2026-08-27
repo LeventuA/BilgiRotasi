@@ -111,11 +111,12 @@ class _GameplayRuntimeProbeState extends State<_GameplayRuntimeProbe> {
     final root = WidgetsBinding.instance.rootElement;
     if (root == null) return;
 
-    final routeNow =
+    final routePresent =
         _findByKey(root, const Key('word_hunt_production_master_art_route')) !=
         null;
     final gameplayNow =
         _findByKey(root, const Key('word_hunt_production_screen')) != null;
+    final routeNow = routePresent && !gameplayNow;
 
     if (routeNow && !_routeVisible) {
       _routeVisit++;
