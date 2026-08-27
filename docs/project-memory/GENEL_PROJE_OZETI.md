@@ -1,15 +1,15 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 27 Ağustos 2026 — Kelime Avı release zinciri kapandı, Bölüm 1 gameplay başladı.
+**Son güncelleme:** 27 Ağustos 2026 — Kelime Avı Codex öncesi gameplay hazırlığı tamamlandı.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez.
 
 ## Kalıcı çalışma kuralı
 
 - Yeni sohbet başında önce bu dosya okunur.
-- Kelime Avı çalışmasında hemen ardından `docs/project-memory/checkpoints/KELIME_AVI_RELEASE_TO_GAMEPLAY_20260827.md` okunur.
+- Kelime Avı çalışmasında hemen ardından `docs/project-memory/checkpoints/KELIME_AVI_PRE_CODEX_READY_20260827.md` okunur.
 - Ardından `BILGI_ROTASI_DURUM.md`, `KARARLAR.md`, `GOREV_HAVUZU.md` ve gerekiyorsa `ACIK_SORULAR_VE_DOGRULAMALAR.md` okunur.
-- Bu eski aktif dosyalarda PR #132/#96 zincirini hâlâ açık gösteren satırlar tarihsel kayıttır; Kelime Avı için 27 Ağustos checkpoint'i supersede eder.
+- Eski aktif dosyalarda PR #132/#96 zincirini hâlâ açık gösteren satırlar tarihsel kayıttır; 27 Ağustos checkpoint'leri supersede eder.
 - Her görev öncesi canlı hedef branch, `pubspec.yaml`, son commit, ilgili PR ve CI yeniden doğrulanır.
 - Doğrudan `main` veya release dalına kod yazılmaz; branch/PR kullanılır.
 - Kritik merge için Levent'in açık onayı gerekir.
@@ -61,7 +61,7 @@ Final release-context kanıtları:
 
 - Branch: `feat/kelime-avi-gameplay-v1-20260826`.
 - Branch release `0350e0ae...` üzerinden açıldı.
-- Aktif checkpoint: `docs/project-memory/checkpoints/KELIME_AVI_RELEASE_TO_GAMEPLAY_20260827.md`.
+- Aktif checkpoint: `docs/project-memory/checkpoints/KELIME_AVI_PRE_CODEX_READY_20260827.md`.
 - İlk hedef:
   `production route → node 1 → Bölüm 1 oyun → sonuç/yıldız → rotaya dönüş → progress → Bölüm 2 unlock`.
 - İlk gameplay adımında production `lib/main.dart` değiştirilmez.
@@ -73,6 +73,24 @@ Bölüm 1 canonical veri:
 - 3 yıldız: 0 hata
 - 2 yıldız: en fazla 2 hata
 - 1 yıldız: bölüm tamamlandı
+
+## Kelime içeriği bağlayıcı kuralları
+
+- `targetWords` ve `bonusWords` **en az 3 harf** olmalıdır.
+- `WordHuntDefinitionValidator` iki harfli target/bonus kelimeyi reddeder.
+- Bölüm 8 `TOP` duplicate occurrence çözüldü: filler satırı `TAKIMI → RAKİBİ`; `TOP` artık tek intended hatta.
+- Bölüm 9 iki harfli `AY` bonusu kaldırıldı; bonus artık `ROKET` ve tek intended hatta.
+- Ayrıntılı çözüm: `docs/kelime-avi/BASLANGIC_LIMANI_CONTENT_QA_RESOLUTION_20260827.md`.
+- Bölüm 2–10 için kalan açık içerik işi: dikey/çapraz/reverse çeşitliliği ve gerçek zorluk dengesi.
+
+## Codex öncesi tamamlanan hazırlık
+
+- Bölüm 1 grid/koordinat QA: tamamlandı.
+- Production UI sözleşmesi: tamamlandı.
+- Gameplay flow / edge-case sözleşmesi: tamamlandı.
+- 50 maddelik Codex acceptance gate: tamamlandı.
+- Bölüm 2–10 structural content QA: tamamlandı.
+- `TOP` / `AY` somut içerik sorunları: çözüldü.
 
 ## Korunan alanlar
 
@@ -87,11 +105,11 @@ Kelime Avı gameplay geliştirmesinde açık kapsam olmadan değişmez:
 
 ## Sıradaki aktif sıra
 
-1. Bölüm 1 içerik/grid QA ve kesin seçim koordinatlarını çıkar.
-2. Bölüm 1 production UI sözleşmesini kilitle.
-3. Tam oynanış ve edge-case sözleşmesini kilitle.
-4. Codex kabul testleri/checklist'i hazırla.
-5. Codex implementation.
-6. GitHub diff/test review + Android 16 production proof.
+1. Codex: Bölüm 1 production gameplay implementation.
+2. Codex acceptance raporu ve focused test/analyze.
+3. ChatGPT/GitHub diff review.
+4. Android 16 production gameplay proof + görsel QA.
+5. Kullanıcı onayı sonrası ilgili gameplay PR merge kararı.
+6. Bölüm 2–10 için ayrı content/zorluk pass.
 
 Diğer Bilgi Rotası açık işleri `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` içinde korunur; bu özet onları silmez.
