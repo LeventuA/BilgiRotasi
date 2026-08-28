@@ -118,8 +118,8 @@ void main() {
       rect.top + 0.5 * cellHeight,
     );
     final end = Offset(
-      rect.left + 4.5 * cellWidth,
-      rect.top + 0.5 * cellHeight,
+      rect.left + 0.5 * cellWidth,
+      rect.top + 4.5 * cellHeight,
     );
 
     final gesture = await tester.startGesture(start);
