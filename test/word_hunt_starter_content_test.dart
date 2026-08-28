@@ -128,6 +128,22 @@ void main() {
     expect(_countStraightOccurrences(level.grid, 'YOL'), 1);
   });
 
+  test('Bölüm 5 horizontal vertical diagonal yön ailelerini birlikte taşır', () {
+    final productionCase = _productionCases.singleWhere(
+      (candidate) => candidate.levelIndex == 5,
+    );
+    final directionFamilies = productionCase.paths.map((path) {
+      if (path.rowDelta == 0) return 'horizontal';
+      if (path.columnDelta == 0) return 'vertical';
+      return 'diagonal';
+    }).toSet();
+
+    expect(
+      directionFamilies,
+      const <String>{'horizontal', 'vertical', 'diagonal'},
+    );
+  });
+
   for (final productionCase in _productionCases) {
     test(
       'Bölüm ${productionCase.levelIndex} production grid/path sözleşmesi',
@@ -274,11 +290,11 @@ const _productionCases = <_ProductionContentCase>[
   ),
   _ProductionContentCase(
     levelIndex: 5,
-    grid: <String>['AAKİİŞ', 'ENÜERE', 'YEKEÜH', 'KLNAEİ', 'EATŞRR', 'NKRKAA'],
+    grid: <String>['AAKİİŞ', 'ENÜERE', 'YEKEÜH', 'KLNAEİ', 'EATŞRR', 'ELAKAA'],
     paths: <_ExpectedWordPath>[
       _ExpectedWordPath('ANKARA', 0, 0, 1, 1, 6),
       _ExpectedWordPath('ŞEHİR', 0, 5, 1, 0, 5),
-      _ExpectedWordPath('KALE', 5, 1, -1, 0, 4, isBonus: true),
+      _ExpectedWordPath('KALE', 5, 3, 0, -1, 4, isBonus: true),
     ],
   ),
   _ProductionContentCase(

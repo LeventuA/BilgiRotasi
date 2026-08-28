@@ -148,7 +148,7 @@ class WordHuntStarterContent {
           'YEKEÜH',
           'KLNAEİ',
           'EATŞRR',
-          'NKRKAA',
+          'ELAKAA',
         ],
         targetWords: <String>['ANKARA', 'ŞEHİR'],
         bonusWords: <String>['KALE'],

@@ -88,14 +88,14 @@ ENÜERE
 YEKEÜH
 KLNAEİ
 EATŞRR
-NKRKAA
+ELAKAA
 ```
 
 | Tür | Kelime | Intended path | Yön | Occurrence |
 |---|---|---|---|---:|
 | Target | ANKARA | `(0,0) → (5,5)` | aşağı-sağ çapraz `(1,1)` | 1 |
 | Target | ŞEHİR | `(0,5) → (4,5)` | aşağı `(1,0)` | 1 |
-| Bonus | KALE | `(5,1) → (2,1)` | yukarı/reverse `(-1,0)` | 1 |
+| Bonus | KALE | `(5,3) → (5,0)` | sol/reverse `(0,-1)` | 1 |
 
 Zorluk amacı: eski satır-başı kalıbını kaldırıp horizontal/vertical/diagonal bilgisini challenge hissiyle sınamak. `60s / 50s / 35s` eşikleri değiştirilmemiştir ve Android playtest'e kadar provisionaldır.
 
