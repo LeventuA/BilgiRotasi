@@ -1,6 +1,15 @@
 name: Kelime Avı B5/B10 timing Android 16 dispatch
 
 on:
+  push:
+    branches:
+      - qa/kelime-avi-level5-10-timing-android16-20260828
+    paths:
+      - '.github/workflows/word-hunt-visual-proof.yml'
+      - '.github/workflows/word-hunt-level5-10-timing-android16-proof.yml'
+      - 'lib/word_hunt/word_hunt_level5_10_timing_android16_proof_main.dart'
+      - 'test/word_hunt_level5_10_timing_qa_test.dart'
+      - 'tools/validate_word_hunt_level5_10_timing_android16.sh'
   workflow_dispatch:
 
 permissions:
