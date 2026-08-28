@@ -1,94 +1,91 @@
 # Bilgi Rotası – Proje Durumu
 
-## Son Sürüm
+**Son güncelleme:** 28 Ağustos 2026
 
-**1.62.0+83**
+## Canlı Sürüm / Release Hattı
 
-## Son Tamamlanan İş
+- Kanonik release branch: `release/final-closed-test-aab-1.68.8`
+- Release HEAD: `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`
+- Sürüm: **1.68.19+109**
+- Paket: `com.leventua.bilgirotasi`
+- `main` yayın kaynağı olarak varsayılmaz.
 
-Canlı Düello puan yazımı Firestore tarafından doğrulanır hale getirildi.
+## Aktif İş — Kelime Avı Başlangıç Limanı 6×10
 
-- İstemci seçilen şık numarasını ilerleme belgesine gönderiyor.
-- Doğru/yanlış artışı özel `live_duel_question_keys` koleksiyonundaki
-  cevap anahtarına göre Firestore güvenlik kuralları tarafından doğrulanıyor.
-- Oyuncular özel cevap anahtarı koleksiyonunu okuyamıyor veya değiştiremiyor.
-- Cevaplar doğru sırada ve yalnızca birer kez gönderilebiliyor.
-- Doğru ve yanlış sayaçlarının elle şişirilmesi engellendi.
-- Bitmiş maçlara yeni cevap yazılması engellendi.
-- 6.710 cevap anahtarını yükleyen araç eklendi.
-- Lig ve Sıralama ile 3 dakikalık geri dönüş süresi korunuyor.
+- PR: **#156**
+- Head branch: `feat/kelime-avi-content-pass-v1-20260828`
+- Base: `release/final-closed-test-aab-1.68.8`
+- PR son kontrolde: **OPEN / DRAFT / merged=false / mergeable=true**.
+- 10 bölümün canonical grid standardı: **10 satır × 6 sütun**.
+- Toplam canonical target + bonus: **80 kelime**.
+- Eski 6×6 / 3→6 kelimelik plan superseded; geri alınmaz.
+
+## Son Tamamlanan Teknik Checkpoint
+
+Android 16 gerçek 6×10 runtime/gesture QA tamamlandı.
+
+Final QA:
+- QA branch: `qa/kelime-avi-6x10-runtime-android16-20260828`
+- QA head: `e12b99513ea6235e857f7c855006e6d1abb2080e`
+- Commit: `test(qa): verify B5 swipe progress after scroll`
+- Workflow run: `33202898863`
+- Sonuç: **SUCCESS**
+- `QA source gate`: SUCCESS
+- B1 runtime: SUCCESS
+- B5 runtime: SUCCESS
+- B8 runtime: SUCCESS
+- B10 runtime: SUCCESS
+
+B5 gerçek Android 16 kanıtı:
+- 1080×1920 / 420 dpi.
+- 10×6 grid açılıyor.
+- +65 saniye sentetik clock offset sonrası oyun hard fail olmadan oynanabilir kalıyor; time limit soft challenge.
+- Uzun çapraz `ANKARA` gerçek `adb input swipe` ile bulundu; seçim hücreleri yeşil ve `Bilgi kartı açıldı: Ankara` kanıtı var.
+- Ters-dikey `BAŞKENT` ayrı temiz açılışta gerçek `adb input swipe` ile bulundu; seçim hücreleri yeşil ve `BAŞKENT bulundu!` kanıtı var.
+- Her iki gesture sonrası viewport üste döndürülünce sayaç `1/7`, hata `0`.
+- Uygulama logunda `FATAL EXCEPTION`, uygulama ANR veya `am_crash` kanıtı yok.
+
+## Gameplay Sözleşmesi
+
+Ürün kodu/testleri şunları koruyor:
+- rectangular 6×10 render ve dinamik hit-test,
+- intended ve reverse straight gestures,
+- bonus kelime completion gate değil,
+- ana targetlar tamamlanınca elapsed + mistake skoru donar,
+- target sonrası bonus araması mümkün,
+- target sonrası yanlış bonus denemesi kazanılmış skoru düşürmez,
+- sonuç yalnız `Bölümü Tamamla` ile açılır,
+- `timeLimitSeconds` hard fail değil soft challenge.
 
 ## Sıradaki İş
 
-- Cloud Shell'den 6.710 özel cevap anahtarını yükleme
-- Yeni 1.62.0+83 APK'yı iki telefona kurma
-- Güncel Firestore kurallarını dağıtma
-- 10 soruluk normal maçla güvenli puan yazımını doğrulama
+1. Kullanıcıdan B1/B5/B8/B10 gerçek Android 16 görünümü için **görsel/oynanış kabulü** al.
+2. B5 ve B10 challenge sürelerini gerçek insan playtestiyle değerlendir; teknik soft-time PASS zorluk dengesi onayı değildir.
+3. Kullanıcı kabulünden önce PR #156 Ready yapma.
+4. Merge yalnız Levent'in açık merge onayıyla yapılır.
+5. Yeni gerçek cihaz belirtisi çıkmadıkça aynı QA'yı körlemesine tekrar üretme.
 
-## Dağıtım Sırası
+## Korunan Alanlar
 
-1. Cevap anahtarlarını Firestore'a yükle
-2. Yeni APK'yı iki telefona kur
-3. Firestore kurallarını dağıt
-4. Yeni maç başlat
+Açık kapsam olmadan değişmez:
+- `lib/main.dart`
+- `assets/questions.json`
+- BoardMap / 67 node / 3B tahta
+- MASTER ART bytes ve kabul edilmiş route art mimarisi
+- AdMob / Firebase / Android release-signing config
+- package name
+- `version: 1.68.19+109`
 
-## Bilinen Durumlar
+## Doğrulanacak Proje Dosyaları
 
-- Toplam soru sayısı: **6710**
-- Bu katman sahte doğru/yanlış yazımını engeller.
-- Cevaplar uygulama paketinde de bulunduğundan ileri düzey modifiye
-  istemci saldırılarına karşı tam gizlilik sağlamaz.
+28 Ağustos 2026 canlı repo/feature branch kontrolünde aşağıdaki dosyalar bulunamadı:
+- `KARARLAR.md`
+- `GOREV_HAVUZU.md`
+- `ACIK_SORULAR_VE_DOGRULAMALAR.md`
 
+Bu nedenle bunların güncel içerik veya görev durumu **DOĞRULANACAK** olarak kalır; upload/eski sohbet içeriği canlı GitHub kaynağı yerine geçirilmez.
 
-## Çevrimdışı Açılış Düzeltmesi
+## Kanonik Devir Dosyası
 
-- Uygulama bulut başlatmasını beklemeden ilk kareyi açar.
-- Mevcut Google hesabı yerel kayıtla anında açılır.
-- Bulut eşitlemesi arka planda denenir.
-- Sunucu okuması 6 saniyede zaman aşımına uğrar.
-- İnternet yokken native açılış logosunda kalma engellendi.
-
-
-## Oyuncu Kullanıcı Adı Sistemi
-
-- Google ile giriş yapan herkes benzersiz kullanıcı adı belirler.
-- Kullanıcı adları 3–16 karakter ve küçük harftir.
-- Canlı Düello, lig sıralaması ve maç geçmişinde yalnızca
-  kullanıcı adı görünür.
-- Google adı ve e-posta yalnızca hesap sahibine gösterilir.
-- Kullanıcı adı 30 günde bir değiştirilebilir.
-- Hesap silindiğinde kullanıcı adı yeniden boşa çıkar.
-- Mevcut oyuncular yeni sürümde bir kez kullanıcı adı seçer.
-
-
-## Canlı Düello Kullanıcı Adı ve BR Düzeltmesi
-
-- Yerel kullanıcı adı ile Firestore kullanıcı adı bağı doğrulanır.
-- Eksik sunucu kullanıcı adı kaydı aynı adla otomatik onarılır.
-- Kullanıcı adı genel oyun yedeğinden ayrılmıştır.
-- Eşit rakipte +18 / -7 BR uygulanır.
-- Güçlü rakipte +22 / -5 BR uygulanır.
-- Zayıf rakipte +14 / -8 BR uygulanır.
-- İlk 5 maçta +20 / -4 BR uygulanır.
-- Eski -8'den ağır mağlubiyetlerin farkı bir kez iade edilir.
-
-
-## Kayıtlı Oyun Hesap İzolasyonu
-
-- Misafir ve Google hesapları farklı kayıt kasaları kullanır.
-- Bir hesaptan çıkınca o hesaba ait devam eden oyun gizlenir.
-- Aynı Google hesabıyla tekrar girildiğinde oyun yeniden görünür.
-- Başka bir Google hesabı önceki hesabın oyununu göremez.
-- Eski ortak kayıt ilk giriş yapan mevcut hesaba güvenle taşınır.
-- Kayıt kurtarma yedeği de hesap bazında ayrılmıştır.
-
-
-## Kayıtlı Oyun İzolasyonu V4
-
-- Her kayıt payloadı ownerScope alanıyla sahibini taşır.
-- Misafir, Levent ve Emel kayıtları birbirine karışmaz.
-- Bulut yedeği yalnız aktif hesabın kayıt kasasını taşır.
-- Yabancı hesap anahtarları yedekten geri yüklenmez.
-- Sahipsiz eski kayıt misafir ekranında gösterilmez.
-- Sahipsiz eski kayıt Google hesabına girildiğinde kurtarılır.
-- Çıkıştan sonra bozuk misafir kayıtları otomatik temizlenir.
+Kelime Avı için ayrıntılı geçmiş, kararlar, QA runları ve sıradaki sıra:
+`docs/project-memory/GENEL_PROJE_OZETI.md`
