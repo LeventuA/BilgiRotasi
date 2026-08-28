@@ -1,115 +1,124 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 27 Ağustos 2026 — Kelime Avı Codex öncesi gameplay hazırlığı tamamlandı.
+**Son güncelleme:** 28 Ağustos 2026 — Kelime Avı Başlangıç Limanı 6×10 redesign onaylandı ve aktif üretime geçti.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez.
 
 ## Kalıcı çalışma kuralı
 
 - Yeni sohbet başında önce bu dosya okunur.
-- Kelime Avı çalışmasında hemen ardından `docs/project-memory/checkpoints/KELIME_AVI_PRE_CODEX_READY_20260827.md` okunur.
-- Ardından `BILGI_ROTASI_DURUM.md`, `KARARLAR.md`, `GOREV_HAVUZU.md` ve gerekiyorsa `ACIK_SORULAR_VE_DOGRULAMALAR.md` okunur.
-- Eski aktif dosyalarda PR #132/#96 zincirini hâlâ açık gösteren satırlar tarihsel kayıttır; 27 Ağustos checkpoint'leri supersede eder.
-- Her görev öncesi canlı hedef branch, `pubspec.yaml`, son commit, ilgili PR ve CI yeniden doğrulanır.
+- Ardından ilgili Kelime Avı checkpoint dosyaları ve gerekiyorsa `BILGI_ROTASI_DURUM.md`, `KARARLAR.md`, `GOREV_HAVUZU.md`, `ACIK_SORULAR_VE_DOGRULAMALAR.md` okunur.
+- Her substantive sohbet mesajından sonra bu dosya güncellenir.
+- Her görev öncesi canlı hedef branch, son commit, ilgili PR ve CI yeniden doğrulanır.
 - Doğrudan `main` veya release dalına kod yazılmaz; branch/PR kullanılır.
 - Kritik merge için Levent'in açık onayı gerekir.
 - Build/CI PASS tek başına görsel veya ürün kabulü değildir.
-- Önemli geçmiş `docs/project-memory/archive/`, checkpoint'ler ve Git geçmişinde korunur.
 
 ## Canlı release hattı
 
 - Repo: `ZMilaStudio/BilgiRotasi`
 - Kanonik release: `release/final-closed-test-aab-1.68.8`
-- Release HEAD: `0350e0ae9cbe9ec3eda275a983c9cbc17483baf3`
-- Release tree: `a082ce673a682dc81adfdfc7c5975b80ccc2165a`
+- Release HEAD: `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`
 - Sürüm: `1.68.19+109`
 - Paket: `com.leventua.bilgirotasi`
 - `main` yayın kaynağı olarak varsayılmaz.
+- PR #155 production Bölüm 1 gameplay merge edildi; merge commit `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
 
-## Kelime Avı — release zinciri TAMAMLANDI
-
-- PR #147 → MASTER ART production route.
-- PR #150 → dynamic progression görünür state.
-- PR #132 → merged.
-- PR #110 → merged.
-- PR #107 → merged.
-- Eski PR #96 → `SUPERSEDED / CLOSED / UNMERGED`.
-- Temiz current-release entegrasyonu PR #153 üzerinden yapıldı.
-- PR #153 release'e merge edildi: `0350e0ae9cbe9ec3eda275a983c9cbc17483baf3`.
-- Geçici QA PR #154 kapatıldı ve merge edilmedi.
-
-Final release-context kanıtları:
-- Kelime Avı Android 16 run `33000456233`: SUCCESS.
-- Artifact `9618632032`.
-- AdMob/release run `33000456242`: SUCCESS.
-- Analyze/tüm testler/release APK/package-manifest/Android 16 cold-start/app gate: PASS.
-- Android 16 visual QA: PASS.
-
-## Başlangıç Limanı bağlayıcı mimari
+## Başlangıç Limanı bağlayıcı görsel/mimari
 
 `MASTER ART RASTER → TRANSPARENT INTERACTION HITBOXES → MINIMUM LOCAL STATE OVERRIDES`
 
-- Issue #109 `Photo 1.jpg` tek bağlayıcı görsel kaynak.
+- Issue #109 `Photo 1.jpg` bağlayıcı görsel kaynak.
 - Repo MASTER ART: `assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg`.
-- PR #146 / `c42a9ff...` ve eski ChatGPT-generated hedef asset'ler görsel kaynak değildir.
-- Gerçek `X/30`, level 1–10 yıldız ve locked/open state runtime progression ile senkrondur.
-- Level 7 → 8 + 9 açılır; bonus 8 zorunlu kapı değildir.
-- Node 9 callback aktiftir.
-- Node 10 node 9 bitmeden locked/no-callback kalır.
+- PR #146 / eski ChatGPT-generated hedef asset'ler görsel kaynak değildir.
+- Route progression: 7 tamamlanınca 8+9 açılır; bonus 8 gate değildir; 10 node 9 tamamlanmadan locked/no-callback kalır.
 
-## Yeni aktif geliştirme — Bölüm 1 production gameplay
+## Bölüm 1 production gameplay — TAMAMLANDI
 
-- Branch: `feat/kelime-avi-gameplay-v1-20260826`.
-- Branch release `0350e0ae...` üzerinden açıldı.
-- Aktif checkpoint: `docs/project-memory/checkpoints/KELIME_AVI_PRE_CODEX_READY_20260827.md`.
-- İlk hedef:
-  `production route → node 1 → Bölüm 1 oyun → sonuç/yıldız → rotaya dönüş → progress → Bölüm 2 unlock`.
-- İlk gameplay adımında production `lib/main.dart` değiştirilmez.
+- Product branch eski final head: `4edd4090862bbbdcc8e7422b913fae7d7d758540`.
+- Android 16 production QA accepted: run `33113510959`, 126/126 PASS.
+- PR #155 merge edildi ve release'e girdi.
+- Üretim ekranı gerçek gesture, result modal, exit confirmation, elapsed/mistake/star hesapları taşıyor.
 
-Bölüm 1 canonical veri:
-- Grid: `KALEMS / MASALI / ELMALI / BİLGİN / OYUNCU / ROTASI`
-- Hedef: `KALEM`, `MASA`
-- Bonus: `ELMA`
-- 3 yıldız: 0 hata
-- 2 yıldız: en fazla 2 hata
-- 1 yıldız: bölüm tamamlandı
+## AKTİF ÜRÜN KARARI — Başlangıç Limanı 6×10 redesign
 
-## Kelime içeriği bağlayıcı kuralları
+28 Ağustos 2026 kullanıcı onayıyla eski 6×6 / 3→6 kelimelik plan supersede edildi.
 
-- `targetWords` ve `bonusWords` **en az 3 harf** olmalıdır.
-- `WordHuntDefinitionValidator` iki harfli target/bonus kelimeyi reddeder.
-- Bölüm 8 `TOP` duplicate occurrence çözüldü: filler satırı `TAKIMI → RAKİBİ`; `TOP` artık tek intended hatta.
-- Bölüm 9 iki harfli `AY` bonusu kaldırıldı; bonus artık `ROKET` ve tek intended hatta.
-- Ayrıntılı çözüm: `docs/kelime-avi/BASLANGIC_LIMANI_CONTENT_QA_RESOLUTION_20260827.md`.
-- Bölüm 2–10 için kalan açık içerik işi: dikey/çapraz/reverse çeşitliliği ve gerçek zorluk dengesi.
+Canonical grid:
+- **10 satır × 6 sütun** (`rowCount=10`, `columnCount=6`).
 
-## Codex öncesi tamamlanan hazırlık
+Canonical toplam kelime eğrisi target + bonus dahil:
+- B1 = 6 (`5 target + 1 bonus`)
+- B2 = 6 (`5 + 1`)
+- B3 = 7 (`6 + 1`)
+- B4 = 7 (`6 + 1`)
+- B5 = 8 (`7 + 1`)
+- B6 = 8 (`7 + 1`)
+- B7 = 9 (`8 + 1`)
+- B8 Bonus Durak = 9 (`7 target + 2 bonus`)
+- B9 = 10 (`9 + 1`)
+- B10 Final = 10 (`9 + 1`)
 
-- Bölüm 1 grid/koordinat QA: tamamlandı.
-- Production UI sözleşmesi: tamamlandı.
-- Gameplay flow / edge-case sözleşmesi: tamamlandı.
-- 50 maddelik Codex acceptance gate: tamamlandı.
-- Bölüm 2–10 structural content QA: tamamlandı.
-- `TOP` / `AY` somut içerik sorunları: çözüldü.
+Toplam canonical target/bonus: **80 kelime**.
+
+Content kuralları:
+- Her target/bonus en az 3 harf.
+- Her target/bonus 8 düz yönde **exactly 1 physical occurrence** taşımalı.
+- Intended path ve opposite gesture gerçek `WordHuntPathEngine` üzerinden aynı canonical kelimeye dönmeli.
+- Zorluk kelime sayısı, kesişim, diagonal/vertical/reverse yönler ve daha uzun kelimelerle artar.
+- B9 `AY` geri dönmez; `ROKET` bonus korunur.
+- B10 `ROTA` geri dönmez; `YOL` korunur.
+
+## PR #156 — AKTİF / DRAFT / WIP
+
+- URL: `https://github.com/ZMilaStudio/BilgiRotasi/pull/156`
+- Base: `release/final-closed-test-aab-1.68.8`
+- Base SHA: `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`
+- Head branch: `feat/kelime-avi-content-pass-v1-20260828`
+- Son 6×10 starter-content commit: `aee37c0b169b0acc72a9036e15d914412b826ae4`
+- PR başlığı WIP 6×10 redesign olarak güncellendi.
+- **Merge yok.** Eski 6×6 içerik merge edilmeyecek.
+- 10 yeni 6×10 grid üretildi; 80 canonical target/bonus bağımsız occurrence taramasında exactly1 olarak doğrulandı.
+
+## Onaylanan gameplay UX — sonraki stacked product dilimi
+
+Ana targetların sonuncusu bulunduğunda:
+- yıldız hesabı için elapsed + mistake snapshotı donar,
+- grid bonus aramak için açık kalır,
+- bonus completion için zorunlu değildir,
+- bonus arama aşamasındaki yanlış seçim kazanılmış yıldızı düşürmez,
+- sonuç yalnız `Bölümü Tamamla` ile açılır,
+- `timeLimitSeconds` hard fail değil **soft challenge** olur.
+
+Önceki ayrı branch `fix/kelime-avi-bonus-after-targets-soft-timer-20260828` denemesinde geçici workflow patch'leri başarısız oldu; ürün kodu doğrulanmadan merge edilmedi. Bu UX yeni 6×10 rectangular UI uyarlamasıyla temiz şekilde yeniden uygulanacak.
+
+## Şu anki teknik engel / gerekli UI uyarlaması
+
+Model ve validator rectangular grid destekliyor; ancak production/prototype oyun ekranlarında kare `AspectRatio(1)` / 6×6 hücre varsayımları bulunuyor. 6×10 için:
+- grid yüksekliği 10 satıra göre hesaplanmalı,
+- cell hit-testing rowCount/columnCount üzerinden dinamik olmalı,
+- gesture/widget testlerindeki `/6` sabitleri kaldırılmalı,
+- 6×10 grid Android telefonda hedef/bonus alanıyla birlikte taşmadan kullanılmalı.
 
 ## Korunan alanlar
 
-Kelime Avı gameplay geliştirmesinde açık kapsam olmadan değişmez:
+Açık kapsam olmadan değişmez:
 - `lib/main.dart`
 - `assets/questions.json`
 - BoardMap / 67 node / 3B tahta
+- MASTER ART bytes ve kabul edilmiş route art mimarisi
 - AdMob / Firebase / Android release/signing config
 - package name
 - `version: 1.68.19+109`
-- kabul edilmiş MASTER ART production rota mimarisi
 
 ## Sıradaki aktif sıra
 
-1. Codex: Bölüm 1 production gameplay implementation.
-2. Codex acceptance raporu ve focused test/analyze.
-3. ChatGPT/GitHub diff review.
-4. Android 16 production gameplay proof + görsel QA.
-5. Kullanıcı onayı sonrası ilgili gameplay PR merge kararı.
-6. Bölüm 2–10 için ayrı content/zorluk pass.
+1. `word_hunt_starter_content_test.dart` → 6×10, 6→10 density ve 80 exact-occurrence/path sözleşmesi.
+2. Prototype gesture testleri → dinamik row/column ölçümü ve yeni canonical yollar.
+3. Production/prototype grid UI → rectangular 6×10 layout + hit-testing.
+4. Bonus-after-targets + soft-time gameplay UX.
+5. Focused Word Hunt tests + analyze + diff-check.
+6. Android 16 gerçek production QA; özellikle B1, B5, B8, B10.
+7. Kullanıcı görsel/oynanış onayı olmadan PR #156 Ready/merge yapılmaz.
 
-Diğer Bilgi Rotası açık işleri `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` içinde korunur; bu özet onları silmez.
+Diğer Bilgi Rotası açık işleri diğer project-memory dosyalarında korunur; bu özet onları silmez.
