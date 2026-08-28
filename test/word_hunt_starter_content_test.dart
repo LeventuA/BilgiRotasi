@@ -55,6 +55,23 @@ void main() {
     expect(level.timeLimitSeconds, isNull);
   });
 
+  test('kelime yoğunluğu tutorialdan finale kontrollü biçimde artar', () {
+    const expectedTargetCounts = <int>[2, 3, 3, 4, 4, 4, 4, 4, 5, 5];
+    const expectedBonusCounts = <int>[1, 1, 1, 1, 1, 1, 1, 2, 1, 1];
+    const expectedTotals = <int>[3, 4, 4, 5, 5, 5, 5, 6, 6, 6];
+
+    for (var index = 0; index < route.levels.length; index++) {
+      final level = route.levels[index];
+      expect(level.targetWords, hasLength(expectedTargetCounts[index]));
+      expect(level.bonusWords, hasLength(expectedBonusCounts[index]));
+      expect(
+        level.targetWords.length + level.bonusWords.length,
+        expectedTotals[index],
+        reason: level.id,
+      );
+    }
+  });
+
   test('rota, kelimeler ve bilgi kartları kalite validatorından geçer', () {
     final errors = WordHuntContentValidator.validate(
       route: route,
@@ -122,7 +139,10 @@ void main() {
   test('Bölüm 10 canonical ROTA yerine YOL kullanır', () {
     final level = route.levels[9];
 
-    expect(level.targetWords, const <String>['PUSULA', 'YOL', 'BİLGİ']);
+    expect(
+      level.targetWords,
+      const <String>['PUSULA', 'YOL', 'BİLGİ', 'YÖN', 'HEDEF'],
+    );
     expect(level.targetWords, isNot(contains('ROTA')));
     expect(level.bonusWords, const <String>['YILDIZ']);
     expect(_countStraightOccurrences(level.grid, 'YOL'), 1);
@@ -244,7 +264,7 @@ void main() {
     expect(route.levels[8].timeLimitSeconds, isNull);
     expect(
       route.levels[9].targetWords,
-      containsAll(<String>['PUSULA', 'YOL', 'BİLGİ']),
+      containsAll(<String>['PUSULA', 'YOL', 'BİLGİ', 'YÖN', 'HEDEF']),
     );
   });
 
@@ -263,84 +283,102 @@ void main() {
 const _productionCases = <_ProductionContentCase>[
   _ProductionContentCase(
     levelIndex: 2,
-    grid: <String>['DDLELA', 'EUEEİM', 'NSGAML', 'İIAIAG', 'ZİAANİ', 'İGEMİD'],
+    grid: <String>['SFDÖLL', 'AGEMİD', 'EDNAMY', 'ÜYİBAA', 'IĞZCNK', 'DALGAL'],
     paths: <_ExpectedWordPath>[
-      _ExpectedWordPath('DENİZ', 0, 0, 1, 0, 5),
-      _ExpectedWordPath('GEMİ', 5, 1, 0, 1, 4),
+      _ExpectedWordPath('DENİZ', 0, 2, 1, 0, 5),
+      _ExpectedWordPath('GEMİ', 1, 1, 0, 1, 4),
+      _ExpectedWordPath('DALGA', 5, 0, 0, 1, 5),
       _ExpectedWordPath('LİMAN', 0, 4, 1, 0, 5, isBonus: true),
     ],
   ),
   _ProductionContentCase(
     levelIndex: 3,
-    grid: <String>['GRİÖNY', 'FPATİK', 'LIDOSD', 'USNÖBB', 'KİCIRG', 'OCADSİ'],
+    grid: <String>['SFÖLAD', 'FPATİK', 'EIDAYL', 'ÜYNBAU', 'IĞCIKK', 'LDERSO'],
     paths: <_ExpectedWordPath>[
       _ExpectedWordPath('KİTAP', 1, 5, 0, -1, 5),
-      _ExpectedWordPath('OKUL', 5, 0, -1, 0, 4),
+      _ExpectedWordPath('OKUL', 5, 5, -1, 0, 4),
+      _ExpectedWordPath('DERS', 5, 1, 0, 1, 4),
       _ExpectedWordPath('SINIF', 5, 4, -1, -1, 5, isBonus: true),
     ],
   ),
   _ProductionContentCase(
     levelIndex: 4,
-    grid: <String>['HCHYNF', 'SIYSÇZ', 'BDZUYA', 'EOÇLHM', 'BAENIA', 'KERÜSN'],
+    grid: <String>['HEDEFK', 'ZISFUÖ', 'ALZBAD', 'MEALDA', 'AÇYÜIY', 'NERÜSB'],
     paths: <_ExpectedWordPath>[
       _ExpectedWordPath('HIZLI', 0, 0, 1, 1, 5),
-      _ExpectedWordPath('ZAMAN', 1, 5, 1, 0, 5),
+      _ExpectedWordPath('ZAMAN', 1, 0, 1, 0, 5),
+      _ExpectedWordPath('HEDEF', 0, 0, 0, 1, 5),
+      _ExpectedWordPath('ÇABUK', 4, 1, -1, 1, 5),
       _ExpectedWordPath('SÜRE', 5, 4, 0, -1, 4, isBonus: true),
     ],
   ),
   _ProductionContentCase(
     levelIndex: 5,
-    grid: <String>['AAKİİŞ', 'ENÜERE', 'YEKEÜH', 'KLNAEİ', 'EATŞRR', 'ELAKAA'],
+    grid: <String>['ATAİŞM', 'RNEÖEE', 'NEKLHL', 'YKSAİA', 'KVPARK', 'IİKNIA'],
     paths: <_ExpectedWordPath>[
       _ExpectedWordPath('ANKARA', 0, 0, 1, 1, 6),
-      _ExpectedWordPath('ŞEHİR', 0, 5, 1, 0, 5),
-      _ExpectedWordPath('KALE', 5, 3, 0, -1, 4, isBonus: true),
+      _ExpectedWordPath('ŞEHİR', 0, 4, 1, 0, 5),
+      _ExpectedWordPath('KENT', 3, 1, -1, 0, 4),
+      _ExpectedWordPath('PARK', 4, 2, 0, 1, 4),
+      _ExpectedWordPath('KALE', 4, 5, -1, 0, 4, isBonus: true),
     ],
   ),
   _ProductionContentCase(
     levelIndex: 6,
-    grid: <String>['İNAMRO', 'TOPÇLŞ', 'İKNAEA', 'ŞÇĞKŞĞ', 'AOYOKA', 'DEHHNÇ'],
+    grid: <String>['NAMROK', 'YSFÖAA', 'LEADĞR', 'EDŞOAP', 'AYDİÇO', 'ÜYBALT'],
     paths: <_ExpectedWordPath>[
-      _ExpectedWordPath('DOĞA', 5, 0, -1, 1, 4),
-      _ExpectedWordPath('ORMAN', 0, 5, 0, -1, 5),
-      _ExpectedWordPath('AĞAÇ', 2, 5, 1, 0, 4, isBonus: true),
+      _ExpectedWordPath('DOĞA', 4, 2, -1, 1, 4),
+      _ExpectedWordPath('ORMAN', 0, 4, 0, -1, 5),
+      _ExpectedWordPath('TOPRAK', 5, 5, -1, 0, 6),
+      _ExpectedWordPath('YEŞİL', 1, 0, 1, 1, 5),
+      _ExpectedWordPath('AĞAÇ', 1, 4, 1, 0, 4, isBonus: true),
     ],
   ),
   _ProductionContentCase(
     levelIndex: 7,
-    grid: <String>['ELLABP', 'NEEPNK', 'PDOKEA', 'VNIÇAP', 'ERİKLV', 'AÇPADĞ'],
+    grid: <String>['SFÖLAK', 'DPETEK', 'EDAÇYO', 'ÜYİBIV', 'AÇIRĞA', 'CLABKN'],
     paths: <_ExpectedWordPath>[
-      _ExpectedWordPath('ARI', 5, 0, -1, 1, 3),
-      _ExpectedWordPath('ÇİÇEK', 5, 1, -1, 1, 5),
-      _ExpectedWordPath('BAL', 0, 4, 0, -1, 3, isBonus: true),
+      _ExpectedWordPath('ARI', 5, 2, -1, 1, 3),
+      _ExpectedWordPath('ÇİÇEK', 4, 1, -1, 1, 5),
+      _ExpectedWordPath('PETEK', 1, 1, 0, 1, 5),
+      _ExpectedWordPath('KOVAN', 1, 5, 1, 0, 5),
+      _ExpectedWordPath('BAL', 5, 3, 0, -1, 3, isBonus: true),
     ],
   ),
   _ProductionContentCase(
     levelIndex: 8,
-    grid: <String>['SAAAIA', 'KPZKHR', 'YAOUAA', 'ILORİP', 'ZAUTKO', 'IUŞOKT'],
+    grid: <String>['SFGÖLZ', 'AODEDI', 'LSAYPH', 'ÜYPBOA', 'NUYOTI', 'UŞOKRĞ'],
     paths: <_ExpectedWordPath>[
-      _ExpectedWordPath('SPOR', 0, 0, 1, 1, 4),
-      _ExpectedWordPath('TOP', 5, 5, -1, 0, 3),
-      _ExpectedWordPath('KOŞU', 5, 4, 0, -1, 4, isBonus: true),
+      _ExpectedWordPath('SPOR', 2, 1, 1, 1, 4),
+      _ExpectedWordPath('TOP', 4, 4, -1, 0, 3),
+      _ExpectedWordPath('OYUN', 4, 3, 0, -1, 4),
+      _ExpectedWordPath('HIZ', 2, 5, -1, 0, 3),
+      _ExpectedWordPath('KOŞU', 5, 3, 0, -1, 4, isBonus: true),
+      _ExpectedWordPath('GOL', 0, 2, 1, -1, 3, isBonus: true),
     ],
   ),
   _ProductionContentCase(
     levelIndex: 9,
-    grid: <String>['NRIZDN', 'NSONÜR', 'YYRKGE', 'AÖEAEY', 'ZÜÜÜMT', 'UZEGÜL'],
+    grid: <String>['YRSSFÖ', 'ALORAD', 'ZYEKAD', 'UANYEM', 'ŞENÜGT', 'ÜYUYDU'],
     paths: <_ExpectedWordPath>[
-      _ExpectedWordPath('MARS', 4, 4, -1, -1, 4),
-      _ExpectedWordPath('UZAY', 5, 0, -1, 0, 4),
+      _ExpectedWordPath('MARS', 3, 5, -1, -1, 4),
+      _ExpectedWordPath('UZAY', 3, 0, -1, 0, 4),
+      _ExpectedWordPath('GÜNEŞ', 4, 4, 0, -1, 5),
+      _ExpectedWordPath('DÜNYA', 5, 4, -1, -1, 5),
+      _ExpectedWordPath('UYDU', 5, 2, 0, 1, 4),
       _ExpectedWordPath('ROKET', 0, 1, 1, 1, 5, isBonus: true),
     ],
   ),
   _ProductionContentCase(
     levelIndex: 10,
-    grid: <String>['PUSULA', 'KİYABT', 'EEOİİN', 'YILDIZ', 'AGHAİE', 'İKKERE'],
+    grid: <String>['BFMAEN', 'GİEŞSL', 'YILDIZ', 'OÖGGET', 'LYNLİH', 'ALUSUP'],
     paths: <_ExpectedWordPath>[
-      _ExpectedWordPath('PUSULA', 0, 0, 0, 1, 6),
-      _ExpectedWordPath('YOL', 1, 2, 1, 0, 3),
-      _ExpectedWordPath('BİLGİ', 1, 4, 1, -1, 5),
-      _ExpectedWordPath('YILDIZ', 3, 0, 0, 1, 6, isBonus: true),
+      _ExpectedWordPath('PUSULA', 5, 5, 0, -1, 6),
+      _ExpectedWordPath('YOL', 2, 0, 1, 0, 3),
+      _ExpectedWordPath('BİLGİ', 0, 0, 1, 1, 5),
+      _ExpectedWordPath('YÖN', 2, 0, 1, 1, 3),
+      _ExpectedWordPath('HEDEF', 4, 5, -1, -1, 5),
+      _ExpectedWordPath('YILDIZ', 2, 0, 0, 1, 6, isBonus: true),
     ],
   ),
 ];
