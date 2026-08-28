@@ -1,0 +1,54 @@
+name: Kelime Avi 6x10 screen patch
+
+on:
+  push:
+    branches:
+      - feat/kelime-avi-content-pass-v1-20260828
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/kelime-avi-content-pass-v1-20260828
+          fetch-depth: 0
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Dependencies
+        run: flutter pub get
+
+      - name: Apply fail-closed patch
+        run: python3 tools/tmp_kelime_6x10_screen_patch.py
+
+      - name: Format
+        run: dart format lib/word_hunt/word_hunt_screens.dart test/word_hunt_starter_content_test.dart test/word_hunt_level_one_engine_test.dart test/word_hunt_prototype_screens_test.dart test/word_hunt_level_production_test.dart
+
+      - name: Word Hunt tests
+        run: flutter test test/word_hunt_*_test.dart
+
+      - name: Analyze Word Hunt
+        run: dart analyze lib/word_hunt
+
+      - name: Diff check
+        run: git diff --check
+
+      - name: Commit verified product patch and remove temporary tooling
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/tmp-kelime-6x10-screen-patch.yml tools/tmp_kelime_6x10_screen_patch.py
+          git add lib/word_hunt/word_hunt_screens.dart test/word_hunt_starter_content_test.dart test/word_hunt_level_one_engine_test.dart test/word_hunt_prototype_screens_test.dart test/word_hunt_level_production_test.dart
+          git diff --cached --check
+          git commit -m 'feat(kelime-avi): support 6x10 gameplay and bonus finish UX'
+          git push origin HEAD:feat/kelime-avi-content-pass-v1-20260828
