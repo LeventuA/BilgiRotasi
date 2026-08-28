@@ -120,11 +120,13 @@ jobs:
             adb shell wm size > reports/WM_SIZE.txt
             adb shell wm density > reports/WM_DENSITY.txt
             adb exec-out screencap -p > reports/B${{ matrix.level }}_ANDROID16.png
-            adb logcat -d > reports/LOGCAT.txt
             adb shell uiautomator dump /sdcard/window.xml >/dev/null 2>&1 || true
             adb pull /sdcard/window.xml reports/UI.xml >/dev/null 2>&1 || true
             test -s reports/B${{ matrix.level }}_ANDROID16.png
             test "$(wc -c < reports/B${{ matrix.level }}_ANDROID16.png)" -gt 50000
+            [ "${{ matrix.level }}" != "5" ] || { adb shell input swipe 118 1657 963 812 1200 && sleep 2 && adb shell uiautomator dump /sdcard/b5_long_diagonal.xml >/dev/null 2>&1 && adb pull /sdcard/b5_long_diagonal.xml reports/B5_LONG_DIAGONAL_UI.xml >/dev/null 2>&1 && adb exec-out screencap -p > reports/B5_LONG_DIAGONAL.png && grep -Fq 'content-desc="1/7"' reports/B5_LONG_DIAGONAL_UI.xml; }
+            [ "${{ matrix.level }}" != "5" ] || { adb shell am force-stop com.leventua.bilgirotasi && adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null && sleep 4 && adb shell input swipe 287 1657 287 643 1200 && sleep 2 && adb shell uiautomator dump /sdcard/b5_long_vertical_reverse.xml >/dev/null 2>&1 && adb pull /sdcard/b5_long_vertical_reverse.xml reports/B5_LONG_VERTICAL_REVERSE_UI.xml >/dev/null 2>&1 && adb exec-out screencap -p > reports/B5_LONG_VERTICAL_REVERSE.png && grep -Fq 'content-desc="1/7"' reports/B5_LONG_VERTICAL_REVERSE_UI.xml; }
+            adb logcat -d > reports/LOGCAT.txt
             grep -Fq '[WORD_HUNT_ANDROID16_QA_CONFIG] level=${{ matrix.level }}' reports/LOGCAT.txt
             grep -Fq '[WORD_HUNT_ANDROID16_QA_READY] level=${{ matrix.level }}' reports/LOGCAT.txt
             grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/ACTIVITY.txt
@@ -137,6 +139,10 @@ jobs:
           name: KelimeAvi-6x10-Android16-B${{ matrix.level }}-${{ github.sha }}
           path: |
             reports/B${{ matrix.level }}_ANDROID16.png
+            reports/B5_LONG_DIAGONAL.png
+            reports/B5_LONG_DIAGONAL_UI.xml
+            reports/B5_LONG_VERTICAL_REVERSE.png
+            reports/B5_LONG_VERTICAL_REVERSE_UI.xml
             reports/ACTIVITY.txt
             reports/LOGCAT.txt
             reports/UI.xml
