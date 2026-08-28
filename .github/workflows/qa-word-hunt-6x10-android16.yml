@@ -1,0 +1,151 @@
+name: QA Kelime Avi 6x10 Android16 runtime
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-6x10-runtime-android16-20260828
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: QA source gate
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact QA head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify focused Word Hunt contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test \
+            test/word_hunt_starter_content_test.dart \
+            test/word_hunt_level_one_engine_test.dart \
+            test/word_hunt_level_production_test.dart \
+            test/word_hunt_production_flow_test.dart \
+            --reporter expanded
+          git diff --check
+
+  android16:
+    name: Android16 B${{ matrix.level }} runtime
+    needs: verify
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        level: [1, 5, 8, 10]
+    steps:
+      - name: Checkout exact QA head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Build isolated QA APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          offset=0
+          if [ "${{ matrix.level }}" = "5" ]; then offset=65; fi
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_android16_qa_main.dart \
+            --dart-define=WORD_HUNT_QA_LEVEL=${{ matrix.level }} \
+            --dart-define=WORD_HUNT_QA_TIME_OFFSET_SECONDS=$offset \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          mkdir -p reports
+          git rev-parse HEAD > reports/HEAD_SHA.txt
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk > reports/APK_SHA256.txt
+
+      - name: Prepare Android emulator KVM
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Capture production level on Android 16
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            set -euo pipefail
+            mkdir -p reports
+            if adb shell pm path com.leventua.bilgirotasi 2>/dev/null | grep -q '^package:'; then adb uninstall com.leventua.bilgirotasi; fi
+            adb install build/app/outputs/flutter-apk/app-debug.apk
+            adb logcat -c
+            adb shell am force-stop com.leventua.bilgirotasi
+            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null
+            sleep 8
+            adb shell dumpsys activity activities > reports/ACTIVITY.txt
+            adb shell wm size > reports/WM_SIZE.txt
+            adb shell wm density > reports/WM_DENSITY.txt
+            adb exec-out screencap -p > reports/B${{ matrix.level }}_ANDROID16.png
+            adb logcat -d > reports/LOGCAT.txt
+            adb shell uiautomator dump /sdcard/window.xml >/dev/null 2>&1 || true
+            adb pull /sdcard/window.xml reports/UI.xml >/dev/null 2>&1 || true
+            test -s reports/B${{ matrix.level }}_ANDROID16.png
+            test "$(wc -c < reports/B${{ matrix.level }}_ANDROID16.png)" -gt 50000
+            grep -Fq '[WORD_HUNT_ANDROID16_QA_CONFIG] level=${{ matrix.level }}' reports/LOGCAT.txt
+            grep -Fq '[WORD_HUNT_ANDROID16_QA_READY] level=${{ matrix.level }}' reports/LOGCAT.txt
+            grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/ACTIVITY.txt
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi' reports/LOGCAT.txt; then
+              echo 'Kelime Avi Android16 QA process failure detected.' >&2
+              exit 1
+            fi
+
+      - name: Upload Android16 QA proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: KelimeAvi-6x10-Android16-B${{ matrix.level }}-${{ github.sha }}
+          path: |
+            reports/B${{ matrix.level }}_ANDROID16.png
+            reports/ACTIVITY.txt
+            reports/LOGCAT.txt
+            reports/UI.xml
+            reports/WM_SIZE.txt
+            reports/WM_DENSITY.txt
+            reports/HEAD_SHA.txt
+            reports/APK_SHA256.txt
+          if-no-files-found: warn
+          retention-days: 7
