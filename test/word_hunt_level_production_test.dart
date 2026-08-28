@@ -112,7 +112,11 @@ void main() {
     'Bölüm 10 10x6 grid 411x731 portrait viewport içine kaydırmasız sığar',
     (tester) async {
       final level = WordHuntStarterContent.baslangicLimani.levels.last;
-      await pumpLevel(tester, level: level, surfaceSize: const Size(411, 731));
+      await pumpLevel(
+        tester,
+        level: level,
+        surfaceSize: const Size(411, 731),
+      );
 
       expect(find.text('0/9'), findsOneWidget);
       expect(find.byType(SingleChildScrollView), findsNothing);
@@ -208,11 +212,12 @@ void main() {
         findsNothing,
       );
 
-      final frozen = tester
-          .widget<Text>(
-            find.byKey(const Key('word_hunt_production_elapsed_text')),
-          )
-          .data;
+      final frozen =
+          tester
+              .widget<Text>(
+                find.byKey(const Key('word_hunt_production_elapsed_text')),
+              )
+              .data;
       expect(frozen, '10s');
 
       now = now.add(const Duration(seconds: 20));
@@ -286,7 +291,12 @@ void main() {
   ) async {
     var now = DateTime(2026, 8, 28, 12);
     final level = WordHuntStarterContent.baslangicLimani.levels[4];
-    await pumpLevel(tester, level: level, now: () => now);
+    await pumpLevel(
+      tester,
+      level: level,
+      now: () => now,
+      surfaceSize: const Size(411, 731),
+    );
     now = now.add(const Duration(seconds: 65));
     await tester.pump(const Duration(seconds: 1));
     expect(find.text('65s'), findsOneWidget);
