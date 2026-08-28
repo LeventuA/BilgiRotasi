@@ -1,4 +1,4 @@
-name: Kelime Avı bonus UX patch
+name: Kelime Avi bonus UX patch
 
 on:
   push:
@@ -27,226 +27,11 @@ jobs:
           flutter-version: '3.44.6'
           channel: stable
           cache: true
-      - name: Apply exact gameplay UX patch
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-
-          screen = Path('lib/word_hunt/word_hunt_screens.dart')
-          s = screen.read_text(encoding='utf-8')
-
-          def replace_once(text, old, new, label):
-              count = text.count(old)
-              if count != 1:
-                  raise SystemExit(f'{label}: expected exactly 1 match, found {count}')
-              return text.replace(old, new, 1)
-
-          s = replace_once(
-              s,
-              '  int? _completionElapsedSeconds;\n  int _mistakes = 0;',
-              '  int? _completionElapsedSeconds;\n  int? _completionMistakes;\n  int _mistakes = 0;',
-              'completion mistakes field',
-          )
-          s = replace_once(
-              s,
-              '  int get _displayedElapsedSeconds =>\n      _completionElapsedSeconds ?? _elapsedSeconds;\n\n  DateTime _now()',
-              '  int get _displayedElapsedSeconds =>\n      _completionElapsedSeconds ?? _elapsedSeconds;\n\n  int get _displayedMistakes => _completionMistakes ?? _mistakes;\n\n  DateTime _now()',
-              'displayed mistakes getter',
-          )
-          s = replace_once(
-              s,
-              '  void _pointerDown(Offset position, Size size) {\n    if (_completionElapsedSeconds != null) return;\n    final cell = _cellForPosition(position, size);',
-              '  void _pointerDown(Offset position, Size size) {\n    final cell = _cellForPosition(position, size);',
-              'production pointerDown guard',
-          )
-          s = replace_once(
-              s,
-              '  void _pointerMove(Offset position, Size size) {\n    final start = _dragStart;\n    if (_completionElapsedSeconds != null || start == null) return;',
-              '  void _pointerMove(Offset position, Size size) {\n    final start = _dragStart;\n    if (start == null) return;',
-              'production pointerMove guard',
-          )
-          s = replace_once(
-              s,
-              '  void _pointerUp() {\n    if (_dragStart == null || _completionElapsedSeconds != null) return;',
-              '  void _pointerUp() {\n    if (_dragStart == null) return;',
-              'production pointerUp guard',
-          )
-          s = replace_once(
-              s,
-              '            _elapsedSeconds = elapsed;\n            _completionElapsedSeconds = elapsed;\n            _timer?.cancel();\n          }',
-              "            _elapsedSeconds = elapsed;\n            _completionElapsedSeconds = elapsed;\n            _completionMistakes = _mistakes;\n            _timer?.cancel();\n            _status =\n                'Ana kelimeler tamam! İstersen bonusları ara veya Bölümü Tamamla.';\n          }",
-              'completion freeze block',
-          )
-          s = replace_once(
-              s,
-              "        case WordHuntSelectionKind.notAWord:\n          _startErrorFeedback(selectedPath);\n          _mistakes++;\n          _status = 'Bu seçim listede yok. Başka bir yol dene.';",
-              "        case WordHuntSelectionKind.notAWord:\n          _startErrorFeedback(selectedPath);\n          if (_completionElapsedSeconds == null) {\n            _mistakes++;\n            _status = 'Bu seçim listede yok. Başka bir yol dene.';\n          } else {\n            _status =\n                'Ana kelimeler tamam. Bonusları aramaya devam edebilirsin.';\n          }",
-              'post-completion mistake behavior',
-          )
-          s = replace_once(
-              s,
-              '    final elapsed = _displayedElapsedSeconds;\n    final score = WordHuntScoringEngine.calculate(\n      level: widget.level,\n      foundTargetCount: _foundTargets.length,\n      mistakes: _mistakes,',
-              '    final elapsed = _displayedElapsedSeconds;\n    final mistakes = _displayedMistakes;\n    final score = WordHuntScoringEngine.calculate(\n      level: widget.level,\n      foundTargetCount: _foundTargets.length,\n      mistakes: mistakes,',
-              'finish frozen mistakes',
-          )
-          s = replace_once(
-              s,
-              "                Text(\n                  '\u0024_mistakes hata',\n                  key: const Key('word_hunt_production_result_mistakes'),",
-              "                Text(\n                  '\u0024mistakes hata',\n                  key: const Key('word_hunt_production_result_mistakes'),",
-              'result mistakes display',
-          )
-          s = replace_once(
-              s,
-              "                        label: '\u0024_mistakes hata',\n                        key: const Key('word_hunt_production_mistakes'),",
-              "                        label: '\u0024_displayedMistakes hata',\n                        key: const Key('word_hunt_production_mistakes'),",
-              'metric frozen mistakes display',
-          )
-          screen.write_text(s, encoding='utf-8')
-
-          test = Path('test/word_hunt_level_production_test.dart')
-          t = test.read_text(encoding='utf-8')
-          t = replace_once(
-              t,
-              "  testWidgets('completion freeze ve idempotent sonuç üç yıldız döndürür', (",
-              "  testWidgets('completion freeze sonrası bonus aranır ve skor korunur', (",
-              'completion test name',
-          )
-          marker = """    expect(
-      tester
-          .widget<Text>(
-            find.byKey(const Key('word_hunt_production_elapsed_text')),
-          )
-          .data,
-      frozen,
-    );
-
-    await tester.tap(find.byKey(const Key('word_hunt_production_finish')));"""
-          replacement = """    expect(
-      tester
-          .widget<Text>(
-            find.byKey(const Key('word_hunt_production_elapsed_text')),
-          )
-          .data,
-      frozen,
-    );
-    expect(
-      find.byKey(const Key('word_hunt_production_result_dialog')),
-      findsNothing,
-    );
-
-    // Ana hedefler tamamlandıktan sonra grid bonus için açık kalır.
-    await dragCells(
-      tester,
-      startRow: 2,
-      startColumn: 0,
-      endRow: 2,
-      endColumn: 3,
-    );
-    expect(
-      find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
-      findsOneWidget,
-    );
-    expect(find.text('Bonus kelime: ELMA ✨'), findsOneWidget);
-
-    // Bonus arama aşamasındaki yanlış seçim skor hatasını artırmaz.
-    await dragCells(
-      tester,
-      startRow: 3,
-      startColumn: 0,
-      endRow: 3,
-      endColumn: 1,
-    );
-    expect(find.text('0 hata'), findsOneWidget);
-    expect(
-      tester
-          .widget<Text>(
-            find.byKey(const Key('word_hunt_production_elapsed_text')),
-          )
-          .data,
-      frozen,
-    );
-
-    await tester.tap(find.byKey(const Key('word_hunt_production_finish')));"""
-          t = replace_once(t, marker, replacement, 'bonus-after-targets test insertion')
-          t = replace_once(
-              t,
-              "    expect(find.text('10 saniye'), findsOneWidget);\n    await tester.tap(",
-              "    expect(find.text('10 saniye'), findsOneWidget);\n    expect(find.text('0 hata'), findsOneWidget);\n    expect(find.text('Bonus: ELMA'), findsOneWidget);\n    await tester.tap(",
-              'result frozen values assertions',
-          )
-          test.write_text(t, encoding='utf-8')
-
-          scoring = Path('test/word_hunt_scoring_test.dart')
-          q = scoring.read_text(encoding='utf-8')
-          q = replace_once(
-              q,
-              "  WordHuntLevelDefinition level({\n    WordHuntStarRules rules = const WordHuntStarRules(",
-              "  WordHuntLevelDefinition level({\n    int? timeLimitSeconds,\n    WordHuntStarRules rules = const WordHuntStarRules(",
-              'scoring helper parameter',
-          )
-          q = replace_once(
-              q,
-              "      targetWords: const <String>['ABC', 'DEF'],\n      starRules: rules,",
-              "      targetWords: const <String>['ABC', 'DEF'],\n      timeLimitSeconds: timeLimitSeconds,\n      starRules: rules,",
-              'scoring helper limit',
-          )
-          insert_before = """  test('negatif sayaç girdileri sıfıra sabitlenir', () {"""
-          soft_test = """  test('timeLimitSeconds soft challenge olur, tamamlanmayı engellemez', () {
-    final challenge = level(
-      timeLimitSeconds: 60,
-      rules: const WordHuntStarRules(
-        twoStarMaxMistakes: 1,
-        threeStarMaxMistakes: 0,
-        twoStarMaxSeconds: 50,
-        threeStarMaxSeconds: 35,
-      ),
-    );
-
-    final result = WordHuntScoringEngine.calculate(
-      level: challenge,
-      foundTargetCount: 2,
-      mistakes: 0,
-      elapsedSeconds: 61,
-    );
-
-    expect(result.completed, isTrue);
-    expect(result.stars, 1);
-  });
-
-"""
-          q = replace_once(q, insert_before, soft_test + insert_before, 'soft challenge test')
-          scoring.write_text(q, encoding='utf-8')
-
-          doc = Path('docs/kelime-avi/BONUS_AFTER_TARGETS_UX_20260828.md')
-          doc.write_text("""# Kelime Avı — hedefler tamamlandıktan sonra bonus UX kararı
-
-**Tarih:** 28 Ağustos 2026
-
-## Onaylanan davranış
-
-- Ana targetların tamamlanması yıldız hesabı için süreyi ve hata sayısını dondurur.
-- Sonuç penceresi kendiliğinden açılmaz; `Bölümü Tamamla` butonu bekler.
-- Grid, butona basılana kadar etkileşimli kalır.
-- Oyuncu targetlar bittikten sonra kalan bonus kelimeleri bulabilir.
-- Bonus kelimeler completion için zorunlu değildir.
-- Bonus arama aşamasındaki yanlış seçimler daha önce kazanılmış yıldız skorunu düşürmez.
-- B5/B10 `timeLimitSeconds` hard-fail değildir. Süre aşımı oyunu kapatmaz; yıldız eşikleri soft challenge olarak çalışır.
-
-## Teknik sözleşme
-
-Production screen ana targetların sonuncusunda elapsed ve mistake snapshotını alır. Timer durur fakat pointer/gesture girişi bonuslar için açık kalır. Result scoring ve result metrikleri bu snapshotı kullanır.
-
-Bu değişiklik content-density PR #156 üzerine stacked gameplay UX fix olarak tutulur.
-""", encoding='utf-8')
-          PY
-
-          dart format lib/word_hunt/word_hunt_screens.dart \
-            test/word_hunt_level_production_test.dart \
-            test/word_hunt_scoring_test.dart
-
-      - name: Verify gates
+      - name: Apply exact patch
+        run: python3 tools/apply_kelime_avi_bonus_ux_patch.py
+      - name: Format
+        run: dart format lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart test/word_hunt_scoring_test.dart
+      - name: Verify
         shell: bash
         run: |
           set -euo pipefail
@@ -255,26 +40,15 @@ Bu değişiklik content-density PR #156 üzerine stacked gameplay UX fix olarak 
           mapfile -t tests < <(find test -maxdepth 1 -type f -name 'word_hunt_*_test.dart' | sort)
           flutter test "${tests[@]}" --concurrency=1
           git diff --check
-          git diff --name-only
           unexpected="$(git diff --name-only | grep -Ev '^(lib/word_hunt/word_hunt_screens\.dart|test/word_hunt_level_production_test\.dart|test/word_hunt_scoring_test\.dart|docs/kelime-avi/BONUS_AFTER_TARGETS_UX_20260828\.md)$' || true)"
-          if test -n "$unexpected"; then
-            echo "Unexpected diff:" >&2
-            printf '%s\n' "$unexpected" >&2
-            exit 1
-          fi
-
-      - name: Commit verified gameplay fix
+          test -z "$unexpected"
+      - name: Commit verified fix
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name 'ZMilaStudio'
-          git config user.email 'levent.ua@gmail.com'
-          git add -- \
-            lib/word_hunt/word_hunt_screens.dart \
-            test/word_hunt_level_production_test.dart \
-            test/word_hunt_scoring_test.dart \
-            docs/kelime-avi/BONUS_AFTER_TARGETS_UX_20260828.md
+          git config user.name ZMilaStudio
+          git config user.email levent.ua@gmail.com
+          git add lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart test/word_hunt_scoring_test.dart docs/kelime-avi/BONUS_AFTER_TARGETS_UX_20260828.md
           git diff --cached --check
-          git diff --cached --name-only
           git commit -m 'fix(kelime-avi): keep bonus play open after targets'
           git push origin HEAD:fix/kelime-avi-bonus-after-targets-soft-timer-20260828
