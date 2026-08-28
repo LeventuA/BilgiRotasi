@@ -76,7 +76,7 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
-            set -euo pipefail
+            set -eu
             mkdir -p reports
             if adb shell pm path com.leventua.bilgirotasi 2>/dev/null | grep -q '^package:'; then
               adb uninstall com.leventua.bilgirotasi
