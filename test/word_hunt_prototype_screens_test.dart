@@ -114,11 +114,11 @@ void main() {
     final cellWidth = rect.width / 6;
     final cellHeight = rect.height / 6;
     final start = Offset(
-      rect.left + 0.5 * cellWidth,
+      rect.left + 2.5 * cellWidth,
       rect.top + 0.5 * cellHeight,
     );
     final end = Offset(
-      rect.left + 0.5 * cellWidth,
+      rect.left + 2.5 * cellWidth,
       rect.top + 4.5 * cellHeight,
     );
 
