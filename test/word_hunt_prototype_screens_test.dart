@@ -32,7 +32,9 @@ void main() {
   }
 
   testWidgets('boş ilerlemede yalnız ilk rota durağı açıktır', (tester) async {
-    await tester.pumpWidget(const MaterialApp(home: WordHuntRoutePrototypeScreen()));
+    await tester.pumpWidget(
+      const MaterialApp(home: WordHuntRoutePrototypeScreen()),
+    );
     await tester.pumpAndSettle();
     expect(find.text('Başlangıç Limanı'), findsOneWidget);
     expect(
@@ -56,7 +58,9 @@ void main() {
       bestStarsByLevelId: <String, int>{'baslangic-1': 2},
     );
     await tester.pumpWidget(
-      const MaterialApp(home: WordHuntRoutePrototypeScreen(initialProgress: progress)),
+      const MaterialApp(
+        home: WordHuntRoutePrototypeScreen(initialProgress: progress),
+      ),
     );
     await tester.pumpAndSettle();
     expect(
@@ -69,26 +73,38 @@ void main() {
     expect(find.text('2 / 30'), findsOneWidget);
   });
 
-  testWidgets('prototype grid 10x6 oranında render olur ve KALEM gesture çalışır', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(720, 1280));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    final level = WordHuntStarterContent.baslangicLimani.levels.first;
-    await tester.pumpWidget(
-      MaterialApp(
-        home: WordHuntLevelPrototypeScreen(
-          level: level,
-          infoCards: WordHuntStarterContent.infoCards,
+  testWidgets(
+    'prototype grid 10x6 oranında render olur ve KALEM gesture çalışır',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(720, 1280));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final level = WordHuntStarterContent.baslangicLimani.levels.first;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: WordHuntLevelPrototypeScreen(
+            level: level,
+            infoCards: WordHuntStarterContent.infoCards,
+          ),
         ),
-      ),
-    );
-    await tester.pump();
-    final rect = tester.getRect(find.byKey(const Key('word_hunt_grid')));
-    expect(rect.width / rect.height, closeTo(0.6, 0.01));
-    await dragCells(tester, level, startRow: 0, startColumn: 0, endRow: 0, endColumn: 4);
-    expect(find.text('Harika! KALEM bulundu.'), findsOneWidget);
-  });
+      );
+      await tester.pump();
+      final rect = tester.getRect(find.byKey(const Key('word_hunt_grid')));
+      expect(rect.width / rect.height, closeTo(0.6, 0.01));
+      await dragCells(
+        tester,
+        level,
+        startRow: 0,
+        startColumn: 0,
+        endRow: 0,
+        endColumn: 4,
+      );
+      expect(find.text('Harika! KALEM bulundu.'), findsOneWidget);
+    },
+  );
 
-  testWidgets('Bölüm 2 DENİZ bilgi kartı dinamik 10x6 hücre hesabıyla açılır', (tester) async {
+  testWidgets('Bölüm 2 DENİZ bilgi kartı dinamik 10x6 hücre hesabıyla açılır', (
+    tester,
+  ) async {
     await tester.binding.setSurfaceSize(const Size(720, 1280));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final level = WordHuntStarterContent.baslangicLimani.levels[1];
@@ -101,7 +117,14 @@ void main() {
       ),
     );
     await tester.pump();
-    await dragCells(tester, level, startRow: 0, startColumn: 0, endRow: 4, endColumn: 0);
+    await dragCells(
+      tester,
+      level,
+      startRow: 0,
+      startColumn: 0,
+      endRow: 4,
+      endColumn: 0,
+    );
     expect(find.text('Bilgi kartı açıldı: Deniz'), findsOneWidget);
   });
 }

@@ -58,6 +58,7 @@ class _WordHuntLevelProductionScreenState
   late final DateTime _startedAt;
   int _elapsedSeconds = 0;
   int? _completionElapsedSeconds;
+  int? _completionMistakes;
   int _mistakes = 0;
   bool _selectionInvalid = false;
   bool _completionDialogOpen = false;
@@ -75,6 +76,8 @@ class _WordHuntLevelProductionScreenState
 
   int get _displayedElapsedSeconds =>
       _completionElapsedSeconds ?? _elapsedSeconds;
+
+  int get _scoredMistakes => _completionMistakes ?? _mistakes;
 
   DateTime _now() => widget.now?.call() ?? DateTime.now();
 
@@ -151,7 +154,7 @@ class _WordHuntLevelProductionScreenState
   }
 
   void _pointerDown(Offset position, Size size) {
-    if (_completionElapsedSeconds != null) return;
+    if (_resultDelivered || _completionDialogOpen) return;
     final cell = _cellForPosition(position, size);
     if (cell == null) return;
     setState(() {
@@ -165,7 +168,7 @@ class _WordHuntLevelProductionScreenState
 
   void _pointerMove(Offset position, Size size) {
     final start = _dragStart;
-    if (_completionElapsedSeconds != null || start == null) return;
+    if (_resultDelivered || _completionDialogOpen || start == null) return;
     final end = _cellForPosition(position, size);
     if (end == null) return;
     final path = _straightPathBetween(start, end);
@@ -201,7 +204,7 @@ class _WordHuntLevelProductionScreenState
   }
 
   void _pointerUp() {
-    if (_dragStart == null || _completionElapsedSeconds != null) return;
+    if (_dragStart == null || _resultDelivered || _completionDialogOpen) return;
     if (_selectionInvalid) {
       setState(() {
         _startErrorFeedback(_selectedPath);
@@ -240,6 +243,7 @@ class _WordHuntLevelProductionScreenState
             final elapsed = _wallClockElapsedSeconds();
             _elapsedSeconds = elapsed;
             _completionElapsedSeconds = elapsed;
+            _completionMistakes = _mistakes;
             _timer?.cancel();
           }
         case WordHuntSelectionKind.bonus:
@@ -255,8 +259,12 @@ class _WordHuntLevelProductionScreenState
           _status = '${result.canonicalWord} zaten bulundu.';
         case WordHuntSelectionKind.notAWord:
           _startErrorFeedback(selectedPath);
-          _mistakes++;
-          _status = 'Bu seçim listede yok. Başka bir yol dene.';
+          if (_completionElapsedSeconds == null) {
+            _mistakes++;
+            _status = 'Bu seçim listede yok. Başka bir yol dene.';
+          } else {
+            _status = 'Ana hedefler tamam. İstersen bonus kelimeyi ara.';
+          }
         case WordHuntSelectionKind.invalidPath:
           _status = result.error ?? 'Bu yol geçerli değil.';
       }
@@ -282,7 +290,7 @@ class _WordHuntLevelProductionScreenState
     final score = WordHuntScoringEngine.calculate(
       level: widget.level,
       foundTargetCount: _foundTargets.length,
-      mistakes: _mistakes,
+      mistakes: _scoredMistakes,
       elapsedSeconds: elapsed,
     );
 
@@ -325,7 +333,7 @@ class _WordHuntLevelProductionScreenState
                   style: const TextStyle(color: Color(0xFFD6D9E8)),
                 ),
                 Text(
-                  '$_mistakes hata',
+                  '$_scoredMistakes hata',
                   key: const Key('word_hunt_production_result_mistakes'),
                   style: const TextStyle(color: Color(0xFFD6D9E8)),
                 ),
@@ -457,7 +465,7 @@ class _WordHuntLevelProductionScreenState
                     Expanded(
                       child: _MetricChip(
                         icon: Icons.close_rounded,
-                        label: '$_mistakes hata',
+                        label: '$_scoredMistakes hata',
                         key: const Key('word_hunt_production_mistakes'),
                       ),
                     ),
@@ -502,7 +510,7 @@ class _WordHuntLevelProductionScreenState
                 ),
                 const SizedBox(height: 16),
                 AspectRatio(
-                  aspectRatio: 1,
+                  aspectRatio: widget.level.columnCount / widget.level.rowCount,
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       final gridSize = Size(
@@ -996,8 +1004,9 @@ class _WordHuntLevelPrototypeScreenState
   Timer? _timer;
   late DateTime _startedAt;
   int _elapsedSeconds = 0;
+  int? _completionElapsedSeconds;
+  int? _completionMistakes;
   int _mistakes = 0;
-  bool _timeExpired = false;
   String _status = 'Bir kelimenin ilk harfinden başlayıp parmağını sürükle.';
 
   @override
@@ -1015,6 +1024,11 @@ class _WordHuntLevelPrototypeScreenState
   bool get _allTargetsFound =>
       _foundTargets.length >= widget.level.targetWords.length;
 
+  int get _displayedElapsedSeconds =>
+      _completionElapsedSeconds ?? _elapsedSeconds;
+
+  int get _scoredMistakes => _completionMistakes ?? _mistakes;
+
   void _resetAttempt() {
     _timer?.cancel();
     _foundTargets.clear();
@@ -1024,25 +1038,16 @@ class _WordHuntLevelPrototypeScreenState
     _selectedPath = const <WordHuntCell>[];
     _dragStart = null;
     _elapsedSeconds = 0;
+    _completionElapsedSeconds = null;
+    _completionMistakes = null;
     _mistakes = 0;
-    _timeExpired = false;
     _status = 'Bir kelimenin ilk harfinden başlayıp parmağını sürükle.';
     _startedAt = DateTime.now();
 
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      if (!mounted || _timeExpired) return;
+      if (!mounted || _completionElapsedSeconds != null) return;
       final elapsed = DateTime.now().difference(_startedAt).inSeconds;
-      final limit = widget.level.timeLimitSeconds;
-      if (limit != null && elapsed >= limit && !_allTargetsFound) {
-        setState(() {
-          _elapsedSeconds = limit;
-          _timeExpired = true;
-          _selectedPath = const <WordHuntCell>[];
-          _status = 'Süre doldu. Tekrar deneyebilirsin.';
-        });
-        _timer?.cancel();
-        return;
-      }
+      if (elapsed == _elapsedSeconds) return;
       setState(() => _elapsedSeconds = elapsed);
     });
   }
@@ -1088,7 +1093,6 @@ class _WordHuntLevelPrototypeScreenState
   }
 
   void _pointerDown(Offset position, Size size) {
-    if (_timeExpired) return;
     final cell = _cellForPosition(position, size);
     if (cell == null) return;
     setState(() {
@@ -1098,7 +1102,7 @@ class _WordHuntLevelPrototypeScreenState
   }
 
   void _pointerMove(Offset position, Size size) {
-    if (_timeExpired || _dragStart == null) return;
+    if (_dragStart == null) return;
     final end = _cellForPosition(position, size);
     if (end == null) return;
     final path = _straightPathBetween(_dragStart!, end);
@@ -1113,7 +1117,7 @@ class _WordHuntLevelPrototypeScreenState
   }
 
   void _pointerUp() {
-    if (_selectedPath.isEmpty || _timeExpired) return;
+    if (_selectedPath.isEmpty) return;
 
     final selectedPath = List<WordHuntCell>.unmodifiable(_selectedPath);
     final result = WordHuntPathEngine.evaluate(
@@ -1137,6 +1141,13 @@ class _WordHuntLevelPrototypeScreenState
               cardTitle == null
                   ? 'Harika! $word bulundu.'
                   : 'Bilgi kartı açıldı: $cardTitle';
+          if (_allTargetsFound && _completionElapsedSeconds == null) {
+            final elapsed = DateTime.now().difference(_startedAt).inSeconds;
+            _elapsedSeconds = elapsed;
+            _completionElapsedSeconds = elapsed;
+            _completionMistakes = _mistakes;
+            _timer?.cancel();
+          }
         case WordHuntSelectionKind.bonus:
           final word = result.canonicalWord!;
           _foundBonus.add(word);
@@ -1149,8 +1160,12 @@ class _WordHuntLevelPrototypeScreenState
         case WordHuntSelectionKind.alreadyFound:
           _status = '${result.canonicalWord} zaten bulundu.';
         case WordHuntSelectionKind.notAWord:
-          _mistakes++;
-          _status = 'Bu seçim listede yok. Başka bir yol dene.';
+          if (_completionElapsedSeconds == null) {
+            _mistakes++;
+            _status = 'Bu seçim listede yok. Başka bir yol dene.';
+          } else {
+            _status = 'Ana hedefler tamam. İstersen bonus kelimeyi ara.';
+          }
         case WordHuntSelectionKind.invalidPath:
           _status = result.error ?? 'Bu yol geçerli değil.';
       }
@@ -1172,11 +1187,11 @@ class _WordHuntLevelPrototypeScreenState
   Future<void> _finishLevel() async {
     if (!_allTargetsFound) return;
     _timer?.cancel();
-    final elapsed = DateTime.now().difference(_startedAt).inSeconds;
+    final elapsed = _displayedElapsedSeconds;
     final score = WordHuntScoringEngine.calculate(
       level: widget.level,
       foundTargetCount: _foundTargets.length,
-      mistakes: _mistakes,
+      mistakes: _scoredMistakes,
       elapsedSeconds: elapsed,
     );
 
@@ -1210,7 +1225,7 @@ class _WordHuntLevelPrototypeScreenState
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  '${elapsed}s • $_mistakes hata • ${_foundBonus.length} bonus',
+                  '${elapsed}s • $_scoredMistakes hata • ${_foundBonus.length} bonus',
                   style: const TextStyle(color: Color(0xFFD6D9E8)),
                 ),
               ],
@@ -1240,10 +1255,7 @@ class _WordHuntLevelPrototypeScreenState
 
   @override
   Widget build(BuildContext context) {
-    final remaining =
-        widget.level.timeLimitSeconds == null
-            ? null
-            : math.max(0, widget.level.timeLimitSeconds! - _elapsedSeconds);
+    final challengeSeconds = widget.level.timeLimitSeconds;
 
     return Scaffold(
       backgroundColor: const Color(0xFF06142E),
@@ -1271,18 +1283,17 @@ class _WordHuntLevelPrototypeScreenState
                   Expanded(
                     child: _MetricChip(
                       icon: Icons.close_rounded,
-                      label: '$_mistakes hata',
+                      label: '$_scoredMistakes hata',
                     ),
                   ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: _MetricChip(
                       icon: Icons.timer_outlined,
-                      label:
-                          remaining == null
-                              ? '${_elapsedSeconds}s'
-                              : '${remaining}s',
-                      warning: remaining != null && remaining <= 10,
+                      label: '${_displayedElapsedSeconds}s',
+                      warning:
+                          challengeSeconds != null &&
+                          _displayedElapsedSeconds > challengeSeconds,
                     ),
                   ),
                 ],
@@ -1304,7 +1315,7 @@ class _WordHuntLevelPrototypeScreenState
               ),
               const SizedBox(height: 18),
               AspectRatio(
-                aspectRatio: 1,
+                aspectRatio: widget.level.columnCount / widget.level.rowCount,
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     final gridSize = Size(
@@ -1397,13 +1408,7 @@ class _WordHuntLevelPrototypeScreenState
                 ),
               ),
               const SizedBox(height: 14),
-              if (_timeExpired)
-                FilledButton.icon(
-                  onPressed: () => setState(_resetAttempt),
-                  icon: const Icon(Icons.refresh_rounded),
-                  label: const Text('Tekrar Dene'),
-                )
-              else if (_allTargetsFound)
+              if (_allTargetsFound)
                 FilledButton.icon(
                   key: const Key('word_hunt_finish_button'),
                   onPressed: _finishLevel,
