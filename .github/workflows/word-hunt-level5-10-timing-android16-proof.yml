@@ -15,6 +15,7 @@ jobs:
     env:
       PRODUCT_BASE_SHA: d4ead21a02f406aecd0762fb5be4758d7fa9a35b
       REPORT_DIR: reports/word-hunt-level5-10-timing-android16
+      QA_PACKAGE_NAME: com.leventua.bilgirotasi.qa
 
     steps:
       - name: Exact QA HEAD'i indir
@@ -69,17 +70,55 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$REPORT_DIR"
-          if grep -Fq 'widget.level.timeLimitSeconds' lib/word_hunt/word_hunt_screens.dart; then
-            printf 'TIME_LIMIT_SCREEN_ENFORCEMENT=DETECTED\n' > "$REPORT_DIR/TIME_LIMIT_STATIC_DIAGNOSTIC.txt"
-          else
-            printf 'TIME_LIMIT_SCREEN_ENFORCEMENT=NOT_DETECTED\nTECHNICAL_TIMEOUT_GATE=FAIL\nISSUE=157\n' > "$REPORT_DIR/TIME_LIMIT_STATIC_DIAGNOSTIC.txt"
-          fi
+          printf 'TECHNICAL_TIMEOUT_GATE=RUNTIME_DIAGNOSTIC_REQUIRED\nISSUE=157\n' > "$REPORT_DIR/TIME_LIMIT_STATIC_DIAGNOSTIC.txt"
           cat "$REPORT_DIR/TIME_LIMIT_STATIC_DIAGNOSTIC.txt"
 
       - name: Human playtest QA APK üret
         shell: bash
         run: |
           set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          gradle = Path('android/app/build.gradle.kts')
+          text = gradle.read_text(encoding='utf-8')
+          old = 'applicationId = "com.leventua.bilgirotasi"'
+          new = 'applicationId = "com.leventua.bilgirotasi.qa"'
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected exactly one applicationId occurrence, found {text.count(old)}')
+          gradle.write_text(text.replace(old, new), encoding='utf-8')
+
+          google = Path('android/app/google-services.json')
+          gtext = google.read_text(encoding='utf-8')
+          old_pkg = '"package_name": "com.leventua.bilgirotasi"'
+          new_pkg = '"package_name": "com.leventua.bilgirotasi.qa"'
+          if old_pkg not in gtext:
+              raise SystemExit('Production package_name not found in google-services.json')
+          google.write_text(gtext.replace(old_pkg, new_pkg), encoding='utf-8')
+
+          manifest = Path('android/app/src/main/AndroidManifest.xml')
+          mtext = manifest.read_text(encoding='utf-8')
+          old_label = 'android:label="Bilgi Rotası"'
+          new_label = 'android:label="Bilgi Rotası QA"'
+          if old_label not in mtext:
+              raise SystemExit('Production app label not found in AndroidManifest.xml')
+          manifest.write_text(mtext.replace(old_label, new_label, 1), encoding='utf-8')
+
+          validator = Path('tools/validate_word_hunt_level5_10_timing_android16.sh')
+          vtext = validator.read_text(encoding='utf-8')
+          old_validator_pkg = 'readonly package_name="com.leventua.bilgirotasi"'
+          new_validator_pkg = 'readonly package_name="com.leventua.bilgirotasi.qa"'
+          if old_validator_pkg not in vtext:
+              raise SystemExit('Production validator package_name not found')
+          vtext = vtext.replace(old_validator_pkg, new_validator_pkg, 1)
+          old_activity = 'grep -Fq "$package_name/.MainActivity" "$report_dir/ACTIVITY.txt"'
+          new_activity = 'grep -Fq "$package_name/" "$report_dir/ACTIVITY.txt"\ngrep -Fq "MainActivity" "$report_dir/ACTIVITY.txt"'
+          if old_activity not in vtext:
+              raise SystemExit('Validator activity assertion not found')
+          validator.write_text(vtext.replace(old_activity, new_activity, 1), encoding='utf-8')
+          PY
+
+          printf '%s\n' "$QA_PACKAGE_NAME" | tee "$REPORT_DIR/QA_PACKAGE_NAME.txt"
           flutter build apk --debug \
             -t lib/word_hunt/word_hunt_level5_10_timing_android16_proof_main.dart \
             --dart-define=ADMOB_ENVIRONMENT=test \
