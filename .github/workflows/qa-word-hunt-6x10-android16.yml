@@ -128,10 +128,7 @@ jobs:
             grep -Fq '[WORD_HUNT_ANDROID16_QA_CONFIG] level=${{ matrix.level }}' reports/LOGCAT.txt
             grep -Fq '[WORD_HUNT_ANDROID16_QA_READY] level=${{ matrix.level }}' reports/LOGCAT.txt
             grep -Fq 'com.leventua.bilgirotasi/.MainActivity' reports/ACTIVITY.txt
-            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi' reports/LOGCAT.txt; then
-              echo 'Kelime Avi Android16 QA process failure detected.' >&2
-              exit 1
-            fi
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi' reports/LOGCAT.txt; then echo 'Kelime Avi Android16 QA process failure detected.' >&2; exit 1; fi
 
       - name: Upload Android16 QA proof
         if: always()
