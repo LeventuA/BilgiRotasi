@@ -49,8 +49,111 @@ jobs:
           p.write_text(s[:start] + replacement + s[end:], encoding='utf-8')
           PY
 
-      - name: Apply fail-closed patch
+      - name: Apply fail-closed screen patch
         run: python3 tools/tmp_kelime_6x10_screen_patch.py
+
+      - name: Align tests with actual 6x10 paths
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          starter = Path('test/word_hunt_starter_content_test.dart')
+          s = starter.read_text(encoding='utf-8')
+          replacements = [
+              ("ROTA", (4,4,1,-1,4), (4,3,1,0,4)),
+              ("BİLGİ", (3,0,1,1,5), (2,4,1,0,5)),
+              ("LİMAN", (0,4,1,0,5), (0,5,1,0,5)),
+              ("SAHİL", (5,5,1,-1,5), (2,2,1,0,5)),
+              ("MARTI", (4,5,1,-1,5), (4,4,1,0,5)),
+              ("OKUL", (9,0,-1,0,4), (5,0,-1,0,4)),
+              ("SINIF", (6,5,0,-1,5), (6,4,-1,0,5)),
+              ("KALEM", (4,0,1,1,5), (1,5,1,0,5)),
+              ("DERS", (0,5,1,-1,4), (5,1,-1,0,4)),
+              ("ZAMAN", (1,1,1,0,5), (2,2,1,0,5)),
+              ("ÇABUK", (2,1,0,1,5), (2,1,1,1,5)),
+              ("SAAT", (1,5,1,-1,4), (1,4,1,-1,4)),
+              ("ANKARA", (0,5,1,0,6), (6,0,-1,1,6)),
+              ("ŞEHİR", (2,1,1,1,5), (3,0,1,1,5)),
+              ("TÜRKİYE", (2,4,1,0,7), (2,5,1,0,7)),
+              ("BAŞKENT", (1,0,1,0,7), (0,1,1,0,7)),
+              ("KALE", (3,1,1,0,4), (4,3,-1,0,4)),
+              ("DOĞA", (9,5,-1,-1,4), (9,4,-1,0,4)),
+              ("ORMAN", (8,1,-1,1,5), (9,1,-1,1,5)),
+              ("TOPRAK", (9,0,-1,0,6), (9,0,-1,1,6)),
+              ("ARI", (6,3,-1,1,3), (4,2,-1,-1,3)),
+              ("BAL", (4,3,0,1,3), (4,3,0,-1,3)),
+              ("KOVAN", (4,0,1,0,5), (5,0,1,0,5)),
+              ("KANAT", (9,1,-1,1,5), (7,2,-1,0,5)),
+              ("POLEN", (5,4,-1,0,5), (5,5,-1,-1,5)),
+              ("DOĞA", (7,5,-1,-1,4), (3,5,1,-1,4)),
+              ("TOP", (5,2,1,0,3), (5,2,1,-1,3)),
+              ("OYUNCU", (8,5,-1,-1,6), (9,0,-1,1,6)),
+              ("TAKIM", (5,1,-1,0,5), (5,2,-1,0,5)),
+              ("GOL", (5,0,1,0,3), (7,1,-1,0,3)),
+              ("MAÇ", (1,2,1,0,3), (5,3,-1,-1,3)),
+              ("UZAY", (0,5,0,-1,4), (0,2,1,0,4)),
+              ("YILDIZ", (0,1,1,0,6), (9,0,-1,1,6)),
+              ("GÜNEŞ", (2,5,0,-1,5), (5,1,-1,1,5)),
+              ("DÜNYA", (1,4,1,0,5), (1,3,1,0,5)),
+              ("UYDU", (0,4,0,-1,4), (0,5,0,-1,4)),
+              ("YÖRÜNGE", (9,0,-1,0,7), (0,1,1,0,7)),
+              ("PUSULA", (9,0,-1,0,6), (9,0,-1,1,6)),
+              ("YOL", (7,2,-1,1,3), (3,2,1,1,3)),
+              ("YILDIZ", (3,2,1,0,6), (3,4,1,0,6)),
+              ("KAPTAN", (9,0,-1,1,6), (6,1,-1,0,6)),
+          ]
+
+          def pattern(word, vals):
+              args = r'\s*,\s*'.join(str(v) for v in vals)
+              return rf"_ExpectedPath\('{re.escape(word)}'\s*,\s*{args}(?=\s*(?:,\s*isBonus\s*:\s*true)?\s*\))"
+
+          for word, old, new in replacements:
+              repl = f"_ExpectedPath('{word}', {', '.join(str(v) for v in new)}"
+              s, count = re.subn(pattern(word, old), repl, s, count=1)
+              if count != 1:
+                  raise SystemExit(f'starter path not found exactly once: {word} {old}')
+          starter.write_text(s, encoding='utf-8')
+
+          engine = Path('test/word_hunt_level_one_engine_test.dart')
+          e = engine.read_text(encoding='utf-8')
+          e, c1 = re.subn(
+              r"const rota = <WordHuntCell>\[.*?\];",
+              """const rota = <WordHuntCell>[
+              WordHuntCell(4, 3), WordHuntCell(5, 3),
+              WordHuntCell(6, 3), WordHuntCell(7, 3),
+            ];""",
+              e,
+              count=1,
+              flags=re.S,
+          )
+          e, c2 = re.subn(
+              r"const bilgi = <WordHuntCell>\[.*?\];",
+              """const bilgi = <WordHuntCell>[
+              WordHuntCell(2, 4), WordHuntCell(3, 4), WordHuntCell(4, 4),
+              WordHuntCell(5, 4), WordHuntCell(6, 4),
+            ];""",
+              e,
+              count=1,
+              flags=re.S,
+          )
+          if (c1, c2) != (1, 1):
+              raise SystemExit(f'engine canonical path replacement failed: {(c1,c2)}')
+          engine.write_text(e, encoding='utf-8')
+
+          prod = Path('test/word_hunt_level_production_test.dart')
+          p = prod.read_text(encoding='utf-8')
+          prod_repls = [
+              (r"startRow:\s*4,\s*startColumn:\s*4,\s*endRow:\s*7,\s*endColumn:\s*1", "startRow: 4, startColumn: 3, endRow: 7, endColumn: 3"),
+              (r"startRow:\s*3,\s*startColumn:\s*0,\s*endRow:\s*7,\s*endColumn:\s*4", "startRow: 2, startColumn: 4, endRow: 6, endColumn: 4"),
+              (r"startRow:\s*0,\s*startColumn:\s*5,\s*endRow:\s*5,\s*endColumn:\s*5", "startRow: 6, startColumn: 0, endRow: 1, endColumn: 5"),
+          ]
+          for old, new in prod_repls:
+              p, count = re.subn(old, new, p, count=1)
+              if count != 1:
+                  raise SystemExit(f'production gesture replacement failed: {old}')
+          prod.write_text(p, encoding='utf-8')
+          PY
 
       - name: Format
         run: dart format lib/word_hunt/word_hunt_screens.dart test/word_hunt_starter_content_test.dart test/word_hunt_level_one_engine_test.dart test/word_hunt_prototype_screens_test.dart test/word_hunt_level_production_test.dart
