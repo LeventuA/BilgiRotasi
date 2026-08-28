@@ -1,0 +1,462 @@
+name: TMP Kelime Avi 6x10 portrait viewport fit
+
+on:
+  push:
+    branches:
+      - fix/kelime-avi-6x10-fit-viewport-20260828
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-android16:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    steps:
+      - name: Checkout exact fix head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Apply viewport-fit patch and regression test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          screen_path = Path('lib/word_hunt/word_hunt_screens.dart')
+          text = screen_path.read_text(encoding='utf-8')
+          prod_start = text.index('class _WordHuntLevelProductionScreenState')
+          prod_end = text.index('/// İzole rota ekranı', prod_start)
+          prod = text[prod_start:prod_end]
+
+          old_scroll = '''        body: SafeArea(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                      child: Column('''
+          if old_scroll not in prod:
+              old_scroll = '''        body: SafeArea(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                    child: Column('''
+          if old_scroll not in prod:
+              old_scroll = '''        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+            child: Column('''
+          if prod.count(old_scroll) != 1:
+              raise SystemExit(f'production scroll marker count={prod.count(old_scroll)}')
+          indent = old_scroll.split('child: SingleChildScrollView')[0].split('\n')[-1]
+          # Preserve the exact surrounding indentation; dart format normalizes the result.
+          new_scroll = old_scroll.replace('SingleChildScrollView(', 'Padding(').replace(
+              'EdgeInsets.fromLTRB(16, 8, 16, 24)',
+              'EdgeInsets.fromLTRB(16, 6, 16, 12)',
+          )
+          prod = prod.replace(old_scroll, new_scroll, 1)
+
+          wrap_old = '''                const SizedBox(height: 14),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,'''
+          if prod.count(wrap_old) != 1:
+              raise SystemExit(f'production target wrap marker count={prod.count(wrap_old)}')
+          prod = prod.replace(
+              wrap_old,
+              '''                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 6,
+                  runSpacing: 6,''',
+              1,
+          )
+
+          grid_start_marker = '''                const SizedBox(height: 16),
+                AspectRatio(
+'''
+          grid_end_marker = '''                const SizedBox(height: 12),
+                Container(
+                  constraints: const BoxConstraints(minHeight: 48),'''
+          grid_start = prod.index(grid_start_marker)
+          grid_end = prod.index(grid_end_marker, grid_start)
+
+          new_grid = '''                const SizedBox(height: 8),
+                Expanded(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final spacing = constraints.maxHeight < 380 ? 3.0 : 5.0;
+                      final columns = widget.level.columnCount;
+                      final rows = widget.level.rowCount;
+                      final availableWidth = math.max(
+                        1.0,
+                        constraints.maxWidth - ((columns - 1) * spacing),
+                      );
+                      final availableHeight = math.max(
+                        1.0,
+                        constraints.maxHeight - ((rows - 1) * spacing),
+                      );
+                      final cellSize = math.max(
+                        1.0,
+                        math.min(
+                          availableWidth / columns,
+                          availableHeight / rows,
+                        ),
+                      );
+                      final gridWidth =
+                          (cellSize * columns) + ((columns - 1) * spacing);
+                      final gridHeight =
+                          (cellSize * rows) + ((rows - 1) * spacing);
+                      final gridSize = Size(gridWidth, gridHeight);
+                      final letterSize = math.min(
+                        22.0,
+                        math.max(16.0, cellSize * 0.56),
+                      );
+                      final cornerRadius = math.min(
+                        12.0,
+                        math.max(8.0, cellSize * 0.28),
+                      );
+
+                      return Center(
+                        child: SizedBox(
+                          width: gridWidth,
+                          height: gridHeight,
+                          child: Listener(
+                            key: const Key('word_hunt_production_grid'),
+                            behavior: HitTestBehavior.opaque,
+                            onPointerDown:
+                                (event) => _pointerDown(
+                                  event.localPosition,
+                                  gridSize,
+                                ),
+                            onPointerMove:
+                                (event) => _pointerMove(
+                                  event.localPosition,
+                                  gridSize,
+                                ),
+                            onPointerUp: (_) => _pointerUp(),
+                            onPointerCancel: (_) => _pointerCancel(),
+                            child: GridView.builder(
+                              padding: EdgeInsets.zero,
+                              physics: const NeverScrollableScrollPhysics(),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: columns,
+                                    crossAxisSpacing: spacing,
+                                    mainAxisSpacing: spacing,
+                                    childAspectRatio: 1,
+                                  ),
+                              itemCount: rows * columns,
+                              itemBuilder: (context, index) {
+                                final row = index ~/ columns;
+                                final column = index % columns;
+                                final cell = WordHuntCell(row, column);
+                                final rune = widget.level.grid[row].runes
+                                    .elementAt(column);
+                                final selected = _selectedPath.contains(cell);
+                                final found = _isFound(cell);
+                                final error = _errorCells.contains(cell);
+                                return AnimatedContainer(
+                                  key: Key(
+                                    'word_hunt_production_cell_${row}_$column',
+                                  ),
+                                  duration: const Duration(milliseconds: 120),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        selected
+                                            ? const Color(0xFF8B5CF6)
+                                            : error
+                                            ? const Color(0xFF9A3412)
+                                            : found
+                                            ? const Color(0xFF0F766E)
+                                            : const Color(0xFF142A4C),
+                                    borderRadius: BorderRadius.circular(
+                                      cornerRadius,
+                                    ),
+                                    border: Border.all(
+                                      color:
+                                          selected
+                                              ? const Color(0xFFD8B4FE)
+                                              : error
+                                              ? const Color(0xFFF97316)
+                                              : found
+                                              ? const Color(0xFF5EEAD4)
+                                              : const Color(0xFF34527A),
+                                    ),
+                                  ),
+                                  child: Stack(
+                                    fit: StackFit.expand,
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          String.fromCharCode(rune),
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: letterSize,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ),
+                                      if (error)
+                                        IgnorePointer(
+                                          child: SizedBox.expand(
+                                            key: Key(
+                                              'word_hunt_production_error_cell_${row}_$column',
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+'''
+          prod = prod[:grid_start] + new_grid + prod[grid_end:]
+
+          status_old = '''                const SizedBox(height: 12),
+                Container(
+                  constraints: const BoxConstraints(minHeight: 48),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(12),'''
+          if prod.count(status_old) != 1:
+              raise SystemExit(f'production status marker count={prod.count(status_old)}')
+          prod = prod.replace(
+              status_old,
+              '''                const SizedBox(height: 8),
+                Container(
+                  constraints: const BoxConstraints(minHeight: 44),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),''',
+              1,
+          )
+          prod = prod.replace(
+              '''                const SizedBox(height: 12),
+                if (_allTargetsFound)''',
+              '''                const SizedBox(height: 8),
+                if (_allTargetsFound)''',
+              1,
+          )
+
+          screen_path.write_text(
+              text[:prod_start] + prod + text[prod_end:],
+              encoding='utf-8',
+          )
+
+          test_path = Path('test/word_hunt_level_production_test.dart')
+          tests = test_path.read_text(encoding='utf-8')
+          helper_old = '''  Future<void> pumpLevel(
+    WidgetTester tester, {
+    WordHuntLevelDefinition? level,
+    DateTime Function()? now,
+  }) async {
+    await tester.binding.setSurfaceSize(const Size(720, 1280));'''
+          if tests.count(helper_old) != 1:
+              raise SystemExit(f'test helper marker count={tests.count(helper_old)}')
+          tests = tests.replace(
+              helper_old,
+              '''  Future<void> pumpLevel(
+    WidgetTester tester, {
+    WordHuntLevelDefinition? level,
+    DateTime Function()? now,
+    Size surfaceSize = const Size(720, 1280),
+  }) async {
+    await tester.binding.setSurfaceSize(surfaceSize);''',
+              1,
+          )
+
+          insert_marker = "  testWidgets('target reverse wrong ve bonus ayrışır', (tester) async {"
+          if tests.count(insert_marker) != 1:
+              raise SystemExit(f'test insertion marker count={tests.count(insert_marker)}')
+          regression = '''  testWidgets(
+    'Bölüm 10 10x6 grid 411x731 portrait viewport içine kaydırmasız sığar',
+    (tester) async {
+      final level = WordHuntStarterContent.baslangicLimani.levels.last;
+      await pumpLevel(
+        tester,
+        level: level,
+        surfaceSize: const Size(411, 731),
+      );
+
+      expect(find.text('0/9'), findsOneWidget);
+      expect(find.byType(SingleChildScrollView), findsNothing);
+
+      final screenRect = tester.getRect(
+        find.byKey(const Key('word_hunt_production_screen')),
+      );
+      final gridRect = tester.getRect(
+        find.byKey(const Key('word_hunt_production_grid')),
+      );
+      final firstCellSize = tester.getSize(
+        find.byKey(const Key('word_hunt_production_cell_0_0')),
+      );
+      final lastCellRect = tester.getRect(
+        find.byKey(const Key('word_hunt_production_cell_9_5')),
+      );
+      final statusRect = tester.getRect(
+        find.byKey(const Key('word_hunt_production_status')),
+      );
+
+      expect(firstCellSize.shortestSide, greaterThanOrEqualTo(30));
+      expect(lastCellRect.bottom, lessThanOrEqualTo(gridRect.bottom + 0.5));
+      expect(gridRect.bottom, lessThanOrEqualTo(statusRect.top + 0.5));
+      expect(statusRect.bottom, lessThanOrEqualTo(screenRect.bottom + 0.5));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+'''
+          tests = tests.replace(insert_marker, regression + insert_marker, 1)
+          test_path.write_text(tests, encoding='utf-8')
+          PY
+          dart format lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart
+
+      - name: Focused analysis and tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test \
+            test/word_hunt_starter_content_test.dart \
+            test/word_hunt_level_one_engine_test.dart \
+            test/word_hunt_level_production_test.dart \
+            test/word_hunt_prototype_screens_test.dart \
+            --reporter expanded
+          git diff --check
+
+      - name: Create temporary Android16 B10 QA entrypoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > lib/word_hunt/word_hunt_fit_qa_main.dart <<'DART'
+          import 'package:flutter/material.dart';
+          import 'package:flutter/services.dart';
+
+          import 'word_hunt_screens.dart';
+          import 'word_hunt_starter_content.dart';
+
+          Future<void> main() async {
+            WidgetsFlutterBinding.ensureInitialized();
+            await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+              DeviceOrientation.portraitUp,
+            ]);
+            await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
+            final level = WordHuntStarterContent.baslangicLimani.levels[9];
+            debugPrint(
+              '[WORD_HUNT_FIT_QA_CONFIG] level=10 rows=${level.rowCount} '
+              'cols=${level.columnCount} targets=${level.targetWords.length} '
+              'bonus=${level.bonusWords.length}',
+            );
+
+            runApp(
+              MaterialApp(
+                debugShowCheckedModeBanner: false,
+                home: WordHuntLevelProductionScreen(
+                  level: level,
+                  infoCards: WordHuntStarterContent.infoCards,
+                ),
+              ),
+            );
+
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              debugPrint('[WORD_HUNT_FIT_QA_READY] level=10');
+            });
+          }
+          DART
+          dart format lib/word_hunt/word_hunt_fit_qa_main.dart
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_fit_qa_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+
+      - name: Prepare Android emulator KVM
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Capture fitted B10 on Android 16
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            set -eu
+            mkdir -p reports
+            if adb shell pm path com.leventua.bilgirotasi 2>/dev/null | grep -q '^package:'; then adb uninstall com.leventua.bilgirotasi; fi
+            adb install build/app/outputs/flutter-apk/app-debug.apk
+            adb logcat -c
+            adb shell am force-stop com.leventua.bilgirotasi
+            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null
+            sleep 8
+            adb exec-out screencap -p > reports/B10_FIT_ANDROID16.png
+            adb shell uiautomator dump /sdcard/b10_fit.xml >/dev/null 2>&1 || true
+            adb pull /sdcard/b10_fit.xml reports/B10_FIT_UI.xml >/dev/null 2>&1 || true
+            adb shell wm size > reports/WM_SIZE.txt
+            adb shell wm density > reports/WM_DENSITY.txt
+            adb logcat -d > reports/LOGCAT.txt
+            test -s reports/B10_FIT_ANDROID16.png
+            test "$(wc -c < reports/B10_FIT_ANDROID16.png)" -gt 50000
+            grep -Fq '[WORD_HUNT_FIT_QA_CONFIG] level=10 rows=10 cols=6 targets=9 bonus=1' reports/LOGCAT.txt
+            grep -Fq '[WORD_HUNT_FIT_QA_READY] level=10' reports/LOGCAT.txt
+            grep -Fq '0/9' reports/B10_FIT_UI.xml
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi' reports/LOGCAT.txt; then echo 'Kelime Avi viewport QA process failure detected.' >&2; exit 1; fi
+
+      - name: Upload fitted Android16 proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: KelimeAvi-B10-6x10-fit-Android16-${{ github.sha }}
+          path: |
+            reports/B10_FIT_ANDROID16.png
+            reports/B10_FIT_UI.xml
+            reports/WM_SIZE.txt
+            reports/WM_DENSITY.txt
+            reports/LOGCAT.txt
+          retention-days: 7
+
+      - name: Commit verified viewport fix and remove temporary harness
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f lib/word_hunt/word_hunt_fit_qa_main.dart
+          git rm .github/workflows/tmp-word-hunt-fit-viewport.yml
+          git add lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart
+          git diff --cached --check
+          echo 'Staged files:'
+          git diff --cached --name-status
+          test "$(git diff --cached --name-only | wc -l)" -eq 3
+          git config user.name 'ZMilaStudio'
+          git config user.email 'levent.ua@gmail.com'
+          git commit -m 'fix(kelime-avi): fit 6x10 grid in portrait viewport'
+          git push origin HEAD:fix/kelime-avi-6x10-fit-viewport-20260828
