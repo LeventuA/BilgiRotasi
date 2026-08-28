@@ -9,8 +9,9 @@ void main() {
     WidgetTester tester, {
     WordHuntLevelDefinition? level,
     DateTime Function()? now,
+    Size surfaceSize = const Size(720, 1280),
   }) async {
-    await tester.binding.setSurfaceSize(const Size(720, 1280));
+    await tester.binding.setSurfaceSize(surfaceSize);
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
       MaterialApp(
@@ -107,6 +108,39 @@ void main() {
     },
   );
 
+  testWidgets(
+    'Bölüm 10 10x6 grid 411x731 portrait viewport içine kaydırmasız sığar',
+    (tester) async {
+      final level = WordHuntStarterContent.baslangicLimani.levels.last;
+      await pumpLevel(tester, level: level, surfaceSize: const Size(411, 731));
+
+      expect(find.text('0/9'), findsOneWidget);
+      expect(find.byType(SingleChildScrollView), findsNothing);
+
+      final screenRect = tester.getRect(
+        find.byKey(const Key('word_hunt_production_screen')),
+      );
+      final gridRect = tester.getRect(
+        find.byKey(const Key('word_hunt_production_grid')),
+      );
+      final firstCellSize = tester.getSize(
+        find.byKey(const Key('word_hunt_production_cell_0_0')),
+      );
+      final lastCellRect = tester.getRect(
+        find.byKey(const Key('word_hunt_production_cell_9_5')),
+      );
+      final statusRect = tester.getRect(
+        find.byKey(const Key('word_hunt_production_status')),
+      );
+
+      expect(firstCellSize.shortestSide, greaterThanOrEqualTo(30));
+      expect(lastCellRect.bottom, lessThanOrEqualTo(gridRect.bottom + 0.5));
+      expect(gridRect.bottom, lessThanOrEqualTo(statusRect.top + 0.5));
+      expect(statusRect.bottom, lessThanOrEqualTo(screenRect.bottom + 0.5));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('target reverse wrong ve bonus ayrışır', (tester) async {
     await pumpLevel(tester);
     await dragCells(
@@ -174,12 +208,11 @@ void main() {
         findsNothing,
       );
 
-      final frozen =
-          tester
-              .widget<Text>(
-                find.byKey(const Key('word_hunt_production_elapsed_text')),
-              )
-              .data;
+      final frozen = tester
+          .widget<Text>(
+            find.byKey(const Key('word_hunt_production_elapsed_text')),
+          )
+          .data;
       expect(frozen, '10s');
 
       now = now.add(const Duration(seconds: 20));
