@@ -6,31 +6,40 @@ import 'package:flutter/services.dart';
 import 'word_hunt_screens.dart';
 import 'word_hunt_starter_content.dart';
 
+final ValueNotifier<String?> _timingActiveLevel = ValueNotifier<String?>(null);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
   ]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  runApp(const WordHuntLevel5And10TimingQaApp());
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Kelime Avı B5/B10 Timing QA',
+      builder: (context, child) => _TimingRuntimeProbe(
+        activeLevelId: () => _timingActiveLevel.value,
+        child: child ?? const SizedBox.shrink(),
+      ),
+      home: const _TimingQaLauncher(),
+    ),
+  );
 }
 
-class WordHuntLevel5And10TimingQaApp extends StatefulWidget {
-  const WordHuntLevel5And10TimingQaApp({super.key});
+class _TimingQaLauncher extends StatefulWidget {
+  const _TimingQaLauncher();
 
   @override
-  State<WordHuntLevel5And10TimingQaApp> createState() =>
-      _WordHuntLevel5And10TimingQaAppState();
+  State<_TimingQaLauncher> createState() => _TimingQaLauncherState();
 }
 
-class _WordHuntLevel5And10TimingQaAppState
-    extends State<WordHuntLevel5And10TimingQaApp> {
-  String? _activeLevelId;
+class _TimingQaLauncherState extends State<_TimingQaLauncher> {
   String _lastResult = 'Henüz oynanmadı';
 
   Future<void> _openLevel(int index) async {
     final level = WordHuntStarterContent.baslangicLimani.levels[index - 1];
-    setState(() => _activeLevelId = level.id);
+    _timingActiveLevel.value = level.id;
     debugPrint('[WORD_HUNT_TIMING_OPEN] level=${level.id}');
 
     final result = await Navigator.of(context).push<WordHuntLevelPlayResult>(
@@ -45,84 +54,72 @@ class _WordHuntLevel5And10TimingQaAppState
     if (!mounted) return;
     if (result == null) {
       debugPrint('[WORD_HUNT_TIMING_RETURN] level=${level.id} result=none');
-      setState(() {
-        _lastResult = '${level.id}: sonuç yok';
-        _activeLevelId = null;
-      });
+      setState(() => _lastResult = '${level.id}: sonuç yok');
+      _timingActiveLevel.value = null;
       return;
     }
 
     debugPrint(
       '[WORD_HUNT_TIMING_RETURN] level=${result.levelId} stars=${result.stars}',
     );
-    setState(() {
-      _lastResult = '${result.levelId}: ${result.stars} yıldız';
-      _activeLevelId = null;
-    });
+    setState(() => _lastResult = '${result.levelId}: ${result.stars} yıldız');
+    _timingActiveLevel.value = null;
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Kelime Avı B5/B10 Timing QA',
-      builder: (context, child) => _TimingRuntimeProbe(
-        activeLevelId: () => _activeLevelId,
-        child: child ?? const SizedBox.shrink(),
-      ),
-      home: Scaffold(
+    return Scaffold(
+      backgroundColor: const Color(0xFF06142E),
+      appBar: AppBar(
         backgroundColor: const Color(0xFF06142E),
-        appBar: AppBar(
-          backgroundColor: const Color(0xFF06142E),
-          foregroundColor: Colors.white,
-          title: const Text('Kelime Avı Timing QA'),
-        ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  'Gerçek production ekranı ile Android 16 / insan süre testi',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                  ),
+        foregroundColor: Colors.white,
+        title: const Text('Kelime Avı Timing QA'),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'Gerçek production ekranı ile Android 16 / insan süre testi',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
                 ),
-                const SizedBox(height: 12),
-                const Text(
-                  'Bu launcher yalnız QA içindir. Gameplay ekranı kopyalanmaz; '
-                  'WordHuntLevelProductionScreen doğrudan açılır.',
-                  style: TextStyle(color: Color(0xFFA7B0C9), height: 1.4),
-                ),
-                const SizedBox(height: 28),
-                FilledButton(
-                  key: const Key('word_hunt_timing_open_5'),
-                  onPressed: () => _openLevel(5),
-                  child: const Text('Bölüm 5'),
-                ),
-                const SizedBox(height: 16),
-                FilledButton(
-                  key: const Key('word_hunt_timing_open_10'),
-                  onPressed: () => _openLevel(10),
-                  child: const Text('Bölüm 10'),
-                ),
-                const SizedBox(height: 28),
-                Text(
-                  'Son sonuç: $_lastResult',
-                  key: const Key('word_hunt_timing_last_result'),
-                  style: const TextStyle(color: Color(0xFFD6D9E8)),
-                ),
-                const Spacer(),
-                const Text(
-                  'Not: timeLimitSeconds enforcement ayrı product bug olarak '
-                  'izlenir; bu QA branch product davranışını değiştirmez.',
-                  style: TextStyle(color: Color(0xFFFFD166), fontSize: 12),
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Bu launcher yalnız QA içindir. Gameplay ekranı kopyalanmaz; '
+                'WordHuntLevelProductionScreen doğrudan açılır.',
+                style: TextStyle(color: Color(0xFFA7B0C9), height: 1.4),
+              ),
+              const SizedBox(height: 28),
+              FilledButton(
+                key: const Key('word_hunt_timing_open_5'),
+                onPressed: () => _openLevel(5),
+                child: const Text('Bölüm 5'),
+              ),
+              const SizedBox(height: 16),
+              FilledButton(
+                key: const Key('word_hunt_timing_open_10'),
+                onPressed: () => _openLevel(10),
+                child: const Text('Bölüm 10'),
+              ),
+              const SizedBox(height: 28),
+              Text(
+                'Son sonuç: $_lastResult',
+                key: const Key('word_hunt_timing_last_result'),
+                style: const TextStyle(color: Color(0xFFD6D9E8)),
+              ),
+              const Spacer(),
+              const Text(
+                'Not: timeLimitSeconds enforcement ayrı product bug olarak '
+                'izlenir; bu QA branch product davranışını değiştirmez.',
+                style: TextStyle(color: Color(0xFFFFD166), fontSize: 12),
+              ),
+            ],
           ),
         ),
       ),
@@ -255,7 +252,10 @@ class _TimingRuntimeProbeState extends State<_TimingRuntimeProbe> {
         root,
         const Key('word_hunt_production_result_mistakes'),
       );
-      final bonus = _firstTextMatching(dialog, (value) => value.startsWith('Bonus:'));
+      final bonus = _firstTextMatching(
+        dialog,
+        (value) => value.startsWith('Bonus:'),
+      );
       final stars = _resultStars(root);
       final signature = '$levelId|$elapsed|$mistakes|$stars|$bonus';
       if (_resultSignature != signature) {
@@ -295,9 +295,7 @@ class _TimingRuntimeProbeState extends State<_TimingRuntimeProbe> {
     if (value == null || levelId == null) return;
     final signature = 'state:$levelId:$label:$value';
     if (!_emitted.add(signature)) return;
-    debugPrint(
-      '[WORD_HUNT_TIMING_STATE] level=$levelId $label=$value',
-    );
+    debugPrint('[WORD_HUNT_TIMING_STATE] level=$levelId $label=$value');
   }
 
   int _resultStars(Element root) {
@@ -316,9 +314,7 @@ class _TimingRuntimeProbeState extends State<_TimingRuntimeProbe> {
   String? _textUnderKey(Element root, Key key) {
     final element = _findByKey(root, key);
     if (element == null) return null;
-    if (element.widget is Text) {
-      return (element.widget as Text).data;
-    }
+    if (element.widget is Text) return (element.widget as Text).data;
     return _firstTextMatching(element, (_) => true);
   }
 
