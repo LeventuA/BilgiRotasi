@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 28 Ağustos 2026 — Kelime Avı 6×10 ürün kodu ve normal PR CI PASS; ayrı Android 16 runtime QA ilk denemesi ürün kaynaklı olmayan shell uyumsuzluğu nedeniyle capture aşamasında durdu.
+**Son güncelleme:** 28 Ağustos 2026 — Kelime Avı 6×10 ürün kodu ve normal PR CI PASS; Android 16 runtime QA shell sorunu QA-only branch'te düzeltildi ve ikinci B1/B5/B8/B10 matrix koşusu başladı.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez.
 
@@ -76,7 +76,7 @@ Content kuralları:
 - Head branch: `feat/kelime-avi-content-pass-v1-20260828`
 - 6×10 starter-content temel commit: `aee37c0b169b0acc72a9036e15d914412b826ae4`
 - Doğrulanmış gameplay/UI ürün commit: `8d431826585eb6c52248e85bb3ac2e80fc89bb9f` — `feat(kelime-avi): support 6x10 gameplay and bonus finish UX`.
-- 28 Ağustos 2026 18:33 TRT civarı kontrol edilen PR head: `864f12dc04b5a525cdfc6d822fcfff9a1ec7aad3`; bu özet güncellemesi branch head'ini ayrıca ilerletebilir.
+- Bu özet güncellemesinden hemen önce canlı PR head: `5f68d28cf402bd100310839493a8a03e978c9e98`; bu özet commit'i branch head'ini ayrıca ilerletir.
 - **Merge yok.** PR Draft/WIP kalır; kullanıcı görsel/oynanış onayı olmadan Ready/merge yapılmaz.
 - 10 yeni 6×10 grid ve toplam 80 canonical target/bonus exactly-one occurrence sözleşmesi testlerle korunuyor.
 
@@ -103,21 +103,21 @@ Doğrulama:
 
 ## PR CI + Android 16 gerçek production QA
 
-- PR head `864f12dc04b5a525cdfc6d822fcfff9a1ec7aad3` üzerinde normal PR CI iki ana gate de PASS:
+- PR head hattında normal PR CI iki ana gate PASS:
   - `Kelime Avı Android 16 görsel kanıtı` run `33185702627`: **SUCCESS**.
   - `AdMob PR doğrulaması` run `33185702636`: **SUCCESS**.
 - Standart görsel kanıt MASTER ART/route regresyonunu doğrular; 6×10 gerçek level gameplay kabulü sayılmaz.
 - Gerçek 6×10 production runtime kanıtı için ayrı ve **merge edilmeyecek** QA branch: `qa/kelime-avi-6x10-runtime-android16-20260828`.
-- QA branch ürün tabanı: PR ürün head hattı; izole QA entrypoint `lib/word_hunt/word_hunt_android16_qa_main.dart`, gerçek `WordHuntLevelProductionScreen` kullanır; `lib/main.dart` değişmez.
+- QA branch izole entrypoint `lib/word_hunt/word_hunt_android16_qa_main.dart` üzerinden gerçek `WordHuntLevelProductionScreen` kullanır; `lib/main.dart` değişmez.
 - QA workflow: `.github/workflows/qa-word-hunt-6x10-android16.yml`.
-- İlk QA run: `33185224461`, QA head `333662783546d8adde4282960b1803d6c8f6e368`: **FAILURE**.
-- `QA source gate`: **SUCCESS**.
-- B1/B5/B8/B10 dört ayrı işte izole QA APK build adımı **SUCCESS**; ürün derleniyor.
-- Dört runtime capture işi aynı QA-harness problemi nedeniyle `Capture production level on Android 16` adımında durdu.
-- Doğrulanmış kök neden: `reactivecircus/android-emulator-runner` script'i `/usr/bin/sh` ile çalıştırırken workflow `set -euo pipefail` kullanıyor; logda `/usr/bin/sh: 1: set: Illegal option -o pipefail` ile script daha uygulama install/launch/capture komutlarına geçmeden çıkıyor.
-- Bu nedenle ilk run'ın FAILURE sonucu **ürün crash'i veya 6×10 layout başarısızlığı kanıtı değildir**; QA shell sözleşmesi hatasıdır.
-- Upload adımları çalıştı fakat capture başlamadığı için B1 artifact örneği yalnız 393 byte ve gerçek screenshot kanıtı içermiyor; bu artifactler görsel kabul için kullanılamaz.
-- B5 soft-time için 65 saniyelik sentetik clock offset planı korunur; yeniden koşuda hard-fail olmadan oynanabilirlik doğrulanacak.
+- İlk QA run `33185224461`, QA head `333662783546d8adde4282960b1803d6c8f6e368`: **FAILURE**; ürün kaynaklı değil QA shell uyumsuzluğuydu.
+- İlk run'da `QA source gate` PASS ve B1/B5/B8/B10 izole APK buildleri PASS; capture script `/usr/bin/sh` altında `set -euo pipefail` yüzünden uygulama install/launch öncesi durdu.
+- QA-only shell düzeltmesi commit `e46a84f42c2d07fa244f5057be7360da12c92f3f`: emulator-runner script'i POSIX uyumlu `set -eu` kullanıyor; ürün branch'i değiştirilmedi.
+- İkinci QA run `33199050082` bu exact QA head üzerinde başladı.
+- İkinci run `QA source gate`: **SUCCESS**.
+- B1/B5/B8/B10 Android16 runtime matrix işleri aynı anda başladı; son canlı kontrolde dört job da izole QA APK build aşamasındaydı.
+- B5 için 65 saniyelik sentetik clock offset korunur; hard fail olmadan oynanabilirlik ve soft-time davranışı capture aşamasında doğrulanacak.
+- Matrix tamamlandığında gerçek screenshot/log/UI artifacts görsel olarak incelenecek: 10×6 grid yüksekliği, taşma/kaydırma, hücre okunabilirliği, uzun vertical/diagonal gesture kullanılabilirliği ve B5 soft-time.
 - B5/B10 süre eşikleri teknik olarak uygulanmış olsa da gerçek insan zorluk dengesi Android playtest ile ayrıca değerlendirilmelidir.
 
 ## Korunan alanlar
@@ -133,9 +133,9 @@ Açık kapsam olmadan değişmez:
 
 ## Sıradaki aktif sıra
 
-1. Yalnız QA branch/workflow'da shell düzeltmesi yap: `set -euo pipefail` satırını POSIX uyumlu hale getir veya script'i açıkça `bash` ile çalıştır; ürün branch'ini kirletme.
-2. Android 16 B1/B5/B8/B10 runtime matrix'i yeniden çalıştır ve gerçek screenshot/log/UI artifacts üret.
-3. B1/B5/B8/B10 ekranlarını görsel incele: 10×6 grid yüksekliği, taşma/kaydırma, hücre okunabilirliği, uzun vertical/diagonal gesture ve B5 soft-time.
+1. QA run `33199050082` B1/B5/B8/B10 matrix capture işlerini tamamlasın.
+2. Dört artifact setini indir ve gerçek screenshot/log/UI kanıtlarını incele.
+3. 6×10 telefonda kullanılabilir değilse yalnız ürün branch'inde dar layout/gesture erişilebilirliği düzeltmesi yap; content standardını geri alma.
 4. Görsel/runtime PASS sonrası bonus-after-target gesture + sonuç davranışını gerekirse QA otomasyonuyla ayrıca kanıtla.
 5. Kullanıcı görsel/oynanış kabulünden sonra PR #156 Ready kararı verilebilir.
 6. Merge ancak Levent'in açık merge onayıyla release branch'e yapılır.
