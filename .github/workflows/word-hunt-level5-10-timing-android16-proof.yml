@@ -1,0 +1,122 @@
+name: Kelime Avı Bölüm 5/10 Android 16 timing kanıtı
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  timing-proof:
+    name: Gerçek Bölüm 5 ve 10 timing akışı Android 16
+    runs-on: ubuntu-22.04
+    timeout-minutes: 50
+    env:
+      PRODUCT_BASE_SHA: d4ead21a02f406aecd0762fb5be4758d7fa9a35b
+      REPORT_DIR: reports/word-hunt-level5-10-timing-android16
+
+    steps:
+      - name: Exact QA HEAD'i indir
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Product tabanı ve QA-only kapsamını doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          git merge-base --is-ancestor "$PRODUCT_BASE_SHA" HEAD
+          git rev-parse HEAD | tee "$REPORT_DIR/QA_HEAD_SHA.txt"
+          printf '%s\n' "$PRODUCT_BASE_SHA" | tee "$REPORT_DIR/PRODUCT_BASE_SHA.txt"
+          git diff --name-only "$PRODUCT_BASE_SHA" HEAD | tee "$REPORT_DIR/QA_DIFF_NAME_ONLY.txt"
+          unexpected="$(git diff --name-only "$PRODUCT_BASE_SHA" HEAD | grep -Ev '^(lib/word_hunt/word_hunt_level5_10_timing_android16_proof_main\.dart|test/word_hunt_level5_10_timing_qa_test\.dart|tools/validate_word_hunt_level5_10_timing_android16\.sh|\.github/workflows/word-hunt-level5-10-timing-android16-proof\.yml|\.github/workflows/word-hunt-visual-proof\.yml)$' || true)"
+          if test -n "$unexpected"; then
+            echo "Unexpected product diff:" >&2
+            printf '%s\n' "$unexpected" >&2
+            exit 1
+          fi
+
+      - name: Static Word Hunt ve boundary kapısını çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          flutter pub get 2>&1 | tee "$REPORT_DIR/FLUTTER_PUB_GET.txt"
+          dart analyze lib/word_hunt 2>&1 | tee "$REPORT_DIR/DART_ANALYZE_WORD_HUNT.txt"
+          mapfile -t word_hunt_tests < <(find test -maxdepth 1 -type f -name 'word_hunt_*_test.dart' | sort)
+          printf 'WORD_HUNT_TEST_FILES=%s\n' "${#word_hunt_tests[@]}" | tee "$REPORT_DIR/WORD_HUNT_TEST_FILE_COUNT.txt"
+          flutter test "${word_hunt_tests[@]}" --concurrency=1 --reporter expanded 2>&1 | tee "$REPORT_DIR/WORD_HUNT_TESTS.txt"
+          flutter test test/word_hunt_level5_10_timing_qa_test.dart --reporter expanded 2>&1 | tee "$REPORT_DIR/TIMING_BOUNDARY_TESTS.txt"
+          git diff --check 2>&1 | tee "$REPORT_DIR/GIT_DIFF_CHECK.txt"
+
+      - name: timeLimitSeconds enforcement durumunu kaydet
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          if grep -Fq 'widget.level.timeLimitSeconds' lib/word_hunt/word_hunt_screens.dart; then
+            printf 'TIME_LIMIT_SCREEN_ENFORCEMENT=DETECTED\n' > "$REPORT_DIR/TIME_LIMIT_STATIC_DIAGNOSTIC.txt"
+          else
+            printf 'TIME_LIMIT_SCREEN_ENFORCEMENT=NOT_DETECTED\nTECHNICAL_TIMEOUT_GATE=FAIL\nISSUE=157\n' > "$REPORT_DIR/TIME_LIMIT_STATIC_DIAGNOSTIC.txt"
+          fi
+          cat "$REPORT_DIR/TIME_LIMIT_STATIC_DIAGNOSTIC.txt"
+
+      - name: Human playtest QA APK üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_level5_10_timing_android16_proof_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test \
+            2>&1 | tee "$REPORT_DIR/FLUTTER_BUILD_APK.txt"
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk | tee "$REPORT_DIR/APK_SHA256.txt"
+
+      - name: Android 16 emulator KVM erişimini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Gerçek production B5/B10 timing akışını Android 16'da doğrula
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 3072M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: bash tools/validate_word_hunt_level5_10_timing_android16.sh
+
+      - name: Timing QA artifact'ını yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-Level5-10-Timing-Android16-${{ github.sha }}
+          path: |
+            reports/word-hunt-level5-10-timing-android16/**
+            build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 21
