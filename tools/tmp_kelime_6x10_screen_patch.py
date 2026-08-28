@@ -48,8 +48,8 @@ once(
     'production post-target mistake freeze',
 )
 once(
-    '      mistakes: _mistakes,\n      elapsedSeconds: elapsed,\n',
-    '      mistakes: _scoredMistakes,\n      elapsedSeconds: elapsed,\n',
+    '    final elapsed = _displayedElapsedSeconds;\n    final score = WordHuntScoringEngine.calculate(\n      level: widget.level,\n      foundTargetCount: _foundTargets.length,\n      mistakes: _mistakes,\n      elapsedSeconds: elapsed,\n',
+    '    final elapsed = _displayedElapsedSeconds;\n    final score = WordHuntScoringEngine.calculate(\n      level: widget.level,\n      foundTargetCount: _foundTargets.length,\n      mistakes: _scoredMistakes,\n      elapsedSeconds: elapsed,\n',
     'production score mistakes',
 )
 once(
