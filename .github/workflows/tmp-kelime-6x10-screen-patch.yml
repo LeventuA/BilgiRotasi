@@ -26,7 +26,28 @@ jobs:
           cache: true
 
       - name: Dependencies
-        run: flutter pub get
+        run: |
+          flutter pub get
+          git checkout -- analysis_options.yaml pubspec.lock || true
+
+      - name: Harden temporary matcher
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('tools/tmp_kelime_6x10_screen_patch.py')
+          s = p.read_text(encoding='utf-8')
+          start = s.index("aspect_count = text.count(")
+          end = s.index("\nonce(\n    '  int _elapsedSeconds", start)
+          replacement = """aspect_count = text.count('aspectRatio: 1,')
+          if aspect_count != 2:
+              raise SystemExit(f'aspect ratio: expected 2 matches, got {aspect_count}')
+          text = text.replace(
+              'aspectRatio: 1,',
+              'aspectRatio: widget.level.columnCount / widget.level.rowCount,',
+          )
+          """
+          p.write_text(s[:start] + replacement + s[end:], encoding='utf-8')
+          PY
 
       - name: Apply fail-closed patch
         run: python3 tools/tmp_kelime_6x10_screen_patch.py
