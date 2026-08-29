@@ -14,7 +14,7 @@
 
 29 Ağustos 2026 kullanıcı kararıyla Başlangıç Limanı bölüm grid standardı **8 satır × 8 sütun** oldu. Önceki 6×10 geometrisi yeni ürün hattı için superseded; geçmiş kanıt olarak korunur.
 
-- Aktif branch: `feat/kelime-avi-8x8-content-v1-20260829`
+- 8×8 içerik branch: `feat/kelime-avi-8x8-content-v1-20260829`
 - Final temiz ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`
 - Commit adı: `feat(kelime-avi): switch starter levels to 8x8 [skip ci]`
 - Draft PR: **#158** — `WIP feat(kelime-avi): Başlangıç Limanı 8x8 production content`
@@ -26,7 +26,7 @@
 
 ## 8×8 Final Teknik Gate — PASS
 
-Düzeltilmiş tek final run:
+Düzeltilmiş final run:
 
 - Workflow gate commit: `4424285066568ddac874cfa35eb3bae1a62b3394`
 - Run: `33251736068`
@@ -66,14 +66,29 @@ Artifact:
 
 Artifact ekran görüntüleri görsel olarak ayrıca incelendi; B1/B5/B8/B10 8×8 gridleri aynı ekranda okunabilir, ANKARA ve BAŞKENT seçimleri doğru hücreleri boyuyor.
 
+## Aktif Tema Çalışması — Başlangıç Limanı Gece Limanı / Deniz Feneri
+
+Kullanıcı beş özgün aday arasından ilk görseli seçti. Bölüm 1–10 için ana tema yönü **derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı** olarak sabitlendi. MASTER ART rota ekranı bu kararla değişmez; tema yalnız bölüm içi Kelime Avı ekranına uygulanır.
+
+- Aktif clean theme branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`
+- Branch tabanı: 8×8 doğrulanmış docs HEAD `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
+- Tema katmanı: `lib/word_hunt/baslangic_limani_theme_screen.dart`.
+- Production flow çağrı noktası: `lib/word_hunt/word_hunt_gameplay_flow.dart`; varsayılan level açılışı temalı wrapper'a yönlendirildi.
+- Mevcut doğrulanmış `lib/word_hunt/word_hunt_screens.dart`, path/scoring, 8×8 içerik ve `lib/main.dart` değiştirilmedi.
+- Tema wrapper'ı mevcut `WordHuntLevelProductionScreen`'i kullanır; overlay `IgnorePointer` olduğu için gesture hit-testing'i ele geçirmez.
+- Tema ve production-flow entegrasyonu için iki yeni widget testi hazırlandı fakat yerel ortamda Flutter/Dart SDK olmadığı için henüz çalıştırılmadı.
+- Tema branch'inde GitHub Actions run sayısı: **0**.
+- Tema Flutter analyze/test ve gerçek Android 16 ekran görüntüsü: **DOĞRULANACAK**.
+- Tema için PR henüz açılmadı; Ready/merge yok.
+
 ## Korunan Alanlar
 
-8×8 dönüşümünde değiştirilmedi:
+Tema çalışmasında değiştirilmedi:
 - `lib/main.dart`
 - `pubspec.yaml`
 - `assets/questions.json`
 - `assets/word_hunt`
-- `lib/word_hunt/word_hunt_screens.dart` 8×8 ürün commitinde değiştirilmedi; PR diffindeki değişiklik eski 6×10 gameplay hattından gelir.
+- `lib/word_hunt/word_hunt_screens.dart`
 - `lib/word_hunt/word_hunt_path.dart`
 - `lib/word_hunt/word_hunt_models.dart`
 - MASTER ART / route geometry / BoardMap / 67 node
@@ -82,11 +97,12 @@ Artifact ekran görüntüleri görsel olarak ayrıca incelendi; B1/B5/B8/B10 8×
 
 ## Kalan Gerçek Kapılar
 
-1. Kullanıcıdan gerçek Android 16 **8×8 görsel/oynanış kabulü**.
-2. B5 ve B10 sürelerinin gerçek insan playtest dengesi.
-3. Kullanıcı kabulünden önce PR #158 Ready yapılmaz.
-4. Merge yalnız Levent'in ayrıca açık merge onayıyla yapılır.
-5. `lib/main.dart` production ana navigasyon entegrasyonu ayrı kapsam/onaydır.
+1. Tema branch'i için gerçek Dart formatter/analyze + ilgili Flutter testleri.
+2. Gerçek Android 16'da seçilen gece-limanı/deniz-feneri görünümünün ekran görüntüsü ve kullanıcı görsel kabulü.
+3. Tema sonrasında B5 ve B10 sürelerinin gerçek insan playtest dengesi.
+4. PR #158 ve tema hattı kullanıcı kabulünden önce Ready yapılmaz.
+5. Merge yalnız Levent'in ayrıca açık merge onayıyla yapılır.
+6. `lib/main.dart` production ana navigasyon entegrasyonu ayrı kapsam/onaydır.
 
 ## Kanonik Devir Dosyası
 
