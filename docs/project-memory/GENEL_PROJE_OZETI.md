@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 29 Ağustos 2026 — Kelime Avı Başlangıç Limanı **8×8** ürün hattı final teknik gate'i PASS. Temiz ürün commit `052ea7da775db0b58a5ce0c6731a04f251879008`; final run `33251736068` SUCCESS; Dart analyze PASS, focused Word Hunt 37/37, full Flutter 442/442, Android 16 B1/B5/B8/B10 64/64 hücre, B5 soft-time + ANKARA + ters BAŞKENT gesture PASS, crash taraması temiz. Draft PR #158 açıldı ve mergeable=true. Kalan kapı kullanıcı gerçek görünüm/oynanış kabulü + B5/B10 insan süre dengesi. Ready/merge yok.
+**Son güncelleme:** 29 Ağustos 2026 — Kelime Avı Başlangıç Limanı 8×8 ürün hattı teknik olarak PASS. Kullanıcı beş tema adayından **1. görseli** seçti: derin lacivert gece limanı + sıcak altın/amber deniz feneri. Tema için ayrı clean branch açıldı; doğrulanmış production ekranı değiştirilmeden temalı wrapper eklendi ve `word_hunt_gameplay_flow.dart` varsayılan Bölüm 1 açılışı wrapper'a bağlandı. Tema branch'inde Actions run sayısı 0; gerçek Flutter/Android16 tema gate'i **DOĞRULANACAK**. PR #158 8×8 içerik hattında OPEN/DRAFT; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -32,7 +32,7 @@
 
 - Issue #109 `Photo 1.jpg` tek bağlayıcı görsel kaynak.
 - Repo MASTER ART: `assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg`.
-- MASTER ART / route geometry mevcut 8×8 starter-content dönüşümünde değiştirilmez.
+- MASTER ART / route geometry mevcut 8×8 starter-content ve bölüm içi tema çalışmalarında değiştirilmez.
 - Route progression: 7 tamamlanınca 8+9 açılır; bonus 8 gate değildir; 10, node 9 tamamlanmadan locked/no-callback.
 
 ## AKTİF ÜRÜN KARARI — Başlangıç Limanı 8×8
@@ -119,6 +119,34 @@ Artifact:
 - 21 kanıt dosyası: B1/B5/B8/B10 screenshot+UI XML, ANKARA/BAŞKENT gesture screenshot/XML, LOGCAT, display bilgisi ve hashler.
 - Artifact görselleri ayrıca manuel incelendi; grid/etiket taşması veya kırpılma görülmedi.
 
+## Başlangıç Limanı bölüm içi tema — AKTİF
+
+Kullanıcı beş özgün aday arasından **1. görseli** seçti.
+
+Ana görsel yön:
+- derin lacivert gece limanı,
+- sıcak altın/amber deniz feneri ışığı,
+- premium koyu deniz tonları,
+- aynı ana kimlik Bölüm 1–10 boyunca korunur.
+
+Tema sınırı:
+- yalnız bölüm içi Kelime Avı ekranı,
+- MASTER ART rota ekranı ve route geometry değişmez,
+- 8×8 içerik, path/scoring/gesture ve soft-time sözleşmeleri değişmez.
+
+Clean theme Git hattı:
+- Branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`
+- Taban: `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`
+- Tema katmanı: `lib/word_hunt/baslangic_limani_theme_screen.dart`
+- Production flow çağrı noktası: `lib/word_hunt/word_hunt_gameplay_flow.dart`
+- Doğrulanmış `lib/word_hunt/word_hunt_screens.dart` değiştirilmedi.
+- Tema wrapper mevcut `WordHuntLevelProductionScreen`'i sarar; overlay `IgnorePointer` ile gameplay hit-testing'ini engellemez.
+- İki yeni test hazırlandı: tema sözleşmesi ve rota→tema→production flow entegrasyonu.
+- Yerel ortamda Flutter/Dart SDK yok; bu testler henüz gerçek runner'da çalıştırılmadı.
+- Tema branch'inde GitHub Actions run sayısı: **0**.
+- Gerçek Flutter analyze/test + Android16 screenshot: **DOĞRULANACAK**.
+- Tema için PR henüz açılmadı; Ready/merge yok.
+
 ## PR #158 — AKTİF 8×8 / DRAFT
 
 - URL: `https://github.com/ZMilaStudio/BilgiRotasi/pull/158`
@@ -127,7 +155,6 @@ Artifact:
 - Head: `feat/kelime-avi-8x8-content-v1-20260829`
 - Açılış ürün head: `052ea7da775db0b58a5ce0c6731a04f251879008`
 - Son kontrolde: **OPEN / DRAFT / merged=false / mergeable=true**.
-- PR yalnız teknik gate sonrası açıldı.
 - Kullanıcı görsel/oynanış kabulünden önce Ready yapılmaz.
 - Merge yalnız Levent'in ayrıca açık merge onayıyla yapılır.
 
@@ -151,7 +178,7 @@ Bu kanıt 8×8 runtime kabulü yerine kullanılmadı; 8×8 ayrı final gate ile 
 
 ## Korunan alanlar
 
-8×8 ürün dönüşümü açık kapsam olmadan değiştirmez:
+Tema/8×8 çalışması açık kapsam olmadan değiştirmez:
 - `lib/main.dart`
 - `pubspec.yaml`
 - `assets/questions.json`
@@ -162,17 +189,16 @@ Bu kanıt 8×8 runtime kabulü yerine kullanılmadı; 8×8 ayrı final gate ile 
 - AdMob / Firebase / Android release-signing config
 - package name / version
 
-`word_hunt_screens.dart` PR #158 diffinde görünür, ancak bu değişiklik yeni 8×8 ürün commitinden değil, branch'in devraldığı önceki gameplay/bonus/soft-time hattından gelir; final 8×8 product commit bu dosyaya dokunmadı.
-
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
-1. Her görev başında release, 8×8 branch HEAD, `pubspec.yaml` ve PR #158 canlı durumunu yeniden doğrula.
-2. Teknik 8×8 gate tamamlandı; yeni belirti yoksa körlemesine yeni QA run üretme.
-3. Kullanıcıya gerçek Android16 B1/B5/B8/B10 ve B5 ANKARA/BAŞKENT kanıtlarını göstererek **görsel/oynanış kabulü** al.
-4. B5 60s ve B10 120s challenge sürelerini gerçek insan playtestinde değerlendir; teknik soft-time PASS ile zorluk dengesi aynı şey değildir.
-5. Kullanıcı kabulünden önce PR #158 Ready yapma.
-6. Merge ancak Levent'in açık merge onayıyla yapılır.
-7. Eski PR #156 otomatik kapatılmaz; kapatma kararı ayrı alınır.
-8. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı kapsam/branch/PR işidir.
+1. Her görev başında release, clean theme branch HEAD, 8×8 branch/PR #158, `pubspec.yaml` ve Actions durumunu yeniden doğrula.
+2. Tema için yeni Actions koşusu açık kullanıcı izni olmadan başlatma.
+3. İlk izinli runtime gate'te formatter + analyze + tema testi + production-flow testi + Android16 screenshot aynı koşuda yapılmalı.
+4. Gerçek screenshotı kullanıcıya göster; seçilen gece-limanı/deniz-feneri görseline yakınlık ve okunabilirlik için görsel PASS al.
+5. Tema görsel PASS sonrası gerekirse B5/B10 insan süre playtestine geç.
+6. Kullanıcı kabulünden önce PR #158 veya tema PR'ı Ready yapılmaz.
+7. Merge ancak Levent'in açık merge onayıyla yapılır.
+8. Eski PR #156 otomatik kapatılmaz; kapatma kararı ayrı alınır.
+9. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı kapsam/branch/PR işidir.
 
 Diğer Bilgi Rotası açık işleri `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` içinde korunur.
