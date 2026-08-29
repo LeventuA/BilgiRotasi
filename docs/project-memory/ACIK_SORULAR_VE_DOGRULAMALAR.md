@@ -2,102 +2,61 @@
 
 > 30 Ağustos 2026 aktif kesimidir. Eski tam kayıtlar Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
-## Kelime Avı Başlangıç Limanı tema — TEST/APK PASS / V4 ANDROID16 GÖRSEL DOĞRULAMA HAZIR
+## Kelime Avı Başlangıç Limanı tema — TEKNİK RUNTIME PASS / GÖRSEL KABUL AÇIK
 
-Kullanıcı beş özgün aday arasından **1. görseli** seçti: derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı. Tema Bölüm 1–10 ana görsel kimliğidir; MASTER ART rota ekranını değiştirmez.
+Bağlayıcı kullanıcı seçimi: beş özgün aday içinden **1. görsel** — derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı. Tema Bölüm 1–10 ana görsel kimliğidir; MASTER ART rota ekranını değiştirmez.
 
-Canlı clean theme çalışma:
-- Branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`
-- Taban: doğrulanmış 8×8 docs HEAD `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
-- Doğrulanmış formatter ürün SHA: `a91236c9f734e9495e67de46ab6e078d429d681e`.
+Canlı çalışma:
+- Branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`.
+- Doğrulanmış tema ürün SHA: `a91236c9f734e9495e67de46ab6e078d429d681e`.
 - Tema wrapper: `lib/word_hunt/baslangic_limani_theme_screen.dart`.
-- Production flow: `word_hunt_gameplay_flow.dart` varsayılan açılışı temalı wrapper'a yönlendirildi.
-- Doğrulanmış `word_hunt_screens.dart`, 8×8 içerik, path/scoring, `lib/main.dart`, MASTER ART, AdMob/Firebase/signing değişmedi.
+- Production flow: `word_hunt_gameplay_flow.dart` temalı wrapper'a yönlendirildi.
+- `word_hunt_screens.dart`, 8×8 içerik, path/scoring, `lib/main.dart`, MASTER ART, AdMob/Firebase/signing/version değişmedi.
 - Açık theme PR yok; Ready/merge yok.
 
-Tema Actions geçmişi:
-- `33260968009`: FAILURE — ilk one-shot gate formatter aşamasında durdu.
-- `33274405539`: FAILURE — formatter/analyze/test/APK geçti; Android16 uygulama capture başlamadan `/usr/bin/sh` `pipefail` hatasıyla durdu.
-- `33277364738`: FAILURE — formatter 0 diff, analyze + 2 tema testi + B1/B10 build + API36 boot PASS; action çok satırlı `script:` içeriğini satır satır `/usr/bin/sh -c` ile yürüttüğü için heredoc Bash'e dönüşmeden parçalandı ve B1 kurulmadan önce aynı sınıf shell hatası oluştu.
+Final Android 16 tema gate:
+- Run `33278797412`: **SUCCESS**.
+- Job `99170289209`.
+- Gate SHA `4671a3989155b801c9da6b7d0ec7a7e1a545d465`.
+- Formatter: 4 dosya / 0 changed.
+- `dart analyze lib/word_hunt`: No issues.
+- Tema widget + production-flow testleri: **2/2 PASS**.
+- QA entrypoint analyze: PASS.
+- B1/B10 debug APK build + install + launch: PASS.
+- API 36 / 1080×1920 / 420 dpi: PASS.
+- B1 UI: `Bölüm 1`, `0/5`, `0 hata`, 64/64 hücre.
+- B10 UI: `Bölüm 10`, `0/9`, `0 hata`, 64/64 hücre.
+- B1/B10 screenshot, UI XML ve logcat üretildi.
+- `FATAL EXCEPTION`, uygulama ANR ve `am_crash` eşleşmesi yok.
+- Artifact `9722440135`, digest `sha256:bf91d7591b4348b3268983f9938a9042631729b8ad7a126c27e6ba35504f3a70`.
+- B1 APK SHA-256 `6ea5295ccb1cd27021d75ca7a7e781b867ca88697c57f80b0fbfac3f2174cad2`.
+- B10 APK SHA-256 `d3979a967d6213f54680fb4ca3eb8300da7757730f07bde6df9ca515a7428005`.
 
-Run `33277364738` içinde doğrulananlar:
-- formatter: **4 dosya / 0 changed**,
-- `dart analyze lib/word_hunt`: **No issues found**,
-- tema widget + production-flow testleri: **2/2 PASS**,
-- QA-only entrypoint analyze: PASS,
-- B1 debug APK build: PASS,
-- B10 debug APK build: PASS,
-- KVM: PASS,
-- API 36 emulator boot / 1080×1920 / 420 dpi: PASS.
+Tarihsel altyapı failureları `33260968009`, `33274405539`, `33277364738` final V4 SUCCESS yerine kullanılmaz. V4'te runner'a yalnız `bash /tmp/theme_android16_proof.sh` verilerek shell problemi kapatıldı.
 
-Kesin blocker:
-- `reactivecircus/android-emulator-runner@v2` her `script:` satırını ayrı `/usr/bin/sh -c` komutu olarak yürütüyor.
-- `bash <<'BASH'` satırı ile sonraki `set -euo pipefail` aynı shell oturumunda kalmadı.
-- Hata **B1 APK kurulmadan önce** oluştu; uygulama launch edilmedi.
-- Dolayısıyla screenshot/UI XML/logcat üretilmedi ve bu run tema runtime PASS sayılmaz.
-
-Run3 artifact:
-- ID `9722014382`
-- digest `sha256:0daf6164323008f0d947febe77af00ff82fd94166d54b534d810e1644f42fd28`
-- runtime screenshot/UI/logcat yok.
-
-V4 gate hazırlığı:
-- Workflow `.github/workflows/tmp-kelime-theme-android16-gate-v4.yml`.
-- Commit `bfa10d3617d9a104f71ce78b86e39754f55e22ea` — `ci(kelime-avi): prepare Android16 visual gate v4 [skip ci]`.
-- Yalnız `workflow_dispatch`; hazırlama commit'i yeni Actions run başlatmadı.
-- Android komutları normal `shell: bash` adımında `/tmp/theme_android16_proof.sh` dosyasına yazılıyor, executable yapılıyor ve `bash -n` ile doğrulanıyor.
-- Emulator runner'ın `script:` değeri tek satır `bash /tmp/theme_android16_proof.sh`; runner'ın satır-satır `sh -c` davranışı Bash gövdesini bölemez.
-
-**DOĞRULANACAK:**
-1. V4 workflow için yeni Actions izni/bütçe ne zaman verilecek? Mevcut 3 failure run rerun edilmeyecek.
-2. V4 gerçek Android 16 B1 ve B10 APK install/launch/capture kapılarını geçiyor mu?
-3. B1/B10 screenshotları seçilen 1. görselin lacivert + sıcak altın liman hissine yeterince yakın mı?
-4. Fener/ışık dekoru sayaç, hedef chipleri, grid ve alt status metninin okunabilirliğini bozuyor mu?
-5. B1/B10 UI XML ve logcat crash/ANR/FATAL açısından temiz mi?
-6. Kullanıcı gerçek screenshotı görsel olarak kabul ediyor mu; kabul etmezse hangi renk/ışık yoğunluğu ayarlanacak?
-7. Runtime görsel gate sonrası clean theme Draft PR açılacak mı?
+**DOĞRULANACAK — KALANLAR:**
+1. Gerçek B1/B10 screenshotları seçilen gece-limanı + sıcak amber deniz-feneri hissine yeterince yakın mı?
+2. Mevcut gerçek ekranlarda tema dekorunun oldukça hafif olması kullanıcı açısından kabul ediliyor mu, yoksa liman/fener/amber atmosferi güçlendirilecek mi?
+3. Kullanıcı görseli kabul ederse clean theme Draft PR açılacak mı?
+4. Tema PR ve PR #158 ne zaman Ready yapılacak? Kullanıcı kabulünden önce yapılmaz.
+5. Merge için Levent ayrıca açık onay verecek mi?
 
 ---
 
 ## Kelime Avı Başlangıç Limanı 8×8 — TEKNİK PASS / KULLANICI KABULÜ AÇIK
 
-29 Ağustos 2026 kullanıcı kararıyla starter-content grid standardı **8×8** oldu; önceki 6×10 geometrisi yeni ürün hattı için superseded edildi.
-
-Canlı çalışma:
-- Branch: `feat/kelime-avi-8x8-content-v1-20260829`
-- Ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`
-- Draft PR: **#158** — OPEN / DRAFT / merged=false / mergeable=true.
+- Branch: `feat/kelime-avi-8x8-content-v1-20260829`.
+- Ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`.
+- Draft PR #158: OPEN / DRAFT / merged=false.
 - Base release: `release/final-closed-test-aab-1.68.8` / `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
 - Sürüm: `1.68.19+109`.
-- Eski PR #156 6×10 hattında OPEN/DRAFT kalır; otomatik kapatılmadı.
+- Final run `33251736068`: SUCCESS.
+- 10 adet 8×8 grid / 80 target+bonus; static/path/reverse sözleşmesi PASS.
+- Focused Word Hunt **37/37**, full Flutter **442/442 PASS**.
+- Android16 B1/B5/B8/B10 64/64; soft-time ve gerçek ANKARA/ters BAŞKENT swipe PASS.
 
-Teknik olarak doğrulandı:
-- 10 adet 8×8 grid ve 80 toplam target+bonus.
-- Her canonical kelime exactly-one physical straight-line occurrence.
-- Intended/opposite canonical yol eşleşmeleri.
-- B5/B10 yatay+dikey+çapraz yön aileleri.
-- B8 `HIZ`+`SKOR`, B9 `ROKET` ve `AY` yok, B10 `YOL`+`HAZİNE` ve `ROTA` yok.
-- Dart formatter PASS.
-- `dart analyze lib/word_hunt`: No issues.
-- Focused Word Hunt suite: **37/37 PASS**.
-- Full Flutter suite: **442/442 PASS**.
-- `git diff --check` + protected-scope gate PASS.
-- QA-only entrypoint/helper dosyaları ürün commitine girmedi.
-
-Final Android 16:
-- Run `33251736068`: **SUCCESS**.
-- API 36 / 1080×1920 / 420 dpi.
-- B1/B5/B8/B10: ilk viewportta **64/64** hücre görünür ve okunabilir.
-- B5 +65s soft-time: hard fail yok; 67–76s oynanabilir.
-- ANKARA uzun çapraz gerçek swipe: `1/7`, `Bilgi kartı açıldı: Ankara`.
-- BAŞKENT ters-dikey gerçek swipe: `1/7`, `BAŞKENT bulundu!`.
-- Crash/ANR/FATAL/am_crash taraması temiz.
-- Artifact `9714700778`; digest `sha256:dfbca264c2f67bb3549a0e336b075c9238f1a0638962dc69392ea8715b9a2092`.
-
-İlk gate `33250841637` formatter kapısında durmuştu ve analyze/test/Android16 çalışmamıştı; ürün failure değildir. Final run `33251736068` teknik kabul kanıtıdır.
-
-**DOĞRULANACAK — KALANLAR:**
-1. Tema uygulanmış gerçek Android 16 8×8 görünümü/oynanışı kullanıcı tarafından kabul ediliyor mu?
+**DOĞRULANACAK:**
+1. Tema dahil gerçek 8×8 görünüm kullanıcı tarafından kabul ediliyor mu?
 2. B5 60 saniye ve B10 120 saniye challenge süreleri gerçek insan playtestinde dengeli mi?
 3. Kullanıcı kabulünden sonra PR #158 Ready yapılacak mı?
 4. PR #158 merge'i için Levent ayrıca açık merge onayı verecek mi?
@@ -109,7 +68,7 @@ Final Android 16:
 ## Issue #109 / MASTER ART production — KAPANDI
 
 - Issue #109 `Photo 1.jpg` tek bağlayıcı MASTER ART.
-- Görsel ve `MASTER ART raster + şeffaf hitbox` mimari kabulü PASS.
+- MASTER ART raster + şeffaf hitbox mimari kabulü PASS.
 - PR #147 merge SHA `d118aa98c5551cb3b4418f61047f6a730406d963`.
 
 ---
@@ -117,7 +76,7 @@ Final Android 16:
 ## Dynamic progression state — KAPANDI
 
 - Gerçek `X / 30`, yıldız, locked/open state doğrulandı.
-- Android 16 run `32969604847`: SUCCESS.
+- Android16 run `32969604847`: SUCCESS.
 - PR #150 merge SHA `d64fcd4ea63f173c6653ff33926b12a6c99ef37d`.
 
 ---
