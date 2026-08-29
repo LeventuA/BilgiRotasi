@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 29 Ağustos 2026
+**Son güncelleme:** 30 Ağustos 2026
 
 ## Canlı Sürüm / Release Hattı
 
@@ -72,8 +72,7 @@ Kullanıcı beş özgün aday arasından ilk görseli seçti. Bölüm 1–10 iç
 
 - Aktif clean theme branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`
 - Branch tabanı: 8×8 doğrulanmış docs HEAD `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
-- Formatter sonrası ürün HEAD: `a91236c9f734e9495e67de46ab6e078d429d681e`.
-- Formatter commit: `chore(kelime-avi): apply verified theme formatting [skip ci]`.
+- Doğrulanmış formatter ürün SHA: `a91236c9f734e9495e67de46ab6e078d429d681e`.
 - Tema katmanı: `lib/word_hunt/baslangic_limani_theme_screen.dart`.
 - Production flow çağrı noktası: `lib/word_hunt/word_hunt_gameplay_flow.dart`; varsayılan level açılışı temalı wrapper'a yönlendirildi.
 - Mevcut doğrulanmış `lib/word_hunt/word_hunt_screens.dart`, path/scoring, 8×8 içerik ve `lib/main.dart` değiştirilmedi.
@@ -82,29 +81,40 @@ Kullanıcı beş özgün aday arasından ilk görseli seçti. Bölüm 1–10 iç
 
 ### Tema teknik gate kanıtı
 
-Tema branch'inde iki Actions run vardır:
+Tema branch'inde **3 Actions run** vardır:
 
 1. `33260968009` — FAILURE. İlk one-shot gate formatter aşamasında durdu; runtime kanıtı değildir.
-2. `33274405539` — FAILURE. Ancak failure ürün/runtime değil, Android QA script shell altyapısındadır.
+2. `33274405539` — FAILURE. Formatter/analyze/test/APK kapıları geçti; Android QA scripti `/usr/bin/sh` altında `set -euo pipefail` nedeniyle B1 kurulmadan önce durdu.
+3. `33277364738` — FAILURE. Formatter artık **0 değişiklik**, analyze ve iki odak tema testi PASS, B1/B10 APK build PASS, API 36 emulator boot PASS. Ancak `android-emulator-runner@v2` çok satırlı `script:` içeriğini satır satır `/usr/bin/sh -c` ile yürüttüğü için `bash <<'BASH'` satırı ayrı, sonraki `set -euo pipefail` satırı yine ayrı `sh` komutu oldu. Hata yine **B1 APK kurulmadan önce** oluştu.
 
-İkinci run `33274405539` içinde Android aşamasından önce doğrulananlar:
-- `dart format`: beklenen 3 dosyayı değiştirdi; kapsam gate'i doğru çalıştı.
+Run `33277364738` gerçek kanıtı:
+- `dart format --set-exit-if-changed`: **4 dosya / 0 changed PASS**.
 - `dart analyze lib/word_hunt`: **No issues found**.
-- Focused Word Hunt suite: **138/138 PASS**.
-- Full Flutter suite: **444/444 PASS**.
+- Tema widget + production-flow testleri: **2/2 PASS**.
 - QA-only entrypoint analyze: PASS.
-- B1 debug APK build: PASS — SHA-256 `7bfa3369d07a1a3b0d7ff1b234144c645afd6dc3182206da96031b49966a93ea`.
-- B10 debug APK build: PASS — SHA-256 `e0b4c46f1f82b6ea1f7e401ff482b876949a8ab9f88005a0651b99e452370b76`.
-- Gate HEAD: `f3447be9094046cd8c4cb4f7d1f1523ab35cec48`.
+- B1 debug APK build: PASS.
+- B10 debug APK build: PASS.
+- KVM: PASS.
+- Android 16 / API 36 emulator boot: PASS; 1080×1920 / 420 dpi yapılandırması hazırlandı.
+- Uygulama launch/capture: ÇALIŞMADI; script runner semantiği nedeniyle B1 kurulmadan önce kesildi.
+- Screenshot/UI XML/logcat: ÜRETİLMEDİ.
 
-Android 16 emülatörü API 36 olarak başarıyla boot etti. Ardından `reactivecircus/android-emulator-runner@v2` scripti `/usr/bin/sh` ile çalıştırdığı için ilk komut `set -euo pipefail` üzerinde `/usr/bin/sh: 1: set: Illegal option -o pipefail` hatası oluştu. Bu hata **B1 APK kurulmadan önce** meydana geldi. Bu nedenle tema için Android screenshot/UI XML/logcat üretilemedi ve gerçek tema runtime görünümü hâlâ **DOĞRULANACAK**.
+Run `33277364738` artifact:
+- ID `9722014382`
+- Digest `sha256:0daf6164323008f0d947febe77af00ff82fd94166d54b534d810e1644f42fd28`
+- Runtime screenshot/UI/logcat yok; 5 adet analyze/test/APK hash/head kanıt dosyası var.
 
-Run `33274405539` artifact:
-- ID `9721167449`
-- Digest `sha256:a90891532eaf3a279aa5935328529dc8bce712cd13a74069de5083d4f90bf1af`
-- İçerik: analyze/test logları, formatter patch, B1/B10 APK hashleri ve gate HEAD; screenshot/UI/logcat yok.
+### Hazır v4 Android görsel gate — RUN BAŞLATILMADI
 
-Formatter artifactindeki doğrulanmış üç dosyalık fark branch'e `a91236c9...` commit'iyle uygulandı. Bu `[skip ci]` commit yeni Actions run tetiklemedi.
+Run3 sonrası kalıcı düzeltme hazırlandı:
+- Workflow: `.github/workflows/tmp-kelime-theme-android16-gate-v4.yml`
+- Hazırlama commit: `bfa10d3617d9a104f71ce78b86e39754f55e22ea`
+- Commit adı: `ci(kelime-avi): prepare Android16 visual gate v4 [skip ci]`
+- Trigger: **yalnız `workflow_dispatch`**; dosyanın eklenmesi yeni Actions run başlatmadı.
+- Android komutları önce normal `shell: bash` adımında `/tmp/theme_android16_proof.sh` dosyasına yazılıyor ve `bash -n` ile denetleniyor.
+- `android-emulator-runner` içindeki `script:` artık tek satır: `bash /tmp/theme_android16_proof.sh`.
+- Böylece action'ın satır satır `/usr/bin/sh -c` yürütme davranışı Bash script içeriğini parçalayamıyor.
+- V4 henüz çalıştırılmadı; runtime tema görünümü hâlâ **DOĞRULANACAK**.
 
 ## Korunan Alanlar
 
@@ -122,14 +132,13 @@ Tema çalışmasında değiştirilmedi:
 
 ## Kalan Gerçek Kapılar
 
-1. Tema Android 16 gate scriptinde POSIX uyumsuz `set -euo pipefail` kullanılmamalı; `sh` uyumlu `set -eu` veya açık Bash execution kullanılmalı.
-2. Yeni Actions koşusu açılmadan önce izin/bütçe yeniden doğrulanmalı; mevcut iki başarısız run rerun edilmez.
-3. Gerçek Android 16'da B1 ve B10 tema ekran görüntüsü/UI/logcat alınmalı.
-4. Kullanıcı seçilen gece-limanı/deniz-feneri görünümünün yakınlığını ve okunabilirliğini görsel olarak onaylamalı.
-5. Tema sonrasında B5 ve B10 sürelerinin gerçek insan playtest dengesi.
-6. PR #158 ve tema hattı kullanıcı kabulünden önce Ready yapılmaz.
-7. Merge yalnız Levent'in ayrıca açık merge onayıyla yapılır.
-8. `lib/main.dart` production ana navigasyon entegrasyonu ayrı kapsam/onaydır.
+1. Hazır v4 `workflow_dispatch` gate için yeni Actions izni/bütçe doğrulanmalı; mevcut 3 failure run rerun edilmez.
+2. V4 ile gerçek Android 16 B1 ve B10 tema screenshot/UI XML/logcat alınmalı.
+3. Kullanıcı seçilen gece-limanı/deniz-feneri görünümünün yakınlığını ve okunabilirliğini görsel olarak onaylamalı.
+4. Tema sonrasında B5 ve B10 sürelerinin gerçek insan playtest dengesi.
+5. PR #158 ve tema hattı kullanıcı kabulünden önce Ready yapılmaz.
+6. Merge yalnız Levent'in ayrıca açık merge onayıyla yapılır.
+7. `lib/main.dart` production ana navigasyon entegrasyonu ayrı kapsam/onaydır.
 
 ## Kanonik Devir Dosyası
 
