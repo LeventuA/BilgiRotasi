@@ -2,6 +2,28 @@
 
 > 29 Ağustos 2026 aktif kesimidir. Eski tam kayıtlar Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
+## Kelime Avı Başlangıç Limanı tema — KOD HAZIR / RUNTIME GÖRSEL DOĞRULAMA AÇIK
+
+Kullanıcı beş özgün aday arasından **1. görseli** seçti: derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı. Tema Bölüm 1–10 ana görsel kimliğidir; MASTER ART rota ekranını değiştirmez.
+
+Canlı clean theme çalışma:
+- Branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`
+- Taban: doğrulanmış 8×8 docs HEAD `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
+- Tema wrapper: `lib/word_hunt/baslangic_limani_theme_screen.dart`.
+- Production flow: `word_hunt_gameplay_flow.dart` varsayılan açılışı temalı wrapper'a yönlendirildi.
+- Doğrulanmış `word_hunt_screens.dart`, 8×8 içerik, path/scoring, `lib/main.dart`, MASTER ART, AdMob/Firebase/signing değişmedi.
+- Tema branch'inde Actions run sayısı: **0**.
+
+**DOĞRULANACAK:**
+1. Tema dosyaları gerçek `dart format` / analyze'dan geçiyor mu?
+2. İki yeni tema/flow widget testi Flutter runner'da PASS mi?
+3. Android 16 gerçek screenshot seçilen 1. görselin lacivert + sıcak altın liman hissine yeterince yakın mı?
+4. Fener/ışık dekoru sayaç, hedef chipleri, grid ve alt status metninin okunabilirliğini bozuyor mu?
+5. Kullanıcı gerçek screenshotı görsel olarak kabul ediyor mu; kabul etmezse hangi renk/ışık yoğunluğu ayarlanacak?
+6. Runtime görsel gate sonrası clean theme Draft PR açılacak mı?
+
+---
+
 ## Kelime Avı Başlangıç Limanı 8×8 — TEKNİK PASS / KULLANICI KABULÜ AÇIK
 
 29 Ağustos 2026 kullanıcı kararıyla starter-content grid standardı **8×8** oldu; önceki 6×10 geometrisi yeni ürün hattı için superseded edildi.
@@ -40,7 +62,7 @@ Final Android 16:
 İlk gate `33250841637` formatter kapısında durmuştu ve analyze/test/Android16 çalışmamıştı; ürün failure değildir. Final run `33251736068` teknik kabul kanıtıdır.
 
 **DOĞRULANACAK — KALANLAR:**
-1. Levent gerçek Android 16 8×8 görünümünü/oynanışı kabul ediyor mu?
+1. Tema uygulanmış gerçek Android 16 8×8 görünümü/oynanışı kullanıcı tarafından kabul ediliyor mu?
 2. B5 60 saniye ve B10 120 saniye challenge süreleri gerçek insan playtestinde dengeli mi?
 3. Kullanıcı kabulünden sonra PR #158 Ready yapılacak mı?
 4. PR #158 merge'i için Levent ayrıca açık merge onayı verecek mi?
@@ -67,7 +89,7 @@ Final Android 16:
 
 ## Kelime Avı production ana navigasyon entegrasyonu — AÇIK / AYRI KAPSAM
 
-- `lib/main.dart` 8×8 starter-content dönüşümünde değiştirilmedi.
+- `lib/main.dart` 8×8 starter-content/tema dönüşümünde değiştirilmedi.
 - Gerçek uygulama girişine bağlama ayrı branch/PR ve açık onay ister.
 
 ---
