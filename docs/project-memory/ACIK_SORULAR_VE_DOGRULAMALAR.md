@@ -1,15 +1,15 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-> 29 Ağustos 2026 aktif kesimidir. Eski tam kayıtlar Git geçmişi ve `docs/project-memory/archive/` altında korunur.
+> 30 Ağustos 2026 aktif kesimidir. Eski tam kayıtlar Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
-## Kelime Avı Başlangıç Limanı tema — TEST/APK PASS / ANDROID16 GÖRSEL DOĞRULAMA AÇIK
+## Kelime Avı Başlangıç Limanı tema — TEST/APK PASS / V4 ANDROID16 GÖRSEL DOĞRULAMA HAZIR
 
 Kullanıcı beş özgün aday arasından **1. görseli** seçti: derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı. Tema Bölüm 1–10 ana görsel kimliğidir; MASTER ART rota ekranını değiştirmez.
 
 Canlı clean theme çalışma:
 - Branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`
 - Taban: doğrulanmış 8×8 docs HEAD `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
-- Formatter sonrası ürün commit: `a91236c9f734e9495e67de46ab6e078d429d681e`.
+- Doğrulanmış formatter ürün SHA: `a91236c9f734e9495e67de46ab6e078d429d681e`.
 - Tema wrapper: `lib/word_hunt/baslangic_limani_theme_screen.dart`.
 - Production flow: `word_hunt_gameplay_flow.dart` varsayılan açılışı temalı wrapper'a yönlendirildi.
 - Doğrulanmış `word_hunt_screens.dart`, 8×8 içerik, path/scoring, `lib/main.dart`, MASTER ART, AdMob/Firebase/signing değişmedi.
@@ -17,40 +17,45 @@ Canlı clean theme çalışma:
 
 Tema Actions geçmişi:
 - `33260968009`: FAILURE — ilk one-shot gate formatter aşamasında durdu.
-- `33274405539`: FAILURE — formatter/analyze/test/APK geçti; Android16 uygulama capture başlamadan QA script shell hatasıyla durdu.
+- `33274405539`: FAILURE — formatter/analyze/test/APK geçti; Android16 uygulama capture başlamadan `/usr/bin/sh` `pipefail` hatasıyla durdu.
+- `33277364738`: FAILURE — formatter 0 diff, analyze + 2 tema testi + B1/B10 build + API36 boot PASS; action çok satırlı `script:` içeriğini satır satır `/usr/bin/sh -c` ile yürüttüğü için heredoc Bash'e dönüşmeden parçalandı ve B1 kurulmadan önce aynı sınıf shell hatası oluştu.
 
-İkinci run `33274405539` içinde doğrulananlar:
-- formatter kapsamı doğru: yalnız 3 dosya değişti,
+Run `33277364738` içinde doğrulananlar:
+- formatter: **4 dosya / 0 changed**,
 - `dart analyze lib/word_hunt`: **No issues found**,
-- focused Word Hunt: **138/138 PASS**,
-- full Flutter: **444/444 PASS**,
+- tema widget + production-flow testleri: **2/2 PASS**,
 - QA-only entrypoint analyze: PASS,
-- B1 debug APK: PASS — SHA-256 `7bfa3369d07a1a3b0d7ff1b234144c645afd6dc3182206da96031b49966a93ea`,
-- B10 debug APK: PASS — SHA-256 `e0b4c46f1f82b6ea1f7e401ff482b876949a8ab9f88005a0651b99e452370b76`,
-- API 36 emülatör boot: PASS.
+- B1 debug APK build: PASS,
+- B10 debug APK build: PASS,
+- KVM: PASS,
+- API 36 emulator boot / 1080×1920 / 420 dpi: PASS.
 
-Kesin Android16 blocker:
-- `reactivecircus/android-emulator-runner@v2` scripti `/usr/bin/sh` ile çalıştı.
-- Scriptin ilk satırı `set -euo pipefail` idi.
-- `/usr/bin/sh` bunu desteklemedi ve `/usr/bin/sh: 1: set: Illegal option -o pipefail` ile çıktı.
+Kesin blocker:
+- `reactivecircus/android-emulator-runner@v2` her `script:` satırını ayrı `/usr/bin/sh -c` komutu olarak yürütüyor.
+- `bash <<'BASH'` satırı ile sonraki `set -euo pipefail` aynı shell oturumunda kalmadı.
 - Hata **B1 APK kurulmadan önce** oluştu; uygulama launch edilmedi.
 - Dolayısıyla screenshot/UI XML/logcat üretilmedi ve bu run tema runtime PASS sayılmaz.
 
-Artifact:
-- ID `9721167449`
-- digest `sha256:a90891532eaf3a279aa5935328529dc8bce712cd13a74069de5083d4f90bf1af`
-- 7 dosya: analyze, focused/full test logları, formatter patch, B1/B10 APK hashleri, gate HEAD.
-- Android screenshot/UI/logcat yok.
+Run3 artifact:
+- ID `9722014382`
+- digest `sha256:0daf6164323008f0d947febe77af00ff82fd94166d54b534d810e1644f42fd28`
+- runtime screenshot/UI/logcat yok.
 
-Formatter patchindeki doğrulanmış üç dosyalık fark `a91236c9...` ile branch'e `[skip ci]` olarak uygulandı ve bu commit yeni Actions run tetiklemedi.
+V4 gate hazırlığı:
+- Workflow `.github/workflows/tmp-kelime-theme-android16-gate-v4.yml`.
+- Commit `bfa10d3617d9a104f71ce78b86e39754f55e22ea` — `ci(kelime-avi): prepare Android16 visual gate v4 [skip ci]`.
+- Yalnız `workflow_dispatch`; hazırlama commit'i yeni Actions run başlatmadı.
+- Android komutları normal `shell: bash` adımında `/tmp/theme_android16_proof.sh` dosyasına yazılıyor, executable yapılıyor ve `bash -n` ile doğrulanıyor.
+- Emulator runner'ın `script:` değeri tek satır `bash /tmp/theme_android16_proof.sh`; runner'ın satır-satır `sh -c` davranışı Bash gövdesini bölemez.
 
 **DOĞRULANACAK:**
-1. Android QA scripti `sh` uyumlu `set -eu` ile mi düzeltilecek, yoksa script açık Bash execution ile mi çalıştırılacak?
-2. Yeni Actions koşusu için kullanıcı izni/bütçe ne zaman yeniden açılacak? Mevcut run rerun edilmeyecek.
-3. Android 16 gerçek B1/B10 screenshotı seçilen 1. görselin lacivert + sıcak altın liman hissine yeterince yakın mı?
+1. V4 workflow için yeni Actions izni/bütçe ne zaman verilecek? Mevcut 3 failure run rerun edilmeyecek.
+2. V4 gerçek Android 16 B1 ve B10 APK install/launch/capture kapılarını geçiyor mu?
+3. B1/B10 screenshotları seçilen 1. görselin lacivert + sıcak altın liman hissine yeterince yakın mı?
 4. Fener/ışık dekoru sayaç, hedef chipleri, grid ve alt status metninin okunabilirliğini bozuyor mu?
-5. Kullanıcı gerçek screenshotı görsel olarak kabul ediyor mu; kabul etmezse hangi renk/ışık yoğunluğu ayarlanacak?
-6. Runtime görsel gate sonrası clean theme Draft PR açılacak mı?
+5. B1/B10 UI XML ve logcat crash/ANR/FATAL açısından temiz mi?
+6. Kullanıcı gerçek screenshotı görsel olarak kabul ediyor mu; kabul etmezse hangi renk/ışık yoğunluğu ayarlanacak?
+7. Runtime görsel gate sonrası clean theme Draft PR açılacak mı?
 
 ---
 
