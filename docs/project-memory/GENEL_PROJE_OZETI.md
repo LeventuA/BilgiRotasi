@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 29 Ağustos 2026 — Kelime Avı Başlangıç Limanı 8×8 ürün hattı teknik olarak PASS. Kullanıcı beş tema adayından **1. görseli** seçti: derin lacivert gece limanı + sıcak altın/amber deniz feneri. Tema clean branch'inde formatter/analyze/test ve B1/B10 debug APK buildleri PASS oldu. Android 16 emülatörü boot etti; ancak capture scripti `/usr/bin/sh` altında `set -euo pipefail` kullandığı için B1 kurulmadan önce altyapı hatasıyla durdu. Gerçek tema screenshot/UI/logcat bu nedenle **DOĞRULANACAK**. Formatter farkı `a91236c9...` `[skip ci]` commit'iyle branch'e uygulandı; yeni Actions tetiklenmedi. PR #158 8×8 içerik hattında OPEN/DRAFT; theme PR yok, Ready/merge yok.
+**Son güncelleme:** 30 Ağustos 2026 — Kelime Avı Başlangıç Limanı 8×8 ürün hattı teknik olarak PASS. Kullanıcı beş tema adayından **1. görseli** seçti: derin lacivert gece limanı + sıcak altın/amber deniz feneri. Tema clean branch'inde formatter artık 0 diff, `dart analyze` PASS, tema widget + flow testleri 2/2 PASS, B1/B10 debug APK buildleri PASS ve API 36 emulator boot PASS. Run `33277364738` yine ürün başlamadan QA runner'ın çok satırlı `script:` içeriğini satır satır `/usr/bin/sh -c` yürütmesi nedeniyle durdu; gerçek tema screenshot/UI/logcat hâlâ **DOĞRULANACAK**. Bu runner davranışını kalıcı olarak aşan v4 gate, Android komutlarını `/tmp/theme_android16_proof.sh` dosyasına yazıp emulator runner'a tek satır `bash /tmp/theme_android16_proof.sh` vermek üzere hazırlandı. V4 yalnız `workflow_dispatch`; hazırlama commit'i yeni run tetiklemedi. PR #158 8×8 içerik hattında OPEN/DRAFT; theme PR yok, Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -137,7 +137,7 @@ Tema sınırı:
 Clean theme Git hattı:
 - Branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`
 - Taban: `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`
-- Formatter sonrası ürün commit: `a91236c9f734e9495e67de46ab6e078d429d681e`
+- Doğrulanmış formatter ürün SHA: `a91236c9f734e9495e67de46ab6e078d429d681e`
 - Tema katmanı: `lib/word_hunt/baslangic_limani_theme_screen.dart`
 - Production flow çağrı noktası: `lib/word_hunt/word_hunt_gameplay_flow.dart`
 - Doğrulanmış `lib/word_hunt/word_hunt_screens.dart` değiştirilmedi.
@@ -147,28 +147,43 @@ Clean theme Git hattı:
 
 Tema Actions geçmişi:
 - Run `33260968009`: FAILURE — ilk one-shot gate formatter kapısında durdu.
-- Run `33274405539`: FAILURE — Android16 capture başlamadan QA shell altyapı hatası.
+- Run `33274405539`: FAILURE — formatter/analyze/test/APK PASS; Android16 capture başlamadan `/usr/bin/sh` `pipefail` altyapı hatası.
+- Run `33277364738`: FAILURE — formatter 0 diff, analyze + tema testleri + APK + emulator boot PASS; çok satırlı runner `script:` satır satır `/usr/bin/sh -c` yürütüldüğü için heredoc çözümü parçalandı ve B1 kurulmadan önce kesildi.
 
-İkinci run `33274405539` gerçek kanıtı:
-- formatter kapsamı: PASS; 3 beklenen dosya,
+Run `33277364738` gerçek kanıtı:
+- formatter: **4 dosya / 0 changed PASS**,
 - `dart analyze lib/word_hunt`: **No issues found**,
-- focused Word Hunt: **138/138 PASS**,
-- full Flutter: **444/444 PASS**,
+- tema widget + production-flow testleri: **2/2 PASS**,
 - QA entrypoint analyze: PASS,
-- B1 debug APK build: PASS — `7bfa3369d07a1a3b0d7ff1b234144c645afd6dc3182206da96031b49966a93ea`,
-- B10 debug APK build: PASS — `e0b4c46f1f82b6ea1f7e401ff482b876949a8ab9f88005a0651b99e452370b76`,
-- API 36 emülatör boot: PASS.
+- B1 debug APK build: PASS,
+- B10 debug APK build: PASS,
+- KVM: PASS,
+- API 36 emulator boot / 1080×1920 / 420 dpi: PASS.
 
-Kesin Android16 failure:
-- `reactivecircus/android-emulator-runner@v2` scripti `/usr/bin/sh` ile çalıştırdı.
-- `set -euo pipefail` POSIX `sh` altında desteklenmedi.
+Kesin Run3 Android16 failure:
+- `reactivecircus/android-emulator-runner@v2` çok satırlı `script:` içindeki her satırı ayrı `/usr/bin/sh -c` çağrısı olarak yürüttü.
+- `bash <<'BASH'` satırı sonraki satırlara shell bağlamı taşımadı.
+- Sonraki `set -euo pipefail` yine doğrudan `/usr/bin/sh` altında çalıştı.
 - Log: `/usr/bin/sh: 1: set: Illegal option -o pipefail`.
 - Hata B1 APK kurulmadan önce oluştu; uygulama launch edilmedi.
-- Bu nedenle tema screenshot/UI XML/logcat yok ve gerçek runtime görünümü **DOĞRULANACAK**.
+- Tema screenshot/UI XML/logcat yok; gerçek runtime görünümü **DOĞRULANACAK**.
 
-Artifact `9721167449`, digest `sha256:a90891532eaf3a279aa5935328529dc8bce712cd13a74069de5083d4f90bf1af`; screenshot değil analyze/test/formatter/APK hash kanıtlarını taşır.
+Run3 artifact:
+- ID `9722014382`
+- Digest `sha256:0daf6164323008f0d947febe77af00ff82fd94166d54b534d810e1644f42fd28`
+- Runtime screenshot/UI/logcat yok.
 
-Formatter artifactindeki üç dosyalık doğrulanmış fark `a91236c9...` ile `[skip ci]` olarak canlı branch'e uygulandı ve yeni Actions run tetiklemedi.
+### V4 runtime gate — HAZIR / ÇALIŞTIRILMADI
+
+- Workflow: `.github/workflows/tmp-kelime-theme-android16-gate-v4.yml`
+- Hazırlama commit: `bfa10d3617d9a104f71ce78b86e39754f55e22ea`
+- Commit adı: `ci(kelime-avi): prepare Android16 visual gate v4 [skip ci]`
+- Trigger: yalnız `workflow_dispatch`; bu nedenle workflow ekleme commit'i yeni Actions run başlatmadı.
+- Android komutları normal `shell: bash` adımında `/tmp/theme_android16_proof.sh` dosyasına yazılıyor.
+- Dosya `chmod +x` ve `bash -n` ile kontrol ediliyor.
+- `android-emulator-runner` içindeki tek komut: `bash /tmp/theme_android16_proof.sh`.
+- Runner'ın satır-satır `/usr/bin/sh -c` davranışı artık Bash script gövdesini bölemez.
+- V4 için yeni Actions run henüz yok; mevcut theme run toplamı 3.
 
 ## PR #158 — AKTİF 8×8 / DRAFT
 
@@ -215,9 +230,9 @@ Tema/8×8 çalışması açık kapsam olmadan değiştirmez:
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
 1. Her görev başında release, clean theme branch HEAD, 8×8 branch/PR #158, `pubspec.yaml` ve Actions durumunu yeniden doğrula.
-2. Mevcut iki theme failure run'ı rerun etme; yeni Actions için kullanıcı izni/bütçe yeniden doğrulanmadan run başlatma.
-3. Gelecek Android QA scriptinde `set -euo pipefail` POSIX `sh` altında kullanılmamalı; `set -eu` veya açık Bash execution seçilmeli.
-4. İlk izinli runtime gate'te gerçek Android16 B1/B10 screenshot + UI XML + logcat alınmalı.
+2. Mevcut üç theme failure run'ı rerun etme.
+3. V4 workflow hazır ve `workflow_dispatch`-only; yeni Actions izni/bütçe doğrulanmadan run başlatma.
+4. İlk izinli v4 run'da gerçek Android16 B1/B10 install → launch → screenshot + UI XML + logcat alınmalı.
 5. Gerçek screenshotı kullanıcıya göster; seçilen gece-limanı/deniz-feneri görseline yakınlık ve okunabilirlik için görsel PASS al.
 6. Tema görsel PASS sonrası gerekirse B5/B10 insan süre playtestine geç.
 7. Kullanıcı kabulünden önce PR #158 veya tema PR'ı Ready yapılmaz.
