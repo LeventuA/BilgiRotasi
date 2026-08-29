@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import 'word_hunt_models.dart';
@@ -95,27 +93,33 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
       lighthouseX,
       lighthouseTop - size.height * 0.004,
     );
+    final glowRadiusCandidate = size.shortestSide * 0.011;
+    final glowRadius = glowRadiusCandidate < 3.0 ? 3.0 : glowRadiusCandidate;
+    final coreRadiusCandidate = size.shortestSide * 0.0045;
+    final coreRadius = coreRadiusCandidate < 1.4 ? 1.4 : coreRadiusCandidate;
     canvas.drawCircle(
       lanternCenter,
-      math.max(3.0, size.shortestSide * 0.011),
+      glowRadius,
       Paint()
         ..color = _gold.withValues(alpha: 0.28)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 7),
     );
     canvas.drawCircle(
       lanternCenter,
-      math.max(1.4, size.shortestSide * 0.0045),
+      coreRadius,
       Paint()..color = _gold.withValues(alpha: 0.74),
     );
 
+    final beamTopCandidate = lanternCenter.dy - size.height * 0.020;
+    final beamTop = beamTopCandidate < 0.0 ? 0.0 : beamTopCandidate;
     final beam = Path()
       ..moveTo(lanternCenter.dx, lanternCenter.dy)
-      ..lineTo(0, math.max(0.0, lanternCenter.dy - size.height * 0.020))
+      ..lineTo(0, beamTop)
       ..lineTo(0, lanternCenter.dy + size.height * 0.020)
       ..close();
     final beamBounds = Rect.fromLTWH(
       0,
-      math.max(0.0, lanternCenter.dy - size.height * 0.020),
+      beamTop,
       lanternCenter.dx,
       size.height * 0.040,
     );
