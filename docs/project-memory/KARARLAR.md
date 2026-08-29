@@ -113,7 +113,21 @@
 - B8 iki bonus (`HIZ`, `SKOR`), B9 `ROKET` bonusu ve B10 `YOL` hedefi / `HAZİNE` bonusu korunur; `AY` ve `ROTA` geri dönmez.
 - Süreler hard-fail değildir; B5 60 saniye, B10 120 saniye soft challenge sözleşmesi korunur.
 - 8×8 dönüşümü `lib/main.dart`, `assets/questions.json`, MASTER ART, AdMob/Firebase, signing veya BoardMap/67 node kapsamını açmaz.
-- 8×8 için Flutter analyze/test ve Android 16 kanıtı olmadan PR Ready/merge yapılmaz.
-- 29 Ağustos'ta izin verilen tek Actions run `33250841637` yalnız formatter gate'inde durmuş; analyze/test/Android 16 çalışmamıştır. Bu nedenle 8×8 teknik kabul **DOĞRULANACAK** durumdadır.
-- QA-only entrypoint/araçlar ürün commitine girmeyecek; ürün scope'u açık allowlist ile sınırlandırılacaktır.
-- Yeni Actions koşusu yalnız Levent'in yeniden açık izniyle çalıştırılır.
+- Final 8×8 teknik gate run `33251736068`: **SUCCESS**. Dart formatter, analyze, focused 37/37, full Flutter 442/442, Android 16 B1/B5/B8/B10 64/64 görünürlük, B5 soft-time, ANKARA ve ters BAŞKENT gesture ve crash/ANR taraması PASS.
+- Temiz 8×8 ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`.
+- 8×8 Draft PR #158 OPEN/DRAFT/merged=false/mergeable=true kalır; kullanıcı kabulü olmadan Ready/merge yapılmaz.
+
+---
+
+## 9. 29 Ağustos 2026 — Başlangıç Limanı bölüm içi tema kararı
+
+- Beş özgün tema adayı arasından kullanıcı **1. görseli** seçti.
+- Başlangıç Limanı Bölüm 1–10 ana oyun ekranı teması: **derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı**.
+- Tema yalnız bölüm içi Kelime Avı oyun ekranına uygulanır; Issue #109 MASTER ART rota ekranı ve route geometry değişmez.
+- Bölüm 1–10 aynı ana görsel kimliği taşır; ileride yalnız küçük atmosfer varyasyonları yapılabilir.
+- 8×8 grid, target/bonus içerikleri, path/scoring/gesture motoru ve süre sözleşmeleri tema nedeniyle değiştirilmez.
+- Tema uygulaması ayrı clean branch üzerinde yürütülür: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`.
+- Doğrulanmış `word_hunt_screens.dart` doğrudan yeniden yazılmaz; temalı wrapper mevcut production ekranını sarar ve `word_hunt_gameplay_flow.dart` varsayılan açılışı wrapper'a yönlendirir.
+- `lib/main.dart`, `assets/questions.json`, MASTER ART, AdMob/Firebase/signing, package/version tema kapsamı dışındadır.
+- Tema için yeni Actions koşusu açık izin olmadan çalıştırılmaz.
+- Gerçek Flutter analyze/test ve Android 16 tema görsel kabulü tamamlanana kadar tema runtime durumu **DOĞRULANACAK**.
