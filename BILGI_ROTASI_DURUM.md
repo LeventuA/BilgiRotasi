@@ -12,86 +12,81 @@
 
 ## Aktif İş — Kelime Avı Başlangıç Limanı 8×8
 
-29 Ağustos 2026 kullanıcı kararıyla Başlangıç Limanı bölüm grid standardı **8 satır × 8 sütun** olarak değiştirildi. Önceki 6×10 ürün geometrisi artık yeni çalışma için superseded durumdadır; eski 6×10 teknik kanıtı geçmiş checkpoint olarak korunur.
+29 Ağustos 2026 kullanıcı kararıyla Başlangıç Limanı bölüm grid standardı **8 satır × 8 sütun** oldu. Önceki 6×10 geometrisi yeni ürün hattı için superseded; geçmiş kanıt olarak korunur.
 
-- Yeni çalışma branch'i: `feat/kelime-avi-8x8-content-v1-20260829`
-- Başlangıç noktası / eski 6×10 ürün head'i: `0e9408ddda511259f588a338b3fcd8192bf92431`
-- 8×8 geçici gate head'i: `7cff26f4a75e1c58beaea2c163f2e89e2c2af154`
-- PR #156: **OPEN / DRAFT / merged=false**; hâlâ eski 6×10 branch'i `feat/kelime-avi-content-pass-v1-20260828` üzerindedir ve 8×8 için Ready/merge kaynağı değildir.
-- Toplam canonical target + bonus: **80 kelime** korunuyor.
-- Kelime yoğunluğu korunuyor: B1 6, B2 6, B3 7, B4 7, B5 8, B6 8, B7 9, B8 9, B9 10, B10 10.
+- Aktif branch: `feat/kelime-avi-8x8-content-v1-20260829`
+- Final temiz ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`
+- Commit adı: `feat(kelime-avi): switch starter levels to 8x8 [skip ci]`
+- Draft PR: **#158** — `WIP feat(kelime-avi): Başlangıç Limanı 8x8 production content`
+- PR #158: **OPEN / DRAFT / merged=false / mergeable=true**.
+- Base: `release/final-closed-test-aab-1.68.8` / `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
+- Eski PR #156 6×10 hattında OPEN/DRAFT kalır; otomatik kapatma/merge yapılmadı.
+- Toplam canonical target+bonus: **80 kelime**.
+- Yoğunluk: B1 6, B2 6, B3 7, B4 7, B5 8, B6 8, B7 9, B8 9, B9 10, B10 10.
 
-## 8×8 Statik İçerik Sözleşmesi — PASS
+## 8×8 Final Teknik Gate — PASS
 
-Bağımsız statik denetimde:
+Düzeltilmiş tek final run:
 
-- 10 bölümün tamamı 8×8.
-- Toplam 80 target/bonus korunuyor.
-- Her canonical target/bonus 8 düz yönde **exactly one physical occurrence** taşıyor.
-- Intended path ve ters fiziksel hatlar aynı canonical kelimeye karşılık geliyor.
-- B5 ve B10 yatay + dikey + çapraz yön ailelerinin üçünü de içeriyor.
-- B8 bonusları `HIZ` + `SKOR`; `TOP` tek fiziksel hatta.
-- B9 `ROKET` bonus korunuyor; `AY` geri dönmüyor.
-- B10 `ROTA` geri dönmüyor; `YOL` hedef ve `HAZİNE` bonus korunuyor.
-- B5 süre/yıldız eşikleri 60 / 50 / 35 saniye; B10 120 / 100 / 75 saniye olarak korunuyor.
-- Yeni ürün/test kapsamındaki hard-coded gesture yolları yeni 8×8 canonical koordinatlarla uyumlu.
-- Manuel formatter adayı beş ürün/test dosyasında whitespace + Dart trailing-comma nötr karşılaştırmada kaynakla eşdeğer: **PASS**.
+- Workflow gate commit: `4424285066568ddac874cfa35eb3bae1a62b3394`
+- Run: `33251736068`
+- Job: `99098467708`
+- Sonuç: **SUCCESS**
 
-Bu statik PASS, Flutter analyze/test veya Android 16 runtime PASS değildir.
+Doğrulama:
+- Dart formatter: PASS.
+- `dart analyze lib/word_hunt`: **No issues found**.
+- Focused Word Hunt suite: **37/37 PASS**.
+- Full Flutter suite: **442/442 PASS**.
+- `git diff --check`: PASS.
+- Korunan scope gate: PASS.
+- Isolated Android QA APK build: PASS.
+- QA-only entrypoint/helper dosyaları ürün commitine girmedi.
 
-## Tek Yetkili Actions Koşusu — FAILURE / FORMAT GATE
+İlk run `33250841637` yalnız formatter kapısında durmuştu; analyze/test/Android16 çalışmamıştı. Bu tarihsel failure ürün hatası değildi ve final PASS yerine kullanılmaz.
 
-Kullanıcının izin verdiği tek GitHub Actions koşusu kullanıldı:
+## Android 16 Fiziksel Kanıt — PASS
 
-- Workflow commit: `7cff26f4a75e1c58beaea2c163f2e89e2c2af154`
-- Run: `33250841637`
-- Job: `99096135627`
-- Sonuç: **FAILURE**
+API 36 / 1080×1920 / 420 dpi:
 
-Run'ın gerçek nedeni:
+- B1: **64/64** hücre ilk viewportta görünür, sayaç `0/5`.
+- B5: **64/64** hücre görünür, sayaç `0/7`.
+- B8: **64/64** hücre görünür, sayaç `0/7`.
+- B10: **64/64** hücre görünür, sayaç `0/9`.
+- B5 sentetik +65 saniye sonrası hard fail yok; 67–76 saniyede oynanabilir.
+- Uzun çapraz `ANKARA` gerçek swipe: `1/7`, `Bilgi kartı açıldı: Ankara`.
+- Ters-dikey `BAŞKENT` gerçek swipe: `1/7`, `BAŞKENT bulundu!`.
+- `FATAL EXCEPTION`, uygulama ANR veya `am_crash` eşleşmesi yok.
 
-- Payload decode/apply: SUCCESS.
-- Java 17: SUCCESS.
-- Flutter 3.44.6 kurulumu: SUCCESS.
-- `dart format --output=none --set-exit-if-changed` üç Dart dosyasında biçim değişikliği istedi ve step bu noktada exit 1 verdi.
-- `dart analyze` ÇALIŞMADI.
-- Focused Flutter testleri ÇALIŞMADI.
-- Full `flutter test` ÇALIŞMADI.
-- APK build ÇALIŞMADI.
-- Android 16 B1/B5/B8/B10 runtime ve gesture gate ÇALIŞMADI.
+Artifact:
+- ID `9714700778`
+- Digest `sha256:dfbca264c2f67bb3549a0e336b075c9238f1a0638962dc69392ea8715b9a2092`
+- QA APK SHA-256 `d07a68b5f9735f574e8e608afbd4c20d4c1f7cc0c775d5d9f8d0010dfd32c07b`
+- Payload decoded SHA-256 `7e4955d6f2545039eafb3e476e5537385ee3d3b359b67be0f886b027ea95be54`
 
-Dolayısıyla 8×8 teknik ürün doğrulaması **DOĞRULANACAK** durumdadır; bu run ürün logic/layout failure kanıtı değildir.
-
-## QA Scope Bulgusu
-
-Başarısız run sonrası workflow incelemesinde ek bir güvenlik sorunu tespit edildi: payload içindeki QA-only `lib/word_hunt/word_hunt_8x8_qa_main.dart`, final `git add lib/word_hunt test` adımına ulaşılsaydı yanlışlıkla ürün commitine dahil olabilirdi. Run bu adıma ulaşmadığı için QA dosyası branch ürün kaynağına commit edilmedi.
-
-Yeni gate'te:
-
-- QA entrypoint ve yardımcı araçlar yalnız geçici kalacak.
-- Ürün commit scope'u açık allowlist ile sınırlandırılacak.
-- QA-only dosya temizlenmeden ürün commitine geçilmeyecek.
+Artifact ekran görüntüleri görsel olarak ayrıca incelendi; B1/B5/B8/B10 8×8 gridleri aynı ekranda okunabilir, ANKARA ve BAŞKENT seçimleri doğru hücreleri boyuyor.
 
 ## Korunan Alanlar
 
-8×8 çalışma kapsamında değiştirilmez:
-
+8×8 dönüşümünde değiştirilmedi:
 - `lib/main.dart`
+- `pubspec.yaml`
 - `assets/questions.json`
-- MASTER ART bytes / route art mimarisi
-- BoardMap / 67 node / 3B tahta
-- AdMob / Firebase / Android release-signing config
-- package name
-- `version: 1.68.19+109`
+- `assets/word_hunt`
+- `lib/word_hunt/word_hunt_screens.dart` 8×8 ürün commitinde değiştirilmedi; PR diffindeki değişiklik eski 6×10 gameplay hattından gelir.
+- `lib/word_hunt/word_hunt_path.dart`
+- `lib/word_hunt/word_hunt_models.dart`
+- MASTER ART / route geometry / BoardMap / 67 node
+- AdMob / Firebase / Android release-signing
+- package name / version
 
-## Sıradaki Teknik Kapı
+## Kalan Gerçek Kapılar
 
-1. Formatter-uyumlu 8×8 ürün adayını temiz scope ile hazırla.
-2. Yeni Actions koşusu **ancak Levent yeniden açık izin verirse** veya yerel Flutter SDK doğrulaması mümkün olursa çalıştır.
-3. Zorunlu doğrulamalar: Dart format, `dart analyze lib/word_hunt`, focused Word Hunt testleri, full `flutter test`, `git diff --check`.
-4. Android 16: B1/B5/B8/B10 gerçek production screen; ilk viewportta 64/64 8×8 hücre görünürlüğü/okunabilirliği; B5 >60s soft-time; gerçek `ANKARA` ve ters `BAŞKENT` swipe; crash/ANR/am_crash taraması.
-5. Bu kanıtlar olmadan yeni 8×8 PR Ready/merge yapılmaz.
-6. Merge yalnız Levent'in açık merge onayıyla yapılır.
+1. Kullanıcıdan gerçek Android 16 **8×8 görsel/oynanış kabulü**.
+2. B5 ve B10 sürelerinin gerçek insan playtest dengesi.
+3. Kullanıcı kabulünden önce PR #158 Ready yapılmaz.
+4. Merge yalnız Levent'in ayrıca açık merge onayıyla yapılır.
+5. `lib/main.dart` production ana navigasyon entegrasyonu ayrı kapsam/onaydır.
 
 ## Kanonik Devir Dosyası
 
