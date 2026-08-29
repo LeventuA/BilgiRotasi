@@ -105,16 +105,42 @@
 
 ## 0Y - Başlangıç Limanı gece-limanı / deniz-feneri tema uygulaması
 
-**Durum:** KOD + PRODUCTION FLOW BAĞLANTISI HAZIR / RUNTIME DOĞRULAMA BEKLİYOR.
+**Durum:** FORMAT/ANALYZE/TEST/APK PASS / ANDROID 16 GÖRSEL GATE ALTYAPI HATASI NEDENİYLE AÇIK.
 
 - Kullanıcı tema seçimi: beş aday içinden **1. görsel**.
 - Ana görsel yön: derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı.
 - Clean branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`.
 - Taban: doğrulanmış 8×8 docs HEAD `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
+- Formatter sonrası ürün commit: `a91236c9f734e9495e67de46ab6e078d429d681e` — `chore(kelime-avi): apply verified theme formatting [skip ci]`.
 - Tema wrapper: `lib/word_hunt/baslangic_limani_theme_screen.dart`.
 - Production flow varsayılan level açılışı `BaslangicLimaniThemedLevelScreen` üzerinden mevcut `WordHuntLevelProductionScreen`'e bağlandı.
 - `lib/main.dart`, doğrulanmış production screen, 8×8 content, path/scoring, MASTER ART ve reklam/Firebase/release yapılandırması değişmedi.
-- Tema branch'inde Actions run sayısı 0.
+- Tema branch'inde açık PR yok; Ready/merge yok.
+
+Tema run geçmişi:
+- `33260968009`: FAILURE — ilk one-shot gate formatter aşamasında durdu.
+- `33274405539`: FAILURE — formatter/analyze/test/APK kapıları geçti; Android 16 scripti uygulama başlamadan shell altyapı hatasıyla durdu.
+
+Run `33274405539` doğrulaması:
+- [x] Formatter beklenen 3 dosyayı değiştirdi ve kapsam gate'i tuttu.
+- [x] `dart analyze lib/word_hunt`: No issues.
+- [x] Focused Word Hunt suite: **138/138 PASS**.
+- [x] Full Flutter suite: **444/444 PASS**.
+- [x] QA-only entrypoint analyze PASS.
+- [x] B1 debug APK build PASS — SHA-256 `7bfa3369d07a1a3b0d7ff1b234144c645afd6dc3182206da96031b49966a93ea`.
+- [x] B10 debug APK build PASS — SHA-256 `e0b4c46f1f82b6ea1f7e401ff482b876949a8ab9f88005a0651b99e452370b76`.
+- [x] API 36 emülatör boot tamamlandı.
+- [ ] B1 APK kurulumu: ÇALIŞMADI — script daha önce durdu.
+- [ ] B10 APK kurulumu: ÇALIŞMADI — script daha önce durdu.
+- [ ] Android 16 screenshot/UI XML/logcat: ÜRETİLMEDİ.
+
+Kesin failure nedeni:
+`reactivecircus/android-emulator-runner@v2` scripti `/usr/bin/sh` ile yürüttü; `set -euo pipefail` komutu `/usr/bin/sh: 1: set: Illegal option -o pipefail` hatası verdi. Bu ürün crash'i değildir; B1 APK kurulmadan önce oluşan QA script POSIX uyumsuzluğudur.
+
+Artifact:
+- `9721167449`
+- `sha256:a90891532eaf3a279aa5935328529dc8bce712cd13a74069de5083d4f90bf1af`
+- Screenshot/UI/logcat yok; analyze/test/formatter patch ve APK hash kanıtları var.
 
 **Bitti ölçütü:**
 - [x] Seçilen tema kod katmanı ayrı ve geri alınabilir dosyada oluşturuldu.
@@ -122,10 +148,14 @@
 - [x] Production gameplay flow varsayılan açılışı tema wrapper'a bağlandı.
 - [x] Tema widget sözleşme testi yazıldı.
 - [x] Rota → Bölüm 1 → tema → production ekran entegrasyon testi yazıldı.
-- [x] Diff temiz: production base'e göre yalnız tema dosyaları/testleri + gameplay flow'da 2 ekleme/1 değişiklik.
-- [ ] Gerçek Dart formatter/analyze PASS.
-- [ ] Tema testleri gerçek Flutter runner'da PASS.
-- [ ] Android 16 gerçek tema ekran görüntüsü alınır.
+- [x] Diff temiz: production base'e göre yalnız tema dosyaları/testleri + gameplay flow entegrasyonu ve proje hafıza kayıtları.
+- [x] Gerçek Dart formatter/analyze PASS.
+- [x] Tema testleri gerçek Flutter runner'da PASS.
+- [x] B1/B10 debug APK build PASS.
+- [x] Formatter farkı branch'e `[skip ci]` commit ile uygulandı; yeni Actions tetiklenmedi.
+- [ ] Android QA scripti POSIX uyumlu hale getirilir (`set -eu`) veya açık Bash ile çalıştırılır.
+- [ ] Yeni Actions run için kullanıcı izni/bütçe yeniden doğrulanır.
+- [ ] Android 16 gerçek B1/B10 tema screenshotı alınır.
 - [ ] Kullanıcı seçilen görsel dile yakınlığı ve okunabilirliği onaylar.
 - [ ] Gerekirse tema renk/ışık yoğunluğu gerçek screenshot üzerinden ayarlanır.
 - [ ] Draft PR ancak runtime görsel gate sonrası açılır.
