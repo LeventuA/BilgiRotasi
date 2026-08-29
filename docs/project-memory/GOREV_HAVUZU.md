@@ -1,6 +1,6 @@
 # Bilgi Rotası - Görev Havuzu
 
-> 29 Ağustos 2026 aktif kesimidir. Eski tam görev kayıtları Git geçmişi ve `docs/project-memory/archive/` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
+> 30 Ağustos 2026 aktif kesimidir. Eski tam görev kayıtları Git geçmişi ve `docs/project-memory/archive/` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
 
 ## 0R - Başlangıç Limanı production MASTER ART mimari kabulü
 
@@ -105,13 +105,13 @@
 
 ## 0Y - Başlangıç Limanı gece-limanı / deniz-feneri tema uygulaması
 
-**Durum:** FORMAT/ANALYZE/TEST/APK PASS / ANDROID 16 GÖRSEL GATE ALTYAPI HATASI NEDENİYLE AÇIK.
+**Durum:** FORMAT/ANALYZE/TEMA TEST/APK PASS / ANDROID 16 GÖRSEL GATE V4 HAZIR, RUNTIME DOĞRULAMA BEKLİYOR.
 
 - Kullanıcı tema seçimi: beş aday içinden **1. görsel**.
 - Ana görsel yön: derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı.
 - Clean branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`.
 - Taban: doğrulanmış 8×8 docs HEAD `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
-- Formatter sonrası ürün commit: `a91236c9f734e9495e67de46ab6e078d429d681e` — `chore(kelime-avi): apply verified theme formatting [skip ci]`.
+- Doğrulanmış formatter ürün SHA: `a91236c9f734e9495e67de46ab6e078d429d681e`.
 - Tema wrapper: `lib/word_hunt/baslangic_limani_theme_screen.dart`.
 - Production flow varsayılan level açılışı `BaslangicLimaniThemedLevelScreen` üzerinden mevcut `WordHuntLevelProductionScreen`'e bağlandı.
 - `lib/main.dart`, doğrulanmış production screen, 8×8 content, path/scoring, MASTER ART ve reklam/Firebase/release yapılandırması değişmedi.
@@ -119,28 +119,33 @@
 
 Tema run geçmişi:
 - `33260968009`: FAILURE — ilk one-shot gate formatter aşamasında durdu.
-- `33274405539`: FAILURE — formatter/analyze/test/APK kapıları geçti; Android 16 scripti uygulama başlamadan shell altyapı hatasıyla durdu.
+- `33274405539`: FAILURE — formatter/analyze/test/APK geçti; Android 16 scripti uygulama başlamadan `/usr/bin/sh` `pipefail` hatasıyla durdu.
+- `33277364738`: FAILURE — formatter artık 0 diff, analyze + 2 tema testi + B1/B10 build + KVM + API36 boot PASS; çok satırlı runner scriptinin satır satır `/usr/bin/sh -c` yürütülmesi nedeniyle heredoc parçalandı ve B1 kurulmadan önce yine `pipefail` hatası oluştu.
 
-Run `33274405539` doğrulaması:
-- [x] Formatter beklenen 3 dosyayı değiştirdi ve kapsam gate'i tuttu.
-- [x] `dart analyze lib/word_hunt`: No issues.
-- [x] Focused Word Hunt suite: **138/138 PASS**.
-- [x] Full Flutter suite: **444/444 PASS**.
+Run `33277364738` doğrulaması:
+- [x] Formatter: **4 dosya / 0 changed**.
+- [x] `dart analyze lib/word_hunt`: **No issues found**.
+- [x] Tema widget + flow testleri: **2/2 PASS**.
 - [x] QA-only entrypoint analyze PASS.
-- [x] B1 debug APK build PASS — SHA-256 `7bfa3369d07a1a3b0d7ff1b234144c645afd6dc3182206da96031b49966a93ea`.
-- [x] B10 debug APK build PASS — SHA-256 `e0b4c46f1f82b6ea1f7e401ff482b876949a8ab9f88005a0651b99e452370b76`.
-- [x] API 36 emülatör boot tamamlandı.
-- [ ] B1 APK kurulumu: ÇALIŞMADI — script daha önce durdu.
-- [ ] B10 APK kurulumu: ÇALIŞMADI — script daha önce durdu.
+- [x] B1 debug APK build PASS.
+- [x] B10 debug APK build PASS.
+- [x] KVM PASS.
+- [x] API 36 emülatör 1080×1920 / 420 dpi boot PASS.
+- [ ] B1 APK kurulumu: ÇALIŞMADI — runner script semantiği nedeniyle önce durdu.
+- [ ] B10 APK kurulumu: ÇALIŞMADI — runner script semantiği nedeniyle önce durdu.
 - [ ] Android 16 screenshot/UI XML/logcat: ÜRETİLMEDİ.
 
-Kesin failure nedeni:
-`reactivecircus/android-emulator-runner@v2` scripti `/usr/bin/sh` ile yürüttü; `set -euo pipefail` komutu `/usr/bin/sh: 1: set: Illegal option -o pipefail` hatası verdi. Bu ürün crash'i değildir; B1 APK kurulmadan önce oluşan QA script POSIX uyumsuzluğudur.
+Run3 artifact:
+- `9722014382`
+- `sha256:0daf6164323008f0d947febe77af00ff82fd94166d54b534d810e1644f42fd28`
+- Runtime screenshot/UI/logcat yok.
 
-Artifact:
-- `9721167449`
-- `sha256:a90891532eaf3a279aa5935328529dc8bce712cd13a74069de5083d4f90bf1af`
-- Screenshot/UI/logcat yok; analyze/test/formatter patch ve APK hash kanıtları var.
+V4 gate hazırlandı fakat çalıştırılmadı:
+- Workflow: `.github/workflows/tmp-kelime-theme-android16-gate-v4.yml`.
+- Commit: `bfa10d3617d9a104f71ce78b86e39754f55e22ea` — `ci(kelime-avi): prepare Android16 visual gate v4 [skip ci]`.
+- Trigger: yalnız `workflow_dispatch`; hazırlama yeni run başlatmadı.
+- Android komutları önce `/tmp/theme_android16_proof.sh` olarak normal Bash adımında yazılıyor ve `bash -n` ile denetleniyor.
+- Emulator runner'a yalnız tek satır `bash /tmp/theme_android16_proof.sh` veriliyor; satır-satır `/usr/bin/sh -c` davranışı artık script gövdesini bölemez.
 
 **Bitti ölçütü:**
 - [x] Seçilen tema kod katmanı ayrı ve geri alınabilir dosyada oluşturuldu.
@@ -148,14 +153,15 @@ Artifact:
 - [x] Production gameplay flow varsayılan açılışı tema wrapper'a bağlandı.
 - [x] Tema widget sözleşme testi yazıldı.
 - [x] Rota → Bölüm 1 → tema → production ekran entegrasyon testi yazıldı.
-- [x] Diff temiz: production base'e göre yalnız tema dosyaları/testleri + gameplay flow entegrasyonu ve proje hafıza kayıtları.
+- [x] Diff temiz ve korunan ürün alanları değişmedi.
 - [x] Gerçek Dart formatter/analyze PASS.
-- [x] Tema testleri gerçek Flutter runner'da PASS.
+- [x] Tema testleri gerçek Flutter runner'da **2/2 PASS**.
 - [x] B1/B10 debug APK build PASS.
-- [x] Formatter farkı branch'e `[skip ci]` commit ile uygulandı; yeni Actions tetiklenmedi.
-- [ ] Android QA scripti POSIX uyumlu hale getirilir (`set -eu`) veya açık Bash ile çalıştırılır.
-- [ ] Yeni Actions run için kullanıcı izni/bütçe yeniden doğrulanır.
+- [x] API 36 emulator boot PASS.
+- [x] V4 tek-komut Bash Android proof gate hazırlandı ve run tetiklemeden branch'e yazıldı.
+- [ ] V4 Actions run için yeni kullanıcı izni/bütçe doğrulanır.
 - [ ] Android 16 gerçek B1/B10 tema screenshotı alınır.
+- [ ] B1/B10 UI XML + logcat ve crash/ANR taraması alınır.
 - [ ] Kullanıcı seçilen görsel dile yakınlığı ve okunabilirliği onaylar.
 - [ ] Gerekirse tema renk/ışık yoğunluğu gerçek screenshot üzerinden ayarlanır.
 - [ ] Draft PR ancak runtime görsel gate sonrası açılır.
