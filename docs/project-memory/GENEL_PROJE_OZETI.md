@@ -1,8 +1,50 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 28 Ağustos 2026 — Kelime Avı Başlangıç Limanı 6×10 ürün kodu, normal PR CI ve Android 16 gerçek runtime/gesture QA kapıları PASS. Final QA run `33202898863` üzerinde source gate + B1 + B5 + B8 + B10 tamamı SUCCESS oldu. B5'te gerçek `adb input swipe` ile uzun çapraz `ANKARA` ve ters-dikey `BAŞKENT` seçimleri gerçek Android 16 emülatörde doğrulandı; scroll sonrası sayaç tekrar görünür alana alındığında her iki temiz açılışta da `1/7` doğrulandı. Ürün kaynaklı crash/ANR yok. Teknik Android 16 checkpointi kapandı; sıradaki kapı kullanıcı görsel/oynanış kabulü ve B5/B10 insan süre dengesi playtestidir. PR #156 DRAFT kalır; kullanıcı onayı olmadan Ready/merge yok.
+**Son güncelleme:** 29 Ağustos 2026 — Kelime Avı Başlangıç Limanı için kullanıcı kararıyla starter-content grid standardı **8×8** oldu ve önceki 6×10 ürün geometrisi yeni çalışma için supersede edildi. Yeni branch `feat/kelime-avi-8x8-content-v1-20260829`, eski doğrulanmış 6×10 ürün head'i `0e9408ddda511259f588a338b3fcd8192bf92431` üzerinden açıldı. 10 adet 8×8 grid ve 80 toplam target+bonus bağımsız statik sözleşme denetiminden geçti. Kullanıcının izin verdiği tek Actions run `33250841637` yalnız `dart format --set-exit-if-changed` kapısında durdu; analyze/test/APK/Android16 hiç çalışmadı. Dolayısıyla 8×8 Flutter/Android teknik kabulü **DOĞRULANACAK**. PR #156 eski 6×10 branch'inde OPEN/DRAFT kalır; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez.
+
+## 29 Ağustos 2026 — AKTİF 8×8 CHECKPOINT
+
+Canlı çalışma hattı:
+- Branch: `feat/kelime-avi-8x8-content-v1-20260829`.
+- Başlangıç SHA: `0e9408ddda511259f588a338b3fcd8192bf92431`.
+- Geçici final-gate workflow head: `7cff26f4a75e1c58beaea2c163f2e89e2c2af154`.
+- Sürüm değişmedi: `1.68.19+109`.
+- Paket değişmedi: `com.leventua.bilgirotasi`.
+- `lib/main.dart`, `assets/questions.json`, MASTER ART, BoardMap/67 node, AdMob/Firebase/signing kapsam dışı ve korunuyor.
+
+8×8 statik ürün sözleşmesi:
+- 10 bölümün tümü 8 satır × 8 sütun.
+- Toplam 80 target+bonus korunuyor.
+- Kelime yoğunluğu: B1 6, B2 6, B3 7, B4 7, B5 8, B6 8, B7 9, B8 9, B9 10, B10 10.
+- Her target/bonus 8 düz yönde **exactly one physical occurrence** taşıyor.
+- Intended ve opposite fiziksel yollar aynı canonical kelimeye karşılık geliyor.
+- B5 ve B10 yatay+dikey+çapraz yön ailelerini birlikte taşıyor.
+- B8 `HIZ` + `SKOR`, B9 `ROKET` ve `AY` yok, B10 `YOL` + `HAZİNE` ve `ROTA` yok.
+- B5 60/50/35 saniye, B10 120/100/75 saniye soft-time/yıldız eşikleri korunuyor.
+- Hard-coded widget gesture yolları yeni canonical 8×8 koordinatlarla statik olarak hizalı.
+
+Tek yetkili Actions run:
+- Run `33250841637`, job `99096135627`: **FAILURE**.
+- Payload decode/apply: SUCCESS.
+- Java 17: SUCCESS.
+- Flutter 3.44.6 kurulumu: SUCCESS.
+- `dart format --output=none --set-exit-if-changed` üç Dart dosyasında formatter değişikliği istedi ve run burada durdu.
+- `dart analyze`, focused testler, full `flutter test`, APK build ve Android 16 **çalışmadı**.
+- Bu nedenle run bir ürün logic/layout failure kanıtı değildir; teknik PASS de değildir.
+
+Runner sonrası güvenlik incelemesi:
+- Payload QA-only `lib/word_hunt/word_hunt_8x8_qa_main.dart` içeriyordu.
+- Eski final stage `git add lib/word_hunt test` adımına ulaşsaydı QA-only dosya yanlışlıkla ürün commitine girebilirdi.
+- Run bu aşamaya ulaşmadığı için kirli QA dosyası ürün commitine girmedi.
+- Gelecek gate ürün dosyalarını açık allowlist ile stage edecek; QA entrypoint ve yardımcı araçlar ürün commitinden önce silinecek.
+
+Formatter hazırlığı:
+- Yerel çalışma alanında formatter adayı oluşturuldu.
+- Beş ürün/test dosyası için orijinal 8×8 payload ile karşılaştırmada farklar yalnız whitespace + Dart trailing comma düzeyinde; anlam/token içeriği değişmedi: **PASS**.
+- Yerel ortamda Dart/Flutter SDK olmadığı için bu aday gerçek `dart format` / analyze / Flutter test PASS sayılmaz.
+- Yeni Actions koşusu Levent yeniden açık izin vermeden başlatılmaz.
 
 ## Kalıcı çalışma kuralı
 
@@ -13,7 +55,7 @@
 - Doğrudan `main` veya release dalına kod yazılmaz; branch/PR kullanılır.
 - Kritik merge için Levent'in açık onayı gerekir.
 - Build/CI PASS tek başına görsel veya ürün kabulü değildir.
-- 28 Ağustos 2026 kontrolünde canlı repo/feature branch üzerinde `KARARLAR.md`, `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` bulunamadı: **DOĞRULANACAK**. Dosya adları/taslak uploadlar canlı GitHub kaynağı yerine geçirilmeyecek.
+- Doğrulanmamış bilgi `DOĞRULANACAK` olarak işaretlenir.
 
 ## Canlı release hattı
 
@@ -40,11 +82,11 @@
 - Android 16 production QA accepted: run `33113510959`, 126/126 PASS.
 - PR #155 merge edildi ve release'e girdi.
 
-## AKTİF ÜRÜN KARARI — Başlangıç Limanı 6×10 redesign
+## TARİHSEL ÜRÜN CHECKPOINT — Başlangıç Limanı 6×10 redesign
 
-28 Ağustos 2026 kullanıcı onayıyla eski 6×6 / 3→6 kelimelik plan supersede edildi.
+28 Ağustos 2026 kullanıcı onayıyla eski 6×6 / 3→6 kelimelik plan supersede edilmişti. Bu 6×10 checkpoint 29 Ağustos 2026 tarihli 8×8 kararıyla yeni çalışma için ayrıca supersede edildi; aşağıdaki kanıtlar tarihsel olarak korunur.
 
-Canonical grid:
+Canonical grid o checkpointte:
 - **10 satır × 6 sütun** (`rowCount=10`, `columnCount=6`).
 
 Canonical toplam kelime eğrisi target + bonus dahil:
@@ -69,7 +111,7 @@ Content kuralları:
 - B9 `AY` geri dönmez; `ROKET` bonus korunur.
 - B10 `ROTA` geri dönmez; `YOL` korunur.
 
-## PR #156 — AKTİF / DRAFT / WIP
+## PR #156 — ESKİ 6×10 / DRAFT / MERGE YOK
 
 - URL: `https://github.com/ZMilaStudio/BilgiRotasi/pull/156`
 - Base: `release/final-closed-test-aab-1.68.8`
@@ -77,12 +119,10 @@ Content kuralları:
 - Head branch: `feat/kelime-avi-content-pass-v1-20260828`
 - 6×10 starter-content temel commit: `aee37c0b169b0acc72a9036e15d914412b826ae4`
 - Doğrulanmış gameplay/UI ürün commit: `8d431826585eb6c52248e85bb3ac2e80fc89bb9f` — `feat(kelime-avi): support 6x10 gameplay and bonus finish UX`.
-- Android 16 QA başlamadan önce doğrulanan PR head: `ef9c61939ae8312a8d4aa07648271b59ae82d1b7`.
-- PR canlı durum son kontrolde: **OPEN / DRAFT / mergeable=true / merged=false**.
-- **Merge yok.** PR Draft/WIP kalır; kullanıcı görsel/oynanış onayı olmadan Ready/merge yapılmaz.
-- 10 yeni 6×10 grid ve toplam 80 canonical target/bonus exactly-one occurrence sözleşmesi testlerle korunuyor.
+- 29 Ağustos canlı kontrolde: **OPEN / DRAFT / merged=false**.
+- **Merge yok.** 8×8 teknik ve kullanıcı kabulü olmadan eski PR Ready/merge yapılmaz.
 
-## 6×10 gameplay/UI + bonus/soft-time — UYGULANDI / DOĞRULANDI
+## 6×10 gameplay/UI + bonus/soft-time — TARİHSEL PASS
 
 Ürün commit `8d431826585eb6c52248e85bb3ac2e80fc89bb9f` ile:
 - production ve prototype grid `columnCount / rowCount` oranında rectangular render olur,
@@ -103,15 +143,12 @@ Doğrulama:
 - Ürün commit atıldı ve geçici `.github/workflows/tmp-kelime-6x10-screen-patch.yml` ile `tools/tmp_kelime_6x10_screen_patch.py` aynı committe kaldırıldı.
 - Ara run `33179048605` de aynı ürün patchinde 136/136 + analyze + diff-check PASS vermiş, yalnız geçici dosyayı `git rm` ile silme adımında durmuştu; run `33180924115` bu taşıma/temizlik adımını başarıyla tamamladı.
 
-## PR CI + Android 16 gerçek production QA
+## 6×10 PR CI + Android 16 gerçek production QA — TARİHSEL KANIT
 
 - PR head hattında normal PR CI iki ana gate PASS:
   - `Kelime Avı Android 16 görsel kanıtı` run `33185702627`: **SUCCESS**.
   - `AdMob PR doğrulaması` run `33185702636`: **SUCCESS**.
-- Standart görsel kanıt MASTER ART/route regresyonunu doğrular; 6×10 gerçek level gameplay kabulü sayılmaz.
-- Gerçek 6×10 production runtime kanıtı için ayrı ve **merge edilmeyecek** QA branch: `qa/kelime-avi-6x10-runtime-android16-20260828`.
-- QA branch izole entrypoint `lib/word_hunt/word_hunt_android16_qa_main.dart` üzerinden gerçek `WordHuntLevelProductionScreen` kullanır; `lib/main.dart` değişmez.
-- QA workflow: `.github/workflows/qa-word-hunt-6x10-android16.yml`.
+- Gerçek 6×10 production runtime kanıtı için ayrı QA branch: `qa/kelime-avi-6x10-runtime-android16-20260828`.
 
 ### Android 16 QA deneme 1
 
@@ -144,7 +181,7 @@ Doğrulama:
 - Job yalnız `1/7` sayacını aynı kaydırılmış viewportta aradığı için false-negative verdi; sayaç scroll ile görünür alan dışına çıkmıştı.
 - Ürün yaması yapılmadı; QA doğrulaması düzeltildi.
 
-### Android 16 QA deneme 5 — FINAL TEKNİK CHECKPOINT PASS
+### Android 16 QA deneme 5 — 6×10 FINAL TEKNİK CHECKPOINT PASS
 
 - QA-only commit `e12b99513ea6235e857f7c855006e6d1abb2080e` — `test(qa): verify B5 swipe progress after scroll`.
 - Run `33202898863`: **SUCCESS**.
@@ -162,7 +199,7 @@ Doğrulama:
   - Uzun çapraz `ANKARA`: gerçek `adb input swipe`; altı fiziksel hücre yeşil; `Bilgi kartı açıldı: Ankara`; viewport üste döndürülünce `1/7`, `0 hata`.
   - Ters-dikey `BAŞKENT`: ayrı temiz app launch; gerçek `adb input swipe`; yedi fiziksel hücre yeşil; `BAŞKENT bulundu!`; viewport üste döndürülünce `1/7`, `0 hata`.
 - Sonuç: **6×10 rectangular geometry + ScrollView erişimi + uzun diagonal + uzun reverse vertical gesture + B5 soft-time Android 16 teknik checkpointi PASS.**
-- Bu PASS kullanıcı görsel zevk/onayı veya insan zorluk dengesi onayı değildir.
+- Bu 6×10 PASS artık 8×8 için runtime kabul sayılmaz.
 
 ## Korunan alanlar
 
@@ -177,13 +214,14 @@ Açık kapsam olmadan değişmez:
 
 ## Sıradaki aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
-1. Canlı feature branch/PR/CI durumunu tekrar doğrula; PR #156 **Draft** kalır, merge/Ready yapma.
-2. Android 16 teknik 6×10 runtime/gesture checkpointi tamamlandı; tekrar aynı QA'yı körlemesine çalıştırma.
-3. Kullanıcıya B1/B5/B8/B10 gerçek Android 16 görünümünü ve özellikle B5 gesture kanıtını göstererek **görsel/oynanış kabulü** al.
-4. B5 ve B10 challenge süreleri için gerçek insan playtesti yap; teknik soft-time PASS ile zorluk dengesini birbirine karıştırma.
-5. Mevcut widget sözleşmesinde bonus-after-target + frozen score + `Bölümü Tamamla` sonucu PASS. Kullanıcı/gerçek cihazda yeni belirti çıkmadıkça sırf kanıt çoğaltmak için yeni QA harness üretme.
-6. Kullanıcı 6×10 telefonda kullanılabilir değil derse yalnız ürün branch'inde dar layout/gesture erişilebilirliği düzeltmesi yap; content standardını geri alma.
-7. Kullanıcı görsel/oynanış kabulünden sonra PR #156 Ready kararı verilebilir.
-8. Merge ancak Levent'in açık merge onayıyla release branch'e yapılır.
+1. Canlı 8×8 branch HEAD, sürüm ve PR #156 durumunu tekrar doğrula; PR #156 eski 6×10 Draft olarak kalır, Ready/merge yapma.
+2. Yerel formatter adayı yalnız biçim farkı taşıyor; gerçek Dart formatter PASS olmadan ürün commitine `tam doğrulandı` etiketi verme.
+3. QA-only `word_hunt_8x8_qa_main.dart` ve geçici araçları ürün scope'undan kesin çıkar; ürün stage allowlist kullan.
+4. Yeni Actions koşusu **yalnız Levent yeniden açık izin verirse** çalıştırılır. İzin yoksa yeni run/rerun yok.
+5. Yeni teknik gate sırası: Dart format → analyze → focused test → full Flutter test → diff/scope → Android 16 B1/B5/B8/B10.
+6. Android 16'da 8×8 için ilk viewport 64/64 hücre, okunabilirlik/taşma, B5 >60s soft-time, gerçek ANKARA ve ters BAŞKENT swipe, crash/ANR/am_crash kanıtı zorunlu.
+7. Teknik gate sonrası kullanıcıya gerçek Android 16 8×8 görünümü göster ve görsel/oynanış kabulü al.
+8. B5/B10 süre dengesi teknik soft-time PASS'ten ayrı gerçek insan playtest maddesidir.
+9. Yeni 8×8 PR stratejisi teknik gate sonrası belirlenir; kritik merge ancak Levent'in açık merge onayıyla yapılır.
 
 Diğer Bilgi Rotası açık işleri diğer project-memory dosyalarında korunur; bu özet onları silmez.
