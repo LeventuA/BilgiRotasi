@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'baslangic_limani_theme_screen.dart';
 import 'word_hunt_models.dart';
 import 'word_hunt_progress.dart';
 import 'word_hunt_reference_route_screen.dart';
@@ -74,7 +75,7 @@ class _WordHuntGameplayFlowState extends State<WordHuntGameplayFlow> {
           builder:
               (context) =>
                   widget.levelBuilder?.call(context, level, widget.infoCards) ??
-                  WordHuntLevelProductionScreen(
+                  BaslangicLimaniThemedLevelScreen(
                     level: level,
                     infoCards: widget.infoCards,
                   ),
