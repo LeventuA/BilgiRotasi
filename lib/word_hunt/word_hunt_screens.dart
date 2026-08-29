@@ -108,12 +108,12 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
 
     final beam = Path()
       ..moveTo(lanternCenter.dx, lanternCenter.dy)
-      ..lineTo(0, math.max(0, lanternCenter.dy - size.height * 0.05))
+      ..lineTo(0, math.max(0.0, lanternCenter.dy - size.height * 0.05))
       ..lineTo(0, lanternCenter.dy + size.height * 0.05)
       ..close();
     final beamBounds = Rect.fromLTWH(
       0,
-      math.max(0, lanternCenter.dy - size.height * 0.05),
+      math.max(0.0, lanternCenter.dy - size.height * 0.05),
       lanternCenter.dx,
       size.height * 0.10,
     );
