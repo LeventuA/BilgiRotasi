@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 29 Ağustos 2026 — Kelime Avı Başlangıç Limanı 8×8 ürün hattı teknik olarak PASS. Kullanıcı beş tema adayından **1. görseli** seçti: derin lacivert gece limanı + sıcak altın/amber deniz feneri. Tema için ayrı clean branch açıldı; doğrulanmış production ekranı değiştirilmeden temalı wrapper eklendi ve `word_hunt_gameplay_flow.dart` varsayılan Bölüm 1 açılışı wrapper'a bağlandı. Tema branch'inde Actions run sayısı 0; gerçek Flutter/Android16 tema gate'i **DOĞRULANACAK**. PR #158 8×8 içerik hattında OPEN/DRAFT; Ready/merge yok.
+**Son güncelleme:** 29 Ağustos 2026 — Kelime Avı Başlangıç Limanı 8×8 ürün hattı teknik olarak PASS. Kullanıcı beş tema adayından **1. görseli** seçti: derin lacivert gece limanı + sıcak altın/amber deniz feneri. Tema clean branch'inde formatter/analyze/test ve B1/B10 debug APK buildleri PASS oldu. Android 16 emülatörü boot etti; ancak capture scripti `/usr/bin/sh` altında `set -euo pipefail` kullandığı için B1 kurulmadan önce altyapı hatasıyla durdu. Gerçek tema screenshot/UI/logcat bu nedenle **DOĞRULANACAK**. Formatter farkı `a91236c9...` `[skip ci]` commit'iyle branch'e uygulandı; yeni Actions tetiklenmedi. PR #158 8×8 içerik hattında OPEN/DRAFT; theme PR yok, Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -137,15 +137,38 @@ Tema sınırı:
 Clean theme Git hattı:
 - Branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`
 - Taban: `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`
+- Formatter sonrası ürün commit: `a91236c9f734e9495e67de46ab6e078d429d681e`
 - Tema katmanı: `lib/word_hunt/baslangic_limani_theme_screen.dart`
 - Production flow çağrı noktası: `lib/word_hunt/word_hunt_gameplay_flow.dart`
 - Doğrulanmış `lib/word_hunt/word_hunt_screens.dart` değiştirilmedi.
 - Tema wrapper mevcut `WordHuntLevelProductionScreen`'i sarar; overlay `IgnorePointer` ile gameplay hit-testing'ini engellemez.
-- İki yeni test hazırlandı: tema sözleşmesi ve rota→tema→production flow entegrasyonu.
-- Yerel ortamda Flutter/Dart SDK yok; bu testler henüz gerçek runner'da çalıştırılmadı.
-- Tema branch'inde GitHub Actions run sayısı: **0**.
-- Gerçek Flutter analyze/test + Android16 screenshot: **DOĞRULANACAK**.
-- Tema için PR henüz açılmadı; Ready/merge yok.
+- İki yeni test: tema sözleşmesi ve rota→tema→production flow entegrasyonu.
+- Tema için açık PR yok; Ready/merge yok.
+
+Tema Actions geçmişi:
+- Run `33260968009`: FAILURE — ilk one-shot gate formatter kapısında durdu.
+- Run `33274405539`: FAILURE — Android16 capture başlamadan QA shell altyapı hatası.
+
+İkinci run `33274405539` gerçek kanıtı:
+- formatter kapsamı: PASS; 3 beklenen dosya,
+- `dart analyze lib/word_hunt`: **No issues found**,
+- focused Word Hunt: **138/138 PASS**,
+- full Flutter: **444/444 PASS**,
+- QA entrypoint analyze: PASS,
+- B1 debug APK build: PASS — `7bfa3369d07a1a3b0d7ff1b234144c645afd6dc3182206da96031b49966a93ea`,
+- B10 debug APK build: PASS — `e0b4c46f1f82b6ea1f7e401ff482b876949a8ab9f88005a0651b99e452370b76`,
+- API 36 emülatör boot: PASS.
+
+Kesin Android16 failure:
+- `reactivecircus/android-emulator-runner@v2` scripti `/usr/bin/sh` ile çalıştırdı.
+- `set -euo pipefail` POSIX `sh` altında desteklenmedi.
+- Log: `/usr/bin/sh: 1: set: Illegal option -o pipefail`.
+- Hata B1 APK kurulmadan önce oluştu; uygulama launch edilmedi.
+- Bu nedenle tema screenshot/UI XML/logcat yok ve gerçek runtime görünümü **DOĞRULANACAK**.
+
+Artifact `9721167449`, digest `sha256:a90891532eaf3a279aa5935328529dc8bce712cd13a74069de5083d4f90bf1af`; screenshot değil analyze/test/formatter/APK hash kanıtlarını taşır.
+
+Formatter artifactindeki üç dosyalık doğrulanmış fark `a91236c9...` ile `[skip ci]` olarak canlı branch'e uygulandı ve yeni Actions run tetiklemedi.
 
 ## PR #158 — AKTİF 8×8 / DRAFT
 
@@ -192,13 +215,14 @@ Tema/8×8 çalışması açık kapsam olmadan değiştirmez:
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
 1. Her görev başında release, clean theme branch HEAD, 8×8 branch/PR #158, `pubspec.yaml` ve Actions durumunu yeniden doğrula.
-2. Tema için yeni Actions koşusu açık kullanıcı izni olmadan başlatma.
-3. İlk izinli runtime gate'te formatter + analyze + tema testi + production-flow testi + Android16 screenshot aynı koşuda yapılmalı.
-4. Gerçek screenshotı kullanıcıya göster; seçilen gece-limanı/deniz-feneri görseline yakınlık ve okunabilirlik için görsel PASS al.
-5. Tema görsel PASS sonrası gerekirse B5/B10 insan süre playtestine geç.
-6. Kullanıcı kabulünden önce PR #158 veya tema PR'ı Ready yapılmaz.
-7. Merge ancak Levent'in açık merge onayıyla yapılır.
-8. Eski PR #156 otomatik kapatılmaz; kapatma kararı ayrı alınır.
-9. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı kapsam/branch/PR işidir.
+2. Mevcut iki theme failure run'ı rerun etme; yeni Actions için kullanıcı izni/bütçe yeniden doğrulanmadan run başlatma.
+3. Gelecek Android QA scriptinde `set -euo pipefail` POSIX `sh` altında kullanılmamalı; `set -eu` veya açık Bash execution seçilmeli.
+4. İlk izinli runtime gate'te gerçek Android16 B1/B10 screenshot + UI XML + logcat alınmalı.
+5. Gerçek screenshotı kullanıcıya göster; seçilen gece-limanı/deniz-feneri görseline yakınlık ve okunabilirlik için görsel PASS al.
+6. Tema görsel PASS sonrası gerekirse B5/B10 insan süre playtestine geç.
+7. Kullanıcı kabulünden önce PR #158 veya tema PR'ı Ready yapılmaz.
+8. Merge ancak Levent'in açık merge onayıyla yapılır.
+9. Eski PR #156 otomatik kapatılmaz; kapatma kararı ayrı alınır.
+10. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı kapsam/branch/PR işidir.
 
 Diğer Bilgi Rotası açık işleri `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` içinde korunur.
