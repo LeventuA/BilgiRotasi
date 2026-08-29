@@ -1,6 +1,6 @@
 # Bilgi Rotası - Görev Havuzu
 
-> 26 Ağustos 2026 aktif kesimidir. Bu tarihten önceki görev havuzunun tam ve değişmemiş kopyası `docs/project-memory/archive/GOREV_HAVUZU_PRE_20260825.md` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
+> 29 Ağustos 2026 aktif kesimidir. 26 Ağustos öncesindeki görev havuzunun tam ve değişmemiş kopyası `docs/project-memory/archive/GOREV_HAVUZU_PRE_20260825.md` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
 
 ## 0R - Başlangıç Limanı production MASTER ART mimari kabulü
 
@@ -62,26 +62,9 @@
 
 ## 0V - PR #132 final entegrasyon kapısı
 
-**Durum:** AÇIK / FINAL EXACT-HEAD DOĞRULAMA + AYRI MERGE ONAYI GEREKİYOR.
+**Durum:** TARİHSEL / MERGE ZİNCİRİ TAMAMLANDI.
 
-- PR #132: `feat(kelime-avi): Baslangic Limani MASTER ART production pilot`.
-- Base: `fix/kelime-avi-approved-reference-pixel-match-20260823` / `bc8a03bfefd401570e0c51cc4aab4206ea45d363`.
-- Head branch: `feat/kelime-avi-baslangic-limani-asset-first-20260824`.
-- PR #147, #150 ve #149 bu branch'e merge edildi.
-- Canlı sürüm: `1.68.19+109`.
-
-**Bitti ölçütü:**
-- [x] PR #132 body canlı duruma göre güncellendi.
-- [x] MASTER ART mimarisi production contract ile hizalandı.
-- [x] Dynamic progression görsel state açığı giderildi.
-- [x] PR #149 hafıza checkpoint'i feature branch'e merge edildi.
-- [ ] Bütün merge/docs commit'lerini içeren yeni exact HEAD üzerinde focused test + analyze + `git diff --check` PASS.
-- [ ] Yeni exact HEAD Android 16 production proof SUCCESS.
-- [ ] Crash/ANR/FATAL/process-death taraması PASS.
-- [ ] Final production screenshot/artifact görsel incelemesi PASS.
-- [ ] Levent ayrıca açık PR #132 merge onayı verir.
-- [ ] Expected-head ile kontrollü PR #132 merge yapılır.
-- [ ] Merge sonrası hedef PR #110 branch HEAD'i doğrulanır.
+26 Ağustos production MASTER ART ve dynamic progression zincirinin tarihsel checkpoint'idir. Güncel Kelime Avı aktif işi aşağıdaki 0X maddesidir.
 
 ---
 
@@ -89,7 +72,7 @@
 
 **Durum:** AÇIK / AYRI KAPSAM + AYRI ONAY GEREKİYOR.
 
-`lib/main.dart` bu pilot merge zincirinde değiştirilmedi. Başlangıç Limanı production rota ekranının gerçek uygulama navigasyonundan açılması ayrı görevdir.
+`lib/main.dart` mevcut 8×8 içerik dönüşümünün kapsamı değildir. Başlangıç Limanı production rota ekranının gerçek uygulama navigasyonundan açılması ayrı görevdir.
 
 **Bitti ölçütü:**
 - [ ] Levent açık kapsam/onay verir.
@@ -98,6 +81,43 @@
 - [ ] Mevcut giriş, reklam, Firebase, BoardMap/67 node ve diğer oyun modları bozulmaz.
 - [ ] Analyze/test/Android gerçek cihaz veya Android 16 kabulü PASS.
 - [ ] Ayrı açık merge onayı olmadan merge yapılmaz.
+
+---
+
+## 0X - Başlangıç Limanı 8×8 starter-content dönüşümü
+
+**Durum:** DEVAM EDİYOR / STATİK PASS / FLUTTER + ANDROID16 DOĞRULANACAK.
+
+Branch: `feat/kelime-avi-8x8-content-v1-20260829`
+Başlangıç SHA: `0e9408ddda511259f588a338b3fcd8192bf92431`
+Geçici gate SHA: `7cff26f4a75e1c58beaea2c163f2e89e2c2af154`
+
+**Bitti ölçütü:**
+- [x] 10 bölümün tüm gridleri 8×8 olarak üretildi.
+- [x] 80 toplam target+bonus kelime eğrisi korundu.
+- [x] Her target/bonus exactly-one physical straight-line occurrence statik denetimden geçti.
+- [x] Intended/reverse canonical yol eşleşmeleri statik olarak doğrulandı.
+- [x] B5 ve B10 yatay+dikey+çapraz yön ailelerini birlikte taşıyor.
+- [x] B8/B9/B10 özel kelime sözleşmeleri ve B5/B10 süre eşikleri korunuyor.
+- [x] Yeni hard-coded widget gesture yolları canonical 8×8 koordinatlarla statik olarak eşleşiyor.
+- [x] Formatter adayı yalnız whitespace + Dart trailing-comma farkı taşıyor; ürün anlamı değişmedi.
+- [x] Tek yetkili Actions run `33250841637` incelendi; failure'ın ürün logic değil formatter gate olduğu kanıtlandı.
+- [x] QA-only entrypoint'in final scope'a yanlışlıkla girebilme riski tespit edildi; gelecek gate için allowlist şartı belirlendi.
+- [ ] Gerçek `dart format --output=none --set-exit-if-changed` PASS.
+- [ ] `dart analyze lib/word_hunt` PASS.
+- [ ] Focused Word Hunt testleri PASS.
+- [ ] Full `flutter test` PASS.
+- [ ] `git diff --check` ve korunan alan scope gate PASS.
+- [ ] Android 16 B1/B5/B8/B10 ilk viewportta 64/64 hücre görünürlüğü/okunabilirliği PASS.
+- [ ] B5 >60 saniye soft-time PASS.
+- [ ] Android 16 gerçek `ANKARA` ve ters `BAŞKENT` swipe PASS.
+- [ ] Crash/ANR/am_crash taraması temiz.
+- [ ] QA-only dosya/araçlar ürün commitinde yok.
+- [ ] Temiz ürün commit SHA'sı yazılır.
+- [ ] 8×8 PR ancak teknik gate sonrası açılır/güncellenir ve kullanıcı kabulü olmadan Ready yapılmaz.
+- [ ] Levent ayrıca açık merge onayı verir.
+
+**Kısıt:** Yeni GitHub Actions koşusu Levent yeniden açık izin vermeden başlatılmaz.
 
 ---
 
