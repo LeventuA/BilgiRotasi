@@ -59,7 +59,6 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
 
   static const _gold = Color(0xFFFFC85C);
   static const _deepNavy = Color(0xFF020A16);
-  static const _seaLine = Color(0xFF2B5A76);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -77,8 +76,8 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
     canvas.drawRect(Offset.zero & size, vignette);
 
     final lighthouseX = size.width * 0.88;
-    final lighthouseTop = size.height * 0.035;
-    final lighthouseBottom = size.height * 0.135;
+    final lighthouseTop = size.height * 0.015;
+    final lighthouseBottom = size.height * 0.073;
     final tower = Path()
       ..moveTo(lighthouseX - size.width * 0.018, lighthouseTop)
       ..lineTo(lighthouseX + size.width * 0.018, lighthouseTop)
@@ -92,7 +91,7 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
         ..style = PaintingStyle.fill,
     );
 
-    final lanternCenter = Offset(lighthouseX, lighthouseTop - size.height * 0.009);
+    final lanternCenter = Offset(lighthouseX, lighthouseTop - size.height * 0.006);
     canvas.drawCircle(
       lanternCenter,
       math.max(3.0, size.shortestSide * 0.012),
@@ -108,14 +107,14 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
 
     final beam = Path()
       ..moveTo(lanternCenter.dx, lanternCenter.dy)
-      ..lineTo(0, math.max(0.0, lanternCenter.dy - size.height * 0.05))
-      ..lineTo(0, lanternCenter.dy + size.height * 0.05)
+      ..lineTo(0, math.max(0.0, lanternCenter.dy - size.height * 0.025))
+      ..lineTo(0, lanternCenter.dy + size.height * 0.025)
       ..close();
     final beamBounds = Rect.fromLTWH(
       0,
-      math.max(0.0, lanternCenter.dy - size.height * 0.05),
+      math.max(0.0, lanternCenter.dy - size.height * 0.025),
       lanternCenter.dx,
-      size.height * 0.10,
+      size.height * 0.05,
     );
     canvas.drawPath(
       beam,
@@ -130,26 +129,6 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
           ],
         ).createShader(beamBounds),
     );
-
-    final wavePaint = Paint()
-      ..color = _seaLine.withValues(alpha: 0.10)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1;
-    for (var i = 0; i < 5; i++) {
-      final y = size.height * (0.62 + i * 0.07);
-      final wave = Path()..moveTo(0, y);
-      for (var segment = 0; segment < 4; segment++) {
-        final x0 = size.width * segment / 4;
-        final x1 = size.width * (segment + 1) / 4;
-        wave.quadraticBezierTo(
-          (x0 + x1) / 2,
-          y + (segment.isEven ? 3 : -3),
-          x1,
-          y,
-        );
-      }
-      canvas.drawPath(wave, wavePaint);
-    }
 
     const lights = [
       Offset(0.08, 0.18),
@@ -168,13 +147,16 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
       );
     }
 
-    final topLinePaint = Paint()
-      ..color = _gold.withValues(alpha: 0.16)
-      ..strokeWidth = 1;
-    canvas.drawLine(
-      Offset(size.width * 0.05, size.height * 0.155),
-      Offset(size.width * 0.95, size.height * 0.155),
-      topLinePaint,
+    final edgePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1
+      ..color = _gold.withValues(alpha: 0.10);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(1, 1, size.width - 2, size.height - 2),
+        const Radius.circular(18),
+      ),
+      edgePaint,
     );
   }
 
