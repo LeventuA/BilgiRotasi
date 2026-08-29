@@ -103,6 +103,36 @@
 
 ---
 
+## 0Y - Başlangıç Limanı gece-limanı / deniz-feneri tema uygulaması
+
+**Durum:** KOD + PRODUCTION FLOW BAĞLANTISI HAZIR / RUNTIME DOĞRULAMA BEKLİYOR.
+
+- Kullanıcı tema seçimi: beş aday içinden **1. görsel**.
+- Ana görsel yön: derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı.
+- Clean branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`.
+- Taban: doğrulanmış 8×8 docs HEAD `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
+- Tema wrapper: `lib/word_hunt/baslangic_limani_theme_screen.dart`.
+- Production flow varsayılan level açılışı `BaslangicLimaniThemedLevelScreen` üzerinden mevcut `WordHuntLevelProductionScreen`'e bağlandı.
+- `lib/main.dart`, doğrulanmış production screen, 8×8 content, path/scoring, MASTER ART ve reklam/Firebase/release yapılandırması değişmedi.
+- Tema branch'inde Actions run sayısı 0.
+
+**Bitti ölçütü:**
+- [x] Seçilen tema kod katmanı ayrı ve geri alınabilir dosyada oluşturuldu.
+- [x] Overlay pointer eventlerini `IgnorePointer` ile engellemiyor.
+- [x] Production gameplay flow varsayılan açılışı tema wrapper'a bağlandı.
+- [x] Tema widget sözleşme testi yazıldı.
+- [x] Rota → Bölüm 1 → tema → production ekran entegrasyon testi yazıldı.
+- [x] Diff temiz: production base'e göre yalnız tema dosyaları/testleri + gameplay flow'da 2 ekleme/1 değişiklik.
+- [ ] Gerçek Dart formatter/analyze PASS.
+- [ ] Tema testleri gerçek Flutter runner'da PASS.
+- [ ] Android 16 gerçek tema ekran görüntüsü alınır.
+- [ ] Kullanıcı seçilen görsel dile yakınlığı ve okunabilirliği onaylar.
+- [ ] Gerekirse tema renk/ışık yoğunluğu gerçek screenshot üzerinden ayarlanır.
+- [ ] Draft PR ancak runtime görsel gate sonrası açılır.
+- [ ] Ready/merge yalnız ayrı kullanıcı onayıyla yapılır.
+
+---
+
 ## Korunan açık işler
 
 - Soru geri bildirimleri: soru metni + 4 seçenek + doğru indeks + açıklama + kategori + zorluk birlikte doğrulanacak; gerçek düzeltme merge edilmeden Sheet satırı kapatılmayacak.
