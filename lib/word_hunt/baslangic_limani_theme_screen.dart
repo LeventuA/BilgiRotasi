@@ -58,17 +58,18 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final vignette = Paint()
-      ..shader = const LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: <Color>[
-          Color(0x00020A16),
-          Color(0x10020A16),
-          Color(0x48020A16),
-        ],
-        stops: <double>[0, 0.58, 1],
-      ).createShader(Offset.zero & size);
+    final vignette =
+        Paint()
+          ..shader = const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: <Color>[
+              Color(0x00020A16),
+              Color(0x10020A16),
+              Color(0x48020A16),
+            ],
+            stops: <double>[0, 0.58, 1],
+          ).createShader(Offset.zero & size);
     canvas.drawRect(Offset.zero & size, vignette);
 
     // Deniz feneri yalnız üst sağdaki başlık bölgesinde kalır; sayaç/grid üstüne
@@ -76,12 +77,13 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
     final lighthouseX = size.width * 0.88;
     final lighthouseTop = size.height * 0.014;
     final lighthouseBottom = size.height * 0.066;
-    final tower = Path()
-      ..moveTo(lighthouseX - size.width * 0.016, lighthouseTop)
-      ..lineTo(lighthouseX + size.width * 0.016, lighthouseTop)
-      ..lineTo(lighthouseX + size.width * 0.027, lighthouseBottom)
-      ..lineTo(lighthouseX - size.width * 0.027, lighthouseBottom)
-      ..close();
+    final tower =
+        Path()
+          ..moveTo(lighthouseX - size.width * 0.016, lighthouseTop)
+          ..lineTo(lighthouseX + size.width * 0.016, lighthouseTop)
+          ..lineTo(lighthouseX + size.width * 0.027, lighthouseBottom)
+          ..lineTo(lighthouseX - size.width * 0.027, lighthouseBottom)
+          ..close();
     canvas.drawPath(
       tower,
       Paint()
@@ -112,11 +114,12 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
 
     final beamTopCandidate = lanternCenter.dy - size.height * 0.020;
     final beamTop = beamTopCandidate < 0.0 ? 0.0 : beamTopCandidate;
-    final beam = Path()
-      ..moveTo(lanternCenter.dx, lanternCenter.dy)
-      ..lineTo(0, beamTop)
-      ..lineTo(0, lanternCenter.dy + size.height * 0.020)
-      ..close();
+    final beam =
+        Path()
+          ..moveTo(lanternCenter.dx, lanternCenter.dy)
+          ..lineTo(0, beamTop)
+          ..lineTo(0, lanternCenter.dy + size.height * 0.020)
+          ..close();
     final beamBounds = Rect.fromLTWH(
       0,
       beamTop,
@@ -153,10 +156,11 @@ class _BaslangicLimaniHarborPainter extends CustomPainter {
       );
     }
 
-    final framePaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1
-      ..color = _gold.withValues(alpha: 0.08);
+    final framePaint =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1
+          ..color = _gold.withValues(alpha: 0.08);
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         Rect.fromLTWH(1, 1, size.width - 2, size.height - 2),

@@ -38,10 +38,7 @@ void main() {
       find.byKey(const Key('word_hunt_production_screen')),
       findsOneWidget,
     );
-    expect(
-      find.byKey(const Key('word_hunt_production_grid')),
-      findsOneWidget,
-    );
+    expect(find.byKey(const Key('word_hunt_production_grid')), findsOneWidget);
     expect(
       find.byKey(const Key('word_hunt_production_cell_7_7')),
       findsOneWidget,
