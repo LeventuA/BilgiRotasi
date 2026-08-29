@@ -1,0 +1,225 @@
+name: Kelime Avi lighthouse theme one-shot gate
+
+on:
+  push:
+    branches:
+      - feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829
+    paths:
+      - '.github/workflows/tmp-kelime-theme-android16-gate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  theme-gate:
+    name: Theme format + tests + Android16 B1/B10
+    runs-on: ubuntu-22.04
+    timeout-minutes: 100
+    env:
+      THEME_BASE_SHA: 69efcd17606d339233e1d9ca6183d9ac37ed5b5c
+      PACKAGE_NAME: com.leventua.bilgirotasi
+      REPORT_DIR: reports/word_hunt_theme
+    steps:
+      - name: Checkout exact gate head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Verify clean theme scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e "${THEME_BASE_SHA}^{commit}"
+          git diff --check "${THEME_BASE_SHA}..HEAD"
+          python3 - <<'PY'
+          import os
+          import subprocess
+
+          base = os.environ['THEME_BASE_SHA']
+          changed = subprocess.check_output(
+              ['git', 'diff', '--name-only', f'{base}..HEAD'], text=True
+          ).splitlines()
+          allowed = {
+              '.github/workflows/tmp-kelime-theme-android16-gate.yml',
+              'BILGI_ROTASI_DURUM.md',
+              'docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md',
+              'docs/project-memory/GENEL_PROJE_OZETI.md',
+              'docs/project-memory/GOREV_HAVUZU.md',
+              'docs/project-memory/KARARLAR.md',
+              'lib/word_hunt/baslangic_limani_theme_screen.dart',
+              'lib/word_hunt/word_hunt_gameplay_flow.dart',
+              'test/word_hunt_baslangic_limani_theme_flow_test.dart',
+              'test/word_hunt_baslangic_limani_theme_test.dart',
+          }
+          unexpected = [p for p in changed if p not in allowed]
+          print('Changed files:')
+          for path in changed:
+              print(f'  {path}')
+          if unexpected:
+              raise SystemExit('Unexpected theme scope: ' + ', '.join(unexpected))
+          PY
+          git diff --exit-code "${THEME_BASE_SHA}..HEAD" -- \
+            lib/main.dart pubspec.yaml assets/questions.json assets/word_hunt \
+            lib/word_hunt/word_hunt_screens.dart \
+            lib/word_hunt/word_hunt_path.dart \
+            lib/word_hunt/word_hunt_models.dart
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Format analyze and Word Hunt regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart format --output=none --set-exit-if-changed \
+            lib/word_hunt/baslangic_limani_theme_screen.dart \
+            lib/word_hunt/word_hunt_gameplay_flow.dart \
+            test/word_hunt_baslangic_limani_theme_test.dart \
+            test/word_hunt_baslangic_limani_theme_flow_test.dart
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_*_test.dart --reporter expanded
+          git diff --check
+
+      - name: Create isolated B1 B10 theme QA entrypoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > lib/word_hunt/word_hunt_theme_qa_main.dart <<'DART'
+          import 'package:flutter/material.dart';
+
+          import 'baslangic_limani_theme_screen.dart';
+          import 'word_hunt_starter_content.dart';
+
+          const int _qaLevel = int.fromEnvironment(
+            'WORD_HUNT_QA_LEVEL',
+            defaultValue: 1,
+          );
+
+          void main() {
+            WidgetsFlutterBinding.ensureInitialized();
+            final index = _qaLevel.clamp(1, 10) - 1;
+            final level = WordHuntStarterContent.baslangicLimani.levels[index];
+            runApp(
+              MaterialApp(
+                debugShowCheckedModeBanner: false,
+                home: BaslangicLimaniThemedLevelScreen(
+                  level: level,
+                  infoCards: WordHuntStarterContent.infoCards,
+                ),
+              ),
+            );
+          }
+          DART
+          dart format lib/word_hunt/word_hunt_theme_qa_main.dart
+          dart analyze lib/word_hunt/word_hunt_theme_qa_main.dart
+
+      - name: Build isolated B1 and B10 proof APKs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "${REPORT_DIR}"
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_theme_qa_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test \
+            --dart-define=WORD_HUNT_QA_LEVEL=1
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          cp build/app/outputs/flutter-apk/app-debug.apk /tmp/kelime-theme-b1.apk
+          sha256sum /tmp/kelime-theme-b1.apk > "${REPORT_DIR}/B1_APK_SHA256.txt"
+
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_theme_qa_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test \
+            --dart-define=WORD_HUNT_QA_LEVEL=10
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          cp build/app/outputs/flutter-apk/app-debug.apk /tmp/kelime-theme-b10.apk
+          sha256sum /tmp/kelime-theme-b10.apk > "${REPORT_DIR}/B10_APK_SHA256.txt"
+          git rev-parse HEAD > "${REPORT_DIR}/GATE_HEAD_SHA.txt"
+
+      - name: Prepare Android emulator KVM
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Android16 themed B1 and B10 proof
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 3072M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            set -euo pipefail
+            mkdir -p "${REPORT_DIR}"
+            adb shell wm size 1080x1920
+            adb shell wm density 420
+            adb shell wm size > "${REPORT_DIR}/DISPLAY_SIZE.txt"
+            adb shell wm density > "${REPORT_DIR}/DISPLAY_DENSITY.txt"
+
+            capture_level() {
+              local apk="$1"
+              local label="$2"
+              local expected_title="$3"
+              adb install -r "$apk"
+              adb shell am force-stop "${PACKAGE_NAME}" || true
+              adb logcat -c
+              adb shell monkey -p "${PACKAGE_NAME}" -c android.intent.category.LAUNCHER 1
+              sleep 6
+              test -n "$(adb shell pidof "${PACKAGE_NAME}" | tr -d '\r')"
+              adb shell uiautomator dump "/sdcard/${label}.xml"
+              adb pull "/sdcard/${label}.xml" "${REPORT_DIR}/${label}_UI.xml"
+              adb exec-out screencap -p > "${REPORT_DIR}/${label}_ANDROID16.png"
+              test -s "${REPORT_DIR}/${label}_ANDROID16.png"
+              adb logcat -d > "${REPORT_DIR}/${label}_LOGCAT.txt"
+              grep -F "$expected_title" "${REPORT_DIR}/${label}_UI.xml"
+              if grep -E "FATAL EXCEPTION|ANR in ${PACKAGE_NAME}|am_crash.*${PACKAGE_NAME}" "${REPORT_DIR}/${label}_LOGCAT.txt"; then
+                echo "Crash/ANR marker detected for ${label}" >&2
+                exit 1
+              fi
+            }
+
+            capture_level /tmp/kelime-theme-b1.apk B1 'Bölüm 1'
+            capture_level /tmp/kelime-theme-b10.apk B10 'Bölüm 10'
+
+      - name: Upload Android16 theme proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: KelimeAvi-LighthouseTheme-Android16-${{ github.sha }}
+          path: reports/word_hunt_theme/**
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Remove one-shot workflow without retrigger
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f lib/word_hunt/word_hunt_theme_qa_main.dart
+          rm -rf reports
+          git config user.name 'ZMilaStudio'
+          git config user.email 'levent.ua@gmail.com'
+          git rm -f .github/workflows/tmp-kelime-theme-android16-gate.yml
+          git diff --cached --check
+          git commit -m 'chore(ci): remove one-shot kelime theme gate [skip ci]'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
