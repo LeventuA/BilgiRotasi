@@ -2,6 +2,11 @@ name: Kelime Avi lighthouse theme Android16 visual gate v4
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829
+    paths:
+      - '.github/workflows/tmp-kelime-theme-android16-gate-v4.yml'
 
 permissions:
   contents: write
