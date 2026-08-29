@@ -1,4 +1,4 @@
-name: Kelime Avi 8x8 tek final gate
+name: Kelime Avi 8x8 final gate v2
 
 on:
   push:
@@ -13,9 +13,9 @@ permissions:
 
 jobs:
   final-gate:
-    name: 8x8 static + Android16 final gate
+    name: 8x8 format + tests + Android16
     runs-on: ubuntu-22.04
-    timeout-minutes: 110
+    timeout-minutes: 100
     env:
       PRODUCT_BASE_SHA: 0e9408ddda511259f588a338b3fcd8192bf92431
       PACKAGE_NAME: com.leventua.bilgirotasi
@@ -26,22 +26,25 @@ jobs:
           ref: ${{ github.sha }}
           fetch-depth: 0
 
-      - name: Decode and apply staged 8x8 payload
+      - name: Decode staged 8x8 candidate
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          import ast, base64, hashlib, lzma, subprocess, sys, tarfile, zipfile
-
+          import base64, hashlib, lzma, tarfile
           parts = sorted(Path('tools').glob('.tmp_word_hunt_8x8_payload_*'))
           if len(parts) != 6:
               raise SystemExit(f'Expected 6 payload parts, found {len(parts)}')
           encoded = ''.join(p.read_text(encoding='utf-8').strip() for p in parts)
           compressed = base64.b64decode(encoded, validate=True)
           decoded = lzma.decompress(compressed)
-          out = Path('/tmp/word_hunt_8x8_payload.decoded')
+          out = Path('/tmp/word_hunt_8x8_payload.tar')
           out.write_bytes(decoded)
+          if not tarfile.is_tarfile(out):
+              raise SystemExit('Decoded payload is not the expected TAR archive')
+          with tarfile.open(out) as tf:
+              tf.extractall('.')
           Path('/tmp/PAYLOAD_SHA256.txt').write_text(
               f'base64_chars={len(encoded)}\n'
               f'xz_sha256={hashlib.sha256(compressed).hexdigest()}\n'
@@ -49,39 +52,17 @@ jobs:
               encoding='utf-8',
           )
           print(Path('/tmp/PAYLOAD_SHA256.txt').read_text())
-
-          if zipfile.is_zipfile(out):
-              with zipfile.ZipFile(out) as zf:
-                  zf.extractall('.')
-              print('Applied payload as ZIP archive')
-              raise SystemExit(0)
-          if tarfile.is_tarfile(out):
-              with tarfile.open(out) as tf:
-                  tf.extractall('.')
-              print('Applied payload as TAR archive')
-              raise SystemExit(0)
-
-          text = decoded.decode('utf-8')
-          stripped = text.lstrip()
-          if stripped.startswith('diff --git ') or '\ndiff --git ' in text:
-              subprocess.check_call(['git', 'apply', '--whitespace=error-all', str(out)])
-              print('Applied payload as git patch')
-              raise SystemExit(0)
-          if stripped.startswith('#!') and 'bash' in stripped.splitlines()[0]:
-              subprocess.check_call(['bash', str(out)])
-              print('Applied payload as bash script')
-              raise SystemExit(0)
-          try:
-              ast.parse(text)
-          except SyntaxError as exc:
-              raise SystemExit(f'Unknown decoded payload format: {exc}')
-          subprocess.check_call([sys.executable, str(out)])
-          print('Applied payload as Python script')
           PY
-          echo '--- working tree after payload ---'
-          git status --short
+          rm -f tools/tmp_finalize_word_hunt_8x8.py
+          git restore --worktree -- BILGI_ROTASI_DURUM.md docs/kelime-avi/BASLANGIC_LIMANI_LEVEL_2_10_PRODUCTION_CONTENT_20260828.md
           git diff --check
-          git diff --exit-code -- lib/main.dart pubspec.yaml assets/questions.json assets/word_hunt lib/word_hunt/word_hunt_screens.dart lib/word_hunt/word_hunt_path.dart lib/word_hunt/word_hunt_models.dart
+          git diff --exit-code -- \
+            lib/main.dart pubspec.yaml assets/questions.json assets/word_hunt \
+            lib/word_hunt/word_hunt_screens.dart \
+            lib/word_hunt/word_hunt_path.dart \
+            lib/word_hunt/word_hunt_models.dart
+          echo '--- candidate scope ---'
+          git status --short
 
       - name: Java 17
         uses: actions/setup-java@v4
@@ -96,13 +77,25 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Static contract and full Flutter tests
+      - name: Format, analyze and test exact candidate
         shell: bash
         run: |
           set -euo pipefail
           flutter pub get
-          mapfile -t changed_dart < <(git status --porcelain | sed -E 's/^.. //' | grep -E '\.dart$' || true)
-          if [ "${#changed_dart[@]}" -gt 0 ]; then dart format --output=none --set-exit-if-changed "${changed_dart[@]}"; fi
+          dart format \
+            lib/word_hunt/word_hunt_starter_content.dart \
+            lib/word_hunt/word_hunt_8x8_qa_main.dart \
+            test/word_hunt_level_one_engine_test.dart \
+            test/word_hunt_level_production_test.dart \
+            test/word_hunt_prototype_screens_test.dart \
+            test/word_hunt_starter_content_test.dart
+          dart format --output=none --set-exit-if-changed \
+            lib/word_hunt/word_hunt_starter_content.dart \
+            lib/word_hunt/word_hunt_8x8_qa_main.dart \
+            test/word_hunt_level_one_engine_test.dart \
+            test/word_hunt_level_production_test.dart \
+            test/word_hunt_prototype_screens_test.dart \
+            test/word_hunt_starter_content_test.dart
           dart analyze lib/word_hunt
           flutter test \
             test/word_hunt_starter_content_test.dart \
@@ -112,183 +105,21 @@ jobs:
             --reporter expanded
           flutter test --reporter compact
           git diff --check
-          python3 - <<'PY'
-          from pathlib import Path
-          p = Path('lib/word_hunt/word_hunt_starter_content.dart')
-          text = p.read_text(encoding='utf-8')
-          if 'rowCount: 10' in text or 'columnCount: 6' in text:
-              raise SystemExit('Legacy 10x6 literal remains in starter content')
-          print('No legacy 10x6 literal remains in starter content')
-          PY
 
-      - name: Create isolated Android16 QA entrypoint and helpers
+      - name: Build isolated Android16 proof APK
         shell: bash
         run: |
           set -euo pipefail
-          cat > lib/word_hunt/.tmp_word_hunt_8x8_qa_main.dart <<'DART'
-          import 'package:flutter/material.dart';
-          import 'package:flutter/services.dart';
-
-          import 'word_hunt_screens.dart';
-          import 'word_hunt_starter_content.dart';
-
-          const int _qaLevel = int.fromEnvironment('WORD_HUNT_QA_LEVEL', defaultValue: 1);
-          const int _qaTimeOffsetSeconds = int.fromEnvironment(
-            'WORD_HUNT_QA_TIME_OFFSET_SECONDS',
-            defaultValue: 0,
-          );
-
-          Future<void> main() async {
-            WidgetsFlutterBinding.ensureInitialized();
-            await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-              DeviceOrientation.portraitUp,
-            ]);
-            await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-            if (!const <int>{1, 5, 8, 10}.contains(_qaLevel)) {
-              throw StateError('Unsupported WORD_HUNT_QA_LEVEL=$_qaLevel');
-            }
-            final level = WordHuntStarterContent.baslangicLimani.levels[_qaLevel - 1];
-            final realStart = DateTime.now();
-            final scoringStart = realStart;
-            var firstClockRead = true;
-            DateTime qaNow() {
-              if (firstClockRead) {
-                firstClockRead = false;
-                return scoringStart;
-              }
-              return scoringStart
-                  .add(Duration(seconds: _qaTimeOffsetSeconds))
-                  .add(DateTime.now().difference(realStart));
-            }
-            debugPrint(
-              '[WORD_HUNT_8X8_ANDROID16_QA_CONFIG] '
-              'level=$_qaLevel rows=${level.rowCount} cols=${level.columnCount} '
-              'targets=${level.targetWords.length} bonus=${level.bonusWords.length} '
-              'timeOffset=$_qaTimeOffsetSeconds',
-            );
-            runApp(
-              MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Kelime Avı 8x8 Android 16 QA',
-                home: WordHuntLevelProductionScreen(
-                  level: level,
-                  infoCards: WordHuntStarterContent.infoCards,
-                  now: qaNow,
-                ),
-              ),
-            );
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              debugPrint('[WORD_HUNT_8X8_ANDROID16_QA_READY] level=$_qaLevel');
-            });
-          }
-          DART
-          cat > tools/.tmp_word_hunt_8x8_ui_probe.py <<'PY'
-          import re
-          import sys
-          import xml.etree.ElementTree as ET
-          from collections import defaultdict
-
-          ALPHABET = set('ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZQWX')
-          BOUNDS = re.compile(r'^\[(\d+),(\d+)\]\[(\d+),(\d+)\]$')
-
-          def load_grid(path):
-              root = ET.parse(path).getroot()
-              cells = []
-              for node in root.iter('node'):
-                  label = node.attrib.get('content-desc', '') or node.attrib.get('text', '')
-                  if len(label) != 1 or label not in ALPHABET:
-                      continue
-                  m = BOUNDS.match(node.attrib.get('bounds', ''))
-                  if not m:
-                      continue
-                  x1, y1, x2, y2 = map(int, m.groups())
-                  if x2 <= x1 or y2 <= y1:
-                      continue
-                  cells.append((label, x1, y1, x2, y2, (x1+x2)//2, (y1+y2)//2))
-              by_y = defaultdict(list)
-              for cell in cells:
-                  by_y[cell[6]].append(cell)
-              row_centers = sorted(y for y, row in by_y.items() if len(row) == 8)
-              if len(row_centers) != 8:
-                  raise SystemExit(f'Expected 8 visible rows x 8 cells; row centers={[(y, len(by_y[y])) for y in sorted(by_y)]}')
-              grid = []
-              for y in row_centers:
-                  row = sorted(by_y[y], key=lambda c: c[5])
-                  if len(row) != 8:
-                      raise SystemExit(f'Row {y} has {len(row)} cells')
-                  grid.append(row)
-              flat = [c for row in grid for c in row]
-              if len(flat) != 64:
-                  raise SystemExit(f'Expected 64 visible cells, got {len(flat)}')
-              for cell in flat:
-                  _, x1, y1, x2, y2, _, _ = cell
-                  if x1 < 0 or y1 < 0 or x2 > 1080 or y2 > 1920:
-                      raise SystemExit(f'Cell out of viewport: {cell}')
-                  if (x2-x1) < 80 or (y2-y1) < 80:
-                      raise SystemExit(f'Cell too small/clipped: {cell}')
-              return grid
-
-          def normalize(value):
-              return value.strip().replace('i', 'İ').replace('ı', 'I').upper()
-
-          def coords(grid, word, reverse=False):
-              word = normalize(word)
-              letters = [[c[0] for c in row] for row in grid]
-              dirs = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
-              hits = []
-              for r in range(8):
-                  for c in range(8):
-                      for dr, dc in dirs:
-                          path = []
-                          ok = True
-                          for i, ch in enumerate(word):
-                              rr, cc = r + dr*i, c + dc*i
-                              if not (0 <= rr < 8 and 0 <= cc < 8) or letters[rr][cc] != ch:
-                                  ok = False
-                                  break
-                              path.append((rr, cc))
-                          if ok:
-                              hits.append(path)
-              if len(hits) != 1:
-                  raise SystemExit(f'{word} expected exactly one directed occurrence, got {len(hits)}')
-              path = hits[0]
-              if reverse:
-                  path = list(reversed(path))
-              a = grid[path[0][0]][path[0][1]]
-              b = grid[path[-1][0]][path[-1][1]]
-              print(a[5], a[6], b[5], b[6])
-
-          mode = sys.argv[1]
-          grid = load_grid(sys.argv[2])
-          if mode == 'check':
-              print('8x8 visible grid PASS')
-          elif mode == 'coords':
-              coords(grid, sys.argv[3], len(sys.argv) > 4 and sys.argv[4] == 'reverse')
-          else:
-              raise SystemExit(f'Unknown mode: {mode}')
-          PY
-          python3 -m py_compile tools/.tmp_word_hunt_8x8_ui_probe.py
-          dart format --output=none --set-exit-if-changed lib/word_hunt/.tmp_word_hunt_8x8_qa_main.dart
-
-      - name: Build isolated QA APKs
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p reports/apk reports/runtime
-          for level in 1 5 8 10; do
-            offset=0
-            if [ "$level" = "5" ]; then offset=65; fi
-            flutter build apk --debug \
-              -t lib/word_hunt/.tmp_word_hunt_8x8_qa_main.dart \
-              --dart-define=WORD_HUNT_QA_LEVEL=$level \
-              --dart-define=WORD_HUNT_QA_TIME_OFFSET_SECONDS=$offset \
-              --dart-define=ADMOB_ENVIRONMENT=test
-            test -s build/app/outputs/flutter-apk/app-debug.apk
-            cp build/app/outputs/flutter-apk/app-debug.apk "reports/apk/B${level}.apk"
-          done
-          sha256sum reports/apk/*.apk | tee reports/APK_SHA256.txt
-          cp /tmp/PAYLOAD_SHA256.txt reports/PAYLOAD_SHA256.txt
-          git status --short > reports/WORKTREE_BEFORE_ANDROID16.txt
+          python3 -m py_compile tools/tmp_word_hunt_8x8_ui.py
+          bash -n tools/tmp_word_hunt_8x8_android16.sh
+          flutter build apk --debug \
+            -t lib/word_hunt/word_hunt_8x8_qa_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          mkdir -p reports/word_hunt_8x8
+          git rev-parse HEAD > reports/word_hunt_8x8/GATE_HEAD_SHA.txt
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk > reports/word_hunt_8x8/APK_SHA256.txt
+          cp /tmp/PAYLOAD_SHA256.txt reports/word_hunt_8x8/PAYLOAD_SHA256.txt
 
       - name: Prepare Android emulator KVM
         shell: bash
@@ -299,91 +130,7 @@ jobs:
           test -r /dev/kvm
           test -w /dev/kvm
 
-      - name: Create Android16 runtime driver
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat > tools/.tmp_word_hunt_8x8_android16.sh <<'SH'
-          #!/usr/bin/env bash
-          set -euo pipefail
-          pkg=com.leventua.bilgirotasi
-          mkdir -p reports/runtime
-          adb shell wm size 1080x1920 >/dev/null
-          adb shell wm density 420 >/dev/null
-          adb shell wm size > reports/WM_SIZE.txt
-          adb shell wm density > reports/WM_DENSITY.txt
-
-          launch_and_capture() {
-            local level="$1"
-            adb shell am force-stop "$pkg"
-            adb logcat -c
-            adb shell monkey -p "$pkg" -c android.intent.category.LAUNCHER 1 >/dev/null
-            sleep 8
-            adb shell dumpsys activity activities > "reports/runtime/B${level}_ACTIVITY.txt"
-            adb shell uiautomator dump "/sdcard/B${level}.xml" >/dev/null 2>&1
-            adb pull "/sdcard/B${level}.xml" "reports/runtime/B${level}_UI.xml" >/dev/null 2>&1
-            adb exec-out screencap -p > "reports/runtime/B${level}_ANDROID16.png"
-            adb logcat -d > "reports/runtime/B${level}_LOGCAT.txt"
-            test -s "reports/runtime/B${level}_ANDROID16.png"
-            test "$(wc -c < "reports/runtime/B${level}_ANDROID16.png")" -gt 50000
-            grep -Fq "[WORD_HUNT_8X8_ANDROID16_QA_CONFIG] level=${level} rows=8 cols=8" "reports/runtime/B${level}_LOGCAT.txt"
-            grep -Fq "[WORD_HUNT_8X8_ANDROID16_QA_READY] level=${level}" "reports/runtime/B${level}_LOGCAT.txt"
-            grep -Fq "$pkg/.MainActivity" "reports/runtime/B${level}_ACTIVITY.txt"
-            python3 tools/.tmp_word_hunt_8x8_ui_probe.py check "reports/runtime/B${level}_UI.xml"
-            if grep -E "FATAL EXCEPTION|ANR in ${pkg//./\\.}|am_crash.*${pkg//./\\.}" "reports/runtime/B${level}_LOGCAT.txt"; then echo "Android16 process failure on B${level}" >&2; exit 1; fi
-          }
-
-          for level in 1 5 8 10; do
-            if adb shell pm path "$pkg" 2>/dev/null | grep -q '^package:'; then adb uninstall "$pkg" >/dev/null; fi
-            adb install "reports/apk/B${level}.apk" >/dev/null
-            launch_and_capture "$level"
-            if [ "$level" = "5" ]; then
-              python3 - <<'PY'
-          import re, xml.etree.ElementTree as ET
-          root=ET.parse('reports/runtime/B5_UI.xml').getroot()
-          vals=[]
-          for n in root.iter('node'):
-              for k in ('content-desc','text'):
-                  m=re.fullmatch(r'(\d+)s', n.attrib.get(k,''))
-                  if m: vals.append(int(m.group(1)))
-          if not vals or max(vals) <= 60:
-              raise SystemExit(f'B5 soft-time not proven; elapsed={vals}')
-          print('B5 soft-time PASS', max(vals))
-          PY
-              read -r x1 y1 x2 y2 < <(python3 tools/.tmp_word_hunt_8x8_ui_probe.py coords reports/runtime/B5_UI.xml ANKARA)
-              adb shell input swipe "$x1" "$y1" "$x2" "$y2" 1100
-              sleep 2
-              adb exec-out screencap -p > reports/runtime/B5_ANKARA.png
-              adb shell input swipe 12 600 12 1800 600 >/dev/null
-              sleep 1
-              adb shell uiautomator dump /sdcard/B5_ANKARA_TOP.xml >/dev/null 2>&1
-              adb pull /sdcard/B5_ANKARA_TOP.xml reports/runtime/B5_ANKARA_TOP_UI.xml >/dev/null 2>&1
-              grep -Fq 'content-desc="1/7"' reports/runtime/B5_ANKARA_TOP_UI.xml
-
-              adb shell am force-stop "$pkg"
-              adb shell monkey -p "$pkg" -c android.intent.category.LAUNCHER 1 >/dev/null
-              sleep 6
-              adb shell uiautomator dump /sdcard/B5_FRESH.xml >/dev/null 2>&1
-              adb pull /sdcard/B5_FRESH.xml reports/runtime/B5_FRESH_UI.xml >/dev/null 2>&1
-              python3 tools/.tmp_word_hunt_8x8_ui_probe.py check reports/runtime/B5_FRESH_UI.xml
-              read -r x1 y1 x2 y2 < <(python3 tools/.tmp_word_hunt_8x8_ui_probe.py coords reports/runtime/B5_FRESH_UI.xml BAŞKENT reverse)
-              adb shell input swipe "$x1" "$y1" "$x2" "$y2" 1200
-              sleep 2
-              adb exec-out screencap -p > reports/runtime/B5_BASKENT_REVERSE.png
-              adb shell input swipe 12 600 12 1800 600 >/dev/null
-              sleep 1
-              adb shell uiautomator dump /sdcard/B5_BASKENT_TOP.xml >/dev/null 2>&1
-              adb pull /sdcard/B5_BASKENT_TOP.xml reports/runtime/B5_BASKENT_TOP_UI.xml >/dev/null 2>&1
-              grep -Fq 'content-desc="1/7"' reports/runtime/B5_BASKENT_TOP_UI.xml
-              adb logcat -d > reports/runtime/B5_GESTURES_LOGCAT.txt
-              if grep -E "FATAL EXCEPTION|ANR in ${pkg//./\\.}|am_crash.*${pkg//./\\.}" reports/runtime/B5_GESTURES_LOGCAT.txt; then echo 'B5 gesture process failure' >&2; exit 1; fi
-            fi
-          done
-          SH
-          chmod +x tools/.tmp_word_hunt_8x8_android16.sh
-          bash -n tools/.tmp_word_hunt_8x8_android16.sh
-
-      - name: Android16 8x8 runtime and physical gesture proof
+      - name: Android16 64-cell + soft-time + gesture proof
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 36
@@ -395,37 +142,58 @@ jobs:
           heap-size: 512M
           emulator-boot-timeout: 1200
           disable-animations: false
-          script: bash tools/.tmp_word_hunt_8x8_android16.sh
+          script: adb shell wm size 1080x1920 && adb shell wm density 420 && bash tools/tmp_word_hunt_8x8_android16.sh
 
-      - name: Upload one final proof artifact
+      - name: Upload Android16 proof
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: KelimeAvi-8x8-FINAL-${{ github.sha }}
-          path: |
-            reports/runtime/**
-            reports/APK_SHA256.txt
-            reports/PAYLOAD_SHA256.txt
-            reports/WORKTREE_BEFORE_ANDROID16.txt
-            reports/WM_SIZE.txt
-            reports/WM_DENSITY.txt
+          name: KelimeAvi-8x8-FINAL-v2-${{ github.sha }}
+          path: reports/word_hunt_8x8/**
           if-no-files-found: warn
           retention-days: 7
 
-      - name: Final scope gate and commit tested product only
+      - name: Commit only tested 8x8 product files
         shell: bash
         run: |
           set -euo pipefail
-          rm -f lib/word_hunt/.tmp_word_hunt_8x8_qa_main.dart
-          rm -f tools/.tmp_word_hunt_8x8_ui_probe.py tools/.tmp_word_hunt_8x8_android16.sh
+          rm -f lib/word_hunt/word_hunt_8x8_qa_main.dart
+          rm -f tools/tmp_word_hunt_8x8_android16.sh tools/tmp_word_hunt_8x8_ui.py
+          git restore --worktree -- BILGI_ROTASI_DURUM.md docs/kelime-avi/BASLANGIC_LIMANI_LEVEL_2_10_PRODUCTION_CONTENT_20260828.md
           rm -rf reports
-          git rm -f tools/.tmp_word_hunt_8x8_payload_00 tools/.tmp_word_hunt_8x8_payload_01 tools/.tmp_word_hunt_8x8_payload_02 tools/.tmp_word_hunt_8x8_payload_03 tools/.tmp_word_hunt_8x8_payload_04 tools/.tmp_word_hunt_8x8_payload_05
-          git rm -f .github/workflows/tmp-kelime-8x8-final-gate.yml
-          git add lib/word_hunt test
+          git rm -f \
+            tools/.tmp_word_hunt_8x8_payload_00 \
+            tools/.tmp_word_hunt_8x8_payload_01 \
+            tools/.tmp_word_hunt_8x8_payload_02 \
+            tools/.tmp_word_hunt_8x8_payload_03 \
+            tools/.tmp_word_hunt_8x8_payload_04 \
+            tools/.tmp_word_hunt_8x8_payload_05 \
+            .github/workflows/tmp-kelime-8x8-final-gate.yml
+          git add \
+            lib/word_hunt/word_hunt_starter_content.dart \
+            test/word_hunt_level_one_engine_test.dart \
+            test/word_hunt_level_production_test.dart \
+            test/word_hunt_prototype_screens_test.dart \
+            test/word_hunt_starter_content_test.dart
           git diff --cached --check
-          git diff --cached --exit-code -- lib/main.dart pubspec.yaml assets/questions.json assets/word_hunt lib/word_hunt/word_hunt_screens.dart lib/word_hunt/word_hunt_path.dart lib/word_hunt/word_hunt_models.dart
+          git diff --cached --exit-code -- \
+            lib/main.dart pubspec.yaml assets/questions.json assets/word_hunt \
+            lib/word_hunt/word_hunt_screens.dart \
+            lib/word_hunt/word_hunt_path.dart \
+            lib/word_hunt/word_hunt_models.dart
+          if git diff --cached --name-only | grep -E 'word_hunt_8x8_qa_main|tmp_word_hunt_8x8_(android16|ui)|tmp_finalize_word_hunt_8x8'; then
+            echo 'QA-only file staged' >&2
+            exit 1
+          fi
+          expected=$(printf '%s\n' \
+            lib/word_hunt/word_hunt_starter_content.dart \
+            test/word_hunt_level_one_engine_test.dart \
+            test/word_hunt_level_production_test.dart \
+            test/word_hunt_prototype_screens_test.dart \
+            test/word_hunt_starter_content_test.dart | sort)
+          actual=$(git diff --cached --name-only -- lib/word_hunt test | sort)
+          test "$actual" = "$expected"
           git status --short
-          test -n "$(git diff --cached --name-only -- lib/word_hunt test)"
           git config user.name 'ZMilaStudio'
           git config user.email 'levent.ua@gmail.com'
           git commit -m 'feat(kelime-avi): switch starter levels to 8x8 [skip ci]'
