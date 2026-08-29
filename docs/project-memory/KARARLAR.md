@@ -98,3 +98,22 @@
 - PR #107 merge: tamamlandı (`ef34a1858d1a16da829a77c125d4953f7336b06d`).
 - Eski PR #96 branch'i güncel release ile diverged olduğu için zorla merge edilmez; current release tabanından temiz entegrasyon yapılır.
 - Release'e geçmeden exact release-context CI ve Android 16 kanıtı zorunludur.
+
+---
+
+## 8. 29 Ağustos 2026 — Başlangıç Limanı 8×8 ürün geometrisi
+
+- Levent'in yeni ürün kararıyla Başlangıç Limanı bölüm grid standardı **8 satır × 8 sütun**dur.
+- Önceki 6×10 starter-content geometrisi bu yeni çalışma için **superseded** edilmiştir; 6×10 geçmiş teknik checkpoint ve kanıtları silinmez.
+- 10 bölüm / 30 yıldız / 80 toplam target+bonus kelime eğrisi korunur.
+- Her target/bonus 8 düz yönde **exactly one physical occurrence** taşımalıdır.
+- Intended ve opposite gesture aynı canonical kelimeye dönmelidir.
+- İlk bölümlerde yatay/dikey yollar baskın olabilir; ilerleyen bölümlerde çapraz/ters yön çeşitliliği artırılır.
+- B5 ve B10 yatay + dikey + çapraz yön ailelerini birlikte taşımalıdır.
+- B8 iki bonus (`HIZ`, `SKOR`), B9 `ROKET` bonusu ve B10 `YOL` hedefi / `HAZİNE` bonusu korunur; `AY` ve `ROTA` geri dönmez.
+- Süreler hard-fail değildir; B5 60 saniye, B10 120 saniye soft challenge sözleşmesi korunur.
+- 8×8 dönüşümü `lib/main.dart`, `assets/questions.json`, MASTER ART, AdMob/Firebase, signing veya BoardMap/67 node kapsamını açmaz.
+- 8×8 için Flutter analyze/test ve Android 16 kanıtı olmadan PR Ready/merge yapılmaz.
+- 29 Ağustos'ta izin verilen tek Actions run `33250841637` yalnız formatter gate'inde durmuş; analyze/test/Android 16 çalışmamıştır. Bu nedenle 8×8 teknik kabul **DOĞRULANACAK** durumdadır.
+- QA-only entrypoint/araçlar ürün commitine girmeyecek; ürün scope'u açık allowlist ile sınırlandırılacaktır.
+- Yeni Actions koşusu yalnız Levent'in yeniden açık izniyle çalıştırılır.
