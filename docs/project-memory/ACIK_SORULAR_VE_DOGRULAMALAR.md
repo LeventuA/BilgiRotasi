@@ -1,6 +1,53 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-> 26 Ağustos 2026 aktif kesimidir. Bu tarihten önceki dosyanın tam ve değişmemiş kopyası `docs/project-memory/archive/ACIK_SORULAR_VE_DOGRULAMALAR_PRE_20260825.md` altında korunur.
+> 29 Ağustos 2026 aktif kesimidir. Bu tarihten önceki dosyanın tam kayıtları Git geçmişi ve `docs/project-memory/archive/` altında korunur.
+
+## Kelime Avı Başlangıç Limanı 8×8 — AÇIK / ANA AKTİF DOĞRULAMA
+
+29 Ağustos 2026 kullanıcı kararıyla starter-content grid standardı 8×8'e geçti; eski 6×10 ürün geometrisi yeni çalışma için superseded edildi.
+
+Canlı çalışma:
+- Branch: `feat/kelime-avi-8x8-content-v1-20260829`
+- Base/product source SHA: `0e9408ddda511259f588a338b3fcd8192bf92431`
+- Geçici final-gate head: `7cff26f4a75e1c58beaea2c163f2e89e2c2af154`
+- PR #156 eski 6×10 branch'inde **OPEN / DRAFT / merged=false**; 8×8 kabul/merge kaynağı değildir.
+- Sürüm: `1.68.19+109`.
+
+Statik olarak doğrulandı:
+- 10 adet 8×8 grid.
+- 80 toplam target+bonus.
+- Her kelime exactly-one physical straight-line occurrence.
+- Intended/opposite canonical yol eşleşmeleri.
+- B5/B10 yatay+dikey+çapraz yön aileleri.
+- B8 `HIZ`+`SKOR`, B9 `ROKET` ve `AY` yok, B10 `YOL`+`HAZİNE` ve `ROTA` yok.
+- B5/B10 süre eşikleri korunuyor.
+- Hard-coded widget yolları yeni canonical koordinatlarla statik uyumlu.
+
+Tek yetkili Actions run:
+- Run `33250841637`, job `99096135627`: **FAILURE**.
+- Payload decode/apply + Java + Flutter kurulumu PASS.
+- `dart format --output=none --set-exit-if-changed` üç Dart dosyasında format değişikliği istedi; step burada durdu.
+- Analyze, Flutter testleri, APK build ve Android16 hiç çalışmadı.
+- Bu nedenle ürün/runtime failure değil; teknik kabul de değildir.
+
+Ek scope açığı:
+- Payload içindeki QA-only `lib/word_hunt/word_hunt_8x8_qa_main.dart`, eski final stage mantığına ulaşılsaydı ürün commitine yanlışlıkla eklenebilirdi.
+- Run o adıma ulaşmadığı için kirli QA dosyası ürün commitine girmedi.
+
+**DOĞRULANACAK — KALANLAR:**
+1. Gerçek Dart formatter PASS mi?
+2. `dart analyze lib/word_hunt` PASS mi?
+3. Focused Word Hunt + full Flutter suite PASS mi?
+4. Korunan alan diff/scope temiz mi ve QA-only dosyalar ürün commitinden kesin çıkarıldı mı?
+5. Android 16 B1/B5/B8/B10 ilk viewportta 64/64 hücreyi okunabilir gösteriyor mu?
+6. B5 >60s soft-time hard fail olmadan çalışıyor mu?
+7. B5 gerçek ANKARA ve ters BAŞKENT fiziksel swipe seçimleri PASS mi?
+8. Crash/ANR/FATAL/am_crash taraması temiz mi?
+9. Kullanıcı 8×8 gerçek Android görünümünü ve oynanışı kabul ediyor mu?
+10. Yeni Actions koşusu için Levent açık izin verecek mi? İzin yokken yeniden çalıştırılmaz.
+11. Teknik + kullanıcı kabulünden sonra yeni 8×8 PR stratejisi nedir? Ready/merge ayrıca açık onay gerektirir.
+
+---
 
 ## Issue #109 / PR #147 MASTER ART production — KAPANDI
 
@@ -48,31 +95,12 @@ PR #150 PR #132 feature branch'ine merge edildi; merge SHA `d64fcd4ea63f173c6653
 
 ---
 
-## PR #132 Başlangıç Limanı production pilot — AÇIK
-
-- PR #132: `OPEN / DRAFT / MERGED=false`.
-- Base: `fix/kelime-avi-approved-reference-pixel-match-20260823` / `bc8a03bfefd401570e0c51cc4aab4206ea45d363`.
-- Head branch: `feat/kelime-avi-baslangic-limani-asset-first-20260824`.
-- Sürüm: `1.68.19+109`.
-- PR #147, #150 ve #149 bu branch'e merge edildi.
-- PR body güncel mimari ve final kapılarla hizalandı.
-
-**DOĞRULANACAK — KALANLAR:**
-1. Bütün merge/docs commit'lerini içeren yeni exact HEAD nedir?
-2. Bu exact HEAD üzerinde focused test + analyze + `git diff --check` PASS mi?
-3. Android 16 production proof yeni exact HEAD üzerinde SUCCESS mi?
-4. Crash/ANR/FATAL/process-death taraması temiz mi?
-5. Final production screenshot/artifact görünümü kabul edilebilir mi?
-6. Levent PR #132 için ayrıca açık merge onayı verecek mi?
-
----
-
 ## Kelime Avı production ana navigasyon entegrasyonu — AÇIK / AYRI KAPSAM
 
-- Production `lib/main.dart` bu pilot merge zincirinde değiştirilmedi.
+- Production `lib/main.dart` 8×8 starter-content dönüşümünde değiştirilmez.
 - Başlangıç Limanı production route ekranının gerçek uygulama girişine bağlanması ayrı kapsamdır.
 
-**DOĞRULANACAK:** Levent bu entegrasyon için ayrı açık kapsam/onay verecek mi?
+**DOĞRULANACAK:** Levent bu entegrasyon için ayrıca açık kapsam/onay verecek mi?
 
 ---
 
