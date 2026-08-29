@@ -2,22 +2,52 @@
 
 > 29 Ağustos 2026 aktif kesimidir. Eski tam kayıtlar Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
-## Kelime Avı Başlangıç Limanı tema — KOD HAZIR / RUNTIME GÖRSEL DOĞRULAMA AÇIK
+## Kelime Avı Başlangıç Limanı tema — TEST/APK PASS / ANDROID16 GÖRSEL DOĞRULAMA AÇIK
 
 Kullanıcı beş özgün aday arasından **1. görseli** seçti: derin lacivert gece limanı + sıcak altın/amber deniz feneri ışığı. Tema Bölüm 1–10 ana görsel kimliğidir; MASTER ART rota ekranını değiştirmez.
 
 Canlı clean theme çalışma:
 - Branch: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`
 - Taban: doğrulanmış 8×8 docs HEAD `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
+- Formatter sonrası ürün commit: `a91236c9f734e9495e67de46ab6e078d429d681e`.
 - Tema wrapper: `lib/word_hunt/baslangic_limani_theme_screen.dart`.
 - Production flow: `word_hunt_gameplay_flow.dart` varsayılan açılışı temalı wrapper'a yönlendirildi.
 - Doğrulanmış `word_hunt_screens.dart`, 8×8 içerik, path/scoring, `lib/main.dart`, MASTER ART, AdMob/Firebase/signing değişmedi.
-- Tema branch'inde Actions run sayısı: **0**.
+- Açık theme PR yok; Ready/merge yok.
+
+Tema Actions geçmişi:
+- `33260968009`: FAILURE — ilk one-shot gate formatter aşamasında durdu.
+- `33274405539`: FAILURE — formatter/analyze/test/APK geçti; Android16 uygulama capture başlamadan QA script shell hatasıyla durdu.
+
+İkinci run `33274405539` içinde doğrulananlar:
+- formatter kapsamı doğru: yalnız 3 dosya değişti,
+- `dart analyze lib/word_hunt`: **No issues found**,
+- focused Word Hunt: **138/138 PASS**,
+- full Flutter: **444/444 PASS**,
+- QA-only entrypoint analyze: PASS,
+- B1 debug APK: PASS — SHA-256 `7bfa3369d07a1a3b0d7ff1b234144c645afd6dc3182206da96031b49966a93ea`,
+- B10 debug APK: PASS — SHA-256 `e0b4c46f1f82b6ea1f7e401ff482b876949a8ab9f88005a0651b99e452370b76`,
+- API 36 emülatör boot: PASS.
+
+Kesin Android16 blocker:
+- `reactivecircus/android-emulator-runner@v2` scripti `/usr/bin/sh` ile çalıştı.
+- Scriptin ilk satırı `set -euo pipefail` idi.
+- `/usr/bin/sh` bunu desteklemedi ve `/usr/bin/sh: 1: set: Illegal option -o pipefail` ile çıktı.
+- Hata **B1 APK kurulmadan önce** oluştu; uygulama launch edilmedi.
+- Dolayısıyla screenshot/UI XML/logcat üretilmedi ve bu run tema runtime PASS sayılmaz.
+
+Artifact:
+- ID `9721167449`
+- digest `sha256:a90891532eaf3a279aa5935328529dc8bce712cd13a74069de5083d4f90bf1af`
+- 7 dosya: analyze, focused/full test logları, formatter patch, B1/B10 APK hashleri, gate HEAD.
+- Android screenshot/UI/logcat yok.
+
+Formatter patchindeki doğrulanmış üç dosyalık fark `a91236c9...` ile branch'e `[skip ci]` olarak uygulandı ve bu commit yeni Actions run tetiklemedi.
 
 **DOĞRULANACAK:**
-1. Tema dosyaları gerçek `dart format` / analyze'dan geçiyor mu?
-2. İki yeni tema/flow widget testi Flutter runner'da PASS mi?
-3. Android 16 gerçek screenshot seçilen 1. görselin lacivert + sıcak altın liman hissine yeterince yakın mı?
+1. Android QA scripti `sh` uyumlu `set -eu` ile mi düzeltilecek, yoksa script açık Bash execution ile mi çalıştırılacak?
+2. Yeni Actions koşusu için kullanıcı izni/bütçe ne zaman yeniden açılacak? Mevcut run rerun edilmeyecek.
+3. Android 16 gerçek B1/B10 screenshotı seçilen 1. görselin lacivert + sıcak altın liman hissine yeterince yakın mı?
 4. Fener/ışık dekoru sayaç, hedef chipleri, grid ve alt status metninin okunabilirliğini bozuyor mu?
 5. Kullanıcı gerçek screenshotı görsel olarak kabul ediyor mu; kabul etmezse hangi renk/ışık yoğunluğu ayarlanacak?
 6. Runtime görsel gate sonrası clean theme Draft PR açılacak mı?
