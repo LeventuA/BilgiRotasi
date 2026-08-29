@@ -18,11 +18,11 @@ void main() {
 
   test('Bölüm 1 canonical KALEM ileri ve ters yönde hedef olur', () {
     const forward = <WordHuntCell>[
-      WordHuntCell(0, 0),
-      WordHuntCell(0, 1),
-      WordHuntCell(0, 2),
-      WordHuntCell(0, 3),
       WordHuntCell(0, 4),
+      WordHuntCell(1, 4),
+      WordHuntCell(2, 4),
+      WordHuntCell(3, 4),
+      WordHuntCell(4, 4),
     ];
     final reverse = forward.reversed.toList(growable: false);
     expect(evaluate(forward).kind, WordHuntSelectionKind.target);
@@ -31,31 +31,31 @@ void main() {
     expect(evaluate(reverse).canonicalWord, 'KALEM');
   });
 
-  test('Bölüm 1 yatay dikey/diagonal ve reverse targetları çözer', () {
+  test('Bölüm 1 yatay/dikey ve reverse targetları çözer', () {
     const masa = <WordHuntCell>[
-      WordHuntCell(1, 0),
+      WordHuntCell(4, 4),
+      WordHuntCell(4, 5),
+      WordHuntCell(4, 6),
+      WordHuntCell(4, 7),
+    ];
+    const oyun = <WordHuntCell>[
+      WordHuntCell(6, 4),
+      WordHuntCell(6, 5),
+      WordHuntCell(6, 6),
+      WordHuntCell(6, 7),
+    ];
+    const rota = <WordHuntCell>[
       WordHuntCell(1, 1),
       WordHuntCell(1, 2),
       WordHuntCell(1, 3),
+      WordHuntCell(1, 4),
     ];
-    const oyun = <WordHuntCell>[
-      WordHuntCell(9, 2),
-      WordHuntCell(9, 3),
-      WordHuntCell(9, 4),
-      WordHuntCell(9, 5),
-    ];
-    const rota = <WordHuntCell>[
+    const bilgi = <WordHuntCell>[
+      WordHuntCell(2, 3),
+      WordHuntCell(3, 3),
       WordHuntCell(4, 3),
       WordHuntCell(5, 3),
       WordHuntCell(6, 3),
-      WordHuntCell(7, 3),
-    ];
-    const bilgi = <WordHuntCell>[
-      WordHuntCell(2, 4),
-      WordHuntCell(3, 4),
-      WordHuntCell(4, 4),
-      WordHuntCell(5, 4),
-      WordHuntCell(6, 4),
     ];
     for (final entry in <(String, List<WordHuntCell>)>[
       ('MASA', masa),
@@ -71,10 +71,10 @@ void main() {
 
   test('ELMA bonus olur ve bonus completion için zorunlu değildir', () {
     const elma = <WordHuntCell>[
-      WordHuntCell(2, 0),
-      WordHuntCell(2, 1),
-      WordHuntCell(2, 2),
-      WordHuntCell(2, 3),
+      WordHuntCell(4, 2),
+      WordHuntCell(4, 3),
+      WordHuntCell(4, 4),
+      WordHuntCell(4, 5),
     ];
     expect(evaluate(elma).kind, WordHuntSelectionKind.bonus);
     expect(evaluate(elma).canonicalWord, 'ELMA');
@@ -90,11 +90,11 @@ void main() {
 
   test('tekrar target ödül üretmez; bilinmeyen ve kıvrılan yol ayrışır', () {
     const kalem = <WordHuntCell>[
-      WordHuntCell(0, 0),
-      WordHuntCell(0, 1),
-      WordHuntCell(0, 2),
-      WordHuntCell(0, 3),
       WordHuntCell(0, 4),
+      WordHuntCell(1, 4),
+      WordHuntCell(2, 4),
+      WordHuntCell(3, 4),
+      WordHuntCell(4, 4),
     ];
     expect(
       evaluate(kalem, foundTargets: const <String>{'KALEM'}).kind,

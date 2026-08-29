@@ -74,7 +74,7 @@ void main() {
   });
 
   testWidgets(
-    'prototype grid 10x6 oranında render olur ve KALEM gesture çalışır',
+    'prototype grid 8x8 oranında render olur ve KALEM gesture çalışır',
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(720, 1280));
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -89,20 +89,20 @@ void main() {
       );
       await tester.pump();
       final rect = tester.getRect(find.byKey(const Key('word_hunt_grid')));
-      expect(rect.width / rect.height, closeTo(0.6, 0.01));
+      expect(rect.width / rect.height, closeTo(1.0, 0.01));
       await dragCells(
         tester,
         level,
         startRow: 0,
-        startColumn: 0,
-        endRow: 0,
+        startColumn: 4,
+        endRow: 4,
         endColumn: 4,
       );
       expect(find.text('Harika! KALEM bulundu.'), findsOneWidget);
     },
   );
 
-  testWidgets('Bölüm 2 DENİZ bilgi kartı dinamik 10x6 hücre hesabıyla açılır', (
+  testWidgets('Bölüm 2 DENİZ bilgi kartı dinamik 8x8 hücre hesabıyla açılır', (
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(720, 1280));
@@ -120,10 +120,10 @@ void main() {
     await dragCells(
       tester,
       level,
-      startRow: 0,
-      startColumn: 0,
-      endRow: 4,
-      endColumn: 0,
+      startRow: 3,
+      startColumn: 3,
+      endRow: 7,
+      endColumn: 3,
     );
     expect(find.text('Bilgi kartı açıldı: Deniz'), findsOneWidget);
   });

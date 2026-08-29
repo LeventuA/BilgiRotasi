@@ -47,42 +47,42 @@ void main() {
     await dragCells(
       tester,
       startRow: 0,
-      startColumn: 0,
-      endRow: 0,
+      startColumn: 4,
+      endRow: 4,
       endColumn: 4,
-    );
-    await dragCells(
-      tester,
-      startRow: 1,
-      startColumn: 0,
-      endRow: 1,
-      endColumn: 3,
-    );
-    await dragCells(
-      tester,
-      startRow: 9,
-      startColumn: 2,
-      endRow: 9,
-      endColumn: 5,
     );
     await dragCells(
       tester,
       startRow: 4,
-      startColumn: 3,
-      endRow: 7,
-      endColumn: 3,
+      startColumn: 4,
+      endRow: 4,
+      endColumn: 7,
+    );
+    await dragCells(
+      tester,
+      startRow: 6,
+      startColumn: 4,
+      endRow: 6,
+      endColumn: 7,
+    );
+    await dragCells(
+      tester,
+      startRow: 1,
+      startColumn: 1,
+      endRow: 1,
+      endColumn: 4,
     );
     await dragCells(
       tester,
       startRow: 2,
-      startColumn: 4,
+      startColumn: 3,
       endRow: 6,
-      endColumn: 4,
+      endColumn: 3,
     );
   }
 
   testWidgets(
-    'production Bölüm 1 10x6 grid ve 0/5 başlangıç durumunu gösterir',
+    'production Bölüm 1 8x8 grid ve 0/5 başlangıç durumunu gösterir',
     (tester) async {
       await pumpLevel(tester);
       expect(
@@ -96,13 +96,13 @@ void main() {
       expect(find.text('BİLGİ'), findsOneWidget);
       expect(find.text('✦ ELMA'), findsOneWidget);
       expect(
-        find.byKey(const Key('word_hunt_production_cell_9_5')),
+        find.byKey(const Key('word_hunt_production_cell_7_7')),
         findsOneWidget,
       );
       final rect = tester.getRect(
         find.byKey(const Key('word_hunt_production_grid')),
       );
-      expect(rect.width / rect.height, closeTo(0.6, 0.01));
+      expect(rect.width / rect.height, closeTo(1.0, 0.01));
       expect(tester.takeException(), isNull);
     },
   );
@@ -111,10 +111,10 @@ void main() {
     await pumpLevel(tester);
     await dragCells(
       tester,
-      startRow: 0,
+      startRow: 4,
       startColumn: 4,
       endRow: 0,
-      endColumn: 0,
+      endColumn: 4,
     );
     expect(find.text('1/5'), findsOneWidget);
     expect(
@@ -124,9 +124,9 @@ void main() {
 
     await dragCells(
       tester,
-      startRow: 3,
+      startRow: 0,
       startColumn: 0,
-      endRow: 3,
+      endRow: 0,
       endColumn: 1,
     );
     expect(find.text('1 hata'), findsOneWidget);
@@ -134,10 +134,10 @@ void main() {
 
     await dragCells(
       tester,
-      startRow: 2,
-      startColumn: 0,
-      endRow: 2,
-      endColumn: 3,
+      startRow: 4,
+      startColumn: 2,
+      endRow: 4,
+      endColumn: 5,
     );
     expect(
       find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
@@ -149,14 +149,14 @@ void main() {
   testWidgets(
     'targetlar bitince süre ve hata donar, grid bonus için açık kalır',
     (tester) async {
-      var now = DateTime(2026, 8, 28, 12);
+      var now = DateTime(2026, 8, 29, 12);
       await pumpLevel(tester, now: () => now);
 
       await dragCells(
         tester,
-        startRow: 3,
+        startRow: 0,
         startColumn: 0,
-        endRow: 3,
+        endRow: 0,
         endColumn: 1,
       );
       expect(find.text('1 hata'), findsOneWidget);
@@ -195,19 +195,19 @@ void main() {
 
       await dragCells(
         tester,
-        startRow: 3,
+        startRow: 0,
         startColumn: 0,
-        endRow: 3,
+        endRow: 0,
         endColumn: 1,
       );
       expect(find.text('1 hata'), findsOneWidget);
 
       await dragCells(
         tester,
-        startRow: 2,
-        startColumn: 0,
-        endRow: 2,
-        endColumn: 3,
+        startRow: 4,
+        startColumn: 2,
+        endRow: 4,
+        endColumn: 5,
       );
       expect(
         find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
@@ -251,7 +251,7 @@ void main() {
   testWidgets('timeLimit production oynanışı hard fail ile kapatmaz', (
     tester,
   ) async {
-    var now = DateTime(2026, 8, 28, 12);
+    var now = DateTime(2026, 8, 29, 12);
     final level = WordHuntStarterContent.baslangicLimani.levels[4];
     await pumpLevel(tester, level: level, now: () => now);
     now = now.add(const Duration(seconds: 65));
@@ -260,10 +260,10 @@ void main() {
 
     await dragCells(
       tester,
-      startRow: 6,
-      startColumn: 0,
-      endRow: 1,
-      endColumn: 5,
+      startRow: 5,
+      startColumn: 2,
+      endRow: 0,
+      endColumn: 7,
     );
     expect(
       find.byKey(const Key('word_hunt_production_target_ANKARA_found')),
