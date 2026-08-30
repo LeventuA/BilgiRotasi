@@ -9,8 +9,9 @@ void main() {
     WidgetTester tester, {
     WordHuntLevelDefinition? level,
     DateTime Function()? now,
+    Size surfaceSize = const Size(720, 1280),
   }) async {
-    await tester.binding.setSurfaceSize(const Size(720, 1280));
+    await tester.binding.setSurfaceSize(surfaceSize);
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
       MaterialApp(
@@ -94,7 +95,19 @@ void main() {
       expect(find.text('0 hata'), findsOneWidget);
       expect(find.text('KALEM'), findsOneWidget);
       expect(find.text('BİLGİ'), findsOneWidget);
-      expect(find.text('✦ ELMA'), findsOneWidget);
+      expect(find.text('ELMA'), findsOneWidget);
+      expect(
+        find.byKey(const Key('word_hunt_production_bonus_icon_ELMA')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_production_harbor_background')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_production_instruction_plate')),
+        findsOneWidget,
+      );
       expect(
         find.byKey(const Key('word_hunt_production_cell_7_7')),
         findsOneWidget,
@@ -104,6 +117,55 @@ void main() {
       );
       expect(rect.width / rect.height, closeTo(1.0, 0.01));
       expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'Android 16 dar viewportta B1 B5 B8 B10 64 hücre ve liman chrome görünür',
+    (tester) async {
+      const surface = Size(411, 731);
+      const levelIndexes = <int>[1, 5, 8, 10];
+      const targetCounts = <int>[5, 7, 7, 9];
+
+      for (
+        var levelOffset = 0;
+        levelOffset < levelIndexes.length;
+        levelOffset++
+      ) {
+        final levelIndex = levelIndexes[levelOffset];
+        await pumpLevel(
+          tester,
+          level: WordHuntStarterContent.baslangicLimani.levels[levelIndex - 1],
+          surfaceSize: surface,
+        );
+
+        expect(find.text('Bölüm $levelIndex'), findsOneWidget);
+        expect(find.text('0/${targetCounts[levelOffset]}'), findsOneWidget);
+        expect(
+          find.byKey(const Key('word_hunt_production_instruction_plate')),
+          findsOneWidget,
+        );
+        expect(
+          find.byKey(const Key('word_hunt_production_cell_7_7')),
+          findsOneWidget,
+        );
+
+        final viewport = Offset.zero & surface;
+        for (var row = 0; row < 8; row++) {
+          for (var column = 0; column < 8; column++) {
+            final rect = tester.getRect(
+              find.byKey(Key('word_hunt_production_cell_${row}_$column')),
+            );
+            expect(
+              viewport.contains(rect.topLeft) &&
+                  viewport.contains(rect.bottomRight),
+              isTrue,
+              reason: 'B$levelIndex cell $row,$column viewport dışında: $rect',
+            );
+          }
+        }
+        expect(tester.takeException(), isNull, reason: 'Bölüm $levelIndex');
+      }
     },
   );
 
