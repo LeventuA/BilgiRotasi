@@ -1774,19 +1774,20 @@ class _HarborGridCell extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(math.max(6, extent * .14)),
         border: Border.all(color: const Color(0xFF4A2A12), width: 1),
-        boxShadow: [
-          const BoxShadow(
-            color: Color(0xD0000000),
-            blurRadius: 6,
-            offset: Offset(0, 3),
-          ),
-          if (active)
-            const BoxShadow(
-              color: Color(0xB0FFB83D),
-              blurRadius: 9,
-              spreadRadius: .3,
-            ),
-        ],
+        // Sixty-four cells are painted at once. Keep the metallic depth in the
+        // gradients and borders, and reserve the GPU-expensive glow for the
+        // currently active path instead of allocating a blurred layer for
+        // every idle cell.
+        boxShadow:
+            active
+                ? const <BoxShadow>[
+                  BoxShadow(
+                    color: Color(0x9AFFB83D),
+                    blurRadius: 7,
+                    spreadRadius: .2,
+                  ),
+                ]
+                : const <BoxShadow>[],
       ),
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -1800,14 +1801,6 @@ class _HarborGridCell extends StatelessWidget {
             color: active ? const Color(0xFFFFD56A) : const Color(0xFF5B4935),
             width: active ? 1.2 : .8,
           ),
-          boxShadow: const <BoxShadow>[
-            BoxShadow(
-              color: Color(0x9A000000),
-              blurRadius: 4,
-              spreadRadius: -1,
-              offset: Offset(0, 2),
-            ),
-          ],
         ),
         child: Stack(
           fit: StackFit.expand,
