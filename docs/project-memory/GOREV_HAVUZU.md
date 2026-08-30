@@ -66,7 +66,7 @@
 
 ## 0X - Başlangıç Limanı 8×8 starter-content dönüşümü
 
-**Durum:** TEKNİK GATE TAMAMLANDI / KULLANICI KABULÜ BEKLENİYOR.
+**Durum:** TEKNİK GATE + V5 GÖRSEL KABUL TAMAMLANDI / İNSAN PLAYTESTİ + READY/MERGE BEKLENİYOR.
 
 - Branch: `feat/kelime-avi-8x8-content-v1-20260829`
 - Temiz ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`
@@ -95,15 +95,15 @@
 - [x] Temiz ürün commit SHA'sı yazıldı.
 - [x] 8×8 Draft PR #158 açıldı.
 - [ ] B5/B10 gerçek insan süre dengesi playtesti.
-- [ ] Levent 8×8 gerçek görünüm/oynanış kabulü verir.
-- [ ] Kullanıcı kabulünden sonra ayrıca Ready kararı verilir.
+- [x] Levent V5 gameplay görünümünü gerçek Android 16 render üzerinden açıkça kabul etti (31 Ağustos 2026; run `33331395168`, artifact `9737903231`, `04_B10_INITIAL.png`).
+- [ ] İnsan playtesti sonrasında ayrıca Ready kararı verilir.
 - [ ] Levent ayrıca açık merge onayı verir.
 
 İlk gate run `33250841637` formatter nedeniyle erken durmuştu; ürün failure sayılmaz. Düzeltilmiş final gate `33251736068` bunun yerini alan teknik kanıttır.
 
 ### PR #158 V5 gameplay tema kabul düzeltmesi
 
-**Durum:** ÜRÜN KODU + ANDROID 16 TEKNİK GÖRSEL KANIT PASS / LEVENT KABULÜ DOĞRULANACAK.
+**Durum:** ÜRÜN KODU + ANDROID 16 TEKNİK GÖRSEL KANIT PASS / LEVENT GÖRSEL KABUL PASS.
 
 - [x] Mevcut production gameplay widget'ı gece limanı lacivert-altın temaya hizalandı.
 - [x] Canonical 8×8 ve 64/64 ilk viewport görünürlüğü widget testiyle korundu.
@@ -113,7 +113,8 @@
 - [x] Android 16 / 1080×1920 / 420 dpi üzerinde B1/B5/B8/B10 yeni tema screenshot artifact'i: run `33308127773`, artifact `9731244720`.
 - [x] B5 gerçek ANKARA ve ters BAŞKENT swipe'ının yeni temada yeniden görsel/runtime doğrulaması.
 - [x] B5 74 saniyede soft-time ve uygulama crash/ANR/FATAL/process-death taraması PASS.
-- [ ] Levent'in yeni gameplay görünümü için açık görsel kabulü.
+- [x] Levent rafine B10 gerçek Android 16 render'ını görerek yeni gameplay görünümüne açık görsel kabul verdi (31 Ağustos 2026; artifact `9737903231`).
+- [ ] B5/B10 gerçek insan süre/zorluk dengesi playtesti.
 - [ ] Ayrı Ready/merge onayı.
 
 ---

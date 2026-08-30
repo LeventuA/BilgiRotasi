@@ -34,21 +34,6 @@ PR #132 final incelemesinde flattened MASTER ART içindeki demo progression bilg
 
 gerçek `WordHuntProgressSnapshot` değiştiğinde yanlış bilgi gösterebiliyordu.
 
-Draft PR #150 ile production görünür state lokalde dinamik hale getirildi:
-
-## 30 Ağustos 2026 — PR #158 V5 gameplay tema checkpoint'i
-
-- Branch: `feat/kelime-avi-8x8-content-v1-20260829`.
-- Base: `release/final-closed-test-aab-1.68.8` / başlangıç doğrulamasında `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
-- Başlangıç ürün HEAD: `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
-- Sürüm: `1.68.19+109` (değişmedi).
-- Production gameplay görünümü gece limanı, lacivert-altın panel/etiket, serif başlık, responsive 8×8 grid ve alt talimat plakasıyla bağlayıcı tema referansına hizalandı.
-- Background-only mevcut asset kullanıldı; bütün referans ekranı raster UI olarak kullanılmadı.
-- 10 bölüm, 8×8 içerik, gesture/timer/bonus/soft-time/result/progression sözleşmeleri korunur.
-- Otomatik/widget ve statik kapılar PASS. QA-only head `342e246e1e47dd595c9cebb4ab52c701636f8685` için Android 16 run `33308127773` / job `99248192399` SUCCESS; artifact `9731244720` içinde yedi gameplay screenshot'ı, UI XML, logcat ve hashler bulunur.
-- B1/B5/B8/B10 64/64, gerçek ANKARA + ters BAŞKENT swipe, B5 74s soft-time ve uygulama process-failure taraması PASS. Teknik görsel kanıt PASS; Levent'in nihai görsel kabulü **DOĞRULANACAK**.
-- PR #158 Draft kalır; Ready/merge/auto-merge yoktur.
-
 - gerçek `X / 30`,
 - level 1–10 gerçek `0–3` yıldız state'i,
 - gerçek locked/open state,
@@ -75,6 +60,32 @@ Production asset contract da kullanıcı tarafından kabul edilen mimariye hizal
 `MASTER ART RASTER → TRANSPARENT INTERACTION HITBOXES → MINIMUM LOCAL STATE OVERRIDES`
 
 **Durum:** TAMAMLANDI / PR #132 FEATURE BRANCH'İNE MERGED.
+
+---
+
+## 30 Ağustos 2026 — PR #158 V5 gameplay tema checkpoint'i
+
+- Branch: `feat/kelime-avi-8x8-content-v1-20260829`.
+- Base: `release/final-closed-test-aab-1.68.8` / başlangıç doğrulamasında `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
+- Başlangıç ürün HEAD: `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
+- Sürüm: `1.68.19+109` (değişmedi).
+- Production gameplay görünümü gece limanı, lacivert-altın panel/etiket, serif başlık, responsive 8×8 grid ve alt talimat plakasıyla bağlayıcı tema referansına hizalandı.
+- Background-only mevcut asset kullanıldı; bütün referans ekranı raster UI olarak kullanılmadı.
+- 10 bölüm, 8×8 içerik, gesture/timer/bonus/soft-time/result/progression sözleşmeleri korunur.
+- Otomatik/widget ve statik kapılar PASS. QA-only head `342e246e1e47dd595c9cebb4ab52c701636f8685` için Android 16 run `33308127773` / job `99248192399` SUCCESS; artifact `9731244720` içinde yedi gameplay screenshot'ı, UI XML, logcat ve hashler bulunur.
+- B1/B5/B8/B10 64/64, gerçek ANKARA + ters BAŞKENT swipe, B5 74s soft-time ve uygulama process-failure taraması PASS. Teknik görsel kanıt PASS.
+- PR #158 Draft kalır; Ready/merge/auto-merge yoktur.
+
+## 31 Ağustos 2026 — PR #158 V5 nihai görsel kullanıcı kabulü — PASS
+
+- Refined V5 gerçek Android 16 B10 render'ı, branch HEAD `67f7365e0dfd9689f606bc990c2351a56b77899e` için run `33331395168`, artifact `9737903231` içindeki `04_B10_INITIAL.png` dosyasından doğrudan incelendi.
+- Run `33331395168` genel sonucu QA otomasyon/harness failure olduğu için teknik PASS kanıtı sayılmaz; teknik gameplay/görsel kanıtı run `33308127773` / artifact `9731244720` PASS olarak korunur.
+- Levent 31 Ağustos 2026'da rafine gece limanı / lacivert-altın premium V5 gameplay görünümüne açık görsel kabul verdi.
+- Görsel tasarım bu kabulden sonra kilitlidir; yeni açık kullanıcı talebi olmadan tema/UI yeniden çizilmez.
+- Kalan ürün kapıları: B5 60s ve B10 120s gerçek insan süre/zorluk dengesi playtesti, ayrı PR Ready kararı ve Levent'in ayrı açık merge onayıdır.
+- Production `lib/main.dart` ana navigasyon entegrasyonu hâlâ ayrı kapsam/branch/PR işidir.
+
+**Durum:** V5 TECHNICAL VISUAL PASS / FINAL USER VISUAL ACCEPTANCE PASS / HUMAN TIME-BALANCE PLAYTEST PENDING.
 
 ---
 
