@@ -42,6 +42,11 @@ void main() {
       );
       expect(workflow, contains('create_word_hunt_v5_comparisons.py'));
       expect(workflow, contains('(cd android && ./gradlew --stop)'));
+      expect(
+        workflow,
+        contains('io.flutter.embedding.android.EnableImpeller'),
+      );
+      expect(workflow, contains('android:value="false"'));
       expect(workflow, contains('ram-size: 2048M'));
       expect(workflow, contains('heap-size: 384M'));
       expect(workflow, contains('retention-days: 21'));
@@ -78,11 +83,11 @@ void main() {
       shell,
       contains(
         'timeout 10s adb shell am start \\\n'
-        '    -n "\$PACKAGE_NAME/.MainActivity" \\\n'
-        '    --ez enable-software-rendering true',
+        '    -n "\$PACKAGE_NAME/.MainActivity"',
       ),
     );
     expect(shell, isNot(contains('adb shell monkey')));
+    expect(shell, isNot(contains('enable-software-rendering')));
     expect(
       shell,
       contains('settings put secure immersive_mode_confirmations confirmed'),
@@ -92,6 +97,8 @@ void main() {
       shell,
       contains('QA selector did not become ready after bounded wait.'),
     );
+    expect(shell, contains('STARTUP_FAILURE_LOGCAT.txt'));
+    expect(shell, contains('STARTUP_FAILURE_SCREENSHOT.png'));
     expect(shell, contains('log-cell-center'));
     expect(shell, contains('log-selector-center'));
     expect(shell, contains('assert-log-grid'));

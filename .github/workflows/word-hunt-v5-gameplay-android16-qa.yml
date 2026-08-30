@@ -65,6 +65,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p android/app/src/debug
+          printf '%s\n' \
+            '<manifest xmlns:android="http://schemas.android.com/apk/res/android">' \
+            '  <application>' \
+            '    <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false" />' \
+            '  </application>' \
+            '</manifest>' \
+            > android/app/src/debug/AndroidManifest.xml
           flutter build apk --debug \
             -t tools/word_hunt_v5_gameplay_qa_main.dart \
             --dart-define=ADMOB_ENVIRONMENT=test

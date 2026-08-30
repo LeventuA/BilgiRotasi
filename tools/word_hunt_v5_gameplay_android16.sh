@@ -23,8 +23,7 @@ launch_selector() {
   local selector_log="$REPORTS/SELECTOR.logcat"
   adb shell am force-stop "$PACKAGE_NAME"
   timeout 10s adb shell am start \
-    -n "$PACKAGE_NAME/.MainActivity" \
-    --ez enable-software-rendering true >/dev/null
+    -n "$PACKAGE_NAME/.MainActivity" >/dev/null
   for attempt in $(seq 1 20); do
     sleep 1
     flutter_log > "$selector_log"
@@ -32,6 +31,9 @@ launch_selector() {
       return 0
     fi
   done
+  timeout 10s adb logcat -d -t 2000 > "$REPORTS/STARTUP_FAILURE_LOGCAT.txt" || true
+  timeout 10s adb exec-out screencap -p \
+    > "$REPORTS/STARTUP_FAILURE_SCREENSHOT.png" || true
   echo 'QA selector did not become ready after bounded wait.' >&2
   return 1
 }
