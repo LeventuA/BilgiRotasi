@@ -432,7 +432,7 @@ class _WordHuntLevelProductionScreenState
           fit: StackFit.expand,
           children: [
             Image.asset(
-              'assets/word_hunt/baslangic_limani_gameplay_bg.png',
+              'assets/word_hunt/baslangic_limani_gameplay_bg.jpg',
               key: const Key('word_hunt_production_harbor_background'),
               fit: BoxFit.cover,
               alignment: Alignment.topCenter,
