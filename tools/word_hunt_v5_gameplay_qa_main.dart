@@ -124,8 +124,39 @@ class _V5GameplayQaLevelState extends State<_V5GameplayQaLevel> {
       'timeOffset=${widget.timeOffsetSeconds}',
     );
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _logProductionCellGeometry();
       debugPrint('[WORD_HUNT_V5_QA_READY] level=${widget.levelIndex}');
     });
+  }
+
+  void _logProductionCellGeometry() {
+    var cellCount = 0;
+
+    void visit(Element element) {
+      final key = element.widget.key;
+      final match = RegExp(
+        r'^word_hunt_production_cell_(\d+)_(\d+)$',
+      ).firstMatch(key is ValueKey<String> ? key.value : '');
+      final renderObject = element.renderObject;
+      if (match != null && renderObject is RenderBox && renderObject.hasSize) {
+        final center = renderObject.localToGlobal(
+          renderObject.size.center(Offset.zero),
+        );
+        debugPrint(
+          '[WORD_HUNT_V5_QA_CELL] level=${widget.levelIndex} '
+          'row=${match.group(1)} col=${match.group(2)} '
+          'x=${center.dx.round()} y=${center.dy.round()}',
+        );
+        cellCount += 1;
+      }
+      element.visitChildren(visit);
+    }
+
+    WidgetsBinding.instance.rootElement?.visitChildren(visit);
+    debugPrint(
+      '[WORD_HUNT_V5_QA_GEOMETRY] '
+      'level=${widget.levelIndex} cells=$cellCount',
+    );
   }
 
   DateTime _qaNow() {

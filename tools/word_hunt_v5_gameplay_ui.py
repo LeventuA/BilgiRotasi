@@ -6,6 +6,9 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 BOUNDS = re.compile(r"\[(\d+),(\d+)\]\[(\d+),(\d+)\]")
+CELL_LOG = re.compile(
+    r"\[WORD_HUNT_V5_QA_CELL\] level=(\d+) row=(\d+) col=(\d+) x=(\d+) y=(\d+)"
+)
 
 
 def nodes(path):
@@ -142,6 +145,59 @@ def scan_logcat(path, package):
     print("APP_PROCESS_FAILURE_SCAN=PASS")
 
 
+def log_cell_center(path, level, row, column):
+    text = Path(path).read_text(encoding="utf-8", errors="replace")
+    matches = {
+        (int(match.group(1)), int(match.group(2)), int(match.group(3))): (
+            int(match.group(4)),
+            int(match.group(5)),
+        )
+        for match in CELL_LOG.finditer(text)
+    }
+    key = (level, row, column)
+    if key not in matches:
+        raise SystemExit(f"logged cell center not found: {key}")
+    print(*matches[key])
+
+
+def assert_log_grid(path, level):
+    text = Path(path).read_text(encoding="utf-8", errors="replace")
+    cells = {
+        (int(match.group(2)), int(match.group(3)))
+        for match in CELL_LOG.finditer(text)
+        if int(match.group(1)) == level
+    }
+    if len(cells) != 64:
+        raise SystemExit(f"expected 64 logged cells for B{level}, got {len(cells)}")
+    if f"[WORD_HUNT_V5_QA_GEOMETRY] level={level} cells=64" not in text:
+        raise SystemExit(f"B{level} geometry completion marker missing")
+    print(f"PASS B{level}: logged production cells=64")
+
+
+def assert_grid_visual_change(before_path, after_path, log_path, level):
+    from PIL import Image, ImageChops
+
+    text = Path(log_path).read_text(encoding="utf-8", errors="replace")
+    centers = [
+        (int(match.group(4)), int(match.group(5)))
+        for match in CELL_LOG.finditer(text)
+        if int(match.group(1)) == level
+    ]
+    if len(set(centers)) != 64:
+        raise SystemExit(f"expected 64 centers for visual comparison, got {len(set(centers))}")
+    xs = [point[0] for point in centers]
+    ys = [point[1] for point in centers]
+    margin = 45
+    box = (min(xs) - margin, min(ys) - margin, max(xs) + margin, max(ys) + margin)
+    before = Image.open(before_path).convert("RGB").crop(box)
+    after = Image.open(after_path).convert("RGB").crop(box)
+    diff = ImageChops.difference(before, after)
+    changed = sum(1 for pixel in diff.getdata() if max(pixel) >= 20)
+    if changed < 1000:
+        raise SystemExit(f"real gesture did not create visible grid change: {changed} pixels")
+    print(f"PASS real gesture visual change: level={level} changed_pixels={changed}")
+
+
 def main():
     if len(sys.argv) < 3:
         raise SystemExit("usage: ui.py <command> <path> ...")
@@ -165,6 +221,12 @@ def main():
         assert_png_size(path, int(sys.argv[3]), int(sys.argv[4]))
     elif command == "scan-logcat":
         scan_logcat(path, sys.argv[3])
+    elif command == "log-cell-center":
+        log_cell_center(path, int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]))
+    elif command == "assert-log-grid":
+        assert_log_grid(path, int(sys.argv[3]))
+    elif command == "assert-grid-visual-change":
+        assert_grid_visual_change(path, sys.argv[3], sys.argv[4], int(sys.argv[5]))
     else:
         raise SystemExit(f"unknown command: {command}")
 

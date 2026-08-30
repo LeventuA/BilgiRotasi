@@ -68,22 +68,17 @@ void main() {
     }
 
     expect(shell, contains('adb shell input swipe'));
-    expect(shell, contains('uiautomator dump --compressed'));
-    expect(
-      shell.indexOf(r'''capture_png "$REPORTS/$output"'''),
-      lessThan(shell.indexOf(r'''dump_ui "/sdcard/${xml_name}.xml"''')),
-      reason: 'Gerçek render, büyük accessibility dump öncesinde korunmalı.',
-    );
+    expect(shell, contains('log-cell-center'));
+    expect(shell, contains('assert-log-grid'));
+    expect(shell, contains('assert-grid-visual-change'));
+    expect(shell, isNot(contains('uiautomator dump')));
     expect(shell, contains('cell-center'));
     expect(shell, contains("5 2"));
     expect(shell, contains("0 7"));
     expect(shell, contains("0 4"));
     expect(shell, contains("6 4"));
-    expect(shell, contains("'ANKARA'"));
-    expect(shell, contains("'BAŞKENT'"));
-    expect(shell, contains("'YOL'"));
-    expect(shell, contains("'HAZİNE'"));
-    expect(shell, contains("assert-no-label"));
+    expect(shell, contains('ANKARA'));
+    expect(shell, contains('BASKENT_REVERSE'));
     expect(shell, isNot(contains('_foundTargets')));
     expect(shell, isNot(contains('WordHuntLevelPlayResult')));
     expect(

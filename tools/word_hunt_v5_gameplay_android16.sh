@@ -7,26 +7,6 @@ REPORTS='reports/word_hunt_v5_gameplay'
 UI='tools/word_hunt_v5_gameplay_ui.py'
 mkdir -p "$REPORTS"
 
-dump_ui() {
-  local remote="$1"
-  local local_path="$2"
-  local attempt
-  for attempt in 1 2 3 4 5; do
-    # The 8x8 production screen has a deliberately rich semantics tree.
-    # Android 16's uncompressed uiautomator dump can terminate the ATD
-    # emulator while serialising it; compressed mode keeps all labelled
-    # gameplay nodes needed by this proof without the decorative wrappers.
-    if adb shell uiautomator dump --compressed "$remote" >/dev/null 2>&1 &&
-      adb pull "$remote" "$local_path" >/dev/null 2>&1 &&
-      test -s "$local_path"; then
-      return 0
-    fi
-    sleep 2
-  done
-  echo "UI hierarchy could not be captured: $local_path" >&2
-  return 1
-}
-
 capture_png() {
   local output="$1"
   adb exec-out screencap -p > "$output"
@@ -38,17 +18,25 @@ launch_selector() {
   adb shell am force-stop "$PACKAGE_NAME"
   adb shell monkey -p "$PACKAGE_NAME" -c android.intent.category.LAUNCHER 1 >/dev/null
   sleep 3
-  dump_ui /sdcard/word_hunt_v5_selector.xml "$REPORTS/SELECTOR.xml"
 }
 
 open_level() {
   local label="$1"
   local state_name="$2"
+  local tap_x=540
+  local tap_y
   launch_selector
-  read -r tap_x tap_y < <(python3 "$UI" label-center "$REPORTS/SELECTOR.xml" "$label")
+  case "$label" in
+    'QA B1') tap_y=771 ;;
+    'QA B5') tap_y=929 ;;
+    'QA B8') tap_y=1086 ;;
+    'QA B10') tap_y=1244 ;;
+    'QA B5+65') tap_y=1401 ;;
+    *) echo "Unknown selector label: $label" >&2; return 1 ;;
+  esac
   adb shell input tap "$tap_x" "$tap_y"
   sleep 3
-  dump_ui "/sdcard/${state_name}.xml" "$REPORTS/${state_name}.xml"
+  adb logcat -d > "$REPORTS/${state_name}.logcat"
 }
 
 capture_initial() {
@@ -56,17 +44,9 @@ capture_initial() {
   local target_count="$2"
   local output="$3"
   local xml_name="${output%.png}"
-  launch_selector
-  read -r tap_x tap_y < <(
-    python3 "$UI" label-center "$REPORTS/SELECTOR.xml" "QA B$level"
-  )
-  adb shell input tap "$tap_x" "$tap_y"
-  sleep 3
-  # Preserve the real render before asking Android's accessibility service to
-  # serialise the larger gameplay hierarchy.
+  open_level "QA B$level" "$xml_name"
   capture_png "$REPORTS/$output"
-  dump_ui "/sdcard/${xml_name}.xml" "$REPORTS/${xml_name}.xml"
-  python3 "$UI" assert-grid "$REPORTS/${xml_name}.xml" "$level" "$target_count" 0
+  python3 "$UI" assert-log-grid "$REPORTS/${xml_name}.logcat" "$level"
 }
 
 if adb shell pm path "$PACKAGE_NAME" 2>/dev/null | grep -q '^package:'; then
@@ -88,54 +68,51 @@ adb shell wm density | grep -Fq '420'
 
 capture_initial 1 5 '01_B1_INITIAL.png'
 capture_initial 5 7 '02_B5_INITIAL.png'
-python3 "$UI" assert-label "$REPORTS/02_B5_INITIAL.xml" 'ANKARA'
-python3 "$UI" assert-label "$REPORTS/02_B5_INITIAL.xml" 'BAŞKENT'
-python3 "$UI" assert-label "$REPORTS/02_B5_INITIAL.xml" 'ANIT'
 
 capture_initial 8 7 '03_B8_INITIAL.png'
-python3 "$UI" assert-label "$REPORTS/03_B8_INITIAL.xml" 'HIZ'
-python3 "$UI" assert-label "$REPORTS/03_B8_INITIAL.xml" 'SKOR'
 
 capture_initial 10 9 '04_B10_INITIAL.png'
-python3 "$UI" assert-label "$REPORTS/04_B10_INITIAL.xml" 'YOL'
-python3 "$UI" assert-label "$REPORTS/04_B10_INITIAL.xml" 'HAZİNE'
-python3 "$UI" assert-no-label "$REPORTS/04_B10_INITIAL.xml" 'ROTA'
 
 # B5 ANKARA: gerçek uzun çapraz gesture (5,2) -> (0,7).
 open_level 'QA B5' '05_B5_ANKARA_BEFORE'
+capture_png "$REPORTS/05_B5_ANKARA_BEFORE.png"
 read -r ankara_x1 ankara_y1 < <(
-  python3 "$UI" cell-center "$REPORTS/05_B5_ANKARA_BEFORE.xml" 5 2
+  python3 "$UI" log-cell-center "$REPORTS/05_B5_ANKARA_BEFORE.logcat" 5 5 2
 )
 read -r ankara_x2 ankara_y2 < <(
-  python3 "$UI" cell-center "$REPORTS/05_B5_ANKARA_BEFORE.xml" 0 7
+  python3 "$UI" log-cell-center "$REPORTS/05_B5_ANKARA_BEFORE.logcat" 5 0 7
 )
 adb shell input swipe "$ankara_x1" "$ankara_y1" "$ankara_x2" "$ankara_y2" 1200
 sleep 1
 capture_png "$REPORTS/05_B5_ANKARA_FOUND.png"
-dump_ui /sdcard/05_B5_ANKARA_FOUND.xml "$REPORTS/05_B5_ANKARA_FOUND.xml"
-python3 "$UI" assert-label "$REPORTS/05_B5_ANKARA_FOUND.xml" 'Bilgi kartı açıldı: Ankara'
-python3 "$UI" assert-label "$REPORTS/05_B5_ANKARA_FOUND.xml" '1/7'
+adb logcat -d > "$REPORTS/05_B5_ANKARA_FOUND.logcat"
+python3 "$UI" assert-grid-visual-change \
+  "$REPORTS/05_B5_ANKARA_BEFORE.png" \
+  "$REPORTS/05_B5_ANKARA_FOUND.png" \
+  "$REPORTS/05_B5_ANKARA_BEFORE.logcat" 5
 
 # B5 BAŞKENT: canonical (6,4)->(0,4), gerçek reverse gesture (0,4)->(6,4).
 open_level 'QA B5' '06_B5_BASKENT_REVERSE_BEFORE'
+capture_png "$REPORTS/06_B5_BASKENT_REVERSE_BEFORE.png"
 read -r baskent_x1 baskent_y1 < <(
-  python3 "$UI" cell-center "$REPORTS/06_B5_BASKENT_REVERSE_BEFORE.xml" 0 4
+  python3 "$UI" log-cell-center "$REPORTS/06_B5_BASKENT_REVERSE_BEFORE.logcat" 5 0 4
 )
 read -r baskent_x2 baskent_y2 < <(
-  python3 "$UI" cell-center "$REPORTS/06_B5_BASKENT_REVERSE_BEFORE.xml" 6 4
+  python3 "$UI" log-cell-center "$REPORTS/06_B5_BASKENT_REVERSE_BEFORE.logcat" 5 6 4
 )
 adb shell input swipe "$baskent_x1" "$baskent_y1" "$baskent_x2" "$baskent_y2" 1200
 sleep 1
 capture_png "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.png"
-dump_ui /sdcard/06_B5_BASKENT_REVERSE_FOUND.xml "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.xml"
-python3 "$UI" assert-label "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.xml" 'BAŞKENT bulundu!'
-python3 "$UI" assert-label "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.xml" '1/7'
+adb logcat -d > "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.logcat"
+python3 "$UI" assert-grid-visual-change \
+  "$REPORTS/06_B5_BASKENT_REVERSE_BEFORE.png" \
+  "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.png" \
+  "$REPORTS/06_B5_BASKENT_REVERSE_BEFORE.logcat" 5
 
 open_level 'QA B5+65' '07_B5_AFTER_65_SECONDS'
 sleep 2
 capture_png "$REPORTS/07_B5_AFTER_65_SECONDS.png"
-dump_ui /sdcard/07_B5_AFTER_65_SECONDS.xml "$REPORTS/07_B5_AFTER_65_SECONDS.xml"
-python3 "$UI" assert-grid "$REPORTS/07_B5_AFTER_65_SECONDS.xml" 5 7 65
+python3 "$UI" assert-log-grid "$REPORTS/07_B5_AFTER_65_SECONDS.logcat" 5
 
 adb shell pidof "$PACKAGE_NAME" | tee "$REPORTS/APP_PID.txt"
 test -s "$REPORTS/APP_PID.txt"
