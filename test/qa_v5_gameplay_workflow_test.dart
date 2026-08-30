@@ -68,6 +68,14 @@ void main() {
     }
 
     expect(shell, contains('adb shell input swipe'));
+    expect(
+      shell,
+      contains(
+        'timeout 20s adb shell am start -W \\\n'
+        '    -n "\$PACKAGE_NAME/.MainActivity"',
+      ),
+    );
+    expect(shell, isNot(contains('adb shell monkey')));
     expect(shell, contains('log-cell-center'));
     expect(shell, contains('assert-log-grid'));
     expect(shell, contains('assert-grid-visual-change'));
