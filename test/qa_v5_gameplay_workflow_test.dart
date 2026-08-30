@@ -89,6 +89,7 @@ void main() {
       shell,
       contains('settings put secure immersive_mode_confirmations confirmed'),
     );
+    expect(shell, contains('adb logcat -G 16M'));
     expect(shell, contains('[WORD_HUNT_V5_QA_SELECTOR_READY]'));
     expect(
       shell,

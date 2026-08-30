@@ -94,6 +94,7 @@ if adb shell pm path "$PACKAGE_NAME" 2>/dev/null | grep -q '^package:'; then
 fi
 adb install "$APK" >/dev/null
 adb shell settings put secure immersive_mode_confirmations confirmed
+adb logcat -G 16M
 adb logcat -c
 
 {
