@@ -51,11 +51,11 @@ open_level() {
   local attempt
   launch_selector
   case "$label" in
-    'QA B1') selector_id='1'; marker='level=1 rows=8 cols=8' ;;
-    'QA B5') selector_id='5'; marker='level=5 rows=8 cols=8' ;;
-    'QA B8') selector_id='8'; marker='level=8 rows=8 cols=8' ;;
-    'QA B10') selector_id='10'; marker='level=10 rows=8 cols=8' ;;
-    'QA B5+65') selector_id='5_soft_time'; marker='level=5 rows=8 cols=8 targets=7 bonus=1 timeOffset=65' ;;
+    'QA B1') selector_id='1'; marker='[WORD_HUNT_V5_QA_READY] level=1 timeOffset=0 cells=64' ;;
+    'QA B5') selector_id='5'; marker='[WORD_HUNT_V5_QA_READY] level=5 timeOffset=0 cells=64' ;;
+    'QA B8') selector_id='8'; marker='[WORD_HUNT_V5_QA_READY] level=8 timeOffset=0 cells=64' ;;
+    'QA B10') selector_id='10'; marker='[WORD_HUNT_V5_QA_READY] level=10 timeOffset=0 cells=64' ;;
+    'QA B5+65') selector_id='5_soft_time'; marker='[WORD_HUNT_V5_QA_READY] level=5 timeOffset=65 cells=64' ;;
     *) echo "Unknown selector label: $label" >&2; return 1 ;;
   esac
   flutter_log > "$selector_log"

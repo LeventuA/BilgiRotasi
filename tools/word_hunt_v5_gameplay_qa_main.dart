@@ -152,13 +152,29 @@ class _V5GameplayQaLevelState extends State<_V5GameplayQaLevel> {
       'bonus=${level.bonusWords.length} '
       'timeOffset=${widget.timeOffsetSeconds}',
     );
+    _scheduleProductionCellGeometryProbe();
+  }
+
+  void _scheduleProductionCellGeometryProbe([int attempt = 1]) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _logProductionCellGeometry();
-      debugPrint('[WORD_HUNT_V5_QA_READY] level=${widget.levelIndex}');
+      if (!mounted) return;
+      final cellCount = _logProductionCellGeometry();
+      if (cellCount == 64) {
+        debugPrint(
+          '[WORD_HUNT_V5_QA_READY] level=${widget.levelIndex} '
+          'timeOffset=${widget.timeOffsetSeconds} cells=64',
+        );
+        return;
+      }
+      if (attempt < 20) {
+        Future<void>.delayed(const Duration(milliseconds: 250), () {
+          if (mounted) _scheduleProductionCellGeometryProbe(attempt + 1);
+        });
+      }
     });
   }
 
-  void _logProductionCellGeometry() {
+  int _logProductionCellGeometry() {
     var cellCount = 0;
     final pixelRatio =
         WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio;
@@ -189,6 +205,7 @@ class _V5GameplayQaLevelState extends State<_V5GameplayQaLevel> {
       '[WORD_HUNT_V5_QA_GEOMETRY] '
       'level=${widget.levelIndex} cells=$cellCount',
     );
+    return cellCount;
   }
 
   DateTime _qaNow() {
