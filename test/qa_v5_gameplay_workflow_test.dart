@@ -98,6 +98,14 @@ void main() {
     expect(shell, contains('STARTUP_FAILURE_SCREENSHOT.png'));
     expect(shell, contains('log-cell-center'));
     expect(shell, contains('log-selector-center'));
+    expect(shell, contains('flutter_log > "\$REPORTS/\${state_name}.logcat"'));
+    expect(
+      shell,
+      contains(
+        'after_count=\$(grep -Fc "\$marker" '
+        '"\$REPORTS/\${state_name}.logcat" || true)',
+      ),
+    );
     expect(shell, contains('assert-log-grid'));
     expect(shell, contains('assert-grid-visual-change'));
     expect(shell, isNot(contains('uiautomator dump')));

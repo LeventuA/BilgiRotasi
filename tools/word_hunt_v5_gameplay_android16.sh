@@ -66,7 +66,8 @@ open_level() {
   for attempt in 1 2 3; do
     adb shell input tap "$tap_x" "$tap_y"
     sleep 1
-    after_count=$(flutter_log | grep -Fc "$marker" || true)
+    flutter_log > "$REPORTS/${state_name}.logcat"
+    after_count=$(grep -Fc "$marker" "$REPORTS/${state_name}.logcat" || true)
     if (( after_count > before_count )); then
       sleep 2
       break
@@ -76,7 +77,6 @@ open_level() {
     echo "Gameplay level did not open after bounded taps: $label" >&2
     return 1
   fi
-  flutter_log > "$REPORTS/${state_name}.logcat"
 }
 
 capture_initial() {
