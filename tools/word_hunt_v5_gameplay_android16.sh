@@ -58,7 +58,6 @@ open_level() {
     'QA B5+65') selector_id='5_soft_time'; marker='[WORD_HUNT_V5_QA_READY] level=5 timeOffset=65 cells=64' ;;
     *) echo "Unknown selector label: $label" >&2; return 1 ;;
   esac
-  flutter_log > "$selector_log"
   read -r tap_x tap_y < <(
     python3 "$UI" log-selector-center "$selector_log" "$selector_id"
   )

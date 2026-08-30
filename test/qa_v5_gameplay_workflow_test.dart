@@ -106,6 +106,10 @@ void main() {
     expect(shell, contains('STARTUP_FAILURE_SCREENSHOT.png'));
     expect(shell, contains('log-cell-center'));
     expect(shell, contains('log-selector-center'));
+    expect(
+      RegExp(r'flutter_log > "\$selector_log"').allMatches(shell),
+      hasLength(1),
+    );
     expect(shell, contains('flutter_log > "\$REPORTS/\${state_name}.logcat"'));
     expect(
       shell,
