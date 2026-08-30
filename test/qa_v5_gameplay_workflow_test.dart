@@ -28,7 +28,7 @@ void main() {
 
       expect(workflow, contains('workflow_dispatch:'));
       expect(workflow, contains('api-level: 36'));
-      expect(workflow, contains('target: aosp_atd'));
+      expect(workflow, contains('target: google_apis'));
       expect(workflow, contains('profile: pixel_2'));
       expect(workflow, contains('adb shell wm size 1080x1920'));
       expect(workflow, contains('adb shell wm density 420'));
