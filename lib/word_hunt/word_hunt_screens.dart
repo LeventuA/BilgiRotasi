@@ -10,11 +10,9 @@ import 'word_hunt_scoring.dart';
 import 'word_hunt_starter_content.dart';
 
 const _harborNavy = Color(0xFF061425);
-const _harborPanel = Color(0xEE0D223B);
-const _harborPanelDeep = Color(0xF207172A);
-const _harborBronze = Color(0xFFC18A45);
 const _harborGold = Color(0xFFFFCA62);
 const _harborCream = Color(0xFFFFF1D0);
+const _harborGridSpacing = 3.0;
 
 class WordHuntLevelPlayResult {
   const WordHuntLevelPlayResult({
@@ -434,12 +432,25 @@ class _WordHuntLevelProductionScreenState
           fit: StackFit.expand,
           children: [
             Image.asset(
-              'assets/word_hunt/baslangic_limani_bg.jpg',
+              'assets/word_hunt/baslangic_limani_gameplay_bg.png',
               key: const Key('word_hunt_production_harbor_background'),
               fit: BoxFit.cover,
               alignment: Alignment.topCenter,
             ),
-            const ColoredBox(color: Color(0x66020A17)),
+            const DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Color(0x18010812),
+                    Color(0x30010812),
+                    Color(0x52010812),
+                  ],
+                  stops: <double>[0, .48, 1],
+                ),
+              ),
+            ),
             SafeArea(
               child: LayoutBuilder(
                 builder: (context, viewport) {
@@ -485,33 +496,54 @@ class _WordHuntLevelProductionScreenState
                           ],
                         ),
                         const SizedBox(height: 7),
-                        Wrap(
+                        Column(
                           key: const Key('word_hunt_production_word_plates'),
-                          alignment: WrapAlignment.center,
-                          spacing: 5,
-                          runSpacing: 5,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            for (final word in widget.level.targetWords)
-                              KeyedSubtree(
-                                key: Key(
-                                  'word_hunt_production_target_${word}_${_foundTargets.contains(word) ? 'found' : 'pending'}',
-                                ),
-                                child: _HarborWordPlate(
-                                  word: word,
-                                  found: _foundTargets.contains(word),
-                                ),
+                            Wrap(
+                              key: const Key(
+                                'word_hunt_production_target_plates',
                               ),
-                            for (final word in widget.level.bonusWords)
-                              KeyedSubtree(
-                                key: Key(
-                                  'word_hunt_production_bonus_${word}_${_foundBonus.contains(word) ? 'found' : 'pending'}',
+                              alignment: WrapAlignment.center,
+                              spacing: 5,
+                              runSpacing: 5,
+                              children: [
+                                for (final word in widget.level.targetWords)
+                                  KeyedSubtree(
+                                    key: Key(
+                                      'word_hunt_production_target_${word}_${_foundTargets.contains(word) ? 'found' : 'pending'}',
+                                    ),
+                                    child: _HarborWordPlate(
+                                      word: word,
+                                      found: _foundTargets.contains(word),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            if (widget.level.bonusWords.isNotEmpty) ...[
+                              const SizedBox(height: 5),
+                              Wrap(
+                                key: const Key(
+                                  'word_hunt_production_bonus_plates',
                                 ),
-                                child: _HarborWordPlate(
-                                  word: word,
-                                  found: _foundBonus.contains(word),
-                                  bonus: true,
-                                ),
+                                alignment: WrapAlignment.center,
+                                spacing: 5,
+                                runSpacing: 5,
+                                children: [
+                                  for (final word in widget.level.bonusWords)
+                                    KeyedSubtree(
+                                      key: Key(
+                                        'word_hunt_production_bonus_${word}_${_foundBonus.contains(word) ? 'found' : 'pending'}',
+                                      ),
+                                      child: _HarborWordPlate(
+                                        word: word,
+                                        found: _foundBonus.contains(word),
+                                        bonus: true,
+                                      ),
+                                    ),
+                                ],
                               ),
+                            ],
                           ],
                         ),
                         const SizedBox(height: 7),
@@ -525,7 +557,8 @@ class _WordHuntLevelProductionScreenState
                               final gridSize = Size.square(dimension);
                               final cellExtent =
                                   (dimension -
-                                      (widget.level.columnCount - 1) * 4) /
+                                      (widget.level.columnCount - 1) *
+                                          _harborGridSpacing) /
                                   widget.level.columnCount;
                               return Center(
                                 child: SizedBox.square(
@@ -553,8 +586,9 @@ class _WordHuntLevelProductionScreenState
                                           SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount:
                                                 widget.level.columnCount,
-                                            crossAxisSpacing: 4,
-                                            mainAxisSpacing: 4,
+                                            crossAxisSpacing:
+                                                _harborGridSpacing,
+                                            mainAxisSpacing: _harborGridSpacing,
                                           ),
                                       itemCount:
                                           widget.level.rowCount *
@@ -1415,7 +1449,7 @@ class _HarborGameplayHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 58,
+      height: 62,
       child: Row(
         children: [
           IconButton(
@@ -1423,12 +1457,19 @@ class _HarborGameplayHeader extends StatelessWidget {
             onPressed: onBack,
             style: IconButton.styleFrom(
               foregroundColor: _harborGold,
-              backgroundColor: const Color(0xA00A1B30),
-              side: const BorderSide(color: _harborBronze),
+              minimumSize: const Size(42, 42),
+              padding: EdgeInsets.zero,
             ),
-            icon: const Icon(Icons.arrow_back_rounded),
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              size: 34,
+              shadows: <Shadow>[
+                Shadow(color: Color(0xAAFFB83D), blurRadius: 7),
+                Shadow(color: Color(0xCC000000), blurRadius: 3),
+              ],
+            ),
           ),
-          const SizedBox(width: 11),
+          const SizedBox(width: 9),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -1439,20 +1480,24 @@ class _HarborGameplayHeader extends StatelessWidget {
                   style: const TextStyle(
                     color: _harborCream,
                     fontFamily: 'serif',
-                    fontSize: 27,
+                    fontSize: 30,
                     height: 1,
-                    fontWeight: FontWeight.w800,
-                    shadows: [Shadow(color: Color(0xCC000000), blurRadius: 8)],
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: .2,
+                    shadows: [
+                      Shadow(color: Color(0xE0000000), blurRadius: 8),
+                      Shadow(color: Color(0x44FFCA62), blurRadius: 4),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 5),
                 const Text(
                   'Başlangıç Limanı',
                   style: TextStyle(
-                    color: Color(0xFFD8C7A5),
+                    color: Color(0xFF98A9B8),
                     fontFamily: 'serif',
-                    fontSize: 14,
-                    letterSpacing: .2,
+                    fontSize: 13.5,
+                    letterSpacing: .25,
                     shadows: [Shadow(color: Color(0xCC000000), blurRadius: 6)],
                   ),
                 ),
@@ -1480,42 +1525,99 @@ class _HarborMetricPlate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 43,
-      padding: const EdgeInsets.symmetric(horizontal: 6),
+      height: 45,
+      padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
-        color: _harborPanel,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: _harborBronze, width: 1.2),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: <Color>[
+            Color(0xFFFFD47A),
+            Color(0xFF7D4E20),
+            Color(0xFFC18A45),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFF5A3418), width: 1),
         boxShadow: const [
           BoxShadow(
-            color: Color(0xB0000000),
-            blurRadius: 7,
-            offset: Offset(0, 3),
+            color: Color(0xC8000000),
+            blurRadius: 9,
+            offset: Offset(0, 4),
           ),
-          BoxShadow(color: Color(0x556A401C), blurRadius: 2),
+          BoxShadow(color: Color(0x44FFB83D), blurRadius: 5),
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 18, color: _harborGold),
-          const SizedBox(width: 6),
-          Flexible(
-            child: Text(
-              label,
-              key: textKey,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: _harborCream,
-                fontFamily: 'serif',
-                fontSize: 12.5,
-                fontWeight: FontWeight.w800,
-              ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 6),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: <Color>[Color(0xF21A354D), Color(0xF2081B30)],
+          ),
+          borderRadius: BorderRadius.circular(13),
+          border: Border.all(color: const Color(0xFF62462B), width: 1),
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Color(0xAA000000),
+              blurRadius: 5,
+              spreadRadius: -2,
+              offset: Offset(0, 2),
             ),
-          ),
+          ],
+        ),
+        child: Stack(
+          children: [
+            const Positioned(left: 5, top: 5, child: _HarborRivet()),
+            const Positioned(right: 5, bottom: 5, child: _HarborRivet()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, size: 18, color: _harborGold),
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    label,
+                    key: textKey,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: _harborCream,
+                      fontFamily: 'serif',
+                      fontSize: 13,
+                      fontWeight: FontWeight.w900,
+                      shadows: <Shadow>[
+                        Shadow(color: Color(0xCC000000), blurRadius: 3),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _HarborRivet extends StatelessWidget {
+  const _HarborRivet();
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: RadialGradient(
+          colors: <Color>[Color(0xFFFFD47A), Color(0xFF6D431F)],
+        ),
+        boxShadow: <BoxShadow>[
+          BoxShadow(color: Color(0x99000000), blurRadius: 2),
         ],
       ),
+      child: const SizedBox.square(dimension: 3.5),
     );
   }
 }
@@ -1533,51 +1635,92 @@ class _HarborWordPlate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final accent = bonus ? const Color(0xFFFFD76E) : _harborBronze;
+    final outerBright =
+        found || bonus ? const Color(0xFFFFD76E) : const Color(0xFFD5A15D);
+    final outerDark = found ? const Color(0xFF7A4816) : const Color(0xFF634020);
     return AnimatedContainer(
       duration: const Duration(milliseconds: 160),
-      constraints: const BoxConstraints(minHeight: 29),
-      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+      constraints: const BoxConstraints(minHeight: 34),
+      padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
-        color: found ? const Color(0xE06B4617) : _harborPanelDeep,
-        borderRadius: BorderRadius.circular(13),
-        border: Border.all(color: found ? _harborGold : accent, width: 1.1),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: <Color>[outerBright, outerDark, outerBright],
+        ),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: const Color(0xFF4C2C13), width: 1),
         boxShadow: [
           const BoxShadow(
-            color: Color(0xA0000000),
-            blurRadius: 5,
-            offset: Offset(0, 2),
+            color: Color(0xB8000000),
+            blurRadius: 6,
+            offset: Offset(0, 3),
           ),
-          if (found) const BoxShadow(color: Color(0x99FFB83D), blurRadius: 7),
+          if (found || bonus)
+            BoxShadow(
+              color: const Color(0x66FFB83D),
+              blurRadius: found ? 9 : 5,
+            ),
         ],
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (bonus) ...[
-            Icon(
-              found ? Icons.star_rounded : Icons.auto_awesome_rounded,
-              key: Key('word_hunt_production_bonus_icon_$word'),
-              size: 14,
-              color: _harborGold,
-            ),
-            const SizedBox(width: 4),
-          ] else if (found) ...[
-            const Icon(Icons.check_rounded, size: 14, color: _harborGold),
-            const SizedBox(width: 4),
-          ],
-          Text(
-            word,
-            style: TextStyle(
-              color: found ? const Color(0xFFFFE2A0) : _harborCream,
-              fontFamily: 'serif',
-              fontSize: 11.5,
-              height: 1,
-              fontWeight: FontWeight.w800,
-              letterSpacing: .15,
-            ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors:
+                found
+                    ? const <Color>[Color(0xFF9B6B24), Color(0xFF59350F)]
+                    : const <Color>[Color(0xFF17324A), Color(0xFF07182A)],
           ),
-        ],
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: found ? const Color(0xFFFFDA7A) : const Color(0xFF5A432C),
+          ),
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Color(0x8A000000),
+              blurRadius: 4,
+              spreadRadius: -1,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (bonus) ...[
+              Icon(
+                found ? Icons.star_rounded : Icons.auto_awesome_rounded,
+                key: Key('word_hunt_production_bonus_icon_$word'),
+                size: 15,
+                color: _harborGold,
+                shadows: const <Shadow>[
+                  Shadow(color: Color(0xAAFFB83D), blurRadius: 6),
+                ],
+              ),
+              const SizedBox(width: 5),
+            ] else if (found) ...[
+              const Icon(Icons.check_rounded, size: 15, color: _harborGold),
+              const SizedBox(width: 5),
+            ],
+            Text(
+              word,
+              style: TextStyle(
+                color: found ? const Color(0xFFFFE7AE) : _harborCream,
+                fontFamily: 'serif',
+                fontSize: 12.5,
+                height: 1,
+                fontWeight: FontWeight.w900,
+                letterSpacing: .2,
+                shadows: const <Shadow>[
+                  Shadow(color: Color(0xD0000000), blurRadius: 3),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -1605,64 +1748,108 @@ class _HarborGridCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final background =
+    final active = selected || found;
+    final outerColors =
         error
-            ? const Color(0xFF7A2E18)
-            : selected
-            ? const Color(0xFF8A5A16)
-            : found
-            ? const Color(0xFF684817)
-            : const Color(0xF20C223D);
-    final border =
+            ? const <Color>[Color(0xFFFFB06A), Color(0xFF7A2E18)]
+            : active
+            ? const <Color>[Color(0xFFFFE08A), Color(0xFF8A5317)]
+            : const <Color>[Color(0xFFD3A15D), Color(0xFF5B391C)];
+    final innerColors =
         error
-            ? const Color(0xFFFF8A4C)
-            : selected || found
-            ? _harborGold
-            : _harborBronze;
+            ? const <Color>[Color(0xFF8B3B20), Color(0xFF4A1A10)]
+            : active
+            ? const <Color>[Color(0xFF9C6B24), Color(0xFF68400F)]
+            : const <Color>[Color(0xFF17344E), Color(0xFF07192D)];
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 120),
       alignment: Alignment.center,
+      padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(math.max(6, extent * .16)),
-        border: Border.all(color: border, width: selected || found ? 1.7 : 1),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: outerColors,
+        ),
+        borderRadius: BorderRadius.circular(math.max(6, extent * .14)),
+        border: Border.all(color: const Color(0xFF4A2A12), width: 1),
         boxShadow: [
           const BoxShadow(
-            color: Color(0xC0000000),
-            blurRadius: 4,
-            offset: Offset(0, 2),
+            color: Color(0xD0000000),
+            blurRadius: 6,
+            offset: Offset(0, 3),
           ),
-          if (selected || found)
-            const BoxShadow(color: Color(0xAAFFB83D), blurRadius: 7),
+          if (active)
+            const BoxShadow(
+              color: Color(0xB0FFB83D),
+              blurRadius: 9,
+              spreadRadius: .3,
+            ),
         ],
       ),
-      child: Stack(
-        fit: StackFit.expand,
-        alignment: Alignment.center,
-        children: [
-          Center(
-            child: Text(
-              letter,
-              style: TextStyle(
-                color: _harborCream,
-                fontFamily: 'serif',
-                fontSize: (extent * .48).clamp(17, 24),
-                fontWeight: FontWeight.w800,
-                height: 1,
-                shadows: const [
-                  Shadow(color: Color(0xCC000000), blurRadius: 3),
-                ],
-              ),
-            ),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: innerColors,
           ),
-          if (error)
-            IgnorePointer(
-              child: SizedBox.expand(
-                key: Key('word_hunt_production_error_cell_${row}_$column'),
+          borderRadius: BorderRadius.circular(math.max(4, extent * .11)),
+          border: Border.all(
+            color: active ? const Color(0xFFFFD56A) : const Color(0xFF5B4935),
+            width: active ? 1.2 : .8,
+          ),
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Color(0x9A000000),
+              blurRadius: 4,
+              spreadRadius: -1,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Stack(
+          fit: StackFit.expand,
+          alignment: Alignment.center,
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: FractionallySizedBox(
+                widthFactor: .72,
+                child: Container(
+                  height: 1,
+                  margin: const EdgeInsets.only(top: 2),
+                  color:
+                      active
+                          ? const Color(0x99FFF0BC)
+                          : const Color(0x6688A0B4),
+                ),
               ),
             ),
-        ],
+            Center(
+              child: Text(
+                letter,
+                style: TextStyle(
+                  color: _harborCream,
+                  fontFamily: 'serif',
+                  fontSize: (extent * .46).clamp(17, 24),
+                  fontWeight: FontWeight.w900,
+                  height: 1,
+                  shadows: const <Shadow>[
+                    Shadow(color: Color(0xE0000000), blurRadius: 3),
+                  ],
+                ),
+              ),
+            ),
+            if (error)
+              IgnorePointer(
+                child: SizedBox.expand(
+                  key: Key('word_hunt_production_error_cell_${row}_$column'),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -1677,43 +1864,80 @@ class _HarborInstructionPlate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: const Key('word_hunt_production_instruction_plate'),
-      constraints: const BoxConstraints(minHeight: 48),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      constraints: const BoxConstraints(minHeight: 50),
+      padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
-        color: _harborPanel,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: _harborBronze, width: 1.2),
+        gradient: const LinearGradient(
+          colors: <Color>[
+            Color(0xFFD1A05B),
+            Color(0xFF60401F),
+            Color(0xFFE0B369),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFF4A2D16), width: 1),
         boxShadow: const [
           BoxShadow(
-            color: Color(0xB0000000),
-            blurRadius: 7,
-            offset: Offset(0, 3),
+            color: Color(0xC8000000),
+            blurRadius: 9,
+            offset: Offset(0, 4),
           ),
+          BoxShadow(color: Color(0x44FFB83D), blurRadius: 5),
         ],
       ),
-      child: Row(
-        children: [
-          const Icon(Icons.anchor_rounded, color: _harborGold, size: 22),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              status,
-              key: const Key('word_hunt_production_status'),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: _harborCream,
-                fontFamily: 'serif',
-                fontSize: 11.5,
-                height: 1.2,
-                fontWeight: FontWeight.w700,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: <Color>[Color(0xF218354F), Color(0xF2081A2E)],
+          ),
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: const Color(0xFF5D4934), width: 1),
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Color(0x99000000),
+              blurRadius: 4,
+              spreadRadius: -1,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            const Icon(
+              Icons.anchor_rounded,
+              color: _harborGold,
+              size: 23,
+              shadows: <Shadow>[
+                Shadow(color: Color(0x88FFB83D), blurRadius: 5),
+              ],
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                status,
+                key: const Key('word_hunt_production_status'),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  color: _harborCream,
+                  fontFamily: 'serif',
+                  fontSize: 12,
+                  height: 1.2,
+                  fontWeight: FontWeight.w800,
+                  shadows: <Shadow>[
+                    Shadow(color: Color(0xD0000000), blurRadius: 3),
+                  ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 8),
-          const Icon(Icons.explore_outlined, color: _harborBronze, size: 22),
-        ],
+            const SizedBox(width: 8),
+            const Icon(Icons.explore_outlined, color: _harborGold, size: 23),
+          ],
+        ),
       ),
     );
   }

@@ -104,6 +104,13 @@ void main() {
         find.byKey(const Key('word_hunt_production_harbor_background')),
         findsOneWidget,
       );
+      final background = tester.widget<Image>(
+        find.byKey(const Key('word_hunt_production_harbor_background')),
+      );
+      expect(
+        (background.image as AssetImage).assetName,
+        'assets/word_hunt/baslangic_limani_gameplay_bg.png',
+      );
       expect(
         find.byKey(const Key('word_hunt_production_instruction_plate')),
         findsOneWidget,
@@ -149,6 +156,26 @@ void main() {
           find.byKey(const Key('word_hunt_production_cell_7_7')),
           findsOneWidget,
         );
+
+        final metricsRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_progress')),
+        );
+        final targetsRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_target_plates')),
+        );
+        final bonusRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_bonus_plates')),
+        );
+        final gridRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_grid')),
+        );
+        final instructionRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_instruction_plate')),
+        );
+        expect(metricsRect.height, greaterThanOrEqualTo(44));
+        expect(targetsRect.bottom, lessThan(bonusRect.top));
+        expect(bonusRect.bottom, lessThan(gridRect.top));
+        expect(gridRect.bottom, lessThan(instructionRect.top));
 
         final viewport = Offset.zero & surface;
         for (var row = 0; row < 8; row++) {
