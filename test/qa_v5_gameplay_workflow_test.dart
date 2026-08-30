@@ -68,6 +68,12 @@ void main() {
     }
 
     expect(shell, contains('adb shell input swipe'));
+    expect(shell, contains('uiautomator dump --compressed'));
+    expect(
+      shell.indexOf('capture_png "$REPORTS/$output"'),
+      lessThan(shell.indexOf('dump_ui "/sdcard/${xml_name}.xml"')),
+      reason: 'Gerçek render, büyük accessibility dump öncesinde korunmalı.',
+    );
     expect(shell, contains('cell-center'));
     expect(shell, contains("5 2"));
     expect(shell, contains("0 7"));

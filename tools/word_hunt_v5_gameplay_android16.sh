@@ -12,7 +12,11 @@ dump_ui() {
   local local_path="$2"
   local attempt
   for attempt in 1 2 3 4 5; do
-    if adb shell uiautomator dump "$remote" >/dev/null 2>&1 &&
+    # The 8x8 production screen has a deliberately rich semantics tree.
+    # Android 16's uncompressed uiautomator dump can terminate the ATD
+    # emulator while serialising it; compressed mode keeps all labelled
+    # gameplay nodes needed by this proof without the decorative wrappers.
+    if adb shell uiautomator dump --compressed "$remote" >/dev/null 2>&1 &&
       adb pull "$remote" "$local_path" >/dev/null 2>&1 &&
       test -s "$local_path"; then
       return 0
@@ -52,8 +56,16 @@ capture_initial() {
   local target_count="$2"
   local output="$3"
   local xml_name="${output%.png}"
-  open_level "QA B$level" "$xml_name"
+  launch_selector
+  read -r tap_x tap_y < <(
+    python3 "$UI" label-center "$REPORTS/SELECTOR.xml" "QA B$level"
+  )
+  adb shell input tap "$tap_x" "$tap_y"
+  sleep 3
+  # Preserve the real render before asking Android's accessibility service to
+  # serialise the larger gameplay hierarchy.
   capture_png "$REPORTS/$output"
+  dump_ui "/sdcard/${xml_name}.xml" "$REPORTS/${xml_name}.xml"
   python3 "$UI" assert-grid "$REPORTS/${xml_name}.xml" "$level" "$target_count" 0
 }
 
