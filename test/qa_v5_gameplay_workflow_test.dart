@@ -81,6 +81,11 @@ void main() {
       ),
     );
     expect(shell, isNot(contains('adb shell monkey')));
+    expect(shell, contains('[WORD_HUNT_V5_QA_SELECTOR_READY]'));
+    expect(
+      shell,
+      contains('QA selector did not become ready after bounded wait.'),
+    );
     expect(shell, contains('log-cell-center'));
     expect(shell, contains('log-selector-center'));
     expect(shell, contains('assert-log-grid'));

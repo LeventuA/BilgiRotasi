@@ -19,10 +19,20 @@ flutter_log() {
 }
 
 launch_selector() {
+  local attempt
+  local selector_log="$REPORTS/SELECTOR.logcat"
   adb shell am force-stop "$PACKAGE_NAME"
   timeout 10s adb shell am start \
     -n "$PACKAGE_NAME/.MainActivity" >/dev/null
-  sleep 3
+  for attempt in $(seq 1 20); do
+    sleep 1
+    flutter_log > "$selector_log"
+    if grep -Fq '[WORD_HUNT_V5_QA_SELECTOR_READY]' "$selector_log"; then
+      return 0
+    fi
+  done
+  echo 'QA selector did not become ready after bounded wait.' >&2
+  return 1
 }
 
 open_level() {
