@@ -127,7 +127,18 @@
 - Bölüm 1–10 aynı ana görsel kimliği taşır; ileride yalnız küçük atmosfer varyasyonları yapılabilir.
 - 8×8 grid, target/bonus içerikleri, path/scoring/gesture motoru ve süre sözleşmeleri tema nedeniyle değiştirilmez.
 - Tema uygulaması ayrı clean branch üzerinde yürütülür: `feat/kelime-avi-baslangic-limani-theme-clean-v1-20260829`.
-- Doğrulanmış `word_hunt_screens.dart` doğrudan yeniden yazılmaz; temalı wrapper mevcut production ekranını sarar ve `word_hunt_gameplay_flow.dart` varsayılan açılışı wrapper'a yönlendirir.
 - `lib/main.dart`, `assets/questions.json`, MASTER ART, AdMob/Firebase/signing, package/version tema kapsamı dışındadır.
-- Tema için yeni Actions koşusu açık izin olmadan çalıştırılmaz.
-- Gerçek Flutter analyze/test ve Android 16 tema görsel kabulü tamamlanana kadar tema runtime durumu **DOĞRULANACAK**.
+
+---
+
+## 10. 30 Ağustos 2026 — Tema referansı birebir hedef kararı
+
+- Kullanıcı V4 Android 16 gerçek tema ekranlarını **görsel olarak reddetti**; teknik PASS, görsel kabul anlamına gelmez.
+- Kullanıcının 30 Ağustos 2026'da sohbet içinde yeniden gönderdiği **Bölüm 10 / Başlangıç Limanı gece limanı ekranı**, bölüm içi tema için bağlayıcı görsel hedeftir.
+- Bu referans artık “ilham”, “yaklaşık yön” veya “yorumlanacak konsept” değildir; **ekran görünümü mümkün olan en yüksek sadakatle referansın aynısı olacak şekilde uygulanacaktır**.
+- ChatGPT/Codex tarafından yeni sanat yönü, ek dekor fikri, stil yorumu, alternatif çizim veya “benzer” tema eklenmez.
+- Referanstaki ana kompozisyon korunur: gece limanı arka planı, sağ üst deniz feneri ve amber ışık huzmesi, su/yansıma, sol fener/liman detayları, lacivert-altın metal paneller, kelime chipleri, lacivert-altın harf hücreleri, amber seçim/found glow ve alt çapa/pusula motifli bilgi paneli.
+- Uygulamada gerçek 8×8 grid ve gerçek bölüm verisi korunur; referanstaki gösterim/örnek harf düzeni oyun verisini değiştirmek için kullanılmaz.
+- Önceki hafif overlay yaklaşımı görsel hedef olarak **superseded** edilmiştir. Mevcut `a91236c9...` tema ürün SHA'sı teknik tarihsel checkpointtir, nihai görsel değildir.
+- Yeni çalışma, doğrulanmış 8×8 gameplay/path/scoring/gesture motorunu ve korunan alanları bozmadan referans sadakatini yükseltecektir.
+- Yeni Android 16 screenshot referansla yan yana görsel kontrolden geçmeden görsel PASS verilmez; kullanıcı açıkça kabul etmeden theme PR Ready/merge yapılmaz.
