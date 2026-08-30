@@ -78,7 +78,8 @@ void main() {
       shell,
       contains(
         'timeout 10s adb shell am start \\\n'
-        '    -n "\$PACKAGE_NAME/.MainActivity"',
+        '    -n "\$PACKAGE_NAME/.MainActivity" \\\n'
+        '    --ez enable-software-rendering true',
       ),
     );
     expect(shell, isNot(contains('adb shell monkey')));

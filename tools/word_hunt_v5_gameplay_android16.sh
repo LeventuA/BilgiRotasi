@@ -23,7 +23,8 @@ launch_selector() {
   local selector_log="$REPORTS/SELECTOR.logcat"
   adb shell am force-stop "$PACKAGE_NAME"
   timeout 10s adb shell am start \
-    -n "$PACKAGE_NAME/.MainActivity" >/dev/null
+    -n "$PACKAGE_NAME/.MainActivity" \
+    --ez enable-software-rendering true >/dev/null
   for attempt in $(seq 1 20); do
     sleep 1
     flutter_log > "$selector_log"
