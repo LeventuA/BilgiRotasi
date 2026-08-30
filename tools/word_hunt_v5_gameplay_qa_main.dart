@@ -26,6 +26,8 @@ Future<void> main() async {
 
 void _logSelectorGeometry() {
   var buttonCount = 0;
+  final pixelRatio =
+      WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio;
 
   void visit(Element element) {
     final key = element.widget.key;
@@ -38,7 +40,8 @@ void _logSelectorGeometry() {
       );
       debugPrint(
         '[WORD_HUNT_V5_QA_SELECTOR] id=${match.group(1)} '
-        'x=${center.dx.round()} y=${center.dy.round()}',
+        'x=${(center.dx * pixelRatio).round()} '
+        'y=${(center.dy * pixelRatio).round()}',
       );
       buttonCount += 1;
     }
@@ -157,6 +160,8 @@ class _V5GameplayQaLevelState extends State<_V5GameplayQaLevel> {
 
   void _logProductionCellGeometry() {
     var cellCount = 0;
+    final pixelRatio =
+        WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio;
 
     void visit(Element element) {
       final key = element.widget.key;
@@ -171,7 +176,8 @@ class _V5GameplayQaLevelState extends State<_V5GameplayQaLevel> {
         debugPrint(
           '[WORD_HUNT_V5_QA_CELL] level=${widget.levelIndex} '
           'row=${match.group(1)} col=${match.group(2)} '
-          'x=${center.dx.round()} y=${center.dy.round()}',
+          'x=${(center.dx * pixelRatio).round()} '
+          'y=${(center.dy * pixelRatio).round()}',
         );
         cellCount += 1;
       }

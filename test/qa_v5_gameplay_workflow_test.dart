@@ -19,6 +19,7 @@ void main() {
     expect(source, contains('timeOffsetSeconds: 65'));
     expect(source, contains('[WORD_HUNT_V5_QA_SELECTOR]'));
     expect(source, contains('[WORD_HUNT_V5_QA_SELECTOR_GEOMETRY]'));
+    expect(source, contains('devicePixelRatio'));
     expect(source, isNot(contains('WordHuntLevelPlayResult(')));
     expect(source, isNot(contains('recordLevelResult(')));
   });
