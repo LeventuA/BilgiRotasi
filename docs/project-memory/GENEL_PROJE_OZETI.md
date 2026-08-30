@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 29 Ağustos 2026 — Kelime Avı Başlangıç Limanı **8×8** ürün hattı final teknik gate'i PASS. Temiz ürün commit `052ea7da775db0b58a5ce0c6731a04f251879008`; final run `33251736068` SUCCESS; Dart analyze PASS, focused Word Hunt 37/37, full Flutter 442/442, Android 16 B1/B5/B8/B10 64/64 hücre, B5 soft-time + ANKARA + ters BAŞKENT gesture PASS, crash taraması temiz. Draft PR #158 açıldı ve mergeable=true. Kalan kapı kullanıcı gerçek görünüm/oynanış kabulü + B5/B10 insan süre dengesi. Ready/merge yok.
+**Son güncelleme:** 30 Ağustos 2026 — Kelime Avı V5 gameplay teması gerçek Android 16 kanıtıyla teknik görsel PASS. Run `33308127773`, job `99248192399`, artifact `9731244720`; B1/B5/B8/B10 64/64, gerçek ANKARA + ters BAŞKENT swipe, B5 74s soft-time ve uygulama process-failure taraması PASS. Draft PR #158 OPEN/DRAFT kalır. Kalan kapı Levent'in görsel kabulü + B5/B10 insan süre dengesi; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -185,4 +185,6 @@ Diğer Bilgi Rotası açık işleri `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRUL
 - Mevcut production gameplay widget'ı sunum katmanında güncellendi; engine, gesture, timer, hata, bonus, scoring, result ve progression davranışları değiştirilmedi.
 - Temiz `assets/word_hunt/baslangic_limani_bg.jpg` sahne/çevre arka planı kullanıldı; referans screenshot production UI'a gömülmedi ve yeni dependency eklenmedi.
 - B1/B5/B8/B10 için 64/64 hücrenin dar 411×731 mantıksal viewport içinde kalması widget testiyle kilitlendi.
-- Gerçek Android 16 ekran görüntüsü bu checkpointte mevcut değildir; yerel Android SDK/emülatör yoktur ve kullanıcı yeni manuel Actions dispatch'ini yasaklamıştır. Görsel kabul bu nedenle **DOĞRULANACAK** durumundadır.
+- QA-only commit `342e246e1e47dd595c9cebb4ab52c701636f8685` için run `33308127773` / job `99248192399` SUCCESS oldu. Artifact `9731244720`, digest `sha256:ecd0aad4ce6aaacbe58a2c32c3bf03f44c711a5a0aee2aba4fb215fc7656eed2`.
+- Yedi gerçek Android 16 / 1080×1920 / 420 dpi gameplay screenshot'ı incelendi: B1/B5/B8/B10 64/64; ANKARA + ters BAŞKENT gerçek swipe; B5 74s soft-time; uygulama crash/ANR/FATAL/process-death taraması PASS.
+- Teknik görsel kanıt PASS; **Levent nihai görsel kabulü DOĞRULANACAK**. QA-only harness/workflow ürün engine ve içerik davranışını değiştirmedi.

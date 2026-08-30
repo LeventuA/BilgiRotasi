@@ -49,12 +49,12 @@ Final Android 16:
 
 ### 30 Ağustos 2026 — V5 gameplay tema açık doğrulamaları
 
-1. Yeni lacivert-altın gameplay sunumu Android 16 / 1080×1920 / 420 dpi gerçek runtime'da B1/B5/B8/B10 için referans temaya yeterince yakın mı?
-2. Yeni sunumda 64/64 hücre, üst kartlar, hedef etiketleri ve alt talimat paneli aynı ilk viewportta taşmasız ve parmakla kullanılabilir mi?
-3. B5 ANKARA ve ters BAŞKENT gerçek swipe'ları yeni temada görsel vurgu ve gameplay sonucuyla birlikte PASS mi?
-4. App paketinde FATAL EXCEPTION, ANR, `am_crash` veya process death var mı?
+1. [x] Yeni lacivert-altın gameplay sunumu Android 16 / 1080×1920 / 420 dpi gerçek runtime'da B1/B5/B8/B10 için teknik görsel kontrolden geçti.
+2. [x] 64/64 hücre, üst kartlar, hedef etiketleri ve alt talimat paneli aynı ilk viewportta taşmasız ve okunabilir.
+3. [x] B5 ANKARA ve ters BAŞKENT gerçek swipe'ları görsel vurgu ve gameplay sonucuyla PASS.
+4. [x] App paketinde FATAL EXCEPTION, ANR, `am_crash` veya process death yok.
 
-Bu maddeler yerel Android SDK/emülatör bulunmadığı ve bu görevde yeni manuel Actions dispatch'i yasaklandığı için otomatik olarak PASS sayılmadı. Yeni screenshot artifact ve Levent'in açık görsel kabulü gereklidir.
+Kanıt: run `33308127773`, job `99248192399`, artifact `9731244720`. Teknik görsel kanıt PASS; Levent'in gerçek screenshot'ları görerek vereceği nihai kabul ve B5/B10 insan süre dengesi **DOĞRULANACAK**.
 
 ---
 

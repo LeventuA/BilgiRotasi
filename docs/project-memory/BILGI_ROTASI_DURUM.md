@@ -45,7 +45,8 @@ Draft PR #150 ile production görünür state lokalde dinamik hale getirildi:
 - Production gameplay görünümü gece limanı, lacivert-altın panel/etiket, serif başlık, responsive 8×8 grid ve alt talimat plakasıyla bağlayıcı tema referansına hizalandı.
 - Background-only mevcut asset kullanıldı; bütün referans ekranı raster UI olarak kullanılmadı.
 - 10 bölüm, 8×8 içerik, gesture/timer/bonus/soft-time/result/progression sözleşmeleri korunur.
-- Otomatik/widget ve statik kapılar PASS; gerçek Android 16 V5 screenshot/artifact ve Levent görsel kabulü henüz **DOĞRULANACAK**.
+- Otomatik/widget ve statik kapılar PASS. QA-only head `342e246e1e47dd595c9cebb4ab52c701636f8685` için Android 16 run `33308127773` / job `99248192399` SUCCESS; artifact `9731244720` içinde yedi gameplay screenshot'ı, UI XML, logcat ve hashler bulunur.
+- B1/B5/B8/B10 64/64, gerçek ANKARA + ters BAŞKENT swipe, B5 74s soft-time ve uygulama process-failure taraması PASS. Teknik görsel kanıt PASS; Levent'in nihai görsel kabulü **DOĞRULANACAK**.
 - PR #158 Draft kalır; Ready/merge/auto-merge yoktur.
 
 - gerçek `X / 30`,
