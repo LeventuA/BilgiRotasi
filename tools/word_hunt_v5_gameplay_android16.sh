@@ -25,17 +25,33 @@ open_level() {
   local state_name="$2"
   local tap_x=540
   local tap_y
+  local marker
+  local before_count
+  local after_count
+  local attempt
   launch_selector
   case "$label" in
-    'QA B1') tap_y=771 ;;
-    'QA B5') tap_y=929 ;;
-    'QA B8') tap_y=1086 ;;
-    'QA B10') tap_y=1244 ;;
-    'QA B5+65') tap_y=1401 ;;
+    'QA B1') tap_y=771; marker='level=1 rows=8 cols=8' ;;
+    'QA B5') tap_y=929; marker='level=5 rows=8 cols=8' ;;
+    'QA B8') tap_y=1086; marker='level=8 rows=8 cols=8' ;;
+    'QA B10') tap_y=1244; marker='level=10 rows=8 cols=8' ;;
+    'QA B5+65') tap_y=1401; marker='level=5 rows=8 cols=8 targets=7 bonus=1 timeOffset=65' ;;
     *) echo "Unknown selector label: $label" >&2; return 1 ;;
   esac
-  adb shell input tap "$tap_x" "$tap_y"
-  sleep 3
+  before_count=$(adb logcat -d | grep -Fc "$marker" || true)
+  for attempt in 1 2 3; do
+    adb shell input tap "$tap_x" "$tap_y"
+    sleep 1
+    after_count=$(adb logcat -d | grep -Fc "$marker" || true)
+    if (( after_count > before_count )); then
+      sleep 2
+      break
+    fi
+  done
+  if (( after_count <= before_count )); then
+    echo "Gameplay level did not open after bounded taps: $label" >&2
+    return 1
+  fi
   adb logcat -d > "$REPORTS/${state_name}.logcat"
 }
 
