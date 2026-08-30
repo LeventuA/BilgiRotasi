@@ -17,6 +17,8 @@ void main() {
     expect(source, contains('const <int>[1, 5, 8, 10]'));
     expect(source, contains("child: const Text('QA B5+65')"));
     expect(source, contains('timeOffsetSeconds: 65'));
+    expect(source, contains('[WORD_HUNT_V5_QA_SELECTOR]'));
+    expect(source, contains('[WORD_HUNT_V5_QA_SELECTOR_GEOMETRY]'));
     expect(source, isNot(contains('WordHuntLevelPlayResult(')));
     expect(source, isNot(contains('recordLevelResult(')));
   });
@@ -80,6 +82,7 @@ void main() {
     );
     expect(shell, isNot(contains('adb shell monkey')));
     expect(shell, contains('log-cell-center'));
+    expect(shell, contains('log-selector-center'));
     expect(shell, contains('assert-log-grid'));
     expect(shell, contains('assert-grid-visual-change'));
     expect(shell, isNot(contains('uiautomator dump')));

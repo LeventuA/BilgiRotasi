@@ -28,7 +28,9 @@ launch_selector() {
 open_level() {
   local label="$1"
   local state_name="$2"
-  local tap_x=540
+  local selector_id
+  local selector_log="$REPORTS/SELECTOR.logcat"
+  local tap_x
   local tap_y
   local marker
   local before_count
@@ -36,13 +38,17 @@ open_level() {
   local attempt
   launch_selector
   case "$label" in
-    'QA B1') tap_y=771; marker='level=1 rows=8 cols=8' ;;
-    'QA B5') tap_y=929; marker='level=5 rows=8 cols=8' ;;
-    'QA B8') tap_y=1086; marker='level=8 rows=8 cols=8' ;;
-    'QA B10') tap_y=1244; marker='level=10 rows=8 cols=8' ;;
-    'QA B5+65') tap_y=1401; marker='level=5 rows=8 cols=8 targets=7 bonus=1 timeOffset=65' ;;
+    'QA B1') selector_id='1'; marker='level=1 rows=8 cols=8' ;;
+    'QA B5') selector_id='5'; marker='level=5 rows=8 cols=8' ;;
+    'QA B8') selector_id='8'; marker='level=8 rows=8 cols=8' ;;
+    'QA B10') selector_id='10'; marker='level=10 rows=8 cols=8' ;;
+    'QA B5+65') selector_id='5_soft_time'; marker='level=5 rows=8 cols=8 targets=7 bonus=1 timeOffset=65' ;;
     *) echo "Unknown selector label: $label" >&2; return 1 ;;
   esac
+  flutter_log > "$selector_log"
+  read -r tap_x tap_y < <(
+    python3 "$UI" log-selector-center "$selector_log" "$selector_id"
+  )
   before_count=$(flutter_log | grep -Fc "$marker" || true)
   for attempt in 1 2 3; do
     adb shell input tap "$tap_x" "$tap_y"

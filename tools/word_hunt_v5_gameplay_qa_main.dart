@@ -19,8 +19,34 @@ Future<void> main() async {
   );
 
   WidgetsBinding.instance.addPostFrameCallback((_) {
+    _logSelectorGeometry();
     debugPrint('[WORD_HUNT_V5_QA_SELECTOR_READY]');
   });
+}
+
+void _logSelectorGeometry() {
+  var buttonCount = 0;
+
+  void visit(Element element) {
+    final key = element.widget.key;
+    final value = key is ValueKey<String> ? key.value : '';
+    final match = RegExp(r'^word_hunt_v5_qa_open_(.+)$').firstMatch(value);
+    final renderObject = element.renderObject;
+    if (match != null && renderObject is RenderBox && renderObject.hasSize) {
+      final center = renderObject.localToGlobal(
+        renderObject.size.center(Offset.zero),
+      );
+      debugPrint(
+        '[WORD_HUNT_V5_QA_SELECTOR] id=${match.group(1)} '
+        'x=${center.dx.round()} y=${center.dy.round()}',
+      );
+      buttonCount += 1;
+    }
+    element.visitChildren(visit);
+  }
+
+  WidgetsBinding.instance.rootElement?.visitChildren(visit);
+  debugPrint('[WORD_HUNT_V5_QA_SELECTOR_GEOMETRY] buttons=$buttonCount');
 }
 
 class _V5GameplayQaSelector extends StatelessWidget {

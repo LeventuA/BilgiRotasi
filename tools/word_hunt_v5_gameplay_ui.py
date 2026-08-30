@@ -9,6 +9,9 @@ BOUNDS = re.compile(r"\[(\d+),(\d+)\]\[(\d+),(\d+)\]")
 CELL_LOG = re.compile(
     r"\[WORD_HUNT_V5_QA_CELL\] level=(\d+) row=(\d+) col=(\d+) x=(\d+) y=(\d+)"
 )
+SELECTOR_LOG = re.compile(
+    r"\[WORD_HUNT_V5_QA_SELECTOR\] id=([^ ]+) x=(\d+) y=(\d+)"
+)
 
 
 def nodes(path):
@@ -160,6 +163,17 @@ def log_cell_center(path, level, row, column):
     print(*matches[key])
 
 
+def log_selector_center(path, selector_id):
+    text = Path(path).read_text(encoding="utf-8", errors="replace")
+    matches = {
+        match.group(1): (int(match.group(2)), int(match.group(3)))
+        for match in SELECTOR_LOG.finditer(text)
+    }
+    if selector_id not in matches:
+        raise SystemExit(f"logged selector center not found: {selector_id}")
+    print(*matches[selector_id])
+
+
 def assert_log_grid(path, level):
     text = Path(path).read_text(encoding="utf-8", errors="replace")
     cells = {
@@ -223,6 +237,8 @@ def main():
         scan_logcat(path, sys.argv[3])
     elif command == "log-cell-center":
         log_cell_center(path, int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]))
+    elif command == "log-selector-center":
+        log_selector_center(path, sys.argv[3])
     elif command == "assert-log-grid":
         assert_log_grid(path, int(sys.argv[3]))
     elif command == "assert-grid-visual-change":
