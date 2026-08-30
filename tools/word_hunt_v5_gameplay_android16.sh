@@ -20,7 +20,7 @@ flutter_log() {
 
 launch_selector() {
   adb shell am force-stop "$PACKAGE_NAME"
-  timeout 20s adb shell am start -W \
+  timeout 10s adb shell am start \
     -n "$PACKAGE_NAME/.MainActivity" >/dev/null
   sleep 3
 }

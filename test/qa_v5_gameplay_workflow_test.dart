@@ -38,6 +38,9 @@ void main() {
         contains('bash tools/word_hunt_v5_gameplay_android16.sh'),
       );
       expect(workflow, contains('create_word_hunt_v5_comparisons.py'));
+      expect(workflow, contains('(cd android && ./gradlew --stop)'));
+      expect(workflow, contains('ram-size: 2048M'));
+      expect(workflow, contains('heap-size: 384M'));
       expect(workflow, contains('retention-days: 21'));
       expect(workflow, isNot(contains('flutter build appbundle')));
       expect(workflow, isNot(contains('firebase deploy')));
@@ -71,7 +74,7 @@ void main() {
     expect(
       shell,
       contains(
-        'timeout 20s adb shell am start -W \\\n'
+        'timeout 10s adb shell am start \\\n'
         '    -n "\$PACKAGE_NAME/.MainActivity"',
       ),
     );

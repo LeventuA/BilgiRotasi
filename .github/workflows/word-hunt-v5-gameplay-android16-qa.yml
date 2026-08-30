@@ -73,6 +73,7 @@ jobs:
             | tee reports/word_hunt_v5_gameplay/TESTED_SHA.txt
           sha256sum build/app/outputs/flutter-apk/app-debug.apk \
             | tee reports/word_hunt_v5_gameplay/APK_SHA256.txt
+          (cd android && ./gradlew --stop)
 
       - name: Android emulator KVM erişimini hazırla
         shell: bash
@@ -91,8 +92,8 @@ jobs:
           arch: x86_64
           profile: pixel_2
           cores: 2
-          ram-size: 3072M
-          heap-size: 512M
+          ram-size: 2048M
+          heap-size: 384M
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
