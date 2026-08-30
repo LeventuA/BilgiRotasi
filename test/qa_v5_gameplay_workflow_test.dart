@@ -73,7 +73,11 @@ void main() {
     expect(shell, contains('assert-grid-visual-change'));
     expect(shell, isNot(contains('uiautomator dump')));
     expect(shell, contains('Gameplay level did not open after bounded taps'));
-    expect(shell, contains("timeout 10s adb logcat -d -s flutter:I '*:S'"));
+    expect(
+      shell,
+      contains("timeout 10s adb logcat -d -t 500 -s flutter:I '*:S'"),
+    );
+    expect(shell, contains('timeout 20s adb logcat -d -t 5000'));
     expect(shell, contains('cell-center'));
     expect(shell, contains("5 2"));
     expect(shell, contains("0 7"));

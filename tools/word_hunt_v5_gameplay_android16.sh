@@ -15,7 +15,7 @@ capture_png() {
 }
 
 flutter_log() {
-  timeout 10s adb logcat -d -s flutter:I '*:S'
+  timeout 10s adb logcat -d -t 500 -s flutter:I '*:S'
 }
 
 launch_selector() {
@@ -138,7 +138,7 @@ adb shell pidof "$PACKAGE_NAME" | tee "$REPORTS/APP_PID.txt"
 test -s "$REPORTS/APP_PID.txt"
 adb shell dumpsys activity activities > "$REPORTS/ACTIVITY_STATE.txt"
 grep -Eq "mResumedActivity.*${PACKAGE_NAME}|topResumedActivity=.*${PACKAGE_NAME}|mCurrentFocus=.*${PACKAGE_NAME}" "$REPORTS/ACTIVITY_STATE.txt"
-adb logcat -d > "$REPORTS/LOGCAT.txt"
+timeout 20s adb logcat -d -t 5000 > "$REPORTS/LOGCAT.txt"
 python3 "$UI" scan-logcat "$REPORTS/LOGCAT.txt" "$PACKAGE_NAME" \
   | tee "$REPORTS/APP_PROCESS_FAILURE_SCAN.txt"
 
