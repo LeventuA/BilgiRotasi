@@ -45,10 +45,12 @@ jobs:
           set -euo pipefail
           mkdir -p reports/word_hunt_v5_gameplay
           flutter pub get
+          python3 -m pip install --disable-pip-version-check pillow==11.3.0
           dart format --output=none --set-exit-if-changed \
             tools/word_hunt_v5_gameplay_qa_main.dart \
             test/qa_v5_gameplay_workflow_test.dart
           python3 -m py_compile tools/word_hunt_v5_gameplay_ui.py
+          python3 -m py_compile tools/create_word_hunt_v5_comparisons.py
           bash -n tools/word_hunt_v5_gameplay_android16.sh
           dart analyze lib/word_hunt tools/word_hunt_v5_gameplay_qa_main.dart
           flutter test \
@@ -97,6 +99,12 @@ jobs:
             adb shell wm size 1080x1920
             adb shell wm density 420
             bash tools/word_hunt_v5_gameplay_android16.sh
+            python3 tools/create_word_hunt_v5_comparisons.py
+            find reports/word_hunt_v5_gameplay -maxdepth 1 -type f \
+              ! -name SHA256SUMS.txt -print0 \
+              | sort -z \
+              | xargs -0 sha256sum \
+              > reports/word_hunt_v5_gameplay/SHA256SUMS.txt
 
       - name: V5 gameplay görsel QA kanıtlarını yükle
         if: always()

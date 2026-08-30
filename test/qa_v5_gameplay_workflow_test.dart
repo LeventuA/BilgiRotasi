@@ -7,6 +7,7 @@ void main() {
       '.github/workflows/word-hunt-v5-gameplay-android16-qa.yml';
   const mainPath = 'tools/word_hunt_v5_gameplay_qa_main.dart';
   const shellPath = 'tools/word_hunt_v5_gameplay_android16.sh';
+  const comparisonPath = 'tools/create_word_hunt_v5_comparisons.py';
 
   test('V5 QA entrypoint gerçek production gameplay widgetını kullanır', () {
     final source = File(mainPath).readAsStringSync();
@@ -36,6 +37,7 @@ void main() {
         workflow,
         contains('bash tools/word_hunt_v5_gameplay_android16.sh'),
       );
+      expect(workflow, contains('create_word_hunt_v5_comparisons.py'));
       expect(workflow, contains('retention-days: 21'));
       expect(workflow, isNot(contains('flutter build appbundle')));
       expect(workflow, isNot(contains('firebase deploy')));
@@ -78,5 +80,19 @@ void main() {
     expect(shell, contains("assert-no-label"));
     expect(shell, isNot(contains('_foundTargets')));
     expect(shell, isNot(contains('WordHuntLevelPlayResult')));
+    expect(
+      File('tools/qa/kelime_avi_v5_gameplay_reference.jpg').existsSync(),
+      isTrue,
+    );
+  });
+
+  test('V5 QA gerçek referans ile B1 ve B10 karşılaştırmalarını üretir', () {
+    final source = File(comparisonPath).readAsStringSync();
+
+    expect(source, contains('kelime_avi_v5_gameplay_reference.jpg'));
+    expect(source, contains('V5_GAMEPLAY_REFERENCE_1080x1920.png'));
+    expect(source, contains('REFERENCE_VS_B1.png'));
+    expect(source, contains('REFERENCE_VS_B10.png'));
+    expect(source, contains('CANVAS = (1080, 1920)'));
   });
 }
