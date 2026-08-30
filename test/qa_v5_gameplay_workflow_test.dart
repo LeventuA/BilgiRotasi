@@ -42,10 +42,7 @@ void main() {
       );
       expect(workflow, contains('create_word_hunt_v5_comparisons.py'));
       expect(workflow, contains('(cd android && ./gradlew --stop)'));
-      expect(
-        workflow,
-        contains('io.flutter.embedding.android.EnableImpeller'),
-      );
+      expect(workflow, contains('io.flutter.embedding.android.EnableImpeller'));
       expect(workflow, contains('android:value="false"'));
       expect(workflow, contains('ram-size: 2048M'));
       expect(workflow, contains('heap-size: 384M'));
