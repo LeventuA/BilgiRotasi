@@ -1,0 +1,108 @@
+name: Kelime Avı V5 gameplay Android 16 görsel QA
+
+on:
+  push:
+    branches:
+      - feat/kelime-avi-8x8-content-v1-20260829
+    paths:
+      - '.github/workflows/word-hunt-v5-gameplay-android16-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gameplay-visual-qa:
+    name: B1 B5 B8 B10 gerçek gameplay ve gesture kanıtı
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    env:
+      QA_SHA: ${{ github.sha }}
+      QA_BRANCH: ${{ github.ref_name }}
+
+    steps:
+      - name: Exact QA HEAD'i indir
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.QA_SHA }}
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: QA-only statik kapıları çalıştır
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/word_hunt_v5_gameplay
+          flutter pub get
+          dart format --output=none --set-exit-if-changed \
+            tools/word_hunt_v5_gameplay_qa_main.dart \
+            test/qa_v5_gameplay_workflow_test.dart
+          python3 -m py_compile tools/word_hunt_v5_gameplay_ui.py
+          bash -n tools/word_hunt_v5_gameplay_android16.sh
+          dart analyze lib/word_hunt tools/word_hunt_v5_gameplay_qa_main.dart
+          flutter test \
+            test/word_hunt_level_production_test.dart \
+            test/word_hunt_starter_content_test.dart \
+            test/qa_v5_gameplay_workflow_test.dart \
+            --reporter expanded 2>&1 \
+            | tee reports/word_hunt_v5_gameplay/STATIC_TESTS.txt
+          git diff --check
+
+      - name: İzole production gameplay QA APK'sını üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --debug \
+            -t tools/word_hunt_v5_gameplay_qa_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          git rev-parse HEAD \
+            | tee reports/word_hunt_v5_gameplay/TESTED_SHA.txt
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk \
+            | tee reports/word_hunt_v5_gameplay/APK_SHA256.txt
+
+      - name: Android emulator KVM erişimini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Android 16 gameplay ve gerçek gesture kanıtını üret
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 3072M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            adb shell wm size 1080x1920
+            adb shell wm density 420
+            bash tools/word_hunt_v5_gameplay_android16.sh
+
+      - name: V5 gameplay görsel QA kanıtlarını yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-V5-Gameplay-Android16-${{ env.QA_SHA }}
+          path: reports/word_hunt_v5_gameplay/**
+          if-no-files-found: error
+          retention-days: 21
