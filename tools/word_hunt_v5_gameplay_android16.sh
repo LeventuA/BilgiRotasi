@@ -14,6 +14,10 @@ capture_png() {
   python3 "$UI" assert-png-size "$output" 1080 1920
 }
 
+flutter_log() {
+  timeout 10s adb logcat -d -s flutter:I '*:S'
+}
+
 launch_selector() {
   adb shell am force-stop "$PACKAGE_NAME"
   adb shell monkey -p "$PACKAGE_NAME" -c android.intent.category.LAUNCHER 1 >/dev/null
@@ -38,11 +42,11 @@ open_level() {
     'QA B5+65') tap_y=1401; marker='level=5 rows=8 cols=8 targets=7 bonus=1 timeOffset=65' ;;
     *) echo "Unknown selector label: $label" >&2; return 1 ;;
   esac
-  before_count=$(adb logcat -d | grep -Fc "$marker" || true)
+  before_count=$(flutter_log | grep -Fc "$marker" || true)
   for attempt in 1 2 3; do
     adb shell input tap "$tap_x" "$tap_y"
     sleep 1
-    after_count=$(adb logcat -d | grep -Fc "$marker" || true)
+    after_count=$(flutter_log | grep -Fc "$marker" || true)
     if (( after_count > before_count )); then
       sleep 2
       break
@@ -52,7 +56,7 @@ open_level() {
     echo "Gameplay level did not open after bounded taps: $label" >&2
     return 1
   fi
-  adb logcat -d > "$REPORTS/${state_name}.logcat"
+  flutter_log > "$REPORTS/${state_name}.logcat"
 }
 
 capture_initial() {
@@ -101,7 +105,7 @@ read -r ankara_x2 ankara_y2 < <(
 adb shell input swipe "$ankara_x1" "$ankara_y1" "$ankara_x2" "$ankara_y2" 1200
 sleep 1
 capture_png "$REPORTS/05_B5_ANKARA_FOUND.png"
-adb logcat -d > "$REPORTS/05_B5_ANKARA_FOUND.logcat"
+flutter_log > "$REPORTS/05_B5_ANKARA_FOUND.logcat"
 python3 "$UI" assert-grid-visual-change \
   "$REPORTS/05_B5_ANKARA_BEFORE.png" \
   "$REPORTS/05_B5_ANKARA_FOUND.png" \
@@ -119,7 +123,7 @@ read -r baskent_x2 baskent_y2 < <(
 adb shell input swipe "$baskent_x1" "$baskent_y1" "$baskent_x2" "$baskent_y2" 1200
 sleep 1
 capture_png "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.png"
-adb logcat -d > "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.logcat"
+flutter_log > "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.logcat"
 python3 "$UI" assert-grid-visual-change \
   "$REPORTS/06_B5_BASKENT_REVERSE_BEFORE.png" \
   "$REPORTS/06_B5_BASKENT_REVERSE_FOUND.png" \
