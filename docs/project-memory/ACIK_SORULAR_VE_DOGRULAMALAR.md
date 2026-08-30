@@ -47,6 +47,15 @@ Final Android 16:
 5. Eski PR #156 ne zaman/kim tarafından kapatılacak? Otomatik kapatılmayacak.
 6. Production `lib/main.dart` ana navigasyon entegrasyonu için ayrı kapsam/onay verilecek mi?
 
+### 30 Ağustos 2026 — V5 gameplay tema açık doğrulamaları
+
+1. Yeni lacivert-altın gameplay sunumu Android 16 / 1080×1920 / 420 dpi gerçek runtime'da B1/B5/B8/B10 için referans temaya yeterince yakın mı?
+2. Yeni sunumda 64/64 hücre, üst kartlar, hedef etiketleri ve alt talimat paneli aynı ilk viewportta taşmasız ve parmakla kullanılabilir mi?
+3. B5 ANKARA ve ters BAŞKENT gerçek swipe'ları yeni temada görsel vurgu ve gameplay sonucuyla birlikte PASS mi?
+4. App paketinde FATAL EXCEPTION, ANR, `am_crash` veya process death var mı?
+
+Bu maddeler yerel Android SDK/emülatör bulunmadığı ve bu görevde yeni manuel Actions dispatch'i yasaklandığı için otomatik olarak PASS sayılmadı. Yeni screenshot artifact ve Levent'in açık görsel kabulü gereklidir.
+
 ---
 
 ## Issue #109 / MASTER ART production — KAPANDI

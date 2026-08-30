@@ -36,6 +36,18 @@ gerçek `WordHuntProgressSnapshot` değiştiğinde yanlış bilgi gösterebiliyo
 
 Draft PR #150 ile production görünür state lokalde dinamik hale getirildi:
 
+## 30 Ağustos 2026 — PR #158 V5 gameplay tema checkpoint'i
+
+- Branch: `feat/kelime-avi-8x8-content-v1-20260829`.
+- Base: `release/final-closed-test-aab-1.68.8` / başlangıç doğrulamasında `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
+- Başlangıç ürün HEAD: `69efcd17606d339233e1d9ca6183d9ac37ed5b5c`.
+- Sürüm: `1.68.19+109` (değişmedi).
+- Production gameplay görünümü gece limanı, lacivert-altın panel/etiket, serif başlık, responsive 8×8 grid ve alt talimat plakasıyla bağlayıcı tema referansına hizalandı.
+- Background-only mevcut asset kullanıldı; bütün referans ekranı raster UI olarak kullanılmadı.
+- 10 bölüm, 8×8 içerik, gesture/timer/bonus/soft-time/result/progression sözleşmeleri korunur.
+- Otomatik/widget ve statik kapılar PASS; gerçek Android 16 V5 screenshot/artifact ve Levent görsel kabulü henüz **DOĞRULANACAK**.
+- PR #158 Draft kalır; Ready/merge/auto-merge yoktur.
+
 - gerçek `X / 30`,
 - level 1–10 gerçek `0–3` yıldız state'i,
 - gerçek locked/open state,

@@ -101,6 +101,20 @@
 
 İlk gate run `33250841637` formatter nedeniyle erken durmuştu; ürün failure sayılmaz. Düzeltilmiş final gate `33251736068` bunun yerini alan teknik kanıttır.
 
+### PR #158 V5 gameplay tema kabul düzeltmesi
+
+**Durum:** ÜRÜN KODU VE OTOMATİK KAPILAR TAMAMLANDI / ANDROID 16 GÖRSEL KABULÜ DOĞRULANACAK.
+
+- [x] Mevcut production gameplay widget'ı gece limanı lacivert-altın temaya hizalandı.
+- [x] Canonical 8×8 ve 64/64 ilk viewport görünürlüğü widget testiyle korundu.
+- [x] 10 bölüm, 80 kelime eğrisi, B5/B10 soft-time ve gesture/progression davranışları korunuyor.
+- [x] Referans screenshot production background/UI olarak gömülmedi.
+- [x] `lib/main.dart`, `assets/questions.json`, MASTER ART rota, AdMob/Firebase/signing ve sürüm kapsam dışında kaldı.
+- [ ] Android 16 / 1080×1920 / 420 dpi üzerinde B1/B5/B8/B10 yeni tema screenshot artifact'i.
+- [ ] B5 gerçek ANKARA ve ters BAŞKENT swipe'ının yeni temada yeniden görsel/runtime doğrulaması.
+- [ ] Levent'in yeni gameplay görünümü için açık görsel kabulü.
+- [ ] Ayrı Ready/merge onayı.
+
 ---
 
 ## Korunan açık işler

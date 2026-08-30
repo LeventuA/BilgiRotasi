@@ -176,3 +176,13 @@ Bu kanıt 8×8 runtime kabulü yerine kullanılmadı; 8×8 ayrı final gate ile 
 8. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı kapsam/branch/PR işidir.
 
 Diğer Bilgi Rotası açık işleri `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` içinde korunur.
+
+## 30 Ağustos 2026 — Kelime Avı V5 gameplay görsel teması
+
+- Aktif ürün hattı `feat/kelime-avi-8x8-content-v1-20260829` / Draft PR #158 üzerinde ilerler.
+- Başlangıç Limanı gameplay ekranının bağlayıcı görsel dili, kullanıcının 30 Ağustos 2026 gece limanı referansıdır: koyu lacivert deniz/liman, sıcak altın ışık, bronz-altın plakalar ve premium macera hissi.
+- Görsel referanstaki 6×10 geometri alınmadı; canonical ürün geometrisi ve içerik sözleşmesi **8×8 / 64 hücre** olarak korundu.
+- Mevcut production gameplay widget'ı sunum katmanında güncellendi; engine, gesture, timer, hata, bonus, scoring, result ve progression davranışları değiştirilmedi.
+- Temiz `assets/word_hunt/baslangic_limani_bg.jpg` sahne/çevre arka planı kullanıldı; referans screenshot production UI'a gömülmedi ve yeni dependency eklenmedi.
+- B1/B5/B8/B10 için 64/64 hücrenin dar 411×731 mantıksal viewport içinde kalması widget testiyle kilitlendi.
+- Gerçek Android 16 ekran görüntüsü bu checkpointte mevcut değildir; yerel Android SDK/emülatör yoktur ve kullanıcı yeni manuel Actions dispatch'ini yasaklamıştır. Görsel kabul bu nedenle **DOĞRULANACAK** durumundadır.

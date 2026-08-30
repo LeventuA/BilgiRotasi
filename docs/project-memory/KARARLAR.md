@@ -117,3 +117,18 @@
 - 29 Ağustos'ta izin verilen tek Actions run `33250841637` yalnız formatter gate'inde durmuş; analyze/test/Android 16 çalışmamıştır. Bu nedenle 8×8 teknik kabul **DOĞRULANACAK** durumdadır.
 - QA-only entrypoint/araçlar ürün commitine girmeyecek; ürün scope'u açık allowlist ile sınırlandırılacaktır.
 - Yeni Actions koşusu yalnız Levent'in yeniden açık izniyle çalıştırılır.
+
+---
+
+## 9. 30 Ağustos 2026 — Başlangıç Limanı gameplay görsel dili
+
+Kelime Avı / Başlangıç Limanı gameplay ekranı için kullanıcı tarafından
+30 Ağustos 2026’da verilen gece limanı, lacivert-altın premium ekran
+bağlayıcı görsel tema referansıdır.
+Bu karar görsel dili bağlar; canonical grid geometrisi 8×8 olarak kalır.
+
+- Referansın 6×10 hücre düzeni ürün geometrisi değildir ve uygulanmaz.
+- Referans screenshot'ın tamamı production UI olarak gömülmez.
+- Temiz background-only sahne asset'i ile Flutter widget/presentation katmanı birlikte kullanılır.
+- Gameplay engine, içerik koordinatları, swipe, timer, hata, bonus, scoring ve progression sözleşmeleri görsel tema uğruna değiştirilmez.
+- Android gerçek screenshot ve Levent kabulü olmadan yalnız test/build sonucu görsel PASS sayılmaz.
