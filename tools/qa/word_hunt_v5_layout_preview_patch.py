@@ -3,7 +3,7 @@ from pathlib import Path
 path = Path('lib/word_hunt/word_hunt_screens.dart')
 text = path.read_text(encoding='utf-8')
 
-old = "const _harborGridSpacing = 3.0;\n"
+old = "const _harborGridSpacing = 1.5;\n"
 new = (
     "const _harborGridSpacing = 1.5;\n"
     "const _harborInstructionDefault =\n"
