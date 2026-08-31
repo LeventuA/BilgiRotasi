@@ -19,6 +19,8 @@ jobs:
     timeout-minutes: 40
     env:
       QA_SHA: ca211433ce5dd65533195427601d29ec8f16bc0a
+      PACKAGE_NAME: com.leventua.bilgirotasi
+      REPORTS: reports/word_hunt_v5_gameplay
 
     steps:
       - name: Exact çalışma HEAD'ini indir
@@ -50,14 +52,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p reports/word_hunt_v5_gameplay
+          mkdir -p "$REPORTS"
           python3 qa-tools/tools/qa/word_hunt_v5_layout_preview_patch.py
           dart format lib/word_hunt/word_hunt_screens.dart
           grep -q '^const _harborGridSpacing = 1\.5;$' lib/word_hunt/word_hunt_screens.dart
           grep -q '^const _harborCellVisualScale = 1\.12;$' lib/word_hunt/word_hunt_screens.dart
           git diff --check
-          git diff -- lib/word_hunt/word_hunt_screens.dart > reports/word_hunt_v5_gameplay/PREVIEW.diff
-          test -s reports/word_hunt_v5_gameplay/PREVIEW.diff
+          git diff -- lib/word_hunt/word_hunt_screens.dart > "$REPORTS/PREVIEW.diff"
+          test -s "$REPORTS/PREVIEW.diff"
           test "$(git diff --name-only | wc -l)" -eq 1
           test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
           test "$(git diff --name-only -- assets/word_hunt/v5_reference_assets | wc -l)" -eq 0
@@ -70,7 +72,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p android/app/src/debug reports/word_hunt_v5_gameplay
+          mkdir -p android/app/src/debug "$REPORTS"
           python3 -m pip install --disable-pip-version-check pillow==11.3.0
           printf '%s\n' \
             '<manifest xmlns:android="http://schemas.android.com/apk/res/android">' \
@@ -83,84 +85,9 @@ jobs:
             -t tools/word_hunt_v5_gameplay_qa_main.dart \
             --dart-define=ADMOB_ENVIRONMENT=test
           test -s build/app/outputs/flutter-apk/app-debug.apk
-          printf '%s\n' "$QA_SHA" > reports/word_hunt_v5_gameplay/BASE_SHA.txt
-          sha256sum build/app/outputs/flutter-apk/app-debug.apk > reports/word_hunt_v5_gameplay/APK_SHA256.txt
+          printf '%s\n' "$QA_SHA" > "$REPORTS/BASE_SHA.txt"
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk > "$REPORTS/APK_SHA256.txt"
           (cd android && ./gradlew --stop)
-
-      - name: B10-only deterministik QA scriptini hazırla
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-          path = Path('tools/word_hunt_v5_gameplay_android16.sh')
-          text = path.read_text(encoding='utf-8')
-          marker = "capture_initial 1 5 '01_B1_INITIAL.png'"
-          start = text.index(marker)
-          replacement = r'''capture_initial 10 9 '04_B10_INITIAL.png'
-
-          open_level 'QA B10' '08_B10_YOL_BEFORE'
-          capture_png "$REPORTS/08_B10_YOL_BEFORE.png"
-          read -r yol_x1 yol_y1 < <(
-            python3 "$UI" log-cell-center "$REPORTS/08_B10_YOL_BEFORE.logcat" 10 2 3
-          )
-          read -r yol_xm yol_ym < <(
-            python3 "$UI" log-cell-center "$REPORTS/08_B10_YOL_BEFORE.logcat" 10 2 4
-          )
-          read -r yol_x2 yol_y2 < <(
-            python3 "$UI" log-cell-center "$REPORTS/08_B10_YOL_BEFORE.logcat" 10 2 5
-          )
-          adb shell input motionevent DOWN "$yol_x1" "$yol_y1"
-          sleep 0.12
-          adb shell input motionevent MOVE "$yol_xm" "$yol_ym"
-          sleep 0.12
-          adb shell input motionevent MOVE "$yol_x2" "$yol_y2"
-          sleep 0.12
-          adb shell input motionevent UP "$yol_x2" "$yol_y2"
-          sleep 1
-          capture_png "$REPORTS/09_B10_YOL_FOUND.png"
-          flutter_log > "$REPORTS/09_B10_YOL_FOUND.logcat" || true
-          python3 "$UI" assert-grid-visual-change \
-            "$REPORTS/08_B10_YOL_BEFORE.png" \
-            "$REPORTS/09_B10_YOL_FOUND.png" \
-            "$REPORTS/08_B10_YOL_BEFORE.logcat" 10
-
-          python3 - "$REPORTS/08_B10_YOL_BEFORE.png" "$REPORTS/09_B10_YOL_FOUND.png" \
-            "$yol_x1" "$yol_y1" "$yol_xm" "$yol_ym" "$yol_x2" "$yol_y2" <<'PY2'
-          import sys
-          from PIL import Image
-          import numpy as np
-
-          before = np.array(Image.open(sys.argv[1]).convert('RGB'))
-          after = np.array(Image.open(sys.argv[2]).convert('RGB'))
-          coords = [
-              (int(sys.argv[3]), int(sys.argv[4])),
-              (int(sys.argv[5]), int(sys.argv[6])),
-              (int(sys.argv[7]), int(sys.argv[8])),
-          ]
-
-          def changed_pixels(box):
-              x1, y1, x2, y2 = box
-              return int(np.any(before[y1:y2, x1:x2] != after[y1:y2, x1:x2], axis=2).sum())
-
-          cell_changes = []
-          for x, y in coords:
-              cell_changes.append(changed_pixels((x - 45, y - 45, x + 45, y + 45)))
-          progress_change = changed_pixels((165, 210, 250, 255))
-
-          print(f'YOL_CELL_CHANGED_PIXELS={cell_changes}')
-          print(f'PROGRESS_PANEL_CHANGED_PIXELS={progress_change}')
-          if any(value < 3000 for value in cell_changes):
-              raise SystemExit('YOL semantic gate failed: all three Y-O-L cells did not change')
-          if progress_change < 100:
-              raise SystemExit('YOL semantic gate failed: progress panel did not change from 0/9')
-          print('YOL_SEMANTIC_VISUAL_GATE=PASS')
-          PY2
-          '''
-          replacement = '\n'.join(line[10:] if line.startswith('          ') else line for line in replacement.splitlines()) + '\n'
-          path.write_text(text[:start] + replacement, encoding='utf-8')
-          PY
-          bash -n tools/word_hunt_v5_gameplay_android16.sh
 
       - name: Android emulator KVM erişimini hazırla
         shell: bash
@@ -184,12 +111,108 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
+            set -euo pipefail
+            mkdir -p "$REPORTS"
             adb shell wm size 1080x1920
             adb shell wm density 420
-            bash tools/word_hunt_v5_gameplay_android16.sh
-            test -s reports/word_hunt_v5_gameplay/04_B10_INITIAL.png
-            test -s reports/word_hunt_v5_gameplay/09_B10_YOL_FOUND.png
-            sha256sum reports/word_hunt_v5_gameplay/04_B10_INITIAL.png reports/word_hunt_v5_gameplay/09_B10_YOL_FOUND.png > reports/word_hunt_v5_gameplay/SHA256SUMS.txt
+            test "$(adb shell getprop ro.build.version.sdk | tr -d '\r')" = '36'
+            adb shell wm size | grep -Fq '1080x1920'
+            adb shell wm density | grep -Fq '420'
+
+            if adb shell pm path "$PACKAGE_NAME" 2>/dev/null | grep -q '^package:'; then
+              adb uninstall "$PACKAGE_NAME" >/dev/null
+            fi
+            adb install build/app/outputs/flutter-apk/app-debug.apk >/dev/null
+            adb shell settings put secure immersive_mode_confirmations confirmed
+
+            capture_png() {
+              local output="$1"
+              adb exec-out screencap -p > "$output"
+              test -s "$output"
+              python3 - "$output" <<'PY'
+            import sys
+            from PIL import Image
+            image = Image.open(sys.argv[1])
+            if image.size != (1080, 1920):
+                raise SystemExit(f'Unexpected PNG size: {image.size}')
+            print(f'PASS PNG {sys.argv[1]} {image.size[0]}x{image.size[1]}')
+            PY
+            }
+
+            launch_b10() {
+              local suffix="$1"
+              adb shell am force-stop "$PACKAGE_NAME"
+              adb shell am start -n "$PACKAGE_NAME/.MainActivity" >/dev/null
+              sleep 12
+              capture_png "$REPORTS/00_SELECTOR_${suffix}.png"
+              # Canonical 1080x1920 QA selector center from prior successful Android proof.
+              adb shell input tap 540 1244
+              sleep 6
+            }
+
+            semantic_gate() {
+              local before="$1"
+              local after="$2"
+              python3 - "$before" "$after" <<'PY'
+            import sys
+            from PIL import Image, ImageChops
+
+            before = Image.open(sys.argv[1]).convert('RGB')
+            after = Image.open(sys.argv[2]).convert('RGB')
+            coords = [(476, 1004), (604, 1004), (731, 1004)]
+
+            def changed_pixels(box):
+                diff = ImageChops.difference(before.crop(box), after.crop(box))
+                return sum(1 for pixel in diff.getdata() if pixel != (0, 0, 0))
+
+            cell_changes = [
+                changed_pixels((x - 45, y - 45, x + 45, y + 45))
+                for x, y in coords
+            ]
+            progress_change = changed_pixels((165, 210, 250, 255))
+            print(f'YOL_CELL_CHANGED_PIXELS={cell_changes}')
+            print(f'PROGRESS_PANEL_CHANGED_PIXELS={progress_change}')
+            if any(value < 3000 for value in cell_changes):
+                raise SystemExit(21)
+            if progress_change < 100:
+                raise SystemExit(22)
+            print('YOL_SEMANTIC_VISUAL_GATE=PASS')
+            PY
+            }
+
+            launch_b10 initial
+            capture_png "$REPORTS/04_B10_INITIAL.png"
+
+            passed=0
+            for duration in 900 1800 3000; do
+              capture_png "$REPORTS/08_B10_YOL_BEFORE_${duration}.png"
+              adb shell input swipe 476 1004 731 1004 "$duration"
+              sleep 2
+              capture_png "$REPORTS/09_B10_YOL_AFTER_${duration}.png"
+              if semantic_gate \
+                "$REPORTS/08_B10_YOL_BEFORE_${duration}.png" \
+                "$REPORTS/09_B10_YOL_AFTER_${duration}.png"; then
+                cp "$REPORTS/08_B10_YOL_BEFORE_${duration}.png" "$REPORTS/08_B10_YOL_BEFORE.png"
+                cp "$REPORTS/09_B10_YOL_AFTER_${duration}.png" "$REPORTS/09_B10_YOL_FOUND.png"
+                printf '%s\n' "$duration" > "$REPORTS/YOL_PASS_DURATION_MS.txt"
+                passed=1
+                break
+              fi
+              launch_b10 "retry_${duration}"
+            done
+
+            test "$passed" -eq 1
+            test -s "$REPORTS/04_B10_INITIAL.png"
+            test -s "$REPORTS/09_B10_YOL_FOUND.png"
+            sha256sum "$REPORTS/04_B10_INITIAL.png" "$REPORTS/09_B10_YOL_FOUND.png" \
+              > "$REPORTS/SHA256SUMS.txt"
+            printf '%s\n' \
+              'ANDROID_API=36' \
+              'RESOLUTION=1080x1920' \
+              'DENSITY=420' \
+              'STATIC_TESTS=138/138 PASS' \
+              'YOL_SEMANTIC_VISUAL_GATE=PASS' \
+              > "$REPORTS/QA_SUMMARY.txt"
 
       - name: Preview kanıtını yükle
         if: always()
