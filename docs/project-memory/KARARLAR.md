@@ -119,7 +119,7 @@
 
 ---
 
-## 9. 31 Ağustos 2026 — Başlangıç Limanı gameplay exact-reference görsel mimarisi
+## 9. 31 Ağustos 2026 — Başlangıç Limanı gameplay exact-reference görsel mimarisi / DÜZELTİLMİŞ KARAR
 
 Kelime Avı / Başlangıç Limanı gameplay ekranında bağlayıcı görsel kaynak gece limanı, lacivert-altın premium referanstır. Önceki “background-only + Flutter ile chrome yeniden çizimi” yaklaşımı, kullanıcı exact-reference talebi nedeniyle bu karar tarafından **supersede** edilmiştir.
 
@@ -142,9 +142,12 @@ Kelime Avı / Başlangıç Limanı gameplay ekranında bağlayıcı görsel kayn
 - `icon_anchor.png` ve `icon_compass.png` production overlay değildir; instruction panel asset'i içinde dekor bake olduğu için **UNUSED / REJECTED** kalır.
 - Dinamik içerik (başlık, sayaç, süre, target/bonus metni, hücre harfleri, found/error state) Flutter/runtime tarafından üretilir; asset içine kelime/grid bake edilmez.
 - Gameplay engine, swipe, timer, hata, bonus, scoring ve progression sözleşmeleri görsel tema uğruna değiştirilmez.
-- Görsel PASS için gerçek Android initial runtime screenshot zorunludur; found-state gibi kritik dinamik state ayrıca gerçek runtime kanıtıyla doğrulanır.
-- User-approved found-state mockup/runtime-target, gerçek runtime kanıtı yerine yazılmaz; gerçek Android artifact ayrıca kontrol edilir.
-- Exact product SHA `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7` için initial Android 16 run `33384781507` SUCCESS'tir. Found-state artifact `9756762383` içinde gerçek `09_B10_YOL_FOUND.png` YOL swipe sonrası `1/9` ve altın Y-O-L hücrelerini doğrular; bu artifact'in run'ı son log-string grep nedeniyle overall FAILURE olduğundan run SUCCESS diye etiketlenmez.
-- Levent 31 Ağustos 2026'da current exact-reference görsel hedefe **PASS** verdi; daha önceki `67f7365...` refined-V5 kabul kaydı current karar değildir.
+- **Bağlayıcı runtime hedefi**, kullanıcının 31 Ağustos'taki son mesajında **Görsel 1** olarak işaretlediği ekrandır. Bu görsel hedef/reference'tır; gerçek Android kanıtı değildir.
+- Kullanıcının son mesajındaki **Görsel 2**, gerçek Android runtime found-state çıktısıdır ve **FAIL** olarak reddedilmiştir.
+- Görsel 1 veya başka herhangi bir image-edit / ImageGen / mockup çıktısı **gerçek Android screenshot diye sunulamaz ve Android visual PASS kanıtı sayılamaz**.
+- Görsel PASS yalnız raw Android artifact/screenshot üzerinden verilir. Runtime ekranının bağlayıcı Görsel 1 hedefiyle yerleşim, ölçek, panel/plaque ölçüleri, grid aralıkları, found-state ve alt panel sunumu açısından kabul edilebilir biçimde eşleşmesi gerekir.
+- Exact product SHA `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7` için initial Android 16 run `33384781507` teknik olarak screenshot üretmiştir; found-state artifact `9756762383` gerçek gesture/state üretmiştir. **Ancak bu gerçek runtime görünümü kullanıcı tarafından görsel olarak FAIL edilmiştir.**
+- Daha önce image-edit hedef üzerinden alınan “PASS” yanlış kanıt sunumuna dayandığı için **GEÇERSİZDİR / GERİ ÇEKİLMİŞTİR**.
+- Önceki `67f7365...` refined-V5 kabul kaydı da current karar değildir.
 
-`ERROR_STATE_VISUAL` ve exact `REFERENCE_FONT` kaynağı referansta bağımsız olarak doğrulanamadığı sürece **DOĞRULANACAK** kalır; mevcut kabul edilmiş runtime görünümü sırf tahminle yeniden tasarlanmaz.
+`ERROR_STATE_VISUAL` ve exact `REFERENCE_FONT` kaynağı referansta bağımsız olarak doğrulanamadığı sürece **DOĞRULANACAK** kalır. Mevcut runtime sırf teknik testler geçti diye görsel PASS sayılmaz.
