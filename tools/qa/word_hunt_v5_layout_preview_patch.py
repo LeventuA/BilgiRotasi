@@ -51,16 +51,6 @@ old = """      decoration: BoxDecoration(
         ),
       ),"""
 new = """      decoration: BoxDecoration(
-        boxShadow:
-            found
-                ? const <BoxShadow>[
-                  BoxShadow(
-                    color: Color(0x99FF9D22),
-                    blurRadius: 8,
-                    spreadRadius: 1,
-                  ),
-                ]
-                : const <BoxShadow>[],
         image: DecorationImage(
           image: AssetImage(asset),
           fit: BoxFit.fill,
@@ -89,9 +79,9 @@ new = """    return DecoratedBox(
             active
                 ? const <BoxShadow>[
                   BoxShadow(
-                    color: Color(0x99FF9D22),
-                    blurRadius: 5,
-                    spreadRadius: 1,
+                    color: Color(0x55FF9D22),
+                    blurRadius: 3,
+                    spreadRadius: .2,
                   ),
                 ]
                 : const <BoxShadow>[],
