@@ -109,7 +109,7 @@ void main() {
       );
       expect(
         (background.image as AssetImage).assetName,
-        'assets/word_hunt/baslangic_limani_gameplay_bg.jpg',
+        'assets/word_hunt/v5_reference_assets/harbor_background_1080x1920.png',
       );
       expect(
         find.byKey(const Key('word_hunt_production_instruction_plate')),

@@ -432,24 +432,10 @@ class _WordHuntLevelProductionScreenState
           fit: StackFit.expand,
           children: [
             Image.asset(
-              'assets/word_hunt/baslangic_limani_gameplay_bg.jpg',
+              'assets/word_hunt/v5_reference_assets/harbor_background_1080x1920.png',
               key: const Key('word_hunt_production_harbor_background'),
               fit: BoxFit.cover,
               alignment: Alignment.topCenter,
-            ),
-            const DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    Color(0x18010812),
-                    Color(0x30010812),
-                    Color(0x52010812),
-                  ],
-                  stops: <double>[0, .48, 1],
-                ),
-              ),
             ),
             SafeArea(
               child: LayoutBuilder(
@@ -468,7 +454,8 @@ class _WordHuntLevelProductionScreenState
                           children: [
                             Expanded(
                               child: _HarborMetricPlate(
-                                icon: Icons.search_rounded,
+                                iconAsset:
+                                    'assets/word_hunt/v5_reference_assets/icon_search.png',
                                 label:
                                     '${_foundTargets.length}/${widget.level.targetWords.length}',
                                 key: const Key('word_hunt_production_progress'),
@@ -477,7 +464,8 @@ class _WordHuntLevelProductionScreenState
                             const SizedBox(width: 6),
                             Expanded(
                               child: _HarborMetricPlate(
-                                icon: Icons.close_rounded,
+                                iconAsset:
+                                    'assets/word_hunt/v5_reference_assets/icon_mistake.png',
                                 label: '$_scoredMistakes hata',
                                 key: const Key('word_hunt_production_mistakes'),
                               ),
@@ -485,7 +473,8 @@ class _WordHuntLevelProductionScreenState
                             const SizedBox(width: 6),
                             Expanded(
                               child: _HarborMetricPlate(
-                                icon: Icons.timer_outlined,
+                                iconAsset:
+                                    'assets/word_hunt/v5_reference_assets/icon_timer.png',
                                 label: '${_displayedElapsedSeconds}s',
                                 textKey: const Key(
                                   'word_hunt_production_elapsed_text',
@@ -1456,17 +1445,15 @@ class _HarborGameplayHeader extends StatelessWidget {
             key: const Key('word_hunt_production_back'),
             onPressed: onBack,
             style: IconButton.styleFrom(
-              foregroundColor: _harborGold,
               minimumSize: const Size(42, 42),
               padding: EdgeInsets.zero,
             ),
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              size: 34,
-              shadows: <Shadow>[
-                Shadow(color: Color(0xAAFFB83D), blurRadius: 7),
-                Shadow(color: Color(0xCC000000), blurRadius: 3),
-              ],
+            icon: Image.asset(
+              'assets/word_hunt/v5_reference_assets/icon_back.png',
+              width: 34,
+              height: 34,
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.high,
             ),
           ),
           const SizedBox(width: 9),
@@ -1513,68 +1500,39 @@ class _HarborGameplayHeader extends StatelessWidget {
 class _HarborMetricPlate extends StatelessWidget {
   const _HarborMetricPlate({
     super.key,
-    required this.icon,
+    required this.iconAsset,
     required this.label,
     this.textKey,
   });
 
-  final IconData icon;
+  final String iconAsset;
   final String label;
   final Key? textKey;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 45,
-      padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: <Color>[
-            Color(0xFFFFD47A),
-            Color(0xFF7D4E20),
-            Color(0xFFC18A45),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFF5A3418), width: 1),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0xC8000000),
-            blurRadius: 9,
-            offset: Offset(0, 4),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/word_hunt/v5_reference_assets/status_panel_empty.png',
+            fit: BoxFit.fill,
+            filterQuality: FilterQuality.high,
           ),
-          BoxShadow(color: Color(0x44FFB83D), blurRadius: 5),
-        ],
-      ),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 6),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: <Color>[Color(0xF21A354D), Color(0xF2081B30)],
-          ),
-          borderRadius: BorderRadius.circular(13),
-          border: Border.all(color: const Color(0xFF62462B), width: 1),
-          boxShadow: const <BoxShadow>[
-            BoxShadow(
-              color: Color(0xAA000000),
-              blurRadius: 5,
-              spreadRadius: -2,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Stack(
-          children: [
-            const Positioned(left: 5, top: 5, child: _HarborRivet()),
-            const Positioned(right: 5, bottom: 5, child: _HarborRivet()),
-            Row(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon, size: 18, color: _harborGold),
+                Image.asset(
+                  iconAsset,
+                  width: 18,
+                  height: 18,
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.high,
+                ),
                 const SizedBox(width: 6),
                 Flexible(
                   child: Text(
@@ -1595,29 +1553,9 @@ class _HarborMetricPlate extends StatelessWidget {
                 ),
               ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _HarborRivet extends StatelessWidget {
-  const _HarborRivet();
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: RadialGradient(
-          colors: <Color>[Color(0xFFFFD47A), Color(0xFF6D431F)],
-        ),
-        boxShadow: <BoxShadow>[
-          BoxShadow(color: Color(0x99000000), blurRadius: 2),
+          ),
         ],
       ),
-      child: const SizedBox.square(dimension: 3.5),
     );
   }
 }
@@ -1635,92 +1573,45 @@ class _HarborWordPlate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final outerBright =
-        found || bonus ? const Color(0xFFFFD76E) : const Color(0xFFD5A15D);
-    final outerDark = found ? const Color(0xFF7A4816) : const Color(0xFF634020);
+    final asset =
+        bonus
+            ? 'assets/word_hunt/v5_reference_assets/bonus_plaque_empty.png'
+            : 'assets/word_hunt/v5_reference_assets/word_plaque_empty.png';
     return AnimatedContainer(
       duration: const Duration(milliseconds: 160),
       constraints: const BoxConstraints(minHeight: 34),
-      padding: const EdgeInsets.all(2),
+      padding: EdgeInsets.fromLTRB(bonus ? 30 : 12, 6, 12, 6),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: <Color>[outerBright, outerDark, outerBright],
+        image: DecorationImage(
+          image: AssetImage(asset),
+          fit: BoxFit.fill,
+          filterQuality: FilterQuality.high,
         ),
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: const Color(0xFF4C2C13), width: 1),
-        boxShadow: [
-          const BoxShadow(
-            color: Color(0xB8000000),
-            blurRadius: 6,
-            offset: Offset(0, 3),
-          ),
-          if (found || bonus)
-            BoxShadow(
-              color: const Color(0x66FFB83D),
-              blurRadius: found ? 9 : 5,
-            ),
-        ],
       ),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors:
-                found
-                    ? const <Color>[Color(0xFF9B6B24), Color(0xFF59350F)]
-                    : const <Color>[Color(0xFF17324A), Color(0xFF07182A)],
-          ),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: found ? const Color(0xFFFFDA7A) : const Color(0xFF5A432C),
-          ),
-          boxShadow: const <BoxShadow>[
-            BoxShadow(
-              color: Color(0x8A000000),
-              blurRadius: 4,
-              spreadRadius: -1,
-              offset: Offset(0, 2),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (bonus)
+            SizedBox(
+              key: Key('word_hunt_production_bonus_icon_$word'),
+              width: 0,
+              height: 0,
             ),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (bonus) ...[
-              Icon(
-                found ? Icons.star_rounded : Icons.auto_awesome_rounded,
-                key: Key('word_hunt_production_bonus_icon_$word'),
-                size: 15,
-                color: _harborGold,
-                shadows: const <Shadow>[
-                  Shadow(color: Color(0xAAFFB83D), blurRadius: 6),
-                ],
-              ),
-              const SizedBox(width: 5),
-            ] else if (found) ...[
-              const Icon(Icons.check_rounded, size: 15, color: _harborGold),
-              const SizedBox(width: 5),
-            ],
-            Text(
-              word,
-              style: TextStyle(
-                color: found ? const Color(0xFFFFE7AE) : _harborCream,
-                fontFamily: 'serif',
-                fontSize: 12.5,
-                height: 1,
-                fontWeight: FontWeight.w900,
-                letterSpacing: .2,
-                shadows: const <Shadow>[
-                  Shadow(color: Color(0xD0000000), blurRadius: 3),
-                ],
-              ),
+          Text(
+            word,
+            style: TextStyle(
+              color: found ? const Color(0xFFFFE7AE) : _harborCream,
+              fontFamily: 'serif',
+              fontSize: 12.5,
+              height: 1,
+              fontWeight: FontWeight.w900,
+              letterSpacing: .2,
+              shadows: const <Shadow>[
+                Shadow(color: Color(0xD0000000), blurRadius: 3),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -1749,101 +1640,46 @@ class _HarborGridCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final active = selected || found;
-    final outerColors =
-        error
-            ? const <Color>[Color(0xFFFFB06A), Color(0xFF7A2E18)]
-            : active
-            ? const <Color>[Color(0xFFFFE08A), Color(0xFF8A5317)]
-            : const <Color>[Color(0xFFD3A15D), Color(0xFF5B391C)];
-    final innerColors =
-        error
-            ? const <Color>[Color(0xFF8B3B20), Color(0xFF4A1A10)]
-            : active
-            ? const <Color>[Color(0xFF9C6B24), Color(0xFF68400F)]
-            : const <Color>[Color(0xFF17344E), Color(0xFF07192D)];
+    final asset =
+        active
+            ? 'assets/word_hunt/v5_reference_assets/cell_selected_found.png'
+            : 'assets/word_hunt/v5_reference_assets/cell_idle.png';
 
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 120),
+    return Stack(
+      fit: StackFit.expand,
       alignment: Alignment.center,
-      padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: outerColors,
-        ),
-        borderRadius: BorderRadius.circular(math.max(6, extent * .14)),
-        border: Border.all(color: const Color(0xFF4A2A12), width: 1),
-        // Sixty-four cells are painted at once. Keep the metallic depth in the
-        // gradients and borders, and reserve the GPU-expensive glow for the
-        // currently active path instead of allocating a blurred layer for
-        // every idle cell.
-        boxShadow:
-            active
-                ? const <BoxShadow>[
-                  BoxShadow(
-                    color: Color(0x9AFFB83D),
-                    blurRadius: 7,
-                    spreadRadius: .2,
-                  ),
-                ]
-                : const <BoxShadow>[],
-      ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: innerColors,
+      children: [
+        Image.asset(asset, fit: BoxFit.fill, filterQuality: FilterQuality.high),
+        if (error)
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: const Color(0x338B3B20),
+              borderRadius: BorderRadius.circular(math.max(6, extent * .14)),
+              border: Border.all(color: const Color(0xFFFFB06A), width: 1.2),
+            ),
           ),
-          borderRadius: BorderRadius.circular(math.max(4, extent * .11)),
-          border: Border.all(
-            color: active ? const Color(0xFFFFD56A) : const Color(0xFF5B4935),
-            width: active ? 1.2 : .8,
+        Center(
+          child: Text(
+            letter,
+            style: TextStyle(
+              color: _harborCream,
+              fontFamily: 'serif',
+              fontSize: (extent * .46).clamp(17, 24),
+              fontWeight: FontWeight.w900,
+              height: 1,
+              shadows: const <Shadow>[
+                Shadow(color: Color(0xE0000000), blurRadius: 3),
+              ],
+            ),
           ),
         ),
-        child: Stack(
-          fit: StackFit.expand,
-          alignment: Alignment.center,
-          children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: FractionallySizedBox(
-                widthFactor: .72,
-                child: Container(
-                  height: 1,
-                  margin: const EdgeInsets.only(top: 2),
-                  color:
-                      active
-                          ? const Color(0x99FFF0BC)
-                          : const Color(0x6688A0B4),
-                ),
-              ),
+        if (error)
+          IgnorePointer(
+            child: SizedBox.expand(
+              key: Key('word_hunt_production_error_cell_${row}_$column'),
             ),
-            Center(
-              child: Text(
-                letter,
-                style: TextStyle(
-                  color: _harborCream,
-                  fontFamily: 'serif',
-                  fontSize: (extent * .46).clamp(17, 24),
-                  fontWeight: FontWeight.w900,
-                  height: 1,
-                  shadows: const <Shadow>[
-                    Shadow(color: Color(0xE0000000), blurRadius: 3),
-                  ],
-                ),
-              ),
-            ),
-            if (error)
-              IgnorePointer(
-                child: SizedBox.expand(
-                  key: Key('word_hunt_production_error_cell_${row}_$column'),
-                ),
-              ),
-          ],
-        ),
-      ),
+          ),
+      ],
     );
   }
 }
@@ -1855,60 +1691,20 @@ class _HarborInstructionPlate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       key: const Key('word_hunt_production_instruction_plate'),
-      constraints: const BoxConstraints(minHeight: 50),
-      padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: <Color>[
-            Color(0xFFD1A05B),
-            Color(0xFF60401F),
-            Color(0xFFE0B369),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFF4A2D16), width: 1),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0xC8000000),
-            blurRadius: 9,
-            offset: Offset(0, 4),
+      height: 50,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/word_hunt/v5_reference_assets/instruction_panel_empty.png',
+            fit: BoxFit.fill,
+            filterQuality: FilterQuality.high,
           ),
-          BoxShadow(color: Color(0x44FFB83D), blurRadius: 5),
-        ],
-      ),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: <Color>[Color(0xF218354F), Color(0xF2081A2E)],
-          ),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: const Color(0xFF5D4934), width: 1),
-          boxShadow: const <BoxShadow>[
-            BoxShadow(
-              color: Color(0x99000000),
-              blurRadius: 4,
-              spreadRadius: -1,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            const Icon(
-              Icons.anchor_rounded,
-              color: _harborGold,
-              size: 23,
-              shadows: <Shadow>[
-                Shadow(color: Color(0x88FFB83D), blurRadius: 5),
-              ],
-            ),
-            const SizedBox(width: 8),
-            Expanded(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 7),
+            child: Center(
               child: Text(
                 status,
                 key: const Key('word_hunt_production_status'),
@@ -1927,10 +1723,8 @@ class _HarborInstructionPlate extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 8),
-            const Icon(Icons.explore_outlined, color: _harborGold, size: 23),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
