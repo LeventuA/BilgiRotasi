@@ -24,6 +24,7 @@
 ## Kalıcı çalışma kuralı
 
 - Yeni sohbet başında önce bu dosya okunur.
+- **Bu sohbet boyunca her asistan yanıtından sonra `GENEL_PROJE_OZETI.md` yalnız gerekli farklarla güncellenecek.** Yeni kararlar, tamamlanan görevler, test/PR/commit kanıtları ve açık kalan konular işlenecek; gereksiz tekrarlar temizlenebilir ancak önemli bilgi silinmeyecek. Dosya her zaman yeni bir sohbeti tek başına devralmaya yetecek güncellikte tutulacak.
 - Ardından `BILGI_ROTASI_DURUM.md`, ilgili `KARARLAR.md`, `GOREV_HAVUZU.md` ve gerektiğinde `ACIK_SORULAR_VE_DOGRULAMALAR.md` okunur.
 - Her görev öncesi canlı hedef branch, `pubspec.yaml`, son commit, PR ve CI yeniden doğrulanır.
 - `main` güncel yayın kaynağı varsayılmaz.
