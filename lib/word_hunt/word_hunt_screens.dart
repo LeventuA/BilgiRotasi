@@ -573,47 +573,80 @@ class _WordHuntLevelProductionScreenState
                                     ),
                                     onPointerUp: (_) => _pointerUp(),
                                     onPointerCancel: (_) => _pointerCancel(),
-                                    child: GridView.builder(
-                                      padding: EdgeInsets.zero,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount:
-                                                widget.level.columnCount,
-                                            crossAxisSpacing:
-                                                _harborGridSpacing,
-                                            mainAxisSpacing: _harborGridSpacing,
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        IgnorePointer(
+                                          child: CustomPaint(
+                                            key: const Key(
+                                              'word_hunt_production_found_path_connector',
+                                            ),
+                                            painter:
+                                                _HarborFoundPathConnectorPainter(
+                                                  paths: _foundPaths.values
+                                                      .map(
+                                                        (path) =>
+                                                            List<
+                                                              WordHuntCell
+                                                            >.unmodifiable(
+                                                              path,
+                                                            ),
+                                                      )
+                                                      .toList(growable: false),
+                                                  cellExtent: cellExtent,
+                                                  spacing: _harborGridSpacing,
+                                                ),
                                           ),
-                                      itemCount:
-                                          widget.level.rowCount *
-                                          widget.level.columnCount,
-                                      itemBuilder: (context, index) {
-                                        final row =
-                                            index ~/ widget.level.columnCount;
-                                        final column =
-                                            index % widget.level.columnCount;
-                                        final cell = WordHuntCell(row, column);
-                                        final rune = widget
-                                            .level
-                                            .grid[row]
-                                            .runes
-                                            .elementAt(column);
-                                        return _HarborGridCell(
-                                          key: Key(
-                                            'word_hunt_production_cell_${row}_$column',
-                                          ),
-                                          row: row,
-                                          column: column,
-                                          letter: String.fromCharCode(rune),
-                                          extent: cellExtent,
-                                          selected: _selectedPath.contains(
-                                            cell,
-                                          ),
-                                          found: _isFound(cell),
-                                          error: _errorCells.contains(cell),
-                                        );
-                                      },
+                                        ),
+                                        GridView.builder(
+                                          padding: EdgeInsets.zero,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount:
+                                                    widget.level.columnCount,
+                                                crossAxisSpacing:
+                                                    _harborGridSpacing,
+                                                mainAxisSpacing:
+                                                    _harborGridSpacing,
+                                              ),
+                                          itemCount:
+                                              widget.level.rowCount *
+                                              widget.level.columnCount,
+                                          itemBuilder: (context, index) {
+                                            final row =
+                                                index ~/
+                                                widget.level.columnCount;
+                                            final column =
+                                                index %
+                                                widget.level.columnCount;
+                                            final cell = WordHuntCell(
+                                              row,
+                                              column,
+                                            );
+                                            final rune = widget
+                                                .level
+                                                .grid[row]
+                                                .runes
+                                                .elementAt(column);
+                                            return _HarborGridCell(
+                                              key: Key(
+                                                'word_hunt_production_cell_${row}_$column',
+                                              ),
+                                              row: row,
+                                              column: column,
+                                              letter: String.fromCharCode(rune),
+                                              extent: cellExtent,
+                                              selected: _selectedPath.contains(
+                                                cell,
+                                              ),
+                                              found: _isFound(cell),
+                                              error: _errorCells.contains(cell),
+                                            );
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -1607,6 +1640,66 @@ class _HarborWordPlate extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _HarborFoundPathConnectorPainter extends CustomPainter {
+  const _HarborFoundPathConnectorPainter({
+    required this.paths,
+    required this.cellExtent,
+    required this.spacing,
+  });
+
+  final List<List<WordHuntCell>> paths;
+  final double cellExtent;
+  final double spacing;
+
+  Offset _centerFor(WordHuntCell cell) {
+    final stride = cellExtent + spacing;
+    return Offset(
+      cell.column * stride + cellExtent / 2,
+      cell.row * stride + cellExtent / 2,
+    );
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (paths.isEmpty) return;
+
+    final glowPaint = Paint()
+      ..color = const Color(0x55FF9D22)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(8, cellExtent * .44)
+      ..strokeCap = StrokeCap.round;
+    final bridgePaint = Paint()
+      ..color = const Color(0xD69B560D)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(5, cellExtent * .27)
+      ..strokeCap = StrokeCap.round;
+
+    for (final path in paths) {
+      if (path.length < 2) continue;
+      for (var index = 0; index < path.length - 1; index++) {
+        final startCenter = _centerFor(path[index]);
+        final endCenter = _centerFor(path[index + 1]);
+        final delta = endCenter - startCenter;
+        final distance = delta.distance;
+        if (distance <= 0) continue;
+        final direction = delta / distance;
+        final overlap = cellExtent * .34;
+        final start = startCenter + direction * overlap;
+        final end = endCenter - direction * overlap;
+        canvas.drawLine(start, end, glowPaint);
+        canvas.drawLine(start, end, bridgePaint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _HarborFoundPathConnectorPainter oldDelegate) {
+    return oldDelegate.paths != paths ||
+        oldDelegate.cellExtent != cellExtent ||
+        oldDelegate.spacing != spacing;
   }
 }
 
