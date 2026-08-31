@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 40
     env:
-      QA_SHA: 9cfa12aeafd29d6197c91c79361648508adf400d
+      QA_SHA: ca211433ce5dd65533195427601d29ec8f16bc0a
       PRODUCT_FIX_BRANCH: fix/kelime-avi-v6-grid-spacing-product-20260831
 
     steps:
