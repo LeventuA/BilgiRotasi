@@ -1,8 +1,25 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 30 Ağustos 2026 — Kelime Avı V5 gameplay teması gerçek Android 16 kanıtıyla teknik görsel PASS. Run `33308127773`, job `99248192399`, artifact `9731244720`; B1/B5/B8/B10 64/64, gerçek ANKARA + ters BAŞKENT swipe, B5 74s soft-time ve uygulama process-failure taraması PASS. Draft PR #158 OPEN/DRAFT kalır. Kalan kapı Levent'in görsel kabulü + B5/B10 insan süre dengesi; Ready/merge yok.
+**Son güncelleme:** 31 Ağustos 2026 — Kelime Avı V5 exact-reference görsel kabulü yeniden açık. Önceki yanlış/mockup PASS geçersiz; bağlayıcı hedef kullanıcının onayladığı Görsel 1, mevcut raw Android Görsel 2 = VISUAL FAIL. Canonical 8×8 kilitli. PR #161 OPEN/DRAFT; Ready/merge yok. Preview düzeltmeleri yalnız raw Android artifact ile değerlendiriliyor.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
+
+## 31 Ağustos 2026 — Kelime Avı V5 exact-reference görsel düzeltme checkpoint
+
+- Önceki V5 görsel PASS kaydı **GEÇERSİZ / SUPERSEDED**. Kullanıcıya gerçek Android screenshot gibi sunulan düzenlenmiş/mockup found-state görseli kanıt sayılmaz.
+- Bağlayıcı hedef artık kullanıcının onayladığı **Görsel 1** kompozisyonudur. Görsel 2 mevcut raw Android runtime çıktısıdır ve **VISUAL FAIL** kabul edilir.
+- Canonical gameplay geometrisi **8×8 / 64 hücre** olarak kilitlidir; 6×10'a dönüş yok.
+- Teknik gameplay/engine/gesture/timer/scoring/progression kapıları korunur; görsel düzeltme yalnız presentation/layout/found-state sunumundadır.
+- Aktif entegrasyon PR'ı: **#161 OPEN / DRAFT / merged=false**. Ready/merge yok.
+- Ürün entegrasyon commit'i `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7` teknik test/analyze kapılarını geçti; ancak gerçek Android görsel kabulü geri çekildi.
+- Kullanıcı tarafından onaylanan 11 reference asset production paketi için kilitli; `icon_anchor.png` ve `icon_compass.png` ayrı overlay olarak kullanılmıyor.
+- Raw Android B10 initial ve YOL-found kanıtlarında içerik/gesture çalışıyor; `YILDIZ`, `KAPTAN`, `YOL` gibi gerçek kelimeler doğru. Buna rağmen kompozisyon/found-state görünümü bağlayıcı hedefe ulaşmadığı için görsel PASS değildir.
+- Hedef ile runtime aynı 9:16 içerik uzayında karşılaştırıldı. Ana farklar: bulunan `YOL` plakasının hedefte altınlaşması, Y-O-L hücrelerinin ortak altın glow dili ve found sonrası alt panelin hedefteki talimat metnini koruması.
+- Düzeltme hattı `fix/kelime-avi-v5-runtime-layout-match-20260831` üzerinde ilerler; ürün branch'ine kalıcı görsel commit atmadan önce QA preview kullanılır.
+- İlk preview run `33403378174` **SUCCESS**: patch, analyze, focused Word Hunt testleri, APK ve gerçek Android initial/YOL-found screenshot kapıları geçti. İlk preview hedefe yaklaştı fakat YOL plaque gölgesi dikdörtgenleşti ve hücre glow'u fazla güçlü olduğu için **PASS verilmedi**.
+- İkinci rafine preview run `33404724401`, head `133229360faefe767e834d0cad6f7cc0513e6430`, **SUCCESS**. Bu koşu teknik preview kapılarını geçti; nihai görsel kabul yalnız raw artifact görüntüsü kullanıcı tarafından görülüp açık PASS verilirse yapılacak.
+- Görsel kabul standardı: yalnız **raw Android artifact/screenshot** geçerlidir. Image edit/mockup/üretilmiş görsel Android kanıtı sayılamaz.
+- Kullanıcı açıkça PASS vermeden ürün görsel düzeltmesi kalıcılaştırılmaz; PR #161 Ready/merge yapılmaz.
 
 ## Kalıcı çalışma kuralı
 
@@ -166,25 +183,25 @@ Bu kanıt 8×8 runtime kabulü yerine kullanılmadı; 8×8 ayrı final gate ile 
 
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
-1. Her görev başında release, 8×8 branch HEAD, `pubspec.yaml` ve PR #158 canlı durumunu yeniden doğrula.
-2. Teknik 8×8 gate tamamlandı; yeni belirti yoksa körlemesine yeni QA run üretme.
-3. Kullanıcıya gerçek Android16 B1/B5/B8/B10 ve B5 ANKARA/BAŞKENT kanıtlarını göstererek **görsel/oynanış kabulü** al.
-4. B5 60s ve B10 120s challenge sürelerini gerçek insan playtestinde değerlendir; teknik soft-time PASS ile zorluk dengesi aynı şey değildir.
-5. Kullanıcı kabulünden önce PR #158 Ready yapma.
+1. Her görev başında release, 8×8 branch HEAD, `pubspec.yaml`, PR #158 ve PR #161 canlı durumunu yeniden doğrula.
+2. Teknik 8×8 gate tamamlandı; görsel kabul gate'i açıktır. Mockup/edited görüntü Android kanıtı sayılmaz.
+3. Exact-reference düzeltmesini önce QA preview üzerinde raw Android initial + found-state artifact ile doğrula.
+4. Kullanıcı raw Android görüntüyü açıkça PASS etmeden ürün düzeltmesini kalıcılaştırma ve PR #161 Ready yapma.
+5. B5 60s ve B10 120s challenge sürelerini gerçek insan playtestinde değerlendir; teknik soft-time PASS ile zorluk dengesi aynı şey değildir.
 6. Merge ancak Levent'in açık merge onayıyla yapılır.
 7. Eski PR #156 otomatik kapatılmaz; kapatma kararı ayrı alınır.
 8. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı kapsam/branch/PR işidir.
 
 Diğer Bilgi Rotası açık işleri `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` içinde korunur.
 
-## 30 Ağustos 2026 — Kelime Avı V5 gameplay görsel teması
+## 30 Ağustos 2026 — Kelime Avı V5 gameplay görsel teması — TARİHSEL / SUPERSEDED GÖRSEL KABUL
 
-- Aktif ürün hattı `feat/kelime-avi-8x8-content-v1-20260829` / Draft PR #158 üzerinde ilerler.
-- Başlangıç Limanı gameplay ekranının bağlayıcı görsel dili, kullanıcının 30 Ağustos 2026 gece limanı referansıdır: koyu lacivert deniz/liman, sıcak altın ışık, bronz-altın plakalar ve premium macera hissi.
+- Aktif ürün hattı `feat/kelime-avi-8x8-content-v1-20260829` / Draft PR #158 üzerinde ilerledi.
+- Başlangıç Limanı gameplay ekranının bağlayıcı görsel dili, kullanıcının 30 Ağustos 2026 gece limanı referansıydı: koyu lacivert deniz/liman, sıcak altın ışık, bronz-altın plakalar ve premium macera hissi.
 - Görsel referanstaki 6×10 geometri alınmadı; canonical ürün geometrisi ve içerik sözleşmesi **8×8 / 64 hücre** olarak korundu.
 - Mevcut production gameplay widget'ı sunum katmanında güncellendi; engine, gesture, timer, hata, bonus, scoring, result ve progression davranışları değiştirilmedi.
 - Temiz `assets/word_hunt/baslangic_limani_bg.jpg` sahne/çevre arka planı kullanıldı; referans screenshot production UI'a gömülmedi ve yeni dependency eklenmedi.
 - B1/B5/B8/B10 için 64/64 hücrenin dar 411×731 mantıksal viewport içinde kalması widget testiyle kilitlendi.
 - QA-only commit `342e246e1e47dd595c9cebb4ab52c701636f8685` için run `33308127773` / job `99248192399` SUCCESS oldu. Artifact `9731244720`, digest `sha256:ecd0aad4ce6aaacbe58a2c32c3bf03f44c711a5a0aee2aba4fb215fc7656eed2`.
 - Yedi gerçek Android 16 / 1080×1920 / 420 dpi gameplay screenshot'ı incelendi: B1/B5/B8/B10 64/64; ANKARA + ters BAŞKENT gerçek swipe; B5 74s soft-time; uygulama crash/ANR/FATAL/process-death taraması PASS.
-- Teknik görsel kanıt PASS; **Levent nihai görsel kabulü DOĞRULANACAK**. QA-only harness/workflow ürün engine ve içerik davranışını değiştirmedi.
+- Bu bölümdeki eski “teknik görsel PASS / kullanıcı kabulü bekleniyor” çerçevesi 31 Ağustos exact-reference checkpoint'i tarafından supersede edilmiştir; güncel görsel durum **VISUAL FAIL / düzeltme sürüyor**.
