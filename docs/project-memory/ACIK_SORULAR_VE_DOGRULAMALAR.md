@@ -2,59 +2,50 @@
 
 > 29 Ağustos 2026 aktif kesimidir. Eski tam kayıtlar Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
-## Kelime Avı Başlangıç Limanı 8×8 — TEKNİK PASS / KULLANICI KABULÜ AÇIK
+## Kelime Avı Başlangıç Limanı 8×8 — TEKNİK PASS / CURRENT GÖRSEL PASS / İNSAN PLAYTEST + READY/MERGE AÇIK
 
 29 Ağustos 2026 kullanıcı kararıyla starter-content grid standardı **8×8** oldu; önceki 6×10 geometrisi yeni ürün hattı için superseded edildi.
 
-Canlı çalışma:
-- Branch: `feat/kelime-avi-8x8-content-v1-20260829`
-- Ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`
-- Draft PR: **#158** — OPEN / DRAFT / merged=false / mergeable=true.
-- Base release: `release/final-closed-test-aab-1.68.8` / `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
-- Sürüm: `1.68.19+109`.
-- Eski PR #156 6×10 hattında OPEN/DRAFT kalır; otomatik kapatılmadı.
+Current exact-reference çalışma:
+- Branch: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
+- Product HEAD: `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7`.
+- Draft PR **#161** — OPEN / DRAFT / merged=false / mergeable=true; base `feat/kelime-avi-8x8-content-v1-20260829` / `5362c094...`.
+- Parent Draft PR **#158** — OPEN / DRAFT / merged=false / mergeable=true; release base `release/final-closed-test-aab-1.68.8` / `3a0f722a...`.
+- Sürüm `1.68.19+109`.
 
-Teknik olarak doğrulandı:
+Current exact-reference doğrulamaları:
+- [x] 11 production raster asset kullanıcı görsel QA ile LOCKED/PASS ve exact SHA-256 ile branch'e alındı.
+- [x] `icon_anchor.png` / `icon_compass.png` ayrı production overlay olarak kullanılmıyor.
+- [x] Canonical gameplay grid **8×8 / LOCKED / UNCHANGED**; assetlerde grid bake değil.
+- [x] Integration run `33379341765` SUCCESS: asset SHA, deterministic presentation patch, format, analyze, 138/138 focused test, diff/protected-scope gate PASS.
+- [x] Exact product SHA `50ab6c8...` için gerçek Android 16 B10 initial runtime: run `33384781507` SUCCESS, artifact `9755405253`, API36 / 1080×1920 / 420 dpi.
+- [x] Gerçek Android found-state kanıtı artifact `9756762383`: `09_B10_YOL_FOUND.png` içinde `1/9`, altın Y-O-L hücreleri ve `YOL bulundu!`; gesture visual-change `changed_pixels=29970` PASS.
+- [x] Levent current exact-reference görsel hedefe açık **PASS** verdi; runtime found-state daha sonra aynı kabul edilmiş görünümle ayrıca doğrulandı.
+
+**ÖNEMLİ KANIT SINIRI:** run `33388386388` genel sonucu FAILURE'dır; screenshot ve real-gesture visual-change PASS sonrasında yalnız exact log-string `grep` assertion'ı exit 1 vermiştir. Bu run workflow SUCCESS diye yazılmayacak; içindeki gerçek Android found-state PNG/gesture kanıtı kullanılacaktır.
+
+8×8 temel teknik sözleşme de korunur:
 - 10 adet 8×8 grid ve 80 toplam target+bonus.
 - Her canonical kelime exactly-one physical straight-line occurrence.
 - Intended/opposite canonical yol eşleşmeleri.
 - B5/B10 yatay+dikey+çapraz yön aileleri.
 - B8 `HIZ`+`SKOR`, B9 `ROKET` ve `AY` yok, B10 `YOL`+`HAZİNE` ve `ROTA` yok.
-- Dart formatter PASS.
-- `dart analyze lib/word_hunt`: No issues.
-- Focused Word Hunt suite: **37/37 PASS**.
-- Full Flutter suite: **442/442 PASS**.
-- `git diff --check` + protected-scope gate PASS.
-- QA-only entrypoint/helper dosyaları ürün commitine girmedi.
-
-Final Android 16:
-- Run `33251736068`: **SUCCESS**.
-- API 36 / 1080×1920 / 420 dpi.
-- B1/B5/B8/B10: ilk viewportta **64/64** hücre görünür ve okunabilir.
-- B5 +65s soft-time: hard fail yok; 67–76s oynanabilir.
-- ANKARA uzun çapraz gerçek swipe: `1/7`, `Bilgi kartı açıldı: Ankara`.
-- BAŞKENT ters-dikey gerçek swipe: `1/7`, `BAŞKENT bulundu!`.
-- Crash/ANR/FATAL/am_crash taraması temiz.
-- Artifact `9714700778`; digest `sha256:dfbca264c2f67bb3549a0e336b075c9238f1a0638962dc69392ea8715b9a2092`.
-
-İlk gate `33250841637` formatter kapısında durmuştu ve analyze/test/Android16 çalışmamıştı; ürün failure değildir. Final run `33251736068` teknik kabul kanıtıdır.
+- Önceki final teknik run `33251736068`: SUCCESS; 37/37 focused + 442/442 full suite + Android 16 B1/B5/B8/B10 64/64 + B5 soft-time + ANKARA/ters BAŞKENT swipe PASS.
 
 **DOĞRULANACAK — KALANLAR:**
-1. Levent gerçek Android 16 8×8 görünümünü/oynanışı kabul ediyor mu?
-2. B5 60 saniye ve B10 120 saniye challenge süreleri gerçek insan playtestinde dengeli mi?
-3. Kullanıcı kabulünden sonra PR #158 Ready yapılacak mı?
-4. PR #158 merge'i için Levent ayrıca açık merge onayı verecek mi?
-5. Eski PR #156 ne zaman/kim tarafından kapatılacak? Otomatik kapatılmayacak.
-6. Production `lib/main.dart` ana navigasyon entegrasyonu için ayrı kapsam/onay verilecek mi?
+1. B5 60 saniye ve B10 120 saniye challenge süreleri gerçek insan playtestinde dengeli mi?
+2. PR #161 ve parent PR #158 ne zaman Ready yapılacak? Ayrı açık karar gerektirir.
+3. Merge için Levent ayrıca açık onay verecek mi? Görsel PASS merge izni değildir.
+4. Production `lib/main.dart` ana navigasyon entegrasyonu için ayrı kapsam/onay verilecek mi?
+5. `ERROR_STATE_VISUAL`: referansta ayrı hata-state asset'i yok; kullanıcı/karar doğrulaması olmadan yeni stil üretilmez.
+6. `REFERENCE_FONT`: exact font kaynağı bağımsız doğrulanmadı; mevcut kullanıcı-kabul edilmiş runtime görünümü sırf tahminle değiştirilmez.
+7. Eski PR #156 ne zaman/kim tarafından kapatılacak? Otomatik kapatılmayacak.
 
-### 30 Ağustos 2026 — V5 gameplay tema açık doğrulamaları
+### Tarihsel 30–31 Ağustos V5 tema kanıtları
 
-1. [x] Yeni lacivert-altın gameplay sunumu Android 16 / 1080×1920 / 420 dpi gerçek runtime'da B1/B5/B8/B10 için teknik görsel kontrolden geçti.
-2. [x] 64/64 hücre, üst kartlar, hedef etiketleri ve alt talimat paneli aynı ilk viewportta taşmasız ve okunabilir.
-3. [x] B5 ANKARA ve ters BAŞKENT gerçek swipe'ları görsel vurgu ve gameplay sonucuyla PASS.
-4. [x] App paketinde FATAL EXCEPTION, ANR, `am_crash` veya process death yok.
-
-Kanıt: run `33308127773`, job `99248192399`, artifact `9731244720`. Teknik görsel kanıt PASS; Levent'in gerçek screenshot'ları görerek vereceği nihai kabul ve B5/B10 insan süre dengesi **DOĞRULANACAK**.
+- Run `33308127773`, artifact `9731244720`: eski layered/refined temada Android 16 teknik gameplay kanıtı PASS.
+- Artifact `9737903231` / `67f7365...`: kullanıcı bir ara refined görünümü kabul etmişti; daha sonra exact-reference talebiyle bu yaklaşım supersede edildi.
+- Current görsel kabul ve product kaynak olarak `50ab6c8...` + PR #161 esas alınır.
 
 ---
 
@@ -76,7 +67,7 @@ Kanıt: run `33308127773`, job `99248192399`, artifact `9731244720`. Teknik gör
 
 ## Kelime Avı production ana navigasyon entegrasyonu — AÇIK / AYRI KAPSAM
 
-- `lib/main.dart` 8×8 starter-content dönüşümünde değiştirilmedi.
+- `lib/main.dart` 8×8 starter-content / V5 exact-reference asset dönüşümünde değiştirilmedi.
 - Gerçek uygulama girişine bağlama ayrı branch/PR ve açık onay ister.
 
 ---
