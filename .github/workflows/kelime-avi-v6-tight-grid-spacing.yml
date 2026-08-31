@@ -1,0 +1,80 @@
+name: Kelime Avi V6 tight grid spacing
+
+on:
+  push:
+    branches:
+      - fix/kelime-avi-v6-tight-grid-spacing-20260831
+    paths:
+      - '.github/workflows/kelime-avi-v6-tight-grid-spacing.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-commit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout exact V6 fix branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/kelime-avi-v6-tight-grid-spacing-20260831
+          fetch-depth: 0
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.7'
+          channel: stable
+          cache: true
+
+      - name: Verify branch ancestry and protected contracts
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor 9cfa12aeafd29d6197c91c79361648508adf400d HEAD
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          test "$(grep -c '^const _harborGridSpacing = 3\.0;$' lib/word_hunt/word_hunt_screens.dart)" -eq 1
+
+      - name: Tighten grid spacing only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('lib/word_hunt/word_hunt_screens.dart')
+          text = path.read_text(encoding='utf-8')
+          old = 'const _harborGridSpacing = 3.0;'
+          new = 'const _harborGridSpacing = 1.5;'
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected exactly one spacing contract, found {text.count(old)}')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Analyze Word Hunt
+        run: dart analyze lib/word_hunt
+
+      - name: Focused Word Hunt tests
+        run: flutter test test/word_hunt_*_test.dart
+
+      - name: Diff and protected-scope gate
+        run: |
+          set -euo pipefail
+          git diff --check
+          grep -q '^const _harborGridSpacing = 1\.5;$' lib/word_hunt/word_hunt_screens.dart
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          test "$(git diff --name-only | wc -l)" -eq 1
+          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          test "$(git diff --name-only -- assets/word_hunt/v5_reference_assets | wc -l)" -eq 0
+          test "$(git diff --name-only -- assets/questions.json lib/main.dart | wc -l)" -eq 0
+
+      - name: Commit tested spacing fix
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lib/word_hunt/word_hunt_screens.dart
+          git diff --cached --check
+          git commit -m 'fix(kelime-avi): tighten V5 grid cell spacing'
+          git push origin HEAD:fix/kelime-avi-v6-tight-grid-spacing-20260831
