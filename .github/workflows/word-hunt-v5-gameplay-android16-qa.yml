@@ -1,4 +1,4 @@
-name: Kelime Avı V5 B10 runtime-layout preview
+name: Kelime Avı V6 B10 tight-grid raw preview
 
 on:
   push:
@@ -10,21 +10,23 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   b10-visual-preview:
-    name: B10 layout preview / raw Android 16
+    name: B10 tight-grid preview / raw Android 16
     runs-on: ubuntu-22.04
     timeout-minutes: 40
     env:
       QA_SHA: 9cfa12aeafd29d6197c91c79361648508adf400d
+      PRODUCT_FIX_BRANCH: fix/kelime-avi-v6-grid-spacing-product-20260831
 
     steps:
       - name: Exact çalışma HEAD'ini indir
         uses: actions/checkout@v4
         with:
           ref: ${{ env.QA_SHA }}
+          fetch-depth: 0
 
       - name: Preview patch aracını ayrı klasöre indir
         uses: actions/checkout@v4
@@ -52,9 +54,14 @@ jobs:
           mkdir -p reports/word_hunt_v5_gameplay
           python3 qa-tools/tools/qa/word_hunt_v5_layout_preview_patch.py
           dart format lib/word_hunt/word_hunt_screens.dart
+          grep -q '^const _harborGridSpacing = 1\.5;$' lib/word_hunt/word_hunt_screens.dart
           git diff --check
           git diff -- lib/word_hunt/word_hunt_screens.dart > reports/word_hunt_v5_gameplay/PREVIEW.diff
           test -s reports/word_hunt_v5_gameplay/PREVIEW.diff
+          test "$(git diff --name-only | wc -l)" -eq 1
+          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          test "$(git diff --name-only -- assets/word_hunt/v5_reference_assets | wc -l)" -eq 0
+          test "$(git diff --name-only -- assets/questions.json lib/main.dart | wc -l)" -eq 0
           flutter pub get
           dart analyze lib/word_hunt
           flutter test test/word_hunt_*_test.dart
@@ -143,11 +150,26 @@ jobs:
             test -s reports/word_hunt_v5_gameplay/09_B10_YOL_FOUND.png
             sha256sum reports/word_hunt_v5_gameplay/04_B10_INITIAL.png reports/word_hunt_v5_gameplay/09_B10_YOL_FOUND.png > reports/word_hunt_v5_gameplay/SHA256SUMS.txt
 
+      - name: Test edilen V6 görsel düzeltmeyi ürün fix branch'ine commit et
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '^const _harborGridSpacing = 1\.5;$' lib/word_hunt/word_hunt_screens.dart
+          git diff --check
+          test "$(git diff --name-only | wc -l)" -eq 1
+          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lib/word_hunt/word_hunt_screens.dart
+          git diff --cached --check
+          git commit -m 'fix(kelime-avi): refine V5 found state and tighten grid'
+          git push origin HEAD:${PRODUCT_FIX_BRANCH}
+
       - name: Preview kanıtını yükle
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-KelimeAvi-V5-B10-layout-preview-${{ env.QA_SHA }}
+          name: BilgiRotasi-KelimeAvi-V6-B10-tight-grid-${{ env.QA_SHA }}
           path: reports/word_hunt_v5_gameplay/**
           if-no-files-found: error
           retention-days: 21

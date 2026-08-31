@@ -5,7 +5,7 @@ text = path.read_text(encoding='utf-8')
 
 old = "const _harborGridSpacing = 3.0;\n"
 new = (
-    "const _harborGridSpacing = 3.0;\n"
+    "const _harborGridSpacing = 1.5;\n"
     "const _harborInstructionDefault =\n"
     "    'İlk harfe dokun, parmağını kelimenin üzerinde sürükle.';\n"
 )
@@ -103,4 +103,4 @@ grid = grid[:-len(old_end)] + new_end
 text = text[:grid_start] + grid + text[instruction_start:]
 
 path.write_text(text, encoding='utf-8')
-print('V5_LAYOUT_PREVIEW_PATCH_APPLIED')
+print('V6_LAYOUT_PREVIEW_PATCH_APPLIED')
