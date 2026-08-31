@@ -1,0 +1,196 @@
+name: Kelime Avi V6 found path connector
+
+on:
+  push:
+    branches:
+      - fix/kelime-avi-v6-found-path-connector-20260901
+    paths:
+      - '.github/workflows/kelime-avi-v6-found-path-connector.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-commit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout exact connector branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/kelime-avi-v6-found-path-connector-20260901
+          fetch-depth: 0
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify exact V6 visual base
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = 'be6816d89b32be9556ce6e99c21409a0e30e2ab2'
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = 'd415876b1311362a8de6220cfcfe2978fce514dd'
+          grep -q '^const _harborGridSpacing = 1\.5;$' lib/word_hunt/word_hunt_screens.dart
+          grep -q '^const _harborCellVisualScale = 1\.12;$' lib/word_hunt/word_hunt_screens.dart
+
+      - name: Add found path connector under grid cells
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/word_hunt/word_hunt_screens.dart')
+          text = path.read_text(encoding='utf-8')
+
+          old = """                                    child: GridView.builder(
+                                      padding: EdgeInsets.zero,
+"""
+          new = """                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        IgnorePointer(
+                                          child: CustomPaint(
+                                            key: const Key(
+                                              'word_hunt_production_found_path_connector',
+                                            ),
+                                            painter: _HarborFoundPathConnectorPainter(
+                                              paths: _foundPaths.values
+                                                  .map(
+                                                    (path) =>
+                                                        List<WordHuntCell>.unmodifiable(
+                                                          path,
+                                                        ),
+                                                  )
+                                                  .toList(growable: false),
+                                              cellExtent: cellExtent,
+                                              spacing: _harborGridSpacing,
+                                            ),
+                                          ),
+                                        ),
+                                        GridView.builder(
+                                      padding: EdgeInsets.zero,
+"""
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected one GridView start, found {text.count(old)}')
+          text = text.replace(old, new, 1)
+
+          old = """                                          error: _errorCells.contains(cell),
+                                        );
+                                      },
+                                    ),
+                                  ),
+"""
+          new = """                                          error: _errorCells.contains(cell),
+                                        );
+                                      },
+                                    ),
+                                      ],
+                                    ),
+                                  ),
+"""
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected one GridView tail, found {text.count(old)}')
+          text = text.replace(old, new, 1)
+
+          marker = 'class _HarborGridCell extends StatelessWidget {'
+          if text.count(marker) != 1:
+              raise SystemExit(f'Expected one HarborGridCell marker, found {text.count(marker)}')
+
+          painter = r'''class _HarborFoundPathConnectorPainter extends CustomPainter {
+  const _HarborFoundPathConnectorPainter({
+    required this.paths,
+    required this.cellExtent,
+    required this.spacing,
+  });
+
+  final List<List<WordHuntCell>> paths;
+  final double cellExtent;
+  final double spacing;
+
+  Offset _centerFor(WordHuntCell cell) {
+    final stride = cellExtent + spacing;
+    return Offset(
+      cell.column * stride + cellExtent / 2,
+      cell.row * stride + cellExtent / 2,
+    );
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (paths.isEmpty) return;
+
+    final glowPaint = Paint()
+      ..color = const Color(0x55FF9D22)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(8, cellExtent * .44)
+      ..strokeCap = StrokeCap.round;
+    final bridgePaint = Paint()
+      ..color = const Color(0xD69B560D)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(5, cellExtent * .27)
+      ..strokeCap = StrokeCap.round;
+
+    for (final path in paths) {
+      if (path.length < 2) continue;
+      for (var index = 0; index < path.length - 1; index++) {
+        final startCenter = _centerFor(path[index]);
+        final endCenter = _centerFor(path[index + 1]);
+        final delta = endCenter - startCenter;
+        final distance = delta.distance;
+        if (distance <= 0) continue;
+        final direction = delta / distance;
+        final overlap = cellExtent * .34;
+        final start = startCenter + direction * overlap;
+        final end = endCenter - direction * overlap;
+        canvas.drawLine(start, end, glowPaint);
+        canvas.drawLine(start, end, bridgePaint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _HarborFoundPathConnectorPainter oldDelegate) {
+    return oldDelegate.paths != paths ||
+        oldDelegate.cellExtent != cellExtent ||
+        oldDelegate.spacing != spacing;
+  }
+}
+
+'''
+          text = text.replace(marker, painter + marker, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+          dart format lib/word_hunt/word_hunt_screens.dart
+
+      - name: Analyze and focused test gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_*_test.dart
+          git diff --check
+          grep -q 'word_hunt_production_found_path_connector' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'class _HarborFoundPathConnectorPainter extends CustomPainter' lib/word_hunt/word_hunt_screens.dart
+          test "$(git diff --name-only | wc -l)" -eq 1
+          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          test "$(git diff --name-only -- assets/questions.json lib/main.dart assets/word_hunt/v5_reference_assets | wc -l)" -eq 0
+
+      - name: Commit tested connector
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lib/word_hunt/word_hunt_screens.dart
+          git diff --cached --check
+          git commit -m 'fix(kelime-avi): connect found word cells visually'
+          git push origin HEAD:fix/kelime-avi-v6-found-path-connector-20260901
