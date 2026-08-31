@@ -25,6 +25,12 @@ jobs:
         with:
           ref: ${{ env.QA_SHA }}
 
+      - name: Preview patch aracını ayrı klasöre indir
+        uses: actions/checkout@v4
+        with:
+          ref: qa/kelime-avi-v5-reference-android16-proof-20260831
+          path: qa-tools
+
       - name: Java 17 kur
         uses: actions/setup-java@v4
         with:
@@ -38,135 +44,16 @@ jobs:
           channel: stable
           cache: true
 
-      - name: İlk runtime-layout patchini yalnız runner üzerinde uygula
+      - name: Preview patch + static/test gate
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-
-          path = Path('lib/word_hunt/word_hunt_screens.dart')
-          text = path.read_text(encoding='utf-8')
-
-          old = "const _harborGridSpacing = 3.0;\n"
-          new = "const _harborGridSpacing = 3.0;\nconst _harborInstructionDefault =\n    'İlk harfe dokun, parmağını kelimenin üzerinde sürükle.';\n"
-          assert text.count(old) == 1
-          text = text.replace(old, new, 1)
-
-          old = "  String _status = 'İlk harfe dokun, parmağını kelimenin üzerinde sürükle.';\n"
-          assert text.count(old) == 1
-          text = text.replace(old, "  String _status = _harborInstructionDefault;\n", 1)
-
-          old = "  int get _scoredMistakes => _completionMistakes ?? _mistakes;\n\n  DateTime _now()"
-          new = """  int get _scoredMistakes => _completionMistakes ?? _mistakes;
-
-  String get _displayedInstructionStatus {
-    final status = _status;
-    final successFeedback =
-        status.endsWith(' bulundu!') ||
-        status.startsWith('Bilgi kartı açıldı:') ||
-        status.startsWith('Bonus kelime:') ||
-        status.endsWith(' zaten bulundu.');
-    return successFeedback ? _harborInstructionDefault : status;
-  }
-
-  DateTime _now()"""
-          assert text.count(old) == 1
-          text = text.replace(old, new, 1)
-
-          old = "                        _HarborInstructionPlate(status: _status),"
-          assert text.count(old) == 1
-          text = text.replace(
-              old,
-              "                        _HarborInstructionPlate(\n                          status: _displayedInstructionStatus,\n                        ),",
-              1,
-          )
-
-          word_start = text.index('class _HarborWordPlate')
-          grid_start = text.index('class _HarborGridCell', word_start)
-          word = text[word_start:grid_start]
-          old = """      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(asset),
-          fit: BoxFit.fill,
-          filterQuality: FilterQuality.high,
-        ),
-      ),"""
-          new = """      decoration: BoxDecoration(
-        boxShadow:
-            found
-                ? const <BoxShadow>[
-                  BoxShadow(
-                    color: Color(0x99FF9D22),
-                    blurRadius: 8,
-                    spreadRadius: 1,
-                  ),
-                ]
-                : const <BoxShadow>[],
-        image: DecorationImage(
-          image: AssetImage(asset),
-          fit: BoxFit.fill,
-          filterQuality: FilterQuality.high,
-          colorFilter:
-              found
-                  ? const ColorFilter.mode(
-                    Color(0xFFC06B16),
-                    BlendMode.color,
-                  )
-                  : null,
-        ),
-      ),"""
-          assert word.count(old) == 1
-          word = word.replace(old, new, 1)
-          text = text[:word_start] + word + text[grid_start:]
-
-          grid_start = text.index('class _HarborGridCell')
-          instruction_start = text.index('class _HarborInstructionPlate', grid_start)
-          grid = text[grid_start:instruction_start]
-          old = "    return Stack(\n"
-          new = """    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(math.max(6, extent * .14)),
-        boxShadow:
-            active
-                ? const <BoxShadow>[
-                  BoxShadow(
-                    color: Color(0x99FF9D22),
-                    blurRadius: 5,
-                    spreadRadius: 1,
-                  ),
-                ]
-                : const <BoxShadow>[],
-      ),
-      child: Stack(
-"""
-          assert grid.count(old) == 1
-          grid = grid.replace(old, new, 1)
-          old_end = "      ],\n    );\n  }\n}\n\n"
-          new_end = """        ],
-      ),
-    );
-  }
-}
-
-"""
-          assert grid.endswith(old_end)
-          grid = grid[:-len(old_end)] + new_end
-          text = text[:grid_start] + grid + text[instruction_start:]
-
-          path.write_text(text, encoding='utf-8')
-          PY
-
-          dart format lib/word_hunt/word_hunt_screens.dart
           mkdir -p reports/word_hunt_v5_gameplay
+          python3 qa-tools/tools/qa/word_hunt_v5_layout_preview_patch.py
+          dart format lib/word_hunt/word_hunt_screens.dart
           git diff --check
           git diff -- lib/word_hunt/word_hunt_screens.dart > reports/word_hunt_v5_gameplay/PREVIEW.diff
           test -s reports/word_hunt_v5_gameplay/PREVIEW.diff
-
-      - name: Analyze ve focused Word Hunt testleri
-        shell: bash
-        run: |
-          set -euo pipefail
           flutter pub get
           dart analyze lib/word_hunt
           flutter test test/word_hunt_*_test.dart
