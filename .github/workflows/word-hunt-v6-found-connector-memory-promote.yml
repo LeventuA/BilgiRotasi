@@ -1,0 +1,157 @@
+name: Kelime Avi V6 found connector memory promote
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v5-reference-android16-proof-20260831
+    paths:
+      - '.github/workflows/word-hunt-v6-found-connector-memory-promote.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-product-memory:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    env:
+      PRODUCT_BRANCH: fix/kelime-avi-v6-found-path-connector-product-20260901
+      PRODUCT_CODE_SHA: e9aa2290ee3ae2df163e7053ddfe72c7ae617914
+    steps:
+      - name: Checkout clean product branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PRODUCT_BRANCH }}
+          fetch-depth: 0
+
+      - name: Verify exact product code head
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PRODUCT_CODE_SHA"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = 'ba63f1bdeda7c31a634285bbc8e4eaf3652b2078'
+
+      - name: Update required project memory
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -c "import base64; exec(base64.b64decode('CmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAppbXBvcnQgcmUKCiMgQklMR0lfUk9UQVNJX0RVUlVNLm1kCnAgPSBQYXRoKCJCSUxHSV9ST1RBU0lfRFVSVU0ubWQiKQp0ZXh0ID0gcC5yZWFkX3RleHQoZW5jb2Rpbmc9InV0Zi04IikKbWFya2VyID0gIlxuIyMgS29ydW5hbiBBbGFubGFyXG4iCnNlY3Rpb24gPSAiIiIKIyMgMSBFeWx1bCAyMDI2IOKAlCBCdWx1bmFuIEtlbGltZSBIw7xjcmVsZXJpbmkgQmlybGXFn3Rpcm1lCgpMZXZlbnQnaW4gc29uIHJhdyBnYW1lcGxheSBnZXJpIGJpbGRpcmltaSBiYcSfbGF5xLFjxLFkxLFyOiBtZXZjdXQgb3l1biBla3JhbuxLFxLFuZGFraSB5ZXJsZcWfaW0vw7Zsw6dlay9wYW5lbC9ow7xjcmUgZ8O2csO8bsO8bcO8IGthYnVsIGVkaWxlYmlsaXI7IGVrc2lrIGthbGFuIHRlayBnw7Zyc2VsIG5va3RhLCBidWx1bmFuIGtlbGltZW5pbiBhcmTEscWfxLFrIGhhcmYvaMO8Y3JlbGVyaW5pbiBiaXJiaXJpbmUgYmHEn2xhbm1hc8SxZMSxci4gxLBuw6cgYEtlbGltZSBBdsSxIFY1IEdhbWVwbGF5IFFBYCBzZcOnaW0gbWVuw7xzw7wgw7xyw7xuIGVrcmFuxLEgZGXEn2lsZGlyIHZlIGt1bGxhbsSxY8SxIGfDtnJzZWwga2FidWwga2FuxLF0xLEgb2xhcmFrIGfDtnN0ZXJpbG1lei4KCi0gUGFyZW50IFY2IHZpc3VhbCBQUjogKiojMTYyKiouCi0gQ29ubmVjdG9yIMO8csO8biBicmFuY2g6IGBmaXgva2VsaW1lLWF2aS12Ni1mb3VuZC1wYXRoLWNvbm5lY3Rvci1wcm9kdWN0LTIwMjYwOTAxYC4KLSBDb25uZWN0b3Igw7xyw7xuIGNvbW1pdDogYGU5YWEyMjkwZWUzYWUyZGYxNjNlNzA1M2RkZmU3MmM3YWU2MTc5MTRgLgotIENvbW1pdCBhZMSxOiBgZml4KGtlbGltZS1hdmkpOiBjb25uZWN0IGZvdW5kIHdvcmQgY2VsbHMgdmlzdWFsbHlgLgotIERyYWZ0IFBSOiAqKiMxNjMqKiDigJQgYGZpeChrZWxpbWUtYXZpKTogY29ubmVjdCBmb3VuZCB3b3JkIGNlbGxzIHZpc3VhbGx5YC4KLSDDnHLDvG4gZG9zeWEgYmxvYid1OiBgYmE2M2YxYmRlZGE3YzMxYTYzNDI4NWJiYzhlNGVhZjM2NTJiMjA3OGAULgotIFRlc3QgYnJhbmNoIGV4YWN0IGF5bsSxIGJsb2IndSB0YcWfxLFyLgotIEZvdW5kIHBhdGgga8O2cHLDvHPDvCBgX2ZvdW5kUGF0aHNgIMO8emVyaW5kZW4geWFsbsSxeiBzdW51bSBrYXRtYW7EsW5kYSBjaXppbGlyOyB5YXRheS9kaWtleeSvw6dhcHJheiB5b2xsYXLEsSBkZXN0ZWtsZXIuCi0gR3JpZCwgaGFyZi9jZWxsIGFydCwgc3BhY2luZywgaGl0Ym94IHZlIGdhbWVwbGF5IGVuZ2luZSBzw7Z6bGXFn21lbGVyaSBkZcSfaWxpbcWfLgoKVGVrbmlrIGdhdGU6Ci0gU3RhdGljL3Rlc3QgcnVuIGAzMzQ0NzI2NTc2OWA6ICoqU1VDQ0VTUyouCi0gYGRhcnQgYW5hbHl6ZSBsaWIvd29yZF9odW50YDogUEFTUy4KLSBGb2N1c2VkIEtlbGltZSBBdsSxOiAqKjEzOC8xMzggUEFTUyouCi0gUmF3IEFuZHJvaWQgMTYgcnVuIGAzMzQ0NzQzNTU2NmA6ICoqU1VDQ0VTUyouCi0gQVBJIDM2IC8gMTA4MMOXMTkyMCAvIDQyMCBkcGkuCi0gR2Vyw6dlayBCMTAgWU9MIHN3aXBlOiAxODAwIG1zLCBgMC85IOKGkiAxLzlgLgotIFkvTy9MIGNoYW5nZWQgcGl4ZWxzOiBgWzY5MDUsIDY1NTEsIDcwMTVdYC4KLSBQcm9ncmVzcyBwYW5lbCBjaGFuZ2VkIHBpeGVsczogYDI5OWAuCi0gxLBraSBZLU8tTCBpbnRlci1jZWxsIGNvbm5lY3RvciBib8WfbHXEn3UgY2hhbmdlZCBwaXhlbHM6IGBbMzYzLCAzNTFdYC4KLSBgWU9MX1NFTUFORElDX1ZJU1VBTF9HQVRFPVBBU1NgLgotIGBZT0xfQ09OTkVDVE9SX0dBUF9HQVRFPVBBU1NgLgotIEFydGlmYWN0IGA5Nzc4ODA2NTkyYC4KLSBEaWdlc3QgYHNoYTI1NjpiZTlhZmQwNmU1YTNkZjVmYzEyMjRjZmQ4ZGJkNjBiZDA3ZWZhNmYwMmQ0ODhiYTc0YWM1NzQ5MzdhNDYzOTA5YC4KCkR1cnVtOiAqKlRFS05JSyBQQVNTIC8gQ09OTkVDVE9SIFJBVyBBTkRST0lEIEtVTExBTklDSSBHw5ZSU0VMIEtBQlVMw5wgQcOHSUsgLyBSRUFEWS1NRVJHRSBZT0sqKi4KCiIiIgppZiAiIyMgMSBFeWx1bCAyMDI2IOKAlCBCdWx1bmFuIEtlbGltZSBIw7xjcmVsZXJpbmkgQmlybGXFn3Rpcm1lIiBub3QgaW4gdGV4dDoKICAgIGFzc2VydCBtYXJrZXIgaW4gdGV4dAogICAgdGV4dCA9IHRleHQucmVwbGFjZShtYXJrZXIsICJcbiIgKyBzZWN0aW9uICsgbWFya2VyLCAxKQoKb2xkID0gIiIiIyMgR8O2cmV2IC8gS2FyYXIgRG9zeWFsYXLEsQoKLSBgR09SRVZfSEFWVVNVLm1kYDogY2FubMSxIHJlcG9kYSBnw7ZyZXYgYmHFn2xhbmdpY8SxbmRhIHlva3R1OyBtZXZjdXQgVjYgZ8O2cmV2aSBkb8SfcnVsYW5txLHFn2thbsSxdGxhcmxhIHllbmlkZW4gb2x1xZ90dXJ1bGR1LiBFc2tpIGfDtnJldiBoYXZ1enUgZ2XDp21pxZ9pICoqRE/EnFJVTEFOQUNBSyouCi0gYEFDSUtfU09SVUxBUl9WRV9ET0dSVUxBTUFMQVIubWRgOiBjYW5sxLEgcmVwb2RhIGfDtnJldiBiYcWfbGFuZ8SxY8SxbmRhIHlva3R1OyBtZXZjdXQgYcOnxLFrIFY2IGthcMSxbGFyxLF5bGEgb2x1xZ90dXJ1bGR1LgotIGBLQVJBUkxBUi5tZGA6IGNhbmzEsSByZXBvZGEgZ8O2cmV2IGJhxZ9sYW5nxLFjxLFuZGEgYnVsdW5hbWFkxLEuIEJ1IGfDtnJldmRlIHllbmkga3VsbGFuxLFjxLEgw7xyw7xuIGthcmFyxLEgZWtsZW5tZWRpOyBrYW5vbmlrIGtvbnVtdSAqKkRPxJ5SVUxBTkFDQUsqKi4KCiMjIEthbGFuIEdlcsOnZWsgS2FwxLFsYXIKCjEuIFJhdyBBbmRyb2lkIEIxMCBpbml0aWFsIGVrcmFuxLFuxLFuIExldmVudCB0YXJhZsSxbmRhbiBnw7Zyc2VsIGthYnVsw7wuCjIuIFJhdyBBbmRyb2lkIEIxMCBgWU9MIC8gMS85YCBmb3VuZC1zdGF0ZSBlcmthbsSxbsSxbiBMZXZlbnQgdGFyYWbEsW5kYW4gZ8O2cnNlbCBrYWJ1bMO8LgozLiBgRVJST1JfU1RBVEVfVklTVUFMID0gRE/EnFJVTEFOQUNBS2AuCjQuIGBSRUZFUkVOQ0VfRk9OVCA9IERPxJ5SVUxBTkFDQUtgLgo1LiBCNSA2MHMgLyBCMTAgMTIwcyBnZXLDp2VrIGluc2FuIHPDvHJlLXpvcmx1ayBwbGF5dGVzdGkuCjYuIFBSICMxNjEgdmUgUFIgIzE2MiBSZWFkeSBrYXJhcmxhcsSxIGF5csSxY2EgdmVyaWxlY2VrLgo3LiBQcm9kdWN0aW9uIGBsaWIvbWFpbi5kYXJ0YCBuYXZpZ2FzeW9uIGVudGVncmFzeW9udSBheXLEsSBzY29wZS9vbmF5ZMSxci4KOC4gTWVyZ2UgeWFsbsSxeiBMZXZlbnQnaW4gYXlyxLEgdmUgYcOnxLFrIG1lcmdlIG9uYXnEsXlsYSB5YXDEsWzEsXIuCiIiIgpuZXcgPSAiIiIjIyBHw7ZyZXYgLyBLYXJhciBEb3N5YWxhcsSxCgotIGBHT1JFVl9IQVZVU1UubWRgOiBtZXZjdXQgVjYgZ8O2cmV2IHZlIGNvbm5lY3RvciBhbHQgZ8O2cmV2aSBkb8SfcnVsYW5txLHFn2thbsSxdGxhcmxhIHR1dHVsdXIuIEVza2kgZ8O2cmV2IGhhdnV6dSBnZcOnbWnFn2kgKipET8SeUlVMQU5BQ0FLKiouCi0gYEFDSUtfU09SVUxBUl9WRV9ET0dSVUxBTUFMQVIubWRgOiBtZXZjdXQgYcOnxLFrIFY2IGthcMSxbGFyxLFuxLEgdGHFn8Sxci4KLSBLYW5vbmlrIGthcmFyIGRvc3lhc8SxOiBgZG9jcy9wcm9qZWN0LW1lbW9yeS9LQVJBUkxBUi5tZGA7IDEgRXlsw7xsIGNvbm5lY3RvciBrYXJhcsSxIGVrbGVuZGkuIFJvb3QgYEtBUkFSTEFSLm1kYCBrYW5vbmlrIGtheW5hayBkZcSfaWxkaXIuCgojIyBLYWxhbiBHZXLDp2VrIEthcMSxbGFyCgoxLiBZZW5pIHJhdyBBbmRyb2lkIEIxMCBgWU9MIC8gMS85YCAqKmJpcmxlxZ9payBjb25uZWN0b3IgZm91bmQtc3RhdGUqKiBla3JhbsSxbsSxbiBMZXZlbnQgdGFyYWbEsW5kYW4gZ8O2cnNlbCBrYWJ1bMO8LgozLiBgRVJST1JfU1RBVEVfVklTVUFMID0gRE/EnFJVTEFOQUNBS2AuCjMuIGBSRUZFUkVOQ0VfRk9OVCA9IERPxJ5SVUxBTkFDQUtgLgo0LiBCNSA2MHMgLyBCMTAgMTIwcyBnZXLDp2VrIGluc2FuIHPDvHJlLXpvcmx1ayBwbGF5dGVzdGkuCjUuIFBSICMxNjEsICMxNjIgdmUgIzE2MyBSZWFkeSBrYXJhcmxhcsSxIGF5csSxY2EgdmVyaWxlY2VrLgo2LiBQcm9kdWN0aW9uIGBsaWIvbWFpbi5kYXJ0YCBuYXZpZ2FzeW9uIGVudGVncmFzeW9udSBheXLEsSBzY29wZS9vbmF5ZMSxci4KNy4gTWVyZ2UgeWFsbsSxeiBMZXZlbnQnaW4gYXlyxLEgdmUgYcOnxLFrIG1lcmdlIG9uYXnEsXlsYSB5YXDEsWzEsXIuCiIiIgphc3NlcnQgb2xkIGluIHRleHQKdGV4dCA9IHRleHQucmVwbGFjZShvbGQsIG5ldywgMSkKcC53cml0ZV90ZXh0KHRleHQsIGVuY29kaW5nPSJ1dGYtOCIpCgojIEdPUkVWX0hBVlVTVS5tZApwID0gUGF0aCgiR09SRVZfSEFWVVNVLm1kIikKdGV4dCA9IHAucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCnRleHQgPSB0ZXh0LnJlcGxhY2UoCiAgICAiKipEdXJ1bToqKiBURUtOxLBLyBLUSBBIFBBU1MgLyBLVUxMQU5JQ0kgR8OWUlNFTCBLQUJVTMOcIEFDSUsiLAogICAgIioqRHVydW06KiogVEVLTsSwSyBRQSBQQVNTIC8gTUVWQ1VUIEtPTVBPWsSwU1lPTiBLQUJVTC8gQ09OTkVDVE9SIEtVTExBTklDSSBHw5ZSU0VMIEtBQlVMw5wgQcOHSUssIiwKICAgIDEsCikKdGV4dCA9IHJlLnN1YihyIlwqXCpcw5xyw7xuIGJyYW5jaDpcKlwqIGBbXmBdK2AiLCAiKipcw5xyw7xuIGJyYW5jaDoqKiBgZml4L2tlbGltZS1hdmktdjYtZm91bmQtcGF0aC1jb25uZWN0b3ItcHJvZHVjdC0yMDI2MDkwMWAiLCB0ZXh0LCBjb3VudD0xKQp0ZXh0ID0gcmUuc3ViKAogICAgclwiXFwqXFwqw5xyw7xuIGNvbW1pdDpcXCpcXCogYFteYF0rYCDigJQgYFteYF0rYCwiLAogICAgIioqXHUwMGUzcHI4bmUgY29tbWl0OioqIGBlOWFhMjI5MGVlM2FlMmRmMTYzZTcwNTNkZGZlNzJjN2FlNjE3OTE0YCDigJQgYGZpeChrZWxpbWUtYXZpKTogY29ubmVjdCBmb3VuZCB3b3JkIGNlbGxzIHZpc3VhbGx5YCIsCiAgICB0ZXh0LCBjb3VudD0xCikKdGV4dCA9IHJlLnN1YigKICAgIHJcIlxcKlwqRHJhZnQgUFI6XFwqXFwqICMxNjIg4oCUIGBmaXhcKGtlbGltZS1hdmlcKTogcHJvZHVjdGl6ZSBBbmRyb2lkLXZlcmlmaWVkIFY2IGNlbGwgdmlzdWFsc2BcYFwiLAogICAgIioqRHJhZnQgUFI6KiogIzE2MyDigJQgYGZpeChrZWxpbWUtYXZpKTogY29ubmVjdCBmb3VuZCB3b3JkIGNlbGxzIHZpc3VhbGx5YCAoYmFzZTogUFIgIzE2MiBicmFuY2gpIiwKICAgIHRleHQsIGNvdW50PTEKKQpvbGRfc2NvcGUgPSAiLSBHYW1lcGxheSBoxPtrcmUgYXJhbMSxxJ/EsSwgaMO8Y3JlIGfDtnJzZWwgw7Zsw6dlxJ9pIHZlIGZvdW5kLXN0YXRlIHN1bnVtdSBnZXLDp2VrIEFuZHJvaWQgcnVudGltZSBoZWRlZml5bGUgaGl6YWxhbmFjYWsuIgpuZXdfc2NvcGUgPSAiLSBNZXZjdXQgZ2FtZXBsYXkga29tcG96aXN5b251IGtvcnVuYWNhazsgYnVsdW5hbiBrZWxpbWVuaW4gYXJkxLHFn8SxayBow7xjcmVsZXJpIHRlayBwYXLDp2EgY29udGludW91cyBmb3VuZCBpemkgb2xhcmFrIGJhxJ9sYW5hY2FrLiIKYXNzZXJ0IG9sZF9zY29wZSBpbiB0ZXh0CnRleHQgPSB0ZXh0LnJlcGxhY2Uob2xkX3Njb3BlLCBuZXdfc2NvcGUsIDEpCm9sZF9kb25lID0gIiIiNi4gQW5kcm9pZOKAmWRlIGtvxZ9hbiBkb3N5YSBpbGUgw7xyw7xuIGNvbW1pdGluZGVraSBkb3N5YSBibG9i4oCZdSBiaXJlYmlyIGF5bsSxIG9sYWNhay4gKipQQVNTIOKAlCBgZDQxNTg3NmIxMzExMzYyYThkZTYyMjBjZmNmZTI5NzhmY2U1MTRkZGAqKgo3LiBSYXcgaW5pdGlhbCB2ZSBmb3VuZC1zdGF0ZSBnw7Zyw7xudMO8bGVyaSBMZXZlbnQgdGFyYWbEsW5kYW4gZ8O2cnNlbCBvbGFyYWssa2FidWwgZWRpbGVjZWsuICoqQcOHSUssKgo4LiBgRVJST1JfU1RBVEVfVklTVUFMYCB2ZSBgUkVGRVJFTkNFX0ZPTlRgIGJlbGlyc2l6bGlrbGVyaSDDp8O2esO8bGVjZWsgdmV5YSBheXLEsWNhIGHDp8Sxa2NhIGVydGVsZW5lY2VrLiAqKkRPxJ5SVUxBTkFDQUssKgo5LiBCNSA2MHMgLyBCMTAgMTIwcyBnZXLDp2VrIGluc2FuIHPDvHJlLXpvcmx1ayBwbGF5dGVzdGkgdGFtYW1sYW5hY2FrIHZleWEgYXlyxLFjYSBhw6fEsWtjYSBlcnRlbGVuZWNlay4gKipBw4dJSyoqCjEwLiBQUiBSZWFkeS9tZXJnZSBrYXJhcsSxIGF5csSxIHZlcmlsZWNlazsgTGV2ZW504oCZpbiBhw6fEsWsgbWVyZ2Ugb25hexLFsSBvbG1hZGFuIG1lcmdlIHlhcMSxbG1heWFjYWsuICoqQcOHSUssKgoiIiIKbmV3X2RvbmUgPSAiIiI2LiBBbmRyb2lk4oCZZGUga2/Fn2FuIGNvbm5lY3RvciBkb3N5YXPEsSBpbGUgdGVtaXogw7xyw7xuIGNvbW1pdGluZGVraSBkb3N5YSBibG9i4oCZdSBiaXJlYmlyIGF5bsSxIG9sYWNhay4gKipQQVNTIOKAlCBgYmE2M2YxYmRlZGE3YzMxYTYzNDI4NWJiYzhlNGVhZjM2NTJiMjA3OGAqKgo3LiBNZXZjdXQgZ2FtZXBsYXkga29tcG96aXN5b251IGNvbm5lY3RvciBkxLHFn8SxbmRha2kgdW5zdXJsYXIgaMOnin5pbiBMZXZlbnQgdGFyYWbEsW5kYW4ga2FidWwgZWRpbG1pxZ8gb2xhY2FrLiAqKlBBU1Mg4oCUIOKAnGhlcsWfZXkgb2tleSBzYWRlY2UgYnVsdW5hbiBoYXJmbGVyIGJpcmJpcml5bGUgYmlybGXFn21lc2kgbGF6xLFt4oCdKioKOC4gRm91bmQgaMO8Y3JlbGVyaSBhcmFzxLFuZGFr
+aSBnZXLDp2VrIGdhcCBiw7ZsZ2VsZXJpIHJhdyBBbmRyb2lk4oCZZGUgZ8O2cnNlbCBkZcSfaxZFaW0gZ8O2c3RlcmVjZWsuICoqUEFTUyDigJQgYFszNjMsIDM1MV1gLCBgWU9MX0NPTk5FQ1RPUl9HQVBfR0FURT1QQVNTYC**
+9. Yeni raw connected `YOL / 1/9` found-state Levent tarafından görsel olarak kabul edilecek. **AÇIK**
+10. `ERROR_STATE_VISUAL` ve `REFERENCE_FONT` belirsizlikleri çözülecek veya ayrıca açıkça ertelenecek. **DOĞRULANACAK**
+11. B5 60s / B10 120s gerçek insan süre-zorluk playtesti tamamlanacak veya ayrıca açıkça ertelenecek. **AÇIK**
+12. PR Ready/merge kararı ayrı verilecek; Levent’in açık merge onayı olmadan merge yapılmayacak. **AÇIK**
+"""
+assert old_done in text
+text = text.replace(old_done, new_done, 1)
+old_evidence = """- Productization run: `33443015882` — SUCCESS.
+- Android 16 raw proof run: `33436607792` — SUCCESS.
+- Android artifact: `9775000736`.
+- YOL semantic visual gate: PASS; başarılı swipe süresi 1800 ms.
+"""
+new_evidence = """- Önceki V6 productization run: `33443015882` — SUCCESS.
+- Connector static/test run: `33447265769` — SUCCESS / 138/138 PASS.
+- Connector raw Android 16 run: `33447435566` — SUCCESS.
+- Connector Android artifact: `9778806592`.
+- Artifact digest: `sha256:be9afd06e5a3df5fc1224cfd8dbd60bd07efa6f02d488ba74ac574937a463909`.
+- YOL semantic visual gate: PASS; başarılı swipe süresi 1800 ms.
+- YOL connector gap gate: PASS; changed pixels `[363, 351]`.
+"""
+assert old_evidence in text
+text = text.replace(old_evidence, new_evidence, 1)
+p.write_text(text, encoding="utf-8")
+
+# KARARLAR
+p = Path("docs/project-memory/KARARLAR.md")
+text = p.read_text(encoding="utf-8")
+decision = """
+---
+
+## 10. 1 Eylül 2026 — Gameplay found-state continuous path kararı
+
+- Levent'in raw gameplay geri bildirimi bağlayıcıdır: mevcut gerçek gameplay ekranında yerleşim, ölçek, panel/plaque sunumu, grid hücre görünümü ve diğer unsurlar korunur; açık kalan görsel fark yalnız **bulunan kelimenin ardışık harf/hücrelerinin birbirine bağlanmasıdır**.
+- Found kelime, üç ayrı bağımsız glow kutusu gibi değil; tek sürükleme hareketini anlatan **kesintisiz/continuous görsel iz** olarak okunmalıdır.
+- Bu bağlantı mevcut `_foundPaths` runtime verisinden türetilir; yeni gameplay state/engine sözleşmesi yaratılmaz.
+- Bağlantı katmanı hücrelerin arkasında kalır; harf okunaklılığı, cell asset'i, hitbox, `_harborGridSpacing`, 8×8 geometri ve mevcut V6 kompozisyonu değiştirilmez.
+- Yatay, dikey ve çapraz canonical found path'lerde aynı yaklaşım kullanılır.
+- İç `Kelime Avı V5 Gameplay QA` seçim menüsü yalnız test aracıdır; ürün ekranı değildir ve kullanıcı görsel kabul kanıtı olarak gösterilmez.
+- Final connector görsel kabulü yalnız **raw Android runtime screenshot** üzerinden verilir; image-edit/mockup kanıt değildir.
+"""
+if "## 10. 1 Eylül 2026 — Gameplay found-state continuous path kararı" not in text:
+    text = text.rstrip() + "\n\n" + decision.strip() + "\n"
+p.write_text(text, encoding="utf-8")
+
+# ACIK_SORULAR
+p = Path("ACIK_SORULAR_VE_DOGRULAMALAR.md")
+text = p.read_text(encoding="utf-8")
+text = text.replace(
+    "- `USER_VISUAL_ACCEPTANCE_INITIAL` — Raw Android 16 B10 initial görüntüsü Levent görsel kabulü: **AÇIK**.\n"
+    "- `USER_VISUAL_ACCEPTANCE_FOUND` — Raw Android 16 B10 `YOL / 1/9` found-state görüntüsü Levent görsel kabulü: **AÇIK**.\n",
+    "- `GAMEPLAY_COMPOSITION_EXCEPT_FOUND_CONNECTOR` — Levent mevcut gameplay ekranında connector dışındaki unsurlar için “herşey okey” dedi: **PASS / KAPALI**.\n"
+    "- `USER_VISUAL_ACCEPTANCE_FOUND_CONNECTOR` — Yeni raw Android 16 B10 `YOL / 1/9` continuous connector found-state görsel kabulü: **AÇIK**.\n",
+    1
+)
+if "- `PR_163_READY_DECISION`" not in text:
+    text = text.replace(
+        "- `PR_162_READY_DECISION` — V6 visual child PR #162 Ready kararı: **AÇIK**.\n",
+        "- `PR_162_READY_DECISION` — V6 visual child PR #162 Ready kararı: **AÇIK**.\n"
+        "- `PR_163_READY_DECISION` — V6 found-path connector child PR #163 Ready kararı: **AÇIK**.\n",
+        1
+    )
+text = text.replace(
+    "PR #161 veya PR #162, Levent’in ayrı ve açık merge onayı olmadan merge edilmeyecek.",
+    "PR #161, #162 veya #163, Levent’in ayrı ve açık merge onayı olmadan merge edilmeyecek.",
+    1
+)
+p.write_text(text, encoding="utf-8")
+
+# GENEL_PROJE_OZETI
+p = Path("docs/project-memory/GENEL_PROJE_OZETI.md")
+text = p.read_text(encoding="utf-8")
+text = re.sub(
+    r"^\*\*Son güncelleme:\*\*.*$",
+    "**Son güncelleme:** 1 Eylül 2026 — Kelime Avı V6 found-state connector teknik PASS. Mevcut gameplay kompozisyonu Levent tarafından connector dışında kabul edildi; Y-O-L hücreleri raw Android'de continuous altın köprüyle birleşiyor. Run `33447435566`, artifact `9778806592`; Draft PR #163 OPEN/DRAFT. Kalan kapı yalnız yeni connected found-state kullanıcı görsel kabulü + önceki açık playtest/doğrulamalar; merge yok.",
+    text,
+    count=1,
+    flags=re.MULTILINE,
+)
+summary = """
+## 1 Eylül 2026 — Kelime Avı V6 found-path connector
+
+- Levent'in bağlayıcı geri bildirimi: gerçek gameplay ekranında **“herşey okey sadece bulunan harfler birbiriyle birleşmesi lazım”**. Bu nedenle mevcut V6 layout/scale/panel/grid görünümü korunur; yalnız found path hücreleri continuous iz olarak bağlanır.
+- İç `Kelime Avı V5 Gameplay QA` selector ekranı yalnız test aracıdır; kullanıcı acceptance kanıtı olarak gösterilmez.
+- Test branch: `fix/kelime-avi-v6-found-path-connector-20260901`.
+- Static/test run `33447265769`: SUCCESS; analyze PASS, focused **138/138 PASS**, protected scope PASS.
+- Test edilmiş ürün commit: `2cb544f0d4a217705dc794c85a808eeaa2b69565`.
+- Test edilmiş `word_hunt_screens.dart` blob: `ba63f1bdeda7c31a634285bbc8e4eaf3652b2078`.
+- Temiz ürün branch: `fix/kelime-avi-v6-found-path-connector-product-20260901`.
+- Temiz ürün commit: `e9aa2290ee3ae2df163e7053ddfe72c7ae617914` — test edilen dosya blob'u ile birebir aynı.
+- Draft PR #163 base PR #162 branch'idir; OPEN/DRAFT, merge yok.
+- Raw Android 16 run `33447435566`: SUCCESS; API 36 / 1080×1920 / 420 dpi.
+- B10 YOL real gesture: 1800 ms, `0/9 → 1/9`, semantic gate PASS.
+- Y/O/L changed pixels `[6905, 6551, 7015]`; progress panel `299`.
+- İki inter-cell connector gap changed pixels `[363, 351]`; `YOL_CONNECTOR_GAP_GATE=PASS`.
+- Artifact `9778806592`, digest `sha256:be9afd06e5a3df5fc1224cfd8dbd60bd07efa6f02d488ba74ac574937a463909`.
+- Canonical 8×8/64, engine/path/scoring/timer/progression, locked V5 assets, `assets/questions.json`, `lib/main.dart`, BoardMap/67 node ve version değişmedi.
+- **Açık kapı:** yeni raw Android connected `YOL / 1/9` ekranı Levent görsel kabulü. Bu kabulden önce PR #163 Ready yapılmaz; merge için ayrıca açık Levent onayı gerekir.
+"""
+if "## 1 Eylül 2026 — Kelime Avı V6 found-path connector" not in text:
+    text = text.rstrip() + "\n\n" + summary.strip() + "\n"
+p.write_text(text, encoding="utf-8")
+
+print("MEMORY_UPDATE_APPLIED")
+'))"
+          git diff --check
+          test "$(git diff --name-only | sort | tr '\n' ' ')" = 'ACIK_SORULAR_VE_DOGRULAMALAR.md BILGI_ROTASI_DURUM.md GOREV_HAVUZU.md docs/project-memory/GENEL_PROJE_OZETI.md docs/project-memory/KARARLAR.md '
+
+      - name: Commit and push memory checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BILGI_ROTASI_DURUM.md GOREV_HAVUZU.md ACIK_SORULAR_VE_DOGRULAMALAR.md docs/project-memory/KARARLAR.md docs/project-memory/GENEL_PROJE_OZETI.md
+          git diff --cached --check
+          git commit -m 'docs(kelime-avi): record V6 found connector proof'
+          git push origin HEAD:"$PRODUCT_BRANCH"
