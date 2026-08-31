@@ -646,6 +646,29 @@ class _WordHuntLevelProductionScreenState
                                             );
                                           },
                                         ),
+
+                                        IgnorePointer(
+                                          child: CustomPaint(
+                                            key: const Key(
+                                              'word_hunt_production_found_path_seam',
+                                            ),
+                                            painter:
+                                                _HarborFoundPathSeamPainter(
+                                                  paths: _foundPaths.values
+                                                      .map(
+                                                        (path) =>
+                                                            List<
+                                                              WordHuntCell
+                                                            >.unmodifiable(
+                                                              path,
+                                                            ),
+                                                      )
+                                                      .toList(growable: false),
+                                                  cellExtent: cellExtent,
+                                                  spacing: _harborGridSpacing,
+                                                ),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -1697,6 +1720,78 @@ class _HarborFoundPathConnectorPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _HarborFoundPathConnectorPainter oldDelegate) {
+    return oldDelegate.paths != paths ||
+        oldDelegate.cellExtent != cellExtent ||
+        oldDelegate.spacing != spacing;
+  }
+}
+
+class _HarborFoundPathSeamPainter extends CustomPainter {
+  const _HarborFoundPathSeamPainter({
+    required this.paths,
+    required this.cellExtent,
+    required this.spacing,
+  });
+
+  final List<List<WordHuntCell>> paths;
+  final double cellExtent;
+  final double spacing;
+
+  Offset _centerFor(WordHuntCell cell) {
+    final stride = cellExtent + spacing;
+    return Offset(
+      cell.column * stride + cellExtent / 2,
+      cell.row * stride + cellExtent / 2,
+    );
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (paths.isEmpty) return;
+
+    final haloPaint = Paint()
+      ..color = const Color(0xB8FF9D22)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(7, cellExtent * .36)
+      ..strokeCap = StrokeCap.round;
+    final fillPaint = Paint()
+      ..color = const Color(0xF0B96712)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(5, cellExtent * .24)
+      ..strokeCap = StrokeCap.round;
+    final highlightPaint = Paint()
+      ..color = const Color(0xA8FFD36A)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(2, cellExtent * .08)
+      ..strokeCap = StrokeCap.round;
+
+    for (final path in paths) {
+      if (path.length < 2) continue;
+      for (var index = 0; index < path.length - 1; index++) {
+        final startCenter = _centerFor(path[index]);
+        final endCenter = _centerFor(path[index + 1]);
+        final delta = endCenter - startCenter;
+        final distance = delta.distance;
+        if (distance <= 0) continue;
+
+        final direction = delta / distance;
+        final midpoint = Offset(
+          (startCenter.dx + endCenter.dx) / 2,
+          (startCenter.dy + endCenter.dy) / 2,
+        );
+        final halfLength = spacing / 2 + cellExtent * .11;
+        final start = midpoint - direction * halfLength;
+        final end = midpoint + direction * halfLength;
+
+        canvas.drawLine(start, end, haloPaint);
+        canvas.drawLine(start, end, fillPaint);
+        canvas.drawLine(start, end, highlightPaint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _HarborFoundPathSeamPainter oldDelegate) {
     return oldDelegate.paths != paths ||
         oldDelegate.cellExtent != cellExtent ||
         oldDelegate.spacing != spacing;
