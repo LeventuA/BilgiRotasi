@@ -72,8 +72,27 @@ jobs:
           text = path.read_text(encoding='utf-8')
           marker = "capture_initial 1 5 '01_B1_INITIAL.png'"
           start = text.index(marker)
-          text = text[:start] + "capture_initial 10 9 '04_B10_INITIAL.png'\n"
-          path.write_text(text, encoding='utf-8')
+          replacement = r'''capture_initial 10 9 '04_B10_INITIAL.png'
+
+open_level 'QA B10' '08_B10_YOL_BEFORE'
+capture_png "$REPORTS/08_B10_YOL_BEFORE.png"
+read -r yol_x1 yol_y1 < <(
+  python3 "$UI" log-cell-center "$REPORTS/08_B10_YOL_BEFORE.logcat" 10 2 3
+)
+read -r yol_x2 yol_y2 < <(
+  python3 "$UI" log-cell-center "$REPORTS/08_B10_YOL_BEFORE.logcat" 10 2 5
+)
+adb shell input swipe "$yol_x1" "$yol_y1" "$yol_x2" "$yol_y2" 900
+sleep 1
+capture_png "$REPORTS/09_B10_YOL_FOUND.png"
+flutter_log > "$REPORTS/09_B10_YOL_FOUND.logcat"
+python3 "$UI" assert-grid-visual-change \
+  "$REPORTS/08_B10_YOL_BEFORE.png" \
+  "$REPORTS/09_B10_YOL_FOUND.png" \
+  "$REPORTS/08_B10_YOL_BEFORE.logcat" 10
+grep -Fq 'YOL bulundu!' "$REPORTS/09_B10_YOL_FOUND.logcat"
+'''
+          path.write_text(text[:start] + replacement, encoding='utf-8')
           PY
           bash -n tools/word_hunt_v5_gameplay_android16.sh
 
@@ -103,7 +122,8 @@ jobs:
             adb shell wm density 420
             bash tools/word_hunt_v5_gameplay_android16.sh
             test -s reports/word_hunt_v5_gameplay/04_B10_INITIAL.png
-            sha256sum reports/word_hunt_v5_gameplay/04_B10_INITIAL.png > reports/word_hunt_v5_gameplay/SHA256SUMS.txt
+            test -s reports/word_hunt_v5_gameplay/09_B10_YOL_FOUND.png
+            sha256sum reports/word_hunt_v5_gameplay/04_B10_INITIAL.png reports/word_hunt_v5_gameplay/09_B10_YOL_FOUND.png > reports/word_hunt_v5_gameplay/SHA256SUMS.txt
 
       - name: B10 gerçek screenshot kanıtını yükle
         if: always()
