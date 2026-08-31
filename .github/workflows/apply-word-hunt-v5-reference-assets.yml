@@ -51,8 +51,48 @@ jobs:
           EOF
           sha256sum -c /tmp/v5-assets.sha256
 
+      - name: Isolate production metric icon callsites
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('lib/word_hunt/word_hunt_screens.dart')
+          text = path.read_text(encoding='utf-8')
+          start = text.index("key: const Key('word_hunt_production_screen')")
+          end = text.index('/// İzole rota ekranı.', start)
+          prefix, middle, suffix = text[:start], text[start:end], text[end:]
+          masks = {
+              'Icons.search_rounded': 'Icons.__v5_masked_search__',
+              'Icons.close_rounded': 'Icons.__v5_masked_close__',
+              'Icons.timer_outlined': 'Icons.__v5_masked_timer__',
+          }
+          for original, masked in masks.items():
+              prefix = prefix.replace(original, masked)
+              suffix = suffix.replace(original, masked)
+              if middle.count(original) != 1:
+                  raise SystemExit(f'Production callsite count for {original}: {middle.count(original)}')
+          path.write_text(prefix + middle + suffix, encoding='utf-8')
+          PY
+
       - name: Apply deterministic presentation patch
         run: python3 tools/qa/apply_word_hunt_v5_reference_assets.py
+
+      - name: Restore non-production metric icons
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('lib/word_hunt/word_hunt_screens.dart')
+          text = path.read_text(encoding='utf-8')
+          masks = {
+              'Icons.__v5_masked_search__': 'Icons.search_rounded',
+              'Icons.__v5_masked_close__': 'Icons.close_rounded',
+              'Icons.__v5_masked_timer__': 'Icons.timer_outlined',
+          }
+          for masked, original in masks.items():
+              text = text.replace(masked, original)
+          if '__v5_masked_' in text:
+              raise SystemExit('A temporary icon mask was not restored')
+          path.write_text(text, encoding='utf-8')
+          PY
 
       - name: Flutter pub get
         run: flutter pub get
