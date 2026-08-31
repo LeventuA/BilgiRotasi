@@ -62,6 +62,21 @@ jobs:
             | tee reports/word_hunt_v5_gameplay/APK_SHA256.txt
           (cd android && ./gradlew --stop)
 
+      - name: B10-only QA scriptini hazırla
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('tools/word_hunt_v5_gameplay_android16.sh')
+          text = path.read_text(encoding='utf-8')
+          marker = "capture_initial 1 5 '01_B1_INITIAL.png'"
+          start = text.index(marker)
+          text = text[:start] + "capture_initial 10 9 '04_B10_INITIAL.png'\n"
+          path.write_text(text, encoding='utf-8')
+          PY
+          bash -n tools/word_hunt_v5_gameplay_android16.sh
+
       - name: Android emulator KVM erişimini hazırla
         shell: bash
         run: |
@@ -84,23 +99,11 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
-            set -eu
             adb shell wm size 1080x1920
             adb shell wm density 420
-            python3 - <<'PY'
-            from pathlib import Path
-            path = Path('tools/word_hunt_v5_gameplay_android16.sh')
-            text = path.read_text(encoding='utf-8')
-            marker = "capture_initial 1 5 '01_B1_INITIAL.png'"
-            start = text.index(marker)
-            text = text[:start] + "capture_initial 10 9 '04_B10_INITIAL.png'\n"
-            path.write_text(text, encoding='utf-8')
-            PY
-            bash -n tools/word_hunt_v5_gameplay_android16.sh
             bash tools/word_hunt_v5_gameplay_android16.sh
             test -s reports/word_hunt_v5_gameplay/04_B10_INITIAL.png
-            sha256sum reports/word_hunt_v5_gameplay/04_B10_INITIAL.png \
-              > reports/word_hunt_v5_gameplay/SHA256SUMS.txt
+            sha256sum reports/word_hunt_v5_gameplay/04_B10_INITIAL.png > reports/word_hunt_v5_gameplay/SHA256SUMS.txt
 
       - name: B10 gerçek screenshot kanıtını yükle
         if: always()
