@@ -1667,14 +1667,14 @@ class _HarborFoundPathConnectorPainter extends CustomPainter {
     if (paths.isEmpty) return;
 
     final glowPaint = Paint()
-      ..color = const Color(0x55FF9D22)
+      ..color = const Color(0x66FFB52A)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = math.max(8, cellExtent * .44)
+      ..strokeWidth = math.max(10, cellExtent * .68)
       ..strokeCap = StrokeCap.round;
     final bridgePaint = Paint()
-      ..color = const Color(0xD69B560D)
+      ..color = const Color(0xF2C06A12)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = math.max(5, cellExtent * .27)
+      ..strokeWidth = math.max(8, cellExtent * .50)
       ..strokeCap = StrokeCap.round;
 
     for (final path in paths) {
@@ -1686,7 +1686,7 @@ class _HarborFoundPathConnectorPainter extends CustomPainter {
         final distance = delta.distance;
         if (distance <= 0) continue;
         final direction = delta / distance;
-        final overlap = cellExtent * .34;
+        final overlap = cellExtent * .12;
         final start = startCenter + direction * overlap;
         final end = endCenter - direction * overlap;
         canvas.drawLine(start, end, glowPaint);
@@ -1736,7 +1736,7 @@ class _HarborGridCell extends StatelessWidget {
         boxShadow: active
             ? const <BoxShadow>[
                 BoxShadow(
-                  color: Color(0x55FF9D22),
+                  color: Color(0x66FFB52A),
                   blurRadius: 3,
                   spreadRadius: .2,
                 ),
