@@ -84,6 +84,7 @@
 - Canonical release branch'in mevcut artifact-retention politikaları korunur.
 - Android release binary'lerinin GitHub Releases üzerinden üretilmesine yönelik mevcut release workflow'ları korunur.
 - Kelime Avı release entegrasyonu mevcut AdMob/Firebase/Android release yapılandırmasını değiştirmez.
+- `ZMilaStudio/BilgiRotasi` public repo olduğu sürece standart GitHub-hosted Actions dakika kotası proje için kısıt/fren olarak kullanılmaz. Buna rağmen gereksiz workflow döngüsü yapılmaz; artifact/cache storage kotası ayrı izlenir ve larger/paid runner kullanımı ayrıca onay gerektirir.
 
 ---
 
@@ -114,21 +115,36 @@
 - Süreler hard-fail değildir; B5 60 saniye, B10 120 saniye soft challenge sözleşmesi korunur.
 - 8×8 dönüşümü `lib/main.dart`, `assets/questions.json`, MASTER ART, AdMob/Firebase, signing veya BoardMap/67 node kapsamını açmaz.
 - 8×8 için Flutter analyze/test ve Android 16 kanıtı olmadan PR Ready/merge yapılmaz.
-- 29 Ağustos'ta izin verilen tek Actions run `33250841637` yalnız formatter gate'inde durmuş; analyze/test/Android 16 çalışmamıştır. Bu nedenle 8×8 teknik kabul **DOĞRULANACAK** durumdadır.
 - QA-only entrypoint/araçlar ürün commitine girmeyecek; ürün scope'u açık allowlist ile sınırlandırılacaktır.
-- Yeni Actions koşusu yalnız Levent'in yeniden açık izniyle çalıştırılır.
 
 ---
 
-## 9. 30 Ağustos 2026 — Başlangıç Limanı gameplay görsel dili
+## 9. 31 Ağustos 2026 — Başlangıç Limanı gameplay exact-reference görsel mimarisi
 
-Kelime Avı / Başlangıç Limanı gameplay ekranı için kullanıcı tarafından
-30 Ağustos 2026’da verilen gece limanı, lacivert-altın premium ekran
-bağlayıcı görsel tema referansıdır.
-Bu karar görsel dili bağlar; canonical grid geometrisi 8×8 olarak kalır.
+Kelime Avı / Başlangıç Limanı gameplay ekranında bağlayıcı görsel kaynak gece limanı, lacivert-altın premium referanstır. Önceki “background-only + Flutter ile chrome yeniden çizimi” yaklaşımı, kullanıcı exact-reference talebi nedeniyle bu karar tarafından **supersede** edilmiştir.
 
-- Referansın 6×10 hücre düzeni ürün geometrisi değildir ve uygulanmaz.
-- Referans screenshot'ın tamamı production UI olarak gömülmez.
-- Temiz background-only sahne asset'i ile Flutter widget/presentation katmanı birlikte kullanılır.
-- Gameplay engine, içerik koordinatları, swipe, timer, hata, bonus, scoring ve progression sözleşmeleri görsel tema uğruna değiştirilmez.
-- Android gerçek screenshot ve Levent kabulü olmadan yalnız test/build sonucu görsel PASS sayılmaz.
+- Canonical gameplay geometrisi **8×8 / LOCKED** kalır; hiçbir raster asset grid geometrisi bake etmez.
+- Referansın 6×10 düzeni yalnız görsel kaynak geçmişidir ve product geometry olarak kullanılamaz.
+- Flattened referans screenshot bütün ekran olarak production'a gömülmez.
+- Production mimarisi: **approved raster reference asset pack + dinamik Flutter text/state + canonical 8×8 engine**.
+- Kullanıcı tarafından görsel QA ile kilitlenen 11 production asset dışında yeni chrome/ikon/hücre tasarımı eklenmez:
+  - `harbor_background_1080x1920.png`
+  - `cell_idle.png`
+  - `cell_selected_found.png`
+  - `status_panel_empty.png`
+  - `word_plaque_empty.png`
+  - `bonus_plaque_empty.png`
+  - `instruction_panel_empty.png`
+  - `icon_back.png`
+  - `icon_search.png`
+  - `icon_mistake.png`
+  - `icon_timer.png`
+- `icon_anchor.png` ve `icon_compass.png` production overlay değildir; instruction panel asset'i içinde dekor bake olduğu için **UNUSED / REJECTED** kalır.
+- Dinamik içerik (başlık, sayaç, süre, target/bonus metni, hücre harfleri, found/error state) Flutter/runtime tarafından üretilir; asset içine kelime/grid bake edilmez.
+- Gameplay engine, swipe, timer, hata, bonus, scoring ve progression sözleşmeleri görsel tema uğruna değiştirilmez.
+- Görsel PASS için gerçek Android initial runtime screenshot zorunludur; found-state gibi kritik dinamik state ayrıca gerçek runtime kanıtıyla doğrulanır.
+- User-approved found-state mockup/runtime-target, gerçek runtime kanıtı yerine yazılmaz; gerçek Android artifact ayrıca kontrol edilir.
+- Exact product SHA `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7` için initial Android 16 run `33384781507` SUCCESS'tir. Found-state artifact `9756762383` içinde gerçek `09_B10_YOL_FOUND.png` YOL swipe sonrası `1/9` ve altın Y-O-L hücrelerini doğrular; bu artifact'in run'ı son log-string grep nedeniyle overall FAILURE olduğundan run SUCCESS diye etiketlenmez.
+- Levent 31 Ağustos 2026'da current exact-reference görsel hedefe **PASS** verdi; daha önceki `67f7365...` refined-V5 kabul kaydı current karar değildir.
+
+`ERROR_STATE_VISUAL` ve exact `REFERENCE_FONT` kaynağı referansta bağımsız olarak doğrulanamadığı sürece **DOĞRULANACAK** kalır; mevcut kabul edilmiş runtime görünümü sırf tahminle yeniden tasarlanmaz.
