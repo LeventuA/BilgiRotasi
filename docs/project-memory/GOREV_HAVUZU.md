@@ -66,7 +66,7 @@
 
 ## 0X - Başlangıç Limanı 8×8 starter-content dönüşümü
 
-**Durum:** TEKNİK GATE + CURRENT V5 GÖRSEL KABUL TAMAMLANDI / İNSAN PLAYTESTİ + READY/MERGE BEKLENİYOR.
+**Durum:** TEKNİK GATE TAMAMLANDI / CURRENT V5 GÖRSEL KABUL AÇIK / READY-MERGE YOK.
 
 - Branch: `feat/kelime-avi-8x8-content-v1-20260829`
 - Temiz ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`
@@ -94,7 +94,7 @@
 - [x] QA-only entrypoint/helper dosyaları ürün commitinde yok.
 - [x] Temiz ürün commit SHA'sı yazıldı.
 - [x] 8×8 Draft PR #158 açıldı.
-- [x] Current exact-reference gameplay görsel hedefi kullanıcı PASS aldı; güncel entegrasyon 0Y altında kayıtlıdır.
+- [ ] Current exact-reference runtime görsel hedefi kullanıcı PASS alacak.
 - [ ] B5/B10 gerçek insan süre dengesi playtesti.
 - [ ] İnsan playtesti sonrasında ayrıca Ready kararı verilir.
 - [ ] Levent ayrıca açık merge onayı verir.
@@ -103,26 +103,28 @@
 
 ### PR #158 eski V5 gameplay tema checkpoint'i — TARİHSEL / SUPERSEDED
 
-Önceki `67f7365...` refined-V5 görsel kabul kaydı exact-reference talebiyle supersede edilmiştir. Güncel production gameplay görsel kabul kaydı aşağıdaki **0Y** görevindedir. Eski kanıtlar Git geçmişinde korunur; current kabul olarak kullanılmaz.
+Önceki `67f7365...` refined-V5 görsel kabul kaydı exact-reference talebiyle supersede edilmiştir. Güncel production gameplay görsel çalışma kaydı aşağıdaki **0Y** görevindedir. Eski kanıtlar Git geçmişinde korunur; current kabul olarak kullanılmaz.
 
 ---
 
 ## 0Y - V5 exact-reference production asset entegrasyonu / PR #161
 
-**Durum:** ASSET + FLUTTER ENTEGRASYON + ANDROID INITIAL + FOUND-STATE GÖRSEL GATE PASS / HUMAN PLAYTEST + READY/MERGE BEKLENİYOR.
+**Durum:** ASSET + FLUTTER ENTEGRASYON TEKNİK PASS / GERÇEK ANDROID RUNTIME GÖRSEL FAIL / KULLANICI KABULÜ AÇIK.
 
 - Branch: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
-- Product HEAD: `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7`.
-- Draft PR: **#161** — OPEN / DRAFT / merged=false / mergeable=true; base PR #158 branch'i `5362c094...`.
+- Product integration commit: `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7`.
+- Draft PR: **#161** — OPEN / DRAFT / merged=false; base PR #158 branch'i `5362c094...`.
 - Sürüm: `1.68.19+109`.
 - Asset commit: `0d73ab3bbf5217caf203876c8c02fd5673d13d9e`.
 - Production asset sayısı: 11; 11/11 exact SHA-256 PASS.
 - `icon_anchor.png` / `icon_compass.png`: UNUSED / REJECTED / production overlay değil.
 - Integration run `33379341765`: SUCCESS; asset SHA, deterministic presentation patch, format, analyze, 138/138 focused tests, diff/scope gate PASS.
-- Android 16 initial B10: run `33384781507` SUCCESS; exact product SHA `50ab6c8...`; API36 / 1080×1920 / 420 dpi; artifact `9755405253`.
-- Gerçek Android found-state artifact: run `33388386388`, artifact `9756762383` içinde `09_B10_YOL_FOUND.png`; sayaç `1/9`, Y-O-L altın found state, alt panel `YOL bulundu!`; `changed_pixels=29970` visual-change PASS.
-- `33388386388` overall FAILURE, yalnız PNG/gesture kanıtlarından sonraki exact log-string grep assertion nedeniyle; ürün crash/failure olarak sınıflandırılmaz ve workflow SUCCESS diye yazılmaz.
-- Levent current exact-reference görsel hedefe açık **PASS** verdi; runtime found-state görüntüsü daha sonra aynı kabul edilmiş görünümle doğrulandı.
+- Android 16 initial B10: run `33384781507` screenshot üretti; exact product SHA `50ab6c8...`; API36 / 1080×1920 / 420 dpi; artifact `9755405253`.
+- Gerçek Android found-state artifact: run `33388386388`, artifact `9756762383` içinde `09_B10_YOL_FOUND.png`; sayaç `1/9`, Y-O-L found state ve `changed_pixels=29970` gesture visual-change PASS.
+- `33388386388` overall FAILURE; PNG/gesture kanıtlarından sonraki exact log-string grep assertion nedeniyle. Workflow SUCCESS diye yazılmaz.
+- **Kullanıcı düzeltmesi:** Daha önce PASS alınan “bulunmuş” Görsel 1 gerçek Android screenshot değildi; gerçek Android ekranı üzerinde görsel düzenleme ile oluşturulmuş hedef/mockup idi. Bu nedenle o PASS **geçersizdir**.
+- Kullanıcının bağlayıcı hedefi son mesajdaki **Görsel 1**'dir. Hedef/reference olarak kullanılacak, Android kanıtı sayılmayacak.
+- Son mesajdaki **Görsel 2** gerçek Android runtime found-state'tir ve kullanıcı tarafından açıkça **FAIL** olarak reddedildi.
 - Canonical grid **8×8 / LOCKED / UNCHANGED**.
 
 **Bitti ölçütü:**
@@ -131,11 +133,13 @@
 - [x] Gameplay engine/swipe/timer/scoring/progression korunuyor.
 - [x] 8×8 ve 64 hücre sözleşmesi korunuyor.
 - [x] Format/analyze/focused test/scope gate PASS.
-- [x] Gerçek Android 16 initial B10 runtime screenshot PASS.
-- [x] Gerçek Android 16 found-state YOL görsel/gesture-change kanıtı PASS.
-- [x] Current exact-reference görünüm kullanıcı görsel PASS aldı.
+- [x] Gerçek Android 16 initial B10 screenshot üretildi.
+- [x] Gerçek Android 16 YOL swipe/found-state teknik kanıtı üretildi.
+- [ ] Gerçek Android runtime görünümü bağlayıcı Görsel 1 hedefiyle hizalanacak.
+- [ ] Yeni raw Android initial screenshot kullanıcı tarafından görsel PASS alacak.
+- [ ] Yeni raw Android found-state screenshot kullanıcı tarafından görsel PASS alacak.
 - [ ] `ERROR_STATE_VISUAL` için referans/karar doğrulaması.
-- [ ] Exact `REFERENCE_FONT` kaynağı/kararı doğrulaması; mevcut kabul edilmiş görünüm tahminle değiştirilmez.
+- [ ] Exact `REFERENCE_FONT` kaynağı/kararı doğrulaması.
 - [ ] B5 60s / B10 120s gerçek insan süre-zorluk playtesti.
 - [ ] PR #161 ve zincirdeki #158 için ayrıca Ready kararı.
 - [ ] Levent'in ayrıca açık merge onayı.
