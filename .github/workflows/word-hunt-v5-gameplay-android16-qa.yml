@@ -1,4 +1,4 @@
-name: Kelime Avı V5 B10 Android 16 physical-phone screenshot
+name: Kelime Avı V5 B10 runtime-layout preview
 
 on:
   push:
@@ -12,16 +12,15 @@ permissions:
   contents: read
 
 jobs:
-  b10-visual-proof:
-    name: B10 gerçek Android 16 / 1080x2340 screenshot
+  b10-visual-preview:
+    name: B10 layout preview / raw Android 16
     runs-on: ubuntu-22.04
-    timeout-minutes: 35
+    timeout-minutes: 40
     env:
-      QA_SHA: 50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7
-      QA_BRANCH: feat/kelime-avi-v5-reference-assets-integration-20260831
+      QA_SHA: 9cfa12aeafd29d6197c91c79361648508adf400d
 
     steps:
-      - name: Exact ürün HEAD'ini indir
+      - name: Exact çalışma HEAD'ini indir
         uses: actions/checkout@v4
         with:
           ref: ${{ env.QA_SHA }}
@@ -39,12 +38,144 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Exact ürün APK'sını üret
+      - name: İlk runtime-layout patchini yalnız runner üzerinde uygula
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p reports/word_hunt_v5_gameplay android/app/src/debug
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/word_hunt/word_hunt_screens.dart')
+          text = path.read_text(encoding='utf-8')
+
+          old = "const _harborGridSpacing = 3.0;\n"
+          new = "const _harborGridSpacing = 3.0;\nconst _harborInstructionDefault =\n    'İlk harfe dokun, parmağını kelimenin üzerinde sürükle.';\n"
+          assert text.count(old) == 1
+          text = text.replace(old, new, 1)
+
+          old = "  String _status = 'İlk harfe dokun, parmağını kelimenin üzerinde sürükle.';\n"
+          assert text.count(old) == 1
+          text = text.replace(old, "  String _status = _harborInstructionDefault;\n", 1)
+
+          old = "  int get _scoredMistakes => _completionMistakes ?? _mistakes;\n\n  DateTime _now()"
+          new = """  int get _scoredMistakes => _completionMistakes ?? _mistakes;
+
+  String get _displayedInstructionStatus {
+    final status = _status;
+    final successFeedback =
+        status.endsWith(' bulundu!') ||
+        status.startsWith('Bilgi kartı açıldı:') ||
+        status.startsWith('Bonus kelime:') ||
+        status.endsWith(' zaten bulundu.');
+    return successFeedback ? _harborInstructionDefault : status;
+  }
+
+  DateTime _now()"""
+          assert text.count(old) == 1
+          text = text.replace(old, new, 1)
+
+          old = "                        _HarborInstructionPlate(status: _status),"
+          assert text.count(old) == 1
+          text = text.replace(
+              old,
+              "                        _HarborInstructionPlate(\n                          status: _displayedInstructionStatus,\n                        ),",
+              1,
+          )
+
+          word_start = text.index('class _HarborWordPlate')
+          grid_start = text.index('class _HarborGridCell', word_start)
+          word = text[word_start:grid_start]
+          old = """      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(asset),
+          fit: BoxFit.fill,
+          filterQuality: FilterQuality.high,
+        ),
+      ),"""
+          new = """      decoration: BoxDecoration(
+        boxShadow:
+            found
+                ? const <BoxShadow>[
+                  BoxShadow(
+                    color: Color(0x99FF9D22),
+                    blurRadius: 8,
+                    spreadRadius: 1,
+                  ),
+                ]
+                : const <BoxShadow>[],
+        image: DecorationImage(
+          image: AssetImage(asset),
+          fit: BoxFit.fill,
+          filterQuality: FilterQuality.high,
+          colorFilter:
+              found
+                  ? const ColorFilter.mode(
+                    Color(0xFFC06B16),
+                    BlendMode.color,
+                  )
+                  : null,
+        ),
+      ),"""
+          assert word.count(old) == 1
+          word = word.replace(old, new, 1)
+          text = text[:word_start] + word + text[grid_start:]
+
+          grid_start = text.index('class _HarborGridCell')
+          instruction_start = text.index('class _HarborInstructionPlate', grid_start)
+          grid = text[grid_start:instruction_start]
+          old = "    return Stack(\n"
+          new = """    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(math.max(6, extent * .14)),
+        boxShadow:
+            active
+                ? const <BoxShadow>[
+                  BoxShadow(
+                    color: Color(0x99FF9D22),
+                    blurRadius: 5,
+                    spreadRadius: 1,
+                  ),
+                ]
+                : const <BoxShadow>[],
+      ),
+      child: Stack(
+"""
+          assert grid.count(old) == 1
+          grid = grid.replace(old, new, 1)
+          old_end = "      ],\n    );\n  }\n}\n\n"
+          new_end = """        ],
+      ),
+    );
+  }
+}
+
+"""
+          assert grid.endswith(old_end)
+          grid = grid[:-len(old_end)] + new_end
+          text = text[:grid_start] + grid + text[instruction_start:]
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          dart format lib/word_hunt/word_hunt_screens.dart
+          mkdir -p reports/word_hunt_v5_gameplay
+          git diff --check
+          git diff -- lib/word_hunt/word_hunt_screens.dart > reports/word_hunt_v5_gameplay/PREVIEW.diff
+          test -s reports/word_hunt_v5_gameplay/PREVIEW.diff
+
+      - name: Analyze ve focused Word Hunt testleri
+        shell: bash
+        run: |
+          set -euo pipefail
           flutter pub get
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_*_test.dart
+
+      - name: Preview APK üret
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p android/app/src/debug reports/word_hunt_v5_gameplay
           python3 -m pip install --disable-pip-version-check pillow==11.3.0
           printf '%s\n' \
             '<manifest xmlns:android="http://schemas.android.com/apk/res/android">' \
@@ -57,9 +188,8 @@ jobs:
             -t tools/word_hunt_v5_gameplay_qa_main.dart \
             --dart-define=ADMOB_ENVIRONMENT=test
           test -s build/app/outputs/flutter-apk/app-debug.apk
-          git rev-parse HEAD | tee reports/word_hunt_v5_gameplay/TESTED_SHA.txt
-          sha256sum build/app/outputs/flutter-apk/app-debug.apk \
-            | tee reports/word_hunt_v5_gameplay/APK_SHA256.txt
+          printf '%s\n' "$QA_SHA" > reports/word_hunt_v5_gameplay/BASE_SHA.txt
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk > reports/word_hunt_v5_gameplay/APK_SHA256.txt
           (cd android && ./gradlew --stop)
 
       - name: B10-only QA scriptini hazırla
@@ -105,7 +235,7 @@ jobs:
           test -r /dev/kvm
           test -w /dev/kvm
 
-      - name: B10 gerçek Android 16 / fiziksel telefon oranı screenshot üret
+      - name: Raw Android 16 initial + YOL-found screenshot üret
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 36
@@ -118,18 +248,18 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
-            adb shell wm size 1080x2340
+            adb shell wm size 1080x1920
             adb shell wm density 420
             bash tools/word_hunt_v5_gameplay_android16.sh
             test -s reports/word_hunt_v5_gameplay/04_B10_INITIAL.png
             test -s reports/word_hunt_v5_gameplay/09_B10_YOL_FOUND.png
             sha256sum reports/word_hunt_v5_gameplay/04_B10_INITIAL.png reports/word_hunt_v5_gameplay/09_B10_YOL_FOUND.png > reports/word_hunt_v5_gameplay/SHA256SUMS.txt
 
-      - name: B10 gerçek screenshot kanıtını yükle
+      - name: Preview kanıtını yükle
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-KelimeAvi-V5-B10-Android16-1080x2340-${{ env.QA_SHA }}
+          name: BilgiRotasi-KelimeAvi-V5-B10-layout-preview-${{ env.QA_SHA }}
           path: reports/word_hunt_v5_gameplay/**
           if-no-files-found: error
           retention-days: 21
