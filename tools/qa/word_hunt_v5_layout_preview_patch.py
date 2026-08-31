@@ -6,6 +6,7 @@ text = path.read_text(encoding='utf-8')
 old = "const _harborGridSpacing = 1.5;\n"
 new = (
     "const _harborGridSpacing = 1.5;\n"
+    "const _harborCellVisualScale = 1.12;\n"
     "const _harborInstructionDefault =\n"
     "    'İlk harfe dokun, parmağını kelimenin üzerinde sürükle.';\n"
 )
@@ -90,6 +91,20 @@ new = """    return DecoratedBox(
 """
 assert grid.count(old) == 1
 grid = grid.replace(old, new, 1)
+old_image = "        Image.asset(asset, fit: BoxFit.fill, filterQuality: FilterQuality.high),\n"
+new_image = """        ClipRect(
+          child: Transform.scale(
+            scale: _harborCellVisualScale,
+            child: Image.asset(
+              asset,
+              fit: BoxFit.fill,
+              filterQuality: FilterQuality.high,
+            ),
+          ),
+        ),
+"""
+assert grid.count(old_image) == 1
+grid = grid.replace(old_image, new_image, 1)
 old_end = "      ],\n    );\n  }\n}\n\n"
 new_end = """        ],
       ),
@@ -103,4 +118,4 @@ grid = grid[:-len(old_end)] + new_end
 text = text[:grid_start] + grid + text[instruction_start:]
 
 path.write_text(text, encoding='utf-8')
-print('V6_LAYOUT_PREVIEW_PATCH_APPLIED')
+print('V6_TIGHT_CELL_PREVIEW_PATCH_APPLIED')
