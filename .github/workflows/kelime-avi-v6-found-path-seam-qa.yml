@@ -1,0 +1,79 @@
+name: Kelime Avi V6 fused found path seam QA
+
+on:
+  push:
+    branches:
+      - fix/kelime-avi-v6-found-path-seam-qa-20260901
+    paths:
+      - '.github/workflows/kelime-avi-v6-found-path-seam-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-commit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout exact QA branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/kelime-avi-v6-found-path-seam-qa-20260901
+          fetch-depth: 0
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify exact product base
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = 'ba63f1bdeda7c31a634285bbc8e4eaf3652b2078'
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          grep -q 'word_hunt_production_found_path_connector' lib/word_hunt/word_hunt_screens.dart
+          ! grep -q 'word_hunt_production_found_path_seam' lib/word_hunt/word_hunt_screens.dart
+
+      - name: Add fused seam over adjacent found cells
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -c "import base64; exec(base64.b64decode('CmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAoKcGF0aCA9IFBhdGgoJ2xpYi93b3JkX2h1bnQvd29yZF9odW50X3NjcmVlbnMuZGFydCcpCnRleHQgPSBwYXRoLnJlYWRfdGV4dChlbmNvZGluZz0ndXRmLTgnKQoKb2xkX3RhaWwgPSByIiIiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApLAoiIiIKbmV3X3RhaWwgPSByIiIiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBJZ25vcmVQb2ludGVyKAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNoaWxkOiBDdXN0b21QYWludCgKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGtleTogY29uc3QgS2V5KAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJ3dvcmRfaHVudF9wcm9kdWN0aW9uX2ZvdW5kX3BhdGhfc2VhbScsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBhaW50ZXI6IF9IYXJib3JGb3VuZFBhdGhTZWFtUGFpbnRlcigKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGF0aHM6IF9mb3VuZFBhdGhzLnZhbHVlcwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAubWFwKAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChwYXRoKSA9PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBMaXN0PFdvcmRIdW50Q2VsbD4udW5tb2RpZmlhYmxlKAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBhdGgsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAudG9MaXN0KGdyb3dhYmxlOiBmYWxzZSksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNlbGxFeHRlbnQ6IGNlbGxFeHRlbnQsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNwYWNpbmc6IF9oYXJib3JHcmlkU3BhY2luZywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBdLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICksCiIiIgppZiB0ZXh0LmNvdW50KG9sZF90YWlsKSAhPSAxOgogICAgcmFpc2UgU3lzdGVtRXhpdChmJ0V4cGVjdGVkIG9uZSBwcm9kdWN0aW9uIEdyaWRWaWV3IHRhaWwsIGZvdW5kIHt0ZXh0LmNvdW50KG9sZF90YWlsKX0nKQp0ZXh0ID0gdGV4dC5yZXBsYWNlKG9sZF90YWlsLCBuZXdfdGFpbCwgMSkKCm1hcmtlciA9ICdjbGFzcyBfSGFyYm9yR3JpZENlbGwgZXh0ZW5kcyBTdGF0ZWxlc3NXaWRnZXQgeycKaWYgdGV4dC5jb3VudChtYXJrZXIpICE9IDE6CiAgICByYWlzZSBTeXN0ZW1FeGl0KGYnRXhwZWN0ZWQgb25lIEhhcmJvckdyaWRDZWxsIG1hcmtlciwgZm91bmQge3RleHQuY291bnQobWFya2VyKX0nKQoKcGFpbnRlciA9IHIiIiIKY2xhc3MgX0hhcmJvckZvdW5kUGF0aFNlYW1QYWludGVyIGV4dGVuZHMgQ3VzdG9tUGFpbnRlciB7CiAgY29uc3QgX0hhcmJvckZvdW5kUGF0aFNlYW1QYWludGVyKHsKICAgIHJlcXVpcmVkIHRoaXMucGF0aHMsCiAgICByZXF1aXJlZCB0aGlzLmNlbGxFeHRlbnQsCiAgICByZXF1aXJlZCB0aGlzLnNwYWNpbmcsCiAgfSk7CgogIGZpbmFsIExpc3Q8TGlzdDxXb3JkSHVudENlbGw+PiBwYXRoczsKICBmaW5hbCBkb3VibGUgY2VsbEV4dGVudDsKICBmaW5hbCBkb3VibGUgc3BhY2luZzsKCiAgT2Zmc2V0IF9jZW50ZXJGb3IoV29yZEh1bnRDZWxsIGNlbGwpIHsKICAgIGZpbmFsIHN0cmlkZSA9IGNlbGxFeHRlbnQgKyBzcGFjaW5nOwogICAgcmV0dXJuIE9mZnNldCgKICAgICAgY2VsbC5jb2x1bW4gKiBzdHJpZGUgKyBjZWxsRXh0ZW50IC8gMiwKICAgICAgY2VsbC5yb3cgKiBzdHJpZGUgKyBjZWxsRXh0ZW50IC8gMiwKICAgICk7CiAgfQoKICBAb3ZlcnJpZGUKICB2b2lkIHBhaW50KENhbnZhcyBjYW52YXMsIFNpemUgc2l6ZSkgewogICAgaWYgKHBhdGhzLmlzRW1wdHkpIHJldHVybjsKCiAgICBmaW5hbCBoYWxvUGFpbnQgPSBQYWludCgpCiAgICAgIC4uY29sb3IgPSBjb25zdCBDb2xvcigweEI4RkY5RDIyKQogICAgICAuLnN0eWxlID0gUGFpbnRpbmdTdHlsZS5zdHJva2UKICAgICAgLi5zdHJva2VXaWR0aCA9IG1hdGgubWF4KDcsIGNlbGxFeHRlbnQgKiAuMzYpCiAgICAgIC4uc3Ryb2tlQ2FwID0gU3Ryb2tlQ2FwLnJvdW5kOwogICAgZmluYWwgZmlsbFBhaW50ID0gUGFpbnQoKQogICAgICAuLmNvbG9yID0gY29uc3QgQ29sb3IoMHhGMEI5NjcxMikKICAgICAgLi5zdHlsZSA9IFBhaW50aW5nU3R5bGUuc3Ryb2tlCiAgICAgIC4uc3Ryb2tlV2lkdGggPSBtYXRoLm1heCg1LCBjZWxsRXh0ZW50ICogLjI0KQogICAgICAuLnN0cm9rZUNhcCA9IFN0cm9rZUNhcC5yb3VuZDsKICAgIGZpbmFsIGhpZ2hsaWdodFBhaW50ID0gUGFpbnQoKQogICAgICAuLmNvbG9yID0gY29uc3QgQ29sb3IoMHhBOEZGRDM2QSkKICAgICAgLi5zdHlsZSA9IFBhaW50aW5nU3R5bGUuc3Ryb2tlCiAgICAgIC4uc3Ryb2tlV2lkdGggPSBtYXRoLm1heCgyLCBjZWxsRXh0ZW50ICogLjA4KQogICAgICAuLnN0cm9rZUNhcCA9IFN0cm9rZUNhcC5yb3VuZDsKCiAgICBmb3IgKGZpbmFsIHBhdGggaW4gcGF0aHMpIHsKICAgICAgaWYgKHBhdGgubGVuZ3RoIDwgMikgY29udGludWU7CiAgICAgIGZvciAodmFyIGluZGV4ID0gMDsgaW5kZXggPCBwYXRoLmxlbmd0aCAtIDE7IGluZGV4KyspIHsKICAgICAgICBmaW5hbCBzdGFydENlbnRlciA9IF9jZW50ZXJGb3IocGF0aFtpbmRleF0pOwogICAgICAgIGZpbmFsIGVuZENlbnRlciA9IF9jZW50ZXJGb3IocGF0aFtpbmRleCArIDFdKTsKICAgICAgICBmaW5hbCBkZWx0YSA9IGVuZENlbnRlciAtIHN0YXJ0Q2VudGVyOwogICAgICAgIGZpbmFsIGRpc3RhbmNlID0gZGVsdGEuZGlzdGFuY2U7CiAgICAgICAgaWYgKGRpc3RhbmNlIDw9IDApIGNvbnRpbnVlOwogICAgICAgIGZpbmFsIGRpcmVjdGlvbiA9IGRlbHRhIC8gZGlzdGFuY2U7CiAgICAgICAgZmluYWwgbWlkcG9pbnQgPSBPZmZzZXQoCiAgICAgICAgICAoc3RhcnRDZW50ZXIuZHggKyBlbmRDZW50ZXIuZHgpIC8gMiwKICAgICAgICAgIChzdGFydENlbnRlci5keSArIGVuZENlbnRlci5keSkgLyAyLAogICAgICAgICk7CiAgICAgICAgZmluYWwgaGFsZkxlbmd0aCA9IHNwYWNpbmcgLyAyICsgY2VsbEV4dGVudCAqIC4xMTsKICAgICAgICBmaW5hbCBzdGFydCA9IG1pZHBvaW50IC0gZGlyZWN0aW9uICogaGFsZkxlbmd0aDsKICAgICAgICBmaW5hbCBlbmQgPSBtaWRwb2ludCArIGRpcmVjdGlvbiAqIGhhbGZMZW5ndGg7CiAgICAgICAgY2FudmFzLmRyYXdMaW5lKHN0YXJ0LCBlbmQsIGhhbG9QYWludCk7CiAgICAgICAgY2FudmFzLmRyYXdMaW5lKHN0YXJ0LCBlbmQsIGZpbGxQYWludCk7CiAgICAgICAgY2FudmFzLmRyYXdMaW5lKHN0YXJ0LCBlbmQsIGhpZ2hsaWdodFBhaW50KTsKICAgICAgfQogICAgfQogIH0KCiAgQG92ZXJyaWRlCiAgYm9vbCBzaG91bGRSZXBhaW50KGNvdmFyaWFudCBfSGFyYm9yRm91bmRQYXRoU2VhbVBhaW50ZXIgb2xkRGVsZWdhdGUpIHsKICAgIHJldHVybiBvbGREZWxlZ2F0ZS5wYXRocyAhPSBwYXRocyB8fAogICAgICAgIG9sZERlbGVnYXRlLmNlbGxFeHRlbnQgIT0gY2VsbEV4dGVudCB8fAogICAgICAgIG9sZERlbGVnYXRlLnNwYWNpbmcgIT0gc3BhY2luZzsKICB9Cn0KCiIiIgoKdGV4dCA9IHRleHQucmVwbGFjZShtYXJrZXIsIHBhaW50ZXIgKyBtYXJrZXIsIDEpCnBhdGgud3JpdGVfdGV4dCh0ZXh0LCBlbmNvZGluZz0ndXRmLTgnKQo='))"
+          dart format lib/word_hunt/word_hunt_screens.dart
+          grep -q 'word_hunt_production_found_path_seam' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'class _HarborFoundPathSeamPainter extends CustomPainter' lib/word_hunt/word_hunt_screens.dart
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze Word Hunt
+        run: dart analyze lib/word_hunt
+
+      - name: Focused Word Hunt tests
+        shell: bash
+        run: flutter test test/word_hunt_*.dart
+
+      - name: Scope and diff gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          test "$(git diff --name-only | wc -l)" -eq 1
+          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          test "$(git diff --name-only -- assets/questions.json lib/main.dart assets/word_hunt/v5_reference_assets | wc -l)" -eq 0
+
+      - name: Commit tested fused seam
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lib/word_hunt/word_hunt_screens.dart
+          git diff --cached --check
+          git commit -m 'fix(kelime-avi): fuse found word cell seams'
+          git push origin HEAD:fix/kelime-avi-v6-found-path-seam-qa-20260901
