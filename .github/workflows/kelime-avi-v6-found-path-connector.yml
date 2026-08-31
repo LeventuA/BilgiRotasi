@@ -34,7 +34,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = 'be6816d89b32be9556ce6e99c21409a0e30e2ab2'
+          git merge-base --is-ancestor be6816d89b32be9556ce6e99c21409a0e30e2ab2 HEAD
           grep -q '^version: 1.68.19+109$' pubspec.yaml
           test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = 'd415876b1311362a8de6220cfcfe2978fce514dd'
           grep -q '^const _harborGridSpacing = 1\.5;$' lib/word_hunt/word_hunt_screens.dart
@@ -44,130 +44,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-
-          path = Path('lib/word_hunt/word_hunt_screens.dart')
-          text = path.read_text(encoding='utf-8')
-
-          old = """                                    child: GridView.builder(
-                                      padding: EdgeInsets.zero,
-"""
-          new = """                                    child: Stack(
-                                      fit: StackFit.expand,
-                                      children: [
-                                        IgnorePointer(
-                                          child: CustomPaint(
-                                            key: const Key(
-                                              'word_hunt_production_found_path_connector',
-                                            ),
-                                            painter: _HarborFoundPathConnectorPainter(
-                                              paths: _foundPaths.values
-                                                  .map(
-                                                    (path) =>
-                                                        List<WordHuntCell>.unmodifiable(
-                                                          path,
-                                                        ),
-                                                  )
-                                                  .toList(growable: false),
-                                              cellExtent: cellExtent,
-                                              spacing: _harborGridSpacing,
-                                            ),
-                                          ),
-                                        ),
-                                        GridView.builder(
-                                      padding: EdgeInsets.zero,
-"""
-          if text.count(old) != 1:
-              raise SystemExit(f'Expected one GridView start, found {text.count(old)}')
-          text = text.replace(old, new, 1)
-
-          old = """                                          error: _errorCells.contains(cell),
-                                        );
-                                      },
-                                    ),
-                                  ),
-"""
-          new = """                                          error: _errorCells.contains(cell),
-                                        );
-                                      },
-                                    ),
-                                      ],
-                                    ),
-                                  ),
-"""
-          if text.count(old) != 1:
-              raise SystemExit(f'Expected one GridView tail, found {text.count(old)}')
-          text = text.replace(old, new, 1)
-
-          marker = 'class _HarborGridCell extends StatelessWidget {'
-          if text.count(marker) != 1:
-              raise SystemExit(f'Expected one HarborGridCell marker, found {text.count(marker)}')
-
-          painter = r'''class _HarborFoundPathConnectorPainter extends CustomPainter {
-  const _HarborFoundPathConnectorPainter({
-    required this.paths,
-    required this.cellExtent,
-    required this.spacing,
-  });
-
-  final List<List<WordHuntCell>> paths;
-  final double cellExtent;
-  final double spacing;
-
-  Offset _centerFor(WordHuntCell cell) {
-    final stride = cellExtent + spacing;
-    return Offset(
-      cell.column * stride + cellExtent / 2,
-      cell.row * stride + cellExtent / 2,
-    );
-  }
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (paths.isEmpty) return;
-
-    final glowPaint = Paint()
-      ..color = const Color(0x55FF9D22)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = math.max(8, cellExtent * .44)
-      ..strokeCap = StrokeCap.round;
-    final bridgePaint = Paint()
-      ..color = const Color(0xD69B560D)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = math.max(5, cellExtent * .27)
-      ..strokeCap = StrokeCap.round;
-
-    for (final path in paths) {
-      if (path.length < 2) continue;
-      for (var index = 0; index < path.length - 1; index++) {
-        final startCenter = _centerFor(path[index]);
-        final endCenter = _centerFor(path[index + 1]);
-        final delta = endCenter - startCenter;
-        final distance = delta.distance;
-        if (distance <= 0) continue;
-        final direction = delta / distance;
-        final overlap = cellExtent * .34;
-        final start = startCenter + direction * overlap;
-        final end = endCenter - direction * overlap;
-        canvas.drawLine(start, end, glowPaint);
-        canvas.drawLine(start, end, bridgePaint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _HarborFoundPathConnectorPainter oldDelegate) {
-    return oldDelegate.paths != paths ||
-        oldDelegate.cellExtent != cellExtent ||
-        oldDelegate.spacing != spacing;
-  }
-}
-
-'''
-          text = text.replace(marker, painter + marker, 1)
-          path.write_text(text, encoding='utf-8')
-          PY
+          python3 -c "import base64; exec(base64.b64decode('ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCgpwYXRoID0gUGF0aCgnbGliL3dvcmRfaHVudC93b3JkX2h1bnRfc2NyZWVucy5kYXJ0JykKdGV4dCA9IHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSd1dGYtOCcpCgpvbGQgPSAnJycgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjaGlsZDogR3JpZFZpZXcuYnVpbGRlcigKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwYWRkaW5nOiBFZGdlSW5zZXRzLnplcm8sCicnJwpuZXcgPSAnJycgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjaGlsZDogU3RhY2soCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZml0OiBTdGFja0ZpdC5leHBhbmQsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2hpbGRyZW46IFsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIElnbm9yZVBvaW50ZXIoCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNoaWxkOiBDdXN0b21QYWludCgKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBrZXk6IGNvbnN0IEtleSgKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICd3b3JkX2h1bnRfcHJvZHVjdGlvbl9mb3VuZF9wYXRoX2Nvbm5lY3RvcicsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwYWludGVyOiBfSGFyYm9yRm91bmRQYXRoQ29ubmVjdG9yUGFpbnRlcigKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBhdGhzOiBfZm91bmRQYXRocy52YWx1ZXMKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAubWFwKAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKHBhdGgpID0+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTGlzdDxXb3JkSHVudENlbGw+LnVubW9kaWZpYWJsZSgKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBhdGgsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLnRvTGlzdChncm93YWJsZTogZmFsc2UpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2VsbEV4dGVudDogY2VsbEV4dGVudCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNwYWNpbmc6IF9oYXJib3JHcmlkU3BhY2luZywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEdyaWRWaWV3LmJ1aWxkZXIoCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGFkZGluZzogRWRnZUluc2V0cy56ZXJvLAonJycKaWYgdGV4dC5jb3VudChvbGQpICE9IDE6CiAgICByYWlzZSBTeXN0ZW1FeGl0KGYnRXhwZWN0ZWQgb25lIEdyaWRWaWV3IHN0YXJ0LCBmb3VuZCB7dGV4dC5jb3VudChvbGQpfScpCnRleHQgPSB0ZXh0LnJlcGxhY2Uob2xkLCBuZXcsIDEpCgpvbGQgPSAnJycgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBlcnJvcjogX2Vycm9yQ2VsbHMuY29udGFpbnMoY2VsbCksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApLAonJycKbmV3ID0gJycnICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXJyb3I6IF9lcnJvckNlbGxzLmNvbnRhaW5zKGNlbGwpLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF0sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApLAonJycKaWYgdGV4dC5jb3VudChvbGQpICE9IDE6CiAgICByYWlzZSBTeXN0ZW1FeGl0KGYnRXhwZWN0ZWQgb25lIEdyaWRWaWV3IHRhaWwsIGZvdW5kIHt0ZXh0LmNvdW50KG9sZCl9JykKdGV4dCA9IHRleHQucmVwbGFjZShvbGQsIG5ldywgMSkKCm1hcmtlciA9ICdjbGFzcyBfSGFyYm9yR3JpZENlbGwgZXh0ZW5kcyBTdGF0ZWxlc3NXaWRnZXQgeycKaWYgdGV4dC5jb3VudChtYXJrZXIpICE9IDE6CiAgICByYWlzZSBTeXN0ZW1FeGl0KGYnRXhwZWN0ZWQgb25lIEhhcmJvckdyaWRDZWxsIG1hcmtlciwgZm91bmQge3RleHQuY291bnQobWFya2VyKX0nKQoKcGFpbnRlciA9ICcnJ2NsYXNzIF9IYXJib3JGb3VuZFBhdGhDb25uZWN0b3JQYWludGVyIGV4dGVuZHMgQ3VzdG9tUGFpbnRlciB7CiAgY29uc3QgX0hhcmJvckZvdW5kUGF0aENvbm5lY3RvclBhaW50ZXIoewogICAgcmVxdWlyZWQgdGhpcy5wYXRocywKICAgIHJlcXVpcmVkIHRoaXMuY2VsbEV4dGVudCwKICAgIHJlcXVpcmVkIHRoaXMuc3BhY2luZywKICB9KTsKCiAgZmluYWwgTGlzdDxMaXN0PFdvcmRIdW50Q2VsbD4+IHBhdGhzOwogIGZpbmFsIGRvdWJsZSBjZWxsRXh0ZW50OwogIGZpbmFsIGRvdWJsZSBzcGFjaW5nOwoKICBPZmZzZXQgX2NlbnRlckZvcihXb3JkSHVudENlbGwgY2VsbCkgewogICAgZmluYWwgc3RyaWRlID0gY2VsbEV4dGVudCArIHNwYWNpbmc7CiAgICByZXR1cm4gT2Zmc2V0KAogICAgICBjZWxsLmNvbHVtbiAqIHN0cmlkZSArIGNlbGxFeHRlbnQgLyAyLAogICAgICBjZWxsLnJvdyAqIHN0cmlkZSArIGNlbGxFeHRlbnQgLyAyLAogICAgKTsKICB9CgogIEBvdmVycmlkZQogIHZvaWQgcGFpbnQoQ2FudmFzIGNhbnZhcywgU2l6ZSBzaXplKSB7CiAgICBpZiAocGF0aHMuaXNFbXB0eSkgcmV0dXJuOwoKICAgIGZpbmFsIGdsb3dQYWludCA9IFBhaW50KCkKICAgICAgLi5jb2xvciA9IGNvbnN0IENvbG9yKDB4NTVGRjlEMjIpCiAgICAgIC4uc3R5bGUgPSBQYWludGluZ1N0eWxlLnN0cm9rZQogICAgICAuLnN0cm9rZVdpZHRoID0gbWF0aC5tYXgoOCwgY2VsbEV4dGVudCAqIC40NCkKICAgICAgLi5zdHJva2VDYXAgPSBTdHJva2VDYXAucm91bmQ7CiAgICBmaW5hbCBicmlkZ2VQYWludCA9IFBhaW50KCkKICAgICAgLi5jb2xvciA9IGNvbnN0IENvbG9yKDB4RDY5QjU2MEQpCiAgICAgIC4uc3R5bGUgPSBQYWludGluZ1N0eWxlLnN0cm9rZQogICAgICAuLnN0cm9rZVdpZHRoID0gbWF0aC5tYXgoNSwgY2VsbEV4dGVudCAqIC4yNykKICAgICAgLi5zdHJva2VDYXAgPSBTdHJva2VDYXAucm91bmQ7CgogICAgZm9yIChmaW5hbCBwYXRoIGluIHBhdGhzKSB7CiAgICAgIGlmIChwYXRoLmxlbmd0aCA8IDIpIGNvbnRpbnVlOwogICAgICBmb3IgKHZhciBpbmRleCA9IDA7IGluZGV4IDwgcGF0aC5sZW5ndGggLSAxOyBpbmRleCsrKSB7CiAgICAgICAgZmluYWwgc3RhcnRDZW50ZXIgPSBfY2VudGVyRm9yKHBhdGhbaW5kZXhdKTsKICAgICAgICBmaW5hbCBlbmRDZW50ZXIgPSBfY2VudGVyRm9yKHBhdGhbaW5kZXggKyAxXSk7CiAgICAgICAgZmluYWwgZGVsdGEgPSBlbmRDZW50ZXIgLSBzdGFydENlbnRlcjsKICAgICAgICBmaW5hbCBkaXN0YW5jZSA9IGRlbHRhLmRpc3RhbmNlOwogICAgICAgIGlmIChkaXN0YW5jZSA8PSAwKSBjb250aW51ZTsKICAgICAgICBmaW5hbCBkaXJlY3Rpb24gPSBkZWx0YSAvIGRpc3RhbmNlOwogICAgICAgIGZpbmFsIG92ZXJsYXAgPSBjZWxsRXh0ZW50ICogLjM0OwogICAgICAgIGZpbmFsIHN0YXJ0ID0gc3RhcnRDZW50ZXIgKyBkaXJlY3Rpb24gKiBvdmVybGFwOwogICAgICAgIGZpbmFsIGVuZCA9IGVuZENlbnRlciAtIGRpcmVjdGlvbiAqIG92ZXJsYXA7CiAgICAgICAgY2FudmFzLmRyYXdMaW5lKHN0YXJ0LCBlbmQsIGdsb3dQYWludCk7CiAgICAgICAgY2FudmFzLmRyYXdMaW5lKHN0YXJ0LCBlbmQsIGJyaWRnZVBhaW50KTsKICAgICAgfQogICAgfQogIH0KCiAgQG92ZXJyaWRlCiAgYm9vbCBzaG91bGRSZXBhaW50KGNvdmFyaWFudCBfSGFyYm9yRm91bmRQYXRoQ29ubmVjdG9yUGFpbnRlciBvbGREZWxlZ2F0ZSkgewogICAgcmV0dXJuIG9sZERlbGVnYXRlLnBhdGhzICE9IHBhdGhzIHx8CiAgICAgICAgb2xkRGVsZWdhdGUuY2VsbEV4dGVudCAhPSBjZWxsRXh0ZW50IHx8CiAgICAgICAgb2xkRGVsZWdhdGUuc3BhY2luZyAhPSBzcGFjaW5nOwogIH0KfQoKJycnCnRleHQgPSB0ZXh0LnJlcGxhY2UobWFya2VyLCBwYWludGVyICsgbWFya2VyLCAxKQpwYXRoLndyaXRlX3RleHQodGV4dCwgZW5jb2Rpbmc9J3V0Zi04JykK'))"
           dart format lib/word_hunt/word_hunt_screens.dart
 
       - name: Analyze and focused test gate
