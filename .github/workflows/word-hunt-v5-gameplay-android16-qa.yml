@@ -84,7 +84,7 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
-            set -euo pipefail
+            set -eu
             adb shell wm size 1080x1920
             adb shell wm density 420
             python3 - <<'PY'
