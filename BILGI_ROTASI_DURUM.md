@@ -1,94 +1,114 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 29 Ağustos 2026
+**Son güncelleme:** 1 Eylül 2026
 
 ## Canlı Sürüm / Release Hattı
 
-- Kanonik release branch: `release/final-closed-test-aab-1.68.8`
-- Release HEAD: `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`
-- Sürüm: **1.68.19+109**
-- Paket: `com.leventua.bilgirotasi`
-- `main` yayın kaynağı olarak varsayılmaz.
+- Repo içi aktif ürün sürümü: **1.68.19+109**.
+- Paket: `com.leventua.bilgirotasi`.
+- `main` yayın kaynağı olarak varsayılmaz; release/ürün branch ve PR durumu her görevde yeniden doğrulanır.
 
-## Aktif İş — Kelime Avı Başlangıç Limanı 8×8
+## Aktif İş — Kelime Avı V6 gameplay görsel hizalama
 
-29 Ağustos 2026 kullanıcı kararıyla Başlangıç Limanı bölüm grid standardı **8 satır × 8 sütun** oldu. Önceki 6×10 geometrisi yeni ürün hattı için superseded; geçmiş kanıt olarak korunur.
+Canonical gameplay sözleşmesi **8×8 / 64 hücre** olarak kilitlidir. 6×10 veya başka grid geometrisi bu çalışma kapsamında ürüne geri dönmez.
 
-- Aktif branch: `feat/kelime-avi-8x8-content-v1-20260829`
-- Final temiz ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`
-- Commit adı: `feat(kelime-avi): switch starter levels to 8x8 [skip ci]`
-- Draft PR: **#158** — `WIP feat(kelime-avi): Başlangıç Limanı 8x8 production content`
-- PR #158: **OPEN / DRAFT / merged=false / mergeable=true**.
-- Base: `release/final-closed-test-aab-1.68.8` / `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
-- Eski PR #156 6×10 hattında OPEN/DRAFT kalır; otomatik kapatma/merge yapılmadı.
-- Toplam canonical target+bonus: **80 kelime**.
-- Yoğunluk: B1 6, B2 6, B3 7, B4 7, B5 8, B6 8, B7 9, B8 9, B9 10, B10 10.
+### Parent V5 hattı
 
-## 8×8 Final Teknik Gate — PASS
+- PR #161: `feat(kelime-avi): integrate approved V5 reference assets`.
+- Durum: **OPEN / DRAFT / merged=false**.
+- Base: `feat/kelime-avi-8x8-content-v1-20260829`.
+- Head: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
+- Doğrulanmış parent head: `9cfa12aeafd29d6197c91c79361648508adf400d`.
+- 11 V5 production reference asset SHA sözleşmesi locked kalır.
 
-Düzeltilmiş tek final run:
+### V6 ürün hattı
 
-- Workflow gate commit: `4424285066568ddac874cfa35eb3bae1a62b3394`
-- Run: `33251736068`
-- Job: `99098467708`
-- Sonuç: **SUCCESS**
+- Branch: `fix/kelime-avi-v6-visual-found-state-20260901`.
+- Ana ürün commit: `e62314cb5874f6b290c70a59061255440c6f00e9`.
+- Commit adı: `fix(kelime-avi): productize verified V6 cell visuals`.
+- Draft PR: **#162** — `fix(kelime-avi): productize Android-verified V6 cell visuals`.
+- PR #162 base: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
+- Merge yapılmadı; Levent’in ayrı ve açık merge onayı zorunludur.
+
+V6 ürün değişikliği:
+- `_harborGridSpacing`: `3.0 → 1.5`.
+- Hücre asset görsel ölçeği: `1.12`.
+- Aktif/found hücrelerde sıcak altın glow.
+- Bulunan hedef kelime plakasında sıcak turuncu found-state tonu.
+- Başarılı seçimden sonra instruction panelinde canonical instruction metni korunur.
+- Engine/path/scoring/timer/progression/içerik sözleşmeleri değiştirilmedi.
+
+## Deterministik Ürünleştirme Gate — PASS
+
+Run: `33443015882` — **SUCCESS**.
 
 Doğrulama:
-- Dart formatter: PASS.
+- Clean product base: `d70dc2739b5c9552189bd7fef11ce3f3af4cc238`.
+- Base `word_hunt_screens.dart` blob: `e3fc4c50b8d5600c6b111a91313c6a47d7c98653`.
+- Android koşusunda kullanılan exact preview patch script + Dart formatter uygulandı.
+- Final product file blob: `d415876b1311362a8de6220cfcfe2978fce514dd`.
 - `dart analyze lib/word_hunt`: **No issues found**.
-- Focused Word Hunt suite: **37/37 PASS**.
-- Full Flutter suite: **442/442 PASS**.
+- Focused Kelime Avı suite: **138/138 PASS**.
 - `git diff --check`: PASS.
-- Korunan scope gate: PASS.
-- Isolated Android QA APK build: PASS.
-- QA-only entrypoint/helper dosyaları ürün commitine girmedi.
+- Protected-scope gate: PASS.
 
-İlk run `33250841637` yalnız formatter kapısında durmuştu; analyze/test/Android16 çalışmamıştı. Bu tarihsel failure ürün hatası değildi ve final PASS yerine kullanılmaz.
+## Gerçek Android 16 Raw Kanıt — PASS
 
-## Android 16 Fiziksel Kanıt — PASS
+Run: `33436607792` — **SUCCESS**.
 
-API 36 / 1080×1920 / 420 dpi:
+Koşul:
+- Android API: **36**.
+- Çözünürlük: **1080×1920**.
+- Density: **420 dpi**.
+- Static suite: **138/138 PASS**.
+- Android runtime candidate file blob: `d415876...`; ürün commitindeki blob ile birebir aynıdır.
 
-- B1: **64/64** hücre ilk viewportta görünür, sayaç `0/5`.
-- B5: **64/64** hücre görünür, sayaç `0/7`.
-- B8: **64/64** hücre görünür, sayaç `0/7`.
-- B10: **64/64** hücre görünür, sayaç `0/9`.
-- B5 sentetik +65 saniye sonrası hard fail yok; 67–76 saniyede oynanabilir.
-- Uzun çapraz `ANKARA` gerçek swipe: `1/7`, `Bilgi kartı açıldı: Ankara`.
-- Ters-dikey `BAŞKENT` gerçek swipe: `1/7`, `BAŞKENT bulundu!`.
-- `FATAL EXCEPTION`, uygulama ANR veya `am_crash` eşleşmesi yok.
+B10 gerçek gesture kanıtı:
+- Initial: `0/9`.
+- İlk 900 ms sentetik swipe semantic değişiklik üretmedi ve PASS sayılmadı.
+- 1800 ms gerçek YOL swipe başarılı oldu.
+- Found-state: **`1/9`**.
+- YOL hücre changed-pixels: `[7370, 7236, 7449]`.
+- Progress panel changed-pixels: `299`.
+- `YOL_SEMANTIC_VISUAL_GATE=PASS`.
 
 Artifact:
-- ID `9714700778`
-- Digest `sha256:dfbca264c2f67bb3549a0e336b075c9238f1a0638962dc69392ea8715b9a2092`
-- QA APK SHA-256 `d07a68b5f9735f574e8e608afbd4c20d4c1f7cc0c775d5d9f8d0010dfd32c07b`
-- Payload decoded SHA-256 `7e4955d6f2545039eafb3e476e5537385ee3d3b359b67be0f886b027ea95be54`
+- ID: `9775000736`.
+- Digest: `sha256:f145e7e5901db55fa6dd1d71c89d246ce1c70a99a26cc790ad1b81ae8ed9aabd`.
 
-Artifact ekran görüntüleri görsel olarak ayrıca incelendi; B1/B5/B8/B10 8×8 gridleri aynı ekranda okunabilir, ANKARA ve BAŞKENT seçimleri doğru hücreleri boyuyor.
+Bu kanıt image-edit/mockup değildir; raw Android emulator screenshotlarından üretilmiştir.
 
 ## Korunan Alanlar
 
-8×8 dönüşümünde değiştirilmedi:
-- `lib/main.dart`
-- `pubspec.yaml`
+V6 çalışmasında değiştirilmedi:
+- canonical 8×8 / 64 hücre içerik geometrisi
 - `assets/questions.json`
-- `assets/word_hunt`
-- `lib/word_hunt/word_hunt_screens.dart` 8×8 ürün commitinde değiştirilmedi; PR diffindeki değişiklik eski 6×10 gameplay hattından gelir.
-- `lib/word_hunt/word_hunt_path.dart`
-- `lib/word_hunt/word_hunt_models.dart`
-- MASTER ART / route geometry / BoardMap / 67 node
-- AdMob / Firebase / Android release-signing
+- `lib/main.dart`
+- `assets/word_hunt/v5_reference_assets/**`
+- 11 locked V5 reference asset SHA sözleşmesi
+- BoardMap / 67 node
+- Firebase / AdMob / release signing
 - package name / version
+
+PR #161 head’ine karşı **ürün kodu farkı yalnız `lib/word_hunt/word_hunt_screens.dart`** dosyasındadır. Zorunlu proje hafıza dosyaları ayrıca aynı çalışma branch’inde güncellenir.
+
+## Görev / Karar Dosyaları
+
+- `GOREV_HAVUZU.md`: canlı repoda görev başlangıcında yoktu; mevcut V6 görevi doğrulanmış kanıtlarla yeniden oluşturuldu. Eski görev havuzu geçmişi **DOĞRULANACAK**.
+- `ACIK_SORULAR_VE_DOGRULAMALAR.md`: canlı repoda görev başlangıcında yoktu; mevcut açık V6 kapılarıyla oluşturuldu.
+- `KARARLAR.md`: canlı repoda görev başlangıcında bulunamadı. Bu görevde yeni kullanıcı ürün kararı eklenmedi; kanonik konumu **DOĞRULANACAK**.
 
 ## Kalan Gerçek Kapılar
 
-1. Kullanıcıdan gerçek Android 16 **8×8 görsel/oynanış kabulü**.
-2. B5 ve B10 sürelerinin gerçek insan playtest dengesi.
-3. Kullanıcı kabulünden önce PR #158 Ready yapılmaz.
-4. Merge yalnız Levent'in ayrıca açık merge onayıyla yapılır.
-5. `lib/main.dart` production ana navigasyon entegrasyonu ayrı kapsam/onaydır.
+1. Raw Android B10 initial ekranının Levent tarafından görsel kabulü.
+2. Raw Android B10 `YOL / 1/9` found-state ekranının Levent tarafından görsel kabulü.
+3. `ERROR_STATE_VISUAL = DOĞRULANACAK`.
+4. `REFERENCE_FONT = DOĞRULANACAK`.
+5. B5 60s / B10 120s gerçek insan süre-zorluk playtesti.
+6. PR #161 ve PR #162 Ready kararları ayrıca verilecek.
+7. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
+8. Merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
 
-## Kanonik Devir Dosyası
+## Kanonik Ayrıntılı Devir
 
-Ayrıntılı geçmiş ve sonraki sıra:
 `docs/project-memory/GENEL_PROJE_OZETI.md`
