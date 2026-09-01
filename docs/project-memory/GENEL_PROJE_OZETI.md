@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 30 Ağustos 2026 — Kelime Avı V5 gameplay teması gerçek Android 16 kanıtıyla teknik görsel PASS. Run `33308127773`, job `99248192399`, artifact `9731244720`; B1/B5/B8/B10 64/64, gerçek ANKARA + ters BAŞKENT swipe, B5 74s soft-time ve uygulama process-failure taraması PASS. Draft PR #158 OPEN/DRAFT kalır. Kalan kapı Levent'in görsel kabulü + B5/B10 insan süre dengesi; Ready/merge yok.
+**Son güncelleme:** 1 Eylül 2026 — Kelime Avı V6 edge-fuse raw Android görsel kabulü PASS. Exact tested commit `4dddf00178ef9f14b8edb3fc706114be72f477a4`, exact blob `f43deaad5328f6263f9479de1738cc1f4ac465e0`, Android 16 run `33486609120` SUCCESS, artifact `9792346079`. Raw B10 initial ve `YOL / 1/9` edge-fuse found-state Levent tarafından PASS edildi. Temiz ürün commit `217beb83c31976436a6f26ec43ae4e35a0c7f05c` aynı blob’u taşır. Draft PR #163 OPEN/DRAFT; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -188,3 +188,17 @@ Diğer Bilgi Rotası açık işleri `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRUL
 - QA-only commit `342e246e1e47dd595c9cebb4ab52c701636f8685` için run `33308127773` / job `99248192399` SUCCESS oldu. Artifact `9731244720`, digest `sha256:ecd0aad4ce6aaacbe58a2c32c3bf03f44c711a5a0aee2aba4fb215fc7656eed2`.
 - Yedi gerçek Android 16 / 1080×1920 / 420 dpi gameplay screenshot'ı incelendi: B1/B5/B8/B10 64/64; ANKARA + ters BAŞKENT gerçek swipe; B5 74s soft-time; uygulama crash/ANR/FATAL/process-death taraması PASS.
 - Teknik görsel kanıt PASS; **Levent nihai görsel kabulü DOĞRULANACAK**. QA-only harness/workflow ürün engine ve içerik davranışını değiştirmedi.
+
+## 1 Eylül 2026 — V6 edge-fuse final görsel checkpoint
+
+- V6 temel görsel hattı PR #162 üzerinde kuruludur; found-path düzeltmesi temiz ürün branch `fix/kelime-avi-v6-found-path-connector-product-20260901` / Draft PR #163 üzerindedir.
+- Kullanıcının bağlayıcı found-state hedefi: found hücrelerin ayrı kutu/formu korunur; yalnız komşu found hücrelerin görünür kenar boşlukları dolu sıcak altın/turuncu edge-fuse ile doğal biçimde birleşir. Merkezden merkeze geniş bar/kapsül kullanılmaz.
+- Exact test commit: `4dddf00178ef9f14b8edb3fc706114be72f477a4`.
+- Exact tested file blob: `f43deaad5328f6263f9479de1738cc1f4ac465e0`.
+- Android 16 run `33486609120`: **SUCCESS**; analyze PASS; focused **138/138 PASS**; QA APK PASS; gerçek B10 YOL `0/9 → 1/9`; Y/O/L `[7370,7236,7449]`; progress `299`; edge changed `[520,520]`; edge warm `[520,520]`; semantic ve edge-fuse pixel gate PASS.
+- Artifact `9792346079`; digest `sha256:f5a1592ce074a6e0a8f3bc1f7c88baf5bd9ec9b6bf5337327d7368aea83046d8`.
+- Aynı artifact’tan gösterilen raw Android B10 initial ve raw `YOL / 1/9` edge-fuse found-state Levent tarafından **PASS** edildi.
+- Temiz ürün commit `217beb83c31976436a6f26ec43ae4e35a0c7f05c` exact aynı `f43deaad...` blob’u taşır.
+- QA selector ekranı kullanıcı kabul kanıtı değildir; raw Android sonuçları kullanıcıya her zaman gösterilir.
+- Kalan kapılar: `ERROR_STATE_VISUAL`, exact `REFERENCE_FONT`, B5/B10 insan süre-zorluk playtesti, PR #161/#162/#163 Ready kararı ve ayrı açık merge onayı; production `lib/main.dart` navigasyonu ayrı scope.
+- **MERGE YOK. READY YOK.**
