@@ -1669,13 +1669,13 @@ class _HarborFoundPathConnectorPainter extends CustomPainter {
     final glowPaint = Paint()
       ..color = const Color(0x66FFB52A)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = math.max(10, cellExtent * .68)
-      ..strokeCap = StrokeCap.round;
+      ..strokeWidth = math.max(10, cellExtent * .70)
+      ..strokeCap = StrokeCap.butt;
     final bridgePaint = Paint()
       ..color = const Color(0xF2C06A12)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = math.max(8, cellExtent * .50)
-      ..strokeCap = StrokeCap.round;
+      ..strokeWidth = math.max(8, cellExtent * .58)
+      ..strokeCap = StrokeCap.butt;
 
     for (final path in paths) {
       if (path.length < 2) continue;
@@ -1686,7 +1686,7 @@ class _HarborFoundPathConnectorPainter extends CustomPainter {
         final distance = delta.distance;
         if (distance <= 0) continue;
         final direction = delta / distance;
-        final overlap = cellExtent * .12;
+        final overlap = cellExtent * .40;
         final start = startCenter + direction * overlap;
         final end = endCenter - direction * overlap;
         canvas.drawLine(start, end, glowPaint);
