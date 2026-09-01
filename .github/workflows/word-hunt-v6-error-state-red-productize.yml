@@ -17,7 +17,7 @@ jobs:
     env:
       BASE_SHA: 889cf391d3db9b34644699237ff8c50d2744e061
       BASE_BLOB: f43deaad5328f6263f9479de1738cc1f4ac465e0
-      PRODUCT_BRANCH: fix/kelime-avi-v6-error-state-red-20260901
+      PRODUCT_BRANCH: fix/kelime-avi-v6-error-state-red-clean-20260901
 
     steps:
       - name: Checkout exact accepted V6 checkpoint
@@ -51,8 +51,8 @@ jobs:
           path = Path('lib/word_hunt/word_hunt_screens.dart')
           text = path.read_text()
           replacements = {
-              'color: const Color(0x338B3B20),': 'color: const Color(0xB35A1F2B),',
-              'border: Border.all(color: const Color(0xFFFFB06A), width: 1.2),': 'border: Border.all(color: const Color(0xFFFF6B57), width: 1.2),',
+              'Color(0x338B3B20)': 'Color(0xB35A1F2B)',
+              'Color(0xFFFFB06A)': 'Color(0xFFFF6B57)',
           }
           for old, new in replacements.items():
               if text.count(old) != 1:
@@ -65,6 +65,7 @@ jobs:
           ! grep -q 'Color(0x338B3B20)' lib/word_hunt/word_hunt_screens.dart
           ! grep -q 'Color(0xFFFFB06A)' lib/word_hunt/word_hunt_screens.dart
           test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          test "$(git diff --numstat | awk '{print $1+$2}')" -le 4
           git diff --check
 
       - name: Analyze and focused tests
@@ -72,17 +73,18 @@ jobs:
         run: |
           set -euo pipefail
           flutter pub get
-          dart format lib/word_hunt/word_hunt_screens.dart
-          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
-          git diff --check
           dart analyze lib/word_hunt
           flutter test test/word_hunt_*_test.dart
+          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          test "$(git diff --numstat | awk '{print $1+$2}')" -le 4
+          git diff --check
 
       - name: Commit tested product change
         shell: bash
         run: |
           set -euo pipefail
           test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          test "$(git diff --numstat | awk '{print $1+$2}')" -le 4
           git diff --check
           git config user.name 'ZMilaStudio'
           git config user.email 'levent.ua@gmail.com'
