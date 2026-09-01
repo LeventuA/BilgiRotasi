@@ -123,11 +123,9 @@ class _HumanTimingSelector extends StatelessWidget {
                 const SizedBox(height: 28),
                 FilledButton(
                   key: const Key('word_hunt_v6_human_open_5'),
-                  onPressed: () => _openLevel(
-                    context,
-                    levelIndex: 5,
-                    targetSeconds: 60,
-                  ),
+                  onPressed:
+                      () =>
+                          _openLevel(context, levelIndex: 5, targetSeconds: 60),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 12),
                     child: Text('B5 — hedef 60 saniye'),
@@ -136,11 +134,12 @@ class _HumanTimingSelector extends StatelessWidget {
                 const SizedBox(height: 14),
                 FilledButton(
                   key: const Key('word_hunt_v6_human_open_10'),
-                  onPressed: () => _openLevel(
-                    context,
-                    levelIndex: 10,
-                    targetSeconds: 120,
-                  ),
+                  onPressed:
+                      () => _openLevel(
+                        context,
+                        levelIndex: 10,
+                        targetSeconds: 120,
+                      ),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 12),
                     child: Text('B10 — hedef 120 saniye'),
@@ -150,10 +149,7 @@ class _HumanTimingSelector extends StatelessWidget {
                 const Text(
                   'Bu QA uygulaması kayıt/ilerleme ve Play sürümünden bağımsızdır.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFF9AA8BE),
-                    fontSize: 12,
-                  ),
+                  style: TextStyle(color: Color(0xFF9AA8BE), fontSize: 12),
                 ),
               ],
             ),
