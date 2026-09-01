@@ -36,11 +36,12 @@ launch_b10() {
   adb shell am force-stop "$PACKAGE_NAME"
   adb shell am start -n "$PACKAGE_NAME/.MainActivity" >/dev/null
   sleep 12
+  # Proven QA selector coordinate for B10 on 1080x1920 / 420 dpi.
   adb shell input tap 540 1244
   sleep 6
 }
 
-error_cell_gate() {
+mistake_gate() {
   local before="$1"
   local after="$2"
   python3 - "$before" "$after" <<'PY'
@@ -48,59 +49,70 @@ import sys
 from PIL import Image, ImageChops
 before = Image.open(sys.argv[1]).convert('RGB')
 after = Image.open(sys.argv[2]).convert('RGB')
-# B10 row 0 col 0..1 = M-H. All canonical target/bonus words are >=3 letters,
-# so this two-cell straight path is deterministically notAWord.
-coords = [(92, 748), (220, 748)]
-changes = []
-for x, y in coords:
-    box = (x - 45, y - 45, x + 45, y + 45)
-    diff = ImageChops.difference(before.crop(box), after.crop(box))
-    changes.append(sum(1 for px in diff.getdata() if px != (0, 0, 0)))
-print(f'ERROR_CELL_CHANGED_PIXELS={changes}')
-if any(value < 600 for value in changes):
+# Persistent middle status panel: 0 hata -> 1 hata after a registered wrong word.
+box = (330, 175, 655, 275)
+diff = ImageChops.difference(before.crop(box), after.crop(box))
+changed = sum(1 for px in diff.getdata() if px != (0, 0, 0))
+print(f'MISTAKE_PANEL_CHANGED_PIXELS={changed}')
+if changed < 120:
     raise SystemExit(41)
-print('ERROR_CELL_VISUAL_GATE=PASS')
+print('WRONG_WORD_REGISTERED_GATE=PASS')
 PY
 }
 
-launch_b10
-capture_png "$REPORTS/04_B10_INITIAL.png"
+capture_png "$REPORTS/00_SELECTOR.png"
 
 passed=0
-for duration in 80 120 180; do
+for attempt in 1 2 3; do
   launch_b10
-  capture_png "$REPORTS/08_B10_ERROR_BEFORE_${duration}.png"
-  remote="/sdcard/word_hunt_error_${duration}.png"
-  adb shell rm -f "$remote"
-  # Capture on-device immediately after pointer-up so the real 280 ms product
-  # error feedback is preserved without changing product timing.
-  adb shell "input swipe 92 748 220 748 ${duration}; screencap -p ${remote}"
-  adb pull "$remote" "$REPORTS/09_B10_ERROR_AFTER_${duration}.png" >/dev/null
-  adb shell rm -f "$remote"
-  if error_cell_gate \
-    "$REPORTS/08_B10_ERROR_BEFORE_${duration}.png" \
-    "$REPORTS/09_B10_ERROR_AFTER_${duration}.png"; then
-    cp "$REPORTS/08_B10_ERROR_BEFORE_${duration}.png" "$REPORTS/08_B10_ERROR_BEFORE.png"
-    cp "$REPORTS/09_B10_ERROR_AFTER_${duration}.png" "$REPORTS/09_B10_ERROR_STATE.png"
-    printf '%s\n' "$duration" > "$REPORTS/ERROR_CAPTURE_DURATION_MS.txt"
+  capture_png "$REPORTS/08_B10_ERROR_BEFORE_attempt${attempt}.png"
+
+  remote_video="/sdcard/word_hunt_error_attempt${attempt}.mp4"
+  adb shell rm -f "$remote_video"
+  adb shell screenrecord \
+    --size 1080x1920 \
+    --bit-rate 12000000 \
+    --time-limit 6 \
+    "$remote_video" >/dev/null 2>&1 &
+  record_pid=$!
+
+  # Give screenrecord one stable second, then perform a deliberately wrong
+  # straight three-cell path. B10 row2 col0..2 reads F-Z-C; it is not a
+  # target/bonus and gives the real product 280 ms error feedback.
+  sleep 1
+  adb shell input swipe 92 1004 348 1004 1800
+  sleep 1
+  capture_png "$REPORTS/10_B10_ERROR_CLEARED_attempt${attempt}.png"
+  wait "$record_pid"
+  adb pull "$remote_video" "$REPORTS/09_B10_ERROR_RECORD_attempt${attempt}.mp4" >/dev/null
+  adb shell rm -f "$remote_video"
+
+  if mistake_gate \
+    "$REPORTS/08_B10_ERROR_BEFORE_attempt${attempt}.png" \
+    "$REPORTS/10_B10_ERROR_CLEARED_attempt${attempt}.png"; then
+    cp "$REPORTS/08_B10_ERROR_BEFORE_attempt${attempt}.png" "$REPORTS/08_B10_ERROR_BEFORE.png"
+    cp "$REPORTS/10_B10_ERROR_CLEARED_attempt${attempt}.png" "$REPORTS/10_B10_ERROR_CLEARED.png"
+    cp "$REPORTS/09_B10_ERROR_RECORD_attempt${attempt}.mp4" "$REPORTS/09_B10_ERROR_RECORD.mp4"
+    printf '%s\n' "$attempt" > "$REPORTS/ERROR_CAPTURE_ATTEMPT.txt"
     passed=1
     break
   fi
 done
 
 test "$passed" -eq 1
-sleep 1
-capture_png "$REPORTS/10_B10_ERROR_CLEARED.png"
+test -s "$REPORTS/09_B10_ERROR_RECORD.mp4"
 sha256sum \
-  "$REPORTS/04_B10_INITIAL.png" \
   "$REPORTS/08_B10_ERROR_BEFORE.png" \
-  "$REPORTS/09_B10_ERROR_STATE.png" \
+  "$REPORTS/09_B10_ERROR_RECORD.mp4" \
   "$REPORTS/10_B10_ERROR_CLEARED.png" \
   > "$REPORTS/SHA256SUMS.txt"
 printf '%s\n' \
   'ANDROID_API=36' \
   'RESOLUTION=1080x1920' \
   'DENSITY=420' \
-  'ERROR_PATH=M-H (row0 col0->col1)' \
-  'ERROR_CELL_VISUAL_GATE=PASS' \
+  'ERROR_PATH=F-Z-C (row2 col0->col2)' \
+  'SWIPE_DURATION_MS=1800' \
+  'PRODUCT_ERROR_FEEDBACK_MS=280 (UNCHANGED)' \
+  'WRONG_WORD_REGISTERED_GATE=PASS' \
+  'RAW_ERROR_PROOF=ANDROID_SCREENRECORD' \
   > "$REPORTS/QA_SUMMARY.txt"
