@@ -1,3 +1,4 @@
+# one-shot checkpoint trigger v2
 name: Record Kelime Avi V6 B5 B10 Android16 checkpoint once
 
 on:
@@ -61,14 +62,12 @@ jobs:
 - Merge yapılmadı.
 '''
           marker = '## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN'
-          if checkpoint.strip() not in '\n'.join(lines):
-              joined = '\n'.join(lines)
+          joined = '\n'.join(lines)
+          if '## 2 Eylül 2026 — V6 B5/B10 insan süre testi Android 16 teknik gate' not in joined:
               if marker in joined:
                   joined = joined.replace(marker, checkpoint.rstrip() + '\n\n' + marker, 1)
               else:
                   joined = joined.rstrip() + '\n\n' + checkpoint.strip() + '\n'
-          else:
-              joined = '\n'.join(lines)
           path.write_text(joined.rstrip() + '\n', encoding='utf-8')
           PY
           git diff --check
