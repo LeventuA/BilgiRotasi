@@ -1,0 +1,96 @@
+name: Kelime Avi V6 fused underlay test
+
+on:
+  push:
+    branches:
+      - fix/kelime-avi-v6-found-path-fused-underlay-test-20260901
+    paths:
+      - '.github/workflows/kelime-avi-v6-fused-underlay-test.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-commit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout exact test branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/kelime-avi-v6-found-path-fused-underlay-test-20260901
+          fetch-depth: 0
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify exact connector base
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor e9aa2290ee3ae2df163e7053ddfe72c7ae617914 HEAD
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          grep -q 'class _HarborFoundPathConnectorPainter extends CustomPainter' lib/word_hunt/word_hunt_screens.dart
+          ! grep -q 'word_hunt_production_found_path_seam' lib/word_hunt/word_hunt_screens.dart
+
+      - name: Fuse found path beneath cells
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/word_hunt/word_hunt_screens.dart')
+          text = path.read_text(encoding='utf-8')
+
+          replacements = {
+              '..color = const Color(0x55FF9D22)': '..color = const Color(0xAAFF9D22)',
+              '..strokeWidth = math.max(8, cellExtent * .44)': '..strokeWidth = math.max(10, cellExtent * .78)',
+              '..color = const Color(0xD69B560D)': '..color = const Color(0xF0B96712)',
+              '..strokeWidth = math.max(5, cellExtent * .27)': '..strokeWidth = math.max(8, cellExtent * .64)',
+              'final overlap = cellExtent * .34;': 'final overlap = cellExtent * .22;',
+          }
+
+          for old, new in replacements.items():
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly one occurrence of {old!r}, found {count}')
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+          dart format lib/word_hunt/word_hunt_screens.dart
+
+      - name: Static and focused gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_*_test.dart
+          git diff --check
+          test "$(git diff --name-only | sort)" = 'lib/word_hunt/word_hunt_screens.dart'
+          grep -q '0xAAFF9D22' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'cellExtent \* .78' lib/word_hunt/word_hunt_screens.dart
+          grep -q '0xF0B96712' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'cellExtent \* .64' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'cellExtent \* .22' lib/word_hunt/word_hunt_screens.dart
+          ! grep -q 'word_hunt_production_found_path_seam' lib/word_hunt/word_hunt_screens.dart
+
+      - name: Commit exact tested product file
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lib/word_hunt/word_hunt_screens.dart
+          git commit -m 'fix(kelime-avi): fuse found word cells under grid'
+          git push origin HEAD:fix/kelime-avi-v6-found-path-fused-underlay-test-20260901
+          git rev-parse HEAD
+          git hash-object lib/word_hunt/word_hunt_screens.dart
