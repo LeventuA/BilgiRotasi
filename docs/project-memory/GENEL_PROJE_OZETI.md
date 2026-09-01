@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 1 Eylül 2026 — Kelime Avı V6 `ERROR_STATE_VISUAL` raw Android 16 + kullanıcı kabulü **PASS / CLOSED**. Temiz ürün commit `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de`; error fill `0xB35A1F2B`, border `0xFFFF6B57`, 280 ms unchanged. Productize run `33524396204` SUCCESS (analyze + 138/138), raw Android run `33524578623` SUCCESS, artifact `9807557629`. Draft PR #164 OPEN/DRAFT; Ready/merge yok. Sıradaki açık görsel doğrulama `REFERENCE_FONT`.
+**Son güncelleme:** 1 Eylül 2026 — Kelime Avı V6 `REFERENCE_FONT` kaynak denetimi tamamlandı. Accepted gameplay kodu generic `fontFamily: 'serif'` kullanıyor; `pubspec.yaml` custom `fonts:` tanımı içermiyor; tracked tree'de TTF/OTF/WOFF/WOFF2 veya `fonts/` font asset'i yok. KAYNAK_DEFTERI / TEKNIK_GENEL_BAKIS / README / Issue #109 kaynak zinciri exact font identity vermiyor. `REFERENCE_FONT = DOĞRULANACAK`; font tahminiyle ürün değişikliği yapılmadı, Android yeniden koşturulmadı. PR #164 OPEN/DRAFT; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -175,6 +175,17 @@ Bu kanıt 8×8 runtime kabulü yerine kullanılmadı; 8×8 ayrı final gate ile 
 - Kullanıcı raw error-state frame/video için **PASS** verdi.
 - Draft PR #164 OPEN/DRAFT; merge yapılmadı.
 - `ERROR_STATE_VISUAL = PASS`; `REFERENCE_FONT = DOĞRULANACAK`.
+
+## 1 Eylül 2026 — V6 reference font audit checkpoint
+
+- Audit base: `4ddeff9e1f76167037756c430f6b61d6c0dd284c`.
+- Current gameplay typography: generic `fontFamily: 'serif'`.
+- `pubspec.yaml`: custom Flutter `fonts:` declaration yok.
+- Tracked tree: `.ttf/.otf/.woff/.woff2` ve `fonts/` font asset'i yok.
+- Project source notes + Issue #109 exact font family/file/provenance tanımlamıyor.
+- Sonuç: exact font identity bulunmadı; görselden font adı tahmin edilmeyecek.
+- Product code unchanged; mevcut raw Android visual PASS'ler korunur.
+- `REFERENCE_FONT = DOĞRULANACAK`; sonraki çözüm için exact family/source/provenance gerekir.
 
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 

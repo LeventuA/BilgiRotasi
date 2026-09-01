@@ -33,6 +33,16 @@
 
 ---
 
+## 0C. Kelime Avı V6 reference font doğrulama kararı
+
+- Exact font ailesi raster ekran görüntüsünden tahmin edilerek production'a yazılmaz.
+- `REFERENCE_FONT` PASS sayılabilmesi için en az exact font family adı ve güvenilir kaynak/provenance doğrulanmalıdır; custom font dosyası kullanılacaksa lisans/dağıtım uygunluğu da doğrulanır.
+- Exact kaynak bulunana kadar accepted gameplay'in mevcut generic `fontFamily: 'serif'` davranışı değiştirilmez.
+- Repo içinde custom font deklarasyonu/dosyası olmadığı 1 Eylül 2026 denetiminde doğrulandı; bu, generic serif'i exact referans font olarak kabul etmek anlamına gelmez.
+- Font implementation yapılırsa ayrı branch/test/raw Android görsel kabulü gerekir.
+
+---
+
 ## 1. Çalışma ve Git düzeni
 
 - `main` otomatik güncel kabul edilmez; canlı hedef branch ve `pubspec.yaml` işe başlamadan doğrulanır.
