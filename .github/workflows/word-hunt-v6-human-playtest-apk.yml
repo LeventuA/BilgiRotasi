@@ -135,7 +135,7 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none
           disable-animations: true
           script: |
-            set -euo pipefail
+            set -eu
             APK="$REPORT_DIR/KelimeAvi-V6-B5-B10-Playtest.apk"
             adb install -r "$APK"
             adb shell pm path "$QA_PACKAGE" | tee "$REPORT_DIR/ANDROID_PACKAGE_PATH.txt"
