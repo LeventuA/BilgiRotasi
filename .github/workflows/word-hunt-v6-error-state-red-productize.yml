@@ -1,0 +1,91 @@
+name: Kelime Avi V6 red error-state productize
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v6-error-state-red-productize-20260901
+    paths:
+      - '.github/workflows/word-hunt-v6-error-state-red-productize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-productize:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    env:
+      BASE_SHA: 889cf391d3db9b34644699237ff8c50d2744e061
+      BASE_BLOB: f43deaad5328f6263f9479de1738cc1f4ac465e0
+      PRODUCT_BRANCH: fix/kelime-avi-v6-error-state-red-20260901
+
+    steps:
+      - name: Checkout exact accepted V6 checkpoint
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BASE_SHA }}
+          fetch-depth: 0
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify exact base
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$BASE_SHA"
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$BASE_BLOB"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          git diff --check
+
+      - name: Apply approved error-state palette only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('lib/word_hunt/word_hunt_screens.dart')
+          text = path.read_text()
+          replacements = {
+              'color: const Color(0x338B3B20),': 'color: const Color(0xB35A1F2B),',
+              'border: Border.all(color: const Color(0xFFFFB06A), width: 1.2),': 'border: Border.all(color: const Color(0xFFFF6B57), width: 1.2),',
+          }
+          for old, new in replacements.items():
+              if text.count(old) != 1:
+                  raise SystemExit(f'Expected exactly one palette anchor: {old!r}; got {text.count(old)}')
+              text = text.replace(old, new)
+          path.write_text(text)
+          PY
+          grep -q 'Color(0xB35A1F2B)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'Color(0xFFFF6B57)' lib/word_hunt/word_hunt_screens.dart
+          ! grep -q 'Color(0x338B3B20)' lib/word_hunt/word_hunt_screens.dart
+          ! grep -q 'Color(0xFFFFB06A)' lib/word_hunt/word_hunt_screens.dart
+          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          git diff --check
+
+      - name: Analyze and focused tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart format --output=none --set-exit-if-changed lib/word_hunt/word_hunt_screens.dart
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_*_test.dart
+
+      - name: Commit tested product change
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          git diff --check
+          git config user.name 'ZMilaStudio'
+          git config user.email 'levent.ua@gmail.com'
+          git add lib/word_hunt/word_hunt_screens.dart
+          git commit -m 'fix(kelime-avi): distinguish error state from found state'
+          git push origin HEAD:refs/heads/$PRODUCT_BRANCH
+          echo "PRODUCT_COMMIT=$(git rev-parse HEAD)"
+          echo "PRODUCT_BLOB=$(git hash-object lib/word_hunt/word_hunt_screens.dart)"
