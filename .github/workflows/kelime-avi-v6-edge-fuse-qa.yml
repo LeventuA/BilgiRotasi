@@ -1,0 +1,97 @@
+name: Kelime Avi V6 edge fuse patch test
+
+on:
+  push:
+    branches:
+      - fix/kelime-avi-v6-found-path-edge-fuse-qa-20260901
+    paths:
+      - '.github/workflows/kelime-avi-v6-edge-fuse-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-commit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout exact QA branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/kelime-avi-v6-found-path-edge-fuse-qa-20260901
+          fetch-depth: 0
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify exact solid-link base
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = '3707e25f30e84501b1635118acda80815b5433ad'
+          grep -q 'strokeWidth = math.max(10, cellExtent \* \.68)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'strokeWidth = math.max(8, cellExtent \* \.50)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'final overlap = cellExtent \* \.12;' lib/word_hunt/word_hunt_screens.dart
+
+      - name: Fuse only visible inter-cell edge gap
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('lib/word_hunt/word_hunt_screens.dart')
+          text = path.read_text(encoding='utf-8')
+          start = text.index('class _HarborFoundPathConnectorPainter extends CustomPainter {')
+          end = text.index('class _HarborGridCell extends StatelessWidget {', start)
+          block = text[start:end]
+
+          replacements = {
+              'strokeWidth = math.max(10, cellExtent * .68)': 'strokeWidth = math.max(10, cellExtent * .70)',
+              'strokeWidth = math.max(8, cellExtent * .50)': 'strokeWidth = math.max(8, cellExtent * .58)',
+              'final overlap = cellExtent * .12;': 'final overlap = cellExtent * .40;',
+          }
+          for old, new in replacements.items():
+              if block.count(old) != 1:
+                  raise SystemExit(f'Expected exactly one {old!r}, found {block.count(old)}')
+              block = block.replace(old, new, 1)
+
+          if block.count('..strokeCap = StrokeCap.round;') != 2:
+              raise SystemExit('Expected exactly two round connector caps')
+          block = block.replace('..strokeCap = StrokeCap.round;', '..strokeCap = StrokeCap.butt;')
+
+          path.write_text(text[:start] + block + text[end:], encoding='utf-8')
+          PY
+          dart format lib/word_hunt/word_hunt_screens.dart
+          grep -q 'strokeWidth = math.max(10, cellExtent \* \.70)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'strokeWidth = math.max(8, cellExtent \* \.58)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'final overlap = cellExtent \* \.40;' lib/word_hunt/word_hunt_screens.dart
+
+      - name: Analyze and focused test gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_*_test.dart
+          git diff --check
+          changed="$(git diff --name-only)"
+          test "$changed" = 'lib/word_hunt/word_hunt_screens.dart'
+          test -z "$(git diff --name-only -- assets/questions.json lib/main.dart assets/word_hunt/v5_reference_assets)"
+
+      - name: Commit tested edge-fuse candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lib/word_hunt/word_hunt_screens.dart
+          git commit -m 'fix(kelime-avi): fuse found cells at visible edges'
+          git push origin HEAD:fix/kelime-avi-v6-found-path-edge-fuse-qa-20260901
