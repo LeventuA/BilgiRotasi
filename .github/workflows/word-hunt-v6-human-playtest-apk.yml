@@ -1,6 +1,7 @@
 name: Kelime Avi V6 human timing QA APK
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - qa/kelime-avi-v6-human-timing-apk-20260901
