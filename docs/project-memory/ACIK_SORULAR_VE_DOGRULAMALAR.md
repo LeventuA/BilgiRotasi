@@ -35,7 +35,7 @@ Current exact-reference doğrulamaları:
 - Önceki final teknik run `33251736068`: SUCCESS; 37/37 focused + 442/442 full suite + Android 16 B1/B5/B8/B10 64/64 + B5 soft-time + ANKARA/ters BAŞKENT swipe PASS.
 
 **DOĞRULANACAK — KALANLAR:**
-1. `REFERENCE_FONT`: exact font kaynağı/kararı bağımsız doğrulanmadı.
+1. `REFERENCE_FONT`: **KAYNAK DENETİMİ TAMAMLANDI / EXACT KİMLİK DOĞRULANACAK.** Current gameplay generic `fontFamily: 'serif'`; pubspec custom font deklarasyonu yok; tracked font dosyası yok; proje kaynakları ve Issue #109 exact family/file/provenance vermiyor. Exact family/source ve gerekiyorsa lisans doğrulanmadan implementation yapılmayacak.
 2. B5 60 saniye ve B10 120 saniye challenge süreleri gerçek insan playtestinde dengeli mi?
 3. PR #161 / #162 / #163 / #164 ne zaman Ready yapılacak? Görsel PASS merge veya Ready izni değildir.
 4. Merge için Levent ayrıca açık onay verecek mi?

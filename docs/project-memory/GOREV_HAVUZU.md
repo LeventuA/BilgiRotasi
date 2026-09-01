@@ -139,7 +139,8 @@
 - [x] V6 raw Android initial görünüm kullanıcı görsel PASS aldı.
 - [x] V6 edge-fuse raw Android found-state kullanıcı görsel PASS aldı.
 - [x] `ERROR_STATE_VISUAL` raw Android 16 + kullanıcı PASS ile kapatıldı; PR #164 / commit `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de`.
-- [ ] Exact `REFERENCE_FONT` kaynağı/kararı doğrulaması.
+- [x] `REFERENCE_FONT` repo/source audit: current gameplay generic `serif`; pubspec custom font yok; tracked font dosyası yok.
+- [ ] Exact `REFERENCE_FONT` family/source/provenance ve gerekiyorsa lisans doğrulaması; kaynak bulunmadan implementation yok.
 - [ ] B5 60s / B10 120s gerçek insan süre-zorluk playtesti.
 - [ ] PR #161 / #162 / #163 için ayrıca Ready kararı.
 - [ ] Levent'in ayrıca açık merge onayı.

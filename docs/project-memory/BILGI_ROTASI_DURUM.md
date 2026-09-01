@@ -2,6 +2,21 @@
 
 > 1 Eylül 2026 aktif kesimidir. PR #147 merge öncesi ayrıntılı durum dosyasının değişmemiş kopyası `docs/project-memory/archive/BILGI_ROTASI_DURUM_PRE_PR147_MERGE_20260825.md` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
 
+## 1 Eylül 2026 — V6 reference font kaynak denetimi / EXACT KİMLİK DOĞRULANACAK
+
+- Font denetimi, accepted V6 child chain'in güncel checkpoint'i `4ddeff9e1f76167037756c430f6b61d6c0dd284c` üzerinde yapıldı.
+- `lib/word_hunt/word_hunt_screens.dart` gameplay metinlerinde özel bir font adı yerine generic `fontFamily: 'serif'` kullanıyor.
+- `pubspec.yaml` içinde Flutter `fonts:` tanımı yok; sürüm `1.68.19+109` değişmedi.
+- Canlı branch'in tracked tree'sinde `.ttf`, `.otf`, `.woff`, `.woff2` veya `fonts/` altında bundled font dosyası yok.
+- `KAYNAK_DEFTERI.md`, `TEKNIK_GENEL_BAKIS.md`, README ve Issue #109 kaynak zinciri exact font ailesi/dosyası/provenance bilgisi vermiyor; Issue #109 yorum listesi de boş.
+- Raster referanstan yalnız görsel benzerliğe bakarak font adı tahmin edilmeyecek. Exact family/file/source ve lisans/provenance doğrulanmadan font ürüne eklenmeyecek.
+- Bu denetim **ürün kodunu değiştirmez**; bu nedenle yeni Android render kanıtı üretilmedi. Mevcut accepted raw Android initial/found/error görsel PASS'leri korunur.
+- `REFERENCE_FONT = DOĞRULANACAK`: kaynak denetimi tamam, exact kimlik/source hâlâ bulunmadı.
+
+**Durum:** REFERENCE FONT SOURCE AUDIT PASS / EXACT FONT IDENTITY OPEN / PRODUCT CODE UNCHANGED / READY-MERGE YOK.
+
+---
+
 ## 1 Eylül 2026 — V6 error-state visual PASS / PR #164
 
 - Kullanıcı, ham Android 16 screenrecord'dan çıkarılan bordo/kırmızı hata-state frame'ine açıkça **PASS** verdi.
