@@ -16,13 +16,13 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 35
     env:
-      TARGET_SHA: 889cf391d3db9b34644699237ff8c50d2744e061
-      TARGET_BLOB: f43deaad5328f6263f9479de1738cc1f4ac465e0
+      TARGET_SHA: 0d845fc75bbe7b92c3d778ccfbcbde2761fa56de
+      TARGET_BLOB: fd4f830adf6d3c6c7ea6b4eaf2777fb7cedda9d1
       PACKAGE_NAME: com.leventua.bilgirotasi
       REPORTS: reports/word_hunt_v6_error_state
 
     steps:
-      - name: Checkout exact accepted product checkpoint
+      - name: Checkout exact approved-palette product checkpoint
         uses: actions/checkout@v4
         with:
           ref: ${{ env.TARGET_SHA }}
@@ -56,8 +56,10 @@ jobs:
           test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$TARGET_BLOB"
           grep -q '^version: 1.68.19+109$' pubspec.yaml
           grep -q 'Duration(milliseconds: 280)' lib/word_hunt/word_hunt_screens.dart
-          grep -q 'Color(0x338B3B20)' lib/word_hunt/word_hunt_screens.dart
-          grep -q 'Color(0xFFFFB06A)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'Color(0xB35A1F2B)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'Color(0xFFFF6B57)' lib/word_hunt/word_hunt_screens.dart
+          ! grep -q 'Color(0x338B3B20)' lib/word_hunt/word_hunt_screens.dart
+          ! grep -q 'Color(0xFFFFB06A)' lib/word_hunt/word_hunt_screens.dart
           git diff --check
           printf '%s\n' "$TARGET_SHA" > "$REPORTS/TARGET_SHA.txt"
           git hash-object lib/word_hunt/word_hunt_screens.dart > "$REPORTS/PRODUCT_FILE_BLOB.txt"
@@ -120,7 +122,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: BilgiRotasi-KelimeAvi-V6-error-state-${{ env.TARGET_SHA }}
+          name: BilgiRotasi-KelimeAvi-V6-error-state-red-${{ env.TARGET_SHA }}
           path: reports/word_hunt_v6_error_state/**
           if-no-files-found: error
           retention-days: 21
