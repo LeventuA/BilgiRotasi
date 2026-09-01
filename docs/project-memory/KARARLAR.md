@@ -151,3 +151,19 @@ Kelime Avı / Başlangıç Limanı gameplay ekranında bağlayıcı görsel kayn
 - Önceki `67f7365...` refined-V5 kabul kaydı da current karar değildir.
 
 `ERROR_STATE_VISUAL` ve exact `REFERENCE_FONT` kaynağı referansta bağımsız olarak doğrulanamadığı sürece **DOĞRULANACAK** kalır. Mevcut runtime sırf teknik testler geçti diye görsel PASS sayılmaz.
+
+---
+
+## 10. 1 Eylül 2026 — V6 raw Android edge-fuse found-state kullanıcı kabulü
+
+- Kullanıcı kabulü yalnız **ham Android runtime** ekranından alınır; QA selector, ImageGen, image-edit veya mockup hiçbir zaman acceptance kanıtı değildir.
+- Raw Android sonuçları kullanıcıya her zaman gösterilir.
+- Kabul edilen V6 found-state biçimi: found hücrelerin kendi kutu/formu korunur; yalnız ardışık found hücrelerin görünür kenar boşluğu sıcak altın/turuncu dolu birleşimle kapanır. Merkezden merkeze uzun bar veya ayrı kapsül görünümü kullanılmaz.
+- Exact Android-tested edge-fuse commit: `4dddf00178ef9f14b8edb3fc706114be72f477a4`.
+- Exact tested `word_hunt_screens.dart` blob: `f43deaad5328f6263f9479de1738cc1f4ac465e0`.
+- Android 16 run `33486609120`: **SUCCESS**; API 36 / 1080×1920 / 420 dpi; analyze PASS; focused Kelime Avı **138/138 PASS**; gerçek YOL `0/9 → 1/9`; `YOL_SEMANTIC_VISUAL_GATE=PASS`; `YOL_EDGE_FUSE_PIXEL_GATE=PASS`.
+- Artifact `9792346079`, digest `sha256:f5a1592ce074a6e0a8f3bc1f7c88baf5bd9ec9b6bf5337327d7368aea83046d8`.
+- Levent, aynı artifact’tan gösterilen raw B10 initial ve raw `YOL / 1/9` edge-fuse ekranlarını **PASS** olarak kabul etti.
+- Temiz ürün branch `fix/kelime-avi-v6-found-path-connector-product-20260901`; ürün commit `217beb83c31976436a6f26ec43ae4e35a0c7f05c` aynı exact `f43deaad...` blob’u taşır.
+- Draft PR #163 kullanıcı görsel PASS aldı fakat **Ready veya merge otomatik değildir**.
+- Merge için Levent’in ayrıca açık merge onayı zorunludur.
