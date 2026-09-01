@@ -6,6 +6,7 @@
 
 - Repo içi aktif ürün sürümü: **1.68.19+109**.
 - Paket: `com.leventua.bilgirotasi`.
+- Canonical release branch: `release/final-closed-test-aab-1.68.8` / `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
 - `main` yayın kaynağı olarak varsayılmaz; release/ürün branch ve PR durumu her görevde yeniden doğrulanır.
 
 ## Aktif İş — Kelime Avı V6 gameplay görsel hizalama
@@ -21,66 +22,55 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre** olarak kilitlidir. 6×10 ve
 - Doğrulanmış parent head: `9cfa12aeafd29d6197c91c79361648508adf400d`.
 - 11 V5 production reference asset SHA sözleşmesi locked kalır.
 
-### V6 ürün hattı
+### V6 temel ürün hattı
 
 - Branch: `fix/kelime-avi-v6-visual-found-state-20260901`.
 - Ana ürün commit: `e62314cb5874f6b290c70a59061255440c6f00e9`.
-- Commit adı: `fix(kelime-avi): productize verified V6 cell visuals`.
-- Draft PR: **#162** — `fix(kelime-avi): productize Android-verified V6 cell visuals`.
-- PR #162 base: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
-- Merge yapılmadı; Levent’in ayrı ve açık merge onayı zorunludur.
+- Draft PR: **#162** — OPEN / DRAFT / merge yok.
+- `_harborGridSpacing = 1.5`, hücre görsel ölçeği `1.12` ve V6 found-state sunumu korunur.
 
-V6 ürün değişikliği:
-- `_harborGridSpacing`: `3.0 → 1.5`.
-- Hücre asset görsel ölçeği: `1.12`.
-- Aktif/found hücrelerde sıcak altın glow.
-- Bulunan hedef kelime plakasında sıcak turuncu found-state tonu.
-- Başarılı seçimden sonra instruction panelinde canonical instruction metni korunur.
-- Engine/path/scoring/timer/progression/içerik sözleşmeleri değiştirilmedi.
+### V6 found-path edge-fuse hattı — KULLANICI GÖRSEL PASS
 
-## Deterministik Ürünleştirme Gate — PASS
+- Ürün branch: `fix/kelime-avi-v6-found-path-connector-product-20260901`.
+- Draft PR: **#163** — OPEN / DRAFT / merged=false / mergeable=true.
+- Test edilmiş edge-fuse commit: `4dddf00178ef9f14b8edb3fc706114be72f477a4` — `fix(kelime-avi): fuse found cells at visible edges`.
+- Android’de test edilen `word_hunt_screens.dart` blob: `f43deaad5328f6263f9479de1738cc1f4ac465e0`.
+- Temiz ürün commit: `217beb83c31976436a6f26ec43ae4e35a0c7f05c` — `fix(kelime-avi): fuse found cells at visible edges`.
+- Temiz ürün commitindeki `word_hunt_screens.dart` blob’u **birebir `f43deaad...`**.
+- Found hücre formu korunur; yalnız ardışık found hücrelerin görünür kenar boşlukları sıcak altın/turuncu edge-fuse ile kaynaştırılır.
+- QA menüsü kullanıcı görsel kabul kanıtı değildir; kabul yalnız raw Android oyun ekranı üzerinden verilir.
 
-Run: `33443015882` — **SUCCESS**.
+## Edge-fuse Statik + Android 16 Kanıtı — PASS
 
-Doğrulama:
-- Clean product base: `d70dc2739b5c9552189bd7fef11ce3f3af4cc238`.
-- Base `word_hunt_screens.dart` blob: `e3fc4c50b8d5600c6b111a91313c6a47d7c98653`.
-- Android koşusunda kullanılan exact preview patch script + Dart formatter uygulandı.
-- Final product file blob: `d415876b1311362a8de6220cfcfe2978fce514dd`.
+Raw Android 16 run: `33486609120` — **SUCCESS**.
+
+- Exact tested target SHA: `4dddf00178ef9f14b8edb3fc706114be72f477a4`.
+- API 36 / 1080×1920 / 420 dpi.
 - `dart analyze lib/word_hunt`: **No issues found**.
-- Focused Kelime Avı suite: **138/138 PASS**.
-- `git diff --check`: PASS.
-- Protected-scope gate: PASS.
-
-## Gerçek Android 16 Raw Kanıt — PASS
-
-Run: `33436607792` — **SUCCESS**.
-
-Koşul:
-- Android API: **36**.
-- Çözünürlük: **1080×1920**.
-- Density: **420 dpi**.
-- Static suite: **138/138 PASS**.
-- Android runtime candidate file blob: `d415876...`; ürün commitindeki blob ile birebir aynıdır.
-
-B10 gerçek gesture kanıtı:
-- Initial: `0/9`.
-- İlk 900 ms sentetik swipe semantic değişiklik üretmedi ve PASS sayılmadı.
-- 1800 ms gerçek YOL swipe başarılı oldu.
-- Found-state: **`1/9`**.
-- YOL hücre changed-pixels: `[7370, 7236, 7449]`.
-- Progress panel changed-pixels: `299`.
+- Focused Kelime Avı: **138/138 PASS**.
+- QA APK build: PASS.
+- Gerçek B10 YOL gesture: `0/9 → 1/9` PASS.
+- Y/O/L changed pixels: `[7370, 7236, 7449]`.
+- Progress panel changed pixels: `299`.
 - `YOL_SEMANTIC_VISUAL_GATE=PASS`.
+- Edge-fuse iki boşluk changed pixels: `[520, 520]`.
+- Edge-fuse iki boşluk warm pixels: `[520, 520]`.
+- `YOL_EDGE_FUSE_PIXEL_GATE=PASS`.
+- Artifact: `9792346079`.
+- Artifact digest: `sha256:f5a1592ce074a6e0a8f3bc1f7c88baf5bd9ec9b6bf5337327d7368aea83046d8`.
 
-Artifact:
-- ID: `9775000736`.
-- Digest: `sha256:f145e7e5901db55fa6dd1d71c89d246ce1c70a99a26cc790ad1b81ae8ed9aabd`.
+## Kullanıcı Görsel Kabulü — PASS
 
-Bu kanıt image-edit/mockup değildir; raw Android emulator screenshotlarından üretilmiştir.
+1 Eylül 2026’da Levent’e aynı run’dan çıkan **ham Android 16** B10 initial ve `YOL / 1/9` found-state ekranları gösterildi.
+
+- Raw B10 initial görünüm: **PASS**.
+- Raw B10 edge-fuse `YOL / 1/9` found-state: **PASS**.
+- Kabul edilen hedef: ayrı hücre formu korunurken bulunan kelimenin komşu hücreleri yalnız aradaki görünür boşlukta doğal sıcak altın/turuncu birleşim oluşturur.
+- Image-edit / mockup / QA selector ekranı kabul kanıtı değildir.
 
 ## Korunan Alanlar
 
-V6 çalışmasında değiştirilmedi:
+Bu çalışmada değiştirilmedi:
 - canonical 8×8 / 64 hücre içerik geometrisi
 - `assets/questions.json`
 - `lib/main.dart`
@@ -90,25 +80,22 @@ V6 çalışmasında değiştirilmedi:
 - Firebase / AdMob / release signing
 - package name / version
 
-PR #161 head’ine karşı **ürün kodu farkı yalnız `lib/word_hunt/word_hunt_screens.dart`** dosyasındadır. Zorunlu proje hafıza dosyaları ayrıca aynı çalışma branch’inde güncellenir.
+PR #163’te ürün kodu değişikliği `lib/word_hunt/word_hunt_screens.dart` ile sınırlıdır; proje hafıza dosyaları ayrıca güncellenir.
 
 ## Görev / Karar Dosyaları
 
-- `GOREV_HAVUZU.md`: canlı repoda görev başlangıcında yoktu; mevcut V6 görevi doğrulanmış kanıtlarla yeniden oluşturuldu. Eski görev havuzu geçmişi **DOĞRULANACAK**.
-- `ACIK_SORULAR_VE_DOGRULAMALAR.md`: canlı repoda görev başlangıcında yoktu; mevcut açık V6 kapılarıyla oluşturuldu.
-- `KARARLAR.md`: canlı repoda görev başlangıcında bulunamadı. Bu görevde yeni kullanıcı ürün kararı eklenmedi; kanonik konumu **DOĞRULANACAK**.
+- Root `GOREV_HAVUZU.md` mevcut V6 checkpointini taşır; eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
+- Root `ACIK_SORULAR_VE_DOGRULAMALAR.md` açık kapıları taşır.
+- Kanonik karar dosyası: `docs/project-memory/KARARLAR.md`.
+- Kanonik ayrıntılı devir: `docs/project-memory/GENEL_PROJE_OZETI.md`.
 
 ## Kalan Gerçek Kapılar
 
-1. Raw Android B10 initial ekranının Levent tarafından görsel kabulü.
-2. Raw Android B10 `YOL / 1/9` found-state ekranının Levent tarafından görsel kabulü.
-3. `ERROR_STATE_VISUAL = DOĞRULANACAK`.
-4. `REFERENCE_FONT = DOĞRULANACAK`.
-5. B5 60s / B10 120s gerçek insan süre-zorluk playtesti.
-6. PR #161 ve PR #162 Ready kararları ayrıca verilecek.
-7. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
-8. Merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
+1. `ERROR_STATE_VISUAL = DOĞRULANACAK`.
+2. `REFERENCE_FONT = DOĞRULANACAK`.
+3. B5 60s / B10 120s gerçek insan süre-zorluk playtesti.
+4. PR #161 / #162 / #163 Ready kararları ayrıca verilecek.
+5. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
+6. Merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
 
-## Kanonik Ayrıntılı Devir
-
-`docs/project-memory/GENEL_PROJE_OZETI.md`
+**Durum:** V6 INITIAL + EDGE-FUSE FOUND-STATE RAW ANDROID GÖRSEL PASS / PR #163 DRAFT / READY YOK / MERGE YOK.
