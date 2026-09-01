@@ -1,6 +1,24 @@
 # Bilgi Rotası - Güncel Proje Durumu
 
-> 26 Ağustos 2026 aktif kesimidir. PR #147 merge öncesi ayrıntılı durum dosyasının değişmemiş kopyası `docs/project-memory/archive/BILGI_ROTASI_DURUM_PRE_PR147_MERGE_20260825.md` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
+> 1 Eylül 2026 aktif kesimidir. PR #147 merge öncesi ayrıntılı durum dosyasının değişmemiş kopyası `docs/project-memory/archive/BILGI_ROTASI_DURUM_PRE_PR147_MERGE_20260825.md` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
+
+## 1 Eylül 2026 — V6 error-state visual PASS / PR #164
+
+- Kullanıcı, ham Android 16 screenrecord'dan çıkarılan bordo/kırmızı hata-state frame'ine açıkça **PASS** verdi.
+- Temiz ürün branch'i: `fix/kelime-avi-v6-error-state-red-clean-20260901`.
+- Temiz ürün commit: `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de` — `fix(kelime-avi): distinguish error state from found state`.
+- Base accepted V6 checkpoint: `889cf391d3db9b34644699237ff8c50d2744e061` / PR #163 head.
+- Ürün diff'i yalnız `lib/word_hunt/word_hunt_screens.dart` içinde 2 insertions + 2 deletions: error fill `0xB35A1F2B`, error border `0xFFFF6B57`.
+- Found-state altın dili, 8×8 geometri, engine/path/scoring/timer/progression ve içerik değişmedi; error feedback süresi **280 ms / unchanged**.
+- Productize run `33524396204`: SUCCESS; `dart analyze lib/word_hunt` PASS ve focused Kelime Avı **138/138 PASS**.
+- Raw Android 16 run `33524578623`: SUCCESS; API 36 / 1080×1920 / 420 dpi; `WRONG_WORD_REGISTERED_GATE=PASS`; mistake panel changed pixels `703`; artifact `9807557629`, digest `sha256:bfbcb5603f2ad5bdd21b324115d0999a6c12a7c62b0e4d89bc31e8012186dadc`.
+- Draft PR **#164**: OPEN / DRAFT; base `fix/kelime-avi-v6-found-path-connector-product-20260901`; head `fix/kelime-avi-v6-error-state-red-clean-20260901`.
+- `ERROR_STATE_VISUAL = PASS / CLOSED`.
+- `REFERENCE_FONT = DOĞRULANACAK` kalır. B5/B10 gerçek insan playtesti, Ready kararları, ayrı merge onayı ve production navigation entegrasyonu hâlâ açıktır.
+
+**Durum:** V6 INITIAL + FOUND + ERROR RAW ANDROID USER VISUAL PASS / READY YOK / MERGE YOK.
+
+---
 
 ## 31 Ağustos 2026 — V5 exact-reference asset entegrasyonu + GÖRSEL KABUL GERİ ÇEKİLDİ / RUNTIME FAIL
 

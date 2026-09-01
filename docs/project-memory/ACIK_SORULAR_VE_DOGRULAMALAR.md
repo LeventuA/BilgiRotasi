@@ -2,7 +2,7 @@
 
 > 29 Ağustos 2026 aktif kesimidir. Eski tam kayıtlar Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
-## Kelime Avı Başlangıç Limanı 8×8 — TEKNİK PASS / CURRENT ANDROID GÖRSEL FAIL / KULLANICI KABULÜ AÇIK
+## Kelime Avı Başlangıç Limanı 8×8 — V6 RAW ANDROID INITIAL + FOUND + ERROR USER PASS / KALAN DOĞRULAMALAR AÇIK
 
 29 Ağustos 2026 kullanıcı kararıyla starter-content grid standardı **8×8** oldu; önceki 6×10 geometrisi yeni ürün hattı için superseded edildi.
 
@@ -20,11 +20,11 @@ Current exact-reference doğrulamaları:
 - [x] Integration run `33379341765` SUCCESS: asset SHA, deterministic presentation patch, format, analyze, 138/138 focused test, diff/protected-scope gate PASS.
 - [x] Exact product SHA `50ab6c8...` için gerçek Android 16 B10 initial runtime screenshot üretildi: run `33384781507`, artifact `9755405253`, API36 / 1080×1920 / 420 dpi.
 - [x] Gerçek Android found-state kanıtı artifact `9756762383`: `09_B10_YOL_FOUND.png` içinde `1/9`, Y-O-L found state ve gesture visual-change `changed_pixels=29970` PASS.
-- [ ] **GERÇEK ANDROID GÖRSEL KABUL:** mevcut runtime kullanıcı tarafından FAIL edildi.
+- [x] **GERÇEK ANDROID GÖRSEL KABUL:** V6 raw initial + edge-fuse found-state + bordo/kırmızı error-state kullanıcı tarafından PASS edildi.
 
 **KRİTİK KANIT DÜZELTMESİ:** Daha önce kullanıcıya “bulunmuş Android görseli” diye gösterilen ve PASS alınan Görsel 1 gerçek Android runtime screenshot değildi; gerçek Android ekranı üzerinde görsel düzenleme ile oluşturulmuş hedef/mockup idi. Bu yüzden o PASS geçersizdir ve runtime visual acceptance olarak kullanılamaz. Kullanıcının son mesajındaki Görsel 1 yalnız **bağlayıcı hedef/reference**, Görsel 2 ise **gerçek Android runtime ve FAIL** olarak sınıflandırılır.
 
-**ÖNEMLİ RUN SINIRI:** run `33388386388` genel sonucu FAILURE'dır; screenshot ve real-gesture visual-change PASS sonrasında exact log-string `grep` assertion'ı exit 1 vermiştir. Bu run workflow SUCCESS diye yazılmayacak. Ayrıca runtime davranışı teknik olarak çalışsa bile görsel kullanıcı kabulü ayrı kapıdır ve şu an FAIL'dir.
+**TARİHSEL RUN SINIRI:** run `33388386388` genel sonucu FAILURE'dır ve workflow SUCCESS diye yazılmaz. Bu eski V5 runtime FAIL kaydı, daha sonraki V6 raw Android kullanıcı kabulleriyle görsel durum açısından supersede edilmiştir; tarihsel kanıt olarak korunur.
 
 8×8 temel teknik sözleşme korunur:
 - 10 adet 8×8 grid ve 80 toplam target+bonus.
@@ -35,15 +35,14 @@ Current exact-reference doğrulamaları:
 - Önceki final teknik run `33251736068`: SUCCESS; 37/37 focused + 442/442 full suite + Android 16 B1/B5/B8/B10 64/64 + B5 soft-time + ANKARA/ters BAŞKENT swipe PASS.
 
 **DOĞRULANACAK — KALANLAR:**
-1. Gerçek Android runtime ekranı, kullanıcının bağlayıcı Görsel 1 hedefiyle yerleşim/ölçek/panel-plaque ölçüleri/grid aralıkları/found-state/alt panel bakımından nasıl exact-reference seviyesine getirilecek?
-2. Düzeltmeden sonra raw Android initial ve raw Android found-state screenshot'ları kullanıcı PASS alıyor mu?
-3. `ERROR_STATE_VISUAL`: referansta ayrı hata-state asset'i yok; kullanıcı/karar doğrulaması olmadan yeni stil üretilmez.
-4. `REFERENCE_FONT`: exact font kaynağı bağımsız doğrulanmadı; hedefe yaklaşmak için ayrıca doğrulanacak.
-5. B5 60 saniye ve B10 120 saniye challenge süreleri gerçek insan playtestinde dengeli mi?
-6. PR #161 ve parent PR #158 ne zaman Ready yapılacak? Görsel PASS'ten sonra ayrı açık karar gerekir.
-7. Merge için Levent ayrıca açık onay verecek mi? Görsel PASS merge izni değildir.
-8. Production `lib/main.dart` ana navigasyon entegrasyonu için ayrı kapsam/onay verilecek mi?
-9. Eski PR #156 ne zaman/kim tarafından kapatılacak? Otomatik kapatılmayacak.
+1. `REFERENCE_FONT`: exact font kaynağı/kararı bağımsız doğrulanmadı.
+2. B5 60 saniye ve B10 120 saniye challenge süreleri gerçek insan playtestinde dengeli mi?
+3. PR #161 / #162 / #163 / #164 ne zaman Ready yapılacak? Görsel PASS merge veya Ready izni değildir.
+4. Merge için Levent ayrıca açık onay verecek mi?
+5. Production `lib/main.dart` ana navigasyon entegrasyonu için ayrı kapsam/onay verilecek mi?
+6. Eski PR #156 ne zaman/kim tarafından kapatılacak? Otomatik kapatılmayacak.
+
+**KAPANDI — `ERROR_STATE_VISUAL`:** error fill `0xB35A1F2B`, border `0xFFFF6B57`, 280 ms unchanged; product commit `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de`; run `33524578623` SUCCESS; artifact `9807557629`; kullanıcı raw Android görsel **PASS**.
 
 ### Tarihsel 30–31 Ağustos V5 tema kanıtları
 

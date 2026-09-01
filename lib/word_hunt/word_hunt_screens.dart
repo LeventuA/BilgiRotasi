@@ -1760,9 +1760,9 @@ class _HarborGridCell extends StatelessWidget {
           if (error)
             DecoratedBox(
               decoration: BoxDecoration(
-                color: const Color(0x338B3B20),
+                color: const Color(0xB35A1F2B),
                 borderRadius: BorderRadius.circular(math.max(6, extent * .14)),
-                border: Border.all(color: const Color(0xFFFFB06A), width: 1.2),
+                border: Border.all(color: const Color(0xFFFF6B57), width: 1.2),
               ),
             ),
           Center(

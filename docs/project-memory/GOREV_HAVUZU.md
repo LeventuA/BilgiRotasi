@@ -123,6 +123,10 @@
 - Artifact `9792346079`, digest `sha256:f5a1592ce074a6e0a8f3bc1f7c88baf5bd9ec9b6bf5337327d7368aea83046d8`.
 - Raw B10 initial ve raw `YOL / 1/9` edge-fuse found-state Levent tarafından **PASS** edildi.
 - Clean product commit: `217beb83c31976436a6f26ec43ae4e35a0c7f05c` exact aynı blob’u taşır.
+- Error-state product commit: `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de`; yalnız 2 renk satırı değişti.
+- Error-state productize run `33524396204`: analyze PASS + focused 138/138 PASS.
+- Raw Android 16 error-state run `33524578623`: SUCCESS; wrong-word gate PASS; artifact `9807557629`; kullanıcı görsel **PASS**.
+- Draft PR #164 OPEN/DRAFT; Ready/merge yok.
 
 **Bitti ölçütü:**
 - [x] Onaylı 11 raster production asset exact SHA ile branch'e alındı.
@@ -134,7 +138,7 @@
 - [x] Gerçek Android 16 YOL swipe/found-state teknik kanıtı üretildi.
 - [x] V6 raw Android initial görünüm kullanıcı görsel PASS aldı.
 - [x] V6 edge-fuse raw Android found-state kullanıcı görsel PASS aldı.
-- [ ] `ERROR_STATE_VISUAL` için referans/karar doğrulaması.
+- [x] `ERROR_STATE_VISUAL` raw Android 16 + kullanıcı PASS ile kapatıldı; PR #164 / commit `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de`.
 - [ ] Exact `REFERENCE_FONT` kaynağı/kararı doğrulaması.
 - [ ] B5 60s / B10 120s gerçek insan süre-zorluk playtesti.
 - [ ] PR #161 / #162 / #163 için ayrıca Ready kararı.
