@@ -20,6 +20,19 @@
 
 ---
 
+## 0B. Kelime Avı V6 error-state görsel kararı
+
+- 1 Eylül 2026 kullanıcı görsel kabulüyle yanlış seçim/hata feedback'i found-state altın dilinden kesin olarak ayrılır.
+- Error fill: `0xB35A1F2B` koyu bordo.
+- Error border: `0xFFFF6B57` sıcak kırmızı-turuncu.
+- Harfler açık/krem kalır; yanlış seçilen hücreler birbirine found-path gibi bağlanmaz.
+- Error feedback süresi `280 ms` olarak korunur; mesaj/sayaç/gameplay davranışı değişmez.
+- Found-state altın görünümü değişmez.
+- Bu karar raw Android 16 run `33524578623` ve kullanıcı **PASS** ile kabul edilmiştir; `ERROR_STATE_VISUAL` kapısı kapanmıştır.
+- Exact font seçimi bu karardan bağımsızdır ve `REFERENCE_FONT = DOĞRULANACAK` olarak açık kalır.
+
+---
+
 ## 1. Çalışma ve Git düzeni
 
 - `main` otomatik güncel kabul edilmez; canlı hedef branch ve `pubspec.yaml` işe başlamadan doğrulanır.

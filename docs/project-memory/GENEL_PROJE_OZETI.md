@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 1 Eylül 2026 — Kelime Avı V6 edge-fuse raw Android görsel kabulü PASS. Exact tested commit `4dddf00178ef9f14b8edb3fc706114be72f477a4`, exact blob `f43deaad5328f6263f9479de1738cc1f4ac465e0`, Android 16 run `33486609120` SUCCESS, artifact `9792346079`. Raw B10 initial ve `YOL / 1/9` edge-fuse found-state Levent tarafından PASS edildi. Temiz ürün commit `217beb83c31976436a6f26ec43ae4e35a0c7f05c` aynı blob’u taşır. Draft PR #163 OPEN/DRAFT; Ready/merge yok.
+**Son güncelleme:** 1 Eylül 2026 — Kelime Avı V6 `ERROR_STATE_VISUAL` raw Android 16 + kullanıcı kabulü **PASS / CLOSED**. Temiz ürün commit `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de`; error fill `0xB35A1F2B`, border `0xFFFF6B57`, 280 ms unchanged. Productize run `33524396204` SUCCESS (analyze + 138/138), raw Android run `33524578623` SUCCESS, artifact `9807557629`. Draft PR #164 OPEN/DRAFT; Ready/merge yok. Sıradaki açık görsel doğrulama `REFERENCE_FONT`.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -163,6 +163,18 @@ Bu kanıt 8×8 runtime kabulü yerine kullanılmadı; 8×8 ayrı final gate ile 
 - package name / version
 
 `word_hunt_screens.dart` PR #158 diffinde görünür, ancak bu değişiklik yeni 8×8 ürün commitinden değil, branch'in devraldığı önceki gameplay/bonus/soft-time hattından gelir; final 8×8 product commit bu dosyaya dokunmadı.
+
+## 1 Eylül 2026 — V6 error-state kabul checkpoint'i
+
+- Accepted parent visual checkpoint: PR #163 head `889cf391d3db9b34644699237ff8c50d2744e061`.
+- Error-state branch: `fix/kelime-avi-v6-error-state-red-clean-20260901`.
+- Commit: `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de` (`fix(kelime-avi): distinguish error state from found state`).
+- Diff: yalnız 2 renk satırı; 8×8/gameplay/found-state/locked assetler değişmedi.
+- Productize run `33524396204`: SUCCESS; analyze PASS; focused 138/138 PASS.
+- Android 16 run `33524578623`: SUCCESS; wrong-word runtime gate PASS; 280 ms unchanged; artifact `9807557629`.
+- Kullanıcı raw error-state frame/video için **PASS** verdi.
+- Draft PR #164 OPEN/DRAFT; merge yapılmadı.
+- `ERROR_STATE_VISUAL = PASS`; `REFERENCE_FONT = DOĞRULANACAK`.
 
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
