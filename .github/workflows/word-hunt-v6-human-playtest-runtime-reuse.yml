@@ -22,6 +22,7 @@ jobs:
       REPORT_DIR: reports/word_hunt_v6_human_timing
       SOURCE_RUN_ID: '33553850176'
       EXPECTED_APK_SHA256: 5e7fe5039b6cfbf61ac7a379a633eff4859568fd6dd9d631a742b0f167821180
+      RUNTIME_REVISION: full-raster-v1
 
     steps:
       - name: Checkout QA harness only
@@ -45,8 +46,8 @@ jobs:
           actual="$(sha256sum "$APK" | awk '{print $1}')"
           test "$actual" = "$EXPECTED_APK_SHA256"
           bash -n tools/qa/word_hunt_v6_human_playtest_android16_reuse.sh
-          printf 'SOURCE_RUN_ID=%s\nAPK_SHA256=%s\nEXACT_APK_REUSE=PASS\nRUNTIME_BASH_SYNTAX=PASS\n' \
-            "$SOURCE_RUN_ID" "$actual" | tee "$REPORT_DIR/RUNTIME_REUSE_GATE.txt"
+          printf 'SOURCE_RUN_ID=%s\nAPK_SHA256=%s\nEXACT_APK_REUSE=PASS\nRUNTIME_BASH_SYNTAX=PASS\nRUNTIME_REVISION=%s\n' \
+            "$SOURCE_RUN_ID" "$actual" "$RUNTIME_REVISION" | tee "$REPORT_DIR/RUNTIME_REUSE_GATE.txt"
 
       - name: Prepare Android emulator KVM
         shell: bash
