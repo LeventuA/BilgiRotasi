@@ -72,7 +72,9 @@ jobs:
         run: |
           set -euo pipefail
           flutter pub get
-          dart format --output=none --set-exit-if-changed lib/word_hunt/word_hunt_screens.dart
+          dart format lib/word_hunt/word_hunt_screens.dart
+          test "$(git diff --name-only)" = 'lib/word_hunt/word_hunt_screens.dart'
+          git diff --check
           dart analyze lib/word_hunt
           flutter test test/word_hunt_*_test.dart
 
