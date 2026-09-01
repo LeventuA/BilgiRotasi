@@ -36,10 +36,24 @@ extract_button_coordinate() {
   esac
 }
 
-capture() {
+capture_rich_render() {
   local name="$1"
-  adb exec-out screencap -p > "$REPORT_DIR/$name"
-  test -s "$REPORT_DIR/$name"
+  local min_bytes="${2:-1000000}"
+  local tmp="$REPORT_DIR/.${name}.tmp"
+  local i size
+  for i in $(seq 1 16); do
+    adb exec-out screencap -p > "$tmp"
+    size="$(stat -c '%s' "$tmp")"
+    if (( size >= min_bytes )); then
+      mv "$tmp" "$REPORT_DIR/$name"
+      printf '%s=%s\n' "${name%.png}_BYTES" "$size" >> "$REPORT_DIR/RENDER_SIZE_GATE.txt"
+      return 0
+    fi
+    sleep 0.5
+  done
+  mv "$tmp" "$REPORT_DIR/$name"
+  echo "Full raster render did not reach ${min_bytes} bytes for $name" >&2
+  return 1
 }
 
 adb install -r "$APK"
@@ -56,9 +70,8 @@ b5_y="$(extract_button_coordinate "$REPORT_DIR/01_SELECTOR_LOGCAT.txt" 5 y)"
 adb shell input tap "$b5_x" "$b5_y"
 wait_for_log '[WORD_HUNT_V6_HUMAN_QA_OPEN] level=5 targetSeconds=60'
 wait_for_log '[WORD_HUNT_V6_HUMAN_QA_READY] level=5 cells=64'
-sleep 1
 adb logcat -d > "$REPORT_DIR/02_B5_LOGCAT.txt"
-capture 02_B5_INITIAL.png
+capture_rich_render 02_B5_INITIAL.png
 
 # Return through Flutter navigation instead of force-stopping/relaunching the app.
 adb logcat -c
@@ -73,9 +86,8 @@ b10_y="$(extract_button_coordinate "$REPORT_DIR/03_SELECTOR_RETURN_LOGCAT.txt" 1
 adb shell input tap "$b10_x" "$b10_y"
 wait_for_log '[WORD_HUNT_V6_HUMAN_QA_OPEN] level=10 targetSeconds=120'
 wait_for_log '[WORD_HUNT_V6_HUMAN_QA_READY] level=10 cells=64'
-sleep 1
 adb logcat -d > "$REPORT_DIR/04_B10_LOGCAT.txt"
-capture 04_B10_INITIAL.png
+capture_rich_render 04_B10_INITIAL.png
 
 adb shell wm size | tee "$REPORT_DIR/ANDROID_WM_SIZE.txt"
 adb shell wm density | tee "$REPORT_DIR/ANDROID_WM_DENSITY.txt"
@@ -98,6 +110,8 @@ printf '%s\n' \
   'APP_LAUNCH=PASS' \
   'B5_64_CELL_RENDER=PASS' \
   'B10_64_CELL_RENDER=PASS' \
+  'B5_FULL_RASTER_SCREENSHOT=PASS' \
+  'B10_FULL_RASTER_SCREENSHOT=PASS' \
   'B5_TARGET_SECONDS=60' \
   'B10_TARGET_SECONDS=120' \
   'SAME_PROCESS_B5_TO_B10_NAVIGATION=PASS' \
