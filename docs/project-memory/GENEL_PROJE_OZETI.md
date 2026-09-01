@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 1 Eylül 2026 — Kelime Avı V6 `ERROR_STATE_VISUAL` raw Android 16 + kullanıcı kabulü **PASS / CLOSED**. Temiz ürün commit `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de`; error fill `0xB35A1F2B`, border `0xFFFF6B57`, 280 ms unchanged. Productize run `33524396204` SUCCESS (analyze + 138/138), raw Android run `33524578623` SUCCESS, artifact `9807557629`. Draft PR #164 OPEN/DRAFT; Ready/merge yok. Sıradaki açık görsel doğrulama `REFERENCE_FONT`.
+**Son güncelleme:** 2 Eylül 2026 — Kelime Avı V6 B5/B10 insan süre testi için ayrı paketli QA APK Android 16 teknik runtime kapısı **PASS**. Run `33560432922` SUCCESS; artifact `9821077483`; APK SHA-256 `5e7fe5039b6cfbf61ac7a379a633eff4859568fd6dd9d631a742b0f167821180`. B5 ve B10 64/64 hücre + full-raster screenshot PASS; install/launch/process-failure scan PASS. İnsan zorluk/süre sonucu `PENDING_USER_PLAYTEST`; ürün kodu/sürüm/paket değiştirilmedi, merge yapılmadı.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -175,6 +175,23 @@ Bu kanıt 8×8 runtime kabulü yerine kullanılmadı; 8×8 ayrı final gate ile 
 - Kullanıcı raw error-state frame/video için **PASS** verdi.
 - Draft PR #164 OPEN/DRAFT; merge yapılmadı.
 - `ERROR_STATE_VISUAL = PASS`; `REFERENCE_FONT = DOĞRULANACAK`.
+
+## 2 Eylül 2026 — V6 B5/B10 insan süre testi Android 16 teknik gate
+
+- QA branch: `qa/kelime-avi-v6-human-timing-apk-20260901`.
+- Kaynak accepted ürün SHA: `4ddeff9e1f76167037756c430f6b61d6c0dd284c`; screen blob `fd4f830adf6d3c6c7ea6b4eaf2777fb7cedda9d1`.
+- Ayrı QA package: `com.leventua.bilgirotasi.wordhuntqa`; production package `com.leventua.bilgirotasi` değişmedi.
+- Exact QA APK SHA-256: `5e7fe5039b6cfbf61ac7a379a633eff4859568fd6dd9d631a742b0f167821180`.
+- Full build/static kaynak run `33553850176`: accepted V6 scope PASS, analyze PASS, **138/138 PASS**, distinct-package APK build PASS.
+- Final runtime-only Android 16 / API 36 AOSP ATD run `33560432922`: **SUCCESS**.
+- Final artifact ID `9821077483`; digest `sha256:4f6ce9e3e3738fa5681b651e6698a937a68d14679214786e5fef458a4d8bc24e`.
+- B5: 64/64 hücre render PASS, full-raster screenshot `02_B5_INITIAL.png` PASS (`2665199` byte).
+- B10: 64/64 hücre render PASS, full-raster screenshot `04_B10_INITIAL.png` PASS (`2653485` byte).
+- APK install PASS, app launch PASS, aynı process B5→B10 navigation PASS, crash/ANR/process-failure taraması PASS.
+- B5 hedef süre 60 sn; B10 hedef süre 120 sn. Bunlar teknik render kapısı değil, **gerçek insan zorluk/süre ölçümü** olarak ayrıca değerlendirilecek.
+- `HUMAN_TIMING_RESULT=PENDING_USER_PLAYTEST` — gerçek insan oynayışı tamamlanmadan PASS sayılmayacak.
+- Bu QA hattı gameplay engine/path/scoring/timer/progression/content, `lib/main.dart`, `assets/questions.json`, sürüm veya production package üzerinde ürün değişikliği yapmadı.
+- Merge yapılmadı.
 
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
