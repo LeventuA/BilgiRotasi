@@ -1,0 +1,71 @@
+name: Kelime Avi V6 reference font source audit
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v6-reference-font-audit-20260901
+    paths:
+      - '.github/workflows/word-hunt-v6-reference-font-audit.yml'
+      - 'tools/qa/record_v6_reference_font_audit.py'
+
+permissions:
+  contents: write
+
+jobs:
+  audit-and-record:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    env:
+      DOCS_BRANCH: docs/kelime-avi-v6-reference-font-audit-20260901
+      BASE_SHA: 4ddeff9e1f76167037756c430f6b61d6c0dd284c
+      QA_BRANCH: qa/kelime-avi-v6-reference-font-audit-20260901
+    steps:
+      - name: Checkout exact docs branch base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DOCS_BRANCH }}
+          fetch-depth: 0
+
+      - name: Verify exact audit base
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$BASE_SHA"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+
+      - name: Checkout audit helper
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.QA_BRANCH }}
+          path: qa-tools
+
+      - name: Run source audit and update project memory
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 qa-tools/tools/qa/record_v6_reference_font_audit.py
+          git diff --check
+          changed="$(git diff --name-only | sort)"
+          expected="$(printf '%s\n' \
+            docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md \
+            docs/project-memory/BILGI_ROTASI_DURUM.md \
+            docs/project-memory/GENEL_PROJE_OZETI.md \
+            docs/project-memory/GOREV_HAVUZU.md \
+            docs/project-memory/KARARLAR.md | sort)"
+          test "$changed" = "$expected"
+          test -z "$(git diff --name-only -- lib assets pubspec.yaml)"
+
+      - name: Commit audited docs checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'ZMilaStudio'
+          git config user.email 'levent.ua@gmail.com'
+          git add docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md \
+                  docs/project-memory/BILGI_ROTASI_DURUM.md \
+                  docs/project-memory/GENEL_PROJE_OZETI.md \
+                  docs/project-memory/GOREV_HAVUZU.md \
+                  docs/project-memory/KARARLAR.md
+          git commit -m 'docs(kelime-avi): record V6 reference font audit'
+          git push origin HEAD:refs/heads/$DOCS_BRANCH
+          echo "DOCS_COMMIT=$(git rev-parse HEAD)"
