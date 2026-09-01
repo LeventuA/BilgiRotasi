@@ -1,0 +1,142 @@
+name: Kelime Avi V6 error state raw Android 16
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v6-error-state-android16-20260901
+    paths:
+      - '.github/workflows/word-hunt-v6-error-state-android16-qa.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  b10-error-state:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    env:
+      TARGET_SHA: 889cf391d3db9b34644699237ff8c50d2744e061
+      TARGET_BLOB: f43deaad5328f6263f9479de1738cc1f4ac465e0
+      PACKAGE_NAME: com.leventua.bilgirotasi
+      REPORTS: reports/word_hunt_v6_error_state
+
+    steps:
+      - name: Checkout exact accepted product checkpoint
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          fetch-depth: 0
+
+      - name: Checkout error-state QA harness
+        uses: actions/checkout@v4
+        with:
+          ref: qa/kelime-avi-v6-error-state-android16-20260901
+          path: qa-tools
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Exact product guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORTS"
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$TARGET_BLOB"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          grep -q 'Duration(milliseconds: 280)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'Color(0x338B3B20)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'Color(0xFFFFB06A)' lib/word_hunt/word_hunt_screens.dart
+          git diff --check
+          printf '%s\n' "$TARGET_SHA" > "$REPORTS/TARGET_SHA.txt"
+          git hash-object lib/word_hunt/word_hunt_screens.dart > "$REPORTS/PRODUCT_FILE_BLOB.txt"
+
+      - name: Build exact QA APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p android/app/src/debug "$REPORTS"
+          python3 -m pip install --disable-pip-version-check pillow==11.3.0
+          printf '%s\n' \
+            '<manifest xmlns:android="http://schemas.android.com/apk/res/android">' \
+            '  <application>' \
+            '    <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false" />' \
+            '  </application>' \
+            '</manifest>' \
+            > android/app/src/debug/AndroidManifest.xml
+          flutter build apk --debug \
+            -t tools/word_hunt_v5_gameplay_qa_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk > "$REPORTS/APK_SHA256.txt"
+          (cd android && ./gradlew --stop)
+
+      - name: Prepare Android emulator KVM
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Raw Android 16 B10 error-state capture
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 384M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: REPORTS="$REPORTS" PACKAGE_NAME="$PACKAGE_NAME" bash qa-tools/tools/qa/word_hunt_v6_error_state_android16.sh
+
+      - name: Transient error clear gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - "$REPORTS/04_B10_INITIAL.png" "$REPORTS/09_B10_ERROR_STATE.png" "$REPORTS/10_B10_ERROR_CLEARED.png" <<'PY'
+          import sys
+          from PIL import Image, ImageChops
+          initial = Image.open(sys.argv[1]).convert('RGB')
+          error = Image.open(sys.argv[2]).convert('RGB')
+          cleared = Image.open(sys.argv[3]).convert('RGB')
+          coords = [(92, 748), (220, 748)]
+          error_to_clear = []
+          initial_to_clear = []
+          for x, y in coords:
+              box = (x - 45, y - 45, x + 45, y + 45)
+              d1 = ImageChops.difference(error.crop(box), cleared.crop(box))
+              d2 = ImageChops.difference(initial.crop(box), cleared.crop(box))
+              error_to_clear.append(sum(1 for px in d1.getdata() if px != (0, 0, 0)))
+              initial_to_clear.append(sum(1 for px in d2.getdata() if px != (0, 0, 0)))
+          print(f'ERROR_TO_CLEARED_CHANGED_PIXELS={error_to_clear}')
+          print(f'INITIAL_TO_CLEARED_CHANGED_PIXELS={initial_to_clear}')
+          if any(v < 600 for v in error_to_clear):
+              raise SystemExit(51)
+          if any(v > 120 for v in initial_to_clear):
+              raise SystemExit(52)
+          print('ERROR_TRANSIENT_CLEAR_GATE=PASS')
+          PY
+
+      - name: Upload raw error-state proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-V6-error-state-${{ env.TARGET_SHA }}
+          path: reports/word_hunt_v6_error_state/**
+          if-no-files-found: error
+          retention-days: 21
