@@ -44,7 +44,8 @@ jobs:
           test -s "$APK"
           actual="$(sha256sum "$APK" | awk '{print $1}')"
           test "$actual" = "$EXPECTED_APK_SHA256"
-          printf 'SOURCE_RUN_ID=%s\nAPK_SHA256=%s\nEXACT_APK_REUSE=PASS\n' \
+          bash -n tools/qa/word_hunt_v6_human_playtest_android16_reuse.sh
+          printf 'SOURCE_RUN_ID=%s\nAPK_SHA256=%s\nEXACT_APK_REUSE=PASS\nRUNTIME_BASH_SYNTAX=PASS\n' \
             "$SOURCE_RUN_ID" "$actual" | tee "$REPORT_DIR/RUNTIME_REUSE_GATE.txt"
 
       - name: Prepare Android emulator KVM
@@ -68,7 +69,7 @@ jobs:
           heap-size: 512M
           emulator-boot-timeout: 1200
           disable-animations: false
-          script: bash tools/qa/word_hunt_v6_human_playtest_android16.sh
+          script: bash tools/qa/word_hunt_v6_human_playtest_android16_reuse.sh
 
       - name: Upload runtime evidence
         if: always()
