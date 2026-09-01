@@ -1,0 +1,60 @@
+name: Kelime Avi V6 human timing formatter promote
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v6-human-timing-format-20260901
+    paths:
+      - .github/workflows/word-hunt-v6-human-playtest-format-promote.yml
+
+permissions:
+  contents: write
+
+jobs:
+  format-test-promote:
+    runs-on: ubuntu-22.04
+    env:
+      TARGET_BRANCH: qa/kelime-avi-v6-human-timing-apk-20260901
+      TARGET_BASE_SHA: 179e9934327bdc16dd2bdabbc392708e339862bb
+      TARGET_PRODUCT_SHA: 4ddeff9e1f76167037756c430f6b61d6c0dd284c
+    steps:
+      - name: Checkout target QA branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Format and verify QA-only entrypoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TARGET_BASE_SHA"
+          git merge-base --is-ancestor "$TARGET_PRODUCT_SHA" HEAD
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          flutter pub get
+          dart format tools/word_hunt_v6_human_playtest_main.dart
+          git diff --check
+          changed="$(git diff --name-only | sort)"
+          test "$changed" = 'tools/word_hunt_v6_human_playtest_main.dart'
+          test -z "$(git diff --name-only -- lib assets android pubspec.yaml)"
+          dart analyze lib/word_hunt tools/word_hunt_v6_human_playtest_main.dart
+          flutter test test/word_hunt_*_test.dart --reporter expanded
+
+      - name: Commit tested formatter output
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/word_hunt_v6_human_playtest_main.dart
+          git diff --cached --check
+          git commit -m 'test(kelime-avi): format B5 B10 human timing QA entrypoint'
+          git push origin HEAD:refs/heads/$TARGET_BRANCH
+          echo "FORMATTED_COMMIT=$(git rev-parse HEAD)"
