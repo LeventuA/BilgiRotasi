@@ -1,0 +1,80 @@
+name: Kelime Avi V6 human playtest runtime reuse
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - qa/kelime-avi-v6-human-timing-apk-20260901
+    paths:
+      - .github/workflows/word-hunt-v6-human-playtest-runtime-reuse.yml
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  runtime-only:
+    name: Reuse exact B5 B10 APK on proven Android 16 AOSP runtime
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    env:
+      QA_PACKAGE: com.leventua.bilgirotasi.wordhuntqa
+      REPORT_DIR: reports/word_hunt_v6_human_timing
+      SOURCE_RUN_ID: '33553850176'
+      EXPECTED_APK_SHA256: 798840fa00694f2609b71322d2d42b77a5816522c781dc0e608191a8b7ed3286
+
+    steps:
+      - name: Checkout QA harness only
+        uses: actions/checkout@v4
+
+      - name: Download exact previously built playtest artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Kelime-Avi-V6-B5-B10-Human-Playtest-v2
+          path: ${{ env.REPORT_DIR }}
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Verify exact reused APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$REPORT_DIR/KelimeAvi-V6-B5-B10-Playtest.apk"
+          test -s "$APK"
+          actual="$(sha256sum "$APK" | awk '{print $1}')"
+          test "$actual" = "$EXPECTED_APK_SHA256"
+          printf 'SOURCE_RUN_ID=%s\nAPK_SHA256=%s\nEXACT_APK_REUSE=PASS\n' \
+            "$SOURCE_RUN_ID" "$actual" | tee "$REPORT_DIR/RUNTIME_REUSE_GATE.txt"
+
+      - name: Prepare Android emulator KVM
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Android 16 install launch and render gate on proven AOSP image
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 3072M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: bash tools/qa/word_hunt_v6_human_playtest_android16.sh
+
+      - name: Upload runtime evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kelime-Avi-V6-B5-B10-Human-Playtest-Runtime-Reuse
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: error
+          retention-days: 7
