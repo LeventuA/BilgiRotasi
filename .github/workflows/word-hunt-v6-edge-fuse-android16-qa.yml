@@ -1,0 +1,153 @@
+name: Kelime Avi V6 edge fuse raw Android 16
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v6-edge-fuse-android16-20260901
+    paths:
+      - '.github/workflows/word-hunt-v6-edge-fuse-android16-qa.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  b10-edge-fuse:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    env:
+      TARGET_SHA: 4dddf00178ef9f14b8edb3fc706114be72f477a4
+      TARGET_BLOB: f43deaad5328f6263f9479de1738cc1f4ac465e0
+      PACKAGE_NAME: com.leventua.bilgirotasi
+      REPORTS: reports/word_hunt_v6_edge_fuse
+
+    steps:
+      - name: Checkout exact tested edge-fuse commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_SHA }}
+          fetch-depth: 0
+
+      - name: Checkout proven QA scripts
+        uses: actions/checkout@v4
+        with:
+          ref: qa/kelime-avi-v5-reference-android16-proof-20260831
+          path: qa-tools
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Static edge-fuse gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORTS"
+          test "$(git rev-parse HEAD)" = "$TARGET_SHA"
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$TARGET_BLOB"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          grep -q 'strokeWidth = math.max(10, cellExtent \* \.70)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'strokeWidth = math.max(8, cellExtent \* \.58)' lib/word_hunt/word_hunt_screens.dart
+          grep -q 'final overlap = cellExtent \* \.40;' lib/word_hunt/word_hunt_screens.dart
+          git diff --check
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_*_test.dart
+          git hash-object lib/word_hunt/word_hunt_screens.dart > "$REPORTS/PRODUCT_FILE_BLOB.txt"
+          printf '%s\n' "$TARGET_SHA" > "$REPORTS/TARGET_SHA.txt"
+
+      - name: Build QA APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p android/app/src/debug "$REPORTS"
+          python3 -m pip install --disable-pip-version-check pillow==11.3.0
+          printf '%s\n' \
+            '<manifest xmlns:android="http://schemas.android.com/apk/res/android">' \
+            '  <application>' \
+            '    <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false" />' \
+            '  </application>' \
+            '</manifest>' \
+            > android/app/src/debug/AndroidManifest.xml
+          flutter build apk --debug \
+            -t tools/word_hunt_v5_gameplay_qa_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          test -s build/app/outputs/flutter-apk/app-debug.apk
+          sha256sum build/app/outputs/flutter-apk/app-debug.apk > "$REPORTS/APK_SHA256.txt"
+          (cd android && ./gradlew --stop)
+
+      - name: Prepare Android emulator KVM
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Raw Android 16 B10 initial and YOL found
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 384M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: REPORTS="$REPORTS" bash qa-tools/tools/qa/word_hunt_v6_tight_android16.sh
+
+      - name: Edge-only fuse pixel gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - "$REPORTS/08_B10_YOL_BEFORE.png" "$REPORTS/09_B10_YOL_FOUND.png" <<'PY'
+          import sys
+          from PIL import Image, ImageChops
+
+          before = Image.open(sys.argv[1]).convert('RGB')
+          after = Image.open(sys.argv[2]).convert('RGB')
+          boxes = [
+              (535, 984, 548, 1024),
+              (663, 984, 676, 1024),
+          ]
+          changed_values = []
+          warm_values = []
+          for box in boxes:
+              before_crop = before.crop(box)
+              after_crop = after.crop(box)
+              diff = ImageChops.difference(before_crop, after_crop)
+              changed = sum(1 for px in diff.getdata() if px != (0, 0, 0))
+              warm = sum(
+                  1 for r, g, b in after_crop.getdata()
+                  if r >= 145 and 65 <= g <= 210 and b <= 110 and r > g
+              )
+              changed_values.append(changed)
+              warm_values.append(warm)
+          print(f'YOL_EDGE_FUSE_CHANGED_PIXELS={changed_values}')
+          print(f'YOL_EDGE_FUSE_WARM_PIXELS={warm_values}')
+          if any(value < 300 for value in changed_values):
+              raise SystemExit(31)
+          if any(value < 240 for value in warm_values):
+              raise SystemExit(32)
+          print('YOL_EDGE_FUSE_PIXEL_GATE=PASS')
+          PY
+
+      - name: Upload raw proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-V6-edge-fuse-${{ env.TARGET_SHA }}
+          path: reports/word_hunt_v6_edge_fuse/**
+          if-no-files-found: error
+          retention-days: 21
