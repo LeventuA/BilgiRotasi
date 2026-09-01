@@ -21,7 +21,7 @@ jobs:
       QA_PACKAGE: com.leventua.bilgirotasi.wordhuntqa
       REPORT_DIR: reports/word_hunt_v6_human_timing
       SOURCE_RUN_ID: '33553850176'
-      EXPECTED_APK_SHA256: 798840fa00694f2609b71322d2d42b77a5816522c781dc0e608191a8b7ed3286
+      EXPECTED_APK_SHA256: 5e7fe5039b6cfbf61ac7a379a633eff4859568fd6dd9d631a742b0f167821180
 
     steps:
       - name: Checkout QA harness only
