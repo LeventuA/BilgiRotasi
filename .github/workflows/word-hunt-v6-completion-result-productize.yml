@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/word-hunt-v6-completion-result-productize.yml
       - tools/qa/patch_word_hunt_v6_completion_result.py
+      - tools/qa/run_patch_word_hunt_v6_completion_result.py
 
 permissions:
   contents: write
@@ -39,13 +40,13 @@ jobs:
           git merge-base --is-ancestor "$BASE_SHA" HEAD
           test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$BASE_SCREEN_BLOB"
           grep -q '^version: 1.68.19+109$' pubspec.yaml
-          python3 -m py_compile tools/qa/patch_word_hunt_v6_completion_result.py
+          python3 -m py_compile tools/qa/patch_word_hunt_v6_completion_result.py tools/qa/run_patch_word_hunt_v6_completion_result.py
 
       - name: Apply completion behavior and harbor result panel candidate
         shell: bash
         run: |
           set -euo pipefail
-          python3 tools/qa/patch_word_hunt_v6_completion_result.py
+          python3 tools/qa/run_patch_word_hunt_v6_completion_result.py
           dart format lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart
           git diff --check
           changed="$(git diff --name-only -- lib test | sort)"
