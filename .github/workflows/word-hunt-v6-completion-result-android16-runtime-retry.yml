@@ -81,11 +81,9 @@ jobs:
             adb shell wm size 1080x1920
             adb shell wm density 420
             adb shell settings put secure immersive_mode_confirmations confirmed || true
-            printf 'immersive_mode_confirmations=%s\n' "$(adb shell settings get secure immersive_mode_confirmations | tr -d '\r')" \
-              | tee "$REPORT_DIR/ANDROID_IMMERSIVE_CONFIRMATION.txt"
+            echo "immersive_mode_confirmations=$(adb shell settings get secure immersive_mode_confirmations | tr -d '\r')" > "$REPORT_DIR/ANDROID_IMMERSIVE_CONFIRMATION.txt"
             bash tools/qa/word_hunt_v6_completion_result_android16.sh
-            find "$REPORT_DIR" -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 \
-              | sort -z | xargs -0 sha256sum > "$REPORT_DIR/SHA256SUMS.txt"
+            find "$REPORT_DIR" -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > "$REPORT_DIR/SHA256SUMS.txt"
 
       - name: Runtime kanitlarini yukle
         if: always()
