@@ -1,0 +1,81 @@
+name: Kelime Avi V6 completion result promote tested candidate
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v6-completion-result-android16-20260902
+    paths:
+      - .github/workflows/word-hunt-v6-completion-result-promote.yml
+
+permissions:
+  contents: write
+
+jobs:
+  promote-only:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    env:
+      TESTED_QA_COMMIT: 543769568e58eb8f808075a0e51a4a04b3986458
+      BASE_SHA: 4ddeff9e1f76167037756c430f6b61d6c0dd284c
+      BASE_SCREEN_BLOB: fd4f830adf6d3c6c7ea6b4eaf2777fb7cedda9d1
+      BASE_TEST_BLOB: 382cc66bca658314daa49fc7d1f1f49d0c45bab3
+      PATCH_BLOB: a6d992411e314d5f474bbce3dae855df14f8a82f
+      WRAPPER_BLOB: 048a4b8357f4f413c5d2e8f685ab35dba9f9d293
+      PRODUCT_BRANCH: fix/kelime-avi-v6-completion-result-20260902
+    steps:
+      - name: Checkout QA harness
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Flutter 3.44.6 formatter only
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Reproduce exact already-tested candidate deterministically
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor "$TESTED_QA_COMMIT" HEAD
+          test "$(git hash-object tools/qa/patch_word_hunt_v6_completion_result.py)" = "$PATCH_BLOB"
+          test "$(git hash-object tools/qa/run_patch_word_hunt_v6_completion_result.py)" = "$WRAPPER_BLOB"
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$BASE_SCREEN_BLOB"
+          test "$(git hash-object test/word_hunt_level_production_test.dart)" = "$BASE_TEST_BLOB"
+          python3 tools/qa/run_patch_word_hunt_v6_completion_result.py
+          dart format lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart
+          git diff --check
+          changed="$(git diff --name-only -- lib test | sort)"
+          expected=$'lib/word_hunt/word_hunt_screens.dart\ntest/word_hunt_level_production_test.dart'
+          test "$changed" = "$expected"
+          mkdir -p /tmp/tested-completion/lib/word_hunt /tmp/tested-completion/test
+          cp lib/word_hunt/word_hunt_screens.dart /tmp/tested-completion/lib/word_hunt/
+          cp test/word_hunt_level_production_test.dart /tmp/tested-completion/test/
+          sha256sum /tmp/tested-completion/lib/word_hunt/word_hunt_screens.dart /tmp/tested-completion/test/word_hunt_level_production_test.dart | tee /tmp/tested-completion/SHA256.txt
+
+      - name: Promote only exact reproduced product files in isolated worktree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "$PRODUCT_BRANCH"
+          git worktree add /tmp/product-worktree "origin/$PRODUCT_BRANCH"
+          cd /tmp/product-worktree
+          test "$(git rev-parse HEAD)" = "$BASE_SHA"
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$BASE_SCREEN_BLOB"
+          test "$(git hash-object test/word_hunt_level_production_test.dart)" = "$BASE_TEST_BLOB"
+          cp /tmp/tested-completion/lib/word_hunt/word_hunt_screens.dart lib/word_hunt/word_hunt_screens.dart
+          cp /tmp/tested-completion/test/word_hunt_level_production_test.dart test/word_hunt_level_production_test.dart
+          changed="$(git status --porcelain | awk '{print $2}' | sort)"
+          expected=$'lib/word_hunt/word_hunt_screens.dart\ntest/word_hunt_level_production_test.dart'
+          test "$changed" = "$expected"
+          git diff --check
+          grep -Fq 'bool get _allWordsFound => _allTargetsFound && _allBonusFound;' lib/word_hunt/word_hunt_screens.dart
+          grep -Fq "word_hunt_production_result_panel" lib/word_hunt/word_hunt_screens.dart
+          grep -Fq "expect(find.byType(AlertDialog), findsNothing);" test/word_hunt_level_production_test.dart
+          git config user.name 'ZMilaStudio'
+          git config user.email 'levent.ua@gmail.com'
+          git add lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart
+          git commit -m 'fix(kelime-avi): stabilize and restyle completion result [skip ci]'
+          git push origin HEAD:"$PRODUCT_BRANCH"
