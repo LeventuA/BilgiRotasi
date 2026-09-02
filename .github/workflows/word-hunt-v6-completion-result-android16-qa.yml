@@ -1,0 +1,115 @@
+name: Kelime Avi V6 completion result Android 16 QA
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v6-completion-result-runtime-20260902
+    paths:
+      - '.github/workflows/word-hunt-v6-completion-result-android16-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  completion-result-runtime:
+    name: B5/B10 auto result popup real Android 16
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    env:
+      PRODUCT_SHA: 1375e7305181a48318b24a112d644903dbbcafbc
+      PRODUCT_SCREEN_BLOB: 26c37c5d129a24c5a9545f69682079f27334c1e0
+      REPORT_DIR: reports/word_hunt_v6_completion_result
+      QA_PACKAGE: com.leventua.bilgirotasi
+
+    steps:
+      - name: Exact QA HEAD'i indir
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Exact urun kodunu ve QA zincirini dogrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor "$PRODUCT_SHA" HEAD
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$PRODUCT_SCREEN_BLOB"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          test -s tools/word_hunt_v6_completion_result_qa_main.dart
+          test -s tools/qa/word_hunt_v6_completion_result_android16.sh
+          bash -n tools/qa/word_hunt_v6_completion_result_android16.sh
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6 kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: QA APK'sini uret
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR" android/app/src/debug
+          flutter pub get
+          dart format --output=none --set-exit-if-changed tools/word_hunt_v6_completion_result_qa_main.dart
+          dart analyze tools/word_hunt_v6_completion_result_qa_main.dart
+          printf '%s\n' \
+            '<manifest xmlns:android="http://schemas.android.com/apk/res/android">' \
+            '  <application>' \
+            '    <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false" />' \
+            '  </application>' \
+            '</manifest>' \
+            > android/app/src/debug/AndroidManifest.xml
+          flutter build apk --debug \
+            -t tools/word_hunt_v6_completion_result_qa_main.dart \
+            --dart-define=ADMOB_ENVIRONMENT=test
+          cp build/app/outputs/flutter-apk/app-debug.apk "$REPORT_DIR/KelimeAvi-V6-Completion-QA.apk"
+          test -s "$REPORT_DIR/KelimeAvi-V6-Completion-QA.apk"
+          printf '%s\n' "$PRODUCT_SHA" > "$REPORT_DIR/PRODUCT_SHA.txt"
+          git rev-parse HEAD > "$REPORT_DIR/QA_HEAD_SHA.txt"
+          sha256sum "$REPORT_DIR/KelimeAvi-V6-Completion-QA.apk" > "$REPORT_DIR/APK_SHA256.txt"
+          (cd android && ./gradlew --stop)
+
+      - name: Android emulator KVM erisimini hazirla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Gercek Android 16 B5/B10 completion akisini calistir
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 384M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            adb shell wm size 1080x1920
+            adb shell wm density 420
+            bash tools/qa/word_hunt_v6_completion_result_android16.sh
+            find "$REPORT_DIR" -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 \
+              | sort -z | xargs -0 sha256sum > "$REPORT_DIR/SHA256SUMS.txt"
+
+      - name: Android 16 kanitlarini yukle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-V6-Completion-Android16-${{ github.sha }}
+          path: reports/word_hunt_v6_completion_result/**
+          if-no-files-found: error
+          retention-days: 21
