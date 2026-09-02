@@ -70,8 +70,18 @@ Bu sonuç **MIXED** kabul edilir. Otomatik QA’nın 20/23 saniyelik scripted s�
 - QA APK: `com.leventua.bilgirotasi.wordhuntb5qa`, SHA-256 `9a83695e1c62323a2ce61697bdb59aab16d91c8393be74c2725e40c0cea5a1c2`.
 - Raw Android: `B5_64_CELL_RENDER=PASS`, `B5_FULL_RASTER_SCREENSHOT=PASS`, `PROCESS_FAILURE_SCAN=PASS`.
 - Artifact `9862719927`, digest `sha256:bccdf3f22b9a42a56624138ea57378ff8302caa147c3f9c7a8049b1f0385590c`.
-- Levent gerçek cihaz sonucu: **32 saniye / 2 hata / 7 target + bonus ANIT**.
-- 60 sn soft challenge süresi karşılandı; tuning amacı **PASS**. İki hata nedeniyle mevcut yıldız kuralıyla 1 yıldız gösterimi doğrudur.
+- Levent gerçek cihaz sonucu: **32 saniye / UI'da 2 hata / 7 target + bonus ANIT**.
+- Levent iki kaydın bilinçli yanlış seçim olmadığını; kaydırma sırasında fazla temas/taşma nedeniyle oluştuğunu bildirdi. İnsan niyeti açısından sonuç **0 gerçek hata**dır.
+- 60 sn soft challenge süresi karşılandı; B5 tuning amacı **PASS**. Ancak 1 yıldız sonucu mevcut sayacın mekanik çıktısıdır ve iki false-positive hata nedeniyle kullanıcı performansını doğru temsil etmez.
+
+### Swipe false-positive hata sayımı — AÇIK ÜRÜN HATASI
+
+- Mevcut runtime tek hücrelik tap/release seçimini `notAWord` olarak sayabilir.
+- Doğru kelime yolunun sonundan bir hücre taşan sürükleme bütün yolu `notAWord` yapabilir.
+- Listener aktif pointer kimliğini kilitlemediği için aynı gesture sırasında istenmeyen ek temas seçime karışabilir.
+- Önerilen dar tolerans sözleşmesi: tek hücre/kelime olamayacak kadar kısa gesture cezasız iptal; yalnız bir hücrelik trailing overshoot doğru ve henüz bulunmamış target/bonus oluşturuyorsa son hücreyi kırpıp kabul; gesture boyunca tek aktif pointer; diğer anlamlı yanlış düz seçimler hata kalır.
+- Geniş “en yakın kelimeyi kabul et” veya otomatik kelime bulma uygulanmayacak.
+- Çözüm engine kelime/path gerçeğini değiştirmeden input-normalization katmanında ve hedefli testlerle yapılmalıdır.
 
 ## Ölçeklenebilir üretim/test akışı
 
@@ -105,10 +115,11 @@ QA workflow/script dosyaları PR #163 ürün branch’ine taşınmadı; ürün d
 
 ## Kalan Gerçek Kapılar
 
-1. B5 tuning adayını PR #163 ürün hattına temiz biçimde taşımak — **AÇIK**; insan sonucu 32 sn / 2 hata PASS.
-2. `REFERENCE_FONT` exact kaynak bulunmadığı sürece DOĞRULANACAK/deferred.
-3. PR #161 / #162 / #163 Ready kararları ayrıca verilecek.
-4. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
-5. Merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
+1. Swipe false-positive hata sayımını hedefli input toleransıyla düzeltmek — **AÇIK**; B5 ekranda 2, gerçekte 0 bilinçli hata.
+2. B5 tuning adayını PR #163 ürün hattına temiz biçimde taşımak — **AÇIK**; 32 sn süre PASS.
+3. `REFERENCE_FONT` exact kaynak bulunmadığı sürece DOĞRULANACAK/deferred.
+4. PR #161 / #162 / #163 Ready kararları ayrıca verilecek.
+5. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
+6. Merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
 
-**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION PASS / B5 TUNING TEKNİK + İNSAN PASS / PAKET BAZLI TEST AKIŞI KABUL / PR #163 DRAFT / READY YOK / MERGE YOK.
+**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE FALSE-POSITIVE HATA SAYIMI AÇIK / PAKET BAZLI TEST AKIŞI KABUL / PR #163 DRAFT / READY YOK / MERGE YOK.

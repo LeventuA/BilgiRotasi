@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 3 Eylül 2026 — B5 tuning insan PASS / paket bazlı test kararı
+**Son güncelleme:** 3 Eylül 2026 — B5 swipe false-positive hata bildirimi
 
 ## Kelime Avı V6
 
@@ -22,8 +22,9 @@ Kapanan kabul/doğrulama kapıları:
 - Overall human timing: **MIXED**. Scripted QA 20/23 sn değerleri insan playtesti değildir.
 
 Açık kalanlar:
-- `B5_60S_TUNED_HUMAN_PLAYTEST` — Yeni 8×8 B5 yerleşim adayı (`44ebec6b...`): **32 sn / 2 hata / PASS — KAPANDI**.
+- `B5_60S_TUNED_HUMAN_PLAYTEST` — Yeni 8×8 B5 yerleşim adayı (`44ebec6b...`): **32 sn / süre PASS**. UI 2 hata kaydetti; Levent bilinçli yanlış seçim yapmadığını, parmak taşması/fazla temas olduğunu bildirdi.
 - `B5_60S_BALANCE_DECISION` — 60 sn soft hedefi karşılandı; aday kabul edildi. PR #163 ürünizasyonu: **AÇIK**.
+- `SWIPE_FALSE_POSITIVE_MISTAKES` — Tek hücre/kısa gesture, bir hücre trailing overshoot ve aktif pointer ayrımını input katmanında çöz; anlamlı gerçek yanlış seçim cezasını koru: **AÇIK**.
 - `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK altyapısı: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; custom font asset/source yok. Exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
 - `PR_161_READY_DECISION` — Parent V5 PR #161 Ready kararı: **AÇIK**.

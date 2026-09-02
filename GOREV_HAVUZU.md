@@ -1,12 +1,12 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 3 Eylül 2026 — B5 tuning insan PASS / paket bazlı test kararı
+**Son güncelleme:** 3 Eylül 2026 — B5 süre PASS / swipe false-positive hata açık
 
 > Root dosya mevcut V6 çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
 ## Aktif görev — Kelime Avı V6 final karar kapıları
 
-**Durum:** FOUND/ERROR/COMPACT COMPLETION KULLANICI PASS / B5 TUNING TEKNİK + İNSAN PASS / PAKET BAZLI TEST AKIŞI KABUL / READY-MERGE YOK
+**Durum:** FOUND/ERROR/COMPACT COMPLETION KULLANICI PASS / B5 SÜRE PASS / SWIPE FALSE-POSITIVE HATA AÇIK / PAKET BAZLI TEST AKIŞI KABUL / READY-MERGE YOK
 
 **Parent V5:** PR #161 — OPEN / DRAFT
 
@@ -40,12 +40,13 @@
 - B5: **115 sn / 2 hata**; 60 sn soft challenge hedefi → **HEDEF KARŞILANMADI**.
 - B10: **109 sn / 4 hata**; 120 sn soft challenge hedefi → **HEDEF KARŞILANDI**.
 - Overall: **MIXED**. Scripted Android QA süreleri insan playtesti değildir.
-- Yeni B5 tuning adayı: **32 sn / 2 hata**; 60 sn soft hedefi **KARŞILANDI / PASS**.
+- Yeni B5 tuning adayı: **32 sn / UI'da 2 hata**, fakat Levent iki kaydın parmak taşması/fazla temas olduğunu ve bilinçli yanlış seçim yapmadığını bildirdi. Süre **PASS**; gerçek niyet hatası **0**; input false-positive açık.
 
 ### Açık işler
 
-1. B5 tuning adayını exact içerik blobuyla PR #163 ürün hattına taşı. **AÇIK**.
-2. Sonraki 10 bölümlük paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA akışını uygula. **KABUL EDİLDİ / UYGULANACAK**.
+1. Swipe false-positive düzeltmesi: tek hücre/kısa gesture cezasız iptal, tek trailing-cell overshoot dar toleransı, tek aktif pointer ve gerçek yanlış seçim cezasını koruyan testli input katmanı. **AÇIK**.
+2. B5 tuning adayını exact içerik blobuyla PR #163 ürün hattına taşı. **AÇIK**.
+3. Sonraki 10 bölümlük paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA akışını uygula. **KABUL EDİLDİ / UYGULANACAK**.
 3. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
 4. PR #161 / #162 / #163 Ready kararı ayrı verilecek. **AÇIK**.
 5. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope. **AÇIK**.

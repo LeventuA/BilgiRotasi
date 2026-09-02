@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — V6 found/error/compact completion kullanıcı PASS. B5 yeni 8×8 tuning adayı Android 16 teknik PASS sonrasında Levent tarafından `32 sn / 2 hata` ile tamamlandı; 60 sn soft hedefi karşılandı ve aday kabul edildi. Bölüm başına ayrı branch/Action/APK/insan testi terk edildi; üretim/test birimi 10 bölümlük paket, insan örneklemesi B1+B5+B10, Android tam kapısı paket sonu/ortak runtime değişikliği/final release olarak kararlaştırıldı. PR #163 OPEN/DRAFT; Ready/merge yok.
+**Son güncelleme:** 3 Eylül 2026 — V6 found/error/compact completion kullanıcı PASS. B5 yeni 8×8 tuning adayı `32 sn` ile 60 sn hedefini karşıladı. UI 2 hata kaydetti fakat Levent bunların bilinçli yanlış seçim değil parmak taşması/fazla temas kaynaklı false-positive olduğunu bildirdi; gerçek niyet hatası 0. Swipe input toleransı açık ürün hatasıdır. Bölüm başına ayrı branch/Action/APK/insan testi terk edildi; üretim/test birimi 10 bölümlük paket olarak kararlaştırıldı. PR #163 OPEN/DRAFT; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -141,7 +141,14 @@ B5 60 sn soft challenge hard-fail değildir. Kullanıcıdan ayrıca tuning/denge
 - Korundu: 8×8/64 hücre, yedi target + bonus ANIT, 60 sn soft challenge, yıldız/hata eşikleri, tekil fiziksel yollar, yatay+dikey+çapraz yön aileleri.
 - Android 16 run `33670657723`: SUCCESS; analyze PASS; aday testleri 3/3 PASS; 64 hücre render + tam raster screenshot + process-failure scan PASS.
 - Artifact `9862719927`; APK SHA-256 `9a83695e1c62323a2ce61697bdb59aab16d91c8393be74c2725e40c0cea5a1c2`.
-- Levent insan testi: **32 sn / 2 hata**; 60 sn soft hedefi karşılandı, tuning adayı **PASS**.
+- Levent insan testi: **32 sn / UI 2 hata**; süre hedefi ve tuning adayı **PASS**. İki hata bilinçli yanlış seçim değildir; parmak taşması/fazla temas kaynaklı input false-positive olarak raporlandı.
+
+### Swipe input toleransı — AÇIK
+
+- Kodda pointer endpoint doğrudan hücreye çevriliyor; tek hücre tap/release `notAWord` sayılabiliyor ve doğru kelimeden bir hücre taşma bütün seçimi hataya çevirebiliyor.
+- Dar çözüm: kelime olamayacak kadar kısa gesture cezasız iptal; tam bir target/bonustan yalnız bir trailing hücre taşılmışsa son hücreyi kırpıp kabul; gesture boyunca tek aktif pointer.
+- Gerçek, yeterince uzun ve anlamlı yanlış düz seçim hata sayılmaya devam eder. “En yakın kelimeyi bul” türü geniş otomatik düzeltme yapılmaz.
+- Değişiklik path engine yerine input-normalization katmanında uygulanmalı ve paket bazlı Android kapısından önce hedefli widget/unit testleriyle doğrulanmalıdır.
 
 ## Paket bazlı üretim ve risk bazlı test — KALICI KARAR
 
@@ -156,11 +163,11 @@ B5 60 sn soft challenge hard-fail değildir. Kullanıcıdan ayrıca tuning/denge
 
 1. Her görev başında release branch, PR #163 head, `pubspec.yaml` ve PR durumunu canlı doğrula.
 2. Found-state, error-state ve compact completion kullanıcı görsel acceptance kapıları **KAPALI/PASS**; yeni belirti yoksa bunları yeniden test etme.
-3. Kabul edilen B5 tuning gridini PR #163 ürün hattına exact blob/scope kapısıyla taşı.
+3. Swipe false-positive input düzeltmesini hedefli testlerle uygula; ardından kabul edilen B5 tuning gridini PR #163 ürün hattına exact blob/scope kapısıyla taşı.
 4. B10 120 sn human playtest kapısı **PASS**.
 5. `REFERENCE_FONT` exact kaynak bulunmadığı sürece source limitation/deferred kalır; görseli spekülatif fontla değiştirme.
 6. PR #161 / #162 / #163 Ready kararları ayrı kullanıcı onayı ister.
 7. Merge yalnız Levent’in açık merge onayıyla yapılır.
 8. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
 
-**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 TUNING TEKNİK+İNSAN PASS / PAKET BAZLI QA KABUL / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.**
+**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE FALSE-POSITIVE HATA AÇIK / PAKET BAZLI QA KABUL / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.**
