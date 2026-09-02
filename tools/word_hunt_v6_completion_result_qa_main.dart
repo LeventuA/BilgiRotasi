@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bilgi_rotasi/word_hunt/word_hunt_models.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_screens.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_starter_content.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +51,8 @@ class _CompletionQaSelector extends StatelessWidget {
 
   Future<void> _open(BuildContext context, int levelIndex) async {
     debugPrint('[COMP_QA_OPEN] level=$levelIndex');
-    await Navigator.of(context).push<WordHuntLevelResult>(
-      MaterialPageRoute<WordHuntLevelResult>(
+    await Navigator.of(context).push<Object?>(
+      MaterialPageRoute<Object?>(
         builder: (_) => _CompletionQaLevel(levelIndex: levelIndex),
       ),
     );
