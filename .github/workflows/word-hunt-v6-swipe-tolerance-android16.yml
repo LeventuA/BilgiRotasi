@@ -1,0 +1,118 @@
+name: Kelime Avi V6 swipe tolerance Android 16
+
+on:
+  push:
+    branches:
+      - integrate/kelime-avi-v6-b5-swipe-20260903
+    paths:
+      - .github/workflows/word-hunt-v6-swipe-tolerance-android16.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android-proof:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    env:
+      EXPECTED_INPUT_BLOB: 547ee0b54aa1cb2d922717b848334af9f09565b5
+      EXPECTED_SCREEN_BLOB: 607121ba6526b73e34e9f8e77b67c6ac9ee77d4b
+      EXPECTED_STARTER_BLOB: a408ea631d267c6763baa3642ab4b92171eeafc8
+      QA_PACKAGE: com.leventua.bilgirotasi.wordhuntswipeqa
+      REPORT_DIR: reports/word_hunt_v6_swipe_tolerance
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify exact product blobs and focused gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          test "$(git hash-object lib/word_hunt/word_hunt_input.dart)" = "$EXPECTED_INPUT_BLOB"
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$EXPECTED_SCREEN_BLOB"
+          test "$(git hash-object lib/word_hunt/word_hunt_starter_content.dart)" = "$EXPECTED_STARTER_BLOB"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          bash -n tools/qa/word_hunt_v6_swipe_tolerance_android16.sh
+          flutter pub get
+          dart analyze lib/word_hunt tools/word_hunt_v6_swipe_tolerance_qa_main.dart
+          flutter test test/word_hunt_*_test.dart --reporter expanded 2>&1 | tee "$REPORT_DIR/FOCUSED_TESTS.txt"
+          git diff --check
+
+      - name: Build distinct-package QA APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp android/app/build.gradle.kts /tmp/build.gradle.kts.original
+          cp android/app/src/main/AndroidManifest.xml /tmp/AndroidManifest.xml.original
+          python3 - <<'PY'
+          from pathlib import Path
+          gradle = Path('android/app/build.gradle.kts')
+          text = gradle.read_text(encoding='utf-8')
+          plugin = '    id("com.google.gms.google-services")\n'
+          if text.count(plugin) != 1:
+              raise SystemExit('google-services plugin count mismatch')
+          text = text.replace(plugin, '')
+          old_id = '        applicationId = "com.leventua.bilgirotasi"'
+          new_id = '        applicationId = "com.leventua.bilgirotasi.wordhuntswipeqa"'
+          if text.count(old_id) != 1:
+              raise SystemExit('applicationId count mismatch')
+          gradle.write_text(text.replace(old_id, new_id), encoding='utf-8')
+
+          manifest = Path('android/app/src/main/AndroidManifest.xml')
+          mtext = manifest.read_text(encoding='utf-8')
+          old_label = 'android:label="Bilgi Rotası"'
+          new_label = 'android:label="Kelime Avı Swipe QA"'
+          if mtext.count(old_label) != 1:
+              raise SystemExit('application label count mismatch')
+          manifest.write_text(mtext.replace(old_label, new_label), encoding='utf-8')
+          PY
+          flutter build apk --debug -t tools/word_hunt_v6_swipe_tolerance_qa_main.dart --dart-define=ADMOB_ENVIRONMENT=test
+          cp build/app/outputs/flutter-apk/app-debug.apk "$REPORT_DIR/KelimeAvi-V6-Swipe-Tolerance-QA.apk"
+          sha256sum "$REPORT_DIR/KelimeAvi-V6-Swipe-Tolerance-QA.apk" | tee "$REPORT_DIR/APK_SHA256.txt"
+          cp /tmp/build.gradle.kts.original android/app/build.gradle.kts
+          cp /tmp/AndroidManifest.xml.original android/app/src/main/AndroidManifest.xml
+          test -z "$(git status --porcelain -- android)"
+          (cd android && ./gradlew --stop)
+
+      - name: Prepare KVM
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+
+      - name: Android 16 real overshoot gesture proof
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 3072M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: bash tools/qa/word_hunt_v6_swipe_tolerance_android16.sh
+
+      - name: Upload APK and raw Android proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kelime-Avi-V6-Swipe-Tolerance-Android16
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: error
+          retention-days: 7
