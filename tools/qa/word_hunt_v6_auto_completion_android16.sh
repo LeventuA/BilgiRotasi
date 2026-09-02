@@ -67,8 +67,7 @@ capture_rich_render() {
 }
 
 tap_return_route() {
-  local xml="$1"
-  local coords
+  local xml="$1" coords
   coords="$(python3 - "$xml" <<'PY'
 import re
 import sys
@@ -91,33 +90,16 @@ PY
 
 play_level() {
   local level="$1" tag="$2"
-  adb logcat -c
-  sleep 0.2
-  # Selector geometry is emitted after every return; force a fresh frame if needed.
-  adb shell input keyevent KEYCODE_WAKEUP >/dev/null 2>&1 || true
-  local i
-  for i in $(seq 1 40); do
-    if adb logcat -d | grep -Fq '[WORD_HUNT_V6_AUTO_QA_SELECTOR_READY]'; then
-      break
-    fi
-    sleep 0.25
-  done
-  if ! adb logcat -d | grep -Fq '[WORD_HUNT_V6_AUTO_QA_SELECTOR_READY]'; then
-    # Clearing logcat may race the selector's first marker. Relaunch only before
-    # the first play; subsequent calls get a marker from route return.
-    if [ "$tag" = '01_B5' ]; then
-      adb shell monkey -p "$QA_PACKAGE" -c android.intent.category.LAUNCHER 1 >/dev/null
-      wait_for_log '[WORD_HUNT_V6_AUTO_QA_SELECTOR_READY]'
-    else
-      echo 'Selector did not become ready after route return.' >&2
-      return 1
-    fi
-  fi
+  wait_for_log '[WORD_HUNT_V6_AUTO_QA_SELECTOR_READY]'
 
   local x y
   x="$(selector_coordinate "$level" x)"
   y="$(selector_coordinate "$level" y)"
+
+  # Start a fresh per-level log only after selector coordinates are captured.
+  adb logcat -c
   adb shell input tap "$x" "$y"
+  wait_for_log "[WORD_HUNT_V6_AUTO_QA_OPEN] level=$level"
   wait_for_log "[WORD_HUNT_V6_AUTO_QA_READY] level=$level "
   adb logcat -d > "$REPORT_DIR/${tag}_READY_LOGCAT.txt"
 
@@ -142,6 +124,9 @@ play_level() {
   capture_rich_render "${tag}_RESULT.png"
   adb logcat -d > "$REPORT_DIR/${tag}_RESULT_LOGCAT.txt"
   printf '%s_AUTO_DIALOG=PASS\n' "$tag" >> "$REPORT_DIR/AUTO_COMPLETION_GATE.txt"
+
+  # Clear before closing so the next selector marker is guaranteed fresh.
+  adb logcat -c
   tap_return_route "$REPORT_DIR/${tag}_RESULT_UI.xml"
   wait_for_log '[WORD_HUNT_V6_AUTO_QA_SELECTOR_READY]'
   sleep 0.4
@@ -155,7 +140,7 @@ adb logcat -c
 adb shell monkey -p "$QA_PACKAGE" -c android.intent.category.LAUNCHER 1 >/dev/null
 wait_for_log '[WORD_HUNT_V6_AUTO_QA_SELECTOR_READY]'
 
-# Do not capture selector screenshots; only real gameplay result dialogs are evidence.
+# Never capture selector screenshots; only real result dialogs are evidence.
 play_level 5 '01_B5'
 play_level 10 '02_B10'
 play_level 5 '03_B5_REPLAY'
