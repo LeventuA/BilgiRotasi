@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — V6 found/error/compact completion kullanıcı PASS. B5 yeni 8×8 tuning adayı `32 sn` ile 60 sn hedefini karşıladı. UI 2 false-positive kaydetti; swipe input toleransı `fix/kelime-avi-swipe-tolerance-20260903` üzerinde kodlandı, focused CI bekliyor. Bölüm başına ayrı branch/Action/APK/insan testi terk edildi; üretim/test birimi 10 bölümlük paket. PR #163 OPEN/DRAFT; Ready/merge yok.
+**Son güncelleme:** 3 Eylül 2026 — V6 found/error/compact completion kullanıcı PASS. B5 yeni 8×8 tuning adayı `32 sn` ile 60 sn hedefini karşıladı. Swipe false-positive toleransı PR #166 üzerinde focused analyze/test PASS aldı. WORK V2 hızlı otonom üretim modeli ve otomatik Kelime Avı fast gate devrede. PR #163 OPEN/DRAFT; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -143,13 +143,17 @@ B5 60 sn soft challenge hard-fail değildir. Kullanıcıdan ayrıca tuning/denge
 - Artifact `9862719927`; APK SHA-256 `9a83695e1c62323a2ce61697bdb59aab16d91c8393be74c2725e40c0cea5a1c2`.
 - Levent insan testi: **32 sn / UI 2 hata**; süre hedefi ve tuning adayı **PASS**. İki hata bilinçli yanlış seçim değildir; parmak taşması/fazla temas kaynaklı input false-positive olarak raporlandı.
 
-### Swipe input toleransı — KODLANDI / CI BEKLİYOR
+### Swipe input toleransı — FOCUSED CI PASS
 
-- Uygulama commit’i `8610b01e7ac534def33c0125bc2b9185d2774f5d`; Draft PR #166 OPEN, merge yok.
+- Uygulama commit’i `8610b01e7ac534def33c0125bc2b9185d2774f5d`; güncel branch HEAD `7c0affbe2d1e297eba9bca95086debfef136b218`; Draft PR #166 OPEN, merge yok.
 - Kodda pointer endpoint doğrudan hücreye çevriliyor; tek hücre tap/release `notAWord` sayılabiliyor ve doğru kelimeden bir hücre taşma bütün seçimi hataya çevirebiliyor.
 - Dar çözüm input-normalization katmanında kodlandı: kelime olamayacak kadar kısa gesture cezasız iptal; yalnız son hücre çıkarıldığında exact target/bonus/already-found oluşuyorsa kırpıp kabul; gesture boyunca tek aktif pointer.
 - Gerçek, yeterince uzun ve anlamlı yanlış düz seçim hata sayılmaya devam eder. “En yakın kelimeyi bul” türü geniş otomatik düzeltme yapılmaz.
-- Path engine değiştirilmedi; dört resolver testi ve kısa temas/tek taşma/çoklu pointer widget regresyonları eklendi. Yerel SDK ve açık GitHub tarayıcı oturumu olmadığı için executable CI/analyze sonucu bekleniyor; `git diff --check` PASS, Android/APK üretilmedi.
+- Path engine değiştirilmedi; dört resolver testi ve kısa temas/tek taşma/çoklu pointer widget regresyonları eklendi.
+- Manuel Quality Checks run `33688295877`: analyze PASS; toplam 454 test PASS, yeni B5 yerleşimini hâlâ eski koordinatlarla çağıran üç tarihsel test FAIL. Ürün davranışı değil fixture/gesture beklentisi olduğu doğrulandı ve düzeltildi.
+- Otomatik `Kelime Avi Fast Checks` run `33688788065`: **SUCCESS**. `Kelime Avi analyze`, odaklı Kelime Avı testleri ve diff whitespace kapısı PASS. Job `100442465883`.
+- `.github/workflows/word-hunt-fast-checks.yml`, ilgili Kelime Avı dosyaları değişen PR push'larında otomatik tetiklenir; kullanıcıdan workflow başlatması beklenmez.
+- Android/APK bu focused doğrulamada üretilmedi; engine/ortak UI değişikliği olduğu için ürün entegrasyonu sonrasında tek toplu Android kapısı çalıştırılacaktır.
 
 ## Paket bazlı üretim ve risk bazlı test — KALICI KARAR
 
@@ -164,11 +168,11 @@ B5 60 sn soft challenge hard-fail değildir. Kullanıcıdan ayrıca tuning/denge
 
 1. Her görev başında release branch, PR #163 head, `pubspec.yaml` ve PR durumunu canlı doğrula.
 2. Found-state, error-state ve compact completion kullanıcı görsel acceptance kapıları **KAPALI/PASS**; yeni belirti yoksa bunları yeniden test etme.
-3. Swipe false-positive branch’inin focused CI/analyze sonucunu kapat; ardından kabul edilen B5 tuning gridini PR #163 ürün hattına exact blob/scope kapısıyla taşı.
+3. Swipe focused CI/analyze kapısı **PASS**; kabul edilen B5 tuning gridini ve swipe toleransını PR #163 ürün hattı tabanlı temiz entegrasyon branch'ine exact blob/scope kapısıyla taşı.
 4. B10 120 sn human playtest kapısı **PASS**.
 5. `REFERENCE_FONT` exact kaynak bulunmadığı sürece source limitation/deferred kalır; görseli spekülatif fontla değiştirme.
 6. PR #161 / #162 / #163 Ready kararları ayrı kullanıcı onayı ister.
 7. Merge yalnız Levent’in açık merge onayıyla yapılır.
 8. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
 
-**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE TOLERANSI KODLANDI-CI BEKLİYOR / PAKET BAZLI QA KABUL / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.**
+**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE TOLERANSI FOCUSED CI PASS / WORK V2 + OTOMATİK FAST GATE AKTİF / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.**

@@ -1,6 +1,6 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 3 Eylül 2026 — swipe toleransı kodlandı / focused CI bekliyor
+**Son güncelleme:** 3 Eylül 2026 — swipe toleransı focused CI PASS / ürün entegrasyonu sırada
 
 > Root dosya mevcut V6 çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
@@ -44,8 +44,8 @@
 
 ### Açık işler
 
-1. Swipe false-positive düzeltmesi kodlandı: commit `8610b01e...`, Draft PR #166 OPEN. Kısa gesture cezasız iptal, exact kelimede tek trailing-cell toleransı, tek aktif pointer ve gerçek yanlış seçim cezası. Unit/widget regresyonları eklendi; focused CI/analyze çalıştırılacak. **KODLANDI / CI BEKLİYOR**.
-2. B5 tuning adayını exact içerik blobuyla PR #163 ürün hattına taşı. **AÇIK**.
+1. Swipe false-positive düzeltmesi kodlandı: commit `8610b01e...`, güncel HEAD `7c0affbe...`, Draft PR #166 OPEN. Kısa gesture cezasız iptal, exact kelimede tek trailing-cell toleransı, tek aktif pointer ve gerçek yanlış seçim cezası. Otomatik focused run `33688788065` analyze/test/diff kapıları **PASS**.
+2. B5 tuning + swipe düzeltmesini exact ürün/test bloblarıyla PR #163 tabanlı temiz entegrasyon branch'ine taşı. **AÇIK**.
 3. Sonraki 10 bölümlük paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA akışını uygula. **KABUL EDİLDİ / UYGULANACAK**.
 4. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
 5. PR #161 / #162 / #163 Ready kararı ayrı verilecek. **AÇIK**.
