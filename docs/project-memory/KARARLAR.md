@@ -167,3 +167,23 @@ Kelime Avı / Başlangıç Limanı gameplay ekranında bağlayıcı görsel kayn
 - Temiz ürün branch `fix/kelime-avi-v6-found-path-connector-product-20260901`; ürün commit `217beb83c31976436a6f26ec43ae4e35a0c7f05c` aynı exact `f43deaad...` blob’u taşır.
 - Draft PR #163 kullanıcı görsel PASS aldı fakat **Ready veya merge otomatik değildir**.
 - Merge için Levent’in ayrıca açık merge onayı zorunludur.
+
+---
+
+## 11. 2 Eylül 2026 — V6 error + completion + kompakt sonuç popup kabulü
+
+Bu bölüm, 31 Ağustos kayıtlarındaki `ERROR_STATE_VISUAL = DOĞRULANACAK` durumunu güncel kabul kararıyla supersede eder. `REFERENCE_FONT` kaynak yetersizliği nedeniyle ayrı olarak açık/deferred kalır.
+
+- Error-state kullanıcı görsel kabulü **PASS**: fill `0xB35A1F2B`, border `0xFFFF6B57`; 280 ms geri bildirim değişmedi; Android 16 run `33524578623` SUCCESS.
+- Completion davranış sözleşmesi: ana hedefler tamam fakat bonus eksikse otomatik sonuç popup’ı açılmaz; oyuncu bonusu aramaya devam edebilir ve manuel `Bölümü Tamamla` yolu korunur. Tüm target+bonus tamamlandığında popup otomatik açılır. Yeni/fresh bölüm oturumunda completion popup yeniden tetiklenebilir.
+- Completion UI standart Material/mavi dialog değildir; Başlangıç Limanı lacivert/bronze/altın görsel diline ait premium sonuç panelidir.
+- Kullanıcı, büyük ilk tasarımı beğendi ancak kaba/büyük buldu; popup yaklaşık %20 kompaktlaştırıldı. Kabul edilen compact parametreler: `maxWidth: 300`, padding `18/15/18/15`, result button height `44`.
+- Exact compact tested product commit: `7fa81663cb93c3f9f43b5c1bb7cd8f4d11929fd8`.
+- Exact compact tested `word_hunt_screens.dart` blob: `6ce2830a7df8eb696a9df589c91c544df7712969`.
+- Static/productize run `33629855060`: SUCCESS; analyze + Word Hunt **139/139 PASS**.
+- Final clean Android 16 compact run `33655562508`: **SUCCESS**. B5 target-only no-dialog, B5 all-words auto-dialog, B5 fresh replay auto-dialog, B10 target-only no-dialog, B10 all-words auto-dialog ve process failure scan PASS.
+- Raw Android B5/B10 kompakt popup ekranları Levent’e gösterildi ve **PASS** verildi.
+- Exact tested compact blob PR #163 ürün branch’ine QA-only dosya taşınmadan productize edildi: commit `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`; branch `fix/kelime-avi-v6-found-path-connector-product-20260901`; blob exact `6ce2830...`.
+- İnsan süre-zorluk playtesti scripted QA’dan ayrı tutulur: Levent B5’i **115 sn / 2 hata** ile tamamladı; 60 sn soft challenge hedefi karşılanmadı. B10’u **109 sn / 4 hata** ile tamamladı; 120 sn soft challenge hedefi karşılandı. Overall timing sonucu **MIXED**; B5 tuning kararı ayrıca verilecektir.
+- Soft challenge hard-fail değildir; yalnız bu ölçüm nedeniyle timer/gameplay otomatik değiştirilmez.
+- PR #163 **Draft/Open** kalır; görsel PASS Ready veya merge onayı değildir. Merge için Levent’in ayrıca açık onayı zorunludur.

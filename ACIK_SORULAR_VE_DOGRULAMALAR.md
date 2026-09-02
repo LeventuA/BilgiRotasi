@@ -1,29 +1,34 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 1 Eylül 2026
+**Son güncelleme:** 2 Eylül 2026
 
 ## Kelime Avı V6
 
-Kapanan görsel kabul kapıları:
-- `USER_VISUAL_ACCEPTANCE_INITIAL` — Raw Android 16 B10 initial görüntüsü Levent görsel kabulü: **PASS / KAPANDI — 1 Eylül 2026**.
-- `USER_VISUAL_ACCEPTANCE_FOUND` — Raw Android 16 B10 `YOL / 1/9` edge-fuse found-state Levent görsel kabulü: **PASS / KAPANDI — 1 Eylül 2026**.
-- Kanıt run: `33486609120` — SUCCESS; artifact `9792346079`; exact tested blob `f43deaad5328f6263f9479de1738cc1f4ac465e0`.
+Kapanan kabul/doğrulama kapıları:
+- `USER_VISUAL_ACCEPTANCE_INITIAL` — Raw Android initial görünüm: **PASS / KAPANDI**.
+- `USER_VISUAL_ACCEPTANCE_FOUND` — Edge-fuse found-state: **PASS / KAPANDI**; Android 16 run `33486609120`.
+- `ERROR_STATE_VISUAL` — Bordo/kırmızı error-state: **PASS / KAPANDI**; Android 16 run `33524578623`; fill `0xB35A1F2B`, border `0xFFFF6B57`, 280 ms unchanged.
+- `COMPLETION_AUTO_REPLAY` — Tüm target+bonus tamamlanınca otomatik popup ve fresh replay’de yeniden tetikleme: **PASS / KAPANDI**.
+- `COMPLETION_POPUP_VISUAL` — Premium liman temalı sonuç popup’ı: **PASS / KAPANDI**.
+- `COMPLETION_POPUP_COMPACT_VISUAL` — Kullanıcı isteğiyle küçültülen kompakt sonuç popup’ı: **PASS / KAPANDI — 2 Eylül 2026**.
+- Exact compact tested commit: `7fa81663cb93c3f9f43b5c1bb7cd8f4d11929fd8`.
+- Exact compact tested/product blob: `6ce2830a7df8eb696a9df589c91c544df7712969`.
+- Final clean Android 16 compact run: `33655562508` — **SUCCESS**.
+- PR #163 ürünizasyon commit: `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`.
+
+İnsan süre-zorluk doğrulaması:
+- `B5_60S_HUMAN_PLAYTEST` — **115 sn / 2 hata**; 60 sn soft challenge hedefi **KARŞILANMADI**. Test tamamlandı, denge kararı açık.
+- `B10_120S_HUMAN_PLAYTEST` — **109 sn / 4 hata**; 120 sn soft challenge hedefi **KARŞILANDI / PASS**.
+- Overall human timing: **MIXED**. Scripted QA 20/23 sn değerleri insan playtesti değildir.
 
 Açık kalanlar:
-- `ERROR_STATE_VISUAL` — Hatalı seçim durumunun referansla görsel eşleşmesi: **DOĞRULANACAK**.
-- `REFERENCE_FONT` — Referanstaki exact font ailesi/weight sözleşmesi: **DOĞRULANACAK**.
-- `B5_60S_HUMAN_PLAYTEST` — Gerçek insan süre-zorluk dengesi: **AÇIK**.
-- `B10_120S_HUMAN_PLAYTEST` — Gerçek insan süre-zorluk dengesi: **AÇIK**.
-- `PR_161_READY_DECISION` — Parent V5 integration PR #161 Ready kararı: **AÇIK**.
+- `B5_60S_BALANCE_DECISION` — B5 60 sn soft challenge hedefi korunacak mı/tune edilecek mi: **AÇIK**.
+- `REFERENCE_FONT` — Runtime generic `serif`; custom font asset/source yok. Exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
+- `PR_161_READY_DECISION` — Parent V5 PR #161 Ready kararı: **AÇIK**.
 - `PR_162_READY_DECISION` — V6 visual PR #162 Ready kararı: **AÇIK**.
-- `PR_163_READY_DECISION` — Edge-fuse PR #163 Ready kararı: **AÇIK**.
+- `PR_163_READY_DECISION` — Güncel V6 ürün PR #163 Ready kararı: **AÇIK**.
 - `PRODUCTION_MAIN_NAVIGATION` — `lib/main.dart` production ana navigasyon entegrasyonu ayrı scope: **AÇIK**.
-
-Kaynak konumları doğrulandı:
-- Kanonik karar dosyası: `docs/project-memory/KARARLAR.md`.
-- Ayrıntılı görev geçmişi: `docs/project-memory/GOREV_HAVUZU.md` + Git geçmişi.
-- Ayrıntılı devir: `docs/project-memory/GENEL_PROJE_OZETI.md`.
 
 ## Merge güvenliği
 
-PR #161, #162 veya #163, Levent’in ayrı ve açık merge onayı olmadan merge edilmeyecek. Görsel PASS, merge onayı değildir.
+PR #161, #162 veya #163, Levent’in ayrı ve açık merge onayı olmadan merge edilmeyecek. Görsel PASS, Ready veya merge onayı değildir.
