@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 2 Eylül 2026 — B5 60 sn yerleşim adayı Android 16 teknik PASS
+**Son güncelleme:** 3 Eylül 2026 — B5 tuning insan PASS; paket bazlı test akışı kabul edildi
 
 ## Canlı Sürüm / Release Hattı
 
@@ -70,7 +70,17 @@ Bu sonuç **MIXED** kabul edilir. Otomatik QA’nın 20/23 saniyelik scripted s�
 - QA APK: `com.leventua.bilgirotasi.wordhuntb5qa`, SHA-256 `9a83695e1c62323a2ce61697bdb59aab16d91c8393be74c2725e40c0cea5a1c2`.
 - Raw Android: `B5_64_CELL_RENDER=PASS`, `B5_FULL_RASTER_SCREENSHOT=PASS`, `PROCESS_FAILURE_SCAN=PASS`.
 - Artifact `9862719927`, digest `sha256:bccdf3f22b9a42a56624138ea57378ff8302caa147c3f9c7a8049b1f0385590c`.
-- Adayın gerçek insan süresi henüz ölçülmedi: `HUMAN_TIMING_RESULT=PENDING_USER_PLAYTEST`.
+- Levent gerçek cihaz sonucu: **32 saniye / 2 hata / 7 target + bonus ANIT**.
+- 60 sn soft challenge süresi karşılandı; tuning amacı **PASS**. İki hata nedeniyle mevcut yıldız kuralıyla 1 yıldız gösterimi doğrudur.
+
+## Ölçeklenebilir üretim/test akışı
+
+- Her bölüm için ayrı branch/Action/APK/insan testi yapılmayacak.
+- Üretim birimi 10 bölümlük rota/pakettir; 10 bölüm tek içerik branch’inde geliştirilir.
+- Her bölüm otomatik grid/kelime/yol/timer/render sözleşme testinden geçer.
+- Varsayılan insan örneklemesi: B1 + B5 + B10; yalnız otomatik outlier bulunan bölüm ayrıca oynanır.
+- Tek Android 16 paket kapısı 10 bölüm tamamlanınca çalışır. Engine/ortak UI değişikliği ve final release ayrıca tam Android kapısı gerektirir.
+- Paket QA APK’sı B1–B10 bölüm seçici taşır; bölüm başına ayrı APK üretilmez.
 
 ## Reference font
 
@@ -95,10 +105,10 @@ QA workflow/script dosyaları PR #163 ürün branch’ine taşınmadı; ürün d
 
 ## Kalan Gerçek Kapılar
 
-1. B5 60 sn yerleşim adayını gerçek cihazda oynayıp süre/hata sonucunu ölçme — **AÇIK**; eski yerleşim sonucu 115 sn / 2 hata.
+1. B5 tuning adayını PR #163 ürün hattına temiz biçimde taşımak — **AÇIK**; insan sonucu 32 sn / 2 hata PASS.
 2. `REFERENCE_FONT` exact kaynak bulunmadığı sürece DOĞRULANACAK/deferred.
 3. PR #161 / #162 / #163 Ready kararları ayrıca verilecek.
 4. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
 5. Merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
 
-**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION RAW ANDROID GÖRSEL PASS / B5 TUNING ADAYI ANDROID TEKNİK PASS, İNSAN TESTİ BEKLİYOR / PR #163 DRAFT / READY YOK / MERGE YOK.
+**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION PASS / B5 TUNING TEKNİK + İNSAN PASS / PAKET BAZLI TEST AKIŞI KABUL / PR #163 DRAFT / READY YOK / MERGE YOK.

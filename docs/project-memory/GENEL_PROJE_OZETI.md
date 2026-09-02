@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 2 Eylül 2026 — V6 found/error/compact completion kullanıcı PASS. Eski B5 insan sonucu `115 sn / 2 hata` sonrasında sekiz kelimeyi ve 60 sn sözleşmesini koruyan yeni 8×8 yerleşim adayı üretildi. Aday ürün commit `44ebec6b830a288df66f4fa16e2611dfa2165bae`; tuning branch HEAD `5ef394e784051e9b955e99fb3382f523fb8413d3`; Android 16 run `33670657723` SUCCESS. Teknik kapılar PASS, yeni adayın insan süre/hata testi bekliyor. PR #163 OPEN/DRAFT; Ready/merge yok.
+**Son güncelleme:** 3 Eylül 2026 — V6 found/error/compact completion kullanıcı PASS. B5 yeni 8×8 tuning adayı Android 16 teknik PASS sonrasında Levent tarafından `32 sn / 2 hata` ile tamamlandı; 60 sn soft hedefi karşılandı ve aday kabul edildi. Bölüm başına ayrı branch/Action/APK/insan testi terk edildi; üretim/test birimi 10 bölümlük paket, insan örneklemesi B1+B5+B10, Android tam kapısı paket sonu/ortak runtime değişikliği/final release olarak kararlaştırıldı. PR #163 OPEN/DRAFT; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -141,17 +141,26 @@ B5 60 sn soft challenge hard-fail değildir. Kullanıcıdan ayrıca tuning/denge
 - Korundu: 8×8/64 hücre, yedi target + bonus ANIT, 60 sn soft challenge, yıldız/hata eşikleri, tekil fiziksel yollar, yatay+dikey+çapraz yön aileleri.
 - Android 16 run `33670657723`: SUCCESS; analyze PASS; aday testleri 3/3 PASS; 64 hücre render + tam raster screenshot + process-failure scan PASS.
 - Artifact `9862719927`; APK SHA-256 `9a83695e1c62323a2ce61697bdb59aab16d91c8393be74c2725e40c0cea5a1c2`.
-- Teknik PASS, denge kabulü değildir. Yeni adayın gerçek insan süre/hata ölçümü bekleniyor.
+- Levent insan testi: **32 sn / 2 hata**; 60 sn soft hedefi karşılandı, tuning adayı **PASS**.
+
+## Paket bazlı üretim ve risk bazlı test — KALICI KARAR
+
+- Bir rota/paket 10 bölüm olarak tek içerik branch’inde üretilir; bölüm başına branch/Android Action/APK yapılmaz.
+- Tüm bölümler otomatik 8×8, kelime sayısı, exactly-one occurrence, yön, reverse gesture, timer/yıldız ve render kapılarından geçer.
+- İnsan denge örneklemesi varsayılan B1+B5+B10’dur; otomatik outlier varsa yalnız ilgili ek bölüm oynanır.
+- Ortak gameplay görseli onaylıysa salt içerik değişikliklerinde yeniden görsel kabul istenmez.
+- Android 16 tam runtime: paket tamamlanınca, engine/ortak UI değişince ve release entegrasyonu öncesinde çalışır.
+- Tek paket QA APK’sı B1–B10 seçici taşır. Hata yalnız ilgili bölümde düzeltilir; bütün paket yeniden üretilmez.
 
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
 1. Her görev başında release branch, PR #163 head, `pubspec.yaml` ve PR durumunu canlı doğrula.
 2. Found-state, error-state ve compact completion kullanıcı görsel acceptance kapıları **KAPALI/PASS**; yeni belirti yoksa bunları yeniden test etme.
-3. Yeni B5 tuning adayını gerçek cihazda oynayıp süre/hata ölç; sonra kabul/red ve PR #163 üstüne ürünizasyon kararı ver.
+3. Kabul edilen B5 tuning gridini PR #163 ürün hattına exact blob/scope kapısıyla taşı.
 4. B10 120 sn human playtest kapısı **PASS**.
 5. `REFERENCE_FONT` exact kaynak bulunmadığı sürece source limitation/deferred kalır; görseli spekülatif fontla değiştirme.
 6. PR #161 / #162 / #163 Ready kararları ayrı kullanıcı onayı ister.
 7. Merge yalnız Levent’in açık merge onayıyla yapılır.
 8. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
 
-**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 TUNING ADAYI ANDROID TEKNİK PASS, İNSAN TESTİ BEKLİYOR / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.**
+**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 TUNING TEKNİK+İNSAN PASS / PAKET BAZLI QA KABUL / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.**
