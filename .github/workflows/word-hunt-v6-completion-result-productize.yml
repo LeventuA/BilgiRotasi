@@ -1,0 +1,92 @@
+name: Kelime Avi V6 completion result productize
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v6-completion-result-android16-20260902
+    paths:
+      - .github/workflows/word-hunt-v6-completion-result-productize.yml
+      - tools/qa/patch_word_hunt_v6_completion_result.py
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-productize:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    env:
+      BASE_SHA: 4ddeff9e1f76167037756c430f6b61d6c0dd284c
+      BASE_SCREEN_BLOB: fd4f830adf6d3c6c7ea6b4eaf2777fb7cedda9d1
+      PRODUCT_BRANCH: fix/kelime-avi-v6-completion-result-20260902
+    steps:
+      - name: Checkout QA branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify exact accepted V6 base
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor "$BASE_SHA" HEAD
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$BASE_SCREEN_BLOB"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          python3 -m py_compile tools/qa/patch_word_hunt_v6_completion_result.py
+
+      - name: Apply completion behavior and harbor result panel candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/qa/patch_word_hunt_v6_completion_result.py
+          dart format lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart
+          git diff --check
+          changed="$(git diff --name-only -- lib test | sort)"
+          expected=$'lib/word_hunt/word_hunt_screens.dart\ntest/word_hunt_level_production_test.dart'
+          test "$changed" = "$expected"
+
+      - name: Analyze and focused Word Hunt suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_*_test.dart --reporter expanded 2>&1 | tee /tmp/word_hunt_completion_tests.txt
+          grep -Fq 'All tests passed!' /tmp/word_hunt_completion_tests.txt
+
+      - name: Validate completion contract markers
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'bool get _allWordsFound => _allTargetsFound && _allBonusFound;' lib/word_hunt/word_hunt_screens.dart
+          grep -Fq '_scheduleAutoCompletionIfAllWordsFound();' lib/word_hunt/word_hunt_screens.dart
+          grep -Fq "word_hunt_production_result_panel" lib/word_hunt/word_hunt_screens.dart
+          grep -Fq "expect(find.byType(AlertDialog), findsNothing);" test/word_hunt_level_production_test.dart
+          grep -Fq 'tüm kelimeler tamamlanınca sonuç dialogu yeni oturumda yeniden açılır' test/word_hunt_level_production_test.dart
+
+      - name: Commit exact tested product files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --binary -- lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart > /tmp/completion-result.patch
+          test -s /tmp/completion-result.patch
+          git fetch origin "$PRODUCT_BRANCH:$PRODUCT_BRANCH"
+          git checkout "$PRODUCT_BRANCH"
+          test "$(git rev-parse HEAD)" = "$BASE_SHA"
+          git apply /tmp/completion-result.patch
+          changed="$(git status --porcelain | awk '{print $2}' | sort)"
+          expected=$'lib/word_hunt/word_hunt_screens.dart\ntest/word_hunt_level_production_test.dart'
+          test "$changed" = "$expected"
+          git diff --check
+          git config user.name 'ZMilaStudio'
+          git config user.email 'levent.ua@gmail.com'
+          git add lib/word_hunt/word_hunt_screens.dart test/word_hunt_level_production_test.dart
+          git commit -m 'fix(kelime-avi): stabilize and restyle completion result [skip ci]'
+          git push origin HEAD:"$PRODUCT_BRANCH"
