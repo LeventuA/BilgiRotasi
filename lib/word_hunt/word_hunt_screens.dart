@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'word_hunt_input.dart';
 import 'word_hunt_models.dart';
 import 'word_hunt_path.dart';
 import 'word_hunt_progress.dart';
@@ -61,6 +62,7 @@ class _WordHuntLevelProductionScreenState
 
   List<WordHuntCell> _selectedPath = const <WordHuntCell>[];
   WordHuntCell? _dragStart;
+  int? _activePointer;
   Timer? _timer;
   Timer? _errorFeedbackTimer;
   late final DateTime _startedAt;
@@ -176,11 +178,14 @@ class _WordHuntLevelProductionScreenState
     );
   }
 
-  void _pointerDown(Offset position, Size size) {
-    if (_resultDelivered || _completionDialogOpen) return;
+  void _pointerDown(int pointer, Offset position, Size size) {
+    if (_resultDelivered || _completionDialogOpen || _activePointer != null) {
+      return;
+    }
     final cell = _cellForPosition(position, size);
     if (cell == null) return;
     setState(() {
+      _activePointer = pointer;
       _errorFeedbackTimer?.cancel();
       _errorCells = const <WordHuntCell>{};
       _dragStart = cell;
@@ -189,9 +194,14 @@ class _WordHuntLevelProductionScreenState
     });
   }
 
-  void _pointerMove(Offset position, Size size) {
+  void _pointerMove(int pointer, Offset position, Size size) {
     final start = _dragStart;
-    if (_resultDelivered || _completionDialogOpen || start == null) return;
+    if (_resultDelivered ||
+        _completionDialogOpen ||
+        start == null ||
+        pointer != _activePointer) {
+      return;
+    }
     final end = _cellForPosition(position, size);
     if (end == null) return;
     final path = _straightPathBetween(start, end);
@@ -217,16 +227,19 @@ class _WordHuntLevelProductionScreenState
     });
   }
 
-  void _pointerCancel() {
-    if (!mounted) return;
+  void _pointerCancel(int pointer) {
+    if (!mounted || pointer != _activePointer) return;
     setState(() {
+      _activePointer = null;
       _selectedPath = const <WordHuntCell>[];
       _dragStart = null;
       _selectionInvalid = false;
     });
   }
 
-  void _pointerUp() {
+  void _pointerUp(int pointer) {
+    if (pointer != _activePointer) return;
+    _activePointer = null;
     if (_dragStart == null || _resultDelivered || _completionDialogOpen) return;
     if (_selectionInvalid) {
       setState(() {
@@ -238,15 +251,27 @@ class _WordHuntLevelProductionScreenState
       });
       return;
     }
-    if (_selectedPath.isEmpty) return;
+    if (_selectedPath.isEmpty) {
+      _dragStart = null;
+      return;
+    }
 
-    final selectedPath = List<WordHuntCell>.unmodifiable(_selectedPath);
-    final result = WordHuntPathEngine.evaluate(
+    final resolution = WordHuntInputResolver.resolve(
       level: widget.level,
-      path: selectedPath,
+      path: _selectedPath,
       foundTargetWords: _foundTargets,
       foundBonusWords: _foundBonus,
     );
+    if (resolution.isIgnored) {
+      setState(() {
+        _selectedPath = const <WordHuntCell>[];
+        _dragStart = null;
+        _selectionInvalid = false;
+      });
+      return;
+    }
+    final selectedPath = resolution.path;
+    final result = resolution.result!;
 
     setState(() {
       _selectedPath = const <WordHuntCell>[];
@@ -539,15 +564,19 @@ class _WordHuntLevelProductionScreenState
                                     key: const Key('word_hunt_production_grid'),
                                     behavior: HitTestBehavior.opaque,
                                     onPointerDown: (event) => _pointerDown(
+                                      event.pointer,
                                       event.localPosition,
                                       gridSize,
                                     ),
                                     onPointerMove: (event) => _pointerMove(
+                                      event.pointer,
                                       event.localPosition,
                                       gridSize,
                                     ),
-                                    onPointerUp: (_) => _pointerUp(),
-                                    onPointerCancel: (_) => _pointerCancel(),
+                                    onPointerUp: (event) =>
+                                        _pointerUp(event.pointer),
+                                    onPointerCancel: (event) =>
+                                        _pointerCancel(event.pointer),
                                     child: Stack(
                                       fit: StackFit.expand,
                                       children: [

@@ -216,7 +216,7 @@ void main() {
       startRow: 0,
       startColumn: 0,
       endRow: 0,
-      endColumn: 1,
+      endColumn: 3,
     );
     expect(find.text('1 hata'), findsOneWidget);
     await tester.pump(const Duration(milliseconds: 300));
@@ -246,7 +246,7 @@ void main() {
         startRow: 0,
         startColumn: 0,
         endRow: 0,
-        endColumn: 1,
+        endColumn: 3,
       );
       expect(find.text('1 hata'), findsOneWidget);
       await tester.pump(const Duration(milliseconds: 300));
@@ -287,7 +287,7 @@ void main() {
         startRow: 0,
         startColumn: 0,
         endRow: 0,
-        endColumn: 1,
+        endColumn: 3,
       );
       expect(find.text('1 hata'), findsOneWidget);
 
@@ -361,6 +361,68 @@ void main() {
     expect(find.text('1/7'), findsOneWidget);
   });
 
+  testWidgets('kısa temas hata sayılmaz, tek hücre taşan hedef bulunur', (
+    tester,
+  ) async {
+    final level = WordHuntStarterContent.baslangicLimani.levels[4];
+    await pumpLevel(tester, level: level);
+
+    await tester.tap(
+      find.byKey(const Key('word_hunt_production_cell_2_0')),
+    );
+    await tester.pump();
+    expect(find.text('0 hata'), findsOneWidget);
+
+    await dragCells(
+      tester,
+      startRow: 0,
+      startColumn: 0,
+      endRow: 0,
+      endColumn: 6,
+    );
+    expect(find.text('1/7'), findsOneWidget);
+    expect(find.text('0 hata'), findsOneWidget);
+    expect(
+      find.byKey(const Key('word_hunt_production_target_ANKARA_found')),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('ikinci parmak etkin sürüklemeyi değiştirmez', (tester) async {
+    final level = WordHuntStarterContent.baslangicLimani.levels[4];
+    await pumpLevel(tester, level: level);
+
+    final firstStart = tester.getCenter(
+      find.byKey(const Key('word_hunt_production_cell_0_0')),
+    );
+    final firstEnd = tester.getCenter(
+      find.byKey(const Key('word_hunt_production_cell_0_5')),
+    );
+    final secondStart = tester.getCenter(
+      find.byKey(const Key('word_hunt_production_cell_7_0')),
+    );
+    final secondEnd = tester.getCenter(
+      find.byKey(const Key('word_hunt_production_cell_7_4')),
+    );
+
+    final first = await tester.createGesture(pointer: 1);
+    final second = await tester.createGesture(pointer: 2);
+    await first.down(firstStart);
+    await second.down(secondStart);
+    await second.moveTo(secondEnd);
+    await second.up();
+    await first.moveTo(firstEnd);
+    await first.up();
+    await tester.pump();
+
+    expect(find.text('1/7'), findsOneWidget);
+    expect(find.text('0 hata'), findsOneWidget);
+    expect(
+      find.byKey(const Key('word_hunt_production_target_ANKARA_found')),
+      findsOneWidget,
+    );
+  });
+
   testWidgets('anlamlı attempt geri çıkış onayı verir', (tester) async {
     await pumpLevel(tester);
     await dragCells(
@@ -368,7 +430,7 @@ void main() {
       startRow: 0,
       startColumn: 0,
       endRow: 0,
-      endColumn: 1,
+      endColumn: 3,
     );
     await tester.tap(find.byKey(const Key('word_hunt_production_back')));
     await tester.pumpAndSettle();
