@@ -50,7 +50,10 @@ wait_for_dialog() {
 }
 
 capture_rich_render() {
-  local name="$1" min_bytes="${2:-900000}" tmp="$REPORT_DIR/.${name}.tmp" i size
+  local name="$1"
+  local min_bytes="${2:-900000}"
+  local tmp="$REPORT_DIR/.${name}.tmp"
+  local i size
   for i in $(seq 1 16); do
     adb exec-out screencap -p > "$tmp"
     size="$(stat -c '%s' "$tmp")"
@@ -96,7 +99,6 @@ play_level() {
   x="$(selector_coordinate "$level" x)"
   y="$(selector_coordinate "$level" y)"
 
-  # Start a fresh per-level log only after selector coordinates are captured.
   adb logcat -c
   adb shell input tap "$x" "$y"
   wait_for_log "[WORD_HUNT_V6_AUTO_QA_OPEN] level=$level"
@@ -125,7 +127,6 @@ play_level() {
   adb logcat -d > "$REPORT_DIR/${tag}_RESULT_LOGCAT.txt"
   printf '%s_AUTO_DIALOG=PASS\n' "$tag" >> "$REPORT_DIR/AUTO_COMPLETION_GATE.txt"
 
-  # Clear before closing so the next selector marker is guaranteed fresh.
   adb logcat -c
   tap_return_route "$REPORT_DIR/${tag}_RESULT_UI.xml"
   wait_for_log '[WORD_HUNT_V6_AUTO_QA_SELECTOR_READY]'
