@@ -1,12 +1,12 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 2 Eylül 2026
+**Son güncelleme:** 2 Eylül 2026 — B5 60 sn tuning adayı teknik PASS
 
 > Root dosya mevcut V6 çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
 ## Aktif görev — Kelime Avı V6 final karar kapıları
 
-**Durum:** FOUND/ERROR/COMPACT COMPLETION TEKNİK + RAW ANDROID + KULLANICI GÖRSEL PASS / HUMAN TIMING MIXED / READY-MERGE YOK
+**Durum:** FOUND/ERROR/COMPACT COMPLETION KULLANICI PASS / B5 TUNING ADAYI ANDROID TEKNİK PASS, İNSAN TESTİ BEKLİYOR / READY-MERGE YOK
 
 **Parent V5:** PR #161 — OPEN / DRAFT
 
@@ -32,6 +32,8 @@
 8. Compact Android 16 B5/B10 runtime — **PASS**; final clean run `33655562508`.
 9. Exact tested compact blob’un PR #163 ürün branch’ine taşınması — **PASS**; product commit `9a6fede2...`, blob `6ce2830...`.
 10. QA-only workflow/scriptlerin ürün branch’ine taşınmaması — **PASS**.
+11. B5 60 sn yeni 8×8 yerleşim adayı statik + Android 16 kapısı — **PASS**; ürün commit `44ebec6b...`, branch HEAD `5ef394e...`, run `33670657723`, artifact `9862719927`.
+12. B5 adayı kelimeleri, 60 sn timer/yıldız eşiklerini, tekil fiziksel yolları ve yatay+dikey+çapraz yön ailelerini koruma — **PASS**.
 
 ### Gerçek insan süre-zorluk sonucu
 
@@ -41,11 +43,12 @@
 
 ### Açık işler
 
-1. B5 60 sn soft challenge için denge/tuning kararı verilecek. **AÇIK**.
-2. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
-3. PR #161 / #162 / #163 Ready kararı ayrı verilecek. **AÇIK**.
-4. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope. **AÇIK**.
-5. Merge yalnız Levent’in ayrıca açık merge onayıyla yapılacak. **AÇIK**.
+1. B5 tuning adayının gerçek cihaz/insan süre ve hata testi yapılacak. **AÇIK**.
+2. Test sonucuna göre adayın kabul/red ve PR #163 üstüne ürünizasyon kararı verilecek. **AÇIK**.
+3. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
+4. PR #161 / #162 / #163 Ready kararı ayrı verilecek. **AÇIK**.
+5. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope. **AÇIK**.
+6. Merge yalnız Levent’in ayrıca açık merge onayıyla yapılacak. **AÇIK**.
 
 ### Korunan kapsam
 

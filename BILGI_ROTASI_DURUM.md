@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 2 Eylül 2026
+**Son güncelleme:** 2 Eylül 2026 — B5 60 sn yerleşim adayı Android 16 teknik PASS
 
 ## Canlı Sürüm / Release Hattı
 
@@ -58,6 +58,20 @@ Levent’in gerçek cihaz/insan oynayışı:
 
 Bu sonuç **MIXED** kabul edilir. Otomatik QA’nın 20/23 saniyelik scripted süreleri insan playtesti değildir ve denge kararı için kullanılmaz. B5 60 sn hedefi hard-fail olmadığı için gameplay/timer kendiliğinden değiştirilmez; denge/tuning kararı ayrıca verilecektir.
 
+### B5 60 sn denge adayı — TEKNİK PASS / İNSAN TESTİ BEKLİYOR
+
+- Aday branch: `tune/kelime-avi-v6-b5-60s-layout-20260902`.
+- Aday ürün commit: `44ebec6b830a288df66f4fa16e2611dfa2165bae` — `tune(kelime-avi): simplify B5 word layout for 60s challenge`.
+- Güncel branch HEAD: `5ef394e784051e9b955e99fb3382f523fb8413d3`.
+- Yedi target (`ANKARA`, `ŞEHİR`, `TÜRKİYE`, `BAŞKENT`, `MECLİS`, `KULE`, `KALE`) ve bonus `ANIT` değişmedi.
+- 8×8 / 64 hücre, 60 sn soft challenge, yıldız/eşik kuralları ve yatay+dikey+çapraz yön aileleri korundu.
+- Android 16 run `33670657723` — **SUCCESS**.
+- `dart analyze`: PASS; aday sözleşme testleri **3/3 PASS**; dar viewport 64 hücre render smoke PASS.
+- QA APK: `com.leventua.bilgirotasi.wordhuntb5qa`, SHA-256 `9a83695e1c62323a2ce61697bdb59aab16d91c8393be74c2725e40c0cea5a1c2`.
+- Raw Android: `B5_64_CELL_RENDER=PASS`, `B5_FULL_RASTER_SCREENSHOT=PASS`, `PROCESS_FAILURE_SCAN=PASS`.
+- Artifact `9862719927`, digest `sha256:bccdf3f22b9a42a56624138ea57378ff8302caa147c3f9c7a8049b1f0385590c`.
+- Adayın gerçek insan süresi henüz ölçülmedi: `HUMAN_TIMING_RESULT=PENDING_USER_PLAYTEST`.
+
 ## Reference font
 
 - Runtime `fontFamily: 'serif'` kullanır.
@@ -81,10 +95,10 @@ QA workflow/script dosyaları PR #163 ürün branch’ine taşınmadı; ürün d
 
 ## Kalan Gerçek Kapılar
 
-1. B5 60 sn soft challenge için **denge/tuning kararı** — AÇIK; mevcut gerçek insan sonucu 115 sn.
+1. B5 60 sn yerleşim adayını gerçek cihazda oynayıp süre/hata sonucunu ölçme — **AÇIK**; eski yerleşim sonucu 115 sn / 2 hata.
 2. `REFERENCE_FONT` exact kaynak bulunmadığı sürece DOĞRULANACAK/deferred.
 3. PR #161 / #162 / #163 Ready kararları ayrıca verilecek.
 4. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
 5. Merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
 
-**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION RAW ANDROID GÖRSEL PASS / HUMAN TIMING MIXED / PR #163 DRAFT / READY YOK / MERGE YOK.
+**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION RAW ANDROID GÖRSEL PASS / B5 TUNING ADAYI ANDROID TEKNİK PASS, İNSAN TESTİ BEKLİYOR / PR #163 DRAFT / READY YOK / MERGE YOK.

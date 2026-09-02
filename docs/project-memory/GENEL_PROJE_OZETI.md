@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 2 Eylül 2026 — Kelime Avı V6 found-state, error-state ve kompakt completion/result görünümü raw Android üzerinden kullanıcı PASS aldı. Güncel PR #163 ürün commit `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`; exact `word_hunt_screens.dart` blob `6ce2830a7df8eb696a9df589c91c544df7712969`. Final compact Android 16 run `33655562508` SUCCESS. Gerçek insan timing: B5 `115 sn / 2 hata` → 60 sn soft hedefi karşılanmadı; B10 `109 sn / 4 hata` → 120 sn soft hedefi karşılandı. PR #163 OPEN/DRAFT; Ready/merge yok.
+**Son güncelleme:** 2 Eylül 2026 — V6 found/error/compact completion kullanıcı PASS. Eski B5 insan sonucu `115 sn / 2 hata` sonrasında sekiz kelimeyi ve 60 sn sözleşmesini koruyan yeni 8×8 yerleşim adayı üretildi. Aday ürün commit `44ebec6b830a288df66f4fa16e2611dfa2165bae`; tuning branch HEAD `5ef394e784051e9b955e99fb3382f523fb8413d3`; Android 16 run `33670657723` SUCCESS. Teknik kapılar PASS, yeni adayın insan süre/hata testi bekliyor. PR #163 OPEN/DRAFT; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -134,15 +134,24 @@ Bu değerler insan playtestidir. Android QA otomasyonundaki yaklaşık 20/23 san
 
 B5 60 sn soft challenge hard-fail değildir. Kullanıcıdan ayrıca tuning/denge kararı alınmadan timer, içerik veya scoring değiştirilmez.
 
+### B5 60 sn yeni yerleşim adayı — TEKNİK PASS
+
+- Branch: `tune/kelime-avi-v6-b5-60s-layout-20260902`; HEAD `5ef394e784051e9b955e99fb3382f523fb8413d3`.
+- Ürün değişikliği: `44ebec6b830a288df66f4fa16e2611dfa2165bae` — yalnız `lib/word_hunt/word_hunt_starter_content.dart` içindeki B5 grid harf yerleşimi.
+- Korundu: 8×8/64 hücre, yedi target + bonus ANIT, 60 sn soft challenge, yıldız/hata eşikleri, tekil fiziksel yollar, yatay+dikey+çapraz yön aileleri.
+- Android 16 run `33670657723`: SUCCESS; analyze PASS; aday testleri 3/3 PASS; 64 hücre render + tam raster screenshot + process-failure scan PASS.
+- Artifact `9862719927`; APK SHA-256 `9a83695e1c62323a2ce61697bdb59aab16d91c8393be74c2725e40c0cea5a1c2`.
+- Teknik PASS, denge kabulü değildir. Yeni adayın gerçek insan süre/hata ölçümü bekleniyor.
+
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
 1. Her görev başında release branch, PR #163 head, `pubspec.yaml` ve PR durumunu canlı doğrula.
 2. Found-state, error-state ve compact completion kullanıcı görsel acceptance kapıları **KAPALI/PASS**; yeni belirti yoksa bunları yeniden test etme.
-3. B5 gerçek insan sonucu 115 sn olduğundan `B5_60S_BALANCE_DECISION` açık: 60 sn soft challenge korunacak mı, içerik/timing tune edilecek mi ayrıca karar verilecek.
+3. Yeni B5 tuning adayını gerçek cihazda oynayıp süre/hata ölç; sonra kabul/red ve PR #163 üstüne ürünizasyon kararı ver.
 4. B10 120 sn human playtest kapısı **PASS**.
 5. `REFERENCE_FONT` exact kaynak bulunmadığı sürece source limitation/deferred kalır; görseli spekülatif fontla değiştirme.
 6. PR #161 / #162 / #163 Ready kararları ayrı kullanıcı onayı ister.
 7. Merge yalnız Levent’in açık merge onayıyla yapılır.
 8. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
 
-**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / HUMAN TIMING MIXED / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.**
+**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 TUNING ADAYI ANDROID TEKNİK PASS, İNSAN TESTİ BEKLİYOR / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.**

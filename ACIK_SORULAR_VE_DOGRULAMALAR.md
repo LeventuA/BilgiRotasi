@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 2 Eylül 2026
+**Son güncelleme:** 2 Eylül 2026 — B5 tuning adayı Android teknik PASS
 
 ## Kelime Avı V6
 
@@ -22,7 +22,8 @@ Kapanan kabul/doğrulama kapıları:
 - Overall human timing: **MIXED**. Scripted QA 20/23 sn değerleri insan playtesti değildir.
 
 Açık kalanlar:
-- `B5_60S_BALANCE_DECISION` — B5 60 sn soft challenge hedefi korunacak mı/tune edilecek mi: **AÇIK**.
+- `B5_60S_TUNED_HUMAN_PLAYTEST` — Yeni 8×8 B5 yerleşim adayı (`44ebec6b...`) Android 16 run `33670657723` ile teknik PASS aldı; gerçek kullanıcı süresi/hatası: **BEKLİYOR**.
+- `B5_60S_BALANCE_DECISION` — Yeni adayın insan testi sonrası kabul/red ve ürünizasyon kararı: **AÇIK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; custom font asset/source yok. Exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
 - `PR_161_READY_DECISION` — Parent V5 PR #161 Ready kararı: **AÇIK**.
 - `PR_162_READY_DECISION` — V6 visual PR #162 Ready kararı: **AÇIK**.
