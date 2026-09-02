@@ -1,0 +1,80 @@
+name: Kelime Avi V6 compact completion productize
+
+on:
+  push:
+    branches:
+      - fix/kelime-avi-v6-completion-result-compact-20260902
+    paths:
+      - .github/workflows/word-hunt-v6-completion-compact-productize.yml
+      - tools/qa/compact_completion_result_patch.py
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-productize:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    env:
+      BASE_SHA: 27e0dbe3f104c1db79dc853b54a8eee6e0463b6b
+      BASE_SCREEN_BLOB: 26c37c5d129a24c5a9545f69682079f27334c1e0
+    steps:
+      - name: Checkout candidate branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify exact accepted completion base
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor "$BASE_SHA" HEAD
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$BASE_SCREEN_BLOB"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          python3 -m py_compile tools/qa/compact_completion_result_patch.py
+
+      - name: Apply compact-only dialog candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/qa/compact_completion_result_patch.py
+          dart format lib/word_hunt/word_hunt_screens.dart
+          git diff --check
+          changed="$(git diff --name-only -- lib | sort)"
+          test "$changed" = 'lib/word_hunt/word_hunt_screens.dart'
+          grep -Fq 'constraints: const BoxConstraints(maxWidth: 300),' lib/word_hunt/word_hunt_screens.dart
+          grep -Fq 'padding: const EdgeInsets.fromLTRB(18, 15, 18, 15),' lib/word_hunt/word_hunt_screens.dart
+          grep -Fq 'height: 44,' lib/word_hunt/word_hunt_screens.dart
+          grep -Fq 'bool get _allWordsFound => _allTargetsFound && _allBonusFound;' lib/word_hunt/word_hunt_screens.dart
+
+      - name: Analyze and focused Word Hunt suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart analyze lib/word_hunt
+          flutter test test/word_hunt_*_test.dart --reporter expanded 2>&1 | tee /tmp/word_hunt_compact_tests.txt
+          grep -Fq 'All tests passed!' /tmp/word_hunt_compact_tests.txt
+
+      - name: Commit exact tested compact product
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git merge-base "$BASE_SHA" HEAD)" = "$BASE_SHA"
+          git config user.name 'ZMilaStudio'
+          git config user.email 'levent.ua@gmail.com'
+          git add lib/word_hunt/word_hunt_screens.dart
+          git rm tools/qa/compact_completion_result_patch.py .github/workflows/word-hunt-v6-completion-compact-productize.yml
+          staged="$(git diff --cached --name-only | sort)"
+          expected=$'.github/workflows/word-hunt-v6-completion-compact-productize.yml\nlib/word_hunt/word_hunt_screens.dart\ntools/qa/compact_completion_result_patch.py'
+          test "$staged" = "$expected"
+          git diff --cached --check
+          git commit -m 'style(kelime-avi): compact completion result panel [skip ci]'
+          git push origin HEAD:fix/kelime-avi-v6-completion-result-compact-20260902
