@@ -7,6 +7,8 @@ on:
       - qa/kelime-avi-v6-auto-completion-android16-20260902
     paths:
       - .github/workflows/word-hunt-v6-auto-completion-android16.yml
+      - tools/qa/word_hunt_v6_auto_completion_android16.sh
+      - tools/word_hunt_v6_auto_completion_qa_main.dart
 
 permissions:
   contents: read
