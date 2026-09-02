@@ -1,0 +1,100 @@
+name: Kelime Avi V6 compact completion Android 16 runtime retry
+
+on:
+  push:
+    branches:
+      - qa/kelime-avi-v6-completion-compact-android16-20260902
+    paths:
+      - '.github/workflows/word-hunt-v6-completion-compact-android16-runtime-retry.yml'
+      - 'tools/qa_retry/word_hunt_v6_completion_compact_android16_retry.sh'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  compact-runtime-only:
+    name: Reuse compact APK and verify B5/B10 popup
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    env:
+      PRODUCT_SHA: 7fa81663cb93c3f9f43b5c1bb7cd8f4d11929fd8
+      PRODUCT_SCREEN_BLOB: 6ce2830a7df8eb696a9df589c91c544df7712969
+      SOURCE_RUN_ID: '33630246170'
+      SOURCE_ARTIFACT: BilgiRotasi-KelimeAvi-V6-Completion-Compact-Android16-f2c2fb8be3708d2caf7670fc8056f33906ecfc82
+      EXPECTED_APK_SHA256: ce9a4fef981fd936465c68f539322eea98b0dbdc28e7a96c8abfa45aa600e901
+      REPORT_DIR: reports/word_hunt_v6_completion_compact
+      QA_PACKAGE: com.leventua.bilgirotasi
+
+    steps:
+      - name: QA branch'i indir
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Exact kompakt urunu ve retry harness'i dogrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor "$PRODUCT_SHA" HEAD
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$PRODUCT_SCREEN_BLOB"
+          bash -n tools/qa_runtime/word_hunt_v6_completion_result_android16_reuse.sh
+          bash -n tools/qa_retry/word_hunt_v6_completion_compact_android16_retry.sh
+
+      - name: Exact compact APK artifact'ini indir
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.SOURCE_ARTIFACT }}
+          path: reports/word_hunt_v6_completion_compact
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Exact APK SHA ve product SHA'yi dogrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s "$REPORT_DIR/KelimeAvi-V6-Completion-QA.apk"
+          test "$(tr -d '\r\n' < "$REPORT_DIR/PRODUCT_SHA.txt")" = "$PRODUCT_SHA"
+          actual="$(sha256sum "$REPORT_DIR/KelimeAvi-V6-Completion-QA.apk" | awk '{print $1}')"
+          test "$actual" = "$EXPECTED_APK_SHA256"
+          printf '%s\n' "$actual" > "$REPORT_DIR/REUSED_APK_SHA256.txt"
+          find "$REPORT_DIR" -maxdepth 1 -type f ! -name 'KelimeAvi-V6-Completion-QA.apk' ! -name 'PRODUCT_SHA.txt' ! -name 'APK_SHA256.txt' ! -name 'QA_HEAD_SHA.txt' ! -name 'REUSED_APK_SHA256.txt' -delete
+
+      - name: Android emulator KVM erisimini hazirla
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Gercek Android 16 kompakt popup runtime retry
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 384M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            adb shell wm size 1080x1920
+            adb shell wm density 420
+            adb shell settings put secure immersive_mode_confirmations confirmed || true
+            bash tools/qa_retry/word_hunt_v6_completion_compact_android16_retry.sh
+            find "$REPORT_DIR" -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 \
+              | sort -z | xargs -0 sha256sum > "$REPORT_DIR/SHA256SUMS.txt"
+
+      - name: Runtime kanitlarini yukle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilgiRotasi-KelimeAvi-V6-Completion-Compact-Android16-Retry-${{ github.sha }}
+          path: reports/word_hunt_v6_completion_compact/**
+          if-no-files-found: error
+          retention-days: 21
