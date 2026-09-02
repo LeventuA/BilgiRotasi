@@ -52,7 +52,7 @@ text = text.replace(
     """    });
     if (shouldAutoFinish) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) _finishLevel();
+        if (mounted) unawaited(_finishLevel());
       });
     }
   }
