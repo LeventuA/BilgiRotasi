@@ -6,6 +6,7 @@ on:
       - fix/kelime-avi-v6-auto-completion-dialog-20260902
     paths:
       - .github/workflows/word-hunt-v6-auto-completion-apply.yml
+      - tools/qa/apply_word_hunt_auto_completion_fix.py
 
 permissions:
   contents: write
