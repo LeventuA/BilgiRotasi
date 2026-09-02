@@ -8,12 +8,17 @@ APK="$REPORT_DIR/KelimeAvi-V6-Completion-QA.apk"
 test -s "$APK"
 mkdir -p "$REPORT_DIR"
 
+has_marker() {
+  local marker="$1"
+  adb logcat -d | grep -Fq "$marker"
+}
+
 wait_marker() {
   local marker="$1"
   local attempts="${2:-120}"
   local i
   for i in $(seq 1 "$attempts"); do
-    if adb logcat -d | grep -Fq "$marker"; then
+    if has_marker "$marker"; then
       return 0
     fi
     sleep 0.5
@@ -88,8 +93,28 @@ swipe_path() {
   y1="$(cell_coord "$geometry_log" "$level" "$r1" "$c1" y)"
   x2="$(cell_coord "$geometry_log" "$level" "$r2" "$c2" x)"
   y2="$(cell_coord "$geometry_log" "$level" "$r2" "$c2" y)"
-  adb shell input swipe "$x1" "$y1" "$x2" "$y2" 1800
+  adb shell input touchscreen swipe "$x1" "$y1" "$x2" "$y2" 1800
   sleep 0.35
+}
+
+swipe_path_inset_x() {
+  local geometry_log="$1"
+  local level="$2"
+  local r1="$3"
+  local c1="$4"
+  local r2="$5"
+  local c2="$6"
+  local inset="$7"
+  local x1 y1 x2 y2
+  x1="$(cell_coord "$geometry_log" "$level" "$r1" "$c1" x)"
+  y1="$(cell_coord "$geometry_log" "$level" "$r1" "$c1" y)"
+  x2="$(cell_coord "$geometry_log" "$level" "$r2" "$c2" x)"
+  y2="$(cell_coord "$geometry_log" "$level" "$r2" "$c2" y)"
+  x1=$((x1 + inset))
+  x2=$((x2 + inset))
+  printf 'level=%s start=%s,%s end=%s,%s inset_x=%s\n' "$level" "$x1" "$y1" "$x2" "$y2" "$inset" >> "$REPORT_DIR/BONUS_GESTURES.txt"
+  adb shell input touchscreen swipe "$x1" "$y1" "$x2" "$y2" 1800
+  sleep 0.45
 }
 
 wait_state() {
@@ -98,6 +123,41 @@ wait_state() {
   local bonus="$3"
   local dialog="$4"
   wait_marker "[COMP_QA_STATE] level=$level cells=64 targets=$targets bonus=$bonus dialog=$dialog"
+}
+
+select_b5_anit_with_fallback() {
+  local geom="$1"
+  local prefix="$2"
+  local marker='[COMP_QA_STATE] level=5 cells=64 targets=7 bonus=1 dialog=1'
+
+  swipe_path_inset_x "$geom" 5 0 0 3 0 28
+  capture "${prefix}_ANIT_ATTEMPT1.png"
+  adb logcat -d > "$REPORT_DIR/${prefix}_ANIT_ATTEMPT1_LOGCAT.txt"
+  adb shell dumpsys window > "$REPORT_DIR/${prefix}_ANIT_ATTEMPT1_WINDOW.txt"
+
+  if ! has_marker "$marker"; then
+    swipe_path_inset_x "$geom" 5 3 0 0 0 28
+    capture "${prefix}_ANIT_ATTEMPT2_REVERSE.png"
+    adb logcat -d > "$REPORT_DIR/${prefix}_ANIT_ATTEMPT2_REVERSE_LOGCAT.txt"
+    adb shell dumpsys window > "$REPORT_DIR/${prefix}_ANIT_ATTEMPT2_REVERSE_WINDOW.txt"
+  fi
+
+  wait_marker "$marker"
+}
+
+select_b10_hazine_with_fallback() {
+  local geom="$1"
+  local marker='[COMP_QA_STATE] level=10 cells=64 targets=9 bonus=1 dialog=1'
+
+  swipe_path "$geom" 10 0 1 5 1
+  capture 11_B10_HAZINE_ATTEMPT1.png
+  adb logcat -d > "$REPORT_DIR/11_B10_HAZINE_ATTEMPT1_LOGCAT.txt"
+  if ! has_marker "$marker"; then
+    swipe_path "$geom" 10 5 1 0 1
+    capture 11_B10_HAZINE_ATTEMPT2_REVERSE.png
+    adb logcat -d > "$REPORT_DIR/11_B10_HAZINE_ATTEMPT2_REVERSE_LOGCAT.txt"
+  fi
+  wait_marker "$marker"
 }
 
 return_to_selector() {
@@ -150,8 +210,7 @@ sleep 0.8
 capture 03_B5_TARGETS_ONLY_NO_DIALOG.png
 adb logcat -d > "$REPORT_DIR/03_B5_TARGETS_ONLY_LOGCAT.txt"
 
-swipe_path "$REPORT_DIR/02_B5_GEOMETRY_LOGCAT.txt" 5 0 0 3 0
-wait_state 5 7 1 1
+select_b5_anit_with_fallback "$REPORT_DIR/02_B5_GEOMETRY_LOGCAT.txt" 04_B5
 sleep 0.8
 capture 04_B5_AUTO_RESULT.png
 adb logcat -d > "$REPORT_DIR/04_B5_AUTO_RESULT_LOGCAT.txt"
@@ -159,8 +218,7 @@ adb logcat -d > "$REPORT_DIR/04_B5_AUTO_RESULT_LOGCAT.txt"
 return_to_selector 5 "$REPORT_DIR/05_SELECTOR_AFTER_B5_LOGCAT.txt"
 open_level 5 "$REPORT_DIR/05_SELECTOR_AFTER_B5_LOGCAT.txt" "$REPORT_DIR/06_B5_REPLAY_GEOMETRY_LOGCAT.txt"
 play_b5_targets "$REPORT_DIR/06_B5_REPLAY_GEOMETRY_LOGCAT.txt"
-swipe_path "$REPORT_DIR/06_B5_REPLAY_GEOMETRY_LOGCAT.txt" 5 0 0 3 0
-wait_state 5 7 1 1
+select_b5_anit_with_fallback "$REPORT_DIR/06_B5_REPLAY_GEOMETRY_LOGCAT.txt" 07_B5_REPLAY
 sleep 0.8
 capture 07_B5_REPLAY_AUTO_RESULT.png
 adb logcat -d > "$REPORT_DIR/07_B5_REPLAY_AUTO_RESULT_LOGCAT.txt"
@@ -173,8 +231,7 @@ sleep 0.8
 capture 10_B10_TARGETS_ONLY_NO_DIALOG.png
 adb logcat -d > "$REPORT_DIR/10_B10_TARGETS_ONLY_LOGCAT.txt"
 
-swipe_path "$REPORT_DIR/09_B10_GEOMETRY_LOGCAT.txt" 10 0 1 5 1
-wait_state 10 9 1 1
+select_b10_hazine_with_fallback "$REPORT_DIR/09_B10_GEOMETRY_LOGCAT.txt"
 sleep 0.8
 capture 11_B10_AUTO_RESULT.png
 adb logcat -d > "$REPORT_DIR/11_B10_AUTO_RESULT_LOGCAT.txt"
