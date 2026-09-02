@@ -6,7 +6,7 @@ on:
       - qa/kelime-avi-v6-completion-result-runtime-20260902
     paths:
       - '.github/workflows/word-hunt-v6-completion-result-android16-runtime-retry.yml'
-      - 'tools/qa/word_hunt_v6_completion_result_android16.sh'
+      - 'tools/qa_runtime/word_hunt_v6_completion_result_android16_reuse.sh'
   workflow_dispatch:
 
 permissions:
@@ -38,7 +38,7 @@ jobs:
           set -euo pipefail
           git merge-base --is-ancestor "$PRODUCT_SHA" HEAD
           test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$PRODUCT_SCREEN_BLOB"
-          bash -n tools/qa/word_hunt_v6_completion_result_android16.sh
+          bash -n tools/qa_runtime/word_hunt_v6_completion_result_android16_reuse.sh
 
       - name: Onceki run'daki exact APK artifact'ini indir
         uses: actions/download-artifact@v4
@@ -55,7 +55,7 @@ jobs:
           test -s "$REPORT_DIR/KelimeAvi-V6-Completion-QA.apk"
           test "$(tr -d '\r\n' < "$REPORT_DIR/PRODUCT_SHA.txt")" = "$PRODUCT_SHA"
           sha256sum "$REPORT_DIR/KelimeAvi-V6-Completion-QA.apk" | tee "$REPORT_DIR/REUSED_APK_SHA256.txt"
-          rm -f "$REPORT_DIR"/*.png "$REPORT_DIR"/*LOGCAT.txt "$REPORT_DIR"/TIMEOUT_LOGCAT.txt
+          rm -f "$REPORT_DIR"/*.png "$REPORT_DIR"/*LOGCAT.txt "$REPORT_DIR"/TIMEOUT_LOGCAT.txt "$REPORT_DIR"/.marker_logcat.tmp
 
       - name: Android emulator KVM erisimini hazirla
         shell: bash
@@ -83,7 +83,7 @@ jobs:
             adb shell wm density 420
             adb shell settings put secure immersive_mode_confirmations confirmed || true
             echo "immersive_mode_confirmations=$(adb shell settings get secure immersive_mode_confirmations | tr -d '\r')" > "$REPORT_DIR/ANDROID_IMMERSIVE_CONFIRMATION.txt"
-            bash tools/qa/word_hunt_v6_completion_result_android16.sh
+            bash tools/qa_runtime/word_hunt_v6_completion_result_android16_reuse.sh
             find "$REPORT_DIR" -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > "$REPORT_DIR/SHA256SUMS.txt"
 
       - name: Runtime kanitlarini yukle
