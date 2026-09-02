@@ -236,7 +236,7 @@ void main() {
   });
 
   testWidgets(
-    'targetlar bitince süre ve hata donar, grid bonus için açık kalır',
+    'targetlar bitince sonuç otomatik açılır ve süre hata donar',
     (tester) async {
       var now = DateTime(2026, 8, 29, 12);
       await pumpLevel(tester, now: () => now);
@@ -252,16 +252,29 @@ void main() {
       await tester.pump(const Duration(milliseconds: 300));
 
       now = now.add(const Duration(seconds: 10));
-      await completeLevelOneTargets(tester);
-      expect(find.text('5/5'), findsOneWidget);
+      await dragCells(
+        tester,
+        startRow: 4,
+        startColumn: 2,
+        endRow: 4,
+        endColumn: 5,
+      );
       expect(
-        find.byKey(const Key('word_hunt_production_finish')),
+        find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
         findsOneWidget,
       );
+
+      await completeLevelOneTargets(tester);
+      await tester.pumpAndSettle();
+
+      expect(find.text('5/5'), findsOneWidget);
       expect(
         find.byKey(const Key('word_hunt_production_result_dialog')),
-        findsNothing,
+        findsOneWidget,
       );
+      expect(find.text('10 saniye'), findsOneWidget);
+      expect(find.text('1 hata'), findsWidgets);
+      expect(find.text('Bonus: ELMA'), findsOneWidget);
 
       final frozen =
           tester
@@ -281,43 +294,10 @@ void main() {
             .data,
         frozen,
       );
-
-      await dragCells(
-        tester,
-        startRow: 0,
-        startColumn: 0,
-        endRow: 0,
-        endColumn: 1,
-      );
-      expect(find.text('1 hata'), findsOneWidget);
-
-      await dragCells(
-        tester,
-        startRow: 4,
-        startColumn: 2,
-        endRow: 4,
-        endColumn: 5,
-      );
-      expect(
-        find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
-        findsOneWidget,
-      );
-      expect(
-        find.byKey(const Key('word_hunt_production_result_dialog')),
-        findsNothing,
-      );
-
-      await tester.ensureVisible(
-        find.byKey(const Key('word_hunt_production_finish')),
-      );
-      await tester.tap(find.byKey(const Key('word_hunt_production_finish')));
-      await tester.pumpAndSettle();
       expect(
         find.byKey(const Key('word_hunt_production_result_dialog')),
         findsOneWidget,
       );
-      expect(find.text('10 saniye'), findsOneWidget);
-      expect(find.text('1 hata'), findsWidgets);
       expect(
         tester
             .widget<Icon>(

@@ -243,6 +243,7 @@ class _WordHuntLevelProductionScreenState
       foundBonusWords: _foundBonus,
     );
 
+    var shouldAutoFinish = false;
     setState(() {
       _selectedPath = const <WordHuntCell>[];
       _dragStart = null;
@@ -262,6 +263,7 @@ class _WordHuntLevelProductionScreenState
             _completionElapsedSeconds = elapsed;
             _completionMistakes = _mistakes;
             _timer?.cancel();
+            shouldAutoFinish = true;
           }
         case WordHuntSelectionKind.bonus:
           final word = result.canonicalWord!;
@@ -285,6 +287,11 @@ class _WordHuntLevelProductionScreenState
           _status = result.error ?? 'Bu yol geçerli değil.';
       }
     });
+    if (shouldAutoFinish) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) unawaited(_finishLevel());
+      });
+    }
   }
 
   String? _unlockInfoCardFor(String word) {
