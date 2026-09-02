@@ -263,12 +263,11 @@ void main() {
         findsNothing,
       );
 
-      final frozen =
-          tester
-              .widget<Text>(
-                find.byKey(const Key('word_hunt_production_elapsed_text')),
-              )
-              .data;
+      final frozen = tester
+          .widget<Text>(
+            find.byKey(const Key('word_hunt_production_elapsed_text')),
+          )
+          .data;
       expect(frozen, '10s');
 
       now = now.add(const Duration(seconds: 20));
@@ -302,18 +301,14 @@ void main() {
         find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
         findsOneWidget,
       );
-      expect(
-        find.byKey(const Key('word_hunt_production_result_dialog')),
-        findsNothing,
-      );
-
-      await tester.ensureVisible(
-        find.byKey(const Key('word_hunt_production_finish')),
-      );
-      await tester.tap(find.byKey(const Key('word_hunt_production_finish')));
       await tester.pumpAndSettle();
       expect(
         find.byKey(const Key('word_hunt_production_result_dialog')),
+        findsOneWidget,
+      );
+      expect(find.byType(AlertDialog), findsNothing);
+      expect(
+        find.byKey(const Key('word_hunt_production_result_panel')),
         findsOneWidget,
       );
       expect(find.text('10 saniye'), findsOneWidget);
@@ -334,6 +329,47 @@ void main() {
             .icon,
         Icons.star_outline_rounded,
       );
+    },
+  );
+
+  testWidgets(
+    'tüm kelimeler tamamlanınca sonuç dialogu yeni oturumda yeniden açılır',
+    (tester) async {
+      for (var attempt = 1; attempt <= 2; attempt++) {
+        await pumpLevel(tester);
+        await completeLevelOneTargets(tester);
+        expect(
+          find.byKey(const Key('word_hunt_production_result_dialog')),
+          findsNothing,
+          reason:
+              'attempt $attempt ana hedeflerden sonra bonus için açık kalmalı',
+        );
+        await dragCells(
+          tester,
+          startRow: 4,
+          startColumn: 2,
+          endRow: 4,
+          endColumn: 5,
+        );
+        await tester.pumpAndSettle();
+        expect(
+          find.byKey(const Key('word_hunt_production_result_dialog')),
+          findsOneWidget,
+          reason: 'attempt $attempt tüm kelimelerde otomatik açılmalı',
+        );
+        expect(
+          find.byKey(const Key('word_hunt_production_result_panel')),
+          findsOneWidget,
+        );
+
+        // Close only the modal result route, then dispose the whole widget tree.
+        // The next loop iteration therefore creates a genuinely fresh level State.
+        final navigator = tester.state<NavigatorState>(find.byType(Navigator));
+        navigator.pop(false);
+        await tester.pumpAndSettle();
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pumpAndSettle();
+      }
     },
   );
 
