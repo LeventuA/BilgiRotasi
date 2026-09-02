@@ -235,107 +235,86 @@ void main() {
     expect(find.byKey(const Key('word_hunt_production_finish')), findsNothing);
   });
 
-  testWidgets(
-    'targetlar bitince süre ve hata donar, grid bonus için açık kalır',
-    (tester) async {
-      var now = DateTime(2026, 8, 29, 12);
-      await pumpLevel(tester, now: () => now);
+  testWidgets('targetlar bitince sonuç otomatik açılır ve süre hata donar', (
+    tester,
+  ) async {
+    var now = DateTime(2026, 8, 29, 12);
+    await pumpLevel(tester, now: () => now);
 
-      await dragCells(
-        tester,
-        startRow: 0,
-        startColumn: 0,
-        endRow: 0,
-        endColumn: 1,
-      );
-      expect(find.text('1 hata'), findsOneWidget);
-      await tester.pump(const Duration(milliseconds: 300));
+    await dragCells(
+      tester,
+      startRow: 0,
+      startColumn: 0,
+      endRow: 0,
+      endColumn: 1,
+    );
+    expect(find.text('1 hata'), findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 300));
 
-      now = now.add(const Duration(seconds: 10));
-      await completeLevelOneTargets(tester);
-      expect(find.text('5/5'), findsOneWidget);
-      expect(
-        find.byKey(const Key('word_hunt_production_finish')),
-        findsOneWidget,
-      );
-      expect(
-        find.byKey(const Key('word_hunt_production_result_dialog')),
-        findsNothing,
-      );
+    now = now.add(const Duration(seconds: 10));
+    await dragCells(
+      tester,
+      startRow: 4,
+      startColumn: 2,
+      endRow: 4,
+      endColumn: 5,
+    );
+    expect(
+      find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
+      findsOneWidget,
+    );
 
-      final frozen =
-          tester
-              .widget<Text>(
-                find.byKey(const Key('word_hunt_production_elapsed_text')),
-              )
-              .data;
-      expect(frozen, '10s');
+    await completeLevelOneTargets(tester);
+    await tester.pumpAndSettle();
 
-      now = now.add(const Duration(seconds: 20));
-      await tester.pump(const Duration(seconds: 2));
-      expect(
+    expect(find.text('5/5'), findsOneWidget);
+    expect(
+      find.byKey(const Key('word_hunt_production_result_dialog')),
+      findsOneWidget,
+    );
+    expect(find.text('10 saniye'), findsOneWidget);
+    expect(find.text('1 hata'), findsWidgets);
+    expect(find.text('Bonus: ELMA'), findsOneWidget);
+
+    final frozen =
         tester
             .widget<Text>(
               find.byKey(const Key('word_hunt_production_elapsed_text')),
             )
-            .data,
-        frozen,
-      );
+            .data;
+    expect(frozen, '10s');
 
-      await dragCells(
-        tester,
-        startRow: 0,
-        startColumn: 0,
-        endRow: 0,
-        endColumn: 1,
-      );
-      expect(find.text('1 hata'), findsOneWidget);
-
-      await dragCells(
-        tester,
-        startRow: 4,
-        startColumn: 2,
-        endRow: 4,
-        endColumn: 5,
-      );
-      expect(
-        find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
-        findsOneWidget,
-      );
-      expect(
-        find.byKey(const Key('word_hunt_production_result_dialog')),
-        findsNothing,
-      );
-
-      await tester.ensureVisible(
-        find.byKey(const Key('word_hunt_production_finish')),
-      );
-      await tester.tap(find.byKey(const Key('word_hunt_production_finish')));
-      await tester.pumpAndSettle();
-      expect(
-        find.byKey(const Key('word_hunt_production_result_dialog')),
-        findsOneWidget,
-      );
-      expect(find.text('10 saniye'), findsOneWidget);
-      expect(find.text('1 hata'), findsWidgets);
-      expect(
-        tester
-            .widget<Icon>(
-              find.byKey(const Key('word_hunt_production_result_star_2')),
-            )
-            .icon,
-        Icons.star_rounded,
-      );
-      expect(
-        tester
-            .widget<Icon>(
-              find.byKey(const Key('word_hunt_production_result_star_3')),
-            )
-            .icon,
-        Icons.star_outline_rounded,
-      );
-    },
-  );
+    now = now.add(const Duration(seconds: 20));
+    await tester.pump(const Duration(seconds: 2));
+    expect(
+      tester
+          .widget<Text>(
+            find.byKey(const Key('word_hunt_production_elapsed_text')),
+          )
+          .data,
+      frozen,
+    );
+    expect(
+      find.byKey(const Key('word_hunt_production_result_dialog')),
+      findsOneWidget,
+    );
+    expect(
+      tester
+          .widget<Icon>(
+            find.byKey(const Key('word_hunt_production_result_star_2')),
+          )
+          .icon,
+      Icons.star_rounded,
+    );
+    expect(
+      tester
+          .widget<Icon>(
+            find.byKey(const Key('word_hunt_production_result_star_3')),
+          )
+          .icon,
+      Icons.star_outline_rounded,
+    );
+  });
 
   testWidgets('timeLimit production oynanışı hard fail ile kapatmaz', (
     tester,

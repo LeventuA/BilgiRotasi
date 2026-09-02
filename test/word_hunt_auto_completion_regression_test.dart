@@ -24,10 +24,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  Future<void> dragCells(
-    WidgetTester tester,
-    List<int> endpoints,
-  ) async {
+  Future<void> dragCells(WidgetTester tester, List<int> endpoints) async {
     final start = tester.getCenter(
       find.byKey(
         Key('word_hunt_production_cell_${endpoints[0]}_${endpoints[1]}'),
@@ -44,10 +41,7 @@ void main() {
     await tester.pump();
   }
 
-  List<int> findStraightPath(
-    WordHuntLevelDefinition level,
-    String word,
-  ) {
+  List<int> findStraightPath(WordHuntLevelDefinition level, String word) {
     final target = WordHuntPathEngine.normalizeWord(word);
     final length = word.runes.length;
     const directions = <List<int>>[
@@ -107,7 +101,11 @@ void main() {
     (tester) async {
       addTearDown(() => tester.binding.setSurfaceSize(null));
       final levels = WordHuntStarterContent.baslangicLimani.levels;
-      final sequence = <WordHuntLevelDefinition>[levels[4], levels[9], levels[4]];
+      final sequence = <WordHuntLevelDefinition>[
+        levels[4],
+        levels[9],
+        levels[4],
+      ];
 
       for (var session = 0; session < sequence.length; session++) {
         final level = sequence[session];

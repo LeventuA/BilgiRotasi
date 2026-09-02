@@ -139,8 +139,8 @@ class _WordHuntLevelProductionScreenState
       return null;
     }
     final row = (position.dy / (size.height / widget.level.rowCount)).floor();
-    final column = (position.dx / (size.width / widget.level.columnCount))
-        .floor();
+    final column =
+        (position.dx / (size.width / widget.level.columnCount)).floor();
     return WordHuntCell(row, column);
   }
 
@@ -243,6 +243,7 @@ class _WordHuntLevelProductionScreenState
       foundBonusWords: _foundBonus,
     );
 
+    var shouldAutoFinish = false;
     setState(() {
       _selectedPath = const <WordHuntCell>[];
       _dragStart = null;
@@ -253,24 +254,27 @@ class _WordHuntLevelProductionScreenState
           _foundTargets.add(word);
           _foundPaths[word] = selectedPath;
           final cardTitle = _unlockInfoCardFor(word);
-          _status = cardTitle == null
-              ? '$word bulundu!'
-              : 'Bilgi kartı açıldı: $cardTitle';
+          _status =
+              cardTitle == null
+                  ? '$word bulundu!'
+                  : 'Bilgi kartı açıldı: $cardTitle';
           if (_allTargetsFound && _completionElapsedSeconds == null) {
             final elapsed = _wallClockElapsedSeconds();
             _elapsedSeconds = elapsed;
             _completionElapsedSeconds = elapsed;
             _completionMistakes = _mistakes;
             _timer?.cancel();
+            shouldAutoFinish = true;
           }
         case WordHuntSelectionKind.bonus:
           final word = result.canonicalWord!;
           _foundBonus.add(word);
           _foundPaths[word] = selectedPath;
           final cardTitle = _unlockInfoCardFor(word);
-          _status = cardTitle == null
-              ? 'Bonus kelime: $word ✨'
-              : 'Bilgi kartı açıldı: $cardTitle';
+          _status =
+              cardTitle == null
+                  ? 'Bonus kelime: $word ✨'
+                  : 'Bilgi kartı açıldı: $cardTitle';
         case WordHuntSelectionKind.alreadyFound:
           _status = '${result.canonicalWord} zaten bulundu.';
         case WordHuntSelectionKind.notAWord:
@@ -285,6 +289,11 @@ class _WordHuntLevelProductionScreenState
           _status = result.error ?? 'Bu yol geçerli değil.';
       }
     });
+    if (shouldAutoFinish) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) unawaited(_finishLevel());
+      });
+    }
   }
 
   String? _unlockInfoCardFor(String word) {
@@ -314,58 +323,60 @@ class _WordHuntLevelProductionScreenState
     final leave = await showDialog<bool>(
       context: context,
       barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        key: const Key('word_hunt_production_result_dialog'),
-        backgroundColor: const Color(0xFF102443),
-        title: const Text(
-          'Bölüm Tamamlandı',
-          style: TextStyle(color: Colors.white),
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List<Widget>.generate(
-                3,
-                (index) => Icon(
-                  index < score.stars
-                      ? Icons.star_rounded
-                      : Icons.star_outline_rounded,
-                  key: Key('word_hunt_production_result_star_${index + 1}'),
-                  size: 42,
-                  color: index < score.stars
-                      ? const Color(0xFFFFD166)
-                      : const Color(0xFF77829A),
+      builder:
+          (context) => AlertDialog(
+            key: const Key('word_hunt_production_result_dialog'),
+            backgroundColor: const Color(0xFF102443),
+            title: const Text(
+              'Bölüm Tamamlandı',
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List<Widget>.generate(
+                    3,
+                    (index) => Icon(
+                      index < score.stars
+                          ? Icons.star_rounded
+                          : Icons.star_outline_rounded,
+                      key: Key('word_hunt_production_result_star_${index + 1}'),
+                      size: 42,
+                      color:
+                          index < score.stars
+                              ? const Color(0xFFFFD166)
+                              : const Color(0xFF77829A),
+                    ),
+                  ),
                 ),
+                const SizedBox(height: 12),
+                Text(
+                  '$elapsed saniye',
+                  key: const Key('word_hunt_production_result_elapsed'),
+                  style: const TextStyle(color: Color(0xFFD6D9E8)),
+                ),
+                Text(
+                  '$_scoredMistakes hata',
+                  key: const Key('word_hunt_production_result_mistakes'),
+                  style: const TextStyle(color: Color(0xFFD6D9E8)),
+                ),
+                if (_foundBonus.isNotEmpty)
+                  Text(
+                    'Bonus: ${_foundBonus.join(', ')}',
+                    style: const TextStyle(color: Color(0xFFFFD166)),
+                  ),
+              ],
+            ),
+            actions: [
+              FilledButton(
+                key: const Key('word_hunt_production_return_route'),
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Rotaya Dön'),
               ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              '$elapsed saniye',
-              key: const Key('word_hunt_production_result_elapsed'),
-              style: const TextStyle(color: Color(0xFFD6D9E8)),
-            ),
-            Text(
-              '$_scoredMistakes hata',
-              key: const Key('word_hunt_production_result_mistakes'),
-              style: const TextStyle(color: Color(0xFFD6D9E8)),
-            ),
-            if (_foundBonus.isNotEmpty)
-              Text(
-                'Bonus: ${_foundBonus.join(', ')}',
-                style: const TextStyle(color: Color(0xFFFFD166)),
-              ),
-          ],
-        ),
-        actions: [
-          FilledButton(
-            key: const Key('word_hunt_production_return_route'),
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Rotaya Dön'),
+            ],
           ),
-        ],
-      ),
     );
 
     if (!mounted) return;
@@ -393,23 +404,24 @@ class _WordHuntLevelProductionScreenState
     _exitDialogOpen = true;
     final leave = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        key: const Key('word_hunt_production_exit_dialog'),
-        title: const Text('Bölümden çıkılsın mı?'),
-        content: const Text('Bu denemedeki ilerleme kaybolacak.'),
-        actions: [
-          TextButton(
-            key: const Key('word_hunt_production_exit_continue'),
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Devam Et'),
+      builder:
+          (context) => AlertDialog(
+            key: const Key('word_hunt_production_exit_dialog'),
+            title: const Text('Bölümden çıkılsın mı?'),
+            content: const Text('Bu denemedeki ilerleme kaybolacak.'),
+            actions: [
+              TextButton(
+                key: const Key('word_hunt_production_exit_continue'),
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('Devam Et'),
+              ),
+              FilledButton(
+                key: const Key('word_hunt_production_exit_confirm'),
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Çık'),
+              ),
+            ],
           ),
-          FilledButton(
-            key: const Key('word_hunt_production_exit_confirm'),
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Çık'),
-          ),
-        ],
-      ),
     );
     _exitDialogOpen = false;
     if (leave == true && mounted) _popWithoutResult();
@@ -563,14 +575,16 @@ class _WordHuntLevelProductionScreenState
                                   child: Listener(
                                     key: const Key('word_hunt_production_grid'),
                                     behavior: HitTestBehavior.opaque,
-                                    onPointerDown: (event) => _pointerDown(
-                                      event.localPosition,
-                                      gridSize,
-                                    ),
-                                    onPointerMove: (event) => _pointerMove(
-                                      event.localPosition,
-                                      gridSize,
-                                    ),
+                                    onPointerDown:
+                                        (event) => _pointerDown(
+                                          event.localPosition,
+                                          gridSize,
+                                        ),
+                                    onPointerMove:
+                                        (event) => _pointerMove(
+                                          event.localPosition,
+                                          gridSize,
+                                        ),
                                     onPointerUp: (_) => _pointerUp(),
                                     onPointerCancel: (_) => _pointerCancel(),
                                     child: Stack(
@@ -585,12 +599,9 @@ class _WordHuntLevelProductionScreenState
                                                 _HarborFoundPathConnectorPainter(
                                                   paths: _foundPaths.values
                                                       .map(
-                                                        (path) =>
-                                                            List<
-                                                              WordHuntCell
-                                                            >.unmodifiable(
-                                                              path,
-                                                            ),
+                                                        (path) => List<
+                                                          WordHuntCell
+                                                        >.unmodifiable(path),
                                                       )
                                                       .toList(growable: false),
                                                   cellExtent: cellExtent,
@@ -662,9 +673,10 @@ class _WordHuntLevelProductionScreenState
                           const SizedBox(height: 7),
                           FilledButton.icon(
                             key: const Key('word_hunt_production_finish'),
-                            onPressed: _completionDialogOpen || _resultDelivered
-                                ? null
-                                : _finishLevel,
+                            onPressed:
+                                _completionDialogOpen || _resultDelivered
+                                    ? null
+                                    : _finishLevel,
                             style: FilledButton.styleFrom(
                               backgroundColor: const Color(0xFF8A5A16),
                               foregroundColor: _harborCream,
@@ -731,10 +743,11 @@ class _WordHuntRoutePrototypeScreenState
     final level = widget.route.levels[index - 1];
     final result = await Navigator.of(context).push<WordHuntLevelPlayResult>(
       MaterialPageRoute<WordHuntLevelPlayResult>(
-        builder: (_) => WordHuntLevelPrototypeScreen(
-          level: level,
-          infoCards: widget.infoCards,
-        ),
+        builder:
+            (_) => WordHuntLevelPrototypeScreen(
+              level: level,
+              infoCards: widget.infoCards,
+            ),
       ),
     );
     if (!mounted || result == null) return;
@@ -878,9 +891,10 @@ class _RouteHeader extends StatelessWidget {
               Text(
                 complete ? 'ROTA TAMAMLANDI' : 'Kapı: $unlockStarsRequired ⭐',
                 style: TextStyle(
-                  color: complete
-                      ? const Color(0xFF5EEAD4)
-                      : const Color(0xFFA7B0C9),
+                  color:
+                      complete
+                          ? const Color(0xFF5EEAD4)
+                          : const Color(0xFFA7B0C9),
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -932,9 +946,10 @@ class _RouteLevelNode extends StatelessWidget {
             color: unlocked ? const Color(0xFF102443) : const Color(0xFF0B1730),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: unlocked
-                  ? accent.withValues(alpha: 0.75)
-                  : const Color(0xFF26354D),
+              color:
+                  unlocked
+                      ? accent.withValues(alpha: 0.75)
+                      : const Color(0xFF26354D),
             ),
           ),
           child: Row(
@@ -945,23 +960,28 @@ class _RouteLevelNode extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: unlocked
-                      ? accent.withValues(alpha: 0.18)
-                      : const Color(0xFF172238),
+                  color:
+                      unlocked
+                          ? accent.withValues(alpha: 0.18)
+                          : const Color(0xFF172238),
                   border: Border.all(
                     color: unlocked ? accent : const Color(0xFF445066),
                   ),
                 ),
-                child: unlocked
-                    ? Text(
-                        '${level.index}',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
+                child:
+                    unlocked
+                        ? Text(
+                          '${level.index}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        )
+                        : const Icon(
+                          Icons.lock_rounded,
+                          color: Color(0xFF77829A),
                         ),
-                      )
-                    : const Icon(Icons.lock_rounded, color: Color(0xFF77829A)),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -971,9 +991,8 @@ class _RouteLevelNode extends StatelessWidget {
                     Text(
                       'Bölüm ${level.index}',
                       style: TextStyle(
-                        color: unlocked
-                            ? Colors.white
-                            : const Color(0xFF77829A),
+                        color:
+                            unlocked ? Colors.white : const Color(0xFF77829A),
                         fontSize: 17,
                         fontWeight: FontWeight.w800,
                       ),
@@ -997,9 +1016,10 @@ class _RouteLevelNode extends StatelessWidget {
                     (starIndex) => Icon(
                       Icons.star_rounded,
                       size: 20,
-                      color: starIndex < stars
-                          ? const Color(0xFFFFD166)
-                          : const Color(0xFF3B465C),
+                      color:
+                          starIndex < stars
+                              ? const Color(0xFFFFD166)
+                              : const Color(0xFF3B465C),
                     ),
                   ),
                 )
@@ -1098,8 +1118,8 @@ class _WordHuntLevelPrototypeScreenState
       return null;
     }
     final row = (position.dy / (size.height / widget.level.rowCount)).floor();
-    final column = (position.dx / (size.width / widget.level.columnCount))
-        .floor();
+    final column =
+        (position.dx / (size.width / widget.level.columnCount)).floor();
     return WordHuntCell(row, column);
   }
 
@@ -1175,9 +1195,10 @@ class _WordHuntLevelPrototypeScreenState
           _foundTargets.add(word);
           _foundPaths[word] = selectedPath;
           final cardTitle = _unlockInfoCardFor(word);
-          _status = cardTitle == null
-              ? 'Harika! $word bulundu.'
-              : 'Bilgi kartı açıldı: $cardTitle';
+          _status =
+              cardTitle == null
+                  ? 'Harika! $word bulundu.'
+                  : 'Bilgi kartı açıldı: $cardTitle';
           if (_allTargetsFound && _completionElapsedSeconds == null) {
             final elapsed = DateTime.now().difference(_startedAt).inSeconds;
             _elapsedSeconds = elapsed;
@@ -1190,9 +1211,10 @@ class _WordHuntLevelPrototypeScreenState
           _foundBonus.add(word);
           _foundPaths[word] = selectedPath;
           final cardTitle = _unlockInfoCardFor(word);
-          _status = cardTitle == null
-              ? 'Bonus kelime: $word ✨'
-              : 'Bilgi kartı açıldı: $cardTitle';
+          _status =
+              cardTitle == null
+                  ? 'Bonus kelime: $word ✨'
+                  : 'Bilgi kartı açıldı: $cardTitle';
         case WordHuntSelectionKind.alreadyFound:
           _status = '${result.canonicalWord} zaten bulundu.';
         case WordHuntSelectionKind.notAWord:
@@ -1235,42 +1257,44 @@ class _WordHuntLevelPrototypeScreenState
     final leave = await showDialog<bool>(
       context: context,
       barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF102443),
-        title: const Text(
-          'Bölüm Tamamlandı',
-          style: TextStyle(color: Colors.white),
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List<Widget>.generate(
-                3,
-                (index) => Icon(
-                  Icons.star_rounded,
-                  size: 42,
-                  color: index < score.stars
-                      ? const Color(0xFFFFD166)
-                      : const Color(0xFF3B465C),
+      builder:
+          (context) => AlertDialog(
+            backgroundColor: const Color(0xFF102443),
+            title: const Text(
+              'Bölüm Tamamlandı',
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List<Widget>.generate(
+                    3,
+                    (index) => Icon(
+                      Icons.star_rounded,
+                      size: 42,
+                      color:
+                          index < score.stars
+                              ? const Color(0xFFFFD166)
+                              : const Color(0xFF3B465C),
+                    ),
+                  ),
                 ),
+                const SizedBox(height: 12),
+                Text(
+                  '${elapsed}s • $_scoredMistakes hata • ${_foundBonus.length} bonus',
+                  style: const TextStyle(color: Color(0xFFD6D9E8)),
+                ),
+              ],
+            ),
+            actions: [
+              FilledButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Rotaya Dön'),
               ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              '${elapsed}s • $_scoredMistakes hata • ${_foundBonus.length} bonus',
-              style: const TextStyle(color: Color(0xFFD6D9E8)),
-            ),
-          ],
-        ),
-        actions: [
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Rotaya Dön'),
+            ],
           ),
-        ],
-      ),
     );
 
     if (leave == true && mounted) {
@@ -1359,10 +1383,12 @@ class _WordHuntLevelPrototypeScreenState
                     return Listener(
                       key: const Key('word_hunt_grid'),
                       behavior: HitTestBehavior.opaque,
-                      onPointerDown: (event) =>
-                          _pointerDown(event.localPosition, gridSize),
-                      onPointerMove: (event) =>
-                          _pointerMove(event.localPosition, gridSize),
+                      onPointerDown:
+                          (event) =>
+                              _pointerDown(event.localPosition, gridSize),
+                      onPointerMove:
+                          (event) =>
+                              _pointerMove(event.localPosition, gridSize),
                       onPointerUp: (_) => _pointerUp(),
                       onPointerCancel: (_) {
                         setState(() {
@@ -1392,18 +1418,20 @@ class _WordHuntLevelPrototypeScreenState
                             duration: const Duration(milliseconds: 120),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color: selected
-                                  ? const Color(0xFF8B5CF6)
-                                  : found
-                                  ? const Color(0xFF0F766E)
-                                  : const Color(0xFF142A4C),
+                              color:
+                                  selected
+                                      ? const Color(0xFF8B5CF6)
+                                      : found
+                                      ? const Color(0xFF0F766E)
+                                      : const Color(0xFF142A4C),
                               borderRadius: BorderRadius.circular(14),
                               border: Border.all(
-                                color: selected
-                                    ? const Color(0xFFD8B4FE)
-                                    : found
-                                    ? const Color(0xFF5EEAD4)
-                                    : const Color(0xFF34527A),
+                                color:
+                                    selected
+                                        ? const Color(0xFFD8B4FE)
+                                        : found
+                                        ? const Color(0xFF5EEAD4)
+                                        : const Color(0xFF34527A),
                               ),
                             ),
                             child: Text(
@@ -1597,9 +1625,10 @@ class _HarborWordPlate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final asset = bonus
-        ? 'assets/word_hunt/v5_reference_assets/bonus_plaque_empty.png'
-        : 'assets/word_hunt/v5_reference_assets/word_plaque_empty.png';
+    final asset =
+        bonus
+            ? 'assets/word_hunt/v5_reference_assets/bonus_plaque_empty.png'
+            : 'assets/word_hunt/v5_reference_assets/word_plaque_empty.png';
     return AnimatedContainer(
       duration: const Duration(milliseconds: 160),
       constraints: const BoxConstraints(minHeight: 34),
@@ -1609,9 +1638,10 @@ class _HarborWordPlate extends StatelessWidget {
           image: AssetImage(asset),
           fit: BoxFit.fill,
           filterQuality: FilterQuality.high,
-          colorFilter: found
-              ? const ColorFilter.mode(Color(0xFFC06B16), BlendMode.color)
-              : null,
+          colorFilter:
+              found
+                  ? const ColorFilter.mode(Color(0xFFC06B16), BlendMode.color)
+                  : null,
         ),
       ),
       child: Row(
@@ -1666,16 +1696,18 @@ class _HarborFoundPathConnectorPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (paths.isEmpty) return;
 
-    final glowPaint = Paint()
-      ..color = const Color(0x66FFB52A)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = math.max(10, cellExtent * .70)
-      ..strokeCap = StrokeCap.butt;
-    final bridgePaint = Paint()
-      ..color = const Color(0xF2C06A12)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = math.max(8, cellExtent * .58)
-      ..strokeCap = StrokeCap.butt;
+    final glowPaint =
+        Paint()
+          ..color = const Color(0x66FFB52A)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = math.max(10, cellExtent * .70)
+          ..strokeCap = StrokeCap.butt;
+    final bridgePaint =
+        Paint()
+          ..color = const Color(0xF2C06A12)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = math.max(8, cellExtent * .58)
+          ..strokeCap = StrokeCap.butt;
 
     for (final path in paths) {
       if (path.length < 2) continue;
@@ -1726,22 +1758,24 @@ class _HarborGridCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final active = selected || found;
-    final asset = active
-        ? 'assets/word_hunt/v5_reference_assets/cell_selected_found.png'
-        : 'assets/word_hunt/v5_reference_assets/cell_idle.png';
+    final asset =
+        active
+            ? 'assets/word_hunt/v5_reference_assets/cell_selected_found.png'
+            : 'assets/word_hunt/v5_reference_assets/cell_idle.png';
 
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(math.max(6, extent * .14)),
-        boxShadow: active
-            ? const <BoxShadow>[
-                BoxShadow(
-                  color: Color(0x66FFB52A),
-                  blurRadius: 3,
-                  spreadRadius: .2,
-                ),
-              ]
-            : const <BoxShadow>[],
+        boxShadow:
+            active
+                ? const <BoxShadow>[
+                  BoxShadow(
+                    color: Color(0x66FFB52A),
+                    blurRadius: 3,
+                    spreadRadius: .2,
+                  ),
+                ]
+                : const <BoxShadow>[],
       ),
       child: Stack(
         fit: StackFit.expand,
