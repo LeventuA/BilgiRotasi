@@ -76,13 +76,14 @@ Bu sonuç **MIXED** kabul edilir. Otomatik QA’nın 20/23 saniyelik scripted s�
 
 ### Swipe false-positive hata sayımı — KODLANDI / CI BEKLİYOR
 
+- Uygulama commit’i: `8610b01e7ac534def33c0125bc2b9185d2774f5d`; Draft PR **#166 — OPEN / merge yok**.
 - Mevcut runtime tek hücrelik tap/release seçimini `notAWord` olarak sayabilir.
 - Doğru kelime yolunun sonundan bir hücre taşan sürükleme bütün yolu `notAWord` yapabilir.
 - Listener aktif pointer kimliğini kilitlemediği için aynı gesture sırasında istenmeyen ek temas seçime karışabilir.
 - Branch `fix/kelime-avi-swipe-tolerance-20260903` üzerinde input-normalization katmanı eklendi: kelime olamayacak kadar kısa gesture cezasız iptal; yalnız bir trailing hücre çıkarıldığında exact target/bonus/already-found oluşuyorsa kırpıp kabul; gesture boyunca tek aktif pointer; diğer anlamlı yanlış düz seçimler hata kalır.
 - Geniş “en yakın kelimeyi kabul et” veya otomatik kelime bulma uygulanmayacak.
 - Path engine, scoring, timer, içerik ve yıldız eşikleri değiştirilmedi. Dört resolver testi ile kısa temas + taşma + çoklu pointer widget regresyonları eklendi.
-- Çalışma ortamında Flutter/Dart SDK bulunmadığı için `git diff --check` PASS olsa da executable focused test/analyze sonucu uzaktaki CI’dan alınmadan kapı kapanmış sayılmaz; Android/APK üretilmedi.
+- Çalışma ortamında Flutter/Dart SDK bulunmadığı ve GitHub tarayıcı oturumu açık olmadığı için `git diff --check` PASS olsa da executable focused test/analyze sonucu alınamadı; kapı kapanmış sayılmaz, Android/APK üretilmedi.
 
 ## Ölçeklenebilir üretim/test akışı
 

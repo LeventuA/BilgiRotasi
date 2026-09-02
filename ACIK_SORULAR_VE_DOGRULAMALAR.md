@@ -24,7 +24,7 @@ Kapanan kabul/doğrulama kapıları:
 Açık kalanlar:
 - `B5_60S_TUNED_HUMAN_PLAYTEST` — Yeni 8×8 B5 yerleşim adayı (`44ebec6b...`): **32 sn / süre PASS**. UI 2 hata kaydetti; Levent bilinçli yanlış seçim yapmadığını, parmak taşması/fazla temas olduğunu bildirdi.
 - `B5_60S_BALANCE_DECISION` — 60 sn soft hedefi karşılandı; aday kabul edildi. PR #163 ürünizasyonu: **AÇIK**.
-- `SWIPE_FALSE_POSITIVE_MISTAKES` — Kısa gesture iptali, exact kelimede tek trailing overshoot ve tek aktif pointer input katmanında kodlandı; gerçek yanlış seçim cezası korunuyor. Hedefli unit/widget testleri eklendi: **KODLANDI / CI BEKLİYOR**.
+- `SWIPE_FALSE_POSITIVE_MISTAKES` — Kısa gesture iptali, exact kelimede tek trailing overshoot ve tek aktif pointer input katmanında commit `8610b01e...` / Draft PR #166 ile kodlandı; gerçek yanlış seçim cezası korunuyor. Hedefli unit/widget testleri eklendi: **KODLANDI / CI BEKLİYOR**.
 - `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK altyapısı: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; custom font asset/source yok. Exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
 - `PR_161_READY_DECISION` — Parent V5 PR #161 Ready kararı: **AÇIK**.

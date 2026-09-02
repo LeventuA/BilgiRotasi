@@ -145,10 +145,11 @@ B5 60 sn soft challenge hard-fail değildir. Kullanıcıdan ayrıca tuning/denge
 
 ### Swipe input toleransı — KODLANDI / CI BEKLİYOR
 
+- Uygulama commit’i `8610b01e7ac534def33c0125bc2b9185d2774f5d`; Draft PR #166 OPEN, merge yok.
 - Kodda pointer endpoint doğrudan hücreye çevriliyor; tek hücre tap/release `notAWord` sayılabiliyor ve doğru kelimeden bir hücre taşma bütün seçimi hataya çevirebiliyor.
 - Dar çözüm input-normalization katmanında kodlandı: kelime olamayacak kadar kısa gesture cezasız iptal; yalnız son hücre çıkarıldığında exact target/bonus/already-found oluşuyorsa kırpıp kabul; gesture boyunca tek aktif pointer.
 - Gerçek, yeterince uzun ve anlamlı yanlış düz seçim hata sayılmaya devam eder. “En yakın kelimeyi bul” türü geniş otomatik düzeltme yapılmaz.
-- Path engine değiştirilmedi; dört resolver testi ve kısa temas/tek taşma/çoklu pointer widget regresyonları eklendi. Yerel SDK olmadığı için executable CI/analyze sonucu bekleniyor; `git diff --check` PASS, Android/APK üretilmedi.
+- Path engine değiştirilmedi; dört resolver testi ve kısa temas/tek taşma/çoklu pointer widget regresyonları eklendi. Yerel SDK ve açık GitHub tarayıcı oturumu olmadığı için executable CI/analyze sonucu bekleniyor; `git diff --check` PASS, Android/APK üretilmedi.
 
 ## Paket bazlı üretim ve risk bazlı test — KALICI KARAR
 

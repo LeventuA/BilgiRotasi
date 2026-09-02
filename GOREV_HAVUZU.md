@@ -44,7 +44,7 @@
 
 ### Açık işler
 
-1. Swipe false-positive düzeltmesi kodlandı: kısa gesture cezasız iptal, exact kelimede tek trailing-cell toleransı, tek aktif pointer ve gerçek yanlış seçim cezası. Unit/widget regresyonları eklendi; focused CI/analyze çalıştırılacak. **KODLANDI / CI BEKLİYOR**.
+1. Swipe false-positive düzeltmesi kodlandı: commit `8610b01e...`, Draft PR #166 OPEN. Kısa gesture cezasız iptal, exact kelimede tek trailing-cell toleransı, tek aktif pointer ve gerçek yanlış seçim cezası. Unit/widget regresyonları eklendi; focused CI/analyze çalıştırılacak. **KODLANDI / CI BEKLİYOR**.
 2. B5 tuning adayını exact içerik blobuyla PR #163 ürün hattına taşı. **AÇIK**.
 3. Sonraki 10 bölümlük paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA akışını uygula. **KABUL EDİLDİ / UYGULANACAK**.
 4. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
