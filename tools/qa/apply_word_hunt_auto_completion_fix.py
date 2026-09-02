@@ -3,6 +3,11 @@ import re
 
 screen_path = Path('lib/word_hunt/word_hunt_screens.dart')
 text = screen_path.read_text()
+start_marker = 'class _WordHuntLevelProductionScreenState'
+end_marker = '/// İzole rota ekranı.'
+start = text.index(start_marker)
+end = text.index(end_marker, start)
+product = text[start:end]
 
 result_anchor = """    final result = WordHuntPathEngine.evaluate(
       level: widget.level,
@@ -13,9 +18,9 @@ result_anchor = """    final result = WordHuntPathEngine.evaluate(
 
     setState(() {
 """
-if text.count(result_anchor) != 1:
-    raise SystemExit(f'result anchor count={text.count(result_anchor)}')
-text = text.replace(
+if product.count(result_anchor) != 1:
+    raise SystemExit(f'production result anchor count={product.count(result_anchor)}')
+product = product.replace(
     result_anchor,
     result_anchor.replace(
         '\n\n    setState(() {',
@@ -28,9 +33,9 @@ freeze_anchor = """            _completionMistakes = _mistakes;
             _timer?.cancel();
           }
 """
-if text.count(freeze_anchor) != 1:
-    raise SystemExit(f'freeze anchor count={text.count(freeze_anchor)}')
-text = text.replace(
+if product.count(freeze_anchor) != 1:
+    raise SystemExit(f'production freeze anchor count={product.count(freeze_anchor)}')
+product = product.replace(
     freeze_anchor,
     """            _completionMistakes = _mistakes;
             _timer?.cancel();
@@ -45,9 +50,9 @@ end_anchor = """    });
 
   String? _unlockInfoCardFor(String word) {
 """
-if text.count(end_anchor) != 1:
-    raise SystemExit(f'pointer-up end anchor count={text.count(end_anchor)}')
-text = text.replace(
+if product.count(end_anchor) != 1:
+    raise SystemExit(f'production pointer-up end anchor count={product.count(end_anchor)}')
+product = product.replace(
     end_anchor,
     """    });
     if (shouldAutoFinish) {
@@ -61,7 +66,7 @@ text = text.replace(
 """,
     1,
 )
-screen_path.write_text(text)
+screen_path.write_text(text[:start] + product + text[end:])
 
 test_path = Path('test/word_hunt_level_production_test.dart')
 tests = test_path.read_text()
