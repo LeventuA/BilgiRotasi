@@ -10,7 +10,7 @@ if source.count(old_helper) != 1:
 source = source.replace(old_helper, new_helper, 1)
 
 old_replay_tail = """      expect(\n        find.byKey(const Key('word_hunt_production_result_panel')),\n        findsOneWidget,\n      );\n    }\n  });\n"""
-new_replay_tail = """      expect(\n        find.byKey(const Key('word_hunt_production_result_panel')),\n        findsOneWidget,\n      );\n      await tester.tap(\n        find.byKey(const Key('word_hunt_production_return_route')),\n      );\n      await tester.pumpAndSettle();\n    }\n  });\n"""
+new_replay_tail = """      expect(\n        find.byKey(const Key('word_hunt_production_result_panel')),\n        findsOneWidget,\n      );\n\n      // Close only the modal result route, then dispose the whole widget tree.\n      // The next loop iteration therefore creates a genuinely fresh level State.\n      final navigator = tester.state<NavigatorState>(find.byType(Navigator));\n      navigator.pop(false);\n      await tester.pumpAndSettle();\n      await tester.pumpWidget(const SizedBox.shrink());\n      await tester.pumpAndSettle();\n    }\n  });\n"""
 if source.count(old_replay_tail) != 1:
     raise SystemExit('replay test tail source mismatch')
 source = source.replace(old_replay_tail, new_replay_tail, 1)
