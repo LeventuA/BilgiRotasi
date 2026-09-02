@@ -6,6 +6,8 @@ on:
       - qa/kelime-avi-v6-completion-result-runtime-20260902
     paths:
       - '.github/workflows/word-hunt-v6-completion-result-android16-qa.yml'
+      - 'tools/word_hunt_v6_completion_result_qa_main.dart'
+      - 'tools/qa/word_hunt_v6_completion_result_android16.sh'
   workflow_dispatch:
 
 permissions:
