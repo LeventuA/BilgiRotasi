@@ -202,3 +202,20 @@ Bu bölüm, 31 Ağustos kayıtlarındaki `ERROR_STATE_VISUAL = DOĞRULANACAK` du
 - Paket QA APK’sı tek uygulama içinde B1–B10 bölüm seçici, yeniden başlatma ve sonuç özeti sağlamalıdır; on ayrı APK üretilmez.
 - Hata bulunursa bütün paket yeniden üretilmez; yalnız başarısız bölüm/dosya düzeltilir ve ilgili otomatik kapılar tekrarlanır.
 - Bu hızlandırma test standardını düşürmez: riskli ürün/runtime değişiklikleri ve final release için ham Android ekranı, logcat/crash-ANR taraması, exact SHA ve artifact kanıtı korunur.
+
+## 13. 3 Eylül 2026 — Swipe false-positive dar tolerans kararı
+
+- Kelime olamayacak kadar kısa dokunma/sürükleme seçim veya hata sayılmaz.
+- Seçim yalnız son hücresi çıkarıldığında exact target, bonus veya zaten bulunmuş kelime oluyorsa tek trailing hücre kırpılır; daha geniş yakın-kelime tahmini yapılmaz.
+- Gesture boyunca ilk aktif pointer kilitlenir, diğer temaslar seçim yolunu değiştirmez.
+- Yeterince uzun gerçek yanlış düz seçimlerin hata sayımı korunur; canonical path engine, scoring, timer ve yıldız eşikleri değiştirilmez.
+- Düzeltme hedefli unit/widget testleriyle doğrulanır; merge yine Levent’in ayrı açık onayını gerektirir.
+
+## 14. 3 Eylül 2026 — WORK V2 hızlı otonom üretim kararı
+
+- Mikro değişiklik → tam test → rapor → kullanıcı bekleme döngüsü kullanılmaz; ilişkili işler mantıklı üretim bloklarında tamamlanır.
+- Testler risk bazlı checkpointlerde toplanır. Açıkça çözülebilen fixture, test ve uygulama hataları kullanıcı onayı beklenmeden düzeltilip yeniden doğrulanır.
+- Kullanıcı ürün yönü, gerçek görsel/fiziksel kabul ve Ready/merge/release kararlarında devreye girer; merge/release için açık onay zorunluluğu değişmez.
+- Kelime Avı ilgili PR push'ları otomatik focused analyze/test/diff fast gate'inden geçer; kullanıcı workflow başlatan test operatörü olarak kullanılmaz.
+- Canonical 8×8, kabul edilmiş görsel durumlar, engine/path/scoring/timer/progression ve korunan ürün alanları hız uğruna değiştirilmez.
+- Ayrıntılı çalışma sözleşmesi `docs/project-memory/KELIME_AVI_WORK_V2.md` dosyasında tutulur.
