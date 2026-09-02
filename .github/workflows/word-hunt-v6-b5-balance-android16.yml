@@ -51,7 +51,8 @@ jobs:
           bash -n tools/qa/word_hunt_v6_b5_balance_android16.sh
           flutter pub get
           dart analyze lib/word_hunt tools/word_hunt_v6_b5_balance_qa_main.dart test/word_hunt_b5_balance_candidate_test.dart
-          flutter test test/word_hunt_b5_balance_candidate_test.dart test/word_hunt_level_production_test.dart --reporter expanded 2>&1 | tee "$REPORT_DIR/FOCUSED_TESTS.txt"
+          flutter test test/word_hunt_b5_balance_candidate_test.dart --reporter expanded 2>&1 | tee "$REPORT_DIR/B5_CANDIDATE_TESTS.txt"
+          flutter test test/word_hunt_level_production_test.dart --plain-name 'Android 16 dar viewportta B1 B5 B8 B10 64 hücre ve liman chrome görünür' --reporter expanded 2>&1 | tee "$REPORT_DIR/B5_RENDER_SMOKE_TEST.txt"
           git diff --check
           printf '%s\n' \
             "TARGET_PRODUCT_SHA=$TARGET_PRODUCT_SHA" \
@@ -60,6 +61,7 @@ jobs:
             'B5_WORDS_UNCHANGED=PASS' \
             'B5_TIMER_THRESHOLDS_UNCHANGED=PASS' \
             'B5_UNIQUE_PHYSICAL_PATHS=PASS' \
+            'B5_8X8_RENDER_SMOKE=PASS' \
             'FOCUSED_GATES=PASS' \
             | tee "$REPORT_DIR/STATIC_GATE_SUMMARY.txt"
 
