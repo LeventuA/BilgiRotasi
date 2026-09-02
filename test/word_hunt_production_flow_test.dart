@@ -184,7 +184,7 @@ void main() {
       find.byKey(const Key('word_hunt_production_cell_0_0')),
     );
     final end = tester.getCenter(
-      find.byKey(const Key('word_hunt_production_cell_0_1')),
+      find.byKey(const Key('word_hunt_production_cell_0_3')),
     );
     final gesture = await tester.startGesture(start);
     await gesture.moveTo(end);
