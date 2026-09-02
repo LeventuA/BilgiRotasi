@@ -8,18 +8,20 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   Future<void> pumpLevel(
     WidgetTester tester,
-    WordHuntLevelDefinition level,
-  ) async {
+    WordHuntLevelDefinition level, {
+    required int session,
+  }) async {
     await tester.binding.setSurfaceSize(const Size(720, 1280));
     await tester.pumpWidget(
       MaterialApp(
+        key: ValueKey<String>('word_hunt_auto_completion_session_$session'),
         home: WordHuntLevelProductionScreen(
           level: level,
           infoCards: WordHuntStarterContent.infoCards,
         ),
       ),
     );
-    await tester.pump();
+    await tester.pumpAndSettle();
   }
 
   Future<void> dragCells(
@@ -107,8 +109,9 @@ void main() {
       final levels = WordHuntStarterContent.baslangicLimani.levels;
       final sequence = <WordHuntLevelDefinition>[levels[4], levels[9], levels[4]];
 
-      for (final level in sequence) {
-        await pumpLevel(tester, level);
+      for (var session = 0; session < sequence.length; session++) {
+        final level = sequence[session];
+        await pumpLevel(tester, level, session: session);
         expect(
           find.byKey(const Key('word_hunt_production_result_dialog')),
           findsNothing,
