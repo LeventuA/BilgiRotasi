@@ -31,6 +31,20 @@ HER GÖREVDEN ÖNCE:
 - Gizli bilgi, testçi e-postası, parola veya anahtarları dosyalara ekleme.
 - Bir bilgi doğrulanmamışsa DOĞRULANACAK olarak işaretle; tahmin etme.
 
+KELİME AVI WORK V2 — HIZLI OTONOM ÜRETİM:
+- Mikro değişiklik -> rapor -> kullanıcıyı bekleme döngüsünü kullanma.
+- Hedef -> toplu üretim -> toplu doğrulama -> kendi kendine düzeltme -> yeniden doğrulama -> güçlü aday döngüsünü kullan.
+- Birbiriyle ilişkili ürün, görsel, test ve dokümantasyon işlerini mantıklı tek batch içinde tamamla.
+- Her mikro değişiklikte bütün testleri çalıştırma; focused test, analyze, regression ve gerekiyorsa Android kanıtını mantıklı checkpointte topla.
+- Test hatası proje kapsamında çözülebiliyorsa kullanıcıdan izin istemeden düzelt ve yeniden doğrula.
+- GitHub repo/branch/HEAD/PR/CI/workflow durumunu kullanıcı hatırlatmadan canlı araçlarla kontrol et.
+- Kullanıcıyı geliştirici veya sürekli test operatörü yapma; yalnız ürün yönü, gerçek görsel tercih, fiziksel cihaz kabulü ve merge/release onayında devreye al.
+- Canonical 8x8 gameplay, onaylanmış kelime/bonus/oynanış kararları ve görsel dil korunur; eski 6x10 veya superseded tasarımlara dönülmez.
+- Teknik çalışan fakat görsel olarak zayıf çözümü production-ready sayma; güçlü görsel adayı oyuna entegre edip toplu doğrulamadan sonra kullanıcıya getir.
+- Bir sonraki teknik adım belliyse “devam edeyim mi?” diye sorma; gerçek erişim/ürün kararı engeli yoksa devam et.
+- Dokümantasyonu mikro adımlarda değil, önemli checkpoint sonunda fark bazlı güncelle.
+- Merge/release açık Levent onayı olmadan yapılmaz; merge öncesi düzeltme, test, CI ve kanıt hazırlığı mümkün olduğunca tamamlanır.
+
 GENEL PROJE ÖZETİ YAŞAM DÖNGÜSÜ:
 - Bu proje kapsamındaki her yanıttan sonra docs/project-memory/GENEL_PROJE_OZETI.md dosyasını güncelle.
 - Her seferinde sıfırdan yazma; mevcut dosyayı oku ve yalnız gerekli farkları uygula.

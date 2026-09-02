@@ -349,10 +349,10 @@ void main() {
 
     await dragCells(
       tester,
-      startRow: 5,
-      startColumn: 2,
+      startRow: 0,
+      startColumn: 0,
       endRow: 0,
-      endColumn: 7,
+      endColumn: 5,
     );
     expect(
       find.byKey(const Key('word_hunt_production_target_ANKARA_found')),
