@@ -1,0 +1,134 @@
+name: Kelime Avi V6 B5 60s balance Android 16
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - tune/kelime-avi-v6-b5-60s-layout-20260902
+    paths:
+      - .github/workflows/word-hunt-v6-b5-balance-android16.yml
+
+permissions:
+  contents: read
+
+jobs:
+  b5-balance-proof:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    env:
+      TARGET_PRODUCT_SHA: 44ebec6b830a288df66f4fa16e2611dfa2165bae
+      TARGET_STARTER_BLOB: a408ea631d267c6763baa3642ab4b92171eeafc8
+      TARGET_SCREEN_BLOB: 6ce2830a7df8eb696a9df589c91c544df7712969
+      QA_PACKAGE: com.leventua.bilgirotasi.wordhuntb5qa
+      REPORT_DIR: reports/word_hunt_v6_b5_balance
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Verify exact B5 tuning candidate and run focused gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$REPORT_DIR"
+          git merge-base --is-ancestor "$TARGET_PRODUCT_SHA" HEAD
+          test "$(git hash-object lib/word_hunt/word_hunt_starter_content.dart)" = "$TARGET_STARTER_BLOB"
+          test "$(git hash-object lib/word_hunt/word_hunt_screens.dart)" = "$TARGET_SCREEN_BLOB"
+          test -z "$(git diff --name-only "$TARGET_PRODUCT_SHA"...HEAD -- lib assets android pubspec.yaml)"
+          grep -q '^version: 1.68.19+109$' pubspec.yaml
+          bash -n tools/qa/word_hunt_v6_b5_balance_android16.sh
+          flutter pub get
+          dart analyze lib/word_hunt tools/word_hunt_v6_b5_balance_qa_main.dart test/word_hunt_b5_balance_candidate_test.dart
+          flutter test test/word_hunt_b5_balance_candidate_test.dart test/word_hunt_level_production_test.dart --reporter expanded 2>&1 | tee "$REPORT_DIR/FOCUSED_TESTS.txt"
+          git diff --check
+          printf '%s\n' \
+            "TARGET_PRODUCT_SHA=$TARGET_PRODUCT_SHA" \
+            "TARGET_STARTER_BLOB=$TARGET_STARTER_BLOB" \
+            "TARGET_SCREEN_BLOB=$TARGET_SCREEN_BLOB" \
+            'B5_WORDS_UNCHANGED=PASS' \
+            'B5_TIMER_THRESHOLDS_UNCHANGED=PASS' \
+            'B5_UNIQUE_PHYSICAL_PATHS=PASS' \
+            'FOCUSED_GATES=PASS' \
+            | tee "$REPORT_DIR/STATIC_GATE_SUMMARY.txt"
+
+      - name: Build distinct-package B5 balance APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp android/app/build.gradle.kts /tmp/build.gradle.kts.original
+          cp android/app/src/main/AndroidManifest.xml /tmp/AndroidManifest.xml.original
+          python3 - <<'PY'
+          from pathlib import Path
+          gradle = Path('android/app/build.gradle.kts')
+          text = gradle.read_text(encoding='utf-8')
+          plugin = '    id("com.google.gms.google-services")\n'
+          if text.count(plugin) != 1:
+              raise SystemExit('google-services plugin count mismatch')
+          text = text.replace(plugin, '')
+          old_id = '        applicationId = "com.leventua.bilgirotasi"'
+          new_id = '        applicationId = "com.leventua.bilgirotasi.wordhuntb5qa"'
+          if text.count(old_id) != 1:
+              raise SystemExit('applicationId count mismatch')
+          gradle.write_text(text.replace(old_id, new_id), encoding='utf-8')
+
+          manifest = Path('android/app/src/main/AndroidManifest.xml')
+          mtext = manifest.read_text(encoding='utf-8')
+          old_label = 'android:label="Bilgi Rotası"'
+          new_label = 'android:label="Kelime Avı B5 60s QA"'
+          if mtext.count(old_label) != 1:
+              raise SystemExit('application label count mismatch')
+          manifest.write_text(mtext.replace(old_label, new_label), encoding='utf-8')
+          PY
+          flutter build apk --debug -t tools/word_hunt_v6_b5_balance_qa_main.dart --dart-define=ADMOB_ENVIRONMENT=test
+          cp build/app/outputs/flutter-apk/app-debug.apk "$REPORT_DIR/KelimeAvi-V6-B5-60s-Balance-QA.apk"
+          sha256sum "$REPORT_DIR/KelimeAvi-V6-B5-60s-Balance-QA.apk" | tee "$REPORT_DIR/APK_SHA256.txt"
+          build_tools="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)"
+          "$build_tools/aapt" dump badging "$REPORT_DIR/KelimeAvi-V6-B5-60s-Balance-QA.apk" | tee "$REPORT_DIR/APK_BADGING.txt"
+          grep -q "package: name='$QA_PACKAGE'" "$REPORT_DIR/APK_BADGING.txt"
+          grep -q "application-label:'Kelime Avı B5 60s QA'" "$REPORT_DIR/APK_BADGING.txt"
+          cp /tmp/build.gradle.kts.original android/app/build.gradle.kts
+          cp /tmp/AndroidManifest.xml.original android/app/src/main/AndroidManifest.xml
+          test -z "$(git status --porcelain -- android)"
+          (cd android && ./gradlew --stop)
+
+      - name: Prepare KVM
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+
+      - name: Android 16 B5 balance render proof
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 3072M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: bash tools/qa/word_hunt_v6_b5_balance_android16.sh
+
+      - name: Upload B5 balance APK and raw Android proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kelime-Avi-V6-B5-60s-Balance-Android16
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: error
+          retention-days: 7
