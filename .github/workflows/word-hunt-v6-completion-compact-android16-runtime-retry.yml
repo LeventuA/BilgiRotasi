@@ -87,8 +87,7 @@ jobs:
             adb shell wm density 420
             adb shell settings put secure immersive_mode_confirmations confirmed || true
             bash tools/qa_retry/word_hunt_v6_completion_compact_android16_retry.sh
-            find "$REPORT_DIR" -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 \
-              | sort -z | xargs -0 sha256sum > "$REPORT_DIR/SHA256SUMS.txt"
+            find "$REPORT_DIR" -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > "$REPORT_DIR/SHA256SUMS.txt"
 
       - name: Runtime kanitlarini yukle
         if: always()
