@@ -1,6 +1,8 @@
 from pathlib import Path
 import re
 
+# This helper only patches the production screen; replay/session isolation lives
+# in the regression test and must not broaden the product diff.
 screen_path = Path('lib/word_hunt/word_hunt_screens.dart')
 text = screen_path.read_text()
 start_marker = 'class _WordHuntLevelProductionScreenState'
