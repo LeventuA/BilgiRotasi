@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 3 Eylül 2026 — PR #158 Ready kararı Levent’in açık onayıyla kapandı; canonical release merge ayrı açık karardır.
+**Son güncelleme:** 3 Eylül 2026 — Production ana navigasyon PR #169 Levent’in ayrı ve açık onayıyla canonical release’e merge edildi. Play yükleme/yayınlama ayrı açık karardır. Docs-only PR #168 ilk kısa `mergeable=false` görünümü sonrası yeniden hesaplamada `mergeable=true` oldu.
 
 ## Kelime Avı
 
@@ -18,12 +18,21 @@
 - `PR_162_READY_MERGE` — **PASS / KAPANDI**; merge `929bb13177e03a0962464e21f6c174d4b3439349`.
 - `PR_161_FINAL_REVIEW` — **PASS / KAPANDI**.
 - `PR_161_READY_DECISION` — **PASS / KAPANDI**.
-- `PR_161_MERGE_DECISION` — Levent’in ayrı açık onayıyla **PASS / KAPANDI**; merge `4aa490e7c2d5e7547dc95f9463dbbb9adeb85e5a` yalnız PR #158 branch’ine yapıldı.
-- `PR_158_RELEASE_QA_CLEANUP` — obsolete V5 QA workflow/entrypoint/script/test/helper/reference ve superseded gameplay background release diff’inden çıkarıldı: **PASS / KAPANDI**; commit `2ae95df70b452f735a8db9c5bd0d88827a2ec40a`.
+- `PR_161_MERGE_DECISION` — **PASS / KAPANDI**; merge `4aa490e7c2d5e7547dc95f9463dbbb9adeb85e5a`.
+- `PR_158_RELEASE_QA_CLEANUP` — **PASS / KAPANDI**; commit `2ae95df70b452f735a8db9c5bd0d88827a2ec40a`.
 - `PR_158_FINAL_DIFF_REVIEW` — 37 dosya; protected scope temiz; review/thread yok: **PASS / KAPANDI**.
-- `PR_158_ANDROID16_RELEASE_CONTEXT` — run `33745646184`, job `100617364648`: **SUCCESS / KAPANDI**; artifact `9887953917`, digest `sha256:0f2fbcfc4022e4e8422912139349412969916496f96d4d29d80bdec8865176c5`.
-- `PR_158_RELEASE_APK_ADMOB_CONTEXT` — run `33745646210`, job `100617365147`: **SUCCESS / KAPANDI**; analyze/full tests/release APK/manifest/AdMob/signature/Android16 cold-start PASS; artifact `9889920696`, digest `sha256:447b82994aa25002e6f520f2de2b4ba598adcf769d80cb7aa7a767faf2f95c00`.
-- `PR_158_READY_DECISION` — Levent’in ayrı açık onayıyla **PASS / KAPANDI**; PR #158 Ready for Review yapıldı.
+- `PR_158_ANDROID16_RELEASE_CONTEXT` — run `33745646184`, job `100617364648`: **SUCCESS / KAPANDI**; artifact `9887953917`.
+- `PR_158_RELEASE_APK_ADMOB_CONTEXT` — run `33745646210`, job `100617365147`: **SUCCESS / KAPANDI**; artifact `9889920696`.
+- `PR_158_READY_DECISION` — **PASS / KAPANDI**.
+- `PR_158_RELEASE_MERGE_DECISION` — Levent’in ayrı ve açık onayıyla **PASS / KAPANDI**; canonical release merge commit `189864c92a605e7bb960460300714049c730ea39`.
+- `PR_158_RELEASE_HEAD_VERIFY` — canonical release HEAD `189864c92a605e7bb960460300714049c730ea39`: **PASS / KAPANDI**.
+- `PRODUCTION_MAIN_NAVIGATION` — PR #169 ile **PASS / KAPANDI**; exact head `ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`, merge commit `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+- `PR_169_FULL_SUITE_RELEASE_ANDROID16` — run `33754851284`: **SUCCESS / KAPANDI**.
+- `PR_169_VISUAL_MASTER_ART_ANDROID16` — run `33754851205`: **SUCCESS / KAPANDI**; 126 test; artifact `9893332600`.
+- `PR_169_READY_DECISION` — Levent’in `Devam et` onayıyla **PASS / KAPANDI**.
+- `PR_169_RELEASE_MERGE_DECISION` — Levent’in ayrı `Merge et` onayıyla **PASS / KAPANDI**; merge `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+- `PR_169_RELEASE_HEAD_VERIFY` — canonical release HEAD `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`: **PASS / KAPANDI**.
+- `PR_168_MERGEABILITY_RECHECK` — ilk kısa `mergeable=false` görünümü GitHub yeniden hesaplaması sonrası `mergeable=true`: **PASS / KAPANDI**. PR diff’i yalnız dört checkpoint belgesidir.
 
 ### İnsan süre-zorluk sonucu
 
@@ -33,15 +42,15 @@
 
 ### Açık kalanlar
 
-- `PR_158_RELEASE_MERGE_DECISION` — canonical release branch’e merge: **AÇIK / ayrıca Levent’in açık merge onayı gerekli**.
 - `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
-- `PRODUCTION_MAIN_NAVIGATION` — `lib/main.dart` production ana navigasyon entegrasyonu ayrı scope: **AÇIK**.
+- `PR_168_DOCS_MERGE_DECISION` — docs-only checkpoint PR #168: **AÇIK / READY / mergeable=true / ayrı açık merge onayı gerekli**.
 - `PLAY_RELEASE` — Play yükleme/yayınlama ayrıca açık karar gerektirir: **AÇIK**.
 
 ## Merge güvenliği
 
-- PR #158 **READY** durumundadır ancak merge edilmemiştir.
-- Ready onayı canonical release merge onayı değildir.
-- Canonical release merge ve Play yayını ayrı açık Levent onayı olmadan yapılmaz.
-- Görsel/teknik/CI PASS veya Ready, merge onayı değildir.
+- PR #158 canonical release branch’e merge edilmiştir; merge commit `189864c92a605e7bb960460300714049c730ea39`.
+- PR #169 canonical release branch’e merge edilmiştir; merge commit `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+- PR #169 merge commitinde otomatik PR workflow’u tetiklenmemiştir (`0` run); exact PR HEAD’deki full-suite/release/Android16 ve visual/MASTER ART SUCCESS kanıtları final teknik kanıttır.
+- Play yayını yapılmamıştır.
+- Docs-only PR #168 ayrıca açık onay olmadan merge edilmeyecektir.
