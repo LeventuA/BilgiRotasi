@@ -134,7 +134,7 @@ jobs:
           git diff --check
           CHANGED="$(git diff --name-only | sort)"
           printf '%s\n' "$CHANGED"
-          test "$CHANGED" = $'lib/main.dart\nlib/main_navigation.dart'
+          test "$CHANGED" = $'lib/main.dart\nlib/main_navigation.dart\nlib/word_hunt/word_hunt_production_entry_screen.dart'
           grep -Fq "import 'word_hunt/word_hunt_production_entry_screen.dart';" lib/main.dart
           grep -Fq "static const String wordHuntTitle = 'Kelime Avı';" lib/main_navigation.dart
           grep -Fq "'word_hunt'" lib/main_navigation.dart
@@ -163,7 +163,10 @@ jobs:
           set -euo pipefail
           git config user.name 'ZMilaStudio'
           git config user.email 'levent.ua@gmail.com'
-          git add lib/main.dart lib/main_navigation.dart
+          git add \
+            lib/main.dart \
+            lib/main_navigation.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart
           git commit -m 'feat(kelime-avi): connect production navigation [nav-produced] [skip ci]'
           echo "PRODUCT_HEAD=$(git rev-parse HEAD)"
           git show --stat --oneline --decorate=short HEAD
