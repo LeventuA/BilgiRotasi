@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   android-proof:
@@ -51,41 +52,19 @@ jobs:
           flutter test test/word_hunt_*_test.dart --reporter expanded 2>&1 | tee "$REPORT_DIR/FOCUSED_TESTS.txt"
           git diff --check
 
-      - name: Build distinct-package QA APK
+      - name: Restore exact prebuilt QA APK
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          cp android/app/build.gradle.kts /tmp/build.gradle.kts.original
-          cp android/app/src/main/AndroidManifest.xml /tmp/AndroidManifest.xml.original
-          python3 - <<'PY'
-          from pathlib import Path
-          gradle = Path('android/app/build.gradle.kts')
-          text = gradle.read_text(encoding='utf-8')
-          plugin = '    id("com.google.gms.google-services")\n'
-          if text.count(plugin) != 1:
-              raise SystemExit('google-services plugin count mismatch')
-          text = text.replace(plugin, '')
-          old_id = '        applicationId = "com.leventua.bilgirotasi"'
-          new_id = '        applicationId = "com.leventua.bilgirotasi.wordhuntswipeqa"'
-          if text.count(old_id) != 1:
-              raise SystemExit('applicationId count mismatch')
-          gradle.write_text(text.replace(old_id, new_id), encoding='utf-8')
-
-          manifest = Path('android/app/src/main/AndroidManifest.xml')
-          mtext = manifest.read_text(encoding='utf-8')
-          old_label = 'android:label="Bilgi Rotası"'
-          new_label = 'android:label="Kelime Avı Swipe QA"'
-          if mtext.count(old_label) != 1:
-              raise SystemExit('application label count mismatch')
-          manifest.write_text(mtext.replace(old_label, new_label), encoding='utf-8')
-          PY
-          flutter build apk --debug -t tools/word_hunt_v6_swipe_tolerance_qa_main.dart --dart-define=ADMOB_ENVIRONMENT=test
-          cp build/app/outputs/flutter-apk/app-debug.apk "$REPORT_DIR/KelimeAvi-V6-Swipe-Tolerance-QA.apk"
+          mkdir -p /tmp/word_hunt_apk "$REPORT_DIR"
+          gh run download 33722288193 --repo "$GITHUB_REPOSITORY" --name Kelime-Avi-V6-Swipe-Tolerance-Android16 --dir /tmp/word_hunt_apk
+          source_apk="$(find /tmp/word_hunt_apk -type f -name 'KelimeAvi-V6-Swipe-Tolerance-QA.apk' -print -quit)"
+          test -n "$source_apk"
+          cp "$source_apk" "$REPORT_DIR/KelimeAvi-V6-Swipe-Tolerance-QA.apk"
           sha256sum "$REPORT_DIR/KelimeAvi-V6-Swipe-Tolerance-QA.apk" | tee "$REPORT_DIR/APK_SHA256.txt"
-          cp /tmp/build.gradle.kts.original android/app/build.gradle.kts
-          cp /tmp/AndroidManifest.xml.original android/app/src/main/AndroidManifest.xml
-          test -z "$(git status --porcelain -- android)"
-          (cd android && ./gradlew --stop)
+          grep -q '^73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd ' "$REPORT_DIR/APK_SHA256.txt"
 
       - name: Prepare KVM
         shell: bash
@@ -124,6 +103,7 @@ jobs:
           done
           "$adb_bin" devices -l | tee "$REPORT_DIR/ADB_DEVICES.txt"
           test "$ready" = 1
+          export PATH="$ANDROID_HOME/platform-tools:$PATH"
           bash tools/qa/word_hunt_v6_swipe_tolerance_android16.sh
 
       - name: Upload APK and raw Android proof
