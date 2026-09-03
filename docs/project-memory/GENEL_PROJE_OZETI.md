@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162, #161, #158, production ana navigasyon PR #169 ve docs-only PR #168 merge edildi. Canonical release HEAD artık `3557a7e4f2f2917d61ba61866c6d4c8561994667`. PR #169 exact full-suite/release APK/Android16/MASTER ART kanıtları PASS. Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
+**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Başlangıç Limanı canonical 8×8 gameplay + production navigasyon release entegrasyonu tamamlandı. İkinci paket adı **Gökyüzü Adaları** ve görsel yön **Konsept C — Neşeli & Parlak** Levent tarafından onaylanarak LOCKED oldu. Exact 10 bölüm adı/node sırası ve görsel teknik mimari henüz açık; Flutter/asset/APK üretimine geçilmedi. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -36,6 +36,19 @@
 - Level 7 tamamlanınca bonus 8 ve normal 9 birlikte açılır; bonus 8, 9 için gate değildir; 10, node 9 tamamlanmadan locked/no-callback.
 - BoardMap / 67 node sözleşmesi kontrolsüz değiştirilmez.
 - Bu MASTER ART istisnası sonraki Kelime Avı rotalarına otomatik genellenmez; yeni rota için ayrıca görsel/teknik karar gerekir.
+
+## Gökyüzü Adaları — Paket 2 Kararı
+
+- İkinci Kelime Avı rota/paket adı: **Gökyüzü Adaları — LOCKED**.
+- Levent’in seçtiği görsel yön: **Konsept C — Neşeli & Parlak — LOCKED**.
+- Atmosfer: neşeli, renkli, pozitif, eğlenceli, çocuk dostu, hafif ve canlı.
+- Palet yönü: açık gök mavisi / camgöbeği / turkuaz; yeşil yüzen adalar; sarı-turuncu sıcak vurgu; destekleyici pembe/mercan; parlak beyaz bulutlar.
+- Dünya öğeleri: yüzen çimenli adalar, bulut geçişleri, renkli balon/hava gemileri, rüzgâr yapıları, masalsı kuleler ve sıcak-altın final sarayı hissi.
+- Konsept C görseli **sanat yönü referansıdır**; final production MASTER ART, exact node geometrisi veya raw Android acceptance kanıtı değildir.
+- Exact 10 bölüm adı ve rota/node sıralaması henüz kilitlenmedi.
+- Başlangıç Limanı `MASTER ART raster + transparent hitbox` mimarisi otomatik kopyalanmayacak; Gökyüzü Adaları için MASTER ART / katmanlı Flutter / modüler asset yaklaşımı ayrıca seçilecektir.
+- Canonical 8×8 / 64 hücre, 10 bölüm / 30 yıldız ve paket bazlı QA sözleşmesi korunur.
+- Henüz Flutter, production asset veya APK üretimine geçilmedi.
 
 ## Canonical Gameplay Sözleşmesi
 
@@ -193,8 +206,12 @@
 3. PR #167/#163/#162/#161/#158/#169/#168 merge zinciri — **PASS / TAMAMLANDI**.
 4. Canonical release HEAD — `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
 5. Production ana navigasyon entegrasyonu — **PASS / CANONICAL RELEASE İÇİNDE**.
-6. Sonraki 10 bölümlük rota/paket için ürün yönü + bağlayıcı görsel/teknik yaklaşım — **AÇIK / kullanıcı kararı gerekli**.
-7. `REFERENCE_FONT` — **DOĞRULANACAK / DEFERRED**.
-8. Play yükleme/yayınlama — **ayrı açık Levent onayı gerektirir**.
+6. Gökyüzü Adaları tema adı — **LOCKED**.
+7. Gökyüzü Adaları görsel yönü — **Konsept C / Neşeli & Parlak / LOCKED**.
+8. Sıradaki ürün kapısı: Gökyüzü Adaları **10 bölüm adı + rota/node sıralaması**.
+9. Sonraki kapı: Gökyüzü Adaları **görsel teknik mimarisi**; Başlangıç Limanı MASTER ART istisnası otomatik genellenmez.
+10. Ardından 80 target+bonus içerik ve 8×8 grid paketi toplu üretilecek.
+11. `REFERENCE_FONT` — **DOĞRULANACAK / DEFERRED**.
+12. Play yükleme/yayınlama — **ayrı açık Levent onayı gerektirir**.
 
-**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169+#168 MERGED / PRODUCTION ANA NAVİGASYON CANONICAL RELEASE İÇİNDE / CANONICAL RELEASE HEAD `3557a7e4...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
+**SON DURUM: 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA LOCKED / KONSEPT C NEŞELİ & PARLAK LOCKED / 10 BÖLÜM ROTA YAPISI SIRADAKİ KARAR / FLUTTER-ASSET-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
