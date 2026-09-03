@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 3 Eylül 2026 — PR #162 Levent’in açık onayıyla PR #161 parent branch’ine merge edildi; release/main değişmedi
+**Son güncelleme:** 3 Eylül 2026 — PR #162 merge tamamlandı; PR #161 final diff/review PASS, tek-kullanımlık QA workflow/script temizlendi; Ready ayrı Levent onayı bekliyor
 
 ## Canlı Sürüm / Release Hattı
 
@@ -9,7 +9,7 @@
 - Canonical release branch: `release/final-closed-test-aab-1.68.8`.
 - Canonical release HEAD: `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
 - `main` güncel/yayın kaynağı olarak varsayılmaz.
-- Kelime Avı V6 zinciri henüz release/main’e merge edilmedi.
+- Kelime Avı zinciri henüz release/main’e merge edilmedi.
 
 ## Kelime Avı — Güncel Ürün Hattı
 
@@ -62,20 +62,29 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
 ## PR #162 Merge — PASS
 
-- Final diff/review: **PASS**.
-- Açık review/review thread yoktu.
-- Ready sonrası HEAD hareketi yalnız `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve `docs/project-memory/GENEL_PROJE_OZETI.md` checkpoint commitlerinden oluştu; ürün kodu değişmedi.
+- Final diff/review + Ready: **PASS**.
 - Levent ayrı ve açık merge onayı verdi.
 - Merge method: `merge`.
 - Merge commit: `929bb13177e03a0962464e21f6c174d4b3439349`.
 - Merge hedefi PR #161 parent branch’idir; release/main değildir.
+
+## PR #161 Final İnceleme — PASS
+
+- PR #161 final diff **33 dosya**.
+- `lib/main.dart`, `assets/questions.json`, BoardMap/67 node, Firebase/AdMob/signing ve package/version kapsam dışında.
+- `pubspec.yaml` yalnız V5 reference asset klasörünü kaydeder; sürüm **1.68.19+109** değişmedi.
+- V5 asset entegrasyon run `33379341765`: **SUCCESS**; exact asset SHA, format, analyze, focused Word Hunt, `git diff --check` ve protected-scope gate PASS.
+- Child V6 found/error/completion/B5/swipe kanıtları PASS ve PR #162 üzerinden parent branch’e merge edildi.
+- PR #162 merge commit `929bb131...` sonrasından final-review ürün HEAD `e4258145...` noktasına kadar ürün kodu değişmedi; yalnız checkpoint belgeleri ve iki tek-kullanımlık QA dosyasının silinmesi var.
+- `.github/workflows/apply-word-hunt-v5-reference-assets.yml` ve `tools/qa/apply_word_hunt_v5_reference_assets.py` parent/release’e taşınmaması için temizlendi.
+- Açık review veya review thread yok.
+- Teknik sonuç: **PR #161 Ready adayıdır; ancak Ready yapılmadı.**
 
 ## Korunan Alanlar
 
 - `assets/questions.json`
 - `lib/main.dart`
 - canonical 8×8 / 64 hücre sözleşmesi
-- locked V5 reference assets
 - BoardMap / 67 node
 - Firebase / AdMob / release signing
 - package name / version
@@ -95,11 +104,11 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
 ## Kalan Gerçek Kapılar
 
-1. PR #161 final diff/review canlı kontrolü. **AÇIK**.
-2. PR #161 Ready kararı. **AÇIK / Levent onayı gerekli**.
-3. PR #161 merge kararı Ready’den sonra ayrıca açık onay gerektirir.
+1. PR #161 final diff/review — **PASS / TAMAMLANDI**.
+2. PR #161 Ready — **AÇIK / Levent’in açık onayı gerekli**.
+3. PR #161 merge — Ready sonrasında ayrıca Levent’in açık onayı gerekli.
 4. Parent PR #158 zincir kararı ayrıca ele alınır.
 5. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
 6. Release entegrasyonu ve Play yayını ayrıca açık karar gerektirir.
 
-**Durum:** 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID 16 PASS / PR #167 MERGED / PR #163 MERGED / PR #162 MERGED / PR #161 DRAFT-OPEN / RELEASE-MERGE YOK.
+**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID 16 PASS / PR #167 MERGED / PR #163 MERGED / PR #162 MERGED / PR #161 DRAFT-OPEN / READY YOK / RELEASE-MERGE YOK.
