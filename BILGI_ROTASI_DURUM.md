@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 3 Eylül 2026 — B5 + swipe temiz ürün entegrasyonu ve Android 16 gerçek taşma kapısı PASS
+**Son güncelleme:** 3 Eylül 2026 — PR #167 Levent onayıyla Ready for Review yapıldı; merge ayrı onay bekliyor
 
 ## Canlı Sürüm / Release Hattı
 
@@ -88,15 +88,16 @@ Bu sonuç **MIXED** kabul edilir. Otomatik QA’nın 20/23 saniyelik scripted s�
 - Otomatik `Kelime Avi Fast Checks` run `33688788065`: **SUCCESS**; analyze, odaklı Kelime Avı testleri ve whitespace kapısı PASS. Job `100442465883`.
 - Kelime Avı ilgili PR push'ları artık fast gate'i otomatik başlatır. Android/APK bu focused kapıda üretilmedi; entegrasyon sonrasında toplu Android kapısı gerekir.
 
-### Temiz ürün entegrasyonu — PASS / DRAFT PR #167
+### Temiz ürün entegrasyonu — PASS / READY PR #167
 
-- Branch `integrate/kelime-avi-v6-b5-swipe-20260903`, base `fix/kelime-avi-v6-found-path-connector-product-20260901`; Draft PR **#167 — OPEN / merge yok**.
+- Branch `integrate/kelime-avi-v6-b5-swipe-20260903`, base `fix/kelime-avi-v6-found-path-connector-product-20260901`; PR **#167 — OPEN / READY / merge yok**.
 - Ürün commit'i `749c678b885d6cefec428c603c55a83a4190152c`; B5 grid + swipe normalizasyonu + ilgili testler dışında ürün kapsamı açılmadı.
 - Fast checks run `33724552713`: **SUCCESS**.
 - Android 16 run `33724549202`: **SUCCESS**. Gerçek fiziksel hareket ANKARA yolundan bir hücre taşırıldı; ANKARA bulundu (`0/7 → 1/7`) ve hata `0` kaldı.
 - Android özet kapıları: `B5_64_CELL_RENDER`, `REAL_GESTURE_ANKARA_PLUS_ONE_CELL`, `TARGET_PROGRESS_0_TO_1_OF_7`, `MISTAKES_REMAINED_ZERO`, `PROCESS_FAILURE_SCAN` — tamamı PASS.
 - Job `100550528945`; artifact `9881526593`; APK SHA-256 `73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd58`.
 - Kanıt için eklenen geçici QA/workflow dosyaları final PR diff'inden temizlendi; ürün davranışı ve testler kaldı.
+- **3 Eylül 2026:** Levent açık Ready onayı verdi; PR #167 Draft durumundan çıkarılıp Ready for Review yapıldı. Merge için ayrı açık onay gereklidir.
 
 ## Ölçeklenebilir üretim/test akışı
 
@@ -131,10 +132,10 @@ QA workflow/script dosyaları PR #163 ürün branch’ine taşınmadı; ürün d
 ## Kalan Gerçek Kapılar
 
 1. Swipe false-positive focused + gerçek Android 16 kapıları — **PASS**; run `33724549202`, taşmalı ANKARA kabulü ve `0 hata` kanıtlandı.
-2. B5 tuning + swipe düzeltmesinin PR #163 tabanlı temiz entegrasyonu — **PASS**; Draft PR #167.
+2. B5 tuning + swipe düzeltmesinin PR #163 tabanlı temiz entegrasyonu — **PASS / READY**; PR #167 Levent onayıyla Ready for Review yapıldı.
 3. `REFERENCE_FONT` exact kaynak bulunmadığı sürece DOĞRULANACAK/deferred.
-4. PR #161 / #162 / #163 / #167 Ready kararları ayrıca verilecek.
+4. PR #161 / #162 / #163 Ready kararları ayrıca verilecek; PR #167 Ready kararı **TAMAMLANDI**.
 5. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
-6. Merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
+6. PR #167 dahil merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
 
-**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 DRAFT-OPEN / READY YOK / MERGE YOK.
+**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 READY-OPEN / MERGE YOK.
