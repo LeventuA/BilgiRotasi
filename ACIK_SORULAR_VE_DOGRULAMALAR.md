@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 3 Eylül 2026 — Docs-only PR #168 Levent’in `Devam et` onayıyla canonical release’e merge edildi. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`. Play yükleme/yayınlama ayrı açık karardır.
+**Son güncelleme:** 3 Eylül 2026 — Paket 2 adı `Gökyüzü Adaları` ve görsel yön `C — Neşeli & Parlak` Levent tarafından onaylandı. Tema/görsel yön kapısı kapandı; 10 bölüm adı/node sırası ve görsel teknik mimari açık kaldı. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yükleme/yayınlama ayrı açık karardır.
 
 ## Kelime Avı
 
@@ -34,6 +34,15 @@
 - `PR_168_MERGEABILITY_RECHECK` — ilk kısa `mergeable=false` görünümü GitHub yeniden hesaplaması sonrası `mergeable=true`: **PASS / KAPANDI**.
 - `PR_168_DOCS_MERGE_DECISION` — Levent’in `Devam et` onayıyla **PASS / KAPANDI**; merge `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
 - `PR_168_RELEASE_HEAD_VERIFY` — canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`: **PASS / KAPANDI**.
+- `NEXT_ROUTE_THEME_NAME` — Paket 2 adı **Gökyüzü Adaları**: **PASS / LOCKED / KAPANDI**.
+- `NEXT_ROUTE_VISUAL_DIRECTION` — Konsept **C — Neşeli & Parlak**: **PASS / LOCKED / KAPANDI**.
+
+### Gökyüzü Adaları bağlayıcı görsel yön özeti
+
+- Neşeli, renkli, pozitif, eğlenceli, çocuk dostu, hafif ve canlı atmosfer.
+- Açık gök mavisi/camgöbeği/turkuaz ana palet; yeşil yüzen adalar; sarı-turuncu sıcak vurgular; destekleyici pembe/mercan ayrıntılar; parlak beyaz bulutlar.
+- Yüzen çimenli adalar, bulut geçişleri, renkli balon/hava gemileri, rüzgâr yapıları, kuleler ve sıcak-altın final sarayı hissi.
+- Konsept onayı final production MASTER ART veya raw Android görsel PASS değildir.
 
 ### İnsan süre-zorluk sonucu
 
@@ -43,7 +52,9 @@
 
 ### Açık kalanlar
 
-- `NEXT_ROUTE_PRODUCT_DIRECTION` — Sonraki 10 bölümlük Kelime Avı rota/paketi için tema, bağlayıcı görsel ve teknik yaklaşım: **AÇIK / KULLANICI ÜRÜN KARARI GEREKLİ**. Başlangıç Limanı MASTER ART istisnası yeni rotaya otomatik genellenmez.
+- `GOKYUZU_ADALARI_ROUTE_STRUCTURE` — 10 bölüm adı + rota/node sıralaması: **AÇIK / SIRADAKİ KULLANICI ÜRÜN KARARI**.
+- `GOKYUZU_ADALARI_VISUAL_TECH_ARCHITECTURE` — MASTER ART raster / katmanlı Flutter / modüler asset yaklaşımı: **AÇIK / GÖRSEL YÖNDEN AYRI TEKNİK KARAR**. Başlangıç Limanı MASTER ART istisnası otomatik genellenmez.
+- `GOKYUZU_ADALARI_CONTENT_PACKAGE` — 80 target+bonus içerik ve 8×8 grid paketi: **BEKLİYOR / ROTA YAPISI SONRASI**.
 - `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
 - `PLAY_RELEASE` — Play yükleme/yayınlama ayrıca açık karar gerektirir: **AÇIK**.
@@ -54,4 +65,5 @@
 - PR #169 canonical release branch’e merge edilmiştir; merge commit `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 - PR #168 docs-only checkpoint canonical release branch’e merge edilmiştir; merge commit `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
 - PR #168 merge commitinde otomatik PR workflow’u tetiklenmemiştir (`0` run); ürün kodu değişmemiştir.
+- Gökyüzü Adaları tema/görsel yön kararı docs-only PR #170 branch’inde kaydedilir; ürün kodu üretilmez.
 - Play yayını yapılmamıştır.
