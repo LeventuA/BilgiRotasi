@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 3 Eylül 2026 — PR #161 final diff/review PASS; sıradaki açık kapı Ready kararı
+**Son güncelleme:** 3 Eylül 2026 — PR #161 Ready kararı Levent’in açık onayıyla kapandı; merge ayrı açık karar
 
 ## Kelime Avı
 
@@ -16,6 +16,7 @@ Kapanan kabul/doğrulama kapıları:
 - `PR_163_READY_MERGE` — **PASS / KAPANDI**; merge `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
 - `PR_162_READY_MERGE` — **PASS / KAPANDI**; merge `929bb13177e03a0962464e21f6c174d4b3439349`.
 - `PR_161_FINAL_REVIEW` — **PASS / KAPANDI**; 33 dosya, protected scope temiz, review/thread yok, tek-kullanımlık QA workflow/script temizlendi.
+- `PR_161_READY_DECISION` — **PASS / KAPANDI**; Levent 3 Eylül 2026’da açık Ready onayı verdi ve PR #161 Ready for Review yapıldı.
 
 İnsan süre-zorluk sonucu:
 - B5 ilk ölçüm: **115 sn / 2 hata**; 60 sn soft challenge karşılanmadı.
@@ -23,8 +24,7 @@ Kapanan kabul/doğrulama kapıları:
 - B5 tuning sonrası: **32 sn / UI’da 2 false-positive kayıt**; süre PASS, bilinçli gerçek hata 0.
 
 Açık kalanlar:
-- `PR_161_READY_DECISION` — PR #161 teknik Ready adayıdır; **AÇIK / Levent’in açık onayı gerekli**.
-- `PR_161_MERGE_DECISION` — Ready sonrasında ayrıca Levent’in açık merge onayı gerekir: **AÇIK**.
+- `PR_161_MERGE_DECISION` — PR #161 merge için ayrıca Levent’in açık onayı gerekir: **AÇIK**.
 - `PARENT_PR_158_CHAIN_DECISION` — PR #161 sonrası parent #158 zincir kararı: **AÇIK**.
 - `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
@@ -34,6 +34,6 @@ Açık kalanlar:
 
 ## Merge güvenliği
 
-- PR #161 Ready yapılmadan merge edilmeyecek.
+- PR #161 **READY** durumundadır ancak merge edilmemiştir.
 - PR #161 ve sonraki parent/release merge’leri Levent’in ayrı ve açık onayı olmadan yapılmayacak.
-- Görsel/teknik PASS, Ready veya merge onayı değildir.
+- Görsel/teknik PASS veya Ready, merge onayı değildir.
