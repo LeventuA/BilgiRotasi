@@ -1,0 +1,170 @@
+name: Kelime Avı production navigation one-shot
+
+on:
+  push:
+    branches:
+      - feat/kelime-avi-production-navigation-20260903
+
+permissions:
+  contents: write
+
+jobs:
+  produce-and-validate:
+    name: Patch, analyze ve focused test
+    if: ${{ !contains(github.event.head_commit.message, '[nav-produced]') }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          ref: feat/kelime-avi-production-navigation-20260903
+          fetch-depth: 0
+
+      - name: Flutter kur
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.6"
+          channel: stable
+          cache: true
+
+      - name: Minimum production navigation patch uygula
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          main_path = Path('lib/main.dart')
+          main = main_path.read_text(encoding='utf-8')
+          import_line = "import 'word_hunt/word_hunt_production_entry_screen.dart';\n"
+          if import_line not in main:
+              needle = "import 'sound_data.dart';\n"
+              if main.count(needle) != 1:
+                  raise SystemExit('main.dart import anchor bulunamadı veya tekil değil')
+              main = main.replace(needle, needle + import_line, 1)
+              main_path.write_text(main, encoding='utf-8')
+
+          nav_path = Path('lib/main_navigation.dart')
+          nav = nav_path.read_text(encoding='utf-8')
+
+          old_catalog = """class PlayCenterEntryCatalog {
+            PlayCenterEntryCatalog._();
+
+            static const String liveDuelTitle = 'Canlı Düello';
+            static const String liveDuelDescription =
+                'Yakın BR puanındaki gerçek bir rakiple 10, 20 veya 30 '
+                'soruluk canlı maç yap.';
+
+            static Widget buildLiveDuelScreen() {
+              return const LiveDuelScreen();
+            }
+          }
+          """
+          new_catalog = """class PlayCenterEntryCatalog {
+            PlayCenterEntryCatalog._();
+
+            static const String wordHuntTitle = 'Kelime Avı';
+            static const String wordHuntDescription =
+                'Başlangıç Limanı rotasında 10 bölümlük kelime avına çık.';
+            static const String liveDuelTitle = 'Canlı Düello';
+            static const String liveDuelDescription =
+                'Yakın BR puanındaki gerçek bir rakiple 10, 20 veya 30 '
+                'soruluk canlı maç yap.';
+
+            static Widget buildWordHuntScreen({String? ownerUid}) {
+              return WordHuntProductionEntryScreen(ownerUid: ownerUid);
+            }
+
+            static Widget buildLiveDuelScreen() {
+              return const LiveDuelScreen();
+            }
+          }
+          """
+          if 'static const String wordHuntTitle' not in nav:
+              if nav.count(old_catalog) != 1:
+                  raise SystemExit('PlayCenterEntryCatalog anchor bulunamadı veya tekil değil')
+              nav = nav.replace(old_catalog, new_catalog, 1)
+
+          live_card = """        _HubActionCard(
+                    emoji: '⚔️',
+                    title: PlayCenterEntryCatalog.liveDuelTitle,
+                    description: PlayCenterEntryCatalog.liveDuelDescription,
+                    accent: const Color(0xFF4338CA),
+                    onTap:
+                        () => _open(
+                          context,
+                          'live_duel',
+                          PlayCenterEntryCatalog.buildLiveDuelScreen(),
+                        ),
+                  ),
+          """
+          word_hunt_card = """        _HubActionCard(
+                    emoji: '🔎',
+                    title: PlayCenterEntryCatalog.wordHuntTitle,
+                    description: PlayCenterEntryCatalog.wordHuntDescription,
+                    accent: const Color(0xFFB7791F),
+                    onTap:
+                        () => _open(
+                          context,
+                          'word_hunt',
+                          PlayCenterEntryCatalog.buildWordHuntScreen(
+                            ownerUid: FirebaseAuth.instance.currentUser?.uid,
+                          ),
+                        ),
+                  ),
+          """
+          if "'word_hunt'" not in nav:
+              if nav.count(live_card) != 1:
+                  raise SystemExit('Canlı Düello kart anchor bulunamadı veya tekil değil')
+              nav = nav.replace(live_card, word_hunt_card + live_card, 1)
+
+          nav_path.write_text(nav, encoding='utf-8')
+          PY
+
+      - name: Format ve scope doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          dart format \
+            lib/main_navigation.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart \
+            test/word_hunt_menu_entry_test.dart
+          git diff --check
+          CHANGED="$(git diff --name-only | sort)"
+          printf '%s\n' "$CHANGED"
+          test "$CHANGED" = $'lib/main.dart\nlib/main_navigation.dart'
+          grep -Fq "import 'word_hunt/word_hunt_production_entry_screen.dart';" lib/main.dart
+          grep -Fq "static const String wordHuntTitle = 'Kelime Avı';" lib/main_navigation.dart
+          grep -Fq "'word_hunt'" lib/main_navigation.dart
+          ! git diff --name-only | grep -Eq '^(assets/questions.json|lib/board_|android/|firebase|pubspec.yaml)'
+
+      - name: Bağımlılıklar
+        run: flutter pub get
+
+      - name: Analyze ve focused regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-warnings --no-fatal-infos
+          flutter test --concurrency=1 \
+            test/word_hunt_menu_entry_test.dart \
+            test/word_hunt_progress_codec_test.dart \
+            test/word_hunt_progress_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            test/word_hunt_production_flow_test.dart \
+            test/word_hunt_starter_content_test.dart
+          git diff --check
+
+      - name: Exact ürün commitini yaz
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'ZMilaStudio'
+          git config user.email 'levent.ua@gmail.com'
+          git add lib/main.dart lib/main_navigation.dart
+          git commit -m 'feat(kelime-avi): connect production navigation [nav-produced] [skip ci]'
+          echo "PRODUCT_HEAD=$(git rev-parse HEAD)"
+          git show --stat --oneline --decorate=short HEAD
+          git push origin HEAD:feat/kelime-avi-production-navigation-20260903
