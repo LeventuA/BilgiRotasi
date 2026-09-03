@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162, #161, #158 ve production ana navigasyon PR #169 merge edildi. Canonical release HEAD artık `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`. PR #169 exact full-suite/release APK/Android16/MASTER ART kanıtları PASS. Docs-only PR #168 READY+mergeable; Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
+**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162, #161, #158, production ana navigasyon PR #169 ve docs-only PR #168 merge edildi. Canonical release HEAD artık `3557a7e4f2f2917d61ba61866c6d4c8561994667`. PR #169 exact full-suite/release APK/Android16/MASTER ART kanıtları PASS. Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -19,11 +19,12 @@
 
 - Repo: `ZMilaStudio/BilgiRotasi`.
 - Canonical release branch: `release/final-closed-test-aab-1.68.8`.
-- Canonical release HEAD: **`0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`**.
+- Canonical release HEAD: **`3557a7e4f2f2917d61ba61866c6d4c8561994667`**.
 - Aktif ürün sürümü: **1.68.19+109**.
 - Paket: `com.leventua.bilgirotasi`.
 - PR #158 canonical gameplay paketini release’e taşıdı; merge commit `189864c92a605e7bb960460300714049c730ea39`.
 - PR #169 production ana navigasyon entegrasyonunu release’e taşıdı; merge commit `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+- PR #168 canonical checkpoint belgelerini release’e taşıdı; docs-only merge commit `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
 - Play Console’a yükleme veya yayınlama yapılmadı.
 
 ## Başlangıç Limanı — Bağlayıcı Mimari
@@ -34,6 +35,7 @@
 - Production rota tabanı: MASTER ART raster + şeffaf hitbox + minimum lokal runtime-state override.
 - Level 7 tamamlanınca bonus 8 ve normal 9 birlikte açılır; bonus 8, 9 için gate değildir; 10, node 9 tamamlanmadan locked/no-callback.
 - BoardMap / 67 node sözleşmesi kontrolsüz değiştirilmez.
+- Bu MASTER ART istisnası sonraki Kelime Avı rotalarına otomatik genellenmez; yeni rota için ayrıca görsel/teknik karar gerekir.
 
 ## Canonical Gameplay Sözleşmesi
 
@@ -89,6 +91,7 @@
 - PR #161 — **MERGED** → `4aa490e7c2d5e7547dc95f9463dbbb9adeb85e5a`.
 - PR #158 — **MERGED** → `189864c92a605e7bb960460300714049c730ea39`.
 - PR #169 — **MERGED** → `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+- PR #168 — **DOCS-ONLY MERGED** → `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
 - PR #166 tarihsel geliştirme/QA hattıdır; merge edilmeyecektir.
 
 ## PR #158 Exact Release-context Kanıtı — PASS
@@ -131,29 +134,28 @@
   - kalıcı signing setup PASS,
   - test Ad ID’li release APK PASS,
   - package/merged manifest PASS,
-  - Android 16 cold-start + AdMob process gate PASS,
-  - kanıt artifact’i yüklendi.
+  - Android 16 cold-start + AdMob process gate PASS.
 - Kelime Avı Android16 görsel run `33754851205`: **SUCCESS**; job `100646698474` SUCCESS.
   - exact PR HEAD checkout `ffa1454...`,
   - `dart analyze lib/word_hunt`: **No issues found**,
   - focused suite **126/126 PASS**,
   - MASTER ART source/package byte+SHA karşılaştırması `SOURCE_EQUALS_PACKAGED=YES count=2`,
-  - visual proof APK SHA256 `679a4be8d5766498f4c6b531d1766e7da604aadabd1f4bd9ee1405ccc3d2ad9e`,
   - Android API 36 emulator install/open/real screencap/activity/process/crash/ANR gate PASS,
-  - MASTER ART side-by-side/diff/geometry kanıtları üretildi,
   - artifact `9893332600`, digest `sha256:2d0fa14825f59a735a9606be809025b2f69d4daa09121bb065bb622d25e30001`.
 - Açık review/review thread blocker yoktu.
 - Ready kapısı Levent’in 3 Eylül 2026 `Devam et` onayıyla geçildi.
 - Merge kapısı Levent’in 3 Eylül 2026 ayrı `Merge et` onayıyla geçildi.
 - Merge commitinde otomatik PR workflow’u tetiklenmedi (`0` run); exact PR HEAD’deki iki SUCCESS hattı final teknik kanıt olarak korunur.
 
-## Docs-only Checkpoint PR #168
+## Docs-only Checkpoint PR #168 — MERGED
 
 - Branch: `docs/kelime-avi-v8-post-release-merge-20260903`.
-- PR #168: **OPEN / READY / mergeable=true / merged=false**.
-- PR #169 merge’i sonrası ilk kısa `mergeable=false` görünümü GitHub yeniden hesaplamasında `mergeable=true` oldu; teknik blocker yok.
-- Current release `0c84aefd...` ile docs branch diverged; merge base `189864c9...`dir. Current PR changed-file listesi yine yalnız dört checkpoint belgesidir: `ACIK_SORULAR_VE_DOGRULAMALAR.md`, `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md`, `docs/project-memory/GENEL_PROJE_OZETI.md`.
-- PR #168 ayrı açık Levent onayı olmadan merge edilmeyecek.
+- PR #168: **CLOSED / MERGED**.
+- Exact merged HEAD: `150b8ae24395d07dc09270734ef1a8c246542a15`.
+- Merge commit: **`3557a7e4f2f2917d61ba61866c6d4c8561994667`**.
+- Kapsam yalnız dört checkpoint belgesiydi: `ACIK_SORULAR_VE_DOGRULAMALAR.md`, `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md`, `docs/project-memory/GENEL_PROJE_OZETI.md`.
+- Ürün kodu, sürüm, asset, Firebase/AdMob/signing, `lib/main.dart`, `assets/questions.json` ve BoardMap/67 node değişmedi.
+- Merge commitinde otomatik PR workflow’u tetiklenmedi (`0` run); docs-only merge yeni ürün testi gerektiren kod farkı yaratmadı.
 
 ## Ölçeklenebilir Üretim/Test — KALICI KARAR
 
@@ -188,11 +190,11 @@
 
 1. Her görev başında canonical release branch, `pubspec.yaml`, son commit ve ilgili açık PR/CI durumunu canlı doğrula.
 2. Found/error/completion/B5/swipe kabul kapıları yeni belirti yoksa yeniden açılmaz.
-3. PR #167/#163/#162/#161/#158/#169 merge zinciri — **PASS / TAMAMLANDI**.
-4. Canonical release HEAD — `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+3. PR #167/#163/#162/#161/#158/#169/#168 merge zinciri — **PASS / TAMAMLANDI**.
+4. Canonical release HEAD — `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
 5. Production ana navigasyon entegrasyonu — **PASS / CANONICAL RELEASE İÇİNDE**.
-6. Docs-only PR #168 — **READY / mergeable=true / merge kararı ayrıca açık Levent onayı gerektirir**.
+6. Sonraki 10 bölümlük rota/paket için ürün yönü + bağlayıcı görsel/teknik yaklaşım — **AÇIK / kullanıcı kararı gerekli**.
 7. `REFERENCE_FONT` — **DOĞRULANACAK / DEFERRED**.
 8. Play yükleme/yayınlama — **ayrı açık Levent onayı gerektirir**.
 
-**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169 MERGED / PRODUCTION ANA NAVİGASYON CANONICAL RELEASE İÇİNDE / CANONICAL RELEASE HEAD `0c84aefd...` / PR #168 DOCS-ONLY READY+MERGEABLE / WORK V2 AKTİF / PLAY YAYINI YOK.**
+**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169+#168 MERGED / PRODUCTION ANA NAVİGASYON CANONICAL RELEASE İÇİNDE / CANONICAL RELEASE HEAD `3557a7e4...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
