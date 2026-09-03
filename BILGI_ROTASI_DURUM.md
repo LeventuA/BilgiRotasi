@@ -1,17 +1,15 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 3 Eylül 2026 — Levent’in ayrı ve açık onayıyla PR #158 canonical release branch’e merge edildi. Kelime Avı Başlangıç Limanı 8×8 gameplay paketi artık canonical release hattındadır. Play yükleme/yayınlama yapılmadı.
+**Son güncelleme:** 3 Eylül 2026 — Kelime Avı production ana navigasyon entegrasyonu PR #169 exact Android 16/full-suite kanıtlarıyla doğrulandı ve Levent’in ayrı `Devam et` onayıyla **Ready for Review** yapıldı. PR #169 merge edilmedi; Play yükleme/yayınlama yapılmadı.
 
 ## Canlı Sürüm / Release Hattı
 
+- Repo: `ZMilaStudio/BilgiRotasi`.
 - Repo içi aktif ürün sürümü: **1.68.19+109**.
 - Paket: `com.leventua.bilgirotasi`.
 - Canonical release branch: `release/final-closed-test-aab-1.68.8`.
 - Canonical release HEAD: **`189864c92a605e7bb960460300714049c730ea39`**.
-- PR #158: **CLOSED / MERGED**.
-- PR #158 merge commit: **`189864c92a605e7bb960460300714049c730ea39`**.
-- Merge method: `merge`.
-- Merge edilen HEAD: `49e24dfc57b251cd2dc8d96d1a88f3b257276b51`.
+- PR #158: **CLOSED / MERGED**; merge commit `189864c92a605e7bb960460300714049c730ea39`.
 - `main` güncel/yayın kaynağı olarak varsayılmaz.
 - Play Console’a yükleme/yayınlama yapılmadı.
 
@@ -32,7 +30,6 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 ### V5 reference asset — PASS
 - Onaylı raster reference asset paketi production’da kullanılır.
 - Integration run `33379341765`: **SUCCESS**.
-- `pubspec.yaml` yalnız `assets/word_hunt/v5_reference_assets/` kaydını ekler.
 
 ### Found-state — PASS
 - Raw Android kullanıcı kabulü: **PASS**.
@@ -47,7 +44,6 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 ### Compact completion/result — PASS
 - Targetlar tamam, bonus eksik → otomatik popup yok; bonus aranabilir.
 - Tüm target+bonus tamam → popup otomatik; fresh/replay’de tekrar açılabilir.
-- Exact tested compact blob `6ce2830a7df8eb696a9df589c91c544df7712969`.
 - Static/productize `33629855060`: SUCCESS; Word Hunt **139/139 PASS**.
 - Android16 `33655562508`: SUCCESS; raw Android B5/B10 kullanıcı PASS.
 
@@ -65,27 +61,12 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 - Fast `33724552713`: SUCCESS.
 - Android16 `33724549202`: SUCCESS; gerçek `ANKARA + 1 trailing hücre` → `0/7 → 1/7`, hata `0 → 0`.
 
-## Final Release-context Kanıtı — PASS
+## Canonical Release-context Kanıtı — PASS
 
-Exact test edilmiş ürün HEAD: `2ae95df70b452f735a8db9c5bd0d88827a2ec40a`.
-
-### Kelime Avı Android16 visual proof
-- Run `33745646184`: **SUCCESS**.
-- Job `100617364648`: **SUCCESS**.
-- Focused static/test, proof APK/asset, Android16 install/open/screenshot/activity/logcat/process scan ve MASTER ART comparison PASS.
-- Artifact `9887953917`.
-- Digest `sha256:0f2fbcfc4022e4e8422912139349412969916496f96d4d29d80bdec8865176c5`.
-
-### Release APK / AdMob
-- Run `33745646210`: **SUCCESS**.
-- Job `100617365147`: **SUCCESS**.
-- Analyze + full test suite, release signing setup, release APK, manifest/AdMob/signature gates ve Android16 cold-start PASS.
-- Artifact `9889920696`.
-- Digest `sha256:447b82994aa25002e6f520f2de2b4ba598adcf769d80cb7aa7a767faf2f95c00`.
-
-Test edilmiş ürün HEAD `2ae95df7...` ile merge edilen HEAD `49e24dfc...` arasındaki 5 commit yalnız dört canonical checkpoint belgesini değiştirdi; ürün kodu değişmedi.
-
-Merge commit `189864c9...` için otomatik workflow tetiklenmedi (`0` run); bu nedenle merge öncesi exact release-context kanıtları final teknik kanıttır.
+- Exact test edilmiş ürün HEAD: `2ae95df70b452f735a8db9c5bd0d88827a2ec40a`.
+- Kelime Avı Android16 visual proof run `33745646184`: **SUCCESS**; artifact `9887953917`.
+- Release APK / AdMob run `33745646210`: **SUCCESS**; artifact `9889920696`.
+- PR #158 merge commitinde otomatik workflow tetiklenmedi (`0` run); merge öncesi exact release-context kanıtları final teknik kanıttır.
 
 ## Merge Zinciri — TAMAMLANDI
 
@@ -96,20 +77,47 @@ Merge commit `189864c9...` için otomatik workflow tetiklenmedi (`0` run); bu ne
 - PR #158 — MERGED → `189864c92a605e7bb960460300714049c730ea39`.
 - PR #166 tarihsel geliştirme/QA hattıdır; merge edilmeyecek.
 
+## Production Ana Navigasyon Entegrasyonu — PR #169 READY
+
+- Branch: `feat/kelime-avi-production-navigation-20260903`.
+- PR #169: **OPEN / READY FOR REVIEW / mergeable=true / merged=false**.
+- Base: `release/final-closed-test-aab-1.68.8` @ `189864c92a605e7bb960460300714049c730ea39`.
+- Exact Ready HEAD: **`ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`**.
+- Final ürün diff’i yalnız 4 dosya / 259 ekleme / 0 silme:
+  - `lib/main.dart`: production entry importu (+1),
+  - `lib/main_navigation.dart`: Oyna menüsü Kelime Avı kartı (+21),
+  - `lib/word_hunt/word_hunt_production_entry_screen.dart`: production route/persistence glue,
+  - `test/word_hunt_menu_entry_test.dart`: menü entry sözleşmesi.
+- `assets/questions.json`, BoardMap/67 node, canonical 8×8 içerik, Firebase rules/model, AdMob/signing/Android config ve package/version değişmedi.
+- Oyna menüsü → `WordHuntProductionEntryScreen` → MASTER ART `WordHuntReferenceRouteScreen` → canonical `WordHuntLevelProductionScreen` akışı bağlandı.
+- Progress `WordHuntProgressCodec` ile Firebase UID / guest scope’una göre cihazda saklanır; başka hesap verisi fail-closed reddedilir.
+
+### PR #169 doğrulama kanıtları
+
+- Focused production run `33754274810`: **SUCCESS**; 62 focused test PASS.
+- Minimum-diff run `33754621892`: **SUCCESS**; formatter churn temizlendi.
+- Full-suite / release APK / Android16 run `33754851284`: **SUCCESS**; job `100646698982` SUCCESS; analyze + tüm testler, imza, release APK, manifest/paket ve Android16 cold-start/AdMob gate PASS.
+- Kelime Avı Android16 görsel run `33754851205`: **SUCCESS**; job `100646698474` SUCCESS.
+- Görsel hatta `dart analyze lib/word_hunt`: **No issues found**; focused suite **126/126 PASS**.
+- MASTER ART kaynak/paket SHA+byte eşitliği: `SOURCE_EQUALS_PACKAGED=YES count=2`.
+- Android API 36 gerçek ekran yakalama, activity/process/crash/ANR kontrolleri PASS.
+- Visual artifact `9893332600`; digest `sha256:2d0fa14825f59a735a9606be809025b2f69d4daa09121bb065bb622d25e30001`.
+- Açık review/review thread blocker yok.
+- Ready kapısı Levent’in 3 Eylül 2026 `Devam et` onayıyla geçildi.
+
 ## Korunan Alanlar
 
-- `assets/questions.json`
-- `lib/main.dart`
-- canonical 8×8 / 64 hücre sözleşmesi
-- BoardMap / 67 node
-- Firebase / AdMob / release signing
-- package name / version
+- `assets/questions.json` kontrolsüz değiştirilmez.
+- Canonical 8×8 / 64 hücre sözleşmesi değiştirilmez.
+- BoardMap / 67 node değiştirilmez.
+- Firebase / AdMob / release signing kapsam dışıdır.
+- package name / version değişmedi.
+- PR #169 merge edilene kadar canonical release HEAD `189864c9...` olarak kalır.
 
 ## Kalan Gerçek Kapılar
 
-1. PR #158 → canonical release merge — **PASS / TAMAMLANDI**.
-2. Production `lib/main.dart` ana navigasyon entegrasyonu — **AÇIK / ayrı scope-branch-PR**.
-3. `REFERENCE_FONT` exact kaynak — **DOĞRULANACAK / DEFERRED**.
-4. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
+1. PR #169 → canonical release merge — **AÇIK / ayrıca Levent’in ayrı ve açık onayı gerekli**.
+2. `REFERENCE_FONT` exact kaynak — **DOĞRULANACAK / DEFERRED**.
+3. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 
-**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158 MERGED / CANONICAL RELEASE HEAD `189864c9...` / PLAY YAYINI YOK.
+**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158 MERGED / PR #169 READY + ANDROID16/FULL-SUITE PASS / CANONICAL RELEASE HEAD `189864c9...` / PLAY YAYINI YOK.
