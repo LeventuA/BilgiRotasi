@@ -146,9 +146,9 @@ class _WordHuntProductionEntryScreenState
         ? '${widget.route.title} tamamlandı.'
         : 'Sıradaki durak: Bölüm '
               '${WordHuntRouteProgressEngine.nextPlayableLevelIndex(widget.route, _progress)}';
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _showBook() {
