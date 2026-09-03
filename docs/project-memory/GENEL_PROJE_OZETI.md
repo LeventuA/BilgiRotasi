@@ -160,6 +160,66 @@ B5 60 sn soft challenge hard-fail değildir. Kullanıcıdan ayrıca tuning/denge
 - Kanıt APK SHA-256: `73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd58`.
 - Geçici QA entrypoint/script/workflow yalnız kanıt üretmek için kullanıldı; final ürün PR kapsamından çıkarıldı.
 
+
+#### 3 Eylül WORK V2 üretim günlüğü — TAM CHECKPOINT
+
+Bu blok, B5 denge adayının ürünleştirilmesinden gerçek Android 16 kanıtına ve final PR temizliğine kadar yapılan bütün önemli işlemleri kaydeder.
+
+**Canlı hat ve temiz entegrasyon**
+
+- Çalışma başında release branch `release/final-closed-test-aab-1.68.8`, release HEAD `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`, sürüm `1.68.19+109`, PR #163 base HEAD `d654e22d78658e1279972fd0e77efe1d4df0f3cf` olarak doğrulandı.
+- B5 tuning ve swipe toleransı, PR #163 tabanlı `integrate/kelime-avi-v6-b5-swipe-20260903` branch'ine taşındı ve Draft PR #167 açıldı.
+- İlk temiz ürün commit'i `749c678b885d6cefec428c603c55a83a4190152c`; exact ürün tree'si `4769e263782ab231255df1fa1fe63c553378f1d2`.
+- Ürün/test kapsamı sekiz dosyadır: `lib/word_hunt/word_hunt_input.dart`, `lib/word_hunt/word_hunt_screens.dart`, `lib/word_hunt/word_hunt_starter_content.dart`, `test/word_hunt_b5_balance_candidate_test.dart`, `test/word_hunt_input_test.dart`, `test/word_hunt_level_production_test.dart`, `test/word_hunt_production_flow_test.dart`, `test/word_hunt_starter_content_test.dart`.
+- `lib/main.dart`, `assets/questions.json`, locked V5 görselleri, BoardMap/67 node, Firebase, AdMob, signing, package ve sürüm değiştirilmedi.
+
+**Swipe davranışı**
+
+- Kelime olamayacak kadar kısa dokunma/sürükleme cezasız iptal edilir.
+- Yalnız exact target/bonus/already-found kelimeyi oluşturan tek trailing hücre taşması kırpılıp kabul edilir.
+- Gesture boyunca ilk aktif pointer kilitlenir; ikinci temas seçime karışmaz.
+- Yeterince uzun gerçek yanlış seçimler hata olmaya devam eder; nearest-word/autocomplete uygulanmaz.
+- Canonical path engine, scoring, timer, progression, kelime içeriği ve yıldız kuralları değiştirilmedi.
+
+**Toplu statik doğrulama**
+
+- İlk Quality Checks run `33688295877`: analyze PASS ve 454 test PASS; yeni B5 gridine eski koordinatlarla bağlı üç tarihsel test FAIL. Bunun ürün hatası değil stale fixture/gesture beklentisi olduğu doğrulandı, testler canonical B5'e hizalandı.
+- Swipe geliştirme hattı fast run `33688788065`: SUCCESS.
+- PR #167 exact entegrasyon fast run `33724552713`: SUCCESS; focused test, analyze, exact ürün blob/scope ve diff kapıları PASS.
+- Önceki aynı ürün blobunu doğrulayan entegrasyon fast runları da SUCCESS: `33689633086`, `33689895844`, `33721647550`, `33722291764`, `33723010420`, `33723138088`, `33723767226`, `33724099572`.
+
+**Android 16 kanıt altyapısında çözülen denemeler**
+
+- Run `33689891225`: ürün/statik/APK kapıları PASS; üçüncü taraf emulator runner ADB `offline` kaldığı için runtime başlamadı. Ürün regresyonu değildi.
+- Run `33721645062`: custom emulator yaklaşımına geçildi; `sdkmanager` PATH dışında olduğu için runtime kesildi. Mutlak Android SDK yolları kullanılarak düzeltildi.
+- Run `33722288193`: Android 16 emulator gerçek `device` durumuna ulaştı; QA scripti `adb` PATH'ini görmedi. Platform-tools PATH'i açıkça export edildi. Bu koşuda exact QA APK üretildi; SHA-256 `73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd58`.
+- Run `33723133602`: exact APK geri yüklendi, emulator açıldı, APK kuruldu ve B5 başlatıldı; ilk ham B5 ekran kanıtı oluştu ancak QA betiği görüntü doğrulamasında kesildi.
+- Run `33723763056`: koordinat log parser'ı çok satırlı log okuyacak biçimde sağlamlaştırıldı; artifact incelemesi gerçek kesilme nedeninin PNG için yanlış `>=1 MB` boyut eşiği olduğunu gösterdi. Geçerli B5 PNG `213714` byte idi; eşik düzeltildi.
+- Run `33724096921`: ekran doğrulaması geçti ve hareket gönderildi; Flutter mantıksal koordinatları Android fiziksel pikseli sanıldığı için gesture grid üstündeki yanlış konuma gitti. Artifact/log bunu doğruladı; cihaz yoğunluğu dönüşümü eklendi.
+- Run `33724549202`: yoğunluk `420`; mantıksal koordinatlar fiziksel `95,748 → 858,748` yoluna çevrildi. Gerçek Android input swipe ANKARA'nın altı doğru hücresi ile bir trailing hücreyi geçti ve sonuç SUCCESS oldu.
+- Başarısız Android denemelerinin tamamı QA/emulator altyapısı kaynaklıydı; ürün kodunda yeni regresyon bulunmadı. Her neden kullanıcıdan yeni test istemeden giderildi.
+
+**Final Android kanıtı**
+
+- Run `33724549202`, job `100550528945`, artifact `9881526593`, artifact digest `sha256:a9fbd75b9055e25aacaa6de650b316aca5a5d4600b6b0f0314241f43750c1546`.
+- `ANDROID_API=36`, `B5_64_CELL_RENDER=PASS`, `REAL_GESTURE_ANKARA_PLUS_ONE_CELL=PASS`, `TARGET_PROGRESS_0_TO_1_OF_7=PASS`, `MISTAKES_REMAINED_ZERO=PASS`, `PROCESS_FAILURE_SCAN=PASS`.
+- Ham Android son ekranında `ANKARA` found görünümü, `1/7`, `0 hata` ve canonical 8×8 grid birlikte doğrulandı.
+
+**Görsel ve kapsam denetimi**
+
+- Mevcut B5 gerçek ekranı; onaylı gece limanı, lacivert/altın tema, HUD, kelime plakaları, found yolu ve 8×8 okunabilirlik açısından kabul edilmiş V6 görsel diliyle uyumlu bulundu.
+- Found, error ve compact completion kullanıcı PASS kapıları yeni belirti olmadığı için yeniden açılmadı.
+- Exact font kaynağı bulunmadığından font tahmini yapılmadı; `REFERENCE_FONT` kaynak sınırı/deferred kaldı.
+
+**Final temizlik ve GitHub durumu**
+
+- Kanıt için geçici eklenen `.github/workflows/word-hunt-fast-checks.yml`, `.github/workflows/word-hunt-v6-swipe-tolerance-android16.yml`, `tools/qa/word_hunt_v6_swipe_tolerance_android16.sh`, `tools/word_hunt_v6_swipe_tolerance_qa_main.dart` final PR diff'inden çıkarıldı.
+- Checkpoint dokümantasyon commit'i `14cc186766b421fce062c47f88e151688e7b46ee`; bu committen sonra PR #167 diff'i 15 dosyadır: sekiz ürün/test dosyası + yedi proje hafıza/durum dosyası; geçici workflow veya QA tool dosyası yoktur.
+- PR #167 canlı kontrolde `OPEN / DRAFT / merged=false / mergeable=true`; base PR #163 branch'i ve base SHA `d654e22d78658e1279972fd0e77efe1d4df0f3cf`.
+- PR açıklaması final kapsam, fast/Android run, artifact ve APK SHA bilgileriyle güncellendi.
+- WORK V2 çalışma sözleşmesi `docs/project-memory/KELIME_AVI_WORK_V2.md`, `CHATGPT_PROJE_TALIMATI.txt` ve `KARARLAR.md` içine kalıcılaştırıldı.
+- Ready, merge veya release yapılmadı. Tek kullanıcı kapısı PR #167 Ready/merge kararıdır; production `lib/main.dart` navigasyon entegrasyonu ayrı scope olarak kalır.
+
 ## Paket bazlı üretim ve risk bazlı test — KALICI KARAR
 
 - Bir rota/paket 10 bölüm olarak tek içerik branch’inde üretilir; bölüm başına branch/Android Action/APK yapılmaz.
