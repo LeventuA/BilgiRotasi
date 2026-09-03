@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162 ve #161 merge edildi. PR #158 release-parent cleanup ve exact release-context Android16 + release APK/AdMob CI PASS; PR #158 hâlâ DRAFT. Ready, canonical release merge ve Play yayını ayrı açık kararlardır. WORK V2 aktif.
+**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162 ve #161 merge edildi. PR #158 release-parent cleanup ve exact release-context Android16 + release APK/AdMob CI PASS; Levent’in ayrı açık onayıyla PR #158 Ready for Review yapıldı. Canonical release merge ve Play yayını ayrı açık kararlardır. WORK V2 aktif.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -98,9 +98,10 @@
 
 ## PR #158 — Release-parent Final Durum
 
-- PR: **#158 — OPEN / DRAFT / mergeable=true / merged=false**.
+- PR: **#158 — OPEN / READY / mergeable=true / merged=false**.
 - Branch: `feat/kelime-avi-8x8-content-v1-20260829`.
 - Base: canonical release `release/final-closed-test-aab-1.68.8` @ `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
+- Ready öncesi HEAD: `927d0df5c75eb75d98328274b991850642f709e1`.
 - PR #161 merge sonrası release-parent final review yapıldı.
 - Cleanup commit `2ae95df70b452f735a8db9c5bd0d88827a2ec40a` — `chore(kelime-avi): remove obsolete release QA helpers`.
 - Obsolete V5 gameplay QA workflow/entrypoint/script/test/helper/reference dosyaları ve superseded `assets/word_hunt/baslangic_limani_gameplay_bg.jpg` release diff’inden çıkarıldı.
@@ -108,6 +109,8 @@
 - Final PR diff: **37 dosya**.
 - `lib/main.dart`, `assets/questions.json`, BoardMap/67 node, Firebase/AdMob/signing ve package/version diff dışında.
 - Açık review/review thread yok.
+- Levent 3 Eylül 2026’da ayrı ve açık Ready onayı verdi; PR #158 **Ready for Review** yapıldı.
+- Ready canonical release merge onayı değildir.
 
 ## PR #158 Exact Release-context Kanıtı — PASS
 
@@ -160,9 +163,9 @@
 2. Found/error/completion/B5/swipe kabul kapıları yeni belirti yoksa yeniden açılmaz.
 3. PR #167/#163/#162/#161 merge zinciri — **PASS / TAMAMLANDI**.
 4. PR #158 cleanup + final diff/review + exact release-context CI — **PASS / TAMAMLANDI**.
-5. PR #158 Ready için ayrıca Levent’in açık onayı alınır.
-6. Ready sonrasında PR #158 → canonical release merge için ayrıca açık Levent onayı alınır.
+5. PR #158 Ready — **PASS / TAMAMLANDI**.
+6. PR #158 → canonical release merge için ayrıca açık Levent onayı alınır.
 7. Production `lib/main.dart` navigasyon entegrasyonu ayrı branch/PR olarak yapılır.
 8. Play yükleme/yayınlama ayrı açık karardır.
 
-**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161 MERGED / PR #158 RELEASE-CONTEXT CI PASS / PR #158 DRAFT-OPEN / WORK V2 AKTİF / READY YOK / RELEASE-MERGE YOK.**
+**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161 MERGED / PR #158 RELEASE-CONTEXT CI PASS / PR #158 READY-OPEN / WORK V2 AKTİF / RELEASE-MERGE YOK.**
