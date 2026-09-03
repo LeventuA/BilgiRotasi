@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 3 Eylül 2026 — PR #162 final diff/review PASS ve Levent’in “Devam et” onayıyla Ready for Review yapıldı; merge ayrı açık onay bekliyor
+**Son güncelleme:** 3 Eylül 2026 — PR #162 Levent’in açık onayıyla PR #161 parent branch’ine merge edildi; release/main değişmedi
 
 ## Canlı Sürüm / Release Hattı
 
@@ -8,19 +8,19 @@
 - Paket: `com.leventua.bilgirotasi`.
 - Canonical release branch: `release/final-closed-test-aab-1.68.8`.
 - Canonical release HEAD: `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
-- `main` güncel/yayın kaynağı olarak varsayılmaz; canlı ürün branch/PR her görevde yeniden doğrulanır.
+- `main` güncel/yayın kaynağı olarak varsayılmaz.
 - Kelime Avı V6 zinciri henüz release/main’e merge edilmedi.
 
-## Kelime Avı V6 — Güncel Ürün Hattı
+## Kelime Avı — Güncel Ürün Hattı
 
 Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
-- Parent V5: PR #161 — **OPEN / DRAFT / merge yok**.
-- Güncel V6 branch: `fix/kelime-avi-v6-visual-found-state-20260901`.
-- Güncel V6 PR: **#162 — OPEN / READY / merged=false / mergeable=true**.
-- PR #162 Ready checkpoint ürün HEAD’i: `bf3768b0b3104ebf8c8103340d9664c1e0385ce8`; Ready sonrası yalnız checkpoint belgeleri güncellenir.
+- Güncel parent branch: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
+- Güncel parent PR: **#161 — OPEN / DRAFT / merged=false / mergeable=true**.
+- PR #162: **CLOSED / MERGED**; merge commit `929bb13177e03a0962464e21f6c174d4b3439349`.
 - PR #163: **CLOSED / MERGED**; merge commit `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
 - PR #167: **CLOSED / MERGED**; merge commit `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
+- PR #166 tarihsel geliştirme/QA hattıdır; merge edilmeyecek.
 - B5 + swipe ürün commit’i: `749c678b885d6cefec428c603c55a83a4190152c`.
 - Compact completion ürün commit’i: `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`.
 
@@ -30,7 +30,6 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 - Raw Android kullanıcı kabulü: **PASS**.
 - Exact tested commit: `4dddf00178ef9f14b8edb3fc706114be72f477a4`.
 - Android 16 run `33486609120`: **SUCCESS**.
-- Kabul edilen biçim: found hücrelerin kendi kutusu korunur; yalnız komşu found hücre aralığı sıcak altın/turuncu edge-fuse ile birleşir.
 
 ### Error-state — PASS
 - Raw Android kullanıcı kabulü: **PASS**.
@@ -50,7 +49,6 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 - İlk insan ölçümü: **115 sn / 2 hata** → 60 sn soft challenge karşılanmadı.
 - Tuning sonrası insan ölçümü: **32 sn / UI’da 2 false-positive kayıt** → süre **PASS**.
 - İki kayıt bilinçli yanlış seçim değildi; insan niyeti açısından gerçek hata **0**.
-- B5 hedef/bonus listesi, 8×8, 60 sn soft challenge, yıldız eşikleri ve yön aileleri korundu.
 - Android 16 tuning run `33670657723`: **SUCCESS**.
 
 ### Swipe false-positive toleransı — PASS
@@ -60,22 +58,20 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 - İki hücre taşma ve gerçek anlamlı yanlış seçim hata kalır.
 - Nearest-word/autocomplete uygulanmaz.
 - Fast checks run `33724552713`: **SUCCESS**.
-- Android 16 gerçek `ANKARA + 1 trailing hücre` run `33724549202`: **SUCCESS**.
-- Gerçek sonuç: `0/7 → 1/7`, hata `0 → 0`.
-- Job `100550528945`; artifact `9881526593`; APK SHA-256 `73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd58`.
+- Android 16 gerçek `ANKARA + 1 trailing hücre` run `33724549202`: **SUCCESS**; `0/7 → 1/7`, hata `0 → 0`.
 
-## PR #162 Final İnceleme — PASS
+## PR #162 Merge — PASS
 
-- 16 beklenen değişen dosya doğrulandı.
-- `lib/main.dart`, `assets/questions.json`, locked V5 assets, BoardMap/67 node ve release yapılandırması diff dışında.
-- Açık review veya review thread yok.
-- Swipe çözümü dar kapsamlıdır; geniş kelime tahmini/autocomplete yoktur.
-- PR #163 mergeinden sonra ürün kodu değişmedi; son HEAD’e eklenen değişiklikler checkpoint belgeleridir.
-- PR #162 Levent’in “Devam et” onayıyla **READY FOR REVIEW** yapıldı.
+- Final diff/review: **PASS**.
+- Açık review/review thread yoktu.
+- Ready sonrası HEAD hareketi yalnız `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve `docs/project-memory/GENEL_PROJE_OZETI.md` checkpoint commitlerinden oluştu; ürün kodu değişmedi.
+- Levent ayrı ve açık merge onayı verdi.
+- Merge method: `merge`.
+- Merge commit: `929bb13177e03a0962464e21f6c174d4b3439349`.
+- Merge hedefi PR #161 parent branch’idir; release/main değildir.
 
 ## Korunan Alanlar
 
-Bu V6 ürün zincirinde değiştirilmedi:
 - `assets/questions.json`
 - `lib/main.dart`
 - canonical 8×8 / 64 hücre sözleşmesi
@@ -99,10 +95,11 @@ Bu V6 ürün zincirinde değiştirilmedi:
 
 ## Kalan Gerçek Kapılar
 
-1. PR #162 final diff/review + Ready — **PASS / TAMAMLANDI**.
-2. PR #162 merge — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
-3. PR #161 zincir kararı ayrıca ele alınır.
-4. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
-5. Release entegrasyonu ve Play yayını ayrıca açık karar gerektirir.
+1. PR #161 final diff/review canlı kontrolü. **AÇIK**.
+2. PR #161 Ready kararı. **AÇIK / Levent onayı gerekli**.
+3. PR #161 merge kararı Ready’den sonra ayrıca açık onay gerektirir.
+4. Parent PR #158 zincir kararı ayrıca ele alınır.
+5. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
+6. Release entegrasyonu ve Play yayını ayrıca açık karar gerektirir.
 
-**Durum:** V6 FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID 16 PASS / PR #167 MERGED / PR #163 MERGED / PR #162 READY-OPEN / MERGE YOK / RELEASE-MERGE YOK.
+**Durum:** 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID 16 PASS / PR #167 MERGED / PR #163 MERGED / PR #162 MERGED / PR #161 DRAFT-OPEN / RELEASE-MERGE YOK.
