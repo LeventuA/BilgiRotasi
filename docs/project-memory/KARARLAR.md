@@ -219,3 +219,16 @@ Bu bölüm, 31 Ağustos kayıtlarındaki `ERROR_STATE_VISUAL = DOĞRULANACAK` du
 - Kelime Avı ilgili PR push'ları otomatik focused analyze/test/diff fast gate'inden geçer; kullanıcı workflow başlatan test operatörü olarak kullanılmaz.
 - Canonical 8×8, kabul edilmiş görsel durumlar, engine/path/scoring/timer/progression ve korunan ürün alanları hız uğruna değiştirilmez.
 - Ayrıntılı çalışma sözleşmesi `docs/project-memory/KELIME_AVI_WORK_V2.md` dosyasında tutulur.
+
+## 15. 3 Eylül 2026 — Gökyüzü Adaları tema ve görsel yön kararı
+
+- Kelime Avı ikinci 10 bölümlük rota/paket adı **Gökyüzü Adaları** olarak Levent tarafından onaylandı ve **LOCKED** kabul edilir.
+- Kullanıcıya sunulan üç görsel yön arasından **Konsept C — Neşeli & Parlak** seçildi ve bağlayıcı sanat yönü olarak **LOCKED** kabul edilir.
+- Atmosfer neşeli, renkli, pozitif, eğlenceli, çocuk dostu, hafif ve canlı olacaktır.
+- Palet yönü: açık gök mavisi / camgöbeği / turkuaz ana zemin; yeşil yüzen adalar; sarı-turuncu sıcak vurgu; gerektiğinde pembe/mercan destek ayrıntıları; parlak beyaz bulutlar.
+- Dünya öğeleri: yüzen çimenli adalar, bulut köprüleri/geçişleri, renkli balon ve hava gemileri, rüzgâr yapıları, masalsı kuleler ve sıcak-altın final sarayı hissi.
+- Bu karar **görsel sanat yönü** kararıdır. Onaylanan konsept görsel final production MASTER ART, exact node geometrisi veya raw Android kullanıcı kabulü değildir.
+- 10 bölümün adları, rota/node sıralaması ve exact görsel kompozisyon ayrıca ürün kararıyla kilitlenecektir.
+- Başlangıç Limanı için kullanılan `MASTER ART raster + transparent hitbox + minimum local override` mimarisi Gökyüzü Adaları’na otomatik genellenmez. MASTER ART / katmanlı Flutter / modüler asset teknik yaklaşımı ayrıca seçilecektir.
+- Canonical **8×8 / 64 hücre**, 10 bölüm / 30 yıldız, exactly-one occurrence, reverse gesture ve paket bazlı QA kararları korunur.
+- Bu aşamada Flutter, production asset veya APK üretimine geçilmez; önce rota/bölüm yapısı ve ardından görsel teknik mimari kilitlenir.
