@@ -1,12 +1,12 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 3 Eylül 2026 — Levent’in `Devam et` onayıyla docs-only PR #168 canonical release branch’e merge edildi. Kelime Avı Başlangıç Limanı gameplay + production ana navigasyon + checkpoint merge zinciri tamamlandı. Play yayını yapılmadı.
+**Son güncelleme:** 3 Eylül 2026 — İkinci Kelime Avı paketi **Gökyüzü Adaları** olarak kilitlendi; Levent görsel yön için konsept **C — Neşeli & Parlak** seçimini onayladı. Bu seçim sanat yönünü kilitler; 10 bölüm adı/node sırası ve teknik görsel mimari henüz açık. Play yayını yapılmadı.
 
 > Root dosya güncel Kelime Avı çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
-## Aktif görev — Kelime Avı sonraki paket kararı
+## Aktif görev — Gökyüzü Adaları rota yapısı
 
-**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND-ERROR-COMPLETION USER PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169+#168 MERGED / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK
+**Durum:** 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA LOCKED / KONSEPT C NEŞELİ & PARLAK LOCKED / FLUTTER-ASSET-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK
 
 **Canonical release:** `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`
 
@@ -42,6 +42,16 @@
 26. PR #168 → canonical release merge — **PASS**; Levent’in `Devam et` onayıyla; merge commit `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
 27. PR #168 merge sonrası canonical release HEAD doğrulaması — **PASS**; `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
 28. PR #168 merge commitinde otomatik PR workflow’u — **0 run / DOĞRULANDI**. Ürün kodu değişmedi.
+29. Paket 2 tema adı — **PASS / LOCKED**: `Gökyüzü Adaları`.
+30. Paket 2 görsel yön seçimi — **PASS / LOCKED**: konsept `C — Neşeli & Parlak`.
+
+### Gökyüzü Adaları — kilitlenen görsel yön
+
+- Atmosfer: neşeli, renkli, pozitif, eğlenceli, çocuk dostu, hafif ve canlı.
+- Ana palet yönü: gök mavisi/camgöbeği/turkuaz + yeşil yüzen adalar + sarı/turuncu sıcak vurgu + destekleyici pembe/mercan.
+- Dünya öğeleri: yüzen çimenli adalar, parlak bulutlar, renkli balon/hava gemileri, rüzgâr yapıları, kuleler ve sıcak-altın final sarayı hissi.
+- Konsept C onayı final MASTER ART veya raw Android PASS değildir; production görseli ayrıca üretilecek ve uygun aşamada kullanıcı kabulüne açılacaktır.
+- Başlangıç Limanı MASTER ART mimarisi yeni rotaya otomatik genellenmez.
 
 ### Canonical release’e giren production navigation scope
 
@@ -53,10 +63,12 @@
 
 ### Açık işler
 
-1. Sonraki **10 bölümlük rota/paket** için ürün yönü ve bağlayıcı görsel/teknik karar — **AÇIK / kullanıcı kararı gerekli**. Başlangıç Limanı MASTER ART istisnası yeni rotaya otomatik taşınmaz.
-2. `REFERENCE_FONT` exact kaynak yok — **DOĞRULANACAK / DEFERRED**.
-3. PR #166 tarihsel geliştirme/QA hattıdır — **MERGE YOK**.
-4. Sonraki paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA — **KABUL EDİLDİ / UYGULANACAK**.
-5. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
+1. Gökyüzü Adaları **10 bölüm adı ve rota/node sırası** — **AÇIK / sıradaki gerçek ürün kapısı**.
+2. Gökyüzü Adaları **görsel teknik mimarisi** — MASTER ART raster / katmanlı Flutter / modüler asset yaklaşımı — **AÇIK / bölüm yapısından sonra kilitlenecek**.
+3. Gökyüzü Adaları **80 target+bonus kelime içerik iskeleti ve 8×8 grid üretimi** — **BEKLİYOR / bölüm yapısı sonrası**.
+4. `REFERENCE_FONT` exact kaynak yok — **DOĞRULANACAK / DEFERRED**.
+5. PR #166 tarihsel geliştirme/QA hattıdır — **MERGE YOK**.
+6. Sonraki paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA — **KABUL EDİLDİ / UYGULANACAK**.
+7. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 
-**Başlangıç Limanı gameplay + production ana navigasyon + docs checkpoint release entegrasyonu tamamlandı. Sıradaki gerçek ürün kapısı yeni 10 bölümlük rota/paket yönünün belirlenmesidir.**
+**Gökyüzü Adaları için tema ve Neşeli & Parlak sanat yönü kilitlendi. Sıradaki gerçek ürün kararı 10 bölüm adı + rota sıralamasıdır; henüz kod/asset/APK üretimi başlamaz.**
