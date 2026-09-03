@@ -2,6 +2,31 @@
 
 > 26 Ağustos 2026 aktif kesimidir. PR #147 merge öncesi ayrıntılı durum dosyasının değişmemiş kopyası `docs/project-memory/archive/BILGI_ROTASI_DURUM_PRE_PR147_MERGE_20260825.md` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
 
+## 31 Ağustos 2026 — V5 exact-reference asset entegrasyonu + GÖRSEL KABUL GERİ ÇEKİLDİ / RUNTIME FAIL
+
+- Entegrasyon branch'i: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
+- Product integration commit: `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7` — `feat(kelime-avi): integrate approved V5 reference assets`.
+- Draft PR: **#161** — OPEN / DRAFT / merged=false; base `feat/kelime-avi-8x8-content-v1-20260829` (`5362c094...`).
+- Sürüm: `1.68.19+109` / değişmedi.
+- Canonical gameplay grid: **8×8 / LOCKED / UNCHANGED**. 6×10 veya başka geometriye dönüş yok.
+- Kullanıcı görsel QA ile kilitlenen 11 production raster asset: harbor background, idle/found cell, status panel, word plaque, bonus plaque, instruction panel, back/search/mistake/timer icon. `icon_anchor.png` ve `icon_compass.png` ayrı production overlay değildir; instruction panel içinde bake olduğu için UNUSED/REJECTED tutulur.
+- Asset commit `0d73ab3bbf5217caf203876c8c02fd5673d13d9e`; 11/11 SHA-256 doğrulaması PASS.
+- Entegrasyon gate run `33379341765`: SUCCESS; deterministic presentation patch, exact asset SHA, format, `dart analyze lib/word_hunt`, 138/138 focused Kelime Avı testleri, `git diff --check` ve protected-scope kontrolü PASS.
+- Gerçek Android 16 B10 ilk ekranı run `33384781507` ile üretildi; exact product SHA `50ab6c8...`, API 36 / 1080×1920 / 420 dpi, artifact `9755405253`.
+- Gerçek Android found-state run `33388386388` içinde `09_B10_YOL_FOUND.png` üretildi; YOL swipe sonrası sayaç `1/9`, Y-O-L hücreleri found-state'e geçti ve visual-change gate `changed_pixels=29970` PASS. Artifact `9756762383`.
+- **KRİTİK DÜZELTME:** Kullanıcıya önce gösterilen ve PASS alınan “bulunmuş” ekran gerçek Android runtime screenshot değildi; gerçek Android ekranı üzerinde görsel düzenleme ile oluşturulmuş hedef/mockup idi. Bu görsel Android kanıtı olarak sunulmamalıydı. Bu yanlış sunum nedeniyle alınan PASS **GEÇERSİZ / GERİ ÇEKİLMİŞTİR**.
+- Kullanıcının bağlayıcı görsel hedefi, son mesajındaki **Görsel 1**'dir. Bu görsel yalnız hedef/reference olarak kullanılabilir; runtime kanıtı değildir.
+- Kullanıcının son mesajındaki **Görsel 2**, gerçek Android runtime found-state çıktısıdır ve kullanıcı tarafından açıkça **FAIL** olarak reddedilmiştir. Mevcut runtime; hedefe göre yerleşim/ölçek, üst panel oranları, hedef plakalarının ölçüleri/boşlukları, grid hücre aralıkları ve alt panel sunumu bakımından yeterince eşleşmemektedir.
+- Bu nedenle önceki “CURRENT V5 EXACT-REFERENCE VISUAL PASS / RUNTIME FOUND-STATE VISUAL PASS” kaydı current değildir ve bu checkpoint tarafından **supersede** edilmiştir.
+- Run `33388386388` genel sonucu ayrıca FAILURE'dır; PNG/gesture kanıtlarından sonra exact log-string `grep` assertion'ı exit 1 vermiştir. Bu run teknik SUCCESS diye yazılmaz.
+- Bilgi Rotası public repo olduğundan standart GitHub-hosted Actions dakika kotası bu proje için çalışma freni sayılmaz; gereksiz run yine yapılmaz, artifact/cache storage ayrı izlenir ve paid/larger runner otomatik yetkilendirilmiş değildir.
+
+**Kalan kapılar:** gerçek Android runtime görünümünü bağlayıcı Görsel 1 hedefiyle eşleştirmek; sonra gerçek Android initial + found-state screenshot üzerinden yeniden kullanıcı görsel kabulü almak; `ERROR_STATE_VISUAL` ve exact `REFERENCE_FONT` doğrulamaları; B5 60s + B10 120s gerçek insan süre/zorluk playtesti; PR #161/#158 Ready kararı; Levent'in ayrıca açık merge onayı; production `lib/main.dart` navigasyon entegrasyonu ayrı kapsam.
+
+**Durum:** ASSET/FLUTTER TECHNICAL GATE PASS / CURRENT ANDROID RUNTIME VISUAL FAIL / USER VISUAL ACCEPTANCE OPEN / READY-MERGE YOK.
+
+---
+
 ## 0T. PR #147 Başlangıç Limanı MASTER ART production merge checkpoint — TAMAMLANDI
 
 - Levent gerçek Android 16 production görünümünü ve **MASTER ART raster + şeffaf hitbox** mimarisini açıkça kabul etti.
@@ -76,16 +101,14 @@ Production asset contract da kullanıcı tarafından kabul edilen mimariye hizal
 - B1/B5/B8/B10 64/64, gerçek ANKARA + ters BAŞKENT swipe, B5 74s soft-time ve uygulama process-failure taraması PASS. Teknik görsel kanıt PASS.
 - PR #158 Draft kalır; Ready/merge/auto-merge yoktur.
 
-## 31 Ağustos 2026 — PR #158 V5 nihai görsel kullanıcı kabulü — PASS
+## 31 Ağustos 2026 — PR #158 V5 nihai görsel kullanıcı kabulü — TARİHSEL / SUPERSEDED
 
 - Refined V5 gerçek Android 16 B10 render'ı, branch HEAD `67f7365e0dfd9689f606bc990c2351a56b77899e` için run `33331395168`, artifact `9737903231` içindeki `04_B10_INITIAL.png` dosyasından doğrudan incelendi.
 - Run `33331395168` genel sonucu QA otomasyon/harness failure olduğu için teknik PASS kanıtı sayılmaz; teknik gameplay/görsel kanıtı run `33308127773` / artifact `9731244720` PASS olarak korunur.
-- Levent 31 Ağustos 2026'da rafine gece limanı / lacivert-altın premium V5 gameplay görünümüne açık görsel kabul verdi.
-- Görsel tasarım bu kabulden sonra kilitlidir; yeni açık kullanıcı talebi olmadan tema/UI yeniden çizilmez.
-- Kalan ürün kapıları: B5 60s ve B10 120s gerçek insan süre/zorluk dengesi playtesti, ayrı PR Ready kararı ve Levent'in ayrı açık merge onayıdır.
+- Bu görünüm daha sonra kullanıcı tarafından exact-reference gereksinimi nedeniyle yeterli kabul edilmedi ve yukarıdaki exact-reference çalışma hattı tarafından supersede edildi.
 - Production `lib/main.dart` ana navigasyon entegrasyonu hâlâ ayrı kapsam/branch/PR işidir.
 
-**Durum:** V5 TECHNICAL VISUAL PASS / FINAL USER VISUAL ACCEPTANCE PASS / HUMAN TIME-BALANCE PLAYTEST PENDING.
+**Durum:** TARİHSEL / CURRENT VISUAL ACCEPTANCE İÇİN YUKARIDAKİ FAIL CHECKPOINT ESASTIR.
 
 ---
 

@@ -84,6 +84,7 @@
 - Canonical release branch'in mevcut artifact-retention politikaları korunur.
 - Android release binary'lerinin GitHub Releases üzerinden üretilmesine yönelik mevcut release workflow'ları korunur.
 - Kelime Avı release entegrasyonu mevcut AdMob/Firebase/Android release yapılandırmasını değiştirmez.
+- `ZMilaStudio/BilgiRotasi` public repo olduğu sürece standart GitHub-hosted Actions dakika kotası proje için kısıt/fren olarak kullanılmaz. Buna rağmen gereksiz workflow döngüsü yapılmaz; artifact/cache storage kotası ayrı izlenir ve larger/paid runner kullanımı ayrıca onay gerektirir.
 
 ---
 
@@ -114,21 +115,107 @@
 - Süreler hard-fail değildir; B5 60 saniye, B10 120 saniye soft challenge sözleşmesi korunur.
 - 8×8 dönüşümü `lib/main.dart`, `assets/questions.json`, MASTER ART, AdMob/Firebase, signing veya BoardMap/67 node kapsamını açmaz.
 - 8×8 için Flutter analyze/test ve Android 16 kanıtı olmadan PR Ready/merge yapılmaz.
-- 29 Ağustos'ta izin verilen tek Actions run `33250841637` yalnız formatter gate'inde durmuş; analyze/test/Android 16 çalışmamıştır. Bu nedenle 8×8 teknik kabul **DOĞRULANACAK** durumdadır.
 - QA-only entrypoint/araçlar ürün commitine girmeyecek; ürün scope'u açık allowlist ile sınırlandırılacaktır.
-- Yeni Actions koşusu yalnız Levent'in yeniden açık izniyle çalıştırılır.
 
 ---
 
-## 9. 30 Ağustos 2026 — Başlangıç Limanı gameplay görsel dili
+## 9. 31 Ağustos 2026 — Başlangıç Limanı gameplay exact-reference görsel mimarisi / DÜZELTİLMİŞ KARAR
 
-Kelime Avı / Başlangıç Limanı gameplay ekranı için kullanıcı tarafından
-30 Ağustos 2026’da verilen gece limanı, lacivert-altın premium ekran
-bağlayıcı görsel tema referansıdır.
-Bu karar görsel dili bağlar; canonical grid geometrisi 8×8 olarak kalır.
+Kelime Avı / Başlangıç Limanı gameplay ekranında bağlayıcı görsel kaynak gece limanı, lacivert-altın premium referanstır. Önceki “background-only + Flutter ile chrome yeniden çizimi” yaklaşımı, kullanıcı exact-reference talebi nedeniyle bu karar tarafından **supersede** edilmiştir.
 
-- Referansın 6×10 hücre düzeni ürün geometrisi değildir ve uygulanmaz.
-- Referans screenshot'ın tamamı production UI olarak gömülmez.
-- Temiz background-only sahne asset'i ile Flutter widget/presentation katmanı birlikte kullanılır.
-- Gameplay engine, içerik koordinatları, swipe, timer, hata, bonus, scoring ve progression sözleşmeleri görsel tema uğruna değiştirilmez.
-- Android gerçek screenshot ve Levent kabulü olmadan yalnız test/build sonucu görsel PASS sayılmaz.
+- Canonical gameplay geometrisi **8×8 / LOCKED** kalır; hiçbir raster asset grid geometrisi bake etmez.
+- Referansın 6×10 düzeni yalnız görsel kaynak geçmişidir ve product geometry olarak kullanılamaz.
+- Flattened referans screenshot bütün ekran olarak production'a gömülmez.
+- Production mimarisi: **approved raster reference asset pack + dinamik Flutter text/state + canonical 8×8 engine**.
+- Kullanıcı tarafından görsel QA ile kilitlenen 11 production asset dışında yeni chrome/ikon/hücre tasarımı eklenmez:
+  - `harbor_background_1080x1920.png`
+  - `cell_idle.png`
+  - `cell_selected_found.png`
+  - `status_panel_empty.png`
+  - `word_plaque_empty.png`
+  - `bonus_plaque_empty.png`
+  - `instruction_panel_empty.png`
+  - `icon_back.png`
+  - `icon_search.png`
+  - `icon_mistake.png`
+  - `icon_timer.png`
+- `icon_anchor.png` ve `icon_compass.png` production overlay değildir; instruction panel asset'i içinde dekor bake olduğu için **UNUSED / REJECTED** kalır.
+- Dinamik içerik (başlık, sayaç, süre, target/bonus metni, hücre harfleri, found/error state) Flutter/runtime tarafından üretilir; asset içine kelime/grid bake edilmez.
+- Gameplay engine, swipe, timer, hata, bonus, scoring ve progression sözleşmeleri görsel tema uğruna değiştirilmez.
+- **Bağlayıcı runtime hedefi**, kullanıcının 31 Ağustos'taki son mesajında **Görsel 1** olarak işaretlediği ekrandır. Bu görsel hedef/reference'tır; gerçek Android kanıtı değildir.
+- Kullanıcının son mesajındaki **Görsel 2**, gerçek Android runtime found-state çıktısıdır ve **FAIL** olarak reddedilmiştir.
+- Görsel 1 veya başka herhangi bir image-edit / ImageGen / mockup çıktısı **gerçek Android screenshot diye sunulamaz ve Android visual PASS kanıtı sayılamaz**.
+- Görsel PASS yalnız raw Android artifact/screenshot üzerinden verilir. Runtime ekranının bağlayıcı Görsel 1 hedefiyle yerleşim, ölçek, panel/plaque ölçüleri, grid aralıkları, found-state ve alt panel sunumu açısından kabul edilebilir biçimde eşleşmesi gerekir.
+- Exact product SHA `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7` için initial Android 16 run `33384781507` teknik olarak screenshot üretmiştir; found-state artifact `9756762383` gerçek gesture/state üretmiştir. **Ancak bu gerçek runtime görünümü kullanıcı tarafından görsel olarak FAIL edilmiştir.**
+- Daha önce image-edit hedef üzerinden alınan “PASS” yanlış kanıt sunumuna dayandığı için **GEÇERSİZDİR / GERİ ÇEKİLMİŞTİR**.
+- Önceki `67f7365...` refined-V5 kabul kaydı da current karar değildir.
+
+`ERROR_STATE_VISUAL` ve exact `REFERENCE_FONT` kaynağı referansta bağımsız olarak doğrulanamadığı sürece **DOĞRULANACAK** kalır. Mevcut runtime sırf teknik testler geçti diye görsel PASS sayılmaz.
+
+---
+
+## 10. 1 Eylül 2026 — V6 raw Android edge-fuse found-state kullanıcı kabulü
+
+- Kullanıcı kabulü yalnız **ham Android runtime** ekranından alınır; QA selector, ImageGen, image-edit veya mockup hiçbir zaman acceptance kanıtı değildir.
+- Raw Android sonuçları kullanıcıya her zaman gösterilir.
+- Kabul edilen V6 found-state biçimi: found hücrelerin kendi kutu/formu korunur; yalnız ardışık found hücrelerin görünür kenar boşluğu sıcak altın/turuncu dolu birleşimle kapanır. Merkezden merkeze uzun bar veya ayrı kapsül görünümü kullanılmaz.
+- Exact Android-tested edge-fuse commit: `4dddf00178ef9f14b8edb3fc706114be72f477a4`.
+- Exact tested `word_hunt_screens.dart` blob: `f43deaad5328f6263f9479de1738cc1f4ac465e0`.
+- Android 16 run `33486609120`: **SUCCESS**; API 36 / 1080×1920 / 420 dpi; analyze PASS; focused Kelime Avı **138/138 PASS**; gerçek YOL `0/9 → 1/9`; `YOL_SEMANTIC_VISUAL_GATE=PASS`; `YOL_EDGE_FUSE_PIXEL_GATE=PASS`.
+- Artifact `9792346079`, digest `sha256:f5a1592ce074a6e0a8f3bc1f7c88baf5bd9ec9b6bf5337327d7368aea83046d8`.
+- Levent, aynı artifact’tan gösterilen raw B10 initial ve raw `YOL / 1/9` edge-fuse ekranlarını **PASS** olarak kabul etti.
+- Temiz ürün branch `fix/kelime-avi-v6-found-path-connector-product-20260901`; ürün commit `217beb83c31976436a6f26ec43ae4e35a0c7f05c` aynı exact `f43deaad...` blob’u taşır.
+- Draft PR #163 kullanıcı görsel PASS aldı fakat **Ready veya merge otomatik değildir**.
+- Merge için Levent’in ayrıca açık merge onayı zorunludur.
+
+---
+
+## 11. 2 Eylül 2026 — V6 error + completion + kompakt sonuç popup kabulü
+
+Bu bölüm, 31 Ağustos kayıtlarındaki `ERROR_STATE_VISUAL = DOĞRULANACAK` durumunu güncel kabul kararıyla supersede eder. `REFERENCE_FONT` kaynak yetersizliği nedeniyle ayrı olarak açık/deferred kalır.
+
+- Error-state kullanıcı görsel kabulü **PASS**: fill `0xB35A1F2B`, border `0xFFFF6B57`; 280 ms geri bildirim değişmedi; Android 16 run `33524578623` SUCCESS.
+- Completion davranış sözleşmesi: ana hedefler tamam fakat bonus eksikse otomatik sonuç popup’ı açılmaz; oyuncu bonusu aramaya devam edebilir ve manuel `Bölümü Tamamla` yolu korunur. Tüm target+bonus tamamlandığında popup otomatik açılır. Yeni/fresh bölüm oturumunda completion popup yeniden tetiklenebilir.
+- Completion UI standart Material/mavi dialog değildir; Başlangıç Limanı lacivert/bronze/altın görsel diline ait premium sonuç panelidir.
+- Kullanıcı, büyük ilk tasarımı beğendi ancak kaba/büyük buldu; popup yaklaşık %20 kompaktlaştırıldı. Kabul edilen compact parametreler: `maxWidth: 300`, padding `18/15/18/15`, result button height `44`.
+- Exact compact tested product commit: `7fa81663cb93c3f9f43b5c1bb7cd8f4d11929fd8`.
+- Exact compact tested `word_hunt_screens.dart` blob: `6ce2830a7df8eb696a9df589c91c544df7712969`.
+- Static/productize run `33629855060`: SUCCESS; analyze + Word Hunt **139/139 PASS**.
+- Final clean Android 16 compact run `33655562508`: **SUCCESS**. B5 target-only no-dialog, B5 all-words auto-dialog, B5 fresh replay auto-dialog, B10 target-only no-dialog, B10 all-words auto-dialog ve process failure scan PASS.
+- Raw Android B5/B10 kompakt popup ekranları Levent’e gösterildi ve **PASS** verildi.
+- Exact tested compact blob PR #163 ürün branch’ine QA-only dosya taşınmadan productize edildi: commit `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`; branch `fix/kelime-avi-v6-found-path-connector-product-20260901`; blob exact `6ce2830...`.
+- İnsan süre-zorluk playtesti scripted QA’dan ayrı tutulur: Levent B5’i **115 sn / 2 hata** ile tamamladı; 60 sn soft challenge hedefi karşılanmadı. B10’u **109 sn / 4 hata** ile tamamladı; 120 sn soft challenge hedefi karşılandı. Overall timing sonucu **MIXED**; B5 tuning kararı ayrıca verilecektir.
+- Soft challenge hard-fail değildir; yalnız bu ölçüm nedeniyle timer/gameplay otomatik değiştirilmez.
+- PR #163 **Draft/Open** kalır; görsel PASS Ready veya merge onayı değildir. Merge için Levent’in ayrıca açık onayı zorunludur.
+
+---
+
+## 12. 3 Eylül 2026 — Kelime Avı paket bazlı üretim ve risk bazlı test kararı
+
+- Her bölüm için ayrı branch, ayrı Android 16 Action, ayrı APK ve ayrı insan testi yapılması ölçeklenebilir değildir ve terk edilmiştir.
+- Temel üretim birimi **bir rota/paket = 10 bölüm**dür. Aynı paketin 10 bölümü tek içerik branch’inde topluca geliştirilir.
+- Her bölüm için otomatik kapılar zorunludur: 8×8/64 hücre, hedef+bonus sayısı, her kelimenin exactly-one fiziksel occurrence taşıması, izinli yönler, intended/opposite gesture eşitliği, timer/yıldız sözleşmesi ve grid render sınırları.
+- İnsan denge testi varsayılan olarak paketin temsili **B1 + B5 + B10** bölümlerinde yapılır. Otomatik zorluk/kontrat kapısı şüpheli outlier bulursa yalnız o bölüm ayrıca test edilir.
+- Onaylanmış ortak gameplay görseli her içerik/grid değişikliğinde yeniden kullanıcı kabulüne açılmaz.
+- Android 16 tam runtime kapısı şu durumlarda çalışır: 10 bölümlük paket tamamlandığında; engine/swipe/scoring/timer/progression/result UI veya ortak görsel sistem değiştiğinde; release entegrasyonu öncesinde.
+- Yalnız kelime/grid içeriği değişen tek bölüm için otomatik içerik testleri yeterlidir; paket tamamlanmadan ayrı Android Action/APK üretilmez.
+- Paket QA APK’sı tek uygulama içinde B1–B10 bölüm seçici, yeniden başlatma ve sonuç özeti sağlamalıdır; on ayrı APK üretilmez.
+- Hata bulunursa bütün paket yeniden üretilmez; yalnız başarısız bölüm/dosya düzeltilir ve ilgili otomatik kapılar tekrarlanır.
+- Bu hızlandırma test standardını düşürmez: riskli ürün/runtime değişiklikleri ve final release için ham Android ekranı, logcat/crash-ANR taraması, exact SHA ve artifact kanıtı korunur.
+
+## 13. 3 Eylül 2026 — Swipe false-positive dar tolerans kararı
+
+- Kelime olamayacak kadar kısa dokunma/sürükleme seçim veya hata sayılmaz.
+- Seçim yalnız son hücresi çıkarıldığında exact target, bonus veya zaten bulunmuş kelime oluyorsa tek trailing hücre kırpılır; daha geniş yakın-kelime tahmini yapılmaz.
+- Gesture boyunca ilk aktif pointer kilitlenir, diğer temaslar seçim yolunu değiştirmez.
+- Yeterince uzun gerçek yanlış düz seçimlerin hata sayımı korunur; canonical path engine, scoring, timer ve yıldız eşikleri değiştirilmez.
+- Düzeltme hedefli unit/widget testleriyle doğrulanır; merge yine Levent’in ayrı açık onayını gerektirir.
+
+## 14. 3 Eylül 2026 — WORK V2 hızlı otonom üretim kararı
+
+- Mikro değişiklik → tam test → rapor → kullanıcı bekleme döngüsü kullanılmaz; ilişkili işler mantıklı üretim bloklarında tamamlanır.
+- Testler risk bazlı checkpointlerde toplanır. Açıkça çözülebilen fixture, test ve uygulama hataları kullanıcı onayı beklenmeden düzeltilip yeniden doğrulanır.
+- Kullanıcı ürün yönü, gerçek görsel/fiziksel kabul ve Ready/merge/release kararlarında devreye girer; merge/release için açık onay zorunluluğu değişmez.
+- Kelime Avı ilgili PR push'ları otomatik focused analyze/test/diff fast gate'inden geçer; kullanıcı workflow başlatan test operatörü olarak kullanılmaz.
+- Canonical 8×8, kabul edilmiş görsel durumlar, engine/path/scoring/timer/progression ve korunan ürün alanları hız uğruna değiştirilmez.
+- Ayrıntılı çalışma sözleşmesi `docs/project-memory/KELIME_AVI_WORK_V2.md` dosyasında tutulur.

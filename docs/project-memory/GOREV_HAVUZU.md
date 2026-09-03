@@ -1,6 +1,6 @@
 # Bilgi Rotası - Görev Havuzu
 
-> 29 Ağustos 2026 aktif kesimidir. Eski tam görev kayıtları Git geçmişi ve `docs/project-memory/archive/` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
+> 1 Eylül 2026 aktif kesimidir. Eski tam görev kayıtları Git geçmişi ve `docs/project-memory/archive/` altında korunur. Teknik gerçek her zaman canlı GitHub ve ilgili canlı servislerdir.
 
 ## 0R - Başlangıç Limanı production MASTER ART mimari kabulü
 
@@ -66,7 +66,7 @@
 
 ## 0X - Başlangıç Limanı 8×8 starter-content dönüşümü
 
-**Durum:** TEKNİK GATE + V5 GÖRSEL KABUL TAMAMLANDI / İNSAN PLAYTESTİ + READY/MERGE BEKLENİYOR.
+**Durum:** TEKNİK GATE TAMAMLANDI / V6 RAW ANDROID GÖRSEL PASS / READY-MERGE YOK.
 
 - Branch: `feat/kelime-avi-8x8-content-v1-20260829`
 - Temiz ürün commit: `052ea7da775db0b58a5ce0c6731a04f251879008`
@@ -94,28 +94,52 @@
 - [x] QA-only entrypoint/helper dosyaları ürün commitinde yok.
 - [x] Temiz ürün commit SHA'sı yazıldı.
 - [x] 8×8 Draft PR #158 açıldı.
+- [x] Current V6 raw Android initial + edge-fuse found-state kullanıcı görsel PASS aldı.
 - [ ] B5/B10 gerçek insan süre dengesi playtesti.
-- [x] Levent V5 gameplay görünümünü gerçek Android 16 render üzerinden açıkça kabul etti (31 Ağustos 2026; run `33331395168`, artifact `9737903231`, `04_B10_INITIAL.png`).
 - [ ] İnsan playtesti sonrasında ayrıca Ready kararı verilir.
 - [ ] Levent ayrıca açık merge onayı verir.
 
-İlk gate run `33250841637` formatter nedeniyle erken durmuştu; ürün failure sayılmaz. Düzeltilmiş final gate `33251736068` bunun yerini alan teknik kanıttır.
+---
 
-### PR #158 V5 gameplay tema kabul düzeltmesi
+## 0Y - V5 exact-reference production asset entegrasyonu / PR #161
 
-**Durum:** ÜRÜN KODU + ANDROID 16 TEKNİK GÖRSEL KANIT PASS / LEVENT GÖRSEL KABUL PASS.
+**Durum:** ASSET + FLUTTER ENTEGRASYON TEKNİK PASS / V6 CHILD RAW ANDROID GÖRSEL PASS / READY-MERGE YOK.
 
-- [x] Mevcut production gameplay widget'ı gece limanı lacivert-altın temaya hizalandı.
-- [x] Canonical 8×8 ve 64/64 ilk viewport görünürlüğü widget testiyle korundu.
-- [x] 10 bölüm, 80 kelime eğrisi, B5/B10 soft-time ve gesture/progression davranışları korunuyor.
-- [x] Referans screenshot production background/UI olarak gömülmedi.
-- [x] `lib/main.dart`, `assets/questions.json`, MASTER ART rota, AdMob/Firebase/signing ve sürüm kapsam dışında kaldı.
-- [x] Android 16 / 1080×1920 / 420 dpi üzerinde B1/B5/B8/B10 yeni tema screenshot artifact'i: run `33308127773`, artifact `9731244720`.
-- [x] B5 gerçek ANKARA ve ters BAŞKENT swipe'ının yeni temada yeniden görsel/runtime doğrulaması.
-- [x] B5 74 saniyede soft-time ve uygulama crash/ANR/FATAL/process-death taraması PASS.
-- [x] Levent rafine B10 gerçek Android 16 render'ını görerek yeni gameplay görünümüne açık görsel kabul verdi (31 Ağustos 2026; artifact `9737903231`).
-- [ ] B5/B10 gerçek insan süre/zorluk dengesi playtesti.
-- [ ] Ayrı Ready/merge onayı.
+- Branch: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
+- Product integration commit: `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7`.
+- Draft PR: **#161** — OPEN / DRAFT / merged=false.
+- Sürüm: `1.68.19+109`.
+- Asset commit: `0d73ab3bbf5217caf203876c8c02fd5673d13d9e`.
+- Production asset sayısı: 11; 11/11 exact SHA-256 PASS.
+- `icon_anchor.png` / `icon_compass.png`: UNUSED / REJECTED / production overlay değil.
+- Integration run `33379341765`: SUCCESS; asset SHA, deterministic presentation patch, format, analyze, 138/138 focused tests, diff/scope gate PASS.
+
+**V6 accepted child chain:**
+- PR #162: temel V6 spacing/scale/found-state sunumu.
+- PR #163: accepted edge-fuse found path.
+- Exact Android-tested edge-fuse commit: `4dddf00178ef9f14b8edb3fc706114be72f477a4`.
+- Exact tested blob: `f43deaad5328f6263f9479de1738cc1f4ac465e0`.
+- Android 16 run `33486609120`: SUCCESS; analyze PASS; focused 138/138 PASS; B10 `0/9 → 1/9`; semantic + edge-fuse pixel gates PASS.
+- Artifact `9792346079`, digest `sha256:f5a1592ce074a6e0a8f3bc1f7c88baf5bd9ec9b6bf5337327d7368aea83046d8`.
+- Raw B10 initial ve raw `YOL / 1/9` edge-fuse found-state Levent tarafından **PASS** edildi.
+- Clean product commit: `217beb83c31976436a6f26ec43ae4e35a0c7f05c` exact aynı blob’u taşır.
+
+**Bitti ölçütü:**
+- [x] Onaylı 11 raster production asset exact SHA ile branch'e alındı.
+- [x] Assetler minimum presentation diff ile Flutter'a bağlandı.
+- [x] Gameplay engine/swipe/timer/scoring/progression korunuyor.
+- [x] 8×8 ve 64 hücre sözleşmesi korunuyor.
+- [x] Format/analyze/focused test/scope gate PASS.
+- [x] Gerçek Android 16 initial B10 screenshot üretildi.
+- [x] Gerçek Android 16 YOL swipe/found-state teknik kanıtı üretildi.
+- [x] V6 raw Android initial görünüm kullanıcı görsel PASS aldı.
+- [x] V6 edge-fuse raw Android found-state kullanıcı görsel PASS aldı.
+- [ ] `ERROR_STATE_VISUAL` için referans/karar doğrulaması.
+- [ ] Exact `REFERENCE_FONT` kaynağı/kararı doğrulaması.
+- [ ] B5 60s / B10 120s gerçek insan süre-zorluk playtesti.
+- [ ] PR #161 / #162 / #163 için ayrıca Ready kararı.
+- [ ] Levent'in ayrıca açık merge onayı.
+- [ ] Production `lib/main.dart` navigasyon entegrasyonu ayrı 0W görevi.
 
 ---
 
