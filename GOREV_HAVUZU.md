@@ -1,12 +1,12 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 3 Eylül 2026 — PR #167 merge tamamlandı; sıradaki gerçek kapı PR #163 Ready kararı
+**Son güncelleme:** 3 Eylül 2026 — PR #163 Ready kapısı Levent’in “Devam et” onayıyla tamamlandı; merge ayrı onay bekliyor
 
 > Root dosya mevcut V6 çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
 ## Aktif görev — Kelime Avı V6 final karar kapıları
 
-**Durum:** FOUND/ERROR/COMPACT COMPLETION KULLANICI PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 MERGED / PR #163 DRAFT-OPEN / READY-MERGE YOK
+**Durum:** FOUND/ERROR/COMPACT COMPLETION KULLANICI PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 MERGED / PR #163 READY-OPEN / MERGE YOK
 
 **Parent V5:** PR #161 — OPEN / DRAFT
 
@@ -14,11 +14,11 @@
 
 **Güncel ürün branch:** `fix/kelime-avi-v6-found-path-connector-product-20260901`
 
-**Güncel ürün hattı HEAD:** PR #167 merge sonrası `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4` + yalnız dokümantasyon checkpoint commitleri.
+**PR #167 merge commit:** `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`
 
 **Compact completion exact product blob:** `6ce2830a7df8eb696a9df589c91c544df7712969`
 
-**Draft PR:** #163 — OPEN / DRAFT / merge yok
+**Güncel PR:** #163 — **OPEN / READY / merge yok**
 
 ### Tamamlanan kapılar
 
@@ -38,6 +38,8 @@
 14. Otomatik fast gate + gerçek Android 16 `ANKARA + bir hücre taşma` kanıtı — **PASS**; run `33724552713` ve `33724549202`, ilerleme `1/7`, hata `0`.
 15. PR #167 son diff/review incelemesi ve Levent Ready onayı — **PASS**.
 16. PR #167 merge — **PASS**; CLOSED / MERGED, merge commit `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
+17. PR #163 final diff/review canlı kontrolü — **PASS**; mergeable=true, açık review/thread yok, korunan alanlar diff dışında.
+18. PR #163 Ready for Review — **PASS**; 3 Eylül 2026 Levent “Devam et” onayıyla Draft kapatıldı.
 
 ### Gerçek insan süre-zorluk sonucu
 
@@ -48,13 +50,12 @@
 
 ### Açık işler
 
-1. PR #163 için Ready kararı. **AÇIK / kullanıcı onayı gerekli**.
-2. PR #163 Ready olursa merge kararı ayrıca alınacak. **AÇIK / ayrı kullanıcı onayı gerekli**.
-3. PR #166 tarihsel geliştirme/QA hattıdır; final ürün değişikliği PR #167 üzerinden PR #163’e merge edilmiştir. **PR #166 MERGE YOK**.
-4. Sonraki 10 bölümlük paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA akışını uygula. **KABUL EDİLDİ / UYGULANACAK**.
-5. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
-6. PR #161 / #162 / #163 Ready kararları ayrı verilecek. **AÇIK**.
-7. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope. **AÇIK**.
+1. PR #163 merge kararı. **AÇIK / ayrı Levent onayı gerekli**.
+2. PR #166 tarihsel geliştirme/QA hattıdır; final ürün değişikliği PR #167 üzerinden PR #163’e merge edilmiştir. **PR #166 MERGE YOK**.
+3. Sonraki 10 bölümlük paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA akışını uygula. **KABUL EDİLDİ / UYGULANACAK**.
+4. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
+5. PR #161 / #162 zincir Ready kararları ayrıca ele alınacak. **AÇIK**.
+6. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope. **AÇIK**.
 
 ### Korunan kapsam
 
@@ -62,4 +63,4 @@
 - `assets/questions.json`, `lib/main.dart`, V5 locked assets, BoardMap/67 node, AdMob/Firebase/release signing, package/version değiştirilmedi.
 - Sürüm: **1.68.19+109**.
 
-**PR #167 entegrasyon kapısı kapanmıştır. Sıradaki gerçek karar kapısı PR #163 Ready; merge bunun ardından ayrıca onaylanacaktır.**
+**PR #163 Ready kapısı kapanmıştır. Sıradaki gerçek karar kapısı PR #163 merge; release/main’e geçiş bunun parçası değildir.**
