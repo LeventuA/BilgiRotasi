@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Başlangıç Limanı canonical 8×8 gameplay + production navigasyon release entegrasyonu tamamlandı. İkinci paket adı **Gökyüzü Adaları** ve görsel yön **Konsept C — Neşeli & Parlak** Levent tarafından onaylanarak LOCKED oldu. Exact 10 bölüm adı/node sırası ve görsel teknik mimari henüz açık; Flutter/asset/APK üretimine geçilmedi. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
+**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Başlangıç Limanı canonical 8×8 gameplay + production navigasyon release entegrasyonu tamamlandı. İkinci paket **Gökyüzü Adaları**, görsel yön **C — Neşeli & Parlak**, 10 bölüm rota sırası ve **modüler asset mimarisi** Levent tarafından onaylanarak LOCKED oldu. V1 görsel üretim planı **48 atomik asset / 5 sprite sheet** olarak tanımlandı; henüz Flutter/asset binary/APK entegrasyonuna geçilmedi. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -35,20 +35,43 @@
 - Production rota tabanı: MASTER ART raster + şeffaf hitbox + minimum lokal runtime-state override.
 - Level 7 tamamlanınca bonus 8 ve normal 9 birlikte açılır; bonus 8, 9 için gate değildir; 10, node 9 tamamlanmadan locked/no-callback.
 - BoardMap / 67 node sözleşmesi kontrolsüz değiştirilmez.
-- Bu MASTER ART istisnası sonraki Kelime Avı rotalarına otomatik genellenmez; yeni rota için ayrıca görsel/teknik karar gerekir.
+- Bu MASTER ART istisnası sonraki Kelime Avı rotalarına otomatik genellenmez.
 
-## Gökyüzü Adaları — Paket 2 Kararı
+## Gökyüzü Adaları — Paket 2 LOCKED Kararlar
 
-- İkinci Kelime Avı rota/paket adı: **Gökyüzü Adaları — LOCKED**.
-- Levent’in seçtiği görsel yön: **Konsept C — Neşeli & Parlak — LOCKED**.
+- Paket adı: **Gökyüzü Adaları — LOCKED**.
+- Görsel yön: **Konsept C — Neşeli & Parlak — LOCKED**.
+- Teknik görsel mimari: **modüler asset yaklaşımı — LOCKED**.
 - Atmosfer: neşeli, renkli, pozitif, eğlenceli, çocuk dostu, hafif ve canlı.
-- Palet yönü: açık gök mavisi / camgöbeği / turkuaz; yeşil yüzen adalar; sarı-turuncu sıcak vurgu; destekleyici pembe/mercan; parlak beyaz bulutlar.
-- Dünya öğeleri: yüzen çimenli adalar, bulut geçişleri, renkli balon/hava gemileri, rüzgâr yapıları, masalsı kuleler ve sıcak-altın final sarayı hissi.
-- Konsept C görseli **sanat yönü referansıdır**; final production MASTER ART, exact node geometrisi veya raw Android acceptance kanıtı değildir.
-- Exact 10 bölüm adı ve rota/node sıralaması henüz kilitlenmedi.
-- Başlangıç Limanı `MASTER ART raster + transparent hitbox` mimarisi otomatik kopyalanmayacak; Gökyüzü Adaları için MASTER ART / katmanlı Flutter / modüler asset yaklaşımı ayrıca seçilecektir.
-- Canonical 8×8 / 64 hücre, 10 bölüm / 30 yıldız ve paket bazlı QA sözleşmesi korunur.
-- Henüz Flutter, production asset veya APK üretimine geçilmedi.
+- Palet: açık gök mavisi/camgöbeği/turkuaz; yeşil yüzen adalar; sarı-turuncu sıcak vurgu; destekleyici pembe/mercan; parlak beyaz bulutlar.
+- Konsept C yalnız sanat yönü referansıdır; final production veya raw Android acceptance kanıtı değildir.
+
+### Kilitli rota
+
+1. Rüzgâr Kapısı
+2. Bulut Bahçesi
+3. Kuş Geçidi
+4. Gökkuşağı Köprüsü
+5. Fırtına Kulesi
+6. Hava Gemisi Limanı
+7. Ay İskelesi
+8. Gizli Ada — bonus
+9. Yıldız Gözlemevi
+10. Güneş Sarayı
+
+- 7 sonrası bonus 8 ve normal 9 birlikte açılır; bonus 8, 9 için gate değildir.
+- 10, node 9 tamamlanmadan locked kalır.
+
+### Modüler asset sözleşmesi
+
+- Flatten edilmiş tam rota MASTER ART kullanılmaz.
+- Büyük gradient/renk alanları Flutter tarafından çizilebilir; illüstratif dünya parçaları modüler raster asset olur.
+- Dinamik numara/yıldız/lock/progression/metin asset içine bake edilmez.
+- Referans tuval: **1080×1920 dikey**.
+- V1 set: **48 atomik asset** = 8 atmosfer + 7 ada + 6 yol + 10 landmark + 9 node/progression UI + 8 dekor.
+- Üretim birimi: **5 sprite sheet**; 48 ayrı görsel üretim döngüsü yapılmaz.
+- Ayrıntılı sözleşme: `docs/project-memory/GOKYUZU_ADALARI_ASSET_PLANI.md`.
+- Flutter/production entegrasyonundan önce 48 asset ile 1080×1920 statik rota mock'ı hazırlanır ve Levent görsel kabulü verir.
 
 ## Canonical Gameplay Sözleşmesi
 
@@ -116,59 +139,19 @@
 
 ## Production Ana Navigasyon Entegrasyonu — PR #169 MERGED
 
-### Amaç / davranış
 - Bilgi Rotası production **Oyna** menüsüne `Kelime Avı` kartı eklendi.
-- Kart `WordHuntProductionEntryScreen` üzerinden MASTER ART kullanan `WordHuntReferenceRouteScreen` production rotasına açılır.
-- Açık rota node’u canonical `WordHuntLevelProductionScreen` gameplay ekranını açar.
-- İlerleme `WordHuntProgressCodec` ile Firebase UID / guest scope’una göre `SharedPreferencesAsync` üzerinde cihazda saklanır.
-- Başka hesap scope’una ait veri fail-closed reddedilir; bozuk/eski veri oyunun açılmasını engellemez.
-- Bölüm sonucu mevcut `WordHuntProgressSnapshot` sözleşmesiyle best yıldız ve açılan bilgi kartlarını kaydeder.
-- Geri / bilgi / pusula / kitap callbackleri production davranışına bağlıdır.
-
-### Branch / PR / diff
-- Branch: `feat/kelime-avi-production-navigation-20260903`.
-- PR #169: **CLOSED / MERGED**.
-- Merge öncesi base: `release/final-closed-test-aab-1.68.8` @ `189864c92a605e7bb960460300714049c730ea39`.
-- Exact merged HEAD: **`ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`**.
-- Merge commit: **`0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`**.
-- Final ürün farkı yalnız **4 dosya / +259 / -0**:
-  - `lib/main.dart` — yalnız production entry importu (+1),
-  - `lib/main_navigation.dart` — Kelime Avı Oyna kartı (+21),
-  - `lib/word_hunt/word_hunt_production_entry_screen.dart` — production route/persistence glue,
-  - `test/word_hunt_menu_entry_test.dart` — menü entry testi.
-- Geçici one-shot üretim workflow’u final PR diff’inden kaldırıldı.
-- `assets/questions.json`, BoardMap/67 node, canonical 8×8 content, Firebase rules/model, AdMob/signing/Android config, package/version değişmedi.
-
-### Üretim / test kanıtları
-- Focused üretim run `33754274810`: **SUCCESS**; 62 focused test PASS.
-- Minimum-diff run `33754621892`: **SUCCESS**; formatter kaynaklı gereksiz `main_navigation.dart` churn kaldırıldı; minimum-diff commit `2d9fd0b63e3891d52c0e7376a8c0e5702dfb2dff`.
-- Normal PR full-suite/release APK/Android16 run `33754851284`: **SUCCESS**; job `100646698982` SUCCESS.
-  - analyze + tüm testler PASS,
-  - kalıcı signing setup PASS,
-  - test Ad ID’li release APK PASS,
-  - package/merged manifest PASS,
-  - Android 16 cold-start + AdMob process gate PASS.
-- Kelime Avı Android16 görsel run `33754851205`: **SUCCESS**; job `100646698474` SUCCESS.
-  - exact PR HEAD checkout `ffa1454...`,
-  - `dart analyze lib/word_hunt`: **No issues found**,
-  - focused suite **126/126 PASS**,
-  - MASTER ART source/package byte+SHA karşılaştırması `SOURCE_EQUALS_PACKAGED=YES count=2`,
-  - Android API 36 emulator install/open/real screencap/activity/process/crash/ANR gate PASS,
-  - artifact `9893332600`, digest `sha256:2d0fa14825f59a735a9606be809025b2f69d4daa09121bb065bb622d25e30001`.
-- Açık review/review thread blocker yoktu.
-- Ready kapısı Levent’in 3 Eylül 2026 `Devam et` onayıyla geçildi.
-- Merge kapısı Levent’in 3 Eylül 2026 ayrı `Merge et` onayıyla geçildi.
-- Merge commitinde otomatik PR workflow’u tetiklenmedi (`0` run); exact PR HEAD’deki iki SUCCESS hattı final teknik kanıt olarak korunur.
+- Exact merged HEAD: `ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`.
+- Merge commit: `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+- Final ürün farkı 4 dosya / +259 / -0.
+- Full-suite/release APK/Android16 run `33754851284`: **SUCCESS**.
+- Kelime Avı Android16 görsel run `33754851205`: **SUCCESS**; 126/126 PASS; artifact `9893332600`.
+- `assets/questions.json`, BoardMap/67 node, Firebase/AdMob/signing/Android config ve package/version değişmedi.
 
 ## Docs-only Checkpoint PR #168 — MERGED
 
-- Branch: `docs/kelime-avi-v8-post-release-merge-20260903`.
 - PR #168: **CLOSED / MERGED**.
-- Exact merged HEAD: `150b8ae24395d07dc09270734ef1a8c246542a15`.
-- Merge commit: **`3557a7e4f2f2917d61ba61866c6d4c8561994667`**.
-- Kapsam yalnız dört checkpoint belgesiydi: `ACIK_SORULAR_VE_DOGRULAMALAR.md`, `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md`, `docs/project-memory/GENEL_PROJE_OZETI.md`.
-- Ürün kodu, sürüm, asset, Firebase/AdMob/signing, `lib/main.dart`, `assets/questions.json` ve BoardMap/67 node değişmedi.
-- Merge commitinde otomatik PR workflow’u tetiklenmedi (`0` run); docs-only merge yeni ürün testi gerektiren kod farkı yaratmadı.
+- Merge commit: `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
+- Kapsam yalnız canonical checkpoint belgeleriydi; ürün kodu değişmedi.
 
 ## Ölçeklenebilir Üretim/Test — KALICI KARAR
 
@@ -205,13 +188,12 @@
 2. Found/error/completion/B5/swipe kabul kapıları yeni belirti yoksa yeniden açılmaz.
 3. PR #167/#163/#162/#161/#158/#169/#168 merge zinciri — **PASS / TAMAMLANDI**.
 4. Canonical release HEAD — `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
-5. Production ana navigasyon entegrasyonu — **PASS / CANONICAL RELEASE İÇİNDE**.
-6. Gökyüzü Adaları tema adı — **LOCKED**.
-7. Gökyüzü Adaları görsel yönü — **Konsept C / Neşeli & Parlak / LOCKED**.
-8. Sıradaki ürün kapısı: Gökyüzü Adaları **10 bölüm adı + rota/node sıralaması**.
-9. Sonraki kapı: Gökyüzü Adaları **görsel teknik mimarisi**; Başlangıç Limanı MASTER ART istisnası otomatik genellenmez.
-10. Ardından 80 target+bonus içerik ve 8×8 grid paketi toplu üretilecek.
-11. `REFERENCE_FONT` — **DOĞRULANACAK / DEFERRED**.
-12. Play yükleme/yayınlama — **ayrı açık Levent onayı gerektirir**.
+5. Gökyüzü Adaları tema + C görsel yön + 10 bölüm rota + modüler asset mimarisi — **LOCKED**.
+6. V1 asset planı — **48 atomik asset / 5 sprite sheet / HAZIR**.
+7. Sıradaki üretim: Sheet A–E görsellerini üret; atomik asset'lere ayır; toplu QA yap.
+8. Sonra 1080×1920 statik rota mock'ı oluştur ve **Flutter'dan önce Levent görsel kabulü al**.
+9. Gökyüzü Adaları 80 target+bonus içerik ve 8×8 grid paketi toplu üretilecek.
+10. `REFERENCE_FONT` — **DOĞRULANACAK / DEFERRED**.
+11. Play yükleme/yayınlama — **ayrı açık Levent onayı gerektirir**.
 
-**SON DURUM: 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA LOCKED / KONSEPT C NEŞELİ & PARLAK LOCKED / 10 BÖLÜM ROTA YAPISI SIRADAKİ KARAR / FLUTTER-ASSET-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
+**SON DURUM: 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA+KONSEPT+ROTA+MODÜLER MİMARİ LOCKED / 48 ASSET-5 SHEET PLAN HAZIR / SPRITE SHEET ÜRETİMİ SIRADAKİ İŞ / FLUTTER-APK ENTEGRASYONU YOK / CANONICAL RELEASE HEAD `3557a7e4...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
