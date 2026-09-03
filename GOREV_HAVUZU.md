@@ -1,12 +1,12 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 3 Eylül 2026 — Levent’in ayrı ve açık onayıyla PR #169 canonical release branch’e merge edildi. Production ana navigasyon entegrasyonu tamamlandı; Play yayını yapılmadı.
+**Son güncelleme:** 3 Eylül 2026 — Levent’in ayrı ve açık onayıyla PR #169 canonical release branch’e merge edildi. Production ana navigasyon entegrasyonu tamamlandı; Play yayını yapılmadı. Docs-only PR #168 yeniden hesaplamada mergeable=true.
 
 > Root dosya güncel Kelime Avı çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
 ## Aktif görev — Kelime Avı sonrası açık işler
 
-**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND-ERROR-COMPLETION USER PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169 MERGED / CANONICAL RELEASE HEAD `0c84aefd...` / PLAY YAYINI YOK
+**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND-ERROR-COMPLETION USER PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169 MERGED / CANONICAL RELEASE HEAD `0c84aefd...` / PR #168 DOCS-ONLY READY+MERGEABLE / PLAY YAYINI YOK
 
 **Canonical release:** `release/final-closed-test-aab-1.68.8` @ `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`
 
@@ -40,6 +40,7 @@
 24. PR #169 → canonical release merge — **PASS**; Levent’in ayrı `Merge et` onayıyla; merge commit `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 25. Merge sonrası canonical release HEAD doğrulaması — **PASS**; `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 26. PR #169 merge commitinde otomatik PR workflow’u tetiklenmemesi — **DOĞRULANDI**; `0` run. Exact PR HEAD’deki `33754851284` ve `33754851205` SUCCESS kanıtları korunur.
+27. PR #168 mergeability yeniden hesaplama — ilk kısa `false` görünümü sonrası **PASS / mergeable=true**; PR diff’i yalnız dört checkpoint belgesi.
 
 ### PR #169 scope — canonical release’e girdi
 
@@ -51,10 +52,10 @@
 
 ### Açık işler
 
-1. Docs-only PR #168 canonical release base’i PR #169 merge’iyle ilerledi; canlı durumda `mergeable=false`. **BASE REFRESH / RECONCILIATION DOĞRULANACAK**; ayrı merge onayı olmadan merge edilmeyecek.
+1. Docs-only PR #168 merge kararı — **AÇIK / READY / mergeable=true / ayrıca Levent’in açık onayı gerekli**.
 2. `REFERENCE_FONT` exact kaynak yok — **DOĞRULANACAK / DEFERRED**.
 3. PR #166 tarihsel geliştirme/QA hattıdır — **MERGE YOK**.
 4. Sonraki paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA — **KABUL EDİLDİ / UYGULANACAK**.
 5. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 
-**Kelime Avı Başlangıç Limanı gameplay + production ana navigasyon release entegrasyonu tamamlandı. Sıradaki teknik bakım işi docs-only PR #168 base durumunu temizlemek; Play yayını ayrıca açık karar gerektirir.**
+**Kelime Avı Başlangıç Limanı gameplay + production ana navigasyon release entegrasyonu tamamlandı. Sıradaki merge kapısı yalnız docs-only PR #168’dir; Play yayını ayrıca açık karar gerektirir.**
