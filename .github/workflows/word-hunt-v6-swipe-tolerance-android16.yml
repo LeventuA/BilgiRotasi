@@ -95,18 +95,32 @@ jobs:
           sudo chmod 666 /dev/kvm
 
       - name: Android 16 real overshoot gesture proof
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 36
-          target: aosp_atd
-          arch: x86_64
-          profile: pixel_2
-          cores: 2
-          ram-size: 3072M
-          heap-size: 512M
-          emulator-boot-timeout: 1200
-          disable-animations: false
-          script: bash tools/qa/word_hunt_v6_swipe_tolerance_android16.sh
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager --install emulator platform-tools 'system-images;android-36;aosp_atd;x86_64' >/dev/null
+          echo no | avdmanager create avd --force -n word_hunt_api36 --package 'system-images;android-36;aosp_atd;x86_64' --device pixel_2 >/dev/null
+          printf '%s\n' 'hw.cpu.ncore=2' 'hw.ramSize=3072M' 'hw.heapSize=512M' >> "$HOME/.android/avd/word_hunt_api36.avd/config.ini"
+          emulator -port 5554 -avd word_hunt_api36 -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim > "$REPORT_DIR/EMULATOR_LOG.txt" 2>&1 &
+          emulator_pid=$!
+          cleanup() {
+            adb -s emulator-5554 emu kill >/dev/null 2>&1 || true
+            kill "$emulator_pid" >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT
+          adb start-server
+          ready=0
+          for _ in $(seq 1 180); do
+            adb reconnect offline >/dev/null 2>&1 || true
+            if [[ "$(adb -s emulator-5554 shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" == "1" ]]; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          adb devices -l | tee "$REPORT_DIR/ADB_DEVICES.txt"
+          test "$ready" = 1
+          bash tools/qa/word_hunt_v6_swipe_tolerance_android16.sh
 
       - name: Upload APK and raw Android proof
         if: always()
