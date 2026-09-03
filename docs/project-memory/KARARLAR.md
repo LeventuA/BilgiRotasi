@@ -232,3 +232,16 @@ Bu bölüm, 31 Ağustos kayıtlarındaki `ERROR_STATE_VISUAL = DOĞRULANACAK` du
 - Başlangıç Limanı için kullanılan `MASTER ART raster + transparent hitbox + minimum local override` mimarisi Gökyüzü Adaları’na otomatik genellenmez. MASTER ART / katmanlı Flutter / modüler asset teknik yaklaşımı ayrıca seçilecektir.
 - Canonical **8×8 / 64 hücre**, 10 bölüm / 30 yıldız, exactly-one occurrence, reverse gesture ve paket bazlı QA kararları korunur.
 - Bu aşamada Flutter, production asset veya APK üretimine geçilmez; önce rota/bölüm yapısı ve ardından görsel teknik mimari kilitlenir.
+
+## 16. 3 Eylül 2026 — Gökyüzü Adaları rota ve modüler asset mimarisi
+
+- Levent aşağıdaki 10 bölüm sırasını onayladı ve **LOCKED** kabul edilir: `Rüzgâr Kapısı`, `Bulut Bahçesi`, `Kuş Geçidi`, `Gökkuşağı Köprüsü`, `Fırtına Kulesi`, `Hava Gemisi Limanı`, `Ay İskelesi`, `Gizli Ada`, `Yıldız Gözlemevi`, `Güneş Sarayı`.
+- Bölüm/node 8 **Gizli Ada bonus node** olarak kalır. Bölüm 7 sonrası bonus 8 ve normal 9 birlikte erişilebilir; bonus 8, node 9 için zorunlu kapı değildir. Node 10, node 9 tamamlanmadan kilitli kalır.
+- Gökyüzü Adaları görsel teknik mimarisi Levent tarafından **modüler asset yaklaşımı** olarak onaylandı ve **LOCKED** kabul edilir.
+- Başlangıç Limanı gibi tek flatten edilmiş MASTER ART rota ekranı kullanılmaz. Büyük renk/gradient alanları Flutter ile çizilebilir; yüzen adalar, bulutlar, yollar, landmarklar, node/state ve dekorlar bağımsız modüler raster asset'lerdir.
+- Dinamik bölüm numarası, yıldız, kilit/progression state'i veya kullanıcıya göre değişen metin asset içine bake edilmez; runtime tarafından üretilir.
+- V1 üretim sözleşmesi **48 atomik asset** ve stil tutarlılığı için **5 sprite sheet** üretim birimidir. Ayrıntılı dosya listesi `docs/project-memory/GOKYUZU_ADALARI_ASSET_PLANI.md` içinde tutulur.
+- Referans tasarım tuvali **1080×1920 dikey**dir. Assetler bağımsız taşınabilir ve ölçeklenebilir olmalıdır.
+- WORK V2 gereği 48 ayrı görsel üretim döngüsü yapılmaz; beş toplu sheet üretilir, parçalanır, toplu QA yapılır ve yalnız başarısız parçalar yeniden üretilir.
+- Flutter/production entegrasyonuna geçmeden önce 48 atomik asset ile hazırlanmış 1080×1920 statik rota mock'ı Levent'in görsel kabulüne sunulur.
+- Bu karar canonical 8×8 gameplay engine/path/scoring/timer/progression sözleşmesini değiştirmez; yalnız Gökyüzü Adaları rota görsel üretim mimarisini tanımlar.
