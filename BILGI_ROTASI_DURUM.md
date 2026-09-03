@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 3 Eylül 2026 — Levent ikinci Kelime Avı paketi için `Gökyüzü Adaları` tema adını ve görsel konsept C **Neşeli & Parlak** yönünü onayladı. Bu onay tema/görsel sanat yönünü kilitler; exact rota kompozisyonu, 10 bölüm adı/node sırası ve teknik görsel mimari henüz kilitli değildir. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yükleme/yayınlama yapılmadı.
+**Son güncelleme:** 3 Eylül 2026 — Gökyüzü Adaları paketinde tema, `C — Neşeli & Parlak` sanat yönü, 10 bölüm rota sırası ve **modüler asset mimarisi** Levent tarafından onaylandı. V1 görsel üretim planı **48 atomik asset / 5 sprite sheet** olarak tanımlandı. Henüz Flutter/APK entegrasyonuna geçilmedi. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yükleme/yayınlama yapılmadı.
 
 ## Canlı Sürüm / Release Hattı
 
@@ -11,8 +11,6 @@
 - Canonical release HEAD: **`3557a7e4f2f2917d61ba61866c6d4c8561994667`**.
 - PR #169: **CLOSED / MERGED**; merge commit `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 - PR #168: **CLOSED / MERGED**; docs-only merge commit `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
-- PR #168 merge edilen HEAD: `150b8ae24395d07dc09270734ef1a8c246542a15`.
-- Önceki release HEAD: `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 - `main` güncel/yayın kaynağı olarak varsayılmaz.
 - Play Console’a yükleme/yayınlama yapılmadı.
 
@@ -28,18 +26,47 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 - B5 60 sn, B10 120 sn soft challenge; hard-fail değildir.
 - Nearest-word/autocomplete yoktur.
 
-## Gökyüzü Adaları — Paket 2 Ürün Yönü
+## Gökyüzü Adaları — Paket 2 LOCKED Ürün Yönü
 
-- İkinci 10 bölümlük rota/paket adı: **Gökyüzü Adaları — LOCKED**.
-- Levent’in seçtiği bağlayıcı görsel yön: **Konsept C — Neşeli & Parlak — LOCKED**.
-- Atmosfer: neşeli, renkli, pozitif, eğlenceli, çocuk dostu, hafif ve canlı.
-- Görsel dil: açık gök mavisi / camgöbeği / turkuaz gökyüzü; yeşil yüzen adalar; sarı-turuncu sıcak vurgu; destekleyici pembe/mercan ayrıntılar; parlak beyaz bulutlar.
-- Temel dünya öğeleri: yüzen çimenli adalar, bulut köprüleri/geçişleri, renkli balon/hava gemileri, rüzgâr yapıları, kuleler ve finalde sıcak-altın Güneş Sarayı hissi.
-- Bu kabul **sanat yönü kabulüdür**; kullanıcı tarafından onaylanan konsept görsel final production MASTER ART veya raw Android kabul kanıtı değildir.
-- Exact rota kompozisyonu, 10 bölüm adı ve node sıralaması ayrıca kararlaştırılacaktır.
-- Başlangıç Limanı `MASTER ART raster + transparent hitbox` istisnası Gökyüzü Adaları’na otomatik taşınmaz. Raster MASTER ART / katmanlı Flutter / modüler asset yaklaşımı ayrıca teknik-görsel karar gerektirir.
-- Canonical gameplay geometrisi **8×8 / 64 hücre**, 10 bölüm / 30 yıldız ve paket bazlı QA kararı korunur.
-- Henüz Flutter, production asset veya APK üretimine geçilmedi.
+- Paket adı: **Gökyüzü Adaları — LOCKED**.
+- Görsel yön: **C — Neşeli & Parlak — LOCKED**.
+- Teknik görsel mimari: **modüler asset yaklaşımı — LOCKED**.
+- Atmosfer: neşeli, renkli, pozitif, çocuk dostu, hafif ve canlı.
+- Palet: açık gök mavisi/camgöbeği/turkuaz + yeşil yüzen adalar + sarı/turuncu sıcak vurgu + destekleyici pembe/mercan + parlak beyaz bulutlar.
+
+### Kilitli 10 bölüm rotası
+
+1. Rüzgâr Kapısı
+2. Bulut Bahçesi
+3. Kuş Geçidi
+4. Gökkuşağı Köprüsü
+5. Fırtına Kulesi
+6. Hava Gemisi Limanı
+7. Ay İskelesi
+8. Gizli Ada — bonus
+9. Yıldız Gözlemevi
+10. Güneş Sarayı
+
+- Node 8 bonus node'dur.
+- Node 7 sonrası bonus 8 ve normal 9 birlikte açılır; 8, 9 için gate değildir.
+- Node 10, node 9 tamamlanmadan locked kalır.
+
+### Modüler asset üretim sözleşmesi
+
+- Başlangıç Limanı'nın flatten edilmiş MASTER ART rota yaklaşımı bu pakete kopyalanmaz.
+- Büyük renk/gradient alanları Flutter ile üretilebilir; illüstratif dünya parçaları bağımsız modüler raster asset olur.
+- Dinamik bölüm numarası, yıldız, kilit/progression state'i ve değişken metin asset içine bake edilmez.
+- Referans tasarım tuvali: **1080×1920 dikey**.
+- V1 zorunlu set: **48 atomik asset**:
+  - 8 atmosfer,
+  - 7 yüzen ada,
+  - 6 rota bağlantısı,
+  - 10 bölüm landmarkı,
+  - 9 node/progression UI,
+  - 8 dekor.
+- WORK V2 üretim birimi: **5 sprite sheet**; 48 ayrı görsel çağrısı yapılmaz.
+- Ayrıntılı plan: `docs/project-memory/GOKYUZU_ADALARI_ASSET_PLANI.md`.
+- Flutter/production entegrasyonundan önce 48 asset ile 1080×1920 statik rota mock'ı hazırlanır ve Levent görsel kabulü verir.
 
 ## V5 / V6 Kabul ve Teknik Kanıtları
 
@@ -97,38 +124,13 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
 ## Production Ana Navigasyon Entegrasyonu — PR #169 MERGED
 
-- Branch: `feat/kelime-avi-production-navigation-20260903`.
-- PR #169: **CLOSED / MERGED**.
-- Exact merged HEAD: **`ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`**.
-- Merge commit: **`0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`**.
-- Final ürün diff’i yalnız 4 dosya / 259 ekleme / 0 silme:
-  - `lib/main.dart`: production entry importu (+1),
-  - `lib/main_navigation.dart`: Oyna menüsü Kelime Avı kartı (+21),
-  - `lib/word_hunt/word_hunt_production_entry_screen.dart`: production route/persistence glue,
-  - `test/word_hunt_menu_entry_test.dart`: menü entry sözleşmesi.
+- Exact merged HEAD: `ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`.
+- Merge commit: `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+- Final ürün farkı 4 dosya / 259 ekleme / 0 silme.
 - `assets/questions.json`, BoardMap/67 node, canonical 8×8 içerik, Firebase rules/model, AdMob/signing/Android config ve package/version değişmedi.
-- Oyna menüsü → `WordHuntProductionEntryScreen` → MASTER ART `WordHuntReferenceRouteScreen` → canonical `WordHuntLevelProductionScreen` akışı canonical release içindedir.
-- Progress `WordHuntProgressCodec` ile Firebase UID / guest scope’una göre cihazda saklanır; başka hesap verisi fail-closed reddedilir.
-
-### PR #169 doğrulama kanıtları
-
-- Focused production run `33754274810`: **SUCCESS**; 62 focused test PASS.
-- Minimum-diff run `33754621892`: **SUCCESS**.
-- Full-suite / release APK / Android16 run `33754851284`: **SUCCESS**; job `100646698982` SUCCESS.
-- Kelime Avı Android16 görsel run `33754851205`: **SUCCESS**; job `100646698474` SUCCESS; focused suite **126/126 PASS**.
-- MASTER ART kaynak/paket SHA+byte eşitliği: `SOURCE_EQUALS_PACKAGED=YES count=2`.
-- Visual artifact `9893332600`; digest `sha256:2d0fa14825f59a735a9606be809025b2f69d4daa09121bb065bb622d25e30001`.
-- Merge commitinde otomatik PR workflow’u tetiklenmedi (`0` run); exact PR HEAD’deki iki SUCCESS hattı teknik kanıt olarak korunur.
-
-## Docs-only Checkpoint PR #168 — MERGED
-
-- Branch: `docs/kelime-avi-v8-post-release-merge-20260903`.
-- PR #168: **CLOSED / MERGED**.
-- Exact merged HEAD: `150b8ae24395d07dc09270734ef1a8c246542a15`.
-- Merge commit: `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
-- Kapsam yalnız dört belgeydi: `ACIK_SORULAR_VE_DOGRULAMALAR.md`, `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md`, `docs/project-memory/GENEL_PROJE_OZETI.md`.
-- Ürün kodu, sürüm, asset, Firebase/AdMob/signing, `lib/main.dart`, `assets/questions.json` ve BoardMap/67 node değişmedi.
-- Merge commitinde otomatik PR workflow’u tetiklenmedi (`0` run); docs-only olduğu için yeni ürün testi gerektiren bir kod farkı oluşmadı.
+- Oyna menüsü → `WordHuntProductionEntryScreen` → Başlangıç Limanı production rota → canonical gameplay akışı release içindedir.
+- Full-suite/release APK/Android16 run `33754851284`: **SUCCESS**.
+- Kelime Avı Android16 visual/MASTER ART run `33754851205`: **SUCCESS**; 126/126 PASS; artifact `9893332600`.
 
 ## Korunan Alanlar
 
@@ -140,9 +142,12 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
 ## Kalan Gerçek Kapılar
 
-1. Gökyüzü Adaları **10 bölüm adı + rota/node sıralaması** — **AÇIK / kullanıcı ürün kararı gerekli**.
-2. Gökyüzü Adaları **görsel teknik mimarisi** — MASTER ART raster / katmanlı Flutter / modüler asset yaklaşımı — **AÇIK / görsel konseptten ayrı karar**.
-3. `REFERENCE_FONT` exact kaynak — **DOĞRULANACAK / DEFERRED**.
-4. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
+1. Gökyüzü Adaları **5 sprite sheet görsel üretimi** — **AÇIK / sıradaki iş**.
+2. Sheet'leri 48 atomik asset'e ayırma + toplu QA — **BEKLİYOR**.
+3. 1080×1920 statik rota mock'ı — **BEKLİYOR**.
+4. Flutter entegrasyonundan önce rota mock **Levent görsel kabulü** — **BEKLİYOR / ZORUNLU**.
+5. Gökyüzü Adaları 80 target+bonus ve 8×8 grid paketi — **BEKLİYOR**.
+6. `REFERENCE_FONT` exact kaynak — **DOĞRULANACAK / DEFERRED**.
+7. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 
-**Durum:** 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA LOCKED / KONSEPT C NEŞELİ & PARLAK LOCKED / FLUTTER-ASSET-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK.
+**Durum:** 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA+KONSEPT+ROTA+MODÜLER MİMARİ LOCKED / 48 ASSET-5 SHEET PLAN HAZIR / FLUTTER-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK.
