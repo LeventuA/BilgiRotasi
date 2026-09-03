@@ -6,6 +6,7 @@ on:
       - integrate/kelime-avi-v6-b5-swipe-20260903
     paths:
       - .github/workflows/word-hunt-v6-swipe-tolerance-android16.yml
+      - tools/qa/word_hunt_v6_swipe_tolerance_android16.sh
   workflow_dispatch:
 
 permissions:

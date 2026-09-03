@@ -37,11 +37,12 @@ wait_for_log '[WORD_HUNT_SWIPE_QA_READY] cells=64'
 sleep 1
 capture '01_B5_INITIAL.png'
 
-ready_line="$(adb logcat -d | grep -F '[WORD_HUNT_SWIPE_QA_READY] cells=64' | tail -1)"
-start_x="$(sed -n 's/.*startX=\([0-9][0-9]*\).*/\1/p' <<<"$ready_line")"
-start_y="$(sed -n 's/.*startY=\([0-9][0-9]*\).*/\1/p' <<<"$ready_line")"
-end_x="$(sed -n 's/.*endX=\([0-9][0-9]*\).*/\1/p' <<<"$ready_line")"
-end_y="$(sed -n 's/.*endY=\([0-9][0-9]*\).*/\1/p' <<<"$ready_line")"
+adb logcat -d -v raw > "$REPORT_DIR/READY_LOGCAT.txt"
+coords_text="$(tail -n 400 "$REPORT_DIR/READY_LOGCAT.txt" | tr '\n' ' ')"
+start_x="$(grep -oE 'startX=[0-9]+' <<<"$coords_text" | tail -1 | cut -d= -f2 || true)"
+start_y="$(grep -oE 'startY=[0-9]+' <<<"$coords_text" | tail -1 | cut -d= -f2 || true)"
+end_x="$(grep -oE 'endX=[0-9]+' <<<"$coords_text" | tail -1 | cut -d= -f2 || true)"
+end_y="$(grep -oE 'endY=[0-9]+' <<<"$coords_text" | tail -1 | cut -d= -f2 || true)"
 test -n "$start_x" && test -n "$start_y" && test -n "$end_x" && test -n "$end_y"
 
 adb shell input swipe "$start_x" "$start_y" "$end_x" "$end_y" 1400
