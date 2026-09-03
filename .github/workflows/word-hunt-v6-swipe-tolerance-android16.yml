@@ -64,7 +64,7 @@ jobs:
           test -n "$source_apk"
           cp "$source_apk" "$REPORT_DIR/KelimeAvi-V6-Swipe-Tolerance-QA.apk"
           sha256sum "$REPORT_DIR/KelimeAvi-V6-Swipe-Tolerance-QA.apk" | tee "$REPORT_DIR/APK_SHA256.txt"
-          grep -q '^73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd ' "$REPORT_DIR/APK_SHA256.txt"
+          grep -q '^73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd58 ' "$REPORT_DIR/APK_SHA256.txt"
 
       - name: Prepare KVM
         shell: bash
