@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162, #161, #158 ve production ana navigasyon PR #169 merge edildi. Canonical release HEAD artık `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`. PR #169 exact full-suite/release APK/Android16/MASTER ART kanıtları PASS. Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
+**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162, #161, #158 ve production ana navigasyon PR #169 merge edildi. Canonical release HEAD artık `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`. PR #169 exact full-suite/release APK/Android16/MASTER ART kanıtları PASS. Docs-only PR #168 READY+mergeable; Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -147,6 +147,14 @@
 - Merge kapısı Levent’in 3 Eylül 2026 ayrı `Merge et` onayıyla geçildi.
 - Merge commitinde otomatik PR workflow’u tetiklenmedi (`0` run); exact PR HEAD’deki iki SUCCESS hattı final teknik kanıt olarak korunur.
 
+## Docs-only Checkpoint PR #168
+
+- Branch: `docs/kelime-avi-v8-post-release-merge-20260903`.
+- PR #168: **OPEN / READY / mergeable=true / merged=false**.
+- PR #169 merge’i sonrası ilk kısa `mergeable=false` görünümü GitHub yeniden hesaplamasında `mergeable=true` oldu; teknik blocker yok.
+- Current release `0c84aefd...` ile docs branch diverged; merge base `189864c9...`dir. Current PR changed-file listesi yine yalnız dört checkpoint belgesidir: `ACIK_SORULAR_VE_DOGRULAMALAR.md`, `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md`, `docs/project-memory/GENEL_PROJE_OZETI.md`.
+- PR #168 ayrı açık Levent onayı olmadan merge edilmeyecek.
+
 ## Ölçeklenebilir Üretim/Test — KALICI KARAR
 
 - Temel üretim birimi 10 bölümlük rota/pakettir.
@@ -183,8 +191,8 @@
 3. PR #167/#163/#162/#161/#158/#169 merge zinciri — **PASS / TAMAMLANDI**.
 4. Canonical release HEAD — `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 5. Production ana navigasyon entegrasyonu — **PASS / CANONICAL RELEASE İÇİNDE**.
-6. Docs-only PR #168, release base ilerledikten sonra canlı `mergeable=false`; base refresh/reconciliation **DOĞRULANACAK** ve ayrıca açık merge onayı gerektirir.
+6. Docs-only PR #168 — **READY / mergeable=true / merge kararı ayrıca açık Levent onayı gerektirir**.
 7. `REFERENCE_FONT` — **DOĞRULANACAK / DEFERRED**.
 8. Play yükleme/yayınlama — **ayrı açık Levent onayı gerektirir**.
 
-**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169 MERGED / PRODUCTION ANA NAVİGASYON CANONICAL RELEASE İÇİNDE / CANONICAL RELEASE HEAD `0c84aefd...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
+**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169 MERGED / PRODUCTION ANA NAVİGASYON CANONICAL RELEASE İÇİNDE / CANONICAL RELEASE HEAD `0c84aefd...` / PR #168 DOCS-ONLY READY+MERGEABLE / WORK V2 AKTİF / PLAY YAYINI YOK.**
