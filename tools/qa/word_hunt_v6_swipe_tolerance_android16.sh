@@ -45,6 +45,16 @@ end_x="$(grep -oE 'endX=[0-9]+' <<<"$coords_text" | tail -1 | cut -d= -f2 || tru
 end_y="$(grep -oE 'endY=[0-9]+' <<<"$coords_text" | tail -1 | cut -d= -f2 || true)"
 test -n "$start_x" && test -n "$start_y" && test -n "$end_x" && test -n "$end_y"
 
+density="$(adb shell wm density | sed -n 's/.*Physical density: \([0-9][0-9]*\).*/\1/p' | tail -1)"
+test -n "$density"
+start_x=$(((start_x * density + 80) / 160))
+start_y=$(((start_y * density + 80) / 160))
+end_x=$(((end_x * density + 80) / 160))
+end_y=$(((end_y * density + 80) / 160))
+printf 'ANDROID_DENSITY=%s GESTURE=%s,%s->%s,%s\n' \
+  "$density" "$start_x" "$start_y" "$end_x" "$end_y" \
+  | tee "$REPORT_DIR/GESTURE_COORDINATES.txt"
+
 adb shell input swipe "$start_x" "$start_y" "$end_x" "$end_y" 1400
 wait_for_log '[WORD_HUNT_SWIPE_QA_PASS] target=ANKARA progress=1/7 mistakes=0'
 sleep 1
