@@ -1,12 +1,12 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 2 Eylül 2026
+**Son güncelleme:** 3 Eylül 2026 — B5 + swipe temiz entegrasyonu ve Android 16 kanıtı PASS
 
 > Root dosya mevcut V6 çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
 ## Aktif görev — Kelime Avı V6 final karar kapıları
 
-**Durum:** FOUND/ERROR/COMPACT COMPLETION TEKNİK + RAW ANDROID + KULLANICI GÖRSEL PASS / HUMAN TIMING MIXED / READY-MERGE YOK
+**Durum:** FOUND/ERROR/COMPACT COMPLETION KULLANICI PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 DRAFT-OPEN / READY-MERGE YOK
 
 **Parent V5:** PR #161 — OPEN / DRAFT
 
@@ -32,20 +32,27 @@
 8. Compact Android 16 B5/B10 runtime — **PASS**; final clean run `33655562508`.
 9. Exact tested compact blob’un PR #163 ürün branch’ine taşınması — **PASS**; product commit `9a6fede2...`, blob `6ce2830...`.
 10. QA-only workflow/scriptlerin ürün branch’ine taşınmaması — **PASS**.
+11. B5 60 sn yeni 8×8 yerleşim adayı statik + Android 16 kapısı — **PASS**; ürün commit `44ebec6b...`, tuning branch HEAD `b0a0fa5...`, run `33670657723`, artifact `9862719927`.
+12. B5 adayı kelimeleri, 60 sn timer/yıldız eşiklerini, tekil fiziksel yolları ve yatay+dikey+çapraz yön ailelerini koruma — **PASS**.
+13. B5 tuning + swipe toleransını PR #163 tabanlı temiz ürün branch'ine taşıma — **PASS**; ürün commit `749c678b...`, Draft PR #167.
+14. Otomatik fast gate + gerçek Android 16 `ANKARA + bir hücre taşma` kanıtı — **PASS**; run `33724552713` ve `33724549202`, ilerleme `1/7`, hata `0`.
 
 ### Gerçek insan süre-zorluk sonucu
 
 - B5: **115 sn / 2 hata**; 60 sn soft challenge hedefi → **HEDEF KARŞILANMADI**.
 - B10: **109 sn / 4 hata**; 120 sn soft challenge hedefi → **HEDEF KARŞILANDI**.
 - Overall: **MIXED**. Scripted Android QA süreleri insan playtesti değildir.
+- Yeni B5 tuning adayı: **32 sn / UI'da 2 hata**, fakat Levent iki kaydın parmak taşması/fazla temas olduğunu ve bilinçli yanlış seçim yapmadığını bildirdi. Süre **PASS**; gerçek niyet hatası **0**; input false-positive açık.
 
 ### Açık işler
 
-1. B5 60 sn soft challenge için denge/tuning kararı verilecek. **AÇIK**.
-2. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
-3. PR #161 / #162 / #163 Ready kararı ayrı verilecek. **AÇIK**.
-4. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope. **AÇIK**.
-5. Merge yalnız Levent’in ayrıca açık merge onayıyla yapılacak. **AÇIK**.
+1. Draft PR #167 için Ready/merge kararı. **AÇIK / kullanıcı onayı gerekli**.
+2. PR #166 tarihsel geliştirme/QA hattıdır; final ürün adayı PR #167'dir. **MERGE YOK**.
+3. Sonraki 10 bölümlük paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA akışını uygula. **KABUL EDİLDİ / UYGULANACAK**.
+4. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
+5. PR #161 / #162 / #163 / #167 Ready kararı ayrı verilecek. **AÇIK**.
+6. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope. **AÇIK**.
+7. Merge yalnız Levent’in ayrıca açık merge onayıyla yapılacak. **AÇIK**.
 
 ### Korunan kapsam
 

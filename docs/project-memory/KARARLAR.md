@@ -187,3 +187,35 @@ Bu bölüm, 31 Ağustos kayıtlarındaki `ERROR_STATE_VISUAL = DOĞRULANACAK` du
 - İnsan süre-zorluk playtesti scripted QA’dan ayrı tutulur: Levent B5’i **115 sn / 2 hata** ile tamamladı; 60 sn soft challenge hedefi karşılanmadı. B10’u **109 sn / 4 hata** ile tamamladı; 120 sn soft challenge hedefi karşılandı. Overall timing sonucu **MIXED**; B5 tuning kararı ayrıca verilecektir.
 - Soft challenge hard-fail değildir; yalnız bu ölçüm nedeniyle timer/gameplay otomatik değiştirilmez.
 - PR #163 **Draft/Open** kalır; görsel PASS Ready veya merge onayı değildir. Merge için Levent’in ayrıca açık onayı zorunludur.
+
+---
+
+## 12. 3 Eylül 2026 — Kelime Avı paket bazlı üretim ve risk bazlı test kararı
+
+- Her bölüm için ayrı branch, ayrı Android 16 Action, ayrı APK ve ayrı insan testi yapılması ölçeklenebilir değildir ve terk edilmiştir.
+- Temel üretim birimi **bir rota/paket = 10 bölüm**dür. Aynı paketin 10 bölümü tek içerik branch’inde topluca geliştirilir.
+- Her bölüm için otomatik kapılar zorunludur: 8×8/64 hücre, hedef+bonus sayısı, her kelimenin exactly-one fiziksel occurrence taşıması, izinli yönler, intended/opposite gesture eşitliği, timer/yıldız sözleşmesi ve grid render sınırları.
+- İnsan denge testi varsayılan olarak paketin temsili **B1 + B5 + B10** bölümlerinde yapılır. Otomatik zorluk/kontrat kapısı şüpheli outlier bulursa yalnız o bölüm ayrıca test edilir.
+- Onaylanmış ortak gameplay görseli her içerik/grid değişikliğinde yeniden kullanıcı kabulüne açılmaz.
+- Android 16 tam runtime kapısı şu durumlarda çalışır: 10 bölümlük paket tamamlandığında; engine/swipe/scoring/timer/progression/result UI veya ortak görsel sistem değiştiğinde; release entegrasyonu öncesinde.
+- Yalnız kelime/grid içeriği değişen tek bölüm için otomatik içerik testleri yeterlidir; paket tamamlanmadan ayrı Android Action/APK üretilmez.
+- Paket QA APK’sı tek uygulama içinde B1–B10 bölüm seçici, yeniden başlatma ve sonuç özeti sağlamalıdır; on ayrı APK üretilmez.
+- Hata bulunursa bütün paket yeniden üretilmez; yalnız başarısız bölüm/dosya düzeltilir ve ilgili otomatik kapılar tekrarlanır.
+- Bu hızlandırma test standardını düşürmez: riskli ürün/runtime değişiklikleri ve final release için ham Android ekranı, logcat/crash-ANR taraması, exact SHA ve artifact kanıtı korunur.
+
+## 13. 3 Eylül 2026 — Swipe false-positive dar tolerans kararı
+
+- Kelime olamayacak kadar kısa dokunma/sürükleme seçim veya hata sayılmaz.
+- Seçim yalnız son hücresi çıkarıldığında exact target, bonus veya zaten bulunmuş kelime oluyorsa tek trailing hücre kırpılır; daha geniş yakın-kelime tahmini yapılmaz.
+- Gesture boyunca ilk aktif pointer kilitlenir, diğer temaslar seçim yolunu değiştirmez.
+- Yeterince uzun gerçek yanlış düz seçimlerin hata sayımı korunur; canonical path engine, scoring, timer ve yıldız eşikleri değiştirilmez.
+- Düzeltme hedefli unit/widget testleriyle doğrulanır; merge yine Levent’in ayrı açık onayını gerektirir.
+
+## 14. 3 Eylül 2026 — WORK V2 hızlı otonom üretim kararı
+
+- Mikro değişiklik → tam test → rapor → kullanıcı bekleme döngüsü kullanılmaz; ilişkili işler mantıklı üretim bloklarında tamamlanır.
+- Testler risk bazlı checkpointlerde toplanır. Açıkça çözülebilen fixture, test ve uygulama hataları kullanıcı onayı beklenmeden düzeltilip yeniden doğrulanır.
+- Kullanıcı ürün yönü, gerçek görsel/fiziksel kabul ve Ready/merge/release kararlarında devreye girer; merge/release için açık onay zorunluluğu değişmez.
+- Kelime Avı ilgili PR push'ları otomatik focused analyze/test/diff fast gate'inden geçer; kullanıcı workflow başlatan test operatörü olarak kullanılmaz.
+- Canonical 8×8, kabul edilmiş görsel durumlar, engine/path/scoring/timer/progression ve korunan ürün alanları hız uğruna değiştirilmez.
+- Ayrıntılı çalışma sözleşmesi `docs/project-memory/KELIME_AVI_WORK_V2.md` dosyasında tutulur.

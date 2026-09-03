@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 2 Eylül 2026 — Kelime Avı V6 found-state, error-state ve kompakt completion/result görünümü raw Android üzerinden kullanıcı PASS aldı. Güncel PR #163 ürün commit `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`; exact `word_hunt_screens.dart` blob `6ce2830a7df8eb696a9df589c91c544df7712969`. Final compact Android 16 run `33655562508` SUCCESS. Gerçek insan timing: B5 `115 sn / 2 hata` → 60 sn soft hedefi karşılanmadı; B10 `109 sn / 4 hata` → 120 sn soft hedefi karşılandı. PR #163 OPEN/DRAFT; Ready/merge yok.
+**Son güncelleme:** 3 Eylül 2026 — V6 found/error/compact completion kullanıcı PASS. B5 yeni 8×8 yerleşim `32 sn` ile süre hedefini karşıladı. B5 + swipe toleransı PR #163 tabanlı temiz Draft PR #167'de birleştirildi; focused fast gate ve gerçek Android 16 tek-hücre taşma kanıtı PASS. WORK V2 aktif; Ready/merge yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Eski ayrıntılı checkpointler Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
@@ -134,15 +134,50 @@ Bu değerler insan playtestidir. Android QA otomasyonundaki yaklaşık 20/23 san
 
 B5 60 sn soft challenge hard-fail değildir. Kullanıcıdan ayrıca tuning/denge kararı alınmadan timer, içerik veya scoring değiştirilmez.
 
+### B5 60 sn yeni yerleşim adayı — TEKNİK PASS
+
+- Branch: `tune/kelime-avi-v6-b5-60s-layout-20260902`; HEAD `b0a0fa5a4935b3595c48ad95d8d4089e9dd4ebec`.
+- Ürün değişikliği: `44ebec6b830a288df66f4fa16e2611dfa2165bae` — yalnız `lib/word_hunt/word_hunt_starter_content.dart` içindeki B5 grid harf yerleşimi.
+- Korundu: 8×8/64 hücre, yedi target + bonus ANIT, 60 sn soft challenge, yıldız/hata eşikleri, tekil fiziksel yollar, yatay+dikey+çapraz yön aileleri.
+- Android 16 run `33670657723`: SUCCESS; analyze PASS; aday testleri 3/3 PASS; 64 hücre render + tam raster screenshot + process-failure scan PASS.
+- Artifact `9862719927`; APK SHA-256 `9a83695e1c62323a2ce61697bdb59aab16d91c8393be74c2725e40c0cea5a1c2`.
+- Levent insan testi: **32 sn / UI 2 hata**; süre hedefi ve tuning adayı **PASS**. İki hata bilinçli yanlış seçim değildir; parmak taşması/fazla temas kaynaklı input false-positive olarak raporlandı.
+
+### Swipe input toleransı — ÜRÜN ENTEGRASYONU + ANDROID 16 PASS
+
+- Uygulama commit’i `8610b01e7ac534def33c0125bc2b9185d2774f5d`; güncel branch HEAD `7c0affbe2d1e297eba9bca95086debfef136b218`; Draft PR #166 OPEN, merge yok.
+- Kodda pointer endpoint doğrudan hücreye çevriliyor; tek hücre tap/release `notAWord` sayılabiliyor ve doğru kelimeden bir hücre taşma bütün seçimi hataya çevirebiliyor.
+- Dar çözüm input-normalization katmanında kodlandı: kelime olamayacak kadar kısa gesture cezasız iptal; yalnız son hücre çıkarıldığında exact target/bonus/already-found oluşuyorsa kırpıp kabul; gesture boyunca tek aktif pointer.
+- Gerçek, yeterince uzun ve anlamlı yanlış düz seçim hata sayılmaya devam eder. “En yakın kelimeyi bul” türü geniş otomatik düzeltme yapılmaz.
+- Path engine değiştirilmedi; dört resolver testi ve kısa temas/tek taşma/çoklu pointer widget regresyonları eklendi.
+- Manuel Quality Checks run `33688295877`: analyze PASS; toplam 454 test PASS, yeni B5 yerleşimini hâlâ eski koordinatlarla çağıran üç tarihsel test FAIL. Ürün davranışı değil fixture/gesture beklentisi olduğu doğrulandı ve düzeltildi.
+- Otomatik `Kelime Avi Fast Checks` run `33688788065`: **SUCCESS**. `Kelime Avi analyze`, odaklı Kelime Avı testleri ve diff whitespace kapısı PASS. Job `100442465883`.
+- `.github/workflows/word-hunt-fast-checks.yml`, ilgili Kelime Avı dosyaları değişen PR push'larında otomatik tetiklenir; kullanıcıdan workflow başlatması beklenmez.
+- Temiz ürün entegrasyonu: branch `integrate/kelime-avi-v6-b5-swipe-20260903`, Draft PR #167; base PR #163 ürün branch'i, ürün commit'i `749c678b885d6cefec428c603c55a83a4190152c`.
+- Entegrasyon tam olarak B5 grid, input toleransı ve ilgili testleri taşır; canonical 8×8, görseller, engine/path/scoring/timer/progression ve korunan release alanları değişmedi.
+- Otomatik fast gate run `33724552713`: **SUCCESS**.
+- Gerçek Android 16 run `33724549202`: **SUCCESS**; API 36, 64 hücre render, fiziksel `ANKARA + bir trailing hücre` swipe, `0/7 → 1/7`, `0 hata → 0 hata`, crash/ANR taraması PASS. Job `100550528945`, artifact `9881526593`.
+- Kanıt APK SHA-256: `73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd58`.
+- Geçici QA entrypoint/script/workflow yalnız kanıt üretmek için kullanıldı; final ürün PR kapsamından çıkarıldı.
+
+## Paket bazlı üretim ve risk bazlı test — KALICI KARAR
+
+- Bir rota/paket 10 bölüm olarak tek içerik branch’inde üretilir; bölüm başına branch/Android Action/APK yapılmaz.
+- Tüm bölümler otomatik 8×8, kelime sayısı, exactly-one occurrence, yön, reverse gesture, timer/yıldız ve render kapılarından geçer.
+- İnsan denge örneklemesi varsayılan B1+B5+B10’dur; otomatik outlier varsa yalnız ilgili ek bölüm oynanır.
+- Ortak gameplay görseli onaylıysa salt içerik değişikliklerinde yeniden görsel kabul istenmez.
+- Android 16 tam runtime: paket tamamlanınca, engine/ortak UI değişince ve release entegrasyonu öncesinde çalışır.
+- Tek paket QA APK’sı B1–B10 seçici taşır. Hata yalnız ilgili bölümde düzeltilir; bütün paket yeniden üretilmez.
+
 ## Kalan aktif sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
 1. Her görev başında release branch, PR #163 head, `pubspec.yaml` ve PR durumunu canlı doğrula.
 2. Found-state, error-state ve compact completion kullanıcı görsel acceptance kapıları **KAPALI/PASS**; yeni belirti yoksa bunları yeniden test etme.
-3. B5 gerçek insan sonucu 115 sn olduğundan `B5_60S_BALANCE_DECISION` açık: 60 sn soft challenge korunacak mı, içerik/timing tune edilecek mi ayrıca karar verilecek.
+3. B5 tuning + swipe toleransı temiz entegrasyonu ve Android 16 gerçek taşma kapısı **PASS**; Draft PR #167 Ready/merge kararı kullanıcı onayı bekler.
 4. B10 120 sn human playtest kapısı **PASS**.
 5. `REFERENCE_FONT` exact kaynak bulunmadığı sürece source limitation/deferred kalır; görseli spekülatif fontla değiştirme.
-6. PR #161 / #162 / #163 Ready kararları ayrı kullanıcı onayı ister.
+6. PR #161 / #162 / #163 / #167 Ready kararları ayrı kullanıcı onayı ister.
 7. Merge yalnız Levent’in açık merge onayıyla yapılır.
 8. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
 
-**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / HUMAN TIMING MIXED / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.**
+**SON DURUM: V6 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 DRAFT-OPEN / WORK V2 AKTİF / READY YOK / MERGE YOK.**
