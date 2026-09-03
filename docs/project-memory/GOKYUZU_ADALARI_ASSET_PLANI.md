@@ -1,6 +1,6 @@
 # Gökyüzü Adaları — Modüler Asset Planı
 
-**Durum:** V1 üretim sözleşmesi / 3 Eylül 2026
+**Durum:** V2 rota görsel kabulü PASS / production asset export aktif / 3 Eylül 2026
 
 ## Kilitli ürün yönü
 
@@ -23,6 +23,15 @@
 8. Gizli Ada — bonus rota node'u
 9. Yıldız Gözlemevi
 10. Güneş Sarayı
+
+## Rota mock V2 kabulü
+
+- İlk mock'ta yer alan `Mağaza / Başarılar / Oyna / Sıralama / Rozetler` alt genel menü barı **REJECTED** edildi.
+- Levent’in Başlangıç Limanı karşılaştırması sonrası V2 mock'ta bu bar kaldırıldı.
+- Rota ekranı kabuğu: sol üst geri, sağ üst bilgi, alt köşelerde yalnız rota içi kontroller; ana uygulama alt menüsü yok.
+- 10 bölüm aynı node/plaque/star/progression UI dilini kullanır; her bölüm farklı bir landmark/ada/atmosferle görsel karakter kazanır. Her bölüm ayrı UI değildir.
+- V2 statik rota mock'ı 3 Eylül 2026'da Levent tarafından **PASS / ONAYLANDI**.
+- Bu kabul statik tasarım yönü içindir; raw Android runtime acceptance değildir.
 
 ## Üretim ilkeleri
 
@@ -105,9 +114,24 @@
 
 **V1 toplam zorunlu atomik asset: 48.**
 
+## Production sheet export — bağlayıcı kurallar
+
+Önceki A–E poster/sheet görselleri yalnız görsel referanstır ve doğrudan production asset olarak kullanılmaz. Gerçek export şu kurallarla yeniden üretilir:
+
+1. **5 ayrı sprite sheet**: A atmosfer+yollar, B adalar, C landmark 1–5, D landmark 6–10, E node UI+dekor.
+2. Sheet arka planı **gerçek şeffaf alpha** olmalıdır.
+3. Sheet üzerinde başlık, numara, açıklama, çerçeve, logo veya başka metin **olmaz**.
+4. Atomik parçalar birbirine değmez/üst üste binmez; otomatik veya deterministik crop için güvenli boşluk bırakılır.
+5. Her atomik parça tam silüetiyle görünür; sheet kenarına taşmaz.
+6. Tek ve tutarlı ışık yönü, perspektif, outline/kenar karakteri ve renk dili korunur.
+7. Dinamik node numarası, yıldız durumu, kilit durumu veya bölüm adı hiçbir raster asset'e bake edilmez.
+8. Landmark asset'lerinde bölüm numarası/etiketi yoktur; yalnız görsel landmark bulunur.
+9. Final Güneş Sarayı diğer landmarklardan daha güçlü odak olabilir fakat ayrı görsel stil kullanmaz.
+10. Gizli Ada bonus kimliği mor/özel vurgu taşıyabilir; progression kilidi rastera bake edilmez.
+
 ## Hızlı üretim yöntemi — 5 sprite sheet
 
-48 ayrı görsel çağrısı yapılmaz. Stil tutarlılığı ve hız için üretim 5 ana sheet halinde yapılır, ardından bağımsız asset'lere ayrılır:
+48 ayrı görsel çağrısı yapılmaz. Stil tutarlılığı ve hız için production üretim 5 ana sheet halinde yapılır, ardından bağımsız asset'lere ayrılır:
 
 1. **Sheet A — Atmosfer + yollar**: 14 parça.
 2. **Sheet B — Yüzen adalar**: 7 parça.
@@ -140,18 +164,20 @@ Bu yöntem WORK V2'ye uygundur: tek tek 48 üretim döngüsü yerine toplu stil 
 
 Asset paketi ancak şu koşullarla tamamlanmış sayılır:
 
-1. 48 atomik asset'in tamamı dosya adlarıyla mevcut.
-2. Şeffaflık/kenar temizliği ve aynı ışık yönü korunmuş.
-3. Beş sheet arasında stil tutarlılığı var.
-4. 1080×1920 rota mock'ında 10 node açıkça okunuyor.
-5. Node active/completed/locked/bonus state'leri birbirinden net ayrılıyor.
-6. Dinamik metin/numara/yıldız asset içine bake edilmemiş.
-7. Flutter veya APK entegrasyonuna geçmeden önce Levent rota mock'ını görsel olarak onaylıyor.
+1. 5 production sheet gerçek şeffaf alpha ile mevcut.
+2. Sheet'lerde metin/etiket/logo yok.
+3. 48 atomik asset'in tamamı bağlayıcı dosya adlarıyla ayrılmış.
+4. Şeffaflık/kenar temizliği ve aynı ışık yönü korunmuş.
+5. Beş sheet arasında stil tutarlılığı var.
+6. Node active/completed/locked/bonus state bileşenleri birbirinden net ayrılıyor ve runtime birleşimine uygun.
+7. Dinamik metin/numara/yıldız asset içine bake edilmemiş.
+8. V2 rota mock görsel yönü ile atomik asset seti arasında belirgin stil sapması yok.
+9. Flutter entegrasyonundan önce atomik asset QA PASS kaydı var.
 
 ## Sonraki sıra
 
-1. Beş sprite sheet için üretim prompt/kompozisyonu hazırla.
-2. Sheet A–E üret.
-3. Asset'leri ayır ve toplu görsel QA yap.
-4. 1080×1920 statik rota mock'ı oluştur.
-5. Levent görsel kabulü sonrası Flutter entegrasyon branch'ine geç.
+1. Gerçek şeffaf production Sheet A–E üret.
+2. Sheet'leri 48 atomik asset'e ayır.
+3. Şeffaflık/kenar/ölçek/stil toplu QA yap; yalnız hatalı parçaları yeniden üret.
+4. Atomik asset seti PASS olduğunda Flutter rota entegrasyon branch'ine geç.
+5. Raw Android rota kabulü daha sonraki runtime kapısıdır; statik V2 kabulü bunun yerine geçmez.
