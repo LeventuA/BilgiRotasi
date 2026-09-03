@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 3 Eylül 2026 — Levent’in `Devam et` onayıyla docs-only PR #168 canonical release branch’e merge edildi. Canonical release HEAD artık `3557a7e4f2f2917d61ba61866c6d4c8561994667`. PR #168 yalnız dört checkpoint belgesini taşıdı; ürün kodu, sürüm ve Play durumu değişmedi.
+**Son güncelleme:** 3 Eylül 2026 — Levent ikinci Kelime Avı paketi için `Gökyüzü Adaları` tema adını ve görsel konsept C **Neşeli & Parlak** yönünü onayladı. Bu onay tema/görsel sanat yönünü kilitler; exact rota kompozisyonu, 10 bölüm adı/node sırası ve teknik görsel mimari henüz kilitli değildir. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yükleme/yayınlama yapılmadı.
 
 ## Canlı Sürüm / Release Hattı
 
@@ -27,6 +27,19 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 - B8 bonusları `HIZ` + `SKOR`; B9 bonus `ROKET`; B10 hedef `YOL`, bonus `HAZİNE`.
 - B5 60 sn, B10 120 sn soft challenge; hard-fail değildir.
 - Nearest-word/autocomplete yoktur.
+
+## Gökyüzü Adaları — Paket 2 Ürün Yönü
+
+- İkinci 10 bölümlük rota/paket adı: **Gökyüzü Adaları — LOCKED**.
+- Levent’in seçtiği bağlayıcı görsel yön: **Konsept C — Neşeli & Parlak — LOCKED**.
+- Atmosfer: neşeli, renkli, pozitif, eğlenceli, çocuk dostu, hafif ve canlı.
+- Görsel dil: açık gök mavisi / camgöbeği / turkuaz gökyüzü; yeşil yüzen adalar; sarı-turuncu sıcak vurgu; destekleyici pembe/mercan ayrıntılar; parlak beyaz bulutlar.
+- Temel dünya öğeleri: yüzen çimenli adalar, bulut köprüleri/geçişleri, renkli balon/hava gemileri, rüzgâr yapıları, kuleler ve finalde sıcak-altın Güneş Sarayı hissi.
+- Bu kabul **sanat yönü kabulüdür**; kullanıcı tarafından onaylanan konsept görsel final production MASTER ART veya raw Android kabul kanıtı değildir.
+- Exact rota kompozisyonu, 10 bölüm adı ve node sıralaması ayrıca kararlaştırılacaktır.
+- Başlangıç Limanı `MASTER ART raster + transparent hitbox` istisnası Gökyüzü Adaları’na otomatik taşınmaz. Raster MASTER ART / katmanlı Flutter / modüler asset yaklaşımı ayrıca teknik-görsel karar gerektirir.
+- Canonical gameplay geometrisi **8×8 / 64 hücre**, 10 bölüm / 30 yıldız ve paket bazlı QA kararı korunur.
+- Henüz Flutter, production asset veya APK üretimine geçilmedi.
 
 ## V5 / V6 Kabul ve Teknik Kanıtları
 
@@ -127,8 +140,9 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
 ## Kalan Gerçek Kapılar
 
-1. Sonraki 10 bölümlük Kelime Avı rota/paketi için ürün yönü + bağlayıcı görsel/teknik karar — **AÇIK / kullanıcı kararı gerekli**.
-2. `REFERENCE_FONT` exact kaynak — **DOĞRULANACAK / DEFERRED**.
-3. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
+1. Gökyüzü Adaları **10 bölüm adı + rota/node sıralaması** — **AÇIK / kullanıcı ürün kararı gerekli**.
+2. Gökyüzü Adaları **görsel teknik mimarisi** — MASTER ART raster / katmanlı Flutter / modüler asset yaklaşımı — **AÇIK / görsel konseptten ayrı karar**.
+3. `REFERENCE_FONT` exact kaynak — **DOĞRULANACAK / DEFERRED**.
+4. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 
-**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169+#168 MERGED / PRODUCTION ANA NAVİGASYON CANONICAL RELEASE İÇİNDE / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK.
+**Durum:** 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA LOCKED / KONSEPT C NEŞELİ & PARLAK LOCKED / FLUTTER-ASSET-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK.
