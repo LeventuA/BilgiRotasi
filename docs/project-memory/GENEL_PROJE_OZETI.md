@@ -1,115 +1,171 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 27 Ağustos 2026 — Kelime Avı Codex öncesi gameplay hazırlığı tamamlandı.
+**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162 ve #161 merge edildi. PR #158 release-parent cleanup ve exact release-context Android16 + release APK/AdMob CI PASS; Levent’in ayrı açık onayıyla PR #158 Ready for Review yapıldı. Canonical release merge ve Play yayını ayrı açık kararlardır. WORK V2 aktif.
 
-> Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez.
+> Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
-## Kalıcı çalışma kuralı
+## Kalıcı Çalışma Kuralı
 
-- Yeni sohbet başında önce bu dosya okunur.
-- Kelime Avı çalışmasında hemen ardından `docs/project-memory/checkpoints/KELIME_AVI_PRE_CODEX_READY_20260827.md` okunur.
-- Ardından `BILGI_ROTASI_DURUM.md`, `KARARLAR.md`, `GOREV_HAVUZU.md` ve gerekiyorsa `ACIK_SORULAR_VE_DOGRULAMALAR.md` okunur.
-- Eski aktif dosyalarda PR #132/#96 zincirini hâlâ açık gösteren satırlar tarihsel kayıttır; 27 Ağustos checkpoint'leri supersede eder.
-- Her görev öncesi canlı hedef branch, `pubspec.yaml`, son commit, ilgili PR ve CI yeniden doğrulanır.
-- Doğrudan `main` veya release dalına kod yazılmaz; branch/PR kullanılır.
-- Kritik merge için Levent'in açık onayı gerekir.
-- Build/CI PASS tek başına görsel veya ürün kabulü değildir.
-- Önemli geçmiş `docs/project-memory/archive/`, checkpoint'ler ve Git geçmişinde korunur.
+- Her görev başında canlı hedef branch, `pubspec.yaml`, son commit, PR ve CI yeniden doğrulanır.
+- `main` güncel/yayın kaynağı varsayılmaz.
+- Sıra: branch → test → commit → push → PR → inceleme → merge.
+- Kritik merge/release yalnız Levent’in açık onayıyla yapılır.
+- Build PASS tek başına kanıt değildir; diff, test, workflow, log, Git geçmişi ve gerçek runtime kanıtı birlikte değerlendirilir.
+- Görsel kabul yalnız gerçek/raw Android runtime üzerinden verilir; ImageGen/mockup/QA selector kabul kanıtı değildir.
+- `assets/questions.json` kontrolsüz değiştirilmez; ilgisiz değişiklikler silinmez.
+- Codex yalnız mevcut araçlarla yapılamayan zorunlu yerel kod/test işi olduğunda kullanılır; gereksiz Codex kredisi harcanmaz.
 
-## Canlı release hattı
+## Canlı Release Hattı
 
 - Repo: `ZMilaStudio/BilgiRotasi`
-- Kanonik release: `release/final-closed-test-aab-1.68.8`
-- Release HEAD: `0350e0ae9cbe9ec3eda275a983c9cbc17483baf3`
-- Release tree: `a082ce673a682dc81adfdfc7c5975b80ccc2165a`
-- Sürüm: `1.68.19+109`
+- Canonical release branch: `release/final-closed-test-aab-1.68.8`
+- Release HEAD: `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`
+- Aktif ürün sürümü: **1.68.19+109**
 - Paket: `com.leventua.bilgirotasi`
-- `main` yayın kaynağı olarak varsayılmaz.
+- PR #158 henüz release’e merge edilmedi; release HEAD değişmedi.
 
-## Kelime Avı — release zinciri TAMAMLANDI
+## Başlangıç Limanı — Bağlayıcı Mimari
 
-- PR #147 → MASTER ART production route.
-- PR #150 → dynamic progression görünür state.
-- PR #132 → merged.
-- PR #110 → merged.
-- PR #107 → merged.
-- Eski PR #96 → `SUPERSEDED / CLOSED / UNMERGED`.
-- Temiz current-release entegrasyonu PR #153 üzerinden yapıldı.
-- PR #153 release'e merge edildi: `0350e0ae9cbe9ec3eda275a983c9cbc17483baf3`.
-- Geçici QA PR #154 kapatıldı ve merge edilmedi.
+- İlk rota/paket: **Başlangıç Limanı**.
+- Rota hedefi: 10 bölüm / 30 yıldız.
+- Issue #109 `Photo 1.jpg` rota ekranı için bağlayıcı görsel kaynaktır.
+- Production rota tabanı: MASTER ART raster + şeffaf hitbox + minimum lokal runtime-state override.
+- Level 7 tamamlanınca bonus 8 ve normal 9 birlikte açılır; bonus 8, 9 için gate değildir; 10, node 9 tamamlanmadan locked/no-callback.
+- BoardMap / 67 node sözleşmesi kontrolsüz değiştirilmez.
 
-Final release-context kanıtları:
-- Kelime Avı Android 16 run `33000456233`: SUCCESS.
-- Artifact `9618632032`.
-- AdMob/release run `33000456242`: SUCCESS.
-- Analyze/tüm testler/release APK/package-manifest/Android 16 cold-start/app gate: PASS.
-- Android 16 visual QA: PASS.
+## Canonical Gameplay Sözleşmesi
 
-## Başlangıç Limanı bağlayıcı mimari
+- Grid: **8×8 / 64 hücre — LOCKED**.
+- Önceki 6×10 yalnız tarihsel checkpointtir; ürüne geri dönmez.
+- Target+bonus eğrisi: B1 5+1, B2 5+1, B3 6+1, B4 6+1, B5 7+1, B6 7+1, B7 8+1, B8 7+2, B9 9+1, B10 9+1; toplam **80**.
+- Her target/bonus 8 düz yönde exactly-one fiziksel occurrence taşır; ters gesture aynı canonical kelimeye çözülür.
+- B8 bonusları `HIZ` + `SKOR`; B9 bonus `ROKET`; B10 hedef `YOL`, bonus `HAZİNE`.
+- B5 60 sn ve B10 120 sn soft challenge; hard-fail değildir.
+- Engine/path/scoring/timer/progression sözleşmesi görsel tema uğruna değiştirilmez.
 
-`MASTER ART RASTER → TRANSPARENT INTERACTION HITBOXES → MINIMUM LOCAL STATE OVERRIDES`
+## V5 Reference Asset Entegrasyonu — PASS
 
-- Issue #109 `Photo 1.jpg` tek bağlayıcı görsel kaynak.
-- Repo MASTER ART: `assets/word_hunt/baslangic_limani_master_art_visual_proof.jpg`.
-- PR #146 / `c42a9ff...` ve eski ChatGPT-generated hedef asset'ler görsel kaynak değildir.
-- Gerçek `X/30`, level 1–10 yıldız ve locked/open state runtime progression ile senkrondur.
-- Level 7 → 8 + 9 açılır; bonus 8 zorunlu kapı değildir.
-- Node 9 callback aktiftir.
-- Node 10 node 9 bitmeden locked/no-callback kalır.
+- Production mimarisi: approved raster reference assets + dinamik Flutter text/state + canonical 8×8 engine.
+- 11 production asset exact SHA sözleşmesi korunur.
+- V5 integration run `33379341765`: **SUCCESS**; exact asset SHA, format, analyze, focused Word Hunt tests, `git diff --check` ve protected-scope gate PASS.
+- `pubspec.yaml` yalnız `assets/word_hunt/v5_reference_assets/` klasörünü kaydeder.
 
-## Yeni aktif geliştirme — Bölüm 1 production gameplay
+## V6 Görsel / Davranış Kabulü
 
-- Branch: `feat/kelime-avi-gameplay-v1-20260826`.
-- Branch release `0350e0ae...` üzerinden açıldı.
-- Aktif checkpoint: `docs/project-memory/checkpoints/KELIME_AVI_PRE_CODEX_READY_20260827.md`.
-- İlk hedef:
-  `production route → node 1 → Bölüm 1 oyun → sonuç/yıldız → rotaya dönüş → progress → Bölüm 2 unlock`.
-- İlk gameplay adımında production `lib/main.dart` değiştirilmez.
+### Found-state — PASS
+- Found hücreler kendi kutu formunu korur; yalnız komşu found hücre boşluğu sıcak altın/turuncu edge-fuse ile birleşir.
+- Exact tested commit `4dddf00178ef9f14b8edb3fc706114be72f477a4`.
+- Android16 run `33486609120`: SUCCESS; raw Android kullanıcı PASS.
 
-Bölüm 1 canonical veri:
-- Grid: `KALEMS / MASALI / ELMALI / BİLGİN / OYUNCU / ROTASI`
-- Hedef: `KALEM`, `MASA`
-- Bonus: `ELMA`
-- 3 yıldız: 0 hata
-- 2 yıldız: en fazla 2 hata
-- 1 yıldız: bölüm tamamlandı
+### Error-state — PASS
+- Fill `0xB35A1F2B`, border `0xFFFF6B57`, transient 280 ms.
+- Android16 run `33524578623`: SUCCESS; raw Android kullanıcı PASS.
 
-## Kelime içeriği bağlayıcı kuralları
+### Completion/result — PASS
+- Targetlar tamam, bonus eksik → otomatik popup yok; bonus aranabilir.
+- Tüm target+bonus tamam → popup otomatik açılır; fresh/replay’de tekrar açılabilir.
+- Exact tested compact blob `6ce2830a7df8eb696a9df589c91c544df7712969`.
+- Static/productize `33629855060`: SUCCESS, Word Hunt 139/139 PASS.
+- Android16 `33655562508`: SUCCESS; raw Android B5/B10 kullanıcı PASS.
 
-- `targetWords` ve `bonusWords` **en az 3 harf** olmalıdır.
-- `WordHuntDefinitionValidator` iki harfli target/bonus kelimeyi reddeder.
-- Bölüm 8 `TOP` duplicate occurrence çözüldü: filler satırı `TAKIMI → RAKİBİ`; `TOP` artık tek intended hatta.
-- Bölüm 9 iki harfli `AY` bonusu kaldırıldı; bonus artık `ROKET` ve tek intended hatta.
-- Ayrıntılı çözüm: `docs/kelime-avi/BASLANGIC_LIMANI_CONTENT_QA_RESOLUTION_20260827.md`.
-- Bölüm 2–10 için kalan açık içerik işi: dikey/çapraz/reverse çeşitliliği ve gerçek zorluk dengesi.
+## B5 Denge — PASS
 
-## Codex öncesi tamamlanan hazırlık
+- İlk insan testi: 115 sn / 2 hata → 60 sn hedef karşılanmadı.
+- B10 insan testi: 109 sn / 4 hata → 120 sn hedef PASS.
+- B5 tuning sonrası: **32 sn** → süre PASS.
+- Android16 tuning run `33670657723`: SUCCESS.
+- B5 targetları `ANKARA`, `ŞEHİR`, `TÜRKİYE`, `BAŞKENT`, `MECLİS`, `KULE`, `KALE`; bonus `ANIT`.
 
-- Bölüm 1 grid/koordinat QA: tamamlandı.
-- Production UI sözleşmesi: tamamlandı.
-- Gameplay flow / edge-case sözleşmesi: tamamlandı.
-- 50 maddelik Codex acceptance gate: tamamlandı.
-- Bölüm 2–10 structural content QA: tamamlandı.
-- `TOP` / `AY` somut içerik sorunları: çözüldü.
+## Swipe False-positive Toleransı — PASS
 
-## Korunan alanlar
+- Kelime olamayacak kadar kısa gesture cezasız iptal edilir.
+- Yalnız son hücre çıkarıldığında exact target/bonus/already-found oluşuyorsa tek trailing hücre kırpılır.
+- İlk aktif pointer gesture boyunca kilitlenir; ek temas seçime karışmaz.
+- İki hücre taşma ve anlamlı gerçek yanlış seçim hata kalır; autocomplete yoktur.
+- Ürün commit `749c678b885d6cefec428c603c55a83a4190152c`.
+- Fast `33724552713`: SUCCESS.
+- Android16 `33724549202`: SUCCESS; gerçek `ANKARA + 1 trailing hücre` → `1/7`, hata `0`.
 
-Kelime Avı gameplay geliştirmesinde açık kapsam olmadan değişmez:
-- `lib/main.dart`
+## PR Zinciri — Güncel
+
+- PR #167 — **CLOSED / MERGED** → `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
+- PR #163 — **CLOSED / MERGED** → `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
+- PR #162 — **CLOSED / MERGED** → `929bb13177e03a0962464e21f6c174d4b3439349`.
+- PR #161 — **CLOSED / MERGED** → `4aa490e7c2d5e7547dc95f9463dbbb9adeb85e5a`.
+  - Levent önce Ready, sonra ayrı merge onayı verdi.
+  - Merge hedefi PR #158 branch’idir; release/main değildir.
+- PR #166 tarihsel geliştirme/QA hattıdır; merge edilmeyecektir.
+
+## PR #158 — Release-parent Final Durum
+
+- PR: **#158 — OPEN / READY / mergeable=true / merged=false**.
+- Branch: `feat/kelime-avi-8x8-content-v1-20260829`.
+- Base: canonical release `release/final-closed-test-aab-1.68.8` @ `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
+- Ready öncesi HEAD: `927d0df5c75eb75d98328274b991850642f709e1`.
+- PR #161 merge sonrası release-parent final review yapıldı.
+- Cleanup commit `2ae95df70b452f735a8db9c5bd0d88827a2ec40a` — `chore(kelime-avi): remove obsolete release QA helpers`.
+- Obsolete V5 gameplay QA workflow/entrypoint/script/test/helper/reference dosyaları ve superseded `assets/word_hunt/baslangic_limani_gameplay_bg.jpg` release diff’inden çıkarıldı.
+- Cleanup ürün kodunu değiştirmedi; onaylı V5 reference background runtime’da kalır.
+- Final PR diff: **37 dosya**.
+- `lib/main.dart`, `assets/questions.json`, BoardMap/67 node, Firebase/AdMob/signing ve package/version diff dışında.
+- Açık review/review thread yok.
+- Levent 3 Eylül 2026’da ayrı ve açık Ready onayı verdi; PR #158 **Ready for Review** yapıldı.
+- Ready canonical release merge onayı değildir.
+
+## PR #158 Exact Release-context Kanıtı — PASS
+
+### Kelime Avı Android16 visual proof
+- Tested HEAD `2ae95df70b452f735a8db9c5bd0d88827a2ec40a`.
+- Run `33745646184`: **SUCCESS**; job `100617364648`.
+- Focused static/test, proof APK/asset, Android16 install/open/screenshot/activity/logcat/process scan ve MASTER ART comparison PASS.
+- Artifact `9887953917` — `kelime-avi-android16-visual-proof`.
+- Digest `sha256:0f2fbcfc4022e4e8422912139349412969916496f96d4d29d80bdec8865176c5`.
+
+### Release APK / AdMob
+- Tested HEAD `2ae95df70b452f735a8db9c5bd0d88827a2ec40a`.
+- Run `33745646210`: **SUCCESS**; job `100617365147`.
+- Analyze + full tests, release signing setup, release APK, manifest/AdMob/signature gates ve Android16 cold-start PASS; ikinci Android denemesi gerekmedi.
+- Artifact `9889920696` — `BilgiRotasi-AdMob-1.68.19-109-kanitlari`.
+- Digest `sha256:447b82994aa25002e6f520f2de2b4ba598adcf769d80cb7aa7a767faf2f95c00`.
+
+## Ölçeklenebilir Üretim/Test — KALICI KARAR
+
+- Temel üretim birimi 10 bölümlük rota/pakettir.
+- Bölüm başına ayrı branch/Android Action/APK/insan testi yapılmaz.
+- Her bölüm otomatik 8×8, kelime sayısı, exactly-one occurrence, yön, reverse gesture, timer/yıldız ve render kapılarından geçer.
+- İnsan denge örneklemesi varsayılan B1 + B5 + B10; otomatik outlier varsa yalnız ilgili ek bölüm oynanır.
+- Android16 tam runtime paket tamamlanınca, engine/ortak UI değişiminde ve release entegrasyonu öncesinde çalışır.
+
+## WORK V2 — AKTİF
+
+- Mikro değişiklik → tam test → rapor → bekleme döngüsü kullanılmaz.
+- İlişkili işler mümkün olan en büyük mantıklı üretim bloğunda tamamlanır.
+- Çözülebilen hata/fixture/test sorunları kullanıcıyı test operatörü yapmadan giderilir ve yeniden doğrulanır.
+- Kullanıcı ürün yönü, gerçek görsel/fiziksel kabul ve Ready/merge/release kararlarında devreye girer.
+
+## Reference Font
+
+- Runtime `fontFamily: 'serif'` kullanır.
+- Repo içinde exact custom font kaynağı yoktur.
+- `REFERENCE_FONT = DOĞRULANACAK / DEFERRED`; spekülatif font değişikliği yapılmaz.
+
+## Korunan Alanlar
+
 - `assets/questions.json`
-- BoardMap / 67 node / 3B tahta
-- AdMob / Firebase / Android release/signing config
-- package name
-- `version: 1.68.19+109`
-- kabul edilmiş MASTER ART production rota mimarisi
+- `lib/main.dart`
+- BoardMap / 67 node
+- Firebase / AdMob / release signing
+- package name / version
 
-## Sıradaki aktif sıra
+## Kalan Aktif Sıra — V8 BURADAN DEVAM ETSİN
 
-1. Codex: Bölüm 1 production gameplay implementation.
-2. Codex acceptance raporu ve focused test/analyze.
-3. ChatGPT/GitHub diff review.
-4. Android 16 production gameplay proof + görsel QA.
-5. Kullanıcı onayı sonrası ilgili gameplay PR merge kararı.
-6. Bölüm 2–10 için ayrı content/zorluk pass.
+1. Her görev başında release branch, PR #158 HEAD, `pubspec.yaml`, PR/review/CI durumunu canlı doğrula.
+2. Found/error/completion/B5/swipe kabul kapıları yeni belirti yoksa yeniden açılmaz.
+3. PR #167/#163/#162/#161 merge zinciri — **PASS / TAMAMLANDI**.
+4. PR #158 cleanup + final diff/review + exact release-context CI — **PASS / TAMAMLANDI**.
+5. PR #158 Ready — **PASS / TAMAMLANDI**.
+6. PR #158 → canonical release merge için ayrıca açık Levent onayı alınır.
+7. Production `lib/main.dart` navigasyon entegrasyonu ayrı branch/PR olarak yapılır.
+8. Play yükleme/yayınlama ayrı açık karardır.
 
-Diğer Bilgi Rotası açık işleri `BILGI_ROTASI_DURUM.md`, `GOREV_HAVUZU.md` ve `ACIK_SORULAR_VE_DOGRULAMALAR.md` içinde korunur; bu özet onları silmez.
+**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161 MERGED / PR #158 RELEASE-CONTEXT CI PASS / PR #158 READY-OPEN / WORK V2 AKTİF / RELEASE-MERGE YOK.**

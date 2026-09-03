@@ -1,116 +1,112 @@
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
-> 26 Ağustos 2026 aktif kesimidir. Bu tarihten önceki dosyanın tam ve değişmemiş kopyası `docs/project-memory/archive/ACIK_SORULAR_VE_DOGRULAMALAR_PRE_20260825.md` altında korunur.
+> 29 Ağustos 2026 aktif kesimidir. Eski tam kayıtlar Git geçmişi ve `docs/project-memory/archive/` altında korunur.
 
-## Issue #109 / PR #147 MASTER ART production — KAPANDI
+## Kelime Avı Başlangıç Limanı 8×8 — TEKNİK PASS / CURRENT ANDROID GÖRSEL FAIL / KULLANICI KABULÜ AÇIK
 
-- Issue #109 `Photo 1.jpg` Başlangıç Limanı için tek bağlayıcı MASTER ART'tır.
-- Levent gerçek production Android 16 MASTER ART görünümünü **GÖRSEL PASS** olarak kabul etti.
-- Levent `MASTER ART raster + şeffaf hitbox` production mimarisini **MİMARİ PASS** olarak kabul etti.
-- PR #147 expected-head ile PR #132 feature branch'ine squash merge edildi.
-- Merge SHA `d118aa98c5551cb3b4418f61047f6a730406d963`.
+29 Ağustos 2026 kullanıcı kararıyla starter-content grid standardı **8×8** oldu; önceki 6×10 geometrisi yeni ürün hattı için superseded edildi.
 
-**KAPANDI:** MASTER ART kaynağı, mimari kabul, node 9 progression, PR #147 merge kararı.
+Current exact-reference çalışma:
+- Branch: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
+- Product integration commit: `50ab6c8da3a4d6683568c71d52f893c5dfe2e9f7`.
+- Draft PR **#161** — OPEN / DRAFT / merged=false; base `feat/kelime-avi-8x8-content-v1-20260829` / `5362c094...`.
+- Parent Draft PR **#158** — OPEN / DRAFT / merged=false / mergeable=true; release base `release/final-closed-test-aab-1.68.8` / `3a0f722a...`.
+- Sürüm `1.68.19+109`.
 
----
+Current exact-reference doğrulamaları:
+- [x] 11 production raster asset kullanıcı görsel QA ile LOCKED/PASS ve exact SHA-256 ile branch'e alındı.
+- [x] `icon_anchor.png` / `icon_compass.png` ayrı production overlay olarak kullanılmıyor.
+- [x] Canonical gameplay grid **8×8 / LOCKED / UNCHANGED**; assetlerde grid bake değil.
+- [x] Integration run `33379341765` SUCCESS: asset SHA, deterministic presentation patch, format, analyze, 138/138 focused test, diff/protected-scope gate PASS.
+- [x] Exact product SHA `50ab6c8...` için gerçek Android 16 B10 initial runtime screenshot üretildi: run `33384781507`, artifact `9755405253`, API36 / 1080×1920 / 420 dpi.
+- [x] Gerçek Android found-state kanıtı artifact `9756762383`: `09_B10_YOL_FOUND.png` içinde `1/9`, Y-O-L found state ve gesture visual-change `changed_pixels=29970` PASS.
+- [ ] **GERÇEK ANDROID GÖRSEL KABUL:** mevcut runtime kullanıcı tarafından FAIL edildi.
 
-## PR #150 dynamic progression state — KAPANDI
+**KRİTİK KANIT DÜZELTMESİ:** Daha önce kullanıcıya “bulunmuş Android görseli” diye gösterilen ve PASS alınan Görsel 1 gerçek Android runtime screenshot değildi; gerçek Android ekranı üzerinde görsel düzenleme ile oluşturulmuş hedef/mockup idi. Bu yüzden o PASS geçersizdir ve runtime visual acceptance olarak kullanılamaz. Kullanıcının son mesajındaki Görsel 1 yalnız **bağlayıcı hedef/reference**, Görsel 2 ise **gerçek Android runtime ve FAIL** olarak sınıflandırılır.
 
-PR #132 final incelemesinde MASTER ART içindeki demo state ile runtime progression state'in çelişebildiği tespit edildi.
+**ÖNEMLİ RUN SINIRI:** run `33388386388` genel sonucu FAILURE'dır; screenshot ve real-gesture visual-change PASS sonrasında exact log-string `grep` assertion'ı exit 1 vermiştir. Bu run workflow SUCCESS diye yazılmayacak. Ayrıca runtime davranışı teknik olarak çalışsa bile görsel kullanıcı kabulü ayrı kapıdır ve şu an FAIL'dir.
 
-Düzeltildi:
-- gerçek `X / 30`,
-- level 1–10 gerçek `0–3` yıldız state'i,
-- gerçek locked/open state,
-- node 9 open state'i.
-
-İlk ikinci-yıldız-satırı denemesi FAIL kabul edildi ve kullanılmadı. MASTER ART'ın ölçülmüş star-slot pikselleri kullanılarak eski demo yıldız kalıntıları temizlendi.
-
-Son doğrulanmış kod HEAD: `aebb384912d379fc87908e4e79b31aecdaba427b`.
-- Android 16 production run `32969604847`: SUCCESS.
-- Artifact `9607328059`.
-- Digest `sha256:a1c01a5acb1c515b584e6cf1d24dea63ece57eaa9417f279f4b52f17e41ef776`.
-- Node 9 callback PASS.
-- Node 10 locked/no callback PASS.
-- App process failure scan PASS.
-- Screenshot visual QA PASS.
-
-PR #150 PR #132 feature branch'ine merge edildi; merge SHA `d64fcd4ea63f173c6653ff33926b12a6c99ef37d`.
-
-**KAPANDI:** raster demo progression state'in kullanıcıya yanlış görünmesi açığı.
-
----
-
-## PR #149 proje hafızası checkpoint — KAPANDI
-
-- PR #149 PR #132 feature branch'ine merge edildi.
-- Merge SHA `adb4557a9a95dd624166b6b08a9e0ab27b1e4f80`.
-
----
-
-## PR #132 Başlangıç Limanı production pilot — AÇIK
-
-- PR #132: `OPEN / DRAFT / MERGED=false`.
-- Base: `fix/kelime-avi-approved-reference-pixel-match-20260823` / `bc8a03bfefd401570e0c51cc4aab4206ea45d363`.
-- Head branch: `feat/kelime-avi-baslangic-limani-asset-first-20260824`.
-- Sürüm: `1.68.19+109`.
-- PR #147, #150 ve #149 bu branch'e merge edildi.
-- PR body güncel mimari ve final kapılarla hizalandı.
+8×8 temel teknik sözleşme korunur:
+- 10 adet 8×8 grid ve 80 toplam target+bonus.
+- Her canonical kelime exactly-one physical straight-line occurrence.
+- Intended/opposite canonical yol eşleşmeleri.
+- B5/B10 yatay+dikey+çapraz yön aileleri.
+- B8 `HIZ`+`SKOR`, B9 `ROKET` ve `AY` yok, B10 `YOL`+`HAZİNE` ve `ROTA` yok.
+- Önceki final teknik run `33251736068`: SUCCESS; 37/37 focused + 442/442 full suite + Android 16 B1/B5/B8/B10 64/64 + B5 soft-time + ANKARA/ters BAŞKENT swipe PASS.
 
 **DOĞRULANACAK — KALANLAR:**
-1. Bütün merge/docs commit'lerini içeren yeni exact HEAD nedir?
-2. Bu exact HEAD üzerinde focused test + analyze + `git diff --check` PASS mi?
-3. Android 16 production proof yeni exact HEAD üzerinde SUCCESS mi?
-4. Crash/ANR/FATAL/process-death taraması temiz mi?
-5. Final production screenshot/artifact görünümü kabul edilebilir mi?
-6. Levent PR #132 için ayrıca açık merge onayı verecek mi?
+1. Gerçek Android runtime ekranı, kullanıcının bağlayıcı Görsel 1 hedefiyle yerleşim/ölçek/panel-plaque ölçüleri/grid aralıkları/found-state/alt panel bakımından nasıl exact-reference seviyesine getirilecek?
+2. Düzeltmeden sonra raw Android initial ve raw Android found-state screenshot'ları kullanıcı PASS alıyor mu?
+3. `ERROR_STATE_VISUAL`: referansta ayrı hata-state asset'i yok; kullanıcı/karar doğrulaması olmadan yeni stil üretilmez.
+4. `REFERENCE_FONT`: exact font kaynağı bağımsız doğrulanmadı; hedefe yaklaşmak için ayrıca doğrulanacak.
+5. B5 60 saniye ve B10 120 saniye challenge süreleri gerçek insan playtestinde dengeli mi?
+6. PR #161 ve parent PR #158 ne zaman Ready yapılacak? Görsel PASS'ten sonra ayrı açık karar gerekir.
+7. Merge için Levent ayrıca açık onay verecek mi? Görsel PASS merge izni değildir.
+8. Production `lib/main.dart` ana navigasyon entegrasyonu için ayrı kapsam/onay verilecek mi?
+9. Eski PR #156 ne zaman/kim tarafından kapatılacak? Otomatik kapatılmayacak.
+
+### Tarihsel 30–31 Ağustos V5 tema kanıtları
+
+- Run `33308127773`, artifact `9731244720`: eski layered/refined temada Android 16 teknik gameplay kanıtı PASS.
+- Artifact `9737903231` / `67f7365...`: bir ara refined görünüm kabul edilmişti; daha sonra exact-reference talebiyle supersede edildi.
+- 31 Ağustos'ta image-edit/mockup üzerinden alınan sonraki PASS de **geçersiz**; current görsel durum gerçek runtime Görsel 2 için FAIL'dir.
+
+---
+
+## Issue #109 / MASTER ART production — KAPANDI
+
+- Issue #109 `Photo 1.jpg` tek bağlayıcı MASTER ART.
+- Görsel ve `MASTER ART raster + şeffaf hitbox` mimari kabulü PASS.
+- PR #147 merge SHA `d118aa98c5551cb3b4418f61047f6a730406d963`.
+
+---
+
+## Dynamic progression state — KAPANDI
+
+- Gerçek `X / 30`, yıldız, locked/open state doğrulandı.
+- Android 16 run `32969604847`: SUCCESS.
+- PR #150 merge SHA `d64fcd4ea63f173c6653ff33926b12a6c99ef37d`.
 
 ---
 
 ## Kelime Avı production ana navigasyon entegrasyonu — AÇIK / AYRI KAPSAM
 
-- Production `lib/main.dart` bu pilot merge zincirinde değiştirilmedi.
-- Başlangıç Limanı production route ekranının gerçek uygulama girişine bağlanması ayrı kapsamdır.
-
-**DOĞRULANACAK:** Levent bu entegrasyon için ayrı açık kapsam/onay verecek mi?
+- `lib/main.dart` 8×8 starter-content / V5 exact-reference asset dönüşümünde değiştirilmedi.
+- Gerçek uygulama girişine bağlama ayrı branch/PR ve açık onay ister.
 
 ---
 
 ## 1.68.19+109 release / Play / rewarded canlı kabul — AÇIK
 
 - Aynı `gameId` ikinci +10 XP vermez — fiziksel canlı kabul.
-- Yarım/başarısız rewarded reklamda XP yok; hak korunur ve yeniden denenebilir — fiziksel canlı kabul.
-- Farklı tamamlanan oyunlarda günlük/oturumluk toplam kota yok — fiziksel canlı kabul.
-- Production +109 AAB package/version/signing/AdMob/Firebase profil doğrulaması.
-- Play Console +109 upload/install/rollout/public listing doğrulaması.
-- Play App Signing / Upload sertifika SHA rollerinin canlı Console + Firebase fingerprint eşlemesi.
+- Yarım/başarısız rewarded reklamda XP yok; hak korunur ve yeniden denenebilir.
+- Farklı tamamlanan oyunlarda toplam kota olmaması fiziksel kabul.
+- Production +109 package/version/signing/AdMob/Firebase/Play doğrulamaları.
 
 ---
 
 ## Canlı Düello fiziksel kabulü — AÇIK
 
-İki güncel Play cihazı ve iki ayrı hesapla otomatik eşleştirme, 10/20/30 soru, aynı soru/sıra, skor/ilerleme, maç sonucu, BR/lig tek sefer işleme, leaderboard ve kopma/ayrılma davranışı uçtan uca doğrulanacak.
+İki güncel Play cihazı ve iki ayrı hesapla eşleştirme, soru sırası, skor, sonuç, BR/lig, leaderboard ve kopma davranışı uçtan uca doğrulanacak.
 
 ---
 
 ## Soru geri bildirimleri — AÇIK
 
-- Sheet'teki bekleyen olaylar canlı kaynaktan yeniden okunacak.
-- Her soru için metin, dört seçenek, doğru indeks, açıklama, kategori ve zorluk birlikte kontrol edilecek.
-- `assets/questions.json` kontrolsüz değiştirilmeyecek.
-- Sheet satırı gerçek soru düzeltmesi merge edilmeden kapatılmayacak.
+- Her soru metin + 4 seçenek + doğru indeks + açıklama + kategori + zorluk birlikte kontrol edilir.
+- `assets/questions.json` kontrolsüz değiştirilmez.
+- Gerçek düzeltme merge edilmeden Sheet satırı kapatılmaz.
 
 ---
 
 ## 3B tahta — DURDURULDU / KARAR BEKLİYOR
 
-- Oynanış, BoardMap ve 67 node düzenine dokunulmayacak.
+- BoardMap / 67 node düzenine dokunulmaz.
 - Önce numaralı deterministik geometri.
-- 8 konsept rozet / 6 fiziksel rozet eşlemesi çözülmeden ilerlenmeyecek.
-- Kullanıcı görsel onayı olmadan stil/Flutter/APK aşamasına geçilmeyecek.
+- 8 konsept rozet / 6 fiziksel rozet eşlemesi çözülmeden ilerlenmez.
 
 ---
 
 ## Mağaza ve tanıtım — AÇIK
 
-Telefon, tablet, Chromebook, PC ve XR varlıklarının Play Console durumu canlı ekrandan `hazır / yüklendi / reddedildi / yeniden yapılacak` biçiminde doğrulanacak.
+Telefon, tablet, Chromebook, PC ve XR varlıklarının Play Console durumu canlı ekrandan doğrulanacak.

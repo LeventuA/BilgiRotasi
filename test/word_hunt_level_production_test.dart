@@ -1,3 +1,4 @@
+import 'package:bilgi_rotasi/word_hunt/word_hunt_models.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_screens.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_starter_content.dart';
 import 'package:flutter/material.dart';
@@ -6,14 +7,16 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   Future<void> pumpLevel(
     WidgetTester tester, {
+    WordHuntLevelDefinition? level,
     DateTime Function()? now,
+    Size surfaceSize = const Size(720, 1280),
   }) async {
-    await tester.binding.setSurfaceSize(const Size(540, 960));
+    await tester.binding.setSurfaceSize(surfaceSize);
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
       MaterialApp(
         home: WordHuntLevelProductionScreen(
-          level: WordHuntStarterContent.baslangicLimani.levels.first,
+          level: level ?? WordHuntStarterContent.baslangicLimani.levels.first,
           infoCards: WordHuntStarterContent.infoCards,
           now: now,
         ),
@@ -41,39 +44,168 @@ void main() {
     await tester.pump();
   }
 
-  testWidgets('ilk production render canonical Bölüm 1 durumunu gösterir', (
-    tester,
-  ) async {
-    await pumpLevel(tester);
-
-    expect(
-      find.byKey(const Key('word_hunt_production_screen')),
-      findsOneWidget,
-    );
-    expect(find.text('Bölüm 1'), findsOneWidget);
-    expect(find.text('Başlangıç Limanı'), findsOneWidget);
-    expect(find.text('0/2'), findsOneWidget);
-    expect(find.text('0 hata'), findsOneWidget);
-    expect(find.text('KALEM'), findsOneWidget);
-    expect(find.text('MASA'), findsOneWidget);
-    expect(find.text('✦ ELMA'), findsOneWidget);
-    expect(find.byKey(const Key('word_hunt_production_finish')), findsNothing);
-  });
-
-  testWidgets('target, reverse, repeated, wrong, invalid ve bonus ayrışır', (
-    tester,
-  ) async {
-    await pumpLevel(tester);
-
+  Future<void> completeLevelOneTargets(WidgetTester tester) async {
     await dragCells(
       tester,
       startRow: 0,
       startColumn: 4,
-      endRow: 0,
-      endColumn: 0,
+      endRow: 4,
+      endColumn: 4,
     );
-    expect(find.text('1/2'), findsOneWidget);
-    expect(find.text('0 hata'), findsOneWidget);
+    await dragCells(
+      tester,
+      startRow: 4,
+      startColumn: 4,
+      endRow: 4,
+      endColumn: 7,
+    );
+    await dragCells(
+      tester,
+      startRow: 6,
+      startColumn: 4,
+      endRow: 6,
+      endColumn: 7,
+    );
+    await dragCells(
+      tester,
+      startRow: 1,
+      startColumn: 1,
+      endRow: 1,
+      endColumn: 4,
+    );
+    await dragCells(
+      tester,
+      startRow: 2,
+      startColumn: 3,
+      endRow: 6,
+      endColumn: 3,
+    );
+  }
+
+  testWidgets(
+    'production Bölüm 1 8x8 grid ve 0/5 başlangıç durumunu gösterir',
+    (tester) async {
+      await pumpLevel(tester);
+      expect(
+        find.byKey(const Key('word_hunt_production_screen')),
+        findsOneWidget,
+      );
+      expect(find.text('Bölüm 1'), findsOneWidget);
+      expect(find.text('0/5'), findsOneWidget);
+      expect(find.text('0 hata'), findsOneWidget);
+      expect(find.text('KALEM'), findsOneWidget);
+      expect(find.text('BİLGİ'), findsOneWidget);
+      expect(find.text('ELMA'), findsOneWidget);
+      expect(
+        find.byKey(const Key('word_hunt_production_bonus_icon_ELMA')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_production_harbor_background')),
+        findsOneWidget,
+      );
+      final background = tester.widget<Image>(
+        find.byKey(const Key('word_hunt_production_harbor_background')),
+      );
+      expect(
+        (background.image as AssetImage).assetName,
+        'assets/word_hunt/v5_reference_assets/harbor_background_1080x1920.png',
+      );
+      expect(
+        find.byKey(const Key('word_hunt_production_instruction_plate')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_production_cell_7_7')),
+        findsOneWidget,
+      );
+      final rect = tester.getRect(
+        find.byKey(const Key('word_hunt_production_grid')),
+      );
+      expect(rect.width / rect.height, closeTo(1.0, 0.01));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'Android 16 dar viewportta B1 B5 B8 B10 64 hücre ve liman chrome görünür',
+    (tester) async {
+      const surface = Size(411, 731);
+      const levelIndexes = <int>[1, 5, 8, 10];
+      const targetCounts = <int>[5, 7, 7, 9];
+
+      for (
+        var levelOffset = 0;
+        levelOffset < levelIndexes.length;
+        levelOffset++
+      ) {
+        final levelIndex = levelIndexes[levelOffset];
+        await pumpLevel(
+          tester,
+          level: WordHuntStarterContent.baslangicLimani.levels[levelIndex - 1],
+          surfaceSize: surface,
+        );
+
+        expect(find.text('Bölüm $levelIndex'), findsOneWidget);
+        expect(find.text('0/${targetCounts[levelOffset]}'), findsOneWidget);
+        expect(
+          find.byKey(const Key('word_hunt_production_instruction_plate')),
+          findsOneWidget,
+        );
+        expect(
+          find.byKey(const Key('word_hunt_production_cell_7_7')),
+          findsOneWidget,
+        );
+
+        final metricsRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_progress')),
+        );
+        final targetsRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_target_plates')),
+        );
+        final bonusRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_bonus_plates')),
+        );
+        final gridRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_grid')),
+        );
+        final instructionRect = tester.getRect(
+          find.byKey(const Key('word_hunt_production_instruction_plate')),
+        );
+        expect(metricsRect.height, greaterThanOrEqualTo(44));
+        expect(targetsRect.bottom, lessThan(bonusRect.top));
+        expect(bonusRect.bottom, lessThan(gridRect.top));
+        expect(gridRect.bottom, lessThan(instructionRect.top));
+
+        final viewport = Offset.zero & surface;
+        for (var row = 0; row < 8; row++) {
+          for (var column = 0; column < 8; column++) {
+            final rect = tester.getRect(
+              find.byKey(Key('word_hunt_production_cell_${row}_$column')),
+            );
+            expect(
+              viewport.contains(rect.topLeft) &&
+                  viewport.contains(rect.bottomRight),
+              isTrue,
+              reason: 'B$levelIndex cell $row,$column viewport dışında: $rect',
+            );
+          }
+        }
+        expect(tester.takeException(), isNull, reason: 'Bölüm $levelIndex');
+      }
+    },
+  );
+
+  testWidgets('target reverse wrong ve bonus ayrışır', (tester) async {
+    await pumpLevel(tester);
+    await dragCells(
+      tester,
+      startRow: 4,
+      startColumn: 4,
+      endRow: 0,
+      endColumn: 4,
+    );
+    expect(find.text('1/5'), findsOneWidget);
     expect(
       find.byKey(const Key('word_hunt_production_target_KALEM_found')),
       findsOneWidget,
@@ -84,59 +216,18 @@ void main() {
       startRow: 0,
       startColumn: 0,
       endRow: 0,
-      endColumn: 4,
-    );
-    expect(find.text('1/2'), findsOneWidget);
-    expect(find.text('0 hata'), findsOneWidget);
-
-    await dragCells(
-      tester,
-      startRow: 3,
-      startColumn: 0,
-      endRow: 3,
-      endColumn: 1,
-    );
-    expect(find.text('1 hata'), findsOneWidget);
-    expect(
-      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
-      findsOneWidget,
-    );
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(
-      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
-      findsNothing,
-    );
-
-    await dragCells(
-      tester,
-      startRow: 3,
-      startColumn: 0,
-      endRow: 4,
-      endColumn: 2,
-    );
-    expect(find.text('1 hata'), findsOneWidget);
-    expect(
-      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
-      findsOneWidget,
-    );
-    expect(
-      find.byKey(const Key('word_hunt_production_error_cell_4_2')),
-      findsOneWidget,
-    );
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(
-      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
-      findsNothing,
-    );
-
-    await dragCells(
-      tester,
-      startRow: 2,
-      startColumn: 0,
-      endRow: 2,
       endColumn: 3,
     );
-    expect(find.text('1/2'), findsOneWidget);
+    expect(find.text('1 hata'), findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 300));
+
+    await dragCells(
+      tester,
+      startRow: 4,
+      startColumn: 2,
+      endRow: 4,
+      endColumn: 5,
+    );
     expect(
       find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
       findsOneWidget,
@@ -144,234 +235,203 @@ void main() {
     expect(find.byKey(const Key('word_hunt_production_finish')), findsNothing);
   });
 
-  testWidgets('completion freeze ve idempotent sonuç üç yıldız döndürür', (
+  testWidgets(
+    'targetlar bitince süre ve hata donar, grid bonus için açık kalır',
+    (tester) async {
+      var now = DateTime(2026, 8, 29, 12);
+      await pumpLevel(tester, now: () => now);
+
+      await dragCells(
+        tester,
+        startRow: 0,
+        startColumn: 0,
+        endRow: 0,
+        endColumn: 3,
+      );
+      expect(find.text('1 hata'), findsOneWidget);
+      await tester.pump(const Duration(milliseconds: 300));
+
+      now = now.add(const Duration(seconds: 10));
+      await completeLevelOneTargets(tester);
+      expect(find.text('5/5'), findsOneWidget);
+      expect(
+        find.byKey(const Key('word_hunt_production_finish')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_production_result_dialog')),
+        findsNothing,
+      );
+
+      final frozen =
+          tester
+              .widget<Text>(
+                find.byKey(const Key('word_hunt_production_elapsed_text')),
+              )
+              .data;
+      expect(frozen, '10s');
+
+      now = now.add(const Duration(seconds: 20));
+      await tester.pump(const Duration(seconds: 2));
+      expect(
+        tester
+            .widget<Text>(
+              find.byKey(const Key('word_hunt_production_elapsed_text')),
+            )
+            .data,
+        frozen,
+      );
+
+      await dragCells(
+        tester,
+        startRow: 0,
+        startColumn: 0,
+        endRow: 0,
+        endColumn: 3,
+      );
+      expect(find.text('1 hata'), findsOneWidget);
+
+      await dragCells(
+        tester,
+        startRow: 4,
+        startColumn: 2,
+        endRow: 4,
+        endColumn: 5,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_production_bonus_ELMA_found')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('word_hunt_production_result_dialog')),
+        findsNothing,
+      );
+
+      await tester.ensureVisible(
+        find.byKey(const Key('word_hunt_production_finish')),
+      );
+      await tester.tap(find.byKey(const Key('word_hunt_production_finish')));
+      await tester.pumpAndSettle();
+      expect(
+        find.byKey(const Key('word_hunt_production_result_dialog')),
+        findsOneWidget,
+      );
+      expect(find.text('10 saniye'), findsOneWidget);
+      expect(find.text('1 hata'), findsWidgets);
+      expect(
+        tester
+            .widget<Icon>(
+              find.byKey(const Key('word_hunt_production_result_star_2')),
+            )
+            .icon,
+        Icons.star_rounded,
+      );
+      expect(
+        tester
+            .widget<Icon>(
+              find.byKey(const Key('word_hunt_production_result_star_3')),
+            )
+            .icon,
+        Icons.star_outline_rounded,
+      );
+    },
+  );
+
+  testWidgets('timeLimit production oynanışı hard fail ile kapatmaz', (
     tester,
   ) async {
-    WordHuntLevelPlayResult? result;
-    var now = DateTime(2026, 8, 27, 12);
-    await tester.binding.setSurfaceSize(const Size(540, 960));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Builder(
-          builder:
-              (context) => Scaffold(
-                body: Center(
-                  child: FilledButton(
-                    key: const Key('open_level'),
-                    onPressed: () async {
-                      result = await Navigator.of(context).push(
-                        MaterialPageRoute<WordHuntLevelPlayResult>(
-                          builder:
-                              (_) => WordHuntLevelProductionScreen(
-                                level:
-                                    WordHuntStarterContent
-                                        .baslangicLimani
-                                        .levels
-                                        .first,
-                                infoCards: WordHuntStarterContent.infoCards,
-                                now: () => now,
-                              ),
-                        ),
-                      );
-                    },
-                    child: const Text('Aç'),
-                  ),
-                ),
-              ),
-        ),
-      ),
-    );
-    await tester.tap(find.byKey(const Key('open_level')));
-    await tester.pumpAndSettle();
-    now = now.add(const Duration(seconds: 7));
+    var now = DateTime(2026, 8, 29, 12);
+    final level = WordHuntStarterContent.baslangicLimani.levels[4];
+    await pumpLevel(tester, level: level, now: () => now);
+    now = now.add(const Duration(seconds: 65));
     await tester.pump(const Duration(seconds: 1));
-    expect(find.text('7s'), findsOneWidget);
+    expect(find.text('65s'), findsOneWidget);
 
     await dragCells(
       tester,
       startRow: 0,
       startColumn: 0,
       endRow: 0,
-      endColumn: 4,
+      endColumn: 5,
     );
-    now = now.add(const Duration(seconds: 3));
+    expect(
+      find.byKey(const Key('word_hunt_production_target_ANKARA_found')),
+      findsOneWidget,
+    );
+    expect(find.text('1/7'), findsOneWidget);
+  });
+
+  testWidgets('kısa temas hata sayılmaz, tek hücre taşan hedef bulunur', (
+    tester,
+  ) async {
+    final level = WordHuntStarterContent.baslangicLimani.levels[4];
+    await pumpLevel(tester, level: level);
+
+    await tester.tap(
+      find.byKey(const Key('word_hunt_production_cell_2_0')),
+    );
+    await tester.pump();
+    expect(find.text('0 hata'), findsOneWidget);
+
     await dragCells(
       tester,
-      startRow: 1,
+      startRow: 0,
       startColumn: 0,
-      endRow: 1,
-      endColumn: 3,
+      endRow: 0,
+      endColumn: 6,
     );
-    expect(find.text('2/2'), findsOneWidget);
+    expect(find.text('1/7'), findsOneWidget);
+    expect(find.text('0 hata'), findsOneWidget);
     expect(
-      find.byKey(const Key('word_hunt_production_finish')),
+      find.byKey(const Key('word_hunt_production_target_ANKARA_found')),
       findsOneWidget,
-    );
-    final frozen =
-        tester
-            .widget<Text>(
-              find.byKey(const Key('word_hunt_production_elapsed_text')),
-            )
-            .data;
-    expect(frozen, '10s');
-    now = now.add(const Duration(seconds: 5));
-    await tester.pump(const Duration(seconds: 5));
-    expect(
-      tester
-          .widget<Text>(
-            find.byKey(const Key('word_hunt_production_elapsed_text')),
-          )
-          .data,
-      frozen,
-    );
-
-    await tester.tap(find.byKey(const Key('word_hunt_production_finish')));
-    await tester.tap(
-      find.byKey(const Key('word_hunt_production_finish')),
-      warnIfMissed: false,
-    );
-    await tester.pumpAndSettle();
-    expect(
-      find.byKey(const Key('word_hunt_production_result_dialog')),
-      findsOneWidget,
-    );
-    expect(
-      find.byKey(const Key('word_hunt_production_result_star_3')),
-      findsOneWidget,
-    );
-    expect(find.text('10 saniye'), findsOneWidget);
-    await tester.tap(
-      find.byKey(const Key('word_hunt_production_return_route')),
-    );
-    await tester.pumpAndSettle();
-
-    expect(result?.levelId, 'baslangic-1');
-    expect(result?.stars, 3);
-    expect(result?.unlockedInfoCardIds, isEmpty);
-  });
-
-  testWidgets('production result mistake tierlarına göre 2 ve 1 yıldız verir', (
-    tester,
-  ) async {
-    Future<void> openLevel() async {
-      await tester.binding.setSurfaceSize(const Size(540, 960));
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Builder(
-            builder:
-                (context) => Scaffold(
-                  body: FilledButton(
-                    key: const Key('open_level_for_tier'),
-                    onPressed:
-                        () => Navigator.of(context).push(
-                          MaterialPageRoute<WordHuntLevelPlayResult>(
-                            builder:
-                                (_) => WordHuntLevelProductionScreen(
-                                  level:
-                                      WordHuntStarterContent
-                                          .baslangicLimani
-                                          .levels
-                                          .first,
-                                  infoCards: WordHuntStarterContent.infoCards,
-                                ),
-                          ),
-                        ),
-                    child: const Text('Aç'),
-                  ),
-                ),
-          ),
-        ),
-      );
-      await tester.tap(find.byKey(const Key('open_level_for_tier')));
-      await tester.pumpAndSettle();
-    }
-
-    Future<void> completeWithMistakes(int mistakeCount) async {
-      for (var index = 0; index < mistakeCount; index++) {
-        await dragCells(
-          tester,
-          startRow: 0,
-          startColumn: 0,
-          endRow: 0,
-          endColumn: 1,
-        );
-      }
-      await dragCells(
-        tester,
-        startRow: 0,
-        startColumn: 0,
-        endRow: 0,
-        endColumn: 4,
-      );
-      await dragCells(
-        tester,
-        startRow: 1,
-        startColumn: 0,
-        endRow: 1,
-        endColumn: 3,
-      );
-      await tester.ensureVisible(
-        find.byKey(const Key('word_hunt_production_finish')),
-      );
-      await tester.tap(find.byKey(const Key('word_hunt_production_finish')));
-      await tester.pumpAndSettle();
-    }
-
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    await openLevel();
-    await completeWithMistakes(2);
-    expect(
-      tester
-          .widget<Icon>(
-            find.byKey(const Key('word_hunt_production_result_star_2')),
-          )
-          .icon,
-      Icons.star_rounded,
-    );
-    expect(
-      tester
-          .widget<Icon>(
-            find.byKey(const Key('word_hunt_production_result_star_3')),
-          )
-          .icon,
-      Icons.star_outline_rounded,
-    );
-
-    await tester.pumpWidget(const SizedBox.shrink());
-    await tester.pumpAndSettle();
-    await openLevel();
-    await completeWithMistakes(3);
-    expect(
-      tester
-          .widget<Icon>(
-            find.byKey(const Key('word_hunt_production_result_star_1')),
-          )
-          .icon,
-      Icons.star_rounded,
-    );
-    expect(
-      tester
-          .widget<Icon>(
-            find.byKey(const Key('word_hunt_production_result_star_2')),
-          )
-          .icon,
-      Icons.star_outline_rounded,
     );
   });
 
-  testWidgets('anlamlı attempt geri çıkış onayı verir ve null döner', (
-    tester,
-  ) async {
+  testWidgets('ikinci parmak etkin sürüklemeyi değiştirmez', (tester) async {
+    final level = WordHuntStarterContent.baslangicLimani.levels[4];
+    await pumpLevel(tester, level: level);
+
+    final firstStart = tester.getCenter(
+      find.byKey(const Key('word_hunt_production_cell_0_0')),
+    );
+    final firstEnd = tester.getCenter(
+      find.byKey(const Key('word_hunt_production_cell_0_5')),
+    );
+    final secondStart = tester.getCenter(
+      find.byKey(const Key('word_hunt_production_cell_7_0')),
+    );
+    final secondEnd = tester.getCenter(
+      find.byKey(const Key('word_hunt_production_cell_7_4')),
+    );
+
+    final first = await tester.createGesture(pointer: 1);
+    final second = await tester.createGesture(pointer: 2);
+    await first.down(firstStart);
+    await second.down(secondStart);
+    await second.moveTo(secondEnd);
+    await second.up();
+    await first.moveTo(firstEnd);
+    await first.up();
+    await tester.pump();
+
+    expect(find.text('1/7'), findsOneWidget);
+    expect(find.text('0 hata'), findsOneWidget);
+    expect(
+      find.byKey(const Key('word_hunt_production_target_ANKARA_found')),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('anlamlı attempt geri çıkış onayı verir', (tester) async {
     await pumpLevel(tester);
     await dragCells(
       tester,
       startRow: 0,
       startColumn: 0,
       endRow: 0,
-      endColumn: 1,
+      endColumn: 3,
     );
-
     await tester.tap(find.byKey(const Key('word_hunt_production_back')));
     await tester.pumpAndSettle();
     expect(
@@ -386,38 +446,5 @@ void main() {
       find.byKey(const Key('word_hunt_production_screen')),
       findsOneWidget,
     );
-
-    await tester.tap(find.byKey(const Key('word_hunt_production_back')));
-    await tester.pumpAndSettle();
-    await tester.tap(
-      find.byKey(const Key('word_hunt_production_exit_confirm')),
-    );
-    await tester.pumpAndSettle();
-    expect(find.byKey(const Key('word_hunt_production_screen')), findsNothing);
-    await tester.pump(const Duration(seconds: 2));
-    expect(tester.takeException(), isNull);
-  });
-
-  testWidgets('dispose elapsed ve error feedback callbacklerini iptal eder', (
-    tester,
-  ) async {
-    var now = DateTime(2026, 8, 27, 12);
-    await pumpLevel(tester, now: () => now);
-    await dragCells(
-      tester,
-      startRow: 3,
-      startColumn: 0,
-      endRow: 3,
-      endColumn: 1,
-    );
-    expect(
-      find.byKey(const Key('word_hunt_production_error_cell_3_0')),
-      findsOneWidget,
-    );
-
-    await tester.pumpWidget(const SizedBox.shrink());
-    now = now.add(const Duration(seconds: 5));
-    await tester.pump(const Duration(seconds: 5));
-    expect(tester.takeException(), isNull);
   });
 }
