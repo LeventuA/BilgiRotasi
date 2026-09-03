@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 3 Eylül 2026 — PR #163 Levent’in açık onayıyla V6 temel ürün hattına merge edildi; sıradaki karar kapısı PR #162 Ready
+**Son güncelleme:** 3 Eylül 2026 — PR #162 final diff/review PASS ve Levent’in “Devam et” onayıyla Ready for Review yapıldı; merge ayrı açık onay bekliyor
 
 ## Canlı Sürüm / Release Hattı
 
@@ -9,7 +9,7 @@
 - Canonical release branch: `release/final-closed-test-aab-1.68.8`.
 - Canonical release HEAD: `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
 - `main` güncel/yayın kaynağı olarak varsayılmaz; canlı ürün branch/PR her görevde yeniden doğrulanır.
-- PR #163 merge’i release/main’e yapılmadı.
+- Kelime Avı V6 zinciri henüz release/main’e merge edilmedi.
 
 ## Kelime Avı V6 — Güncel Ürün Hattı
 
@@ -17,10 +17,9 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
 - Parent V5: PR #161 — **OPEN / DRAFT / merge yok**.
 - Güncel V6 branch: `fix/kelime-avi-v6-visual-found-state-20260901`.
-- Güncel V6 PR: **#162 — OPEN / DRAFT / merged=false / mergeable=true**.
-- PR #162 HEAD, PR #163 mergeinden hemen sonra: `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
-- PR #163: **CLOSED / MERGED**.
-- PR #163 merge commit: `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
+- Güncel V6 PR: **#162 — OPEN / READY / merged=false / mergeable=true**.
+- PR #162 Ready checkpoint ürün HEAD’i: `bf3768b0b3104ebf8c8103340d9664c1e0385ce8`; Ready sonrası yalnız checkpoint belgeleri güncellenir.
+- PR #163: **CLOSED / MERGED**; merge commit `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
 - PR #167: **CLOSED / MERGED**; merge commit `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
 - B5 + swipe ürün commit’i: `749c678b885d6cefec428c603c55a83a4190152c`.
 - Compact completion ürün commit’i: `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`.
@@ -65,6 +64,15 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 - Gerçek sonuç: `0/7 → 1/7`, hata `0 → 0`.
 - Job `100550528945`; artifact `9881526593`; APK SHA-256 `73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd58`.
 
+## PR #162 Final İnceleme — PASS
+
+- 16 beklenen değişen dosya doğrulandı.
+- `lib/main.dart`, `assets/questions.json`, locked V5 assets, BoardMap/67 node ve release yapılandırması diff dışında.
+- Açık review veya review thread yok.
+- Swipe çözümü dar kapsamlıdır; geniş kelime tahmini/autocomplete yoktur.
+- PR #163 mergeinden sonra ürün kodu değişmedi; son HEAD’e eklenen değişiklikler checkpoint belgeleridir.
+- PR #162 Levent’in “Devam et” onayıyla **READY FOR REVIEW** yapıldı.
+
 ## Korunan Alanlar
 
 Bu V6 ürün zincirinde değiştirilmedi:
@@ -91,10 +99,10 @@ Bu V6 ürün zincirinde değiştirilmedi:
 
 ## Kalan Gerçek Kapılar
 
-1. PR #162 için final diff/review doğrulaması ve **Ready kararı** — AÇIK.
-2. PR #162 Ready olursa merge kararı ayrıca Levent’in açık onayını gerektirir.
+1. PR #162 final diff/review + Ready — **PASS / TAMAMLANDI**.
+2. PR #162 merge — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 3. PR #161 zincir kararı ayrıca ele alınır.
 4. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
 5. Release entegrasyonu ve Play yayını ayrıca açık karar gerektirir.
 
-**Durum:** V6 FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID 16 PASS / PR #167 MERGED / PR #163 MERGED / PR #162 DRAFT-OPEN / READY YOK / RELEASE-MERGE YOK.
+**Durum:** V6 FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID 16 PASS / PR #167 MERGED / PR #163 MERGED / PR #162 READY-OPEN / MERGE YOK / RELEASE-MERGE YOK.
