@@ -1,12 +1,12 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 3 Eylül 2026 — İkinci Kelime Avı paketi **Gökyüzü Adaları** olarak kilitlendi; Levent görsel yön için konsept **C — Neşeli & Parlak** seçimini onayladı. Bu seçim sanat yönünü kilitler; 10 bölüm adı/node sırası ve teknik görsel mimari henüz açık. Play yayını yapılmadı.
+**Son güncelleme:** 3 Eylül 2026 — Gökyüzü Adaları için 10 bölüm sırası ve **modüler asset yaklaşımı** Levent tarafından onaylandı. V1 görsel üretim sözleşmesi 48 atomik asset / 5 sprite sheet olarak tanımlandı. Henüz Flutter/APK üretimine geçilmedi; sıradaki iş sprite sheet üretimi ve statik rota mock görsel kabulüdür.
 
 > Root dosya güncel Kelime Avı çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
-## Aktif görev — Gökyüzü Adaları rota yapısı
+## Aktif görev — Gökyüzü Adaları modüler görsel üretimi
 
-**Durum:** 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA LOCKED / KONSEPT C NEŞELİ & PARLAK LOCKED / FLUTTER-ASSET-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK
+**Durum:** 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA+KONSEPT+ROTA+MODÜLER MİMARİ LOCKED / 48 ASSET-5 SHEET PLANI HAZIR / FLUTTER-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK
 
 **Canonical release:** `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`
 
@@ -40,35 +40,47 @@
 24. PR #168 docs-only final diff — **PASS**; yalnız dört checkpoint belgesi.
 25. PR #168 review/comment kontrolü — **PASS**; blocker yok.
 26. PR #168 → canonical release merge — **PASS**; Levent’in `Devam et` onayıyla; merge commit `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
-27. PR #168 merge sonrası canonical release HEAD doğrulaması — **PASS**; `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
-28. PR #168 merge commitinde otomatik PR workflow’u — **0 run / DOĞRULANDI**. Ürün kodu değişmedi.
+27. PR #168 merge sonrası canonical release HEAD doğrulaması — **PASS**; `3557a7e4...`.
+28. PR #168 merge commitinde otomatik PR workflow’u — **0 run / DOĞRULANDI**.
 29. Paket 2 tema adı — **PASS / LOCKED**: `Gökyüzü Adaları`.
-30. Paket 2 görsel yön seçimi — **PASS / LOCKED**: konsept `C — Neşeli & Parlak`.
+30. Paket 2 görsel yön — **PASS / LOCKED**: `C — Neşeli & Parlak`.
+31. Gökyüzü Adaları 10 bölüm adı + rota sırası — **PASS / LOCKED**.
+32. Gökyüzü Adaları görsel teknik mimarisi — **PASS / LOCKED**: modüler asset yaklaşımı.
+33. V1 asset üretim sözleşmesi — **PASS / HAZIR**: 48 atomik asset / 5 sprite sheet; ayrıntı `docs/project-memory/GOKYUZU_ADALARI_ASSET_PLANI.md`.
 
-### Gökyüzü Adaları — kilitlenen görsel yön
+### Gökyüzü Adaları — kilitli rota
 
-- Atmosfer: neşeli, renkli, pozitif, eğlenceli, çocuk dostu, hafif ve canlı.
-- Ana palet yönü: gök mavisi/camgöbeği/turkuaz + yeşil yüzen adalar + sarı/turuncu sıcak vurgu + destekleyici pembe/mercan.
-- Dünya öğeleri: yüzen çimenli adalar, parlak bulutlar, renkli balon/hava gemileri, rüzgâr yapıları, kuleler ve sıcak-altın final sarayı hissi.
-- Konsept C onayı final MASTER ART veya raw Android PASS değildir; production görseli ayrıca üretilecek ve uygun aşamada kullanıcı kabulüne açılacaktır.
-- Başlangıç Limanı MASTER ART mimarisi yeni rotaya otomatik genellenmez.
+1. Rüzgâr Kapısı
+2. Bulut Bahçesi
+3. Kuş Geçidi
+4. Gökkuşağı Köprüsü
+5. Fırtına Kulesi
+6. Hava Gemisi Limanı
+7. Ay İskelesi
+8. Gizli Ada — bonus
+9. Yıldız Gözlemevi
+10. Güneş Sarayı
 
-### Canonical release’e giren production navigation scope
+- 7 sonrası bonus 8 ve normal 9 birlikte erişilebilir; 8, 9 için gate değildir.
+- 10, node 9 tamamlanmadan locked kalır.
 
-- `lib/main.dart`: yalnız production entry importu.
-- `lib/main_navigation.dart`: Oyna menüsüne Kelime Avı kartı.
-- `lib/word_hunt/word_hunt_production_entry_screen.dart`: production route + UID/guest-scoped local persistence glue.
-- `test/word_hunt_menu_entry_test.dart`: menü entry sözleşmesi.
-- `assets/questions.json`, BoardMap/67 node, canonical content, Firebase rules/model, AdMob/signing/Android config, package/version değişmedi.
+### Gökyüzü Adaları — V1 asset üretimi
+
+- Referans tuval: 1080×1920 dikey.
+- 48 atomik asset: 8 atmosfer + 7 ada + 6 yol + 10 landmark + 9 node/progression UI + 8 dekor.
+- Üretim 5 sprite sheet halinde yapılır; 48 ayrı görsel döngüsü yapılmaz.
+- Dinamik numara, yıldız, lock/progression ve metin asset içine bake edilmez.
+- Flutter/production entegrasyonundan önce statik rota mock'ı kullanıcı görsel kabulüne sunulur.
 
 ### Açık işler
 
-1. Gökyüzü Adaları **10 bölüm adı ve rota/node sırası** — **AÇIK / sıradaki gerçek ürün kapısı**.
-2. Gökyüzü Adaları **görsel teknik mimarisi** — MASTER ART raster / katmanlı Flutter / modüler asset yaklaşımı — **AÇIK / bölüm yapısından sonra kilitlenecek**.
-3. Gökyüzü Adaları **80 target+bonus kelime içerik iskeleti ve 8×8 grid üretimi** — **BEKLİYOR / bölüm yapısı sonrası**.
-4. `REFERENCE_FONT` exact kaynak yok — **DOĞRULANACAK / DEFERRED**.
-5. PR #166 tarihsel geliştirme/QA hattıdır — **MERGE YOK**.
-6. Sonraki paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA — **KABUL EDİLDİ / UYGULANACAK**.
-7. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
+1. **Sheet A–E görsel üretimi** — **AÇIK / SIRADAKİ ÜRETİM İŞİ**.
+2. Üretilen sheet'lerin atomik asset'lere ayrılması + toplu görsel QA — **BEKLİYOR**.
+3. 1080×1920 statik Gökyüzü Adaları rota mock'ı — **BEKLİYOR**.
+4. Rota mock görsel kullanıcı kabulü — **BEKLİYOR / FLUTTER'DAN ÖNCE**.
+5. Gökyüzü Adaları 80 target+bonus içerik iskeleti ve 8×8 grid üretimi — **BEKLİYOR / görsel rota sözleşmesiyle paralel veya sonrasında**.
+6. `REFERENCE_FONT` exact kaynak — **DOĞRULANACAK / DEFERRED**.
+7. PR #166 tarihsel geliştirme/QA hattıdır — **MERGE YOK**.
+8. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 
-**Gökyüzü Adaları için tema ve Neşeli & Parlak sanat yönü kilitlendi. Sıradaki gerçek ürün kararı 10 bölüm adı + rota sıralamasıdır; henüz kod/asset/APK üretimi başlamaz.**
+**Sıradaki çalışma: 5 sprite sheet'i üret, atomik asset'lere ayır, toplu QA yap ve Flutter'a geçmeden önce 1080×1920 rota mock'ını kullanıcı kabulüne getir.**
