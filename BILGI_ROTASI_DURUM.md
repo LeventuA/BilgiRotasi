@@ -112,6 +112,13 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 - Merge kapısı Levent’in 3 Eylül 2026 ayrı `Merge et` onayıyla geçildi.
 - Merge commitinde otomatik PR workflow’u tetiklenmedi (`0` run); exact PR HEAD’deki iki SUCCESS hattı teknik kanıt olarak korunur.
 
+## Docs-only Checkpoint PR #168
+
+- PR #168: **OPEN / READY / mergeable=true / merged=false**.
+- PR #169 merge’i sonrasında GitHub kısa süre `mergeable=false` gösterdi; yeniden hesaplamada **mergeable=true** oldu. Teknik blocker yok.
+- Current release `0c84aefd...` ile docs branch `2b0f8125...` diverged görünür; merge base eski release `189864c9...`dir. PR diff’i yine yalnız dört checkpoint belgesidir.
+- PR #168 ayrıca Levent’in açık merge onayı olmadan merge edilmeyecek.
+
 ## Korunan Alanlar
 
 - `assets/questions.json` kontrolsüz değiştirilmez.
@@ -122,8 +129,8 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
 ## Kalan Gerçek Kapılar
 
-1. Docs-only PR #168 canonical release base’i PR #169 merge’iyle ilerlediği için şu an `mergeable=false`; base refresh/reconciliation **DOĞRULANACAK**, ayrı merge onayı olmadan işlem yapılmayacak.
+1. Docs-only PR #168 merge kararı — **AÇIK / teknik blocker yok / ayrıca açık Levent onayı gerekli**.
 2. `REFERENCE_FONT` exact kaynak — **DOĞRULANACAK / DEFERRED**.
 3. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 
-**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169 MERGED / CANONICAL RELEASE HEAD `0c84aefd...` / PLAY YAYINI YOK.
+**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169 MERGED / CANONICAL RELEASE HEAD `0c84aefd...` / PR #168 DOCS-ONLY READY+MERGEABLE / PLAY YAYINI YOK.
