@@ -1,12 +1,12 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 3 Eylül 2026 — Gökyüzü Adaları için Sheet A–E konsept üretimleri ve bunları birleştiren **1080×1920 statik rota mock V1** üretildi. Bu görseller henüz atomik production asset veya raw Android acceptance değildir. Flutter/APK entegrasyonu başlamadı; sıradaki gerçek ürün kapısı Levent’in rota mock görsel kabulüdür.
+**Son güncelleme:** 3 Eylül 2026 — Gökyüzü Adaları rota mock V2, Başlangıç Limanı rota kabuğuna uyumlu olacak şekilde düzeltilip Levent tarafından görsel olarak onaylandı. Genel alt menü kaldırıldı; aynı UI/progression kabuğu + bölüm başına farklı landmark yaklaşımı LOCKED. Sıradaki aktif iş gerçek şeffaf production Sheet A–E üretimi ve ardından 48 atomik asset QA’dır. Flutter/APK entegrasyonu henüz başlamadı.
 
 > Root dosya güncel Kelime Avı çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
-## Aktif görev — Gökyüzü Adaları rota mock görsel kabulü
+## Aktif görev — Gökyüzü Adaları production asset export
 
-**Durum:** 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA+KONSEPT+ROTA+MODÜLER MİMARİ LOCKED / SHEET A–E KONSEPT SETİ ÜRETİLDİ / ROTA MOCK V1 ÜRETİLDİ / FLUTTER-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK
+**Durum:** 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA+KONSEPT+ROTA+MODÜLER MİMARİ LOCKED / ROTA MOCK V2 STATİK GÖRSEL PASS / PRODUCTION SHEET A–E AKTİF / FLUTTER-APK ÜRETİMİ BAŞLAMADI / CANONICAL RELEASE HEAD `3557a7e4...` / PLAY YAYINI YOK
 
 **Canonical release:** `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`
 
@@ -46,9 +46,12 @@
 30. Paket 2 görsel yön — **PASS / LOCKED**: `C — Neşeli & Parlak`.
 31. Gökyüzü Adaları 10 bölüm adı + rota sırası — **PASS / LOCKED**.
 32. Gökyüzü Adaları görsel teknik mimarisi — **PASS / LOCKED**: modüler asset yaklaşımı.
-33. V1 asset üretim sözleşmesi — **PASS / HAZIR**: 48 atomik asset / 5 sprite sheet; ayrıntı `docs/project-memory/GOKYUZU_ADALARI_ASSET_PLANI.md`.
-34. Sheet A–E konsept üretimi — **PASS / ÜRETİLDİ**; stil/kompozisyon yönü tek sette doğrulandı, fakat atomik production asset ayrıştırması henüz yapılmadı.
-35. 1080×1920 statik Gökyüzü Adaları rota mock V1 — **PASS / ÜRETİLDİ**; kullanıcı görsel kabulü henüz verilmedi.
+33. V1 asset üretim sözleşmesi — **PASS / HAZIR**: 48 atomik asset / 5 sprite sheet.
+34. Sheet A–E konsept üretimi — **PASS / ÜRETİLDİ**; yalnız stil/kompozisyon referansı.
+35. Rota mock V1 — **ÜRETİLDİ / alt genel menü nedeniyle superseded**.
+36. Rota mock V2 — **PASS / LEVENT GÖRSEL ONAYI**.
+37. Rota kabuğu kararı — **PASS / LOCKED**: alt genel menü yok; Başlangıç Limanı gibi rota içi köşe kontrolleri.
+38. Bölüm görsel ayrımı — **PASS / LOCKED**: aynı UI/progression kabuğu, her bölümde farklı landmark/ada kimliği.
 
 ### Gökyüzü Adaları — kilitli rota
 
@@ -66,23 +69,22 @@
 - 7 sonrası bonus 8 ve normal 9 birlikte erişilebilir; 8, 9 için gate değildir.
 - 10, node 9 tamamlanmadan locked kalır.
 
-### Gökyüzü Adaları — V1 asset üretimi
+### Gökyüzü Adaları — production asset aşaması
 
 - Referans tuval: 1080×1920 dikey.
 - 48 atomik asset: 8 atmosfer + 7 ada + 6 yol + 10 landmark + 9 node/progression UI + 8 dekor.
-- Üretim 5 sprite sheet halinde yapılır; 48 ayrı görsel döngüsü yapılmaz.
+- Konsept poster/sheet görselleri doğrudan production asset değildir.
+- Şimdi 5 gerçek production sheet üretilecek: şeffaf arka plan, yazı/etiket yok, parçalar birbirine değmez, crop için güvenli boşluk bırakılır.
 - Dinamik numara, yıldız, lock/progression ve metin asset içine bake edilmez.
-- Sheet A–E konsept seti üretildi; bunlar final atomik dosyalar değildir.
-- Statik rota mock V1 üretildi; Flutter/production entegrasyonundan önce Levent’in görsel kabulüne sunulmuştur.
 
 ### Açık işler
 
-1. **Rota mock V1 kullanıcı görsel kabulü** — **AÇIK / SIRADAKİ GERÇEK ÜRÜN KAPISI**.
-2. Sheet'lerin gerçek 48 atomik production asset'e ayrılması + toplu şeffaflık/kenar/ölçek QA — **BEKLİYOR / kullanıcı kabulü sonrası**.
-3. Flutter rota entegrasyonu — **BEKLİYOR / görsel kabul olmadan başlanmaz**.
+1. **Production Sheet A–E şeffaf export** — **AKTİF / SIRADAKİ ÜRETİM**.
+2. Sheet'leri gerçek 48 atomik production asset'e ayırma + toplu şeffaflık/kenar/ölçek QA — **BEKLİYOR**.
+3. Flutter rota entegrasyonu — **BEKLİYOR / atomik QA bitmeden başlanmaz**.
 4. Gökyüzü Adaları 80 target+bonus içerik iskeleti ve 8×8 grid üretimi — **BEKLİYOR**.
 5. `REFERENCE_FONT` exact kaynak — **DOĞRULANACAK / DEFERRED**.
 6. PR #166 tarihsel geliştirme/QA hattıdır — **MERGE YOK**.
 7. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 
-**Sıradaki çalışma: rota mock V1 için Levent görsel kabulü; kabul sonrası sheet'leri gerçek atomik production asset'lere ayır ve toplu QA yap.**
+**Sıradaki çalışma: onaylı V2 görsel dilini gerçek şeffaf Sheet A–E production export’una dönüştür; sonra 48 atomik asset + toplu QA.**
