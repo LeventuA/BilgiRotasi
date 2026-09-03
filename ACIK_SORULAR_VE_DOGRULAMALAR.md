@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 3 Eylül 2026 — Gökyüzü Adaları için 10 bölüm rota sırası ve modüler asset görsel mimarisi Levent tarafından onaylandı. V1 üretim planı 48 atomik asset / 5 sprite sheet olarak tanımlandı. Sıradaki açık kapı sprite sheet üretimi ve Flutter öncesi statik rota mock görsel kabulüdür. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yayını yapılmadı.
+**Son güncelleme:** 3 Eylül 2026 — Gökyüzü Adaları rota mock V2 Levent tarafından görsel olarak onaylandı. V2 ile alt genel menü kaldırıldı; Başlangıç Limanı rota kabuğu korunup yalnız rota içi köşe kontrolleri bırakıldı. 10 bölüm aynı UI/progression dilini paylaşacak, her bölüm landmark/ada kimliğiyle ayrışacak. Sıradaki açık üretim gerçek şeffaf Sheet A–E ve 48 atomik production asset QA’dır. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yayını yapılmadı.
 
 ## Kelime Avı
 
@@ -39,6 +39,9 @@
 - `GOKYUZU_ADALARI_ROUTE_STRUCTURE` — 10 bölüm adı + sıra **PASS / LOCKED / KAPANDI**.
 - `GOKYUZU_ADALARI_VISUAL_TECH_ARCHITECTURE` — **modüler asset yaklaşımı / PASS / LOCKED / KAPANDI**.
 - `GOKYUZU_ADALARI_ASSET_CONTRACT` — **48 atomik asset / 5 sprite sheet / PASS / PLAN HAZIR**.
+- `GOKYUZU_ADALARI_ROUTE_MOCK_V2_VISUAL` — alt genel menüsüz düzeltilmiş rota mock V2: **PASS / LEVENT ONAYI / KAPANDI**.
+- `GOKYUZU_ADALARI_ROUTE_SHELL` — Başlangıç Limanı ile tutarlı rota kabuğu, rota içi köşe kontrolleri, alt genel menü yok: **PASS / LOCKED / KAPANDI**.
+- `GOKYUZU_ADALARI_LEVEL_VISUAL_VARIATION` — aynı UI/progression kabuğu + bölüm başına farklı landmark/ada kimliği: **PASS / LOCKED / KAPANDI**.
 
 ### Gökyüzü Adaları kilitli rota
 
@@ -55,10 +58,9 @@
 
 ### Açık kalanlar
 
-- `GOKYUZU_ADALARI_SPRITE_SHEETS` — Sheet A–E görsel üretimi: **AÇIK / SIRADAKİ ÜRETİM**.
-- `GOKYUZU_ADALARI_ATOMIC_ASSET_QA` — sheet'leri 48 atomik asset'e ayırma, transparanlık/kenar/ışık/stil kontrolü: **BEKLİYOR**.
-- `GOKYUZU_ADALARI_ROUTE_MOCK` — 1080×1920 statik rota mock'ı: **BEKLİYOR**.
-- `GOKYUZU_ADALARI_ROUTE_VISUAL_ACCEPTANCE` — Flutter entegrasyonundan önce Levent görsel kabulü: **BEKLİYOR / ZORUNLU**.
+- `GOKYUZU_ADALARI_PRODUCTION_SPRITE_SHEETS` — yazısız/etiketsiz, şeffaf arka planlı Sheet A–E production export: **AKTİF / SIRADAKİ ÜRETİM**.
+- `GOKYUZU_ADALARI_ATOMIC_ASSET_QA` — production sheet'leri 48 atomik asset'e ayırma, transparanlık/kenar/ışık/stil/ölçek kontrolü: **BEKLİYOR**.
+- `GOKYUZU_ADALARI_FLUTTER_ROUTE` — modüler rota Flutter entegrasyonu: **BEKLİYOR / atomik QA sonrası**.
 - `GOKYUZU_ADALARI_CONTENT_PACKAGE` — 80 target+bonus içerik ve 8×8 grid paketi: **BEKLİYOR**.
 - `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — **DOĞRULANACAK / DEFERRED**.
@@ -69,6 +71,6 @@
 - PR #158 canonical release'e merge edildi: `189864c92a605e7bb960460300714049c730ea39`.
 - PR #169 canonical release'e merge edildi: `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 - PR #168 docs-only merge edildi: `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
-- Gökyüzü Adaları karar/asset planı docs-only PR #170 branch'inde tutulur; ürün kodu, asset binary veya Play işlemi henüz yapılmaz.
+- Gökyüzü Adaları karar/asset planı docs-only PR #170 branch'inde tutulur; ürün kodu/Play işlemi henüz yapılmaz.
 - PR #170 ayrı açık onay olmadan merge edilmez.
 - Play yayını yapılmamıştır.
