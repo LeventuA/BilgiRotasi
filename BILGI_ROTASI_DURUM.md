@@ -1,114 +1,134 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 1 Eylül 2026
+**Son güncelleme:** 3 Eylül 2026 — PR #163 Levent’in “Devam et” onayıyla Ready for Review yapıldı; merge ayrı açık onay bekliyor
 
 ## Canlı Sürüm / Release Hattı
 
 - Repo içi aktif ürün sürümü: **1.68.19+109**.
 - Paket: `com.leventua.bilgirotasi`.
-- `main` yayın kaynağı olarak varsayılmaz; release/ürün branch ve PR durumu her görevde yeniden doğrulanır.
+- Canonical release branch: `release/final-closed-test-aab-1.68.8` / `3a0f722a5d1acdb482d9c3ce62711617ebf79d3e`.
+- `main` yayın kaynağı olarak varsayılmaz; canlı ürün branch/PR her görevde yeniden doğrulanır.
 
-## Aktif İş — Kelime Avı V6 gameplay görsel hizalama
+## Kelime Avı V6 — Güncel Ürün Hattı
 
-Canonical gameplay sözleşmesi **8×8 / 64 hücre** olarak kilitlidir. 6×10 veya başka grid geometrisi bu çalışma kapsamında ürüne geri dönmez.
+Canonical gameplay sözleşmesi **8×8 / 64 hücre** olarak kilitlidir.
 
-### Parent V5 hattı
+- Parent V5: PR #161 — **OPEN / DRAFT / merge yok**.
+- V6 temel görsel: PR #162 — **OPEN / DRAFT / merge yok**.
+- Güncel ürün branch: `fix/kelime-avi-v6-found-path-connector-product-20260901`.
+- Güncel PR: **#163 — OPEN / READY / merged=false**.
+- PR #163 Ready öncesi doğrulanan HEAD: `4f3c0eaf231f23c70dd3bb35be6cfff2fe7f8d0c`; Ready sonrası yalnız proje checkpoint belgeleri güncellenmiştir.
+- PR #167 merge commit’i: `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
+- B5 + swipe ürün commit’i: `749c678b885d6cefec428c603c55a83a4190152c`.
+- Compact completion ürün commit’i: `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`.
+- Compact completion için exact tested `lib/word_hunt/word_hunt_screens.dart` blob’u: **`6ce2830a7df8eb696a9df589c91c544df7712969`**.
 
-- PR #161: `feat(kelime-avi): integrate approved V5 reference assets`.
-- Durum: **OPEN / DRAFT / merged=false**.
-- Base: `feat/kelime-avi-8x8-content-v1-20260829`.
-- Head: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
-- Doğrulanmış parent head: `9cfa12aeafd29d6197c91c79361648508adf400d`.
-- 11 V5 production reference asset SHA sözleşmesi locked kalır.
+## Görsel / Davranış Kabul Kapıları
 
-### V6 ürün hattı
+### Found-state edge-fuse — PASS
 
-- Branch: `fix/kelime-avi-v6-visual-found-state-20260901`.
-- Ana ürün commit: `e62314cb5874f6b290c70a59061255440c6f00e9`.
-- Commit adı: `fix(kelime-avi): productize verified V6 cell visuals`.
-- Draft PR: **#162** — `fix(kelime-avi): productize Android-verified V6 cell visuals`.
-- PR #162 base: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
-- Merge yapılmadı; Levent’in ayrı ve açık merge onayı zorunludur.
+- Exact tested commit: `4dddf00178ef9f14b8edb3fc706114be72f477a4`.
+- Android 16 run `33486609120` — **SUCCESS**.
+- Raw B10 initial + `YOL / 1/9` edge-fuse kullanıcı görsel kabulü: **PASS**.
+- Found hücreler ayrı formunu korur; yalnız komşu found hücrelerin görünür aralığı sıcak altın/turuncu birleşir.
 
-V6 ürün değişikliği:
-- `_harborGridSpacing`: `3.0 → 1.5`.
-- Hücre asset görsel ölçeği: `1.12`.
-- Aktif/found hücrelerde sıcak altın glow.
-- Bulunan hedef kelime plakasında sıcak turuncu found-state tonu.
-- Başarılı seçimden sonra instruction panelinde canonical instruction metni korunur.
-- Engine/path/scoring/timer/progression/içerik sözleşmeleri değiştirilmedi.
+### Error-state — PASS
 
-## Deterministik Ürünleştirme Gate — PASS
+- Clean tested commit: `0d845fc75bbe7b92c3d778ccfbcbde2761fa56de`.
+- Android 16 run `33524578623` — **SUCCESS**.
+- Error fill: `0xB35A1F2B`; border: `0xFFFF6B57`; 280 ms değişmedi.
+- Başarı altını ile hata bordosu ayrıştırıldı; kullanıcı görsel kabulü: **PASS**.
 
-Run: `33443015882` — **SUCCESS**.
+### Completion / result popup — PASS
 
-Doğrulama:
-- Clean product base: `d70dc2739b5c9552189bd7fef11ce3f3af4cc238`.
-- Base `word_hunt_screens.dart` blob: `e3fc4c50b8d5600c6b111a91313c6a47d7c98653`.
-- Android koşusunda kullanılan exact preview patch script + Dart formatter uygulandı.
-- Final product file blob: `d415876b1311362a8de6220cfcfe2978fce514dd`.
-- `dart analyze lib/word_hunt`: **No issues found**.
-- Focused Kelime Avı suite: **138/138 PASS**.
-- `git diff --check`: PASS.
-- Protected-scope gate: PASS.
+- Otomatik completion davranışı düzeltildi: ana hedefler tamam, bonus eksik → otomatik popup yok; tüm target+bonus tamam → otomatik popup; yeni oturum/replay → tekrar otomatik popup.
+- Premium liman temalı sonuç popup’ı kabul edildi; ardından kullanıcı isteğiyle kompaktlaştırıldı.
+- Exact compact tested product commit: `7fa81663cb93c3f9f43b5c1bb7cd8f4d11929fd8`.
+- Exact compact tested blob: `6ce2830a7df8eb696a9df589c91c544df7712969`.
+- Kompakt ölçüler: `maxWidth: 300`, padding `18/15/18/15`, sonuç butonu yüksekliği `44`.
+- Static/productize run `33629855060` — **SUCCESS**; analyze + Word Hunt **139/139 PASS**.
+- Final clean Android 16 run `33655562508` — **SUCCESS**.
+- Android gate: B5 target-only no-dialog PASS; B5 all-words auto-dialog PASS; B5 fresh replay auto-dialog PASS; B10 target-only no-dialog PASS; B10 all-words auto-dialog PASS; crash/ANR scan PASS.
+- Kompakt popup raw Android B5/B10 ekranları kullanıcıya gösterildi ve **2 Eylül 2026’da PASS** verildi.
 
-## Gerçek Android 16 Raw Kanıt — PASS
+## Gerçek İnsan Süre-Zorluk Playtesti
 
-Run: `33436607792` — **SUCCESS**.
+Levent’in gerçek cihaz/insan oynayışı:
 
-Koşul:
-- Android API: **36**.
-- Çözünürlük: **1080×1920**.
-- Density: **420 dpi**.
-- Static suite: **138/138 PASS**.
-- Android runtime candidate file blob: `d415876...`; ürün commitindeki blob ile birebir aynıdır.
+- **B5 ilk ölçüm: 115 saniye / 2 hata / 7 target + bonus ANIT.** Soft challenge hedefi 60 sn → **HEDEF KARŞILANMADI**.
+- **B10: 109 saniye / 4 hata / 9 target + bonus HAZİNE.** Soft challenge hedefi 120 sn → **HEDEF KARŞILANDI**.
+- B5 tuning sonrası gerçek cihaz sonucu: **32 saniye / UI'da 2 false-positive kayıt / 7 target + bonus ANIT**.
+- Levent iki kaydın bilinçli yanlış seçim olmadığını; kaydırma sırasında fazla temas/taşma kaynaklı olduğunu bildirdi. İnsan niyeti açısından sonuç **0 gerçek hata**dır.
+- B5 60 sn soft challenge tuning amacı **PASS**.
 
-B10 gerçek gesture kanıtı:
-- Initial: `0/9`.
-- İlk 900 ms sentetik swipe semantic değişiklik üretmedi ve PASS sayılmadı.
-- 1800 ms gerçek YOL swipe başarılı oldu.
-- Found-state: **`1/9`**.
-- YOL hücre changed-pixels: `[7370, 7236, 7449]`.
-- Progress panel changed-pixels: `299`.
-- `YOL_SEMANTIC_VISUAL_GATE=PASS`.
+### B5 60 sn denge adayı — TEKNİK + İNSAN SÜRE PASS
 
-Artifact:
-- ID: `9775000736`.
-- Digest: `sha256:f145e7e5901db55fa6dd1d71c89d246ce1c70a99a26cc790ad1b81ae8ed9aabd`.
+- Aday branch: `tune/kelime-avi-v6-b5-60s-layout-20260902`.
+- Aday ürün commit: `44ebec6b830a288df66f4fa16e2611dfa2165bae` — `tune(kelime-avi): simplify B5 word layout for 60s challenge`.
+- Yedi target (`ANKARA`, `ŞEHİR`, `TÜRKİYE`, `BAŞKENT`, `MECLİS`, `KULE`, `KALE`) ve bonus `ANIT` değişmedi.
+- 8×8 / 64 hücre, 60 sn soft challenge, yıldız/eşik kuralları ve yatay+dikey+çapraz yön aileleri korundu.
+- Android 16 run `33670657723` — **SUCCESS**.
+- `dart analyze`: PASS; aday sözleşme testleri **3/3 PASS**; dar viewport 64 hücre render smoke PASS.
+- QA APK SHA-256: `9a83695e1c62323a2ce61697bdb59aab16d91c8393be74c2725e40c0cea5a1c2`.
+- Raw Android: `B5_64_CELL_RENDER=PASS`, `B5_FULL_RASTER_SCREENSHOT=PASS`, `PROCESS_FAILURE_SCAN=PASS`.
+- Artifact `9862719927`.
 
-Bu kanıt image-edit/mockup değildir; raw Android emulator screenshotlarından üretilmiştir.
+### Swipe false-positive hata sayımı — PASS
+
+- Geliştirme uygulama commit’i: `8610b01e7ac534def33c0125bc2b9185d2774f5d`; tarihsel Draft PR **#166 — OPEN / merge yok**.
+- Input-normalization katmanı: kelime olamayacak kadar kısa gesture cezasız iptal; yalnız bir trailing hücre çıkarıldığında exact target/bonus/already-found oluşuyorsa kırpıp kabul; gesture boyunca tek aktif pointer; diğer anlamlı yanlış düz seçimler hata kalır.
+- Geniş “en yakın kelimeyi kabul et” veya otomatik kelime bulma uygulanmadı.
+- Path engine, scoring, timer, içerik ve yıldız eşikleri değiştirilmedi.
+- Otomatik `Kelime Avi Fast Checks` run `33688788065`: **SUCCESS**.
+
+### Temiz ürün entegrasyonu — PASS / MERGED PR #167
+
+- Entegrasyon branch’i: `integrate/kelime-avi-v6-b5-swipe-20260903`.
+- Ürün commit’i: `749c678b885d6cefec428c603c55a83a4190152c`.
+- Fast checks run `33724552713`: **SUCCESS**.
+- Android 16 run `33724549202`: **SUCCESS**. Gerçek fiziksel hareket ANKARA yolundan bir hücre taşırıldı; ANKARA bulundu (`0/7 → 1/7`) ve hata `0` kaldı.
+- Android özet kapıları: `B5_64_CELL_RENDER`, `REAL_GESTURE_ANKARA_PLUS_ONE_CELL`, `TARGET_PROGRESS_0_TO_1_OF_7`, `MISTAKES_REMAINED_ZERO`, `PROCESS_FAILURE_SCAN` — tamamı PASS.
+- Job `100550528945`; artifact `9881526593`; APK SHA-256 `73618f5af356374104475d457fe15f263cdd370b009f81f7691c5f7d333dbd58`.
+- Kanıt için eklenen geçici QA/workflow dosyaları final ürün diff’inden temizlendi.
+- **3 Eylül 2026:** Levent Ready onayı verdi; ardından “Devam et” ile açık merge kapısını onayladı.
+- PR #167: **CLOSED / MERGED**. Merge commit: `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
+- Merge hedefi release/main değil, PR #163’ün V6 ürün branch’idir.
+
+## Ölçeklenebilir üretim/test akışı
+
+- Her bölüm için ayrı branch/Action/APK/insan testi yapılmayacak.
+- Üretim birimi 10 bölümlük rota/pakettir; 10 bölüm tek içerik branch’inde geliştirilir.
+- Her bölüm otomatik grid/kelime/yol/timer/render sözleşme testinden geçer.
+- Varsayılan insan örneklemesi: B1 + B5 + B10; yalnız otomatik outlier bulunan bölüm ayrıca oynanır.
+- Tek Android 16 paket kapısı 10 bölüm tamamlanınca çalışır. Engine/ortak UI değişikliği ve final release ayrıca tam Android kapısı gerektirir.
+- Paket QA APK’sı B1–B10 bölüm seçici taşır; bölüm başına ayrı APK üretilmez.
+
+## Reference font
+
+- Runtime `fontFamily: 'serif'` kullanır.
+- `pubspec.yaml` custom font tanımı yok; repoda `.ttf/.otf/.woff/.woff2` kaynak yok.
+- Exact reference font ailesi mevcut kaynaklardan kanıtlanamadı.
+- `REFERENCE_FONT = DOĞRULANACAK / KAYNAK SINIRI`; spekülatif font değişikliği yapılmadı.
 
 ## Korunan Alanlar
 
-V6 çalışmasında değiştirilmedi:
+Bu ürünizasyon sırasında değiştirilmedi:
 - canonical 8×8 / 64 hücre içerik geometrisi
 - `assets/questions.json`
 - `lib/main.dart`
 - `assets/word_hunt/v5_reference_assets/**`
-- 11 locked V5 reference asset SHA sözleşmesi
+- locked V5 reference asset SHA sözleşmesi
 - BoardMap / 67 node
 - Firebase / AdMob / release signing
 - package name / version
 
-PR #161 head’ine karşı **ürün kodu farkı yalnız `lib/word_hunt/word_hunt_screens.dart`** dosyasındadır. Zorunlu proje hafıza dosyaları ayrıca aynı çalışma branch’inde güncellenir.
-
-## Görev / Karar Dosyaları
-
-- `GOREV_HAVUZU.md`: canlı repoda görev başlangıcında yoktu; mevcut V6 görevi doğrulanmış kanıtlarla yeniden oluşturuldu. Eski görev havuzu geçmişi **DOĞRULANACAK**.
-- `ACIK_SORULAR_VE_DOGRULAMALAR.md`: canlı repoda görev başlangıcında yoktu; mevcut açık V6 kapılarıyla oluşturuldu.
-- `KARARLAR.md`: canlı repoda görev başlangıcında bulunamadı. Bu görevde yeni kullanıcı ürün kararı eklenmedi; kanonik konumu **DOĞRULANACAK**.
-
 ## Kalan Gerçek Kapılar
 
-1. Raw Android B10 initial ekranının Levent tarafından görsel kabulü.
-2. Raw Android B10 `YOL / 1/9` found-state ekranının Levent tarafından görsel kabulü.
-3. `ERROR_STATE_VISUAL = DOĞRULANACAK`.
-4. `REFERENCE_FONT = DOĞRULANACAK`.
-5. B5 60s / B10 120s gerçek insan süre-zorluk playtesti.
-6. PR #161 ve PR #162 Ready kararları ayrıca verilecek.
-7. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
-8. Merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
+1. PR #167 B5 tuning + swipe entegrasyonu — **PASS / MERGED**; merge commit `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
+2. PR #163 güncel V6 ürün hattı — **READY / OPEN**; Levent 3 Eylül 2026’da “Devam et” ile Ready kapısını onayladı.
+3. PR #163 merge — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
+4. `REFERENCE_FONT` exact kaynak bulunmadığı sürece **DOĞRULANACAK / deferred**.
+5. PR #161 / #162 zincir kararları ayrıca ele alınacak.
+6. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
 
-## Kanonik Ayrıntılı Devir
-
-`docs/project-memory/GENEL_PROJE_OZETI.md`
+**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 MERGED / PR #163 READY-OPEN / MERGE YOK.

@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'word_hunt_input.dart';
 import 'word_hunt_models.dart';
 import 'word_hunt_path.dart';
 import 'word_hunt_progress.dart';
@@ -61,6 +62,7 @@ class _WordHuntLevelProductionScreenState
 
   List<WordHuntCell> _selectedPath = const <WordHuntCell>[];
   WordHuntCell? _dragStart;
+  int? _activePointer;
   Timer? _timer;
   Timer? _errorFeedbackTimer;
   late final DateTime _startedAt;
@@ -78,6 +80,11 @@ class _WordHuntLevelProductionScreenState
 
   bool get _allTargetsFound =>
       _foundTargets.length >= widget.level.targetWords.length;
+
+  bool get _allBonusFound =>
+      _foundBonus.length >= widget.level.bonusWords.length;
+
+  bool get _allWordsFound => _allTargetsFound && _allBonusFound;
 
   bool get _hasMeaningfulAttempt =>
       _foundTargets.isNotEmpty || _foundBonus.isNotEmpty || _mistakes > 0;
@@ -171,11 +178,14 @@ class _WordHuntLevelProductionScreenState
     );
   }
 
-  void _pointerDown(Offset position, Size size) {
-    if (_resultDelivered || _completionDialogOpen) return;
+  void _pointerDown(int pointer, Offset position, Size size) {
+    if (_resultDelivered || _completionDialogOpen || _activePointer != null) {
+      return;
+    }
     final cell = _cellForPosition(position, size);
     if (cell == null) return;
     setState(() {
+      _activePointer = pointer;
       _errorFeedbackTimer?.cancel();
       _errorCells = const <WordHuntCell>{};
       _dragStart = cell;
@@ -184,9 +194,14 @@ class _WordHuntLevelProductionScreenState
     });
   }
 
-  void _pointerMove(Offset position, Size size) {
+  void _pointerMove(int pointer, Offset position, Size size) {
     final start = _dragStart;
-    if (_resultDelivered || _completionDialogOpen || start == null) return;
+    if (_resultDelivered ||
+        _completionDialogOpen ||
+        start == null ||
+        pointer != _activePointer) {
+      return;
+    }
     final end = _cellForPosition(position, size);
     if (end == null) return;
     final path = _straightPathBetween(start, end);
@@ -212,16 +227,19 @@ class _WordHuntLevelProductionScreenState
     });
   }
 
-  void _pointerCancel() {
-    if (!mounted) return;
+  void _pointerCancel(int pointer) {
+    if (!mounted || pointer != _activePointer) return;
     setState(() {
+      _activePointer = null;
       _selectedPath = const <WordHuntCell>[];
       _dragStart = null;
       _selectionInvalid = false;
     });
   }
 
-  void _pointerUp() {
+  void _pointerUp(int pointer) {
+    if (pointer != _activePointer) return;
+    _activePointer = null;
     if (_dragStart == null || _resultDelivered || _completionDialogOpen) return;
     if (_selectionInvalid) {
       setState(() {
@@ -233,15 +251,27 @@ class _WordHuntLevelProductionScreenState
       });
       return;
     }
-    if (_selectedPath.isEmpty) return;
+    if (_selectedPath.isEmpty) {
+      _dragStart = null;
+      return;
+    }
 
-    final selectedPath = List<WordHuntCell>.unmodifiable(_selectedPath);
-    final result = WordHuntPathEngine.evaluate(
+    final resolution = WordHuntInputResolver.resolve(
       level: widget.level,
-      path: selectedPath,
+      path: _selectedPath,
       foundTargetWords: _foundTargets,
       foundBonusWords: _foundBonus,
     );
+    if (resolution.isIgnored) {
+      setState(() {
+        _selectedPath = const <WordHuntCell>[];
+        _dragStart = null;
+        _selectionInvalid = false;
+      });
+      return;
+    }
+    final selectedPath = resolution.path;
+    final result = resolution.result!;
 
     setState(() {
       _selectedPath = const <WordHuntCell>[];
@@ -285,6 +315,20 @@ class _WordHuntLevelProductionScreenState
           _status = result.error ?? 'Bu yol geçerli değil.';
       }
     });
+    _scheduleAutoCompletionIfAllWordsFound();
+  }
+
+  void _scheduleAutoCompletionIfAllWordsFound() {
+    if (!_allWordsFound || _completionDialogOpen || _resultDelivered) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted ||
+          !_allWordsFound ||
+          _completionDialogOpen ||
+          _resultDelivered) {
+        return;
+      }
+      unawaited(_finishLevel());
+    });
   }
 
   String? _unlockInfoCardFor(String word) {
@@ -314,57 +358,13 @@ class _WordHuntLevelProductionScreenState
     final leave = await showDialog<bool>(
       context: context,
       barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        key: const Key('word_hunt_production_result_dialog'),
-        backgroundColor: const Color(0xFF102443),
-        title: const Text(
-          'Bölüm Tamamlandı',
-          style: TextStyle(color: Colors.white),
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List<Widget>.generate(
-                3,
-                (index) => Icon(
-                  index < score.stars
-                      ? Icons.star_rounded
-                      : Icons.star_outline_rounded,
-                  key: Key('word_hunt_production_result_star_${index + 1}'),
-                  size: 42,
-                  color: index < score.stars
-                      ? const Color(0xFFFFD166)
-                      : const Color(0xFF77829A),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              '$elapsed saniye',
-              key: const Key('word_hunt_production_result_elapsed'),
-              style: const TextStyle(color: Color(0xFFD6D9E8)),
-            ),
-            Text(
-              '$_scoredMistakes hata',
-              key: const Key('word_hunt_production_result_mistakes'),
-              style: const TextStyle(color: Color(0xFFD6D9E8)),
-            ),
-            if (_foundBonus.isNotEmpty)
-              Text(
-                'Bonus: ${_foundBonus.join(', ')}',
-                style: const TextStyle(color: Color(0xFFFFD166)),
-              ),
-          ],
-        ),
-        actions: [
-          FilledButton(
-            key: const Key('word_hunt_production_return_route'),
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Rotaya Dön'),
-          ),
-        ],
+      barrierColor: const Color(0xD9000812),
+      builder: (dialogContext) => _HarborCompletionDialog(
+        stars: score.stars,
+        elapsedSeconds: elapsed,
+        mistakes: _scoredMistakes,
+        bonusWords: _foundBonus.toList(growable: false),
+        onReturn: () => Navigator.of(dialogContext).pop(true),
       ),
     );
 
@@ -564,56 +564,93 @@ class _WordHuntLevelProductionScreenState
                                     key: const Key('word_hunt_production_grid'),
                                     behavior: HitTestBehavior.opaque,
                                     onPointerDown: (event) => _pointerDown(
+                                      event.pointer,
                                       event.localPosition,
                                       gridSize,
                                     ),
                                     onPointerMove: (event) => _pointerMove(
+                                      event.pointer,
                                       event.localPosition,
                                       gridSize,
                                     ),
-                                    onPointerUp: (_) => _pointerUp(),
-                                    onPointerCancel: (_) => _pointerCancel(),
-                                    child: GridView.builder(
-                                      padding: EdgeInsets.zero,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount:
-                                                widget.level.columnCount,
-                                            crossAxisSpacing:
-                                                _harborGridSpacing,
-                                            mainAxisSpacing: _harborGridSpacing,
+                                    onPointerUp: (event) =>
+                                        _pointerUp(event.pointer),
+                                    onPointerCancel: (event) =>
+                                        _pointerCancel(event.pointer),
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        IgnorePointer(
+                                          child: CustomPaint(
+                                            key: const Key(
+                                              'word_hunt_production_found_path_connector',
+                                            ),
+                                            painter:
+                                                _HarborFoundPathConnectorPainter(
+                                                  paths: _foundPaths.values
+                                                      .map(
+                                                        (path) =>
+                                                            List<
+                                                              WordHuntCell
+                                                            >.unmodifiable(
+                                                              path,
+                                                            ),
+                                                      )
+                                                      .toList(growable: false),
+                                                  cellExtent: cellExtent,
+                                                  spacing: _harborGridSpacing,
+                                                ),
                                           ),
-                                      itemCount:
-                                          widget.level.rowCount *
-                                          widget.level.columnCount,
-                                      itemBuilder: (context, index) {
-                                        final row =
-                                            index ~/ widget.level.columnCount;
-                                        final column =
-                                            index % widget.level.columnCount;
-                                        final cell = WordHuntCell(row, column);
-                                        final rune = widget
-                                            .level
-                                            .grid[row]
-                                            .runes
-                                            .elementAt(column);
-                                        return _HarborGridCell(
-                                          key: Key(
-                                            'word_hunt_production_cell_${row}_$column',
-                                          ),
-                                          row: row,
-                                          column: column,
-                                          letter: String.fromCharCode(rune),
-                                          extent: cellExtent,
-                                          selected: _selectedPath.contains(
-                                            cell,
-                                          ),
-                                          found: _isFound(cell),
-                                          error: _errorCells.contains(cell),
-                                        );
-                                      },
+                                        ),
+                                        GridView.builder(
+                                          padding: EdgeInsets.zero,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount:
+                                                    widget.level.columnCount,
+                                                crossAxisSpacing:
+                                                    _harborGridSpacing,
+                                                mainAxisSpacing:
+                                                    _harborGridSpacing,
+                                              ),
+                                          itemCount:
+                                              widget.level.rowCount *
+                                              widget.level.columnCount,
+                                          itemBuilder: (context, index) {
+                                            final row =
+                                                index ~/
+                                                widget.level.columnCount;
+                                            final column =
+                                                index %
+                                                widget.level.columnCount;
+                                            final cell = WordHuntCell(
+                                              row,
+                                              column,
+                                            );
+                                            final rune = widget
+                                                .level
+                                                .grid[row]
+                                                .runes
+                                                .elementAt(column);
+                                            return _HarborGridCell(
+                                              key: Key(
+                                                'word_hunt_production_cell_${row}_$column',
+                                              ),
+                                              row: row,
+                                              column: column,
+                                              letter: String.fromCharCode(rune),
+                                              extent: cellExtent,
+                                              selected: _selectedPath.contains(
+                                                cell,
+                                              ),
+                                              found: _isFound(cell),
+                                              error: _errorCells.contains(cell),
+                                            );
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -1420,6 +1457,267 @@ class _WordHuntLevelPrototypeScreenState
   }
 }
 
+class _HarborCompletionDialog extends StatelessWidget {
+  const _HarborCompletionDialog({
+    required this.stars,
+    required this.elapsedSeconds,
+    required this.mistakes,
+    required this.bonusWords,
+    required this.onReturn,
+  });
+
+  final int stars;
+  final int elapsedSeconds;
+  final int mistakes;
+  final List<String> bonusWords;
+  final VoidCallback onReturn;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      key: const Key('word_hunt_production_result_dialog'),
+      backgroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 300),
+        child: Container(
+          key: const Key('word_hunt_production_result_panel'),
+          padding: const EdgeInsets.fromLTRB(18, 15, 18, 15),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: <Color>[Color(0xFF0B2137), Color(0xFF061525)],
+            ),
+            borderRadius: BorderRadius.circular(22),
+            border: Border.all(color: const Color(0xFFD29A43), width: 1.4),
+            boxShadow: const <BoxShadow>[
+              BoxShadow(
+                color: Color(0xCC000000),
+                blurRadius: 24,
+                offset: Offset(0, 11),
+              ),
+              BoxShadow(color: Color(0x33FFCA62), blurRadius: 14),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                width: 46,
+                height: 3,
+                decoration: BoxDecoration(
+                  color: _harborGold,
+                  borderRadius: BorderRadius.circular(999),
+                  boxShadow: const <BoxShadow>[
+                    BoxShadow(color: Color(0x66FFCA62), blurRadius: 8),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Icon(Icons.anchor_rounded, color: _harborGold, size: 28),
+              const SizedBox(height: 6),
+              const Text(
+                'Bölüm Tamamlandı',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: _harborCream,
+                  fontFamily: 'serif',
+                  fontSize: 22,
+                  height: 1.05,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: .2,
+                  shadows: <Shadow>[
+                    Shadow(color: Color(0xE0000000), blurRadius: 7),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 5),
+              const Text(
+                'Başlangıç Limanı',
+                style: TextStyle(
+                  color: Color(0xFFD9A64F),
+                  fontFamily: 'serif',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: .4,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List<Widget>.generate(
+                  3,
+                  (index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 3),
+                    child: Icon(
+                      index < stars
+                          ? Icons.star_rounded
+                          : Icons.star_outline_rounded,
+                      key: Key('word_hunt_production_result_star_${index + 1}'),
+                      size: 34,
+                      color: index < stars
+                          ? const Color(0xFFFFCF5C)
+                          : const Color(0xFF6D6A62),
+                      shadows: index < stars
+                          ? const <Shadow>[
+                              Shadow(color: Color(0x66FFB52A), blurRadius: 10),
+                            ]
+                          : const <Shadow>[],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Container(height: 1, color: const Color(0x557C5A2A)),
+              const SizedBox(height: 10),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: _HarborResultMetric(
+                      icon: Icons.timer_outlined,
+                      value: '$elapsedSeconds saniye',
+                      valueKey: const Key(
+                        'word_hunt_production_result_elapsed',
+                      ),
+                      label: 'Süre',
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: _HarborResultMetric(
+                      icon: Icons.close_rounded,
+                      value: '$mistakes hata',
+                      valueKey: const Key(
+                        'word_hunt_production_result_mistakes',
+                      ),
+                      label: 'Hata',
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: _HarborResultMetric(
+                      icon: Icons.auto_awesome_rounded,
+                      value: '${bonusWords.length}',
+                      label: 'Bonus',
+                    ),
+                  ),
+                ],
+              ),
+              if (bonusWords.isNotEmpty) ...<Widget>[
+                const SizedBox(height: 9),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 7,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0x99261307),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: const Color(0xFF8F642A)),
+                  ),
+                  child: Text(
+                    '✦ Bonus: ${bonusWords.join(' • ')}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(0xFFFFD47B),
+                      fontFamily: 'serif',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+              const SizedBox(height: 14),
+              SizedBox(
+                width: double.infinity,
+                height: 44,
+                child: FilledButton.icon(
+                  key: const Key('word_hunt_production_return_route'),
+                  onPressed: onReturn,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFF8A5A16),
+                    foregroundColor: _harborCream,
+                    side: const BorderSide(color: _harborGold, width: 1.2),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    textStyle: const TextStyle(
+                      fontFamily: 'serif',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  icon: const Icon(Icons.route_rounded, size: 18),
+                  label: const Text('Rotaya Dön'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HarborResultMetric extends StatelessWidget {
+  const _HarborResultMetric({
+    required this.icon,
+    required this.value,
+    required this.label,
+    this.valueKey,
+  });
+
+  final IconData icon;
+  final String value;
+  final String label;
+  final Key? valueKey;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 7),
+      decoration: BoxDecoration(
+        color: const Color(0xB3091827),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0x557C5A2A)),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Icon(icon, color: const Color(0xFFD9A64F), size: 16),
+          const SizedBox(height: 3),
+          Text(
+            value,
+            key: valueKey,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: _harborCream,
+              fontFamily: 'serif',
+              fontSize: 11,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            style: const TextStyle(
+              color: Color(0xFF9AA8B8),
+              fontSize: 9,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _HarborGameplayHeader extends StatelessWidget {
   const _HarborGameplayHeader({required this.levelIndex, required this.onBack});
 
@@ -1610,6 +1908,66 @@ class _HarborWordPlate extends StatelessWidget {
   }
 }
 
+class _HarborFoundPathConnectorPainter extends CustomPainter {
+  const _HarborFoundPathConnectorPainter({
+    required this.paths,
+    required this.cellExtent,
+    required this.spacing,
+  });
+
+  final List<List<WordHuntCell>> paths;
+  final double cellExtent;
+  final double spacing;
+
+  Offset _centerFor(WordHuntCell cell) {
+    final stride = cellExtent + spacing;
+    return Offset(
+      cell.column * stride + cellExtent / 2,
+      cell.row * stride + cellExtent / 2,
+    );
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (paths.isEmpty) return;
+
+    final glowPaint = Paint()
+      ..color = const Color(0x66FFB52A)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(10, cellExtent * .70)
+      ..strokeCap = StrokeCap.butt;
+    final bridgePaint = Paint()
+      ..color = const Color(0xF2C06A12)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = math.max(8, cellExtent * .58)
+      ..strokeCap = StrokeCap.butt;
+
+    for (final path in paths) {
+      if (path.length < 2) continue;
+      for (var index = 0; index < path.length - 1; index++) {
+        final startCenter = _centerFor(path[index]);
+        final endCenter = _centerFor(path[index + 1]);
+        final delta = endCenter - startCenter;
+        final distance = delta.distance;
+        if (distance <= 0) continue;
+        final direction = delta / distance;
+        final overlap = cellExtent * .40;
+        final start = startCenter + direction * overlap;
+        final end = endCenter - direction * overlap;
+        canvas.drawLine(start, end, glowPaint);
+        canvas.drawLine(start, end, bridgePaint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _HarborFoundPathConnectorPainter oldDelegate) {
+    return oldDelegate.paths != paths ||
+        oldDelegate.cellExtent != cellExtent ||
+        oldDelegate.spacing != spacing;
+  }
+}
+
 class _HarborGridCell extends StatelessWidget {
   const _HarborGridCell({
     super.key,
@@ -1643,7 +2001,7 @@ class _HarborGridCell extends StatelessWidget {
         boxShadow: active
             ? const <BoxShadow>[
                 BoxShadow(
-                  color: Color(0x55FF9D22),
+                  color: Color(0x66FFB52A),
                   blurRadius: 3,
                   spreadRadius: .2,
                 ),
@@ -1667,9 +2025,9 @@ class _HarborGridCell extends StatelessWidget {
           if (error)
             DecoratedBox(
               decoration: BoxDecoration(
-                color: const Color(0x338B3B20),
+                color: const Color(0xB35A1F2B),
                 borderRadius: BorderRadius.circular(math.max(6, extent * .14)),
-                border: Border.all(color: const Color(0xFFFFB06A), width: 1.2),
+                border: Border.all(color: const Color(0xFFFF6B57), width: 1.2),
               ),
             ),
           Center(

@@ -1,42 +1,66 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Canlı dosya başlangıç durumu:** 1 Eylül 2026 tarihinde canlı GitHub reposunda bu dosya bulunamadı. Bu kayıt yalnız doğrulanmış mevcut Kelime Avı görevini yeniden kurar; daha eski görev havuzunun kanonik geçmişi **DOĞRULANACAK**.
+**Son güncelleme:** 3 Eylül 2026 — PR #163 Ready kapısı Levent’in “Devam et” onayıyla tamamlandı; merge ayrı onay bekliyor
 
-## Aktif görev — Kelime Avı V6 gameplay görsel hizalama
+> Root dosya mevcut V6 çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
-**Durum:** TEKNİK QA PASS / KULLANICI GÖRSEL KABULÜ AÇIK
+## Aktif görev — Kelime Avı V6 final karar kapıları
 
-**Parent çalışma:** PR #161 — `feat/kelime-avi-v5-reference-assets-integration-20260831`
+**Durum:** FOUND/ERROR/COMPACT COMPLETION KULLANICI PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 MERGED / PR #163 READY-OPEN / MERGE YOK
 
-**Ürün branch:** `fix/kelime-avi-v6-visual-found-state-20260901`
+**Parent V5:** PR #161 — OPEN / DRAFT
 
-**Ürün commit:** `e62314cb5874f6b290c70a59061255440c6f00e9` — `fix(kelime-avi): productize verified V6 cell visuals`
+**V6 temel ürün:** PR #162 — OPEN / DRAFT
 
-**Draft PR:** #162 — `fix(kelime-avi): productize Android-verified V6 cell visuals`
+**Güncel ürün branch:** `fix/kelime-avi-v6-found-path-connector-product-20260901`
 
-### Kapsam
+**PR #167 merge commit:** `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`
 
-- Canonical gameplay grid 8×8 / 64 hücre korunacak.
-- V5 locked reference asset SHA sözleşmesi değişmeyecek.
-- Gameplay hücre aralığı, hücre görsel ölçeği ve found-state sunumu gerçek Android runtime hedefiyle hizalanacak.
-- Engine, path, scoring, timer, progression, içerik, `assets/questions.json` ve `lib/main.dart` bu görevde değişmeyecek.
+**Compact completion exact product blob:** `6ce2830a7df8eb696a9df589c91c544df7712969`
 
-### Bitti ölçütü
+**Güncel PR:** #163 — **OPEN / READY / merge yok**
 
-1. Ürün diffinde canonical 8×8/64 sözleşmesi bozulmamış olacak. **PASS**
-2. `dart analyze lib/word_hunt` temiz olacak. **PASS**
-3. Focused Kelime Avı testleri geçecek. **138/138 PASS**
-4. Android API 36 / 1080×1920 / 420 dpi raw runtime initial ekranı üretilecek. **PASS**
-5. Gerçek gesture ile B10 `0/9 → 1/9` found-state üretilecek. **PASS**
-6. Android’de koşan dosya ile ürün commitindeki dosya blob’u birebir aynı olacak. **PASS — `d415876b1311362a8de6220cfcfe2978fce514dd`**
-7. Raw initial ve found-state görüntüleri Levent tarafından görsel olarak kabul edilecek. **AÇIK**
-8. `ERROR_STATE_VISUAL` ve `REFERENCE_FONT` belirsizlikleri çözülecek veya ayrıca açıkça ertelenecek. **DOĞRULANACAK**
-9. B5 60s / B10 120s gerçek insan süre-zorluk playtesti tamamlanacak veya ayrıca açıkça ertelenecek. **AÇIK**
-10. PR Ready/merge kararı ayrı verilecek; Levent’in açık merge onayı olmadan merge yapılmayacak. **AÇIK**
+### Tamamlanan kapılar
 
-### Kanıt
+1. Canonical 8×8 / 64 hücre korunması — **PASS**.
+2. Edge-fuse found-state raw Android kullanıcı kabulü — **PASS**; run `33486609120`.
+3. Error-state bordo/kırmızı ayrımı — **PASS**; run `33524578623`.
+4. Completion otomatik tetikleme/replay regression — **PASS**.
+5. Premium completion popup tasarımı — **PASS**.
+6. Kullanıcı isteğiyle kompakt popup — **PASS**.
+7. Compact static/productize gate — **PASS**; run `33629855060`, analyze + Word Hunt **139/139 PASS**.
+8. Compact Android 16 B5/B10 runtime — **PASS**; final clean run `33655562508`.
+9. Exact tested compact blob’un PR #163 ürün branch’ine taşınması — **PASS**; product commit `9a6fede2...`, blob `6ce2830...`.
+10. QA-only workflow/scriptlerin ürün branch’ine taşınmaması — **PASS**.
+11. B5 60 sn yeni 8×8 yerleşim adayı statik + Android 16 kapısı — **PASS**; ürün commit `44ebec6b...`, run `33670657723`, artifact `9862719927`.
+12. B5 adayı kelimeleri, 60 sn timer/yıldız eşiklerini, tekil fiziksel yolları ve yatay+dikey+çapraz yön ailelerini koruma — **PASS**.
+13. B5 tuning + swipe toleransını PR #163 tabanlı temiz ürün branch'ine taşıma — **PASS**; ürün commit `749c678b...`.
+14. Otomatik fast gate + gerçek Android 16 `ANKARA + bir hücre taşma` kanıtı — **PASS**; run `33724552713` ve `33724549202`, ilerleme `1/7`, hata `0`.
+15. PR #167 son diff/review incelemesi ve Levent Ready onayı — **PASS**.
+16. PR #167 merge — **PASS**; CLOSED / MERGED, merge commit `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
+17. PR #163 final diff/review canlı kontrolü — **PASS**; mergeable=true, açık review/thread yok, korunan alanlar diff dışında.
+18. PR #163 Ready for Review — **PASS**; 3 Eylül 2026 Levent “Devam et” onayıyla Draft kapatıldı.
 
-- Productization run: `33443015882` — SUCCESS.
-- Android 16 raw proof run: `33436607792` — SUCCESS.
-- Android artifact: `9775000736`.
-- YOL semantic visual gate: PASS; başarılı swipe süresi 1800 ms.
+### Gerçek insan süre-zorluk sonucu
+
+- B5 ilk ölçüm: **115 sn / 2 hata**; 60 sn soft challenge hedefi → **HEDEF KARŞILANMADI**.
+- B10: **109 sn / 4 hata**; 120 sn soft challenge hedefi → **HEDEF KARŞILANDI**.
+- B5 tuning sonrası: **32 sn / UI'da 2 false-positive kayıt**. Levent bu iki kaydın bilinçli yanlış seçim olmadığını bildirdi; süre **PASS**, gerçek niyet hatası **0**.
+- False-positive input düzeltmesi gerçek Android 16 taşma kanıtıyla **PASS**.
+
+### Açık işler
+
+1. PR #163 merge kararı. **AÇIK / ayrı Levent onayı gerekli**.
+2. PR #166 tarihsel geliştirme/QA hattıdır; final ürün değişikliği PR #167 üzerinden PR #163’e merge edilmiştir. **PR #166 MERGE YOK**.
+3. Sonraki 10 bölümlük paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA akışını uygula. **KABUL EDİLDİ / UYGULANACAK**.
+4. `REFERENCE_FONT` exact kaynak mevcut değil; kaynak bulunursa doğrulanacak. **DOĞRULANACAK / DEFERRED**.
+5. PR #161 / #162 zincir Ready kararları ayrıca ele alınacak. **AÇIK**.
+6. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope. **AÇIK**.
+
+### Korunan kapsam
+
+- Engine, path evaluation, scoring, timer, progression ve genel içerik sözleşmesi değiştirilmedi.
+- `assets/questions.json`, `lib/main.dart`, V5 locked assets, BoardMap/67 node, AdMob/Firebase/release signing, package/version değiştirilmedi.
+- Sürüm: **1.68.19+109**.
+
+**PR #163 Ready kapısı kapanmıştır. Sıradaki gerçek karar kapısı PR #163 merge; release/main’e geçiş bunun parçası değildir.**
