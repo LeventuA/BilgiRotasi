@@ -9,9 +9,9 @@ permissions:
   contents: write
 
 jobs:
-  produce-and-validate:
-    name: Patch, analyze ve focused test
-    if: ${{ !contains(github.event.head_commit.message, '[nav-produced]') }}
+  minimize-and-validate:
+    name: Minimum diff, analyze ve focused test
+    if: ${{ !contains(github.event.head_commit.message, '[nav-minimized]') }}
     runs-on: ubuntu-22.04
     timeout-minutes: 30
 
@@ -29,22 +29,15 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Minimum production navigation patch uygula
+      - name: main_navigation diffini minimuma indir
         shell: bash
         run: |
           set -euo pipefail
+          git show 5a621dd4bd358d776cdbfdb4956598f2792371b3:lib/main_navigation.dart \
+            > lib/main_navigation.dart
+
           python3 - <<'PY'
           from pathlib import Path
-
-          main_path = Path('lib/main.dart')
-          main = main_path.read_text(encoding='utf-8')
-          import_line = "import 'word_hunt/word_hunt_production_entry_screen.dart';\n"
-          if import_line not in main:
-              needle = "import 'sound_data.dart';\n"
-              if main.count(needle) != 1:
-                  raise SystemExit('main.dart import anchor bulunamadı veya tekil değil')
-              main = main.replace(needle, needle + import_line, 1)
-              main_path.write_text(main, encoding='utf-8')
 
           nav_path = Path('lib/main_navigation.dart')
           nav = nav_path.read_text(encoding='utf-8')
@@ -82,10 +75,9 @@ jobs:
             }
           }
           """
-          if 'static const String wordHuntTitle' not in nav:
-              if nav.count(old_catalog) != 1:
-                  raise SystemExit('PlayCenterEntryCatalog anchor bulunamadı veya tekil değil')
-              nav = nav.replace(old_catalog, new_catalog, 1)
+          if nav.count(old_catalog) != 1:
+              raise SystemExit('PlayCenterEntryCatalog anchor bulunamadı veya tekil değil')
+          nav = nav.replace(old_catalog, new_catalog, 1)
 
           live_card = """        _HubActionCard(
                     emoji: '⚔️',
@@ -115,29 +107,23 @@ jobs:
                         ),
                   ),
           """
-          if "'word_hunt'" not in nav:
-              if nav.count(live_card) != 1:
-                  raise SystemExit('Canlı Düello kart anchor bulunamadı veya tekil değil')
-              nav = nav.replace(live_card, word_hunt_card + live_card, 1)
-
+          if nav.count(live_card) != 1:
+              raise SystemExit('Canlı Düello kart anchor bulunamadı veya tekil değil')
+          nav = nav.replace(live_card, word_hunt_card + live_card, 1)
           nav_path.write_text(nav, encoding='utf-8')
           PY
 
-      - name: Format ve scope doğrula
+      - name: Minimum scope doğrula
         shell: bash
         run: |
           set -euo pipefail
-          dart format \
-            lib/main_navigation.dart \
-            lib/word_hunt/word_hunt_production_entry_screen.dart \
-            test/word_hunt_menu_entry_test.dart
           git diff --check
           CHANGED="$(git diff --name-only | sort)"
           printf '%s\n' "$CHANGED"
-          test "$CHANGED" = $'lib/main.dart\nlib/main_navigation.dart\nlib/word_hunt/word_hunt_production_entry_screen.dart'
-          grep -Fq "import 'word_hunt/word_hunt_production_entry_screen.dart';" lib/main.dart
+          test "$CHANGED" = 'lib/main_navigation.dart'
           grep -Fq "static const String wordHuntTitle = 'Kelime Avı';" lib/main_navigation.dart
           grep -Fq "'word_hunt'" lib/main_navigation.dart
+          grep -Fq "import 'word_hunt/word_hunt_production_entry_screen.dart';" lib/main.dart
           ! git diff --name-only | grep -Eq '^(assets/questions.json|lib/board_|android/|firebase|pubspec.yaml)'
 
       - name: Bağımlılıklar
@@ -157,17 +143,15 @@ jobs:
             test/word_hunt_starter_content_test.dart
           git diff --check
 
-      - name: Exact ürün commitini yaz
+      - name: Minimum diff commitini yaz
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'ZMilaStudio'
           git config user.email 'levent.ua@gmail.com'
-          git add \
-            lib/main.dart \
-            lib/main_navigation.dart \
-            lib/word_hunt/word_hunt_production_entry_screen.dart
-          git commit -m 'feat(kelime-avi): connect production navigation [nav-produced] [skip ci]'
-          echo "PRODUCT_HEAD=$(git rev-parse HEAD)"
+          git add lib/main_navigation.dart
+          git commit -m 'refactor(kelime-avi): minimize production navigation diff [nav-minimized] [skip ci]'
+          echo "MINIMIZED_HEAD=$(git rev-parse HEAD)"
           git show --stat --oneline --decorate=short HEAD
+          git diff --stat 189864c92a605e7bb960460300714049c730ea39..HEAD
           git push origin HEAD:feat/kelime-avi-production-navigation-20260903
