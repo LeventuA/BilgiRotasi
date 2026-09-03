@@ -186,7 +186,7 @@ Bu bölüm, 31 Ağustos kayıtlarındaki `ERROR_STATE_VISUAL = DOĞRULANACAK` du
 - Exact tested compact blob PR #163 ürün branch’ine QA-only dosya taşınmadan productize edildi: commit `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`; branch `fix/kelime-avi-v6-found-path-connector-product-20260901`; blob exact `6ce2830...`.
 - İnsan süre-zorluk playtesti scripted QA’dan ayrı tutulur: Levent B5’i **115 sn / 2 hata** ile tamamladı; 60 sn soft challenge hedefi karşılanmadı. B10’u **109 sn / 4 hata** ile tamamladı; 120 sn soft challenge hedefi karşılandı. Overall timing sonucu **MIXED**; B5 tuning kararı ayrıca verilecektir.
 - Soft challenge hard-fail değildir; yalnız bu ölçüm nedeniyle timer/gameplay otomatik değiştirilmez.
-- PR #163 **Draft/Open** kalır; görsel PASS Ready veya merge onayı değildir. Merge için Levent’in ayrıca açık onayı zorunludur.
+- PR #163 **Draft/Open** kalır; görsel PASS Ready veya merge onayı değildir. Merge için Levent’in ayrıca açık onay zorunludur.
 
 ---
 
@@ -209,7 +209,7 @@ Bu bölüm, 31 Ağustos kayıtlarındaki `ERROR_STATE_VISUAL = DOĞRULANACAK` du
 - Seçim yalnız son hücresi çıkarıldığında exact target, bonus veya zaten bulunmuş kelime oluyorsa tek trailing hücre kırpılır; daha geniş yakın-kelime tahmini yapılmaz.
 - Gesture boyunca ilk aktif pointer kilitlenir, diğer temaslar seçim yolunu değiştirmez.
 - Yeterince uzun gerçek yanlış düz seçimlerin hata sayımı korunur; canonical path engine, scoring, timer ve yıldız eşikleri değiştirilmez.
-- Düzeltme hedefli unit/widget testleriyle doğrulanır; merge yine Levent’in ayrı açık onayını gerektirir.
+- Düzeltme hedefli unit/widget testleriyle doğrulanır; merge yine Levent'in ayrı açık onayını gerektirir.
 
 ## 14. 3 Eylül 2026 — WORK V2 hızlı otonom üretim kararı
 
@@ -245,3 +245,14 @@ Bu bölüm, 31 Ağustos kayıtlarındaki `ERROR_STATE_VISUAL = DOĞRULANACAK` du
 - WORK V2 gereği 48 ayrı görsel üretim döngüsü yapılmaz; beş toplu sheet üretilir, parçalanır, toplu QA yapılır ve yalnız başarısız parçalar yeniden üretilir.
 - Flutter/production entegrasyonuna geçmeden önce 48 atomik asset ile hazırlanmış 1080×1920 statik rota mock'ı Levent'in görsel kabulüne sunulur.
 - Bu karar canonical 8×8 gameplay engine/path/scoring/timer/progression sözleşmesini değiştirmez; yalnız Gökyüzü Adaları rota görsel üretim mimarisini tanımlar.
+
+## 17. 3 Eylül 2026 — Gökyüzü Adaları rota mock V2 kullanıcı görsel kabulü
+
+- Levent, Başlangıç Limanı ekranıyla karşılaştırarak ilk Gökyüzü Adaları mock'ındaki `Mağaza / Başarılar / Oyna / Sıralama / Rozetler` genel alt menü barının rota ekranına ait olmadığını belirtti; bu alt bar **REJECTED** ve superseded kabul edilir.
+- Düzeltilmiş V2 rota mock'ı Başlangıç Limanı rota kabuğuna uyumlu olacak şekilde alt genel menüsüz, sol üst geri + sağ üst bilgi + alt köşelerde yalnız rota içi kontroller yaklaşımıyla üretildi.
+- Levent düzeltilmiş V2 mock'ı 3 Eylül 2026'da açıkça **onayladı**; bu nedenle Gökyüzü Adaları statik rota görsel yönü **PASS / LOCKED** kabul edilir.
+- 10 bölüm tamamen ayrı UI kullanmayacaktır. Ortak node/plaque/star/progression kabuğu korunur; bölüm farkı landmark, ada dekoru ve lokal atmosfer ile verilir.
+- Bölüm görsel kimlikleri: Rüzgâr Kapısı giriş/değirmen; Bulut Bahçesi çiçek/pembe ağaç; Kuş Geçidi kuş/kemer; Gökkuşağı Köprüsü gökkuşağı; Fırtına Kulesi dramatik fırtına; Hava Gemisi Limanı hava gemisi; Ay İskelesi ay; Gizli Ada bonus/gizli ada; Yıldız Gözlemevi gözlemevi; Güneş Sarayı altın final sarayı.
+- V2 kabulü **statik tasarım kabulüdür**; raw Android runtime acceptance değildir.
+- V2 kabulünden sonra gerçek production asset aşaması açılır: 5 şeffaf, yazısız/etiketsiz sprite sheet → 48 atomik asset → şeffaflık/kenar/ölçek/stil QA → ardından Flutter entegrasyonu.
+- Production raster assetlere bölüm numarası, yıldız durumu, kilit/progression veya değişken metin bake edilmeyeceği kararı aynen korunur.
