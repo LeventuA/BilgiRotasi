@@ -102,11 +102,12 @@ class MainNavigationGrid extends StatelessWidget {
             _MainNavigationCard(
               section: MainNavigationSection.settings,
               horizontal: true,
-              onTap: () => _open(
-                context,
-                MainNavigationSection.settings.name,
-                SettingsCenterScreen(questionBank: questionBank),
-              ),
+              onTap:
+                  () => _open(
+                    context,
+                    MainNavigationSection.settings.name,
+                    SettingsCenterScreen(questionBank: questionBank),
+                  ),
             ),
           ],
         );
@@ -244,35 +245,36 @@ class _MainNavigationCard extends StatelessWidget {
               ),
             ],
           ),
-          child: horizontal
-              ? Row(
-                  children: [
-                    Text(section.emoji, style: const TextStyle(fontSize: 31)),
-                    const SizedBox(width: 10),
-                    Expanded(child: text),
-                    const Icon(
-                      Icons.chevron_right_rounded,
-                      color: Colors.white,
-                    ),
-                  ],
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(section.emoji, style: const TextStyle(fontSize: 29)),
-                    const SizedBox(height: 6),
-                    text,
-                    const Spacer(),
-                    const SizedBox(height: 6),
-                    const Align(
-                      alignment: Alignment.bottomRight,
-                      child: Icon(
-                        Icons.arrow_forward_rounded,
-                        color: Color(0xFFFFE082),
+          child:
+              horizontal
+                  ? Row(
+                    children: [
+                      Text(section.emoji, style: const TextStyle(fontSize: 31)),
+                      const SizedBox(width: 10),
+                      Expanded(child: text),
+                      const Icon(
+                        Icons.chevron_right_rounded,
+                        color: Colors.white,
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  )
+                  : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(section.emoji, style: const TextStyle(fontSize: 29)),
+                      const SizedBox(height: 6),
+                      text,
+                      const Spacer(),
+                      const SizedBox(height: 6),
+                      const Align(
+                        alignment: Alignment.bottomRight,
+                        child: Icon(
+                          Icons.arrow_forward_rounded,
+                          color: Color(0xFFFFE082),
+                        ),
+                      ),
+                    ],
+                  ),
         ),
       ),
     );
@@ -323,22 +325,24 @@ class PlayCenterScreen extends StatelessWidget {
               '2–6 oyuncu, altı rozet ve final sorusuyla '
               'ana Bilgi Rotası deneyimi.',
           accent: const Color(0xFF0F766E),
-          onTap: () => _open(
-            context,
-            'board_game',
-            PlayerSetupScreen(questionBank: questionBank),
-          ),
+          onTap:
+              () => _open(
+                context,
+                'board_game',
+                PlayerSetupScreen(questionBank: questionBank),
+              ),
         ),
         _HubActionCard(
           emoji: '🧭',
           title: 'Serbest Rota',
           description: 'Tek başına tahta üzerinde ilerle ve altı rozeti topla.',
           accent: const Color(0xFF2563EB),
-          onTap: () => _open(
-            context,
-            'solo_route',
-            SoloRouteSetupScreen(questionBank: questionBank),
-          ),
+          onTap:
+              () => _open(
+                context,
+                'solo_route',
+                SoloRouteSetupScreen(questionBank: questionBank),
+              ),
         ),
         _HubActionCard(
           emoji: '🧠',
@@ -346,11 +350,12 @@ class PlayCenterScreen extends StatelessWidget {
           description:
               'Kategori ve soru sayısını seç; hızlı bir bilgi turuna çık.',
           accent: const Color(0xFF7C3AED),
-          onTap: () => _open(
-            context,
-            'marathon',
-            MarathonSetupScreen(questionBank: questionBank),
-          ),
+          onTap:
+              () => _open(
+                context,
+                'marathon',
+                MarathonSetupScreen(questionBank: questionBank),
+              ),
         ),
         _HubActionCard(
           emoji: '🎯',
@@ -359,35 +364,38 @@ class PlayCenterScreen extends StatelessWidget {
               'BR1905 gibi otomatik kısa kod üret; başka telefonda '
               '10, 20 veya 30 soruluk hedeflerde yarış.',
           accent: const Color(0xFFBE185D),
-          onTap: () => _open(
-            context,
-            'challenge',
-            ShortChallengeModeScreen(questionBank: questionBank),
-          ),
+          onTap:
+              () => _open(
+                context,
+                'challenge',
+                ShortChallengeModeScreen(questionBank: questionBank),
+              ),
         ),
         _HubActionCard(
           emoji: '🔎',
           title: PlayCenterEntryCatalog.wordHuntTitle,
           description: PlayCenterEntryCatalog.wordHuntDescription,
           accent: const Color(0xFFB7791F),
-          onTap: () => _open(
-            context,
-            'word_hunt',
-            PlayCenterEntryCatalog.buildWordHuntScreen(
-              ownerUid: FirebaseAuth.instance.currentUser?.uid,
-            ),
-          ),
+          onTap:
+              () => _open(
+                context,
+                'word_hunt',
+                PlayCenterEntryCatalog.buildWordHuntScreen(
+                  ownerUid: FirebaseAuth.instance.currentUser?.uid,
+                ),
+              ),
         ),
         _HubActionCard(
           emoji: '⚔️',
           title: PlayCenterEntryCatalog.liveDuelTitle,
           description: PlayCenterEntryCatalog.liveDuelDescription,
           accent: const Color(0xFF4338CA),
-          onTap: () => _open(
-            context,
-            'live_duel',
-            PlayCenterEntryCatalog.buildLiveDuelScreen(),
-          ),
+          onTap:
+              () => _open(
+                context,
+                'live_duel',
+                PlayCenterEntryCatalog.buildLiveDuelScreen(),
+              ),
         ),
         _HubActionCard(
           emoji: '⚡',
@@ -396,11 +404,12 @@ class PlayCenterScreen extends StatelessWidget {
               'Hayatta Kalma, 60 Saniye, Kategori Düellosu, '
               'Takım ve Karışık Çılgınlık.',
           accent: const Color(0xFFEA580C),
-          onTap: () => _open(
-            context,
-            'other_modes',
-            QuickModesHubScreen(questionBank: questionBank),
-          ),
+          onTap:
+              () => _open(
+                context,
+                'other_modes',
+                QuickModesHubScreen(questionBank: questionBank),
+              ),
         ),
       ],
     );
@@ -463,18 +472,20 @@ class CareerCenterScreen extends StatelessWidget {
               'Doğru sayıları, kategori başarılarını, '
               'serileri ve açılan başarımları incele.',
           accent: const Color(0xFF7C3AED),
-          onTap: () => Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (_) => const CareerStatsScreen())),
+          onTap:
+              () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const CareerStatsScreen()),
+              ),
         ),
         _HubActionCard(
           emoji: '🎨',
           title: 'Koleksiyon & Görünüm',
           description: 'Tahta temalarını ve favori piyonu seç.',
           accent: const Color(0xFF0F766E),
-          onTap: () => Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (_) => const CollectionScreen())),
+          onTap:
+              () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const CollectionScreen()),
+              ),
         ),
         _HubActionCard(
           emoji: '🛂',
@@ -482,9 +493,10 @@ class CareerCenterScreen extends StatelessWidget {
           description:
               'Altı kategoride zorlu mühürleri tamamla ve Büyük Bilge ol.',
           accent: const Color(0xFFB45309),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const BilgiPassportScreen()),
-          ),
+          onTap:
+              () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const BilgiPassportScreen()),
+              ),
         ),
         _HubActionCard(
           emoji: '🎉',
@@ -492,9 +504,10 @@ class CareerCenterScreen extends StatelessWidget {
           description:
               'Yıl içindeki özel rotaları ve dönemsel görünümleri takip et.',
           accent: const Color(0xFFBE185D),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const SpecialEventsScreen()),
-          ),
+          onTap:
+              () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const SpecialEventsScreen()),
+              ),
         ),
       ],
     );
@@ -527,11 +540,12 @@ class SettingsCenterScreen extends StatelessWidget {
               'Yazı boyutu, çocuk modu, ses seviyesi, '
               'titreşim ve animasyon yoğunluğu.',
           accent: const Color(0xFF155E75),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => const AccessibilitySettingsScreen(),
-            ),
-          ),
+          onTap:
+              () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const AccessibilitySettingsScreen(),
+                ),
+              ),
         ),
         _HubActionCard(
           emoji: '🎁',
@@ -540,11 +554,12 @@ class SettingsCenterScreen extends StatelessWidget {
               'XP efektlerini, jokerleri ve riskli '
               'soru seçeneğini yönet.',
           accent: const Color(0xFF7C3AED),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => const GameplayBoostSettingsScreen(),
-            ),
-          ),
+          onTap:
+              () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const GameplayBoostSettingsScreen(),
+                ),
+              ),
         ),
         _HubActionCard(
           emoji: '🎨',
@@ -553,9 +568,10 @@ class SettingsCenterScreen extends StatelessWidget {
               'Koleksiyondaki görünümleri ve favori '
               'oyun parçalarını değiştir.',
           accent: const Color(0xFFB45309),
-          onTap: () => Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (_) => const CollectionScreen())),
+          onTap:
+              () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const CollectionScreen()),
+              ),
         ),
         _HubActionCard(
           emoji: 'ℹ️',
@@ -564,11 +580,13 @@ class SettingsCenterScreen extends StatelessWidget {
               'Sürüm bilgisi, çevrimdışı kullanım, '
               'yerel kayıtlar ve gizlilik açıklaması.',
           accent: const Color(0xFF475569),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => AboutPrivacyScreen(questionBank: questionBank),
-            ),
-          ),
+          onTap:
+              () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder:
+                      (_) => AboutPrivacyScreen(questionBank: questionBank),
+                ),
+              ),
         ),
         _HubActionCard(
           emoji: '📘',
