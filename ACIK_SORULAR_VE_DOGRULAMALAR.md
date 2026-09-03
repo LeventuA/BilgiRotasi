@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 3 Eylül 2026 — PR #161 merge kararı kapandı; PR #158 exact release-context CI PASS. Sıradaki açık kapı PR #158 Ready kararıdır.
+**Son güncelleme:** 3 Eylül 2026 — PR #158 Ready kararı Levent’in açık onayıyla kapandı; canonical release merge ayrı açık karardır.
 
 ## Kelime Avı
 
@@ -23,6 +23,7 @@
 - `PR_158_FINAL_DIFF_REVIEW` — 37 dosya; protected scope temiz; review/thread yok: **PASS / KAPANDI**.
 - `PR_158_ANDROID16_RELEASE_CONTEXT` — run `33745646184`, job `100617364648`: **SUCCESS / KAPANDI**; artifact `9887953917`, digest `sha256:0f2fbcfc4022e4e8422912139349412969916496f96d4d29d80bdec8865176c5`.
 - `PR_158_RELEASE_APK_ADMOB_CONTEXT` — run `33745646210`, job `100617365147`: **SUCCESS / KAPANDI**; analyze/full tests/release APK/manifest/AdMob/signature/Android16 cold-start PASS; artifact `9889920696`, digest `sha256:447b82994aa25002e6f520f2de2b4ba598adcf769d80cb7aa7a767faf2f95c00`.
+- `PR_158_READY_DECISION` — Levent’in ayrı açık onayıyla **PASS / KAPANDI**; PR #158 Ready for Review yapıldı.
 
 ### İnsan süre-zorluk sonucu
 
@@ -32,8 +33,7 @@
 
 ### Açık kalanlar
 
-- `PR_158_READY_DECISION` — PR #158 teknik olarak Ready adayıdır: **AÇIK / Levent’in ayrı açık onayı gerekli**.
-- `PR_158_RELEASE_MERGE_DECISION` — Ready sonrasında canonical release branch’e merge: **AÇIK / ayrıca Levent’in açık merge onayı gerekli**.
+- `PR_158_RELEASE_MERGE_DECISION` — canonical release branch’e merge: **AÇIK / ayrıca Levent’in açık merge onayı gerekli**.
 - `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
 - `PRODUCTION_MAIN_NAVIGATION` — `lib/main.dart` production ana navigasyon entegrasyonu ayrı scope: **AÇIK**.
@@ -41,7 +41,7 @@
 
 ## Merge güvenliği
 
-- PR #158 şu anda **DRAFT** kalır; kullanıcı onayı olmadan Ready yapılmaz.
-- PR #158 Ready onayı, canonical release merge onayı değildir.
+- PR #158 **READY** durumundadır ancak merge edilmemiştir.
+- Ready onayı canonical release merge onayı değildir.
 - Canonical release merge ve Play yayını ayrı açık Levent onayı olmadan yapılmaz.
-- Görsel/teknik/CI PASS, Ready veya merge onayı değildir.
+- Görsel/teknik/CI PASS veya Ready, merge onayı değildir.
