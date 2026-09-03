@@ -1,14 +1,14 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 3 Eylül 2026 — Production ana navigasyon entegrasyonu PR #169 tüm teknik/Android16 kapıları geçerek Levent’in `Devam et` onayıyla Ready for Review yapıldı. Merge ve Play yayını yapılmadı.
+**Son güncelleme:** 3 Eylül 2026 — Levent’in ayrı ve açık onayıyla PR #169 canonical release branch’e merge edildi. Production ana navigasyon entegrasyonu tamamlandı; Play yayını yapılmadı.
 
 > Root dosya güncel Kelime Avı çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
-## Aktif görev — Kelime Avı production entegrasyonu
+## Aktif görev — Kelime Avı sonrası açık işler
 
-**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND-ERROR-COMPLETION USER PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158 MERGED / PR #169 READY / PLAY YAYINI YOK
+**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND-ERROR-COMPLETION USER PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169 MERGED / CANONICAL RELEASE HEAD `0c84aefd...` / PLAY YAYINI YOK
 
-**Canonical release:** `release/final-closed-test-aab-1.68.8` @ `189864c92a605e7bb960460300714049c730ea39`
+**Canonical release:** `release/final-closed-test-aab-1.68.8` @ `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`
 
 **Sürüm:** `1.68.19+109`
 
@@ -37,8 +37,11 @@
 21. PR #169 Kelime Avı Android16 görsel/MASTER ART — **PASS**; run `33754851205`, job `100646698474`; 126 test; artifact `9893332600`.
 22. PR #169 review/thread kontrolü — **PASS**; blocker yok.
 23. PR #169 Ready for Review — **PASS**; Levent’in 3 Eylül 2026 `Devam et` onayıyla. Exact Ready HEAD `ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`.
+24. PR #169 → canonical release merge — **PASS**; Levent’in ayrı `Merge et` onayıyla; merge commit `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+25. Merge sonrası canonical release HEAD doğrulaması — **PASS**; `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+26. PR #169 merge commitinde otomatik PR workflow’u tetiklenmemesi — **DOĞRULANDI**; `0` run. Exact PR HEAD’deki `33754851284` ve `33754851205` SUCCESS kanıtları korunur.
 
-### PR #169 scope
+### PR #169 scope — canonical release’e girdi
 
 - `lib/main.dart`: yalnız production entry importu.
 - `lib/main_navigation.dart`: Oyna menüsüne Kelime Avı kartı.
@@ -48,10 +51,10 @@
 
 ### Açık işler
 
-1. **PR #169 → canonical release merge — AÇIK / ayrıca Levent’in ayrı ve açık onayı gerekli.**
+1. Docs-only PR #168 canonical release base’i PR #169 merge’iyle ilerledi; canlı durumda `mergeable=false`. **BASE REFRESH / RECONCILIATION DOĞRULANACAK**; ayrı merge onayı olmadan merge edilmeyecek.
 2. `REFERENCE_FONT` exact kaynak yok — **DOĞRULANACAK / DEFERRED**.
 3. PR #166 tarihsel geliştirme/QA hattıdır — **MERGE YOK**.
 4. Sonraki paketlerde tek branch + toplu otomatik kapılar + B1/B5/B10 insan örneklemesi + tek Android paket QA — **KABUL EDİLDİ / UYGULANACAK**.
 5. Play yükleme/yayınlama — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
 
-**Sıradaki gerçek karar kapısı PR #169 merge’idir. Ready teknik kapısı kapanmıştır; merge ve Play yayını otomatik yapılmayacaktır.**
+**Kelime Avı Başlangıç Limanı gameplay + production ana navigasyon release entegrasyonu tamamlandı. Sıradaki teknik bakım işi docs-only PR #168 base durumunu temizlemek; Play yayını ayrıca açık karar gerektirir.**
