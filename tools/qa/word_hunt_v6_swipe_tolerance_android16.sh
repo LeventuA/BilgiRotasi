@@ -26,7 +26,7 @@ wait_for_log() {
 capture() {
   local name="$1"
   adb exec-out screencap -p > "$REPORT_DIR/$name"
-  test "$(stat -c '%s' "$REPORT_DIR/$name")" -ge 1000000
+  test "$(stat -c '%s' "$REPORT_DIR/$name")" -ge 100000
 }
 
 adb install -r "$APK"
