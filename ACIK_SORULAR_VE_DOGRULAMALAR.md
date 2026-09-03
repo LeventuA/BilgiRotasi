@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 3 Eylül 2026 — Production ana navigasyon PR #169 Levent’in ayrı ve açık onayıyla canonical release’e merge edildi. Play yükleme/yayınlama ayrı açık karardır. Docs-only PR #168’in base’i ilerlediği için mergeability yeniden doğrulanacaktır.
+**Son güncelleme:** 3 Eylül 2026 — Production ana navigasyon PR #169 Levent’in ayrı ve açık onayıyla canonical release’e merge edildi. Play yükleme/yayınlama ayrı açık karardır. Docs-only PR #168 ilk kısa `mergeable=false` görünümü sonrası yeniden hesaplamada `mergeable=true` oldu.
 
 ## Kelime Avı
 
@@ -32,6 +32,7 @@
 - `PR_169_READY_DECISION` — Levent’in `Devam et` onayıyla **PASS / KAPANDI**.
 - `PR_169_RELEASE_MERGE_DECISION` — Levent’in ayrı `Merge et` onayıyla **PASS / KAPANDI**; merge `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 - `PR_169_RELEASE_HEAD_VERIFY` — canonical release HEAD `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`: **PASS / KAPANDI**.
+- `PR_168_MERGEABILITY_RECHECK` — ilk kısa `mergeable=false` görünümü GitHub yeniden hesaplaması sonrası `mergeable=true`: **PASS / KAPANDI**. PR diff’i yalnız dört checkpoint belgesidir.
 
 ### İnsan süre-zorluk sonucu
 
@@ -43,7 +44,7 @@
 
 - `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
-- `PR_168_BASE_REFRESH` — docs-only PR #168, PR #169 release merge’i sonrası canlı `mergeable=false`: **DOĞRULANACAK / BASE REFRESH-RECONCILIATION GEREKLİ OLABİLİR**. Ayrı merge onayı olmadan merge edilmez.
+- `PR_168_DOCS_MERGE_DECISION` — docs-only checkpoint PR #168: **AÇIK / READY / mergeable=true / ayrı açık merge onayı gerekli**.
 - `PLAY_RELEASE` — Play yükleme/yayınlama ayrıca açık karar gerektirir: **AÇIK**.
 
 ## Merge güvenliği
