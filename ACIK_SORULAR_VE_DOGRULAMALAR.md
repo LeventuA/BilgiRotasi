@@ -1,39 +1,47 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 3 Eylül 2026 — PR #161 Ready kararı Levent’in açık onayıyla kapandı; merge ayrı açık karar
+**Son güncelleme:** 3 Eylül 2026 — PR #161 merge kararı kapandı; PR #158 exact release-context CI PASS. Sıradaki açık kapı PR #158 Ready kararıdır.
 
 ## Kelime Avı
 
-Kapanan kabul/doğrulama kapıları:
+### Kapanan kabul/doğrulama kapıları
+
 - `USER_VISUAL_ACCEPTANCE_INITIAL` — **PASS / KAPANDI**.
-- `USER_VISUAL_ACCEPTANCE_FOUND` — **PASS / KAPANDI**; Android 16 `33486609120`.
-- `ERROR_STATE_VISUAL` — **PASS / KAPANDI**; Android 16 `33524578623`.
+- `USER_VISUAL_ACCEPTANCE_FOUND` — **PASS / KAPANDI**; Android16 `33486609120`.
+- `ERROR_STATE_VISUAL` — **PASS / KAPANDI**; Android16 `33524578623`.
 - `COMPLETION_AUTO_REPLAY` — **PASS / KAPANDI**.
-- `COMPLETION_POPUP_COMPACT_VISUAL` — **PASS / KAPANDI**; Android 16 `33655562508`.
-- `B5_60S_BALANCE_DECISION` — tuning sonrası **32 sn / PASS / KAPANDI**.
-- `SWIPE_FALSE_POSITIVE_MISTAKES` — Fast `33724552713` + Android 16 `33724549202`: **PASS / KAPANDI**.
+- `COMPLETION_POPUP_COMPACT_VISUAL` — **PASS / KAPANDI**; Android16 `33655562508`.
+- `B5_60S_BALANCE_DECISION` — tuning sonrası 32 sn: **PASS / KAPANDI**.
+- `SWIPE_FALSE_POSITIVE_MISTAKES` — Fast `33724552713` + Android16 `33724549202`: **PASS / KAPANDI**.
 - `PR_167_READY_MERGE` — **PASS / KAPANDI**; merge `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
 - `PR_163_READY_MERGE` — **PASS / KAPANDI**; merge `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
 - `PR_162_READY_MERGE` — **PASS / KAPANDI**; merge `929bb13177e03a0962464e21f6c174d4b3439349`.
-- `PR_161_FINAL_REVIEW` — **PASS / KAPANDI**; 33 dosya, protected scope temiz, review/thread yok, tek-kullanımlık QA workflow/script temizlendi.
-- `PR_161_READY_DECISION` — **PASS / KAPANDI**; Levent 3 Eylül 2026’da açık Ready onayı verdi ve PR #161 Ready for Review yapıldı.
+- `PR_161_FINAL_REVIEW` — **PASS / KAPANDI**.
+- `PR_161_READY_DECISION` — **PASS / KAPANDI**.
+- `PR_161_MERGE_DECISION` — Levent’in ayrı açık onayıyla **PASS / KAPANDI**; merge `4aa490e7c2d5e7547dc95f9463dbbb9adeb85e5a` yalnız PR #158 branch’ine yapıldı.
+- `PR_158_RELEASE_QA_CLEANUP` — obsolete V5 QA workflow/entrypoint/script/test/helper/reference ve superseded gameplay background release diff’inden çıkarıldı: **PASS / KAPANDI**; commit `2ae95df70b452f735a8db9c5bd0d88827a2ec40a`.
+- `PR_158_FINAL_DIFF_REVIEW` — 37 dosya; protected scope temiz; review/thread yok: **PASS / KAPANDI**.
+- `PR_158_ANDROID16_RELEASE_CONTEXT` — run `33745646184`, job `100617364648`: **SUCCESS / KAPANDI**; artifact `9887953917`, digest `sha256:0f2fbcfc4022e4e8422912139349412969916496f96d4d29d80bdec8865176c5`.
+- `PR_158_RELEASE_APK_ADMOB_CONTEXT` — run `33745646210`, job `100617365147`: **SUCCESS / KAPANDI**; analyze/full tests/release APK/manifest/AdMob/signature/Android16 cold-start PASS; artifact `9889920696`, digest `sha256:447b82994aa25002e6f520f2de2b4ba598adcf769d80cb7aa7a767faf2f95c00`.
 
-İnsan süre-zorluk sonucu:
-- B5 ilk ölçüm: **115 sn / 2 hata**; 60 sn soft challenge karşılanmadı.
-- B10: **109 sn / 4 hata**; 120 sn soft challenge **PASS**.
-- B5 tuning sonrası: **32 sn / UI’da 2 false-positive kayıt**; süre PASS, bilinçli gerçek hata 0.
+### İnsan süre-zorluk sonucu
 
-Açık kalanlar:
-- `PR_161_MERGE_DECISION` — PR #161 merge için ayrıca Levent’in açık onayı gerekir: **AÇIK**.
-- `PARENT_PR_158_CHAIN_DECISION` — PR #161 sonrası parent #158 zincir kararı: **AÇIK**.
+- B5 ilk ölçüm: 115 sn / 2 hata; 60 sn soft challenge karşılanmadı.
+- B10: 109 sn / 4 hata; 120 sn soft challenge **PASS**.
+- B5 tuning sonrası: 32 sn; süre **PASS**.
+
+### Açık kalanlar
+
+- `PR_158_READY_DECISION` — PR #158 teknik olarak Ready adayıdır: **AÇIK / Levent’in ayrı açık onayı gerekli**.
+- `PR_158_RELEASE_MERGE_DECISION` — Ready sonrasında canonical release branch’e merge: **AÇIK / ayrıca Levent’in açık merge onayı gerekli**.
 - `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
 - `PRODUCTION_MAIN_NAVIGATION` — `lib/main.dart` production ana navigasyon entegrasyonu ayrı scope: **AÇIK**.
-- `RELEASE_INTEGRATION` — PR zinciri tamamlandıktan sonra exact release-context entegrasyonu/CI ayrı kapıdır: **AÇIK**.
-- `PLAY_RELEASE` — Play yayını ayrıca açık karar gerektirir: **AÇIK**.
+- `PLAY_RELEASE` — Play yükleme/yayınlama ayrıca açık karar gerektirir: **AÇIK**.
 
 ## Merge güvenliği
 
-- PR #161 **READY** durumundadır ancak merge edilmemiştir.
-- PR #161 ve sonraki parent/release merge’leri Levent’in ayrı ve açık onayı olmadan yapılmayacak.
-- Görsel/teknik PASS veya Ready, merge onayı değildir.
+- PR #158 şu anda **DRAFT** kalır; kullanıcı onayı olmadan Ready yapılmaz.
+- PR #158 Ready onayı, canonical release merge onayı değildir.
+- Canonical release merge ve Play yayını ayrı açık Levent onayı olmadan yapılmaz.
+- Görsel/teknik/CI PASS, Ready veya merge onayı değildir.
