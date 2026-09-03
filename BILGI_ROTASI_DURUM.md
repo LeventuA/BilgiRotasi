@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 3 Eylül 2026 — PR #161 Levent’in açık onayıyla merge edildi; PR #158 release-parent temizliği ve exact release-context CI PASS. PR #158 hâlâ DRAFT; Ready ve release merge ayrı açık kararlardır.
+**Son güncelleme:** 3 Eylül 2026 — PR #158 exact release-context CI PASS sonrası Levent’in açık onayıyla Ready for Review yapıldı; canonical release merge ayrı açık onay bekliyor.
 
 ## Canlı Sürüm / Release Hattı
 
@@ -16,7 +16,8 @@
 Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
 - Güncel release-parent branch: `feat/kelime-avi-8x8-content-v1-20260829`.
-- Güncel PR: **#158 — OPEN / DRAFT / merged=false / mergeable=true**.
+- Güncel PR: **#158 — OPEN / READY / merged=false / mergeable=true**.
+- Ready öncesi HEAD: `927d0df5c75eb75d98328274b991850642f709e1`.
 - Exact release-context test edilmiş ürün HEAD: `2ae95df70b452f735a8db9c5bd0d88827a2ec40a`.
 - PR #161: **CLOSED / MERGED**; merge commit `4aa490e7c2d5e7547dc95f9463dbbb9adeb85e5a`.
 - PR #162: **CLOSED / MERGED**; merge commit `929bb13177e03a0962464e21f6c174d4b3439349`.
@@ -105,6 +106,13 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 - Artifact `9889920696` — `BilgiRotasi-AdMob-1.68.19-109-kanitlari`.
 - Digest `sha256:447b82994aa25002e6f520f2de2b4ba598adcf769d80cb7aa7a767faf2f95c00`.
 
+## PR #158 Ready — PASS
+
+- Levent 3 Eylül 2026’da PR #158 için ayrı ve açık Ready onayı verdi.
+- PR #158 **READY FOR REVIEW** yapıldı.
+- Ready işlemi canonical release merge onayı değildir.
+- Ready sırasında ürün kodu, sürüm veya release branch değiştirilmedi.
+
 ## Korunan Alanlar
 
 - `assets/questions.json`
@@ -131,9 +139,9 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre — LOCKED**.
 
 1. PR #161 merge — **PASS / TAMAMLANDI**.
 2. PR #158 cleanup + final diff/review + exact release-context CI — **PASS / TAMAMLANDI**.
-3. PR #158 Ready for Review — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
-4. PR #158 → canonical release merge — Ready sonrasında ayrıca Levent’in açık merge onayı gerekli.
+3. PR #158 Ready for Review — **PASS / TAMAMLANDI**.
+4. PR #158 → canonical release merge — **AÇIK / ayrıca Levent’in açık merge onayı gerekli**.
 5. Production `lib/main.dart` ana navigasyon entegrasyonu ayrı scope/branch/PR işidir.
 6. Play yükleme/yayınlama ayrıca açık karar gerektirir.
 
-**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161 MERGED / PR #158 RELEASE-CONTEXT CI PASS / PR #158 DRAFT-OPEN / READY YOK / RELEASE-MERGE YOK.
+**Durum:** 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161 MERGED / PR #158 RELEASE-CONTEXT CI PASS / PR #158 READY-OPEN / RELEASE-MERGE YOK.
