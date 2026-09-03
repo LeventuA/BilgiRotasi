@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. V6 found/error/compact completion kullanıcı PASS; B5 tuning 32 sn ile PASS; swipe false-positive düzeltmesi gerçek Android 16 kanıtıyla PASS. PR #167 ve PR #163 merge edildi. PR #162 final diff/review PASS ve Levent’in “Devam et” onayıyla Ready for Review yapıldı; merge ayrı açık onay bekliyor. Release/main’e merge yapılmadı. WORK V2 aktif.
+**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. V6 found/error/compact completion kullanıcı PASS; B5 tuning 32 sn ile PASS; swipe false-positive düzeltmesi gerçek Android 16 kanıtıyla PASS. PR #167, #163 ve #162 merge edildi. Güncel zincir PR #161 parent branch’i üzerinde devam ediyor; release/main’e merge yapılmadı. WORK V2 aktif.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -101,18 +101,17 @@
 
 - PR #167 — **CLOSED / MERGED**.
   - Merge commit: `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
-  - B5 tuning + swipe toleransı PR #163 ürün hattına taşındı.
 - PR #163 — **CLOSED / MERGED**.
-  - Levent Ready ve ardından ayrı merge onayı verdi.
   - Merge commit: `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
-  - Merge hedefi release/main değil PR #162’nin V6 branch’idir.
-- PR #162 — **OPEN / READY / mergeable=true / merged=false**.
-  - Güncel V6 branch: `fix/kelime-avi-v6-visual-found-state-20260901`.
-  - Ready checkpoint ürün HEAD: `bf3768b0b3104ebf8c8103340d9664c1e0385ce8`.
-  - Final diff/review PASS: 16 beklenen dosya; `lib/main.dart`, `assets/questions.json`, locked V5 assets, BoardMap/67 node ve release config diff dışında; açık review/thread yok.
-  - Levent’in 3 Eylül 2026 “Devam et” onayıyla Ready for Review yapıldı.
-  - Ready sonrası yalnız checkpoint doküman commitleri eklenmektedir; ürün kodu değişmemiştir.
-- PR #161 — **OPEN / DRAFT**; parent V5 zincir kararı ayrıca ele alınacaktır.
+- PR #162 — **CLOSED / MERGED**.
+  - Final diff/review PASS; Ready for Review PASS.
+  - Levent ayrıca açık merge onayı verdi.
+  - Merge commit: `929bb13177e03a0962464e21f6c174d4b3439349`.
+  - Merge hedefi release/main değil PR #161 parent branch’idir.
+- PR #161 — **OPEN / DRAFT / mergeable=true**.
+  - Güncel branch: `feat/kelime-avi-v5-reference-assets-integration-20260831`.
+  - PR #162 merge sonrası V6 kabul edilmiş ürün hattını taşır.
+  - Eski PR açıklamasındaki Android visual FAIL durumu child V6 kabul zinciri tarafından supersede edilmiştir; PR metadata güncellenecektir.
 - PR #166 tarihsel geliştirme/QA hattıdır; merge edilmeyecektir.
 
 ## Ölçeklenebilir Üretim/Test — KALICI KARAR
@@ -150,13 +149,13 @@ V6 zincirinde değiştirilmedi:
 
 ## Kalan Aktif Sıra — V8 BURADAN DEVAM ETSİN
 
-1. Her görev başında release branch, PR #162 HEAD, `pubspec.yaml`, PR/review/CI durumunu canlı doğrula.
-2. Found, error ve compact completion acceptance kapıları PASS; yeni belirti yoksa yeniden açma.
-3. B5 tuning ve swipe toleransı PASS; yeni ürün değişikliği yoksa yeniden Android Action çalıştırma.
-4. PR #162 final diff/review + Ready — **PASS / TAMAMLANDI**.
-5. PR #162 merge için ayrıca Levent’in açık onayını al.
-6. Sonra PR #161 zincir kararını ayrıca ele al.
+1. Her görev başında release branch, PR #161 HEAD, `pubspec.yaml`, PR/review/CI durumunu canlı doğrula.
+2. Found, error, compact completion, B5 tuning ve swipe tolerance kapıları PASS; yeni belirti yoksa yeniden açma.
+3. PR #161 açıklamasını güncel V6 kabul zinciriyle senkronla.
+4. PR #161 final diff/review kontrolünü yap; sorun yoksa kullanıcı Ready kararına getir.
+5. PR #161 merge için Ready’den sonra ayrıca Levent’in açık onayını al.
+6. Sonra parent PR #158 zincir kararını ayrıca ele al.
 7. Production `lib/main.dart` navigasyon entegrasyonunu ayrı branch/PR olarak yap.
 8. Release entegrasyonu ve Play yayını ayrı açık karardır.
 
-**SON DURUM: 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID 16 PASS / PR #167 MERGED / PR #163 MERGED / PR #162 READY-OPEN / WORK V2 AKTİF / MERGE YOK / RELEASE-MERGE YOK.**
+**SON DURUM: 8×8 LOCKED / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID 16 PASS / PR #167 MERGED / PR #163 MERGED / PR #162 MERGED / PR #161 DRAFT-OPEN / WORK V2 AKTİF / RELEASE-MERGE YOK.**
