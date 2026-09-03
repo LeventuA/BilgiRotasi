@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 2 Eylül 2026
+**Son güncelleme:** 3 Eylül 2026 — swipe toleransı ürün entegrasyonu + Android 16 gerçek taşma PASS
 
 ## Kelime Avı V6
 
@@ -22,13 +22,17 @@ Kapanan kabul/doğrulama kapıları:
 - Overall human timing: **MIXED**. Scripted QA 20/23 sn değerleri insan playtesti değildir.
 
 Açık kalanlar:
-- `B5_60S_BALANCE_DECISION` — B5 60 sn soft challenge hedefi korunacak mı/tune edilecek mi: **AÇIK**.
+- `B5_60S_TUNED_HUMAN_PLAYTEST` — Yeni 8×8 B5 yerleşim adayı (`44ebec6b...`): **32 sn / süre PASS**. UI 2 hata kaydetti; Levent bilinçli yanlış seçim yapmadığını, parmak taşması/fazla temas olduğunu bildirdi.
+- `B5_60S_BALANCE_DECISION` — 60 sn soft hedefi karşılandı; aday kabul edildi ve PR #167 ürün entegrasyonuna taşındı: **PASS / KAPANDI**.
+- `SWIPE_FALSE_POSITIVE_MISTAKES` — Kısa gesture iptali, exact kelimede tek trailing overshoot ve tek aktif pointer temiz Draft PR #167'ye taşındı; gerçek yanlış seçim cezası korunuyor. Fast run `33724552713` ve Android 16 run `33724549202` **SUCCESS**. Gerçek `ANKARA + bir hücre` swipe `1/7`, `0 hata`: **PASS / KAPANDI**.
+- `PACKAGE_BASED_QA_IMPLEMENTATION` — 10 bölümlük tek branch, B1/B5/B10 insan örneklemesi ve tek paket QA APK altyapısı: **KARAR VERİLDİ / UYGULANACAK**.
 - `REFERENCE_FONT` — Runtime generic `serif`; custom font asset/source yok. Exact aile mevcut kaynaklardan kanıtlanamıyor: **DOĞRULANACAK / DEFERRED**.
 - `PR_161_READY_DECISION` — Parent V5 PR #161 Ready kararı: **AÇIK**.
 - `PR_162_READY_DECISION` — V6 visual PR #162 Ready kararı: **AÇIK**.
 - `PR_163_READY_DECISION` — Güncel V6 ürün PR #163 Ready kararı: **AÇIK**.
+- `PR_167_READY_DECISION` — B5 + swipe temiz entegrasyon PR #167 Ready kararı: **AÇIK**.
 - `PRODUCTION_MAIN_NAVIGATION` — `lib/main.dart` production ana navigasyon entegrasyonu ayrı scope: **AÇIK**.
 
 ## Merge güvenliği
 
-PR #161, #162 veya #163, Levent’in ayrı ve açık merge onayı olmadan merge edilmeyecek. Görsel PASS, Ready veya merge onayı değildir.
+PR #161, #162, #163 veya #167, Levent’in ayrı ve açık merge onayı olmadan merge edilmeyecek. Görsel/teknik PASS, Ready veya merge onayı değildir.
