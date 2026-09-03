@@ -1,6 +1,6 @@
 # Bilgi Rotası – Proje Durumu
 
-**Son güncelleme:** 3 Eylül 2026 — PR #167 Levent onayıyla V6 ürün hattına merge edildi; sıradaki karar kapısı PR #163 Ready
+**Son güncelleme:** 3 Eylül 2026 — PR #163 Levent’in “Devam et” onayıyla Ready for Review yapıldı; merge ayrı açık onay bekliyor
 
 ## Canlı Sürüm / Release Hattı
 
@@ -16,8 +16,9 @@ Canonical gameplay sözleşmesi **8×8 / 64 hücre** olarak kilitlidir.
 - Parent V5: PR #161 — **OPEN / DRAFT / merge yok**.
 - V6 temel görsel: PR #162 — **OPEN / DRAFT / merge yok**.
 - Güncel ürün branch: `fix/kelime-avi-v6-found-path-connector-product-20260901`.
-- Güncel Draft PR: **#163 — OPEN / DRAFT / merged=false**.
-- Güncel ürün hattı HEAD: `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4` — PR #167 merge commit’i.
+- Güncel PR: **#163 — OPEN / READY / merged=false**.
+- PR #163 Ready öncesi doğrulanan HEAD: `4f3c0eaf231f23c70dd3bb35be6cfff2fe7f8d0c`; Ready sonrası yalnız proje checkpoint belgeleri güncellenmiştir.
+- PR #167 merge commit’i: `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
 - B5 + swipe ürün commit’i: `749c678b885d6cefec428c603c55a83a4190152c`.
 - Compact completion ürün commit’i: `9a6fede2c4aed4fdbaa6c9ba427fa84e0ce418da`.
 - Compact completion için exact tested `lib/word_hunt/word_hunt_screens.dart` blob’u: **`6ce2830a7df8eb696a9df589c91c544df7712969`**.
@@ -124,10 +125,10 @@ Bu ürünizasyon sırasında değiştirilmedi:
 ## Kalan Gerçek Kapılar
 
 1. PR #167 B5 tuning + swipe entegrasyonu — **PASS / MERGED**; merge commit `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
-2. PR #163 artık B5 + swipe dahil güncel V6 ürün hattıdır; **Ready kararı AÇIK**.
-3. `REFERENCE_FONT` exact kaynak bulunmadığı sürece **DOĞRULANACAK / deferred**.
-4. PR #161 / #162 / #163 Ready kararları ayrıca verilecek.
-5. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
-6. PR #163 merge yalnız Levent’in ayrı ve açık merge onayıyla yapılır.
+2. PR #163 güncel V6 ürün hattı — **READY / OPEN**; Levent 3 Eylül 2026’da “Devam et” ile Ready kapısını onayladı.
+3. PR #163 merge — **AÇIK / ayrıca Levent’in açık onayı gerekli**.
+4. `REFERENCE_FONT` exact kaynak bulunmadığı sürece **DOĞRULANACAK / deferred**.
+5. PR #161 / #162 zincir kararları ayrıca ele alınacak.
+6. Production `lib/main.dart` navigasyon entegrasyonu ayrı scope/onaydır.
 
-**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 MERGED / PR #163 DRAFT-OPEN / READY YOK / MERGE YOK.
+**Durum:** V6 FOUND + ERROR + COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE TOLERANSI ANDROID 16 PASS / PR #167 MERGED / PR #163 READY-OPEN / MERGE YOK.
