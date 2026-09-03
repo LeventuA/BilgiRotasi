@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162, #161 ve #158 merge edildi. Canonical release HEAD `189864c92a605e7bb960460300714049c730ea39`. Production ana navigasyon entegrasyonu PR #169 full-suite/release APK/Android16/MASTER ART kanıtlarıyla PASS ve Levent’in ayrı `Devam et` onayıyla **Ready for Review**. PR #169 merge edilmedi; Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
+**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Canonical 8×8 Başlangıç Limanı; V5 asset, found/error/compact completion, B5 denge ve swipe toleransı PASS. PR #167, #163, #162, #161, #158 ve production ana navigasyon PR #169 merge edildi. Canonical release HEAD artık `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`. PR #169 exact full-suite/release APK/Android16/MASTER ART kanıtları PASS. Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -19,10 +19,11 @@
 
 - Repo: `ZMilaStudio/BilgiRotasi`.
 - Canonical release branch: `release/final-closed-test-aab-1.68.8`.
-- Canonical release HEAD: **`189864c92a605e7bb960460300714049c730ea39`**.
+- Canonical release HEAD: **`0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`**.
 - Aktif ürün sürümü: **1.68.19+109**.
 - Paket: `com.leventua.bilgirotasi`.
-- PR #158 canonical release’e merge edildi; merge commit `189864c92a605e7bb960460300714049c730ea39`.
+- PR #158 canonical gameplay paketini release’e taşıdı; merge commit `189864c92a605e7bb960460300714049c730ea39`.
+- PR #169 production ana navigasyon entegrasyonunu release’e taşıdı; merge commit `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 - Play Console’a yükleme veya yayınlama yapılmadı.
 
 ## Başlangıç Limanı — Bağlayıcı Mimari
@@ -87,6 +88,7 @@
 - PR #162 — **MERGED** → `929bb13177e03a0962464e21f6c174d4b3439349`.
 - PR #161 — **MERGED** → `4aa490e7c2d5e7547dc95f9463dbbb9adeb85e5a`.
 - PR #158 — **MERGED** → `189864c92a605e7bb960460300714049c730ea39`.
+- PR #169 — **MERGED** → `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 - PR #166 tarihsel geliştirme/QA hattıdır; merge edilmeyecektir.
 
 ## PR #158 Exact Release-context Kanıtı — PASS
@@ -96,7 +98,7 @@
 - Release APK / AdMob run `33745646210`: **SUCCESS**, artifact `9889920696`.
 - Merge commit `189864c9...` için otomatik workflow tetiklenmedi (`0` run); pre-merge exact release-context CI kanıtları final teknik kanıttır.
 
-## Production Ana Navigasyon Entegrasyonu — PR #169 READY
+## Production Ana Navigasyon Entegrasyonu — PR #169 MERGED
 
 ### Amaç / davranış
 - Bilgi Rotası production **Oyna** menüsüne `Kelime Avı` kartı eklendi.
@@ -109,9 +111,10 @@
 
 ### Branch / PR / diff
 - Branch: `feat/kelime-avi-production-navigation-20260903`.
-- PR #169: **OPEN / READY FOR REVIEW / mergeable=true / merged=false**.
-- Base: `release/final-closed-test-aab-1.68.8` @ `189864c92a605e7bb960460300714049c730ea39`.
-- Exact Ready HEAD: **`ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`**.
+- PR #169: **CLOSED / MERGED**.
+- Merge öncesi base: `release/final-closed-test-aab-1.68.8` @ `189864c92a605e7bb960460300714049c730ea39`.
+- Exact merged HEAD: **`ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`**.
+- Merge commit: **`0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`**.
 - Final ürün farkı yalnız **4 dosya / +259 / -0**:
   - `lib/main.dart` — yalnız production entry importu (+1),
   - `lib/main_navigation.dart` — Kelime Avı Oyna kartı (+21),
@@ -139,9 +142,10 @@
   - Android API 36 emulator install/open/real screencap/activity/process/crash/ANR gate PASS,
   - MASTER ART side-by-side/diff/geometry kanıtları üretildi,
   - artifact `9893332600`, digest `sha256:2d0fa14825f59a735a9606be809025b2f69d4daa09121bb065bb622d25e30001`.
-- Açık review/review thread blocker yok.
+- Açık review/review thread blocker yoktu.
 - Ready kapısı Levent’in 3 Eylül 2026 `Devam et` onayıyla geçildi.
-- **Merge yapılmadı.**
+- Merge kapısı Levent’in 3 Eylül 2026 ayrı `Merge et` onayıyla geçildi.
+- Merge commitinde otomatik PR workflow’u tetiklenmedi (`0` run); exact PR HEAD’deki iki SUCCESS hattı final teknik kanıt olarak korunur.
 
 ## Ölçeklenebilir Üretim/Test — KALICI KARAR
 
@@ -176,11 +180,11 @@
 
 1. Her görev başında canonical release branch, `pubspec.yaml`, son commit ve ilgili açık PR/CI durumunu canlı doğrula.
 2. Found/error/completion/B5/swipe kabul kapıları yeni belirti yoksa yeniden açılmaz.
-3. PR #167/#163/#162/#161/#158 merge zinciri — **PASS / TAMAMLANDI**.
-4. Canonical release HEAD — `189864c92a605e7bb960460300714049c730ea39`.
-5. Production ana navigasyon PR #169 — **READY / teknik kapılar PASS / merge açık**.
-6. **Sıradaki gerçek karar kapısı PR #169 → canonical release merge; ayrıca Levent’in açık onayı gerekir.**
+3. PR #167/#163/#162/#161/#158/#169 merge zinciri — **PASS / TAMAMLANDI**.
+4. Canonical release HEAD — `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+5. Production ana navigasyon entegrasyonu — **PASS / CANONICAL RELEASE İÇİNDE**.
+6. Docs-only PR #168, release base ilerledikten sonra canlı `mergeable=false`; base refresh/reconciliation **DOĞRULANACAK** ve ayrıca açık merge onayı gerektirir.
 7. `REFERENCE_FONT` — **DOĞRULANACAK / DEFERRED**.
 8. Play yükleme/yayınlama — **ayrı açık Levent onayı gerektirir**.
 
-**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158 MERGED / PR #169 READY + FULL-SUITE + RELEASE APK + ANDROID16 + MASTER ART PASS / CANONICAL RELEASE HEAD `189864c9...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
+**SON DURUM: 8×8 LOCKED / V5 ASSET PASS / FOUND PASS / ERROR PASS / COMPACT COMPLETION PASS / B5 SÜRE PASS / SWIPE ANDROID16 PASS / PR #167+#163+#162+#161+#158+#169 MERGED / PRODUCTION ANA NAVİGASYON CANONICAL RELEASE İÇİNDE / CANONICAL RELEASE HEAD `0c84aefd...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
