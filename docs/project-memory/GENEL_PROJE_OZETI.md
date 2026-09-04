@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 5 Eylül 2026 — Kelime Avı V8 devir checkpointi. Başlangıç Limanı canonical 8×8 gameplay + production ana navigasyon release entegrasyonu tamamlandı. İkinci paket **Gökyüzü Adaları**, görsel yön **C — Neşeli & Parlak**, 10 bölüm rota sırası ve **modüler asset mimarisi** LOCKED. Rota mock V2 Levent tarafından statik görsel olarak onaylandı. Gökyüzü Adaları için canonical 8×8 içerik paketi üretildi ve PR #171 DRAFT olarak açık. Production asset tarafında 48 runtime WebP hazırlandı ve dosya/alpha QA yapıldı; Flutter rota entegrasyonu henüz başlamadı. Büyük binary dosya taşıma engelini çözmek için **firestorage.ai bağlantısı 5 Eylül 2026'da başarıyla kuruldu** ve doğrulanmış aktarım tablosu Firestorage'a yüklendi. Bundan sonra eski parça/parça Git blob aktarımı bırakılacak; Firestorage üzerinden tek dosya aktarımı kullanılacak. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; aktif sürüm `1.68.19+109`; Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
+**Son güncelleme:** 5 Eylül 2026 — Kelime Avı V9: Gökyüzü Adaları için canonical 8×8 içerik PR #171, doğrulanmış 48 WebP asset PR #172 ve ayrı Flutter rota entegrasyon PR #173 DRAFT olarak hazır. Asset checks ve entegrasyon testleri PASS; exact `3abe69ac...` entegrasyonu + exact `4ec33de...` içerik kombinasyonu Android API 36 raw screenshot/log kanıtıyla teknik runtime PASS aldı ve bağımsız evidence validator run `33929151047` SUCCESS oldu. Raw ekran 1080×1920; uygulama resumed/focused; runtime marker, 10 rota node'u ve crash/ANR/render-failure yokluğu doğrulandı. Levent gerçek cihaz/nihai görsel kabulü açık; hiçbir PR Ready/merge edilmedi, Play işlemi yok. Canonical release `3557a7e4...`, sürüm `1.68.19+109`; WORK V2 aktif.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -252,3 +252,25 @@
 - Flutter rota entegrasyonu #172 gerçek PASS sonrası ayrı branch/PR olarak BEKLİYOR.
 - Android 16 raw screenshot + crash/ANR/log ve Levent gerçek cihaz görsel kabulü BEKLİYOR.
 - `assets/questions.json`, BoardMap/67 node, Firebase, AdMob, signing, package/version ve Play release'e dokunulmadı. Play yalnız Levent'in ayrı açık onayıyla.
+
+## Kelime Avı V9 — Gökyüzü Rota Entegrasyonu + Android16 Teknik Kanıtı — 5 Eylül 2026
+
+- Canonical release değişmedi: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+- Başlangıç Limanı release/gameplay/görsel/navigasyon PASS durumu korunuyor; yeniden açılmadı.
+- İçerik PR #171: **OPEN / DRAFT / mergeable=true**; exact HEAD `4ec33de7438fcbd15ed63b1ae2adda127da3be8c`; Ready/merge yok.
+- Asset PR #172: **OPEN / DRAFT / mergeable=true / ASSET_PR_PASS**; exact HEAD `8508e6bfe03d0772cf2bd371d9d3ea4b4177b7fb`; 48 WebP; otomatik kontroller SUCCESS; Ready/merge yok.
+- Flutter rota entegrasyonu ayrı ürün branch'inde tamamlandı: `feat/kelime-avi-gokyuzu-route-integration-20260905`.
+- Entegrasyon commit'i: `3abe69ac329fba76ecfeb780ecdf3bfc68da578e` — `feat(kelime-avi): integrate gokyuzu route`; parent exact asset HEAD `8508e6bf...`.
+- Exact integration diff: ahead 1 / behind 0 / 1 commit; yalnız 6 dosya: Gökyüzü route screen, production entry dar route seçimi, progression bonus-bypass genellemesi, `pubspec.yaml` asset kaydı ve 2 focused test dosyası.
+- Pre-commit integration gate run `33925674228`, job `101193533261`: SUCCESS; focused regresyon **39/39 PASS**; yeni analyzer error yok; `assets/questions.json`, `android/`, package/version korunuyor.
+- DRAFT entegrasyon PR #173: **OPEN / DRAFT / mergeable=true**; base `feat/kelime-avi-gokyuzu-runtime-assets`, exact head `3abe69ac...`; Ready/merge yok.
+- Gökyüzü progression LOCKED davranışı testle korunuyor: node 7 sonrası bonus 8 + normal 9 birlikte açılır; node 10, 9 tamamlanmadan locked kalır; Başlangıç Limanı regresyonu PASS.
+- Android16 source capture run `33928436133`, job `101201894979`: exact integration HEAD `3abe69ac...` + exact runner-only content HEAD `4ec33de...`; analyzer **No issues found**; Gökyüzü focused **6/6 PASS**; isolated debug APK build PASS; APK SHA256 `cbcb0daa63a3b96727a9e4af827c2a03ded6242b27a0021b912dcbc166a8efbb`.
+- Aynı run Android API 36 emulatoru boot etti, APK'yı kurup açtı ve raw screenshot aldı. Screenshot **1080×1920**; `[GOKYUZU_ANDROID16_RUNTIME_READY]` marker mevcut; `MainActivity` resumed/focused; UI dump başlık + 10 bölüm + Pusula + Bilgi Kitabı taşıyor.
+- Source capture step sonucu, kanıt dosyaları üretildikten sonra `android-emulator-runner` çok satırlı `grep \\` ifadesini ayrı `/bin/sh` çağrılarına böldüğü için false-negative `failure` oldu. Bu uygulama/runtime hatası değildir. Source artifact: `9957851560`.
+- Raw artifact bağımsız validator run `33929151047`, job `101204015094`: **SUCCESS**. Exact SHA'lar, 1080×1920 PNG, resumed/focused activity, runtime marker, 10 node semantics ve `FATAL EXCEPTION` / package ANR-crash-proc-died / `A RenderFlex overflowed` / `FlutterError` yokluğu tekrar doğrulandı. Validated artifact: `9957897368`.
+- Sonuç: `GOKYUZU_ANDROID16_TECHNICAL_RUNTIME` — **PASS / KAPANDI**.
+- `GOKYUZU_REAL_DEVICE_VISUAL_ACCEPTANCE` — **AÇIK / LEVENT GERÇEK CİHAZ-NİHAİ GÖRSEL KABULÜ GEREKLİ**. Emulator teknik PASS, insan/fiziksel cihaz kabulünün yerine geçmez.
+- #171, #172, #173 DRAFT kalır. Ready/merge/Play işlemi yapılmadı; Play yalnız Levent'in ayrı açık onayıyla.
+- `assets/questions.json`, BoardMap/67 node, Firebase, AdMob, signing, package/version ve Play release korunmuştur.
+- Bu blokta yeni ürün kararı alınmadı; `KARARLAR.md` değişmedi.
