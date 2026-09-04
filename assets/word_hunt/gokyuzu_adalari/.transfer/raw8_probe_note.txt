@@ -1,0 +1,1 @@
+raw8 binary transfer probe started from canonical optimized ZIP d219c6233fa27f5e3e04687ec5fd15dab1f24500584e78d6a7c80036ee68f5ca; temporary file, final tree must remove it.
