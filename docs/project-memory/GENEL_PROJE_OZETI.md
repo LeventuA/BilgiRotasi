@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 5 Eylül 2026 — Kelime Avı V9: Gökyüzü Adaları için canonical 8×8 içerik PR #171, doğrulanmış 48 WebP asset PR #172 ve ayrı Flutter rota entegrasyon PR #173 DRAFT olarak hazır. Asset checks ve entegrasyon testleri PASS; exact `3abe69ac...` entegrasyonu + exact `4ec33de...` içerik kombinasyonu Android API 36 raw screenshot/log kanıtıyla teknik runtime PASS aldı ve bağımsız evidence validator run `33929151047` SUCCESS oldu. Raw ekran 1080×1920; uygulama resumed/focused; runtime marker, 10 rota node'u ve crash/ANR/render-failure yokluğu doğrulandı. Levent gerçek cihaz/nihai görsel kabulü açık; hiçbir PR Ready/merge edilmedi, Play işlemi yok. Canonical release `3557a7e4...`, sürüm `1.68.19+109`; WORK V2 aktif.
+**Son güncelleme:** 5 Eylül 2026 — Kelime Avı V9: Gökyüzü Adaları content/assets/runtime teknik hattı çalışıyor, fakat raw Android16 rota görünümü Levent tarafından GÖRSEL FAIL edildi; onaylı Rota mock V2 ile eşleşmiyor. Teknik runtime PASS yalnız crash/ANR/launch kanıtıdır. PR #173 görsel blokeli ve DRAFT. Sıradaki iş V2 kompozisyonunu doğru production render'a geri kurmak; yeni gerçek-cihaz kabul APK'sı ancak görsel eşleşme sonrası. Canonical release `3557a7e4...`, sürüm `1.68.19+109`; Ready/merge/Play yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -274,3 +274,16 @@
 - #171, #172, #173 DRAFT kalır. Ready/merge/Play işlemi yapılmadı; Play yalnız Levent'in ayrı açık onayıyla.
 - `assets/questions.json`, BoardMap/67 node, Firebase, AdMob, signing, package/version ve Play release korunmuştur.
 - Bu blokta yeni ürün kararı alınmadı; `KARARLAR.md` değişmedi.
+
+## Kelime Avı V9 — Gökyüzü raw runtime görsel reddi — 5 Eylül 2026
+
+- Levent raw Android16 Gökyüzü rota ekranını açıkça **GÖRSEL FAIL / REJECTED** olarak değerlendirdi: gösterilen runtime, daha önce onaylanan Gökyüzü Adaları **Rota mock V2** hedefi değildir.
+- Android16 teknik/runtime kanıtı geçerlidir ancak yalnız teknik kanıttır; görsel ürün kabulü değildir.
+- PR #173 entegrasyonu **görsel olarak blokeli** kalır; Ready/merge yapılmaz.
+- Bağlayıcı görsel hedef değişmedi: `C — Neşeli & Parlak`, Rota mock V2 statik kabulü ve aynı rota kabuğu/landmark kompozisyon dili korunur.
+- Mevcut raw runtime; büyük beyaz üst panel, boş/cyan ağırlıklı sahne, küçültülmüş ada/landmarklar, basit şerit rota ve dağınık dekor kompozisyonu nedeniyle V2 hedefini taşımıyor; bu görünüm yeni ürün yönü olarak kabul edilmez.
+- Görev sırası düzeltilmiştir: önce onaylı V2 görsel hedefiyle gerçek production kompozisyon/export eşleşmesi yeniden kurulacak; görsel karşılaştırma PASS olmadan yeni gerçek-cihaz kabul APK'sına geçilmeyecek.
+- `qa/gokyuzu-real-device-apk-20260905` run `33929590990`: split APK build/test adımı PASS, Android16 isolated launch adımı FAIL; artifact upload SKIPPED. Kullanıcı görsel reddi nedeniyle bu hat ürün kabul kanıtı olarak kullanılmayacak ve QA branch canonical release'e resetlendi.
+- Exact V2 mock raster dosyasının repo/File Library içinde yeniden erişilebilir kaynak yolu **DOĞRULANACAK**; belge kayıtlarındaki V2 görsel sözleşmesi korunur, tahminle yeni kompozisyon uydurulmaz.
+- `assets/questions.json`, BoardMap/67 node, Firebase, AdMob, signing, package/version, canonical release ve Play korunmuştur.
+- Yeni ürün kararı yok; `KARARLAR.md` değişmedi.

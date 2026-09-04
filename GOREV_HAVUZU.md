@@ -1,6 +1,6 @@
 # Bilgi Rotası — Görev Havuzu
 
-**Son güncelleme:** 5 Eylül 2026 — Gökyüzü Adaları 48-asset QA ve PR #172 checks PASS; Flutter rota entegrasyonu commit `3abe69ac...` / DRAFT PR #173 ile tamamlandı. Android16 raw teknik kanıt + bağımsız validator PASS. Aktif sonraki kapı Levent gerçek cihaz/nihai görsel kabulüdür; Ready/merge/Play yok.
+**Son güncelleme:** 5 Eylül 2026 — Gökyüzü raw Android16 runtime görünümü Levent tarafından GÖRSEL FAIL edildi. Teknik PASS görsel kabul değildir. Aktif görev: onaylı Rota mock V2 görsel dilini gerçek production kompozisyona doğru biçimde geri taşımak; görsel eşleşme PASS olmadan gerçek-cihaz APK kabulüne geçme. #173 DRAFT/blokeli; merge/Play yok.
 
 > Root dosya güncel Kelime Avı çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.
 
@@ -127,3 +127,16 @@
 - #171, #172, #173 DRAFT kalır. Ready/merge/Play işlemi yapılmadı; Play yalnız Levent'in ayrı açık onayıyla.
 - `assets/questions.json`, BoardMap/67 node, Firebase, AdMob, signing, package/version ve Play release korunmuştur.
 - Bu blokta yeni ürün kararı alınmadı; `KARARLAR.md` değişmedi.
+
+## Kelime Avı V9 — Gökyüzü raw runtime görsel reddi — 5 Eylül 2026
+
+- Levent raw Android16 Gökyüzü rota ekranını açıkça **GÖRSEL FAIL / REJECTED** olarak değerlendirdi: gösterilen runtime, daha önce onaylanan Gökyüzü Adaları **Rota mock V2** hedefi değildir.
+- Android16 teknik/runtime kanıtı geçerlidir ancak yalnız teknik kanıttır; görsel ürün kabulü değildir.
+- PR #173 entegrasyonu **görsel olarak blokeli** kalır; Ready/merge yapılmaz.
+- Bağlayıcı görsel hedef değişmedi: `C — Neşeli & Parlak`, Rota mock V2 statik kabulü ve aynı rota kabuğu/landmark kompozisyon dili korunur.
+- Mevcut raw runtime; büyük beyaz üst panel, boş/cyan ağırlıklı sahne, küçültülmüş ada/landmarklar, basit şerit rota ve dağınık dekor kompozisyonu nedeniyle V2 hedefini taşımıyor; bu görünüm yeni ürün yönü olarak kabul edilmez.
+- Görev sırası düzeltilmiştir: önce onaylı V2 görsel hedefiyle gerçek production kompozisyon/export eşleşmesi yeniden kurulacak; görsel karşılaştırma PASS olmadan yeni gerçek-cihaz kabul APK'sına geçilmeyecek.
+- `qa/gokyuzu-real-device-apk-20260905` run `33929590990`: split APK build/test adımı PASS, Android16 isolated launch adımı FAIL; artifact upload SKIPPED. Kullanıcı görsel reddi nedeniyle bu hat ürün kabul kanıtı olarak kullanılmayacak ve QA branch canonical release'e resetlendi.
+- Exact V2 mock raster dosyasının repo/File Library içinde yeniden erişilebilir kaynak yolu **DOĞRULANACAK**; belge kayıtlarındaki V2 görsel sözleşmesi korunur, tahminle yeni kompozisyon uydurulmaz.
+- `assets/questions.json`, BoardMap/67 node, Firebase, AdMob, signing, package/version, canonical release ve Play korunmuştur.
+- Yeni ürün kararı yok; `KARARLAR.md` değişmedi.
