@@ -1,6 +1,6 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
-**Son güncelleme:** 5 Eylül 2026 — `GOKYUZU_RUNTIME_VISUAL_MATCH_V2` AÇIK/FAIL: mevcut raw Android ekran onaylı Rota mock V2 hedefi değil. Exact V2 mock raster kaynağı repo/File Library içinde yeniden bulunup sabitlenmeli (DOĞRULANACAK). #173 DRAFT/blokeli; merge/Play yok.
+**Son güncelleme:** 5 Eylül 2026 — `GOKYUZU_EXACT_V2_REFERENCE_SOURCE` DOĞRULANDI: `Gökyüzü Adaları: Büyülü Seviye Haritası.png` / File Library `file_00000000fe7c81f4aec58eee1d5c702d`. `GOKYUZU_STATIC_PRODUCTION_COMPOSITION_ACCEPTANCE` AÇIK/BEKLİYOR. #173 DRAFT/görsel blokeli; merge/Play yok.
 
 ## Kelime Avı
 
@@ -125,4 +125,17 @@
 - `qa/gokyuzu-real-device-apk-20260905` run `33929590990`: split APK build/test adımı PASS, Android16 isolated launch adımı FAIL; artifact upload SKIPPED. Kullanıcı görsel reddi nedeniyle bu hat ürün kabul kanıtı olarak kullanılmayacak ve QA branch canonical release'e resetlendi.
 - Exact V2 mock raster dosyasının repo/File Library içinde yeniden erişilebilir kaynak yolu **DOĞRULANACAK**; belge kayıtlarındaki V2 görsel sözleşmesi korunur, tahminle yeni kompozisyon uydurulmaz.
 - `assets/questions.json`, BoardMap/67 node, Firebase, AdMob, signing, package/version, canonical release ve Play korunmuştur.
+- Yeni ürün kararı yok; `KARARLAR.md` değişmedi.
+
+## Kelime Avı V9 — Gökyüzü V2 kaynak/audit checkpointi — 5 Eylül 2026
+
+- File Library içinde onay kaydıyla eşleşen V2 referans yeniden bulundu: **`Gökyüzü Adaları: Büyülü Seviye Haritası.png`**, File Library id `file_00000000fe7c81f4aec58eee1d5c702d`, oluşturma zamanı `2026-09-03T18:47:34Z`.
+- Dosya tanımı kayıtlı V2 sözleşmesiyle örtüşüyor: koyu lacivert/mor + altın üst kabuk, `KELİME AVI`, büyük `GÖKYÜZÜ ADALARI` paneli, `0 / 30`, `Bölüm: 1`, zengin yüzen ada/landmark kompozisyonu, kıvrımlı ışıklı rota, 8 bonus dalı, alt köşe pusula/kitap ve genel alt menü yok.
+- Companion kaynaklar da yeniden bulundu: `Gökyüzü Adaları Rota Konseptleri.png` (C — Neşeli & Parlak) ve `Gökyüzü Adaları Renkli Asset Sheet.png`.
+- #173 renderer kök görsel sapması koddan doğrulandı: beyaz/yarı saydam 218 px top chrome, beyaz Material butonları, düz gradient taban, küçük `178–205 px` scene assetleri, ayrı ada+scene üst üste bindirme, beyaz label kapsülleri ve CustomPainter ile basit 18/10 px stroked route. Bunlar V2'nin koyu süslü kabuğu, büyük landmark ölçeği ve cloud/glow rota dilini taşımıyor.
+- Mevcut 48 runtime WebP teknik olarak kullanılabilir; görsel FAIL'in önemli bölümü asset bozukluğundan değil **kompozisyon/ölçek/chrome renderer kararından** kaynaklanıyor. Asset stil uygunluğu yine V2'ye karşı gözle doğrulanacak.
+- Flutter'a yeni düzeltme yazılmadan önce mevcut 48 runtime assetle deterministik statik production kompozisyon proof üretildi. Lokal proof SHA256: `9b40fa2d0898c62ae26f565f0fd2f8f7acb892b3420a65aefaccaf6c2dbc6edd`. Bu dosya Android/runtime kanıtı değildir ve Levent görsel incelemesi **BEKLİYOR**.
+- Önceki raw Android FAIL screenshot SHA256 `743771f97b4c60126fe624f9d4c4aec54bc4ce83b8046551c28741f83e977415` olarak korunur.
+- `GOKYUZU_EXACT_V2_REFERENCE_SOURCE` artık **DOĞRULANDI**; `GOKYUZU_STATIC_PRODUCTION_COMPOSITION_ACCEPTANCE` **AÇIK / BEKLİYOR**.
+- #173 DRAFT/görsel blokeli kalır. Ready/merge/Play yok. `assets/questions.json`, BoardMap/67 node, Firebase, AdMob, signing, package/version ve canonical release korunur.
 - Yeni ürün kararı yok; `KARARLAR.md` değişmedi.
