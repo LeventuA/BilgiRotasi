@@ -1,6 +1,6 @@
 # Bilgi Rotası — Genel Proje Özeti
 
-**Son güncelleme:** 3 Eylül 2026 — Kelime Avı V8 devir noktası. Başlangıç Limanı canonical 8×8 gameplay + production navigasyon release entegrasyonu tamamlandı. İkinci paket **Gökyüzü Adaları**, görsel yön **C — Neşeli & Parlak**, 10 bölüm rota sırası ve **modüler asset mimarisi** LOCKED. İlk rota mock'ındaki genel alt menü reddedildi; Başlangıç Limanı rota kabuğuna uyumlu **rota mock V2** üretildi ve Levent tarafından görsel olarak onaylandı. V2 statik tasarım PASS'tir; raw Android runtime PASS değildir. Sıradaki aktif iş yazısız/etiketsiz gerçek şeffaf production Sheet A–E, ardından 48 atomik asset + toplu QA'dır. Flutter/APK entegrasyonu henüz başlamadı. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
+**Son güncelleme:** 5 Eylül 2026 — Kelime Avı V8 devir checkpointi. Başlangıç Limanı canonical 8×8 gameplay + production ana navigasyon release entegrasyonu tamamlandı. İkinci paket **Gökyüzü Adaları**, görsel yön **C — Neşeli & Parlak**, 10 bölüm rota sırası ve **modüler asset mimarisi** LOCKED. Rota mock V2 Levent tarafından statik görsel olarak onaylandı. Gökyüzü Adaları için canonical 8×8 içerik paketi üretildi ve PR #171 DRAFT olarak açık. Production asset tarafında 48 runtime WebP hazırlandı ve dosya/alpha QA yapıldı; Flutter rota entegrasyonu henüz başlamadı. Büyük binary dosya taşıma engelini çözmek için **firestorage.ai bağlantısı 5 Eylül 2026'da başarıyla kuruldu** ve doğrulanmış aktarım tablosu Firestorage'a yüklendi. Bundan sonra eski parça/parça Git blob aktarımı bırakılacak; Firestorage üzerinden tek dosya aktarımı kullanılacak. Canonical release HEAD `3557a7e4f2f2917d61ba61866c6d4c8561994667`; aktif sürüm `1.68.19+109`; Play yükleme/yayınlama yapılmadı. WORK V2 aktif.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
 
@@ -14,6 +14,7 @@
 - Görsel kabul yalnız gerçek/raw Android runtime üzerinden verilir; ImageGen/mockup/QA selector acceptance kanıtı değildir. Statik mock onayı yalnız tasarım yönü kabulüdür.
 - `assets/questions.json` kontrolsüz değiştirilmez; ilgisiz değişiklikler silinmez.
 - Codex yalnız mevcut araçlarla yapılamayan zorunlu yerel kod/test işi olduğunda kullanılır; gereksiz Codex kredisi harcanmaz.
+- Kelime Avı için WORK V2 geçerlidir: mikro adım + rapor + bekleme döngüsü yerine mümkün olan en büyük mantıklı üretim bloğu tek çalışma döngüsünde tamamlanır.
 
 ## Canlı Release Hattı
 
@@ -25,9 +26,9 @@
 - PR #158 canonical gameplay paketini release’e taşıdı; merge commit `189864c92a605e7bb960460300714049c730ea39`.
 - PR #169 production ana navigasyon entegrasyonunu release’e taşıdı; merge commit `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
 - PR #168 canonical checkpoint belgelerini release’e taşıdı; docs-only merge commit `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
-- Play Console’a yükleme veya yayınlama yapılmadı.
+- Play Console’a bu çalışma için yeni yükleme veya yayınlama yapılmadı.
 
-## Başlangıç Limanı — Bağlayıcı Mimari
+## Başlangıç Limanı — RELEASE PASS / KORUNACAK
 
 - İlk rota/paket: **Başlangıç Limanı**.
 - Rota hedefi: 10 bölüm / 30 yıldız.
@@ -36,6 +37,30 @@
 - Level 7 tamamlanınca bonus 8 ve normal 9 birlikte açılır; bonus 8, 9 için gate değildir; 10, node 9 tamamlanmadan locked/no-callback.
 - BoardMap / 67 node sözleşmesi kontrolsüz değiştirilmez.
 - Bu MASTER ART istisnası sonraki Kelime Avı rotalarına otomatik genellenmez.
+- Production Oyna menüsüne `Kelime Avı` kartı release üzerinde entegredir.
+- PR #169 full-suite/release APK/Android16 run `33754851284`: SUCCESS.
+- Kelime Avı Android16 görsel run `33754851205`: SUCCESS; 126/126 PASS; artifact `9893332600`.
+
+## Canonical Gameplay Sözleşmesi — LOCKED
+
+- Grid: **8×8 / 64 hücre — LOCKED**.
+- Önceki 6×10 yalnız tarihsel checkpointtir; ürüne geri dönmez.
+- Target+bonus eğrisi: B1 5+1, B2 5+1, B3 6+1, B4 6+1, B5 7+1, B6 7+1, B7 8+1, B8 7+2, B9 9+1, B10 9+1; toplam **80**.
+- Her target/bonus 8 düz yönde exactly-one fiziksel occurrence taşır; ters gesture aynı canonical kelimeye çözülür.
+- B5 60 sn ve B10 120 sn soft challenge; hard-fail değildir.
+- Engine/path/scoring/timer/progression sözleşmesi görsel tema uğruna değiştirilmez.
+- Swipe false-positive toleransı: kelime olamayacak kısa gesture cezasız iptal; yalnız son hücre çıkarılınca exact çözüm oluşuyorsa tek trailing hücre kırpılır; ilk aktif pointer gesture boyunca kilitlenir; iki hücre taşma ve gerçek yanlış seçim hata kalır.
+
+## V5 / V6 Ürün Kabulü — PASS / YENİDEN AÇILMAZ
+
+- Found-state exact commit `4dddf00178ef9f14b8edb3fc706114be72f477a4`; Android16 run `33486609120`: SUCCESS; raw Android kullanıcı PASS.
+- Error-state: fill `0xB35A1F2B`, border `0xFFFF6B57`, transient 280 ms; Android16 `33524578623`: SUCCESS; raw Android kullanıcı PASS.
+- Completion/result: targetlar tamam bonus eksikse otomatik popup yok; tüm target+bonus tamamlanınca popup otomatik açılır.
+- Static/productize `33629855060`: SUCCESS, Word Hunt 139/139 PASS.
+- Android16 `33655562508`: SUCCESS; raw Android B5/B10 kullanıcı PASS.
+- B5 tuning sonrası insan testi **32 sn** → süre PASS; Android16 tuning `33670657723`: SUCCESS.
+- Swipe ürün commit `749c678b885d6cefec428c603c55a83a4190152c`; fast `33724552713`: SUCCESS; Android16 `33724549202`: SUCCESS.
+- Yeni belirti yoksa bu kabul kapıları yeniden açılmaz.
 
 ## Gökyüzü Adaları — Paket 2 LOCKED Kararlar
 
@@ -62,111 +87,105 @@
 - 7 sonrası bonus 8 ve normal 9 birlikte açılır; bonus 8, 9 için gate değildir.
 - 10, node 9 tamamlanmadan locked kalır.
 
-### Modüler asset sözleşmesi
-
-- Flatten edilmiş tam rota MASTER ART kullanılmaz.
-- Büyük gradient/renk alanları Flutter tarafından çizilebilir; illüstratif dünya parçaları modüler raster asset olur.
-- Dinamik numara/yıldız/lock/progression/metin asset içine bake edilmez.
-- Referans tuval: **1080×1920 dikey**.
-- V1 set: **48 atomik asset** = 8 atmosfer + 7 ada + 6 yol + 10 landmark + 9 node/progression UI + 8 dekor.
-- Üretim birimi: **5 sprite sheet**; 48 ayrı görsel üretim döngüsü yapılmaz.
-- Ayrıntılı sözleşme: `docs/project-memory/GOKYUZU_ADALARI_ASSET_PLANI.md`.
-
 ### Rota mock V2 — STATİK GÖRSEL PASS
 
-- İlk mock'taki `Mağaza / Başarılar / Oyna / Sıralama / Rozetler` alt genel menüsü rota ekranına ait olmadığı için **REJECTED / superseded**.
-- V2, Başlangıç Limanı gibi alt genel menüsüz rota kabuğunu korur: sol üst geri, sağ üst bilgi, alt köşelerde yalnız rota içi kontroller.
+- İlk mock'taki `Mağaza / Başarılar / Oyna / Sıralama / Rozetler` genel alt menüsü rota ekranına ait olmadığı için **REJECTED / superseded**.
+- V2 Başlangıç Limanı rota kabuğuyla hizalıdır: alt genel menü yok; sol üst geri, sağ üst bilgi, alt köşelerde yalnız rota içi kontroller.
 - 10 bölüm ayrı UI kullanmaz. Ortak node/plaque/star/progression dili korunur; bölüm farkı landmark, ada ve lokal atmosferle verilir.
-- V2 bölüm kimlikleri: Rüzgâr Kapısı giriş/değirmen; Bulut Bahçesi pembe ağaç/çiçek; Kuş Geçidi kuş/kemer; Gökkuşağı Köprüsü gökkuşağı; Fırtına Kulesi fırtına; Hava Gemisi Limanı hava gemisi; Ay İskelesi ay; Gizli Ada bonus/gizli; Yıldız Gözlemevi gözlemevi; Güneş Sarayı altın final.
 - Levent 3 Eylül 2026'da düzeltilmiş rota mock V2'yi **onayladı**.
-- Bu kabul **statik tasarım yönü PASS**'idir; raw Android runtime acceptance değildir.
+- Bu kabul yalnız **statik tasarım yönü PASS**'idir; raw Android runtime acceptance değildir.
 
-### Production asset checkpointi
+## Gökyüzü Adaları — Runtime Asset Checkpointi
 
-- Önceki Sheet A–E posterleri stil/kompozisyon referansıdır; doğrudan production asset değildir.
-- Gerçek production aşaması: 5 ayrı **şeffaf alpha**, yazısız/etiketsiz sprite sheet; parçalar birbirine değmez ve deterministik crop için boşluk bırakılır.
-- Bu 5 sheet 48 atomik dosyaya ayrılır; transparanlık, kenar, ışık, stil, ölçek ve crop QA yapılır.
-- Atomik QA bitmeden Flutter rota entegrasyonuna geçilmez.
+### Production yönünün rafinesi
 
-## Canonical Gameplay Sözleşmesi
+- İlk 48-asset taslağındaki ayrı `ada tabanı + landmark overlay` zorlaması, üretilen sanatın doğal kompozisyonunu bozduğu için runtime core sözleşmesinde rafine edildi.
+- Kullanıcıya görünen V2 tasarım yönü değiştirilmedi.
+- Runtime core: **41 asset** = 14 atmosfer/yol + 10 `scene_level_01..10` bölüm sahne composite + 17 node/progression UI/dekor.
+- Opsiyonel kütüphane: **7 island variant**.
+- Toplam logical runtime asset: **48 WebP**.
+- Dinamik bölüm numarası, yıldız sayısı, kilit/progression metni core node assetlerine bake edilmez.
+- Büyük gradient/renk alanları Flutter tarafından çizilebilir; illüstratif parçalar modüler raster asset olur.
 
-- Grid: **8×8 / 64 hücre — LOCKED**.
-- Önceki 6×10 yalnız tarihsel checkpointtir; ürüne geri dönmez.
-- Target+bonus eğrisi: B1 5+1, B2 5+1, B3 6+1, B4 6+1, B5 7+1, B6 7+1, B7 8+1, B8 7+2, B9 9+1, B10 9+1; toplam **80**.
-- Her target/bonus 8 düz yönde exactly-one fiziksel occurrence taşır; ters gesture aynı canonical kelimeye çözülür.
-- B8 bonusları `HIZ` + `SKOR`; B9 bonus `ROKET`; B10 hedef `YOL`, bonus `HAZİNE`.
-- B5 60 sn ve B10 120 sn soft challenge; hard-fail değildir.
-- Engine/path/scoring/timer/progression sözleşmesi görsel tema uğruna değiştirilmez.
+### Production/Runtime QA
 
-## V5 / V6 Ürün Kabulü — PASS
+- 48 production candidate PNG'den runtime WebP seti hazırlandı.
+- Runtime ZIP boyutu: **557.120 bayt**.
+- ZIP SHA256: **`d219c6233fa27f5e3e04687ec5fd15dab1f24500584e78d6a7c80036ee68f5ca`**.
+- ZIP integrity/test: PASS.
+- İçerik: **48/48 WebP**.
+- 48/48 dosyada alpha kanalı mevcut.
+- 8 px dış kenarda `alpha >= 8` yok; maksimum yalnız düşük alpha fringe (`alpha 4`) görüldü. Doğru QA ifadesi: **8px border alpha<8 PASS**. `tamamen sıfır alpha border` iddiası kullanılmayacak.
+- Bu QA dosya/format/alpha/crop güvenlik QA'sıdır; **raw Android runtime görsel PASS değildir**.
+- Flutter rota entegrasyonu tamamlandıktan sonra Android16 raw screenshot + crash/ANR/log kanıtı ve Levent'in gerçek görsel kabulü ayrıca gerekir.
 
-### V5 reference asset
-- Production mimarisi: approved raster reference assets + dinamik Flutter text/state + canonical 8×8 engine.
-- V5 integration run `33379341765`: **SUCCESS**.
+## Gökyüzü Adaları — Canonical 8×8 İçerik Paketi / PR #171
 
-### Found-state
-- Exact tested commit `4dddf00178ef9f14b8edb3fc706114be72f477a4`.
-- Android16 run `33486609120`: **SUCCESS**; raw Android kullanıcı PASS.
+- PR #171: **OPEN / DRAFT / mergeable=true**.
+- Başlık: `feat(kelime-avi): add Gokyuzu 8x8 content pack`.
+- Base: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
+- Exact HEAD: `4ec33de7438fcbd15ed63b1ae2adda127da3be8c`.
+- Değişiklik: yalnız 2 dosya; `lib/word_hunt/word_hunt_gokyuzu_content.dart` + `test/word_hunt_gokyuzu_content_test.dart`.
+- 10 bölüm / 30 yıldız / toplam **80 target+bonus**.
+- Eğri: `5+1, 5+1, 6+1, 6+1, 7+1, 7+1, 8+1, 7+2, 9+1, 9+1`.
+- Her kelime exactly-one fiziksel occurrence taşır; forward/reverse gesture aynı canonical kelimeye çözülür.
+- B1–B2 yatay/dikey başlangıç; B5 ve B10 yatay+dikey+çapraz yön ailelerini birlikte taşır.
+- B5 60 sn; B10 120 sn.
+- Gökyüzü içerik özel bonusları: B8 `SIRLAR` + `HAZİNE`, B9 `ROKET`, B10 `ZAFER`.
+- `assets/questions.json`, Başlangıç Limanı, gameplay engine/path/scoring/timer/progression, BoardMap/67 node, Firebase/AdMob/signing/Android config ve package/version değişmedi.
+- Exact HEAD üzerinde ilgili CI kanıtları SUCCESS olarak doğrulandı.
+- Ready/merge yalnız Levent'in ayrı açık onayıyla yapılır.
 
-### Error-state
-- Fill `0xB35A1F2B`, border `0xFFFF6B57`, transient 280 ms.
-- Android16 run `33524578623`: **SUCCESS**; raw Android kullanıcı PASS.
+## Firestorage Binary Transfer Checkpointi — 5 Eylül 2026
 
-### Completion/result
-- Targetlar tamam, bonus eksik → otomatik popup yok; bonus aranabilir.
-- Tüm target+bonus tamam → popup otomatik açılır; fresh/replay’de tekrar açılabilir.
-- Static/productize `33629855060`: SUCCESS, Word Hunt 139/139 PASS.
-- Android16 `33655562508`: SUCCESS; raw Android B5/B10 kullanıcı PASS.
+- Büyük binary dosyaları GitHub connector üzerinden base64/blob parçalarıyla taşımak uzun, kırılgan ve sohbeti kilitlemeye yatkın çıktı.
+- Birden fazla 8k/12k/18k/20k/30k/50k parça denemesi yapıldı; bazı unreferenced bloblar erişilemez oldu veya payload kesilmesi nedeniyle beklenen Git SHA eşleşmedi.
+- Bu eski chunk/blob aktarım yolu **ABANDONED / final ürün akışında kullanılmayacak**.
+- Eski `.transfer`, `raw8`, `v5`, `tmp/gokyuzu-materialize-*` veya benzeri deneme branch/objeleri **canonical ürün asseti değildir**; final asset PR'a taşınmamalıdır.
+- 5 Eylül 2026'da `firestorage.ai` bağlantısı başarıyla kuruldu.
+- Google Drive'daki native `gokyuzu_transfer_chunks18_native` Sheet XLSX olarak dışa aktarıldı.
+- Firestorage'a başarıyla yüklenen dosya: `gokyuzu_transfer_chunks18_native`.
+- Firestorage file id: `01a06e6342ff774994dd33280571724e`.
+- Firestorage public id: `G2aJFQx9RHUWoAue`.
+- Share URL: `https://firestorage.ai/ja/f/hc_Qp-jw2yHk`.
+- Boyut: **1.129.386 bayt**.
+- Retention: **72 saat**; Firestorage kayıtlarında expiry `2026-09-07T21:46:34Z`.
+- Share URL'yi bilen kişiler erişebilir; yalnız geçici teknik transfer için kullanılacaktır.
+- Firestorage'ın bu projedeki yeni tercih edilen rolü: büyük ZIP/XLSX/görsel paketlerini kullanıcıyı manuel taşıma operatörü yapmadan geçici olarak GitHub materialization akışına ulaştırmak.
+- Codex bu transfer işi için kullanılmadı ve gerekmiyor.
 
-### B5 denge
-- İlk insan testi: 115 sn / 2 hata → 60 sn hedef karşılanmadı.
-- B10 insan testi: 109 sn / 4 hata → 120 sn hedef PASS.
-- B5 tuning sonrası: **32 sn** → süre PASS.
-- Android16 tuning run `33670657723`: SUCCESS.
-- B5 targetları `ANKARA`, `ŞEHİR`, `TÜRKİYE`, `BAŞKENT`, `MECLİS`, `KULE`, `KALE`; bonus `ANIT`.
+### Firestorage sonrası sıradaki exact teknik işlem
 
-### Swipe false-positive toleransı
-- Kelime olamayacak kadar kısa gesture cezasız iptal edilir.
-- Yalnız son hücre çıkarıldığında exact target/bonus/already-found oluşuyorsa tek trailing hücre kırpılır.
-- İlk aktif pointer gesture boyunca kilitlenir; ek temas seçime karışmaz.
-- İki hücre taşma ve anlamlı gerçek yanlış seçim hata kalır; autocomplete yoktur.
-- Ürün commit `749c678b885d6cefec428c603c55a83a4190152c`.
-- Fast `33724552713`: SUCCESS.
-- Android16 `33724549202`: SUCCESS; gerçek `ANKARA + 1 trailing hücre` → `1/7`, hata `0`.
+1. Firestorage'daki `gokyuzu_transfer_chunks18_native` XLSX'i GitHub tarafında tek-seferlik materialization akışına indir.
+2. XLSX `chunks` tablosundaki base64 içeriklerini indeks sırasıyla birleştir.
+3. Base64 decode ile runtime ZIP'i yeniden kur.
+4. ZIP byte boyutu **557.120** ve SHA256 **`d219c6233fa27f5e3e04687ec5fd15dab1f24500584e78d6a7c80036ee68f5ca`** değilse işlem FAIL; asset commit oluşturma.
+5. ZIP PASS ise tam **48 WebP** bulunduğunu doğrula ve `assets/word_hunt/gokyuzu_adalari/` altına çıkar.
+6. Transfer XLSX/ZIP/workflow/chunk dosyalarını final ürün tree'sinde bırakma.
+7. Canonical release `3557a7e4...` tabanından tek temiz ürün commit'i oluştur: **`feat(kelime-avi): add gokyuzu runtime assets`**.
+8. Exact diff yalnız 48 runtime WebP + gerekli asset QA/manifest kayıtları olmalı; ürün kodu/pubspec/Flutter entegrasyonu bu committe olmamalı.
+9. Asset PR **DRAFT** aç; Ready/merge yapma.
+10. Asset PR QA PASS sonrası ayrı Flutter rota entegrasyon branch/PR'ına geç.
+
+## PR / Branch Durumu — Devir Noktası
+
+- PR #170: **OPEN / DRAFT / mergeable=true** — docs/checkpoint PR. Head: `docs/kelime-avi-v8-final-checkpoint-20260903`.
+- PR #171: **OPEN / DRAFT / mergeable=true** — Gökyüzü 8×8 içerik PR'ı. Head: `feat/kelime-avi-gokyuzu-content-20260903` @ `4ec33de...`.
+- Final temiz Gökyüzü asset PR **henüz oluşturulmadı**.
+- `feat/kelime-avi-gokyuzu-assets-v2-20260903` ve `tmp/gokyuzu-materialize-20260905` üzerindeki transfer denemeleri final ürün geçmişi olarak kabul edilmez.
+- Canonical release hiçbir transfer denemesiyle değiştirilmedi.
+- Play yükleme/yayınlama yapılmadı.
 
 ## Release Merge Zinciri — TAMAMLANDI
 
-- PR #167 — **MERGED** → `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
-- PR #163 — **MERGED** → `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
-- PR #162 — **MERGED** → `929bb13177e03a0962464e21f6c174d4b3439349`.
-- PR #161 — **MERGED** → `4aa490e7c2d5e7547dc95f9463dbbb9adeb85e5a`.
-- PR #158 — **MERGED** → `189864c92a605e7bb960460300714049c730ea39`.
-- PR #169 — **MERGED** → `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
-- PR #168 — **DOCS-ONLY MERGED** → `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
+- PR #167 — MERGED → `c5d57e98866e244fdf36d5e7b6ad4684c5f935f4`.
+- PR #163 — MERGED → `806c4bfc01f2ab9211a2684bff36f76a82e4ac8d`.
+- PR #162 — MERGED → `929bb13177e03a0962464e21f6c174d4b3439349`.
+- PR #161 — MERGED → `4aa490e7c2d5e7547dc95f9463dbbb9adeb85e5a`.
+- PR #158 — MERGED → `189864c92a605e7bb960460300714049c730ea39`.
+- PR #169 — MERGED → `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
+- PR #168 — DOCS-ONLY MERGED → `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
 - PR #166 tarihsel geliştirme/QA hattıdır; merge edilmeyecektir.
-
-## PR #158 Exact Release-context Kanıtı — PASS
-
-- Exact test edilmiş ürün HEAD: `2ae95df70b452f735a8db9c5bd0d88827a2ec40a`.
-- Kelime Avı Android16 visual proof run `33745646184`: **SUCCESS**, artifact `9887953917`.
-- Release APK / AdMob run `33745646210`: **SUCCESS**, artifact `9889920696`.
-- Merge commit `189864c9...` için otomatik workflow tetiklenmedi (`0` run); pre-merge exact release-context CI kanıtları final teknik kanıttır.
-
-## Production Ana Navigasyon Entegrasyonu — PR #169 MERGED
-
-- Bilgi Rotası production **Oyna** menüsüne `Kelime Avı` kartı eklendi.
-- Exact merged HEAD: `ffa1454ba8fb47da21ca6caa50b0a5495e0149c1`.
-- Merge commit: `0c84aefd8a5ef591aaaab9eaa30bed2e044190cf`.
-- Final ürün farkı 4 dosya / +259 / -0.
-- Full-suite/release APK/Android16 run `33754851284`: **SUCCESS**.
-- Kelime Avı Android16 görsel run `33754851205`: **SUCCESS**; 126/126 PASS; artifact `9893332600`.
-- `assets/questions.json`, BoardMap/67 node, Firebase/AdMob/signing/Android config ve package/version değişmedi.
-
-## Docs-only Checkpoint PR #168 — MERGED
-
-- PR #168: **CLOSED / MERGED**.
-- Merge commit: `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
-- Kapsam yalnız canonical checkpoint belgeleriydi; ürün kodu değişmedi.
 
 ## Ölçeklenebilir Üretim/Test — KALICI KARAR
 
@@ -195,22 +214,24 @@
 - BoardMap / 67 node değiştirilmez.
 - Canonical 8×8 / 64 hücre sözleşmesi korunur.
 - Firebase / AdMob / release signing değişiklikleri ayrı scope gerektirir.
-- package name / version değişmedi.
+- package name / version değiştirilmez.
+- Gökyüzü statik mock onayı raw Android PASS sayılmaz.
+- Asset transfer kolaylığı uğruna gameplay veya görsel sözleşme değiştirilmez.
 
-## Kalan Aktif Sıra — V8 BURADAN DEVAM ETSİN
+## Kalan Aktif Sıra — YENİ SOHBET BURADAN DEVAM ETSİN
 
-1. Her görev başında canonical release branch, `pubspec.yaml`, son commit ve ilgili açık PR/CI durumunu canlı doğrula.
-2. Found/error/completion/B5/swipe kabul kapıları yeni belirti yoksa yeniden açılmaz.
-3. PR #167/#163/#162/#161/#158/#169/#168 merge zinciri — **PASS / TAMAMLANDI**.
-4. Canonical release HEAD — `3557a7e4f2f2917d61ba61866c6d4c8561994667`.
-5. Gökyüzü Adaları tema + C görsel yön + 10 bölüm rota + modüler asset mimarisi — **LOCKED**.
-6. Rota mock V2 — **STATİK GÖRSEL PASS / LEVENT ONAYI**; alt genel menü yok, ortak rota kabuğu + farklı landmarklar.
-7. Gerçek şeffaf production Sheet A–E — **AKTİF SIRADAKİ ÜRETİM**.
-8. Production sheet'leri 48 atomik asset'e ayır + şeffaflık/kenar/ölçek/stil toplu QA.
-9. Atomik QA PASS sonrası Flutter rota entegrasyon branch'i açılabilir; öncesinde Flutter'a geçilmez.
-10. Gökyüzü Adaları 80 target+bonus içerik ve 8×8 grid paketi toplu üretilecek.
-11. Raw Android rota acceptance, Flutter/runtime sonrasında ayrı gerçek görsel kapıdır.
-12. `REFERENCE_FONT` — **DOĞRULANACAK / DEFERRED**.
-13. Play yükleme/yayınlama — **ayrı açık Levent onayı gerektirir**.
+1. Her görev başında canonical release branch, `pubspec.yaml`, son commit ve açık PR/CI durumunu canlı doğrula.
+2. Başlangıç Limanı release/görsel/gameplay kabul kapılarını yeni belirti yoksa yeniden açma.
+3. Gökyüzü tema + C görsel yön + 10 bölüm rota + modüler mimari + rota mock V2 statik PASS kararlarını yeniden tartışma.
+4. Firestorage paylaşımındaki `gokyuzu_transfer_chunks18_native` XLSX'i kullanarak runtime ZIP'i GitHub materialization akışında yeniden kur.
+5. ZIP için zorunlu gate: **557.120 bayt + SHA256 `d219c6233fa27f5e3e04687ec5fd15dab1f24500584e78d6a7c80036ee68f5ca` + 48 WebP**.
+6. PASS sonrası transfer kalıntısı olmadan canonical `3557a7e4...` tabanından tek temiz `feat(kelime-avi): add gokyuzu runtime assets` commit'i oluştur.
+7. Exact asset diff/QA yap ve DRAFT asset PR aç. Ready/merge YAPMA.
+8. Asset PR QA PASS sonrası ayrı Flutter rota entegrasyonu başlat; 41 core asset zorunlu, 7 island variant opsiyonel kütüphanedir.
+9. PR #171 içerik paketi DRAFT kalır; Ready/merge ayrı Levent onayı gerektirir.
+10. Flutter entegrasyonu sonrasında static/widget testleri + Android16 raw screenshot/crash/ANR/log kanıtı al.
+11. Levent raw Android görsel kabulü olmadan Gökyüzü Adaları runtime görsel PASS verme.
+12. `REFERENCE_FONT` — DOĞRULANACAK / DEFERRED.
+13. Play yükleme/yayınlama — yalnız ayrı açık Levent onayıyla.
 
-**SON DURUM: 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA+KONSEPT+ROTA+MODÜLER MİMARİ LOCKED / ROTA MOCK V2 STATİK GÖRSEL PASS / PRODUCTION ŞEFFAF SHEET A–E ÜRETİMİ AKTİF / FLUTTER-APK ENTEGRASYONU YOK / CANONICAL RELEASE HEAD `3557a7e4...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
+**SON DURUM: 8×8 LOCKED / BAŞLANGIÇ LİMANI RELEASE PASS / GÖKYÜZÜ ADALARI TEMA+KONSEPT+ROTA+MODÜLER MİMARİ LOCKED / ROTA MOCK V2 STATİK GÖRSEL PASS / GÖKYÜZÜ 10 BÖLÜM-80 KELİME İÇERİK PR #171 DRAFT / 48 RUNTIME WEBP QA HAZIR / FIRESTORAGE TRANSFER HATTI ÇALIŞIYOR / FİNAL TEMİZ ASSET COMMIT+PR HENÜZ YOK / FLUTTER-APK ENTEGRASYONU YOK / CANONICAL RELEASE `3557a7e4...` / WORK V2 AKTİF / PLAY YAYINI YOK.**
