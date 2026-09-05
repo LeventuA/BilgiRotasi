@@ -1,0 +1,339 @@
+name: Gokyuzu R8 physical-device fixes
+
+on:
+  push:
+    branches:
+      - ci/gokyuzu-r8-device-fixes-20260906
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-promote:
+    runs-on: ubuntu-22.04
+    env:
+      PRODUCT_BRANCH: feat/kelime-avi-gokyuzu-master-art-v2-20260905
+      PRODUCT_SHA: f35082c44e637cb7e6e3815c7d54d38a58b776df
+      CANONICAL_SHA: 3557a7e4f2f2917d61ba61866c6d4c8561994667
+      ASSET_SHA: 8508e6bfe03d0772cf2bd371d9d3ea4b4177b7fb
+    steps:
+      - name: Checkout CI branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify exact starting state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "$PRODUCT_BRANCH" release/final-closed-test-aab-1.68.8
+          test "$(git rev-parse origin/$PRODUCT_BRANCH)" = "$PRODUCT_SHA"
+          test "$(git rev-parse origin/release/final-closed-test-aab-1.68.8)" = "$CANONICAL_SHA"
+          test "$(git show "$CANONICAL_SHA:pubspec.yaml" | grep '^version:' | awk '{print $2}')" = '1.68.19+109'
+          test "$(git show "$PRODUCT_SHA:pubspec.yaml" | grep '^version:' | awk '{print $2}')" = '1.68.19+109'
+          test -z "$(git diff --name-only "$CANONICAL_SHA" "$PRODUCT_SHA" -- assets/questions.json android/ || true)"
+          git checkout --detach "$PRODUCT_SHA"
+
+      - name: Materialize only Gökyüzü gameplay scene assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "$ASSET_SHA"
+          for i in $(seq -w 1 10); do
+            git checkout "$ASSET_SHA" -- "assets/word_hunt/gokyuzu_adalari/scene_level_${i}.webp"
+          done
+          test "$(find assets/word_hunt/gokyuzu_adalari -maxdepth 1 -name 'scene_level_*.webp' | wc -l)" -eq 10
+
+      - name: Apply safe viewport and route-aware gameplay theme
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected one anchor, found {count}: {old[:80]!r}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          route = 'lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart'
+          replace_once(
+              route,
+              "      body: Column(\n        crossAxisAlignment: CrossAxisAlignment.stretch,",
+              "      body: SafeArea(\n        child: Column(\n          crossAxisAlignment: CrossAxisAlignment.stretch,",
+          )
+          replace_once(
+              route,
+              "              child: FittedBox(\n                fit: BoxFit.cover,",
+              "              child: FittedBox(\n                key: const Key('word_hunt_gokyuzu_master_art_fitted_box'),\n                fit: BoxFit.fill,",
+          )
+          replace_once(
+              route,
+              "          ),\n        ],\n      ),\n    );",
+              "          ),\n        ],\n        ),\n      ),\n    );",
+          )
+
+          entry = 'lib/word_hunt/word_hunt_production_entry_screen.dart'
+          replace_once(
+              entry,
+              "    final level = widget.route.levels[levelIndex - 1];\n    final result = await Navigator.of(context).push<WordHuntLevelPlayResult>(",
+              "    final level = widget.route.levels[levelIndex - 1];\n    final isGokyuzu =\n        widget.route.id == WordHuntGokyuzuMasterArtScreen.routeId;\n    final backgroundAsset = isGokyuzu\n        ? 'assets/word_hunt/gokyuzu_adalari/scene_level_${level.index.toString().padLeft(2, '0')}.webp'\n        : null;\n    final result = await Navigator.of(context).push<WordHuntLevelPlayResult>(",
+          )
+          replace_once(
+              entry,
+              "        builder: (_) => WordHuntLevelProductionScreen(\n          level: level,\n          infoCards: widget.infoCards,\n        ),",
+              "        builder: (_) => WordHuntLevelProductionScreen(\n          level: level,\n          infoCards: widget.infoCards,\n          backgroundAsset: backgroundAsset,\n          routeTitle: widget.route.title,\n        ),",
+          )
+
+          screens = 'lib/word_hunt/word_hunt_screens.dart'
+          replace_once(
+              screens,
+              "    required this.infoCards,\n    this.now,\n  });\n\n  final WordHuntLevelDefinition level;\n  final List<WordHuntInfoCard> infoCards;\n  final DateTime Function()? now;",
+              "    required this.infoCards,\n    this.backgroundAsset,\n    this.routeTitle = 'Başlangıç Limanı',\n    this.now,\n  });\n\n  final WordHuntLevelDefinition level;\n  final List<WordHuntInfoCard> infoCards;\n  final String? backgroundAsset;\n  final String routeTitle;\n  final DateTime Function()? now;",
+          )
+          replace_once(
+              screens,
+              "            Image.asset(\n              'assets/word_hunt/v5_reference_assets/harbor_background_1080x1920.png',",
+              "            Image.asset(\n              widget.backgroundAsset ??\n                  'assets/word_hunt/v5_reference_assets/harbor_background_1080x1920.png',",
+          )
+          replace_once(
+              screens,
+              "                        _HarborGameplayHeader(\n                          levelIndex: widget.level.index,\n                          onBack: _requestExit,\n                        ),",
+              "                        _HarborGameplayHeader(\n                          levelIndex: widget.level.index,\n                          routeTitle: widget.routeTitle,\n                          onBack: _requestExit,\n                        ),",
+          )
+          replace_once(
+              screens,
+              "      builder: (dialogContext) => _HarborCompletionDialog(\n        stars: score.stars,",
+              "      builder: (dialogContext) => _HarborCompletionDialog(\n        routeTitle: widget.routeTitle,\n        stars: score.stars,",
+          )
+          replace_once(
+              screens,
+              "class _HarborCompletionDialog extends StatelessWidget {\n  const _HarborCompletionDialog({\n    required this.stars,",
+              "class _HarborCompletionDialog extends StatelessWidget {\n  const _HarborCompletionDialog({\n    required this.routeTitle,\n    required this.stars,",
+          )
+          replace_once(
+              screens,
+              "  final int stars;\n  final int elapsedSeconds;",
+              "  final String routeTitle;\n  final int stars;\n  final int elapsedSeconds;",
+          )
+          replace_once(
+              screens,
+              "              const Text(\n                'Başlangıç Limanı',\n                style: TextStyle(",
+              "              Text(\n                routeTitle,\n                style: const TextStyle(",
+          )
+          replace_once(
+              screens,
+              "class _HarborGameplayHeader extends StatelessWidget {\n  const _HarborGameplayHeader({required this.levelIndex, required this.onBack});\n\n  final int levelIndex;\n  final VoidCallback onBack;",
+              "class _HarborGameplayHeader extends StatelessWidget {\n  const _HarborGameplayHeader({\n    required this.levelIndex,\n    required this.routeTitle,\n    required this.onBack,\n  });\n\n  final int levelIndex;\n  final String routeTitle;\n  final VoidCallback onBack;",
+          )
+          replace_once(
+              screens,
+              "                const Text(\n                  'Başlangıç Limanı',\n                  style: TextStyle(",
+              "                Text(\n                  routeTitle,\n                  style: const TextStyle(",
+          )
+
+          pubspec = Path('pubspec.yaml')
+          text = pubspec.read_text(encoding='utf-8')
+          anchor = '    - assets/word_hunt/v5_reference_assets/\n'
+          addition = anchor + '    - assets/word_hunt/gokyuzu_adalari/\n'
+          if '    - assets/word_hunt/gokyuzu_adalari/\n' not in text:
+              if text.count(anchor) != 1:
+                  raise SystemExit('pubspec asset anchor mismatch')
+              text = text.replace(anchor, addition, 1)
+          pubspec.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Add physical-device regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > test/word_hunt_gokyuzu_device_regression_test.dart <<'DART'
+          import 'package:bilgi_rotasi/word_hunt/word_hunt_gokyuzu_master_art_screen.dart';
+          import 'package:bilgi_rotasi/word_hunt/word_hunt_models.dart';
+          import 'package:bilgi_rotasi/word_hunt/word_hunt_screens.dart';
+          import 'package:flutter/material.dart';
+          import 'package:flutter_test/flutter_test.dart';
+
+          void main() {
+            final route = WordHuntRouteDefinition(
+              id: 'gokyuzu-adalari',
+              title: 'Gökyüzü Adaları',
+              theme: 'gokyuzu',
+              unlockStarsRequired: 18,
+              routeRewardId: 'badge-gokyuzu-kasifi',
+              levels: <WordHuntLevelDefinition>[_level(1)],
+            );
+
+            testWidgets('Gökyüzü route uses safe viewport without cover crop', (
+              tester,
+            ) async {
+              tester.view.physicalSize = const Size(360, 800);
+              tester.view.devicePixelRatio = 1;
+              addTearDown(() {
+                tester.view.resetPhysicalSize();
+                tester.view.resetDevicePixelRatio();
+              });
+
+              await tester.pumpWidget(
+                MaterialApp(
+                  builder: (context, child) => MediaQuery(
+                    data: MediaQuery.of(context).copyWith(
+                      padding: const EdgeInsets.only(top: 28, bottom: 24),
+                    ),
+                    child: child!,
+                  ),
+                  home: WordHuntGokyuzuMasterArtScreen(route: route),
+                ),
+              );
+              await tester.pump();
+
+              final fitted = tester.widget<FittedBox>(
+                find.byKey(
+                  const Key('word_hunt_gokyuzu_master_art_fitted_box'),
+                ),
+              );
+              expect(fitted.fit, BoxFit.fill);
+
+              for (final key in <Key>[
+                const Key('word_hunt_gokyuzu_master_art_back'),
+                const Key('word_hunt_gokyuzu_master_art_info'),
+                const Key('word_hunt_gokyuzu_master_art_compass'),
+                const Key('word_hunt_gokyuzu_master_art_book'),
+              ]) {
+                final rect = tester.getRect(find.byKey(key));
+                expect(rect.left, greaterThanOrEqualTo(0));
+                expect(rect.right, lessThanOrEqualTo(360));
+                expect(rect.top, greaterThanOrEqualTo(28));
+                expect(rect.bottom, lessThanOrEqualTo(776));
+              }
+            });
+
+            testWidgets('Gökyüzü gameplay uses route title and level scene', (
+              tester,
+            ) async {
+              const background =
+                  'assets/word_hunt/gokyuzu_adalari/scene_level_04.webp';
+              await tester.pumpWidget(
+                const MaterialApp(
+                  home: WordHuntLevelProductionScreen(
+                    level: WordHuntLevelDefinition(
+                      id: 'gokyuzu-4',
+                      routeId: 'gokyuzu-adalari',
+                      index: 4,
+                      type: WordHuntLevelType.normal,
+                      grid: <String>['ABC', 'DEF', 'GHI'],
+                      targetWords: <String>['ABC'],
+                      starRules: WordHuntStarRules(),
+                    ),
+                    infoCards: <WordHuntInfoCard>[],
+                    backgroundAsset: background,
+                    routeTitle: 'Gökyüzü Adaları',
+                  ),
+                ),
+              );
+              await tester.pump();
+
+              expect(find.text('Gökyüzü Adaları'), findsOneWidget);
+              final images = tester.widgetList<Image>(find.byType(Image));
+              expect(
+                images.any(
+                  (image) =>
+                      image.image is AssetImage &&
+                      (image.image as AssetImage).assetName == background,
+                ),
+                isTrue,
+              );
+              expect(find.text('Başlangıç Limanı'), findsNothing);
+            });
+          }
+
+          WordHuntLevelDefinition _level(int index) => WordHuntLevelDefinition(
+            id: 'gokyuzu-$index',
+            routeId: 'gokyuzu-adalari',
+            index: index,
+            type: WordHuntLevelType.normal,
+            grid: const <String>['ABC', 'DEF', 'GHI'],
+            targetWords: const <String>['ABC'],
+            starRules: const WordHuntStarRules(),
+          );
+          DART
+
+      - name: Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.44.6
+          channel: stable
+          cache: true
+
+      - name: Format analyze and regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          git checkout -- pubspec.lock 2>/dev/null || true
+          dart format \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart \
+            lib/word_hunt/word_hunt_screens.dart \
+            test/word_hunt_gokyuzu_device_regression_test.dart
+          git diff --check
+          dart analyze \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart \
+            lib/word_hunt/word_hunt_screens.dart
+          flutter test \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart \
+            test/word_hunt_gokyuzu_device_regression_test.dart \
+            test/word_hunt_progress_test.dart \
+            test/word_hunt_pixel_proof_screen_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            test/word_hunt_production_flow_test.dart \
+            --reporter expanded
+
+      - name: Validate exact product scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
+          test -z "$(git diff --name-only "$PRODUCT_SHA" -- assets/questions.json android/ || true)"
+          python3 - <<'PY'
+          import subprocess
+
+          allowed = {
+              'lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart',
+              'lib/word_hunt/word_hunt_production_entry_screen.dart',
+              'lib/word_hunt/word_hunt_screens.dart',
+              'pubspec.yaml',
+              'test/word_hunt_gokyuzu_device_regression_test.dart',
+              *{f'assets/word_hunt/gokyuzu_adalari/scene_level_{i:02d}.webp' for i in range(1, 11)},
+          }
+          changed = set(subprocess.check_output(
+              ['git', 'diff', '--name-only', 'HEAD'], text=True
+          ).splitlines())
+          extra = changed - allowed
+          missing = allowed - changed
+          if extra or missing:
+              raise SystemExit(f'scope mismatch extra={sorted(extra)} missing={sorted(missing)}')
+          print('validated paths:', len(changed))
+          PY
+
+      - name: Commit tested product fix and push to PR 175 branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin "$PRODUCT_BRANCH"
+          test "$(git rev-parse origin/$PRODUCT_BRANCH)" = "$PRODUCT_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart \
+            lib/word_hunt/word_hunt_screens.dart \
+            pubspec.yaml \
+            test/word_hunt_gokyuzu_device_regression_test.dart \
+            assets/word_hunt/gokyuzu_adalari/scene_level_*.webp
+          git commit -m 'fix(kelime-avi): fit device safe area and apply gokyuzu scenes'
+          git push origin HEAD:"$PRODUCT_BRANCH"
