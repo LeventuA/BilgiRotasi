@@ -2,8 +2,7 @@ name: QA Gokyuzu approved gameplay backgrounds
 
 on:
   push:
-    branches:
-      - ci/gokyuzu-approved-bg-probe-20260906
+    branches: [ci/gokyuzu-approved-bg-probe-20260906]
 
 permissions:
   contents: write
@@ -15,15 +14,13 @@ jobs:
       PRODUCT_BRANCH: feat/kelime-avi-gokyuzu-master-art-v2-20260905
       EXPECTED_PRODUCT_SHA: 116449196d7486278ff02790d23da4919442f736
       CANONICAL_SHA: 3557a7e4f2f2917d61ba61866c6d4c8561994667
-      FIRE_BASE: https://api.firestorage.ai/dev/file
     steps:
-      - name: Checkout exact product branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: ${{ env.PRODUCT_BRANCH }}
           fetch-depth: 0
 
-      - name: Verify exact refs and protected baseline
+      - name: Verify exact product and canonical refs
         shell: bash
         run: |
           set -euo pipefail
@@ -31,137 +28,74 @@ jobs:
           git fetch origin release/final-closed-test-aab-1.68.8 --quiet
           test "$(git rev-parse origin/release/final-closed-test-aab-1.68.8)" = "$CANONICAL_SHA"
           test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
-          git diff --exit-code "$CANONICAL_SHA" -- assets/questions.json android/ || true
 
-      - name: Download approved scenic backgrounds
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          import json, pathlib, urllib.request
-
-          base='https://api.firestorage.ai/dev/file'
-          shares={
-              'bright':'C_m_OOFsBhd-',
-              'storm':'mZ1-zXW_LzOa',
-              'airship':'vmItWK_Vq4D-',
-              'moon':'TJ_bzLOVSvTM',
-          }
-          out=pathlib.Path('/tmp/gokyuzu-approved')
-          out.mkdir(parents=True, exist_ok=True)
-          headers={'User-Agent':'Mozilla/5.0','Accept':'application/json'}
-          for name,slug in shares.items():
-              files_url=f'{base}/shares/{slug}/files?maxResults=1000'
-              with urllib.request.urlopen(urllib.request.Request(files_url,headers=headers),timeout=30) as r:
-                  payload=json.load(r)
-              files=payload.get('files') or []
-              if len(files)!=1:
-                  raise SystemExit(f'{name}: expected one file, got {len(files)}')
-              item=files[0]
-              file_id=item.get('fileId') or item.get('file_id')
-              if not file_id:
-                  raise SystemExit(f'{name}: missing fileId: {item}')
-              dl_req=urllib.request.Request(
-                  f'{base}/shares/{slug}/files/{file_id}/download',
-                  method='POST',headers=headers,
-              )
-              with urllib.request.urlopen(dl_req,timeout=30) as r:
-                  dl=json.load(r)
-              download_url=dl.get('downloadUrl')
-              if not download_url:
-                  raise SystemExit(f'{name}: missing downloadUrl: {dl}')
-              with urllib.request.urlopen(urllib.request.Request(download_url,headers={'User-Agent':'Mozilla/5.0'}),timeout=60) as r:
-                  data=r.read()
-              path=out/f'{name}.png'
-              path.write_bytes(data)
-              print(name, item.get('fileName'), len(data), path)
-          PY
-
-      - name: Convert and install approved assets
+      - name: Download and convert approved backgrounds
         shell: bash
         run: |
           set -euo pipefail
           python3 -m pip install --quiet pillow
           python3 - <<'PY'
+          import json, pathlib, urllib.request
           from PIL import Image
-          from pathlib import Path
-          src=Path('/tmp/gokyuzu-approved')
-          dst=Path('assets/word_hunt/gokyuzu_adalari')
-          dst.mkdir(parents=True, exist_ok=True)
-          for name in ('bright','storm','airship','moon'):
-              im=Image.open(src/f'{name}.png').convert('RGB')
-              if im.size != (941,1672):
-                  raise SystemExit(f'{name}: unexpected dimensions {im.size}')
-              out=dst/f'gameplay_bg_{name}.webp'
-              im.save(out,'WEBP',quality=92,method=6)
-              print(out, out.stat().st_size, im.size)
-          for old in dst.glob('scene_level_*.webp'):
-              old.unlink()
+          base='https://api.firestorage.ai/dev/file'
+          shares={'bright':'C_m_OOFsBhd-','storm':'mZ1-zXW_LzOa','airship':'vmItWK_Vq4D-','moon':'TJ_bzLOVSvTM'}
+          dst=pathlib.Path('assets/word_hunt/gokyuzu_adalari')
+          dst.mkdir(parents=True,exist_ok=True)
+          headers={'User-Agent':'Mozilla/5.0','Accept':'application/json'}
+          for name,slug in shares.items():
+              with urllib.request.urlopen(urllib.request.Request(f'{base}/shares/{slug}/files?maxResults=1000',headers=headers),timeout=30) as r:
+                  files=json.load(r).get('files') or []
+              if len(files)!=1: raise SystemExit(f'{name}: expected 1 file, got {len(files)}')
+              file_id=files[0].get('fileId') or files[0].get('file_id')
+              req=urllib.request.Request(f'{base}/shares/{slug}/files/{file_id}/download',method='POST',headers=headers)
+              with urllib.request.urlopen(req,timeout=30) as r: url=json.load(r)['downloadUrl']
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=60) as r: data=r.read()
+              tmp=pathlib.Path(f'/tmp/{name}.png'); tmp.write_bytes(data)
+              im=Image.open(tmp).convert('RGB')
+              if im.size!=(941,1672): raise SystemExit(f'{name}: dimensions {im.size}')
+              out=dst/f'gameplay_bg_{name}.webp'; im.save(out,'WEBP',quality=92,method=6)
+              print(name,out.stat().st_size)
+          for old in dst.glob('scene_level_*.webp'): old.unlink()
           PY
 
-      - name: Add explicit gameplay background resolver
+      - name: Wire approved backgrounds and tests
         shell: bash
         run: |
           set -euo pipefail
           cat > lib/word_hunt/word_hunt_gokyuzu_gameplay_backgrounds.dart <<'DART'
           abstract final class WordHuntGokyuzuGameplayBackgrounds {
-            static const String bright =
-                'assets/word_hunt/gokyuzu_adalari/gameplay_bg_bright.webp';
-            static const String storm =
-                'assets/word_hunt/gokyuzu_adalari/gameplay_bg_storm.webp';
-            static const String airship =
-                'assets/word_hunt/gokyuzu_adalari/gameplay_bg_airship.webp';
-            static const String moon =
-                'assets/word_hunt/gokyuzu_adalari/gameplay_bg_moon.webp';
+            static const String bright = 'assets/word_hunt/gokyuzu_adalari/gameplay_bg_bright.webp';
+            static const String storm = 'assets/word_hunt/gokyuzu_adalari/gameplay_bg_storm.webp';
+            static const String airship = 'assets/word_hunt/gokyuzu_adalari/gameplay_bg_airship.webp';
+            static const String moon = 'assets/word_hunt/gokyuzu_adalari/gameplay_bg_moon.webp';
 
-            static String forLevel(int levelIndex) {
-              return switch (levelIndex) {
-                5 || 8 => storm,
-                6 => airship,
-                7 || 9 => moon,
-                _ => bright,
-              };
-            }
+            static String forLevel(int levelIndex) => switch (levelIndex) {
+              5 || 8 => storm,
+              6 => airship,
+              7 || 9 => moon,
+              _ => bright,
+            };
           }
           DART
           python3 - <<'PY'
           from pathlib import Path
-          p=Path('lib/word_hunt/word_hunt_production_entry_screen.dart')
-          s=p.read_text()
-          import_line="import 'word_hunt_gokyuzu_gameplay_backgrounds.dart';\n"
-          anchor="import 'word_hunt_gokyuzu_master_art_screen.dart';\n"
-          if import_line not in s:
-              s=s.replace(anchor, import_line+anchor)
+          p=Path('lib/word_hunt/word_hunt_production_entry_screen.dart'); s=p.read_text()
+          imp="import 'word_hunt_gokyuzu_gameplay_backgrounds.dart';\n"; anchor="import 'word_hunt_gokyuzu_master_art_screen.dart';\n"
+          if imp not in s: s=s.replace(anchor,imp+anchor)
           old="""    final backgroundAsset =\n        isGokyuzu\n            ? 'assets/word_hunt/gokyuzu_adalari/scene_level_${level.index.toString().padLeft(2, '0')}.webp'\n            : null;\n"""
           new="""    final backgroundAsset =\n        isGokyuzu\n            ? WordHuntGokyuzuGameplayBackgrounds.forLevel(level.index)\n            : null;\n"""
-          if old not in s:
-              raise SystemExit('expected old scene mapping not found')
+          if old not in s: raise SystemExit('old scene mapping not found')
           p.write_text(s.replace(old,new))
-          PY
 
-      - name: Update Gökyüzü regression tests
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('test/word_hunt_gokyuzu_device_regression_test.dart')
-          s=p.read_text()
-          imp="import 'package:bilgi_rotasi/word_hunt/word_hunt_gokyuzu_gameplay_backgrounds.dart';\n"
-          anchor="import 'package:bilgi_rotasi/word_hunt/word_hunt_gokyuzu_master_art_screen.dart';\n"
-          if imp not in s:
-              s=s.replace(anchor,imp+anchor)
-          s=s.replace(
-              "const background = 'assets/word_hunt/gokyuzu_adalari/scene_level_04.webp';",
-              "const background = WordHuntGokyuzuGameplayBackgrounds.bright;",
-          )
-          marker="void main() {\n"
-          test_block="""void main() {\n  test('Gökyüzü gameplay maps levels to approved scenic backgrounds', () {\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(1), WordHuntGokyuzuGameplayBackgrounds.bright);\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(2), WordHuntGokyuzuGameplayBackgrounds.bright);\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(3), WordHuntGokyuzuGameplayBackgrounds.bright);\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(4), WordHuntGokyuzuGameplayBackgrounds.bright);\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(5), WordHuntGokyuzuGameplayBackgrounds.storm);\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(6), WordHuntGokyuzuGameplayBackgrounds.airship);\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(7), WordHuntGokyuzuGameplayBackgrounds.moon);\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(8), WordHuntGokyuzuGameplayBackgrounds.storm);\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(9), WordHuntGokyuzuGameplayBackgrounds.moon);\n    expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(10), WordHuntGokyuzuGameplayBackgrounds.bright);\n    for (var level = 1; level <= 10; level++) {\n      expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(level), isNot(contains('scene_level_')));\n    }\n  });\n\n"""
-          if "maps levels to approved scenic backgrounds" not in s:
-              s=s.replace(marker,test_block,1)
+          p=Path('test/word_hunt_gokyuzu_device_regression_test.dart'); s=p.read_text()
+          imp="import 'package:bilgi_rotasi/word_hunt/word_hunt_gokyuzu_gameplay_backgrounds.dart';\n"; anchor="import 'package:bilgi_rotasi/word_hunt/word_hunt_gokyuzu_master_art_screen.dart';\n"
+          if imp not in s: s=s.replace(anchor,imp+anchor)
+          s=s.replace("const background = 'assets/word_hunt/gokyuzu_adalari/scene_level_04.webp';","const background = WordHuntGokyuzuGameplayBackgrounds.bright;")
+          if 'maps levels to approved scenic backgrounds' not in s:
+              block="""void main() {\n  test('Gökyüzü gameplay maps levels to approved scenic backgrounds', () {\n    const expected = <int, String>{\n      1: WordHuntGokyuzuGameplayBackgrounds.bright,\n      2: WordHuntGokyuzuGameplayBackgrounds.bright,\n      3: WordHuntGokyuzuGameplayBackgrounds.bright,\n      4: WordHuntGokyuzuGameplayBackgrounds.bright,\n      5: WordHuntGokyuzuGameplayBackgrounds.storm,\n      6: WordHuntGokyuzuGameplayBackgrounds.airship,\n      7: WordHuntGokyuzuGameplayBackgrounds.moon,\n      8: WordHuntGokyuzuGameplayBackgrounds.storm,\n      9: WordHuntGokyuzuGameplayBackgrounds.moon,\n      10: WordHuntGokyuzuGameplayBackgrounds.bright,\n    };\n    for (final entry in expected.entries) {\n      expect(WordHuntGokyuzuGameplayBackgrounds.forLevel(entry.key), entry.value);\n      expect(entry.value, isNot(contains('scene_level_')));\n    }\n  });\n\n"""
+              s=s.replace('void main() {\n',block,1)
           p.write_text(s)
           PY
-          dart format lib/word_hunt/word_hunt_gokyuzu_gameplay_backgrounds.dart lib/word_hunt/word_hunt_production_entry_screen.dart test/word_hunt_gokyuzu_device_regression_test.dart
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -170,33 +104,33 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Get dependencies
-        run: flutter pub get
+      - name: Format and dependencies
+        shell: bash
+        run: |
+          dart format lib/word_hunt/word_hunt_gokyuzu_gameplay_backgrounds.dart lib/word_hunt/word_hunt_production_entry_screen.dart test/word_hunt_gokyuzu_device_regression_test.dart
+          flutter pub get
 
       - name: Analyze
         run: flutter analyze
 
-      - name: Run Word Hunt regression suite
+      - name: Word Hunt regression suite
         shell: bash
         run: |
           set -euo pipefail
           mapfile -t tests < <(find test -maxdepth 1 -type f -name 'word_hunt*_test.dart' | sort)
-          printf 'Running %s Word Hunt test files\n' "${#tests[@]}"
           flutter test "${tests[@]}"
 
-      - name: Validate scope and assets
+      - name: Validate protected scope
         shell: bash
         run: |
           set -euo pipefail
           test -z "$(git diff --name-only "$EXPECTED_PRODUCT_SHA" -- assets/questions.json android/ pubspec.yaml || true)"
           test "$(find assets/word_hunt/gokyuzu_adalari -maxdepth 1 -name 'gameplay_bg_*.webp' | wc -l)" -eq 4
           test "$(find assets/word_hunt/gokyuzu_adalari -maxdepth 1 -name 'scene_level_*.webp' | wc -l)" -eq 0
-          grep -q 'WordHuntGokyuzuGameplayBackgrounds.forLevel' lib/word_hunt/word_hunt_production_entry_screen.dart
           ! grep -q 'scene_level_' lib/word_hunt/word_hunt_production_entry_screen.dart
           git diff --check
-          git status --short
 
-      - name: Commit approved gameplay backgrounds to product branch
+      - name: Commit product change
         shell: bash
         run: |
           set -euo pipefail
@@ -205,7 +139,4 @@ jobs:
           git add assets/word_hunt/gokyuzu_adalari lib/word_hunt/word_hunt_gokyuzu_gameplay_backgrounds.dart lib/word_hunt/word_hunt_production_entry_screen.dart test/word_hunt_gokyuzu_device_regression_test.dart
           git commit -m 'fix(kelime-avi): use approved gokyuzu gameplay backgrounds'
           git push origin HEAD:"$PRODUCT_BRANCH"
-          echo "NEW_PRODUCT_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
-
-      - name: Report exact product SHA
-        run: echo "$NEW_PRODUCT_SHA"
+          git rev-parse HEAD
