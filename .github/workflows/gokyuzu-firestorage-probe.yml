@@ -1,33 +1,82 @@
-name: Gokyuzu firestorage probe
+name: Gokyuzu master art transfer
 
 on:
   push:
     branches:
       - tmp/gokyuzu-master-art-transfer-probe-20260905
 
+permissions:
+  contents: write
+
 jobs:
-  probe:
+  transfer:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect firestorage client routes
+        with:
+          fetch-depth: 0
+      - name: Download approved master art through share page
         shell: bash
         run: |
           set -euxo pipefail
-          URL='https://firestorage.ai/ja/f/p5z_6lpQHCD9'
-          curl -L -sS -o page.html "$URL"
-          echo '--- script src ---'
-          grep -oE '<script[^>]+src="[^"]+"' page.html | sed -E 's/.*src="([^"]+)"/\1/' | tee scripts.txt || true
-          echo '--- embedded identifiers ---'
-          grep -oE 'p5z_6lpQHCD9|1PyVUu0h1vnIkKTi|01a06fe1f8107548bdf8bd1b2f4b5227|gok_q80.webp|api[^"< ]+' page.html | head -100 || true
-          while read -r src; do
-            [ -n "$src" ] || continue
-            case "$src" in
-              http*) jsurl="$src" ;;
-              /*) jsurl="https://firestorage.ai$src" ;;
-              *) jsurl="https://firestorage.ai/ja/f/$src" ;;
-            esac
-            echo "### $jsurl"
-            curl -L -sS "$jsurl" -o bundle.js || continue
-            grep -oE '/api/[A-Za-z0-9_?=&./${}-]+|https://[^"'"' ]+|download[A-Za-z0-9_?=&./${}-]*|presign[A-Za-z0-9_?=&./${}-]*' bundle.js | sort -u | head -120 || true
-          done < scripts.txt
+          mkdir -p /tmp/pw
+          cd /tmp/pw
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0 >/dev/null 2>&1
+          npx playwright install chromium >/dev/null 2>&1
+          cat > download.js <<'JS'
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            const context = await browser.newContext({acceptDownloads:true});
+            const page = await context.newPage();
+            const url = 'https://firestorage.ai/ja/f/p5z_6lpQHCD9';
+            let download;
+            try {
+              const wait = page.waitForEvent('download', {timeout: 90000});
+              await page.goto(url, {waitUntil:'domcontentloaded', timeout:90000});
+              download = await wait;
+            } catch (e) {
+              await page.goto(url, {waitUntil:'networkidle', timeout:90000}).catch(()=>{});
+              const texts = await page.locator('button,a').allTextContents();
+              console.log('controls=', texts);
+              const candidates = page.locator('a,button');
+              const count = await candidates.count();
+              for (let i=0;i<count && !download;i++) {
+                const el=candidates.nth(i);
+                const text=(await el.innerText().catch(()=>''));
+                if (/download|ダウンロード|保存/i.test(text)) {
+                  try {
+                    const wait2=page.waitForEvent('download',{timeout:30000});
+                    await el.click();
+                    download=await wait2;
+                  } catch (_) {}
+                }
+              }
+            }
+            if (!download) throw new Error('No download event');
+            const suggested = download.suggestedFilename();
+            console.log('suggested=', suggested);
+            await download.saveAs('/tmp/gokyuzu_master_art_download');
+            await browser.close();
+          })().catch(e=>{console.error(e); process.exit(1)});
+          JS
+          node download.js
+          file /tmp/gokyuzu_master_art_download
+          wc -c /tmp/gokyuzu_master_art_download
+          sha256sum /tmp/gokyuzu_master_art_download
+          test "$(wc -c < /tmp/gokyuzu_master_art_download)" = "222508"
+          test "$(sha256sum /tmp/gokyuzu_master_art_download | awk '{print $1}')" = "8a34b03f9c24400d7ebb80c2396d457fc0335b7b11cf77278990cf72fd5e21ea"
+      - name: Commit exact asset to clean product branch
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git fetch origin feat/kelime-avi-gokyuzu-master-art-v2-20260905
+          git checkout -B feat/kelime-avi-gokyuzu-master-art-v2-20260905 origin/feat/kelime-avi-gokyuzu-master-art-v2-20260905
+          mkdir -p assets/word_hunt
+          cp /tmp/gokyuzu_master_art_download assets/word_hunt/gokyuzu_adalari_master_art_v2.webp
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/word_hunt/gokyuzu_adalari_master_art_v2.webp
+          git commit -m 'feat(kelime-avi): add approved gokyuzu master art v2'
+          git push origin HEAD:feat/kelime-avi-gokyuzu-master-art-v2-20260905
