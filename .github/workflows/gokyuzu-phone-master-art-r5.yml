@@ -1,0 +1,684 @@
+name: Gokyuzu phone master art R5
+on:
+  push:
+    branches:
+      - ci/gokyuzu-phone-master-art-r5-20260905
+permissions:
+  contents: write
+jobs:
+  validate-and-push:
+    runs-on: ubuntu-22.04
+    env:
+      PRODUCT_SHA: 4145f0fe8d716d6951e1ee53215812b56150c73c
+      CANONICAL_SHA: 3557a7e4f2f2917d61ba61866c6d4c8561994667
+      QA_BRANCH: qa/gokyuzu-phone-master-art-r5-20260905
+      SHARE_ID: IWUhJbA1rdRk
+      ASSET_SHA256: db44920c5e25163d0b3f317a96d6e7bcc9e48aa7a4ce8654573728a423dc7f34
+      ASSET_SIZE: '437438'
+    steps:
+      - name: Checkout exact product head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PRODUCT_SHA }}
+          fetch-depth: 0
+      - name: Verify canonical ancestry and protected scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PRODUCT_SHA"
+          test "$(git rev-parse origin/release/final-closed-test-aab-1.68.8)" = "$CANONICAL_SHA"
+          test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
+          test -z "$(git diff --name-only "$CANONICAL_SHA" "$PRODUCT_SHA" -- assets/questions.json android/ || true)"
+          git checkout -B "$QA_BRANCH" "$PRODUCT_SHA"
+      - name: Download exact phone master art from public transfer
+        shell: bash
+        run: |
+          set -euo pipefail
+          api='https://api.firestorage.ai/dev/file'
+          curl -LfsS "$api/shares/$SHARE_ID/files?maxResults=1000" -o /tmp/files.json
+          file_id=$(python3 - <<'PY'
+          import json
+          data=json.load(open('/tmp/files.json',encoding='utf-8'))
+          matches=[f for f in data.get('files',[]) if f.get('fileName')=='gokyuzu_adalari_phone_master_art_v2.webp']
+          assert len(matches)==1, matches
+          print(matches[0]['fileId'])
+          PY
+          )
+          curl -LfsS -X POST "$api/shares/$SHARE_ID/files/$file_id/download" -o /tmp/download.json
+          download_url=$(python3 - <<'PY'
+          import json
+          data=json.load(open('/tmp/download.json',encoding='utf-8'))
+          print(data['downloadUrl'])
+          PY
+          )
+          curl -LfsS "$download_url" -o assets/word_hunt/gokyuzu_adalari_master_art_v2.webp
+          test "$(wc -c < assets/word_hunt/gokyuzu_adalari_master_art_v2.webp)" = "$ASSET_SIZE"
+          test "$(sha256sum assets/word_hunt/gokyuzu_adalari_master_art_v2.webp | cut -d' ' -f1)" = "$ASSET_SHA256"
+          file assets/word_hunt/gokyuzu_adalari_master_art_v2.webp
+      - name: Apply phone-first route layout and banner reserve
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart <<'DART'
+          import 'package:flutter/material.dart';
+
+          import 'word_hunt_models.dart';
+          import 'word_hunt_progress.dart';
+
+          /// Gökyüzü Adaları için telefon ekranına göre üretilmiş MASTER ART rota ekranı.
+          ///
+          /// Görünür dünya tek raster tabandır. Flutter yalnız gerçek progression,
+          /// etkileşim ve zorunlu üst köşe kontrollerini bindirir. Alt bölümde standart
+          /// banner reklam yüksekliği kadar alan bilinçli olarak ayrılır.
+          abstract final class WordHuntGokyuzuMasterArtAssets {
+            static const String masterArt =
+                'assets/word_hunt/gokyuzu_adalari_master_art_v2.webp';
+          }
+
+          abstract final class WordHuntGokyuzuMasterArtLayout {
+            static const Size sourceSize = Size(941, 1672);
+
+            /// Mevcut monetization katmanı AdSize.banner (320x50 dp) kullanır.
+            /// Bu ekran reklamı yeniden yüklemez; yalnız banner için 50 logical px ayırır.
+            static const double bannerReserveHeight = 50;
+
+            static const List<Offset> levelCenters = <Offset>[
+              Offset(158, 414),
+              Offset(455, 462),
+              Offset(733, 576),
+              Offset(198, 705),
+              Offset(495, 799),
+              Offset(757, 878),
+              Offset(178, 968),
+              Offset(465, 1063),
+              Offset(198, 1234),
+              Offset(736, 1248),
+            ];
+
+            static const List<double> levelHitboxDiameters = <double>[
+              118,
+              118,
+              118,
+              124,
+              124,
+              126,
+              126,
+              132,
+              134,
+              146,
+            ];
+
+            static const Offset compassCenter = Offset(96, 1485);
+            static const Offset bookCenter = Offset(837, 1486);
+            static const double bottomControlHitboxDiameter = 145;
+
+            // Telefon MASTER ART'ında geri/bilgi sanatı bake edilmedi. Bunlar yalnız
+            // gerekli navigation kontrolü olarak minimum görünür Flutter overlay'idir.
+            static const Offset backCenter = Offset(58, 101);
+            static const Offset infoCenter = Offset(883, 101);
+            static const double topControlDiameter = 72;
+
+            static const Rect progressCounterRect = Rect.fromLTWH(254, 188, 150, 48);
+            static const Rect gateCounterRect = Rect.fromLTWH(579, 188, 170, 48);
+          }
+
+          class WordHuntGokyuzuMasterArtScreen extends StatelessWidget {
+            const WordHuntGokyuzuMasterArtScreen({
+              super.key,
+              required this.route,
+              this.progress = const WordHuntProgressSnapshot(),
+              this.onBack,
+              this.onInfo,
+              this.onCompass,
+              this.onBook,
+              this.onLevelTap,
+            });
+
+            static const String routeId = 'gokyuzu-adalari';
+
+            final WordHuntRouteDefinition route;
+            final WordHuntProgressSnapshot progress;
+            final VoidCallback? onBack;
+            final VoidCallback? onInfo;
+            final VoidCallback? onCompass;
+            final VoidCallback? onBook;
+            final ValueChanged<int>? onLevelTap;
+
+            @override
+            Widget build(BuildContext context) {
+              return Scaffold(
+                key: const Key('word_hunt_gokyuzu_master_art_route'),
+                backgroundColor: const Color(0xFF072B58),
+                body: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: ClipRect(
+                        key: const Key('word_hunt_gokyuzu_master_art_phone_viewport'),
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          alignment: Alignment.center,
+                          clipBehavior: Clip.hardEdge,
+                          child: SizedBox.fromSize(
+                            key: const Key('word_hunt_gokyuzu_master_art_source_scene'),
+                            size: WordHuntGokyuzuMasterArtLayout.sourceSize,
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: <Widget>[
+                                IgnorePointer(
+                                  child: Image.asset(
+                                    WordHuntGokyuzuMasterArtAssets.masterArt,
+                                    key: const Key('word_hunt_gokyuzu_master_art_image'),
+                                    width: WordHuntGokyuzuMasterArtLayout.sourceSize.width,
+                                    height: WordHuntGokyuzuMasterArtLayout.sourceSize.height,
+                                    fit: BoxFit.fill,
+                                    filterQuality: FilterQuality.high,
+                                  ),
+                                ),
+                                _GokyuzuRuntimeOverlay(route: route, progress: progress),
+                                for (
+                                  var index = 0;
+                                  index < route.levels.length &&
+                                      index < WordHuntGokyuzuMasterArtLayout.levelCenters.length;
+                                  index++
+                                )
+                                  _TransparentHitbox(
+                                    key: Key(
+                                      'word_hunt_gokyuzu_master_art_level_${index + 1}',
+                                    ),
+                                    center: WordHuntGokyuzuMasterArtLayout.levelCenters[index],
+                                    diameter: WordHuntGokyuzuMasterArtLayout
+                                        .levelHitboxDiameters[index],
+                                    semanticLabel: 'Bölüm ${index + 1}',
+                                    onTap: WordHuntRouteProgressEngine.isLevelUnlocked(
+                                              route,
+                                              progress,
+                                              index + 1,
+                                            ) &&
+                                            onLevelTap != null
+                                        ? () => onLevelTap!(index + 1)
+                                        : null,
+                                  ),
+                                _TransparentHitbox(
+                                  key: const Key('word_hunt_gokyuzu_master_art_compass'),
+                                  center: WordHuntGokyuzuMasterArtLayout.compassCenter,
+                                  diameter: WordHuntGokyuzuMasterArtLayout
+                                      .bottomControlHitboxDiameter,
+                                  semanticLabel: 'Pusula',
+                                  onTap: onCompass,
+                                ),
+                                _TransparentHitbox(
+                                  key: const Key('word_hunt_gokyuzu_master_art_book'),
+                                  center: WordHuntGokyuzuMasterArtLayout.bookCenter,
+                                  diameter: WordHuntGokyuzuMasterArtLayout
+                                      .bottomControlHitboxDiameter,
+                                  semanticLabel: 'Bilgi Kitabı',
+                                  onTap: onBook,
+                                ),
+                                _VisibleTopControl(
+                                  key: const Key('word_hunt_gokyuzu_master_art_back'),
+                                  center: WordHuntGokyuzuMasterArtLayout.backCenter,
+                                  semanticLabel: 'Geri',
+                                  icon: Icons.arrow_back_rounded,
+                                  onTap: onBack,
+                                ),
+                                _VisibleTopControl(
+                                  key: const Key('word_hunt_gokyuzu_master_art_info'),
+                                  center: WordHuntGokyuzuMasterArtLayout.infoCenter,
+                                  semanticLabel: 'Bilgi',
+                                  icon: Icons.info_outline_rounded,
+                                  onTap: onInfo,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      key: Key('word_hunt_gokyuzu_banner_reserve'),
+                      height: WordHuntGokyuzuMasterArtLayout.bannerReserveHeight,
+                      child: ColoredBox(color: Color(0xFF072B58)),
+                    ),
+                  ],
+                ),
+              );
+            }
+          }
+
+          class _GokyuzuRuntimeOverlay extends StatelessWidget {
+            const _GokyuzuRuntimeOverlay({required this.route, required this.progress});
+
+            final WordHuntRouteDefinition route;
+            final WordHuntProgressSnapshot progress;
+
+            @override
+            Widget build(BuildContext context) {
+              final totalStars = WordHuntRouteProgressEngine.totalStars(route, progress);
+              return IgnorePointer(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    if (totalStars != 0)
+                      _CounterPatch(
+                        key: const Key('word_hunt_gokyuzu_master_art_progress'),
+                        rect: WordHuntGokyuzuMasterArtLayout.progressCounterRect,
+                        text: '$totalStars / ${route.maximumStars}',
+                      ),
+                    if (route.unlockStarsRequired != 18)
+                      _CounterPatch(
+                        key: const Key('word_hunt_gokyuzu_master_art_gate'),
+                        rect: WordHuntGokyuzuMasterArtLayout.gateCounterRect,
+                        text: 'Kapı: ${route.unlockStarsRequired}',
+                      ),
+                    for (
+                      var index = 0;
+                      index < route.levels.length &&
+                          index < WordHuntGokyuzuMasterArtLayout.levelCenters.length;
+                      index++
+                    )
+                      if (!WordHuntRouteProgressEngine.isLevelUnlocked(
+                        route,
+                        progress,
+                        index + 1,
+                      ))
+                        _LockBadge(
+                          key: Key(
+                            'word_hunt_gokyuzu_master_art_level_${index + 1}_locked',
+                          ),
+                          center: WordHuntGokyuzuMasterArtLayout.levelCenters[index],
+                        ),
+                  ],
+                ),
+              );
+            }
+          }
+
+          class _CounterPatch extends StatelessWidget {
+            const _CounterPatch({super.key, required this.rect, required this.text});
+
+            final Rect rect;
+            final String text;
+
+            @override
+            Widget build(BuildContext context) {
+              return Positioned.fromRect(
+                rect: rect,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: const Color(0xEC09284C),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: const Color(0xFFFFC52F), width: 2),
+                    boxShadow: const <BoxShadow>[
+                      BoxShadow(color: Color(0x88000000), blurRadius: 5),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      text,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'serif',
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                        shadows: <Shadow>[
+                          Shadow(color: Colors.black, blurRadius: 3),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }
+          }
+
+          class _LockBadge extends StatelessWidget {
+            const _LockBadge({super.key, required this.center});
+
+            final Offset center;
+
+            @override
+            Widget build(BuildContext context) {
+              const diameter = 46.0;
+              final badgeCenter = center + const Offset(38, -27);
+              return Positioned(
+                left: badgeCenter.dx - diameter / 2,
+                top: badgeCenter.dy - diameter / 2,
+                width: diameter,
+                height: diameter,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color(0xE8092443),
+                    border: Border.all(color: const Color(0xFFFFC52F), width: 2.5),
+                    boxShadow: const <BoxShadow>[
+                      BoxShadow(color: Color(0x99000000), blurRadius: 6),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.lock_rounded,
+                    color: Color(0xFFF7F4E9),
+                    size: 22,
+                  ),
+                ),
+              );
+            }
+          }
+
+          class _VisibleTopControl extends StatelessWidget {
+            const _VisibleTopControl({
+              super.key,
+              required this.center,
+              required this.semanticLabel,
+              required this.icon,
+              this.onTap,
+            });
+
+            final Offset center;
+            final String semanticLabel;
+            final IconData icon;
+            final VoidCallback? onTap;
+
+            @override
+            Widget build(BuildContext context) {
+              final diameter = WordHuntGokyuzuMasterArtLayout.topControlDiameter;
+              return Positioned(
+                left: center.dx - diameter / 2,
+                top: center.dy - diameter / 2,
+                width: diameter,
+                height: diameter,
+                child: Semantics(
+                  button: true,
+                  enabled: onTap != null,
+                  label: semanticLabel,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: onTap,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: const Color(0xF2082F63),
+                        border: Border.all(color: const Color(0xFFFFC52F), width: 4),
+                        boxShadow: const <BoxShadow>[
+                          BoxShadow(
+                            color: Color(0x88000000),
+                            blurRadius: 8,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Icon(
+                        icon,
+                        color: const Color(0xFFFFD45A),
+                        size: 38,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }
+          }
+
+          class _TransparentHitbox extends StatelessWidget {
+            const _TransparentHitbox({
+              super.key,
+              required this.center,
+              required this.diameter,
+              required this.semanticLabel,
+              this.onTap,
+            });
+
+            final Offset center;
+            final double diameter;
+            final String semanticLabel;
+            final VoidCallback? onTap;
+
+            @override
+            Widget build(BuildContext context) {
+              return Positioned(
+                left: center.dx - diameter / 2,
+                top: center.dy - diameter / 2,
+                width: diameter,
+                height: diameter,
+                child: Semantics(
+                  button: true,
+                  enabled: onTap != null,
+                  label: semanticLabel,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: onTap,
+                    child: const SizedBox.expand(),
+                  ),
+                ),
+              );
+            }
+          }
+          DART
+          cat > test/word_hunt_gokyuzu_master_art_screen_test.dart <<'DART'
+          import 'package:bilgi_rotasi/word_hunt/word_hunt_gokyuzu_master_art_screen.dart';
+          import 'package:bilgi_rotasi/word_hunt/word_hunt_models.dart';
+          import 'package:bilgi_rotasi/word_hunt/word_hunt_progress.dart';
+          import 'package:flutter/material.dart';
+          import 'package:flutter_test/flutter_test.dart';
+
+          void main() {
+            final route = _route();
+
+            Future<void> usePhoneViewport(WidgetTester tester) async {
+              tester.view.physicalSize = const Size(540, 960);
+              tester.view.devicePixelRatio = 1;
+              addTearDown(() {
+                tester.view.resetPhysicalSize();
+                tester.view.resetDevicePixelRatio();
+              });
+            }
+
+            testWidgets('phone MASTER ART, banner reserve and controls render', (
+              tester,
+            ) async {
+              await usePhoneViewport(tester);
+              var tapped = 0;
+              await tester.pumpWidget(
+                MaterialApp(
+                  home: WordHuntGokyuzuMasterArtScreen(
+                    route: route,
+                    onLevelTap: (index) => tapped = index,
+                  ),
+                ),
+              );
+              await tester.pump();
+
+              expect(WordHuntGokyuzuMasterArtLayout.sourceSize, const Size(941, 1672));
+              expect(WordHuntGokyuzuMasterArtLayout.bannerReserveHeight, 50);
+              expect(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_phone_viewport')),
+                findsOneWidget,
+              );
+              expect(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_image')),
+                findsOneWidget,
+              );
+              expect(
+                find.byKey(const Key('word_hunt_gokyuzu_banner_reserve')),
+                findsOneWidget,
+              );
+              expect(
+                tester.getSize(
+                  find.byKey(const Key('word_hunt_gokyuzu_banner_reserve')),
+                ),
+                const Size(540, 50),
+              );
+              expect(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_compass')),
+                findsOneWidget,
+              );
+              expect(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_book')),
+                findsOneWidget,
+              );
+              expect(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_back')),
+                findsOneWidget,
+              );
+              expect(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_info')),
+                findsOneWidget,
+              );
+              for (var index = 1; index <= 10; index++) {
+                expect(
+                  find.byKey(Key('word_hunt_gokyuzu_master_art_level_$index')),
+                  findsOneWidget,
+                );
+              }
+
+              await tester.tap(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_level_1')),
+              );
+              await tester.pump();
+              expect(tapped, 1);
+
+              tapped = 0;
+              await tester.tap(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_level_2')),
+                warnIfMissed: false,
+              );
+              await tester.pump();
+              expect(tapped, 0);
+              expect(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_level_2_locked')),
+                findsOneWidget,
+              );
+            });
+
+            testWidgets('completed previous level unlocks the next hitbox', (
+              tester,
+            ) async {
+              await usePhoneViewport(tester);
+              var tapped = 0;
+              final progress = const WordHuntProgressSnapshot(
+                bestStarsByLevelId: <String, int>{'gokyuzu-1': 2},
+              );
+              await tester.pumpWidget(
+                MaterialApp(
+                  home: WordHuntGokyuzuMasterArtScreen(
+                    route: route,
+                    progress: progress,
+                    onLevelTap: (index) => tapped = index,
+                  ),
+                ),
+              );
+              await tester.pump();
+
+              await tester.tap(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_level_2')),
+              );
+              await tester.pump();
+              expect(tapped, 2);
+              expect(
+                find.byKey(const Key('word_hunt_gokyuzu_master_art_level_2_locked')),
+                findsNothing,
+              );
+            });
+
+            test('level 7 opens bonus 8 and normal 9; 10 waits for 9', () {
+              final after7 = const WordHuntProgressSnapshot(
+                bestStarsByLevelId: <String, int>{
+                  'gokyuzu-1': 1,
+                  'gokyuzu-2': 1,
+                  'gokyuzu-3': 1,
+                  'gokyuzu-4': 1,
+                  'gokyuzu-5': 1,
+                  'gokyuzu-6': 1,
+                  'gokyuzu-7': 1,
+                },
+              );
+              expect(
+                WordHuntRouteProgressEngine.isLevelUnlocked(route, after7, 8),
+                isTrue,
+              );
+              expect(
+                WordHuntRouteProgressEngine.isLevelUnlocked(route, after7, 9),
+                isTrue,
+              );
+              expect(
+                WordHuntRouteProgressEngine.isLevelUnlocked(route, after7, 10),
+                isFalse,
+              );
+
+              final after9 = after7.recordLevelResult(levelId: 'gokyuzu-9', stars: 1);
+              expect(
+                WordHuntRouteProgressEngine.isLevelUnlocked(route, after9, 10),
+                isTrue,
+              );
+            });
+          }
+
+          WordHuntRouteDefinition _route() {
+            return WordHuntRouteDefinition(
+              id: 'gokyuzu-adalari',
+              title: 'Gökyüzü Adaları',
+              theme: 'gokyuzu',
+              unlockStarsRequired: 18,
+              routeRewardId: 'badge-gokyuzu-kasifi',
+              levels: List<WordHuntLevelDefinition>.generate(10, (zeroBased) {
+                final index = zeroBased + 1;
+                return WordHuntLevelDefinition(
+                  id: 'gokyuzu-$index',
+                  routeId: 'gokyuzu-adalari',
+                  index: index,
+                  type: index == 8
+                      ? WordHuntLevelType.bonus
+                      : index == 10
+                      ? WordHuntLevelType.routeFinal
+                      : WordHuntLevelType.normal,
+                  grid: const <String>['ABC', 'DEF', 'GHI'],
+                  targetWords: const <String>['ABC'],
+                  starRules: const WordHuntStarRules(),
+                );
+              }),
+            );
+          }
+          DART
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+      - name: Format, analyze and test before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          git checkout -- pubspec.lock 2>/dev/null || true
+          dart format lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart test/word_hunt_gokyuzu_master_art_screen_test.dart
+          git diff --check
+          dart analyze lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart lib/word_hunt/word_hunt_production_entry_screen.dart lib/word_hunt/word_hunt_progress.dart
+          flutter test test/word_hunt_gokyuzu_master_art_screen_test.dart test/word_hunt_progress_test.dart test/word_hunt_pixel_proof_screen_test.dart test/word_hunt_reference_route_screen_test.dart test/word_hunt_production_flow_test.dart --reporter expanded
+          test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
+          test -z "$(git diff --name-only "$PRODUCT_SHA" -- assets/questions.json android/ pubspec.yaml || true)"
+          mapfile -t changed < <(git diff --name-only "$PRODUCT_SHA")
+          printf 'CHANGED=%s\n' "${changed[*]}"
+          test "${#changed[@]}" -eq 3
+          printf '%s\n' "${changed[@]}" | sort > /tmp/actual.txt
+          printf '%s\n' \
+            assets/word_hunt/gokyuzu_adalari_master_art_v2.webp \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart | sort > /tmp/expected.txt
+          diff -u /tmp/expected.txt /tmp/actual.txt
+      - name: Commit and push tested candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/word_hunt/gokyuzu_adalari_master_art_v2.webp \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart
+          git commit -m 'feat(kelime-avi): fit gokyuzu route to phone viewport'
+          git push --force-with-lease origin "$QA_BRANCH"
+          echo "CANDIDATE_SHA=$(git rev-parse HEAD)"
