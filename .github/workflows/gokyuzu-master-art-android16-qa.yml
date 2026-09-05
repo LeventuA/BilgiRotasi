@@ -1,0 +1,169 @@
+name: Gokyuzu master art Android16 QA
+
+on:
+  push:
+    branches:
+      - qa/gokyuzu-master-art-android16-20260905
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    env:
+      PRODUCT_SHA: 9fd6dbd8a1913ad9455204b05658ba8b1ec732b4
+      BASE_SHA: 3557a7e4f2f2917d61ba61866c6d4c8561994667
+      ASSET_SHA256: 24de23b004960bbe9cbcb07c7431c6d34354f673be7dcb173abf7373970f1b49
+
+    steps:
+      - name: Checkout QA branch with product history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+
+      - name: Verify exact product parent and protected scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "QA_HEAD=$(git rev-parse HEAD)"
+          echo "QA_PARENT=$(git rev-parse HEAD^)"
+          echo "PRODUCT_PARENT=$(git rev-parse "$PRODUCT_SHA^")"
+          test "$(git rev-parse HEAD^)" = "$PRODUCT_SHA"
+          test "$(git rev-parse "$PRODUCT_SHA^")" = "$BASE_SHA"
+          test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = "1.68.19+109"
+          test -z "$(git diff --name-only "$BASE_SHA" "$PRODUCT_SHA" -- assets/questions.json android)"
+          actual_asset_sha="$(sha256sum assets/word_hunt/gokyuzu_adalari_master_art_v2.jpg | cut -d' ' -f1)"
+          echo "ASSET_SHA=$actual_asset_sha"
+          test "$actual_asset_sha" = "$ASSET_SHA256"
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Analyze and focused tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          dart format --output=none --set-exit-if-changed \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart \
+            lib/word_hunt/word_hunt_progress.dart \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart
+          dart analyze lib/word_hunt
+          flutter test \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart \
+            test/word_hunt_progress_test.dart \
+            test/word_hunt_pixel_proof_screen_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            --reporter expanded
+          git diff --check "$BASE_SHA" "$PRODUCT_SHA"
+
+      - name: Create isolated Gökyüzü proof entrypoint
+        shell: bash
+        run: |
+          cat > lib/word_hunt/gokyuzu_master_art_qa_main.dart <<'DART'
+          import 'package:flutter/material.dart';
+          import 'word_hunt_gokyuzu_master_art_screen.dart';
+          import 'word_hunt_models.dart';
+
+          WordHuntRouteDefinition route() => WordHuntRouteDefinition(
+            id: 'gokyuzu-adalari',
+            title: 'Gökyüzü Adaları',
+            theme: 'sky',
+            unlockStarsRequired: 18,
+            routeRewardId: 'gokyuzu_reward',
+            levels: List<WordHuntLevelDefinition>.generate(10, (zeroBased) {
+              final index = zeroBased + 1;
+              return WordHuntLevelDefinition(
+                id: 'gokyuzu-$index', routeId: 'gokyuzu-adalari', index: index,
+                type: index == 8 ? WordHuntLevelType.bonus : index == 10 ? WordHuntLevelType.routeFinal : WordHuntLevelType.normal,
+                grid: const <String>['AAA', 'AAA', 'AAA'],
+                targetWords: const <String>['AAA'],
+                starRules: const WordHuntStarRules(),
+              );
+            }),
+          );
+
+          void main() {
+            WidgetsFlutterBinding.ensureInitialized();
+            runApp(MaterialApp(debugShowCheckedModeBanner: false, home: WordHuntGokyuzuMasterArtScreen(route: route())));
+          }
+          DART
+
+      - name: Build isolated debug APK and verify packaged master art
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter build apk --debug -t lib/word_hunt/gokyuzu_master_art_qa_main.dart --dart-define=ADMOB_ENVIRONMENT=test
+          apk=build/app/outputs/flutter-apk/app-debug.apk
+          test -s "$apk"
+          mkdir -p reports
+          unzip -p "$apk" assets/flutter_assets/assets/word_hunt/gokyuzu_adalari_master_art_v2.jpg > reports/gokyuzu_adalari_master_art_v2.packaged.jpg
+          cmp -s assets/word_hunt/gokyuzu_adalari_master_art_v2.jpg reports/gokyuzu_adalari_master_art_v2.packaged.jpg
+          sha256sum "$apk" | tee reports/APK_SHA256.txt
+          git rev-parse "$PRODUCT_SHA" | tee reports/PRODUCT_SHA.txt
+
+      - name: Prepare Android 16 KVM
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm
+          test -w /dev/kvm
+
+      - name: Capture raw Android 16 route
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: aosp_atd
+          arch: x86_64
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          heap-size: 512M
+          emulator-boot-timeout: 1200
+          disable-animations: false
+          script: |
+            mkdir -p reports
+            adb install -r build/app/outputs/flutter-apk/app-debug.apk
+            adb logcat -c
+            adb shell am force-stop com.leventua.bilgirotasi
+            adb shell monkey -p com.leventua.bilgirotasi -c android.intent.category.LAUNCHER 1 >/dev/null
+            sleep 8
+            adb shell dumpsys activity activities > reports/ACTIVITY.txt
+            adb exec-out screencap -p > reports/GOKYUZU_MASTER_ART_ANDROID16_RAW.png
+            adb logcat -d > reports/LOGCAT.txt
+            test -s reports/GOKYUZU_MASTER_ART_ANDROID16_RAW.png
+            grep -Eq 'mResumedActivity.*com\.leventua\.bilgirotasi|topResumedActivity=.*com\.leventua\.bilgirotasi|mCurrentFocus=.*com\.leventua\.bilgirotasi' reports/ACTIVITY.txt
+            if grep -E 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi|A RenderFlex overflowed|FlutterError' reports/LOGCAT.txt; then echo 'Application/runtime failure detected' >&2; exit 1; fi
+            python3 - <<'PY'
+            import struct
+            with open('reports/GOKYUZU_MASTER_ART_ANDROID16_RAW.png','rb') as f: sig=f.read(24)
+            assert sig[:8] == b'\x89PNG\r\n\x1a\n'
+            width,height=struct.unpack('>II',sig[16:24])
+            print(f'{width}x{height}')
+            assert (width,height)==(1080,1920)
+            PY
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Gokyuzu-MasterArt-Android16-${{ env.PRODUCT_SHA }}
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 14
