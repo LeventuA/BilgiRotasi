@@ -72,8 +72,8 @@ jobs:
           )
           replace_once(
               route,
-              "          ),\n        ],\n      ),\n    );",
-              "          ),\n        ],\n        ),\n      ),\n    );",
+              "          const SizedBox(\n            key: Key('word_hunt_gokyuzu_banner_reserve'),\n            height: WordHuntGokyuzuMasterArtLayout.bannerReserveHeight,\n            width: double.infinity,\n            child: ColoredBox(color: Color(0xFF072B58)),\n          ),\n        ],\n      ),\n    );",
+              "          const SizedBox(\n            key: Key('word_hunt_gokyuzu_banner_reserve'),\n            height: WordHuntGokyuzuMasterArtLayout.bannerReserveHeight,\n            width: double.infinity,\n            child: ColoredBox(color: Color(0xFF072B58)),\n          ),\n        ],\n        ),\n      ),\n    );",
           )
 
           entry = 'lib/word_hunt/word_hunt_production_entry_screen.dart'
