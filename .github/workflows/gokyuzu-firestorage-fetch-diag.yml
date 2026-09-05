@@ -10,40 +10,61 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Inspect public share shared chunks
+      - name: Download and validate uploaded master art
         shell: bash
         run: |
           set -euo pipefail
-          base='https://firestorage.ai'
-          curl -fsSL -o page.html "$base/ja/f/8VSw52kChyyv"
-          echo '--- page-specific js ---'
-          page_js="$(grep -Eo 'src=\"[^\"]+app/\(files\)/ja/f/page-[^\"]+\.js' page.html | head -1 | sed 's/^src=\"//')"
-          curl -fsSL -o page.js "$base$page_js"
-          cat page.js
+          api='https://api.firestorage.ai/dev/file/shares/8VSw52kChyyv'
+          echo '--- share metadata ---'
+          curl -fsSL "$api" | tee share.json
           echo
-          echo '--- inspect all script chunks ---'
-          : > all.js
-          grep -Eo 'src=\"[^\"]+\.js' page.html | sed 's/^src=\"//' | sort -u > scripts.txt
-          cat scripts.txt
-          while IFS= read -r js; do
-            echo "### $js" >> all.js
-            curl -fsSL "$base$js" >> all.js || true
-            echo >> all.js
-          done < scripts.txt
-          echo '--- endpoint candidates ---'
+          echo '--- files metadata ---'
+          curl -fsSL "$api/files?maxResults=1000" | tee files.json
+          echo
           python3 - <<'PY'
-          import re
-          text=open('all.js',encoding='utf-8',errors='ignore').read()
-          pats=['download','publicId','shareId','presign','signed','fileUrl','/api/','attachment','objectKey','storage']
-          seen=[]
-          for p in pats:
-            for m in re.finditer(re.escape(p), text, flags=re.I):
-              s=max(0,m.start()-220); e=min(len(text),m.end()+360)
-              chunk=text[s:e].replace('\n',' ')
-              if chunk not in seen:
-                seen.append(chunk)
-                print('\n---',p,'---\n',chunk[:900])
-              if len(seen)>=120: break
-            if len(seen)>=120: break
-          print('\nTOTAL_JS_BYTES',len(text))
+          import json
+          data=json.load(open('files.json'))
+          print('FILE_COUNT',len(data.get('files',[])))
+          for f in data.get('files',[]):
+              print('FILE',f.get('fileId'),f.get('name'),f.get('size'),f.get('contentType'))
+          assert len(data.get('files',[])) == 1
+          open('file_id.txt','w').write(str(data['files'][0]['fileId']))
+          PY
+          file_id="$(cat file_id.txt)"
+          curl -fsSL -X POST "$api/files/$file_id/download" | tee download.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('download.json'))
+          u=d.get('downloadUrl')
+          assert u and u.startswith('http')
+          open('download_url.txt','w').write(u)
+          print('SIGNED_URL_OK')
+          PY
+          curl -fsSL "$(cat download_url.txt)" -o master.jpg
+          echo '--- downloaded file ---'
+          file master.jpg
+          wc -c master.jpg
+          sha256sum master.jpg
+          python3 - <<'PY'
+          import struct
+          from pathlib import Path
+          p=Path('master.jpg')
+          b=p.read_bytes()
+          assert b[:2] == b'\xff\xd8' and b[-2:] == b'\xff\xd9'
+          # Pure-python JPEG SOF dimension scan.
+          i=2
+          w=h=None
+          while i < len(b)-9:
+              if b[i] != 0xff:
+                  i += 1; continue
+              while i < len(b) and b[i] == 0xff: i += 1
+              marker=b[i]; i += 1
+              if marker in (0xd8,0xd9): continue
+              if marker == 0xda: break
+              seglen=int.from_bytes(b[i:i+2],'big')
+              if marker in list(range(0xc0,0xc4))+list(range(0xc5,0xc8))+list(range(0xc9,0xcc))+list(range(0xcd,0xd0)):
+                  h=int.from_bytes(b[i+3:i+5],'big'); w=int.from_bytes(b[i+5:i+7],'big'); break
+              i += seglen
+          print('JPEG_DIMENSIONS',w,h)
+          assert (w,h) == (1085,1536)
           PY
