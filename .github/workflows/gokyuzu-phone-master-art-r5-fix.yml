@@ -1,0 +1,121 @@
+name: Gokyuzu phone master art R5 fix
+on:
+  push:
+    branches:
+      - ci/gokyuzu-phone-master-art-r5-fix-20260905
+permissions:
+  contents: write
+jobs:
+  validate-and-push:
+    runs-on: ubuntu-22.04
+    env:
+      PRODUCT_SHA: 4145f0fe8d716d6951e1ee53215812b56150c73c
+      CANONICAL_SHA: 3557a7e4f2f2917d61ba61866c6d4c8561994667
+      QA_BRANCH: qa/gokyuzu-phone-master-art-r5-20260905
+      SHARE_ID: IWUhJbA1rdRk
+      ASSET_SHA256: db44920c5e25163d0b3f317a96d6e7bcc9e48aa7a4ce8654573728a423dc7f34
+      ASSET_SIZE: '437438'
+    steps:
+      - name: Checkout exact product head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PRODUCT_SHA }}
+          fetch-depth: 0
+      - name: Verify starting point
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PRODUCT_SHA"
+          test "$(git rev-parse origin/release/final-closed-test-aab-1.68.8)" = "$CANONICAL_SHA"
+          test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
+          test -z "$(git diff --name-only "$CANONICAL_SHA" "$PRODUCT_SHA" -- assets/questions.json android/ || true)"
+          git checkout -B "$QA_BRANCH" "$PRODUCT_SHA"
+      - name: Materialize exact phone art
+        shell: bash
+        run: |
+          set -euo pipefail
+          api='https://api.firestorage.ai/dev/file'
+          curl -LfsS "$api/shares/$SHARE_ID/files?maxResults=1000" -o /tmp/files.json
+          file_id=$(python3 - <<'PY'
+          import json
+          data=json.load(open('/tmp/files.json',encoding='utf-8'))
+          matches=[f for f in data.get('files',[]) if f.get('fileName')=='gokyuzu_adalari_phone_master_art_v2.webp']
+          assert len(matches)==1, matches
+          print(matches[0]['fileId'])
+          PY
+          )
+          curl -LfsS -X POST "$api/shares/$SHARE_ID/files/$file_id/download" -o /tmp/download.json
+          download_url=$(python3 - <<'PY'
+          import json
+          print(json.load(open('/tmp/download.json',encoding='utf-8'))['downloadUrl'])
+          PY
+          )
+          curl -LfsS "$download_url" -o assets/word_hunt/gokyuzu_adalari_master_art_v2.webp
+          test "$(wc -c < assets/word_hunt/gokyuzu_adalari_master_art_v2.webp)" = "$ASSET_SIZE"
+          test "$(sha256sum assets/word_hunt/gokyuzu_adalari_master_art_v2.webp | cut -d' ' -f1)" = "$ASSET_SHA256"
+      - name: Reuse tested R5 candidate source and fix full-width reserve
+        shell: bash
+        run: |
+          set -euo pipefail
+          raw='https://raw.githubusercontent.com/ZMilaStudio/BilgiRotasi/ci/gokyuzu-phone-master-art-r5-20260905/.github/workflows/gokyuzu-phone-master-art-r5.yml'
+          curl -LfsS "$raw" -o /tmp/r5.yml
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('/tmp/r5.yml').read_text()
+          def extract(marker, next_marker):
+              a=s.index(marker)+len(marker)
+              b=s.index(next_marker,a)
+              block=s[a:b]
+              lines=block.splitlines()
+              out=[]
+              for line in lines:
+                  if line.startswith('          '): line=line[10:]
+                  out.append(line)
+              return '\n'.join(out).lstrip('\n')+'\n'
+          screen=extract("cat > lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart <<'DART'\n", "          DART\n          cat > test/word_hunt_gokyuzu_master_art_screen_test.dart")
+          test=extract("cat > test/word_hunt_gokyuzu_master_art_screen_test.dart <<'DART'\n", "          DART\n      - name: Setup Java")
+          needle="height: WordHuntGokyuzuMasterArtLayout.bannerReserveHeight,\n"
+          assert needle in screen
+          screen=screen.replace(needle, needle+"            width: double.infinity,\n",1)
+          Path('lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart').write_text(screen)
+          Path('test/word_hunt_gokyuzu_master_art_screen_test.dart').write_text(test)
+          PY
+          grep -q 'width: double.infinity' lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+      - name: Format analyze test scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          git checkout -- pubspec.lock 2>/dev/null || true
+          dart format lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart test/word_hunt_gokyuzu_master_art_screen_test.dart
+          git diff --check
+          dart analyze lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart lib/word_hunt/word_hunt_production_entry_screen.dart lib/word_hunt/word_hunt_progress.dart
+          flutter test test/word_hunt_gokyuzu_master_art_screen_test.dart test/word_hunt_progress_test.dart test/word_hunt_pixel_proof_screen_test.dart test/word_hunt_reference_route_screen_test.dart test/word_hunt_production_flow_test.dart --reporter expanded
+          test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
+          test -z "$(git diff --name-only "$PRODUCT_SHA" -- assets/questions.json android/ pubspec.yaml || true)"
+          mapfile -t changed < <(git diff --name-only "$PRODUCT_SHA")
+          test "${#changed[@]}" -eq 3
+          printf '%s\n' "${changed[@]}" | sort > /tmp/actual.txt
+          printf '%s\n' assets/word_hunt/gokyuzu_adalari_master_art_v2.webp lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart test/word_hunt_gokyuzu_master_art_screen_test.dart | sort > /tmp/expected.txt
+          diff -u /tmp/expected.txt /tmp/actual.txt
+      - name: Commit and push exact tested candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/word_hunt/gokyuzu_adalari_master_art_v2.webp lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart test/word_hunt_gokyuzu_master_art_screen_test.dart
+          git commit -m 'feat(kelime-avi): fit gokyuzu route to phone viewport'
+          git push --force origin "$QA_BRANCH"
+          echo "CANDIDATE_SHA=$(git rev-parse HEAD)"
