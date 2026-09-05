@@ -1,3 +1,18 @@
+<!-- GOKYUZU_R7_ANDROID16_START -->
+## AKTİF — Gökyüzü R7 human visual acceptance
+**Görev:** Exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df` için üretilen raw Android16 `1080×1920` ekranını Levent'in görsel olarak inceleyip PASS/FAIL vermesi.
+
+**Mevcut teknik kanıt:** test-before-commit `33971902782` / `101321780327` SUCCESS; Android16 `33972011069` / `101322071661` SUCCESS; analyzer temiz; **39/39 PASS**; APK SHA256 `a972bf07bf68f0c2cab1908c85b6e0a98e8f0821a78b5e53175317f6e0a2f8f2`; screenshot SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`; artifact `9971319096`.
+
+**Bitti ölçütü:**
+1. Levent exact raw R7 Android ekranını açıkça görsel PASS eder.
+2. PASS sonrası gerçek cihaz APK kabulü tamamlanır.
+3. PR #175 Ready/merge yalnız ayrıca açık Levent onayıyla yapılır.
+4. Play yükleme/yayınlama ayrıca açık onay gerektirir.
+
+**Durum:** `AÇIK / LEVENT GÖRSEL KARARI BEKLİYOR`.
+<!-- GOKYUZU_R7_ANDROID16_END -->
+
 <!-- GOKYUZU_R6_ANDROID16_START -->
 ## AKTİF — Gökyüzü R6 human visual acceptance
 **Görev:** Exact ürün HEAD `560d76bd828e0b4d813218f1000b895da9d0c7fa` için üretilen raw Android16 `1080×1920` ekranını Levent'in görsel olarak inceleyip PASS/FAIL vermesi.

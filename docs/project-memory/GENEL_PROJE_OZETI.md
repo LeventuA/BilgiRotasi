@@ -1,3 +1,14 @@
+<!-- GOKYUZU_R7_ANDROID16_START -->
+## 5 Eylül 2026 — Gökyüzü Adaları R7 current checkpoint
+- Canlı canonical release: `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+- Gökyüzü görünür rota mimarisi artık bağlayıcı olarak **phone MASTER ART raster + transparent hitbox + minimum lokal runtime-state overlay** yaklaşımıdır; önceki modüler görünür renderer kararı bu rota için superseded edilmiştir.
+- PR #175 OPEN/DRAFT; exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df`.
+- Güncel MASTER ART `941×1672`, `510998` bayt, SHA256 `913ee19df9fcb1eba2ac6ca3a500979c960d31dd369e204d2f79064be9664b1d`.
+- R7'de yalnız eski 8/9/10 alt bölgesindeki bağımsız merkez kilit + üç yıldız görseli kaldırıldı; dinamik node lock badge/progression ayrı runtime state olarak korunur.
+- Test-before-commit `33971902782` SUCCESS; Android16 `33972011069` / job `101322071661` SUCCESS; analyze temiz; 39/39 PASS; raw screenshot `1080×1920`, SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`, artifact `9971319096`.
+- Teknik Android16 kapısı PASS; Levent human visual acceptance hâlâ AÇIK. Görsel PASS sonrası gerçek cihaz APK kabulü; Ready/merge ve Play ayrıca açık onay gerektirir.
+<!-- GOKYUZU_R7_ANDROID16_END -->
+
 <!-- GOKYUZU_R6_ANDROID16_START -->
 ## 5 Eylül 2026 — Gökyüzü R6 Android16 devir checkpointi
 Gökyüzü Adaları current replacement hattı PR #175'tir: **OPEN / DRAFT / mergeable**, exact ürün HEAD `560d76bd828e0b4d813218f1000b895da9d0c7fa`; canonical release `3557a7e4f2f2917d61ba61866c6d4c8561994667`, sürüm `1.68.19+109` değişmedi.

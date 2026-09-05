@@ -1,3 +1,19 @@
+<!-- GOKYUZU_R7_ANDROID16_START -->
+## Kelime Avı V9 — Gökyüzü R7 Android16 teknik kapı — 5 Eylül 2026
+- Canonical release canlı olarak yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+- PR #175 **OPEN / DRAFT**; exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df`. Ready/merge/Play yok.
+- Güncel phone MASTER ART: `941×1672`, `510998` bayt, SHA256 `913ee19df9fcb1eba2ac6ca3a500979c960d31dd369e204d2f79064be9664b1d`.
+- R7 görsel farkı yalnız alt rota bölgesindeki eski bağımsız merkez kilit + üç yıldız işaretinin kaldırılması ve ana rota geçişinin doğal devam ettirilmesidir. Bölüm 8/9/10 progression sözleşmesi değişmedi.
+- Ürün commit'i: `f35082c44e637cb7e6e3815c7d54d38a58b776df` — `fix(kelime-avi): remove obsolete gokyuzu gate marker`; commit yalnız MASTER ART dosyasını değiştirir.
+- Test-before-commit run `33971902782`, job `101321780327`: **SUCCESS**.
+- Android16/API36 exact kanıt run `33972011069`, job `101322071661`: **SUCCESS**. `dart analyze`: No issues found; focused + Başlangıç Limanı regression **39/39 PASS**; APK build/install/launch/resumed/semantics/crash-ANR-render taraması PASS.
+- Debug APK SHA256: `a972bf07bf68f0c2cab1908c85b6e0a98e8f0821a78b5e53175317f6e0a2f8f2`.
+- Raw Android screenshot: exact `1080×1920`; SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`; artifact `9971319096`.
+- `GOKYUZU_R7_ANDROID16_TECHNICAL = PASS`.
+- `GOKYUZU_R7_HUMAN_VISUAL = AÇIK / LEVENT GÖRSEL KARARI BEKLİYOR`.
+- `assets/questions.json`, BoardMap/67 node, Firebase, AdMob config, signing, Android release config, package/version ve Play korunmuştur.
+<!-- GOKYUZU_R7_ANDROID16_END -->
+
 <!-- GOKYUZU_R6_ANDROID16_START -->
 ## Kelime Avı V9 — Gökyüzü R6 Android16 teknik kapı — 5 Eylül 2026
 - Canonical release yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.

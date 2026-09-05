@@ -1,3 +1,14 @@
+<!-- GOKYUZU_R7_ANDROID16_START -->
+## 5 Eylül 2026 — Gökyüzü Adaları görünür rota mimarisi / CURRENT
+- Gökyüzü Adaları için önceki **modüler görünür renderer** kararı supersede edilmiştir.
+- Bağlayıcı production görünür mimari: **telefon oranına hazırlanmış tek MASTER ART raster + şeffaf hitbox'lar + yalnız gerçek state farklarında minimum lokal Flutter override**.
+- Onaylı V2 / `C — Neşeli & Parlak` kompozisyon dili bağlayıcı kalır; ada/landmark/rota/plaque/dekor sanatı Flutter ile ikinci kez komple çizilmez.
+- Current R7 MASTER ART: `941×1672`, `510998` bayt, SHA256 `913ee19df9fcb1eba2ac6ca3a500979c960d31dd369e204d2f79064be9664b1d`; exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df`.
+- 8/9/10 alt rota bölgesindeki eski bağımsız **merkez kilit + üç yıldız** görsel işareti kaldırılmıştır ve geri getirilmez. Bu, runtime'daki node bazlı dinamik lock badge'lerden ayrıdır.
+- Progression değişmez: 7 tamamlanınca 8 ve 9 birlikte açılır; 8, 9 için gate değildir; 10 yalnız 9 tamamlanınca açılır.
+- Build/test başarısı görsel kabul değildir. Human visual PASS yalnız exact raw Android screenshot üzerinden Levent tarafından verilir.
+<!-- GOKYUZU_R7_ANDROID16_END -->
+
 <!-- GOKYUZU_MASTER_ART_DECISION_20260905_START -->
 ## 5 Eylül 2026 — Gökyüzü Adaları V2 production MASTER ART kararı
 - Levent'in açık ürün onayıyla Gökyüzü Adaları rota ekranının görünür production tabanı, 3 Eylül'de onaylanan V2 görselinin **MASTER ART raster** sürümüdür.
