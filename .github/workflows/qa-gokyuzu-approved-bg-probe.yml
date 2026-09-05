@@ -12,30 +12,31 @@ jobs:
   probe:
     runs-on: ubuntu-22.04
     steps:
-      - name: Probe firestorage share page internals
+      - name: Inspect firestorage client endpoint
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import re
-          import urllib.parse
-          import urllib.request
-
-          url = 'https://firestorage.ai/ja/f/C_m_OOFsBhd-'
-          req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+          import re, urllib.request
+          js='https://firestorage.ai/_next/static/chunks/app/(files)/ja/f/page-4d19ae0a4ce39d79.js'
+          req=urllib.request.Request(js, headers={'User-Agent':'Mozilla/5.0'})
           with urllib.request.urlopen(req, timeout=30) as r:
-              data = r.read()
-          text = data.decode('utf-8', errors='ignore')
-          print('PAGE_BYTES', len(data))
-          print('SCRIPT_SRCS')
-          for src in re.findall(r'<script[^>]+src=[\"\']([^\"\']+)', text):
-              print(urllib.parse.urljoin(url, src))
-          print('MATCHING_LINES')
-          for line in text.splitlines():
-              low = line.lower()
-              if any(k in low for k in ('download', 'public_id', 'publicid', 'share', '/api/', 'file_id', 'fileid')):
-                  print(line[:2000])
-          print('ABSOLUTE_URLS')
-          for found in sorted(set(re.findall(r'https?://[^\"\'<> ]+', text))):
-              print(found[:2000])
+              text=r.read().decode('utf-8','ignore')
+          print('JS_BYTES',len(text))
+          for pat in [r'/api/[^\"\']+', r'https://[^\"\']+', r'fetch\(([^)]{0,500})\)', r'axios[^;]{0,500}']:
+              print('PATTERN',pat)
+              hits=[]
+              for m in re.finditer(pat,text):
+                  s=m.group(0)
+                  if any(k in s.lower() for k in ('download','share','file','api')):
+                      hits.append(s)
+              for s in hits[:80]: print(s[:1200])
+          for keyword in ('download','publicId','public_id','shareId','share_id','files/'):
+              pos=0
+              print('KW',keyword)
+              for _ in range(20):
+                  i=text.find(keyword,pos)
+                  if i<0: break
+                  print(text[max(0,i-400):i+900])
+                  pos=i+len(keyword)
           PY
