@@ -88,6 +88,7 @@ class WordHuntGokyuzuMasterArtScreen extends StatelessWidget {
       key: const Key('word_hunt_gokyuzu_master_art_route'),
       backgroundColor: const Color(0xFF072B58),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: ClipRect(

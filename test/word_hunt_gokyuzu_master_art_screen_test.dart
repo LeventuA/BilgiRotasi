@@ -38,6 +38,12 @@ void main() {
       findsOneWidget,
     );
     expect(
+      tester.getSize(
+        find.byKey(const Key('word_hunt_gokyuzu_master_art_phone_viewport')),
+      ),
+      const Size(540, 910),
+    );
+    expect(
       find.byKey(const Key('word_hunt_gokyuzu_master_art_image')),
       findsOneWidget,
     );
