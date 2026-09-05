@@ -1,5 +1,22 @@
 # Bilgi Rotası — Görev Havuzu
 
+<!-- GOKYUZU_VIEWPORT_R3_START -->
+## AKTİF — Gökyüzü V2 tall-device viewport görsel kapısı
+**Görev:** Onaylı Gökyüzü Adaları V2 MASTER ART çekirdeğini değiştirmeden 9:16 ve daha uzun telefon ekranlarında doğal, tekrar etmeyen tam ekran sunum üretmek.
+
+**Mevcut kanıt:** QA-only R3 run `33952294411` / job `101269226635` teknik PASS; 39/39 regression PASS; raw 1080×1920 screenshot SHA256 `fcf7b065fc58453fe343bb7fedb9feb1641ae06df8348cec4debfd77bef65aa7`, artifact `9965315644`.
+
+**Bitti ölçütü:**
+1. Approved V2 ana kompozisyon/landmark/node/kontrol sanatı bozulmayacak, gerilmeyecek ve kritik kenarlar crop edilmeyecek.
+2. Üst/alt tall-device alanı duplicated MASTER ART veya düz/rahatsız edici letterbox görünümü taşımayacak.
+3. Önce statik tam-ekran visual proof Levent tarafından açıkça PASS edilecek.
+4. Yalnız bu PASS sonrası çözüm #175 ürün branch'ine uygulanacak; analyzer + focused/regression + raw Android16 kanıtı yeniden alınacak.
+5. Ready/merge ve Play ayrı açık Levent onayı olmadan yapılmayacak.
+
+**Durum:** `AÇIK / GÖRSEL KARAR BEKLİYOR`. R3 teknik PASS, human visual PASS değil.
+<!-- GOKYUZU_VIEWPORT_R3_END -->
+
+
 **Son güncelleme:** 5 Eylül 2026 — Gökyüzü exact V2 referans kaynağı yeniden bulundu ve renderer sapma audit'i tamamlandı. Aktif kapı: mevcut 48 production assetle hazırlanan statik V2 kompozisyon proof'un Levent görsel incelemesi. PASS olmadan Flutter/#173 düzeltmesi veya gerçek-cihaz APK yok. #173 DRAFT/blokeli; merge/Play yok.
 
 > Root dosya güncel Kelime Avı çalışma checkpointini taşır. Eski ayrıntılı görev geçmişi `docs/project-memory/GOREV_HAVUZU.md` ve Git geçmişinde korunur.

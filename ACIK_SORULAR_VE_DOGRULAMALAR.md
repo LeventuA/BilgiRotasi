@@ -1,5 +1,16 @@
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
+<!-- GOKYUZU_VIEWPORT_R3_START -->
+## GOKYUZU_TALL_VIEWPORT_VISUAL — AÇIK
+- Approved Gökyüzü V2 MASTER ART exact kaynak üretimde mevcut; replacement PR #175 exact product HEAD `4145f0fe8d716d6951e1ee53215812b56150c73c`.
+- R2'de darkened `BoxFit.cover` duplicate background görsel olarak uygun değildi.
+- R3 QA-only gradient-fill denemesi teknik olarak PASS: run `33952294411`, job `101269226635`, artifact `9965315644`, raw screenshot SHA256 `fcf7b065fc58453fe343bb7fedb9feb1641ae06df8348cec4debfd77bef65aa7`.
+- Ancak approved MASTER ART 1085×1536 olduğu için 1080×1920 ve daha uzun ekranlarda `contain` yaklaşımı üst/alt letterbox alanı bırakıyor.
+- **DOĞRULANACAK:** accepted V2 çekirdeği sabit kalırken üst/alt alanın doğal gökyüzü/dünya devamıyla nasıl tamamlanacağı ve Levent'in bu tam-ekran statik proof'u görsel olarak kabul edip etmeyeceği.
+- Human visual PASS gelmeden #175 Ready/merge yok; Play yok.
+<!-- GOKYUZU_VIEWPORT_R3_END -->
+
+
 **Son güncelleme:** 5 Eylül 2026 — `GOKYUZU_EXACT_V2_REFERENCE_SOURCE` DOĞRULANDI: `Gökyüzü Adaları: Büyülü Seviye Haritası.png` / File Library `file_00000000fe7c81f4aec58eee1d5c702d`. `GOKYUZU_STATIC_PRODUCTION_COMPOSITION_ACCEPTANCE` AÇIK/BEKLİYOR. #173 DRAFT/görsel blokeli; merge/Play yok.
 
 ## Kelime Avı

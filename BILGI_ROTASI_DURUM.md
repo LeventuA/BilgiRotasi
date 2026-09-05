@@ -1,5 +1,22 @@
 # Bilgi Rotası – Proje Durumu
 
+<!-- GOKYUZU_VIEWPORT_R3_START -->
+## Kelime Avı V9 — Gökyüzü V2 tall-viewport R3 checkpoint — 5 Eylül 2026
+- Canonical release yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+- Replacement MASTER ART ürün PR'ı #175 OPEN/DRAFT; exact product HEAD `4145f0fe8d716d6951e1ee53215812b56150c73c`. Ready/merge/Play yok.
+- R2 raw Android16 kanıtında approved V2 merkez sanat doğruydu ancak aynı görselin koyulaştırılmış `BoxFit.cover` arka kopyası üst/alt alanda başlık ve sahneyi tekrar ederek görsel kusur üretti; R2 görsel PASS sayılmadı.
+- Ürün branch'i değiştirilmeden QA-only R3 viewport denemesi yapıldı: `qa/gokyuzu-master-art-v2-viewport-r3-20260905` @ `4a0713373c07f6864cede31ea2698e00ba654a9b`.
+- R3 yalnız arka `BoxFit.cover` kopyasını kaldırıp sabit gökyüzü gradienti kullandı; approved MASTER ART bytes ve merkez `BoxFit.contain` değişmedi.
+- Final R3 run `33952294411`, job `101269226635`: SUCCESS. Analyzer PASS; focused/regression 39/39 PASS; APK build PASS; API36 boot/install/launch PASS; activity resumed/focused PASS; `Bölüm 1`/`Pusula`/`Bilgi Kitabı` semantic PASS; crash/ANR/RenderFlex/FlutterError taraması temiz.
+- R3 APK SHA256 `cd74d995b644a339074ad600cec7497103613f80bfcaf11d04a1d2e83eecb742`.
+- Raw Android screenshot 1080×1920; SHA256 `fcf7b065fc58453fe343bb7fedb9feb1641ae06df8348cec4debfd77bef65aa7`; artifact `9965315644`.
+- **Teknik sonuç:** `GOKYUZU_MASTER_ART_VIEWPORT_R3_TECHNICAL = PASS`.
+- **Görsel sonuç:** approved V2 kompozisyon artık doğru görünür, fakat 1085×1536 MASTER ART tall-device ekranda `contain` edildiği için üst/alt düz letterbox alanları kalır. Bu nedenle `GOKYUZU_TALL_VIEWPORT_VISUAL = AÇIK`; R3 henüz human visual PASS değildir.
+- Sıradaki doğru kapı: approved V2 çekirdeğini bozmadan 9:16/tall ekran için yalnız üst/alt dünya/gökyüzü uzatmasını statik olarak çözmek; Levent görsel kabulünden önce #175 ürün koduna yeni viewport çözümü commit etmemek.
+- `assets/questions.json`, BoardMap/67 node, Firebase, AdMob, signing, Android release config, package/version ve Play korunmuştur.
+<!-- GOKYUZU_VIEWPORT_R3_END -->
+
+
 **Son güncelleme:** 5 Eylül 2026 — Gökyüzü onaylı V2 referans kaynağı File Library'de yeniden bulundu (`Gökyüzü Adaları: Büyülü Seviye Haritası.png`, `file_00000000fe7c81f4aec58eee1d5c702d`). #173 sapmasının ana nedeni renderer chrome/ölçek/kompozisyonu olarak doğrulandı. Mevcut 48 assetle statik production proof hazırlandı; Levent görsel incelemesi bekleniyor. #173 DRAFT/blokeli; Ready/merge/Play yok. Canonical release `3557a7e4...`, sürüm `1.68.19+109`.
 
 ## Canlı Sürüm / Release Hattı

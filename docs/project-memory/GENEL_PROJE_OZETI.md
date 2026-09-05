@@ -1,5 +1,15 @@
 # Bilgi Rotası — Genel Proje Özeti
 
+<!-- GOKYUZU_VIEWPORT_R3_START -->
+## 5 Eylül 2026 — Gökyüzü V2 viewport R3 devir checkpointi
+Gökyüzü Adaları replacement MASTER ART hattı teknik olarak çalışıyor. #175 OPEN/DRAFT ve exact product HEAD `4145f0fe8d716d6951e1ee53215812b56150c73c`; canonical release `3557a7e4f2f2917d61ba61866c6d4c8561994667`, sürüm `1.68.19+109` değişmedi.
+
+R2 raw Android16 ekranında approved V2 merkez sanat doğruydu fakat koyulaştırılmış aynı MASTER ART'ın `BoxFit.cover` arka kopyası üst/alt sahneyi tekrarladı; bu nedenle R2 görsel kabul edilmedi. Product branch'i değiştirmeden yapılan QA-only R3, duplicate cover arka planı kaldırdı ve sadece dış alan için gökyüzü gradienti kullandı. Final run `33952294411` / job `101269226635` SUCCESS; analyzer PASS, 39/39 regression PASS, APK/API36/install/launch/runtime/semantic/crash-ANR taraması PASS. R3 APK SHA256 `cd74d995b644a339074ad600cec7497103613f80bfcaf11d04a1d2e83eecb742`; raw 1080×1920 screenshot SHA256 `fcf7b065fc58453fe343bb7fedb9feb1641ae06df8348cec4debfd77bef65aa7`; artifact `9965315644`.
+
+R3 ile approved V2 kompozisyon doğru biçimde görünür hale geldi fakat 1085×1536 kaynak `contain` edildiğinde tall-device üst/alt letterbox alanı kalıyor. Bu yüzden teknik R3 PASS, nihai görsel PASS değildir. Sıradaki iş Flutter/merge değil: approved V2 çekirdeğini değiştirmeden yalnız üst/alt alanı doğal gökyüzü/dünya uzatmasıyla tamamlayan statik full-screen proof üretmek ve Levent görsel PASS almak. Sonra #175 productize + yeniden raw Android16. Ready/merge/Play yok. Codex kullanılmadı.
+<!-- GOKYUZU_VIEWPORT_R3_END -->
+
+
 **Son güncelleme:** 5 Eylül 2026 — Kelime Avı V9: Gökyüzü onaylı V2 referansı File Library'de yeniden bulundu (`Gökyüzü Adaları: Büyülü Seviye Haritası.png`, id `file_00000000fe7c81f4aec58eee1d5c702d`). #173 raw renderer görsel FAIL'in kökü koddan doğrulandı: beyaz top chrome/Material kontroller, küçük scene ölçeği, beyaz label kapsülleri ve basit CustomPainter rota V2 tasarım dilini taşımıyor. Mevcut 48 runtime assetle deterministik statik production proof hazır; Levent görsel incelemesi bekleniyor. PASS olmadan Flutter/APK aşamasına geçilmez. Canonical release `3557a7e4...`, sürüm `1.68.19+109`; Ready/merge/Play yok.
 
 > Teknik doğrulukta tek kanonik kaynak canlı `ZMilaStudio/BilgiRotasi` deposu ve ilgili canlı servislerdir. Bu dosya canlı branch/PR/CI/pubspec doğrulamasının yerine geçmez. Ayrıntılı eski üretim günlükları Git geçmişinde ve `docs/project-memory/archive/` altında korunur.
