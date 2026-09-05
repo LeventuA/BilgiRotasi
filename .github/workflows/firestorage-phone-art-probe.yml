@@ -1,0 +1,23 @@
+name: Firestorage phone art probe
+on:
+  push:
+    branches:
+      - ci/firestorage-phone-art-probe-20260905
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Probe public share page
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://firestorage.ai/ja/f/IWUhJbA1rdRk'
+          curl -L --fail --silent --show-error -D /tmp/headers.txt -o /tmp/page.html "$url"
+          echo '=== HEADERS ==='
+          sed -n '1,80p' /tmp/headers.txt
+          echo '=== PAGE SIZE ==='
+          wc -c /tmp/page.html
+          echo '=== CANDIDATE LINES ==='
+          grep -Eio '.{0,120}(download|gokyuzu|uR8pSkmiE4ShNFG0|01a0717a97587534861e1a0c0ea299f7|href=|src=).{0,220}' /tmp/page.html | head -n 80 || true
