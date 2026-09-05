@@ -34,53 +34,46 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           blocks = {
-            'BILGI_ROTASI_DURUM.md': '''<!-- GOKYUZU_R7_VISUAL_PASS_START -->
-## Kelime Avı V9 — Gökyüzü R7 human visual PASS checkpoint — 6 Eylül 2026
-- Canonical release ve sürüm yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
-- PR #175 **OPEN / DRAFT / mergeable=true**; exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df`. Ready/merge/Play yok.
-- Android16 teknik kapı PASS: run `33972011069`, job `101322071661`; screenshot SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`; artifact `9971319096`.
-- Levent exact raw R7 Android ekranı için açıkça **PASS** verdi.
-- `GOKYUZU_R7_HUMAN_VISUAL = PASS`.
-- Sonraki açık kapı: `GOKYUZU_R7_REAL_DEVICE_APK = AÇIK / FİZİKSEL CİHAZ KABULÜ BEKLİYOR`.
-- PR #175 Ready/merge yalnız ayrıca açık Levent onayıyla yapılır. Play yükleme/yayınlama ayrıca açık onay gerektirir.
-<!-- GOKYUZU_R7_VISUAL_PASS_END -->
-
-''',
-            'GOREV_HAVUZU.md': '''<!-- GOKYUZU_R7_VISUAL_PASS_START -->
-## AKTİF — Gökyüzü R7 gerçek cihaz APK acceptance
-**Görev:** Görsel PASS almış exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df` için gerçek cihaz APK fiziksel kabulünü tamamlamak.
-
-**Mevcut kanıt:** Levent exact raw Android ekranını **PASS** etti. Android16 teknik kanıtı PASS: run `33972011069` / job `101322071661`; analyzer temiz; focused + Başlangıç Limanı regression **39/39 PASS**; screenshot SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`.
-
-**Bitti ölçütü:**
-1. Aynı exact ürün build'i gerçek cihazda APK olarak kurulur ve fiziksel olarak kabul edilir.
-2. PR #175 Ready/merge yalnız ayrıca açık Levent onayıyla yapılır.
-3. Play yükleme/yayınlama ayrıca açık onay gerektirir.
-
-**Durum:** `AÇIK / FİZİKSEL CİHAZ KABULÜ BEKLİYOR`.
-<!-- GOKYUZU_R7_VISUAL_PASS_END -->
-
-''',
-            'docs/project-memory/GENEL_PROJE_OZETI.md': '''<!-- GOKYUZU_R7_VISUAL_PASS_START -->
-## 6 Eylül 2026 — Gökyüzü Adaları R7 görsel kabul PASS
-- Current ürün PR #175 / `f35082c44e637cb7e6e3815c7d54d38a58b776df` için Levent exact raw Android16 ekranını açıkça **PASS** etti.
-- `GOKYUZU_R7_ANDROID16_TECHNICAL = PASS` ve `GOKYUZU_R7_HUMAN_VISUAL = PASS`.
-- Current açık kapı gerçek cihaz APK fiziksel kabulüdür. Ready/merge ve Play ayrıca açık onay gerektirir.
-<!-- GOKYUZU_R7_VISUAL_PASS_END -->
-
-''',
-            'docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md': '''<!-- GOKYUZU_R7_VISUAL_PASS_START -->
-## GOKYUZU_R7_HUMAN_VISUAL — KAPANDI
-- Current ürün: PR #175 / `f35082c44e637cb7e6e3815c7d54d38a58b776df`.
-- Levent current R7 raw Android görünümünü açıkça **PASS** etti.
-
-## GOKYUZU_R7_REAL_DEVICE_APK — AÇIK
-- **DOĞRULANACAK:** Aynı exact ürün build'i gerçek cihaz APK olarak fiziksel kabul alıyor mu?
-- **AÇIK:** PR #175 Ready/merge; ayrıca açık Levent onayı gerekir.
-- **AÇIK:** Play yükleme/yayınlama; ayrıca açık Levent onayı gerekir.
-<!-- GOKYUZU_R7_VISUAL_PASS_END -->
-
-''',
+              'BILGI_ROTASI_DURUM.md': (
+                  '<!-- GOKYUZU_R7_VISUAL_PASS_START -->\n'
+                  '## Kelime Avı V9 — Gökyüzü R7 human visual PASS checkpoint — 6 Eylül 2026\n'
+                  '- Canonical release ve sürüm yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.\n'
+                  '- PR #175 **OPEN / DRAFT / mergeable=true**; exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df`. Ready/merge/Play yok.\n'
+                  '- Android16 teknik kapı PASS: run `33972011069`, job `101322071661`; screenshot SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`; artifact `9971319096`.\n'
+                  '- Levent exact raw R7 Android ekranı için açıkça **PASS** verdi.\n'
+                  '- `GOKYUZU_R7_HUMAN_VISUAL = PASS`.\n'
+                  '- Sonraki açık kapı: `GOKYUZU_R7_REAL_DEVICE_APK = AÇIK / FİZİKSEL CİHAZ KABULÜ BEKLİYOR`.\n'
+                  '- PR #175 Ready/merge yalnız ayrıca açık Levent onayıyla yapılır. Play yükleme/yayınlama ayrıca açık onay gerektirir.\n'
+                  '<!-- GOKYUZU_R7_VISUAL_PASS_END -->\n\n'
+              ),
+              'GOREV_HAVUZU.md': (
+                  '<!-- GOKYUZU_R7_VISUAL_PASS_START -->\n'
+                  '## AKTİF — Gökyüzü R7 gerçek cihaz APK acceptance\n'
+                  '**Görev:** Görsel PASS almış exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df` için gerçek cihaz APK fiziksel kabulünü tamamlamak.\n\n'
+                  '**Mevcut kanıt:** Levent exact raw Android ekranını **PASS** etti. Android16 teknik kanıtı PASS: run `33972011069` / job `101322071661`; analyzer temiz; focused + Başlangıç Limanı regression **39/39 PASS**; screenshot SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`.\n\n'
+                  '**Bitti ölçütü:**\n1. Aynı exact ürün build’i gerçek cihazda APK olarak kurulur ve fiziksel olarak kabul edilir.\n2. PR #175 Ready/merge yalnız ayrıca açık Levent onayıyla yapılır.\n3. Play yükleme/yayınlama ayrıca açık onay gerektirir.\n\n'
+                  '**Durum:** `AÇIK / FİZİKSEL CİHAZ KABULÜ BEKLİYOR`.\n'
+                  '<!-- GOKYUZU_R7_VISUAL_PASS_END -->\n\n'
+              ),
+              'docs/project-memory/GENEL_PROJE_OZETI.md': (
+                  '<!-- GOKYUZU_R7_VISUAL_PASS_START -->\n'
+                  '## 6 Eylül 2026 — Gökyüzü Adaları R7 görsel kabul PASS\n'
+                  '- Current ürün PR #175 / `f35082c44e637cb7e6e3815c7d54d38a58b776df` için Levent exact raw Android16 ekranını açıkça **PASS** etti.\n'
+                  '- `GOKYUZU_R7_ANDROID16_TECHNICAL = PASS` ve `GOKYUZU_R7_HUMAN_VISUAL = PASS`.\n'
+                  '- Current açık kapı gerçek cihaz APK fiziksel kabulüdür. Ready/merge ve Play ayrıca açık onay gerektirir.\n'
+                  '<!-- GOKYUZU_R7_VISUAL_PASS_END -->\n\n'
+              ),
+              'docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md': (
+                  '<!-- GOKYUZU_R7_VISUAL_PASS_START -->\n'
+                  '## GOKYUZU_R7_HUMAN_VISUAL — KAPANDI\n'
+                  '- Current ürün: PR #175 / `f35082c44e637cb7e6e3815c7d54d38a58b776df`.\n'
+                  '- Levent current R7 raw Android görünümünü açıkça **PASS** etti.\n\n'
+                  '## GOKYUZU_R7_REAL_DEVICE_APK — AÇIK\n'
+                  '- **DOĞRULANACAK:** Aynı exact ürün build’i gerçek cihaz APK olarak fiziksel kabul alıyor mu?\n'
+                  '- **AÇIK:** PR #175 Ready/merge; ayrıca açık Levent onayı gerekir.\n'
+                  '- **AÇIK:** Play yükleme/yayınlama; ayrıca açık Levent onayı gerekir.\n'
+                  '<!-- GOKYUZU_R7_VISUAL_PASS_END -->\n\n'
+              ),
           }
           marker = '<!-- GOKYUZU_R7_VISUAL_PASS_START -->'
           for name, block in blocks.items():
