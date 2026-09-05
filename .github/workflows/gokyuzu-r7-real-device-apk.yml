@@ -163,11 +163,9 @@ jobs:
           emulator-boot-timeout: 1200
           disable-animations: false
           script: |
-            set -e
             mkdir -p gokyuzu_r7_real_device
-            apk='gokyuzu_r7_real_device/BilgiRotasi-Gokyuzu-R7-RealDevice-Test.apk'
             adb shell wm size 1080x1920
-            adb install -r "$apk"
+            adb install -r gokyuzu_r7_real_device/BilgiRotasi-Gokyuzu-R7-RealDevice-Test.apk
             adb logcat -c
             adb shell am force-stop "$QA_PACKAGE"
             adb shell monkey -p "$QA_PACKAGE" -c android.intent.category.LAUNCHER 1 >/dev/null
