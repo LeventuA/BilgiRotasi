@@ -1,0 +1,110 @@
+name: Gokyuzu Master Art V2 repair
+
+on:
+  push:
+    branches:
+      - ci/gokyuzu-master-art-v2-repair-20260905
+
+permissions:
+  contents: write
+
+jobs:
+  repair-test-commit:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - name: Checkout CI source
+        uses: actions/checkout@v4
+        with:
+          ref: ci/gokyuzu-master-art-v2-implementation-20260905
+          fetch-depth: 0
+
+      - name: Extract implementation writer from reviewed workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          awk '
+            /- name: Write MASTER ART production screen and tests/ {capture=1; next}
+            capture && /- name: Flutter 3.44.6 setup/ {capture=0}
+            capture {print}
+          ' .github/workflows/gokyuzu-master-art-v2-implement.yml \
+            | sed '1{/^[[:space:]]*shell:/d;}; 1{/^[[:space:]]*run: |/d;}; s/^          //' \
+            > /tmp/write_impl.sh
+          grep -q "word_hunt_gokyuzu_master_art_screen.dart" /tmp/write_impl.sh
+          grep -q "word_hunt_gokyuzu_master_art_screen_test.dart" /tmp/write_impl.sh
+
+      - name: Checkout exact approved-art product head
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout -B feat/kelime-avi-gokyuzu-master-art-v2-20260905 origin/feat/kelime-avi-gokyuzu-master-art-v2-20260905
+          test "$(git rev-parse HEAD)" = "7783ac9076cc793e839ee7250991527b5a6f63ec"
+          test "$(git rev-parse HEAD^)" = "3557a7e4f2f2917d61ba61866c6d4c8561994667"
+          test "$(wc -c < assets/word_hunt/gokyuzu_adalari_master_art_v2.webp)" -eq 222508
+          test "$(sha256sum assets/word_hunt/gokyuzu_adalari_master_art_v2.webp | cut -d' ' -f1)" = "8a34b03f9c24400d7ebb80c2396d457fc0335b7b11cf77278990cf72fd5e21ea"
+          grep -qx 'version: 1.68.19+109' pubspec.yaml
+
+      - name: Recreate implementation exactly
+        shell: bash
+        run: bash /tmp/write_impl.sh
+
+      - name: Flutter 3.44.6 setup
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+
+      - name: Format analyze tests and exact scope gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          dart format \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart \
+            lib/word_hunt/word_hunt_progress.dart \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart
+          git diff --check
+          flutter pub get
+          git checkout -- pubspec.lock 2>/dev/null || true
+          dart analyze \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart \
+            lib/word_hunt/word_hunt_progress.dart \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart
+          flutter test \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart \
+            test/word_hunt_progress_test.dart \
+            test/word_hunt_pixel_proof_screen_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            test/word_hunt_production_flow_test.dart \
+            --reporter expanded
+
+          git status --porcelain | sort > /tmp/actual_scope.txt
+          cat > /tmp/expected_scope.txt <<'EOF'
+           M lib/word_hunt/word_hunt_production_entry_screen.dart
+           M lib/word_hunt/word_hunt_progress.dart
+          ?? lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart
+          ?? test/word_hunt_gokyuzu_master_art_screen_test.dart
+          EOF
+          sort -o /tmp/expected_scope.txt /tmp/expected_scope.txt
+          echo '--- actual product scope ---'
+          cat /tmp/actual_scope.txt
+          diff -u /tmp/expected_scope.txt /tmp/actual_scope.txt
+          test -z "$(git diff --name-only -- assets/questions.json android/ || true)"
+          grep -qx 'version: 1.68.19+109' pubspec.yaml
+          test "$(sha256sum assets/word_hunt/gokyuzu_adalari_master_art_v2.webp | cut -d' ' -f1)" = "8a34b03f9c24400d7ebb80c2396d457fc0335b7b11cf77278990cf72fd5e21ea"
+
+      - name: Commit tested implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart \
+            lib/word_hunt/word_hunt_progress.dart \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart
+          git commit -m 'feat(kelime-avi): use approved gokyuzu master art route'
+          git push origin HEAD:feat/kelime-avi-gokyuzu-master-art-v2-20260905
