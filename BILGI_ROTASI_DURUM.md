@@ -1,3 +1,14 @@
+<!-- GOKYUZU_R7_VISUAL_PASS_START -->
+## Kelime Avı V9 — Gökyüzü R7 human visual PASS checkpoint — 6 Eylül 2026
+- Canonical release ve sürüm yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+- PR #175 **OPEN / DRAFT / mergeable=true**; exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df`. Ready/merge/Play yok.
+- Android16 teknik kapı PASS: run `33972011069`, job `101322071661`; screenshot SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`; artifact `9971319096`.
+- Levent exact raw R7 Android ekranı için açıkça **PASS** verdi.
+- `GOKYUZU_R7_HUMAN_VISUAL = PASS`.
+- Sonraki açık kapı: `GOKYUZU_R7_REAL_DEVICE_APK = AÇIK / FİZİKSEL CİHAZ KABULÜ BEKLİYOR`.
+- PR #175 Ready/merge yalnız ayrıca açık Levent onayıyla yapılır. Play yükleme/yayınlama ayrıca açık onay gerektirir.
+<!-- GOKYUZU_R7_VISUAL_PASS_END -->
+
 <!-- GOKYUZU_R7_ANDROID16_START -->
 ## Kelime Avı V9 — Gökyüzü R7 Android16 teknik kapı — 5 Eylül 2026
 - Canonical release canlı olarak yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.

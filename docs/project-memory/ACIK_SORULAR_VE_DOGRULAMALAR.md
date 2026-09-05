@@ -1,3 +1,14 @@
+<!-- GOKYUZU_R7_VISUAL_PASS_START -->
+## GOKYUZU_R7_HUMAN_VISUAL — KAPANDI
+- Current ürün: PR #175 / `f35082c44e637cb7e6e3815c7d54d38a58b776df`.
+- Levent current R7 raw Android görünümünü açıkça **PASS** etti.
+
+## GOKYUZU_R7_REAL_DEVICE_APK — AÇIK
+- **DOĞRULANACAK:** Aynı exact ürün build’i gerçek cihaz APK olarak fiziksel kabul alıyor mu?
+- **AÇIK:** PR #175 Ready/merge; ayrıca açık Levent onayı gerekir.
+- **AÇIK:** Play yükleme/yayınlama; ayrıca açık Levent onayı gerekir.
+<!-- GOKYUZU_R7_VISUAL_PASS_END -->
+
 <!-- GOKYUZU_R7_ANDROID16_START -->
 ## GOKYUZU_R7_HUMAN_VISUAL — AÇIK
 - Current ürün: PR #175 / `f35082c44e637cb7e6e3815c7d54d38a58b776df`.
