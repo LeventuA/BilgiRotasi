@@ -1,0 +1,117 @@
+name: Gokyuzu R6 Docs Checkpoint
+
+on:
+  push:
+    branches:
+      - ci/gokyuzu-r6-docs-checkpoint-20260905
+
+permissions:
+  contents: write
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout docs branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs/kelime-avi-v8-final-checkpoint-20260903
+          fetch-depth: 0
+
+      - name: Verify exact docs starting point
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "f97aef076556839a21e1ef118bd1a8dbc173d9f9"
+          test "$(git rev-parse origin/release/final-closed-test-aab-1.68.8)" = "3557a7e4f2f2917d61ba61866c6d4c8561994667"
+          test "$(git show origin/release/final-closed-test-aab-1.68.8:pubspec.yaml | grep '^version:' | awk '{print $2}')" = "1.68.19+109"
+
+      - name: Prepend exact R6 checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          blocks = {
+              Path('BILGI_ROTASI_DURUM.md'): '''<!-- GOKYUZU_R6_ANDROID16_START -->
+          ## Kelime Avı V9 — Gökyüzü R6 Android16 teknik kapı — 5 Eylül 2026
+          - Canonical release yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+          - PR #175 **OPEN / DRAFT / mergeable=true**; exact ürün HEAD `560d76bd828e0b4d813218f1000b895da9d0c7fa`. Ready/merge/Play yok.
+          - Güncel phone MASTER ART: `941×1672`, `437438` bayt, SHA256 `db44920c5e25163d0b3f317a96d6e7bcc9e48aa7a4ce8654573728a423dc7f34`; APK içine byte-for-byte aynı paketlenmesi doğrulandı.
+          - Son ürün commit'i: `560d76bd828e0b4d813218f1000b895da9d0c7fa` — `fix(kelime-avi): stretch gokyuzu phone viewport`; full-width parent `CrossAxisAlignment.stretch` ile telefon viewport kenar boşluğu kapatıldı.
+          - Android16/API36 exact kanıt: run `33967506643`, job `101310099566` **SUCCESS**. `dart analyze`: No issues found; focused + Başlangıç Limanı regression **39/39 PASS**; APK build/install/launch/resumed/semantics/crash-ANR taraması PASS.
+          - APK SHA256: `ddd6284d21387b7ab0762ef10856bcc2401b5ce8aa2da3b786b90aa85a1f2a39`.
+          - Raw Android screenshot: exact `1080×1920`; SHA256 `2c4da0a1a22f443b65b5656d71d4ccfef983f0600ba6effcd3bc9e27dbe18e44`; artifact `9970009097`.
+          - `GOKYUZU_R6_ANDROID16_TECHNICAL = PASS`.
+          - `GOKYUZU_R6_HUMAN_VISUAL = AÇIK / LEVENT GÖRSEL KARARI BEKLİYOR`.
+          - Önceki R3/R4 tall-viewport adayları mevcut R6 phone çözümü tarafından teknik aday olarak supersede edilmiştir; tarihsel kayıtları korunur.
+          - `assets/questions.json`, BoardMap/67 node, Firebase, AdMob config, signing, Android release config, package/version ve Play korunmuştur.
+          <!-- GOKYUZU_R6_ANDROID16_END -->''',
+              Path('GOREV_HAVUZU.md'): '''<!-- GOKYUZU_R6_ANDROID16_START -->
+          ## AKTİF — Gökyüzü R6 human visual acceptance
+          **Görev:** Exact ürün HEAD `560d76bd828e0b4d813218f1000b895da9d0c7fa` için üretilen raw Android16 `1080×1920` ekranını Levent'in görsel olarak inceleyip PASS/FAIL vermesi.
+
+          **Mevcut kanıt:** run `33967506643` / job `101310099566` **SUCCESS**; 39/39 regression PASS; screenshot SHA256 `2c4da0a1a22f443b65b5656d71d4ccfef983f0600ba6effcd3bc9e27dbe18e44`; artifact `9970009097`.
+
+          **Bitti ölçütü:**
+          1. Levent exact raw R6 Android ekranını açıkça görsel PASS eder.
+          2. PASS sonrası gerçek cihaz APK kabulü tamamlanır.
+          3. PR #175 Ready/merge yalnız ayrıca açık Levent onayıyla yapılır.
+          4. Play yükleme/yayınlama ayrıca açık onay gerektirir.
+
+          **Durum:** `AÇIK / LEVENT GÖRSEL KARARI BEKLİYOR`.
+          **Not:** Önceki R3/R4 tall-viewport kapıları current R6 teknik aday tarafından supersede edilmiştir; tarihsel kayıt olarak aşağıda korunur.
+          <!-- GOKYUZU_R6_ANDROID16_END -->''',
+              Path('docs/project-memory/GENEL_PROJE_OZETI.md'): '''<!-- GOKYUZU_R6_ANDROID16_START -->
+          ## 5 Eylül 2026 — Gökyüzü R6 Android16 devir checkpointi
+          Gökyüzü Adaları current replacement hattı PR #175'tir: **OPEN / DRAFT / mergeable**, exact ürün HEAD `560d76bd828e0b4d813218f1000b895da9d0c7fa`; canonical release `3557a7e4f2f2917d61ba61866c6d4c8561994667`, sürüm `1.68.19+109` değişmedi.
+
+          Phone MASTER ART `941×1672`, `437438` bayt, SHA256 `db44920c5e25163d0b3f317a96d6e7bcc9e48aa7a4ce8654573728a423dc7f34`. Son düzeltme commit'i `560d76bd...` (`fix(kelime-avi): stretch gokyuzu phone viewport`) full-width parent stretch ekledi. Canonical → product diff yalnız 5 ürün dosyasıdır; protected scope temizdir.
+
+          Final R6 raw Android16 run `33967506643` / job `101310099566` **SUCCESS**: analyzer No issues found, focused + Başlangıç Limanı regression 39/39 PASS, APK/API36/install/launch/resumed/semantics/crash-ANR taraması PASS. APK SHA256 `ddd6284d21387b7ab0762ef10856bcc2401b5ce8aa2da3b786b90aa85a1f2a39`; raw screenshot exact 1080×1920, SHA256 `2c4da0a1a22f443b65b5656d71d4ccfef983f0600ba6effcd3bc9e27dbe18e44`; artifact `9970009097`.
+
+          Teknik kapı **PASS**. Tek mevcut ürün kapısı Levent'in raw R6 ekranına human visual PASS/FAIL vermesidir. PASS sonrası gerçek cihaz APK kabulü gelir. PR #175 Ready/merge ve Play ayrı açık onay olmadan yapılmaz. R3/R4 artık current teknik aday değildir; geçmiş kanıt olarak korunur. Codex kullanılmadı.
+          <!-- GOKYUZU_R6_ANDROID16_END -->''',
+              Path('docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md'): '''<!-- GOKYUZU_R6_ANDROID16_START -->
+          ## GOKYUZU_R6_HUMAN_VISUAL — AÇIK
+          - Current ürün: PR #175 / `560d76bd828e0b4d813218f1000b895da9d0c7fa`.
+          - Android16 teknik kapı PASS: run `33967506643`, job `101310099566` SUCCESS; 39/39 regression PASS.
+          - Raw screenshot exact `1080×1920`; SHA256 `2c4da0a1a22f443b65b5656d71d4ccfef983f0600ba6effcd3bc9e27dbe18e44`; artifact `9970009097`.
+          - **DOĞRULANACAK:** Levent current R6 full-width raw Android görünümünü görsel olarak kabul ediyor mu?
+          - PASS sonrası sıradaki kapı gerçek cihaz APK kabulüdür.
+          - PR Ready/merge ve Play görsel PASS ile otomatik yetkilendirilmez; ayrıca açık onay gerekir.
+          - Önceki `GOKYUZU_TALL_VIEWPORT_R3/R4` sorusu current R6 teknik çözümüyle supersede edilmiştir; tarihsel kayıt silinmez.
+          <!-- GOKYUZU_R6_ANDROID16_END -->''',
+          }
+
+          for path, block in blocks.items():
+              text = path.read_text(encoding='utf-8')
+              start = '<!-- GOKYUZU_R6_ANDROID16_START -->'
+              end = '<!-- GOKYUZU_R6_ANDROID16_END -->'
+              if start in text:
+                  before, rest = text.split(start, 1)
+                  _, after = rest.split(end, 1)
+                  text = before.rstrip() + '\n\n' + after.lstrip()
+              path.write_text(block.strip() + '\n\n' + text.lstrip(), encoding='utf-8')
+          PY
+
+          git diff --check
+          test "$(git diff --name-only | wc -l)" -eq 4
+          git diff --name-only | sort > /tmp/changed.txt
+          printf '%s\n' \
+            BILGI_ROTASI_DURUM.md \
+            GOREV_HAVUZU.md \
+            docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md \
+            docs/project-memory/GENEL_PROJE_OZETI.md | sort > /tmp/expected.txt
+          diff -u /tmp/expected.txt /tmp/changed.txt
+
+      - name: Commit and push docs checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BILGI_ROTASI_DURUM.md GOREV_HAVUZU.md docs/project-memory/GENEL_PROJE_OZETI.md docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
+          git commit -m 'docs(kelime-avi): record gokyuzu r6 Android16 gate'
+          git push origin HEAD:docs/kelime-avi-v8-final-checkpoint-20260903
