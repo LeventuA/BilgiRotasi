@@ -1,0 +1,25 @@
+name: Gokyuzu firestorage fetch diagnostic
+on:
+  push:
+    branches: [tmp/gokyuzu-master-art-bytes-20260905]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Inspect public share response
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://firestorage.ai/ja/f/8VSw52kChyyv'
+          curl -fsSL -D headers.txt -o page.html "$url"
+          echo '--- headers ---'
+          sed -n '1,80p' headers.txt
+          echo '--- title and links ---'
+          grep -Eio '<title>[^<]*|href="[^"]+|src="[^"]+' page.html | head -120 || true
+          echo '--- size/type ---'
+          wc -c page.html
+          file page.html
