@@ -9,29 +9,22 @@ jobs:
   probe:
     runs-on: ubuntu-22.04
     steps:
-      - name: Probe public share JavaScript
+      - name: Probe firestorage client chunks
         shell: bash
         run: |
           set -euo pipefail
           base='https://firestorage.ai'
-          page='/ja/f/IWUhJbA1rdRk'
-          curl -L --fail --silent --show-error "$base$page" -o /tmp/page.html
-          chunk=$(grep -o '/_next/static/chunks/app/(files)/ja/f/page-[^" ]*\.js' /tmp/page.html | head -n1)
-          echo "CHUNK=$chunk"
-          test -n "$chunk"
-          curl -L --fail --silent --show-error "$base$chunk" -o /tmp/chunk.js
-          echo '=== CHUNK SIZE ==='
-          wc -c /tmp/chunk.js
-          echo '=== API CANDIDATES ==='
-          python3 - <<'PY'
-          import re
-          s=open('/tmp/chunk.js',encoding='utf-8').read()
-          pats=[r'.{0,180}/api/.{0,260}',r'.{0,180}download.{0,260}',r'.{0,180}share.{0,260}',r'.{0,180}public.{0,260}']
-          seen=set()
-          for p in pats:
-              for m in re.findall(p,s,re.I):
-                  x=m.replace('\\n',' ')
-                  if x not in seen:
-                      seen.add(x); print(x[:700])
-                  if len(seen)>=100: raise SystemExit
+          curl -LfsS "$base/ja/f/IWUhJbA1rdRk" -o /tmp/page.html
+          echo '=== SCRIPT CHUNKS ==='
+          grep -o 'src="[^"]*\.js"' /tmp/page.html | sed 's/^src="//;s/"$//' | tee /tmp/chunks.txt
+          while read -r chunk; do
+            name=$(basename "$chunk")
+            curl -LfsS "$base$chunk" -o "/tmp/$name"
+            echo "=== $chunk $(wc -c < "/tmp/$name") bytes ==="
+            python3 - "$name" <<'PY'
+          import re,sys
+          s=open('/tmp/'+sys.argv[1],encoding='utf-8').read()
+          for p in [r'.{0,180}/api/.{0,280}',r'.{0,180}download.{0,280}',r'.{0,180}share.{0,280}',r'.{0,180}token.{0,280}',r'.{0,180}presign.{0,280}']:
+              for m in re.findall(p,s,re.I): print(m[:800])
           PY
+          done < /tmp/chunks.txt
