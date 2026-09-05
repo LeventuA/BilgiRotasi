@@ -157,16 +157,7 @@ jobs:
             grep -q 'Pusula' gokyuzu_r5_reports/UI.xml
             grep -q 'Bilgi Kitabı' gokyuzu_r5_reports/UI.xml
             ! grep -Eq 'FATAL EXCEPTION|ANR in com\.leventua\.bilgirotasi|am_crash.*com\.leventua\.bilgirotasi|am_proc_died.*com\.leventua\.bilgirotasi|A RenderFlex overflowed|FlutterError' gokyuzu_r5_reports/LOGCAT.txt
-            python3 - <<'PY'
-            import struct
-            p='gokyuzu_r5_reports/GOKYUZU_PHONE_MASTER_ART_R5_ANDROID16_RAW.png'
-            with open(p,'rb') as f:
-                b=f.read(24)
-            assert b[:8] == b'\x89PNG\r\n\x1a\n'
-            w,h=struct.unpack('>II',b[16:24])
-            print(f'RAW_SCREENSHOT={w}x{h}')
-            assert (w,h)==(1080,1920)
-            PY
+            python3 -c "import struct; p='gokyuzu_r5_reports/GOKYUZU_PHONE_MASTER_ART_R5_ANDROID16_RAW.png'; b=open(p,'rb').read(24); assert b[:8] == b'\x89PNG\r\n\x1a\n'; w,h=struct.unpack('>II',b[16:24]); print('RAW_SCREENSHOT=%dx%d' % (w,h)); assert (w,h)==(1080,1920)"
             sha256sum gokyuzu_r5_reports/GOKYUZU_PHONE_MASTER_ART_R5_ANDROID16_RAW.png | tee gokyuzu_r5_reports/SCREENSHOT_SHA256.txt
 
       - name: Upload exact Android16 evidence
