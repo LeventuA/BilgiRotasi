@@ -1,0 +1,41 @@
+name: QA Gokyuzu approved bg probe
+
+on:
+  push:
+    branches:
+      - ci/gokyuzu-approved-bg-probe-20260906
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Probe firestorage share pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re
+          import urllib.request
+
+          urls = [
+              'https://firestorage.ai/ja/f/C_m_OOFsBhd-',
+              'https://firestorage.ai/ja/f/mZ1-zXW_LzOa',
+              'https://firestorage.ai/ja/f/vmItWK_Vq4D-',
+              'https://firestorage.ai/ja/f/TJ_bzLOVSvTM',
+          ]
+          for idx, url in enumerate(urls, 1):
+              req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  data = r.read()
+                  print(f'URL{idx} status={r.status} final={r.geturl()} type={r.headers.get("content-type")} bytes={len(data)}')
+              text = data.decode('utf-8', errors='ignore')
+              print('links:')
+              for href in re.findall(r'href=[\"\']([^\"\']+)', text):
+                  low = href.lower()
+                  if 'download' in low or '/api/' in low or '/file' in low or '/d/' in low:
+                      print(href)
+              print('---')
+          PY
