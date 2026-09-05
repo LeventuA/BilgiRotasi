@@ -10,17 +10,40 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Inspect public share download API
+      - name: Inspect public share shared chunks
         shell: bash
         run: |
           set -euo pipefail
           base='https://firestorage.ai'
           curl -fsSL -o page.html "$base/ja/f/8VSw52kChyyv"
-          js="$(grep -Eo 'src=\"[^\"]+app/\(files\)/ja/f/page-[^\"]+\.js' page.html | head -1 | sed 's/^src=\"//')"
-          echo "PAGE_JS=$js"
-          test -n "$js"
-          curl -fsSL -o page.js "$base$js"
-          echo '--- api/download candidates ---'
-          grep -Eo '.{0,140}(download|api/|publicId|shareId|presign|fileUrl).{0,220}' page.js | head -120 || true
-          echo '--- js size ---'
-          wc -c page.js
+          echo '--- page-specific js ---'
+          page_js="$(grep -Eo 'src=\"[^\"]+app/\(files\)/ja/f/page-[^\"]+\.js' page.html | head -1 | sed 's/^src=\"//')"
+          curl -fsSL -o page.js "$base$page_js"
+          cat page.js
+          echo
+          echo '--- inspect all script chunks ---'
+          : > all.js
+          grep -Eo 'src=\"[^\"]+\.js' page.html | sed 's/^src=\"//' | sort -u > scripts.txt
+          cat scripts.txt
+          while IFS= read -r js; do
+            echo "### $js" >> all.js
+            curl -fsSL "$base$js" >> all.js || true
+            echo >> all.js
+          done < scripts.txt
+          echo '--- endpoint candidates ---'
+          python3 - <<'PY'
+          import re
+          text=open('all.js',encoding='utf-8',errors='ignore').read()
+          pats=['download','publicId','shareId','presign','signed','fileUrl','/api/','attachment','objectKey','storage']
+          seen=[]
+          for p in pats:
+            for m in re.finditer(re.escape(p), text, flags=re.I):
+              s=max(0,m.start()-220); e=min(len(text),m.end()+360)
+              chunk=text[s:e].replace('\n',' ')
+              if chunk not in seen:
+                seen.append(chunk)
+                print('\n---',p,'---\n',chunk[:900])
+              if len(seen)>=120: break
+            if len(seen)>=120: break
+          print('\nTOTAL_JS_BYTES',len(text))
+          PY
