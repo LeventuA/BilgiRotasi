@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Download and validate uploaded master art
+      - name: Download and validate uploaded master art object
         shell: bash
         run: |
           set -euo pipefail
-          api='https://api.firestorage.ai/dev/file/shares/8VSw52kChyyv'
-          echo '--- share metadata ---'
-          curl -fsSL "$api" | tee share.json
+          api='https://api.firestorage.ai/dev/file/objects/3Kn0396sk9bxDdQV/6Cb35v'
+          echo '--- object metadata ---'
+          curl -fsSL -D meta.headers "$api" | tee object.json
           echo
           echo '--- files metadata ---'
           curl -fsSL "$api/files?maxResults=1000" | tee files.json
@@ -41,22 +41,16 @@ jobs:
           print('SIGNED_URL_OK')
           PY
           curl -fsSL "$(cat download_url.txt)" -o master.jpg
-          echo '--- downloaded file ---'
           file master.jpg
           wc -c master.jpg
           sha256sum master.jpg
           python3 - <<'PY'
-          import struct
           from pathlib import Path
-          p=Path('master.jpg')
-          b=p.read_bytes()
+          b=Path('master.jpg').read_bytes()
           assert b[:2] == b'\xff\xd8' and b[-2:] == b'\xff\xd9'
-          # Pure-python JPEG SOF dimension scan.
-          i=2
-          w=h=None
+          i=2; w=h=None
           while i < len(b)-9:
-              if b[i] != 0xff:
-                  i += 1; continue
+              if b[i] != 0xff: i += 1; continue
               while i < len(b) and b[i] == 0xff: i += 1
               marker=b[i]; i += 1
               if marker in (0xd8,0xd9): continue
