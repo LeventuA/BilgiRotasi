@@ -1,0 +1,99 @@
+name: Gokyuzu Phone Master Art R6
+
+on:
+  push:
+    branches:
+      - ci/gokyuzu-phone-master-art-r6-20260905
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-push:
+    runs-on: ubuntu-22.04
+    env:
+      PRODUCT_SHA: fca15f773633a80f81f17de8cd33e44138c87a4c
+      CANONICAL_SHA: 3557a7e4f2f2917d61ba61866c6d4c8561994667
+      QA_BRANCH: qa/gokyuzu-phone-master-art-r6-20260905
+    steps:
+      - name: Checkout exact R5 product head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PRODUCT_SHA }}
+          fetch-depth: 0
+
+      - name: Verify starting point
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PRODUCT_SHA"
+          test "$(git rev-parse origin/release/final-closed-test-aab-1.68.8)" = "$CANONICAL_SHA"
+          test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
+          test -z "$(git diff --name-only "$CANONICAL_SHA" "$PRODUCT_SHA" -- assets/questions.json android/ pubspec.yaml || true)"
+          git checkout -B "$QA_BRANCH" "$PRODUCT_SHA"
+
+      - name: Stretch phone viewport to full width
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart')
+          s=p.read_text()
+          old="""      body: Column(\n        children: <Widget>[\n"""
+          new="""      body: Column(\n        crossAxisAlignment: CrossAxisAlignment.stretch,\n        children: <Widget>[\n"""
+          assert old in s
+          p.write_text(s.replace(old,new,1))
+
+          t=Path('test/word_hunt_gokyuzu_master_art_screen_test.dart')
+          q=t.read_text()
+          anchor="""    expect(\n      find.byKey(const Key('word_hunt_gokyuzu_master_art_phone_viewport')),\n      findsOneWidget,\n    );\n"""
+          insert=anchor+"""    expect(\n      tester.getSize(\n        find.byKey(const Key('word_hunt_gokyuzu_master_art_phone_viewport')),\n      ),\n      const Size(540, 910),\n    );\n"""
+          assert anchor in q
+          t.write_text(q.replace(anchor,insert,1))
+          PY
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.44.6
+          channel: stable
+          cache: true
+
+      - name: Format analyze test before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          git checkout -- pubspec.lock 2>/dev/null || true
+          dart format lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart test/word_hunt_gokyuzu_master_art_screen_test.dart
+          git diff --check
+          dart analyze lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart lib/word_hunt/word_hunt_production_entry_screen.dart lib/word_hunt/word_hunt_progress.dart
+          flutter test test/word_hunt_gokyuzu_master_art_screen_test.dart test/word_hunt_progress_test.dart test/word_hunt_pixel_proof_screen_test.dart test/word_hunt_reference_route_screen_test.dart test/word_hunt_production_flow_test.dart --reporter expanded
+          test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
+          test -z "$(git diff --name-only "$PRODUCT_SHA" -- assets/questions.json android/ pubspec.yaml || true)"
+          mapfile -t changed < <(git diff --name-only "$PRODUCT_SHA")
+          printf 'CHANGED=%s\n' "${changed[*]}"
+          test "${#changed[@]}" -eq 2
+          printf '%s\n' "${changed[@]}" | sort > /tmp/actual.txt
+          printf '%s\n' \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart | sort > /tmp/expected.txt
+          diff -u /tmp/expected.txt /tmp/actual.txt
+
+      - name: Commit and push tested R6 candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart test/word_hunt_gokyuzu_master_art_screen_test.dart
+          git commit -m 'fix(kelime-avi): stretch gokyuzu phone viewport'
+          git push --force-with-lease origin "$QA_BRANCH"
+          git log -1 --oneline
