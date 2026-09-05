@@ -1,3 +1,18 @@
+<!-- GOKYUZU_R6_ANDROID16_START -->
+## Kelime Avı V9 — Gökyüzü R6 Android16 teknik kapı — 5 Eylül 2026
+- Canonical release yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+- PR #175 **OPEN / DRAFT / mergeable=true**; exact ürün HEAD `560d76bd828e0b4d813218f1000b895da9d0c7fa`. Ready/merge/Play yok.
+- Güncel phone MASTER ART: `941×1672`, `437438` bayt, SHA256 `db44920c5e25163d0b3f317a96d6e7bcc9e48aa7a4ce8654573728a423dc7f34`; APK içine byte-for-byte aynı paketlenmesi doğrulandı.
+- Son ürün commit'i: `560d76bd828e0b4d813218f1000b895da9d0c7fa` — `fix(kelime-avi): stretch gokyuzu phone viewport`; full-width parent `CrossAxisAlignment.stretch` ile telefon viewport kenar boşluğu kapatıldı.
+- Android16/API36 exact kanıt: run `33967506643`, job `101310099566` **SUCCESS**. `dart analyze`: No issues found; focused + Başlangıç Limanı regression **39/39 PASS**; APK build/install/launch/resumed/semantics/crash-ANR taraması PASS.
+- APK SHA256: `ddd6284d21387b7ab0762ef10856bcc2401b5ce8aa2da3b786b90aa85a1f2a39`.
+- Raw Android screenshot: exact `1080×1920`; SHA256 `2c4da0a1a22f443b65b5656d71d4ccfef983f0600ba6effcd3bc9e27dbe18e44`; artifact `9970009097`.
+- `GOKYUZU_R6_ANDROID16_TECHNICAL = PASS`.
+- `GOKYUZU_R6_HUMAN_VISUAL = AÇIK / LEVENT GÖRSEL KARARI BEKLİYOR`.
+- Önceki R3/R4 tall-viewport adayları mevcut R6 phone çözümü tarafından teknik aday olarak supersede edilmiştir; tarihsel kayıtları korunur.
+- `assets/questions.json`, BoardMap/67 node, Firebase, AdMob config, signing, Android release config, package/version ve Play korunmuştur.
+<!-- GOKYUZU_R6_ANDROID16_END -->
+
 <!-- GOKYUZU_R4_STATIC_PROOF_START -->
 ## Kelime Avı V9 — Gökyüzü tall-viewport R4 statik proof checkpoint — 5 Eylül 2026
 - Canonical release yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.

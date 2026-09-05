@@ -1,3 +1,14 @@
+<!-- GOKYUZU_R6_ANDROID16_START -->
+## GOKYUZU_R6_HUMAN_VISUAL — AÇIK
+- Current ürün: PR #175 / `560d76bd828e0b4d813218f1000b895da9d0c7fa`.
+- Android16 teknik kapı PASS: run `33967506643`, job `101310099566` SUCCESS; 39/39 regression PASS.
+- Raw screenshot exact `1080×1920`; SHA256 `2c4da0a1a22f443b65b5656d71d4ccfef983f0600ba6effcd3bc9e27dbe18e44`; artifact `9970009097`.
+- **DOĞRULANACAK:** Levent current R6 full-width raw Android görünümünü görsel olarak kabul ediyor mu?
+- PASS sonrası sıradaki kapı gerçek cihaz APK kabulüdür.
+- PR Ready/merge ve Play görsel PASS ile otomatik yetkilendirilmez; ayrıca açık onay gerekir.
+- Önceki `GOKYUZU_TALL_VIEWPORT_R3/R4` sorusu current R6 teknik çözümüyle supersede edilmiştir; tarihsel kayıt silinmez.
+<!-- GOKYUZU_R6_ANDROID16_END -->
+
 # Bilgi Rotası - Açık Sorular ve Canlı Doğrulamalar
 
 > 29 Ağustos 2026 aktif kesimidir. Eski tam kayıtlar Git geçmişi ve `docs/project-memory/archive/` altında korunur.

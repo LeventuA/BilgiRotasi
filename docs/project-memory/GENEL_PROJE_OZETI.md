@@ -1,3 +1,14 @@
+<!-- GOKYUZU_R6_ANDROID16_START -->
+## 5 Eylül 2026 — Gökyüzü R6 Android16 devir checkpointi
+Gökyüzü Adaları current replacement hattı PR #175'tir: **OPEN / DRAFT / mergeable**, exact ürün HEAD `560d76bd828e0b4d813218f1000b895da9d0c7fa`; canonical release `3557a7e4f2f2917d61ba61866c6d4c8561994667`, sürüm `1.68.19+109` değişmedi.
+
+Phone MASTER ART `941×1672`, `437438` bayt, SHA256 `db44920c5e25163d0b3f317a96d6e7bcc9e48aa7a4ce8654573728a423dc7f34`. Son düzeltme commit'i `560d76bd...` (`fix(kelime-avi): stretch gokyuzu phone viewport`) full-width parent stretch ekledi. Canonical → product diff yalnız 5 ürün dosyasıdır; protected scope temizdir.
+
+Final R6 raw Android16 run `33967506643` / job `101310099566` **SUCCESS**: analyzer No issues found, focused + Başlangıç Limanı regression 39/39 PASS, APK/API36/install/launch/resumed/semantics/crash-ANR taraması PASS. APK SHA256 `ddd6284d21387b7ab0762ef10856bcc2401b5ce8aa2da3b786b90aa85a1f2a39`; raw screenshot exact 1080×1920, SHA256 `2c4da0a1a22f443b65b5656d71d4ccfef983f0600ba6effcd3bc9e27dbe18e44`; artifact `9970009097`.
+
+Teknik kapı **PASS**. Tek mevcut ürün kapısı Levent'in raw R6 ekranına human visual PASS/FAIL vermesidir. PASS sonrası gerçek cihaz APK kabulü gelir. PR #175 Ready/merge ve Play ayrı açık onay olmadan yapılmaz. R3/R4 artık current teknik aday değildir; geçmiş kanıt olarak korunur. Codex kullanılmadı.
+<!-- GOKYUZU_R6_ANDROID16_END -->
+
 <!-- GOKYUZU_R4_STATIC_PROOF_START -->
 ## 5 Eylül 2026 — Gökyüzü R4 tall-viewport statik aday
 - Approved Gökyüzü Adaları V2 master art production tabanı olarak uygulanıyor; PR #175 OPEN/DRAFT @ `4145f0fe...`.

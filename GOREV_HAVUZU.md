@@ -1,3 +1,19 @@
+<!-- GOKYUZU_R6_ANDROID16_START -->
+## AKTİF — Gökyüzü R6 human visual acceptance
+**Görev:** Exact ürün HEAD `560d76bd828e0b4d813218f1000b895da9d0c7fa` için üretilen raw Android16 `1080×1920` ekranını Levent'in görsel olarak inceleyip PASS/FAIL vermesi.
+
+**Mevcut kanıt:** run `33967506643` / job `101310099566` **SUCCESS**; 39/39 regression PASS; screenshot SHA256 `2c4da0a1a22f443b65b5656d71d4ccfef983f0600ba6effcd3bc9e27dbe18e44`; artifact `9970009097`.
+
+**Bitti ölçütü:**
+1. Levent exact raw R6 Android ekranını açıkça görsel PASS eder.
+2. PASS sonrası gerçek cihaz APK kabulü tamamlanır.
+3. PR #175 Ready/merge yalnız ayrıca açık Levent onayıyla yapılır.
+4. Play yükleme/yayınlama ayrıca açık onay gerektirir.
+
+**Durum:** `AÇIK / LEVENT GÖRSEL KARARI BEKLİYOR`.
+**Not:** Önceki R3/R4 tall-viewport kapıları current R6 teknik aday tarafından supersede edilmiştir; tarihsel kayıt olarak aşağıda korunur.
+<!-- GOKYUZU_R6_ANDROID16_END -->
+
 <!-- GOKYUZU_R4_STATIC_PROOF_START -->
 ## AKTİF — Gökyüzü tall-device R4 statik viewport kabulü
 **Görev:** Approved V2 MASTER ART merkezini değiştirmeden 9:16 dış alanı görsel olarak doğal tamamlamak.
