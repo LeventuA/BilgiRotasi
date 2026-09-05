@@ -12,15 +12,28 @@ jobs:
   probe:
     runs-on: ubuntu-22.04
     steps:
-      - name: Inspect firestorage route chunk
+      - name: Inspect firestorage app chunks
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import urllib.request
-          js='https://firestorage.ai/_next/static/chunks/app/(files)/ja/f/page-4d19ae0a4ce39d79.js'
-          req=urllib.request.Request(js, headers={'User-Agent':'Mozilla/5.0'})
-          with urllib.request.urlopen(req, timeout=30) as r:
-              text=r.read().decode('utf-8','ignore')
-          print(text)
+          import re, urllib.request
+          chunks=[
+            'https://firestorage.ai/_next/static/chunks/4899-d89df949f2dbd5af.js',
+            'https://firestorage.ai/_next/static/chunks/8500-f4d7bfbe7500f274.js',
+            'https://firestorage.ai/_next/static/chunks/8437-d65cc193dc908afa.js',
+            'https://firestorage.ai/_next/static/chunks/5841-1160578ba9bb4f3e.js',
+          ]
+          for url in chunks:
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  text=r.read().decode('utf-8','ignore')
+              print('CHUNK',url,'BYTES',len(text))
+              for kw in ('download','publicId','public_id','share','/api/','files/'):
+                  pos=0
+                  for _ in range(8):
+                      i=text.lower().find(kw.lower(),pos)
+                      if i<0: break
+                      print('KW',kw,text[max(0,i-500):i+1300])
+                      pos=i+len(kw)
           PY
