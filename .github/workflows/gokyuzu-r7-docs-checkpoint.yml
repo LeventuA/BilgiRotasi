@@ -1,0 +1,139 @@
+name: Gokyuzu R7 docs checkpoint
+on:
+  push:
+    branches:
+      - ci/gokyuzu-r7-docs-checkpoint-20260905
+permissions:
+  contents: write
+jobs:
+  update-docs:
+    runs-on: ubuntu-22.04
+    env:
+      DOCS_BRANCH: docs/kelime-avi-v8-final-checkpoint-20260903
+      DOCS_START: bd0c2d625e052ea52b1b6ecb4f6af8091fc69ba5
+      CANONICAL_SHA: 3557a7e4f2f2917d61ba61866c6d4c8561994667
+      PRODUCT_SHA: f35082c44e637cb7e6e3815c7d54d38a58b776df
+    steps:
+      - name: Checkout exact docs branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DOCS_BRANCH }}
+          fetch-depth: 0
+      - name: Verify live refs and version
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$DOCS_START"
+          test "$(git rev-parse origin/release/final-closed-test-aab-1.68.8)" = "$CANONICAL_SHA"
+          test "$(git rev-parse origin/feat/kelime-avi-gokyuzu-master-art-v2-20260905)" = "$PRODUCT_SHA"
+          test "$(git show "$CANONICAL_SHA:pubspec.yaml" | grep '^version:' | awk '{print $2}')" = '1.68.19+109'
+      - name: Prepend R7 canonical checkpoint blocks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          blocks = {
+            'BILGI_ROTASI_DURUM.md': '''<!-- GOKYUZU_R7_ANDROID16_START -->
+          ## Kelime Avı V9 — Gökyüzü R7 Android16 teknik kapı — 5 Eylül 2026
+          - Canonical release canlı olarak yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+          - PR #175 **OPEN / DRAFT**; exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df`. Ready/merge/Play yok.
+          - Güncel phone MASTER ART: `941×1672`, `510998` bayt, SHA256 `913ee19df9fcb1eba2ac6ca3a500979c960d31dd369e204d2f79064be9664b1d`.
+          - R7 görsel farkı yalnız alt rota bölgesindeki eski bağımsız merkez kilit + üç yıldız işaretinin kaldırılması ve ana rota geçişinin doğal devam ettirilmesidir. Bölüm 8/9/10 progression sözleşmesi değişmedi.
+          - Ürün commit'i: `f35082c44e637cb7e6e3815c7d54d38a58b776df` — `fix(kelime-avi): remove obsolete gokyuzu gate marker`; commit yalnız MASTER ART dosyasını değiştirir.
+          - Test-before-commit run `33971902782`, job `101321780327`: **SUCCESS**.
+          - Android16/API36 exact kanıt run `33972011069`, job `101322071661`: **SUCCESS**. `dart analyze`: No issues found; focused + Başlangıç Limanı regression **39/39 PASS**; APK build/install/launch/resumed/semantics/crash-ANR-render taraması PASS.
+          - Debug APK SHA256: `a972bf07bf68f0c2cab1908c85b6e0a98e8f0821a78b5e53175317f6e0a2f8f2`.
+          - Raw Android screenshot: exact `1080×1920`; SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`; artifact `9971319096`.
+          - `GOKYUZU_R7_ANDROID16_TECHNICAL = PASS`.
+          - `GOKYUZU_R7_HUMAN_VISUAL = AÇIK / LEVENT GÖRSEL KARARI BEKLİYOR`.
+          - `assets/questions.json`, BoardMap/67 node, Firebase, AdMob config, signing, Android release config, package/version ve Play korunmuştur.
+          <!-- GOKYUZU_R7_ANDROID16_END -->
+
+          ''',
+            'GOREV_HAVUZU.md': '''<!-- GOKYUZU_R7_ANDROID16_START -->
+          ## AKTİF — Gökyüzü R7 human visual acceptance
+          **Görev:** Exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df` için üretilen raw Android16 `1080×1920` ekranını Levent'in görsel olarak inceleyip PASS/FAIL vermesi.
+
+          **Mevcut teknik kanıt:** test-before-commit `33971902782` / `101321780327` SUCCESS; Android16 `33972011069` / `101322071661` SUCCESS; analyzer temiz; **39/39 PASS**; APK SHA256 `a972bf07bf68f0c2cab1908c85b6e0a98e8f0821a78b5e53175317f6e0a2f8f2`; screenshot SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`; artifact `9971319096`.
+
+          **Bitti ölçütü:**
+          1. Levent exact raw R7 Android ekranını açıkça görsel PASS eder.
+          2. PASS sonrası gerçek cihaz APK kabulü tamamlanır.
+          3. PR #175 Ready/merge yalnız ayrıca açık Levent onayıyla yapılır.
+          4. Play yükleme/yayınlama ayrıca açık onay gerektirir.
+
+          **Durum:** `AÇIK / LEVENT GÖRSEL KARARI BEKLİYOR`.
+          <!-- GOKYUZU_R7_ANDROID16_END -->
+
+          ''',
+            'docs/project-memory/GENEL_PROJE_OZETI.md': '''<!-- GOKYUZU_R7_ANDROID16_START -->
+          ## 5 Eylül 2026 — Gökyüzü Adaları R7 current checkpoint
+          - Canlı canonical release: `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+          - Gökyüzü görünür rota mimarisi artık bağlayıcı olarak **phone MASTER ART raster + transparent hitbox + minimum lokal runtime-state overlay** yaklaşımıdır; önceki modüler görünür renderer kararı bu rota için superseded edilmiştir.
+          - PR #175 OPEN/DRAFT; exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df`.
+          - Güncel MASTER ART `941×1672`, `510998` bayt, SHA256 `913ee19df9fcb1eba2ac6ca3a500979c960d31dd369e204d2f79064be9664b1d`.
+          - R7'de yalnız eski 8/9/10 alt bölgesindeki bağımsız merkez kilit + üç yıldız görseli kaldırıldı; dinamik node lock badge/progression ayrı runtime state olarak korunur.
+          - Test-before-commit `33971902782` SUCCESS; Android16 `33972011069` / job `101322071661` SUCCESS; analyze temiz; 39/39 PASS; raw screenshot `1080×1920`, SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`, artifact `9971319096`.
+          - Teknik Android16 kapısı PASS; Levent human visual acceptance hâlâ AÇIK. Görsel PASS sonrası gerçek cihaz APK kabulü; Ready/merge ve Play ayrıca açık onay gerektirir.
+          <!-- GOKYUZU_R7_ANDROID16_END -->
+
+          ''',
+            'docs/project-memory/KARARLAR.md': '''<!-- GOKYUZU_R7_ANDROID16_START -->
+          ## 5 Eylül 2026 — Gökyüzü Adaları görünür rota mimarisi / CURRENT
+          - Gökyüzü Adaları için önceki **modüler görünür renderer** kararı supersede edilmiştir.
+          - Bağlayıcı production görünür mimari: **telefon oranına hazırlanmış tek MASTER ART raster + şeffaf hitbox'lar + yalnız gerçek state farklarında minimum lokal Flutter override**.
+          - Onaylı V2 / `C — Neşeli & Parlak` kompozisyon dili bağlayıcı kalır; ada/landmark/rota/plaque/dekor sanatı Flutter ile ikinci kez komple çizilmez.
+          - Current R7 MASTER ART: `941×1672`, `510998` bayt, SHA256 `913ee19df9fcb1eba2ac6ca3a500979c960d31dd369e204d2f79064be9664b1d`; exact ürün HEAD `f35082c44e637cb7e6e3815c7d54d38a58b776df`.
+          - 8/9/10 alt rota bölgesindeki eski bağımsız **merkez kilit + üç yıldız** görsel işareti kaldırılmıştır ve geri getirilmez. Bu, runtime'daki node bazlı dinamik lock badge'lerden ayrıdır.
+          - Progression değişmez: 7 tamamlanınca 8 ve 9 birlikte açılır; 8, 9 için gate değildir; 10 yalnız 9 tamamlanınca açılır.
+          - Build/test başarısı görsel kabul değildir. Human visual PASS yalnız exact raw Android screenshot üzerinden Levent tarafından verilir.
+          <!-- GOKYUZU_R7_ANDROID16_END -->
+
+          ''',
+            'docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md': '''<!-- GOKYUZU_R7_ANDROID16_START -->
+          ## GOKYUZU_R7_HUMAN_VISUAL — AÇIK
+          - Current ürün: PR #175 / `f35082c44e637cb7e6e3815c7d54d38a58b776df`.
+          - Android16 teknik kapı PASS: run `33972011069`, job `101322071661`; analyzer temiz; 39/39 regression PASS.
+          - Raw screenshot exact `1080×1920`; SHA256 `79edc57a575d2bdf59407260fe272993e69400a23d520687ac71680d58228637`; artifact `9971319096`.
+          - **DOĞRULANACAK:** Levent current R7 raw Android görünümünü görsel olarak kabul ediyor mu?
+          - Görsel PASS sonrası **DOĞRULANACAK:** gerçek cihaz APK fiziksel kabulü.
+          - **AÇIK:** PR #175 Ready/merge; ayrıca açık Levent onayı gerekir.
+          - **AÇIK:** Play yükleme/yayınlama; ayrıca açık Levent onayı gerekir.
+          - Exact `REFERENCE_FONT` kaynağı ayrı konu olarak **DOĞRULANACAK / DEFERRED** kalır.
+          <!-- GOKYUZU_R7_ANDROID16_END -->
+
+          ''',
+          }
+
+          for name, block in blocks.items():
+              p = Path(name)
+              text = p.read_text(encoding='utf-8')
+              marker = '<!-- GOKYUZU_R7_ANDROID16_START -->'
+              if marker not in text:
+                  p.write_text(block.replace('          ', '') + text, encoding='utf-8')
+          PY
+      - name: Validate docs-only scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          mapfile -t paths < <(git diff --name-only)
+          printf '%s\n' "${paths[@]}"
+          test "${#paths[@]}" -eq 5
+          printf '%s\n' "${paths[@]}" | grep -qx 'BILGI_ROTASI_DURUM.md'
+          printf '%s\n' "${paths[@]}" | grep -qx 'GOREV_HAVUZU.md'
+          printf '%s\n' "${paths[@]}" | grep -qx 'docs/project-memory/GENEL_PROJE_OZETI.md'
+          printf '%s\n' "${paths[@]}" | grep -qx 'docs/project-memory/KARARLAR.md'
+          printf '%s\n' "${paths[@]}" | grep -qx 'docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md'
+          test -z "$(git diff --name-only -- assets/questions.json android/ pubspec.yaml lib/ test/ || true)"
+      - name: Commit and push docs checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BILGI_ROTASI_DURUM.md GOREV_HAVUZU.md docs/project-memory/GENEL_PROJE_OZETI.md docs/project-memory/KARARLAR.md docs/project-memory/ACIK_SORULAR_VE_DOGRULAMALAR.md
+          git commit -m 'docs(kelime-avi): record gokyuzu r7 Android16 gate'
+          git push origin HEAD:"$DOCS_BRANCH"
