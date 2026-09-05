@@ -7,9 +7,19 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   final route = _route();
 
-  testWidgets('approved MASTER ART and transparent controls render', (
+  Future<void> usePhoneViewport(WidgetTester tester) async {
+    tester.view.physicalSize = const Size(540, 960);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+  }
+
+  testWidgets('phone MASTER ART, banner reserve and controls render', (
     tester,
   ) async {
+    await usePhoneViewport(tester);
     var tapped = 0;
     await tester.pumpWidget(
       MaterialApp(
@@ -21,9 +31,23 @@ void main() {
     );
     await tester.pump();
 
+    expect(WordHuntGokyuzuMasterArtLayout.sourceSize, const Size(941, 1672));
+    expect(WordHuntGokyuzuMasterArtLayout.bannerReserveHeight, 50);
+    expect(
+      find.byKey(const Key('word_hunt_gokyuzu_master_art_phone_viewport')),
+      findsOneWidget,
+    );
     expect(
       find.byKey(const Key('word_hunt_gokyuzu_master_art_image')),
       findsOneWidget,
+    );
+    expect(
+      find.byKey(const Key('word_hunt_gokyuzu_banner_reserve')),
+      findsOneWidget,
+    );
+    expect(
+      tester.getSize(find.byKey(const Key('word_hunt_gokyuzu_banner_reserve'))),
+      const Size(540, 50),
     );
     expect(
       find.byKey(const Key('word_hunt_gokyuzu_master_art_compass')),
@@ -57,6 +81,7 @@ void main() {
     tapped = 0;
     await tester.tap(
       find.byKey(const Key('word_hunt_gokyuzu_master_art_level_2')),
+      warnIfMissed: false,
     );
     await tester.pump();
     expect(tapped, 0);
@@ -69,6 +94,7 @@ void main() {
   testWidgets('completed previous level unlocks the next hitbox', (
     tester,
   ) async {
+    await usePhoneViewport(tester);
     var tapped = 0;
     final progress = const WordHuntProgressSnapshot(
       bestStarsByLevelId: <String, int>{'gokyuzu-1': 2},
@@ -141,11 +167,12 @@ WordHuntRouteDefinition _route() {
         id: 'gokyuzu-$index',
         routeId: 'gokyuzu-adalari',
         index: index,
-        type: index == 8
-            ? WordHuntLevelType.bonus
-            : index == 10
-            ? WordHuntLevelType.routeFinal
-            : WordHuntLevelType.normal,
+        type:
+            index == 8
+                ? WordHuntLevelType.bonus
+                : index == 10
+                ? WordHuntLevelType.routeFinal
+                : WordHuntLevelType.normal,
         grid: const <String>['ABC', 'DEF', 'GHI'],
         targetWords: const <String>['ABC'],
         starRules: const WordHuntStarRules(),

@@ -3,54 +3,61 @@ import 'package:flutter/material.dart';
 import 'word_hunt_models.dart';
 import 'word_hunt_progress.dart';
 
-/// Levent'in 3 Eylül 2026'da onayladığı Gökyüzü Adaları V2 rota
-/// görselini tek görünür MASTER ART tabanı olarak kullanan production
-/// rota ekranı. Ada, landmark, rota, başlık paneli, plaque ve alt köşe
-/// kontrolleri Flutter ile ikinci kez çizilmez.
+/// Gökyüzü Adaları için telefon ekranına göre üretilmiş MASTER ART rota ekranı.
+///
+/// Görünür dünya tek raster tabandır. Flutter yalnız gerçek progression,
+/// etkileşim ve zorunlu üst köşe kontrollerini bindirir. Alt bölümde standart
+/// banner reklam yüksekliği kadar alan bilinçli olarak ayrılır.
 abstract final class WordHuntGokyuzuMasterArtAssets {
   static const String masterArt =
       'assets/word_hunt/gokyuzu_adalari_master_art_v2.webp';
 }
 
 abstract final class WordHuntGokyuzuMasterArtLayout {
-  static const Size sourceSize = Size(1085, 1536);
+  static const Size sourceSize = Size(941, 1672);
+
+  /// Mevcut monetization katmanı AdSize.banner (320x50 dp) kullanır.
+  /// Bu ekran reklamı yeniden yüklemez; yalnız banner için 50 logical px ayırır.
+  static const double bannerReserveHeight = 50;
 
   static const List<Offset> levelCenters = <Offset>[
-    Offset(170, 350),
-    Offset(500, 410),
-    Offset(810, 545),
-    Offset(215, 695),
-    Offset(550, 800),
-    Offset(835, 885),
-    Offset(200, 980),
-    Offset(515, 1090),
-    Offset(230, 1275),
-    Offset(810, 1300),
+    Offset(158, 414),
+    Offset(455, 462),
+    Offset(733, 576),
+    Offset(198, 705),
+    Offset(495, 799),
+    Offset(757, 878),
+    Offset(178, 968),
+    Offset(465, 1063),
+    Offset(198, 1234),
+    Offset(736, 1248),
   ];
 
   static const List<double> levelHitboxDiameters = <double>[
+    118,
+    118,
+    118,
+    124,
+    124,
+    126,
+    126,
     132,
-    132,
-    132,
-    140,
-    140,
-    142,
-    142,
-    150,
-    150,
-    170,
+    134,
+    146,
   ];
 
-  static const Offset compassCenter = Offset(100, 1405);
-  static const Offset bookCenter = Offset(960, 1405);
-  static const double bottomControlHitboxDiameter = 175;
+  static const Offset compassCenter = Offset(96, 1485);
+  static const Offset bookCenter = Offset(837, 1486);
+  static const double bottomControlHitboxDiameter = 145;
 
-  static const Offset backCenter = Offset(74, 48);
-  static const Offset infoCenter = Offset(1010, 48);
-  static const double topControlHitboxDiameter = 112;
+  // Telefon MASTER ART'ında geri/bilgi sanatı bake edilmedi. Bunlar yalnız
+  // gerekli navigation kontrolü olarak minimum görünür Flutter overlay'idir.
+  static const Offset backCenter = Offset(58, 101);
+  static const Offset infoCenter = Offset(883, 101);
+  static const double topControlDiameter = 72;
 
-  static const Rect progressCounterRect = Rect.fromLTWH(292, 100, 128, 48);
-  static const Rect gateCounterRect = Rect.fromLTWH(650, 100, 158, 48);
+  static const Rect progressCounterRect = Rect.fromLTWH(254, 188, 150, 48);
+  static const Rect gateCounterRect = Rect.fromLTWH(579, 188, 170, 48);
 }
 
 class WordHuntGokyuzuMasterArtScreen extends StatelessWidget {
@@ -79,30 +86,16 @@ class WordHuntGokyuzuMasterArtScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: const Key('word_hunt_gokyuzu_master_art_route'),
-      backgroundColor: const Color(0xFF083A78),
-      body: ClipRect(
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            // 9:16 cihazlarda onaylı 1085x1536 görsel kırpılmasın diye
-            // aynı sanatın koyulaştırılmış cover kopyası yalnız dış dolgu
-            // görevi görür. Asıl MASTER ART üstte contain olarak eksiksizdir.
-            IgnorePointer(
-              child: Opacity(
-                opacity: .34,
-                child: Image.asset(
-                  WordHuntGokyuzuMasterArtAssets.masterArt,
-                  fit: BoxFit.cover,
-                  alignment: Alignment.center,
-                  filterQuality: FilterQuality.low,
-                  color: const Color(0x6611254B),
-                  colorBlendMode: BlendMode.darken,
-                ),
-              ),
-            ),
-            Center(
+      backgroundColor: const Color(0xFF072B58),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ClipRect(
+              key: const Key('word_hunt_gokyuzu_master_art_phone_viewport'),
               child: FittedBox(
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
+                clipBehavior: Clip.hardEdge,
                 child: SizedBox.fromSize(
                   key: const Key('word_hunt_gokyuzu_master_art_source_scene'),
                   size: WordHuntGokyuzuMasterArtLayout.sourceSize,
@@ -135,51 +128,53 @@ class WordHuntGokyuzuMasterArtScreen extends StatelessWidget {
                           key: Key(
                             'word_hunt_gokyuzu_master_art_level_${index + 1}',
                           ),
-                          center: WordHuntGokyuzuMasterArtLayout
-                              .levelCenters[index],
-                          diameter: WordHuntGokyuzuMasterArtLayout
-                              .levelHitboxDiameters[index],
+                          center:
+                              WordHuntGokyuzuMasterArtLayout
+                                  .levelCenters[index],
+                          diameter:
+                              WordHuntGokyuzuMasterArtLayout
+                                  .levelHitboxDiameters[index],
                           semanticLabel: 'Bölüm ${index + 1}',
                           onTap:
                               WordHuntRouteProgressEngine.isLevelUnlocked(
-                                    route,
-                                    progress,
-                                    index + 1,
-                                  ) &&
-                                  onLevelTap != null
-                              ? () => onLevelTap!(index + 1)
-                              : null,
+                                        route,
+                                        progress,
+                                        index + 1,
+                                      ) &&
+                                      onLevelTap != null
+                                  ? () => onLevelTap!(index + 1)
+                                  : null,
                         ),
                       _TransparentHitbox(
                         key: const Key('word_hunt_gokyuzu_master_art_compass'),
                         center: WordHuntGokyuzuMasterArtLayout.compassCenter,
-                        diameter: WordHuntGokyuzuMasterArtLayout
-                            .bottomControlHitboxDiameter,
+                        diameter:
+                            WordHuntGokyuzuMasterArtLayout
+                                .bottomControlHitboxDiameter,
                         semanticLabel: 'Pusula',
                         onTap: onCompass,
                       ),
                       _TransparentHitbox(
                         key: const Key('word_hunt_gokyuzu_master_art_book'),
                         center: WordHuntGokyuzuMasterArtLayout.bookCenter,
-                        diameter: WordHuntGokyuzuMasterArtLayout
-                            .bottomControlHitboxDiameter,
+                        diameter:
+                            WordHuntGokyuzuMasterArtLayout
+                                .bottomControlHitboxDiameter,
                         semanticLabel: 'Bilgi Kitabı',
                         onTap: onBook,
                       ),
-                      _TransparentHitbox(
+                      _VisibleTopControl(
                         key: const Key('word_hunt_gokyuzu_master_art_back'),
                         center: WordHuntGokyuzuMasterArtLayout.backCenter,
-                        diameter: WordHuntGokyuzuMasterArtLayout
-                            .topControlHitboxDiameter,
                         semanticLabel: 'Geri',
+                        icon: Icons.arrow_back_rounded,
                         onTap: onBack,
                       ),
-                      _TransparentHitbox(
+                      _VisibleTopControl(
                         key: const Key('word_hunt_gokyuzu_master_art_info'),
                         center: WordHuntGokyuzuMasterArtLayout.infoCenter,
-                        diameter: WordHuntGokyuzuMasterArtLayout
-                            .topControlHitboxDiameter,
                         semanticLabel: 'Bilgi',
+                        icon: Icons.info_outline_rounded,
                         onTap: onInfo,
                       ),
                     ],
@@ -187,8 +182,14 @@ class WordHuntGokyuzuMasterArtScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(
+            key: Key('word_hunt_gokyuzu_banner_reserve'),
+            height: WordHuntGokyuzuMasterArtLayout.bannerReserveHeight,
+            width: double.infinity,
+            child: ColoredBox(color: Color(0xFF072B58)),
+          ),
+        ],
       ),
     );
   }
@@ -267,7 +268,7 @@ class _CounterPatch extends StatelessWidget {
             style: const TextStyle(
               color: Colors.white,
               fontFamily: 'serif',
-              fontSize: 24,
+              fontSize: 22,
               fontWeight: FontWeight.w700,
               shadows: <Shadow>[Shadow(color: Colors.black, blurRadius: 3)],
             ),
@@ -285,25 +286,76 @@ class _LockBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const diameter = 72.0;
+    const diameter = 46.0;
+    final badgeCenter = center + const Offset(38, -27);
     return Positioned(
-      left: center.dx - diameter / 2,
-      top: center.dy - diameter / 2,
+      left: badgeCenter.dx - diameter / 2,
+      top: badgeCenter.dy - diameter / 2,
       width: diameter,
       height: diameter,
       child: DecoratedBox(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: const Color(0xE8092443),
-          border: Border.all(color: const Color(0xFFFFC52F), width: 3),
+          border: Border.all(color: const Color(0xFFFFC52F), width: 2.5),
           boxShadow: const <BoxShadow>[
-            BoxShadow(color: Color(0x99000000), blurRadius: 8),
+            BoxShadow(color: Color(0x99000000), blurRadius: 6),
           ],
         ),
         child: const Icon(
           Icons.lock_rounded,
           color: Color(0xFFF7F4E9),
-          size: 32,
+          size: 22,
+        ),
+      ),
+    );
+  }
+}
+
+class _VisibleTopControl extends StatelessWidget {
+  const _VisibleTopControl({
+    super.key,
+    required this.center,
+    required this.semanticLabel,
+    required this.icon,
+    this.onTap,
+  });
+
+  final Offset center;
+  final String semanticLabel;
+  final IconData icon;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final diameter = WordHuntGokyuzuMasterArtLayout.topControlDiameter;
+    return Positioned(
+      left: center.dx - diameter / 2,
+      top: center.dy - diameter / 2,
+      width: diameter,
+      height: diameter,
+      child: Semantics(
+        button: true,
+        enabled: onTap != null,
+        label: semanticLabel,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: onTap,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: const Color(0xF2082F63),
+              border: Border.all(color: const Color(0xFFFFC52F), width: 4),
+              boxShadow: const <BoxShadow>[
+                BoxShadow(
+                  color: Color(0x88000000),
+                  blurRadius: 8,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Icon(icon, color: const Color(0xFFFFD45A), size: 38),
+          ),
         ),
       ),
     );
