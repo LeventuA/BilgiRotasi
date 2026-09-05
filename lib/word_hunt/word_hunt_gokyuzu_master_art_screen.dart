@@ -87,110 +87,122 @@ class WordHuntGokyuzuMasterArtScreen extends StatelessWidget {
     return Scaffold(
       key: const Key('word_hunt_gokyuzu_master_art_route'),
       backgroundColor: const Color(0xFF072B58),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: ClipRect(
-              key: const Key('word_hunt_gokyuzu_master_art_phone_viewport'),
-              child: FittedBox(
-                fit: BoxFit.cover,
-                alignment: Alignment.center,
-                clipBehavior: Clip.hardEdge,
-                child: SizedBox.fromSize(
-                  key: const Key('word_hunt_gokyuzu_master_art_source_scene'),
-                  size: WordHuntGokyuzuMasterArtLayout.sourceSize,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: <Widget>[
-                      IgnorePointer(
-                        child: Image.asset(
-                          WordHuntGokyuzuMasterArtAssets.masterArt,
-                          key: const Key('word_hunt_gokyuzu_master_art_image'),
-                          width:
-                              WordHuntGokyuzuMasterArtLayout.sourceSize.width,
-                          height:
-                              WordHuntGokyuzuMasterArtLayout.sourceSize.height,
-                          fit: BoxFit.fill,
-                          filterQuality: FilterQuality.high,
-                        ),
-                      ),
-                      _GokyuzuRuntimeOverlay(route: route, progress: progress),
-                      for (
-                        var index = 0;
-                        index < route.levels.length &&
-                            index <
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              child: ClipRect(
+                key: const Key('word_hunt_gokyuzu_master_art_phone_viewport'),
+                child: FittedBox(
+                  key: const Key('word_hunt_gokyuzu_master_art_fitted_box'),
+                  fit: BoxFit.fill,
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.hardEdge,
+                  child: SizedBox.fromSize(
+                    key: const Key('word_hunt_gokyuzu_master_art_source_scene'),
+                    size: WordHuntGokyuzuMasterArtLayout.sourceSize,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: <Widget>[
+                        IgnorePointer(
+                          child: Image.asset(
+                            WordHuntGokyuzuMasterArtAssets.masterArt,
+                            key: const Key(
+                              'word_hunt_gokyuzu_master_art_image',
+                            ),
+                            width:
+                                WordHuntGokyuzuMasterArtLayout.sourceSize.width,
+                            height:
                                 WordHuntGokyuzuMasterArtLayout
-                                    .levelCenters
-                                    .length;
-                        index++
-                      )
-                        _TransparentHitbox(
-                          key: Key(
-                            'word_hunt_gokyuzu_master_art_level_${index + 1}',
+                                    .sourceSize
+                                    .height,
+                            fit: BoxFit.fill,
+                            filterQuality: FilterQuality.high,
                           ),
-                          center:
-                              WordHuntGokyuzuMasterArtLayout
-                                  .levelCenters[index],
+                        ),
+                        _GokyuzuRuntimeOverlay(
+                          route: route,
+                          progress: progress,
+                        ),
+                        for (
+                          var index = 0;
+                          index < route.levels.length &&
+                              index <
+                                  WordHuntGokyuzuMasterArtLayout
+                                      .levelCenters
+                                      .length;
+                          index++
+                        )
+                          _TransparentHitbox(
+                            key: Key(
+                              'word_hunt_gokyuzu_master_art_level_${index + 1}',
+                            ),
+                            center:
+                                WordHuntGokyuzuMasterArtLayout
+                                    .levelCenters[index],
+                            diameter:
+                                WordHuntGokyuzuMasterArtLayout
+                                    .levelHitboxDiameters[index],
+                            semanticLabel: 'Bölüm ${index + 1}',
+                            onTap:
+                                WordHuntRouteProgressEngine.isLevelUnlocked(
+                                          route,
+                                          progress,
+                                          index + 1,
+                                        ) &&
+                                        onLevelTap != null
+                                    ? () => onLevelTap!(index + 1)
+                                    : null,
+                          ),
+                        _TransparentHitbox(
+                          key: const Key(
+                            'word_hunt_gokyuzu_master_art_compass',
+                          ),
+                          center: WordHuntGokyuzuMasterArtLayout.compassCenter,
                           diameter:
                               WordHuntGokyuzuMasterArtLayout
-                                  .levelHitboxDiameters[index],
-                          semanticLabel: 'Bölüm ${index + 1}',
-                          onTap:
-                              WordHuntRouteProgressEngine.isLevelUnlocked(
-                                        route,
-                                        progress,
-                                        index + 1,
-                                      ) &&
-                                      onLevelTap != null
-                                  ? () => onLevelTap!(index + 1)
-                                  : null,
+                                  .bottomControlHitboxDiameter,
+                          semanticLabel: 'Pusula',
+                          onTap: onCompass,
                         ),
-                      _TransparentHitbox(
-                        key: const Key('word_hunt_gokyuzu_master_art_compass'),
-                        center: WordHuntGokyuzuMasterArtLayout.compassCenter,
-                        diameter:
-                            WordHuntGokyuzuMasterArtLayout
-                                .bottomControlHitboxDiameter,
-                        semanticLabel: 'Pusula',
-                        onTap: onCompass,
-                      ),
-                      _TransparentHitbox(
-                        key: const Key('word_hunt_gokyuzu_master_art_book'),
-                        center: WordHuntGokyuzuMasterArtLayout.bookCenter,
-                        diameter:
-                            WordHuntGokyuzuMasterArtLayout
-                                .bottomControlHitboxDiameter,
-                        semanticLabel: 'Bilgi Kitabı',
-                        onTap: onBook,
-                      ),
-                      _VisibleTopControl(
-                        key: const Key('word_hunt_gokyuzu_master_art_back'),
-                        center: WordHuntGokyuzuMasterArtLayout.backCenter,
-                        semanticLabel: 'Geri',
-                        icon: Icons.arrow_back_rounded,
-                        onTap: onBack,
-                      ),
-                      _VisibleTopControl(
-                        key: const Key('word_hunt_gokyuzu_master_art_info'),
-                        center: WordHuntGokyuzuMasterArtLayout.infoCenter,
-                        semanticLabel: 'Bilgi',
-                        icon: Icons.info_outline_rounded,
-                        onTap: onInfo,
-                      ),
-                    ],
+                        _TransparentHitbox(
+                          key: const Key('word_hunt_gokyuzu_master_art_book'),
+                          center: WordHuntGokyuzuMasterArtLayout.bookCenter,
+                          diameter:
+                              WordHuntGokyuzuMasterArtLayout
+                                  .bottomControlHitboxDiameter,
+                          semanticLabel: 'Bilgi Kitabı',
+                          onTap: onBook,
+                        ),
+                        _VisibleTopControl(
+                          key: const Key('word_hunt_gokyuzu_master_art_back'),
+                          center: WordHuntGokyuzuMasterArtLayout.backCenter,
+                          semanticLabel: 'Geri',
+                          icon: Icons.arrow_back_rounded,
+                          onTap: onBack,
+                        ),
+                        _VisibleTopControl(
+                          key: const Key('word_hunt_gokyuzu_master_art_info'),
+                          center: WordHuntGokyuzuMasterArtLayout.infoCenter,
+                          semanticLabel: 'Bilgi',
+                          icon: Icons.info_outline_rounded,
+                          onTap: onInfo,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            key: Key('word_hunt_gokyuzu_banner_reserve'),
-            height: WordHuntGokyuzuMasterArtLayout.bannerReserveHeight,
-            width: double.infinity,
-            child: ColoredBox(color: Color(0xFF072B58)),
-          ),
-        ],
+            const SizedBox(
+              key: Key('word_hunt_gokyuzu_banner_reserve'),
+              height: WordHuntGokyuzuMasterArtLayout.bannerReserveHeight,
+              width: double.infinity,
+              child: ColoredBox(color: Color(0xFF072B58)),
+            ),
+          ],
+        ),
       ),
     );
   }
