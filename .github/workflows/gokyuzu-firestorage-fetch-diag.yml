@@ -10,55 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Download and validate uploaded master art object
+      - name: Probe current public share API prefixes
         shell: bash
         run: |
           set -euo pipefail
-          api='https://api.firestorage.ai/dev/file/objects/3Kn0396sk9bxDdQV/6Cb35v'
-          echo '--- object metadata ---'
-          curl -fsSL -D meta.headers "$api" | tee object.json
-          echo
-          echo '--- files metadata ---'
-          curl -fsSL "$api/files?maxResults=1000" | tee files.json
-          echo
-          python3 - <<'PY'
-          import json
-          data=json.load(open('files.json'))
-          print('FILE_COUNT',len(data.get('files',[])))
-          for f in data.get('files',[]):
-              print('FILE',f.get('fileId'),f.get('name'),f.get('size'),f.get('contentType'))
-          assert len(data.get('files',[])) == 1
-          open('file_id.txt','w').write(str(data['files'][0]['fileId']))
-          PY
-          file_id="$(cat file_id.txt)"
-          curl -fsSL -X POST "$api/files/$file_id/download" | tee download.json
-          python3 - <<'PY'
-          import json
-          d=json.load(open('download.json'))
-          u=d.get('downloadUrl')
-          assert u and u.startswith('http')
-          open('download_url.txt','w').write(u)
-          print('SIGNED_URL_OK')
-          PY
-          curl -fsSL "$(cat download_url.txt)" -o master.jpg
-          file master.jpg
-          wc -c master.jpg
-          sha256sum master.jpg
-          python3 - <<'PY'
-          from pathlib import Path
-          b=Path('master.jpg').read_bytes()
-          assert b[:2] == b'\xff\xd8' and b[-2:] == b'\xff\xd9'
-          i=2; w=h=None
-          while i < len(b)-9:
-              if b[i] != 0xff: i += 1; continue
-              while i < len(b) and b[i] == 0xff: i += 1
-              marker=b[i]; i += 1
-              if marker in (0xd8,0xd9): continue
-              if marker == 0xda: break
-              seglen=int.from_bytes(b[i:i+2],'big')
-              if marker in list(range(0xc0,0xc4))+list(range(0xc5,0xc8))+list(range(0xc9,0xcc))+list(range(0xcd,0xd0)):
-                  h=int.from_bytes(b[i+3:i+5],'big'); w=int.from_bytes(b[i+5:i+7],'big'); break
-              i += seglen
-          print('JPEG_DIMENSIONS',w,h)
-          assert (w,h) == (1085,1536)
-          PY
+          share='svAE-i6Hj1So'
+          object='icRkjthG4tP6Pa7m/KjDJJY'
+          for prefix in \
+            'https://api.firestorage.ai/dev/file' \
+            'https://api.firestorage.ai/file' \
+            'https://api.firestorage.ai/api/file' \
+            'https://api.firestorage.ai/v1/file' \
+            'https://api.firestorage.ai/prod/file' \
+            'https://api.firestorage.ai/api/v1/file'; do
+            for path in "shares/$share" "objects/$object"; do
+              code="$(curl -sS -o body.tmp -w '%{http_code}' "$prefix/$path" || true)"
+              ctype="$(file -b --mime-type body.tmp 2>/dev/null || true)"
+              bytes="$(wc -c < body.tmp 2>/dev/null || echo 0)"
+              echo "$code $bytes $ctype $prefix/$path"
+              if [ "$code" = 200 ]; then head -c 1000 body.tmp; echo; fi
+            done
+          done
