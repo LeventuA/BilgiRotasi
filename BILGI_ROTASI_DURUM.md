@@ -1,3 +1,16 @@
+<!-- GOKYUZU_R4_STATIC_PROOF_START -->
+## Kelime Avı V9 — Gökyüzü tall-viewport R4 statik proof checkpoint — 5 Eylül 2026
+- Canonical release yeniden doğrulandı: `release/final-closed-test-aab-1.68.8` @ `3557a7e4f2f2917d61ba61866c6d4c8561994667`; sürüm `1.68.19+109`.
+- PR #175 OPEN/DRAFT, exact ürün HEAD `4145f0fe8d716d6951e1ee53215812b56150c73c`; Ready/merge/Play yok.
+- R3 raw Android16 teknik PASS korunuyor: run `33952294411`, job `101269226635`, screenshot SHA256 `fcf7b065fc58453fe343bb7fedb9feb1641ae06df8348cec4debfd77bef65aa7`.
+- R3'te approved V2 merkez kompozisyon doğru fakat üst/alt letterbox görsel olarak açık kalmıştı.
+- Approved V2 çekirdeğine dokunmadan 1080×1920 için statik R4 tall-viewport aday üretildi. Yalnız MASTER ART dışındaki üst/alt yaklaşık 195 px alan sentetik gökyüzü/bulut uzatmasıdır; merkez approved V2 master art korunur.
+- R4 statik proof dosyası: `gokyuzu_tall_viewport_static_proof_r4e.png`; SHA256 `96cef05fdf9f5f59ed37ad4829cef1e225858905d1fb01d20b826f8e402ae8bf`; 2,669,143 bayt.
+- Bu dosya Android/runtime kanıtı değildir; yalnız Levent görsel kararına sunulan statik viewport adayıdır.
+- `GOKYUZU_TALL_VIEWPORT_R4_STATIC_ACCEPTANCE = AÇIK / BEKLİYOR`.
+- Levent açık PASS vermeden bu R4 uzatma #175 ürün branch'ine commit edilmeyecek.
+<!-- GOKYUZU_R4_STATIC_PROOF_END -->
+
 # Bilgi Rotası – Proje Durumu
 
 <!-- GOKYUZU_VIEWPORT_R3_START -->

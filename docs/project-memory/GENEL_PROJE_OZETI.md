@@ -1,3 +1,12 @@
+<!-- GOKYUZU_R4_STATIC_PROOF_START -->
+## 5 Eylül 2026 — Gökyüzü R4 tall-viewport statik aday
+- Approved Gökyüzü Adaları V2 master art production tabanı olarak uygulanıyor; PR #175 OPEN/DRAFT @ `4145f0fe...`.
+- R3 Android16 teknik PASS; merkez V2 doğru, üst/alt düz letterbox human visual PASS değil.
+- R4 statik 1080×1920 aday hazır: `gokyuzu_tall_viewport_static_proof_r4e.png`, SHA256 `96cef05fdf9f5f59ed37ad4829cef1e225858905d1fb01d20b826f8e402ae8bf`.
+- R4 yalnız MASTER ART dışındaki üst/alt alanı gökyüzü/bulut uzatmasıyla doldurur; merkez approved V2 değişmez.
+- R4 gerçek Android kanıtı değildir. Levent görsel PASS bekleniyor; PASS olmadan #175 ürün branch'i değiştirilmez.
+<!-- GOKYUZU_R4_STATIC_PROOF_END -->
+
 # Bilgi Rotası — Genel Proje Özeti
 
 <!-- GOKYUZU_VIEWPORT_R3_START -->

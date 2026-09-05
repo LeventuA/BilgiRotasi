@@ -1,3 +1,13 @@
+<!-- GOKYUZU_MASTER_ART_DECISION_20260905_START -->
+## 5 Eylül 2026 — Gökyüzü Adaları V2 production MASTER ART kararı
+- Levent'in açık ürün onayıyla Gökyüzü Adaları rota ekranının görünür production tabanı, 3 Eylül'de onaylanan V2 görselinin **MASTER ART raster** sürümüdür.
+- Flutter bu görünür sahneyi yeniden sentetik/modüler olarak çizmez; yalnız gerçek etkileşim/progression için minimum lokal overlay ve şeffaf hitbox kullanır.
+- Bu karar, Gökyüzü rota ekranı için önceki “flattened MASTER ART kopyalanmaz / yalnız modüler görünür renderer” şartını **supersede eder**.
+- PR #172'deki 48 modüler asset teknik olarak korunur ancak #175 MASTER ART renderer'ının dependency'si değildir; tarihsel/opsiyonel üretim varlığıdır.
+- Approved V2 merkez kompozisyonu crop/germe/yeniden çizimle değiştirilmez. Tall-device uyarlaması yalnız MASTER ART dışındaki viewport alanında çözülür.
+- Android visual PASS yalnız raw Android screenshot/artifact ile verilir; statik proof veya ImageGen çıktısı kanıt değildir.
+<!-- GOKYUZU_MASTER_ART_DECISION_20260905_END -->
+
 # Bilgi Rotası — Kesinleşen Kararlar
 
 > Bu dosya aktif/kanonik karar özetidir. 26 Ağustos 2026 release entegrasyonu öncesindeki iki tam karar dosyası `docs/project-memory/archive/` altında birebir korunur. Burada yazılmayan eski kararlar, açıkça supersede edilmedikçe geçerliliğini korur.

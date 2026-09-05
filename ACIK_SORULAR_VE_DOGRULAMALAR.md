@@ -1,3 +1,11 @@
+<!-- GOKYUZU_R4_STATIC_PROOF_START -->
+## Gökyüzü R4 viewport açık doğrulaması — 5 Eylül 2026
+- `GOKYUZU_MASTER_ART_VIEWPORT_R3_TECHNICAL = PASS`.
+- `GOKYUZU_TALL_VIEWPORT_R4_STATIC_ACCEPTANCE = AÇIK / BEKLİYOR`.
+- R4 statik aday Android/runtime kanıtı değildir.
+- PASS olmadan #175'e viewport uzatma commit edilmeyecek.
+<!-- GOKYUZU_R4_STATIC_PROOF_END -->
+
 # Bilgi Rotası — Açık Sorular ve Doğrulamalar
 
 <!-- GOKYUZU_VIEWPORT_R3_START -->

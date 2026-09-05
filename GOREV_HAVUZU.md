@@ -1,3 +1,19 @@
+<!-- GOKYUZU_R4_STATIC_PROOF_START -->
+## AKTİF — Gökyüzü tall-device R4 statik viewport kabulü
+**Görev:** Approved V2 MASTER ART merkezini değiştirmeden 9:16 dış alanı görsel olarak doğal tamamlamak.
+
+**R4 aday:** `gokyuzu_tall_viewport_static_proof_r4e.png`, 1080×1920, SHA256 `96cef05fdf9f5f59ed37ad4829cef1e225858905d1fb01d20b826f8e402ae8bf`.
+
+**Bitti ölçütü:**
+1. Levent statik R4 görünümünü açıkça PASS eder.
+2. PASS sonrası aynı çözüm #175 ürün branch'ine uygulanır.
+3. Analyzer + focused/regression + raw Android16 tekrar PASS olur.
+4. Son raw Android ekranı Levent'e gösterilir ve ayrı human visual PASS alınır.
+5. Ready/merge/Play ayrı açık onay gerektirir.
+
+**Durum:** `AÇIK / R4 STATİK GÖRSEL KARAR BEKLİYOR`.
+<!-- GOKYUZU_R4_STATIC_PROOF_END -->
+
 # Bilgi Rotası — Görev Havuzu
 
 <!-- GOKYUZU_VIEWPORT_R3_START -->
