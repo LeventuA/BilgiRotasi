@@ -10,16 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Inspect public share response
+      - name: Inspect public share download API
         shell: bash
         run: |
           set -euo pipefail
-          url='https://firestorage.ai/ja/f/8VSw52kChyyv'
-          curl -fsSL -D headers.txt -o page.html "$url"
-          echo '--- headers ---'
-          sed -n '1,80p' headers.txt
-          echo '--- title and links ---'
-          grep -Eio '<title>[^<]*|href="[^"]+|src="[^"]+' page.html | head -120 || true
-          echo '--- size/type ---'
-          wc -c page.html
-          file page.html
+          base='https://firestorage.ai'
+          curl -fsSL -o page.html "$base/ja/f/8VSw52kChyyv"
+          js="$(grep -Eo 'src=\"[^\"]+app/\(files\)/ja/f/page-[^\"]+\.js' page.html | head -1 | sed 's/^src=\"//')"
+          echo "PAGE_JS=$js"
+          test -n "$js"
+          curl -fsSL -o page.js "$base$js"
+          echo '--- api/download candidates ---'
+          grep -Eo '.{0,140}(download|api/|publicId|shareId|presign|fileUrl).{0,220}' page.js | head -120 || true
+          echo '--- js size ---'
+          wc -c page.js
