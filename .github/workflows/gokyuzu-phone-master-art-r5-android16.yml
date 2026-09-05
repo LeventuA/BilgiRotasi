@@ -20,6 +20,7 @@ jobs:
       CONTENT_SHA: 4ec33de7438fcbd15ed63b1ae2adda127da3be8c
       MASTER_ART_SHA256: db44920c5e25163d0b3f317a96d6e7bcc9e48aa7a4ce8654573728a423dc7f34
       MASTER_ART_SIZE: '437438'
+      QA_WORKFLOW: .github/workflows/gokyuzu-phone-master-art-r5-android16.yml
 
     steps:
       - name: Checkout QA branch
@@ -31,11 +32,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD~1)" = "$PRODUCT_SHA"
+          git merge-base --is-ancestor "$PRODUCT_SHA" HEAD
           test "$(git rev-parse "$PRODUCT_SHA^")" = "$PRODUCT_PARENT_SHA"
           test "$(git rev-parse origin/release/final-closed-test-aab-1.68.8)" = "$CANONICAL_SHA"
           test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
           test -z "$(git diff --name-only "$CANONICAL_SHA" "$PRODUCT_SHA" -- assets/questions.json android/ pubspec.yaml || true)"
+          mapfile -t qa_paths < <(git diff --name-only "$PRODUCT_SHA" HEAD)
+          test "${#qa_paths[@]}" -eq 1
+          test "${qa_paths[0]}" = "$QA_WORKFLOW"
           test "$(wc -c < assets/word_hunt/gokyuzu_adalari_master_art_v2.webp)" = "$MASTER_ART_SIZE"
           test "$(sha256sum assets/word_hunt/gokyuzu_adalari_master_art_v2.webp | cut -d' ' -f1)" = "$MASTER_ART_SHA256"
           python3 - <<'PY'
