@@ -77,18 +77,21 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
+          import re
+
           gradle = Path('android/app/build.gradle.kts')
           text = gradle.read_text(encoding='utf-8')
-          needle = '''        debug {
-              manifestPlaceholders["admobAppId"] = adMobTestAppId
-          }'''
-          replacement = '''        debug {
-              applicationIdSuffix = ".gokyuzur7qa"
-              manifestPlaceholders["admobAppId"] = adMobTestAppId
-          }'''
-          if needle not in text:
+          pattern = r'(?m)^(\s*)debug \{\n\1\s+manifestPlaceholders\["admobAppId"\] = adMobTestAppId\n\1\}'
+          replacement = (
+              '        debug {\n'
+              '            applicationIdSuffix = ".gokyuzur7qa"\n'
+              '            manifestPlaceholders["admobAppId"] = adMobTestAppId\n'
+              '        }'
+          )
+          text, count = re.subn(pattern, replacement, text, count=1)
+          if count != 1:
               raise SystemExit('debug buildType anchor not found')
-          gradle.write_text(text.replace(needle, replacement, 1), encoding='utf-8')
+          gradle.write_text(text, encoding='utf-8')
 
           google = Path('android/app/google-services.json')
           gtext = google.read_text(encoding='utf-8')
