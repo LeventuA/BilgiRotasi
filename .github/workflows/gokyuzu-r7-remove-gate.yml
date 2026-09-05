@@ -1,0 +1,104 @@
+name: Gokyuzu R7 remove obsolete gate
+on:
+  push:
+    branches:
+      - ci/gokyuzu-r7-remove-gate-20260905
+permissions:
+  contents: write
+jobs:
+  validate-and-push:
+    runs-on: ubuntu-22.04
+    env:
+      PRODUCT_BRANCH: feat/kelime-avi-gokyuzu-master-art-v2-20260905
+      PRODUCT_SHA: 560d76bd828e0b4d813218f1000b895da9d0c7fa
+      CANONICAL_SHA: 3557a7e4f2f2917d61ba61866c6d4c8561994667
+      SHARE_ID: xWgCkVYz-48m
+      ASSET_NAME: gokyuzu_no_gate_q95.webp
+      ASSET_SHA256: 913ee19df9fcb1eba2ac6ca3a500979c960d31dd369e204d2f79064be9664b1d
+      ASSET_SIZE: '510998'
+      ASSET_PATH: assets/word_hunt/gokyuzu_adalari_master_art_v2.webp
+    steps:
+      - name: Checkout current product branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PRODUCT_BRANCH }}
+          fetch-depth: 0
+      - name: Verify exact starting point and protected scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$PRODUCT_SHA"
+          test "$(git rev-parse origin/release/final-closed-test-aab-1.68.8)" = "$CANONICAL_SHA"
+          test "$(grep '^version:' pubspec.yaml | awk '{print $2}')" = '1.68.19+109'
+          test -z "$(git diff --name-only "$CANONICAL_SHA" "$PRODUCT_SHA" -- assets/questions.json android/ pubspec.yaml || true)"
+      - name: Download exact R7 MASTER ART
+        shell: bash
+        run: |
+          set -euo pipefail
+          api='https://api.firestorage.ai/dev/file'
+          curl -LfsS "$api/shares/$SHARE_ID/files?maxResults=1000" -o /tmp/files.json
+          file_id=$(python3 - <<'PY'
+          import json
+          data=json.load(open('/tmp/files.json',encoding='utf-8'))
+          matches=[f for f in data.get('files',[]) if f.get('fileName')=='gokyuzu_no_gate_q95.webp']
+          assert len(matches)==1, matches
+          print(matches[0]['fileId'])
+          PY
+          )
+          curl -LfsS -X POST "$api/shares/$SHARE_ID/files/$file_id/download" -o /tmp/download.json
+          download_url=$(python3 - <<'PY'
+          import json
+          print(json.load(open('/tmp/download.json',encoding='utf-8'))['downloadUrl'])
+          PY
+          )
+          curl -LfsS "$download_url" -o "$ASSET_PATH"
+          test "$(wc -c < "$ASSET_PATH")" = "$ASSET_SIZE"
+          test "$(sha256sum "$ASSET_PATH" | cut -d' ' -f1)" = "$ASSET_SHA256"
+          file "$ASSET_PATH" | tee /tmp/file.txt
+          grep -q '941x1672' /tmp/file.txt
+          mapfile -t changed < <(git diff --name-only)
+          test "${#changed[@]}" -eq 1
+          test "${changed[0]}" = "$ASSET_PATH"
+      - name: Flutter 3.44.6
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.6'
+          channel: stable
+          cache: true
+      - name: Analyze and focused regression before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          flutter pub get
+          git checkout -- pubspec.lock 2>/dev/null || true
+          git diff --check
+          dart analyze \
+            lib/word_hunt/word_hunt_gokyuzu_master_art_screen.dart \
+            lib/word_hunt/word_hunt_production_entry_screen.dart \
+            lib/word_hunt/word_hunt_progress.dart
+          flutter test \
+            test/word_hunt_gokyuzu_master_art_screen_test.dart \
+            test/word_hunt_progress_test.dart \
+            test/word_hunt_pixel_proof_screen_test.dart \
+            test/word_hunt_reference_route_screen_test.dart \
+            test/word_hunt_production_flow_test.dart \
+            --reporter expanded
+          test -z "$(git diff --name-only "$CANONICAL_SHA" HEAD -- assets/questions.json android/ pubspec.yaml || true)"
+          mapfile -t changed < <(git diff --name-only)
+          test "${#changed[@]}" -eq 1
+          test "${changed[0]}" = "$ASSET_PATH"
+          test "$(sha256sum "$ASSET_PATH" | cut -d' ' -f1)" = "$ASSET_SHA256"
+      - name: Commit and push tested asset only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$ASSET_PATH"
+          git diff --cached --name-only | grep -qx "$ASSET_PATH"
+          test "$(git diff --cached --name-only | wc -l)" -eq 1
+          git commit -m 'fix(kelime-avi): remove obsolete gokyuzu gate marker'
+          new_sha=$(git rev-parse HEAD)
+          test "$(git rev-parse HEAD^)" = "$PRODUCT_SHA"
+          git push origin "HEAD:$PRODUCT_BRANCH"
+          echo "R7_PRODUCT_SHA=$new_sha"
