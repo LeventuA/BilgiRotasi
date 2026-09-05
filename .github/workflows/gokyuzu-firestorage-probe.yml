@@ -10,26 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Probe firestorage share
+      - name: Inspect firestorage client routes
         shell: bash
         run: |
           set -euxo pipefail
           URL='https://firestorage.ai/ja/f/p5z_6lpQHCD9'
-          curl -L -D headers.txt -o body.bin "$URL"
-          echo '--- headers ---'
-          cat headers.txt
-          echo '--- file ---'
-          file body.bin
-          wc -c body.bin
-          echo '--- strings ---'
-          strings body.bin | grep -Eo 'https?://[^"<> ]+|/api/[^"<> ]+|download[^"<> ]*' | head -80 || true
-          echo '--- candidate probes ---'
-          for u in \
-            'https://firestorage.ai/api/files/01a06fe1f8107548bdf8bd1b2f4b5227' \
-            'https://firestorage.ai/api/files/01a06fe1f8107548bdf8bd1b2f4b5227/download' \
-            'https://firestorage.ai/api/v1/files/01a06fe1f8107548bdf8bd1b2f4b5227' \
-            'https://firestorage.ai/api/v1/files/01a06fe1f8107548bdf8bd1b2f4b5227/download'; do
-              echo "### $u"
-              curl -L -sS -o /tmp/probe.bin -w '%{http_code} %{content_type} %{size_download} %{url_effective}\n' "$u" || true
-              file /tmp/probe.bin || true
-            done
+          curl -L -sS -o page.html "$URL"
+          echo '--- script src ---'
+          grep -oE '<script[^>]+src="[^"]+"' page.html | sed -E 's/.*src="([^"]+)"/\1/' | tee scripts.txt || true
+          echo '--- embedded identifiers ---'
+          grep -oE 'p5z_6lpQHCD9|1PyVUu0h1vnIkKTi|01a06fe1f8107548bdf8bd1b2f4b5227|gok_q80.webp|api[^"< ]+' page.html | head -100 || true
+          while read -r src; do
+            [ -n "$src" ] || continue
+            case "$src" in
+              http*) jsurl="$src" ;;
+              /*) jsurl="https://firestorage.ai$src" ;;
+              *) jsurl="https://firestorage.ai/ja/f/$src" ;;
+            esac
+            echo "### $jsurl"
+            curl -L -sS "$jsurl" -o bundle.js || continue
+            grep -oE '/api/[A-Za-z0-9_?=&./${}-]+|https://[^"'"' ]+|download[A-Za-z0-9_?=&./${}-]*|presign[A-Za-z0-9_?=&./${}-]*' bundle.js | sort -u | head -120 || true
+          done < scripts.txt
