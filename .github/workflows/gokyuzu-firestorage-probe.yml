@@ -1,0 +1,35 @@
+name: Gokyuzu firestorage probe
+
+on:
+  push:
+    branches:
+      - tmp/gokyuzu-master-art-transfer-probe-20260905
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe firestorage share
+        shell: bash
+        run: |
+          set -euxo pipefail
+          URL='https://firestorage.ai/ja/f/p5z_6lpQHCD9'
+          curl -L -D headers.txt -o body.bin "$URL"
+          echo '--- headers ---'
+          cat headers.txt
+          echo '--- file ---'
+          file body.bin
+          wc -c body.bin
+          echo '--- strings ---'
+          strings body.bin | grep -Eo 'https?://[^"<> ]+|/api/[^"<> ]+|download[^"<> ]*' | head -80 || true
+          echo '--- candidate probes ---'
+          for u in \
+            'https://firestorage.ai/api/files/01a06fe1f8107548bdf8bd1b2f4b5227' \
+            'https://firestorage.ai/api/files/01a06fe1f8107548bdf8bd1b2f4b5227/download' \
+            'https://firestorage.ai/api/v1/files/01a06fe1f8107548bdf8bd1b2f4b5227' \
+            'https://firestorage.ai/api/v1/files/01a06fe1f8107548bdf8bd1b2f4b5227/download'; do
+              echo "### $u"
+              curl -L -sS -o /tmp/probe.bin -w '%{http_code} %{content_type} %{size_download} %{url_effective}\n' "$u" || true
+              file /tmp/probe.bin || true
+            done
