@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'word_hunt_gokyuzu_content.dart';
 import 'word_hunt_gokyuzu_gameplay_backgrounds.dart';
 import 'word_hunt_gokyuzu_master_art_screen.dart';
 import 'word_hunt_models.dart';
@@ -12,21 +13,25 @@ import 'word_hunt_starter_content.dart';
 
 /// Ana Bilgi Rotası uygulamasından Kelime Avı production akışına girilen ekran.
 ///
-/// - Başlangıç Limanı MASTER ART rota ekranını kullanır.
-/// - İlerlemeyi hesap/misafir scope'una göre cihazda saklar.
-/// - Açık node'u canonical production gameplay ekranına bağlar.
-/// - BoardMap, soru bankası, reklam veya diğer oyun modlarına dokunmaz.
+/// Varsayılan production girişinde önce rota seçimi gösterilir:
+/// - Başlangıç Limanı her zaman açıktır.
+/// - Gökyüzü Adaları, Başlangıç Limanı'nda 18 yıldızdan sonra açılır.
+///
+/// Doğrudan belirli bir rota gösterilecek QA/test senaryolarında
+/// [routeSelectionEnabled] false verilebilir.
 class WordHuntProductionEntryScreen extends StatefulWidget {
   const WordHuntProductionEntryScreen({
     super.key,
     this.ownerUid,
     this.route = WordHuntStarterContent.baslangicLimani,
     this.infoCards = WordHuntStarterContent.infoCards,
+    this.routeSelectionEnabled = true,
   });
 
   final String? ownerUid;
   final WordHuntRouteDefinition route;
   final List<WordHuntInfoCard> infoCards;
+  final bool routeSelectionEnabled;
 
   @override
   State<WordHuntProductionEntryScreen> createState() =>
@@ -38,16 +43,39 @@ class _WordHuntProductionEntryScreenState
   final SharedPreferencesAsync _preferences = SharedPreferencesAsync();
 
   WordHuntProgressSnapshot _progress = const WordHuntProgressSnapshot();
+  WordHuntRouteDefinition? _selectedRoute;
+  List<WordHuntInfoCard>? _selectedInfoCards;
   bool _loading = true;
+
+  bool get _catalogMode =>
+      widget.routeSelectionEnabled &&
+      widget.route.id == WordHuntStarterContent.baslangicLimani.id;
+
+  WordHuntRouteDefinition get _activeRoute => _selectedRoute ?? widget.route;
+
+  List<WordHuntInfoCard> get _activeInfoCards =>
+      _selectedInfoCards ?? widget.infoCards;
 
   String get _ownerScope => WordHuntProgressCodec.scopeForUid(widget.ownerUid);
 
   String get _storageKey =>
       WordHuntProgressCodec.storageKeyForUid(widget.ownerUid);
 
+  int get _starterStars => WordHuntRouteProgressEngine.totalStars(
+    WordHuntStarterContent.baslangicLimani,
+    _progress,
+  );
+
+  bool get _gokyuzuUnlocked =>
+      _starterStars >= WordHuntGokyuzuContent.gokyuzuAdalari.unlockStarsRequired;
+
   @override
   void initState() {
     super.initState();
+    if (!_catalogMode) {
+      _selectedRoute = widget.route;
+      _selectedInfoCards = widget.infoCards;
+    }
     _loadProgress();
   }
 
@@ -89,17 +117,55 @@ class _WordHuntProductionEntryScreenState
     }
   }
 
+  void _openStarterRoute() {
+    setState(() {
+      _selectedRoute = WordHuntStarterContent.baslangicLimani;
+      _selectedInfoCards = WordHuntStarterContent.infoCards;
+    });
+  }
+
+  void _openGokyuzuRoute() {
+    if (!_gokyuzuUnlocked) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Gökyüzü Adaları için '
+            '${WordHuntGokyuzuContent.gokyuzuAdalari.unlockStarsRequired} '
+            'Başlangıç Limanı yıldızı gerekli.',
+          ),
+        ),
+      );
+      return;
+    }
+    setState(() {
+      _selectedRoute = WordHuntGokyuzuContent.gokyuzuAdalari;
+      _selectedInfoCards = WordHuntGokyuzuContent.infoCards;
+    });
+  }
+
+  void _leaveRoute() {
+    if (_catalogMode) {
+      setState(() {
+        _selectedRoute = null;
+        _selectedInfoCards = null;
+      });
+      return;
+    }
+    Navigator.of(context).maybePop();
+  }
+
   Future<void> _openLevel(int levelIndex) async {
+    final route = _activeRoute;
     if (!WordHuntRouteProgressEngine.isLevelUnlocked(
-      widget.route,
+      route,
       _progress,
       levelIndex,
     )) {
       return;
     }
 
-    final level = widget.route.levels[levelIndex - 1];
-    final isGokyuzu = widget.route.id == WordHuntGokyuzuMasterArtScreen.routeId;
+    final level = route.levels[levelIndex - 1];
+    final isGokyuzu = route.id == WordHuntGokyuzuMasterArtScreen.routeId;
     final backgroundAsset = isGokyuzu
         ? WordHuntGokyuzuGameplayBackgrounds.forLevel(level.index)
         : null;
@@ -107,9 +173,9 @@ class _WordHuntProductionEntryScreenState
       MaterialPageRoute<WordHuntLevelPlayResult>(
         builder: (_) => WordHuntLevelProductionScreen(
           level: level,
-          infoCards: widget.infoCards,
+          infoCards: _activeInfoCards,
           backgroundAsset: backgroundAsset,
-          routeTitle: widget.route.title,
+          routeTitle: route.title,
         ),
       ),
     );
@@ -146,21 +212,22 @@ class _WordHuntProductionEntryScreenState
   }
 
   void _showCompassHint() {
+    final route = _activeRoute;
     final complete = WordHuntRouteProgressEngine.isRouteComplete(
-      widget.route,
+      route,
       _progress,
     );
     final message = complete
-        ? '${widget.route.title} tamamlandı.'
+        ? '${route.title} tamamlandı.'
         : 'Sıradaki durak: Bölüm '
-              '${WordHuntRouteProgressEngine.nextPlayableLevelIndex(widget.route, _progress)}';
+              '${WordHuntRouteProgressEngine.nextPlayableLevelIndex(route, _progress)}';
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _showBook() {
-    final unlocked = widget.infoCards
+    final unlocked = _activeInfoCards
         .where((card) => _progress.unlockedInfoCardIds.contains(card.id))
         .toList(growable: false);
 
@@ -196,6 +263,99 @@ class _WordHuntProductionEntryScreenState
     );
   }
 
+  Widget _buildRouteSelector() {
+    final requiredStars =
+        WordHuntGokyuzuContent.gokyuzuAdalari.unlockStarsRequired;
+    final progressText = '${_starterStars.clamp(0, requiredStars)} / $requiredStars';
+
+    return Scaffold(
+      key: const Key('word_hunt_route_selector'),
+      backgroundColor: const Color(0xFF071426),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF071426),
+        foregroundColor: Colors.white,
+        elevation: 0,
+        title: const Text(
+          'Kelime Avı',
+          style: TextStyle(fontWeight: FontWeight.w900),
+        ),
+      ),
+      body: SafeArea(
+        top: false,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 390;
+            return SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(
+                compact ? 14 : 20,
+                12,
+                compact ? 14 : 20,
+                28,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'Rotanı seç',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: compact ? 24 : 28,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  const Text(
+                    'Her rota 10 bölüm ve 30 yıldızlık ayrı bir macera.',
+                    style: TextStyle(
+                      color: Color(0xFFB7C7DA),
+                      fontSize: 13,
+                      height: 1.35,
+                    ),
+                  ),
+                  const SizedBox(height: 18),
+                  _WordHuntRouteCard(
+                    key: const Key('word_hunt_route_card_starter'),
+                    title: WordHuntStarterContent.baslangicLimani.title,
+                    subtitle: 'İlk rota • 10 bölüm • 30 yıldız',
+                    progressText:
+                        '${WordHuntRouteProgressEngine.totalStars(WordHuntStarterContent.baslangicLimani, _progress)} / 30',
+                    icon: Icons.anchor_rounded,
+                    colors: const <Color>[
+                      Color(0xFF0E7490),
+                      Color(0xFF1E3A8A),
+                    ],
+                    unlocked: true,
+                    onTap: _openStarterRoute,
+                  ),
+                  const SizedBox(height: 14),
+                  _WordHuntRouteCard(
+                    key: const Key('word_hunt_route_card_gokyuzu'),
+                    title: WordHuntGokyuzuContent.gokyuzuAdalari.title,
+                    subtitle: _gokyuzuUnlocked
+                        ? 'İkinci rota • 10 bölüm • 30 yıldız'
+                        : 'Kapı: $requiredStars Başlangıç Limanı yıldızı',
+                    progressText: _gokyuzuUnlocked
+                        ? '${WordHuntRouteProgressEngine.totalStars(WordHuntGokyuzuContent.gokyuzuAdalari, _progress)} / 30'
+                        : progressText,
+                    icon: _gokyuzuUnlocked
+                        ? Icons.cloud_rounded
+                        : Icons.lock_rounded,
+                    colors: const <Color>[
+                      Color(0xFF6D28D9),
+                      Color(0xFF1D4ED8),
+                    ],
+                    unlocked: _gokyuzuUnlocked,
+                    onTap: _openGokyuzuRoute,
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_loading) {
@@ -206,12 +366,17 @@ class _WordHuntProductionEntryScreenState
       );
     }
 
-    if (widget.route.id == WordHuntGokyuzuMasterArtScreen.routeId) {
+    if (_catalogMode && _selectedRoute == null) {
+      return _buildRouteSelector();
+    }
+
+    final route = _activeRoute;
+    if (route.id == WordHuntGokyuzuMasterArtScreen.routeId) {
       return WordHuntGokyuzuMasterArtScreen(
         key: const Key('word_hunt_production_entry_gokyuzu_route'),
-        route: widget.route,
+        route: route,
         progress: _progress,
-        onBack: () => Navigator.of(context).maybePop(),
+        onBack: _leaveRoute,
         onInfo: _showInfo,
         onCompass: _showCompassHint,
         onBook: _showBook,
@@ -221,13 +386,129 @@ class _WordHuntProductionEntryScreenState
 
     return WordHuntReferenceRouteScreen(
       key: const Key('word_hunt_production_entry_route'),
-      route: widget.route,
+      route: route,
       progress: _progress,
-      onBack: () => Navigator.of(context).maybePop(),
+      onBack: _leaveRoute,
       onInfo: _showInfo,
       onCompass: _showCompassHint,
       onBook: _showBook,
       onLevelTap: _openLevel,
+    );
+  }
+}
+
+class _WordHuntRouteCard extends StatelessWidget {
+  const _WordHuntRouteCard({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.progressText,
+    required this.icon,
+    required this.colors,
+    required this.unlocked,
+    required this.onTap,
+  });
+
+  final String title;
+  final String subtitle;
+  final String progressText;
+  final IconData icon;
+  final List<Color> colors;
+  final bool unlocked;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      enabled: unlocked,
+      label: '$title, $subtitle, $progressText',
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(24),
+          child: Ink(
+            padding: const EdgeInsets.all(18),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: colors,
+              ),
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: unlocked
+                    ? const Color(0x66FFFFFF)
+                    : const Color(0x447A8CA5),
+              ),
+              boxShadow: const <BoxShadow>[
+                BoxShadow(
+                  color: Color(0x33000000),
+                  blurRadius: 14,
+                  offset: Offset(0, 7),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: 64,
+                  height: 64,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color(0x33000000),
+                    border: Border.all(color: const Color(0x55FFFFFF)),
+                  ),
+                  child: Icon(icon, color: Colors.white, size: 34),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        subtitle,
+                        style: const TextStyle(
+                          color: Color(0xFFE5ECF5),
+                          fontSize: 12,
+                          height: 1.3,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 9),
+                      Text(
+                        progressText,
+                        style: const TextStyle(
+                          color: Color(0xFFFFE082),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  unlocked
+                      ? Icons.chevron_right_rounded
+                      : Icons.lock_outline_rounded,
+                  color: Colors.white,
+                  size: 28,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
