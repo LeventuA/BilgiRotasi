@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'tools/word_hunt_batch_generator.py'
+      - 'tools/word_hunt_release_stock_manifest.py'
       - 'tools/word_hunt_release_stock_check.py'
       - 'tools/word_hunt_content_factory*.json'
       - '.github/workflows/word-hunt-content-factory.yml'
@@ -28,6 +29,7 @@ jobs:
       - name: Python syntax doğrula
         run: |
           python3 -m py_compile tools/word_hunt_batch_generator.py
+          python3 -m py_compile tools/word_hunt_release_stock_manifest.py
           python3 -m py_compile tools/word_hunt_release_stock_check.py
 
       - name: Örnek manifestten 8x8 grid üret ve doğrula
@@ -51,10 +53,15 @@ jobs:
           set -e
           test "$code" -eq 2
 
+      - name: 180 yeni bölüm manifestini üret
+        run: |
+          python3 tools/word_hunt_release_stock_manifest.py \
+            --output /tmp/word_hunt_release_stock.manifest.json
+
       - name: 180 yeni bölümü üret ve exact-one doğrula
         run: |
           python3 tools/word_hunt_batch_generator.py \
-            --input tools/word_hunt_content_factory.release_stock.json \
+            --input /tmp/word_hunt_release_stock.manifest.json \
             --output /tmp/word_hunt_release_stock.generated.json \
             --report /tmp/word_hunt_release_stock.report.txt
           grep -Fq 'Toplam rota: 18' /tmp/word_hunt_release_stock.report.txt
