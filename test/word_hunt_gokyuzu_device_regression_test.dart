@@ -1,3 +1,4 @@
+import 'package:bilgi_rotasi/word_hunt/word_hunt_gokyuzu_gameplay_backgrounds.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_gokyuzu_master_art_screen.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_models.dart';
 import 'package:bilgi_rotasi/word_hunt/word_hunt_screens.dart';
@@ -5,6 +6,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  test('Gökyüzü gameplay maps levels to approved scenic backgrounds', () {
+    const expected = <int, String>{
+      1: WordHuntGokyuzuGameplayBackgrounds.bright,
+      2: WordHuntGokyuzuGameplayBackgrounds.bright,
+      3: WordHuntGokyuzuGameplayBackgrounds.bright,
+      4: WordHuntGokyuzuGameplayBackgrounds.bright,
+      5: WordHuntGokyuzuGameplayBackgrounds.storm,
+      6: WordHuntGokyuzuGameplayBackgrounds.airship,
+      7: WordHuntGokyuzuGameplayBackgrounds.moon,
+      8: WordHuntGokyuzuGameplayBackgrounds.storm,
+      9: WordHuntGokyuzuGameplayBackgrounds.moon,
+      10: WordHuntGokyuzuGameplayBackgrounds.bright,
+    };
+    for (final entry in expected.entries) {
+      expect(
+        WordHuntGokyuzuGameplayBackgrounds.forLevel(entry.key),
+        entry.value,
+      );
+      expect(entry.value, isNot(contains('scene_level_')));
+    }
+  });
+
   final route = WordHuntRouteDefinition(
     id: 'gokyuzu-adalari',
     title: 'Gökyüzü Adaları',
@@ -25,13 +48,12 @@ void main() {
     });
     await tester.pumpWidget(
       MaterialApp(
-        builder:
-            (context, child) => MediaQuery(
-              data: MediaQuery.of(
-                context,
-              ).copyWith(padding: const EdgeInsets.only(top: 28, bottom: 24)),
-              child: child!,
-            ),
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(padding: const EdgeInsets.only(top: 28, bottom: 24)),
+          child: child!,
+        ),
         home: WordHuntGokyuzuMasterArtScreen(route: route),
       ),
     );
@@ -57,7 +79,7 @@ void main() {
   testWidgets('Gökyüzü gameplay uses route title and level scene', (
     tester,
   ) async {
-    const background = 'assets/word_hunt/gokyuzu_adalari/scene_level_04.webp';
+    const background = WordHuntGokyuzuGameplayBackgrounds.bright;
     await tester.pumpWidget(
       const MaterialApp(
         home: WordHuntLevelProductionScreen(
