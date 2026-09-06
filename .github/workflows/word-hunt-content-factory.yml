@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'tools/word_hunt_batch_generator.py'
+      - 'tools/word_hunt_release_stock_check.py'
       - 'tools/word_hunt_content_factory*.json'
       - '.github/workflows/word-hunt-content-factory.yml'
   workflow_dispatch:
@@ -14,7 +15,7 @@ permissions:
 jobs:
   content-factory:
     runs-on: ubuntu-22.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: Kaynağı indir
         uses: actions/checkout@v4
@@ -25,7 +26,9 @@ jobs:
           python-version: '3.12'
 
       - name: Python syntax doğrula
-        run: python3 -m py_compile tools/word_hunt_batch_generator.py
+        run: |
+          python3 -m py_compile tools/word_hunt_batch_generator.py
+          python3 -m py_compile tools/word_hunt_release_stock_check.py
 
       - name: Örnek manifestten 8x8 grid üret ve doğrula
         run: |
@@ -47,3 +50,20 @@ jobs:
           code=$?
           set -e
           test "$code" -eq 2
+
+      - name: 180 yeni bölümü üret ve exact-one doğrula
+        run: |
+          python3 tools/word_hunt_batch_generator.py \
+            --input tools/word_hunt_content_factory.release_stock.json \
+            --output /tmp/word_hunt_release_stock.generated.json \
+            --report /tmp/word_hunt_release_stock.report.txt
+          grep -Fq 'Toplam rota: 18' /tmp/word_hunt_release_stock.report.txt
+          grep -Fq 'Toplam bölüm: 180' /tmp/word_hunt_release_stock.report.txt
+          grep -Fq 'exact-one occurrence: PASS' /tmp/word_hunt_release_stock.report.txt
+
+      - name: Mevcut 20 + yeni 180 = minimum 200 yayın stoğu kapısı
+        run: |
+          python3 tools/word_hunt_release_stock_check.py \
+            --generated /tmp/word_hunt_release_stock.generated.json \
+            --approved-existing 20 \
+            --required-total 200
